@@ -17,19 +17,19 @@ main(){
 otro comentario
 */	
 }
-```
+``
 
 Compilamos:
 
-´´´
+```
 $gcc hello_world.c -o hello_world.out
-´´´
+```
 
 Ejecutamos:
 
-´´´
+```
 $./hello_world.out
-´´´
+```
 
 ##Definición y declaración e inicialización de variables 
 
@@ -44,7 +44,7 @@ valor inicial a la variable o al inicio del programa. Para inicializar a las var
 el símbolo de "="
 
 
-´´´
+```
 #include<stdio.h>
 /*Definición y declaración de variables*/
 main(){
@@ -54,12 +54,11 @@ main(){
 	double variable_double; //64 bits,
 	punto flotante
 }
-
-´´´
+```
 
 Inicialización de variables:
 
-´´´
+```
 #include<stdio.h>
 /*Definición y declaración de variables*/
 main(){
@@ -74,14 +73,14 @@ main(){
 	//Imprimir los valores
 	printf("Valor de variable char: %c", variable_char);
 }
+```
 
-´´´
 Al definir o declarar variables indicamos su tamaño, el rango de valores que puede tomar y 
 las operaciones que es posible aplicarles.
 
 Al realizar operaciones debemos revisar que la definición de nuestras variables son del tipo que nosostros queremos.
 
-´´´
+```
 #include<stdio.h>
 main(){
 	int variable_int1, variable_int2;
@@ -100,21 +99,22 @@ printf("Variable double1 entre variable double2: %1.9f\n", variable_double1);
 printf("Variable double 1 entre variable double 2 notación exponencial: %1.9e\n", variable_double1);
 
 }
+```
 
-´´´
 
 Número más grande positivo
 
-´´´
+```
 #include<stdio.h>
 #include<float.h>
 main(){
 printf("Numéro más grande positivo: %e\n", DBL_MAX);
 }
-´´´
+```
+
 Underflow, Overflow:
 
-´´´
+```
 #include<stdio.h>
 main(){
 	double variable1 = 2.22e-326;
@@ -122,12 +122,11 @@ main(){
 	printf("Valor de variable 1: %Le\n", variable1);
 	printf("Valor de variable2 %Le\n", variable2);
 }
-
-´´´
+```
 
 #Obtener el epsilon de la máquina:
 
-´´´
+```
 #include<stdio.h>
 main(){
 	double variable = 1.0;
@@ -138,16 +137,17 @@ main(){
 
 	printf("Valor de epsilon de la máquina %e\n", variable);
 }
+```
 
 #Ejercicio de las notas:
 
 Compilamos:
 
-´´´
+```
 gcc ejercicio_notas.c -o ejercicio_notas.out -lm
-´´´
+```
 
-´´´
+```
 #include<stdio.h>
 #include<math.h>
 main(){
@@ -162,8 +162,7 @@ main(){
 	printf("Valor x_5: %e\n",x_5);
 	printf("fabs: %d\n", fabs(variable_int));
 }
-
-´´´
+```
 
 
 
