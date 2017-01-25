@@ -17,7 +17,7 @@ main(){
 otro comentario
 */	
 }
-``
+```
 
 Compilamos:
 
