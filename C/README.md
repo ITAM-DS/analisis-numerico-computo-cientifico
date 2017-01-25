@@ -1,1 +1,1 @@
-Lenguaje C
+Lenguaje C de programación
