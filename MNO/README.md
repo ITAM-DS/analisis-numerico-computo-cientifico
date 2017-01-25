@@ -1,4 +1,4 @@
-##MÃ©todos NumÃ©ricos y OptimizaciÃ2017
+##Métodos Numéricos y Optimización 2017
 
 ##Clase 1
 
