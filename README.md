@@ -4,7 +4,7 @@
 
 Índice de este repositorio
 
-I Cómputo científico:
+## I Cómputo científico:
 
 1.1 [Analisis-numerico-computo-cientifico](MNO/I/1.1.Analisis-numerico-computo-cientifico.pdf)
 
@@ -12,4 +12,4 @@ I Cómputo científico:
 
 1.3 Condición, estabilidad y normas
 
-II Cómputo en paralelo:
+## II Cómputo en paralelo:
