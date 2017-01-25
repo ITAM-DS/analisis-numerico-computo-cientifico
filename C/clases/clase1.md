@@ -1,16 +1,12 @@
 
 #Introducción:
-#Tener instalado (instrucciones 
-para ubuntu):
-$apt-get install build-essential
-$apt-get install nano
 
 ##hello world:
 
-stdio.h es un archivo que contiene
-definiciones, declaraciones de variables, tipos, funciones para
-input y output
-Usamos "\n" para indicar salto de línea
+stdio.h es un archivo que contiene definiciones, declaraciones
+de variables, tipos, funciones para input y output.
+
+Usamos "\n" para indicar salto de línea. Es un "format specifier"
 
 ´´´
 #include<stdio.h>
@@ -22,11 +18,30 @@ otro comentario
 */	
 }
 ´´´
+Compilamos:
+
+´´´
+$gcc hello_world.c -o hello_world.out
+´´´
+
+Ejecutamos:
+
+´´´
+$./hello_world.out
+´´´
+
 ##Definición y declaración e inicialización de variables 
 
 
-Palabras reservadas: char, int, float, double
-Inicializamos variables con el símbolo de "="
+Una variable es un nombre que será utilizado para almacenar un tipo de dato
+y que reconoce nuestro programa.
+
+Debemos definir o declarar a las variables. Para la definición y declaración de 
+variables utilizamos palabras reservadas en C, como: char, int, float, double.
+Es buena práctica inicializarlas al definirlas. Inicializar es asignar un 
+valor inicial a la variable o al inicio del programa. Para inicializar a las variables utilizamos 
+el símbolo de "="
+
 
 ´´´
 #include<stdio.h>
@@ -60,6 +75,8 @@ main(){
 }
 
 ´´´
+Al definir o declarar variables indicamos su tamaño, el rango de valores que puede tomar y 
+las operaciones que es posible aplicarles.
 
 Al realizar operaciones debemos revisar que la definición de nuestras variables son del tipo que nosostros queremos.
 
@@ -123,8 +140,12 @@ main(){
 
 #Ejercicio de las notas:
 
-#compilamos:
+Compilamos:
+
+´´´
 gcc ejercicio_notas.c -o ejercicio_notas.out -lm
+´´´
+
 ´´´
 #include<stdio.h>
 #include<math.h>
