@@ -1,5 +1,7 @@
 ##Métodos Numéricos y Optimización 2017
 
+[El curso, calificación y entregas, correo al cual escribir](https://www.dropbox.com/s/x8cdh55krqlpcxn/Curso_MNO_2017.pdf?dl=0)
+
 ##Clase 1
 
 16 de enero de 2017
