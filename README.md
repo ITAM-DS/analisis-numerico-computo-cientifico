@@ -17,4 +17,4 @@
 
 ## C
 
-[Clase1](C/Clases/Clase1.md)
+[clase1](C/clases/clase1.md)
