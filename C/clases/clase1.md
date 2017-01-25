@@ -1,0 +1,156 @@
+
+#Introducción:
+#Tener instalado (instrucciones 
+para ubuntu):
+$apt-get install build-essential
+$apt-get install nano
+
+##hello world:
+
+stdio.h es un archivo que contiene
+definiciones, declaraciones de variables, tipos, funciones para
+input y output
+Usamos "\n" para indicar salto de línea
+
+´´´
+#include<stdio.h>
+main(){
+//comentario
+	printf("Hello world!\n");
+/*
+otro comentario
+*/	
+}
+´´´
+##Definición y declaración e inicialización de variables 
+
+
+Palabras reservadas: char, int, float, double
+Inicializamos variables con el símbolo de "="
+
+´´´
+#include<stdio.h>
+/*Definición y declaración de variables*/
+main(){
+	char variable_char; //8 bits, entera
+	int variable_int; //32 bits, entera
+	float variable_float; //32 bits, punto flotante
+	double variable_double; //64 bits,
+	punto flotante
+}
+
+´´´
+
+Inicialización de variables:
+
+´´´
+#include<stdio.h>
+/*Definición y declaración de variables*/
+main(){
+	char variable_char; //8 bits, entera
+	int variable_int; //32 bits, entera
+	float variable_float = -2.0; //32 bits, punto flotante
+	double variable_double; //64 bits, punto flotante
+	variable_char = 'b';
+	variable_int = 3;
+	variable_double = 5.0;
+
+	//Imprimir los valores
+	printf("Valor de variable char: %c", variable_char);
+}
+
+´´´
+
+Al realizar operaciones debemos revisar que la definición de nuestras variables son del tipo que nosostros queremos.
+
+´´´
+#include<stdio.h>
+main(){
+	int variable_int1, variable_int2;
+	double variable_double1, variable_double2, variable_double3;
+//Inicialización de variables:
+variable_int1 = 3;
+variable_int2 = -1;
+variable_double1 = 5.0;
+variable_double2 = -3.0;
+variable_double3 = 0.6789281736281947
+variable_int1 = variable_int1/variable_int2;
+printf("Variable entera divida por -1: %d\n", variable_int1);
+variable_double1 = variable_double1/variable_double2;
+printf("Variable double1 entre variable double2: %1.9f\n", variable_double1);
+//Notación exponencial
+printf("Variable double 1 entre variable double 2 notación exponencial: %1.9e\n", variable_double1);
+
+}
+
+´´´
+
+Número más grande positivo
+
+´´´
+#include<stdio.h>
+#include<float.h>
+main(){
+printf("Numéro más grande positivo: %e\n", DBL_MAX);
+}
+´´´
+Underflow, Overflow:
+
+´´´
+#include<stdio.h>
+main(){
+	double variable1 = 2.22e-326;
+	double variable2 = 1e309;
+	printf("Valor de variable 1: %Le\n", variable1);
+	printf("Valor de variable2 %Le\n", variable2);
+}
+
+´´´
+
+#Obtener el epsilon de la máquina:
+
+´´´
+#include<stdio.h>
+main(){
+	double variable = 1.0;
+	while(1.0+variable != 1.0){
+		variable = variable/2.0;
+		//
+	}
+
+	printf("Valor de epsilon de la máquina %e\n", variable);
+}
+
+#Ejercicio de las notas:
+
+#compilamos:
+gcc ejercicio_notas.c -o ejercicio_notas.out -lm
+´´´
+#include<stdio.h>
+#include<math.h>
+main(){
+	double x_8 = 0.71428571;
+	double y_8 = 0.33333333;
+	double x_5;
+	double y_5;
+	int variable_int = -3;
+	//función: truncf
+	printf("Valor x_8 con truncf: %1.5f", truncf(x_8));
+	x_5 = truncf(x_5*1e5)*1e-5;
+	printf("Valor x_5: %e\n",x_5);
+	printf("fabs: %d\n", fabs(variable_int));
+}
+
+´´´
+
+
+
+
+
+
+
+
+
+
+
+
