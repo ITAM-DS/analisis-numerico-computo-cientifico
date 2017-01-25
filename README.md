@@ -13,3 +13,8 @@
 1.3 Condición, estabilidad y normas
 
 ## II Cómputo en paralelo:
+
+
+## C
+
+	[Clase1](C/Clases/Clase1.md)
