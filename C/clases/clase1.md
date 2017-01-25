@@ -139,13 +139,8 @@ main(){
 }
 ```
 
-#Ejercicio de las notas:
+#Ejemplo para ligar librería math al compilar:
 
-Compilamos:
-
-```
-gcc ejercicio_notas.c -o ejercicio_notas.out -lm
-```
 
 ```
 #include<stdio.h>
@@ -164,6 +159,11 @@ main(){
 }
 ```
 
+Compilamos:
+
+```
+$gcc ejemplo_truncf.c -o ejemplo_truncf.out -lm
+```
 
 
 
