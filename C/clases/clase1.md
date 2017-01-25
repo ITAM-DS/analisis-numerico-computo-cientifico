@@ -8,7 +8,7 @@ de variables, tipos, funciones para input y output.
 
 Usamos "\n" para indicar salto de línea. Es un "format specifier"
 
-´´´
+```
 #include<stdio.h>
 main(){
 //comentario
@@ -17,7 +17,8 @@ main(){
 otro comentario
 */	
 }
-´´´
+```
+
 Compilamos:
 
 ´´´
