@@ -1,1 +1,1 @@
-Métodos Numéricos y Opmización
+Métodos Numéricos Optimización
