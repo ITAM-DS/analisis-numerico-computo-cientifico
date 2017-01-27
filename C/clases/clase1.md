@@ -129,9 +129,9 @@ main(){
 }
 ```
 
-#Obtención del epsilon de la máquina con un while. 
+##Obtención del epsilon de la máquina con un while. 
 
-Observa la estructura `while`. En este ejemplo no es necesario el uso de llaves `{}`
+Observa la estructura `while`. En este ejemplo no es necesario el uso de llaves `{}` pues el statement dentro del while sólo involucra una línea.
 
 ```
 #include<stdio.h>
@@ -145,7 +145,7 @@ main(){
 }
 ```
 
-#Ejemplo para ligar librería math al compilar:
+##Ejemplo para ligar librería math al compilar:
 
 
 ```
