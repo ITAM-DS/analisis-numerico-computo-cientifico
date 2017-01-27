@@ -42,7 +42,7 @@ Una variable es un nombre que será utilizado para almacenar un tipo de dato
 y que reconoce nuestro programa.
 
 Debemos definir o declarar a las variables. Para la definición y declaración de 
-variables utilizamos palabras reservadas en C, como: char, int, float, double.
+variables utilizamos palabras reservadas en C `keywords`, como: char, int, float, double.
 Es buena práctica inicializarlas al definirlas. Inicializar es asignar un 
 valor inicial a la variable o al inicio del programa. Para inicializar a las variables utilizamos 
 el símbolo de "="
@@ -67,7 +67,8 @@ Inicialización de variables:
 main(){
 	char variable_char; //8 bits, entera
 	int variable_int; //32 bits, entera
-	float variable_float = -2.0; //32 bits, punto flotante. Esta línea representa definición e inicialización de variable_float.
+	float variable_float = -2.0; //32 bits, punto flotante. Esta línea representa 
+								//definición e inicialización de variable_float.
 	double variable_double; //64 bits, punto flotante
 	variable_char = 'b';
 	variable_int = 3;
