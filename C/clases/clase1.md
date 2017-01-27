@@ -3,6 +3,7 @@
 
 ##hello world:
 
+
 `stdio.h` es un archivo que contiene definiciones, declaraciones
 de variables, tipos, funciones para input y output.
 
