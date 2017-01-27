@@ -14,7 +14,7 @@ Con `#include<filename>` se incluye los contenidos de `filename`
 #include<stdio.h>
 main(){
 //comentario
-	printf("Hello world!\n");
+	printf("Hello world!\n"); // Al abrir y cerrar comitas indicamos un tipo string constante
 /*
 otro comentario
 */	
@@ -32,6 +32,8 @@ Ejecutamos:
 ```
 $./hello_world.out
 ```
+
+
 
 ##Definición y declaración e inicialización de variables 
 
