@@ -3,7 +3,7 @@
 
 ##hello world:
 
-stdio.h es un archivo que contiene definiciones, declaraciones
+`stdio.h` es un archivo que contiene definiciones, declaraciones
 de variables, tipos, funciones para input y output.
 
 Usamos `\n` para indicar salto de línea. Es un "format specifier"
