@@ -53,8 +53,7 @@ main(){
 	char variable_char; //8 bits, entera
 	int variable_int; //32 bits, entera
 	float variable_float; //32 bits, punto flotante
-	double variable_double; //64 bits,
-	punto flotante
+	double variable_double; //64 bits, punto flotante
 }
 ```
 
