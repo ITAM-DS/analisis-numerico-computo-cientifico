@@ -6,7 +6,7 @@
 stdio.h es un archivo que contiene definiciones, declaraciones
 de variables, tipos, funciones para input y output.
 
-Usamos "\n" para indicar salto de línea. Es un "format specifier"
+Usamos `\n` para indicar salto de línea. Es un "format specifier"
 
 Con `#include<filename>` se incluye los contenidos de `filename`
 
