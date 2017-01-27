@@ -62,7 +62,7 @@ Inicialización de variables:
 
 ```
 #include<stdio.h>
-/*Definición y declaración de variables*/
+/*Definición y declaración  e inicialización de variables*/
 main(){
 	char variable_char; //8 bits, entera
 	int variable_int; //32 bits, entera
