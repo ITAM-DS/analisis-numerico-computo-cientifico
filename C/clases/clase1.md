@@ -125,7 +125,9 @@ main(){
 }
 ```
 
-#Obtener el epsilon de la máquina. Observa la estructura `while`. En este ejemplo no es necesario el uso de llaves `{}`
+#Obtención del epsilon de la máquina con un while. 
+
+Observa la estructura `while`. En este ejemplo no es necesario el uso de llaves `{}`
 
 ```
 #include<stdio.h>
