@@ -104,7 +104,7 @@ printf("Variable double 1 entre variable double 2 notación exponencial: %1.9e\n
 ```
 
 
-Número más grande positivo
+Número más grande positivo. Incluimos el archivo `float.h`
 
 ```
 #include<stdio.h>
@@ -114,19 +114,19 @@ printf("Numéro más grande positivo: %e\n", DBL_MAX);
 }
 ```
 
-Underflow, Overflow:
+Underflow, Overflow. Observa el uso del tipo `L` que significa `long double`
 
 ```
 #include<stdio.h>
 main(){
-	double variable1 = 2.22e-326;
-	double variable2 = 1e309;
+	long double variable1 = 2.22e-326;
+	long double variable2 = 1e309;
 	printf("Valor de variable 1: %Le\n", variable1);
 	printf("Valor de variable2 %Le\n", variable2);
 }
 ```
 
-#Obtener el epsilon de la máquina:
+#Obtener el epsilon de la máquina. Observa la estructura `while`. En este ejemplo no es necesario el uso de llaves `{}`
 
 ```
 #include<stdio.h>
@@ -134,7 +134,6 @@ main(){
 	double variable = 1.0;
 	while(1.0+variable != 1.0){
 		variable = variable/2.0;
-		//
 	}
 
 	printf("Valor de epsilon de la máquina %e\n", variable);
