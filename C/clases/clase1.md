@@ -13,11 +13,11 @@ Con `#include<filename>` se incluye los contenidos de `filename`
 ```
 #include<stdio.h>
 main(){
-//comentario
+	//comentario
 	printf("Hello world!\n"); // Al abrir y cerrar comitas indicamos un tipo string constante
-/*
-otro comentario
-*/	
+	/*
+	otro comentario
+	*/	
 }
 ```
 
@@ -88,18 +88,18 @@ Al realizar operaciones debemos revisar que la definición de nuestras variables
 main(){
 	int variable_int1, variable_int2;
 	double variable_double1, variable_double2, variable_double3;
-//Inicialización de variables:
-variable_int1 = 3;
-variable_int2 = -1;
-variable_double1 = 5.0;
-variable_double2 = -3.0;
-variable_double3 = 0.6789281736281947
-variable_int1 = variable_int1/variable_int2;
-printf("Variable entera divida por -1: %d\n", variable_int1);
-variable_double1 = variable_double1/variable_double2;
-printf("Variable double1 entre variable double2: %1.9f\n", variable_double1);
-//Notación exponencial
-printf("Variable double 1 entre variable double 2 notación exponencial: %1.9e\n", variable_double1);
+	//Inicialización de variables:
+	variable_int1 = 3;
+	variable_int2 = -1;
+	variable_double1 = 5.0;
+	variable_double2 = -3.0;
+	variable_double3 = 0.6789281736281947
+	variable_int1 = variable_int1/variable_int2;
+	printf("Variable entera divida por -1: %d\n", variable_int1);
+	variable_double1 = variable_double1/variable_double2;
+	printf("Variable double1 entre variable double2: %1.9f\n", variable_double1);
+	//Notación exponencial
+	printf("Variable double 1 entre variable double 2 notación exponencial: %1.9e\n", variable_double1);
 
 }
 ```
@@ -111,7 +111,7 @@ Número más grande positivo. Incluimos el archivo `float.h`
 #include<stdio.h>
 #include<float.h>
 main(){
-printf("Numéro más grande positivo: %e\n", DBL_MAX);
+	printf("Numéro más grande positivo: %e\n", DBL_MAX);
 }
 ```
 
@@ -168,14 +168,4 @@ Compilamos:
 ```
 $gcc ejemplo_truncf.c -o ejemplo_truncf.out -lm
 ```
-
-
-
-
-
-
-
-
-
-
 
