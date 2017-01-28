@@ -6,7 +6,7 @@
 
 ##Clase 1
 
-16 de enero de 2017
+16 de enero
 
 [I/1.1](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
@@ -14,7 +14,7 @@
 
 ##Clase 2
 
-23 de enero de 2017
+23 de enero
 
 [I/1.2](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
