@@ -10,7 +10,7 @@
 
 1.3 Condición, estabilidad y normas
 
-## II Cómputo en paralelo:
+## II [Cómputo en paralelo](https://www.dropbox.com/sh/vrdgj7bugi1flyp/AAAMP6R2n5GZY71KXkWT4ZEja?dl=0):
 
 
 ## C
