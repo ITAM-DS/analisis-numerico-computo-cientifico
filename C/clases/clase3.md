@@ -25,6 +25,7 @@ main(){
 ```
 Podemos hacer copias entre structs con el símbolo de =:
 
+```
 #include<stdio.h>
 
 main(){
@@ -41,7 +42,7 @@ main(){
 		printf("struct fraccion caracter: %c\n",f2.denominador);
 
 }
-
+```
 ##Arrays
 
 Ejemplo sencillo de definición y declaración de un arreglo de enteros:
@@ -66,6 +67,43 @@ main(){
 }
 
 ```
+
+
+Podemos obtener la longitud de un arreglo con la función `sizeof`
+
+```
+#include<stdio.h>
+main(){
+	int arreglo[7];
+	printf("Tamaño en bytes de arreglo: %ld\n", sizeof(arreglo));
+	printf("Tamaño en bytes de arreglo posición 0: %ld\n", sizeof(arreglo[0]));
+	printf("Longitud de arreglo: %ld\n", sizeof(arreglo)/sizeof(arreglo[0]));
+
+}
+
+```
+
+Arreglo multidimensionaL
+
+´´´
+#include<stdio.h>
+main(){
+	
+	int arreglo_multidimensional[4][3];
+	printf("Total de bytes alojados para arreglo_multidimensional %ld\n",sizeof(arreglo_multidimensional));
+	printf("Total de bytes alojados para arreglo_multidimensional[0] %ld\n",sizeof(arreglo_multidimensional[0]));
+	printf("Total de bytes alojados para arreglo_multidimensional[0][0] %ld\n", sizeof(arreglo_multidimensional[0][0]));
+	printf("Número de renglones: %ld\n", sizeof(arreglo_multidimensional)/sizeof(arreglo_multidimensional[0]));
+	printf("Número de columnas: %ld\n", sizeof(arreglo_multidimensional[0])/ sizeof(arreglo_multidimensional[0][0]));
+}
+
+´´´
+
+
+
+
+
+
 
 
 
