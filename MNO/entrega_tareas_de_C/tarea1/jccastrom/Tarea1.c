@@ -58,3 +58,4 @@ int main(){
     printf("El septimo error relativo es %e\n" , err_rel7); 
     return 0;
 }
+//Fin tarea 1
