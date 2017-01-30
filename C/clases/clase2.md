@@ -2,8 +2,7 @@
 
 #Introducción
 
-En las operaciones podemos realizar asignaciones
-con la expresión: `operador``signo`:
+En las operaciones podemos realizar asignaciones con la expresión: `operador``signo`:
 
 ```
 #include<stdio.h>
@@ -27,7 +26,8 @@ main(){
 	printf("variable_double+variable_int=%f\n",variable_double+variable_int);
 }
 ```
-Utilizar doble signo `+`, y doble signo `-`
+
+Una expresión utilizada es con el doble signo `+`, y doble signo `-`
 
 ```
 #include<stdio.h>
@@ -50,6 +50,16 @@ main(){
 	j=++i + 5;
 	printf("Valor de i después de dar valor a j con ++i: %d\n", i);
 	printf("Valor de j con i++: %d\n", j);
+	i=0;
+	printf("Valor de i antes de dar valor a j: %d\n", i);
+	j = i-- + 5;
+	printf("Valor de i con i--: %d\n", i);
+	printf("Valor de j = i--+5: %d\n", j);
+	i=0;
+	printf("Valor de i antes de dar valor a j: %d\n", i);
+	j = --i + 5;
+	printf("Valor de i con --i: %d\n", i);
+	printf("Valor de j = --i+5: %d\n", j);
 }
 ```
 
@@ -64,6 +74,8 @@ main(){
 ```
 
 ##Uso de for:
+
+Con `#define`definimos una constante. Lo usamos así: `define nombre texto`, `texto` es una secuencia de caracteres.
 
 ```
 #include<stdio.h>
