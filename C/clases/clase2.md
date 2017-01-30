@@ -96,9 +96,53 @@ main(){
 
 ```
 
+##Uso de while:
 
+```
+#include<stdio.h>
+main(){
+		int variable;
+		variable=10;
+		printf("Variable antes de while: %d\n", variable);
+		while(variable-1){
+			printf("valor de variable = %d\n", variable);
+			--variable;
+		}
+		printf("Fin de while\n");
+		printf("Variable después del while: %d\n",variable);
+	}
+}
+```
 
+¿Cuál es la diferencia entre los siguientes programas?:
 
+```
+#include<stdio.h>
+main(){
+	int variable =10;
+	printf("Variable antes de while: %d\n", variable);
+	while(--variable){
+		printf("valor de variable = %d\n", variable);
+		--variable;
+	}
+	printf("Fin de while\n");
+	printf("Variable después del while: %d\n",variable);
+}
+```
+
+```
+#include<stdio.h>
+main(){
+	int variable =10;
+	printf("Variable antes de while: %d\n", variable);
+	while(variable--){
+		printf("valor de variable = %d\n", variable);
+		--variable;
+	}
+	printf("Fin de while\n");
+	printf("Variable después del while: %d\n",variable);
+}
+```
 
 
 
