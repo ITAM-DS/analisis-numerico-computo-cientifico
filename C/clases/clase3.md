@@ -161,6 +161,106 @@ main(){
 
 ```
 
+Una vez inicializado, podemos aplicar el operador `*`:
+
+```
+#include<stdio.h>
+main(){
+	int variable;
+	int *p = &variable;
+	printf("Address de variable int: %p\n", &variable);
+	printf("Address de apuntador: %p\n", p);
+	printf("sizeof double p2: %ld\n",sizeof(p2));
+	variable = -3;
+	printf("Valor de variable: %d\n", variable);
+	printf("Valor de *p: %d\n", *p);
+}
+
+```
+
+Otro ejemplo:
+
+```
+#include<stdio.h>
+
+main(){
+	int a=-1,b=4,arreglo[5];
+	int *p;
+	p = &b;
+	a = *p;
+	*p = -321;
+	arreglo[0] = -2;
+	p = &arreglo[0];
+	printf("Valor de a: %d\n", a);
+	printf("Valor de b: %d\n", b);
+	printf("Valor de arreglo[0]: %d\n", arreglo[0]);
+	printf("Valor de *p: %d\n", *p);
+
+}
+
+```
+
+El nombre de un arreglo funciona como un apuntador:
+
+```
+#include<stdio.h>
+main(){
+	int arreglo[5];
+	printf("Nombre de arreglo: %p\n", arreglo);
+	printf("Posición cero de arreglo: %p\n", &arreglo[0]);
+}
+
+```
+
+El nombre `arreglo` apunta al base address del arreglo. En este base address se guardará un `int`
+
+Entonces:
+
+```
+#include<stdio.h>
+main(){
+	int arreglo[5];
+	*arreglo = 8;
+	printf("arreglo[0]: %d\n", arreglo[0]);
+
+}
+```
+
+Podríamos imprimir las direcciones de memoria de arreglo:
+
+```
+#include<stdio.h>
+main(){
+	int arreglo[5];
+	int i;
+	for(i=0;i<sizeof(arreglo[0]);i++)
+		printf("Posición: %d, memoria: %p\n",i,arreglo+i);
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
