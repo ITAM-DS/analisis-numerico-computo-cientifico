@@ -85,7 +85,7 @@ main(){
 
 Arreglo multidimensionaL
 
-´´´
+```
 #include<stdio.h>
 main(){
 	
@@ -97,7 +97,74 @@ main(){
 	printf("Número de columnas: %ld\n", sizeof(arreglo_multidimensional[0])/ sizeof(arreglo_multidimensional[0][0]));
 }
 
-´´´
+```
+
+##Apuntadores:
+
+Un apuntador es una variable que contiene el address de una variable.
+
+Ejemplo para definición y declaración de un apuntador hacia una variable `int`:
+
+```
+#include<stdio.h>
+main(){
+	int *p;// int * p // int* p
+}
+```
+
+```
+#include<stdio.h>
+main(){
+	int *p;
+	int c;
+	printf("Total de bytes para apuntador: %ld\n",sizeof(p));
+	printf("Total de bytes para int:%ld\n",sizeof(c));
+}
+```
+Con el operador `&`podemos obtener el address de una variable:
+
+```
+#include<stdio.h>
+main(){
+	int variable;
+	printf("address de variable: %p\n", &variable);
+}
+```
+
+Es fundamental `inicializar`a un apuntador. Una forma es con `&`:
+
+```
+#include<stdio.h>
+main(){
+	int variable;
+	int *p;
+	double *p2;
+	p = &variable;//inicializamos al apuntador p
+	printf("Address de variable int: %p\n", &variable);
+	printf("Address de apuntador: %p\n", p);
+	printf("sizeof double p2: %ld\n",sizeof(p2));
+}
+
+```
+
+
+```
+#include<stdio.h>
+main(){
+	int variable;
+	int *p = &variable;
+	double *p2;
+	printf("Address de variable int: %p\n", &variable);
+	printf("Address de apuntador: %p\n", p);
+	printf("sizeof double p2: %ld\n",sizeof(p2));
+}
+
+```
+
+
+
+
+
 
 
 
