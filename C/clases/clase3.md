@@ -175,7 +175,6 @@ main(){
 	int *p = &variable;
 	printf("Address de variable int: %p\n", &variable);
 	printf("Address de apuntador: %p\n", p);
-	printf("sizeof double p2: %ld\n",sizeof(p2));
 	variable = -3;
 	printf("Valor de variable: %d\n", variable);
 	printf("Valor de *p: %d\n", *p);
