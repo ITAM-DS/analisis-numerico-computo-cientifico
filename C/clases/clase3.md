@@ -23,7 +23,7 @@ main(){
 		printf("struct fraccion caracter: %c\n",f.denominador);
 }
 ```
-Podemos hacer copias entre structs con el símbolo de =:
+Podemos hacer copias entre structs con el símbolo de `=`:
 
 ```
 #include<stdio.h>
@@ -37,7 +37,7 @@ main(){
 		struct fraccion f1,f2; //definimos y declaramos f: struct fraccion
 		f1.numerador = -5;//inicializamos al miembro int
 		f1.denominador = 'E'; //inicializamos al miembro char
-		f2=f1;
+		f2=f1; //copiamos
 		printf("struct fraccion numerador: %d\n", f2.numerador);
 		printf("struct fraccion caracter: %c\n",f2.denominador);
 
@@ -67,7 +67,7 @@ main(){
 }
 
 ```
-
+Al definir y declarar el `arreglo1` de tamaño 5, son designados 5 bloques de memoria contiguos de tamaño `int` (=4 bytes) que en total son 20 bytes.	
 
 Podemos obtener la longitud de un arreglo con la función `sizeof`
 
@@ -83,7 +83,9 @@ main(){
 
 ```
 
-Arreglo multidimensionaL
+Arreglo multidimensional
+
+Ejemplo para definición, declaración de un arreglo multidimensional. Observa el número de bytes alojados para cada estructura de datos:
 
 ```
 #include<stdio.h>
@@ -111,13 +113,16 @@ main(){
 	int *p;// int * p // int* p
 }
 ```
+Observemos el número de bytes designados para guardar a un apuntador:
 
 ```
 #include<stdio.h>
 main(){
 	int *p;
 	int c;
+	double *p2;
 	printf("Total de bytes para apuntador: %ld\n",sizeof(p));
+	printf("sizeof double p2: %ld\n",sizeof(p2));
 	printf("Total de bytes para int:%ld\n",sizeof(c));
 }
 ```
@@ -131,37 +136,37 @@ main(){
 }
 ```
 
-Es fundamental `inicializar`a un apuntador. Una forma es con `&`:
+Es fundamental `inicializar`a un apuntador. Una forma es con el operador `&` y recordando que el valor de un apuntador es un address.
+
+Observa que `variable` es tipo `int`, por lo que al declarar y definir a un apuntador, es necesario considerar esto último:
 
 ```
 #include<stdio.h>
 main(){
 	int variable;
 	int *p;
-	double *p2;
+
 	p = &variable;//inicializamos al apuntador p
 	printf("Address de variable int: %p\n", &variable);
 	printf("Address de apuntador: %p\n", p);
-	printf("sizeof double p2: %ld\n",sizeof(p2));
 }
 
 ```
 
+Otra forma de inicializar a un apuntador:
 
 ```
 #include<stdio.h>
 main(){
 	int variable;
 	int *p = &variable;
-	double *p2;
 	printf("Address de variable int: %p\n", &variable);
 	printf("Address de apuntador: %p\n", p);
-	printf("sizeof double p2: %ld\n",sizeof(p2));
 }
 
 ```
 
-Una vez inicializado, podemos aplicar el operador `*`:
+Para un apuntador inicializado es posible aplicar el operador `*`, que aplicado a un apuntador, se accede al objeto al que el apuntador apunta:
 
 ```
 #include<stdio.h>
@@ -178,7 +183,9 @@ main(){
 
 ```
 
-Otro ejemplo:
+La operación `*p` se conoce como dereference p.
+
+Otro ejemplo. Qué se imprime en las líneas con `printf` ? :
 
 ```
 #include<stdio.h>
