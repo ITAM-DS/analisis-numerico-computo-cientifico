@@ -2,8 +2,7 @@
 
 #Introducción
 
-En las operaciones podemos realizar asignaciones
-con la expresión: `operador``signo`:
+En las operaciones podemos realizar asignaciones con la expresión: `operador``signo`:
 
 ```
 #include<stdio.h>
@@ -27,7 +26,8 @@ main(){
 	printf("variable_double+variable_int=%f\n",variable_double+variable_int);
 }
 ```
-Utilizar doble signo `+`, y doble signo `-`
+
+Una expresión utilizada es con el doble signo `+`, y doble signo `-`
 
 ```
 #include<stdio.h>
@@ -50,6 +50,16 @@ main(){
 	j=++i + 5;
 	printf("Valor de i después de dar valor a j con ++i: %d\n", i);
 	printf("Valor de j con i++: %d\n", j);
+	i=0;
+	printf("Valor de i antes de dar valor a j: %d\n", i);
+	j = i-- + 5;
+	printf("Valor de i con i--: %d\n", i);
+	printf("Valor de j = i--+5: %d\n", j);
+	i=0;
+	printf("Valor de i antes de dar valor a j: %d\n", i);
+	j = --i + 5;
+	printf("Valor de i con --i: %d\n", i);
+	printf("Valor de j = --i+5: %d\n", j);
 }
 ```
 
@@ -64,6 +74,8 @@ main(){
 ```
 
 ##Uso de for:
+
+Con `#define`definimos una constante. Lo usamos así: `define nombre texto`, `texto` es una secuencia de caracteres.
 
 ```
 #include<stdio.h>
@@ -84,9 +96,99 @@ main(){
 
 ```
 
+##Uso de while:
+
+```
+#include<stdio.h>
+main(){
+		int variable;
+		variable=10;
+		printf("Variable antes de while: %d\n", variable);
+		while(variable-1){
+			printf("valor de variable = %d\n", variable);
+			--variable;
+		}
+		printf("Fin de while\n");
+		printf("Variable después del while: %d\n",variable);
+	}
+}
+```
+
+¿Cuál es la diferencia entre los siguientes programas?:
+
+```
+#include<stdio.h>
+main(){
+	int variable=10;
+	printf("Variable antes de while: %d\n", variable);
+	while(--variable){
+		printf("valor de variable = %d\n", variable);
+		--variable;
+	}
+	printf("Fin de while\n");
+	printf("Variable después del while: %d\n",variable);
+}
+```
+
+```
+#include<stdio.h>
+main(){
+	int variable =10;
+	printf("Variable antes de while: %d\n", variable);
+	while(variable--){
+		printf("valor de variable = %d\n", variable);
+		--variable;
+	}
+	printf("Fin de while\n");
+	printf("Variable después del while: %d\n",variable);
+}
+```
+
+##Uso de if:
+
+```
+#include<stdio.h>
+main(){
+	int variable=-437, variable2;
+	if(variable1<=10)printf("Primer if: variable1 menor o igual a 10\n");
+	if(variable1>10){
+		printf("Segundo if: variable1 mayor a 10\n");//no es necesario el uso de llaves
+	}
+	else
+		printf("Segundo if: variable1 menor o igual que 10\n");
+
+	printf("Otra forma es con ?:\n");
+
+	variable2=(variable1 <= 10)?variable1:0;
+	printf("Usando signo ? para asignar el valor de variable2: %d\n",variable2);
+
+}
+```
+
+##Uso de switch:
+
+```
+#include<stdio.h>
+main(){
+	int variable1 = -5;
+	int variable2;
+
+	switch(variable1){
+		case 0:
+			variable2 = -variable1;
+			printf("Primer caso se cumplió, variable2=%d\n",variable2);
+		case -10:
+			variable2 = variable1;
+			printf("Segundo caso se cumplió, variable2=%d\n",variable2);
+		default:
+		variable2 = variable1*10;
+		printf("Caso default se cumplió, variable2=%d\n",variable2);
+
+	}
+}
 
 
-
+```
 
 
 
