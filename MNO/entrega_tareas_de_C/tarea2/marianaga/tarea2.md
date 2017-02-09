@@ -47,7 +47,7 @@ main(void){
         if(c == '\n')
             nl++;
     }
-    printf("Número de lineas: %d\n", nl); 
+    printf("Número de líneas: %d\n", nl); 
 }
 
 ```
