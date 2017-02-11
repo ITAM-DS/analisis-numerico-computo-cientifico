@@ -285,7 +285,7 @@ como en el ejemplo siguiente, tenemos un apuntador a un arreglo de tamaño 2 de 
 ```
 #include<stdio.h>
 main(){
-	int (*apuntador)[2]; //apuntador a un apuntador de tamaño 2
+	int (*apuntador)[2]; //apuntador a un arreglo de tamaño 2
 	int arr_mult[3][2];
 	apuntador = arr_mult +1 ;
 	arr_mult[1][0] = -4;
