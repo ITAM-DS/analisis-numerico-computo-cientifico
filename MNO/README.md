@@ -32,3 +32,10 @@
 
 [C/clase2](../C/clases/clase2.md)
 
+##Clase 4
+
+30 de enero
+
+[II/2.1 (terminamos la nota)](https://www.dropbox.com/sh/vrdgj7bugi1flyp/AAAMP6R2n5GZY71KXkWT4ZEja?dl=0)
+
+[C/clase3](../C/clases/clase3.md)
