@@ -6,6 +6,7 @@ Dos tipos de datos que nos ayudan agrupar son los structs y los arrays.
 
 Ejemplo de definición y declaración de un struct:
 
+```
 #include<stdio.h>
 
 main(){
@@ -21,10 +22,11 @@ main(){
 	printf("struct fraccion numerador: %d\n", f.numerador);
 	printf("scruct fraccion caracter: %c\n", f.caracter);
 }
-
+```
 
 Podemos copiar dos structs con el símbolo de = :
 
+```
 #include<stdio.h>
 
 main(){
@@ -41,13 +43,14 @@ main(){
 	printf("struct fraccion numerador: %d\n", f2.numerador);
 	printf("scruct fraccion caracter: %c\n", f2.caracter);
 }
-
+```
 
 
 ##Arrays
 
 Ejemplo sencillo de definición y declaración de un arreglo de enteros:
 
+```
 #include<stdio.h>
 
 main(){
@@ -71,6 +74,7 @@ main(){
 	}	
 	
 }
+```
 
 Al definir y declarar el arreglo1 de tamaño 5, son designados 5 bloques
 de memoria contiguos de tamaño int (=4 bytes) que en total son 20 bytes 
