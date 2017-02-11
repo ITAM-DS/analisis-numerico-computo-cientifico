@@ -40,7 +40,7 @@
 
 [C/clase3](../C/clases/clase3.md)
 
-##CLase 5
+##Clase 5
 
 11 de febrero
 
