@@ -351,15 +351,3 @@ main(){
 }
 ```
 
-
-
-
-##Macros
-
-
-
-##Funciones
-
-
-
-
