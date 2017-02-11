@@ -325,7 +325,7 @@ O bien con la inicialización:
 ```
 #include<stdio.h>
 main(){
-	char *arreglo_str[4] = {"Hola\n", 
+	char *arreglo_str[] = {"Hola\n", 
 							"este es un\n",
 							"ejemplo\t",
 							"de un arreglo de apuntadores\n"
@@ -342,7 +342,7 @@ main(){
 ```
 #include<stdio.h>
 main(){
-	char arreglo_char_mult[4][100] = {{"Hola,\n"},
+	char arreglo_char_mult[][100] = {{"Hola,\n"},
 									{"este es un\n"},
 									{"ejemplo\t"},
 	{"de un arreglo multidimensional de chars\n"}};
