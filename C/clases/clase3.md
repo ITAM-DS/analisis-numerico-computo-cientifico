@@ -232,6 +232,40 @@ main(){
 }
 ```
 
+Los apuntadores son variables y pueden ser utilizados sin realizar un dereference. Por ejemplo, es posible asignar a un apuntador el valor de otro apuntador con `=`:
+
+```
+include<stdio.h>
+main(){
+	int *apuntador1, *apuntador2;
+	int variable=-5;
+	apuntador1 = &variable;
+	apuntador2 = apuntador1;
+	*apuntador2 = 10;
+	printf("Valor de variable: %d\n", variable);
+}
+
+```
+Si tenemos un arreglo definido y declarado, los operadores `+` y `-` los podemos usar para los apuntadores:
+
+```
+#include<stdio.h>
+main(){
+	int arreglo[3];
+	int *apuntador;
+	apuntador = arreglo;
+	printf("Dirección de memoria de arreglo: %p\n", arreglo);
+	printf("Dirección de memoria de apuntador: %p\n", apuntador);
+	apuntador = apuntador +1;
+	printf("Dirección de memoria de apuntador+=1: %p\n", apuntador);
+	apuntador = apuntador -1;
+	printf("Dirección de memoria de apuntador-=1: %p\n", apuntador);
+}
+
+
+```
+
+
 Podríamos imprimir las direcciones de memoria de arreglo:
 
 ```
@@ -244,6 +278,112 @@ main(){
 }
 
 ```
+Entonces, tenemos como mínimo dos formas de recorrer a un arreglo:
+
+```
+#include<stdio.h>
+main(){
+	int arreglo[4] = {-3, 4, 7, 8};
+	int i;
+	for(i=0;i<sizeof(arreglo[0]);i++)
+		printf("arreglo[%d]=%d\n", i,arreglo[i]);
+	printf("----------\n");
+	for(i=0;i<sizeof(arreglo[0]);i++)
+		printf("arreglo[%d] = %d\n", i, *(arreglo+i));
+}
+
+```
+
+Es válido restar dos apuntadores que apuntan hacia diferentes direcciones de memoria de un arreglo:
+
+```
+#include<stdio.h>
+main(){
+	int arreglo[3];
+	int *apuntador1, *apuntador2;
+	apuntador1 = arreglo;
+	apuntador2 = arreglo +3;
+	printf("apuntador2 -apuntador1: %ld\n", apuntador2-apuntador1);
+}
+```
+
+Comparaciones:
+
+```
+#include<stdio.h>
+main(){
+	int arreglo[3];
+	int *apuntador1, *apuntador2;
+	apuntador1 = arreglo;
+	apuntador2 = arreglo +3;
+	printf("apuntador1<apuntador2: %d\n", apuntador1<apuntador2);
+	printf("apuntador1>apuntador2: %d\n", apuntador1>apuntador2);
+	printf("apuntador1==apuntador2: %d\n", apuntador1==apuntador2);
+}
+```
+
+El nombre de un arreglo, es un apuntador hacia el base address del arreglo. Sin embargo, no podemos asignar `=`, modificar la direcciòn de memoria a la que apunta:
+
+```
+...
+	int arreglo[5];
+	int arreglo2[10];
+	arreglo = arreglo2;
+...
+
+```
+
+```
+...
+	int arreglo[5];
+	arreglo = arreglo +1 ;
+...
+
+```
+
+Ejemplo void:
+
+```
+#include<stdio.h>
+main(){
+	int variable, variable2;
+	void *apuntador;
+	variable = -10;
+	apuntador = &variable;
+	printf("Valor de apuntador: %p\n", apuntador);
+	printf("Dirección de memoria de variable: %p\n", &variable);
+	variable2 = *apuntador; //genera un warning y posible error
+	printf("Valor de variable2: %d\n", variable2);
+}
+
+```
+
+Pero si podemos convertir "cast" un apuntador de tipo `void` hacia otro tipo, por ejemplo `int`:
+
+```
+#include<stdio.h>
+main(){
+	int variable, *apuntador;
+	void *apuntador2;
+	variable = -10;
+	apuntador2 = &variable;
+	printf("Valor de apuntador: %p\n", apuntador2);
+	printf("Dirección de memoria de variable: %p\n", &variable);
+	apuntador = (int *)apuntador2; //casting o conversiòn
+	printf("Dereference apuntador: *apuntador: %d\n", *apuntador);
+}
+
+
+```
+
+
+
+
+
+
+
+
+
 
 
 
