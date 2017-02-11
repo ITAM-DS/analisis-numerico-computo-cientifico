@@ -39,3 +39,16 @@
 [II/2.1 (terminamos la nota)](https://www.dropbox.com/sh/vrdgj7bugi1flyp/AAAMP6R2n5GZY71KXkWT4ZEja?dl=0)
 
 [C/clase3](../C/clases/clase3.md)
+
+##CLase 5
+
+11 de febrero
+
+[C/clase3 (continuación)](../C/clases/clase3.md)
+
+[C/clase4](../C/clases/clase4.md)
+
+
+
+
+
