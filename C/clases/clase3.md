@@ -380,7 +380,7 @@ El nombre de un arreglo como se dijo, es un apuntador al base address del arregl
 ```
 
 
-Observa que tenemos una restricción para los apuntadores: deben apuntar a un tipo en particular de objeto, es decir, cada apuntador apunta a un tipo de dato específico. (Una excepción es un apuntador hacia `void`, el cual se utiliza para alojar cualquier tipo de apuntador pero no puede ser dereferenced).
+Observa que tenemos una restricción para los apuntadores: deben apuntar a un tipo en particular de objeto, es decir, cada apuntador apunta a un tipo de dato específico. (Una excepción es un apuntador hacia `void`, el cual se utiliza para indicar que un apuntador no apunta hacia un tipo en particular de dato, y no puede ser dereferenced).
 
 ```
 #include<stdio.h>
