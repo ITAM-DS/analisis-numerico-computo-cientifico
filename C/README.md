@@ -1,5 +1,5 @@
 Lenguaje C de programación
 
-Referencia interactiva:
+* Referencia interactiva:
 
-http://www.learn-c.org/
+  http://www.learn-c.org/
