@@ -16,10 +16,39 @@
 
 23 de enero
 
-[I/1.2](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
+[I/1.2 (terminamos la nota)](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
 [I/1.3 (hasta normas matriciales)](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
 [C/clase1](../C/clases/clase1.md)
+
+##Clase 3
+
+28 de enero
+
+[I/1.3 (terminamos la nota)](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
+
+[II/2.1 (hasta threading)](https://www.dropbox.com/sh/vrdgj7bugi1flyp/AAAMP6R2n5GZY71KXkWT4ZEja?dl=0)
+
+[C/clase2](../C/clases/clase2.md)
+
+##Clase 4
+
+30 de enero
+
+[II/2.1 (terminamos la nota)](https://www.dropbox.com/sh/vrdgj7bugi1flyp/AAAMP6R2n5GZY71KXkWT4ZEja?dl=0)
+
+[C/clase3](../C/clases/clase3.md)
+
+##Clase 5
+
+11 de febrero
+
+[C/clase3 (continuación)](../C/clases/clase3.md)
+
+[C/clase4](../C/clases/clase4.md)
+
+
+
 
 
