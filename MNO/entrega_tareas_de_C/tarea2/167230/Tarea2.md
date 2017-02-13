@@ -70,7 +70,7 @@ int main(void){
         putchar(c);
         cont++;
     } 
-    printf("%d\n", cont-1);
+    printf("%d\n", cont);
 }
 
 ```
