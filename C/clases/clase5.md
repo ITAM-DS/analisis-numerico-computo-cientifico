@@ -251,6 +251,8 @@ void cambia(int *x, int *y){
 De esta forma no se copian los valores de `a, b` definidos y declarados en `main` en la función `cambia`.
 
 
+##La función main
+
 La función main se define por convención como:
 
 ```
