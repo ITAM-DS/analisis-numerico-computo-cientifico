@@ -1,6 +1,6 @@
-##Introducción
+#Introducción
 
-#Strings
+##Strings
 
 Un dato tipo `string` es un arreglo de caracteres en el que la última posición es el caracter nulo: `\0` que indica el final del `string`.
 
@@ -285,13 +285,13 @@ como en el ejemplo siguiente, tenemos un apuntador a un arreglo de tamaño 2 de 
 ```
 #include<stdio.h>
 main(){
-	int (*arreglo)[2]; //apuntador a un arreglo de tamaño 2
+	int (*apuntador)[2]; //apuntador a un arreglo de tamaño 2
 	int arr_mult[3][2];
-	arreglo = arr_mult +1 ;
+	apuntador = arr_mult +1 ;
 	arr_mult[1][0] = -4;
 	arr_mult[1][1] = 2;
-	printf("(*arreglo)[0] :%d\n", (*arreglo)[0]);
-	printf("(*arreglo)[1] : %d\n", (*arreglo)[1]);
+	printf("(*apuntador)[0] :%d\n", (*apuntador)[0]);
+	printf("(*apuntador)[1] : %d\n", (*apuntador)[1]);
 }
 ```
 
@@ -325,7 +325,7 @@ O bien con la inicialización:
 ```
 #include<stdio.h>
 main(){
-	char *arreglo_str[4] = {"Hola\n", 
+	char *arreglo_str[] = {"Hola\n", 
 							"este es un\n",
 							"ejemplo\t",
 							"de un arreglo de apuntadores\n"
@@ -342,7 +342,7 @@ main(){
 ```
 #include<stdio.h>
 main(){
-	char arreglo_char_mult[4][100] = {{"Hola,\n"},
+	char arreglo_char_mult[][100] = {{"Hola,\n"},
 									{"este es un\n"},
 									{"ejemplo\t"},
 	{"de un arreglo multidimensional de chars\n"}};
@@ -350,16 +350,4 @@ main(){
 	printf("arreglo_char_mult[0][0]: %c\n", arreglo_char_mult[0][0]);
 }
 ```
-
-
-
-
-##Macros
-
-
-
-##Funciones
-
-
-
 
