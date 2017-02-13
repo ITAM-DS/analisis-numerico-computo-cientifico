@@ -1,4 +1,5 @@
-// 4) Modifica el programa de 3) para que cuente el número de líneas dado un archivo de stdin:
+// 3) Utiliza getchar para escribir un programa que cuente el número de caracteres dado un stdin e imprima este número.
+// Al dar enter (salto de línea) el programa termina. Por ejemplo:
 
 #include <stdio.h>
 
@@ -9,10 +10,13 @@ main(void){
     n= 0;
     while((c = getchar()) != EOF){
         if(c == '\n'){
+            n = n;
+        }
+        else{
             n++;
         }
     } 
-    printf("Numero de lineas: %d\n", n);
+    printf("Numero de caracteres: %d\n", n);
 }
 
 

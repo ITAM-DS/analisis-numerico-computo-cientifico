@@ -6,16 +6,14 @@
 // Para que el EOF funcione, lo hace asignando un numero negativo a C, en este caso -1. De esta manera indica el final
 // del archivo y por esto "c" es definido como int.
 
-// 2) Modifica main para que sólo se llame una vez a la función getchar()
-
 
 #include <stdio.h>
-
 main(void){
     int c;
-    while((c = getchar()) != EOF){
+    c = getchar();
+    while( c != EOF){
         putchar(c);
+        c = getchar();   
     } 
 }
-
 
