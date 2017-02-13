@@ -19,3 +19,7 @@
 [clase1](C/clases/clase1.md)
 
 [clase2](C/clases/clase2.md)
+
+[clase3](C/clases/clase3.md)
+
+[clase4](C/clases/clase4.md)
