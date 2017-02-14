@@ -13,6 +13,7 @@
 ## II [Cómputo en paralelo](https://www.dropbox.com/sh/vrdgj7bugi1flyp/AAAMP6R2n5GZY71KXkWT4ZEja?dl=0):
 
 2.1 Un poco de historia y generalidades.
+
 2.2 Sistemas de memoria distribuida: MPI.
 
 ## C
