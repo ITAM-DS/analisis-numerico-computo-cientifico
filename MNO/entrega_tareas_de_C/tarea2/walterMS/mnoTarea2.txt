@@ -1,0 +1,82 @@
+1) Investiga lo que quieren decir las letras EOF. ¿Por qué se debe definir c como int?
+EOF End Of File
+Una razón puede ser la definición de la función. Haciendo la consulta al "man getchar" de la terminal, la firma de la función es "int getchar(void)".
+La otra razón es porque la computadora representa a un "carácter" internamente con un número entero. De hecho, los carácteres ASCII se definen con 8 bits, es decir, valores entre 0-255. POr ejemplo, 'a' es 97, ' ' es 32, 'A' es 65, etc.
+
+2) Modifica main para que sólo se llame una vez a la función getchar()
+Creo que hay dos repuestas. Una sería la siguiente:
+
+#include <stdio.h>
+main(void){
+    int c;
+    c = getchar();
+    while( c != '\n'){
+        putchar(c);
+        c = getchar();   
+    } 
+
+}
+ 
+Y "estrictamente una sola vez" la llamada a la función gethcar, que solo lee del stdin, sería:
+
+#include <stdio.h>
+main(void){
+    int c;
+    c = getchar();
+ 
+}
+
+
+
+
+3) Utiliza getchar para escribir un programa que cuente el número de caracteres dado un stdin e imprima este número. Al dar enter (salto de línea) el programa termina. Por ejemplo:
+
+$echo -e "hola\n" | ./ejecutable.out
+entonces el programa imprime 4
+
+#include <stdio.h>
+main(void){
+    int c;
+    int num=0;
+    c = getchar();
+    while( c != '\n'){
+        num++;
+        c = getchar();   
+    } 
+
+    printf("\nNumero de caracteres: %d \n\n", num);
+}
+
+
+
+4) Modifica el programa de 3) para que cuente el número de líneas dado un archivo de stdin:
+
+./ejecutable.out < archivo.txt
+
+#include <stdio.h>
+main(void){
+    int c;
+    int num=0;
+    int lineas=0;
+    c = getchar();
+    while( c != EOF){
+        //putchar(c);
+        num++;
+        if(c == '\n')
+        	lineas++;
+        c = getchar();   
+    } 
+    lineas++;
+
+    printf("\nNumero de caracteres: %d ", num);
+    printf("\nNumero de lineas: %d \n\n", lineas);
+}
+
+
+
+
+
+
+
+
+
