@@ -59,7 +59,7 @@ y no es necesario especificar el tipo de dato (`int`, `char`, `double`) en la ma
 
 Algunas notas en la definición de una macro:
 
-1) Observa que para el ejemplo de `MAX` siguiente, se incrementa dos veces la `variable1` y la `variable2:
+1) Observa que para el ejemplo de `MAX` siguiente, se incrementa dos veces la `variable1` y la `variable2`:
 
 ```
 #include<stdio.h>
@@ -144,6 +144,39 @@ main(){
         printf("abs(variable3-abs(variable1-variable2)):%d\n",VALOR_ABS_DIFERENCIA(variable3,VALOR_ABS_DIFERENCIA(variable1, variable2)));
 }
 ```
+
+Si quisiéramos revisar el reemplazamiento de texto que se realiza sin compilar y crear un ejecutable, podemos para el programa siguiente:
+
+```
+#define VALOR_ABS_DIFERENCIA(x,y) ((x)>(y) ? (x)-(y):(y)-(x))
+main(){
+	VALOR_ABS_DIFERENCIA(2,3);
+}
+
+```
+
+ejecutar:
+
+```
+$gcc -E ejemplo_sustitucion_texto.c
+```
+
+para observar la sustitución de texto que realiza C. Output:
+
+```
+# 1 "ejemplo_sustitucion_texto.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 1 "<command-line>" 2
+# 1 "ejemplo_sustitucion_texto.c"
+
+main(){
+ ((2)>(3) ? (2)-(3):(3)-(2));
+}
+
+```
+
 
 ##Funciones
 
