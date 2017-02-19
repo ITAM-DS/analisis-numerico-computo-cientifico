@@ -28,13 +28,13 @@ void imprime_valores (int *loc, int lon, int lon2){
 	int i,j;
 	int contador = 0;
 	int n = lon;
-//arreglo unidimensional
+
 	if (lon2==0){
 		for (i=0 ; i<n; i++){
 			if(i%2 == 1)
 				printf("p[%d] : %d \n",i, *(loc + i));
 		}
-//arreglo multidimensional
+
 	}else{
 		for (i=0; i<lon; i++){
 			for(j=0; j<lon2; j++){
@@ -51,13 +51,13 @@ void imprime_adress (int *loc, int lon, int lon2){
         int i,j;
         int contador =0;
         int n = lon;
-//arreglo unidimensional
+
         if (lon2 == 0){
                 for (i = 0 ; i<n; i++){
                         if(i%2 == 1)
                                 printf("p[%d] : %p \n",i, loc + i);
                 }
-//arreglo multidimensional
+
         }else{
                 for (i=0; i<lon; i++){
                         for(j=0; j<lon2; j++){
