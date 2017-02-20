@@ -1,3 +1,4 @@
+
 ##Métodos Numéricos y Optimización 2017
 
 [El curso, calificación y entregas, correo al cual escribir](https://www.dropbox.com/s/x8cdh55krqlpcxn/Curso_MNO_2017.pdf?dl=0)
@@ -47,6 +48,19 @@
 [C/clase3 (continuación)](../C/clases/clase3.md)
 
 [C/clase4](../C/clases/clase4.md)
+
+[II/2.2 (construimos imagen de openmpi)](https://www.dropbox.com/sh/y1jr4xl160mhg18/AABT4JphiB2R9YWcBCbRYm9ja?dl=0)
+
+##Clase 6
+
+13 de febrero
+
+[C/clase5](../C/clases/clase5.md)
+
+[II/2.2 (nota hasta communicators, MPI_Comm_size, MPI_Comm_rank y hello world con openmpi )](https://www.dropbox.com/sh/y1jr4xl160mhg18/AABT4JphiB2R9YWcBCbRYm9ja?dl=0)
+
+
+
 
 
 

@@ -59,7 +59,7 @@ y no es necesario especificar el tipo de dato (`int`, `char`, `double`) en la ma
 
 Algunas notas en la definición de una macro:
 
-1) Observa que para el ejemplo de `MAX` siguiente, se incrementa dos veces la `variable1` y la `variable2:
+1) Observa que para el ejemplo de `MAX` siguiente, se incrementa dos veces la `variable1` y la `variable2`:
 
 ```
 #include<stdio.h>
@@ -145,22 +145,42 @@ main(){
 }
 ```
 
+Si quisiéramos revisar el reemplazamiento de texto que se realiza sin compilar y crear un ejecutable, podemos para el programa siguiente:
+
+```
+#define VALOR_ABS_DIFERENCIA(x,y) ((x)>(y) ? (x)-(y):(y)-(x))
+main(){
+	VALOR_ABS_DIFERENCIA(2,3);
+}
+
+```
+
+ejecutar:
+
+```
+$gcc -E ejemplo_sustitucion_texto.c
+```
+
+para observar la sustitución de texto que realiza C. Output:
+
+```
+# 1 "ejemplo_sustitucion_texto.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 1 "<command-line>" 2
+# 1 "ejemplo_sustitucion_texto.c"
+
+main(){
+ ((2)>(3) ? (2)-(3):(3)-(2));
+}
+
+```
+
+
 ##Funciones
 
 Ejemplo de definición y declaración de funciones:
-
-Por convención, la función `main` tiene una definición siguiente:
-
-```
-int main(){
-
-	return 0;
-}
-```
-
-Un valor de `0` implica una finalización normal. Este valor se le regresa al ambiente en el que el programa fue ejecutado.
-
-Otro ejemplo:
 
 ```
 #include<stdio.h>
@@ -263,7 +283,10 @@ int main(){
 
 ```
 
-Y para el nombre de sus parámetros que recibe de la línea de comandos:
+Un valor de `0` implica una finalización normal. Este valor se le regresa al ambiente en el que el programa fue ejecutado.
+
+
+Si la función recibe argumentos de la línea de comandos, entonces el nombre de sus parámetros es `argc` y `argv`:
 
 ```
 int main(int argc, char *argv[]){
