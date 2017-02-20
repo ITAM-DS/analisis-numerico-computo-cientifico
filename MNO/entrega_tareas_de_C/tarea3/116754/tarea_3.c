@@ -19,14 +19,12 @@ int imparreglos(int dimen){
     filas = sizeof(vector)/sizeof(vector[0]);
     columnas = sizeof(vector[0])/sizeof(vector[0][0]);
     printf("\nLas entradas impares del vector, son:\n");
-    for(i=0;i<filas;i++){
-      for(j=0;j<columnas;j++){
-        if((i+j)%2 != 0)printf("p[%d][%d] = %d\n", i, j, vector[i][j]);
-      }
+    for(i=0;i<(filas*columnas);i++){
+      if((i+j)%2 != 0)printf("p[%d] = %d\n", i, vector[i][j]);
     }
-
   }
 }
+
 int imdireccion(int dimen){
   int i,j,filas,columnas;
   if(dimen == 1){
@@ -46,14 +44,12 @@ int imdireccion(int dimen){
     filas = sizeof(vector)/sizeof(vector[0]);
     columnas = sizeof(vector[0])/sizeof(vector[0][0]);
     printf("\nLas direcciones de las entradas impares del vector, son:\n");
-    for(i=0;i<filas;i++){
-      for(j=0;j<columnas;j++){
-        if((i+j)%2 != 0)printf("&p[%d] = %p\n", (i+j), &vector[i][j]);
-      }
+    for(i=0;i<(filas*columnas);i++){
+      if((i)%2 != 0)printf("&p[%d] = %p\n", i, &vector[i]);
     }
-
   }
 }
+
 int main(){
   int dimen;
   printf("¿Quieres tu arreglo de 1 o 2 dimensiones?\n");
