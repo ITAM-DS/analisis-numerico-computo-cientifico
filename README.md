@@ -27,3 +27,5 @@
 [clase4](C/clases/clase4.md)
 
 [clase5](C/clases/clase5.md)
+
+[clase6](C/clases/clase6.md)
