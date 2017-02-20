@@ -57,6 +57,7 @@ int main(){
   int dimen;
   printf("¿Quieres tu arreglo de 1 o 2 dimensiones?\n");
   scanf("%d",&dimen);
+  printf("%d\n",dimen);
   imparreglos(dimen);
   imdireccion(dimen);
 }
