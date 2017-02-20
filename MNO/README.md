@@ -1,9 +1,5 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
-##M?todos Num?ricos y Optimizaci?n 2017
+
+##Métodos Num?ricos y Optimización 2017
 
 [El curso, calificaci?n y entregas, correo al cual escribir](https://www.dropbox.com/s/x8cdh55krqlpcxn/Curso_MNO_2017.pdf?dl=0)
 
