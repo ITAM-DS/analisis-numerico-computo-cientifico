@@ -8,8 +8,8 @@ Realiza un programa en el que se impriman las entradas impares de un arreglo y l
 
 #include<stdio.h>
 
-int imprimir_valores(int *p, int longitud);
-int imprimir_direcciones(int *p, int longitud);
+void imprimir_valores_impares(int *p, int longitud);
+void imprimir_direcciones_impares(int *p, int longitud);
 
 void imprimir_valores_impares(int *p, int longitud){
   for(int i=1;i<longitud;i=i+2)
