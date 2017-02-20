@@ -1,10 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
-
-
 #Introducción
 
 En las operaciones podemos realizar asignaciones con la expresión: `operador``signo`:

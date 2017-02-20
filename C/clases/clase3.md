@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 #Introducción
 
 Dos tipos de datos que nos ayudan agrupar son los structs y los arrays.
