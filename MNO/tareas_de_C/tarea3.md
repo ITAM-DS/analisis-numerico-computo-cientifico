@@ -2,9 +2,8 @@
 
 Realiza un programa en el que se impriman las entradas impares de un arreglo y las direcciones de memoria también en las posiciones impares. Define dos funciones que realicen las impresiones en pantalla. Las funciones como mínimo reciben un apuntador y funcionan para arreglos de una dimensión y de dos dimensiones.
 
-Por ejemplo:
+Por ejemplo, si tengo un arreglo de tamaño 10:
 
-Si tengo un arreglo de tamaño 10:
 
 ```
 p[0]:-1
@@ -87,6 +86,7 @@ Y la función 2 imprime:
 &p[5]=0x7fff5d5ef0a4
 
 ```
+
 
 De manera individual cada persona haga un directorio con su CLAVE y coloquen ahí sus resultados: código y output.
 
