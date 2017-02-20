@@ -1,7 +1,5 @@
 #Tarea 3
 
-Realiza un programa en el que se impriman las entradas impares de un arreglo y las direcciones de memoria también en las posiciones impares. Define dos funciones que realicen las impresiones en pantalla. La función como mínimo recibe un apuntador y funciona para arreglos de una dimensión y de dos dimensiones.
-
 Por ejemplo:
 
 Si tengo un arreglo de tamaño 10:
@@ -88,7 +86,7 @@ Y la función 2 imprime:
 
 ```
 
-De manera individual cada persona haga un directorio con su CLAVE y coloquen ahí sus resultados.
+
 
 Se entrega el lunes 20 de febrero.
 

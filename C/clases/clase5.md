@@ -182,19 +182,6 @@ main(){
 
 Ejemplo de definición y declaración de funciones:
 
-Por convención, la función `main` tiene una definición siguiente:
-
-```
-int main(){
-
-	return 0;
-}
-```
-
-Un valor de `0` implica una finalización normal. Este valor se le regresa al ambiente en el que el programa fue ejecutado.
-
-Otro ejemplo:
-
 ```
 #include<stdio.h>
 //Declaración de la función calcula_epsilon_maquina:
@@ -296,7 +283,10 @@ int main(){
 
 ```
 
-Y para el nombre de sus parámetros que recibe de la línea de comandos:
+Un valor de `0` implica una finalización normal. Este valor se le regresa al ambiente en el que el programa fue ejecutado.
+
+
+Si la función recibe argumentos de la línea de comandos, entonces el nombre de sus parámetros es `argc` y `argv`:
 
 ```
 int main(int argc, char *argv[]){
