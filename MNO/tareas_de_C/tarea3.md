@@ -4,6 +4,7 @@ Realiza un programa en el que se impriman las entradas impares de un arreglo y l
 
 Por ejemplo, si tengo un arreglo de tamaño 10:
 
+
 ```
 p[0]:-1
 p[1]:-2
