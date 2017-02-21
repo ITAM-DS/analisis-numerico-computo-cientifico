@@ -59,7 +59,7 @@
 
 [II/2.2 (nota hasta communicators, MPI_Comm_size, MPI_Comm_rank y hello world con openmpi )](https://www.dropbox.com/sh/y1jr4xl160mhg18/AABT4JphiB2R9YWcBCbRYm9ja?dl=0)
 
-#Clase 7
+##Clase 7
 
 21 de febrero
 
