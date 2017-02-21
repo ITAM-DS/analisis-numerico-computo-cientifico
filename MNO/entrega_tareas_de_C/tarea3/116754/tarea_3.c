@@ -60,4 +60,5 @@ int main(){
   printf("%d\n",dimen);
   imparreglos(dimen);
   imdireccion(dimen);
+  return 0;
 }
