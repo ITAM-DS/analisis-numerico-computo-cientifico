@@ -310,7 +310,7 @@ Podemos imprimir las direcciones de memoria de arreglo con esta idea:
 main(){
 	int arreglo[5];
 	int i;
-	for(i=0;i<sizeof(arreglo[0]);i++)
+	for(i=0;i<sizeof(arreglo)/sizeof(arreglo[0]);i++)
 		printf("posición %d, memoria: %p\n", i, arreglo+i);
 }
 ```
@@ -322,10 +322,10 @@ Así, tenemos dos formas de recorrer un arreglo (como mínimo):
 main(){
 	int arreglo[4] = {-3, 5, 7, 8};
 	int i;
-	for(i=0;i<sizeof(arreglo[0]);i++)
+	for(i=0;i<sizeof(arreglo)/sizeof(arreglo[0]);i++)
 		printf("arreglo[%d]=%d\n", i,arreglo[i]);
 	printf("-----------------\n");
-	for(i=0;i<sizeof(arreglo[0]);i++)
+	for(i=0;i<sizeof(arreglo)/sizeof(arreglo[0]);i++)
 		printf("arreglo[%d]=%d\n", i,*(arreglo + i));
 }
 
@@ -411,4 +411,24 @@ main(){
 	printf("Dereferenced apuntador: *apuntador: %d\n", *apuntador);
 }
 ```
+
+Otro ejemplo para "cast" de un apuntador a un tipo de dato `void`:
+
+```
+#include<stdio.h>
+main(){
+    long int variable, variable2; //deben ambas variables ser tipo long int y depende de la arquitectura del 
+    							//sistema en el que se esté trabajando: 32 o 64 bits
+    void *apuntador2;
+    variable = -10;
+    apuntador2 = (void *)variable; //cast a un apuntador de tipo de dato void
+    printf("Valor de apuntador2: %p\n", apuntador2);
+    printf("Dirección de memoria variable: %p\n", &variable);
+    //las dos líneas anteriores imprimen direcciones de memoria distintas
+    variable2 = (long int)apuntador2; //cast
+    printf("variable: %ld\n", variable2); //no hay pérdida de información del valor de variable
+}
+```
+
+
 
