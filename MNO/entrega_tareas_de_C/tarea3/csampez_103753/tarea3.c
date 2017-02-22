@@ -23,31 +23,18 @@ int main(){
 
 	//Ejecucion de las funciones .. 
 	printf("El argumento es un arreglo es de tamaño %d \n \n", size_d1);
-
 	printf(" |-------- VALORES --------- | \n\n");
-	
 	funcion_uno(d1_pointer, size_d1);
-	
 	printf(" |-------- DIRECCIONES --------- | \n\n");
-	
 	funcion_dos(d1_pointer, size_d1);
-
 	printf(" |-------- --------- --------- | \n\n");
 	
-	
-
 	printf("El argumento es un arreglo es de tamaño %d \n \n", size_d2);
-	
 	printf(" |-------- VALORES --------- | \n\n");
-	
 	funcion_uno(d2_pointer, size_d2);
-	
 	printf(" |-------- DIRECCIONES --------- | \n\n");
-	
 	funcion_dos(d2_pointer, size_d2);
-
 	printf(" |-------- --------- --------- | \n\n");
-	
 	return 0;
 }
 
