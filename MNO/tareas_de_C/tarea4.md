@@ -260,5 +260,5 @@ El prototipo de "voltea_string" es:
 char *voltea_string(char *s);
 ```
 
-Utiliza malloc`.
+Utiliza `malloc`.
 
