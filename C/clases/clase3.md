@@ -412,3 +412,23 @@ main(){
 }
 ```
 
+Otro ejemplo para "cast" de un apuntador a un tipo de dato `void`:
+
+```
+#include<stdio.h>
+main(){
+    long int variable, variable2; //deben ambas variables ser tipo long int y depende de la arquitectura del 
+    							//sistema en el que se esté trabajando: 32 o 64 bits
+    void *apuntador2;
+    variable = -10;
+    apuntador2 = (void *)variable; //cast a un apuntador de tipo de dato void
+    printf("Valor de apuntador2: %p\n", apuntador2);
+    printf("Dirección de memoria variable: %p\n", &variable);
+    //las dos líneas anteriores imprimen direcciones de memoria distintas
+    variable2 = (long int)apuntador2; //cast
+    printf("variable: %ld\n", variable2); //no hay pérdida de información del valor de variable
+}
+```
+
+
+
