@@ -59,7 +59,7 @@ b) Investiga el uso de la función "scanf" para que imprima la longitud de los s
 hamburguesas permisos exponencialmente 549
 ```
 
-de stdin:
+de `stdin`:
 
 ```
 $./ejercicio_1_scanf.out < archivo.txt
@@ -212,9 +212,9 @@ return 0;
 
 a) La funcion "corta_string" no hace un chequeo si el string que recibe como parámetro debe de tener al menos un caracter. Modifica esta función de modo que haga este chequeo:
 
-	Si el string tiene más de un caracter entonces devuelve el string sin el caracter inicial
+* Si el string tiene más de un caracter entonces devuelve el string sin el caracter inicial
 	
-	Si no se cumple lo anterior entonces devuelve un mensaje de error
+* Si no se cumple lo anterior entonces devuelve un mensaje de error
 
 b) Cómo modificas la forma en que es llamada "corta_string" dentro de main de modo que devuelva: " verdes" (hay un espacio antes del string "verdes") ??
 
@@ -246,7 +246,7 @@ int main(void){
 	
 a) Modifica 2.c para que en lugar de inicializar el string s con un tamaño 50 sea dinámica su inicialización, es decir, que no tengas que escribir "50" o algún valor definido para el tamaño del string s. 
 
-Utiliza malloc.
+Utiliza `malloc`.
 
 b) Escribe una función "voltea_string" que reciba como parámetro un char * y devuelva un char * cuya operación sea devolver un string volteado, así, al llamar "voltea_string" con el string "Campos verdes" tenemos:
 
@@ -260,5 +260,5 @@ El prototipo de "voltea_string" es:
 char *voltea_string(char *s);
 ```
 
-Utiliza malloc.
+Utiliza `malloc`.
 
