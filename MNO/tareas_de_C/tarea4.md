@@ -11,15 +11,19 @@ analisis-numerico-computo-cientifico/MNO/entrega_tareas_de_C/tarea4
 a) Modifica la función "longitud_string" del siguiente programa siguiendo estos dos pasos:
 
 paso1: Un primer cambio es:
-
+            
+            ```
 			longitud_string(char *s){
 				...
 			}
+            ```
 
 paso2: Recorrer el string con un apuntador:
+
 		Dentro del while escribe el statement:
-			
+			```
 			s=s+1;
+            ```
 
 		y escribe una condición en el while para detener el loop. Sigue
 		usando un índice para return
