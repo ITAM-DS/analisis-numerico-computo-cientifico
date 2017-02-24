@@ -254,7 +254,7 @@ b) Escribe una función `voltea_string` que reciba como parámetro un `char *` y
 sedrev sopmaC
 ```
 
-El prototipo de "voltea_string" es:
+El prototipo de `voltea_string` es:
 
 ```
 char *voltea_string(char *s);
