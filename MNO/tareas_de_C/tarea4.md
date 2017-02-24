@@ -118,13 +118,10 @@ int obtenlinea(void);
 void copia(void);
  
 /*imprime la línea con tamaño más grande*/
- 
 int main(void){
- 
     int longitud;
     extern int max;
     extern char linea_max[MAXLINEA];
-     
     max=0;
     while((longitud = obtenlinea()) > 0)
         if( longitud > max){
@@ -133,14 +130,11 @@ int main(void){
         }
     if(max > 0)
         printf("%s", linea_max);
- 
 return 0;
 }
  
 /*obtenlinea: lee una linea en el arreglo linea, regresa longitud*/
- 
 int obtenlinea(void){
- 
     int c;
     int i;
     extern char linea[];
@@ -152,18 +146,13 @@ int obtenlinea(void){
     }
     linea[i]='\0'; //este caracter es necesario para almacenar strings
     return i;
- 
 }
  
 /*copia: copia del arreglo "linea" al arreglo "linea_max"*/
- 
-void copia(void){
- 
- 
+void copia(void){ 
     int i;
     extern char linea[], linea_max[];
     i=0;
- 
     while(1){
         linea_max[i] = linea[i];
         if(linea_max[i] == '\0') break;
