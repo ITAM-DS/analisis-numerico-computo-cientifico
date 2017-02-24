@@ -1,8 +1,3 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
 #Tarea 2
 
 Considera el siguiente programa:
