@@ -183,7 +183,7 @@ d) Modifica la función "copia" para que no use índices y sólo apuntadores
 
 e) Escribe una función "voltea" que reciba un string "s" e imprima el string "s"al revés. Añade esta función a 1.c para que el programa lea líneas y las imprima volteadas
 
-f) Es necesario escribir "extern" al declarar variables dentro de main(), getline() y copia() en 2_mod.c?
+f) Qué efecto tiene escribir "extern" para la declaración de variables dentro de main(), getline() y copia()?
 
 
 ##Ejercicio 3
