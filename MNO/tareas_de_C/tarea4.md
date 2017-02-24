@@ -11,22 +11,20 @@ analisis-numerico-computo-cientifico/MNO/entrega_tareas_de_C/tarea4
 a) Modifica la función "longitud_string" del siguiente programa siguiendo estos dos pasos:
 
 paso1: Un primer cambio es:
-            
-            ```
-			longitud_string(char *s){
-				...
-			}
-            ```
+```
+longitud_string(char *s){
+    //código ...
+}
+```
 
 paso2: Recorrer el string con un apuntador:
 
-		Dentro del while escribe el statement:
-			```
-			s=s+1;
-            ```
+Dentro del while escribe el statement:
+```
+s=s+1;
+```
 
-		y escribe una condición en el while para detener el loop. Sigue
-		usando un índice para return
+y escribe una condición en el while para detener el loop. Sigue usando un índice para return.
 
 Programa:
 
@@ -253,7 +251,7 @@ Utiliza malloc.
 b) Escribe una función "voltea_string" que reciba como parámetro un char * y devuelva un char * cuya operación sea devolver un string volteado, así, al llamar "voltea_string" con el string "Campos verdes" tenemos:
 
 ```
-	"sedrev sopmaC"
+"sedrev sopmaC"
 ```
 
 El prototipo de "voltea_string" es:
