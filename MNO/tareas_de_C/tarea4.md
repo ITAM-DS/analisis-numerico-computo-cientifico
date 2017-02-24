@@ -42,8 +42,8 @@ return i;
 }
  
 int main(void){
-    char string1[] = CADENA_PRUEBA; //declaracion de variable e inicializacion
-    char string2[MAX_LONG]; //declaracion
+    char string1[] = CADENA_PRUEBA; //definición y declaracion de variable e inicializacion.
+    char string2[MAX_LONG]; //definición y declaracion.
     printf("cadena: %s\n", string1);
     printf("longitud cadena: %d\n", longitud_string(string1));
     strcpy(string2, "leer libros y revistas"); //inicializacion de string2
