@@ -244,7 +244,7 @@ int main(void){
 }
 ```
 	
-a) Modifica 2.c para que en lugar de inicializar el string s con un tamaño 50 sea dinámica su inicialización, es decir, que no tengas que escribir "50" o algún valor definido para el tamaño del string s. 
+a) Modifica el programa para que en lugar de inicializar el string s con un tamaño 50 sea dinámica su inicialización, es decir, que no tengas que escribir "50" o algún valor definido para el tamaño del string s. 
 
 Utiliza `malloc`.
 
@@ -260,5 +260,5 @@ El prototipo de "voltea_string" es:
 char *voltea_string(char *s);
 ```
 
-Utiliza `malloc`.
+Utiliza malloc`.
 
