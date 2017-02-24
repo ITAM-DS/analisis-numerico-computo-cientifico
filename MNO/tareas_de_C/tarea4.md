@@ -248,7 +248,7 @@ a) Modifica el programa para que en lugar de inicializar el string `s` con un ta
 
 Utiliza `malloc`.
 
-b) Escribe una función "voltea_string" que reciba como parámetro un char * y devuelva un `char *` cuya operación sea devolver un string volteado, así, al llamar `voltea_string` con el string `Campos verdes` tenemos:
+b) Escribe una función `voltea_string` que reciba como parámetro un char * y devuelva un `char *` cuya operación sea devolver un string volteado, así, al llamar `voltea_string` con el string `Campos verdes` tenemos:
 
 ```
 sedrev sopmaC
