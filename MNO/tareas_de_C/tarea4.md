@@ -8,7 +8,7 @@ analisis-numerico-computo-cientifico/MNO/entrega_tareas_de_C/tarea4
 
 ##Ejercicio 1
 
-a) Modifica la función `longitud_string` del siguiente programa siguiendo estos dos pasos:
+a) Modifica la función `longitud_string del siguiente programa siguiendo estos dos pasos:
 
 paso1: Un primer cambio es:
 ```
@@ -181,9 +181,9 @@ c) Modifica la función `copia` para que no use `break` pero todavía debe de us
 
 d) Modifica la función `copia` para que no use índices y sólo apuntadores.
 
-e) Escribe una función `voltea` que reciba un string "s" e imprima el string "s"al revés. Añade esta función para que el programa lea líneas y las imprima volteadas.
+e) Escribe una función `voltea` que reciba un string `s` e imprima el string `s` al revés. Añade esta función para que el programa lea líneas y las imprima volteadas.
 
-f) Qué efecto tiene escribir "extern" para la declaración de variables dentro de main(), getline() y copia()?
+f) Qué efecto tiene escribir `extern` para la declaración de variables dentro de main(), getline() y copia()?
 
 
 ##Ejercicio 3
