@@ -8,7 +8,7 @@ analisis-numerico-computo-cientifico/MNO/entrega_tareas_de_C/tarea4
 
 ##Ejercicio 1
 
-a) Modifica la función `longitud_string del siguiente programa siguiendo estos dos pasos:
+a) Modifica la función `longitud_string` del siguiente programa siguiendo estos dos pasos:
 
 paso1: Un primer cambio es:
 ```
@@ -210,7 +210,7 @@ return 0;
 }
 ```
 
-a) La funcion `corta_string` no hace un chequeo si el string que recibe como parámetro debe de tener al menos un caracter. Modifica esta función de modo que haga este chequeo:
+a) La funcion `corta_string no hace un chequeo si el string que recibe como parámetro debe de tener al menos un caracter. Modifica esta función de modo que haga este chequeo:
 
 * Si el string tiene más de un caracter entonces devuelve el string sin el caracter inicial.
 	
