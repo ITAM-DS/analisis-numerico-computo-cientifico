@@ -53,7 +53,7 @@ return 0;
 }
 ```
 
-b) Investiga el uso de la función "scanf" para que imprima la longitud de los strings del archivo.txt:
+b) Investiga el uso de la función `scanf` para que imprima la longitud de los strings del archivo.txt:
 
 ```
 hamburguesas permisos exponencialmente 549
@@ -74,14 +74,14 @@ Considera 549 como string.
 
 ##Ejercicio 2:
 
-El siguiente programa lee un conjunto de líneas del archivo "archivo.txt" e imprime la línea más larga:
+El siguiente programa lee un conjunto de líneas del archivo `archivo.txt` e imprime la línea más larga:
 
 ```
 $ejercicio_2.out < archivo.txt
 the role. The ministers, afraid of losing their splendid position at court, give the
 ```
 
-con archivo.txt:
+con `archivo.txt`:
 
 ```
 The merry old king of Katoren has died
@@ -173,15 +173,15 @@ void copia(void){
 
 ```
 
-a) Modifica el programa para que imprima sólo aquellas líneas que tienen más de 80 caracteres
+a) Modifica el programa para que imprima sólo aquellas líneas que tienen más de 80 caracteres.
 
-b) Modifica el programa para que quite los espacios de cada línea leída
+b) Modifica el programa para que quite los espacios de cada línea leída.
 
-c) Modifica la función "copia" para que no use "break" pero todavía debe de usar el índice "i" 
+c) Modifica la función `copia` para que no use `break` pero todavía debe de usar el índice `i`.
 
-d) Modifica la función "copia" para que no use índices y sólo apuntadores
+d) Modifica la función `copia` para que no use índices y sólo apuntadores.
 
-e) Escribe una función "voltea" que reciba un string "s" e imprima el string "s"al revés. Añade esta función a 1.c para que el programa lea líneas y las imprima volteadas
+e) Escribe una función `voltea` que reciba un string "s" e imprima el string "s"al revés. Añade esta función para que el programa lea líneas y las imprima volteadas.
 
 f) Qué efecto tiene escribir "extern" para la declaración de variables dentro de main(), getline() y copia()?
 
@@ -212,11 +212,11 @@ return 0;
 
 a) La funcion "corta_string" no hace un chequeo si el string que recibe como parámetro debe de tener al menos un caracter. Modifica esta función de modo que haga este chequeo:
 
-* Si el string tiene más de un caracter entonces devuelve el string sin el caracter inicial
+* Si el string tiene más de un caracter entonces devuelve el string sin el caracter inicial.
 	
-* Si no se cumple lo anterior entonces devuelve un mensaje de error
+* Si no se cumple lo anterior entonces devuelve un mensaje de error.
 
-b) Cómo modificas la forma en que es llamada "corta_string" dentro de main de modo que devuelva: " verdes" (hay un espacio antes del string "verdes") ??
+b) Cómo modificas la forma en que es llamada `corta_string` dentro de main de modo que devuelva: ` verdes` ?? (hay un espacio antes del string "verdes").
 
 
 ##Ejercicio 4
@@ -244,14 +244,14 @@ int main(void){
 }
 ```
 	
-a) Modifica el programa para que en lugar de inicializar el string s con un tamaño 50 sea dinámica su inicialización, es decir, que no tengas que escribir "50" o algún valor definido para el tamaño del string s. 
+a) Modifica el programa para que en lugar de inicializar el string `s` con un tamaño `50` sea dinámica su inicialización, es decir, que no tengas que escribir `50` o algún valor definido para el tamaño del string `s`. 
 
 Utiliza `malloc`.
 
-b) Escribe una función "voltea_string" que reciba como parámetro un char * y devuelva un char * cuya operación sea devolver un string volteado, así, al llamar "voltea_string" con el string "Campos verdes" tenemos:
+b) Escribe una función "voltea_string" que reciba como parámetro un char * y devuelva un `char *` cuya operación sea devolver un string volteado, así, al llamar `voltea_string` con el string `Campos verdes` tenemos:
 
 ```
-"sedrev sopmaC"
+sedrev sopmaC
 ```
 
 El prototipo de "voltea_string" es:
