@@ -8,21 +8,21 @@ double truncar(double num, int exp){
     return truncf(num*fac)/fac;
 }    
 
-float errA(float val1, float val2){
+double errA(double val1, double val2){
     // Esta función devuelve el error absoluto
     // entre los valores indicados.
-    float absoluto;
+    double absoluto;
 
     absoluto = fabs(val1 - val2);
 
     return absoluto;
 }
 
-float errR(float val1, float val2){
+double errR(double val1, double val2){
     // Esta función devuelve el error relativo
     // entre los valores indicados.
-    float absoluto;
-    float relativo;
+    double absoluto;
+    double relativo;
 
     absoluto = fabs(val1 - val2);
     relativo = fabs(absoluto/val1);

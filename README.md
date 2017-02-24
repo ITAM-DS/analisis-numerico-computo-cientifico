@@ -14,6 +14,8 @@
 
 2.1 Un poco de historia y generalidades.
 
+2.2 Sistemas de memoria distribuida: MPI.
+
 ## C
 
 [clase1](C/clases/clase1.md)
@@ -21,3 +23,9 @@
 [clase2](C/clases/clase2.md)
 
 [clase3](C/clases/clase3.md)
+
+[clase4](C/clases/clase4.md)
+
+[clase5](C/clases/clase5.md)
+
+[clase6](C/clases/clase6.md)
