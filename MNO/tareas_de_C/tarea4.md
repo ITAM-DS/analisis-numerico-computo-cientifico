@@ -183,7 +183,7 @@ d) Modifica la función `copia` para que no use índices y sólo apuntadores.
 
 e) Escribe una función `voltea` que reciba un string `s` e imprima el string `s` al revés. Añade esta función para que el programa lea líneas y las imprima volteadas.
 
-f) Qué efecto tiene escribir `extern para la declaración de variables dentro de main(), getline() y copia()?
+f) Qué efecto tiene escribir `extern` para la declaración de variables dentro de main(), getline() y copia()?
 
 
 ##Ejercicio 3
@@ -210,7 +210,7 @@ return 0;
 }
 ```
 
-a) La funcion `corta_string no hace un chequeo si el string que recibe como parámetro debe de tener al menos un caracter. Modifica esta función de modo que haga este chequeo:
+a) La funcion `corta_string` no hace un chequeo si el string que recibe como parámetro debe de tener al menos un caracter. Modifica esta función de modo que haga este chequeo:
 
 * Si el string tiene más de un caracter entonces devuelve el string sin el caracter inicial.
 	
