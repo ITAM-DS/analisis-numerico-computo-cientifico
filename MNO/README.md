@@ -5,7 +5,7 @@
 
 [Equipos de MNO](https://www.dropbox.com/s/49a4gqmk5aiz27n/Equipos%20MNO%202017.rtf?dl=0)
 
-[Lista con calificaciones](https://www.dropbox.com/s/l50nmi7ice26qdh/salon_pf_103.xlsx?dl=0)
+[Lista alumn@s con calificaciones](https://www.dropbox.com/s/l50nmi7ice26qdh/salon_pf_103.xlsx?dl=0)
 
 ##Clase 1
 
