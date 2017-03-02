@@ -16,6 +16,8 @@
 
 2.2 Sistemas de memoria distribuida: MPI.
 
+2.3 Sistemas de memoria compartida: Pthreads.
+
 ## C
 
 [clase1](C/clases/clase1.md)
