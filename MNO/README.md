@@ -69,7 +69,13 @@
 
 [II/2.2 (terminamos la nota)](https://www.dropbox.com/sh/y1jr4xl160mhg18/AABT4JphiB2R9YWcBCbRYm9ja?dl=0)
 
+##Clase 8
 
+27 de febrero
+
+Examen de C
+
+[II/2.3 (hasta critical section)](https://www.dropbox.com/sh/son1drrd3epa3m7/AAD8AxzRROISvtWB7IPt_NFra?dl=0)
 
 
 
