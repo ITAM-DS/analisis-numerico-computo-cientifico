@@ -134,17 +134,77 @@ e) Escribe una función voltea que reciba un string s e imprima el string s al r
 
 ```
 void voltea(int m){
-extern char linea[], linea_max[];
-int i;
-for(i=m; i > -1; i--)
-linea_max[i] = linea[(size-1)-i];
+    extern char linea[], linea_max[];
+    int i;
+    for(i=m; i > -1; i--)
+        linea_max[i] = linea[(size-1)-i];
 }
 ```
 f) Qué efecto tiene escribir extern para la declaración de variables dentro de main(), getline() y copia()?
 
 Llama a las variables de otras funciones. 
 
+---------
+
 ## Ejercicio 3
+
+a) La funcion corta_string no hace un chequeo si el string que recibe como parámetro debe de tener al menos un caracter. Modifica esta función de modo que haga este chequeo:
+
+```
+#include<stdio.h>
+char *corta_string(char *apuntador){
+    if(apuntador != '\0'){
+        apuntador=apuntador+1;
+        return apuntador;
+    }
+    else
+        print("Error string vacio")
+}
+
+int main(void){
+char *s="Campos verdes";
+s=corta_string(s);
+printf("%s\n",s);
+
+return 0;
+}
+```
+
+------
+
+## Ejercicio 4
+
+a) Modifica el programa para que en lugar de inicializar el string s con un tamaño 50 sea dinámica su inicialización, es decir, que no tengas que escribir 50 o algún valor definido para el tamaño del string s.
+
+Utiliza malloc.
+
+```
+int main(void){
+    char *s;
+    char *s_duplicado;
+    s = (char *) malloc(sizeof(char));
+    s = "Campos verdes";
+    s_duplicado = duplica_string(s);
+    printf("%s\n", s_duplicado);
+    free(s_duplicado);
+return 0;
+}
+```
+
+b) Escribe una función voltea_string que reciba como parámetro un char * y devuelva un char * cuya operación sea devolver un string volteado, así, al llamar voltea_string con el string Campos verdes tenemos:
+
+```
+char *voltea_string(char *s){
+    
+}
+```
+
+
+
+
+
+
+
 
 
 
