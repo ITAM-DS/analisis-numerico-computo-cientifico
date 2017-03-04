@@ -1,0 +1,2 @@
+##f) Qué efecto tiene escribir `extern` para la declaración de variables dentro de main(), getline() y copia()?
+Cuando la variable se declara como externa cualquier cambio que se la haga en las funciones en las que se le declara como externa es global y se mantiene para la siguiente función o modificación. 
