@@ -44,5 +44,10 @@ int obtenlinea(void){
 /*copia: copia del arreglo "linea" al arreglo "linea_max"*/
 void copia(void){ 
     extern char linea[], linea_max[];
-    *linea_max = *linea;
+    int i;
+    i = 0;	
+    while( *(linea + i) != '\0' ){
+        *(linea_max + i) = *(linea + i);
+        i++;    
+    }
 }

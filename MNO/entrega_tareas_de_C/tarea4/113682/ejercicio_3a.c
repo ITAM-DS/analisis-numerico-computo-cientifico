@@ -1,6 +1,6 @@
 #include<stdio.h>
 char *corta_string(char *apuntador){
-    if(apuntador != 0){
+    if(apuntador != NULL){
     	apuntador = apuntador + 1;
 	printf("jgjg");
     }

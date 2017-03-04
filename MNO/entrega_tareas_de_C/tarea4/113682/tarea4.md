@@ -127,7 +127,11 @@ Parte modificada
 /*copia: copia del arreglo "linea" al arreglo "linea_max"*/
 void copia(void){ 
     extern char linea[], linea_max[];
-    linea_max = linea
+    int i = 0 ;
+    while( *(linea + i) != '\0' ){
+        *(linea_max + i) = *(linea + i);
+        i++;    
+    }
 }
 ```
 e) Escribe una función voltea que reciba un string s e imprima el string s al revés. Añade esta función para que el programa lea líneas y las imprima volteadas.
@@ -153,7 +157,7 @@ a) La funcion corta_string no hace un chequeo si el string que recibe como pará
 ```
 #include<stdio.h>
 char *corta_string(char *apuntador){
-    if(apuntador != '\0'){
+    if(apuntador != NULL){
         apuntador=apuntador+1;
         return apuntador;
     }
@@ -169,7 +173,15 @@ printf("%s\n",s);
 return 0;
 }
 ```
+b) Cómo modificas la forma en que es llamada corta_string dentro de main de modo que devuelva: verdes ?? (hay un espacio antes del string "verdes").
 
+```
+char *corta_string(char *apuntador){
+    while(*apuntador != ' ')
+        apuntador=apuntador+1;
+    return apuntador;
+}
+```
 ------
 
 ## Ejercicio 4
@@ -191,11 +203,16 @@ return 0;
 }
 ```
 
-b) Escribe una función voltea_string que reciba como parámetro un char * y devuelva un char * cuya operación sea devolver un string volteado, así, al llamar voltea_string con el string Campos verdes tenemos:
+b) Escribe una función voltea_string que reciba como parámetro un char * y devuelva un char * cuya operación sea devolver un string volteado.
+
 
 ```
 char *voltea_string(char *s){
-    
+    char *stv = malloc(sizeof(s));
+    int m, i;	
+    m = strlen(s);
+    for(i=m; i >-1; i--)
+    	*(stv + i) = *(s + m - 1 - i);
 }
 ```
 
