@@ -1,5 +1,7 @@
 //MODIFICACION LINEA 15-25 y 56
 #include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 #define MAXLINEA 1000 /*máximo tamaño de una línea*/
 /*definición de variables externas*/
 int max;

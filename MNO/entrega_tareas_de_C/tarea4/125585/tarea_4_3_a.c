@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 char *corta_string(char *apuntador){
 	int longitud_string;
 	longitud_string=strlen(apuntador);
