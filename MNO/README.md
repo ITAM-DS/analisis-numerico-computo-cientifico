@@ -5,6 +5,8 @@
 
 [Equipos de MNO](https://www.dropbox.com/s/49a4gqmk5aiz27n/Equipos%20MNO%202017.rtf?dl=0)
 
+[Lista alumn@s con calificaciones](https://www.dropbox.com/s/l50nmi7ice26qdh/salon_pf_103.xlsx?dl=0)
+
 ##Clase 1
 
 16 de enero
@@ -59,7 +61,21 @@
 
 [II/2.2 (nota hasta communicators, MPI_Comm_size, MPI_Comm_rank y hello world con openmpi )](https://www.dropbox.com/sh/y1jr4xl160mhg18/AABT4JphiB2R9YWcBCbRYm9ja?dl=0)
 
+##Clase 7
 
+21 de febrero
+
+[C/clase6](../C/clases/clase6.md)
+
+[II/2.2 (terminamos la nota)](https://www.dropbox.com/sh/y1jr4xl160mhg18/AABT4JphiB2R9YWcBCbRYm9ja?dl=0)
+
+##Clase 8
+
+27 de febrero
+
+Examen de C
+
+[II/2.3 (hasta critical section)](https://www.dropbox.com/sh/son1drrd3epa3m7/AAD8AxzRROISvtWB7IPt_NFra?dl=0)
 
 
 
