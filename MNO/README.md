@@ -77,8 +77,15 @@ Examen de C
 
 [II/2.3 (hasta critical section)](https://www.dropbox.com/sh/son1drrd3epa3m7/AAD8AxzRROISvtWB7IPt_NFra?dl=0)
 
+##Clase 9
 
+6 de marzo
 
+[II/2.3 (terminamos la nota)](https://www.dropbox.com/sh/son1drrd3epa3m7/AAD8AxzRROISvtWB7IPt_NFra?dl=0)
+
+[II/2.4 (terminamos la nota)](https://www.dropbox.com/sh/18fjosdqj9saft8/AAAI1FZoIQ6LxC7iN3LKME3ra?dl=0)
+
+[II/2.5 (introducción)](https://www.dropbox.com/sh/c6gfuli2ewolhui/AABGWdK52vENPDDA0IzEphkQa?dl=0)
 
 
 
