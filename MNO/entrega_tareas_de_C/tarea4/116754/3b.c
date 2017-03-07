@@ -9,6 +9,7 @@ char *corta_string(char *apuntador){
 int main(void){
     char *s="Campos verdes";
     while(*(s=corta_string(s)) != ' ');
+    s=corta_string(s);
     printf("%s\n",s);
 return 0;
 }
