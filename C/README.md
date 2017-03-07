@@ -6,4 +6,4 @@ Lenguaje C de programación
 
 * Otras referencias:
 
-http://cslibrary.stanford.edu/101/
+  http://cslibrary.stanford.edu/101/
