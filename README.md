@@ -18,6 +18,10 @@
 
 2.3 Sistemas de memoria compartida: Pthreads.
 
+2.4 Sistemas de memoria compartida: openMP.
+
+2.5 Compute Unified Device Architecture (CUDA).
+
 ## C
 
 [clase1](C/clases/clase1.md)
