@@ -1,5 +1,9 @@
 # analisis-numerico-computo-cientifico
 
+En la carpeta [MNO](MNO) encuentran información sobre el curso de Métodos Numéricos y Optimización.
+
+En la carpeta [C](C) encuentran clases y extensiones al lenguaje de programación C.
+
 Índice de este repositorio
 
 ## I [Cómputo científico](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0):
@@ -15,6 +19,10 @@
 2.1 Un poco de historia y generalidades.
 
 2.2 Sistemas de memoria distribuida: MPI.
+
+*[Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/README.md)
+
+*[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/README.md)
 
 2.3 Sistemas de memoria compartida: Pthreads.
 
