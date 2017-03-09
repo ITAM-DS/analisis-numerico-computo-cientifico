@@ -1,1 +1,1 @@
-#Ejemplos en openmpi
+#Ejemplos con openmpi
