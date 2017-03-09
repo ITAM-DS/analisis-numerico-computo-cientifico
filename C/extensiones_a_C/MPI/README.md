@@ -1,1 +1,1 @@
-#Message Passing Interface (MPI).
+Message Passing Interface (MPI).
