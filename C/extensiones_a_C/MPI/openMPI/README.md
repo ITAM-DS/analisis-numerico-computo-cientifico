@@ -38,7 +38,7 @@ $ls /home/docker_mpi/
 Dockerfile 			openmpi-2.0.2.tar.gz
 ```
 
-Cambiamos a la ruta /home/docker_mpi/ y construímos:
+Cambiamos a la ruta `/home/docker_mpi/` y construímos:
 
 ```
 $cd /home/docker_mpi/
