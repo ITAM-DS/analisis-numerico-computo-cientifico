@@ -22,7 +22,7 @@
 
 2.5 Compute Unified Device Architecture (CUDA).
 
-## C
+## [C](C/)
 
 [clase1](C/clases/clase1.md)
 
