@@ -38,11 +38,11 @@ $ls /home/docker_mpi/
 Dockerfile 			openmpi-2.0.2.tar.gz
 ```
 
-Cambiamos a la ruta `/home/docker_mpi/` y construímos:
+Cambiamos a la ruta `/home/docker_mpi/` y construímos la imagen con nombre `openmpi_mno/openmpi:v1`:
 
 ```
 $cd /home/docker_mpi/
-$docker build -t openmpi_mno_2017/openmpi:v1 .
+$docker build -t openmpi_mno/openmpi:v1 .
 ```
 
 Probablemente tengan que añadir un `sudo` o si están en un sistema Mac OS X/ Windows e instalaron docker (no versión beta) tengan que añadir `$(docker-machine config default)` dependiendo del nombre de la máquina virtual que levantaron para usar docker, por ejemplo `default`.
