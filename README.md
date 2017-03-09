@@ -22,9 +22,9 @@
 
 2.5 Compute Unified Device Architecture (CUDA).
 
-	* Instalación.
+*[Instalación](C/extensiones_a_C/README.md)
 
-	* Ejemplos.
+*[Ejemplos](C/extensiones_a_C/ejemplos)
 
 ## [C](C/)
 
