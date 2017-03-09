@@ -3,7 +3,7 @@
 
 ## Mac OS X
 
-Para usar CUDA es necesario que sus máquinas tengan un GPU de NVIDIA.
+Para usar CUDA es necesario que sus máquinas tengan una GPU de NVIDIA.
 
 En esta [página](http://docs.nvidia.com/cuda/cuda-getting-started-guide-for-mac-os-x/) encuentran documentación para usar CUDA en Mac OS X.
 
