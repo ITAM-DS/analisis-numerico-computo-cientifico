@@ -1,4 +1,4 @@
-#Levantar un cluster con openmpi y docker
+#Levantar un cluster de forma pseudo distribuida con openmpi y docker
 
 Si queremos en nuestros sistemas levantar un cluster de forma pseudo distribuida (es decir, nuestros nodos estarán en nuestra máquina local) es necesario tener [docker](https://www.docker.com/) instalado.
 
