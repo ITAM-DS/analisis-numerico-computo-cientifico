@@ -24,7 +24,7 @@
 
 *[Instalación](C/extensiones_a_C/CUDA/README.md)
 
-*[Ejemplos](C/extensiones_a_C/ejemplos/README.md)
+*[Ejemplos](C/extensiones_a_C/CUDA/ejemplos/README.md)
 
 ## [C](C/)
 
