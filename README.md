@@ -22,6 +22,10 @@
 
 2.5 Compute Unified Device Architecture (CUDA).
 
+	* Instalación.
+
+	* Ejemplos.
+
 ## [C](C/)
 
 [clase1](C/clases/clase1.md)
