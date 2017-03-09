@@ -34,6 +34,9 @@ Cuda compilation tools, release 7.5, V7.5.19
 
 ## Ubuntu:
 
+Para usar CUDA es necesario que sus máquinas tengan una GPU de NVIDIA.
+
+En esta [página](http://docs.nvidia.com/cuda/cuda-getting-started-guide-for-mac-os-x/) encuentran documentación para usar CUDA en GNU/Linux.
 
 
 ## AWS:
