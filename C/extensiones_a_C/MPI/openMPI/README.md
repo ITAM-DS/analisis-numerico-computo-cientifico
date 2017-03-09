@@ -29,7 +29,7 @@ El Dockerfile anterior debe estar en una carpeta, por ejemplo:
 $/home/docker_mpi/
 ```
 
-Si observan las líneas de este Dockerfile es necesario que se encuentre en esta ruta, el archivo: [openmpi-2.0.2.tar.gz](https://www.open-mpi.org/software/ompi/v2.0/). Modifiquen lo necesario en este Dockerfile si existe otra versión.
+Si observan las líneas de este Dockerfile es necesario que se encuentre en esta ruta el archivo: [openmpi-2.0.2.tar.gz](https://www.open-mpi.org/software/ompi/v2.0/). Modifiquen lo necesario en este Dockerfile si existe otra versión.
 
 Revisamos:
 
