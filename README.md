@@ -20,7 +20,7 @@ En la carpeta [C](C) encuentran clases y extensiones al lenguaje de programació
 
 2.2 Sistemas de memoria distribuida: MPI.
 
-*[Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/README.md)
+*[Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
 
 *[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/README.md)
 
@@ -30,7 +30,7 @@ En la carpeta [C](C) encuentran clases y extensiones al lenguaje de programació
 
 2.5 Compute Unified Device Architecture (CUDA).
 
-*[Instalación](C/extensiones_a_C/CUDA/README.md)
+*[Instalación](C/extensiones_a_C/CUDA/)
 
 *[Ejemplos](C/extensiones_a_C/CUDA/ejemplos/README.md)
 
