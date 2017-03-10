@@ -34,6 +34,10 @@ En la carpeta [C](C) encuentran clases y extensiones al lenguaje de programació
 
 *[Ejemplos](C/extensiones_a_C/CUDA/ejemplos/README.md)
 
+## III [Cómputo matricial](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+3.1.1 Multiplicación de matrices y estructura de datos.
+
 ## [C](C/)
 
 [clase1](C/clases/clase1.md)
