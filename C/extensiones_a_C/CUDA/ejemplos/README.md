@@ -25,3 +25,33 @@ Ejecutamos:
 ```
 ./hello_world.out
 ```
+
+##Programa hello world 2:
+
+```
+#include<stdio.h>
+__global__ void func(void){
+	printf("Hello world del bloque %d del thread %d!\n", blockIdx.x, threadIdx.x);
+}
+int main(void){
+	func<<<10,10>>>();
+	cudaDeviceSynchronize();
+	return 0;
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
