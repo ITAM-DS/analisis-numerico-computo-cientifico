@@ -73,7 +73,17 @@ int main(void){
 
 ```
 
+Compilamos:
 
+```
+$nvcc suma.cu -o suma.out
+```
+
+Ejecutamos:
+
+```
+./suma.out
+```
 
 
 
