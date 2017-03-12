@@ -2,7 +2,7 @@
 
 En la carpeta [MNO](MNO) encuentran información sobre el curso de Métodos Numéricos y Optimización.
 
-En la carpeta [C](C) encuentran clases y extensiones al lenguaje de programación C.
+En la carpeta [C](C) encuentran clases para introducción y extensiones al lenguaje de programación C.
 
 Índice de este repositorio
 
