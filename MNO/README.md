@@ -87,6 +87,11 @@ Examen de C
 
 [II/2.5 (introducción)](https://www.dropbox.com/sh/c6gfuli2ewolhui/AABGWdK52vENPDDA0IzEphkQa?dl=0)
 
+##Clase 10
+
+11 de marzo
+
+[II/2.5 (terminamos la nota)](https://www.dropbox.com/sh/c6gfuli2ewolhui/AABGWdK52vENPDDA0IzEphkQa?dl=0)
 
 
 
