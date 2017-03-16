@@ -197,7 +197,7 @@ void imprime_matriz_resultado(void){
 ```
 
 
-Compila (debe estar instalado `libblas-dev`:
+Compila (debe estar instalado `libblas-dev`):
 
 ```
 $gcc main2.c funciones2.c -o programa2.out -lblas
