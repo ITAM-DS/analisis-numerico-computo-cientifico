@@ -197,7 +197,7 @@ void imprime_matriz_resultado(void){
 ```
 
 
-Compila (debe estar instalado `libblas-dev`):
+Compila (debe estar instalado `libblas-dev` en sus sistemas):
 
 ```
 $gcc main2.c funciones2.c -o programa2.out -lblas
@@ -209,5 +209,5 @@ Ejecuta:
 ./programa2.out
 ```
 
-Investiga sobre `LAPACK`, `BLAS` y `ATLAS y la subrutina de Fortran `dgemm` y reporta sobre esta investigación que realizas. Es una investigación corta que contiene principalmente una descripción sobre los paquetes anteriores y la subrutina.
+Investiga sobre `LAPACK`, `BLAS` y `ATLAS` y la subrutina de Fortran `dgemm` y reporta sobre esta investigación que realizas. Es una investigación corta que contiene principalmente una descripción sobre los paquetes anteriores y la subrutina.
 
