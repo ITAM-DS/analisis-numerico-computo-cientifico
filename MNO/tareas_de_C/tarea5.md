@@ -109,9 +109,11 @@ $gcc main.c funciones.c -o programa.out
 
 Observa los resultados al ejecutar el `programa.out` y realiza lo siguiente:
 
-a) Investiga por qué se usan `""` en la línea que tiene `include` en `main.c` y en `funciones.c` en lugar de usar `< >`.
+a) Investiga por qué se usan `""` en la línea que tiene `include` en `main.c` y en `funciones.c` en lugar de usar `< >`. 
 
-b) Modifica el archivo `funciones.c` para que inicialices a las matrices `matriz1`, `matriz2` y `matriz_resultado` con `malloc` y modifica `main.c` para que llame a una función dentro del archivo `funciones.c` que inicialice y aloje a las matrices anteriores y llame a otra función para que las desaloje una vez hecha la multiplicación: 
+b) Investiga el uso de `static` en la definición de variables externas de `funciones.c`.
+
+c) Modifica el archivo `funciones.c` para que inicialices a las matrices `matriz1`, `matriz2` y `matriz_resultado` con `malloc` y modifica `main.c` para que llame a una función dentro del archivo `funciones.c` que inicialice y aloje a las matrices anteriores y llame a otra función para que las desaloje una vez hecha la multiplicación: 
 
 ```
 #include"definiciones.h"
@@ -126,6 +128,73 @@ return 0;
 
 ```
 
+d) Compara tu resultado usando la subrutina de Fortran `dgemm` y el siguiente `main2.c`, `funciones2.c`:
 
 
+`main2.c`:
+
+```
+#include"definiciones.h" //mismo archivo de definiciones.h
+extern void dgemm_(char *transaA, char *transaB,int *m,int *n,int *k,double *alpha,double *A,int *lda,double *B,int *ldb,double *beta,double *C,int *ldc);
+extern double (*matriz1)[], (*matriz2)[], (*matriz_resultado)[];
+int main(void){
+    char TRANSA, TRANSB;
+    int M = NUM_REN_MAT1;
+    int K = NUM_COL_MAT1;
+    int N = NUM_COL_MAT2;
+    double ALPHA, BETA;
+    TRANSA = 'N';
+    TRANSB = 'N';
+    ALPHA = 1.0;
+    BETA = 0.0;
+    aloja_espacio_e_incializa_matrices();
+    imprime_matrices();
+    dgemm_(&TRANSA, &TRANSB, &N, &M, &K, &ALPHA, *matriz2, &N, *matriz1, &K, &BETA, *matriz_resultado, &N);
+    imprime_matriz_resultado();
+    libera_espacio();
+return 0;
+}
+```
+
+`funciones2.c`:
+
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include"definiciones.h" //mismo archivo de definiciones.h
+//definiciones de variables que serán externas
+static int i=0,j=0, k=0;
+double (*matriz1)[NUM_COL_MAT1];
+double (*matriz2)[NUM_COL_MAT2];
+double (*matriz_resultado)[NUM_COL_MAT2];
+
+void aloja_espacio_e_incializa_matrices(void){
+...
+}
+void libera_espacio(void){
+... 
+}
+void imprime_matrices(void){
+...
+}
+void imprime_matriz_resultado(void){
+...
+}
+
+```
+
+
+Compila (debe estar instalado `libblas-dev`:
+
+```
+$gcc main2.c funciones2.c -o programa2.out -lblas
+```
+
+Ejecuta:
+
+```
+./programa2.out
+```
+
+Investiga sobre `LAPACK`, `BLAS` y `ATLAS y la subrutina de Fortran `dgemm` y reporta sobre esta investigación que realizas. Es una investigación corta que contiene principalmente una descripción sobre los paquetes anteriores y la subrutina.
 
