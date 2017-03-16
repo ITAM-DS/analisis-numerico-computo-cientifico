@@ -128,7 +128,7 @@ return 0;
 
 ```
 
-d) Compara tu resultado usando la subrutina de Fortran `dgemm` y los siguientes archivos `definiciones.h`, `main2.c`, `funciones2.c`:
+d) Compara tu resultado usando la subrutina de Fortran `dgemm` y los siguientes archivos `definiciones2.h`, `main2.c`, `funciones2.c`:
 
 `definiciones2.h`:
 
