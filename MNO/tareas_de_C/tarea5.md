@@ -137,7 +137,7 @@ d) Compara tu resultado usando la subrutina de Fortran `dgemm` y los siguientes 
 #define NUM_COL_MAT1 2
 #define NUM_REN_MAT2 2
 #define NUM_COL_MAT2 3 
-void imprime_matrices(int);
+void imprime_matrices(void);
 void imprime_matriz_resultado(void);
 void aloja_espacio_e_incializa_matrices(void);
 void libera_espacio(void);
