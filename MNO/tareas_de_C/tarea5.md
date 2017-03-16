@@ -128,13 +128,26 @@ return 0;
 
 ```
 
-d) Compara tu resultado usando la subrutina de Fortran `dgemm` y el siguiente `main2.c`, `funciones2.c`:
+d) Compara tu resultado usando la subrutina de Fortran `dgemm` y los siguientes archivos `definiciones.h`, `main2.c`, `funciones2.c`:
+
+`definiciones2.h`:
+
+```
+#define NUM_REN_MAT1 3
+#define NUM_COL_MAT1 2
+#define NUM_REN_MAT2 2
+#define NUM_COL_MAT2 3 
+void imprime_matrices(int);
+void imprime_matriz_resultado(void);
+void aloja_espacio_e_incializa_matrices(void);
+void libera_espacio(void);
+```
 
 
 `main2.c`:
 
 ```
-#include"definiciones.h" //mismo archivo de definiciones.h
+#include"definiciones2.h"
 extern void dgemm_(char *transaA, char *transaB,int *m,int *n,int *k,double *alpha,double *A,int *lda,double *B,int *ldb,double *beta,double *C,int *ldc);
 extern double (*matriz1)[], (*matriz2)[], (*matriz_resultado)[];
 int main(void){
@@ -161,7 +174,7 @@ return 0;
 ```
 #include<stdio.h>
 #include<stdlib.h>
-#include"definiciones.h" //mismo archivo de definiciones.h
+#include"definiciones2.h" 
 //definiciones de variables que serán externas
 static int i=0,j=0, k=0;
 double (*matriz1)[NUM_COL_MAT1];
