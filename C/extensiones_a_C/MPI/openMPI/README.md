@@ -149,14 +149,5 @@ Last login: Fri Mar 17 01:58:47 2017 from master
 mpi_user@nodo1:~$
 ```
 
-Listo! Ya tienen un clúster de forma pseudo distribuida con openmpi y docker. Los programas serán ejecutados desde el `master_container`, si quieren también ejecutarlos desde el `nodo1_container` deben de realizar los pasos que hicieron en el `master` en el `nodo1_container`.
-
-
-
-
-
-
-
-
-
+Listo! Ya tienen un clúster de forma pseudo distribuida con openmpi y docker :). Los programas serán ejecutados desde el `master_container`, si quieren también ejecutarlos desde el `nodo1_container` deben de realizar los pasos que hicimos para el `master_container` en el `nodo1_container`.
 
