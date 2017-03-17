@@ -1,6 +1,6 @@
-#Introducción
+# Introducción
 
-##Storage classes.
+##  Storage classes.
 
 Para una definición de main del tipo:
 
@@ -255,7 +255,7 @@ gcc ejemplo.c ejemplo2.c -o ejemplo_variables_externas.out
 
 ```
 
-##Heap memory
+##  Heap memory
 
 La memoria heap o memoria dinámica es una alternativa para la local stack memory (ver inicio de esta clase), la cual es alojada automáticamente al llamar a una función y es desalojada automáticamente al terminar la ejecución de la misma, otras características de la stack memory es que este alojamiento y desalojamiento está optimizado en tiempo y espacio y hay un límite para el tamaño de las variables que pueden ser alojadas en el stack.
 

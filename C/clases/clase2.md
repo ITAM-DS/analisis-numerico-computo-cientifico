@@ -1,4 +1,4 @@
-#Introducción
+# Introducción
 
 En las operaciones podemos realizar asignaciones con la expresión: `operador``signo`:
 
@@ -71,7 +71,7 @@ main(){
 }
 ```
 
-##Uso de for:
+##  Uso de for:
 
 Con `#define`definimos una constante. Lo usamos así: `define nombre texto`, `texto` es una secuencia de caracteres.
 
@@ -94,7 +94,7 @@ main(){
 
 ```
 
-##Uso de while:
+##  Uso de while:
 
 ```
 #include<stdio.h>
@@ -142,7 +142,7 @@ main(){
 }
 ```
 
-##Uso de if:
+##  Uso de if:
 
 ```
 #include<stdio.h>
@@ -163,7 +163,7 @@ main(){
 }
 ```
 
-##Uso de switch:
+##  Uso de switch:
 
 ```
 #include<stdio.h>
