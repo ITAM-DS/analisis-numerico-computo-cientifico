@@ -113,7 +113,7 @@ a) Investiga por qué se usan `""` en la línea que tiene `include` en `main.c` 
 
 b) Investiga el uso de `static` en la definición de variables externas de `funciones.c`.
 
-c) Modifica el archivo `funciones.c` para que inicialices a las matrices `matriz1`, `matriz2` y `matriz_resultado` con `malloc` y modifica `main.c` para que llame a una función dentro del archivo `funciones.c` que inicialice y aloje a las matrices anteriores y llame a otra función para que las desaloje una vez hecha la multiplicación: 
+c) Modifica el archivo `funciones.c` para que alojes e inicialices a las matrices `matriz1`, `matriz2` y `matriz_resultado` con `malloc` y apuntadores. Modifica `main.c` para que llame a una función dentro del archivo `funciones.c` que inicialice y aloje a las matrices anteriores y llame a otra función para que las desaloje una vez hecha la multiplicación (usa `free`): 
 
 ```
 #include"definiciones.h"
