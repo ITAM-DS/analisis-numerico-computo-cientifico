@@ -1,5 +1,4 @@
-
-##Métodos Numéricos y Optimización 2017
+#Métodos Numéricos y Optimización 2017
 
 [El curso, calificación y entregas, correo al cual escribir](https://www.dropbox.com/s/x8cdh55krqlpcxn/Curso_MNO_2017.pdf?dl=0)
 
@@ -92,6 +91,14 @@ Examen de C
 11 de marzo
 
 [II/2.5 (terminamos la nota)](https://www.dropbox.com/sh/c6gfuli2ewolhui/AABGWdK52vENPDDA0IzEphkQa?dl=0)
+
+##Clase 11
+
+13 de marzo
+
+Examen módulo 1 parte 1
+
+[III/3.1.1 (hasta block matrices)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
 
 
