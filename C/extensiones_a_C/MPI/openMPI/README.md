@@ -57,13 +57,12 @@ Una vez construída esta imagen (teniendo un `Successfully build`) es recomendab
 ```
 $cd /home/docker_mpi/
 $mkdir /home/docker_mpi/ejemplos_mpi
-$cd /home/docker_mpi/ejemplos_mpi
 ```
 
 Ejecuten en la línea de comandos:
 
 ```
-$docker run -dit -v $(pwd):/results -p 22 -h master --name master_container openmpi_mno/openmpi:v1 /bin/bash
+$docker run -dit -v /home/docker_mpi/ejemplos_mpi:/results -p 22 -h master --name master_container openmpi_mno/openmpi:v1 /bin/bash
 ```
 
 El comando anterior levanta un contenedor con nombre `master_container` utilizando la imagen `openmpi_mno/openmpi:v1` y el nombre del host es `master`.
@@ -71,7 +70,7 @@ El comando anterior levanta un contenedor con nombre `master_container` utilizan
 Para levantar otro contenedor con nombre `nodo1_container` y nombre de host `nodo1` ejecuten en la línea de comandos (estando en la misma ruta de `/home/docker_mpi/ejemplos_mpi`:
 
 ```
-$docker run -dit -v $(pwd):/results -p 22 -h nodo1 --name nodo1_container openmpi_mno/openmpi:v1 /bin/bash
+$docker run -dit -v /home/docker_mpi/ejemplos_mpi:/results -p 22 -h nodo1 --name nodo1_container openmpi_mno/openmpi:v1 /bin/bash
 ```
 
 Revisen las ip de cada contenedor haciendo:
