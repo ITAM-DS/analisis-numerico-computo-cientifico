@@ -1,6 +1,6 @@
 # Ejemplos
 
-##Programa de hello world:
+## Programa de hello world:
 
 ```
 #include<stdio.h>
@@ -26,7 +26,7 @@ Ejecutamos:
 ./hello_world.out
 ```
 
-##Programa hello world 2:
+## Programa hello world 2:
 
 ```
 #include<stdio.h>
@@ -53,7 +53,7 @@ Ejecutamos:
 ./hello_world_2.out
 ```
 
-##Programa de suma:
+## Programa de suma:
 
 ```
 #include<stdio.h>
@@ -85,7 +85,7 @@ Ejecutamos:
 ./suma.out
 ```
 
-##Programa de suma vectorial:
+## Programa de suma vectorial:
 
 ```
 #include<stdio.h>
