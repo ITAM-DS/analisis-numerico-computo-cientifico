@@ -132,13 +132,13 @@ Copien la llave al `nodo1_container`:
 mpi_user@master:/$ ssh-copy-id -i /home/mpi_user/.ssh/id_rsa.pub mpi_user@nodo1
 ```
 
-Escriban el password `mpi` y hagan entren al `nodo1_container` con:
+Escriban el password `mpi` y entren al `nodo1_container` con:
 
 ```
 mpi_user@master:/$ssh mpi_user@nodo1
 ```
 
-No les debe de pedir password:
+no les debe de pedir password:
 
 ```
 mpi_user@master:/$ ssh mpi_user@nodo1
