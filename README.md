@@ -38,7 +38,9 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 3.1.1 Multiplicación de matrices y estructura de datos.
 
-3.1.2 Localidad y vectorización. Análisis del error en cómputos matriciales básicos
+3.1.2 Localidad y vectorización. Análisis del error en cómputos matriciales básicos.
+
+3.2 Sistemas de ecuaciones lineales y factorizaciones matriciales.
 
 ## [C](C/)
 
