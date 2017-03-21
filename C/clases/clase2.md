@@ -1,6 +1,6 @@
 # Introducción
 
-En las operaciones podemos realizar asignaciones con la expresión: `operador``signo`:
+En las operaciones podemos realizar asignaciones con la expresión: `operador` `=`:
 
 ```
 #include<stdio.h>
