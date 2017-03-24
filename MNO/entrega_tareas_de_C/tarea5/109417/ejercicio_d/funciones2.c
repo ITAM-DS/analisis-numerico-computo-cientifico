@@ -1,25 +1,27 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"definiciones.h"
+#include"definiciones2.h"
 //definiciones de variables que sern externas
 static int i=0,j=0, k=0;
 double (*matriz1)[NUM_COL_MAT1];
 double (*matriz2)[NUM_COL_MAT2];
 double (*matriz_resultado)[NUM_COL_MAT2];
-
-void aloja_espacio_e_incializa_matrices(void){
-double mat1[NUM_REN_MAT1][NUM_COL_MAT1]={
+static double mat1[NUM_REN_MAT1][NUM_COL_MAT1]={
         {0, 1.5},
         {4, -5},
         {-1, 2.5}
     };
-matriz1=mat1;
-double mat2[NUM_REN_MAT2][NUM_COL_MAT2]={
+
+static double mat2[NUM_REN_MAT2][NUM_COL_MAT2]={
         {1, 0, 0},
         {0, -1, 1}
     };
+
+static double mat_res[NUM_REN_MAT1][NUM_COL_MAT2];
+
+void aloja_espacio_e_incializa_matrices(void){
+matriz1=mat1;
 matriz2=mat2;
-double mat_res[NUM_REN_MAT1][NUM_COL_MAT2];
 matriz_resultado=mat_res;
 }
 
@@ -73,7 +75,7 @@ for(k=0;k<NUM_COL_MAT2;k++){
 }
 
 void libera_espacio(void){
-free(matriz1);
-free(matriz2);
-free(matriz_resultado);
+//free(matriz1);
+//free(matriz2);
+//free(matriz_resultado);
 }
