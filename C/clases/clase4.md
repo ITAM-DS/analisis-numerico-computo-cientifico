@@ -1,6 +1,6 @@
-#Introducción
+# Introducción
 
-##Strings
+## Strings
 
 Un dato tipo `string` es un arreglo de caracteres en el que la última posición es el caracter nulo: `\0` que indica el final del `string`.
 
