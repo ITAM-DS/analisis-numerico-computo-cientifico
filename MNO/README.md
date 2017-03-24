@@ -1,19 +1,20 @@
+# M茅todos Num茅ricos y Optimizaci贸n 2017
 
-##M閠odos Num閞icos y Optimizaci髇 2017
-
-[El curso, calificaci髇 y entregas, correo al cual escribir](https://www.dropbox.com/s/x8cdh55krqlpcxn/Curso_MNO_2017.pdf?dl=0)
+[El curso, calificaci贸n y entregas, correo al cual escribir](https://www.dropbox.com/s/x8cdh55krqlpcxn/Curso_MNO_2017.pdf?dl=0)
 
 [Equipos de MNO](https://www.dropbox.com/s/49a4gqmk5aiz27n/Equipos%20MNO%202017.rtf?dl=0)
 
-##Clase 1
+[Lista alumn@s con calificaciones](https://www.dropbox.com/s/l50nmi7ice26qdh/salon_pf_103.xlsx?dl=0)
+
+## Clase 1
 
 16 de enero
 
 [I/1.1](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
-[I/1.2 (hasta aritm閠ica en punto flotante)](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
+[I/1.2 (hasta aritm茅tica en punto flotante)](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
-##Clase 2
+## Clase 2
 
 23 de enero
 
@@ -23,7 +24,7 @@
 
 [C/clase1](../C/clases/clase1.md)
 
-##Clase 3
+## Clase 3
 
 28 de enero
 
@@ -33,7 +34,7 @@
 
 [C/clase2](../C/clases/clase2.md)
 
-##Clase 4
+## Clase 4
 
 30 de enero
 
@@ -41,17 +42,17 @@
 
 [C/clase3](../C/clases/clase3.md)
 
-##Clase 5
+## Clase 5
 
 11 de febrero
 
-[C/clase3 (continuaci髇)](../C/clases/clase3.md)
+[C/clase3 (continuaci贸n)](../C/clases/clase3.md)
 
 [C/clase4](../C/clases/clase4.md)
 
 [II/2.2 (construimos imagen de openmpi)](https://www.dropbox.com/sh/y1jr4xl160mhg18/AABT4JphiB2R9YWcBCbRYm9ja?dl=0)
 
-##Clase 6
+## Clase 6
 
 13 de febrero
 
@@ -59,7 +60,7 @@
 
 [II/2.2 (nota hasta communicators, MPI_Comm_size, MPI_Comm_rank y hello world con openmpi )](https://www.dropbox.com/sh/y1jr4xl160mhg18/AABT4JphiB2R9YWcBCbRYm9ja?dl=0)
 
-##Clase 7
+## Clase 7
 
 21 de febrero
 
@@ -67,10 +68,37 @@
 
 [II/2.2 (terminamos la nota)](https://www.dropbox.com/sh/y1jr4xl160mhg18/AABT4JphiB2R9YWcBCbRYm9ja?dl=0)
 
+## Clase 8
 
+27 de febrero
 
+Examen de C
 
+[II/2.3 (hasta critical section)](https://www.dropbox.com/sh/son1drrd3epa3m7/AAD8AxzRROISvtWB7IPt_NFra?dl=0)
 
+## Clase 9
+
+6 de marzo
+
+[II/2.3 (terminamos la nota)](https://www.dropbox.com/sh/son1drrd3epa3m7/AAD8AxzRROISvtWB7IPt_NFra?dl=0)
+
+[II/2.4 (terminamos la nota)](https://www.dropbox.com/sh/18fjosdqj9saft8/AAAI1FZoIQ6LxC7iN3LKME3ra?dl=0)
+
+[II/2.5 (introducci贸n)](https://www.dropbox.com/sh/c6gfuli2ewolhui/AABGWdK52vENPDDA0IzEphkQa?dl=0)
+
+## Clase 10
+
+11 de marzo
+
+[II/2.5 (terminamos la nota)](https://www.dropbox.com/sh/c6gfuli2ewolhui/AABGWdK52vENPDDA0IzEphkQa?dl=0)
+
+## Clase 11
+
+13 de marzo
+
+Examen m贸dulo 1 parte 1
+
+[III/3.1.1 (hasta block matrices)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
 
 

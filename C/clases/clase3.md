@@ -1,13 +1,17 @@
+<<<<<<< HEAD
 ---
 output:
   pdf_document: default
   html_document: default
 ---
 #Introducción
+=======
+# Introducción
+>>>>>>> 2b5380a8ce0a5491d7a56abd56a20308e7ff0869
 
 Dos tipos de datos que nos ayudan agrupar son los structs y los arrays.
 
-##Structs
+## Structs
 
 Ejemplo de definición y declaración de un struct:
 
@@ -51,7 +55,7 @@ main(){
 ```
 
 
-##Arrays
+## Arrays
 
 Ejemplo sencillo de definición y declaración de un arreglo de enteros:
 
@@ -111,7 +115,7 @@ printf("Total de bytes para arreglo_multidimensional[0][0]: %ld\n", sizeof(arreg
 }
 ```
 
-##Apuntadores
+## Apuntadores
 
 Un apuntador es una variable que contiene el address de una variable.
 
@@ -424,14 +428,14 @@ Otro ejemplo para "cast" de un apuntador a un tipo de dato `void`:
 main(){
     long int variable, variable2; //deben ambas variables ser tipo long int y depende de la arquitectura del 
     							//sistema en el que se esté trabajando: 32 o 64 bits
-    void *apuntador2;
+    void *apuntador;
     variable = -10;
-    apuntador2 = (void *)variable; //cast a un apuntador de tipo de dato void
-    printf("Valor de apuntador2: %p\n", apuntador2);
+    apuntador = (void *)variable; //cast a un apuntador de tipo de dato void
+    printf("Valor de apuntador: %p\n", apuntador);
     printf("Dirección de memoria variable: %p\n", &variable);
     //las dos líneas anteriores imprimen direcciones de memoria distintas
-    variable2 = (long int)apuntador2; //cast
-    printf("variable: %ld\n", variable2); //no hay pérdida de información del valor de variable
+    variable2 = (long int)apuntador; //cast
+    printf("variable2: %ld\n", variable2); //no hay pérdida de información del valor de variable
 }
 ```
 
