@@ -1,3 +1,9 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
 #Introducción
 
 ##Strings
@@ -109,7 +115,7 @@ main(){
 ```
 
 
-Como se mencionó al inicio, un string es un arreglo en el que la última posición se utiliza para guardar el caracter '\0' :
+Como se mencionó al inicio, un string es un arreglo en el que la última posición se utiliza para guardar el caracter `\0` :
 
 ```
 #include<stdio.h>
