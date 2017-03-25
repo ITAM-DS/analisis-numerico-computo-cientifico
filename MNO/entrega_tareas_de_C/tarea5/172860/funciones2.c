@@ -9,7 +9,7 @@ double (*matriz2)[NUM_COL_MAT2];
 double (*matriz_resultado)[NUM_COL_MAT2];
 
 void aloja_espacio_e_incializa_matrices(void){
-    size_t longitud_ren_1, longitud_ren_2, longitud_ren_3, longitud_col_1, longitud_col_2, longitud_col_3;
+    size_t longitud_ren_1, longitud_ren_2, longitud_ren_3;//, longitud_col_1, longitud_col_2, longitud_col_3;
     longitud_ren_1 = NUM_REN_MAT1 * sizeof(*matriz1);//*NUM_COL_MAT1;
     longitud_ren_2 = NUM_REN_MAT2 * sizeof(*matriz2);//*NUM_COL_MAT2;
     longitud_ren_3 = NUM_REN_MAT1 * sizeof(*matriz_resultado);//*NUM_COL_MAT2;
