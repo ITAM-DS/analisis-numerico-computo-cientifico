@@ -1,6 +1,6 @@
-#Introducción
+# Introducción
 
-##Macros
+##  Macros
 
 Un programa se traduce en distintas fases. Las primeras fases están relacionadas con transformaciones léxicas a partir de `directivas` que involucran líneas que empiezan con el caracter `#` y permiten comunicarse con el preprocesador y realizar sustituciones macro, inclusión de archivos o compilación condicional. Al finalizar el preprocesamiento, el programa ha sido reducido a una secuencia de `tokens`, entre los que se encuentran los `identificadores` o nombres.
 
@@ -178,7 +178,7 @@ main(){
 ```
 
 
-##Funciones
+## Funciones
 
 Ejemplo de definición y declaración de funciones:
 
@@ -220,7 +220,7 @@ El tipo `void` denota un valor no existente o el hecho de que ningún valor es r
 La definición de una función puede aparecer en cualquier orden.
 
 
-##Paso de argumentos por valor
+## Paso de argumentos por valor
 
 Todos los argumentos para una función son `pasados por valor`. Esto se refiere a que la función que es llamada no puede modificar directamente una variable que se definió en la función que la llamó.
 
@@ -246,7 +246,7 @@ void cambia(int x, int y){
 ```
 Entonces la función `cambia` modifica los argumentos `a, b` de manera local, pero tales modificaciones no se comunican a la función `main` que fue la que llamó a la función `cambia`. Los parámetros de `cambia` realizan copias locales de los valores de `a,b` de `main`. Al terminar la ejecución de `cambia`, la memoria local para esta función desaparece y con ella `x, y, temporal`.
 
-##Paso de argumentos por referencia
+## Paso de argumentos por referencia
 
 Si se desea modificar los valores de `a, b` definidos y declarados en `main` en la función `cambia` del ejemplo anterior, utilizamos lo que se conoce como paso de argumentos por referencia:
 
@@ -271,7 +271,7 @@ void cambia(int *x, int *y){
 De esta forma no se copian los valores de `a, b` definidos y declarados en `main` en la función `cambia`.
 
 
-##La función main
+## La función main
 
 La función main se define por convención como:
 
