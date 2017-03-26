@@ -23,5 +23,6 @@ Es un acrónimo de Automatically Turned Linear Algebra Software y es una impleme
 Es una de las subrutinas que realizan operaciones matriz-matriz generales (GEneral Matrix-Matrix computations), en particular es la que se utiliza para hacer las operaciones con tipos de datos reales de doble precisión, en comparación con ```sgemm``` para short-precision y  ```CGEMM```-``` ZGEMM``` para complejos. Todas estas realizan cualquiera de las siguientes operaciones (o sus análogos complejos) matriciales combinadas, usando escalares $\alpha$ y $\beta$, matrices *A* y *B* junto con sus transpuestas y la matriz *C*. 
 
 *C* $leftarrow \alpha$ *AB* + $\beta$ *C*
-*C* $leftarrow \alpha$ *AB*$^T$ + $\beta$*C*
-
+*C* $leftarrow \alpha$ *AB*$\text{}^T$ + $\beta$*C*
+*C* $leftarrow \alpha$ *A*$\text{}^T$*B* + $\beta$*C*
+*C* $leftarrow \alpha$ *A*$\text{}^T$*B*$\text{}^T$ + $\beta$*C*
