@@ -29,4 +29,6 @@ Es una de las subrutinas que realizan operaciones matriz-matriz generales (GEner
 
 ```latex
 \alpha
+&#945
 ```
+&#945
