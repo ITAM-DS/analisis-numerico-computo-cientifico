@@ -20,15 +20,9 @@ Es un acrónimo de Basic Linear Algebra Subprograms, la cual contiene rutinas de
 Es un acrónimo de Automatically Turned Linear Algebra Software y es una implementación ```oper source``` de ```BLAS``` para C y Fortran. Es una forma de generar automáticamente una librería BLAS optimizada y aunque suele no ser tan buena en performance como las librerías escritas para un hardware en particular es usualmente la primera y tal vez única implementación que podemos encontrar para sistemas nuevos y es utilizada como benchmark para productos nuevos.
 
 ```dgemm```
-Es una de las subrutinas que realizan operaciones matriz-matriz generales (GEneral Matrix-Matrix computations), en particular es la que se utiliza para hacer las operaciones con tipos de datos reales de doble precisión, en comparación con ```sgemm``` para short-precision y  ```CGEMM```-``` ZGEMM``` para complejos. Todas estas realizan cualquiera de las siguientes operaciones (o sus análogos complejos) matriciales combinadas, usando escalares α y $\beta$, matrices *A* y *B* junto con sus transpuestas y la matriz *C*. 
+Es una de las subrutinas que realizan operaciones matriz-matriz generales (GEneral Matrix-Matrix computations), en particular es la que se utiliza para hacer las operaciones con tipos de datos reales de doble precisión, en comparación con ```sgemm``` para short-precision y  ```CGEMM```-``` ZGEMM``` para complejos. Todas estas realizan cualquiera de las siguientes operaciones (o sus análogos complejos) matriciales combinadas, usando escalares α y β, matrices *A* y *B* junto con sus transpuestas y la matriz *C*. 
 
-*C* $leftarrow \alpha$ *AB* + $\beta$ *C*.
-*C* $leftarrow \alpha$ *AB*$\text{}^T$ + $\beta$*C*.
-*C* $leftarrow \alpha$ *A*$\text{}^T$*B* + $\beta$*C*.
-*C* $leftarrow \alpha$ *A*$\text{}^T$*B*$\text{}^T$ + $\beta$*C*.
-
-```latex
-\alpha
-&#945
-```
-&#945
+*C* ← α *AB* + β *C*.
+*C* ← α *AB*T + β*C*.
+*C* ← α *A*T*B* + β*C*.
+*C* ← α *A*T*B*T + β*C*.
