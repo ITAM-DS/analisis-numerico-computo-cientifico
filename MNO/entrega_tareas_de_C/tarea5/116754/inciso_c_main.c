@@ -1,4 +1,4 @@
-#include"definiciones.h"
+#include"inciso_c_definiciones.h"
 int main(void){
     aloja_espacio_e_inicializa_matrices();
     imprime_matrices();
