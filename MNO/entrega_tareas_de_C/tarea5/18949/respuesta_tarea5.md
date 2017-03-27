@@ -115,19 +115,22 @@ Observa los resultados al ejecutar el `programa.out` y realiza lo siguiente:
 a) Investiga por qué se usan `""` en la línea que tiene `include` en `main.c` y en `funciones.c` en lugar de usar `< >`. 
 ```
 ***Respuesta:*** 
-```
+
 Cuando se utilizan los caracteres '< >' es cuando se quieren usar los header files parte de la libreria del lenguaje c. En este caso definciones.h es parte del programa que estamos construyendo. definiciones.h nos permite simplificar el proceso de dividir un programa en varios archivos fuente y comunicar definicioes de funciones o variables. Es una facilidad del compilador del lenguaje C. 
-```
+
 ```
 b) Investiga el uso de `static` en la definición de variables externas de `funciones.c`.
 ```
 ***Respuesta:***
-```
+
 Las variables declaradas con static:
+
 1) Conservan su valor entre invocaciones si son definidas desde en una función. Se comportan como globales pero solo son visibles dentro de la funcion en la que fueron definidas.
+
 2) Cuando son declarados como globales en un archivo c. Solo son visibles dentro de ese archivo.
+
 3) Cuando se usan con una declaracion de funcion, tienen el efecto de que la funcion no es visible fuera del archivo c donde fue definida.
-```
+
 ```
 c) Modifica el archivo `funciones.c` para que alojes e inicialices a las matrices `matriz1`, `matriz2` y `matriz_resultado` con `malloc` y apuntadores. Modifica `main.c` para que llame a una función dentro del archivo `funciones.c` que inicialice y aloje a las matrices anteriores y llame a otra función para que las desaloje una vez hecha la multiplicación (usa `free`): 
 ```
@@ -449,10 +452,9 @@ Investiga sobre `LAPACK`, `BLAS` y `ATLAS` y la subrutina de Fortran `dgemm` y r
 
 ***Respuesta***
 
-```
+
 LAPACK es una biblioteca de funciones para escrita para resolver problemas de algebra lineal numérica. Fue escrita originalmente en Fortran77 y ha ido evolucionando de forma que hoy explota las arquitecturas cache modernas de hardware. Entre las funciones que provee se encuentran: resolución de sistemas de ecuaciones lineales, mínimos cuadrados, eigenvalores y descomposición en valores singulares. Incluye, tambien, rutinas para resolver problemas de factorizaciones matriciales como LU, QR, Cholevsky y Schur. Las implementaciones modernas han sido alineadas siguiendo la especificación BLAS (Basic Linear ALgebra Subprograms).
 
 BLAS es un estandard de factor que permite que programas que son escritos siguiendo la especificación pueden aprovechar las diferentes implementaciones. La estructura de BLAS refleja un grupo de funciones que cronologicamente se fueron implementando en niveles (Levels): En el nivel tres encontramos la multiplicacón matricial generalizada (General Matrix Multipication, gemm) y algunas otras operaciones similares.
 
 En nuestro caso en programa2 utilizamos gemm de la implementacion de la biblioteca blas de Ubuntu para ejecutar una multiplicacion matricial.
-```
