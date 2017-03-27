@@ -71,13 +71,3 @@ void imprime_matriz_resultado(void){
 	printf("\n");
 
 }
-
-void multiplica_matrices(void){
-	for(i=0;i<NUM_REN_MAT1;i++){
-		for(k=0;k<NUM_COL_MAT2;k++){
-	 		matriz_resultado[i][k]=0;
- 			for(j=0;j<NUM_COL_MAT1;j++)
-  				matriz_resultado[i][k]=matriz_resultado[i][k]+matriz1[i][j]*matriz2[j][k];
-		}
-	}
-}

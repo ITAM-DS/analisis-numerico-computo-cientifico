@@ -4,6 +4,5 @@
 #define NUM_COL_MAT2 3 
 void imprime_matrices(void);
 void imprime_matriz_resultado(void);
-void multiplica_matrices(void);
 void aloja_espacio_e_inicializa_matrices(void);
 void libera_espacio(void);
