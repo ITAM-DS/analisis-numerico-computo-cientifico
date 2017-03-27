@@ -1,8 +1,8 @@
-#Introducción
+# Introducción
 
 Dos tipos de datos que nos ayudan agrupar son los structs y los arrays.
 
-##Structs
+## Structs
 
 Ejemplo de definición y declaración de un struct:
 
@@ -46,7 +46,7 @@ main(){
 ```
 
 
-##Arrays
+## Arrays
 
 Ejemplo sencillo de definición y declaración de un arreglo de enteros:
 
@@ -106,7 +106,7 @@ printf("Total de bytes para arreglo_multidimensional[0][0]: %ld\n", sizeof(arreg
 }
 ```
 
-##Apuntadores
+## Apuntadores
 
 Un apuntador es una variable que contiene el address de una variable.
 
