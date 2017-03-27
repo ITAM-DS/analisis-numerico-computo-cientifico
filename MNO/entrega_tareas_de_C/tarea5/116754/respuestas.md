@@ -1,5 +1,3 @@
-Alumno: 116754
-
 # Tarea 5
 
 ## a) Investiga por qué se usan comillas en lugar de ```<>``` para el include.
