@@ -135,10 +135,10 @@ Las variables declaradas con static:
 c) Modifica el archivo `funciones.c` para que alojes e inicialices a las matrices `matriz1`, `matriz2` y `matriz_resultado` con `malloc` y apuntadores. Modifica `main.c` para que llame a una función dentro del archivo `funciones.c` que inicialice y aloje a las matrices anteriores y llame a otra función para que las desaloje una vez hecha la multiplicación (usa `free`): 
 ```
 ***Respuesta:***
-```
+
 Se han modificado los programas funciones1.c y main1.c. Se muestra el código a continuacion. La salida en la ejecucion de estos nuevos progrmas es identica.
 
-```
+
 ```
 #include"definiciones.h"
 int main(void){
