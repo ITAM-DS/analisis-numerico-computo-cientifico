@@ -12,7 +12,112 @@ La variable estática no se pierde aunque el programa haya salido de la función
 
 ### c) Modifica el archivo funciones.c para que alojes e inicialices a las matrices matriz1, matriz2 y matriz_resultado con malloc y apuntadores. Modifica main.c para que llame a una función dentro del archivo funciones.c que inicialice y aloje a las matrices anteriores y llame a otra función para que las desaloje una vez hecha la multiplicación (usa free):
 
+funciones.c
+
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include"definiciones.h"
+//definiciones de variables que serán externas
+static int i=0,j=0, k=0;
+static double **matriz1;
+static double **matriz2;
+static double **matriz_resultado;
+    
+void aloja_espacio_e_incializa_matrices(void){
+
+    matriz1 = malloc(NUM_REN_MAT1*sizeof(double));
+    for(i=0; i<NUM_REN_MAT1; i++)
+        *(matriz1 + i) = malloc(NUM_COL_MAT1  * sizeof(double));
+
+    *(*(matriz1+0)+0)=0;
+    *(*(matriz1+0)+1)=1.5;
+    *(*(matriz1+1)+0)=4;
+    *(*(matriz1+1)+1)=-5;
+    *(*(matriz1+2)+0)=-1;
+    *(*(matriz1+2)+1)=2.5;
+
+    matriz2 = malloc(NUM_REN_MAT2*sizeof(double));
+    for(i=0; i<NUM_REN_MAT2; i++)
+        *(matriz2+i) = malloc(NUM_COL_MAT2*sizeof(double));
+
+    *(*(matriz1+0)+0)=1;
+    *(*(matriz1+0)+1)=0;
+    *(*(matriz1+0)+2)=0;
+    *(*(matriz1+1)+0)=0;
+    *(*(matriz1+1)+1)=-1;
+    *(*(matriz1+1)+2)=1;
+
+    matriz_resultado = malloc(NUM_REN_MAT1*sizeof(double));
+    for(i=0; i<NUM_REN_MAT1; i++)
+        *(matriz_resultado+i) = malloc(NUM_COL_MAT2*sizeof(double));
+}
+
+void libera_espacio(void){
+
+    free(matriz1);
+    free(matriz2);
+    free(matriz_resultado);
+}
+
+void imprime_matrices(void){
+...
+}
+
+void imprime_matriz_resultado(void){
+...
+}
+
+void multiplica_matrices(void){
+...
+}
+```
+
+main.c:
+
+```
+#include"definiciones.h"
+int main(void){
+aloja_espacio_e_incializa_matrices();
+imprime_matrices();
+multiplica_matrices();
+imprime_matriz_resultado();
+libera_espacio();
+return 0;
+}
+```
+
 ### d) Compara tu resultado usando la subrutina de Fortran dgemm y los siguientes archivos definiciones2.h, main2.c, funciones2.c:
+
+El resultado debería ser el mismo, pero no me sale la matriz resultado.
+
+Cambíe las variables externas de la función2.c
+
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include"definiciones2.h" 
+//definiciones de variables que serán externas
+static int i=0,j=0, k=0;
+double **matriz1;
+double **matriz2;
+double **matriz_resultado;
+
+void aloja_espacio_e_incializa_matrices(void){
+...
+}
+void libera_espacio(void){
+... 
+}
+void imprime_matrices(void){
+...
+}
+void imprime_matriz_resultado(void){
+...
+}
+
+```
+
 
 #### Investiga sobre LAPACK, BLAS y ATLAS y la subrutina de Fortran dgemm 
 
