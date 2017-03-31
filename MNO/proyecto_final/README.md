@@ -1,7 +1,7 @@
 # Objetivo
 
 Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de un método numérico en su forma en paralelo o secuencial para resolver un problema en áreas como 
-análisis numérico y cómputo científico, inteligencia artificial, machine learning, estadística, bioestadística, física, economía, actuaría, ingeniería, finanzas o big data.
+análisis numérico y cómputo científico, inteligencia artificial, machine learning, estadística, bioestadística, física, economía, actuaría, ingeniería, finanzas o big data y relacionado con los temas vistos en el curso.
 
 # Descripción
 
@@ -17,7 +17,7 @@ Tiene un porcentaje de 40% y la calificación es por equipo. Se entrega el códi
 
 ## Trabajo escrito
 
-El trabajo escrito consiste en el reporte de la investigación realizada y los resultados obtenidos. Se dan referencias utilizadas. No se sube al repo, se proporciona una liga al mismo, más información sobre esta liga [aquí](MNO_2017).
+El trabajo escrito consiste en el reporte de la investigación realizada y los resultados obtenidos. Se dan referencias utilizadas. No se sube al repo del curso pero se proporciona una liga al mismo, más información sobre esta liga [aquí](MNO_2017).
 
 Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega en la fecha del examen final determinada por control escolar.
 
@@ -26,7 +26,7 @@ Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega en la fe
 
 Se realiza una presentación de máximo 15 min por cada equipo para reporte sobre el trabajo realizado y resultados. En esta presentación no se entra en detalles sobre los métodos, sólo cuestiones generales.
 
-Tiene dos calificaciones 10% de forma individual y 10% para el equipo. Se presentación en la fecha del examen final determinada por control escolar.
+Tiene dos calificaciones 10% de forma individual y 10% para el equipo. Se realiza en la fecha del examen final determinada por control escolar.
 
 ## Avances
 
@@ -38,10 +38,9 @@ La calificación consiste en los porcentajes anteriores: avances de forma indivi
 
 ```
 20% + 20% + 10% + 10% + 40%
-
 ```
 
-El proyecto de acuerdo a lo determinado al inicio del curso tiene un porcentaje del `50%` de la calificación final.
+El porcentaje del proyecto de acuerdo a la primera clase del curso tiene un porcentaje del `50%` de la calificación final.
 
 
 # Lista ejemplo de métodos numéricos para proyectos:
