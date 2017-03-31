@@ -17,7 +17,7 @@ Tiene un porcentaje de 40% y la calificación es por equipo. Se entrega el códi
 
 ## Trabajo escrito
 
-El trabajo escrito consiste en el reporte de la investigación realizada y los resultados obtenidos. Se dan referencias utilizadas. No se sube al repo del curso pero se proporciona una liga al mismo, más información sobre esta liga [aquí](MNO_2017).
+El trabajo escrito consiste en el reporte de la investigación realizada y los resultados obtenidos. Se dan referencias utilizadas. No se sube al repo del curso, pero se proporciona una liga al mismo, más información sobre esta liga [aquí](MNO_2017).
 
 Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega en la fecha del examen final determinada por control escolar.
 
@@ -30,15 +30,19 @@ Tiene dos calificaciones 10% de forma individual y 10% para el equipo. Se realiz
 
 ## Avances
 
-Tiene un porcentaje de 20% y encuentran más información [aquí](MNO_2017).
+Tienen un porcentaje de 20% y encuentran más información [aquí](MNO_2017).
 
 # Calificación
 
-La calificación consiste en los porcentajes anteriores: avances de forma individual, trabajo escrito por equipo, presentación individual y por equipo e implementación por equipo:
+La calificación se conforma de los porcentajes anteriores: 
 
-```
-20% + 20% + 10% + 10% + 40%
-```
+* avances de forma individual (20%).
+
+* trabajo escrito por equipo (20%).
+
+* presentación individual (10%) y por equipo (10%).
+
+* implementación del método numérico por equipo (40%).
 
 El porcentaje del proyecto de acuerdo a la primera clase del curso tiene un porcentaje del `50%` de la calificación final.
 
