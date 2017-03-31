@@ -5,6 +5,8 @@
 
 Título del proyecto: `Ejemplo`
 
+Objetivo del proyecto: `objetivo`
+
 [Avances del proyecto](equipo_ejemplo/avance_07_04_2017)
 
 [Trabajo escrito](liga hacia trabajo escrito)
