@@ -100,5 +100,18 @@ Examen módulo 1 parte 1
 
 [III/3.1.1 (hasta block matrices)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
+## Clase 12
+
+27 de marzo
+
+Examen módulo 1 parte 2
+
+[III/3.1.1 (terminamos la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+[III/3.1.2 (terminamos la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+[III/3.2.1 (inicio de la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+
 
 
