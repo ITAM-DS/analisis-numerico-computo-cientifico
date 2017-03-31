@@ -1,6 +1,6 @@
 # Lista de proyectos:
 
-## Equipo ejemplo
+## [Equipo ejemplo](equipo_ejemplo)
 
 Título del proyecto: `Ejemplo`
 
