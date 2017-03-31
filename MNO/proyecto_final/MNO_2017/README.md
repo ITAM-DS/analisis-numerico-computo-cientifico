@@ -14,7 +14,7 @@ Lo que se busca con esta forma de calificar es que para la semana 5 o 6 el proye
 El archivo [README.md](proyectos) debajo del nivel: `analisis-numerico-computo-cientifico/MNO/proyecto_final/MNO_2017/proyectos/
 ` es un archivo de control para la lista de proyectos y sólo se actualiza y/o se modifica por los integrantes de los equipos con ligas hacia sus avances, trabajo escrito, presentación e implementación de cada proyecto del equipo.
 
-	* Las ligas hacia el trabajo escrito y presentación son hacia otro lado (p.ej. una liga de dropbox en donde tienen `pdfs` o lo que utilicen para realizar esto) y no hacia directorios dentro del repositorio de la materia. Así evitamos tener archivos grandes en este repo :)
+	*Las ligas hacia el trabajo escrito y presentación son hacia otro lado (p.ej. una liga de dropbox en donde tienen `pdfs` o lo que utilicen para realizar esto) y no hacia directorios dentro del repositorio de la materia. Así evitamos tener archivos grandes en este repo :)
 
 Fechas para reportes de avances en el proyecto:
 
