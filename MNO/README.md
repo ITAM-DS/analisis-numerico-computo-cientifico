@@ -6,6 +6,8 @@
 
 [Lista alumn@s con calificaciones](https://www.dropbox.com/s/l50nmi7ice26qdh/salon_pf_103.xlsx?dl=0)
 
+[Proyecto final](proyecto_final/MNO_2017)
+
 ## Clase 1
 
 16 de enero
