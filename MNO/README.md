@@ -8,7 +8,7 @@
 
 [Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
 
-[Indicaciones Proyecto final MNO 2017](proyecto_final/MNO_2017)
+[Indicaciones para proyecto final MNO 2017](proyecto_final/MNO_2017)
 
 
 
