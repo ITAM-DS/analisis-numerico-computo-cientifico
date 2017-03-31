@@ -1,23 +1,23 @@
-#Lista ejemplo de métodos numéricos para proyectos:
+# Lista ejemplo de métodos numéricos para proyectos:
 
-*) Multiplicación de matrices.
+* Multiplicación de matrices.
 
-*) Multiplicación de tensores.
+* Multiplicación de tensores.
 
-*) Reglas de integración.
+* Reglas de integración.
 
-*) Métodos para resolver sistemas de ecuaciones lineales.
+* Métodos para resolver sistemas de ecuaciones lineales.
 
-*) Factorización de matrices: lu, cholesky, qr, svd.
+* Factorización de matrices: lu, cholesky, qr, svd.
 
-*) Cálculo de eigenvalores, eigenvectores.
+* Cálculo de eigenvalores, eigenvectores.
 
-*) Generación de números aleatorios.
+* Generación de números aleatorios.
 
-*) Ordenamiento de elementos en un arreglo.
+* Ordenamiento de elementos en un arreglo.
 
-*) Mínimos cuadrados.
+* Mínimos cuadrados.
 
-*) Componentes principales.
+* Componentes principales.
 
-*) Sistemas de ecuaciones diferenciales.
+* Sistemas de ecuaciones diferenciales.
