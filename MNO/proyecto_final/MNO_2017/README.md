@@ -10,7 +10,7 @@ Cada equipo en el nivel:
 
 `analisis-numerico-computo-cientifico/MNO/proyecto_final/MNO_2017/proyectos/`
 
-creará un directorio, en el que se tendrán niveles de directorios para los avances de cada fecha señalada (definidas al final de este texto) y en el [README.md](proyectos/equipo_ejemplo/README.md) creado dentro de este directorio:
+creará un directorio, en el que se tendrán niveles de directorios para los avances de cada fecha señalada (definidas al final de este texto) y en el [README.md](proyectos/equipo_ejemplo/) creado dentro de este directorio:
 
 `analisis-numerico-computo-cientifico/MNO/proyecto_final/MNO_2017/proyectos/equipo_ejemplo/README.md`
 
