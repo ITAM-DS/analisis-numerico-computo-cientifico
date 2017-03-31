@@ -8,6 +8,8 @@
 
 [Proyecto final](proyecto_final/MNO_2017)
 
+[Lista de ejemplos para proyecto final](proyecto_final)
+
 ## Clase 1
 
 16 de enero
