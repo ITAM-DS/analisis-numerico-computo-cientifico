@@ -1,7 +1,7 @@
 # Objetivo
 
-Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de un método numérico en su forma en paralelo o secuencial para resolver un problema en áreas como 
-análisis numérico y cómputo científico, inteligencia artificial, machine learning, estadística, bioestadística, física, economía, actuaría, ingeniería, finanzas o big data y relacionado con los temas vistos en el curso.
+Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de un método numérico en su forma en paralelo o secuencial para resolver un problema  relacionado con los temas vistos en el curso y en áreas como 
+análisis numérico y cómputo científico, inteligencia artificial, machine learning, estadística, bioestadística, física, economía, actuaría, ingeniería, finanzas o big data.
 
 # Descripción
 
