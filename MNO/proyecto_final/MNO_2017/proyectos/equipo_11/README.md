@@ -25,7 +25,7 @@ computacionales de optimización.
 
 * [R. P. Brent, F. Luk. The solution of singular-value and symmetric eigenvalue problems on multiprocessor arrays.](https://maths-people.anu.edu.au/~brent/pd/rpb084i.pdf)
 
-* Sección 8.5 del libro:
+* Capítulo 8, Jacobi Methods, del libro:
 
 [G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013.](http://web.mit.edu/ehliu/Public/sclark/Golub%20G.H.,%20Van%20Loan%20C.F.-%20Matrix%20Computations.pdf)
 
