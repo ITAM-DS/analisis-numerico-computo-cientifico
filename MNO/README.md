@@ -10,6 +10,7 @@
 
 [Indicaciones para proyecto final MNO 2017](proyecto_final/MNO_2017)
 
+[Lista de proyectos finales MNO 2017](proyecto_final/MNO_2017/proyectos)
 
 
 ## Clase 1
