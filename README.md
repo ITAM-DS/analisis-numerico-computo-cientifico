@@ -40,7 +40,7 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 3.1.2 Localidad y vectorización. Análisis del error en cómputos matriciales básicos.
 
-3.2 Sistemas de ecuaciones lineales y factorizaciones matriciales.
+3.2.1 Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.
 
 ## [C](C/)
 
