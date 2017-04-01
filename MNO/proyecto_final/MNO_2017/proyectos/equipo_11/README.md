@@ -19,7 +19,7 @@ descomposición de valores singulares (SVD) en
 el lenguaje de programación C usando metodologías
 computacionales de optimización.
 
-**Referencias:
+Referencias:
 
 * [B. B. Zhou, R. P. Brent. On Parallel Implementation of the One-sided Jacobi Algorithm for Singular Value Descompositions](https://pdfs.semanticscholar.org/cf5e/afcd87a9fcf1c77cfb431f0b8a8518f11445.pdf)
 
