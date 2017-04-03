@@ -2,26 +2,28 @@
 
 ## Integrantes:
 
-* Erick
+* Ricardo Lastra
 
-* Erica
+* Adrián Vázquez
 
 ## Trabajo:
 
 ### Individual
 
-Erick: 
+Adrián Vázquez:
 
-Leí la siguiente [referencia](http://docs.nvidia.com/cuda/cuda-c-programming-guide/#axzz4cvQxAHMZ) para revisar implementaciones de la multiplicación de matrices en una GPU. Debo revisar las asignaciones de los índices que se están realizando pues no queda claro el uso de las variables `blockDim` y `blockIdx`, para ello estoy leyendo la sección 3.3 del [libro](http://www.hds.bme.hu/~fhegedus/C++/programming_massively_parallel_processors.pdf).
 
-Erica:
 
-Implementé la siguiente [función](codigo/funcion_imprime_hello_world_cuda.cu) en CUDA-C para realizar un hello world.
+Ricardo Lastra:
+
+Investigar el coste operativo de la implementación de los siguientes tipos de cluster:  (PONER DOCUMENTACION DE AWS Y VIABILIDAD DE USO)
+	-CLUSTER TIPO A. DIRECTO EN PC CON TAREJETA NVIDIA
+	-CLUSTER TIPO B. USANDO DOCKER COMPOSE PARA NODOS
+	-CLUSTER TIPO C. USANDO MAQUINAS AWS (Contribución al material de MNO para el uso de AWS)
 
 ### Equipo
 
-Determinamos que nos tomará dos días revisar los índices de las referencias que mencionó Erick y revisaremos la implementación de Erica para que la [función](codigo/funcion_imprime_hello_world_cuda.cu) imprima un `hello_world` por cada bloque de threads.
-
+Se determinó que en 2 semanas se debera construir y levantar en modo de prueba, una arquitectura como la vista en clase con los archivos de prueba "Hello_world" ó "Hello_world2", para que las porximas 5 o 6 semanas sean elaborados el o los algoritmos de computo númerico en C.
 
 
 
