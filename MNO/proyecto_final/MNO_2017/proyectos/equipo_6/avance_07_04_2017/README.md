@@ -12,7 +12,9 @@
 
 Adrián Vázquez:
 
+__Arquitectura del Proyecto:__ La arquitectura de referencia para el Proyecto PHPP esta representada en el siguiente diagrama:
 
+![GitHub Logo](avance_07_04_2017/images/ArquitecturaReferencia-v1.0.png) 
 
 Ricardo Lastra:
 
