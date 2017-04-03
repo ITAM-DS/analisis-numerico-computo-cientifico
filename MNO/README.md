@@ -119,6 +119,12 @@ Examen módulo 1 parte 2
 
 [III/3.2.1 (inicio de la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
+## Clase 13
+
+1 abril
+
+[III/3.2.1 (hasta versión outer produt de eliminación Gaussiana)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
 
 
 
