@@ -8,7 +8,7 @@ Integrantes:
 
 __Título del proyecto:__ `Plataforma Hibrida de Procesamiento Paralelo` (**PHPP**) 
 
-__Objetivos del proyecto:__ Diseñar e implementar una plataforma hibrida basada en procesamiento GPU's para la ejecución en paralelo de algun algoritmo de cálculo numérico como sigue:
+__Objetivos del proyecto:__ Diseñar e implementar una plataforma hibrida basada en procesamiento GPU's para la ejecución en paralelo de algún algoritmo de cálculo numérico como sigue:
 
 * Implementar Plataforma de procesamiento en Paralelo (**PHPP**)
 * Cálculo numérico para álgebra lineal, las lineas de investigación son: 
