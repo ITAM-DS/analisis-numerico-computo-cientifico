@@ -20,21 +20,21 @@ __Objetivos del proyecto:__ Diseñar e implementar una plataforma hibrida basada
 
 * Diseñar e implementar el algoritmo de Analisis de Componentes Principales (PCA) (Dependiendo del avance semanal)
 
-Calendario: 
+__Calendario:__ 
 
-1A SEMANA
+*1A SEMANA
 1. Definición (ARQUITECTURA DE COMPONENTES) (ADRIAN)
 2. Determinar cluster a seleccionar  (RIC DOCUMENTACION DE AWS Y VIABILIDAD DE USO)	
 
-2A SEMANA
+*2A SEMANA
 1. Correr prueba en arquitectura propuesto con al menos un  "HELLO WORLD" en CUDA-C (ADRIAN)
 2. Escribir en C algoritmo de  "COMPROBACION DE SIMETRIA DE MATRIZ"
 
-3A SEMANA
+*3A SEMANA
 1. Definir algoritmos vistos en clase a usar (ADRIAN)
 3. Escribir función de "LOAD DATA CON HERRAMIENTAS VISTAS EN CLASE" (RIC)
 
-4A SEMANA
+*4A SEMANA
 
 "Según avance"
 
