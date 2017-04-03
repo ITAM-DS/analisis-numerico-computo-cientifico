@@ -19,7 +19,7 @@ Tiene un porcentaje de 40% y la calificación es por equipo. Se entrega el códi
 
 El trabajo escrito consiste en el reporte de la investigación realizada y los resultados obtenidos. Se dan referencias utilizadas. No se sube al repo del curso, pero se proporciona una liga al mismo, más información sobre esta liga [aquí](MNO_2017).
 
-Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega en la fecha del examen final determinada por control escolar.
+Tiene un porcentaje de 10% y la calificación es por equipo. Se entrega en la fecha del examen final determinada por control escolar.
 
 
 ## Presentación
@@ -30,15 +30,15 @@ Tiene dos calificaciones 10% de forma individual y 10% para el equipo. Se realiz
 
 ## Avances
 
-Tienen un porcentaje de 20% y encuentran más información [aquí](MNO_2017).
+Tienen un porcentaje de 25% y encuentran más información [aquí](MNO_2017).
 
 # Calificación
 
 La calificación se conforma de los porcentajes anteriores: 
 
-* avances de forma individual (20%).
+* avances de forma individual (25%).
 
-* trabajo escrito por equipo (20%).
+* trabajo escrito por equipo (15%).
 
 * presentación individual (10%) y por equipo (10%).
 
@@ -55,7 +55,7 @@ El porcentaje del proyecto de acuerdo a la primera clase del curso tiene un porc
 
 * Reglas de integración.
 
-* Métodos para resolver sistemas de ecuaciones lineales.
+* Métodos para resolver sistemas de ecuaciones lineales: triangulares, densos.
 
 * Factorización de matrices: lu, cholesky, qr, svd.
 
