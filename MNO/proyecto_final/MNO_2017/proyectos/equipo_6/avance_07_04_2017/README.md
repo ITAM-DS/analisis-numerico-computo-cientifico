@@ -19,6 +19,7 @@ __Arquitectura del Proyecto:__ La arquitectura de referencia para el Proyecto PH
 Ricardo Lastra:
 
 Investigar el coste operativo de la implementación de los siguientes tipos de cluster:  (PONER DOCUMENTACION DE AWS Y VIABILIDAD DE USO)
+
 	-CLUSTER TIPO A. DIRECTO EN PC CON TAREJETA NVIDIA
 	-CLUSTER TIPO B. USANDO DOCKER COMPOSE PARA NODOS
 	-CLUSTER TIPO C. USANDO MAQUINAS AWS (Contribución al material de MNO para el uso de AWS)
