@@ -26,7 +26,7 @@ Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega en la fe
 
 Se realiza una presentación de máximo 15 min por cada equipo para reporte sobre el trabajo realizado y resultados. En esta presentación no se entra en detalles sobre los métodos, sólo cuestiones generales.
 
-Tiene dos calificaciones 10% de forma individual y 10% para el equipo. Se realiza en la fecha del examen final determinada por control escolar.
+Tiene dos calificaciones 10% de forma individual y 5% para el equipo. Se realiza en la fecha del examen final determinada por control escolar.
 
 ## Avances
 
