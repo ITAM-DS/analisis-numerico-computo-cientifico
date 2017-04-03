@@ -6,6 +6,13 @@
 
 [Lista alumn@s con calificaciones](https://www.dropbox.com/s/l50nmi7ice26qdh/salon_pf_103.xlsx?dl=0)
 
+[Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
+
+[Indicaciones para proyecto final MNO 2017](proyecto_final/MNO_2017)
+
+[Lista de proyectos finales MNO 2017](proyecto_final/MNO_2017/proyectos)
+
+
 ## Clase 1
 
 16 de enero
@@ -99,6 +106,19 @@ Examen de C
 Examen módulo 1 parte 1
 
 [III/3.1.1 (hasta block matrices)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+## Clase 12
+
+27 de marzo
+
+Examen módulo 1 parte 2
+
+[III/3.1.1 (terminamos la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+[III/3.1.2 (terminamos la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+[III/3.2.1 (inicio de la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
 
 
 
