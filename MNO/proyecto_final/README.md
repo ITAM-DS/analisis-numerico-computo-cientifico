@@ -55,7 +55,7 @@ El porcentaje del proyecto de acuerdo a la primera clase del curso tiene un porc
 
 * Reglas de integración.
 
-* Métodos para resolver sistemas de ecuaciones lineales: triangulares, densos.
+* Métodos para resolver sistemas de ecuaciones lineales: triangulares, sparse, densos.
 
 * Factorización de matrices: lu, cholesky, qr, svd.
 
