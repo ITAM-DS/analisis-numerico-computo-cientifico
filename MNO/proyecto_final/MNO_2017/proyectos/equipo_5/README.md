@@ -13,7 +13,8 @@ En el aprendizaje por refuerzo clásico se aproxima una función del producto ca
 Para implementar la arquitectura de la red neuronas usaremos [cuDNN](https://developer.nvidia.com/cudnn), este *framework* proporciona herramientas que comunmente se usan en las redes neuronales. Adicionalmente se explorarán otras opciones para acelerar el entrenamiento de la red neuronal encontradas en la literatura, sin embargo, la implementación de las mismas está fuera del alcance del proyecto. En cuanto a nuestra implementación nos enfocaremos en el juego conocido como Breakout.
 
 
+- [Temporal Difference Learning and TD-Gammon](http://courses.cs.washington.edu/courses/cse590hk/01sp/Readings/tesauro95cacm.pdf)
 
-[Temporal Difference Learning and TD-Gammon](http://courses.cs.washington.edu/courses/cse590hk/01sp/Readings/tesauro95cacm.pdf)
-[Playing Atari with Deep Reinforcement Learning](https://arxiv.org/pdf/1312.5602.pdf)
-[Massively Parallel Methods for Deep Reinforcement Learning](https://arxiv.org/pdf/1507.04296.pdf)
+- [Playing Atari with Deep Reinforcement Learning](https://arxiv.org/pdf/1312.5602.pdf)
+
+- [Massively Parallel Methods for Deep Reinforcement Learning](https://arxiv.org/pdf/1507.04296.pdf)
