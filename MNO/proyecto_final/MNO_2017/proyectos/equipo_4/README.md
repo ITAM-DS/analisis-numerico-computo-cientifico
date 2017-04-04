@@ -2,7 +2,7 @@
 
 Queremos implementar el algoritmo de Toom-Cook para realizar multiplicaciones de números grandes sin perder precisión en los cálculos. 
 
-###Artículos por analizar:     
+### Artículos por analizar:     
 
 
 [dropbox](https://www.dropbox.com/sh/15g94mgcitezmbn/AACMO4enybtzyZm1MS-IQmtIa?dl=0)    
