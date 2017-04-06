@@ -2,25 +2,25 @@
 
 ## Integrantes:
 
-* Erick
+** Gabriela Flores**
 
-* Erica
+** Paulina Salgado**
+
+** Guillermina Montanari**
 
 ## Trabajo:
-
 ### Individual
 
-Erick: 
+**Gabriela**: Revisa el código del algoritmo en Python y toma tiempos de un ejemplo.
 
-Leí la siguiente [referencia](http://docs.nvidia.com/cuda/cuda-c-programming-guide/#axzz4cvQxAHMZ) para revisar implementaciones de la multiplicación de matrices en una GPU. Debo revisar las asignaciones de los índices que se están realizando pues no queda claro el uso de las variables `blockDim` y `blockIdx`, para ello estoy leyendo la sección 3.3 del [libro](http://www.hds.bme.hu/~fhegedus/C++/programming_massively_parallel_processors.pdf).
+**Paulina**: Revisar los métodos de optimización de cómputo matricial que pudieran ser aplicados en el proyecto.
 
-Erica:
-
-Implementé la siguiente [función](codigo/funcion_imprime_hello_world_cuda.cu) en CUDA-C para realizar un hello world.
+**Guillermina**: Investigar acerca de CUDA c (Tutoriales y Documentacion). Armar el hello_world en CUDA_c
 
 ### Equipo
 
-Determinamos que nos tomará dos días revisar los índices de las referencias que mencionó Erick y revisaremos la implementación de Erica para que la [función](codigo/funcion_imprime_hello_world_cuda.cu) imprima un `hello_world` por cada bloque de threads.
+Tenemos que revisar con Erick los puntos de duda que tenemos de los métodos de cómputo matrical a implementar. Se buscaron referencias del algoritmo. Las referencias están en la carpeta del proyecto.
+
 
 
 
