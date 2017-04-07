@@ -35,15 +35,15 @@ sudo nvidia-docker run --name cuda --rm -it  nvidia/cuda:8.0-cudnn5-devel /bin/b
 
 Para el ejemplo que se usó, es necesario usar cuDNN versión 5, actualmente existe ya una versión más moderna que parece no ser compatible. Debido a la escasa documentación del framework, creemos que lo mejor será usar esta versión y basarnos en el ejemplo mencionado.
 
-### Algoritmo
+##### Algoritmo
 
 Evalué dos algoritmos que permiten realizar el aprendizaje por refuerzo para nuestro problema de interés. La elección del algoritmo dependerá de la dificultad de la implementación.
 
-#### [Deep Q-Network](https://deepmind.com/research/dqn/)
+###### [Deep Q-Network](https://deepmind.com/research/dqn/)
 
 Este algoritmo usa una red neuronal de convolución para aproximar la función de decisión sobre el espacio de acciones. Fue el algoritmo que hizo famosos estos métodos al lograr entrenar agentes que fueran capaces de ganar cualquier juego de Atari a partir de cero conocimiento.
 
-#### [Policy Gradient](http://karpathy.github.io/2016/05/31/rl/)
+###### [Policy Gradient](http://karpathy.github.io/2016/05/31/rl/)
 
 Inspirado en métodos más clásicos de optimización como descenso de gradiente, este algoritmo usa una red neuronal de menos capas para realizar el aprendizaje.
 
