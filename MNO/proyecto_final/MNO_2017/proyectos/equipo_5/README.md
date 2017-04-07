@@ -39,7 +39,7 @@ Usaremos una librería desarrolla *ex profeso* para el entrenamiento de agentes 
 
 #### Open Gym AI
 
-(Open Gym AI)[https://gym.openai.com/] es un *wrapper* de [Arcade Learning Environment](http://www.arcadelearningenvironment.org/) escrito para el lenguaje de programación python. Las ventajas que ofrece es la posibilidad de programar en un lenguaje de alto nivel. La principal desventaja es que habría que escribir mucho del codigo para realizar las funciones en CUDA o usar librerias existentes como PyCuda.
+[Open Gym AI](https://gym.openai.com/) es un *wrapper* de [Arcade Learning Environment](http://www.arcadelearningenvironment.org/) escrito para el lenguaje de programación python. Las ventajas que ofrece es la posibilidad de programar en un lenguaje de alto nivel. La principal desventaja es que habría que escribir mucho del codigo para realizar las funciones en CUDA o usar librerias existentes como PyCuda.
 
 #### Arcade Learning Environment
 
