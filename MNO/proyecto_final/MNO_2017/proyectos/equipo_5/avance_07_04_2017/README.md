@@ -13,7 +13,7 @@ Antes de habernos decidido por nuestro proyecto, investigué otra opción. El pr
 
 Instalé CUDA en mi laptop que tiene una GPU GeForce 610M ya que según las especificaciones es CUDA-enabled y también instalé cuDNN para probar el ejemplo [mnistCUDNN](https://github.com/tbennun/cudnn-training) que Amaury también probó sin embargo después de varios intentos e investigar por qué no corría, resultó que mi tarjeta tiene capability=2.1 y para utilizar cuDNN se requiere una capability>=3.0.
 
-Intenté crear una instancia en aws, sin embargo mi cuenta tiene un límite de uso que no me permite crear instancias GPU. Intentaré la siguiente semana de resolver este punto.
+Intenté crear una instancia en aws, sin embargo mi cuenta tiene un límite de uso que no me permite crear instancias GPU. Intentaré la siguiente semana resolver este punto.
 
 **Amaury**:
 
