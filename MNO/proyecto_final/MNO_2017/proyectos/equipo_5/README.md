@@ -29,7 +29,7 @@ Usando un wrapper de docker que permite hacer la conexión automática entre los
 
 ```
 sudo nvidia-docker run --name cuda --rm -it  nvidia/cuda:8.0-cudnn5-devel /bin/bash
-'''
+```
 
 Para el ejemplo que se usó, es necesario usar cuDNN versión 5, actualmente existe ya una versión más moderna que parece no ser compatible. Debido a la escasa documentación del framework, creemos que lo mejor será usar esta versión y basarnos en el ejemplo mencionado.
 
