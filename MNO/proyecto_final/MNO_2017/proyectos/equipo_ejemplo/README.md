@@ -1,5 +1,11 @@
 ## Equipo ejemplo
 
+Integrantes:
+
+* Erica
+
+* Erick
+
 Título del proyecto: `Ejemplo`
 
 Objetivo del proyecto: `objetivo`
