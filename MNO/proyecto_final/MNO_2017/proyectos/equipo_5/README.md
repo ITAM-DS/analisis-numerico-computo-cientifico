@@ -13,7 +13,7 @@ Para implementar la arquitectura de la red neuronas usaremos [cuDNN](https://dev
 
 El objetivo del proyecto es implementar y evaluar el uso de las tarjetas gráficas para el computo científico. 
 
-En la carpeta avance_07_04_2017 se encuentra el reporte del primer avance para determinar y avanzar nuestro proyecto. Hemos platicado con Erick y el tema fue aceptado.
+En la carpeta [avance_07_04_2017](avance_07_04_2017) se encuentra el reporte del primer avance para determinar y avanzar nuestro proyecto. Hemos platicado con Erick y el tema fue aceptado.
 
 ## Referencias
 
