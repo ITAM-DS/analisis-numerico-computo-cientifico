@@ -19,3 +19,6 @@ Objetivo del proyecto: `objetivo`
 
 [Implementacion](liga hacia implementacion)
 
+## [Equipo 10](equipo_10)
+
+* [Avance 07-04-2017](equipo_10/avance_07_04_2017)

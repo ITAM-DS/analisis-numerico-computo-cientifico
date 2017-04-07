@@ -15,7 +15,7 @@ Daniel Camarena:
 Realicé un ejercicio para levantar un ambiente distribuido en AWS utilizando Docker, Swarm y Compose, el reporte
 de este ejercicio se encuentra en la siguiente liga:
 
-[Swarm Docker Compose](SwarmDockerCompose.html)
+[Swarm Docker Compose](SwarmDockerCompose.md)
 
 Investigue implementaciones de MPI en paralelo utilizando C
 
