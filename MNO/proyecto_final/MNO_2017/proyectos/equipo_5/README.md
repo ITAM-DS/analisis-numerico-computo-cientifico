@@ -27,7 +27,7 @@ Se instaló la paquetería de CUDA y cuDNN en una computadora macbook pro con un
 
 Usando un wrapper de docker que permite hacer la conexión automática entre los drivers de la GPU y el contenedor, es posible usar la utilidad de la GPU dentro del ambiente virtual proporcionado. Adicionalmente, existe una imagen de docker que tiene tanto CUDA como cuDNN. Para usar dicha imagen se usa el siguiente comando:
 
-'''
+```
 sudo nvidia-docker run --name cuda --rm -it  nvidia/cuda:8.0-cudnn5-devel /bin/bash
 '''
 
