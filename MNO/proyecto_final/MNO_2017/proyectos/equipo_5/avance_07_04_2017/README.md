@@ -11,7 +11,7 @@
 
 Antes de habernos decidido por nuestro proyecto, investigué otra opción. El proyecto era implementar el [algoritmo de Buneman](http://robotics.stanford.edu/~scohen/cr.pdf) paralelizando [block cycle reduction](http://www.prace-ri.eu/IMG/pdf/multicoreparallelizationblockcyclicreduction.pdf) para resolver la [ecuación de Poisson](https://en.wikipedia.org/wiki/Poisson%27s_equation), que mediante métodos como el [método de las diferencias finitas](https://en.wikipedia.org/wiki/Finite_difference_method) reduce la ecuación a una ecuación matricial del tipo ```Ax = b``` donde A es una matriz tribanda de bloques. Sin embargo, nos decidimos por el proyecto que vamos a hacer porque consideramos que tiene  más que ver con nuestra maestría.
 
-Instalé CUDA en mi laptop que tiene una GPU GeForce 610M ya que según las especificaciones es CUDA-enabled y también instalé cuDNN para probar el ejemplo [mnistCUDNN](https://github.com/tbennun/cudnn-training) que Amaury también probó sin embargo después de varios intentos e investigar por qué no corría, resultó que mi tarjeta tiene capability=2.1 y para utilizar cuDNN se requiere una capability>=3.0.
+Instalé CUDA en mi laptop que tiene una GPU GeForce 610M ya que según las especificaciones es CUDA-enabled y también instalé cuDNN para probar el ejemplo [mnistCUDNN](https://github.com/tbennun/cudnn-training) que Amaury también probó y los ejemplos muestra que vienen con cuDNN v5, sin embargo después de varios intentos e investigar por qué no corría, resultó que mi tarjeta tiene capability=2.1 y para utilizar cuDNN se requiere una capability>=3.0.
 
 Intenté crear una instancia en aws, sin embargo mi cuenta tiene un límite de uso que no me permite crear instancias GPU. Intentaré la siguiente semana resolver este punto.
 
