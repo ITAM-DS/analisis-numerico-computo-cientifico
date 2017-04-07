@@ -35,6 +35,18 @@ sudo nvidia-docker run --name cuda --rm -it  nvidia/cuda:8.0-cudnn5-devel /bin/b
 
 Para el ejemplo que se usó, es necesario usar cuDNN versión 5, actualmente existe ya una versión más moderna que parece no ser compatible. Debido a la escasa documentación del framework, creemos que lo mejor será usar esta versión y basarnos en el ejemplo mencionado.
 
+### Algoritmo
+
+Evalué dos algoritmos que permiten realizar el aprendizaje por refuerzo para nuestro problema de interés. La elección del algoritmo dependerá de la dificultad de la implementación.
+
+#### [Deep Q-Network](https://deepmind.com/research/dqn/)
+
+Este algoritmo usa una red neuronal de convolución para aproximar la función de decisión sobre el espacio de acciones. Fue el algoritmo que hizo famosos estos métodos al lograr entrenar agentes que fueran capaces de ganar cualquier juego de Atari a partir de cero conocimiento.
+
+#### [Policy Gradient](http://karpathy.github.io/2016/05/31/rl/)
+
+Inspirado en métodos más clásicos de optimización como descenso de gradiente, este algoritmo usa una red neuronal de menos capas para realizar el aprendizaje.
+
 ### Equipo
 
 ### Ambiente de Entrenamiento
@@ -51,17 +63,7 @@ El [código](https://github.com/mgbellemare/Arcade-Learning-Environment) de Arca
 
 Debido a las ventajas que ofrece el uso directo de Arcade Learning Environment se decidió usar esta herramienta para el proyecto. Esto nos evitará problemas de *glue* code.
 
-### Algoritmo
-
-Se evaluaron dos algoritmos que permiten realizar el aprendizaje por refuerzo para nuestro problema de interés. La elección del algoritmo dependerá de la dificultad de la implementación.
-
-#### [Deep Q-Network](https://deepmind.com/research/dqn/)
-
-Este algoritmo usa una red neuronal de convolución para aproximar la función de decisión sobre el espacio de acciones. Fue el algoritmo que hizo famosos estos métodos al lograr entrenar agentes que fueran capaces de ganar cualquier juego de Atari a partir de cero conocimiento.
-
-#### [Policy Gradient](http://karpathy.github.io/2016/05/31/rl/)
-
-Inspirado en métodos más clásicos de optimización como descenso de gradiente, este algoritmo usa una red neuronal de menos capas para realizar el aprendizaje.
+#### Algoritmo
 
 Intentaremos implementar el algoritmo con redes de convolución para explorar el método. En caso de que la dificultad sea muy alta optaremos por el segundo método que ofrece una menor complejidad.
 
