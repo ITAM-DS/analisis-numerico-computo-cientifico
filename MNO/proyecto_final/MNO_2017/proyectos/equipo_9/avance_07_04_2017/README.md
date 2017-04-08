@@ -12,13 +12,28 @@
 
 Carlos:
 
-- Lectura de los artículos [Micikevicius, P. 3D finite difference computation on GPUs using CUDA. In Proceedings of 2nd workshop on general purpose processing on graphics processing units pp. 79-84., March, 2009 ](https://drive.google.com/open?id=0B1GlF2qCvHCXa0JYWHBNcVdmSUk), [V. Demir, A.Z. Elsherbeni, "Compute Unified Device Architecture (CUDA) Based Finite- Difference Time-Domain (FDTD) Implementation", Appl. Comput. Electromagn. Soc. J., vol. 25, n. 4, pp. 303-314, April 2010](https://drive.google.com/open?id=0B1GlF2qCvHCXUlk5NUx1THNxczQ) y [Yee, K. Numerical solution of initial boundary value problems involving Maxwell's equations in isotropic media. IEEE Transactions on antennas and propagation, 14(3), 302-307, 1966](https://drive.google.com/open?id=0B1GlF2qCvHCXMkJSWHdhSkFFRFE)
+- Lectura de los artículos 
+	
+	- [Micikevicius, P. 3D finite difference computation on GPUs using CUDA. In Proceedings of 2nd workshop on general purpose processing on graphics processing units pp. 79-84., March, 2009 ](https://drive.google.com/open?id=0B1GlF2qCvHCXa0JYWHBNcVdmSUk)
+
+	- [V. Demir, A.Z. Elsherbeni, "Compute Unified Device Architecture (CUDA) Based Finite- Difference Time-Domain (FDTD) Implementation", Appl. Comput. Electromagn. Soc. J., vol. 25, n. 4, pp. 303-314, April 2010](https://drive.google.com/open?id=0B1GlF2qCvHCXUlk5NUx1THNxczQ)
+
+	- [Yee, K. Numerical solution of initial boundary value problems involving Maxwell's equations in isotropic media. IEEE Transactions on antennas and propagation, 14(3), 302-307, 1966](https://drive.google.com/open?id=0B1GlF2qCvHCXMkJSWHdhSkFFRFE)
 
 
 Manuel: 
 
-- Lectura de los artículos [Micikevicius, P. 3D finite difference computation on GPUs using CUDA. In Proceedings of 2nd workshop on general purpose processing on graphics processing units pp. 79-84., March, 2009 ](https://drive.google.com/open?id=0B1GlF2qCvHCXa0JYWHBNcVdmSUk), [V. Demir, A.Z. Elsherbeni, "Compute Unified Device Architecture (CUDA) Based Finite- Difference Time-Domain (FDTD) Implementation", Appl. Comput. Electromagn. Soc. J., vol. 25, n. 4, pp. 303-314, April 2010](https://drive.google.com/open?id=0B1GlF2qCvHCXUlk5NUx1THNxczQ) y de las publicaciones [Finite Difference Methods in CUDA C/C++, Part 1](https://devblogs.nvidia.com/parallelforall/finite-difference-methods-cuda-cc-part-1/)
-y [Finite Difference Methods in CUDA C/C++, Part 2](https://devblogs.nvidia.com/parallelforall/finite-difference-methods-cuda-c-part-2/)
+- Lectura de los artículos
+	
+	- [Micikevicius, P. 3D finite difference computation on GPUs using CUDA. In Proceedings of 2nd workshop on general purpose processing on graphics processing units pp. 79-84., March, 2009 ](https://drive.google.com/open?id=0B1GlF2qCvHCXa0JYWHBNcVdmSUk)
+
+	- [V. Demir, A.Z. Elsherbeni, "Compute Unified Device Architecture (CUDA) Based Finite- Difference Time-Domain (FDTD) Implementation", Appl. Comput. Electromagn. Soc. J., vol. 25, n. 4, pp. 303-314, April 2010](https://drive.google.com/open?id=0B1GlF2qCvHCXUlk5NUx1THNxczQ)
+
+- Publicaciones
+	
+	- [Finite Difference Methods in CUDA C/C++, Part 1](https://devblogs.nvidia.com/parallelforall/finite-difference-methods-cuda-cc-part-1/)
+
+	- [Finite Difference Methods in CUDA C/C++, Part 2](https://devblogs.nvidia.com/parallelforall/finite-difference-methods-cuda-c-part-2/)
 
 
 ### Equipo
