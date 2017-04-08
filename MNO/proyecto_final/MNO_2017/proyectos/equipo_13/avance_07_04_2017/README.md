@@ -12,7 +12,7 @@ Adicionalmente, anexo código de generación de dichas matrices que había escri
 
 Isabel:  
 
-Además de comentar con mis compañeros las referencias que mencionó Ollin, leí [esta referencia](https://www.quora.com/What-is-an-intuitive-explanation-of-the-Hashimoto-non-backtracking-matrix-and-its-utility-in-network-analysis) que explica de manera sencilla la matriz de adyacencia así como la matriz de Hashimoto y algunas aplicaciones que ésta tiene.  
+Además de comentar con mis compañeros las referencias que mencionó Ollin, leí [esta referencia](https://www.quora.com/What-is-an-intuitive-explanation-of-the-Hashimoto-non-backtracking-matrix-and-its-utility-in-network-analysis) que explica de manera sencilla la matriz de adyacencia así como la matriz de Hashimoto y algunas aplicaciones que ésta tiene. Así como esta [otra](https://arxiv.org/pdf/0712.0192v1.pdf) y [esta](http://iopscience.iop.org/article/10.1209/0295-5075/107/50005/meta) que son más teóricas. 
 
 Grupal:
 
