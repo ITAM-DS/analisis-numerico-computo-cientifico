@@ -1,4 +1,4 @@
-# Avance_xx_xx_xxxx
+# Avance_07_04_2017
 
 ## Integrantes:
 
@@ -10,11 +10,23 @@
 
 ### Individual
 
-Carlos: 
+Carlos:
 
-Manuel:
+- Lectura de los artículos [Micikevicius, P. 3D finite difference computation on GPUs using CUDA. In Proceedings of 2nd workshop on general purpose processing on graphics processing units pp. 79-84., March, 2009 ](https://drive.google.com/open?id=0B1GlF2qCvHCXa0JYWHBNcVdmSUk), [V. Demir, A.Z. Elsherbeni, "Compute Unified Device Architecture (CUDA) Based Finite- Difference Time-Domain (FDTD) Implementation", Appl. Comput. Electromagn. Soc. J., vol. 25, n. 4, pp. 303-314, April 2010](https://drive.google.com/open?id=0B1GlF2qCvHCXUlk5NUx1THNxczQ) y [Yee, K. Numerical solution of initial boundary value problems involving Maxwell's equations in isotropic media. IEEE Transactions on antennas and propagation, 14(3), 302-307, 1966](https://drive.google.com/open?id=0B1GlF2qCvHCXMkJSWHdhSkFFRFE)
+
+
+Manuel: 
+
+- Lectura de los artículos [Micikevicius, P. 3D finite difference computation on GPUs using CUDA. In Proceedings of 2nd workshop on general purpose processing on graphics processing units pp. 79-84., March, 2009 ](https://drive.google.com/open?id=0B1GlF2qCvHCXa0JYWHBNcVdmSUk), [V. Demir, A.Z. Elsherbeni, "Compute Unified Device Architecture (CUDA) Based Finite- Difference Time-Domain (FDTD) Implementation", Appl. Comput. Electromagn. Soc. J., vol. 25, n. 4, pp. 303-314, April 2010](https://drive.google.com/open?id=0B1GlF2qCvHCXUlk5NUx1THNxczQ) y de las publicaciones [Finite Difference Methods in CUDA C/C++, Part 1](https://devblogs.nvidia.com/parallelforall/finite-difference-methods-cuda-cc-part-1/)
+y [Finite Difference Methods in CUDA C/C++, Part 2](https://devblogs.nvidia.com/parallelforall/finite-difference-methods-cuda-c-part-2/)
+
 
 ### Equipo
 
-Leí la siguiente [referencia](http://docs.nvidia.com/cuda/cuda-c-programming-guide/#axzz4cvQxAHMZ) para revisar implementaciones de la multiplicación de matrices en una GPU. Debo revisar las asignaciones de los índices que se están realizando pues no queda claro el uso de las variables `blockDim` y `blockIdx`, para ello estoy leyendo la sección 3.3 del [libro](http://www.hds.bme.hu/~fhegedus/C++/programming_massively_parallel_processors.pdf).
+- Se consideraron características relevantes para el curso para delinear el objetivo principal
 
+- Se discutió la complejidad del proyecto y se propusieron lecturas básicas
+
+- Se realizó una retroalimentación con respecto a las lecturas y dudas sobre algunos detalles técnicos
+
+- Establecimos el cronograma de actividades para los avances semanales
