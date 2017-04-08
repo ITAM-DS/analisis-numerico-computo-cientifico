@@ -42,6 +42,18 @@ En un segundo análisis propusimos una forma diferente de representar la matriz 
 
 Vero:
 
+CUDA-Based Jacobi’s Iterative Method 
+http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5385084
+
+An efficient Jacobi-like algorithm for parallel eigenvalue computation
+http://ieeexplore.ieee.org/abstract/document/241595/
+
+A Jacobi--Davidson Iteration Method for Linear Eigenvalue Problems
+http://epubs.siam.org/doi/abs/10.1137/S0036144599363084
+
+
+En estos artículos se habla del desempeño de implementaciones del método de Jacobi y también se da un algoritmo que combina el método de Jacobi con otro método para resolver el problema de eigenvalores.
+
 referencias:
 -Ford,William. Numerical Linear Algebra with Applications. Elsevier.2015.
 -Skiba,Yuri. Introducción a los Métodos Numéricos.UNAM.2001.
