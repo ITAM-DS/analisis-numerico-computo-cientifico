@@ -59,6 +59,8 @@ Ya con una cuenta en Amazon Web Services se desarrollo el prender una maquina de
 
 3-Se levanto la EC2 t2.small de Bitfusion Boost Ubuntu 14 Cuda 7.5, en la siguiente IMAGEN se ve como esta en estatus "running"
 
+![GitHub Logo](images/EC2_AMI_CUDA7.5.PNG) 
+
 4-Para configurar el ambiente Amazon-Docker se siguió la siguiente referencia:
 
 [referencia](https://docs.docker.com/machine/drivers/aws/#options)
