@@ -18,25 +18,21 @@ __Objetivos del proyecto:__ Diseñar e implementar una plataforma hibrida basada
 	* Cholesky
 	* Eigenvalue solver 	
 
-* Diseñar e implementar el algoritmo de Analisis de Componentes Principales (PCA) (Dependiendo del avance semanal)
-
 __Calendario:__ 
 
-*1A SEMANA
-1. Definición (ARQUITECTURA DE COMPONENTES) (ADRIAN)
-2. Determinar cluster a seleccionar  (RIC DOCUMENTACION DE AWS Y VIABILIDAD DE USO)	
+*Avance_07_04_2017
+1. Definición (ARQUITECTURA DE COMPONENTES).
+2. Correr prueba en arquitectura propuesta con al menos un  "HELLO WORLD" en CUDA-C.
+3. Determinar cluster a seleccionar.
 
-*2A SEMANA
-1. Correr prueba en arquitectura propuesto con al menos un  "HELLO WORLD" en CUDA-C (ADRIAN)
-2. Escribir en C algoritmo de  "COMPROBACION DE SIMETRIA DE MATRIZ"
+*Avance_14_04_2017
+1. Definir algoritmos vistos en clase a usar.
+2. Escribir en C algoritmo 'Test'  de "COMPROBACION DE SIMETRIA DE MATRIZ"
+3. Escribir función de "LOAD DATA CON HERRAMIENTAS VISTAS EN CLASE".
 
-*3A SEMANA
-1. Definir algoritmos vistos en clase a usar (ADRIAN)
-3. Escribir función de "LOAD DATA CON HERRAMIENTAS VISTAS EN CLASE" (RIC)
+*Avance_21_04_2017
 
-*4A SEMANA
-
-"Según avance"
+1. Por definir, dependera del avance de semanas anteriores. Se estima estar en etapa de desarrollo de algoritmo en CUDA-C.
 
 Referencias del proyecto:
 
