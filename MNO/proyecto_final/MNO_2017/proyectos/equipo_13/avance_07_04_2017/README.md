@@ -14,6 +14,10 @@ Isabel:
 
 Además de comentar con mis compañeros las referencias que mencionó Ollin, leí [esta referencia](https://www.quora.com/What-is-an-intuitive-explanation-of-the-Hashimoto-non-backtracking-matrix-and-its-utility-in-network-analysis) que explica de manera sencilla la matriz de adyacencia así como la matriz de Hashimoto y algunas aplicaciones que ésta tiene. Así como esta [otra](https://arxiv.org/pdf/0712.0192v1.pdf) y [esta](http://iopscience.iop.org/article/10.1209/0295-5075/107/50005/meta) que son más teóricas. 
 
+Raúl:
+
+A través de revisar las referencias sugeridas, observamos que el objetivo de la matriz de Hashimoto nos permite obtener una definición de grafos con una representación matricial, que muestra la conexión de los nodos en el grafo. Está matriz nos permite identificar rutas en el grafo donde para llegar de un nodo a otro no se utilice la conexión directa entre los nodos. De esta manera podemos realizar operaciones al realizar transformaciones de algebra lineal. Con ello podemos obtener diversas medidas centralidad, con lo cual podemos sacar mayor información de la red. En consecuencia la construcción de la matriz de Hashimoto es de particular importancia para el análisis de la red; con ello, nuestro proyecto busca la construcción de esta matriz de forma veloz aprovechando las capacidades del cómputo en paralelo.
+
 Grupal:
 
 Concordamos el tema y el tipo de implementación que llevaremos a cabo para el desarrollo del proyecto. Además cada uno de nosotros investigó referencias y estudió el tema a tratar.
