@@ -8,15 +8,10 @@ Integrantes:
 
 __Título del proyecto:__ `Plataforma Hibrida de Procesamiento Paralelo` (**PHPP**) 
 
-__Objetivos del proyecto:__ Diseñar e implementar una plataforma hibrida basada en procesamiento GPU's para la ejecución en paralelo de algún algoritmo de cálculo numérico como sigue:
+__Objetivos del proyecto:__ Diseñar e implementar una plataforma hibrida basada en procesamiento GPU's para la ejecución en paralelo de la factorización SVD como sigue:
 
 * Implementar Plataforma de procesamiento en Paralelo (**PHPP**)
-* Cálculo numérico para álgebra lineal, las lineas de investigación son: 
-	* LU
-	* QR
-	* SVD
-	* Cholesky
-	* Eigenvalue solver 	
+* Implementar la factorización de matrices SVD en computo en paralelo con CUDA-C
 
 __Calendario:__ 
 
@@ -25,12 +20,12 @@ __Calendario:__
 2. Correr prueba en arquitectura propuesta con al menos un  "HELLO WORLD" en CUDA-C.
 3. Determinar cluster a seleccionar.
 
-*Avance_14_04_2017
+*Avance_17_04_2017
 1. Definir algoritmos vistos en clase a usar.
 2. Escribir en C algoritmo 'Test'  de "COMPROBACION DE SIMETRIA DE MATRIZ"
 3. Escribir función de "LOAD DATA CON HERRAMIENTAS VISTAS EN CLASE".
 
-*Avance_21_04_2017
+*Avance_24_04_2017
 
 1. Por definir, dependera del avance de semanas anteriores. Se estima estar en etapa de desarrollo de algoritmo en CUDA-C.
 
