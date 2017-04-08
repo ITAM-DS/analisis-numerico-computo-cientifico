@@ -10,6 +10,10 @@ Comenté con mis compañeros de equipo sobre las referencias que motivaron la re
 
 Adicionalmente, anexo código de generación de dichas matrices que había escrito anteriormete en el lenguaje Julia.
 
+Isabel:  
+
+Además de comentar con mis compañeros las referencias que mencionó Ollin, leí [esta referencia](https://www.quora.com/What-is-an-intuitive-explanation-of-the-Hashimoto-non-backtracking-matrix-and-its-utility-in-network-analysis) que explica de manera sencilla la matriz de adyacencia así como la matriz de Hashimoto y algunas aplicaciones que ésta tiene.  
+
 Grupal:
 
 Concordamos el tema y el tipo de implementación que llevaremos a cabo para el desarrollo del proyecto. Además cada uno de nosotros investigó referencias y estudió el tema a tratar.
