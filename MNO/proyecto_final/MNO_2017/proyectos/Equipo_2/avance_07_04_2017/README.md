@@ -16,7 +16,7 @@ Mónica Ballesteros.
 
 Ariana López. 
 
-[Investigación](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_ejemplo/avance_07_04_2017/QQROpenMP.gdoc/) sobre la factorización QR
+[Investigación](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_ejemplo/avance_07_04_2017/QQROpenMP.gdoc) sobre la factorización QR
 
 Fabiola Cerón. 
 
