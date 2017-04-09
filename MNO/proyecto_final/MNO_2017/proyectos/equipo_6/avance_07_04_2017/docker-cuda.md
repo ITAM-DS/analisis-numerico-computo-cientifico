@@ -149,6 +149,7 @@ networks:
   my-net:
     driver: bridge
 ```
+Ver el archivo [Docker-compose](ambiente/docker-compose.yml)
 
 * __Ejecutamos los siguientes comandos__
 
