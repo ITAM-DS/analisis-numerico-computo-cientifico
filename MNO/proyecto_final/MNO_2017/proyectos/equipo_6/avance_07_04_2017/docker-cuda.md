@@ -162,7 +162,7 @@ networks:
 
 - Necesitamos tener instalado [Docker-compose](https://docs.docker.com/engine/installation/linux/ubuntu/)
 - Para ejecutar este docker-compose utilizaremos la imagen construida en clase para [MPI](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/MPI/openMPI) 
-- El ambiente construido espara ejecutar los procesos como *microservicios*
+- El ambiente construido espara ejecutar los procesos como *microservicios*, ver la siguiente referencia [Microservicios con Docker](http://containertutorials.com/docker-compose.html)
 
 
 
