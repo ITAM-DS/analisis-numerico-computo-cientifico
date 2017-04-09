@@ -72,18 +72,22 @@ ENV LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:LD_LIBRARY_PATH"
 
 CMD ["/bin/bash"]
 ```
-Ver el archivo [Dockerfile](ambiente/docker-images/Dockerfile)
+Ver el archivo [Dockerfile](ambiente/docker-images/cuda/Dockerfile)
 
 ## Construimos la Imagen
 
 - docker build -t cuda_mno/cuda:v1 . 
 
-LLegamos al siguiente resultado: ![Docker Imagen:](images/cuda-imagen-v1.png)
+LLegamos al siguiente resultado: 
+
+![Docker Imagen:](images/cuda-imagen-v1.png)
 
 ## Construimos el contenedor
 
 - nvidia-docker run -ti -v /home/radianv/optimizacion/CUDA:/CUDA-LOCAL -h mno-cuda --name mno-cuda cuda_mno/cuda:v1
 
-LLegamos al siguiente resultado: [Docker container:](docker-images/cuda-container-v1.png)
+LLegamos al siguiente resultado: 
+
+[Docker container:](images/cuda-container-v1.png)
 
 by ADVP
