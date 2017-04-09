@@ -104,7 +104,7 @@ services:
    hostname: cuda_node1
    networks:
       - my-net
-   command: echo "hola mundo cuda node 1" 
+   command: echo "En este NODO correran los procesos CUDA y MPI :)" 
    environment:
       MASTER_URL: "http://cuda_node1:6003"
    volumes:
@@ -119,7 +119,7 @@ services:
    hostname: cuda_node2
    networks:
       - my-net
-   command: echo "hola mundo cuda node 2"
+   command: echo "En este NODO correran los procesos CUDA y MPI :)"
    environment:
       MASTER_URL: "http://cuda_node1:6003"
    volumes:
@@ -134,7 +134,7 @@ services:
    hostname: mpi_master
    networks:
       - my-net
-   command: echo "hola mundo master node 1"
+   command: echo "En este nodo MAESTRO correran los procesos MPI en comunicación con NODOS 1 y 2 :)"
    environment:
       NODE1_URL: "http://cuda_node1:6001"
       NODE2_URL: "http://cuda_node2:6002"
