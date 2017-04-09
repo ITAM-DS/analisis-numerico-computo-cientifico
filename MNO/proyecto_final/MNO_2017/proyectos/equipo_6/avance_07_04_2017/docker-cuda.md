@@ -88,6 +88,6 @@ LLegamos al siguiente resultado:
 
 LLegamos al siguiente resultado: 
 
-[Docker container:](images/cuda-container-v1.png)
+![Docker container:](images/cuda-container-v1.png)
 
 by ADVP
