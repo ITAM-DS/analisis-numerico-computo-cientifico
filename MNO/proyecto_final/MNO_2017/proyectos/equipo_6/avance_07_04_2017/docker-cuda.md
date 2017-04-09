@@ -24,7 +24,7 @@ The *NVIDIA® CUDA®* Toolkit provides a comprehensive development environment f
 See: [NVIDIA Toolkit](https://developer.nvidia.com/cuda-toolkit)
 
 
-## Dockerfile 
+* __Dockerfile__ 
 ```
 FROM ubuntu:14.04
 MAINTAINER Adrián Vázquez <radianstk@gmail.com>
@@ -74,7 +74,7 @@ CMD ["/bin/bash"]
 ```
 Ver el archivo [Dockerfile](ambiente/docker-images/cuda/Dockerfile)
 
-## Construimos la Imagen
+* __Construimos la Imagen__
 
 - docker build -t cuda_mno/cuda:v1 . 
 
@@ -82,12 +82,88 @@ LLegamos al siguiente resultado:
 
 ![Docker Imagen:](images/cuda-imagen-v1.png)
 
-## Construimos el contenedor
+* __Construimos el contenedor__
 
 - nvidia-docker run -ti -v /path/to/my/directory/:/CUDA-LOCAL -h mno-cuda --name mno-cuda cuda_mno/cuda:v1
 
 LLegamos al siguiente resultado: 
 
 ![Docker container:](images/cuda-container-v1.png)
+
+##Implementación de ambiente Docker-compose
+
+
+* __Docker Compose File__
+
+```
+version: "2"
+
+services:
+ cuda_node1:
+   image: cuda_mno/cuda:v1
+   hostname: cuda_node1
+   networks:
+      - my-net
+   command: echo "hola mundo cuda node 1" 
+   environment:
+      MASTER_URL: "http://cuda_node1:6003"
+   volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - ./data/cuda_node1:/data/cuda_node1
+   ports:
+    - "6001:6001"
+    - "22"
+
+ cuda_node2:
+   image: cuda_mno/cuda:v1
+   hostname: cuda_node2
+   networks:
+      - my-net
+   command: echo "hola mundo cuda node 2"
+   environment:
+      MASTER_URL: "http://cuda_node1:6003"
+   volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - ./data/cuda_node2:/data/cuda_node2
+   ports:
+    - "6002:6002"
+    - "22"
+
+ mpi_master:
+   image: openmpi_mno_2017/openmpi:v1
+   hostname: mpi_master
+   networks:
+      - my-net
+   command: echo "hola mundo master node 1"
+   environment:
+      NODE1_URL: "http://cuda_node1:6001"
+      NODE2_URL: "http://cuda_node2:6002"
+   volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - ./data/mongo-cfg-1:/data/configdb
+   ports:
+     - "6003:6003"
+     - "22" 
+
+networks:
+  my-net:
+    driver: bridge
+```
+
+* __Ejecutamos los siguientes comandos__
+
+- ingresamos a la carpeta `ambiente/`
+- ejecutamos el siguiente comando `docker-compose up -d`
+- Validamos resultado con el siguiente comando `docker-compose ps` 
+
+![Docker container:](images/docker-compose.png)
+
+* Notas:
+
+- Necesitamos tener instalado [Docker-compose](https://docs.docker.com/engine/installation/linux/ubuntu/)
+- Para ejecutar este docker-compose utilizaremos la imagen construida en clase para [MPI](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/MPI/openMPI) 
+- El ambiente construido espara ejecutar los procesos como *microservicios*
+
+
 
 by ADVP
