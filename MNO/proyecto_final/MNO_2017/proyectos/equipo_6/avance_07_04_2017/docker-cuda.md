@@ -17,11 +17,11 @@
 
 ## Implementacación Imagen: MNO-CUDA/CUDA 8.0
 
-![nvidia-gpu-docker](https://cloud.githubusercontent.com/assets/3028125/12213714/5b208976-b632-11e5-8406-38d379ec46aa.png)
+[nvidia-gpu-docker](https://cloud.githubusercontent.com/assets/3028125/12213714/5b208976-b632-11e5-8406-38d379ec46aa.png)
 
 The *NVIDIA® CUDA®* Toolkit provides a comprehensive development environment for C and C++ developers building GPU-accelerated applications. The CUDA Toolkit includes a compiler for NVIDIA GPUs, math libraries, and tools for debugging and optimizing the performance of your applications. You’ll also find programming guides, user manuals, API reference, and other documentation to help you get started quickly accelerating your application with GPUs. 
 
-![NVIDIA Toolkit](https://developer.nvidia.com/cuda-toolkit)
+[NVIDIA Toolkit](https://developer.nvidia.com/cuda-toolkit)
 
 
 ## Dockerfile 
@@ -72,18 +72,18 @@ ENV LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:LD_LIBRARY_PATH"
 
 CMD ["/bin/bash"]
 ```
-![Dockerfile:](docker-images/Dockerfile)
+[Dockerfile:](docker-images/Dockerfile)
 
 ## Construimos la Imagen
 
 - docker build -t cuda_mno/cuda:v1 . 
 
-![Dockerfile:](images/cuda-imagen-v1.png)
+[Dockerfile:](images/cuda-imagen-v1.png)
 
 ## Construimos el contenedor
 
 - nvidia-docker run -ti -v /home/radianv/optimizacion/CUDA:/CUDA-LOCAL -h mno-cuda --name mno-cuda cuda_mno/cuda:v1
 
-![Dockerfile:](docker-images/cuda-container-v1.png)
+[Dockerfile:](docker-images/cuda-container-v1.png)
 
 by ADVP
