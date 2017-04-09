@@ -84,7 +84,7 @@ LLegamos al siguiente resultado:
 
 ## Construimos el contenedor
 
-- nvidia-docker run -ti -v /home/radianv/optimizacion/CUDA:/CUDA-LOCAL -h mno-cuda --name mno-cuda cuda_mno/cuda:v1
+- nvidia-docker run -ti -v /path/to/my/directory/:/CUDA-LOCAL -h mno-cuda --name mno-cuda cuda_mno/cuda:v1
 
 LLegamos al siguiente resultado: 
 
