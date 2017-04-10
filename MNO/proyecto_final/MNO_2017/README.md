@@ -1,6 +1,6 @@
-# Indicaciones
-
-El proyecto se va construyendo semanalmente con el trabajo de cada integrante del equipo. 
++# Indicaciones
++
++El proyecto se va construyendo semanalmente con el trabajo de cada integrante del equipo. 
 
 Tal trabajo semanal tendrá un porcentaje asociado. Este porcentaje está en función del número de semanas con las que se cuenta para realizar el proyecto: 7 u 8 (depende de la fecha asignada por control escolar). 
 
