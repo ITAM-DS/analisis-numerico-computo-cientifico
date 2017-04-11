@@ -37,5 +37,12 @@ computacionales de optimizacin.`
 
 ---
 
+## [Equipo 10](equipo_10)
 
+Titulo del proyecto: `Multipliacin de matrices en un ambiente MPI distribuido usando AWS, docker, swarm y compose`
+
+Objetivo del proyecto: `Construir un ambiente distribuido y portable que permita la multiplicacion de matrices`
+
+* [Avance 07-04-2017](equipo_10/avance_07_04_2017)
+---
 
