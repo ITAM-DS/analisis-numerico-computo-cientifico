@@ -30,5 +30,7 @@ Equipo:
 
 Discutimos los avances y realizamos el plan de trabajo plasmado en el README.md de la carpeta de este proyecto
 
-* Recuerden que lo que realizan estas implementaciones es lo más importante, es decir el análisis de lo que están haciendo de forma "interna", pues hay una gran cantidad de estas implementaciones en internet con diferentes propósitos. Mejor si hay un entendimiento de ellas por parte de ustedes y ligas hacia trabajos que describan la teoría, en un segundo paso se realiza la implementación de la teoría.
+## Comentario sobre avance:
+
+Recuerden que lo que realizan estas implementaciones es lo más importante, es decir el análisis de lo que están haciendo de forma "interna", pues hay una gran cantidad de estas implementaciones en internet con diferentes propósitos. Mejor si hay un entendimiento de ellas por parte de ustedes y ligas hacia trabajos que describan la teoría, en un segundo paso se realiza la implementación de la teoría.
 
