@@ -39,6 +39,6 @@ Esta primera entrega contempla la investigación y entendimiento de los algoritm
 
 * En un primer paso se estudia las reflexiones por Householder y rotaciones Givens, en un segundo paso las características y propiedades de estas transformaciones. En un tercer paso se estudia su aplicación para el cálculo de QR de forma secuencial. En un cuarto paso su aplicación al problema de mínimos cuadrados. En un quinto paso la implementación en paralelo en un sistema de memoria compartida. No inviertan lectura en complejidad de algoritmo QR, eso viene en un sexto paso o séptimo paso.
 
-* Hay gran cantidad de referencias en el google drive. Es poco factible que todas sean revisadas. Les sugiero que se acoten a algunas de ellas. Si me dan un link en el que están todas las referencias me pierdo en cuál están leyendo y cuál no. Es mejor si puntualizan con bullets aquellas que están trabajando y leyendo. Recomendaciones están en el README.md del nivel proyectos/Equipo_2.
+* Hay gran cantidad de referencias en el google drive. Es poco factible que todas sean revisadas. Les sugiero que se acoten a algunas de ellas. Si me dan un link en el que están todas las referencias me pierdo en cuál están leyendo y cuál no. Es mejor si puntualizan con bullets aquellas que están trabajando y leyendo. Referencias están en el README.md del nivel proyectos/Equipo_2.
 
 
