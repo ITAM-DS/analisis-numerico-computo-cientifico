@@ -1,9 +1,8 @@
-
 # Lista de proyectos:
 
 ## [Equipo ejemplo](equipo_ejemplo)
 
-Título del proyecto: `Ejemplo`
+Ttulo del proyecto: `Ejemplo`
 
 Objetivo del proyecto: `objetivo`
 
@@ -23,14 +22,14 @@ Objetivo del proyecto: `objetivo`
 
 ## [Equipo 11](equipo_11)
 
-Título del proyecto: `PCA aplicado al consumo de Proteínas en las Dietas de 25 Países`
+Ttulo del proyecto: `PCA aplicado al consumo de Protenas en las Dietas de 25 Pases`
 
 Objetivo del proyecto: `El objetivo del proyecto es 
-detectar patrones de consumo de proteínas en las dietas
-de 25 países implementando componentes principales y 
-descomposición de valores singulares (SVD) en 
-el lenguaje de programación C usando metodologías
-computacionales de optimización.`
+detectar patrones de consumo de protenas en las dietas
+de 25 pases implementando componentes principales y 
+descomposicin de valores singulares (SVD) en 
+el lenguaje de programacin C usando metodologas
+computacionales de optimizacin.`
 
 [Avances del proyecto](equipo_11):
 
@@ -38,5 +37,12 @@ computacionales de optimización.`
 
 ---
 
+## [Equipo 10](equipo_10)
 
+Titulo del proyecto: `Multipliacin de matrices en un ambiente MPI distribuido usando AWS, docker, swarm y compose`
+
+Objetivo del proyecto: `Construir un ambiente distribuido y portable que permita la multiplicacion de matrices`
+
+* [Avance 07-04-2017](equipo_10/avance_07_04_2017)
+---
 
