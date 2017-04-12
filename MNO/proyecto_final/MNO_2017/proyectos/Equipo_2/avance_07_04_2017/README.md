@@ -31,7 +31,7 @@ Esta primera entrega contempla la investigación y entendimiento de los algoritm
 
 * Algunas ligas no funcionan por ejemplo al darle click a la palabra "avance_07_04_2017" en el README.md del nivel proyectos/Equipo_2 no te lleva a ninguna página. 
 
-* En este repo no se suben archivos `*.docx` o `.pdf`. Pueden borrar de esta carpeta "avance_07_04_2017" estos archivos por favor?
+* En este repo no se suben archivos `*.docx` o `.pdf`. Pueden borrar de esta carpeta "avance_07_04_2017" estos archivos por favor? No requiero que me den archivos de investigación. En el párrafo (o párrafos) que resume lo que cada persona hizo se puede apreciar la investigación hecha.
 
 * Enfóquense a la factorización QR, LU puede ser una alternativa pero tradicionalmente resolvemos el problema de mínimos cuadrados con QR. Sólo faltaba resolver lo de las referencias para QR, las cuales las coloco en su README.md del nivel proyectos/Equipo_2.
 
