@@ -26,3 +26,8 @@ Fabiola Cerón.
 # Equipo:
 
 Esta primera entrega contempla la investigación y entendimiento de los algoritmos LU y QR, así como su aplicación en la solución de mínimos cuadrados. Se realiza un comparativo de ambos algoritmos y buscaremos determinar la implementación que resulte mas conveniente. Hemos revisado los algoritmos y estamos en proceso de determinar si usaremos LU o QR para después lo realizaremos en Openmp.
+
+## Comentarios sobre avance:
+
+* Algunas ligas no funcionan por ejemplo al darle click a la palabra "avance_07_04_2017" en el README.md del nivel proyectos/Equipo_2 no te lleva a ninguna página.
+
