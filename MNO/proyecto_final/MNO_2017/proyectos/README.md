@@ -1,23 +1,5 @@
 # Lista de proyectos:
 
-## [Equipo ejemplo](equipo_ejemplo)
-
-Ttulo del proyecto: `Ejemplo`
-
-Objetivo del proyecto: `objetivo`
-
-[Avances del proyecto](equipo_ejemplo):
-
-* [Avance 07-04-2017](equipo_ejemplo/avance_07_04_2017)
-
-* [Avance 17-04-2017](equipo_ejemplo/avance_17_04_2017)
-
-[Trabajo escrito](liga hacia trabajo escrito)
-
-[Presentacion](liga hacia presentacion)
-
-[Implementacion](liga hacia implementacion)
-
 ---
 
 ## [Equipo 11](equipo_11)
@@ -43,6 +25,27 @@ Titulo del proyecto: `Multipliacin de matrices en un ambiente MPI distribuido us
 
 Objetivo del proyecto: `Construir un ambiente distribuido y portable que permita la multiplicacion de matrices`
 
-* [Avance 07-04-2017](equipo_10/avance_07_04_2017)
+* [Avance 07-04-2017](equipo_10/avance_07_04_2017): Avance actualizado con referencias. Para el segundo avance realicen la lectura de esas referencias y lo que mencionan en el readme de la carpeta de su equipo.
+
 ---
+
+
+## [Equipo ejemplo](equipo_ejemplo)
+
+Ttulo del proyecto: `Ejemplo`
+
+Objetivo del proyecto: `objetivo`
+
+[Avances del proyecto](equipo_ejemplo):
+
+* [Avance 07-04-2017](equipo_ejemplo/avance_07_04_2017)
+
+* [Avance 17-04-2017](equipo_ejemplo/avance_17_04_2017)
+
+[Trabajo escrito](liga hacia trabajo escrito)
+
+[Presentacion](liga hacia presentacion)
+
+[Implementacion](liga hacia implementacion)
+
 
