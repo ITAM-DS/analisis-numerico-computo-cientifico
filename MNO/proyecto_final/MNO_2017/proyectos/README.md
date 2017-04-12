@@ -25,7 +25,7 @@ Titulo del proyecto: `Multipliacin de matrices en un ambiente MPI distribuido us
 
 Objetivo del proyecto: `Construir un ambiente distribuido y portable que permita la multiplicacion de matrices`
 
-* [Avance 07-04-2017](equipo_10/avance_07_04_2017): Avance actualizado con referencias. Para el segundo avance realicen la lectura de esas referencias y lo que mencionan en el readme de la carpeta de su equipo.
+* [Avance 07-04-2017](equipo_10/avance_07_04_2017): Avance actualizado con referencias en el [README.md](equipo_10/README.md). Para el segundo avance realicen la lectura de esas referencias y lo que mencionan en este readme. También es importante que prueben `hello worlds` en cada máquina en el AWS con mpi, docker swarm y compose.
 
 ---
 

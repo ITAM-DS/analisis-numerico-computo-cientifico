@@ -31,7 +31,9 @@ Semana 3
 
 * Descripción sobre la factorización LU en paralelo: sección 3.6 de [G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013.](http://web.mit.edu/ehliu/Public/sclark/Golub%20G.H.,%20Van%20Loan%20C.F.-%20Matrix%20Computations.pdf) y también al final de esa sección trae referencias.
 
-* Un paper que habla sobre la factorización en eliminación Gaussiana con pivoteo parcial:[Parallel algorithms in Linear Algebra, R. P. Brent](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.56.3732&rep=rep1&type=pdf) 
+* Un paper que habla sobre la factorización en eliminación Gaussiana con pivoteo parcial: [R. P. Brent. Parallel algorithms in Linear Algebra](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.56.3732&rep=rep1&type=pdf) 
+
+* Multiplicación de matrices en paralelo y eliminación Gaussiana en paralelo: sección 3.2, 3.3, 4.2 de [Demmel, Heath, Van der Vost. Parallel numerical linear algebra.](http://softlib.rice.edu/pub/CRPC-TRs/reports/CRPC-TR93424.pdf)
 
 * Sólo para ayuda y ejemplo de uso de funciones de MPI que no vimos en la clase pero puede servirles de introducción para multiplicación de matriz-vector: sección 3.4.9 de [P. Pacheco, An Introduction to Parallel Programming, Morgan Kaufmann, 2011](https://www.dc.uba.ar/materias/escuela-complutense/2012/pacheco2011)
 
