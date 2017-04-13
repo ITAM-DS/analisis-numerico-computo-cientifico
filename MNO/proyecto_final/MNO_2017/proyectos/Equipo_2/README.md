@@ -32,4 +32,6 @@ En la carpeta [avance_07_04_2017](https://github.com/ITAM-DS/analisis-numerico-c
 
 * [A. Buttari, J. Langou, J. Kurzak, J. Dongarra. A Class of Parallel Tiled Linear Algebra Algorithms for Multicore Architectures. 2009](http://www.netlib.org/utk/people/JackDongarra/PAPERS/206_2009_A%20Class-of-Parallel-Tiled-Linear-Algebra-Algorithms-for-Multicore-Architectures.pdf)
 
+* [D. P. O'Leary, P. Whitman. Parallel QR factorization by Householder and modified Gram-Schmidt algorithms. 1990](https://www.researchgate.net/publication/222459558_Parallel_QR_factorization_by_Householder_and_modified_Gram-Schmidt_algorithms)
+
 
