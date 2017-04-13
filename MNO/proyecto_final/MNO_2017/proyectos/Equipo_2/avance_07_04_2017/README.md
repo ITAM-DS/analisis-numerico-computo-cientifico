@@ -38,7 +38,7 @@ Esta primera entrega contempla la investigación y entendimiento de los algoritm
 
 * Enfóquense a la factorización QR, LU puede ser una alternativa pero tradicionalmente resolvemos el problema de mínimos cuadrados con QR. Sólo faltaba resolver lo de las referencias para QR, las cuales las coloco en su README.md del nivel proyectos/Equipo_2.
 
-* Como se trabajará QR entonces usamos Householder o rotaciones Givens, Gram-Schmidt no lo investigamos. Hay que resolver lo de Householder o rotaciones Givens. Está muy bien que se investigue el algoritmo de forma secuencial. Entonces comparamos cuál usar: facilidad, entendimiento, documentación...
+* Como se trabajará QR entonces usamos Householder o rotaciones Givens, Gram-Schmidt no lo investigamos, sólo lo estudiamos rápidamente y por comprensión. Hay que resolver lo de Householder o rotaciones Givens. Está muy bien que se investigue el algoritmo de forma secuencial. Entonces comparamos cuál usar: facilidad, entendimiento, documentación...
 
 * En un primer paso se estudia las reflexiones por Householder y rotaciones Givens, en un segundo paso las características y propiedades de estas transformaciones. En un tercer paso se estudia su aplicación para el cálculo de QR de forma secuencial. En un cuarto paso su aplicación al problema de mínimos cuadrados. En un quinto paso la implementación en paralelo en un sistema de memoria compartida. No inviertan lectura en complejidad de algoritmo QR, eso viene en un sexto paso o séptimo paso. Así podremos determinar qué paso tenemos que revisar. Les sugiero hagan un plan de trabajo y usen una programación de calendario.
 
