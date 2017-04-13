@@ -32,5 +32,5 @@ Discutimos los avances y realizamos el plan de trabajo plasmado en el README.md 
 
 ## Comentario sobre avance:
 
-Recuerden que lo que realizan estas implementaciones es lo más importante, es decir el análisis de lo que están haciendo de forma "interna", pues hay una gran cantidad de estas implementaciones en internet con diferentes propósitos. Mejor si hay un entendimiento de ellas por parte de ustedes y ligas hacia trabajos que describan la teoría, en un segundo paso se realiza la implementación de la teoría.
+Recuerden que lo que realizan estas implementaciones es lo más importante, es decir el análisis de lo que están haciendo de forma "interna", pues hay una gran cantidad de estas implementaciones en internet con diferentes propósitos. Mejor si hay un entendimiento de ellas por parte de ustedes y ligas hacia referencias que describan la teoría. En un primer paso se entiende el problema a resolver y la teoría, en un segundo paso se realiza la implementación de la teoría. Se realizó un buen avance en cuestión de implementación, ahora hay que hacer un buen avance en la teoría.
 
