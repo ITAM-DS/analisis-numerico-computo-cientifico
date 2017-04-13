@@ -119,6 +119,13 @@ Examen módulo 1 parte 2
 
 [III/3.2.1 (inicio de la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
+## Clase 13
+
+3 de abril
+
+Revisión examen módulo 1
+
+[III/3.2.1 (hasta dificultades en la implementación de eliminación Gaussiana simple) ](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
 
 

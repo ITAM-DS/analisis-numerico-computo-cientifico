@@ -10,7 +10,7 @@ Cada equipo en el nivel:
 
 `analisis-numerico-computo-cientifico/MNO/proyecto_final/MNO_2017/proyectos/`
 
-creará un directorio, en el que se tendrán niveles de directorios para los avances de cada fecha señalada (definidas al final de este texto) y en el [README.md](proyectos/equipo_ejemplo/) creado dentro de este directorio:
+creará un directorio, en el que se tendrán niveles de directorios para los avances de cada fecha señalada (definidas al final de este texto) y en el `README.md` creado dentro de este directorio:
 
 `analisis-numerico-computo-cientifico/MNO/proyecto_final/MNO_2017/proyectos/equipo_ejemplo/README.md`
 
@@ -23,7 +23,7 @@ El archivo [README.md](proyectos) debajo del nivel:
  `analisis-numerico-computo-cientifico/MNO/proyecto_final/MNO_2017/proyectos/
 ` 
 
-es un archivo de control para la lista de proyectos y sólo se actualiza y/o se modifica por los integrantes de los equipos con ligas hacia sus avances, trabajo escrito, presentación e implementación de cada proyecto del equipo.
+es un archivo de control para la lista de proyectos y sólo se actualiza y/o se modifica por cada equipo con ligas hacia sus avances, trabajo escrito, presentación e implementación de su proyecto.
 
 *Las ligas hacia el trabajo escrito y presentación son hacia otro lado (p.ej. una liga de dropbox en donde tienen `pdfs` o lo que utilicen para realizar esto) y no hacia directorios dentro del repositorio de la materia. Así evitamos tener archivos grandes en este repo :)
 
