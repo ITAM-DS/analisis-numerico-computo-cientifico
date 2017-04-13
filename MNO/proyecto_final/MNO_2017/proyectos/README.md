@@ -4,7 +4,7 @@
 
 ## [Equipo 11](equipo_11)
 
-Ttulo del proyecto: `PCA aplicado al consumo de Protenas en las Dietas de 25 Pases`
+Ttulo del proyecto: `PCA aplicado al consumo de Proteínas en las Dietas de 25 Países`
 
 Objetivo del proyecto: `El objetivo del proyecto es 
 detectar patrones de consumo de protenas en las dietas
@@ -21,9 +21,9 @@ computacionales de optimizacin.`
 
 ## [Equipo 10](equipo_10)
 
-Titulo del proyecto: `Multipliacin de matrices en un ambiente MPI distribuido usando AWS, docker, swarm y compose`
+Titulo del proyecto: `Multipliación de matrices en un ambiente MPI distribuido usando AWS, docker, swarm y compose`
 
-Objetivo del proyecto: `Construir un ambiente distribuido y portable que permita la multiplicacion de matrices`
+Objetivo del proyecto: `Construir un ambiente distribuido y portable que permita la multiplicación de matrices`
 
 * [Avance 07-04-2017](equipo_10/avance_07_04_2017). Comentario por parte del prof: Avance actualizado con comentarios. Hay referencias en el [README.md](equipo_10/README.md). Para el segundo avance realicen la lectura de esas referencias y lo que mencionan en este readme, pero determinen si eligen multiplicación de matrices o factorización LU de acuerdo a lo que lean, entiendan y consideren tiempos. También es importante que prueben `hello worlds` en cada máquina en el AWS con mpi, docker swarm y compose.
 
