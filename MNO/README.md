@@ -125,7 +125,7 @@ Examen módulo 1 parte 2
 
 Revisión examen módulo 1
 
-[I/1.3 (número de condición de una matriz)]((https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0))
+[I/1.3 (número de condición de una matriz)](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
 [III/3.2.1 (hasta dificultades en la implementación de eliminación Gaussiana simple) ](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
