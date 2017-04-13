@@ -42,6 +42,8 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 3.2.1 Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.
 
+3.2.2 Factorizaciones matriciales: SVD, Cholesky, QR. (Vista rápida).
+
 ## [C](C/)
 
 [clase1](C/clases/clase1.md)
