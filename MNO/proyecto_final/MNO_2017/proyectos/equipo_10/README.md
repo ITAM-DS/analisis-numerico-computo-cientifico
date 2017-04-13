@@ -27,15 +27,15 @@ Semana 3
 
 * Una descripción de una implementación sencilla de la multiplicación de matrices en paralelo utilizando una arquitectura de anillo lo pueden encontrar en la sección 2 de este [paper](https://www.researchgate.net/publication/2685119_An_Analysis_Of_Parallel_Implementations_Of_The_Block-Jacobi_Algorithm_For_Computing_The_Svd)
 
-* Una descripción la multiplicación de matrices en paralelo en un sistema de memoria distribuida lo encuentran en sección 1.6.7 del libro: [G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013.](http://web.mit.edu/ehliu/Public/sclark/Golub%20G.H.,%20Van%20Loan%20C.F.-%20Matrix%20Computations.pdf). Trae análisis de transferencia de datos; un buen análisis que añadir a su reporte :)
+* Una descripción la multiplicación de matrices en paralelo en un sistema de memoria distribuida lo encuentran en sección 1.6.7 del libro: G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013. Trae análisis de transferencia de datos; un buen análisis que añadir a su reporte :)
 
-* Descripción sobre la factorización LU en paralelo: sección 3.6 de [G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013.](http://web.mit.edu/ehliu/Public/sclark/Golub%20G.H.,%20Van%20Loan%20C.F.-%20Matrix%20Computations.pdf) y también al final de esa sección trae referencias.
+* Descripción sobre la factorización LU en paralelo: sección 3.6 de G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013 y también al final de esa sección trae referencias.
 
 * Un paper que habla sobre la factorización en eliminación Gaussiana con pivoteo parcial: [R. P. Brent. Parallel algorithms in Linear Algebra](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.56.3732&rep=rep1&type=pdf) 
 
-* Multiplicación de matrices en paralelo y eliminación Gaussiana en paralelo: sección 3.2, 3.3, 4.2 de [Demmel, Heath, Van der Vost. Parallel numerical linear algebra.](http://softlib.rice.edu/pub/CRPC-TRs/reports/CRPC-TR93424.pdf)
+* Multiplicación de matrices en paralelo y eliminación Gaussiana en paralelo: sección 3.2, 3.3, 4.2 de Demmel, Heath, Van der Vost. Parallel numerical linear algebra.
 
-* Sólo para ayuda y ejemplo de uso de funciones de MPI que no vimos en la clase pero puede servirles de introducción para multiplicación de matriz-vector: sección 3.4.9 de [P. Pacheco, An Introduction to Parallel Programming, Morgan Kaufmann, 2011](https://www.dc.uba.ar/materias/escuela-complutense/2012/pacheco2011)
+* Sólo para ayuda y ejemplo de uso de funciones de MPI que no vimos en la clase pero puede servirles de introducción para multiplicación de matriz-vector: sección 3.4.9 de P. Pacheco, An Introduction to Parallel Programming, Morgan Kaufmann, 2011.
 
 
 
