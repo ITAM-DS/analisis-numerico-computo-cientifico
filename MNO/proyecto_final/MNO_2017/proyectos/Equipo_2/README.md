@@ -18,7 +18,7 @@ En la carpeta [avance_07_04_2017](https://github.com/ITAM-DS/analisis-numerico-c
 
 ## Referencias:
 
-* Teoría sobre QR: secciones 5.1.1 a 5.1.4, 5.1.6, 5.1.8, 5.1.9, 5.1.11, 5.2 excepto 5.2.6, sí leer 5.2.7 a 5.2.10 del libro: [G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013.](http://web.mit.edu/ehliu/Public/sclark/Golub%20G.H.,%20Van%20Loan%20C.F.-%20Matrix%20Computations.pdf)
+* Teoría sobre QR: secciones 5.1.1 a 5.1.4, 5.1.6 a 5.1.8, 5.1.9, 5.1.11, 5.2 excepto 5.2.6 a 5.2.10 del libro: [G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013.](http://web.mit.edu/ehliu/Public/sclark/Golub%20G.H.,%20Van%20Loan%20C.F.-%20Matrix%20Computations.pdf)
 
 * Mínimos cuadrados: capítulo 5 del libro: [L. Eldén, Matrix Methods in Data Mining and Pattern recognition. SIAM, 2007](http://www.statru.org/wp-content/uploads/2011/01/Matrix-Book-2.pdf)
 
