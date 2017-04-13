@@ -26,3 +26,10 @@ En la carpeta [avance_07_04_2017](https://github.com/ITAM-DS/analisis-numerico-c
 
 * Factorización QR en paralelo:
 
+* M. Costnard, J.M. Muller, Y. Robert. Parallel QR Decomposition of a Rectangular Matrix. 1986
+
+* F. T. Luk. A Rotation Method for Computing the QR Factorization 1986.
+
+* [A. Buttari, J. Langou, J. Kurzak, J. Dongarra. A Class of Parallel Tiled Linear Algebra Algorithms for Multicore Architectures. 2009](http://www.netlib.org/utk/people/JackDongarra/PAPERS/206_2009_A%20Class-of-Parallel-Tiled-Linear-Algebra-Algorithms-for-Multicore-Architectures.pdf)
+
+
