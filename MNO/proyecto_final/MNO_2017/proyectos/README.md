@@ -15,7 +15,7 @@ computacionales de optimizacin.`
 
 [Avances del proyecto](equipo_11):
 
-* [Avance 07-04-2017](equipo_11/avance_07_04_2017)
+* [Avance 07-04-2017](equipo_11/avance_07_04_2017). Comentario por parte del prof: Avance actualizado con comentarios. Hay dos nuevas referencias en [REAMDE.md](equipo_11). Muy buen avance en la lectura de la teoría y el objetivo a realizar. Hay que hacer la liga con componentes principales para el segundo avance.
 
 ---
 
@@ -25,13 +25,13 @@ Titulo del proyecto: `Multipliación de matrices en un ambiente MPI distribuido 
 
 Objetivo del proyecto: `Construir un ambiente distribuido y portable que permita la multiplicación de matrices`
 
-* [Avance 07-04-2017](equipo_10/avance_07_04_2017). Comentario por parte del prof: Avance actualizado con comentarios. Hay referencias en el [README.md](equipo_10/README.md). Para el segundo avance realicen la lectura de esas referencias y lo que mencionan en este readme, pero determinen si eligen multiplicación de matrices o factorización LU de acuerdo a lo que lean, entiendan y consideren tiempos. También es importante que prueben `hello worlds` en cada máquina en el AWS con mpi, docker swarm y compose.
+* [Avance 07-04-2017](equipo_10/avance_07_04_2017). Comentario por parte del prof: Avance actualizado con comentarios. Hay referencias en el [README.md](equipo_10). Para el segundo avance realicen la lectura de esas referencias y lo que mencionan en este readme, pero determinen si eligen multiplicación de matrices o factorización LU de acuerdo a lo que lean, entiendan y consideren tiempos. También es importante que prueben `hello worlds` en cada máquina en el AWS con mpi, docker swarm y compose.
 
 ---
 
 ## [Equipo 2](Equipo_2)
 
-* [Avance 07-04-2017](Equipo_2/avance_07_04_2017). Comentario por parte del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](Equipo_2/avance_07_04_2017), acótense a éstas.
+* [Avance 07-04-2017](Equipo_2/avance_07_04_2017). Comentario por parte del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](Equipo_2), acótense a éstas.
 
 
 ---

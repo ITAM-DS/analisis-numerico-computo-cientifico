@@ -27,5 +27,7 @@ computacionales de optimización.
 
 * Capítulo 8, Jacobi Methods, del libro: G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013.
 
+* Sobre rotaciones Givens: capítulo 5 del libro Carl D. Meyer. Matrix analysis and applied linear Algebra. En este libro también encuentran teoría sobre eigenvalores-vectores, diagonalización y descomposición en valores singulares.
 
+* G. H. Dunteman. Principal Component Analysis.
 ---
