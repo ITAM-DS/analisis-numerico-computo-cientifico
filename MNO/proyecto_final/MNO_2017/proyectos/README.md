@@ -40,7 +40,7 @@ Objetivo del proyecto: `El objetivo del proyecto es utilizar la API de OpenMP pa
 [Avances del proyecto](equipo_7):
 
 * [Avance 07-04-2017](equipo_7/avance_07_04_2017). Comentario por parte del prof: Avance actualizado. 
-* [Avance 17-04-2017](equipo_7/avance_17_04_2017). Comentario por parte del prof: Lo que tienen en el avance_17_04_2017 lo tomo como avance_07_04_2017. Revisen comentarios de ambos avances. Muevan, actualicen lo necesario en sus README's de sus avances.
+* [Avance 17-04-2017](equipo_7/avance_17_04_2017). Comentario por parte del prof: Lo que tienen en el avance_17_04_2017 lo tomo como avance_07_04_2017. Revisen comentarios de ambos avances. Muevan, actualicen lo necesario en sus README's de sus avances. Hay una nueva referencia en [README.md](equipo_7) que seguro les ayuda.
 
 ---
 
@@ -67,7 +67,7 @@ computacionales de optimizacin.`
 
 [Avances del proyecto](equipo_11):
 
-* [Avance 07-04-2017](equipo_11/avance_07_04_2017). Comentario por parte del prof: Avance actualizado con comentarios. Hay dos nuevas referencias en [REAMDE.md](equipo_11). Muy buen avance en la lectura de la teoría y el objetivo a realizar. Hay que hacer la liga con componentes principales para el segundo avance.
+* [Avance 07-04-2017](equipo_11/avance_07_04_2017). Comentario por parte del prof: Avance actualizado con comentarios. Hay tres nuevas referencias en [REAMDE.md](equipo_11). Muy buen avance en la lectura de la teoría y el objetivo a realizar. Hay que hacer la liga con componentes principales y ver implementación de algún ordenamiento (por ejemplo el round robin) para el segundo avance.
 
 
 ---
