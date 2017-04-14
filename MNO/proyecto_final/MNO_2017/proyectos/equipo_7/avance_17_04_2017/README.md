@@ -44,13 +44,13 @@ Comentarios sobre avance_07_04_2017 (primer commit):
 
 * Y fue exitosa la replicación? en la sección de trabajo podrían poner esto? quizás un pequeño screenshot de hello worlds para sus nodos y luego un screenshot de su cálculo. Sin embargo, en este primer avance es mejor iniciar con el estudio de los algoritmos de ordenamiento que realizar una replicación de lo hecho en clase pues esto está resuelto. No haré válido este primer avance, su avance avance_17_04_2017 lo tomaré como avance avance_07_04_2017. Pueden poner lo del avance_17_04_2017 en el avance avance_07_04_2017? y el avance avance_17_04_2017 debe ser diferente.
 
-Comentarios sobre avance_17_04_2017 (que después del cambio será avance_07_04_2017):
+Comentarios sobre avance_17_04_2017 (que después del cambio será avance_07_04_2017---muevan, actualicen lo necesario en sus README's):
 
 * Vi que tienen en el objetivo que es openMP, será entonces en openMP? o MPI? quizás esto lo están determinando a partir de la lectura de las referencias?
 
-* Mi sugerencia es que hagan un plan de trabajo. Primer paso: ordenamiento por quicksort y otros algoritmos (hay alguno que se haya elegido por la comunidad para su implementación en paralelo? o se paraleliza el quicksort?), segundo paso: investigación de algoritmos que realizan ordenamiento en paralelo (creo que lo han hecho parcialmente), tercer paso: elección de la extensión a utilizar mpi,mp,cuda? y pruebas de implementación. (estos pasos no quiere decir que sea avance1, avance2, avance3).
+* Mi sugerencia es que hagan un plan de trabajo. Primer paso: ordenamiento por quicksort y otros algoritmos (hay alguno que se haya elegido por la comunidad para su implementación en paralelo? o se paraleliza el quicksort?), segundo paso: investigación de algoritmos que realizan ordenamiento en paralelo (creo que lo han hecho parcialmente), tercer paso: elección de la extensión a utilizar mpi,mp,cuda? y pruebas de implementación (estos pasos no quiere decir que sea avance1, avance2, avance3).
 
 * No hay detalle o descripción para su trabajo individual. Las diapositivas dan una idea pero mejor si tenemos un texto o papers. De acuerdo a la referencia de Omar se habla sobre quicksort secuencial, entonces empezamos por investigar sobre este algoritmo. Para el trabajo en equipo sirve que hagan pruebas de collective communication y pongan funciones implementadas por ustedes que realicen esto.
 
-* Observen lo que han hecho los equipos 6, 10 u 11. Debe de haber un primer avance fuerte en alguna de los siguientes rubros: estudio de la teoría e implementación pero no he visto esto en este segundo (primer) avance :(.
+* Observen lo que han hecho los equipos 6, 10 u 11. Debe de haber un primer avance fuerte en alguna de los siguientes rubros: estudio de la teoría e implementación pero no he visto esto en este segundo (primer) avance :(
 

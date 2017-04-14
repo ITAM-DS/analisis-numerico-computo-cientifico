@@ -40,7 +40,7 @@ Objetivo del proyecto: `El objetivo del proyecto es utilizar la API de OpenMP pa
 [Avances del proyecto](equipo_7):
 
 * [Avance 07-04-2017](equipo_7/avance_07_04_2017). Comentario por parte del prof: Avance actualizado. 
-* [Avance 17-04-2017](equipo_7/avance_17_04_2017). Comentario por parte del prof: Lo que tienen en el avance_17_04_2017 lo tomo como avance_07_04_2017. Revisen comentarios de ambos avances.
+* [Avance 17-04-2017](equipo_7/avance_17_04_2017). Comentario por parte del prof: Lo que tienen en el avance_17_04_2017 lo tomo como avance_07_04_2017. Revisen comentarios de ambos avances. Muevan, actualicen lo necesario en sus README's de sus avances.
 
 ---
 
