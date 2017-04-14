@@ -29,7 +29,7 @@ __Calendario:__
 
 1. Por definir, dependera del avance de semanas anteriores. Se estima estar en etapa de desarrollo de algoritmo en CUDA-C.
 
-Referencias del proyecto:
+## Referencias del proyecto:
 
 * http://math.nist.gov/~RPozo/
 * https://en.wikipedia.org/wiki/JAMA_(numerical_linear_algebra_library)
