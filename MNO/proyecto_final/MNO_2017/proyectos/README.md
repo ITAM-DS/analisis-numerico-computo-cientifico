@@ -4,7 +4,19 @@
 
 ## [Equipo 2](Equipo_2)
 
+Titulo del proyecto: `Paralelización de mínimos cuadrados con OpenMP.`
+
+Objetivo del proyecto: `Investigar y evaluar el algoritmo de factorización QR así como su implementación en OpenMP para la solución de mínimos cuadrados.` 
+
+[Avances del proyecto:](Equipo_2)
+
 * [Avance 07-04-2017](Equipo_2/avance_07_04_2017). Comentario por parte del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](Equipo_2), acótense a éstas.
+
+[Trabajo escrito](https://drive.google.com/drive/folders/0B5IJ1w6MjxegNUM2d29lTWdIREU?usp=sharing)
+
+[Presentacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegRHgwS090WFNLdWM?usp=sharing)
+
+[Implementacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegcWhTdXFvZnljeHc?usp=sharing)
 
 ---
 
