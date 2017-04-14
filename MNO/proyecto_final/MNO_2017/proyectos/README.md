@@ -26,7 +26,7 @@ Titulo del proyecto: `Plataforma Hibrida de Procesamiento Paralelo (PHPP)`
 
 Objetivo del proyecto: `Diseñar e implementar una plataforma hibrida (MPI/CUDA-C) basada en el procesamiento de GPU's para la ejecución en paralelo de la factorización SVD`
 
-* [Avance 07-04-2017](equipo_6/avance_07_04_2017). Comentario por parte del prof:
+* [Avance 07-04-2017](equipo_6/avance_07_04_2017). Comentario por parte del prof: Avance actualizado con comentarios y hay preguntas que espero me puedan responder :). Hay referencias para la teoría de la SVD en el [README.md](equipo_6/). Muy bien con respecto a `nvidia-docker`. Para el segundo avance revisen la teoría de la SVD y debemos determinar la herramienta para la distribución de los chunks de sus datos.
 
 
 ---

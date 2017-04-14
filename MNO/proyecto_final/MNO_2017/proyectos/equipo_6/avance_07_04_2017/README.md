@@ -74,6 +74,26 @@ Se descarto el uso de AMAZON y sus AMIS con CUDA ya que el costo en DLLS es elev
 Tambien encontramos que para el uso de AMAZON-Docker necesitabamos mas tiempo en la configuración final para ejecutar toda la plataforma, tiempo que decidimos usarlo en el algoritmo elegido.
 
 
+## Comentarios sobre avance:
+
+* Se realizó un buen avance en cuestión de implementación, ahora hay que hacer un buen avance en la teoría. 
+
+* Muy bien con lo de nvidia-docker. Como entiendo se instalan los drivers de nvidia en tu máquina y luego se construye la imagen con el dockerfile que pusieron y se corre el run de la imagen para tener instalado el toolkit en tu contenedor y cuando entras al contenedor puedes ejecutar programas `*.cu` y usará la gpu de tu máquina, correcto?
+
+* Este tiene un free trial de 5 días:
+
+https://aws.amazon.com/marketplace/pp/B01DCKFASQ
+
+les funciona? o quizás primero de forma local y luego una prueba ahí.
+
+* En el trabajo individual de Ricardo se menciona en el punto 2 una referencia que te lleva al log-in de una cuenta de aws. Revisen esta referencia que ponen para que no te pida que loggees a una cuenta.
+
+* Si la factorización a utilizar es SVD entonces hay que revisar teoría de la misma y sus implementaciones. Coloco referencias en el README.md del nivel proyectos/equipo_6
+
+* Me gustaría ver cómo están los chunks de su dataset, es decir, en una carpeta tenemos `chunk1.txt`, `chunk2.txt`, etc? o es una matriz que tiene una columna que te indica el chunk? o cómo están divididos? Si tenemos archivos de chunks como el caso `chunk1.txt`, `chunk2.txt`, etc podríamos saltarnos lo de mpi y utilizar un sistema de colas como [sun grid engine](http://star.mit.edu/cluster/docs/0.93.3/guides/sge.html#)
+
+
+
 
 
 

@@ -32,6 +32,11 @@ __Calendario:__
 Referencias del proyecto:
 
 * http://math.nist.gov/~RPozo/
-* https://en.wikipedia.org/wiki/JAMA_(numerical_linear_algebra_library
+* https://en.wikipedia.org/wiki/JAMA_(numerical_linear_algebra_library)
+
+* SVD en cuda: [S. Lahabar, P. J. Narayanan. Singular Value Decomposition on GPU using CUDA](https://cvit.iiit.ac.in/images/ConferencePapers/2009/Sheetal09Singular.pdf)
+
+* Se menciona el método de [Golub-Reinsch](http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf) para el cual es útil leer: G. Golub, W. Kahan. Calculating the singular values and pseudo inverse of a matrix y el capítulo 8 del libro: G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013.
+ 
 
 by __RIL && ADV__
