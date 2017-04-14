@@ -6,4 +6,4 @@ Referencias:
 
 * https://developer.nvidia.com/
 
-* docs.nvidia.com/cuda/cuda-c-programming-guide/
+* https://docs.nvidia.com/cuda/cuda-c-programming-guide/
