@@ -28,11 +28,11 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 2.4 Sistemas de memoria compartida: openMP.
 
-2.5 Compute Unified Device Architecture (CUDA).
+2.5 Compute Unified Device Architecture ([CUDA](C/extensiones_a_C/CUDA/)).
 
-*[Instalación](C/extensiones_a_C/CUDA/)
+*[Instalación](C/extensiones_a_C/CUDA/instalacion)
 
-*[Ejemplos](C/extensiones_a_C/CUDA/ejemplos/README.md)
+*[Ejemplos](C/extensiones_a_C/CUDA/ejemplos/)
 
 ## III [Cómputo matricial](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
