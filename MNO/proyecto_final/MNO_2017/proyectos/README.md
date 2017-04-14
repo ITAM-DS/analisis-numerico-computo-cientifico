@@ -72,6 +72,16 @@ computacionales de optimizacin.`
 
 ---
 
+## [Equipo 13](equipo_13)
+
+Título del proyecto: `Implementación en CUDA para la obtención de matrices Nonbacktracking`
+
+Objetivo del proyecto: `Crear un script que haga eficiente la obtención de una matriz nonbacktracking dado un archivo de extensión gml que represente a una red o un grafo. Debido al alto requerimiento de operaciones que esto requiere, se utilizará una implementación en CUDA C para llevar a cabo lo anterior. Dicha matriz es de interés pues muchos estudios están demostrando la gran diversidad de problemas que se pueden resolver gracias a ella dado que es posible representar caminatas aleatorias sin retornos mediante la misma pudiendo así llevar a terrenos conocidos cuestiones como la percolación óptima o detectar comunidades.`
+
+[Avances del proyecto](equipo_13):
+
+* [Avance 07-04-2017](equipo_13/avance_07_04_2017).
+
 ## [Equipo ejemplo](equipo_ejemplo)
 
 Ttulo del proyecto: `Ejemplo`
