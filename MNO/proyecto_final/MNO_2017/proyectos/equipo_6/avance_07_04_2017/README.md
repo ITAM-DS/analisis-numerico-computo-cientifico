@@ -40,7 +40,7 @@ __Selección de Herramientas__
 
 A partir del planteamiento anterior se investigo lo siguiente:
 
--Se usara el cluster tipo B. Se corrieron pruebas con [demo](code) de `suma.cu` y `matrix.cu` lo cual encontramos mas viable su uso por lo siguiente: 
+-Se usara el cluster tipo B. Se escribieron y se corrieron pruebas con [demo](code) de `suma.cu` y `matrix.cu` lo cual encontramos mas viable su uso por lo siguiente: 
 	Sin costo en $
 	Con docker se puede documentar muy bien todo el programa y su arquitectura
 	Es fácil de compilar
