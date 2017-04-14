@@ -15,8 +15,8 @@ Integrantes:
 *Marin:*
 
 
-Revisé el curso de Mauricio sobre  los metodos de Monte Carlo y Markov chain.
-Después, para tener un idea clara del procesamiento de MCMC,
+RevisÃ© el curso de Mauricio sobre  los metodos de Monte Carlo y Markov chain.
+DespuÃ©s, para tener un idea clara del procesamiento de MCMC,
 lei el documento en wikipedia sobre MCMC- Hasting-Metropolis.
  
 
@@ -24,37 +24,35 @@ lei el documento en wikipedia sobre MCMC- Hasting-Metropolis.
 *Camilo:*
 
 
-* Repaso de teoría de MC integración.
+* Repaso de teorÃ­a de MC integraciÃ³n.
 
-* Repaso la teoría simulación MCMC.
+* Repaso la teorÃ­a simulaciÃ³n MCMC.
  
-* Ideas básicas programación OpenMPI parallel
+* Ideas bÃ¡sicas programaciÃ³n OpenMPI parallel
 
 
 
 
-*II. Trabajo en Equipo*
+**II. Trabajo en Equipo**
 
 
 
-Nos reunimos para delimitar el alcance del trabajo. Se discutieron ideas básicas de los métodos MC y MCMC.
+Nos reunimos para delimitar el alcance del trabajo. Se discutieron ideas bÃ¡sicas de los mÃ©todos MC y MCMC.
 
 
-Objetivos próxima clase: 
+Objetivos prÃ³xima clase: 
 
-- Algoritmo Secuencial de integración MC en Docker ImagenOpenMP (no paralelo)
+- Algoritmo Secuencial de integraciÃ³n MC en Docker ImagenOpenMP (no paralelo)
 
 
 
 *Referencias:*
 
-[Metropolis–Hastings algorithm wikipedia](https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm)
-Curso de Mauricio Garcia Tec Estadistica computacional 
+[Metropolisâ€“Hastings algorithm wikipedia](https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm)
+ 
+[Curso de Mauricio Garcia Tec Estadistica computacional](https://1drv.ms/b/s!AtYhTtvZ1LiEg9ZfLV-dAw_uLrInpw)
 
-
-[MC Mauricio](https://1drv.ms/b/s!AtYhTtvZ1LiEg9ZfLV-dAw_uLrInpw)
-
-[OpenMP básico](http://www.cs.cornell.edu/~bindel/class/cs5220-s10/slides/lec06.pdf)
+[OpenMP bÃ¡sico](http://www.cs.cornell.edu/~bindel/class/cs5220-s10/slides/lec06.pdf)
 
 
 
