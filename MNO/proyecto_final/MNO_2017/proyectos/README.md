@@ -33,16 +33,16 @@ Objetivo del proyecto: `Construir un ambiente distribuido y portable que permita
 
 Titulo del proyecto: `Paralelización de mínimos cuadrados con OpenMP.`
 
-Objetivo del proyecto: `Investigar y evaluar el algoritmo de factorización QR así como su implementación en OpenMP para la solución de mínimos cuadrados. 
+Objetivo del proyecto: `Investigar y evaluar el algoritmo de factorización QR así como su implementación en OpenMP para la solución de mínimos cuadrados.` 
 
 * [Avance 07-04-2017](Equipo_2/avance_07_04_2017). Comentario por parte del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](Equipo_2), acótense a éstas.
 
 
 [Trabajo escrito](https://drive.google.com/file/d/0B5IJ1w6MjxegRWE1dm10T2FuMzA/view?usp=sharing)
 
-[Presentacion](liga hacia presentacion)
+[Presentacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegRHgwS090WFNLdWM?usp=sharing)
 
-[Implementacion](liga hacia implementacion)
+[Implementacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegcWhTdXFvZnljeHc?usp=sharing)
 
 ---
 
