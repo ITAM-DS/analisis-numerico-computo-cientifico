@@ -15,17 +15,17 @@ __Objetivos del proyecto:__ Diseñar e implementar una plataforma hibrida basada
 
 __Calendario:__ 
 
-* [avance 07-04-2017](equipo_6/avance_07_04_2017/).
+* [Avance 07-04-2017](equipo_6/avance_07_04_2017).
 1. Definición (ARQUITECTURA DE COMPONENTES).
 2. Correr prueba en arquitectura propuesta con al menos un  "HELLO WORLD" en CUDA-C.
 3. Determinar cluster a seleccionar.
 
-* [avance 17-04-2017](equipo_6/avance_17_04_2017/).
+* [Avance 17-04-2017](equipo_6/avance_17_04_2017).
 1. Definir algoritmos vistos en clase a usar.
 2. Escribir en C algoritmo 'Test'  de "COMPROBACION DE SIMETRIA DE MATRIZ"
 3. Escribir función de "LOAD DATA CON HERRAMIENTAS VISTAS EN CLASE".
 
-* [avance 24-04-2017](equipo_6/avance_24_04_2017/).
+* [Avance 24-04-2017](equipo_6/avance_24_04_2017).
 
 1. Por definir, dependera del avance de semanas anteriores. Se estima estar en etapa de desarrollo de algoritmo en CUDA-C.
 
