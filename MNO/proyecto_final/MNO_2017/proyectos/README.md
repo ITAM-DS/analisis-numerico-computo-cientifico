@@ -82,6 +82,8 @@ Objetivo del proyecto: `Crear un script que haga eficiente la obtención de una 
 
 * [Avance 07-04-2017](equipo_13/avance_07_04_2017).
 
+---
+
 ## [Equipo ejemplo](equipo_ejemplo)
 
 Ttulo del proyecto: `Ejemplo`
