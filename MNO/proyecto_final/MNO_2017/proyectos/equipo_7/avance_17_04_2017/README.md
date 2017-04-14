@@ -52,7 +52,7 @@ Comentarios sobre avance_17_04_2017 (que después del cambio será avance_07_04_
 
 * Mi sugerencia es que hagan un plan de trabajo. Primer paso: ordenamiento por quicksort y otros algoritmos (hay alguno que se haya elegido por la comunidad para su implementación en paralelo? o se paraleliza el quicksort? u otro algoritmo? propuestas?), segundo paso: investigación de algoritmos que realizan ordenamiento en paralelo (creo que lo han hecho parcialmente), tercer paso: elección de la extensión a utilizar mpi,mp,cuda? y pruebas de implementación (estos pasos no quiere decir que sea avance1, avance2, avance3). Seguro les ayuda la nueva referencia que se añadió en [README.md](../equipo_7) de P. Pacheco, los capítulo 10 y 14 :), les pido lean estos capítulos junto con la sección 3.7 del otro libro de Pacheco.
 
-* Observen lo que han hecho los equipos 6, 10 u 11. Debe de haber un primer avance fuerte en alguna de los siguientes rubros: estudio de la teoría e implementación pero no he visto esto en este segundo (primer) avance :(
+* Observen lo que han hecho los equipos 6, 10 u 11. Debe de haber un primer avance fuerte en alguno de los siguientes rubros: estudio de la teoría e implementación pero no he visto esto en este segundo (primer) avance :(
 
 * Revisen la referencia de P. Pacheco, los capítulo 10 y 14 del libro parallel Programming with MPI (que se habla más del sorting que en la sección 3.4 del libro de an introduction to parallel programming with mpi) (--comentario repetido--).
 
