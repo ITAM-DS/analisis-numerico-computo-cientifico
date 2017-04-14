@@ -42,7 +42,7 @@ Nos reunimos para delimitar el alcance del trabajo. Se discutieron ideas básica
 
 Objetivos próxima clase: 
 
-- Algoritmo Secuencial de integración MC en Docker ImagenOpenMP (no paralelo)
+- Algoritmo Secuencial de integración MC en un contenedor de Docker.
 
 
 
