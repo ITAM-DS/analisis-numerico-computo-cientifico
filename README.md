@@ -18,7 +18,7 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 2.1 Un poco de historia y generalidades.
 
-2.2 Sistemas de memoria distribuida: MPI.
+2.2 Sistemas de memoria distribuida: [MPI](C/extensiones_a_C/MPI).
 
 *[Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
 
