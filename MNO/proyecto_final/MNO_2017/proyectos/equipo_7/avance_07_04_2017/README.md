@@ -24,4 +24,6 @@ la integración por regla del trapecio implementada en MPI que vimos en clase.
 
 ---
 
-## Comentario sobre avance:
+## Comentario sobre avance: ir a [avance_07_04_2017](../avance_07_04_2017)
+
+ 
