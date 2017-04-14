@@ -44,7 +44,7 @@ Comentarios sobre avance_07_04_2017 (primer commit):
 
 * Y fue exitosa la replicación? en la sección de trabajo podrían poner esto? quizás un pequeño screenshot de hello worlds para sus nodos y luego un screenshot de su cálculo. Sin embargo, en este primer avance es mejor iniciar con el estudio de los algoritmos de ordenamiento que realizar una replicación de lo hecho en clase pues esto está resuelto. No haré válido este primer avance, su avance avance_17_04_2017 lo tomaré como avance avance_07_04_2017. Pueden poner lo del avance_17_04_2017 en el avance avance_07_04_2017? y el avance avance_17_04_2017 debe ser diferente.
 
-Comentarios sobre avance_17_04_2017:
+Comentarios sobre avance_17_04_2017 (que después del cambio será avance_07_04_2017):
 
 * Vi que tienen en el objetivo que es openMP, será entonces en openMP? o MPI? quizás esto lo están determinando a partir de la lectura de las referencias?
 
