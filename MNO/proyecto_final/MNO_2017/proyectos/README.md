@@ -8,6 +8,17 @@
 
 ---
 
+## [Equipo 6](equipo_6)
+
+Titulo del proyecto: `Plataforma Hibrida de Procesamiento Paralelo (PHPP)`
+
+Objetivo del proyecto: `Diseñar e implementar una plataforma hibrida (MPI/CUDA-C) basada en el procesamiento de GPU's para la ejecución en paralelo de la factorización SVD`
+
+* [Avance 07-04-2017](equipo_6/avance_07_04_2017). Comentario por parte del prof:
+
+
+---
+
 ## [Equipo 7](equipo_7)
 
 Titulo del proyecto: `Parallel sorting algorithms on OpenMP`
