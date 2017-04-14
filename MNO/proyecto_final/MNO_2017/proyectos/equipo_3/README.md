@@ -13,7 +13,7 @@ Integrantes:
 Título del proyecto: Integración MC (Reglas de integración)
 
 
-Objetivo: Generar un algoritmo en openMPI para el método de integración Monte Carlo para estimar integrales múltiples.
+Objetivo: Generar un algoritmo en openMPI para el método de integración Monte Carlo para estimar integrales multidimensionales.
 
 Objetivo adicional: Aplicar el algorithmo MCMC:Metropilis-Hasting para estimar integrales multidimensionales.
 
