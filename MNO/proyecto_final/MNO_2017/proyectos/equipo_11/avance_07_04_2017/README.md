@@ -50,4 +50,4 @@ del método.
 
 * Muy buen avance respecto a la lectura de los papers de las referencias :)
 
-* Discutan sobre los ordenamientos que se proponen en ambos papers. En el paper que leyó Mariana se habla sobre un nuevo ordenamiento y sobre simetría. La SVD se aplica a la matriz de correlación para encontrar las componentes principales, esta matriz resulta ser simétrica positiva semidefinida. Por simetría, esto equivale a encontrar la descomposición espectral de esta matriz. Los ordenamientos que aparecen en el paper que leyó Sonia son prometedores, en particular el de round robin.
+* Discutan sobre los ordenamientos que se proponen en ambos papers. En el paper que leyó Mariana se habla sobre un nuevo ordenamiento y sobre simetría. La SVD se aplica a la matriz de correlación para encontrar las componentes principales, esta matriz resulta ser simétrica positiva semidefinida. Por simetría, esto equivale a encontrar la descomposición espectral de esta matriz. Los ordenamientos que aparecen en el paper que leyó Sonia son prometedores, en particular el de round robin. Revisen la referencia de P. Pacheco.
