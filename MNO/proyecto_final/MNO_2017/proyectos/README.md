@@ -20,6 +20,12 @@ Objetivo del proyecto: `Investigar y evaluar el algoritmo de factorización QR a
 
 ---
 
+## [equipo 3](equipo_3)
+
+[Avance 07-04-2017](equipo_3). Comentario del prof: avance actualizado y allí aparecen referencias para la generación de números aleatorios en paralelo. Para el siguiente avance revísenlas para que esté clara la dificultad de la implementación en paralelo del método que elijan.
+
+---
+
 ## [Equipo 6](equipo_6)
 
 Titulo del proyecto: `Plataforma Hibrida de Procesamiento Paralelo (PHPP)`
