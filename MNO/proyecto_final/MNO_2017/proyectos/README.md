@@ -2,20 +2,22 @@
 
 ---
 
-## [Equipo 11](equipo_11)
+## [Equipo 2](Equipo_2)
 
-Ttulo del proyecto: `PCA aplicado al consumo de Proteínas en las Dietas de 25 Países`
+* [Avance 07-04-2017](Equipo_2/avance_07_04_2017). Comentario por parte del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](Equipo_2), acótense a éstas.
 
-Objetivo del proyecto: `El objetivo del proyecto es 
-detectar patrones de consumo de protenas en las dietas
-de 25 pases implementando componentes principales y 
-descomposicin de valores singulares (SVD) en 
-el lenguaje de programacin C usando metodologas
-computacionales de optimizacin.`
+---
 
-[Avances del proyecto](equipo_11):
+## [Equipo 7](equipo_7)
 
-* [Avance 07-04-2017](equipo_11/avance_07_04_2017). Comentario por parte del prof: Avance actualizado con comentarios. Hay dos nuevas referencias en [REAMDE.md](equipo_11). Muy buen avance en la lectura de la teoría y el objetivo a realizar. Hay que hacer la liga con componentes principales para el segundo avance.
+Titulo del proyecto: `Parallel sorting algorithms on OpenMP`
+
+Objetivo del proyecto: `El objetivo del proyecto es utilizar la API de OpenMP para implementar un algoritmo de ordenamiento de arreglos de manera distribuida.`
+
+[Avances del proyecto](equipo_7):
+
+* [Avance 07-04-2017](equipo_7/avance_07_04_2017).
+* [Avance 17-04-2017](equipo_7/avance_17_04_2017).
 
 ---
 
@@ -29,9 +31,20 @@ Objetivo del proyecto: `Construir un ambiente distribuido y portable que permita
 
 ---
 
-## [Equipo 2](Equipo_2)
+## [Equipo 11](equipo_11)
 
-* [Avance 07-04-2017](Equipo_2/avance_07_04_2017). Comentario por parte del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](Equipo_2), acótense a éstas.
+Ttulo del proyecto: `PCA aplicado al consumo de Proteínas en las Dietas de 25 Países`
+
+Objetivo del proyecto: `El objetivo del proyecto es
+detectar patrones de consumo de protenas en las dietas
+de 25 pases implementando componentes principales y
+descomposicin de valores singulares (SVD) en
+el lenguaje de programacin C usando metodologas
+computacionales de optimizacin.`
+
+[Avances del proyecto](equipo_11):
+
+* [Avance 07-04-2017](equipo_11/avance_07_04_2017). Comentario por parte del prof: Avance actualizado con comentarios. Hay dos nuevas referencias en [REAMDE.md](equipo_11). Muy buen avance en la lectura de la teoría y el objetivo a realizar. Hay que hacer la liga con componentes principales para el segundo avance.
 
 
 ---
@@ -53,5 +66,3 @@ Objetivo del proyecto: `objetivo`
 [Presentacion](liga hacia presentacion)
 
 [Implementacion](liga hacia implementacion)
-
-
