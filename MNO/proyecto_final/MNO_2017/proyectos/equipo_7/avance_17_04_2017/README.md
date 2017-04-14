@@ -50,7 +50,7 @@ Comentarios sobre avance_17_04_2017 (que después del cambio será avance_07_04_
 
 * Mi sugerencia es que hagan un plan de trabajo. Primer paso: ordenamiento por quicksort y otros algoritmos (hay alguno que se haya elegido por la comunidad para su implementación en paralelo? o se paraleliza el quicksort?), segundo paso: investigación de algoritmos que realizan ordenamiento en paralelo (creo que lo han hecho parcialmente), tercer paso: elección de la extensión a utilizar mpi,mp,cuda? y pruebas de implementación. (estos pasos no quiere decir que sea avance1, avance2, avance3).
 
-* No hay detalle o descripción para su trabajo individualo. Las diapositivas dan una idea pero mejor si tenemos un texto o papers. De acuerdo a la referencia de Omar se habla sobre quicksort secuencial, entonces empezamos por investigar sobre este algoritmo. Para el trabajo en equipo sirve que hagan pruebas de collective communication y pongan funciones implementadas por ustedes que realicen esto.
+* No hay detalle o descripción para su trabajo individual. Las diapositivas dan una idea pero mejor si tenemos un texto o papers. De acuerdo a la referencia de Omar se habla sobre quicksort secuencial, entonces empezamos por investigar sobre este algoritmo. Para el trabajo en equipo sirve que hagan pruebas de collective communication y pongan funciones implementadas por ustedes que realicen esto.
 
-* Observen lo que han hecho los equipos 6, 10 u 11. Debe de haber un primer avance fuerte en alguna de los siguientes rubros: estudio de la teoría e implementación.
+* Observen lo que han hecho los equipos 6, 10 u 11. Debe de haber un primer avance fuerte en alguna de los siguientes rubros: estudio de la teoría e implementación pero no he visto esto en este segundo (primer) avance :(.
 
