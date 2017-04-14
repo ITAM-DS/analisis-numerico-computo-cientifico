@@ -50,7 +50,9 @@ Comentarios sobre avance_17_04_2017 (que después del cambio será avance_07_04_
 
 * Mi sugerencia es que hagan un plan de trabajo. Primer paso: ordenamiento por quicksort y otros algoritmos (hay alguno que se haya elegido por la comunidad para su implementación en paralelo? o se paraleliza el quicksort?), segundo paso: investigación de algoritmos que realizan ordenamiento en paralelo (creo que lo han hecho parcialmente), tercer paso: elección de la extensión a utilizar mpi,mp,cuda? y pruebas de implementación (estos pasos no quiere decir que sea avance1, avance2, avance3).
 
-* No hay detalle o descripción para su trabajo individual. Las diapositivas dan una idea pero mejor si tenemos un texto o papers. De acuerdo a la referencia de Omar se habla sobre quicksort secuencial, entonces empezamos por investigar sobre este algoritmo. Para el trabajo en equipo sirve que hagan pruebas de collective communication y pongan funciones implementadas por ustedes que realicen esto.
+* No hay detalle o descripción para su trabajo individual. Las diapositivas dan una idea pero mejor si tenemos un texto o papers, de hecho el _Odd-even transposition sort_ está en la sección 3.7 del libro de Pacheco (?¿) entonces se podría discutir avance sobre esta sección. De acuerdo a la referencia de Omar se habla sobre quicksort secuencial, entonces empezamos por investigar sobre este algoritmo. Para el trabajo en equipo sirve que hagan pruebas de collective communication y pongan funciones implementadas por ustedes que realicen esto.
 
 * Observen lo que han hecho los equipos 6, 10 u 11. Debe de haber un primer avance fuerte en alguna de los siguientes rubros: estudio de la teoría e implementación pero no he visto esto en este segundo (primer) avance :(
+
+* Revisen la referencia de P. Pacheco, los capítulo 10 y 14 del libro parallel Programming with MPI (que se habla más del sorting que en la sección 3.4 del libro de an introduction to parallel programming with mpi).
 

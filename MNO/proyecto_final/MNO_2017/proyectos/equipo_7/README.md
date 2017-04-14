@@ -20,4 +20,6 @@
 
 * Guía de algoritmos de ordenamiento de la universidad de Illinios [https://homepages.math.uic.edu/~jan/mcs572/parallelsorting.pdf]
 
+* Capítulos 10 y 14 de [P.Pacheco. Parallel Programming with MPI](http://www.cs.usfca.edu/~peter/ppmpi/).
+
 ---
