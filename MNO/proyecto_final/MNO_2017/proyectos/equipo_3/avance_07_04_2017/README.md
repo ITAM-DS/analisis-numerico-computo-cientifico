@@ -46,6 +46,7 @@ Objetivos próxima clase:
 
 
 
+
 *Referencias:*
 
 [Metropolis–Hastings algorithm wikipedia](https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm)
