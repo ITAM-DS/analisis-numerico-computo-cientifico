@@ -29,6 +29,16 @@ Objetivo del proyecto: `Construir un ambiente distribuido y portable que permita
 
 ---
 
+## [Equipo 6](equipo_6)
+
+Titulo del proyecto: `Plataforma Hibrida de Procesamiento Paralelo (PHPP)`
+
+Objetivo del proyecto: `Diseñar e implementar una plataforma hibrida (MPI/CUDA-C) basada en el procesamiento de GPU's para la ejecución en paralelo de la factorización SVD`
+
+* [Avance 07-04-2017](equipo_6/avance_07_04_2017). Comentario por parte del prof:
+
+---
+
 ## [Equipo 2](Equipo_2)
 
 * [Avance 07-04-2017](Equipo_2/avance_07_04_2017). Comentario por parte del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](Equipo_2), acótense a éstas.
