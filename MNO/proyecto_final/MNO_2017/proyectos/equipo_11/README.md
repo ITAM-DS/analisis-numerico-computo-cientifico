@@ -30,4 +30,6 @@ computacionales de optimización.
 * Sobre rotaciones Givens: capítulo 5 del libro Carl D. Meyer. Matrix analysis and applied linear Algebra. En este libro también encuentran teoría sobre eigenvalores-vectores, diagonalización y descomposición en valores singulares.
 
 * G. H. Dunteman. Principal Component Analysis.
+
+* Referencia para los cyclic distribution (round robin), capítulo 8 de [P.Pacheco. Parallel Programming with MPI](http://www.cs.usfca.edu/~peter/ppmpi/).
 ---
