@@ -20,9 +20,9 @@ __Arquitectura del Proyecto:__ La arquitectura de referencia para el Proyecto PH
 __Implementación__
 
 
-Se ejecutaron las siguientes funciones [función](codigo/matrix.cu) en CUDA-C para realizar una prueba de ejecucón de programa en CUDA-C con Docker.
+Se ejecutaron las siguientes [funciones](code) en CUDA-C para realizar una prueba de ejecucón de programa en CUDA-C con Docker.
 
-Se elaborara un DOCKER_FILE y un DOCKER_COMPOSE para ejecución de programa. (DOCKER)
+Se elaboró y documento un [DOCKER_FILE y un DOCKER_COMPOSE](docker-cuda.md) para ejecución de programa [como sigue.](ambiente)
 
 Se documentara mas MPI para distribución de archivos posteriormente como Erick nos comento.
 
