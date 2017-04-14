@@ -10,7 +10,7 @@
 
 ### Individual
 
-Adrián Vázquez:
+Adrián Vázquez (120028):
 
 __Arquitectura del Proyecto:__ La arquitectura de referencia para el Proyecto PHPP esta representada en el siguiente diagrama:
 
@@ -20,13 +20,13 @@ __Arquitectura del Proyecto:__ La arquitectura de referencia para el Proyecto PH
 __Implementación__
 
 
-Se ejecutaron las siguientes funciones [función](codigo/matrix.cu) en CUDA-C para realizar una prueba de ejecucón de programa en CUDA-C con Docker.
+Se ejecutaron las siguientes [funciones](code) en CUDA-C para realizar una prueba de ejecucón de programa en CUDA-C con Docker.
 
-Se elaborara un DOCKER_FILE y un DOCKER_COMPOSE para ejecución de programa. (DOCKER)
+Se elaboró y documento un [DOCKER_FILE y un DOCKER_COMPOSE](docker-cuda.md) para ejecución de programa [como sigue.](ambiente)
 
 Se documentara mas MPI para distribución de archivos posteriormente como Erick nos comento.
 
-Ricardo Lastra:
+Ricardo Lastra (160167):
 
 Investigar el coste operativo de la implementación de los siguientes tipos de cluster:  (PONER DOCUMENTACION DE AWS Y VIABILIDAD DE USO)
 
@@ -40,7 +40,7 @@ __Selección de Herramientas__
 
 A partir del planteamiento anterior se investigo lo siguiente:
 
--Se usara el cluster tipo B. Se corrieron pruebas con demo de `suma.cu` y `matrix.cu` lo cual encontramos mas viable su uso por lo siguiente: 
+-Se usara el cluster tipo B. Se escribieron y se corrieron pruebas con [demo](code) de `suma.cu` y `matrix.cu` lo cual encontramos mas viable su uso por lo siguiente: 
 	Sin costo en $
 	Con docker se puede documentar muy bien todo el programa y su arquitectura
 	Es fácil de compilar
