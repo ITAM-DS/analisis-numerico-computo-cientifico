@@ -32,7 +32,7 @@ Concordamos el tema y el tipo de implementación que llevaremos a cabo para el d
 
 * Para el siguiente avance coloquen dentro del trabajo en equipo una discusión de los papers que revisaron (para determinar que todos estén en el mismo canal y sepan lo que se realizará).
 
-* Me gusta mucho que exista una implementación hecha por Ollín en Julia, así revisamos comparamos con cuda C :)
+* Me gusta mucho que exista una implementación hecha por Ollín en Julia, así revisamos o comparamos con cuda C :)
 
 * Entonces respecto a la primera referencia que da Ollín, la idea es construir a la matriz B, correcto? en Julia es aquí donde se realiza esto:
 
