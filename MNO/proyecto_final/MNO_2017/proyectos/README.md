@@ -59,7 +59,7 @@ Objetivo del proyecto: El objetivo del proyecto es utilizar la API de OpenMP par
 [Avances del proyecto](equipo_7):
 
 * [Avance 07-04-2017](equipo_7/avance_07_04_2017). Comentario del prof: Avance actualizado. 
-* [Avance 17-04-2017](equipo_7/avance_17_04_2017). Comentario del prof: Lo que tienen en el avance_17_04_2017 lo tomo como avance_07_04_2017. Revisen comentarios de ambos avances. Muevan, actualicen lo necesario en sus README's de sus avances. Hay una nueva referencia en [README.md](equipo_7) que seguro les ayuda.
+* [Avance 17-04-2017](equipo_7/avance_17_04_2017). Comentario del prof: Lo que tienen en el avance_17_04_2017 lo tomo como avance_07_04_2017 (pues en el momento que revisé estaba este avance_17_04_2017). Revisen comentarios de ambos avances. Muevan, actualicen lo necesario en sus README's de sus avances. Hay una nueva referencia en [README.md](equipo_7) que seguro les ayuda.
 
 ---
 
