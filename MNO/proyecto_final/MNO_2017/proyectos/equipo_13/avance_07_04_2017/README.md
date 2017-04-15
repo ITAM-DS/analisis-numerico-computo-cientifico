@@ -26,9 +26,11 @@ Concordamos el tema y el tipo de implementación que llevaremos a cabo para el d
 
 * Muy bien con la explicación del trabajo individual de cada persona :)
 
-* Muy bien con las referencias dadas. Gracias Isabel por la primera ref para explicación.
+* Muy bien con las referencias dadas. Gracias Isabel por la primera ref para explicación. 
 
 * Gracias Raúl por la explicación en tu trabajo individual.
+
+* Para el siguiente avance coloquen dentro del trabajo en equipo una discusión de los papers que revisaron (para determinar que todos estén en el mismo canal y sepan lo que se realizará).
 
 * Me gusta mucho que exista una implementación hecha por Ollín en Julia, así revisamos comparamos con cuda C :)
 
