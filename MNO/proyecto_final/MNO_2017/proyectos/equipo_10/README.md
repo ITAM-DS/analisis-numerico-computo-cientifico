@@ -33,7 +33,7 @@ Semana 3
 
 * Un paper que habla sobre la factorización en eliminación Gaussiana con pivoteo parcial: [R. P. Brent. Parallel algorithms in Linear Algebra](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.56.3732&rep=rep1&type=pdf) 
 
-* Multiplicación de matrices en paralelo y eliminación Gaussiana en paralelo: sección 3.2, 3.3, 4.2 de Demmel, Heath, Van der Vost. Parallel numerical linear algebra.
+* Multiplicación de matrices en paralelo y eliminación Gaussiana en paralelo: secciones 3.2, 3.3, 4.2 de Demmel, Heath, Van der Vost. Parallel numerical linear algebra.
 
 * Sólo para ayuda y ejemplo de uso de funciones de MPI que no vimos en la clase pero puede servirles de introducción para multiplicación de matriz-vector: sección 3.4.9 de P. Pacheco, An Introduction to Parallel Programming, Morgan Kaufmann, 2011.
 
