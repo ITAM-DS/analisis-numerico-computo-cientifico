@@ -77,6 +77,12 @@ computacionales de optimizacin.`
 
 
 ---
+## [Equipo 12](equipo_12)
+
+* [Avance 07-04-2017](equipo_12/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Las referencias las coloqué en [readme.md](equipo_12). Para el segundo avance deben leer las referencias.
+
+
+---
 
 ## [Equipo 13](equipo_13)
 
