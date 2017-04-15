@@ -16,7 +16,7 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 
 [Avances del proyecto:](Equipo_2)
 
-* [Avance 07-04-2017](Equipo_2/avance_07_04_2017). Comentario del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](Equipo_2), acótense a éstas.
+* [Avance 07-04-2017](Equipo_2/avance_07_04_2017). Comentario del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](Equipo_2), acótense a éstas. (Es buena idea normalizar el nombre de su carpeta Equipo_2 al de equipo_2 :))
 
 [Trabajo escrito](https://drive.google.com/drive/folders/0B5IJ1w6MjxegNUM2d29lTWdIREU?usp=sharing)
 
@@ -85,7 +85,7 @@ computacionales de optimización.
 ---
 ## [Equipo 12](equipo_12)
 
-* [Avance 07-04-2017](equipo_12/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Las referencias las coloqué en [readme.md](equipo_12). Para el segundo avance deben leer las referencias.
+* [Avance 07-04-2017](equipo_12/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Las referencias las coloqué en [readme.md](equipo_12). Para el segundo avance deben leer las referencias. (es buena idea normalizar el nombre readme.md a README.md :))
 
 
 ---
