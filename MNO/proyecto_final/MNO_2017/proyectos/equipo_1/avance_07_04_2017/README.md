@@ -31,7 +31,7 @@ Tenemos que revisar con Erick los puntos de duda que tenemos de los métodos de 
 
 * Es importante que en estos dos primeros avances se haya revisado la literatura y se determine si será posible realizar el objetivo. Lo que realizaron para este primer avance está resuelto (es decir no les lleva mucho tiempo). Observen lo que han hecho los equipos 6, 10 u 11. Debe de haber un primer avance fuerte en alguno de los siguientes rubros: estudio de la teoría e implementación pero no he visto esto en este primer avance :(
 
-* Una vez definido el cómputo matricial pongan las referencias en su README.md de la carpeta del equipo_1. Por lo pronto aquí están referencias para multiplicación de matrices en CUDA:
+* Una vez definido el cómputo matricial, pongan las referencias del mismo en su README.md de la carpeta del equipo_1. Por lo pronto aquí están referencias para multiplicación de matrices en CUDA:
 
 * Sección 3 de http://docs.nvidia.com/cuda/cuda-c-programming-guide/#axzz4eFAlSRyG
 
