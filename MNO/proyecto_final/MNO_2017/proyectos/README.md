@@ -12,7 +12,7 @@
 
 Titulo del proyecto: `Paralelización de mínimos cuadrados con OpenMP.`
 
-Objetivo del proyecto: `Investigar y evaluar el algoritmo de factorización QR así como su implementación en OpenMP para la solución de mínimos cuadrados.` 
+Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR así como su implementación en OpenMP para la solución de mínimos cuadrados. 
 
 [Avances del proyecto:](Equipo_2)
 
@@ -36,7 +36,7 @@ Objetivo del proyecto: `Investigar y evaluar el algoritmo de factorización QR a
 
 Titulo del proyecto: `Plataforma Hibrida de Procesamiento Paralelo (PHPP)`
 
-Objetivo del proyecto: `Diseñar e implementar una plataforma hibrida (MPI/CUDA-C) basada en el procesamiento de GPU's para la ejecución en paralelo de la factorización SVD`
+Objetivo del proyecto: Diseñar e implementar una plataforma hibrida (MPI/CUDA-C) basada en el procesamiento de GPU's para la ejecución en paralelo de la factorización SVD.
 
 * [Avance 07-04-2017](equipo_6/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios y hay preguntas que espero me puedan responder :). Hay referencias para la teoría de la SVD en el [README.md](equipo_6/). Muy bien con respecto a `nvidia-docker`. Para el segundo avance revisen la teoría de la SVD y debemos determinar la herramienta para la distribución de los chunks de sus datos.
 
@@ -47,7 +47,7 @@ Objetivo del proyecto: `Diseñar e implementar una plataforma hibrida (MPI/CUDA-
 
 Titulo del proyecto: `Parallel sorting algorithms on OpenMP`
 
-Objetivo del proyecto: `El objetivo del proyecto es utilizar la API de OpenMP para implementar un algoritmo de ordenamiento de arreglos de manera distribuida.`
+Objetivo del proyecto: El objetivo del proyecto es utilizar la API de OpenMP para implementar un algoritmo de ordenamiento de arreglos de manera distribuida.
 
 [Avances del proyecto](equipo_7):
 
@@ -60,7 +60,7 @@ Objetivo del proyecto: `El objetivo del proyecto es utilizar la API de OpenMP pa
 
 Titulo del proyecto: `Multipliación de matrices en un ambiente MPI distribuido usando AWS, docker, swarm y compose`
 
-Objetivo del proyecto: `Construir un ambiente distribuido y portable que permita la multiplicación de matrices`
+Objetivo del proyecto: Construir un ambiente distribuido y portable que permita la multiplicación de matrices.
 
 * [Avance 07-04-2017](equipo_10/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay referencias en el [README.md](equipo_10). Para el segundo avance realicen la lectura de esas referencias y lo que mencionan en este readme, pero determinen si eligen multiplicación de matrices o factorización LU de acuerdo a lo que lean, entiendan y consideren tiempos. También es importante que prueben `hello worlds` en cada máquina en el AWS con mpi, docker swarm y compose.
 
@@ -70,12 +70,12 @@ Objetivo del proyecto: `Construir un ambiente distribuido y portable que permita
 
 Ttulo del proyecto: `PCA aplicado al consumo de Proteínas en las Dietas de 25 Países`
 
-Objetivo del proyecto: `El objetivo del proyecto es
+Objetivo del proyecto: El objetivo del proyecto es
 detectar patrones de consumo de protenas en las dietas
 de 25 pases implementando componentes principales y
 descomposicin de valores singulares (SVD) en
 el lenguaje de programacin C usando metodologas
-computacionales de optimizacin.`
+computacionales de optimización.
 
 [Avances del proyecto](equipo_11):
 
@@ -94,7 +94,7 @@ computacionales de optimizacin.`
 
 Título del proyecto: `Implementación en CUDA para la obtención de matrices Nonbacktracking`
 
-Objetivo del proyecto: `Crear un script que haga eficiente la obtención de una matriz nonbacktracking dado un archivo de extensión gml que represente a una red o un grafo. Debido al alto requerimiento de operaciones que esto requiere, se utilizará una implementación en CUDA C para llevar a cabo lo anterior. Dicha matriz es de interés pues muchos estudios están demostrando la gran diversidad de problemas que se pueden resolver gracias a ella dado que es posible representar caminatas aleatorias sin retornos mediante la misma pudiendo así llevar a terrenos conocidos cuestiones como la percolación óptima o detectar comunidades.`
+Objetivo del proyecto: Crear un script que haga eficiente la obtención de una matriz nonbacktracking dado un archivo de extensión gml que represente a una red o un grafo. Debido al alto requerimiento de operaciones que esto requiere, se utilizará una implementación en CUDA C para llevar a cabo lo anterior. Dicha matriz es de interés pues muchos estudios están demostrando la gran diversidad de problemas que se pueden resolver gracias a ella dado que es posible representar caminatas aleatorias sin retornos mediante la misma pudiendo así llevar a terrenos conocidos cuestiones como la percolación óptima o detectar comunidades.
 
 [Avances del proyecto](equipo_13):
 
@@ -106,7 +106,7 @@ Objetivo del proyecto: `Crear un script que haga eficiente la obtención de una 
 
 Ttulo del proyecto: `Ejemplo`
 
-Objetivo del proyecto: `objetivo`
+Objetivo del proyecto: objetivo
 
 [Avances del proyecto](equipo_ejemplo):
 
