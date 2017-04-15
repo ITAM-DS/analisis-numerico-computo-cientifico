@@ -22,7 +22,7 @@
 Tenemos que revisar con Erick los puntos de duda que tenemos de los métodos de cómputo matrical a implementar. Se buscaron referencias del algoritmo. Las referencias están en la carpeta del proyecto.
 
 
-## Comentario sobre avance:
+## Comentarios sobre avance:
 
 * Detallen el trabajo individual que realizó cada persona. El código que revisa Gabriela es el de multiplicación de matrices? (y estaría bien una liga hacia ese código o aquí en su directorio añádanlo y también parte del objetivo será medir tiempos? si es así entonces en su objetivo se añade esto). Lo que hizo Paulina se refiere a cualquier método de optimización de cualquier cómputo matricial? y este comentario es debido a que también el objetivo del proyecto es muy general en la parte de "...técnicas de cómputo en paralelo y matricial...", por lo que platicamos recuerdo que era la multiplicación de matrices (?¿) y los hello worlds están bien como prueba, pero quizás podían haber mencionado en dónde se hizo (localmente, aws) y proveer screenshot del resultado (aún así, si es la multiplicación de matrices lo que están revisando, nvidia en su programming guide tiene la multiplicación de matrices, ese podría haber sido su hello world).  
 
