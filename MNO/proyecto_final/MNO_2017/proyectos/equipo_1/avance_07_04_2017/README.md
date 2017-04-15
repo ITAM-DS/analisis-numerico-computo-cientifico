@@ -41,7 +41,7 @@ Tenemos que revisar con Erick los puntos de duda que tenemos de los métodos de 
 
 * Capítulos 3,4,5 y 6 de D. B. Kirk, W. W. Hwu, Programming Massively Parallel Processors: A Hands-on Approach, Morgan Kaufmann, 2010.
 
-P.d. Una presentación da una idea del tema, pero yo no lo colocaría como una referencia. Mejor si es un texto o paper. Y en particular esta presentación está mejor explicada en los libros de texto del temario por ejemplo el de Golub o bien pueden ir a:
+P.d. Una presentación da una idea del tema, pero yo no la pondría con un título como AlgoritmosMultiplicacionDeMatrices. Mejor si es un texto o paper. Y en particular esta presentación está mejor explicada en los libros de texto del temario por ejemplo el de Golub y Van Loan o bien pueden ir a:
 Carl D. Meyer. Matrix analysis and applied linear Algebra.
 
 
