@@ -21,3 +21,25 @@ A través de revisar las referencias sugeridas, observamos que el objetivo de la
 Grupal:
 
 Concordamos el tema y el tipo de implementación que llevaremos a cabo para el desarrollo del proyecto. Además cada uno de nosotros investigó referencias y estudió el tema a tratar.
+
+## Comentarios sobre avance:
+
+* Muy bien con la explicación del trabajo individual de cada persona :)
+
+* Muy bien con las referencias dadas. Gracias Isabel por la primera ref para explicación.
+
+* Gracias Raúl por la explicación en tu trabajo individual.
+
+* Me gusta mucho que exista una implementación hecha por Ollín en Julia, así revisamos comparamos con cuda C :)
+
+* Entonces respecto a la primera referencia que da Ollín, la idea es construir a la matriz B, correcto? en Julia es aquí donde se realiza esto:
+
+```
+adjacency_matrix(g)
+
+```
+
+?
+
+* Coloquen en su README debajo del nivel equipo_13 sus referencias con bullets y autores y nombre del paper y ligas.
+
