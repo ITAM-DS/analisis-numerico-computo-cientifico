@@ -23,4 +23,4 @@ Debo levantar un clúster de forma pseudodistribuida con MPI en mi computadora p
 
 ## Comentario sobre avance:
 
-Bien las dos referencias, colocaré en [README.md](../) éstas y otras más. Detalla tu trabajo individual, puntualiza qué leíste, qué entendiste (o qué no). El clúster de forma pseudodistribuida está resuelto (es decir no te debe llevar mucho tiempo), entonces para el segundo avance revisa las referencias y entiende las ideas que se dan para realizar la factorización LU en paralelo.
+Bien las dos referencias, colocaré en [README.md](../) éstas y otras más. Detalla tu trabajo individual, puntualiza qué leíste, qué entendiste (o qué no). El clúster de forma pseudodistribuida está resuelto (es decir no te debe llevar mucho tiempo), entonces para el segundo avance revisa las referencias y entiende las ideas que se dan para realizar la factorización LU en paralelo. Es buena idea revisar el capítulo 3 de introduction de P. Pacheco para que estudien las funciones de distribución de datos que no vimos en clase.
