@@ -2,6 +2,12 @@
 
 ---
 
+## [Equipo 1](equipo_1)
+
+[Avance 07-04-2017](equipo_3). Comentario del prof: avance actualizado y allí aparecen referencias para multiplicación de matrices en CUDA (que fue el método que se habló personalmente). Para el siguiente avance revísenlas para que esté clara la dificultad de la implementación en paralelo de este método y también discutan sus referencias del word embedding.
+
+---
+
 ## [Equipo 2](Equipo_2)
 
 Titulo del proyecto: `Paralelización de mínimos cuadrados con OpenMP.`
@@ -22,7 +28,7 @@ Objetivo del proyecto: `Investigar y evaluar el algoritmo de factorización QR a
 
 ## [Equipo 3](equipo_3)
 
-[Avance 07-04-2017](equipo_3). Comentario del prof: avance actualizado y allí aparecen referencias para la generación de números aleatorios en paralelo. Para el siguiente avance revísenlas para que esté clara la dificultad de la implementación en paralelo del método que elijan.
+[Avance 07-04-2017](equipo_3). Comentario del prof: avance actualizado y allí aparecen referencias para la generación de números aleatorios en paralelo. Para el siguiente avance revísenlas (junto con las referencias de la integración por MC) para que esté clara la dificultad de la implementación en paralelo del método que elijan.
 
 ---
 
