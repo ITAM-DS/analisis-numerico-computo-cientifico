@@ -4,7 +4,7 @@
 
 ## [Equipo 1](equipo_1)
 
-[Avance 07-04-2017](equipo_3). Comentario del prof: avance actualizado y allí aparecen referencias para multiplicación de matrices en CUDA (que fue el método que se habló personalmente). Para el siguiente avance revísenlas para que esté clara la dificultad de la implementación en paralelo de este método y también discutan sus referencias del word embedding para definir objetivo del proyecto (consideren tiempos y entendimiento del material). Hay algunas dudas espero me puedan responder :)
+[Avance 07-04-2017](equipo_1/avance_07_04_2017). Comentario del prof: avance actualizado y allí aparecen referencias para multiplicación de matrices en CUDA (que fue el método que se habló personalmente). Para el siguiente avance revísenlas para que esté clara la dificultad de la implementación en paralelo de este método y también discutan sus referencias del word embedding para definir objetivo del proyecto (consideren tiempos y entendimiento del material). Hay algunas dudas espero me puedan responder :)
 
 ---
 
@@ -16,7 +16,7 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 
 [Avances del proyecto:](Equipo_2)
 
-* [Avance 07-04-2017](Equipo_2/avance_07_04_2017). Comentario del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](Equipo_2), acótense a éstas. (Es buena idea normalizar el nombre de su carpeta Equipo_2 al de equipo_2 :))
+* [Avance 07-04-2017](Equipo_2/avance_07_04_2017). Comentario del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](Equipo_2), acótense a éstas. (Es buena idea normalizar el nombre de su carpeta Equipo_2 al de equipo_2 :), hagan los cambios necesarios para que las ligas estén correctas de acuerdo al nombre equipo_2)
 
 [Trabajo escrito](https://drive.google.com/drive/folders/0B5IJ1w6MjxegNUM2d29lTWdIREU?usp=sharing)
 
@@ -28,7 +28,14 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 
 ## [Equipo 3](equipo_3)
 
-[Avance 07-04-2017](equipo_3). Comentario del prof: avance actualizado y allí aparecen referencias para la generación de números aleatorios en paralelo. Para el siguiente avance revísenlas (junto con las referencias de la integración por MC) para que esté clara la dificultad de la implementación en paralelo del método que elijan.
+[Avance 07-04-2017](equipo_3/avance_07_04_2017). Comentario del prof: avance actualizado y allí aparecen referencias para la generación de números aleatorios en paralelo. Para el siguiente avance revísenlas (junto con las referencias de la integración por MC) para que esté clara la dificultad de la implementación en paralelo del método que elijan.
+
+---
+
+## [Equipo 4](equipo_4)
+
+[Avance 07-04-2017](equipo_4/avance_07_04_2017). Comentario del prof: no está creado el directorio "avance_07_04_2017", no estaba actualizado este README.md con la descripción que se pide (título, objetivo, avances), las ligas de referencias que te llevan a un dropbox es mejor si las separan por bullets en su README.md del nivel de equipo_4, no hay descripción de trabajo individual, ni de equipo. Sé que me han platicado de su proyecto personalmente pero, en verdad este es la entrega de su primer avance? Observen lo que han realizado los equipos 6, 10 u 11.
+
 
 ---
 
@@ -73,8 +80,8 @@ Ttulo del proyecto: `PCA aplicado al consumo de Proteínas en las Dietas de 25 P
 Objetivo del proyecto: El objetivo del proyecto es
 detectar patrones de consumo de protenas en las dietas
 de 25 pases implementando componentes principales y
-descomposicin de valores singulares (SVD) en
-el lenguaje de programacin C usando metodologas
+descomposición de valores singulares (SVD) en
+el lenguaje de programacin C usando metodologías
 computacionales de optimización.
 
 [Avances del proyecto](equipo_11):
@@ -85,7 +92,7 @@ computacionales de optimización.
 ---
 ## [Equipo 12](equipo_12)
 
-* [Avance 07-04-2017](equipo_12/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Las referencias las coloqué en [readme.md](equipo_12). Para el segundo avance deben leer las referencias. (es buena idea normalizar el nombre readme.md a README.md :))
+* [Avance 07-04-2017](equipo_12/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Las referencias las coloqué en [readme.md](equipo_12). Para el segundo avance deben leer las referencias. (es buena idea normalizar el nombre readme.md a README.md :), hagan los cambios necesarios para que las ligas estén correctas de acuerdo al nombre README.md)
 
 
 ---
