@@ -4,7 +4,7 @@
 
 ## [Equipo 1](equipo_1)
 
-[Avance 07-04-2017](equipo_3). Comentario del prof: avance actualizado y allí aparecen referencias para multiplicación de matrices en CUDA (que fue el método que se habló personalmente). Para el siguiente avance revísenlas para que esté clara la dificultad de la implementación en paralelo de este método y también discutan sus referencias del word embedding. Hay algunas dudas espero me puedan responder :)
+[Avance 07-04-2017](equipo_3). Comentario del prof: avance actualizado y allí aparecen referencias para multiplicación de matrices en CUDA (que fue el método que se habló personalmente). Para el siguiente avance revísenlas para que esté clara la dificultad de la implementación en paralelo de este método y también discutan sus referencias del word embedding para definir objetivo del proyecto (consideren tiempos y entendimiento del material). Hay algunas dudas espero me puedan responder :)
 
 ---
 
