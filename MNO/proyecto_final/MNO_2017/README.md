@@ -4,7 +4,7 @@ El proyecto se va construyendo semanalmente con el trabajo de cada integrante de
 
 Tal trabajo semanal tendrá un porcentaje asociado. Este porcentaje está en función del número de semanas con las que se cuenta para realizar el proyecto: 7 u 8 (depende de la fecha asignada por control escolar). 
 
-Cada integrante tendrá una calificación (un número: 0, 5 o 10) dependiendo de su trabajo individual por cada avance semanal. 
+Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo individual por cada avance semanal. 
 
 Cada equipo en el nivel:  
 
