@@ -21,7 +21,7 @@ Avances:
 
 Leí la sección 3.7 del libro [Pacheco](https://www.dc.uba.ar/materias/escuela-complutense/2012/pacheco2011) acerca de algoritmos de ordenamiento distribuido. En particular, acerca del algoritmo de burbuja de manera secuencial y el algoritmo de _Odd-even transposition sort_ (tal y como nos aconsejaste en los comentarios de la semana pasada). Aquí entendí de una manera más clara la comunicación entre procesos que debemos de implementar para este algoritmo, el ejemplo de la tabla 3.8 que muestra el libro fue de mucha ayuda, porque me guió paso a paso a entender cada una de las fases en el ordenamiento.
 
-Implementé el [algoritmo de burbuja](/seq_bubble.c).
+Implementé el [algoritmo de burbuja](./seq_bubble.c).
 
 
 **Omar:**
@@ -30,7 +30,7 @@ Avances:
 
 Leí sobre cómo podemos evaluar el performance de los programas en MPI en libro de [Pacheco](https://www.dc.uba.ar/materias/escuela-complutense/2012/pacheco2011) esto nos va a ayudar para determinar cuál será el algoritmo de ordenamiento con mejor desempeño a través de las métricas *T_serial*, *T_parallel*, *Speedup*, *Efficiency*, así como las gráficas que vimos en la referencia de la semana pasada. Estas métricas, tal y como vimos en el libro, las probaremos bajo distintos escenarios, incrementando tanto el orden de los datos como el número de procesos.
 
-Implementé el [algoritmo quicksort en su manera secuencial](/seq_quicksort.c).
+Implementé el [algoritmo quicksort en su manera secuencial](./seq_quicksort.c).
 
 
 
