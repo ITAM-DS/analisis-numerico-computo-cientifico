@@ -1,0 +1,52 @@
+version: "2"
+
+services:
+ cuda_node1:
+   image: cuda_mno/cuda:v1
+   hostname: cuda_node1
+   networks:
+      - my-net
+   command: echo "En este NODO correran los procesos CUDA y MPI :)" 
+   environment:
+      MASTER_URL: "http://cuda_node1:6003"
+   volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - ./data/cuda_node1:/data/cuda_node1
+   ports:
+    - "6001:6001"
+    - "22"
+
+ cuda_node2:
+   image: cuda_mno/cuda:v1
+   hostname: cuda_node2
+   networks:
+      - my-net
+   command: echo "En este NODO correran los procesos CUDA y MPI :)"
+   environment:
+      MASTER_URL: "http://cuda_node1:6003"
+   volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - ./data/cuda_node2:/data/cuda_node2
+   ports:
+    - "6002:6002"
+    - "22"
+
+ mpi_master:
+   image: openmpi_mno_2017/openmpi:v1
+   hostname: mpi_master
+   networks:
+      - my-net
+   command: echo "En este nodo MAESTRO correran los procesos MPI en comunicación con NODOS 1 y 2 :)"
+   environment:
+      NODE1_URL: "http://cuda_node1:6001"
+      NODE2_URL: "http://cuda_node2:6002"
+   volumes:
+     - /etc/localtime:/etc/localtime:ro
+     - ./data/mongo-cfg-1:/data/configdb
+   ports:
+     - "6003:6003"
+     - "22" 
+
+networks:
+  my-net:
+    driver: bridge

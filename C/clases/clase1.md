@@ -1,7 +1,6 @@
+# Introducción:
 
-#Introducción:
-
-##hello world:
+## hello world:
 
 
 `stdio.h` es un archivo que contiene definiciones, declaraciones
@@ -36,7 +35,7 @@ $./hello_world.out
 
 
 
-##Definición y declaración e inicialización de variables 
+## Definición y declaración e inicialización de variables 
 
 
 Una variable es un nombre que será utilizado para almacenar un tipo de dato
@@ -129,7 +128,7 @@ main(){
 }
 ```
 
-##Obtención del epsilon de la máquina con un while. 
+## Obtención del epsilon de la máquina con un while. 
 
 Observa la estructura `while`. En este ejemplo no es necesario el uso de llaves `{}` pues el statement dentro del while sólo involucra una línea.
 
@@ -145,7 +144,7 @@ main(){
 }
 ```
 
-##Ejemplo para ligar librería math al compilar:
+## Ejemplo para ligar librería math al compilar:
 
 
 ```

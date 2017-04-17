@@ -1,0 +1,333 @@
+Ejercicio 1
+
+a) Modifica la función longitud_string del siguiente programa siguiendo estos dos pasos:
+
+paso1:
+
+Código:
+int longitud_string(char * s){
+    int i=0;
+    while(*(s++) != '\0')
+        i++;
+    return i;
+}
+
+paso2: Recorrer el string con un apuntador:
+
+Código:
+
+int longitud_string(char * s){
+    int i=0;
+    while(*(s++) != '\0')
+        i++;
+    return i;
+}
+
+Código completo:
+#include<stdio.h>
+#include<string.h>
+#define MAX_LONG 200
+#define CADENA_PRUEBA "Hola a todos"
+
+int longitud_string(char * s){
+    int i=0;
+    while(*(s++) != '\0')
+        i++;
+    return i;
+}
+
+int main(void){
+    char string1[] = CADENA_PRUEBA; //definición y declaracion de variable e inicializacion.
+    char string2[MAX_LONG]; //definición y declaracion.
+    
+    printf("cadena: %s\n", string1);
+    printf("longitud cadena: %d\n", longitud_string(string1));
+    strcpy(string2, "leer libros y revistas"); //inicializacion de string2
+    printf("cadena2: %s\n", string2);
+    printf("longitud cadena: %d\n", longitud_string(string2));
+return 0;
+}
+
+
+b) Investiga el uso de la función scanf para que imprima la longitud de los strings del archivo.txt:
+
+
+Código:
+
+#include<stdio.h>
+#include<string.h>
+#define MAX_LONG 200
+
+
+int longitud_string(char * s){
+    int i=0;
+    while(*(s++) != '\0')
+        i++;
+    return i;
+}
+
+int main(void){
+
+    char buffer[MAX_LONG]; 
+   
+    while(scanf("%s", buffer) != EOF)
+       printf("longitud  %s:  %d\n",buffer, longitud_string(buffer));
+	    
+    return 0;
+}
+
+Salida:
+teslawal@TeslaWal:~/Documentos$ ./Tarea42.out < archivo.txt 
+longitud  hamburguesas:  12
+longitud  permisos:  8
+longitud  exponencialmente:  16
+longitud  549:  3
+
+
+
+
+
+Ejercicio 2:
+
+a) Modifica el programa para que imprima sólo aquellas líneas que tienen más de 80 caracteres.
+Se modifica el programa anterior, solo en el main y lo demás permanece igual:
+
+int main(void){
+    int longitud;
+    extern int max;
+    extern char linea_max[MAXLINEA];
+    max=0;
+    while((longitud = obtenlinea()) > 0)
+        if( longitud > 80){
+            max = longitud;
+            copia();
+            printf("%s", linea_max);
+        }
+    
+return 0;
+}
+
+b) Modifica el programa para que quite los espacios de cada línea leída.
+Creo que hay doos maneras de interpretar el inciso. Una es entnder por "leída" las líneas que lee sin importar su longitud y la otra es la toma en cuenta una longitud. Yo opté por la primera. Entonces solo modifique la función main. Tomé como espacios, los espacios entre palabras y los saltos de línea.
+
+Código:
+int main(void){
+    int longitud,i=0;
+    char c;
+    extern int max;
+    extern char linea_max[MAXLINEA];
+    max=0;
+   while((c=getchar())!=EOF) {
+      if(c != 32 && c!= '\n')  
+        linea[i++]=c;
+   }  
+   linea[i]='\0';
+   printf("\n%s\n\n", linea);
+   
+   return 0;
+}
+
+Salida:
+
+teslawal@TeslaWal:~/Documentos$ ./Tarea42b.out < archivoLineas.txt 
+
+ThemerryoldkingofKatorenhasdiedandthere’snoheirtothethrone.Sixsourministersrulethelandandclaimthatthey’relookingforanewking,butnothinghappens–forseventeenyears.Thensuddenlythere’saboystandingatthedooroftheroyalpalacewhowasbornonthenightthekingdied.Thisboy,Stach,hasfirmlyresolvedtobecomethenewkingofKatorenandheasksthesixministerswhathemustdoinordertobeconsideredfortherole.Theministers,afraidoflosingtheirsplendidpositionatcourt,givetheboysevenalmostimpossibletasks,whichcanbebroughttoasuccessfulconclusiononlybyonewhopossesseskinglyattributessuchaswisdom,courageandself-sacrifice.ThesixministersareconvincedthatStachwillfallatthefirsthurdle,butheturnsouttohaveanamazingamountofpersistenceandingenuity.
+
+teslawal@TeslaWal:~/Documentos$
+
+
+c) Modifica la función copia para que no use break pero todavía debe de usar el índice i.
+
+Código:
+void copia(void){ 
+    int i;
+    extern char linea[], linea_max[];
+    i=0;
+    do{
+            linea_max[i] = linea[i];
+        if(linea_max[i] == '\0') i=-1;
+        i++;    
+    }while(i);
+}
+
+d) Modifica la función copia para que no use índices y sólo apuntadores.
+
+Código:
+
+void copia(void){ 
+    int i;
+    char *ptrlinea =linea;
+    char *ptrmax= linea_max;
+    i=0;
+    do{
+            *(ptrmax+i) = *(ptrlinea+i);
+        if(linea_max[i] == '\0') i=-1;
+        i++;    
+    }while(i);
+}
+
+e) Escribe una función voltea que reciba un string s e imprima el string s al revés. Añade esta función para que el programa lea líneas y las imprima volteadas.
+
+char *voltea_string(char *s){
+    char *ptr;
+    int n=strlen(s),i;
+    ptr = malloc(n+1);
+    if(ptr!=NULL)
+        for(i=n-1;i>=0;i--)
+         *(  ptr+n-1-i)=*(s+i);
+        ptr[n]='\0';
+    
+    return ptr;
+
+}
+
+Salida:
+
+teslawal@TeslaWal:~/Documentos$ ./Tarea42e.out < archivoLineas.txt 
+
+eht evig ,truoc ta noitisop didnelps rieht gnisol fo diarfa ,sretsinim ehT .elor eht
+llaf lliw hcatS taht decnivnoc era sretsinim xis ehT .ecifircas-fles dna egaruocteslawal@TeslaWal:~/Documentos$ 
+
+f) Qué efecto tiene escribir extern para la declaración de variables dentro de main(), getline() y copia()?
+Simplemente les hace saber a esas funciones que existen variables, fuera de ellas, que tienen un nombre y un tipo especificados delante de la palabra extern.
+
+Ejercicio 3
+
+a) La funcion corta_string no hace un chequeo si el string que recibe como parámetro debe de tener al menos un caracter. Modifica esta función de modo que haga este chequeo:
+
+Si el string tiene más de un caracter entonces devuelve el string sin el caracter inicial.
+
+Si no se cumple lo anterior entonces devuelve un mensaje de error.
+
+Código:
+char *corta_string(char *apuntador){
+    if((*apuntador)!='\0')
+    	apuntador=apuntador+1;
+    else
+      apuntador="Ha ocurrido un error, la cadena está vacía";
+    return apuntador;
+}
+
+b) Cómo modificas la forma en que es llamada corta_string dentro de main de modo que devuelva: verdes ?? (hay un espacio antes del string "verdes").
+Modifico el lugar(del inicio a otro lugar) donde quiero empezar ahora (definir un nuevo inicio).
+Código:
+int main(void){
+    char *s="Campos verdes ";
+    s=corta_string(s+5);
+    printf("%s\n",s);
+
+return 0;
+}
+
+Salida:
+teslawal@TeslaWal:~/Documentos$ ./Tarea43.out 
+ verdes 
+teslawal@TeslaWal:~/Documentos$
+
+Código completo:
+#include<stdio.h>
+
+char *corta_string(char *apuntador){
+    if((*apuntador)!='\0')
+    	apuntador=apuntador+1;
+    else
+      apuntador="Ha ocurrido un error, la cadena está vacía";
+    return apuntador;
+}
+
+int main(void){
+    char *s="Campos verdes";
+    s=corta_string(s+5);
+    printf("%s\n",s);
+
+return 0;
+}
+
+
+Ejercicio 4
+
+
+a) Modifica el programa para que en lugar de inicializar el string s con un tamaño 50 sea dinámica su inicialización, es decir, que no tengas que escribir 50 o algún valor definido para el tamaño del string s.
+
+Utiliza malloc.
+
+Código:
+char *duplica_string(char *s){  
+    char *p;
+    p = malloc(strlen(s)+1); /* sumamos uno para almacenar el caracter '\0'*/
+        if(p!=NULL)
+        strcpy(p,s);
+    return p;
+}
+
+b) Escribe una función voltea_string que reciba como parámetro un char * y devuelva un char * cuya operación sea devolver un string volteado, así, al llamar voltea_string con el string Campos verdes tenemos:
+
+sedrev sopmaC
+El prototipo de voltea_string es:
+
+char *voltea_string(char *s);
+Utiliza malloc.
+
+Código:
+char *voltea_string(char *s){
+    char *ptr;
+    int n=strlen(s),i;
+    ptr = malloc(n+1);
+    if(ptr!=NULL)
+        for(i=n-1;i>=0;i--)
+         *(  ptr+n-1-i)=*(s+i);
+        ptr[n]='\0';
+    
+    return ptr;
+
+}
+
+Salida:
+teslawal@TeslaWal:~/Documentos$ ./Tarea44b.out 
+
+Campos verdes
+sedrev sopmaC
+
+teslawal@TeslaWal:~/Documentos$
+
+Código Completo:
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define CADENA "Campos verdes"
+
+
+char *voltea_string(char *s){
+    char *ptr;
+    int n=strlen(s),i;
+    ptr = malloc(n+1);
+    if(ptr!=NULL)
+        for(i=n-1;i>=0;i--)
+         *(  ptr+n-1-i)=*(s+i);
+        ptr[n]='\0';
+    
+    return ptr;
+
+}
+char *duplica_string(char *s){  
+    char *p;
+    p = malloc(strlen(s)+1); 
+        if(p!=NULL)
+        strcpy(p,s);
+    return p;
+}
+int main(void){
+    char *s, *s_duplicado;
+    s=(char *)malloc(strlen(CADENA)+1);
+    s=duplica_string(CADENA);
+    s_duplicado = duplica_string(s);
+    printf("\n%s\n", s_duplicado);
+    s_duplicado=voltea_string(s);
+    printf("%s\n\n", s_duplicado);
+
+    free(s_duplicado);	
+    free(s);
+    return 0;
+}
+
+

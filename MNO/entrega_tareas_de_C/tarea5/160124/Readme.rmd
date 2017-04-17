@@ -1,0 +1,231 @@
+# Tarea 5
+
+
+### a) Investiga por qué se usan "" en la línea que tiene include en main.c y en funciones.c en lugar de usar < >.
+
+La directiva #include existe en dos versiones. En una se pone el nombre de fichero entre comillas, en la otra entre paréntesis angulares (el signo menor y mayor como “comillas”).
+
+``` shell
+#include "fichero_con_comillas.h"
+#include <fichero_entre_menor_y_mayor.h>
+```
+
+La versión con los paréntesis angulares <> busca los ficheros en todos los directorios que se han especificado en la llamada al compilador – normalmente con la opción “-I”. 
+Estos directorios se suelen rastrear por el fichero incluido en el orden en que aparecen en la línea de comando.
+Cuando se incluye un fichero entre comillas "", entonces el compilador busca este fichero primero en el mismo directorio que el fichero actualemente compilado y después en los demás directorios. Es decir, la versión con comillas se diferencia de la versión con paréntesis angulares únicamente por buscar primero en el directorio del fichero compilado. Tras no encontrarlo ahí actúa igual.
+
+Esto muchas veces no es ninguna diferencia, ya que se suelen especificar todos los directorios en la línea de comando del compilador. Así no se suele dar el caso que se puede incluir un fichero con comillas pero no con paréntesis angulares.
+
+Más significativo es el comportamiento ante ficheros con el mismo nombre en distintos directorios. En este caso la versión con comillas da preferencia sobre el fichero en el mismo directorio y esto suele ser el mejor acertado. Aunque sea preferible nombrar ficheros de forma única en un proyecto, es posible que no se pueda evitar tener dos ficheros con el mismo nombre cuando se incluyen varias bibliotecas de terceros.
+
+De ahí se puede deducir que es imperativo incluir cabeceras de la misma biblioteca con comillas. De esta forma se puede asegurar que las cabeceras de una biblioteca se incluyan entre si aunque haya otros con el mismo nombre en uno de los directorios especificados en la línea de comandos.
+
+Además, incluir con comillas puede dar al programador un significado adicional: que este fichero está bajo la custodia de mi equipo de desarrollo. Las cabeceras incluidas con paréntesis angulares son de bibliotecas de terceros. Los primeros ficheros puedo modificar si hace falta, los segundos no.
+
+
+### b) Investiga el uso de static en la definición de variables externas de funciones.c.
+
+La característica de las variables automáticas de perder su valor al salir del bloque en que han sido definidas, es un serio inconveniente en algunas ocasiones. Para resolver el problema se inventaron las variables estáticas, un tipo especial de variable que no fuese destruida cuando la ejecución saliese de su ámbito y que conservase su valor.  Este nuevo tipo se declara mediante el especificador de tipo de almacenamiento static (una palabra-clave C++), con lo que se previene que una variable pierda su valor cuando se sale del bloque en que se ha definido.  Por ejemplo, entre llamadas sucesivas a una función.  Sin embargo, como veremos a continuación, static puede aplicarse tanto a variables como a funciones e incluso a miembros de clases.
+Las variables estaticas no se guardan en el stack sino en una memoria especial para variables estáticas. Aunque no sean accesibles durante toda la ejecución del programa, lLs variables estáticas existen durante toda la ejecución del programa.
+
+Igual como en el caso de las variables convencionales, se llama al constructor de las variables estáticas cuando se construyen. Esto succede una vez antes de llamar a la función main. Igualmente se llama una vez al destructor después de salir del programa. Recuerda que las variables estáticas existen durante toda la ejecución del programa. Por eso deben inicalizarse antes de entrar y después de salir de la función principal.
+
+No hay diferencia entre variables estáticas en funciones y métodos de clases. De hecho, una variable estática se puede definir dentro de cualquier bloque delimitado por {}.
+
+### c) Modifica el archivo funciones.c para que alojes e inicialices a las matrices matriz1, matriz2 y matriz_resultado con malloc y apuntadores. Modifica main.c para que llame a una función dentro del archivo funciones.c que inicialice y aloje a las matrices anteriores y llame a otra función para que las desaloje una vez hecha la multiplicación (usa free):
+`main_c.h` :  
+
+``` shell
+#include"definiciones_c.h"
+int main(void){
+    aloja_espacio_e_inicializa_matrices();
+    imprime_matrices();
+    multiplica_matrices();
+    imprime_matriz_resultado();
+    libera_espacio();
+return 0;
+}
+```
+
+`definiciones_c.h` :
+
+``` shell
+#define NUM_REN_MAT1 3
+#define NUM_COL_MAT1 2
+#define NUM_REN_MAT2 2
+#define NUM_COL_MAT2 3 
+void imprime_matrices(void);
+void imprime_matriz_resultado(void);
+void multiplica_matrices(void);
+void aloja_espacio_e_incializa_matrices(void);
+void libera_espacio(void);
+```
+`funciones_c.h` :
+
+```shell
+#include<stdio.h>
+#include<stdlib.h>
+#include"definiciones_c.h"
+
+//definiciones de variables que serán externas
+static int i=0,j=0, k=0;
+double (*matriz1)[NUM_COL_MAT1];
+double (*matriz2)[NUM_COL_MAT2];
+double (*matriz_resultado)[NUM_COL_MAT2];
+
+void aloja_espacio_e_inicializa_matrices(void){
+
+    matriz1 = malloc(NUM_REN_MAT1*NUM_COL_MAT1*sizeof(double));
+    matriz2 = malloc(NUM_REN_MAT2*NUM_COL_MAT2*sizeof(double));
+    matriz_resultado = malloc(NUM_REN_MAT1*NUM_COL_MAT2*sizeof(double));
+
+/*
+matriz1[NUM_REN_MAT1][NUM_COL_MAT1]={{0, 1.5},{4, -5},{-1, 2.5} };
+matriz2[NUM_REN_MAT2][NUM_COL_MAT2]={{1, 0, 0}, {0, -1, 1} };
+
+Para inicializar las matrices:
+matriz[renglon][columna] = *(*(matriz + renglon) + columna)
+
+*/
+ 	matriz1[0][0]= 0;
+ 	matriz1[0][1]= 1.5;
+ 	matriz1[1][0]= 4;
+ 	matriz1[1][1]= -5;
+ 	matriz1[2][0]= -1;
+ 	matriz1[2][1]= 2.5;
+
+	*(*(matriz2 + 0) + 0) =  1;
+	*(*(matriz2 + 0) + 1) =  0;
+	*(*(matriz2 + 0) + 2) =  0;	
+	*(*(matriz2 + 1) + 0) =  0;
+	*(*(matriz2 + 1) + 1) = -1;
+	*(*(matriz2 + 1) + 2) =  1; 
+}
+ 
+void libera_espacio(void){
+    free(matriz1);
+    free(matriz2);
+    free(matriz_resultado);
+}     
+
+void imprime_matrices(void){
+	printf("Matriz1\n");
+		for(i=0;i<NUM_REN_MAT1;i++){ //el nombre: NUM_REN_MAT1 está definido en "definiciones.h"
+			for(j=0;j<NUM_COL_MAT1;j++){
+				if(j<NUM_COL_MAT1-1)
+				printf("matriz1[%d][%d]=%4.2f\t",i,j,matriz1[i][j]);
+				else
+				printf("matriz1[%d][%d]=%4.2f\n",i,j,matriz1[i][j]);
+			}
+		}
+	printf("\n");
+	printf("Matriz2\n");
+		for(i=0;i<NUM_REN_MAT2;i++){
+			for(j=0;j<NUM_COL_MAT2;j++){
+				if(j<NUM_COL_MAT2-1)
+				printf("matriz2[%d][%d]=%4.2f\t",i,j,matriz2[i][j]);
+				else
+				printf("matriz2[%d][%d]=%4.2f\n",i,j,matriz2[i][j]);
+			}
+		}
+	printf("\n");
+}
+
+void imprime_matriz_resultado(void){
+	printf("Matriz resultado\n");
+		for(i=0;i<NUM_REN_MAT1;i++){
+			for(j=0;j<NUM_COL_MAT2;j++){
+				if(j<NUM_COL_MAT2-1)
+				printf("matriz_res[%d][%d]=%4.2f\t",i,j,matriz_resultado[i][j]);
+				else
+				printf("matriz_res[%d][%d]=%4.2f\n",i,j,matriz_resultado[i][j]);
+			}
+		}
+
+	printf("\n");
+
+}
+
+void multiplica_matrices(void){
+	for(i=0;i<NUM_REN_MAT1;i++){
+		for(k=0;k<NUM_COL_MAT2;k++){
+	 		matriz_resultado[i][k]=0;
+ 			for(j=0;j<NUM_COL_MAT1;j++)
+  				matriz_resultado[i][k]=matriz_resultado[i][k]+matriz1[i][j]*matriz2[j][k];
+		}
+	}
+}
+
+``` 
+  
+### d) Compara tu resultado usando la subrutina de Fortran dgemm y los siguientes archivos definiciones2.h, main2.c, funciones2.c:
+
+El resultado es exactamente el mismo, y ya no es necesario utilizar la función **multiplica_matrices**.
+
+``` shell
+Salida del programa_c.out
+
+Matriz1
+matriz1[0][0]=0.00	matriz1[0][1]=1.50
+matriz1[1][0]=4.00	matriz1[1][1]=-5.00
+matriz1[2][0]=-1.00	matriz1[2][1]=2.50
+
+Matriz2
+matriz2[0][0]=1.00	matriz2[0][1]=0.00	matriz2[0][2]=0.00
+matriz2[1][0]=0.00	matriz2[1][1]=-1.00	matriz2[1][2]=1.00
+
+Matriz resultado
+matriz_res[0][0]=0.00	matriz_res[0][1]=-1.50	matriz_res[0][2]=1.50
+matriz_res[1][0]=4.00	matriz_res[1][1]=5.00	matriz_res[1][2]=-5.00
+matriz_res[2][0]=-1.00	matriz_res[2][1]=-2.50	matriz_res[2][2]=2.50
+
+Salida programa2.out
+Matriz1
+matriz1[0][0]=0.00	matriz1[0][1]=1.50
+matriz1[1][0]=4.00	matriz1[1][1]=-5.00
+matriz1[2][0]=-1.00	matriz1[2][1]=2.50
+
+Matriz2
+matriz2[0][0]=1.00	matriz2[0][1]=0.00	matriz2[0][2]=0.00
+matriz2[1][0]=0.00	matriz2[1][1]=-1.00	matriz2[1][2]=1.00
+
+Matriz resultado
+matriz_res[0][0]=0.00	matriz_res[0][1]=-1.50	matriz_res[0][2]=1.50
+matriz_res[1][0]=4.00	matriz_res[1][1]=5.00	matriz_res[1][2]=-5.00
+matriz_res[2][0]=-1.00	matriz_res[2][1]=-2.50	matriz_res[2][2]=2.50
+```
+
+### Investiga sobre LAPACK, BLAS y ATLAS y la subrutina de Fortran dgemm y reporta sobre esta investigación que realizas. Es una investigación corta que contiene principalmente una descripción sobre los paquetes anteriores y la subrutina.
+* `BLAS (Basic Linear Algebra Subprograms)`:
+    + Es un conjunto de núcleos (rutinas) computacionales escritos en Fortran 77 para operaciones básicas del Álgebra lineal (cálculo de la norma de un vector, resolución de un sistema triangular de ecuaciones, producto de matrices, etc.)
+    + Esta es una de las ventajas principales de BLAS: las secuencias de llamadas estan estandarizadas por los programas que llamen a BLAS trabajarán en cualquier computadora donde BLAS este instalado. BLAS proporciona una forma simple y portable para llevar a cabo alto rendimiento para cálculos donde se involucre álgebra lineal.
+    + Las especificaciones (interfaces y funcionalidad) de los núcleos de BLAS se
+  han convertido en estándares de facto. 
+    + Implementación de referencia http://www.netlib.org/blas/
+    + Las subrutinas de BLAS pueden ser divididas en tres niveles:
+      - Nivel 1: Operaciones vector a vector. Datos en O(n) y trabajo en O(n).
+      - Nivel 2: Operaciones matriz-vector. Datos en O(n^2) y trabajo en O(n^2).
+      - Nivel 3: Operaciones matriz-matriz. Datos en O(n^2) y trabajo en O(n^3).
+    + Para compliar: `lblas`
+
+* `LAPACK (Linear Algebra Package)`
+  + LAPACK está escrito en Fortran 90 y proporciona rutinas para resolver sistemas de ecuaciones lineales simultáneas, soluciones de mínimos cuadrados de sistemas lineales de ecuaciones, problemas de valores propios y problemas de valores singulares. También se proporcionan las factorizaciones de matriz asociadas (LU, Cholesky, QR, SVD, Schur, Schur generalizado), así como cálculos relacionados como el reordenamiento de las factorizaciones de Schur y la estimación de números de condición. Matrices densas y con bandas son manejadas, pero no matrices dispersas generales. En todas las áreas, se proporciona una funcionalidad similar para matrices reales y complejas, tanto en simple como en doble precisión.
+  + El objetivo original del proyecto LAPACK era hacer que las bibliotecas EISPACK y LINPACK, ampliamente utilizadas, funcionaran eficientemente en procesadores vectoriales y paralelos de memoria compartida. En estas máquinas, LINPACK y EISPACK son ineficientes debido a que sus patrones de acceso a la memoria no tienen en cuenta las jerarquías de memoria de varias capas de las máquinas, pasando así demasiado tiempo moviendo datos en lugar de hacer operaciones útiles de punto flotante. LAPACK aborda este problema mediante la reorganización de los algoritmos para utilizar las operaciones de matrices de bloques, como la multiplicación matricial, en los bucles más internos. Estas operaciones de bloques se pueden optimizar para que cada arquitectura tenga en cuenta la jerarquía de memoria, y así proporcionar una forma transportable para lograr una alta eficiencia en diversas máquinas modernas. Utilizamos el término "transportable" en lugar de "portátil" porque, para un rendimiento lo más rápido posible, LAPACK requiere que las operaciones de matriz de bloques altamente optimizadas ya estén implementadas en cada máquina.
+  + Las rutinas de LAPACK se escriben de modo que todo lo posible de la computación se realice mediante llamadas a los Subprogramas de Álgebra Lineal Básica (BLAS). LAPACK está diseñado desde el principio para explotar el nivel 3 BLAS - un conjunto de especificaciones para los subprogramas de Fortran que hacen varios tipos de multiplicación matricial y la solución de sistemas triangulares con múltiples lados derechos. 
+  + Para compliar: `llapack`
+  
+* `ATLAS (Automatically Turned Linear Algebra Software)`
+  + Es una implementación rápida del BLAS y de un subconjunto de LAPACK. Esta implementación de LAPACK se utiliza comúnmente en Linux.
+    
+* `dgemm`
+  + Se encuentra en el Nivel 3 de Blas, publicada en 1990.
+  + Es una de las subrutinas que optimizan operaciones matriz-matriz, incluyendo multiplicación general de matrices, utiliza tipos de datos reales de doble precisión.
+    
+
+# Bibliografía
+	* https://gcc.gnu.org/onlinedocs/cpp/Include-Syntax.html
+	* https://trucosinformaticos.wordpress.com/2012/10/14/como-usar-include-en-c-y-c/
+	* http://www.zator.com/Cpp/E4_1_8c.htm
+	* http://www3.uji.es/~quintana/avances/PDFs/blas.pdf
+	* http://webdelprofesor.ula.ve/ciencias/kay/docencia/fortran77/blas.html
+	* http://www.netlib.org/lapack/#_presentation
