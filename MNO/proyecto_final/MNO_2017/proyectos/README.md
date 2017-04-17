@@ -71,6 +71,7 @@ Objetivo del proyecto: Construir un ambiente distribuido y portable que permita 
 
 * [Avance 07-04-2017](equipo_10/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay referencias en el [README.md](equipo_10). Para el segundo avance realicen la lectura de esas referencias y lo que mencionan en este readme, pero determinen si eligen multiplicación de matrices o factorización LU de acuerdo a lo que lean, entiendan y consideren tiempos. También es importante que prueben `hello worlds` en cada máquina en el AWS con mpi, docker swarm y compose.
 
+* [Avance 17-04-2017](equipo_10/avance_17_04_2017).
 ---
 
 ## [Equipo 11](equipo_11)
