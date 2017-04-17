@@ -15,6 +15,8 @@ El objetivo del proyecto es implementar y evaluar el uso de las tarjetas gráfic
 
 En la carpeta [avance_07_04_2017](avance_07_04_2017) se encuentra el reporte del primer avance para determinar y avanzar nuestro proyecto.
 
+En la carpeta [avance_17_04_2017](avance_17_04_2017) se encuentra el reporte del segundo avance para determinar y avanzar nuestro proyecto.
+
 ## Plan de trabajo
 
 ### [7 de abril](avance_07_04_2017)
@@ -22,6 +24,8 @@ En la carpeta [avance_07_04_2017](avance_07_04_2017) se encuentra el reporte del
 Exploración de factibilidad del proyecto. Revisión de literatura. Prueba de ejemplos de cuDNN. Prueba de hardware disponible.
 
 ### 17 de abril.
+
+Revisión de literatura. Prueba de ejemplos que usan DQN. Revisión de la librería cuDNN 
 
 ### 24 de abril.
 
