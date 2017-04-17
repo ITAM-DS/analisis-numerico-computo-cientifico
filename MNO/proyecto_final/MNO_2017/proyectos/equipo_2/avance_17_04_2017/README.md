@@ -25,4 +25,4 @@ Derivado de los comentarios del profesor sobre el primer avance hemos decidido c
 
 Definimos un plan de trabajo, el cual se puede consultar en la carpeta principal de nuestro proyecto [Equipo 2](equipo_2).
 
-Después de haber leído las secciones 5.4 a 5.7 de [Meyer](https://drive.google.com/file/d/0BxMtevFKwTW_ZmpwcDd1M0RTVzA/view?usp=sharing) entendimos
+Después de haber leído las secciones 5.4 a 5.7 de [Meyer](https://drive.google.com/file/d/0BxMtevFKwTW_ZmpwcDd1M0RTVzA/view?usp=sharing) entendimos que
