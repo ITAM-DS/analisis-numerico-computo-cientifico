@@ -30,7 +30,7 @@ Debido a la dificultad que se tiene con la GPU del equipo de uno de los integran
 
 - Se puede conseguir un equipo adicional para el desarrollo del proyecto.
 
-- Se puede cambiar el scope del proyecto para simplificar la arquitectura de la red neuronal y dejar de usar el *framework* cuDNN para usar las rutinas de más bajo nivel de CUDA. Esto puede disminuir la compleiidad del proyecto y se habrá tomado una decisión al respecto para la próxima entrega de avances.
+- Se puede cambiar el scope del proyecto para simplificar la arquitectura de la red neuronal y dejar de usar el *framework* cuDNN para usar las rutinas de más bajo nivel de CUDA. Esto puede disminuir la complejidad del proyecto. Para la próxima entrega se habrá tomado una decisión al respecto.
 
  ## Referencias
  
