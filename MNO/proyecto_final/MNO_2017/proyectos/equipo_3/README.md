@@ -18,7 +18,7 @@ Objetivo: Generar un algoritmo en openMPI para el método de integración Monte 
 Objetivo adicional: Aplicar el algorithmo MCMC:Metropilis-Hasting para estimar integrales multidimensionales.
 
 En la carpeta [avance_07_04_2017](avance_07_04_2017) describimos nuestra avance en la teoría.
-
+En la carpeta [avance_17_04_2017](avance_17_04_2017) se elavoró la primera versión del código (secuencial) tomando en consideración las referencias del profesor.Se generaron los primeros párrafos para el trabajo final.
  
 
 
