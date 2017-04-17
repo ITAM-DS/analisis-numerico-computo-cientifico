@@ -68,9 +68,11 @@ Integrantes:
 </tbody>
 </table>
 
-En la carpeta [avance_07_04_2017](avance_07_04_2017) se encuentra el primer avance del proyecto que incluye la investigación de factorización LU y QR así como su aplicación en la solución de mínimos cuadrados. Erick nos sugirió leer el libro de Matrix Computation de Golub. 
+**Avances del Proyecto:**
 
-Determinamos cambiar el alcance del proyecto debido a que Erick nos sugiere enfocarnos en factorización QR.  Empezamos a revisar as referencias de acuerdo al plan de trabajo establecido.  En la carpeta [avance_17_04_2017](avance_17_04_2017) se encuentra el reporte de este primer avance sobre la teoría de Reflexiones de Householder y Rotaciones Givens.
+* En la carpeta [avance_07_04_2017](avance_07_04_2017) se encuentra el primer avance del proyecto que incluye la investigación de factorización LU y QR así como su aplicación en la solución de mínimos cuadrados. Erick nos sugirió leer el libro de Matrix Computation de Golub. 
+
+* Determinamos cambiar el alcance del proyecto debido a que Erick nos sugiere enfocarnos en factorización QR.  Empezamos a revisar as referencias de acuerdo al plan de trabajo establecido.  En la carpeta [avance_17_04_2017](avance_17_04_2017) se encuentra el reporte de este primer avance sobre la teoría de Reflexiones de Householder y Rotaciones Givens.
 
 [Trabajo escrito](https://drive.google.com/drive/folders/0B5IJ1w6MjxegNUM2d29lTWdIREU?usp=sharing)
 
