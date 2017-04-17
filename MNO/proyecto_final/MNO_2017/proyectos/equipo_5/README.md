@@ -23,7 +23,7 @@ En la carpeta [avance_17_04_2017](avance_17_04_2017) se encuentra el reporte del
 
 Exploración de factibilidad del proyecto. Revisión de literatura. Prueba de ejemplos de cuDNN. Prueba de hardware disponible.
 
-### 17 de abril.
+### [17 de abril](avance_17_04_2017)
 
 Revisión de literatura. Prueba de ejemplos que usan DQN. Revisión de la librería cuDNN 
 
