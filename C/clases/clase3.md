@@ -1,13 +1,4 @@
-<<<<<<< HEAD
----
-output:
-  pdf_document: default
-  html_document: default
----
-#Introducción
-=======
 # Introducción
->>>>>>> 2b5380a8ce0a5491d7a56abd56a20308e7ff0869
 
 Dos tipos de datos que nos ayudan agrupar son los structs y los arrays.
 
