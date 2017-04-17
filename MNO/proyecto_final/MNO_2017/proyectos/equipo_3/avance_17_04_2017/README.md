@@ -35,5 +35,5 @@ Crear 5 contenedores en una maquina y probar el integracion de MC en MPI sobre e
 
 Objetivo de los proximos avances:
 
-Si logramos vamos a pasar a MCMC:Hasting-Metropolis en el cuarto avance porque necesitamos MC integration para construir una probabilidad, es decir, pasar de f(x) a h(x)p(x)*C dentro la integral de f con C el constante de integracion de p y probar simulación de probabilad muchos más complejos, ie pasar de un ley uniforme multidimensional a un ley normal multidimensional para construir una cadena. Vimos que para simular la ley normal multidmensional podemos aplicar conceptos de matrices como la factorisacion de Cholesky.
+Si logramos vamos a pasar a MCMC:Hasting-Metropolis en el cuarto avance porque necesitamos MC integration para construir una probabilidad, es decir, pasar de f(x) a h(x)p(x)*C dentro la integral de f con C el constante de integracion de p y probar simulación de probabilad muchos más complejos, ie pasar de un ley uniforme multidimensional a un ley normal multidimensional para construir una cadena. Vimos que para simular la ley normal multidimensional podemos aplicar conceptos de matrices como la factorisacion de Cholesky.
 
