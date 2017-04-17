@@ -31,7 +31,7 @@ Yo trabajé principalmente las lecturas recomendadas por Erick de tal forma que 
 Terminamos el codigo juntos y pensamos como vamos a parallelizar este algoritmo.Todos nuestros ideas estan en los comentarios del codigo [mc_integration.c](mc_integration.c).
 
 Objetivo de la proxima avance :
-Crear 5 contenedores en una maquina y probar el integracion de MC en MPI sobre este 5 maquinas.
+Crear 5 contenedores en una maquina y probar el integracion de MC en MPI.
 
 Objetivo de los proximos avances:
 
