@@ -72,6 +72,12 @@ En la carpeta [avance_07_04_2017](avance_07_04_2017) se encuentra el primer avan
 
 Determinamos cambiar el alcance del proyecto debido a que Erick nos sugiere enfocarnos en factorización QR.  Empezamos a revisar as referencias de acuerdo al plan de trabajo establecido.  En la carpeta [avance_17_04_2017](avance_17_04_2017) se encuentra el reporte de este primer avance sobre la teoría de Reflexiones de Householder y Rotaciones Givens.
 
+[Trabajo escrito](https://drive.google.com/drive/folders/0B5IJ1w6MjxegNUM2d29lTWdIREU?usp=sharing)
+
+[Presentacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegRHgwS090WFNLdWM?usp=sharing)
+
+[Implementacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegcWhTdXFvZnljeHc?usp=sharing)
+
 ## Referencias:
 
 * [Reflexiones Householder, rotaciones Givens, mínimos cuadrados en secciones 5.4 a 5.7 del libro: Carl D. Meyer. Matrix analysis and applied linear Algebra.](https://drive.google.com/file/d/0BxMtevFKwTW_ZmpwcDd1M0RTVzA/view?usp=sharing) 
