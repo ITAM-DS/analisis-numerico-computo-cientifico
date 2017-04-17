@@ -22,7 +22,7 @@ Yo trabajé principalmente las lecturas recomendadas por Erick de tal forma que 
 ¿Cómo vamos a diseñar el código para paralelizar (inner loops vs outer loops)?
 ¿Cómo hacemos para ingresar al código una función elegida por el usuario (simplificada por ahora)?
 
-[Camilo_semana_2](https://onedrive.live.com/?authkey=%21Ahi39yTjOvqk51w&id=84B8D4D9DB4E21D6%2162059&cid=84B8D4D9DB4E21D6)
+[Camilo_semana_2](https://1drv.ms/b/s!AtYhTtvZ1LiEg-Rt1C10p7BtTuSHYg)
 
 
 
