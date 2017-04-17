@@ -1,5 +1,3 @@
-README
-
 Integrantes:
 
 -José Carlos Castro
@@ -11,7 +9,7 @@ Título del proyecto: Implementación en paralelo (CUDA) del método iterativo d
 Objetivo: Implementar el método de Jacobi en una arquitectura CUDA con el propósito de llevar a cabo una implementación alternativa que ofrezca un mejor performance de manera general, y que atienda la necesidad de tener un algoritmo robusto y confiable que optimize los recursos computacionales y que se pueda usar como una pieza clave en un proceso computacional más complejo.
 
 
-En la carpeta avances describimos nuestras investigaciones personales y grupales. Además hemos sostenido un diálogo abierto con Erick acerca de nuestras ideas sobre lo quq queremos o pretendemos hacer, además de platicarle nuestras razones y ambiciones por las cuales queremos llevarlo a cabo. Sin embargo hemos encontrado algunos obstáculos que en un inicio eran impercetibles. POr lo que también hemos comentado con Erick la posibilidad de un cambio de proyecto.
+En la carpeta avances describimos nuestras investigaciones personales y grupales. Además hemos sostenido un diálogo abierto con Erick acerca de nuestras ideas sobre lo quq queremos o pretendemos hacer, además de platicarle nuestras razones y ambiciones por las cuales queremos llevarlo a cabo. Sin embargo hemos encontrado algunos obstáculos que en un inicio eran impercetibles. Por lo que también hemos comentado con Erick la posibilidad de un cambio de proyecto.
    
 
 
@@ -55,9 +53,21 @@ http://epubs.siam.org/doi/abs/10.1137/S0036144599363084
 En estos artículos se habla del desempeño de implementaciones del método de Jacobi y también se da un algoritmo que combina el método de Jacobi con otro método para resolver el problema de eigenvalores.
 
 referencias:
+
 -Ford,William. Numerical Linear Algebra with Applications. Elsevier.2015.
+
 -Skiba,Yuri. Introducción a los Métodos Numéricos.UNAM.2001.
+
 -Ascher,U.M. A first course in numerical methods. SIAM. 2011.
+
 -Stewart, G.W. Matrix Algorithms Volume 1. SIAM.1998.
+
+
+# Comentarios del avance:
+
+* Las últimas dos referencias de Vero abordan el problema de cálculo de eigenvalores, hay alguna idea respecto a usar estas referencias para resolver Ax=b ?
+
+* Una referencia para el método de Jacobi en MPI: capítulo 10 de [P.Pacheco. Parallel Programming with MPI](http://www.cs.usfca.edu/~peter/ppmpi/).
+
 
 

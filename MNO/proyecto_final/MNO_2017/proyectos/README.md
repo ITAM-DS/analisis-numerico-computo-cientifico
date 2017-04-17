@@ -63,6 +63,13 @@ Objetivo del proyecto: El objetivo del proyecto es utilizar la API de OpenMP par
 
 ---
 
+##[Equipo 8](equipo_8)
+
+* [Avance 07-04-2017](equipo_8/avance_07_04_2017). Comentario del prof: avance actualizado con referencia de MPI para Jacobi.
+
+
+---
+
 ## [Equipo 9](equipo_9)
 
 Título del proyecto: ```Método de Diferencias Finitas para 3 dimensiones en CUDA-C```
