@@ -65,7 +65,7 @@ Objetivo del proyecto: El objetivo del proyecto es utilizar la API de OpenMP par
 
 ## [Equipo 8](equipo_8)
 
-* [Avance 07-04-2017](equipo_8/avance_03_04_2017). Comentario del prof: avance actualizado con referencia de MPI para Jacobi.
+* [Avance 03-04-2017](equipo_8/avance_03_04_2017). Comentario del prof: avance actualizado con referencia de MPI para Jacobi.
 
 
 ---
