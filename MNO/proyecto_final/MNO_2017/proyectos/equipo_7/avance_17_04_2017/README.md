@@ -17,42 +17,43 @@
 
 **Mariana:**
 
-Profundizar en el algoritmo _Odd-even transposition sort_.
-Leí las diapositivas acerca de este tema de la siguiente
-[referencia](http://www.hpcc.unn.ru/mskurs/ENG/PPT/pp10.pdf).
+Avances:
+
+Leí la sección 3.7 del libro [Pacheco](https://www.dc.uba.ar/materias/escuela-complutense/2012/pacheco2011) acerca de algoritmos de ordenamiento distribuido. En particular, acerca del algoritmo de burbuja de manera secuencial y el algoritmo de _Odd-even transposition sort_ (tal y como nos aconsejaste en los comentarios de la semana pasada). Aquí entendí de una manera más clara la comunicación entre procesos que debemos de implementar para este algoritmo, el ejemplo de la tabla 3.8 que muestra el libro fue de mucha ayuda, porque me guió paso a paso a entender cada una de las fases en el ordenamiento.
+
+Implementé el [algoritmo de burbuja](./seq_bubble.c).
+
 
 **Omar:**
 
-Profundizar en el algortimo _Quick sort_. Yo leí este
-[documento](https://www.codeproject.com/KB/threads/Parallel_Quicksort/Parallel_Quick_sort_without_merge.pdf)
-que detalla el algoritmo en paralelo y nos da una idea de cómo queremos presentar
-el reporte, ya que compara el algoritmo secuencial vs. el paralelo.
+Avances:
+
+Leí sobre cómo podemos evaluar el performance de los programas en MPI en libro de [Pacheco](https://www.dc.uba.ar/materias/escuela-complutense/2012/pacheco2011) esto nos va a ayudar para determinar cuál será el algoritmo de ordenamiento con mejor desempeño a través de las métricas *T_serial*, *T_parallel*, *Speedup*, *Efficiency*, así como las gráficas que vimos en la referencia de la semana pasada. Estas métricas, tal y como vimos en el libro, las probaremos bajo distintos escenarios, incrementando tanto el orden de los datos como el número de procesos.
+
+Implementé el [algoritmo quicksort en su manera secuencial](./seq_quicksort.c).
+
+
+
 
 #### Equipo
-Definimos que era necesario leer el capítulo 3 del libro de
-[Pacheco](https://www.dc.uba.ar/materias/escuela-complutense/2012/pacheco2011)
-con el fin de que ambos tengamos una comprensión más clara de las funciones
-que MPI tiene para _collective communication_. Además, leímos sobre los
-diferentes algoritmos de ordenamiento y nos enfocamos en comprender
-cada uno de ellos.
+Elaboramos un nuevo plan de trabajo, el cual se presenta a continuación:
+
+  * Profundizar en los diferentes algoritmos de ordenamiento
+  * Implementación de algoritmos de ordenamiento secuenciales (Quick Sort y burbuja)
+  * Definición del ambiente en el cual se desarrollará el proyecto (inclinándonos por MPI)
+  * Pruebas de Collective Communication
+  * Implementar el algoritno de ordenamiento distribuido
+
+Después de compartir lo que cada uno ha leído de manera individual decidimos que debíamos implementar el algoritmo secuencial de burbuja (avance Mariana) para el ordenamiento de datos, ya que ha demostrado ser un algoritmo rápido y eficiente. Además consideramos que este algoritmo puede servir de punto de referencia para su comparación contra algoritmos distribuidos. Decidimos lo anterior, debido a que a que por la naturaleza de este algoritmo no permite su paralelización. Resulta interesante compararlo con algoritmos en los que se pierde tiempo en la comunicación entre procesos. Adicionalmente implementamos el algoritmo secuencial quicksort (avance Omar) para tener la comparación de un mismo algoritmo de manera secuencial y en paralelo.
+
+Nota: La parte del código para leer la información y prepar el arreglo que alimenta a las funciones la trabajamos de manera conjunta para tener inputs homogéneos.
+
+Tenemos como pendientes para los avances posteriores:
+
+* Investigar por qué el cluster semi-distribuido como el que levantamos en clase funciona correctamente para openmp pero no para mpi. No encuentra el compando mpicc
+* Investigar cómo definir el tamaño del arreglo de manera automática al ser leido de un archivo desde el stdinput
+* Leer los capítulos 10 y 14 del libro parallel Programming with MPI
 
 ---
 
 ## Comentario sobre avance:
-
-Comentarios sobre avance_07_04_2017 (primer commit):
-
-* Y fue exitosa la replicación? en la sección de trabajo podrían poner esto? quizás un pequeño screenshot de hello worlds para sus nodos y luego un screenshot de su cálculo. Sin embargo, en este primer avance es mejor iniciar con el estudio de los algoritmos de ordenamiento que realizar una replicación de lo hecho en clase pues esto está resuelto. No haré válido este primer avance, su avance avance_17_04_2017 lo tomaré como avance avance_07_04_2017. Pueden poner lo del avance_17_04_2017 en el avance avance_07_04_2017? y el avance avance_17_04_2017 debe ser diferente.
-
-Comentarios sobre avance_17_04_2017 (que después del cambio será avance_07_04_2017---muevan, actualicen lo necesario en sus README's):
-
-* Vi que tienen en el objetivo que es openMP, será entonces en openMP? o MPI? quizás esto lo están determinando a partir de la lectura de las referencias?
-
-* No hay detalle o descripción para su trabajo individual. Las diapositivas dan una idea pero mejor si tenemos un texto o papers, de hecho el _Odd-even transposition sort_ está en la sección 3.7 del libro de Pacheco, entonces se podría discutir avance sobre esta sección. De acuerdo a la referencia de Omar se habla sobre quicksort secuencial, entonces empezamos por investigar sobre este algoritmo (?¿ es buen enfoque?). Para el trabajo en equipo sirve que hagan pruebas de collective communication y pongan funciones implementadas por ustedes que realicen esto.
-
-* Mi sugerencia es que hagan un plan de trabajo. Primer paso: ordenamiento por quicksort y otros algoritmos (hay alguno que se haya elegido por la comunidad para su implementación en paralelo? o se paraleliza el quicksort? u otro algoritmo? propuestas?), segundo paso: investigación de algoritmos que realizan ordenamiento en paralelo (creo que lo han hecho parcialmente), tercer paso: elección de la extensión a utilizar mpi,mp,cuda? y pruebas de implementación (estos pasos no quiere decir que sea avance1, avance2, avance3). Seguro les ayuda la nueva referencia que se añadió en [README.md](../equipo_7) de P. Pacheco, los capítulo 10 y 14 :), les pido lean estos capítulos junto con la sección 3.7 del otro libro de Pacheco.
-
-* Observen lo que han hecho los equipos 6, 10 u 11. Debe de haber un primer avance fuerte en alguno de los siguientes rubros: estudio de la teoría e implementación pero no he visto esto en este segundo (primer) avance :(
-
-* Revisen la referencia de P. Pacheco, los capítulo 10 y 14 del libro parallel Programming with MPI (que se habla más del sorting que en la sección 3.4 del libro de an introduction to parallel programming with mpi) (--comentario repetido--).
-
