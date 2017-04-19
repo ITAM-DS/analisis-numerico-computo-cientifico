@@ -72,7 +72,7 @@ Objetivo del proyecto: El objetivo del proyecto es utilizar la API de OpenMP par
 
 ## [Equipo 9](equipo_9)
 
-Título del proyecto: ```Método de Diferencias Finitas para 3 dimensiones en CUDA-C```
+Título del proyecto: `Método de Diferencias Finitas para 3 dimensiones en CUDA-C`
 
 Objetivo del proyecto:  Entender y exponer el algoritmo de Diferencias Finitas en 3 dimensiones así como su implementación vía GPU's y una aplicación del mismo a las ecuaciones diferenciales.
 
