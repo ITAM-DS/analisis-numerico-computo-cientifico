@@ -15,14 +15,14 @@ Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de numeros 
 
 ### Programacion de avances:
 
-#### [07 de abril:](https://github.com/LizContreras/Trabajo_Erick/tree/master/Avances/A01)
+#### [07 de abril:](https://github.com/LizContreras/analisis-numerico-computo-cientifico/tree/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_4/avances/A01)
 
 * Discusion interna sobre alcance del proyecto
 * Presentar al profesor las ideas principales y secundarias para recibir retroalimentacion
 * Busqueda de referencias que nos puedan orientar para el desarrollo del proyecto
 
 
-#### [17 de abril:](https://github.com/LizContreras/Trabajo_Erick/tree/master/Avances/A02)
+#### [17 de abril:](https://github.com/LizContreras/analisis-numerico-computo-cientifico/tree/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_4/avances/A02)
 
 * Dar formato al Readme para una mejor navegacion
 * Puntualizar brevemente la aportacion de las referencias puntualizadas en el avance del 07 de abril 
