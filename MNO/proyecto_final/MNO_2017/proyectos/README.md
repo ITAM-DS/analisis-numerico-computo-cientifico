@@ -76,7 +76,7 @@ Título del proyecto: `Método de Diferencias Finitas para 3 dimensiones en CUDA
 
 Objetivo del proyecto:  Entender y exponer el algoritmo de Diferencias Finitas en 3 dimensiones así como su implementación vía GPU's y una aplicación del mismo a las ecuaciones diferenciales.
 
-* [Avance 07-04-2017](equipo_9/avance_07_04_2017). Comentario del prof: 
+* [Avance 07-04-2017](equipo_9/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios y hay preguntas que espero me puedan responder :). Muy buen avance. Para el siguiente avance podrían escribir en el trabajo individual lo que han revisado, entendido, como tipo discusión.
 
 * [Avance 17-04-2017](equipo_9/avance_17_04_2017). Comentario del prof: 
 

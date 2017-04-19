@@ -45,3 +45,12 @@ Manuel:
 - Se realizó una retroalimentación con respecto a las lecturas y dudas sobre algunos detalles técnicos
 
 - Establecimos el cronograma de actividades para los avances semanales
+
+
+## Comentarios sobre avance:
+
+* Muy interesante tema. Como entiendo la idea será hablar por ejemplo sobre las performance optimization strategies del paper de Demir y Elsherbeni y la importancia del coalesce y el uso de constant y shared memory, correcto? Estará súper bien :)
+
+* Qué ejemplos de ecuaciones están considerando? y para su código se ayudan de los devblogs de nvidia?
+
+
