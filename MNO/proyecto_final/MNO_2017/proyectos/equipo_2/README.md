@@ -11,59 +11,15 @@ Integrantes:
 **Objetivos del proyecto:** Investigar y evaluar el algoritmo de factorización QR así como su implementación en OpenMP para la solución de mínimos cuadrados.
 
 **Programa de trabajo:**
-<table>
-<colgroup>
-<col width="5%" />
-<col width="25%" />
-<col width="70%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">No.</th>
-<th align="center">Fecha</th>
-<th align="left">Actividad</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">1</td>
-<td align="center">17-04-17</td>
-<td align="left">Entender Reflexiones de Householder, sus características y propiedades.</td>
-</tr>
-<tr class="even">
-<td align="center">2</td>
-<td align="center">24-04-17</td>
-<td align="left">Entender aplicación del método de Reflexiones de Householder para cálculo QR secuencial. *Inicio de programación secuencial de QR*.</td>
-</tr>
-<tr class="odd">
-<td align="center">3</td>
-<td align="center">02-05-17</td>
-<td align="left">Entender aplicación de QR a mínimos cuadrados (MC). *Código secuencial de QR terminado e inicio de código MC*.</td>
-</tr>
-<tr class="even">
-<td align="center">4</td>
-<td align="center">08-05-17</td>
-<td align="left">Investigación sobre implementación de QR en OpenMP e inicio de programación. *Código secuencial de MC terminado*. **Iniciar programación en paralelo de OpenMP.** Empezar a redactar documento escrito.
-</td>
-</tr>
-<tr class="odd">
-<td align="center">5</td>
-<td align="center">15-05-17</td>
-<td align="left">**Códigos de implementación de QR en OpenMP y MC terminados.** Dependiendo del avance se evaluará la aplicación a un problema de regresión.
-</td>
-</tr>
-<tr class="even">
-<td align="center">6</td>
-<td align="center">22-05-17</td>
-<td align="left">Documento escrito terminado sin capítulo de complejidad y conclusiones.</td>
-</tr>
-<tr class="odd">
-<td align="center">7</td>
-<td align="center">29-05-17</td>
-<td align="left">Complejidad de algoritmo QR y conclusiones. Entrega de repo final y presentación.</td>
-</tr>
-</tbody>
-</table>
+| No. 	| Fecha      	| Actividad                                                                                                                                                                                          	|
+|-----	|------------	|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| 1   	| 17/04/2017 	| Entender Reflexiones de Householder, sus características y propiedades.                                                                                                                            	|
+| 2   	| 24/04/2017 	| Entender aplicación del método de Reflexiones de Householder para cálculo QR secuencial. Inicio de programación secuencial de QR.                                                                  	|
+| 3   	| 02/05/2017 	| Entender aplicación de QR a mínimos cuadrados (MC). Código secuencial de QR terminado e inicio de código MC.                                                                                       	|
+| 4   	| 08/05/2017 	| Investigación sobre implementación de QR en OpenMP e inicio de programación. Código secuencial de MC terminado. Iniciar programación en paralelo de OpenMP.  Empezar a redactar documento escrito. 	|
+| 5   	| 15/05/2017 	| Códigos de implementación de QR en OpenMP y MC terminados. Dependiendo del avance se evaluará la aplicación a un problema de regresión.                                                            	|
+| 6   	| 22/05/2017 	| Documento escrito terminado sin capítulo de complejidad y conclusiones.                                                                                                                            	|
+| 7   	| 29/05/2017 	| Complejidad de algoritmo QR y conclusiones. Entrega de repo final y presentación.                                                                                                                  	|
 
 **Avances del Proyecto:**
 
