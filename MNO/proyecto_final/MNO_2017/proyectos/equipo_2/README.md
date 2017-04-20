@@ -14,8 +14,8 @@ Integrantes:
 <table>
 <colgroup>
 <col width="5%" />
-<col width="11%" />
-<col width="83%" />
+<col width="15%" />
+<col width="80%" />
 </colgroup>
 <thead>
 <tr class="header">
