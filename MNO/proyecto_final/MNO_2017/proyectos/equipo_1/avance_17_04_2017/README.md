@@ -80,6 +80,6 @@ _*Plataforma CUDA*_
   1. Una vez revisado todo el material bibliográfico decidimos redefinir el objetivo del proyecto, que se describe a continuación:
     - **Objetivo:** _* Optimizar el algoritmo Word2Vec (CBOW) a través de la paralelización de redes neuronales de retro propagación implementado con PyCuda*_
   2. Se propone una implementación basada en el FrameWork propuesto en el artículo [3] Parallel back-propagation neural network training technique using CUDA on multiple GPUs.
-![framework](https://github.com/hatshex/analisis-numerico-computo-cientifico/tree/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_1/avance_17_04_2017/images/FrameworkNN_B-P.png "FrameWork")
+![framework](https://github.com/hatshex/analisis-numerico-computo-cientifico/blob/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_1/avance_17_04_2017/images/FrameworkNN_B-P.png)
 
 
