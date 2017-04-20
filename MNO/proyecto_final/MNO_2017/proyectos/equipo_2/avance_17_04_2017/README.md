@@ -45,6 +45,6 @@ Después de haber leído las secciones sugeridas de [Meyer](https://drive.google
 
 * La elección del signo del vector de Householder puede tener impacto en la estabilidad numérica e influye en que una matriz *Q* pueda ser "un poco menos ortogonal", es por ello que hicimos un ejemplo muy sencillo en el que *x1* y *||x||2* son "casi" iguales y otro donde *x1* y *-||x||2* son "casi" iguales, para entender el efecto del signo.
 
-* Debemos tener cuidado con problemas que estén mal condicionados porque los errores de redondeo pueden dar lugar a cálculos inexactos.  Investigaremos más sobre cómo implementar la elección del signo.
+* Debemos tener cuidado con problemas que estén mal condicionados porque los errores de redondeo pueden dar lugar a cálculos inexactos.  
 
-* Nuestro algoritmo debe tomar en cuenta la elección adecuada para el signo
+* Investigaremos más sobre cómo implementar la elección del signo. Nuestro algoritmo debe tomar en cuenta la elección adecuada para el signo
