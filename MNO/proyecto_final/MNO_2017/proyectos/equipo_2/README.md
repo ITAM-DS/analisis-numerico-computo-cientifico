@@ -20,7 +20,7 @@ Integrantes:
 | 4   	| 08/05/2017 	| Investigación sobre implementación de QR en OpenMP e inicio de programación. *Código secuencial de MC terminado*. **Iniciar programación en paralelo de OpenMP**.  Empezar a redactar documento escrito. 	|
 | 5   	| 15/05/2017 	| **Códigos de implementación de QR en OpenMP y MC terminados**. Dependiendo del avance se evaluará la aplicación a un problema de regresión.                                                            	|
 | 6   	| 22/05/2017 	| Documento escrito terminado sin capítulo de complejidad y conclusiones.                                                                                                                            	|
-| 7   	| 29/05/2017 	| Complejidad de algoritmo QR y conclusiones. Entrega de repo final y presentación.                                                                                                                  	|
+| 7   	| Por determinar 	| Complejidad de algoritmo QR y conclusiones. Entrega de repo final y presentación.                                                                                                                  	|
 
 **Avances del Proyecto:**
 
