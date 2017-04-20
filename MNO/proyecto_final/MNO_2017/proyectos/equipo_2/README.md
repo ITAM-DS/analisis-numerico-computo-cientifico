@@ -11,7 +11,8 @@ Integrantes:
 **Objetivos del proyecto:** Investigar y evaluar el algoritmo de factorización QR así como su implementación en OpenMP para la solución de mínimos cuadrados.
 
 **Programa de trabajo:**
-| No. 	| Fecha      	| Actividad                                                                                                                                                                                          	|
+
+| No. 	| Fecha      	| Actividad                                                                                                                                                                                  	|
 |-----	|------------	|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
 | 1   	| 17/04/2017 	| Entender Reflexiones de Householder, sus características y propiedades.                                                                                                                            	|
 | 2   	| 24/04/2017 	| Entender aplicación del método de Reflexiones de Householder para cálculo QR secuencial. Inicio de programación secuencial de QR.                                                                  	|
