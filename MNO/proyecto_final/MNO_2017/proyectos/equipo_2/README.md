@@ -36,7 +36,7 @@ Integrantes:
 
 ## Referencias:
 
-* [Reflexiones Householder, rotaciones Givens, mínimos cuadrados en secciones 5.4 a 5.7 del libro: Carl D. Meyer. Matrix analysis and applied linear Algebra.](https://drive.google.com/file/d/0BxMtevFKwTW_ZmpwcDd1M0RTVzA/view?usp=sharing) 
+* Reflexiones Householder, rotaciones Givens, mínimos cuadrados en secciones 5.4 a 5.7 del libro: [Carl D. Meyer. Matrix analysis and applied linear Algebra.](https://drive.google.com/file/d/0BxMtevFKwTW_ZmpwcDd1M0RTVzA/view?usp=sharing) 
 
 * Teoría sobre QR: secciones 5.1.1 a 5.1.4, 5.1.6 a 5.1.8, 5.1.9, 5.1.11, 5.2 excepto 5.2.6 a 5.2.10 del libro: [G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013.](https://drive.google.com/file/d/0B5IJ1w6MjxegWGg4V1pDbFhaSzQ/view?usp=sharing)
 
