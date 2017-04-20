@@ -8,7 +8,7 @@
 ## Trabajo Individual
 
 ### **Paulina**
-##### Referencias de Word Embeddings, Word2Vec y Redes Neuronales.
+Referencias de Word Embeddings, Word2Vec y Redes Neuronales.
             
                Word embedding es un conjunto de modelos que se usan en técnicas de aprendizaje en procesamiento del lenguaje natural,   donde las palabras son mapeadas de un texto (corpus) a vectores con entradas reales. La idea es tomar un corpus (texto) de entrada y producir un espacio vectorial de salida de cientos de dimensiones, ya que cada palabra única de corpus tiene un vector asignado. Los vectores son posicionados en el espacio de tal manera que aquellos que comparten espacios comunes están cercanos.
               
@@ -25,7 +25,7 @@
               
 
 ### **Gabriela**: 
-#### Revisión de la implementación del algoritmo, posibles formas de optimizarlo.
+Revisión de la implementación del algoritmo, posibles formas de optimizarlo.
   1. Revisión de la implementación del algoritmo en python para identificar que partes de código se pueden paralelizar y/o optimizar.
     - Se localizó un repositorio en github donde se explica claramente el algoritmo y su implementación en python.
         * [Repositorio de Victor Mijangos](https://github.com/VMijangos/PLN/blob/master/word_embeddings.ipynb)
@@ -48,7 +48,7 @@
 
 
 ### **Guillermina**
-#### Plataforma CUDA
+Plataforma CUDA
 
   - Instalacion del driver y toolkit de CUDA: 
       -- http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#axzz4eMvndrn1
