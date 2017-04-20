@@ -44,11 +44,11 @@ _*Revisión de la implementación del algoritmo, posibles formas de optimizarlo.
         * [7] Ji, S., Satish, N., Li, S., & Dubey, P. (2016). [Parallelizing word2vec in shared and distributed memory](https://drive.google.com/a/ci.itam.mx/file/d/0ByF7NuX9EW1IU1VaX0puUjM2WFE/view?usp=sharing). arXiv preprint arXiv:1604.04661.
 
   2. Investigación de las opciones para ejecutar código de Cuda C y Python. Esta semana se revisaron las diversas formas en las que se puede integrar y ejecutar código CUDA C desde python, a continuación se listan:
-    - [PyCUDA and PyOpenCL](https://developer.nvidia.com/pycuda).
-    - [NumbaPro](https://docs.continuum.io/numbapro/).
-    - [Theano](http://deeplearning.net/software/theano/tutorial/using_gpu.html).
-    - [gnumpy](http://www.cs.toronto.edu/~tijmen/gnumpyTr.pdf).
-    - [CUDA C++ functions in Python via *.so and ctypes](http://bikulov.org/blog/2013/10/01/using-cuda-c-plus-plus-functions-in-python-via-star-dot-so-and-ctypes/)
+      - [PyCUDA and PyOpenCL](https://developer.nvidia.com/pycuda).
+      - [NumbaPro](https://docs.continuum.io/numbapro/).
+      - [Theano](http://deeplearning.net/software/theano/tutorial/using_gpu.html).
+      - [gnumpy](http://www.cs.toronto.edu/~tijmen/gnumpyTr.pdf).
+      - [CUDA C++ functions in Python via *.so and ctypes](http://bikulov.org/blog/2013/10/01/using-cuda-c-plus-plus-functions-in-python-via-star-dot-so-and-ctypes/)
 
 
 ### **Guillermina**
@@ -58,24 +58,17 @@ _*Plataforma CUDA*_
       
  - Prueba de un programa CUDA en entorno UBUNTU:
  
-      -- [Hardware para el proyecto](https://drive.google.com/open?id=0ByF7NuX9EW1IZU1XaWdodVJSXzQ)
-      
-      -- [Tarjeta grafica](https://drive.google.com/open?id=0ByF7NuX9EW1IZnRudEJoWlNWVUk)
-          
-      -- [Codigos compilados y ejecutados como primera prueba de la instalacion de CUDA](https://drive.google.com/open?id=0ByF7NuX9EW1IS1M3aWJBMnhGRGs)
-          
-     -- La compilacion de los programas en CUDA se realiza con: ```nvcc <archivo.cu> -o <archivo.out>```
-     
-     -- La ejecucion se hace con: ```./<archivo.out> ```
+      * [Hardware para el proyecto](https://drive.google.com/open?id=0ByF7NuX9EW1IZU1XaWdodVJSXzQ)
+      * [Tarjeta grafica](https://drive.google.com/open?id=0ByF7NuX9EW1IZnRudEJoWlNWVUk)
+      * [Codigos compilados y ejecutados como primera prueba de la instalacion de CUDA](https://drive.google.com/open?id=0ByF7NuX9EW1IS1M3aWJBMnhGRGs)
+      * La compilacion de los programas en CUDA se realiza con: ```nvcc <archivo.cu> -o <archivo.out>```
+      * La ejecucion se hace con: ```./<archivo.out> ```
 
   - Versiones instaladas:
-  
-    -- [gcc](https://drive.google.com/open?id=0ByF7NuX9EW1ISVhPd0JhMmVsWEE)
+      * [gcc](https://drive.google.com/open?id=0ByF7NuX9EW1ISVhPd0JhMmVsWEE)
+      * [nvcc](https://drive.google.com/open?id=0ByF7NuX9EW1IYTJETHFQSWpRRlU)
     
-    -- [nvcc](https://drive.google.com/open?id=0ByF7NuX9EW1IYTJETHFQSWpRRlU)
-    
-    
-    
+
 ## Trabajo en Equipo
 
 ### Redefinición del alcance del proyecto.
@@ -90,6 +83,4 @@ _*Plataforma CUDA*_
     - Eliminar signos de puntuación y acentos.
     - Generar el vocabulario de las palabras, utilizando la estructura de diccionarios.
     - La generación de matrices con la librería numpy de python.
-    - La dimensión de los vectores de palabras será de 2.
-
-
+    - Los vectores de palabras tendrán una dimensión = 2(x,y), para que sea fácil graficar el resultado de las palabras.
