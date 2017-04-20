@@ -40,7 +40,7 @@ Debido a la dificultad que se tiene con la GPU del equipo de uno de los integran
 
  ## Comentarios sobre el avance:
 
- * Ambos trabajos individuales están muy bien y creo que la parte que está resuelta es la aplicación: DL para el juego de breakout pues la documentación para ejecución de los frameworks o librerías o funciones existe y en general está bien y ambos han tenido pasos exitosos (ya sea construyendo el ambiente vía docker o la ejecución de ejemplos). Sin embargo, como podemos observar en estas referencias de este nuevo avance hay que cubrir una literatura vasta y amplia para que exista un entendimiento del DQN de forma completa y que un primer acercamiento consistiría en los siguientes temas:
+ * Ambos trabajos individuales están muy bien y creo que la parte que está resuelta es la aplicación: DL para el juego de breakout pues la documentación para ejecución de los frameworks o librerías o funciones existe y en general está bien y ambos han tenido pasos exitosos (ya sea construyendo el ambiente vía docker o la ejecución de ejemplos). Sin embargo, como podemos observar en estas referencias de este nuevo avance que uds proporcionan hay que cubrir una literatura vasta y amplia para que exista un entendimiento del DQN de forma completa y que un primer acercamiento consistiría en los siguientes temas:
 
 -) Reinforcement learning.
 
