@@ -129,5 +129,13 @@ Revisión examen módulo 1
 
 [III/3.2.1 (hasta dificultades en la implementación de eliminación Gaussiana simple) ](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
+## Clase 14
+
+17 de abril
+
+[III/3.2.1 (terminamos la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+[III/3.2.2 (hasta nota sobre algunos conceptos geométricos)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
 
 

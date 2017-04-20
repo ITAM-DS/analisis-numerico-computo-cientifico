@@ -38,6 +38,11 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 
 
 ---
+## [Equipo 5](equipo_5)
+
+[Avance 07-04-2017](equipo_5/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay sugerencias en cuanto al objetivo del proyecto.
+
+---
 
 ## [Equipo 6](equipo_6)
 
@@ -72,11 +77,11 @@ Objetivo del proyecto: El objetivo del proyecto es utilizar la API de OpenMP par
 
 ## [Equipo 9](equipo_9)
 
-Título del proyecto: ```Método de Diferencias Finitas para 3 dimensiones en CUDA-C```
+Título del proyecto: `Método de Diferencias Finitas para 3 dimensiones en CUDA-C`
 
 Objetivo del proyecto:  Entender y exponer el algoritmo de Diferencias Finitas en 3 dimensiones así como su implementación vía GPU's y una aplicación del mismo a las ecuaciones diferenciales.
 
-* [Avance 07-04-2017](equipo_9/avance_07_04_2017). Comentario del prof: 
+* [Avance 07-04-2017](equipo_9/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios y hay preguntas que espero me puedan responder :). Muy buen avance. Para el siguiente avance podrían escribir en el trabajo individual lo que han revisado, entendido, como tipo discusión.
 
 * [Avance 17-04-2017](equipo_9/avance_17_04_2017). Comentario del prof: 
 
@@ -96,19 +101,34 @@ Objetivo del proyecto: Construir un ambiente distribuido y portable que permita 
 
 ## [Equipo 11](equipo_11)
 
-Ttulo del proyecto: `PCA aplicado al consumo de Proteínas en las Dietas de 25 Países`
+Título del proyecto: `PCA aplicado al consumo de Proteínas en las Dietas de 25 Países`
 
-Objetivo del proyecto: El objetivo del proyecto es
-detectar patrones de consumo de protenas en las dietas
-de 25 pases implementando componentes principales y
-descomposición de valores singulares (SVD) en
-el lenguaje de programacin C usando metodologías
-computacionales de optimización.
+Objetivo del proyecto: `El objetivo del proyecto es 
+detectar patrones de consumo de proteínas en las dietas
+de 25 pases implementando componentes principales y 
+descomposición de valores singulares (SVD) en 
+el lenguaje de programación C usando metodologías
+computacionales de optimización.`
 
 [Avances del proyecto](equipo_11):
 
 * [Avance 07-04-2017](equipo_11/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay tres nuevas referencias en [REAMDE.md](equipo_11). Muy buen avance en la lectura de la teoría y el objetivo a realizar. Hay que hacer la liga con componentes principales y ver implementación de algún ordenamiento (por ejemplo el round robin) para el segundo avance.
 
+* [Avance 17-04-2017](equipo_11/avance_17_04_2017). 
+
+* [Avance 24-04-2017](equipo_11/avance_24_04_2017). 
+
+* [Avance 02-05-2017](equipo_11/avance_02_05_2017). 
+
+* [Avance 08-05-2017](equipo_11/avance_08_05_2017). 
+
+* [Avance 15-05-2017](equipo_11/avance_15_05_2017). 
+
+[Trabajo escrito](equipo_11/trabajo_escrito).
+
+[Presentación](equipo_11/presentacion).
+
+[Implementación](equipo_11/implementacion).
 
 ---
 ## [Equipo 12](equipo_12)
