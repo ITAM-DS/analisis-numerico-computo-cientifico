@@ -34,8 +34,7 @@ y se genero el siguiente [markdown.](code/factorizacion_svd_cuda_teoria.Rmd)
 
 Asi mismo se realizó la comprobación de resultados del algoritmo SVD para una matriz (3x3) con CUDA Toolkit E.1. y usando SciPy y el algoritmo de SVD implementado en Python con la funcion de numpy ["np.linalg.svd"](code/Clase_SVD.ipynb), donde al ejecutar ambos programas y comparar las salidas, obtuvimos los mismos resultados de U, S y V* !!!!
 
-![GitHub Logo](images/cudaresul.PNG) 
-![GitHub Logo](images/cuda_python_resul.PNG) 
+![GitHub Logo](images/cuda_python_resul.png) 
 
 ### Equipo
 Se define usar la factorizacion SVD para nuestro problema de siniestros, integrando el toolkit de CUDA-C.
