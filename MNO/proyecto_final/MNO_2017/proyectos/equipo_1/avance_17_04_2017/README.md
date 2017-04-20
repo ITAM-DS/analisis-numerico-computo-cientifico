@@ -30,18 +30,18 @@ _*Referencias de Word Embeddings, Word2Vec y Redes Neuronales.*_
 _*Revisión de la implementación del algoritmo, posibles formas de optimizarlo.*_
 
   1. Revisión de la implementación del algoritmo en python para identificar que partes de código se pueden paralelizar y/o optimizar.
-    - Se localizó un repositorio en github donde se explica claramente el algoritmo y su implementación en python.
-        * [Repositorio de Victor Mijangos](https://github.com/VMijangos/PLN/blob/master/word_embeddings.ipynb)
-        
-    - Se localizaron artículos acerca de la paralelización de redes neuronales con back-propagation en CUDA, así como la optimización del Word2Vec en Sistemas de Memoria Distribuida, a continuación se listan los artículos:
-    
-        * [1] Shunlu Zhang, Pavan Gunupudi, Qi-Jun Zhang, ["Parallel back-propagation neural network training technique using CUDA on multiple GPUs"](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8IRldNWjBEMk1yV3M/view?usp=sharing), Numerical Electromagnetic and Multiphysics Modeling and Optimization (NEMO) 2015 IEEE MTT-S International Conference on, pp. 1-3, 2015.
-        * [2] H. Jang, A. Park, K. Jung, ["Neural Network Implementation Using CUDA and OpenMP"](https://drive.google.com/a/ci.itam.mx/file/d/0ByF7NuX9EW1IMjgyX0tneS0zdUU/view?usp=sharing), Digital Image Computing: Techniques and Applications 0 (2008) 155-161.
-        * [3] Lopes N., Ribeiro B. (2009) ["GPU Implementation of the Multiple Back-Propagation Algorithm"](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8IZ2pQeXFBTzd2UE0/view?usp=sharing). In: Corchado E., Yin H. (eds) Intelligent Data Engineering and Automated Learning - IDEAL 2009. IDEAL 2009. Lecture Notes in Computer Science, vol 5788. Springer, Berlin, Heidelberg, pp. 449–456, Springer, 2009. 
-        * [4] S. Zhang, C. Zhang, Z. You, R. Zheng, and B. Xu, ["Asynchronous Stochastic Gradient Descent for DNN Training"](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8IQk81Ul9lZTdXSFU/view?usp=sharing), ICASSP, 2013.
-        * [5] Honghoon Jang, Anjin Park, and Keechul Jung (2008), ["Neural Network Implementation using CUDA and OpenMP"](https://drive.google.com/a/ci.itam.mx/file/d/0ByF7NuX9EW1IMjgyX0tneS0zdUU/view?usp=sharing), Proceedings of the 2008 Digital Image Computing: Techniques and Applications, pp 155–161.
-        * [6] Thulasiram, R. K., Rahman, R. M., & Thulasiraman, P. (2003, October). [Neural network training algorithms on parallel architectures for finance applications](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8IV3B4cE1WbnBXeXc/view?usp=sharing). In Parallel Processing Workshops, 2003. Proceedings. 2003 International Conference on (pp. 236-243). IEEE.
-        * [7] Ji, S., Satish, N., Li, S., & Dubey, P. (2016). [Parallelizing word2vec in shared and distributed memory](https://drive.google.com/a/ci.itam.mx/file/d/0ByF7NuX9EW1IU1VaX0puUjM2WFE/view?usp=sharing). arXiv preprint arXiv:1604.04661.
+      - Se localizó un repositorio en github donde se explica claramente el algoritmo y su implementación en python.
+          * [Repositorio de Victor Mijangos](https://github.com/VMijangos/PLN/blob/master/word_embeddings.ipynb)
+          
+      - Se localizaron artículos acerca de la paralelización de redes neuronales con back-propagation en CUDA, así como la optimización del Word2Vec en Sistemas de Memoria Distribuida, a continuación se listan los artículos:
+      
+          * [1] Shunlu Zhang, Pavan Gunupudi, Qi-Jun Zhang, ["Parallel back-propagation neural network training technique using CUDA on multiple GPUs"](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8IRldNWjBEMk1yV3M/view?usp=sharing), Numerical Electromagnetic and Multiphysics Modeling and Optimization (NEMO) 2015 IEEE MTT-S International Conference on, pp. 1-3, 2015.
+          * [2] H. Jang, A. Park, K. Jung, ["Neural Network Implementation Using CUDA and OpenMP"](https://drive.google.com/a/ci.itam.mx/file/d/0ByF7NuX9EW1IMjgyX0tneS0zdUU/view?usp=sharing), Digital Image Computing: Techniques and Applications 0 (2008) 155-161.
+          * [3] Lopes N., Ribeiro B. (2009) ["GPU Implementation of the Multiple Back-Propagation Algorithm"](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8IZ2pQeXFBTzd2UE0/view?usp=sharing). In: Corchado E., Yin H. (eds) Intelligent Data Engineering and Automated Learning - IDEAL 2009. IDEAL 2009. Lecture Notes in Computer Science, vol 5788. Springer, Berlin, Heidelberg, pp. 449–456, Springer, 2009. 
+          * [4] S. Zhang, C. Zhang, Z. You, R. Zheng, and B. Xu, ["Asynchronous Stochastic Gradient Descent for DNN Training"](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8IQk81Ul9lZTdXSFU/view?usp=sharing), ICASSP, 2013.
+          * [5] Honghoon Jang, Anjin Park, and Keechul Jung (2008), ["Neural Network Implementation using CUDA and OpenMP"](https://drive.google.com/a/ci.itam.mx/file/d/0ByF7NuX9EW1IMjgyX0tneS0zdUU/view?usp=sharing), Proceedings of the 2008 Digital Image Computing: Techniques and Applications, pp 155–161.
+          * [6] Thulasiram, R. K., Rahman, R. M., & Thulasiraman, P. (2003, October). [Neural network training algorithms on parallel architectures for finance applications](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8IV3B4cE1WbnBXeXc/view?usp=sharing). In Parallel Processing Workshops, 2003. Proceedings. 2003 International Conference on (pp. 236-243). IEEE.
+          * [7] Ji, S., Satish, N., Li, S., & Dubey, P. (2016). [Parallelizing word2vec in shared and distributed memory](https://drive.google.com/a/ci.itam.mx/file/d/0ByF7NuX9EW1IU1VaX0puUjM2WFE/view?usp=sharing). arXiv preprint arXiv:1604.04661.
 
   2. Investigación de las opciones para ejecutar código de Cuda C y Python. Esta semana se revisaron las diversas formas en las que se puede integrar y ejecutar código CUDA C desde python, a continuación se listan:
       - [PyCUDA and PyOpenCL](https://developer.nvidia.com/pycuda).
@@ -77,10 +77,10 @@ _*Plataforma CUDA*_
   2. Se propone una implementación basada en el FrameWork que se explica en el artículo [3] Parallel back-propagation neural network training technique using CUDA on multiple GPUs.
 ![framework](https://github.com/hatshex/analisis-numerico-computo-cientifico/blob/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_1/avance_17_04_2017/images/FrameworkNN_B-P.png)
   3. Entre las opciones que se investigaron para la integración de python y CUDA, se elige utilizar **PyCUDA** debido a que nos permite reutilizar código que ya se tiene desarrollado en python para los primeros pasos que son: 
-    - Leer un archivo.
-    - Dividir el texto en sentencias, cuando se encuentre un punto o un retorno de carro.
-    - Convertir a minúsculas.
-    - Eliminar signos de puntuación y acentos.
-    - Generar el vocabulario de las palabras, utilizando la estructura de diccionarios.
-    - La generación de matrices con la librería numpy de python.
-    - Los vectores de palabras tendrán una dimensión = 2(x,y), para que sea fácil graficar el resultado de las palabras.
+      - Leer un archivo.
+      - Dividir el texto en sentencias, cuando se encuentre un punto o un retorno de carro.
+      - Convertir a minúsculas.
+      - Eliminar signos de puntuación y acentos.
+      - Generar el vocabulario de las palabras, utilizando la estructura de diccionarios.
+      - La generación de matrices con la librería numpy de python.
+      - Los vectores de palabras tendrán una dimensión = 2(x,y), para que sea fácil graficar el resultado de las palabras.
