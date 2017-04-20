@@ -74,3 +74,12 @@ Intentaremos implementar el algoritmo con redes de convolución para explorar el
  - [Playing Atari with Deep Reinforcement Learning](https://arxiv.org/pdf/1312.5602.pdf)
  
 - [Massively Parallel Methods for Deep Reinforcement Learning](https://arxiv.org/pdf/1507.04296.pdf)
+
+
+## Comentario sobre el avance:
+
+* Muy interesante tema e importante. Buenas referencias.
+
+* Ixchel, vi rápidamente tu propuesta, creo sí tiene que ver con la maestría, pero lo deciden ustedes.
+
+* Buen avance de Amaury. Leyendo las dos propuestas de algoritmos me parece que el DQN llevará más tiempo del planeado en parte por entendimiento del material y lectura de documentación. Mi sugerencia es continuar con el objetivo pero revisar el Policy Gradient y acotarse a revisar el método de descenso en gradiente y descenso en gradiente estocástico el cual les ayudará a ir cubriendo el material necesario para el DQN en un futuro.
