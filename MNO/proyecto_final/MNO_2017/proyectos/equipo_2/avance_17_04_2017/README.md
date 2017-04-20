@@ -48,3 +48,5 @@ Después de haber leído las secciones sugeridas de [Meyer](https://drive.google
 * Debemos tener cuidado con problemas que estén mal condicionados porque los errores de redondeo pueden dar lugar a cálculos inexactos.  
 
 * Investigaremos más sobre cómo implementar la elección del signo. Nuestro algoritmo debe tomar en cuenta la elección adecuada para el signo
+
+* No nos quedó claro qué utilidad y ventajas tiene la representación de la forma factorizada (5.1.6 del libro de Golub).
