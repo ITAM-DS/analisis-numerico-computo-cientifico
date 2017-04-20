@@ -5,12 +5,11 @@
   - **Paulina Salgado Figueroa**
   - **Guillermina Montanari Luján**
 
-## Trabajo:
-### Individual
-<div style = "height: 40px;"></div>
-#### **Paulina**
+## Trabajo Individual
+
+### **Paulina**
 ##### Referencias de Word Embeddings, Word2Vec y Redes Neuronales.
-              
+            
                Word embedding es un conjunto de modelos que se usan en técnicas de aprendizaje en procesamiento del lenguaje natural,   donde las palabras son mapeadas de un texto (corpus) a vectores con entradas reales. La idea es tomar un corpus (texto) de entrada y producir un espacio vectorial de salida de cientos de dimensiones, ya que cada palabra única de corpus tiene un vector asignado. Los vectores son posicionados en el espacio de tal manera que aquellos que comparten espacios comunes están cercanos.
               
               Para ello se utilizan redes neuronales, (aprendizaje no supervisado) con una capa oculta. Las neuronas en la capa oculta son todas lineales. La capa de entrada está configurada para tener tantas neuronas como hay palabras en el vocabulario para el entrenamiento. El tamaño de la capa oculta se ajusta a la dimensionalidad de los vectores de palabras resultantes. El tamaño de la capa de salida es el mismo de la capa de entrada.
@@ -25,8 +24,8 @@
               
               
 
-#### **Gabriela**: 
-##### Revisión de la implementación del algoritmo, posibles formas de optimizarlo.
+### **Gabriela**: 
+#### Revisión de la implementación del algoritmo, posibles formas de optimizarlo.
   1. Revisión de la implementación del algoritmo en python para identificar que partes de código se pueden paralelizar y/o optimizar.
     - Se localizó un repositorio en github donde se explica claramente el algoritmo y su implementación en python.
         * [Repositorio de Victor Mijangos](https://github.com/VMijangos/PLN/blob/master/word_embeddings.ipynb)
@@ -48,7 +47,8 @@
     - [CUDA C++ functions in Python via *.so and ctypes](http://bikulov.org/blog/2013/10/01/using-cuda-c-plus-plus-functions-in-python-via-star-dot-so-and-ctypes/)
 
 
-#### **Guillermina**: plataforma CUDA
+### **Guillermina**
+#### Plataforma CUDA
 
   - Instalacion del driver y toolkit de CUDA: 
       -- http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#axzz4eMvndrn1
