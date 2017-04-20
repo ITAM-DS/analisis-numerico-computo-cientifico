@@ -25,6 +25,8 @@ En general se busca que esa matriz P produzca más ceros en un vector a través 
 
 **Fabiola Cerón**
 
+Leía las primeras dos referencias sugeridas por Erick para entender a fondo las Reflexiones de Householder.  Entendí que se trata de una serie de transformaciones para llevar a cabo la triangularización de una matriz.  Lo primero es construir $Qx = \alph*epsilon$ donde $epsilon$
+
 ### Equipo:
 
 Derivado de los comentarios del profesor sobre el primer avance hemos decidido cambiar el enfoque del proyecto. Ahora nos enfocaremos en factorización QR (método de reflexiones Householder) puesto que es la manera generalizada de solución de problemas de mínimos cuadrados.
