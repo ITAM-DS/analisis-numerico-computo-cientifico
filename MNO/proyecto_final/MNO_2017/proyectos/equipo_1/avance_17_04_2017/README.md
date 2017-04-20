@@ -25,10 +25,12 @@ Referencias de Word Embeddings, Word2Vec y Redes Neuronales.
               
 
 ### **Gabriela**: 
-Revisión de la implementación del algoritmo, posibles formas de optimizarlo.
+_*Revisión de la implementación del algoritmo, posibles formas de optimizarlo.*_
+
   1. Revisión de la implementación del algoritmo en python para identificar que partes de código se pueden paralelizar y/o optimizar.
     - Se localizó un repositorio en github donde se explica claramente el algoritmo y su implementación en python.
         * [Repositorio de Victor Mijangos](https://github.com/VMijangos/PLN/blob/master/word_embeddings.ipynb)
+        
     - Se localizaron artículos acerca de la paralelización de redes neuronales con back-propagation en CUDA, así como la optimización del Word2Vec en Sistemas de Memoria Distribuida, a continuación se listan los artículos:
     
         * Shunlu Zhang, Pavan Gunupudi, Qi-Jun Zhang, ["Parallel back-propagation neural network training technique using CUDA on multiple GPUs"](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8IRldNWjBEMk1yV3M/view?usp=sharing), Numerical Electromagnetic and Multiphysics Modeling and Optimization (NEMO) 2015 IEEE MTT-S International Conference on, pp. 1-3, 2015.
