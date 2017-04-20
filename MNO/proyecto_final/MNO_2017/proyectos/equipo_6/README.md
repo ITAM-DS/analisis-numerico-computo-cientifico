@@ -25,7 +25,7 @@ __Calendario:__
 2. Se valido algoritmo TEST de SVD en CUDA-C
 3. Se valido algortimo TEST de SVD en Python
 4. Se revisarón las referencias para consolidar la teoria. 
-5. Se definio SGE (Sun Grind Engine) para la distribución de tareas (chunks)
+5. Se definio SGE (Sun Grid Engine) para la distribución de tareas (chunks)
 
 * [Avance 24-04-2017](avance_24_04_2017).
 
