@@ -30,7 +30,7 @@ SVD en cuda: [S. Lahabar, P. J. Narayanan. Singular Value Decomposition on GPU u
 
 Se menciona el método de [Golub-Reinsch](http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf) para el cual es útil leer: G. Golub, W. Kahan. Calculating the singular values and pseudo inverse of a matrix y el capítulo 8 del libro: G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013.
 
-y se genero el siguiente [markdown.](code/factorizacion_svd_cuda_teoria.Rmd)
+y se genero el siguiente [markdown.](code/factorizacion_svd_cuda_teoria.html)
 
 Asi mismo se realizó la comprobación de resultados del algoritmo SVD para una matriz (3x3) con CUDA Toolkit E.1. y usando SciPy y el algoritmo de SVD implementado en Python con la funcion de numpy ["np.linalg.svd"](code/Clase_SVD.ipynb), donde al ejecutar ambos programas y comparar las salidas, obtuvimos los mismos resultados de U, S y V* !!!!
 
