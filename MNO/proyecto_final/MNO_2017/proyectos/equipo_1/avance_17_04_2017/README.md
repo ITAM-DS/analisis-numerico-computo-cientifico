@@ -9,6 +9,8 @@
 
 ## Trabajo Individual
 
+---
+
 ### **Paulina**
 _*Referencias de Word Embeddings, Word2Vec y Redes Neuronales.*_
             
@@ -24,9 +26,10 @@ _*Referencias de Word Embeddings, Word2Vec y Redes Neuronales.*_
               
               -Exploiting Similarities among Languages for Machine Translation, Tomas Mikolov, Quoc V. Le, Ilya Sutskever, 2013.
               
-              
+---              
 
 ### **Gabriela**: 
+
 _*Revisión de la implementación del algoritmo, posibles formas de optimizarlo.*_
 
   1. Revisión de la implementación del algoritmo en python para identificar que partes de código se pueden paralelizar y/o optimizar.
@@ -50,6 +53,7 @@ _*Revisión de la implementación del algoritmo, posibles formas de optimizarlo.
       - [gnumpy](http://www.cs.toronto.edu/~tijmen/gnumpyTr.pdf).
       - [CUDA C++ functions in Python via *.so and ctypes](http://bikulov.org/blog/2013/10/01/using-cuda-c-plus-plus-functions-in-python-via-star-dot-so-and-ctypes/)
 
+---
 
 ### **Guillermina**
 _*Plataforma CUDA*_
