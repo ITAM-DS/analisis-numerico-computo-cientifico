@@ -15,7 +15,7 @@ Trabajo:
 
 **Mónica Ballesteros**
 
-Realicé la lectura de Meyer y Golub, comprendiendo en primer lugar, definiciones de matrices ortogonales, sus propiedades como la preservación de la norma de un vector, la preservación de ortogonalidad en su inversa  y del producto de 2 matrices ortogonales, pero no siempre en la suma, entre otras.  de reflexión HH.
+Realicé la lectura de Meyer y Golub, comprendiendo en primer lugar, definiciones de matrices ortogonales, sus propiedades como la preservación de la norma de un vector, la preservación de ortogonalidad en su inversa  y del producto de 2 matrices ortogonales, pero no siempre en la suma, entre otras.  Las definiciones anteriores son la base del entendimiento de la trasformación de reflexión HH.
 
 Con la referencia en Golub (ejemplo 5.1.1.) pude aterrizar el concepto de trasformación de reflexión. La reflexión de Householder (P- matriz de Householder) , está basada en una transformación ortogonal con el fin de aprovechar los beneficios de sus propiedades por ser ortogonal, donde se presenta un componente principal que es un vector conocido como vector de Householder (v). Si un vector x multiplica a la matrix P, entonces se refleja x en el hiperplano span (v), bajo la lectura de Meyer, aprecié geométricamente la dicha reflexión.
 
@@ -25,7 +25,7 @@ En general se busca que esa matriz P produzca más ceros en un vector a través 
 
 **Fabiola Cerón**
 
-Leía las primeras dos referencias sugeridas por Erick para entender a fondo las Reflexiones de Householder.  Entendí que se trata de una serie de transformaciones para llevar a cabo la triangularización de una matriz.  Lo primero es construir $Qx = \alph*epsilon$ donde $epsilon$
+Leía las primeras dos referencias sugeridas por Erick para entender a fondo las Reflexiones de Householder.  Entendí que se trata de una serie de transformaciones para llevar a cabo la triangularización de una matriz.  Lo primero es construir *Q**x* = *α* \* *ϵ* donde *ϵ*
 
 ### Equipo:
 
