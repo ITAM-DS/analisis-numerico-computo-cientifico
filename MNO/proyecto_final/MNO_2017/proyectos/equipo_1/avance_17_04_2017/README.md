@@ -2,11 +2,9 @@
 
 ## Integrantes:
 
-** Gabriela Flores**
-
-** Paulina Salgado**
-
-** Guillermina Montanari**
+**Gabriela Flores**
+**Paulina Salgado**
+**Guillermina Montanari**
 
 ## Trabajo:
 ### Individual
@@ -31,8 +29,10 @@
 1. Revisión de la implementación del algoritmo en python para identificar que partes de código se pueden paralelizar y/o optimizar.
   - Se localizaron artículos acerca de la paralelización de redes neuronales con back-propagation en CUDA, ya que Word2Vec las utiliza, a continuación se listan los artículos:
     + [Shunlu Zhang, Pavan Gunupudi, Qi-Jun Zhang, "Parallel back-propagation neural network training technique using CUDA on multiple GPUs", Numerical Electromagnetic and Multiphysics Modeling and Optimization (NEMO) 2015 IEEE MTT-S International Conference on, pp. 1-3, 2015.](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8IRldNWjBEMk1yV3M/view?usp=sharing)
-2. Investigación de las opciones para ejecutar código de Cuda C y Python.
 
+2. Investigación de las opciones para ejecutar código de Cuda C y Python.
+2. Another item
+  * Unordered sub-list. 
 
 
 **Guillermina**: plataforma CUDA
