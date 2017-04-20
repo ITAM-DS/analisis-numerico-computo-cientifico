@@ -41,10 +41,10 @@ Definimos un plan de trabajo, el cual se puede consultar en la carpeta principal
 
 Después de haber leído las secciones sugeridas de [Meyer](https://drive.google.com/file/d/0BxMtevFKwTW_ZmpwcDd1M0RTVzA/view?usp=sharing) y [Golub, Van Loan](https://drive.google.com/file/d/0B5IJ1w6MjxegWGg4V1pDbFhaSzQ/view?usp=sharing) discutimos los siguientes puntos:
 
-* Cálculo del vector de Householder
+* El algoritmo para el cálculo del vector de Householder.
 
 * La elección del signo del vector de Householder puede tener impacto en la estabilidad numérica e influye en que una matriz *Q* pueda ser "un poco menos ortogonal", es por ello que hicimos un ejemplo muy sencillo en el que *x1* y *||x||2* son "casi" iguales y otro donde *x1* y *-||x||2* son "casi" iguales, para entender el efecto del signo.
 
-* Debemos tener cuidado con problemas que estén mal condicionados porque los errores de redondeo pueden dar lugar a cálculos inexactos
+* Debemos tener cuidado con problemas que estén mal condicionados porque los errores de redondeo pueden dar lugar a cálculos inexactos.  Investigaremos más sobre cómo implementar la elección del signo.
 
 * Nuestro algoritmo debe tomar en cuenta la elección adecuada para el signo
