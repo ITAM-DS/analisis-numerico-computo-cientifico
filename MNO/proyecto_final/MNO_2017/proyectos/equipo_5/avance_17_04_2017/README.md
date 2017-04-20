@@ -60,7 +60,7 @@ Sugiero continúen con la aplicación pero cubran la siguiente literatura sobre 
 
 * Paper del tipo "optimization vs learning": [L. Bottou, O. Bousquet. The Tradeoffs of Large Scale Learning](http://leon.bottou.org/publications/pdf/nips-2007.pdf)
 
-* Sobre tricks en backprop: [Y. LeCunn, L. Bottou, G. B. Orr, K. R. Müller](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf)
+* Sobre tricks en backprop: [Y. LeCunn, L. Bottou, G. B. Orr, K. R. Müller. Efficient BackProp](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf)
 
 Pueden revisar estas referencias para el tercer avance y enfocarse en particular hacia SG.
 
