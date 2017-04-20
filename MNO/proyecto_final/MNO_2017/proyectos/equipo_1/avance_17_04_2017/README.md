@@ -1,9 +1,11 @@
-# Avance_17_04_2017
-
-## Integrantes:
-  - **Gabriela Flores Bracamontes**
-  - **Paulina Salgado Figueroa**
-  - **Guillermina Montanari Luján**
+![logo](https://github.com/hatshex/analisis-numerico-computo-cientifico/blob/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_1/avance_17_04_2017/images/logoitam.gif)
+# Maestría en Ciencia de Datos
+## Proyecto Final
+  * Avance 17 de abril de 2017
+  * Alumnas:
+    - Gabriela Flores Bracamontes | Clave: 160124 |
+    - Guillermina Montanari Luján | Clave: 101421 |
+    - Paulina Salgado Figueroa    | Clave: 160314 |
 
 ## Trabajo Individual
 
@@ -79,8 +81,7 @@ _*Plataforma CUDA*_
 ## Redefinición del alcance del proyecto.
   1. Una vez revisado todo el material bibliográfico decidimos redefinir el objetivo del proyecto, que se describe a continuación:
     - **Objetivo:** _* Optimizar el algoritmo Word2Vec (CBOW) a través de la paralelización de redes neuronales de retro propagación implementado con PyCuda*_
-  2. Se propone una implementación basada en el FrameWork propuesto en el artículo [3] Parallel back-propagation neural network training technique using CUDA on multiple GPUs.
-<p align="center">
+  2. Se propone una implementación basada en el FrameWork explica en el artículo [3] Parallel back-propagation neural network training technique using CUDA on multiple GPUs.
 ![framework](https://github.com/hatshex/analisis-numerico-computo-cientifico/blob/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_1/avance_17_04_2017/images/FrameworkNN_B-P.png)
-</p>
+
 
