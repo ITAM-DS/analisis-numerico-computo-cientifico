@@ -1,4 +1,4 @@
-# Avance_xx_xx_xxxx
+# Avance_17_04_2017
 
 ## Integrantes:
 
@@ -10,11 +10,10 @@
 
 ### Individual
 
-Carlos: 
+Carlos: Consolidación del documento para los avances, propuesta inicial de la estructura del documento. Coordinación de las fuentes para el código 
 
-Manuel:
+Manuel: Descripción general del código base, y estructura de los programas. En general se tiene una comparación de la implementación secuencial y la implementación en paralelo. 
 
 ### Equipo
 
-Leí la siguiente [referencia](http://docs.nvidia.com/cuda/cuda-c-programming-guide/#axzz4cvQxAHMZ) para revisar implementaciones de la multiplicación de matrices en una GPU. Debo revisar las asignaciones de los índices que se están realizando pues no queda claro el uso de las variables `blockDim` y `blockIdx`, para ello estoy leyendo la sección 3.3 del [libro](http://www.hds.bme.hu/~fhegedus/C++/programming_massively_parallel_processors.pdf).
-
+Creación de un primer borrador del documento en **Rmd**, que servirá de base para ir vaciando información que dará estructura y visibilidad a los avances y por otro lado albergará la mayoría del formato y el contenido para el proyecto final. 
