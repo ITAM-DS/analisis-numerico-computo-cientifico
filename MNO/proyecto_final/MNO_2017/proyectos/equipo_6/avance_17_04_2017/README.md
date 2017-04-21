@@ -14,7 +14,7 @@ Adrián Vázquez (120028):
 
 __Implementación de SVD__
 
-Se revisaron los siguientes [metodos](metodos) implementados en CUDA-C.
+Se revisaron los siguientes [metodos](metodos-cuda.md) implementados en CUDA-C.
 
 __Implementación de arquitectura__
 
