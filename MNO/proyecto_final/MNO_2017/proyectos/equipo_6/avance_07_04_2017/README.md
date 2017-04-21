@@ -55,7 +55,7 @@ Ya con una cuenta en Amazon Web Services se desarrollo el prender una maquina de
 
 2-Se integro AMI para usar CUDA 7.5 montada en una EC2 usando la siguiente referencia:
 
-[referencia](https://aws.amazon.com/marketplace/fulfillment?fulfillmentOptionId=single-ami&productId=df03e1dc-d2b3-40ae-b975-c223a29ce7c8&ref_=dtl_psb_continue&region=us-east-1)
+[referencia](https://aws.amazon.com/marketplace/pp/B01DCKFASQ)
 
 3-Se levanto la EC2 t2.small de Bitfusion Boost Ubuntu 14 Cuda 7.5, en la siguiente IMAGEN se ve como esta en estatus "running"
 
@@ -92,8 +92,15 @@ les funciona? o quizás primero de forma local y luego una prueba ahí.
 
 * Me gustaría ver cómo están los chunks de su dataset, es decir, en una carpeta tenemos `chunk1.txt`, `chunk2.txt`, etc? o es una matriz que tiene una columna que te indica el chunk? o cómo están divididos? Si tenemos archivos de chunks como el caso `chunk1.txt`, `chunk2.txt`, etc podríamos saltarnos lo de mpi y utilizar un sistema de colas como [sun grid engine](http://star.mit.edu/cluster/docs/0.93.3/guides/sge.html#)
 
+## (Respuestas) Comentarios sobre avance:
 
+* Es correcto el proceso de nvidia-docker como se menciona. Se usara la GPU de la maquina.
 
+* Ya se probo el free trial, y aun así genera algunos costos por temas de levantar la EC2, se opta por la GPU local en la laptop de Adrian
 
+* Se revisaron referencias, mismas que se hacen referencia en el avance de la siguiente semana [Avance 17-04-2017](avance_17_04_2017).
 
+* Si se tendran los datos por `chunk1.txt`, `chunk2.txt`, etc, y en el avance de la siguiente semana [Avance 17-04-2017](avance_17_04_2017). se pondra lo que se reviso del sistema de colas [sun grid engine](http://star.mit.edu/cluster/docs/0.93.3/guides/sge.html#)
+
+* Gracias por la atencion y observaciones.
 
