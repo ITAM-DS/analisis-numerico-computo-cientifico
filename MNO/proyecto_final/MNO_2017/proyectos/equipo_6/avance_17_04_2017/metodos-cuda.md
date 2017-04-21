@@ -14,7 +14,7 @@
 	
 - Se aplicará el calculo de SVD utilizando CUDA vía el metodo [BLAS-3](http://docs.nvidia.com/cuda/cublas/#cublas-level-3-function-reference)
 
-- Para implementar el metodo utilizaremos una implementación existente en el __SDK CUDA 8-0__ con `CUBLAS` y `cuSOLVER` Ver el archivo ![cuSOLVER](http://docs.nvidia.com/cuda/cusolver/#axzz4epp7wrFR)
+- Para implementar el metodo utilizaremos una implementación existente en el __SDK CUDA 8-0__ con `CUBLAS` y `cuSOLVER` Ver el archivo [cuSOLVER](http://docs.nvidia.com/cuda/cusolver/#axzz4epp7wrFR)
 
 - El patron de codificación respnde al siguiente diagrama:
 
@@ -293,7 +293,7 @@ int main(int argc, char*argv[])
 
 `nvcc -I /usr/local/cuda-8.0/include svd_example.cu -o svd_example.out -lcublas -lcusolver -lcudart -lcusparse -llapack -lblas -arch=sm_30`
 
-* __Validamos restltados__
+* __Validamos resultados__
 ```
 A = (matlab base-1)
 A(1,1) = -0.558253
@@ -341,7 +341,7 @@ VT(3,3) = 0.094911
 ```
 
 
-- revisar archivo ![salida.dat](code/svd-sdk-cuda/salida.dat) 
+- revisar archivo ![salida.dat](code/svd-sdk-cuda/salida.dat) y - revisar codigo ![svd_example.dat](code/svd-sdk-cuda/svd_example.cu) 
 
 __Lineas de investigación:__
 
