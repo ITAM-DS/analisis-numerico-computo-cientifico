@@ -10,9 +10,9 @@
 
 
 ## ¿Metodos investigados?
-- Aplicaremos la libreria ![CUBLAS](http://docs.nvidia.com/cuda/cublas/index.html#introduction) via __cuBLAS API__
+- Aplicaremos la libreria [CUBLAS](http://docs.nvidia.com/cuda/cublas/index.html#introduction) via __cuBLAS API__
 	
-- Se aplicará el calculo de SVD utilizando CUDA vía el metodo ![BLAS-3](http://docs.nvidia.com/cuda/cublas/#cublas-level-3-function-reference)
+- Se aplicará el calculo de SVD utilizando CUDA vía el metodo [BLAS-3](http://docs.nvidia.com/cuda/cublas/#cublas-level-3-function-reference)
 
 - Para implementar el metodo utilizaremos una implementación existente en el __SDK CUDA 8-0__ con `CUBLAS` y `cuSOLVER` Ver el archivo ![cuSOLVER](http://docs.nvidia.com/cuda/cusolver/#axzz4epp7wrFR)
 
@@ -29,11 +29,15 @@
 
 ## Implementación SVD con CUDA
 
-* La implementación original fue tomada del ![sitio](http://docs.nvidia.com/cuda/) 
-* Se valido el resultado del programa con el programa realizado en python ![cuda vs python](images/cuda_python_resul.png)
+* La implementación original fue tomada del [sitio](http://docs.nvidia.com/cuda/) 
+* Se valido el resultado del programa con el programa realizado en python: 
+	![cuda vs python](images/cuda_python_resul.png)
 
 
 * __SVD Implementation__ 
+
+## Step 0: Headers, Include and set variables 
+
 ```
 #include <stdio.h>
 #include <stdlib.h>
