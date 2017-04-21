@@ -62,7 +62,7 @@ Sugiero continúen con la aplicación pero cubran la siguiente literatura sobre 
 
 * Sobre tricks en backprop: [Y. LeCunn, L. Bottou, G. B. Orr, K. R. Müller. Efficient BackProp](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf)
 
-Pueden revisar estas referencias para el tercer avance y enfocarse en particular hacia SG.
+Pueden revisar estas referencias para el tercer avance y enfocarse en particular hacia SG y SGD.
 
 
 
