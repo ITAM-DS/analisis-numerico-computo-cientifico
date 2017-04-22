@@ -65,8 +65,14 @@ descomposición en valores singulares, así como las rotaciones
 Givens.
 
 
-
-
-
-
 ---
+
+## Comentarios sobre el avance:
+
+* Ayudará mucho que revisen la sección de SVD de la nota de clase: 3.2.2 que ya está actualizada y terminada, así se concentran en revisar los cyclic distribution de la referencia de P. Pacheco que les escribí en el comentario del 1er avance para revisar cómo hacer la distribución de las columnas de la matriz en una arquitectura MIMD.
+
+* Revisen entonces la referencia de P. Pacheco para el 3er avance.
+
+* Muy bien con el segundo avance :) 
+
+
