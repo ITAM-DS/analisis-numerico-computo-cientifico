@@ -1,7 +1,7 @@
 ---
 title: "MPI usando SWARM, Docker, Compose"
 author: "Oscar Camarena, Maximiliano Alvarez"
-date: "17 de abril de 2017"
+date: "24 de abril de 2017"
 output: html_document
 ---
 
@@ -31,7 +31,7 @@ RUN echo "mpi_user:mpi" | chpasswd
 
 USER mpi_user
 
-RUN cd /opt/openmpi-2.0.2 && ./configure--enable-orterun-prefix-by-default -with-sge && make all install
+RUN cd /opt/openmpi-2.0.2 && ./configure --prefix=/opt/openmpi-2.0.2 --enable-orterun-prefix-by-default -with-sge && make all install
 
 ENV PATH="/opt/openmpi-2.0.2/bin:$PATH"
 
@@ -43,24 +43,26 @@ ADD hello.c /home/mpi_user/
 
 RUN cd /home/mpi_user && mpicc hello.c -o hello.out
 
-EXPOSE 22
+#EXPOSE 22
 
 ENTRYPOINT ["/bin/bash"]
 
-#docker build -t johnydickens/openmpi:v1 .
+#docker build -t johnydickens/openmpi:v3 .
+
+
 
 ```
 
 Nos vamos a la ruta de nuestro archivo *Dockerfile* y lo construimos
 
 ```{}
-docker build -t johnydickens/openmpi:v2 .
+docker build -t johnydickens/openmpi:v3 .
 ```
 
 Lo publicamos en *Docker Hub*
 
 ```{}
-docker push johnydickens/openmpi:v2
+docker push johnydickens/openmpi:v3
 ```
 
 ##Levantemos las instancias en *AWS*
@@ -120,30 +122,27 @@ version: "3"
 services:
  
   master:
-    image: johnydickens/openmpi:v2
+    image: johnydickens/openmpi:v3
     entrypoint: /bin/bash
-    ports:
-      - 22:22
+    links:
+      - nodo1
+      - nodo2
     networks:
       - mpi
     stdin_open: true
     tty: true
     
   nodo1:
-    image: johnydickens/openmpi:v2
+    image: johnydickens/openmpi:v3
     entrypoint: /bin/bash
-    ports:
-      - 22:22
     networks:
       - mpi
     stdin_open: true
     tty: true
 
   nodo2:
-    image: johnydickens/openmpi:v2
+    image: johnydickens/openmpi:v3
     entrypoint: /bin/bash
-    ports:
-      - 22:22
     networks:
       - mpi
     stdin_open: true
@@ -153,7 +152,6 @@ services:
 networks:
   mpi:
     external: true
-
 ```
 
 Hacemos deploy
