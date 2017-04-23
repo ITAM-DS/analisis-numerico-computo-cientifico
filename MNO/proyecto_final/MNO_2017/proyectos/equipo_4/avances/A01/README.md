@@ -33,7 +33,7 @@ Una vez revisado el material se procedio tomar los materiales enlistados para la
 
 ## Comentarios de este avance:
 
-* Este avance se entregó el lunes 19 de abril (posterior a la fecha indicada, semana y media después) y falta crear directorios de acuerdo a la estructura, hay faltas de ortografía.
+* Este avance se entregó el lunes 19 de abril (posterior a la fecha indicada, semana y media después) de acuerdo a las instrucciones del proyecto final, aún falta crear directorios de acuerdo a la estructura, hay faltas de ortografía.
 
 * Lo siguiente son comentarios generales sobre estética: tienen mal escrito "presicion" en lugar de "precisión" en su README debajo de su carpeta de equipo_4 y chequen la redacción de su objetivo. El README de este primer avance dice "buscar material que pueda apoyar en el desarrollo ... sin perdida de predicción" (me parece está incorrecto pues no es predicción y debe ser precisión). En su programación de avances tienen como avance del 17 de abril dar formato al README para una mejor navegación, esto no es un avance pues tenían que haberlo realizado hace dos semanas, de igual forma no está creada la estructura que pedí: "equipo_4/avance_07_04_2017, equipo_4/avance_17_04_2017" han creado su propia estructura "equipo_4/avances/A01, equipo_4/avances/A02" (saben que esto me dificulta la revisión de sus README's? para evitar esto, solicito en las instrucciones la estructura que deben tener) y en el REAMDE general de la lista de proyectos no han colocado el título de su proyecto, objetivo,..(pueden revisar este README y ver lo que han hecho los otros equipos en el nivel proyecto_final/MNO_2017/proyectos/), también me facilita la navegación entre sus proyectos lo anterior.
 
