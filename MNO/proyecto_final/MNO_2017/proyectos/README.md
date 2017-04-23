@@ -17,23 +17,18 @@ Titulo del proyecto: `Paralelización del algoritmo Word2Vec.`
 
 ---
 
-## [Equipo 2](Equipo_2)
+## [Equipo 2](equipo_2)
 
 Titulo del proyecto: `Paralelización de mínimos cuadrados con OpenMP.`
 
 Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR así como su implementación en OpenMP para la solución de mínimos cuadrados. 
 
-[Avances del proyecto:](Equipo_2)
+* [Avance 07-04-2017](equipo_2/avance_07_04_2017). Comentario del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](equipo_2), acótense a éstas. (Es buena idea normalizar el nombre de su carpeta equipo_2 al de equipo_2 :), hagan los cambios necesarios para que las ligas estén correctas de acuerdo al nombre equipo_2)
 
-* [Avance 07-04-2017](Equipo_2/avance_07_04_2017). Comentario del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](Equipo_2), acótense a éstas. (Es buena idea normalizar el nombre de su carpeta Equipo_2 al de equipo_2 :), hagan los cambios necesarios para que las ligas estén correctas de acuerdo al nombre equipo_2)
-
-[Trabajo escrito](https://drive.google.com/drive/folders/0B5IJ1w6MjxegNUM2d29lTWdIREU?usp=sharing)
-
-[Presentacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegRHgwS090WFNLdWM?usp=sharing)
-
-[Implementacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegcWhTdXFvZnljeHc?usp=sharing)
+* [Avance 17-04-2017](equipo_2/avance_17_04_2017).
 
 ---
+
 
 ## [Equipo 3](equipo_3)
 
@@ -49,8 +44,9 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 ---
 ## [Equipo 5](equipo_5)
 
-[Avance 07-04-2017](equipo_5/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay sugerencias en cuanto al objetivo del proyecto.
+* [Avance 07-04-2017](equipo_5/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay sugerencias en cuanto al objetivo del proyecto.
 
+* [Avance 07-04-2017](equipo_5/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Lean las referencias que están en este 2o avance para el 3ero.
 ---
 
 ## [Equipo 6](equipo_6)
@@ -61,6 +57,7 @@ Objetivo del proyecto: Diseñar e implementar una plataforma hibrida (MPI/CUDA-C
 
 * [Avance 07-04-2017](equipo_6/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios y hay preguntas que espero me puedan responder :). Hay referencias para la teoría de la SVD en el [README.md](equipo_6/). Muy bien con respecto a `nvidia-docker`. Para el segundo avance revisen la teoría de la SVD y debemos determinar la herramienta para la distribución de los chunks de sus datos.
 
+* [Avance 17-04-2017](equipo_6/avance_17_04_2017). Comentario del prof:
 
 ---
 
@@ -123,7 +120,7 @@ computacionales de optimización.`
 
 * [Avance 07-04-2017](equipo_11/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay tres nuevas referencias en [REAMDE.md](equipo_11). Muy buen avance en la lectura de la teoría y el objetivo a realizar. Hay que hacer la liga con componentes principales y ver implementación de algún ordenamiento (por ejemplo el round robin) para el segundo avance.
 
-* [Avance 17-04-2017](equipo_11/avance_17_04_2017). 
+* [Avance 17-04-2017](equipo_11/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Para el tercer avance revisen la referencia de P. Pacheco, Parallel programming with MPI para distribución de columnas.
 
 * [Avance 24-04-2017](equipo_11/avance_24_04_2017). 
 
