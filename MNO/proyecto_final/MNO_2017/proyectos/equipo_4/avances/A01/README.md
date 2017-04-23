@@ -45,4 +45,3 @@ Una vez revisado el material se procedio tomar los materiales enlistados para la
 
 * Sugieron den una mejor programación de avances, lo que escriben es súper general y falta que especifiquen el plan de trabajo. Ahora se encuentran atrasados en los avances.
 
-
