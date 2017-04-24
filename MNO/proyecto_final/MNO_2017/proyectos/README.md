@@ -4,7 +4,16 @@
 
 ## [Equipo 1](equipo_1)
 
-[Avance 07-04-2017](equipo_1/avance_07_04_2017). Comentario del prof: avance actualizado y allí aparecen referencias para multiplicación de matrices en CUDA (que fue el método que se habló personalmente). Para el siguiente avance revísenlas para que esté clara la dificultad de la implementación en paralelo de este método y también discutan sus referencias del word embedding para definir objetivo del proyecto (consideren tiempos y entendimiento del material). Hay algunas dudas espero me puedan responder :)
+Titulo del proyecto: `Paralelización del algoritmo Word2Vec.`
+
+**Objetivo del proyecto:** _*Optimizar el algoritmo Word2Vec (CBOW) a través de la paralelización de redes neuronales de retro propagación implementado con PyCuda.*_
+
+  * Avances del proyecto:
+
+    - [Avance 07-04-2017](equipo_1/avance_07_04_2017). Comentario del prof: avance actualizado y allí aparecen referencias para multiplicación de matrices en CUDA (que fue el método que se habló personalmente). Para el siguiente avance revísenlas para que esté clara la dificultad de la implementación en paralelo de este método y también discutan sus referencias del word embedding para definir objetivo del proyecto (consideren tiempos y entendimiento del material). Hay algunas dudas espero me puedan responder :)
+    
+    - [Avance 17-04-2017](equipo_1/avance_17_04_2017)
+
 
 ---
 
@@ -30,6 +39,8 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 ## [Equipo 4](equipo_4)
 
 [Avance 07-04-2017](equipo_4/avance_07_04_2017). Comentario del prof: no está creado el directorio "avance_07_04_2017", no estaba actualizado este README.md con la descripción que se pide (título, objetivo, avances), las ligas de referencias que te llevan a un dropbox es mejor si las separan por bullets en su README.md del nivel de equipo_4, no hay descripción de trabajo individual, ni de equipo. Sé que me han platicado de su proyecto personalmente pero, en verdad esta es la entrega de su primer avance? Observen lo que han realizado los equipos 6, 10 u 11...
+
+Entregas fuera de tiempo y en forma como se solicitan.
 
 
 ---
