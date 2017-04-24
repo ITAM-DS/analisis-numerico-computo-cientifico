@@ -22,6 +22,7 @@
 
 * Mejora de código.
 * Revisión de las inconsistencias encontradas en el artículo de Sai Krishna.
+* Trabajo con casos de prueba
 
 #### Lizbeth:
 
