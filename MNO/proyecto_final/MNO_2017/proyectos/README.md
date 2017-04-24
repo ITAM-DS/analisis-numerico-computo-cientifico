@@ -38,10 +38,29 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 
 ## [Equipo 4](equipo_4)
 
-[Avance 07-04-2017](equipo_4/avance_07_04_2017). Comentario del prof: no está creado el directorio "avance_07_04_2017", no estaba actualizado este README.md con la descripción que se pide (título, objetivo, avances), las ligas de referencias que te llevan a un dropbox es mejor si las separan por bullets en su README.md del nivel de equipo_4, no hay descripción de trabajo individual, ni de equipo. Sé que me han platicado de su proyecto personalmente pero, en verdad esta es la entrega de su primer avance? Observen lo que han realizado los equipos 6, 10 u 11...
+Titulo del proyecto: `Implementacion de multiplicacion de numeros grandes sin perdida de presicion.`
+
+Objetivo del proyecto: Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de numeros grandes son perder presicion en los calculos.
+
+* [Avance 07-04-2017](equipo_4/avance_07_04_2017). Comentario del prof: no está creado el directorio "avance_07_04_2017", no estaba actualizado este README.md con la descripción que se pide (título, objetivo, avances), las ligas de referencias que te llevan a un dropbox es mejor si las separan por bullets en su README.md del nivel de equipo_4, no hay descripción de trabajo individual, ni de equipo. Sé que me han platicado de su proyecto personalmente pero, en verdad esta es la entrega de su primer avance? Observen lo que han realizado los equipos 6, 10 u 11...
 
 Entregas fuera de tiempo y en forma como se solicitan.
 
+* [Avance 17-04-2017](equipo_4/avance_17_04_2017). Comentario del prof:
+
+* [Avance 24-04-2017](equipo_4/avance_24_04_2017). Comentario del prof:
+
+* [Avance 02-05-2017](equipo_4/avance_02_05_2017). Comentario del prof:
+
+* [Avance 08-05-2017](equipo_4/avance_08_05_2017). Comentario del prof:
+
+* [Avance 15-05-2017](equipo_4/avance_15_05_2017). Comentario del prof:
+
+[Trabajo escrito](liga hacia trabajo escrito)
+
+[Presentacion](liga hacia presentacion)
+
+[Implementacion](liga hacia implementacion)
 
 ---
 ## [Equipo 5](equipo_5)
