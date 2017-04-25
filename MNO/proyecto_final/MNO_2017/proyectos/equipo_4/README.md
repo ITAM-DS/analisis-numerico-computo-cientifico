@@ -11,11 +11,11 @@
 
 ### Titulo del proyecto:
 
-Implementacion de multiplicacion de numeros grandes sin perdida de presicion
+Implementación de multiplicación de números grandes sin perdida de precisión.
 
 ### Objetivo:
 
-Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de numeros grandes son perder presicion en los calculos.
+Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de grandes números sin perder precisión en los cálculos.
 
 ---
 
