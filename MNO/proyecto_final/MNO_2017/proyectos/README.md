@@ -54,7 +54,7 @@ Objetivo del proyecto: Implementar el algoritmo de Toom-Cook para realizar multi
 
 Entregas fuera de tiempo y en forma como se solicitan.
 
-* [Avance 17-04-2017](equipos/equipo_4/avance_17_04_2017). Comentario del prof:
+* [Avance 17-04-2017](equipos/equipo_4/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios.
 
 * [Avance 24-04-2017](equipos/equipo_4/avance_24_04_2017). Comentario del prof:
 
