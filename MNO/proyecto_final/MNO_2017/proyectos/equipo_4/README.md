@@ -19,7 +19,7 @@ Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de grandes 
 
 ---
 
-### Programacion de avances:
+### Programación de avances:
 
 #### [07 de abril:](avance_07_04_2017)
 
