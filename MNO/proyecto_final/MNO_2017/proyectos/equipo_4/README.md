@@ -1,45 +1,53 @@
 # Equipo 4: Avances de trabajo final.
 
+---
+
 ## Integrantes:
-* Fernanda Tellez Giron
-* Guillermo Javier Quiroz Martinez
+* Fernanda Téllez Girón
+* Guillermo Javier Quiroz Martínez
 * Lizbeth Contreras Figueroa
+
+---
 
 ### Titulo del proyecto:
 
-Implementacion de multiplicacion de numeros grandes sin perdida de presicion
+Implementación de multiplicación de números grandes sin perdida de precisión.
 
 ### Objetivo:
 
-Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de numeros grandes son perder presicion en los calculos.
+Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de grandes números sin perder precisión en los cálculos.
 
-### Programacion de avances:
+---
 
-#### [07 de abril:](https://github.com/LizContreras/analisis-numerico-computo-cientifico/tree/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_4/avances/A01)
+### Programación de avances:
 
-* Discusion interna sobre alcance del proyecto
-* Presentar al profesor las ideas principales y secundarias para recibir retroalimentacion
-* Busqueda de referencias que nos puedan orientar para el desarrollo del proyecto
+#### [07 de abril:](avance_07_04_2017)
+
+* Discusión interna sobre alcance del proyecto.
+* Presentar al profesor las ideas principales y secundarias para recibir retroalimentación.
+* Búsqueda de referencias que nos puedan orientar para el desarrollo del proyecto.
 
 
-#### [17 de abril:](https://github.com/LizContreras/analisis-numerico-computo-cientifico/tree/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_4/avances/A02)
+#### [17 de abril:](avance_17_04_2017)
 
-* Dar formato al Readme para una mejor navegacion
-* Puntualizar brevemente la aportacion de las referencias puntualizadas en el avance del 07 de abril 
-* Describir el avance en el codigo
-* Externar los problemas con los que se ha enfrentado el equipo
+* Dar formato al `Readme` para una mejor navegación.
+* Puntualizar brevemente la aportación de las referencias puntualizadas en el avance del 07 de abril.
+* Describir el avance en el código.
+* Externar los problemas con los que se ha enfrentado el equipo.
 
-#### 24 de abril:
+#### [24 de abril:](avance_24_04_2017)
 
-* Tener el template del documento y la introduccion del trabajo
-* Realizar ajustes al codigo
-* Incorporar las observaciones del profesor
-* Buscar si existen librerias en R para validar resultados
-* Construir un programa que sume caracteres
-* Generar casos de prueba con los resultaados parciales para validacion. Ya que si un caso falla de debe ir hacia atras en el programa para poder ver en donde esta fallando
+* Comenzar el template del documento y la introduccion del trabajo.
+* Realizar ajustes al código.
+* Incorporar las observaciones del profesor.
+* Generar casos de prueba con los resultaados parciales para validación. Ya que si un caso falla de debe ir hacia atrás en el programa para poder ver en donde esta fallando.
+* Investigar enfoques alternativos a Toom-Cook.
+* Homologación de formatos y carpetas de acuerdo a lo señalado por el profesor.
 
-#### 02 de mayo:
+#### [02 de mayo:](avance_02_05_2017)
 
-#### 08 de mayo:
+#### [08 de mayo:](avance_08_05_2017)
 
-#### 15 de mayo:
+#### [15 de mayo:](avance_15_05_2017)
+
+

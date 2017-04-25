@@ -4,7 +4,7 @@
 
 # 01. Avance del 07 de abril de 2017
 
-Una vez discutido el alcance del proyecto se procedió a buscar material que pueda apoyar en el desarrollo del proyecto **Implementación de multiplicación de números grandes sin perdida de predicción**
+Una vez discutido el alcance del proyecto se procedió a buscar material que pueda apoyar en el desarrollo del proyecto **Implementación de multiplicación de números grandes sin perdida de precisión**
 
 Los primeros  artículos que revisara el equipo serán:
 
@@ -28,8 +28,9 @@ Y los siguientes repositorios de GitHub:
 
 ### Avances individuales:
 
-Durante esta semana los miembros del equipo se enfocaron a buscar material que ayudara a trazar la linea de accion para la elaboracion del proyecto
-Una vez revisado el material se procedio tomar los materiales enlistados para la revision grupal
+Durante esta semana los miembros del equipo se enfocaron a buscar material que ayudara a trazar la linea de acción para la elaboración del proyecto.
+
+Una vez revisado el material se procedió tomar los materiales enlistados para la revisión grupal.
 
 ## Comentarios de este avance:
 
