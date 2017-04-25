@@ -93,6 +93,10 @@ el detalle en el trabajo individual:
 
 [../../equipo_5/avance_07_04_2017/](../../equipo_5/avance_07_04_2017/)
 
+y lo que recomiendo en los comentarios pues su objetivo debemos de acotar por tiempo y búsqueda de información:
+
+[../../equipo_5/avance_07_04_2017/](../../equipo_5/avance_17_04_2017/)
+
 
 la lectura de ellas sobre las referencias:
 
@@ -101,6 +105,7 @@ la lectura de ellas sobre las referencias:
 y la discusión que se generó en el segundo avance:
 
 [../../equipo_11/avance_17_04_2017/](../../equipo_11/avance_17_04_2017/)
+
 
 
 
