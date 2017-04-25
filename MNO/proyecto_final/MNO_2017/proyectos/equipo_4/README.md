@@ -30,7 +30,7 @@ Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de grandes 
 
 #### [17 de abril:](avance_17_04_2017)
 
-* Dar formato al 'Readme' para una mejor navegación.
+* Dar formato al `Readme` para una mejor navegación.
 * Puntualizar brevemente la aportación de las referencias puntualizadas en el avance del 07 de abril.
 * Describir el avance en el código.
 * Externar los problemas con los que se ha enfrentado el equipo.
@@ -49,3 +49,5 @@ Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de grandes 
 #### [08 de mayo:](avance_08_05_2017)
 
 #### [15 de mayo:](avance_15_05_2017)
+
+
