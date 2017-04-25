@@ -77,7 +77,7 @@ Estudio de las referencias y detallar cuáles se estudiaron (qué secciones de c
 
 * Se eligió BigInteger debido a?? y java pues?? en dónde está?? .... (les platico lo que tuve que hacer para hacer la liga con BigInteger: fui a su 1er avance, leí lo que decían los  bullets de los 4 artículos, 2 páginas web y 5 repositorios que me presentaron, adiviné que al que tenía que ir era al de https://github.com/rvelthuis/BigNumbers pues aparecía la palabra "Big"... no me hagan esto porfa :( ; detallen de dónde salió y la liga que hay que hacer para llegar a esto de java... uds quizás están en el mismo canal pues es su proyecto final, pero yo estoy perdido en sus referencias y códigos que me presentan, este es mi siguiente intento (fallido...) por leer lo que han hecho y tener un panorama claro de su programa de trabajo sin éxito :( )
 
-* Del trabajo individual de Javier o Fernanda es súper bueno para mi revisión de su trabajo, que detallen que las iteraciones del algoritmo se hicieron de acuerdo al artículo (viene el artículo a continuación) en el lenguaje (viene el lenguaje) y se obtuvo (viene un screenshot o algo) y finalmente los resultados fueron..... así sólo puedo imaginarme que se hicieron iteraciones del algoritmo.
+* Del trabajo individual de Javier o Fernanda es súper bueno para mi revisión de su trabajo, que detallen que las iteraciones del algoritmo se hicieron de acuerdo al artículo (viene el artículo a continuación) en el lenguaje (viene el lenguaje) y se obtuvo (viene un screenshot o algo) y finalmente los resultados fueron..... así como está escrito, sólo puedo imaginarme que se hicieron iteraciones del algoritmo.
 
 * Del trabajo en equipo: ahora buscamos en R? razón? programa que sume? razón?
 
