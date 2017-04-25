@@ -48,7 +48,8 @@ avance 3: búsqueda de nuevas referencias de acuerdo al replanteamiento de objet
 
 avance 4: discusión de nuevas referencias.
 
-(loop)
+(...)
+
 ---
 
 Mi sugerencia es tener un buen plan de trabajo (el que tienen en su readme de equipo_4 algunas cosas están bien y otras no-- las que están bien al final de este párrafo coloco). Quizás no hay un buen entendimiento de lo que se desea hacer o los problemas a los que se enfrentarán. Cómo podemos resolver esto?
