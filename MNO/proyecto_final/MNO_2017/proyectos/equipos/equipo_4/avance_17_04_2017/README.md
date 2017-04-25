@@ -91,16 +91,16 @@ o también el tipo "abstract" que dan:
 
 el detalle en el trabajo individual:
 
-[../../equipo_5/avance_07_04_2017/]([../../equipo_5/avance_07_04_2017/])
+[../../equipo_5/avance_07_04_2017/](../../equipo_5/avance_07_04_2017/)
 
 
-la lectura de ellas:
+la lectura de ellas sobre las referencias:
 
-[../../equipo_11/avance_07_04_2017/]
+[../../equipo_11/avance_07_04_2017/](../../equipo_11/avance_07_04_2017/)
 
 y la discusión que se generó en el segundo avance:
 
-[../../equipo_11/avance_17_04_2017/]
+[../../equipo_11/avance_17_04_2017/](../../equipo_11/avance_17_04_2017/)
 
 
 
