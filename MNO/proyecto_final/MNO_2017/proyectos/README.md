@@ -38,9 +38,9 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 
 ## [Equipo 4](equipo_4)
 
-Titulo del proyecto: `Implementación de multiplicación de número grandes sin perdida de precisión.`
+Titulo del proyecto: `Implementación de multiplicación de números grandes sin perdida de precisión.`
 
-Objetivo del proyecto: Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de  grandes número son perder precisión en los cálculos.
+Objetivo del proyecto: Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de grandes números sin perder precisión en los cálculos.
 
 * [Avance 07-04-2017](equipo_4/avance_07_04_2017). Comentario del prof: no está creado el directorio "avance_07_04_2017", no estaba actualizado este README.md con la descripción que se pide (título, objetivo, avances), las ligas de referencias que te llevan a un dropbox es mejor si las separan por bullets en su README.md del nivel de equipo_4, no hay descripción de trabajo individual, ni de equipo. Sé que me han platicado de su proyecto personalmente pero, en verdad esta es la entrega de su primer avance? Observen lo que han realizado los equipos 6, 10 u 11...
 
