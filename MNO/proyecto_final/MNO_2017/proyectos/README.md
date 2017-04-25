@@ -32,7 +32,15 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 
 ## [Equipo 3](equipo_3)
 
+Título del proyecto: Integración MC (Reglas de integración)
+
+Objetivo: Generar un algoritmo en MPI para el método de integración Monte Carlo para estimar integrales multidimensionales.
+
+Objetivo adicional: Aplicar el algorithmo MCMC:Metropilis-Hasting para estimar integrales multidimensionales.
+
 [Avance 07-04-2017](equipo_3/avance_07_04_2017). Comentario del prof: avance actualizado y allí aparecen referencias para la generación de números aleatorios en paralelo. Para el siguiente avance revísenlas (junto con las referencias de la integración por MC) para que esté clara la dificultad de la implementación en paralelo del método que elijan.
+
+[Avance 17-04-2017](equipo_3/avance_17_04_2017).
 
 ---
 
