@@ -5,7 +5,7 @@
 Ixchel Guadalupe Meza Chávez  
 Amaury Gutierrez Acosta  
 
-**Título del proyecto**: Deep reinforcement learning utilizando librerias cuDNN aplicado al juego Breakout de ATARI
+**Título del proyecto**: Policy Gradients utilizando CUDA aplicado al juego Breakout de ATARI
 
 En el aprendizaje por refuerzo clásico se aproxima una función del producto cartesiano del espacio de estados y el espacio de acciones. El primer intento de aproximar dicha función usando una red neuronal se debe a Gerald Tesauro, quien creó un programa capaz de aprender a jugar Backgammon a partir de nulo conocimiento. Jugando contra sí mismo, el programa era capaz de generar estrategias y evaluar su eficacia hasta poder vencer a humanos expertos. Usando una idea similar, el artículo cuyas ideas intentaremos replicar en este proyecto plantea la creación de un agente que pueda aprender a jugar videojuegos a partir de la secuencia de matrices de pixeles que constituyen el juego. Para lograr esto, se propone el uso de una red neuronal con dos capas de convolución y una capa completamente conectada. La entrada de la red sería la matriz de pixeles y la salida es un elemento del espacio de acciones que el agente puede tomar.
 

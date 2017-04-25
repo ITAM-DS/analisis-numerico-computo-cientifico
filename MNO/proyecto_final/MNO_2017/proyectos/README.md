@@ -73,6 +73,10 @@ Entregas fuera de tiempo y en forma como se solicitan.
 ---
 ## [Equipo 5](equipo_5)
 
+Título del proyecto: `Policy Gradients utilizando CUDA aplicado al juego Breakout de ATARI`
+
+Objetivo: Usar el algoritmo de Policy Gradients, para entrenar a un agente en el juego de Breakout de ATARI.
+
 * [Avance 07-04-2017](equipo_5/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay sugerencias en cuanto al objetivo del proyecto.
 
 * [Avance 07-04-2017](equipo_5/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Lean las referencias que están en este 2o avance para el 3ero.
