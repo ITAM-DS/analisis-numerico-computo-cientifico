@@ -75,7 +75,7 @@ Entregas fuera de tiempo y en forma como se solicitan.
 
 Título del proyecto: `Policy Gradients utilizando CUDA aplicado al juego Breakout de ATARI`
 
-Objetivo: Usar el algoritmo de Policy Gradients, para entrenar a un agente en el juego de Breakout de ATARI.
+Objetivo del proyecto: Crear de un agente que pueda aprender a jugar el videojuego Breakout a partir de la secuencia de matrices de pixeles que constituyen el juego. Para lograr esto, se propone el uso de una red neuronal utilizando el método clásicos de optimización descenso de gradiente. La entrada de la red sería la matriz de pixeles y la salida es un elemento del espacio de acciones que el agente puede tomar.
 
 * [Avance 07-04-2017](equipo_5/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay sugerencias en cuanto al objetivo del proyecto.
 
