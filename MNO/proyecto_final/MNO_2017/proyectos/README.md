@@ -193,7 +193,7 @@ Ttulo del proyecto: `Ejemplo`
 
 Objetivo del proyecto: objetivo
 
-[Avances del proyecto](equipo_ejemplo):
+[Avances del proyecto](equipos/equipo_ejemplo):
 
 * [Avance 07-04-2017](equipo_ejemplo/equipos/avance_07_04_2017)
 
