@@ -38,3 +38,7 @@
 * El resultado encontrado por el equipo con base en las cifras propuestas por Sai Krisna es: 746080071169232484.
 * Debido a esto se decidió comenzar a buscar enfoques alternativos a Toom-Cook.
 * Se realizaron los cambios al repositorio de acuerdo a las especificaciones del profesor. Se queda en espera de Vo.Bo.
+
+## Comentarios sobre el avance:
+
+* Modificar este avance de acuerdo a comentarios de [../avance_17_04_2017/](../avance_17_04_2017/)
