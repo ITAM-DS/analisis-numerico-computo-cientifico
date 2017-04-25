@@ -140,12 +140,12 @@ Objetivo del proyecto: Construir un ambiente distribuido y portable que permita 
 
 Título del proyecto: `PCA aplicado al consumo de Proteínas en las Dietas de 25 Países`
 
-Objetivo del proyecto: `El objetivo del proyecto es 
+Objetivo del proyecto: El objetivo del proyecto es 
 detectar patrones de consumo de proteínas en las dietas
 de 25 pases implementando componentes principales y 
 descomposición de valores singulares (SVD) en 
 el lenguaje de programación C usando metodologías
-computacionales de optimización.`
+computacionales de optimización.
 
 [Avances del proyecto](equipo_11):
 
