@@ -93,7 +93,7 @@ el detalle en el trabajo individual:
 
 [../../equipo_5/avance_07_04_2017/](../../equipo_5/avance_07_04_2017/)
 
-y lo que recomiendo en los comentarios pues su objetivo debemos de acotar por tiempo y búsqueda de información:
+y lo que recomiendo en los comentarios, pues el objetivo de este equipo hay que acotar por tiempo y búsqueda de información:
 
 [../../equipo_5/avance_07_04_2017/](../../equipo_5/avance_17_04_2017/)
 
