@@ -96,7 +96,7 @@ Titulo del proyecto: `Parallel sorting algorithms on OpenMP`
 
 Objetivo del proyecto: El objetivo del proyecto es utilizar la API de OpenMP para implementar un algoritmo de ordenamiento de arreglos de manera distribuida.
 
-[Avances del proyecto](equipo_7):
+[Avances del proyecto](equipos/equipo_7):
 
 * [Avance 07-04-2017](equipos/equipo_7/avance_07_04_2017). Comentario del prof: Avance actualizado. 
 * [Avance 17-04-2017](equipos/equipo_7/avance_17_04_2017). Comentario del prof: Lo que tienen en el avance_17_04_2017 lo tomo como avance_07_04_2017 (pues en el momento que revisé estaba este avance_17_04_2017). Revisen comentarios de ambos avances. Muevan, actualicen lo necesario en sus README's de sus avances. Hay una nueva referencia en [README.md](equipos/equipo_7) que seguro les ayuda.
@@ -147,7 +147,7 @@ descomposición de valores singulares (SVD) en
 el lenguaje de programación C usando metodologías
 computacionales de optimización.
 
-[Avances del proyecto](equipo_11):
+[Avances del proyecto](equipos/equipo_11):
 
 * [Avance 07-04-2017](equipos/equipo_11/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay tres nuevas referencias en [REAMDE.md](equipo_11). Muy buen avance en la lectura de la teoría y el objetivo a realizar. Hay que hacer la liga con componentes principales y ver implementación de algún ordenamiento (por ejemplo el round robin) para el segundo avance.
 
