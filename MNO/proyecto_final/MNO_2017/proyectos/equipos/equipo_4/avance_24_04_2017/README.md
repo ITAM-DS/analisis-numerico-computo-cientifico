@@ -42,3 +42,9 @@
 ## Comentarios sobre el avance:
 
 * Modificar este avance de acuerdo a comentarios de [../avance_17_04_2017/](../avance_17_04_2017/)
+
+* Hay búsquedas de referencias sobre teoría de números? cómo andamos en esa teoría? 
+
+* En la referencia http://marco.bodrato.it/papers/Bodrato2007-OptimalToomCookMultiplicationForBinaryFieldAndIntegers.pdf se habla sobre https://gmplib.org/ o http://www.shoup.net/ntl/ o http://pari.math.u-bordeaux.fr/ (están escritas en C, c++)
+
+
