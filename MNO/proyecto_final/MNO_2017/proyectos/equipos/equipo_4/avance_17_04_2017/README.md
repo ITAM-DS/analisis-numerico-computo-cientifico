@@ -35,7 +35,7 @@
 
 ## Comentarios sobre el avance:
 
-Una disculpa, pero creo que no me he dado a explicar. La carpeta del avance anterior me dan 4 artículos, 2 páginas web y 5 repositorios. En este avance esperaba detallaran cuál de esas referencias se está trabajando (ojo, esto debería de haberse detallado en el primer avance) pero todavía no sé cuál revisan uds de las 11 referencias que dan; también ahora hablan de validación, entonces se refieren a comparativa de lo que uds realizan vs lo que alguien haya hecho? si es así, por qué desde un inicio ya sea en su objetivo o en su primer avance no estaba esto? y otra pregunta, no entiendo bien si adicionalmente a su objetivo es realizar una comparación ó la comparación es sólo ver si su resultado está bien? el repo que escriben https://github.com/paiv/largenum habla sobre RSA (?¿), el trabajo individual descrito por Lizbeth no detalla qué carpetas debe uno de revisar o qué códigos de este repositorio. Les escribo un ejemplo de cómo se ve su progreso en el proyecto final:
+* Una disculpa, pero creo que no me he dado a explicar. La carpeta del avance anterior me dan 4 artículos, 2 páginas web y 5 repositorios. En este avance esperaba detallaran cuál de esas referencias se está trabajando (ojo, esto debería de haberse detallado en el primer avance) pero todavía no sé cuál revisan uds de las 11 referencias que dan; también ahora hablan de validación, entonces se refieren a comparativa de lo que uds realizan vs lo que alguien haya hecho? si es así, por qué desde un inicio ya sea en su objetivo o en su primer avance no estaba esto? y otra pregunta, no entiendo bien si adicionalmente a su objetivo es realizar una comparación ó la comparación es sólo ver si su resultado está bien? el repo que escriben https://github.com/paiv/largenum habla sobre RSA (?¿), el trabajo individual descrito por Lizbeth no detalla qué carpetas debe uno de revisar o qué códigos de este repositorio. Les escribo un ejemplo de cómo se ve su progreso en el proyecto final:
 
 ---
 Equipo ejemplo.
@@ -52,7 +52,7 @@ avance 4: discusión de nuevas referencias.
 
 ---
 
-Mi sugerencia es tener un buen plan de trabajo (el que tienen en su readme de equipo_4 algunas cosas están bien y otras no-- las que están bien al final de este párrafo coloco). Quizás no hay un buen entendimiento de lo que se desea hacer o los problemas a los que se enfrentarán. Cómo podemos resolver esto?
+* Mi sugerencia es tener un buen plan de trabajo (el que tienen en su readme de equipo_4 algunas cosas están bien y otras no-- las que están bien al final de este párrafo coloco). Quizás no hay un buen entendimiento de lo que se desea hacer o los problemas a los que se enfrentarán. Cómo podemos resolver esto?
 
 ---
 Programa de trabajo (sólo algunos bullets y comentarios para el mismo)
@@ -71,7 +71,9 @@ Estudio de las referencias y detallar cuáles se estudiaron (qué secciones de c
 
 ---
 
-(Continúa sección comentarios) en el trabajo individual de Lizbeth se habla nuevamente sobre búsqueda y revisar la documentación (qué documentación? es decir especifica por favor, o son los 4 artículos, 2 páginas web y 5 repositorios? y otra pregunta: esta revisión no tendría que haber sido en el primer avance?)
+(Continúa sección comentarios) 
+
+* En el trabajo individual de Lizbeth se habla nuevamente sobre búsqueda y revisar la documentación (qué documentación? es decir especifica por favor, o son los 4 artículos, 2 páginas web y 5 repositorios? y otra pregunta: esta revisión no tendría que haber sido en el primer avance?)
 
 * Se eligió BigInteger debido a???? y java pues????? en dónde está??? .... (les platico lo que tuve que hacer para hacer la liga con BigInteger: fui a su 1er avance, leí lo que decían los  bullets de los 4 artículos, 2 páginas web y 5 repositorios que me presentaron, adiviné que al que tenía que ir era al de https://github.com/rvelthuis/BigNumbers pues aparecía la palabra "Big"... no me hagan esto porfa :(, detallen de dónde salió y la liga que hay que hacer para llegar a esto de java... uds quizás están en el mismo canal por que es su proyecto final, pero yo estoy perdido en sus referencias y códigos que me presentan, este es mi segundo intento por leer lo que han hecho y tener un panorama claro de su programa de trabajo sin éxito :( )
 
