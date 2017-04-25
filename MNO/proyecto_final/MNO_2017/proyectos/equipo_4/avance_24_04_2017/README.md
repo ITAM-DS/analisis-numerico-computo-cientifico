@@ -3,8 +3,8 @@
 ---
 
 ## Integrantes:
-* Fernanda Tellez Giron
-* Guillermo Javier Quiroz Martinez
+* Fernanda Téllez Girón
+* Guillermo Javier Quiroz Martínez
 * Lizbeth Contreras Figueroa
 
 ---
