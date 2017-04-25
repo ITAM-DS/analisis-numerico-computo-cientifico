@@ -71,3 +71,5 @@ El porcentaje del proyecto de acuerdo a la primera clase del curso tiene un porc
 * Componentes principales.
 
 * Sistemas de ecuaciones diferenciales.
+
+* Algoritmos basados en árboles o grafos.
