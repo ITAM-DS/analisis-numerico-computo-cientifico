@@ -17,6 +17,8 @@ En la carpeta [avance_07_04_2017](avance_07_04_2017) se encuentra el reporte del
 
 En la carpeta [avance_17_04_2017](avance_17_04_2017) se encuentra el reporte del segundo avance para determinar y avanzar nuestro proyecto.
 
+En la carpeta [avance_26_04_2017](avance_26_04_2017) se encuentra el reporte del tercer avance para determinar y avanzar nuestro proyecto.
+
 ## Plan de trabajo
 
 ### [7 de abril](avance_07_04_2017)
@@ -27,7 +29,9 @@ Exploración de factibilidad del proyecto. Revisión de literatura. Prueba de ej
 
 Revisión de literatura. Prueba de ejemplos que usan DQN. Revisión de la librería cuDNN 
 
-### 24 de abril.
+### [26 de abril](avance_26_04_2017)
+
+Revisión de literatura recomendada por Erick. Pruebas de ejemplo
 
 ### 2 de mayo.
 
