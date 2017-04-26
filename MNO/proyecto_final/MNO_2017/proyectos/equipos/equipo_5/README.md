@@ -31,7 +31,7 @@ Revisión de literatura. Prueba de ejemplos que usan DQN. Revisión de la librer
 
 ### [26 de abril](avance_26_04_2017)
 
-Revisión de literatura recomendada por Erick. Pruebas de ejemplo
+Revisión de literatura recomendada por Erick. Pruebas de aprendizaje usando policy gradient con el juego Breakout
 
 ### 2 de mayo.
 
