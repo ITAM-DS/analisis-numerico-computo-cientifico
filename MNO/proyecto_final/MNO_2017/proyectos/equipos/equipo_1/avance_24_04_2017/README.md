@@ -7,19 +7,18 @@
 
 ** Gabriela Flores**
 
-** Paulina Salgado**
+** Paulina Salgado
 
 ** Guillermina Montanari**
 
 ## Trabajo:
-### Individual
-
-**Gabriela**: Revisa el código del algoritmo en Python y toma tiempos de un ejemplo.
-
-**Paulina**: Revisar los métodos de optimización de cómputo matricial que pudieran ser aplicados en el proyecto.
-
-**Guillermina**: Investigar acerca de CUDA c (Tutoriales y Documentacion). Armar el hello_world en CUDA_c
-
 ### Equipo
 
-Tenemos que revisar con Erick los puntos de duda que tenemos de los métodos de cómputo matrical a implementar. Se buscaron referencias del algoritmo. Las referencias están en la carpeta del proyecto.
+Esta semana no tuvimos avances individuales para reportar, ya que estamos revisando el material base de:
+
+* [1] Shunlu Zhang, Pavan Gunupudi, Qi-Jun Zhang, ["Parallel back-propagation neural network training technique using CUDA on multiple GPUs"](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8IRldNWjBEMk1yV3M/view?usp=sharing), Numerical Electromagnetic and Multiphysics Modeling and Optimization (NEMO) 2015 IEEE MTT-S International Conference on, pp. 1-3, 2015.
+
+* [2] Xavier Sierra-Canto, Francisco Madera-Ramirez, Victor Uc-Cetina, ["Parallel Training of a Back-Propagation Neural Network using CUDA"](https://drive.google.com/open?id=0B9UK_UtOYJ8ITFE2Uy1JQlRhSjg).
+
+
+
