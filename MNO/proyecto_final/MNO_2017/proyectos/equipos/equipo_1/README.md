@@ -1,4 +1,4 @@
-## Equipo 11
+## Equipo 1
 
 
 ---
