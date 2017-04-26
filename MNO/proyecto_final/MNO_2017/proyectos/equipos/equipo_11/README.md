@@ -32,4 +32,14 @@ computacionales de optimización.
 * G. H. Dunteman. Principal Component Analysis.
 
 * Referencia para los cyclic distribution (round robin), capítulo 8 de [P.Pacheco. Parallel Programming with MPI](http://www.cs.usfca.edu/~peter/ppmpi/).
+
+Referencias para one-sided block jacobi svd (si desean leerlas está muy bien, sólo comento que al tiempo que las revisé todavía estaban afinando los approaches que seguían)
+
+* [G. Oksa, M. Vajtersic. Parallel One-Sided Block Jacobi SVD Algorithm: I. Analysis and Design](https://www.cosy.sbg.ac.at/research/tr/2007-02_Oksa_Vajtersic.pdf) (le seguí la pista por 4 reportes más, ustedes pueden buscarlos si les interesa)
+
+* Uno del 2012: [M. Becka, G. Oksa, M. Vajtersic. Parallel One-Sided Block-Jacobi SVD Algorithm](http://www.iam.fmph.uniba.sk/algoritmy2012/zbornik/14Oksa.pdf)
+
+* Uno del 2016 (quizás sea bueno leer primero esta referencia para saber en qué fase del desarrollo se encuentra este algoritmo) [S. Kudo, Y. Yamamoto, M. Becka, M. Vajtersic. Performance analysis and optimization of the parallel one-sided block Jacobi SVD algorithm with dynamic ordering and variable blocking](http://onlinelibrary.wiley.com/doi/10.1002/cpe.4059/full)
+
+
 ---
