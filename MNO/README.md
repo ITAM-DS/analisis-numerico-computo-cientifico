@@ -129,5 +129,21 @@ Revisión examen módulo 1
 
 [III/3.2.1 (hasta dificultades en la implementación de eliminación Gaussiana simple) ](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
+## Clase 14
+
+17 de abril
+
+[III/3.2.1 (terminamos la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+[III/3.2.2 (hasta nota sobre algunos conceptos geométricos)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+## Clase 15
+
+24 de abril
+
+[III/3.2.2 (revisamos los conceptos geométricos de proyecciones, reflexiones y rotaciones, SVD y matriz positiva definida)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+* En esta nota faltó revisar algoritmos para Cholesky, QR, pero para tener clases de optimización en el curso, sólo a aquellas personas interesadas les quedará de tarea leer estas secciones de la nota.
+
 
 
