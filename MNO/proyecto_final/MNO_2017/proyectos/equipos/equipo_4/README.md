@@ -37,7 +37,7 @@ Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de grandes 
 
 #### [24 de abril:](avance_24_04_2017)
 
-Con el fin de aclarar los avances que se han realizado hasta el momento se modifica el avance del 24 de Abril tanto en el READme del equipo(este documento), como en el READme del [avance_24_04_2017](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/MNO/proyecto_final/MNO_2017/proyectos/equipos/equipo_4/avance_24_04_2017). 
+Con el fin de aclarar los avances que se han realizado hasta el momento se modifica el avance del 24 de Abril tanto en el READme del equipo(este documento), como en el READme del [avance_24_04_2017](../avance_24_04_2017/)
 
 * Para este día ya hemos comprendido todos en el equipo los pasos del algoritmo a fondo apoyándonos en este [Artículo](https://www.dropbox.com/s/bwziz0hnv78pgp6/ToomCook.pdf?dl=0) y en esta  [página](https://en.m.wikipedia.org/wiki/Toom%E2%80%93Cook_multiplication). Ambas referencias nos parecieron a todos las que explican el algoritmo de la manera más clara y sencilla. Para llegar a esta conclusión Javier y Fernanda leimos además otro [artículo](https://www.dropbox.com/s/catd6x49sdc451n/iterative_Toom_Cook.pdf?dl=0) pero nos parecio que no detallaba claramente el algoritmo. De igual manera todo el equipo revisó esta [página](https://gmplib.org/manual/Toom-3_002dWay-Multiplication.html) y acordamos quedarnos con las primeras dos referencias.       
 
