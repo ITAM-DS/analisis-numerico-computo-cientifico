@@ -8,13 +8,13 @@ Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de
 
 Cada equipo en el nivel:  
 
-`analisis-numerico-computo-cientifico/MNO/proyecto_final/MNO_2017/proyectos/`
+`analisis-numerico-computo-cientifico/MNO/proyecto_final/MNO_2017/proyectos/equipos`
 
 creará un directorio, en el que se tendrán niveles de directorios para los avances de cada fecha señalada (definidas al final de este texto) y en el `README.md` creado dentro de este directorio:
 
-`analisis-numerico-computo-cientifico/MNO/proyecto_final/MNO_2017/proyectos/equipo_ejemplo/README.md`
+`analisis-numerico-computo-cientifico/MNO/proyecto_final/MNO_2017/proyectos/equipos/equipo_ejemplo/README.md`
 
- se realizarán comentarios generales sobre el proyecto [(ver ejemplo)](proyectos/equipo_ejemplo).
+ se realizarán comentarios generales sobre el proyecto [(ver ejemplo)](proyectos/equipos/equipo_ejemplo).
 
 Lo que se busca con esta forma de calificar es que para la semana 5 o 6 el proyecto esté en un 80% de avance y no se realice todo al final (penúltima o última semana) y que los integrantes participen activamente de forma semanal.
 
@@ -43,5 +43,6 @@ es un archivo de control para la lista de proyectos y sólo se actualiza y/o se 
 
 * 1a semana de finales.
 
-* 2a semana de finales.
+El proyecto final se presenta en la segunda semana de finales.
+
 
