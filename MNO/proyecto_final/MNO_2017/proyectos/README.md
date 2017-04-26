@@ -77,11 +77,11 @@ Título del proyecto: `Policy Gradients utilizando CUDA aplicado al juego Breako
 
 Objetivo del proyecto: Crear de un agente que pueda aprender a jugar el videojuego Breakout a partir de la secuencia de matrices de pixeles que constituyen el juego. Para lograr esto, se propone el uso de una red neuronal utilizando el método clásicos de optimización descenso de gradiente. La entrada de la red sería la matriz de pixeles y la salida es un elemento del espacio de acciones que el agente puede tomar.
 
-* [Avance 07-04-2017](equipo_5/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay sugerencias en cuanto al objetivo del proyecto.
+* [Avance 07-04-2017](equipos/equipo_5/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay sugerencias en cuanto al objetivo del proyecto.
 
-* [Avance 17-04-2017](equipo_5/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Lean las referencias que están en este 2o avance para el 3ero.
+* [Avance 17-04-2017](equipos/equipo_5/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Lean las referencias que están en este 2o avance para el 3ero.
 
-* [Avance 26-04-2017](equipo_5/avance_26_04_2017).
+* [Avance 26-04-2017](equipos/equipo_5/avance_26_04_2017).
 ---
 
 ## [Equipo 6](equipo_6)
