@@ -7,7 +7,7 @@
 
 ** Gabriela Flores**
 
-** Paulina Salgado
+** Paulina Salgado**
 
 ** Guillermina Montanari**
 
@@ -20,5 +20,40 @@ Esta semana no tuvimos avances individuales para reportar, ya que estamos revisa
 
 * [2] Xavier Sierra-Canto, Francisco Madera-Ramirez, Victor Uc-Cetina, ["Parallel Training of a Back-Propagation Neural Network using CUDA"](https://drive.google.com/open?id=0B9UK_UtOYJ8ITFE2Uy1JQlRhSjg).
 
+El articulo resume el algoritmo secuencial de Redes Neuronales como sigue: 
+
+<div style="width:200px; height=80px">
+![](images/Algsec.png)
+</div>
+\n
+
+Propone dividir el problema en dos tipos de operaciones paralelizables:
+
+1.  **Vector * Matriz**
+      a. usando CUBLAS (BLAS en CUDA):
+         i. cublasSgemm (cublas API): producto de matrices
+         ii. cublasSdot: producto punto
+
+Los pasos del algorito secuencial 1., 3. y 6. pertenecen a este grupo.
+
+2. **Operaciones Aritmeticas**
+      b. uso de kernels: funcion de propagacion o activacion de la Red Neuronal. Se propone paralelizar la funcion sigmoidal evaluada para cada entrada de los vectores resultantes de cada etapa.
+      
+Los pasos del algorito secuecial 2., 4., 5., 6., 7. y 8. pertenecen a este grupo.
+
+Lo cual se puede escribir de la siguiente forma:
+
+<div style="width:300px; height=200px">
+![](images/Parallel.png)
+</div>
+
+La funcion sigmoidal esta definida de la siguiente manera:
+
+<div style="width:300px; height=150px">
+![](images/sigmoid.png)
+</div>
+\n
 
 
+**Referencias**
+**Nvidia documentation cuBLAS** http://docs.nvidia.com/cuda/cublas/#axzz4fP0VhGgv
