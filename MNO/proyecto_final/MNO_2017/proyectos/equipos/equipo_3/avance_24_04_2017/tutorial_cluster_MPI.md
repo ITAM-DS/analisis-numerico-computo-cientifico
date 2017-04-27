@@ -79,20 +79,28 @@ Normalmente debemos ver:
 hello_clase.c  mpi_hello_world.c (un file dado por default)
 
 
-9)Hacer en el terminal: docker run --rm -it -v $(pwd):/project nlknguyen/alpine-mpich 
+9)Hacer en el terminal: docker run --rm -it -v $(pwd):/project nlknguyen/alpine-mpich
+
 (Si no funciona empezar de nuevo a llamar ./cluster.sh up size=10)
+
 Normalmente estamos ahora en:
+
 /project $ 
+
 Esta es la linea de command del nodo maestro.
 
 9)Hacer: ls (/project $ ls)
+
 Normalmente debemos ver como resultado:
+
 hello_clase.c  mpi_hello_world.c
 
 10)Ahora hacemos: mpicc -o hello_clase hello_clase.c
+
 Para crear el ejcutable hello_clase
 
 11)Para lanzar el codigo hacemos por ejemplo: mpirun -n 20 ./hello_clase
+
 Normalmente tenemos:
 
 	Hola del procesador 0 de 20!
@@ -121,6 +129,7 @@ Normalmente tenemos:
 13)Regresamos a cluster : cd ..
 
 14)Podemos ver los contenedores donde los processos trabajaron: ./cluster.sh list 
+
 ( es un docker-compose ps)
 
 
