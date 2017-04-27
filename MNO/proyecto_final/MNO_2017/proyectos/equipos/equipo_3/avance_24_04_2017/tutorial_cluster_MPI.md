@@ -19,10 +19,10 @@ Pero voy a presentar rapidamente los principales etapas para levantar rapidament
 4)Regresar en la carpeta cluster : cd ..
 
 5)Hacen en el terminal : ./cluster.sh help
-	Podemos ver que hay possibles de hacer muchas llamadas a esto archivo cluster.sh para construir destruir restart de manera automatizado el cluster
+	/Podemos ver que hay possibles de hacer muchas llamadas a esto archivo cluster.sh para construir destruir restart de manera automatizado el cluster
 
 6)Normalmente estamos en alpine-mpich/cluster y si esta el caso en el terminal hacer: ./cluster.sh up size=10
-	Habiamos creado un cluster de 10 contenadores que estan listo para executar de manera parallel el codigo hello_clase.c
+	/Habiamos creado un cluster de 10 contenadores que estan listo para executar de manera parallel el codigo hello_clase.c
 	Normalmente al final debemos tener:
 
 	===> CLUSTER READY 
