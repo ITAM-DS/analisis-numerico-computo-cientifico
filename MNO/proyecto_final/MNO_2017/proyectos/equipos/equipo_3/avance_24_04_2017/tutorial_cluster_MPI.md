@@ -19,11 +19,13 @@ Pero voy a presentar rapidamente los principales etapas para levantar rapidament
 4)Regresar en la carpeta cluster : cd ..
 
 5)Hacen en el terminal : ./cluster.sh help
-	/Podemos ver que hay possibles de hacer muchas llamadas a esto archivo cluster.sh para construir destruir restart de manera automatizado el cluster
+
+Podemos ver que hay possibles de hacer muchas llamadas a esto archivo cluster.sh para construir destruir restart de manera automatizado el cluster
 
 6)Normalmente estamos en alpine-mpich/cluster y si esta el caso en el terminal hacer: ./cluster.sh up size=10
-	/Habiamos creado un cluster de 10 contenadores que estan listo para executar de manera parallel el codigo hello_clase.c
-	Normalmente al final debemos tener:
+
+Habiamos creado un cluster de 10 contenadores que estan listo para executar de manera parallel el codigo hello_clase.c
+Normalmente al final debemos tener:
 
 	===> CLUSTER READY 
 
@@ -71,26 +73,27 @@ To run directly a shell command at master node:
 7)Ahora vamos a la carpeta a project: cd ./project
 
 8)Hacer :ls 
-	Normalmente debemos ver:
 
-	hello_clase.c  mpi_hello_world.c(el file por default)
+Normalmente debemos ver:
+
+hello_clase.c  mpi_hello_world.c (un file dado por default)
 
 
 9)Hacer en el terminal: docker run --rm -it -v $(pwd):/project nlknguyen/alpine-mpich 
-	(Si no funciona empezar de nuevo a llamar ./cluster.sh up size=10)
-	Normalmente estamos ahora en:
-	/project $ 
-	Esta es la linea de command del nodo maestro
+(Si no funciona empezar de nuevo a llamar ./cluster.sh up size=10)
+Normalmente estamos ahora en:
+/project $ 
+Esta es la linea de command del nodo maestro
 
 9)Hacemos: ls (/project $ ls)
-	Normalmente debemos ver como resultado:
-	hello_clase.c  mpi_hello_world.c
+Normalmente debemos ver como resultado:
+hello_clase.c  mpi_hello_world.c
 
 10)Ahora hacemos: mpicc -o hello_clase hello_clase.c
-	Para crear el ejcutable hello_clase
+Para crear el ejcutable hello_clase
 
 11)Para lanzar el codigo hacemos por ejemplo: mpirun -n 20 ./hello_clase
-	Normalmente tenemos:
+Normalmente tenemos:
 
 	Hola del procesador 0 de 20!
 	Hola del procesador 1 de 20!
@@ -118,7 +121,7 @@ To run directly a shell command at master node:
 13)Regresamos a cluster : cd ..
 
 14)Podemos ver los contenedores donde los processos trabajaron: ./cluster.sh list 
-	( es un docker-compose ps)
+( es un docker-compose ps)
 
 
 	===> LIST CONTAINERS
