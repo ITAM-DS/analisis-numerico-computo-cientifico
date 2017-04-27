@@ -24,7 +24,8 @@ Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega en la fe
 
 ## Presentación
 
-Se realiza una presentación de máximo 15 min por cada equipo para reporte sobre el trabajo realizado y resultados. En esta presentación no se entra en detalles sobre los métodos, sólo cuestiones generales.
+Se realiza una presentación de máximo 15 min por cada equipo para reporte sobre el trabajo realizado y resultados. En esta presentación no se entra en detalles sobre los métodos, sólo cuestiones generales. No se sube al repo del curso, pero se proporciona una liga al mismo, más información sobre esta liga [aquí](MNO_2017).
+
 
 Tiene dos calificaciones 10% de forma individual y 5% para el equipo. Se realiza en la fecha del examen final determinada por control escolar.
 
@@ -70,3 +71,5 @@ El porcentaje del proyecto de acuerdo a la primera clase del curso tiene un porc
 * Componentes principales.
 
 * Sistemas de ecuaciones diferenciales.
+
+* Algoritmos basados en árboles o grafos.
