@@ -50,7 +50,7 @@ Lo cual se puede escribir de la siguiente forma:
 La funcion sigmoidal esta definida de la siguiente manera:
 
 <div style="width:300px; height=150px">
-![](images/sigmoid.png)
+![logo](images/sigmoid.png)
 </div>
 \n
 
