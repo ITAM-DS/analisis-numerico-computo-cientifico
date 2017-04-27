@@ -26,7 +26,7 @@ Revise el documento mas a detalle de [Golub-Reinsch](http://people.duke.edu/~hpg
 
 Tambien se reviso el libro de `Algebra Lineal de Mina S. de Carakushansky y guilherme de La Penha` para repasar un poco conceptos matriciales basicos.
 
-Donde a partir de ese repaso y de revisar las notas de clase [3.2.2 Factorizaciones matriciales: SVD, Cholesky, QR.](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0) se detallara en los siguientes avances el metodo usado para el calculo de SVD conocido como thin SVD.
+Donde a partir de ese repaso y de revisar las notas de clase [3.2.2 Factorizaciones matriciales: SVD, Cholesky, QR.](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0) se detallara en los siguientes avances el metodo usado para el calculo de SVD conocido como thin SVD. Este metodo thin es uno de los mas usados para calculo de SVD, y para indagar en el revisamos la siguiente [nota.](http://www.netlib.org/lapack/lug/node53.html)
 
 Para el avance de esta semana se inicio con el detalle de la [Fase 1 en el MD de bidiagonalizacion_svd](https://drive.google.com/drive/folders/0B5eQQH_TPIY-YjVmSE5NS3BSYzQ) que esta en el DRIVE de la referencia anterior, la cual consta de encontrar una matriz Bidiagonal.
 
