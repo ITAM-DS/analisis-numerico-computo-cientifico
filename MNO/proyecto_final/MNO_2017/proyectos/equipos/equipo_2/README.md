@@ -28,6 +28,8 @@ Integrantes:
 
 * Determinamos cambiar el alcance del proyecto debido a que Erick nos sugiere enfocarnos en factorización QR, y en particular estudiaremos el método de Reflexiones de Householder. Empezamos a revisar las referencias de acuerdo al plan de trabajo establecido.  En la carpeta [avance_17_04_2017](avance_17_04_2017) se encuentra el reporte de este primer avance sobre la teoría de Reflexiones de Householder.
 
+* Una vez entendidas las características y propiedades de las reflexiones de Householder, en esta semana estudiamos su aplicación para el cálculo de QR secuencial.  Además, iniciamos con la programación secuencial del algoritmo QR.  Lo anterior se encuentra en la carpeta [avance_26_04_2017](avance_26_04_2017).
+
 [Trabajo escrito](https://drive.google.com/drive/folders/0B5IJ1w6MjxegNUM2d29lTWdIREU?usp=sharing)
 
 [Presentacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegRHgwS090WFNLdWM?usp=sharing)
