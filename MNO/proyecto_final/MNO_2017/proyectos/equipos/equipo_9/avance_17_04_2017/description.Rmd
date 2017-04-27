@@ -8,12 +8,87 @@ output: pdf_document
 **Manuel Ríos - 159284**
 
 
-# Objetivo
+# Introducion Objetivo
+
+
+
 
 # Lit Review
 
 
-# Background Teórico 
+
+# Conceptos Básicos de CUDA 
+
+Las unidades de procesamiento grafico (GPU) están adecuadas especialmente para atacar problemas que pueden ser expresadas como computo en paralelo, esto es el mismo programa es ejecutado en muchos elementos en paralelo.  Por otro lado el algoritmo de diferencias finitas en el dominio temporal (FDTD) es ese tipo de algoritmos que ejecuta el mismo cálculo en todas las componentes del campo tridimensional en todas las celdas del dominio computacional. 
+
+CUDA C extiende el lenguaje de programación C al permitir que el programador defina funciones de C, llamadas kernels, que son aquellas que ejecutan N veces en paralelo por N diferentes threads. Cada thread que ejecuta el kernel tiene un ```threadId``` único que es posible de acceder desde el kernel a través de la variable ```threadIdx```, que por conveniencia es un vector de 3 componentes, de modo que los threads pueden ser identificados por un indice de 1,2 o 3 dimensiones formando un bloque de threads que puede ser de 1,2 o 3 dimensiones. 
+
+Dado que el kernel se ejecuta en bloques que tienen la misma forma, el numero total de threads es igual al numero de threads por bloque multiplicado por el número de bloques. Los múltiples bloques pueden estar organizados en una malla uni o bi dimensional. Cada bloque en la malla está identificado con un indice uni o bidimensional que es accesible desde el kernel a través de la variable ```blockIdx```.
+
+
+## Espacios de Memoria
+
+Los threads de CUDA pueden acceder a los datos desde múltples espacios de memoria durante su ejecución. Cada thread tiene una memoria local privada y una memoria compartida que es visible para todoss los threads del bloque y con la misma duración que el bloque. Todos los threads tienen acceso a la misma memoria global, la cual es el espacio  principal de memoria en el device en la que se almacenan los datos.  
+
+Acceso a la memoria global es muy limitada y se convierte en el principal cuello de botella en la ejecución del kernel. Por otro lado la memoria compartida es mucho más rápida de acceder pero en términos de tamaño es muy limitada. No obstante, provee de los medios para reutilizar datos y mejorar la eficiencia del kernel. 
+
+Los espacios de memoria constante y textura son dos espacios adicionales de lectura limitadas en tamaño y accedibles por todos los threads durante toda la aplicación. 
+
+El kernel ejecuta en una unidad de procesamiento gráfico a la que es referida como el *device* y el resto del programa se ejecuta en la unidad de procesamiento central y es referida como *host*  
+
+
+## Estrategias de optimización 
+
+En los manuales de programación de CUDA se exponen mejores prácticas, las cuales fungen como recomendaciones para optimizar las implementaciones de algoritmos en general. Entre las más importantes están 
+
+- Estructurar los algoritmos de forma que se exhiba el paralelismo en los cálculos tanto como sea posible
+
+- Una vez que el algoritmo tiene dicha estructura, es necesario un mapeo hacia el hardware tan eficiente como sea posible
+
+- Asegurarse que los accesos a memoria global sean te tipo coalesced siempre que sea posible... **\footnote{Coalescencia ... }
+
+- Minimizar el uso de memoria global y preferentemente usar en su lugar memoria compartida
+
+- Usar memoria compartida para evitar transferencias redundantes desde la memoria global
+
+- Reducir la latencia que surge de las dependencias con el register
+
+- Usar múltiplos de 32 para el número de threads por bloque, ya que estro permite eficiencia óptima en computo y facilita la coalescencia
+
+Porqué son importantes??? 
+
+
+
+
+## Construccion del Kernel 
+
+En cada iteración temporal del ciclo de FDTD se calculan tres valores para el campo magnético en cada celda del dominio computacional de forma simultánea con base en los valores pasados del campo eléctrico y asimismo se calculan tres valores que actualizan las componentes del campo eléctrico de forma simultánea. Dado que los cálculos para cada celda pueden ser realizados de forma independiente de las demás celdas, se puede diseñar una implementación que asigne el cálculo de cada celda a thread independientes y que así esta alcance un nivel alto de paralelización.
+
+En CUDA cada bloque tiene un máximo posible de 512 threads, los cuales pueden ser organizados en 1, 2 o 3 dimensiones. Por lo tanto una subsección del problema en un espacio tridimensional puede ser naturalmente mapeado a un bloque de threads tridimensional. Sin embargo, los bloques sólo pueden ser organizados en mallas de forma unidimensional o bidimensional, por lo que el dominio tridimensional entero del algoritmo de diferencias finitas en el dominio temporal no puede ser mapeado naturalmente a una malla uni o bi dimensional, por lo que se debe utilizar un mapeo alternativo para el dominio del algoritmo FDTD
+
+MAPEOS A CUDA BLOCKS!
+
+### Acceso a Memoria Global Coalesced
+
+Las instrucciones de memoria incluyen cualquier instrucción que lee desde o escribe a cualquier memoria compartida, local o global. Cuado se accede a la memoria local o global hay entre 400 y 600 clock cycles de memory latency. 
+
+En ciertas ocasiones está latencia puede ser escondida por el scheduler de threads si existen instrucciones arimeticas que puedes ser consideradas mientras se espera por el acceso a la memoria global. La mala noticia es que en el caso del FDTD las operaciones están dominadas por accesos a memoria más que por instrucciones aritméticas, por lo que el acceso ineficiente a memoria resulta el principal cuello de botella para los GPUS. 
+
+El ancho de banda de memoria global es usadata casi eficientemente cuando los accesos simultaneos por los threads en un half-warp (durante la ejecucion de una instrucción de escritura o lectura) puede ser coalescida en una sola transacción de memoria de 32 64 o 128 bytes. 
+
+### Acceso a Memoria Compartida
+
+El acceso a memoria compartida es mucho más rápida que la memoria local o global debido a que es una memoria on-chip. Aquellos parametros que residan en el espacio de memoria compartida de un bloque de threads tienen la misma duración que el bloque y son accedibles por todos losthreads del bloque. Por lo que si el kernel utilizará frecuentemente bloques de información de la memoria global es mejor cargar los datos en la memoria compartida para que exista reciclado de datos.
+
+Aunque los accesos que no son coalsced pueden ser eliminados usando memoria compartida existe un problema cuando se accede a la información de celdas vecinas a través de la memoria compartida. Cuando se carga la memoria compartida cada thread copia un elemetod de la memoria global a la memoria compartida, si el thread de la frontera del bloque desea acceder a la informacion de la celda vecina estos datos no estarán disponibles si no están cargados en la memoria compartida. Por lo tanto es necesario cargar otro conjunto de datoss que inluye los datos de las celdas vecinas a la memoria compartida. 
+
+La asignación de espacio se extienda por 16 y en algunos threads del bloque son utilizados para copiar datos de la memoria global a esta extensión de la memoria compartida. 
+
+Así las transferencias de datos desde y hacia la memoria global deben ser evitadas tanto com osea posible. en algunos casos es mejor recalcular que volver a leer de la memoria global. En otras palabras si hay datos que ya han sido transferidos desde la memoria global ddeben ser utilizados tantas veces ssea posible. 
+
+
+
+# Fundamento Físico Matemático
 
 Las ecuaciones de Maxwell están constituidas por un conjunto de ecuaciones diferenciales parciales, las cuales junto con una ley de fuerza de Lorentz, conforman el fundamento del electromagnetismo y óptica clásicos así como de los circuitos eléctricos.
 
@@ -173,7 +248,7 @@ Makefile para la compilacion del program. Incluye las partes del codigo de CUDA.
 
 *Project file.* Contiene la informacion acerca del proyecto.
 
-```{r engine='xml', eval = FALSE}
+```{r engine='xml', eval = FALSE, include=FALSE}
 <?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE entry SYSTEM "SamplesInfo.dtd">
 <entry>
@@ -249,3 +324,13 @@ Makefile para la compilacion del program. Incluye las partes del codigo de CUDA.
 # Resultados
 
 # Referencias 
+
+	- [Micikevicius, P. 3D finite difference computation on GPUs using CUDA. In Proceedings of 2nd workshop on general purpose processing on graphics processing units pp. 79-84., March, 2009 ](https://drive.google.com/open?id=0B1GlF2qCvHCXa0JYWHBNcVdmSUk)
+
+	- [V. Demir, A.Z. Elsherbeni, "Compute Unified Device Architecture (CUDA) Based Finite- Difference Time-Domain (FDTD) Implementation", Appl. Comput. Electromagn. Soc. J., vol. 25, n. 4, pp. 303-314, April 2010](https://drive.google.com/open?id=0B1GlF2qCvHCXUlk5NUx1THNxczQ)
+
+	- [Finite Difference Methods in CUDA C/C++, Part 1](https://devblogs.nvidia.com/parallelforall/finite-difference-methods-cuda-cc-part-1/)
+
+	- [Finite Difference Methods in CUDA C/C++, Part 2](https://devblogs.nvidia.com/parallelforall/finite-difference-methods-cuda-c-part-2/)
+
+	- [Yee, K. Numerical solution of initial boundary value problems involving Maxwell's equations in isotropic media. IEEE Transactions on antennas and propagation, 14(3), 302-307, 1966](https://drive.google.com/open?id=0B1GlF2qCvHCXMkJSWHdhSkFFRFE)
