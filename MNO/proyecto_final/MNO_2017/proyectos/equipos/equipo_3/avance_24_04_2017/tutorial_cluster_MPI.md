@@ -12,7 +12,7 @@ Pero voy a presentar rapidamente los principales etapas para levantar rapidament
 
 1)Crear un carpeta y hacer git clone https://github.com/NLKNguyen/alpine-mpich
 
-2)En la carpeta creado hacer :cd alpine-mpich/cluster/project
+2)En la carpeta creada hacer :cd alpine-mpich/cluster/project
 
 3)Poner hello_clase.c en esta carpeta
 
@@ -20,9 +20,9 @@ Pero voy a presentar rapidamente los principales etapas para levantar rapidament
 
 5)Hacen en el terminal : ./cluster.sh help
 
-Podemos ver que hay possibles de hacer muchas llamadas a esto archivo cluster.sh para construir destruir restart de manera automatizado el cluster
+Podemos ver que hay possibilidades de hacer muchas llamadas a esto archivo cluster.sh para construir, destruir y restart de manera automatizado el cluster.
 
-6)Normalmente estamos en alpine-mpich/cluster y si esta el caso en el terminal hacer: ./cluster.sh up size=10
+6)Normalmente estamos en alpine-mpich/cluster y en el terminal hacer: ./cluster.sh up size=10
 
 Habiamos creado un cluster de 10 contenadores que estan listo para executar de manera parallel el codigo hello_clase.c
 Normalmente al final debemos tener:
@@ -70,7 +70,7 @@ To run directly a shell command at master node:
 
 
 
-7)Ahora vamos a la carpeta a project: cd ./project
+7)Ahora vamos a la carpeta project: cd ./project
 
 8)Hacer :ls 
 
@@ -83,9 +83,9 @@ hello_clase.c  mpi_hello_world.c (un file dado por default)
 (Si no funciona empezar de nuevo a llamar ./cluster.sh up size=10)
 Normalmente estamos ahora en:
 /project $ 
-Esta es la linea de command del nodo maestro
+Esta es la linea de command del nodo maestro.
 
-9)Hacemos: ls (/project $ ls)
+9)Hacer: ls (/project $ ls)
 Normalmente debemos ver como resultado:
 hello_clase.c  mpi_hello_world.c
 
@@ -146,7 +146,7 @@ cluster_worker_8     mpi_bootstrap role=worker  ...   Up
 cluster_worker_9     mpi_bootstrap role=worker  ...   Up         
 
 
-15)Podemos hacer otra cosa (utilizar docker swarm) ver el tutorial de Nkyle Nguyen
+15)Podemos hacer otras cosas (utilizar docker swarm) ver el tutorial de Nkyle Nguyen
 
 
 **GRACIAS A NYKILE NGUGYEN y LOS CONTRIBUTORES DE SU GITHUB**
