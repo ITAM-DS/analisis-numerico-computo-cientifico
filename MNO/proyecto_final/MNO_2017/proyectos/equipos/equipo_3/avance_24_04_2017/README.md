@@ -21,14 +21,14 @@ La versión de código es la siguiente: [Dockerfile](Dockerfile)
 **Marin:**
 
 Para crear un cluster en MPI con los contenedores de docker sigui tu guia, logré a levantar y ligar el contenedor maestro y nodo1.Sin embargo no logré a executar mpirun --prefix /opt/openmpi-2.0.2/ -n 2 -H master,nodo1 hello_clase.out en el nodo maestro pero no buscé el error porque al lugar de dar un error preciso en el terminal el command me envio una lista de errores possibles.Probé tambien de hacer la llamada de mpirun en el terminal principal pero no fue possible de me conectar a estes contenedores por un problema de hostname no conocido.Probé de hacer muchas cosas: 
->empezar de nuevo con cuidado el guia.
->configurar bien los ssh en mi ordinator para que repera estas nodos.
->buscar soluciones en internet.
+.empezar de nuevo con cuidado el guia.
+.configurar bien los ssh en mi ordinator para que repera estas nodos.
+.buscar soluciones en internet.
 Pero me pusé muchisimo tiempo y abandoné la idea de hacer con tu technica porque me falta demasiado conicimientos para manejar manualmente una architectura con ssh en unix.
 
 En consequencia pensé que Docker compose podria ser muy util para manejar un grupo de contenedores y buscé en internet si habia un trabajo sobre MPI y docker compose. Suertamente encontré un sitio [Using Docker container Alpine-MPICH to develop MPI programs](https://asciinema.org/a/93067) y su [github associada](https://github.com/NLKNguyen/alpine-mpich) del autor Nikyle Nguyen ,autor tambien de "Distributed MPI cluster with Docker Swarm mode," 2017 IEEE 7th Annual Computing and Communication Workshop and Conference (CCWC), Las Vegas, NV, USA, 2017, pp. 1-7.
 
-Con su explicacion y sus programos logré a leventar un cluster muy rapidemente con un quantitad importante de contenedores.
+Gracias a sus explicaciones y sus programos logré a leventar un cluster muy rapidemente con un quantitad importante de contenedores.
 
 Propuse un tutorial [Levantar un cluster de 10 contenedores para ejecutar el programo hello_clase.c de Erick](tutorial_cluster_MPI.md) para que sea mas directo de applicar los programas de Nikyle Nguyen.
 Espero realmente que este pequeño tutorial podria ayudar otros equipos que trabajan en MPI para levantar rapidamente un cluster eficiente.
