@@ -23,7 +23,7 @@ Esta semana no tuvimos avances individuales para reportar, ya que estamos revisa
 El articulo resume el algoritmo secuencial de Redes Neuronales como sigue: 
 
 <div style="width:200px; height=80px">
-![](images/Algsec.gif)
+![logo](images/Algsec.gif)
 </div>
 \n
 
