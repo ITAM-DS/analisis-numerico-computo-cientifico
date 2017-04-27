@@ -21,7 +21,7 @@ En la carpeta [avance_07_04_2017](avance_07_04_2017) describimos nuestra avance 
 
 En la carpeta [avance_17_04_2017](avance_17_04_2017) se elavoró la primera versión del código (secuencial) tomando en consideración las referencias del profesor.Se generaron los primeros párrafos para el trabajo final.
 
-En la carpeta [avance_24_04_2017](avance_17_04_2017) nos propusimos generar un cluster para aplicar MPI. 
+En la carpeta [avance_24_04_2017](avance_24_04_2017) nos propusimos generar de 2 maneras differentes un cluster para aplicar MPI. 
 
 
 
