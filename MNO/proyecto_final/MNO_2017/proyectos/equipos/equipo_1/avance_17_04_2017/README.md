@@ -1,4 +1,4 @@
-![logo](https://github.com/hatshex/analisis-numerico-computo-cientifico/blob/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_1/avance_17_04_2017/images/logoitam.gif)
+![logo](images/logoitam.gif)
 # Maestría en Ciencia de Datos
 ## Proyecto Final
   * Avance 17 de abril de 2017
@@ -45,6 +45,7 @@ _*Revisión de la implementación del algoritmo, posibles formas de optimizarlo.
           * [5] Honghoon Jang, Anjin Park, and Keechul Jung (2008), ["Neural Network Implementation using CUDA and OpenMP"](https://drive.google.com/a/ci.itam.mx/file/d/0ByF7NuX9EW1IMjgyX0tneS0zdUU/view?usp=sharing), Proceedings of the 2008 Digital Image Computing: Techniques and Applications, pp 155–161.
           * [6] Thulasiram, R. K., Rahman, R. M., & Thulasiraman, P. (2003, October). [Neural network training algorithms on parallel architectures for finance applications](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8IV3B4cE1WbnBXeXc/view?usp=sharing). In Parallel Processing Workshops, 2003. Proceedings. 2003 International Conference on (pp. 236-243). IEEE.
           * [7] Ji, S., Satish, N., Li, S., & Dubey, P. (2016). [Parallelizing word2vec in shared and distributed memory](https://drive.google.com/a/ci.itam.mx/file/d/0ByF7NuX9EW1IU1VaX0puUjM2WFE/view?usp=sharing). arXiv preprint arXiv:1604.04661.
+          * [8] Sierra-Canto, X., Madera-Ramirez, F., & Uc-Cetina, V. (2010, December). [Parallel training of a back-propagation neural network using cuda](https://drive.google.com/a/ci.itam.mx/file/d/0B9UK_UtOYJ8ITFE2Uy1JQlRhSjg/view?usp=sharing). In Machine Learning and Applications (ICMLA), 2010 Ninth International Conference on (pp. 307-312). IEEE.
 
   2. Investigación de las opciones para ejecutar código de Cuda C y Python. Esta semana se revisaron las diversas formas en las que se puede integrar y ejecutar código CUDA C desde python, a continuación se listan:
       - [PyCUDA and PyOpenCL](https://developer.nvidia.com/pycuda).
@@ -78,8 +79,8 @@ _*Plataforma CUDA*_
 ### Redefinición del alcance del proyecto.
   1. Una vez revisado todo el material bibliográfico decidimos redefinir el objetivo del proyecto, que se describe a continuación:
       - **Objetivo:** _*Optimizar el algoritmo Word2Vec (CBOW) a través de la paralelización de redes neuronales de retro propagación implementado con PyCuda*_
-  2. Se propone una implementación basada en el FrameWork que se explica en el artículo [3] Parallel back-propagation neural network training technique using CUDA on multiple GPUs.
-![framework](https://github.com/hatshex/analisis-numerico-computo-cientifico/blob/master/MNO/proyecto_final/MNO_2017/proyectos/equipo_1/avance_17_04_2017/images/FrameworkNN_B-P.png)
+  2. Se propone una implementación basada en el FrameWork que se explica en el artículo [1] Parallel back-propagation neural network training technique using CUDA on multiple GPUs.
+![framework](images/FrameworkNN_B-P.png)
   3. Entre las opciones que se investigaron para la integración de python y CUDA, se elige utilizar **PyCUDA** debido a que nos permite reutilizar código que ya se tiene desarrollado en python para los primeros pasos que son: 
       - Leer un archivo.
       - Dividir el texto en sentencias, cuando se encuentre un punto o un retorno de carro.
