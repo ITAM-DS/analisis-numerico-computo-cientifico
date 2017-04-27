@@ -13,7 +13,7 @@
 Carlos: - Detalles técnicos de la teoría matemática y computacional
         - Implementación en GPUs: manejo de memoria y computo en paralelo  
 
-Manuel: - Dockerizacion en Amazon
+Manuel: - Se investigo sobre el uso de maquinas de Amazon, en especial la instancia G2.            Se investigo sobre el uso basico de Docker con Nvidia/Cuda, tambien se comenzo           con la base de la imagen de Docker a usar.
 
 ### Equipo
 

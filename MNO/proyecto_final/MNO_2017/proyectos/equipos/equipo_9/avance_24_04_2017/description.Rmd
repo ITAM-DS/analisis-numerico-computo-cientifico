@@ -10,7 +10,7 @@ output: pdf_document
 
 # Introducion Objetivo
 
-
+El objetivo del proyecto, es implementar un FDTD en paralelo usando CUDA. Esto se intenta realizar en un instancia de Amazon usando Docker.
 
 
 # Lit Review
@@ -58,8 +58,6 @@ En los manuales de programación de CUDA se exponen mejores prácticas, las cual
 Porqué son importantes??? 
 
 
-
-
 ## Construccion del Kernel 
 
 En cada iteración temporal del ciclo de FDTD se calculan tres valores para el campo magnético en cada celda del dominio computacional de forma simultánea con base en los valores pasados del campo eléctrico y asimismo se calculan tres valores que actualizan las componentes del campo eléctrico de forma simultánea. Dado que los cálculos para cada celda pueden ser realizados de forma independiente de las demás celdas, se puede diseñar una implementación que asigne el cálculo de cada celda a thread independientes y que así esta alcance un nivel alto de paralelización.
@@ -80,7 +78,7 @@ El ancho de banda de memoria global es usadata casi eficientemente cuando los ac
 
 El acceso a memoria compartida es mucho más rápida que la memoria local o global debido a que es una memoria on-chip. Aquellos parametros que residan en el espacio de memoria compartida de un bloque de threads tienen la misma duración que el bloque y son accedibles por todos losthreads del bloque. Por lo que si el kernel utilizará frecuentemente bloques de información de la memoria global es mejor cargar los datos en la memoria compartida para que exista reciclado de datos.
 
-Aunque los accesos que no son coalsced pueden ser eliminados usando memoria compartida existe un problema cuando se accede a la información de celdas vecinas a través de la memoria compartida. Cuando se carga la memoria compartida cada thread copia un elemetod de la memoria global a la memoria compartida, si el thread de la frontera del bloque desea acceder a la informacion de la celda vecina estos datos no estarán disponibles si no están cargados en la memoria compartida. Por lo tanto es necesario cargar otro conjunto de datoss que inluye los datos de las celdas vecinas a la memoria compartida. 
+Aunque los accesos que no son coalsced pueden ser eliminados usando memoria compartida existe un problema cuando se accede a la información de celdas vecinas a través de la memoria compartida. Cuando se carga la memoria compartida cada thread copia un elemetod de la memoria global a la memoria compartida, si el thread de la frontera del bloque desea acceder a la informacion de la celda vecina estos datos no estarán disponibles si no están cargados en la memoria compartida. Por lo tanto es necesario cargar otro conjunto de datos que inluye los datos de las celdas vecinas a la memoria compartida. 
 
 La asignación de espacio se extienda por 16 y en algunos threads del bloque son utilizados para copiar datos de la memoria global a esta extensión de la memoria compartida. 
 
@@ -319,6 +317,41 @@ Makefile para la compilacion del program. Incluye las partes del codigo de CUDA.
 ```
 
 # Ejecución del Código
+
+## Instancia de Amazon
+
+Para la implementacion del problema, usaremos una instancia EC2 de Amazon AWS de tipo G2. Estas instancias cuentan con 1,536 cores de CUDA para paralelizar, asi como un Intel Xeon E5-2670.
+
+La implementacion de FDTD suele ser demasiado costosa computacionalmente, el avance en el uso de tarjeta graficas para "general purpose programming" ha permitido que metodos como el FDTD puedan ser ejecutados en tiempos razonables.
+
+La "forma" tipica en la que es implementado un codigo en CUDA es similar al mostrado en la imagen a continuacion. 
+
+*Basic Code Flowchart*
+
+![](img/flow.png)
+
+Fuente: D. Danielo,E.Alessandra,T.Luciano,C.Luca, Introduction to GPU Computing and CUDA Programming: A Case Study on FDTD, Unive ity of Stellenbosch, June 2010.
+
+El codigo, claro, esta escrito para que pueda ser ejecutado en forma paralela (Vease archivos de codigo), generalmete de la forma SIMT.  Diversos articulos de la literatura muestran un ganancia en eficiencie de hasta un 80% en cuestion de tiempo de ejecucion, este varia un poco dependiendo de la metrica que se use para medir la eficiencia. 
+
+El codigo se planea implementar de tal manera que todos los threads se utilicen en la maquina de Amazon, asi como eficientar el acceso a memoria.
+
+## Docker
+
+Crearemos un cluster de Docker en una maquina de Amazon. El ejemplo basico de la integracion de Docker con CUDA se puede observar en la imagen 1.2.
+
+![](img/dockercuda.png)
+Fuente: Nvidia Github
+
+Los pasos basicos a seguir para una correcta instalacion de CUDA en Docker y Amazon son:
+
+* Creamos la instancia de Amazon (puede ser via docker-machine)
+* Instalamos los drives de Nvidia
+* Descargamos la imagen de Docker de NVidia con CUDA o podemos usar una propia
+* Creamos los contenedores
+* Manejamos remotamente con `nvidia-docker`
+
+
 ## Ejemplos
 
 # Resultados
