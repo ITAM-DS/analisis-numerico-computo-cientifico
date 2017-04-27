@@ -1,23 +1,40 @@
 ---
-title: "Avances 17-04-2017"
-output: pdf_document
+title: "Método de Diferencias Finitas para 3 dimensiones en CUDA-C" 
+author: "Carlos Pérez, Manuel Ríos @ ITAM "
+date: "Abril, 2017"
+output:
+  pdf_document:
+    toc: false
+    toc_depth: 3
+    #includes:
+    #    in_header: styles/mypackages.sty
 ---
 
-**Carlos Pérez - 103753**
+```{r, include=FALSE}
+knitr::opts_chunk$set(out.width="100px",out.heigt="200px", dpi=120)
+```
 
-**Manuel Ríos - 159284**
+\newpage 
 
+# Introducción
 
-# Introducion Objetivo
+El objetivo del proyecto es implementar un FDTD en paralelo usando CUDA. Esto se intenta realizar en un instancia de Amazon usando Docker. La estructura del documento es como sigue, primero se presenta un overview de los conceptos básicos necesarios para poder entender el problema en términos físicos, matemáticos y computacionales. Se exponen los fundamentos de la teoría de aproximación en términos del cálculo difrencial multivariado representado en este caso por el método de diferencias finitas y su aplicación algorítmica sobre la rama de ecuaciones diferenciales ordinarias, en las que se busca encontrar una solución numérica a sistemas lineales. En particular se expone una variante del método en el cual se tiene un sistema con 4 dimensiones x,y,z,t en el cual se realiza una aplicación de diferencias finitas a través del dominio temporal, la cual es muy utilizada en varios sistemas físicos. Por otro lado se explicará brevemente la aplicación del método al caso del electromagnetismo, ya que es una rama importante de la física computacional que ha florecido con mayor precisión gracias a los avances tecnológicos como son los procesadores GPU.
 
-El objetivo del proyecto, es implementar un FDTD en paralelo usando CUDA. Esto se intenta realizar en un instancia de Amazon usando Docker.
+Luego de establecer los marcos teóricos básicos, es decir los conceptos básicos para el modelo físico, el modelo matemático y el modelo computacional, se presenta formalmente el problema a resolver asi como la implementación computacional que se lleva a cabo en el que se consideran los temas de eficiencia en un contexto de ejecución en paralelo.  Asimismo se explica el código que se utiliza para llevar a cabo dicha implementación y se discuten los puntos débiles y las medidas de control que son llevadas a cabo. 
 
+En otra sección se realiza la exposición de resultados numéricos en términos del performance y un análisis del error en el que se puede incurrir a partir de usar aproximaciones lineales en términos matemáticos, y los errores que se pueden ocasionar respecto al uso de aproximaciones de máquina en el caso de la aritmética de punto flotante así como la estabilidad y complejidad del algoritmo. 
+
+Por último se lleva a cabo una exposición de como hacer de esto un programa ejecutable en una infraestructura en la nube de amazon, a través de una imagen de docker que contiene la paquetería ed software de nvidia. 
+
+Como se verá más adelante, existe una serie de reglas importantes que seguir para optimizar el computo en paralelo, no obstante no siempre son aplicables y no siempre son las únicas decisiones que se tienen que llevar a cabo en términos de almacenamiento en memoria por ejemplo, ya que la forma de almacenar mallas multidimensionales no tiene una única forma de ejecutarse. Por lo tanto, no se pretende que sea un estudio exhaustivo de las diferentes configuraciones en las que se puede implementar el programa de diferencias finitas.  
 
 # Lit Review
 
 
 
-# Conceptos Básicos de CUDA 
+# Fundamentos  
+
+## Arquitectura Computacional:  CUDA 
 
 Las unidades de procesamiento grafico (GPU) están adecuadas especialmente para atacar problemas que pueden ser expresadas como computo en paralelo, esto es el mismo programa es ejecutado en muchos elementos en paralelo.  Por otro lado el algoritmo de diferencias finitas en el dominio temporal (FDTD) es ese tipo de algoritmos que ejecuta el mismo cálculo en todas las componentes del campo tridimensional en todas las celdas del dominio computacional. 
 
@@ -26,7 +43,7 @@ CUDA C extiende el lenguaje de programación C al permitir que el programador de
 Dado que el kernel se ejecuta en bloques que tienen la misma forma, el numero total de threads es igual al numero de threads por bloque multiplicado por el número de bloques. Los múltiples bloques pueden estar organizados en una malla uni o bi dimensional. Cada bloque en la malla está identificado con un indice uni o bidimensional que es accesible desde el kernel a través de la variable ```blockIdx```.
 
 
-## Espacios de Memoria
+### Espacios de Memoria
 
 Los threads de CUDA pueden acceder a los datos desde múltples espacios de memoria durante su ejecución. Cada thread tiene una memoria local privada y una memoria compartida que es visible para todoss los threads del bloque y con la misma duración que el bloque. Todos los threads tienen acceso a la misma memoria global, la cual es el espacio  principal de memoria en el device en la que se almacenan los datos.  
 
@@ -37,7 +54,7 @@ Los espacios de memoria constante y textura son dos espacios adicionales de lect
 El kernel ejecuta en una unidad de procesamiento gráfico a la que es referida como el *device* y el resto del programa se ejecuta en la unidad de procesamiento central y es referida como *host*  
 
 
-## Estrategias de optimización 
+### Estrategias de optimización 
 
 En los manuales de programación de CUDA se exponen mejores prácticas, las cuales fungen como recomendaciones para optimizar las implementaciones de algoritmos en general. Entre las más importantes están 
 
@@ -55,7 +72,44 @@ En los manuales de programación de CUDA se exponen mejores prácticas, las cual
 
 - Usar múltiplos de 32 para el número de threads por bloque, ya que estro permite eficiencia óptima en computo y facilita la coalescencia
 
-Porqué son importantes??? 
+TODO: Las que no son evidentes por qué son importantes??? 
+
+
+## Método Matemático
+### Analisis de Error de aproximación  
+
+
+
+
+## Modelo Físico 
+
+Las ecuaciones de Maxwell están constituidas por un conjunto de ecuaciones diferenciales parciales, las cuales junto con una ley de fuerza de Lorentz, conforman el fundamento del electromagnetismo y óptica clásicos así como de los circuitos eléctricos.
+
+Las ecuaciones son nombradas en honor al físico y matemático James Clerk Maxwell, quien entre 1861 y 1862 publicó las ecuaciones así como una proposición de que la luz es un fenómenos electromagnético. 
+
+$$
+\begin{aligned}
+\nabla \cdot \mathbf {E} &=0\quad &\nabla \times \mathbf {E} &=-{\frac {\partial \mathbf {B} }{\partial t}},\\\nabla \cdot \mathbf {B} &=0\quad &\nabla \times \mathbf {B} &={\frac {1}{c^{2}}}{\frac {\partial \mathbf {E} }{\partial t}}
+\end{aligned}  
+$$
+
+o bien, utilizando ciertas identidades, en su forma de ecuación de onda se tiene que 
+
+$$
+\begin{aligned}{\frac {1}{c^{2}}}{\frac {\partial ^{2}\mathbf {E} }{\partial t^{2}}}-\nabla ^{2}\mathbf {E} =0\\{\frac {1}{c^{2}}}{\frac {\partial ^{2}\mathbf {B} }{\partial t^{2}}}-\nabla ^{2}\mathbf {B} =0
+\end{aligned}
+$$
+
+### Sistemas de Ecuaciones
+
+### Ejemplos
+
+
+# Implementación de FDTD en GPU
+
+La formulación considerada en CUDA está fundamentada en actualizar las ecuaciones para propiedades anisotropicas de materiales en las se que se incluyen permisividad, permeabilidad y conductividades eléctrica y magnética. El dominio para el problema FDTD es una celda, referida en la literatura como la celda de Yee, como se muestra a continuación.
+
+![Celda de Yee: Unidad del Dominio Computacional](img/yee_cell.png)
 
 
 ## Construccion del Kernel 
@@ -85,36 +139,7 @@ La asignación de espacio se extienda por 16 y en algunos threads del bloque son
 Así las transferencias de datos desde y hacia la memoria global deben ser evitadas tanto com osea posible. en algunos casos es mejor recalcular que volver a leer de la memoria global. En otras palabras si hay datos que ya han sido transferidos desde la memoria global ddeben ser utilizados tantas veces ssea posible. 
 
 
-
-# Fundamento Físico Matemático
-
-Las ecuaciones de Maxwell están constituidas por un conjunto de ecuaciones diferenciales parciales, las cuales junto con una ley de fuerza de Lorentz, conforman el fundamento del electromagnetismo y óptica clásicos así como de los circuitos eléctricos.
-
-Las ecuaciones son nombradas en honor al físico y matemático James Clerk Maxwell, quien entre 1861 y 1862 publicó las ecuaciones así como una proposición de que la luz es un fenómenos electromagnético. 
-
-$$
-\begin{aligned}
-\nabla \cdot \mathbf {E} &=0\quad &\nabla \times \mathbf {E} &=-{\frac {\partial \mathbf {B} }{\partial t}},\\\nabla \cdot \mathbf {B} &=0\quad &\nabla \times \mathbf {B} &={\frac {1}{c^{2}}}{\frac {\partial \mathbf {E} }{\partial t}}
-\end{aligned}  
-$$
-
-o bien, utilizando ciertas identidades, en su forma de ecuación de onda se tiene que 
-
-$$
-\begin{aligned}{\frac {1}{c^{2}}}{\frac {\partial ^{2}\mathbf {E} }{\partial t^{2}}}-\nabla ^{2}\mathbf {E} =0\\{\frac {1}{c^{2}}}{\frac {\partial ^{2}\mathbf {B} }{\partial t^{2}}}-\nabla ^{2}\mathbf {B} =0
-\end{aligned}
-$$
-
-La formulación considerada en CUDA está fundamentada en actualizar las ecuaciones para propiedades anisotropicas de materiales en las se que se incluyen permisividad, permeabilidad y conductividades eléctrica y magnética. El dominio para el problema FDTD es una celda, referida en la literatura como la celda de Yee, como se muestra a continuación.
-
-
-![Celda de Yee](yee_cell.png)
-
-\newpage
-
-# Sistemas de Ecuaciones
-
-# Código BASE
+## Código BASE
 
 A continuación llevamos a cabo la descripción del código de los archivos integrados en la carpeta de entrega el Lunes 17 de Abril. Parte de este cdigo viene de Nvidia.
 
@@ -318,7 +343,15 @@ Makefile para la compilacion del program. Incluye las partes del codigo de CUDA.
 
 # Ejecución del Código
 
-## Instancia de Amazon
+
+
+
+## Resultados / Analisis de Error Numerico  
+
+
+
+
+# Infraestructura de Instancias con CUDA en Amazon
 
 Para la implementacion del problema, usaremos una instancia EC2 de Amazon AWS de tipo G2. Estas instancias cuentan con 1,536 cores de CUDA para paralelizar, asi como un Intel Xeon E5-2670.
 
@@ -328,7 +361,7 @@ La "forma" tipica en la que es implementado un codigo en CUDA es similar al most
 
 *Basic Code Flowchart*
 
-![](img/flow.png)
+![Diagrama de Comunicación](img/flow.png)
 
 Fuente: D. Danielo,E.Alessandra,T.Luciano,C.Luca, Introduction to GPU Computing and CUDA Programming: A Case Study on FDTD, Unive ity of Stellenbosch, June 2010.
 
@@ -340,8 +373,8 @@ El codigo se planea implementar de tal manera que todos los threads se utilicen 
 
 Crearemos un cluster de Docker en una maquina de Amazon. El ejemplo basico de la integracion de Docker con CUDA se puede observar en la imagen 1.2.
 
-![](img/dockercuda.png)
-Fuente: Nvidia Github
+![Arquitectura Fuente: Nvidia Github](img/dockercuda.png)
+
 
 Los pasos basicos a seguir para una correcta instalacion de CUDA en Docker y Amazon son:
 
@@ -352,9 +385,6 @@ Los pasos basicos a seguir para una correcta instalacion de CUDA en Docker y Ama
 * Manejamos remotamente con `nvidia-docker`
 
 
-## Ejemplos
-
-# Resultados
 
 # Referencias 
 
