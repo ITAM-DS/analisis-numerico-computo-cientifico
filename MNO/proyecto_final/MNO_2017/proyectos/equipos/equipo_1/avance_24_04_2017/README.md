@@ -40,16 +40,12 @@ Los pasos del algorito secuecial 2., 4., 5., 6., 7. y 8. pertenecen a este grupo
 
 Lo cual se puede escribir de la siguiente forma:
 
-<div style="width:300px; height=200px">
-![](images/Parallel.png)
-</div>
+![logo](images/Parallel.png)
+
 
 La funcion sigmoidal esta definida de la siguiente manera:
 
-<div style="width:300px; height=150px">
 ![logo](images/sigmoid.png)
-</div>
-\n
 
 
 **Referencias**
