@@ -155,7 +155,7 @@ computacionales de optimización.
 
 * [Avance 07-04-2017](equipos/equipo_11/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay tres nuevas referencias en [REAMDE.md](equipo_11). Muy buen avance en la lectura de la teoría y el objetivo a realizar. Hay que hacer la liga con componentes principales y ver implementación de algún ordenamiento (por ejemplo el round robin) para el segundo avance.
 
-* [Avance 17-04-2017](equipos/equipo_11/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Para el tercer avance revisen la referencia de P. Pacheco, Parallel programming with MPI para distribución de columnas.
+* [Avance 17-04-2017](equipos/equipo_11/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Para el tercer avance revisen la referencia de P. Pacheco, Parallel programming with MPI para distribución de columnas. Hay nuevas referencias para el método one sided jacobi por bloques (si a alguna le interesa puede revisarlas pero esto es para futuro trabajo, no indispensable para la entrega del proyecto final).
 
 * [Avance 24-04-2017](equipos/equipo_11/avance_24_04_2017). 
 
