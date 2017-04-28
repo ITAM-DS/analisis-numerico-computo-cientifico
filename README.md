@@ -20,21 +20,23 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 2.2 Sistemas de memoria distribuida: [MPI](C/extensiones_a_C/MPI).
 
-*[Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
+* [Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
 
-*[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/)
+* [Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/)
 
 2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
 
 * [Ejemplos con Pthreads](C/extensiones_a_C/Pthreads/ejemplos/)
 
-2.4 Sistemas de memoria compartida: openMP.
+2.4 Sistemas de memoria compartida: [openMP](C/extensiones_a_C/openMP)
+
+* [Ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/)
 
 2.5 Compute Unified Device Architecture ([CUDA](C/extensiones_a_C/CUDA/)).
 
-*[Instalación](C/extensiones_a_C/CUDA/instalacion)
+* [Instalación](C/extensiones_a_C/CUDA/instalacion)
 
-*[Ejemplos](C/extensiones_a_C/CUDA/ejemplos/)
+* [Ejemplos](C/extensiones_a_C/CUDA/ejemplos/)
 
 ## III [Cómputo matricial](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
