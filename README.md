@@ -48,6 +48,14 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 3.2.2 Factorizaciones matriciales: SVD, Cholesky, QR. (Vista rápida).
 
+3.3 Aplicaciones del álgebra lineal numérica.
+
+## IV [Optimización convexa]
+
+4.1 Teoría de convexidad.
+
+4.2 Optimización convexa.
+
 ## [C](C/)
 
 [clase1](C/clases/clase1.md)
