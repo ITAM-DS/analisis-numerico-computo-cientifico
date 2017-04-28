@@ -22,7 +22,7 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 *[Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
 
-*[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/README.md)
+*[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/)
 
 2.3 Sistemas de memoria compartida: Pthreads.
 
