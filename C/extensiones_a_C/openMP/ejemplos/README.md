@@ -155,7 +155,7 @@ $gcc -Wall -fopenmp omp_trap_alternativa.c -o omp_trap_alternativa.out -lm
 Ejecutar:
 
 ```
-$./omp_trap.out 10
+$./omp_trap_alternativa.out 10
 ```
 
 
