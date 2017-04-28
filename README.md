@@ -4,7 +4,7 @@ En la carpeta [MNO](MNO) encuentran información sobre el curso de Métodos Num�
 
 En la carpeta [C](C) encuentran clases para introducción y extensiones al lenguaje de programación C.
 
-Índice de este repositorio
+Índice de este repositorio. Cada número contiene notas del tema respectivo.
 
 ## I [Cómputo científico](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0):
 
