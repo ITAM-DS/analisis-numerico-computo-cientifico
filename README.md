@@ -24,7 +24,9 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 *[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/)
 
-2.3 Sistemas de memoria compartida: Pthreads.
+2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
+
+* [Ejemplos con Pthreads](C/extensiones_a_C/Pthreads/ejemplos/)
 
 2.4 Sistemas de memoria compartida: openMP.
 
