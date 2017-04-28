@@ -42,7 +42,7 @@ $mpicc hello_clase.c -o hello_clase.out
 Ejecutar con un sólo procesador:
 
 ```
-mpiexec -n 5 hello_clase.out
+$mpiexec -n 5 hello_clase.out
 ```
 
 Ejecutar de forma pseudo distribuida:
