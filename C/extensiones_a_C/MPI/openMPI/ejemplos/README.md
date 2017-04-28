@@ -1,6 +1,6 @@
 # Ejemplos con openmpi
 
-Para los siguientes ejemplos, se supone que se ha [levantado un cluster de forma pseudo distribuida con openMPI y docker](../openMPI). 
+Para los siguientes ejemplos, se supone que se ha [levantado un cluster de forma pseudo distribuida con openMPI y docker](../). 
 
 Se compilarán y ejecutarán los ejemplos en el master_container.
 
