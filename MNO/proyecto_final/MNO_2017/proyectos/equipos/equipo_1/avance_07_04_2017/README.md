@@ -1,3 +1,7 @@
+![logo](images/logoitam.gif)
+# Maestría en Ciencia de Datos
+## Proyecto Final
+
 # Avance_07_04_2017
 
 ## Integrantes:
