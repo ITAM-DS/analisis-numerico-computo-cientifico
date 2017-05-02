@@ -7,3 +7,5 @@ Referencias:
 * https://developer.nvidia.com/
 
 * https://docs.nvidia.com/cuda/cuda-c-programming-guide/
+
+[Notas del curso MNO](https://www.dropbox.com/s/yjijtfuky3s5dfz/2.5.Compute_Unified_Device_Architecture.pdf?dl=0)
