@@ -29,7 +29,10 @@ __Calendario:__
 
 * [Avance 24-04-2017](avance_24_04_2017).
 
-1. Por definir.
+1. Se realizo analisis para GRID con SGE.
+2. Se revisaron los metodos de calculo de SVD thin y se revisaron sus 3 fases.
+3. Se documento la Fase 1
+4. Se valido algoritmo TEST de SVD en Rstudio
 
 ## Referencias del proyecto:
 
@@ -41,6 +44,8 @@ __Calendario:__
 
 * Se menciona el método de [Golub-Reinsch](http://people.duke.edu/~hpgavin/SystemID/References/Golub+Reinsch-NM-1970.pdf) para el cual es útil leer: G. Golub, W. Kahan. Calculating the singular values and pseudo inverse of a matrix y el capítulo 8 del libro: G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013.
 
-* Para revisar lo basico de SVD https://en.wikipedia.org/wiki/Singular_value_decomposition 
+* Para revisar lo basico de SVD https://en.wikipedia.org/wiki/Singular_value_decomposition
+
+* Para repaso de algebra, muy bueno!!!, libro de  Algebra Lineal de Mina S. de Carakushansky y guilherme de La Penha Editorial Ma Graw Hill
 
 by __RIL && ADV__
