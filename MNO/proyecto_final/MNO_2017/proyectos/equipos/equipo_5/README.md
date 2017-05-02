@@ -27,13 +27,15 @@ Exploración de factibilidad del proyecto. Revisión de literatura. Prueba de ej
 
 ### [17 de abril](avance_17_04_2017)
 
-Revisión de literatura. Prueba de ejemplos que usan DQN. Revisión de la librería cuDNN 
+Revisión de literatura. Prueba de ejemplos que usan DQN. Revisión de la librería cuDNN.
 
 ### [26 de abril](avance_26_04_2017)
 
-Revisión de literatura recomendada por Erick. Pruebas de aprendizaje usando policy gradient con el juego Breakout
+Revisión de literatura recomendada por Erick. Pruebas de aprendizaje usando policy gradient con el juego Breakout.
 
-### 2 de mayo.
+### [2 de mayo](avance_02_05_2017)
+
+Revisión de literatura y notas para trabajo escrito y presentación. pruebas de aprendizaje usando policy gradient con el juego Breakout.
 
 ### 8 de mayo.
 
