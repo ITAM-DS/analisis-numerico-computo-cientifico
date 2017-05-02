@@ -19,6 +19,8 @@ En la carpeta [avance_17_04_2017](avance_17_04_2017) se encuentra el reporte del
 
 En la carpeta [avance_26_04_2017](avance_26_04_2017) se encuentra el reporte del tercer avance para determinar y avanzar nuestro proyecto.
 
+En la carpeta [avance_02_05_2017](avance_02_05_2017) se encuentra el reporte del cuarto avance para determinar y avanzar nuestro proyecto.
+
 ## Plan de trabajo
 
 ### [7 de abril](avance_07_04_2017)
