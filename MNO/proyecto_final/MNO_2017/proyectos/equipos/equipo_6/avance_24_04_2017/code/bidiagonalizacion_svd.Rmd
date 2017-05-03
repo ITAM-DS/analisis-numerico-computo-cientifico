@@ -1,0 +1,72 @@
+---
+html_document: default
+author: "Ricardo Lastra"
+date: "26 de abril de 2017"
+pdf_document: default
+title: "BIDIAGONALIZACION"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Retomamos la Matriz $A$ de ejemplo de la semana anterior:
+
+$$
+A = \left[\begin{array}
+{rrr}
+1 & 2 & 1 \\
+4 & 5 & 3 \\
+2 & 1 & 4 \\
+\end{array}\right]
+$$
+
+```{r A}
+A <- matrix(c(1,2,1,
+              4,5,3,
+              2,1,4), byrow = T, ncol = 3, nrow = 3)
+```
+Le aplicamos la función de SVD y validamos los resultados:
+
+```{r s}
+s <- svd(A)
+s
+D <- diag(s$d) # Pasamos a matriz de ceros
+D
+s$u %*% D %*% t(s$v) #  A = U Sigma V'
+```
+
+y observamos que los resultados son iguales a los dos calculos realizados la semana anterior, con CUDA Toolkit E.1. y usando SciPy y el algoritmo de SVD implementado en Python con la funcion de numpy "np.linalg.svd"
+
+>Entonces, revisando el metodo de Golub y las notas de clase tenemos la descripción de la Fase 1 del metodo de la siguiente forma:
+
+Necesitamos encontrar la matriz $Vi$ ortogonal de $nxn$ y una matriz $Ui$ con columnas ortonormales de $mxn$ tales que $UiT A-V=B$ sea Bidiagonal
+
+Para ello tomamos la matriz de prueba que hemos estado utilizando, la matriz $A$ y calculamos $B$
+Donde podemos hacer matrices Bidiagonales por una función...
+
+```{r bidiag}
+bidiag <- function(upper, lower, main){
+    out <- matrix(0,length(main),length(main))
+    diag(out) <- main
+    indx <- seq.int(length(upper))
+    out[cbind(indx+1,indx)] <- lower
+    out[cbind(indx,indx+1)] <- upper
+    return(out)
+}
+bidiag(1:2, 0:0, 3:5)
+```
+
+o las podemos calcular segun metodo $UiT A-V=B$
+```{r B}
+B <- t(s$u) %*% A - s$v
+B
+```
+
+Para asi posteriormente aplicarle SVD a la $B$, esto se comentara en el siguiente avance.
+
+```{r s1}
+s1 <- svd(B)
+s1
+```
+
+
