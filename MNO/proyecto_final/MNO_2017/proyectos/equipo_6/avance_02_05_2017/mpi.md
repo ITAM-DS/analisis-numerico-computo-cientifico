@@ -140,4 +140,99 @@ Ver el archivo [Docker-compose](ambiente/docker-compose.yml)
 
 ![Docker container:](images/docker-compose.png)
 
+## Ejemplo de uso
+
+* __Incluimos las librerias necesarias__
+ 
+```
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+#include <mpi.h>
+#include <cuda.h>
+
+#define MAX_NODES 100
+#define BUFF_LEN 256 
+
+```
+
+* __Proceso para enumerar las dispositivos CUDA disponibles__
+
+```
+void enumCudaDevices(char *buff)
+{
+    char tmpBuff[BUFF_LEN];
+    int i, devCount;
+
+    cudaGetDeviceCount(&devCount);
+    sprintf(tmpBuff," %3d", devCount);
+    strncat(buff, tmpBuff, BUFF_LEN);
+
+    for (i = 0; i < devCount; i++)
+    {
+        cudaDeviceProp devProp;
+
+        cudaGetDeviceProperties(&devProp, i);
+        sprintf(tmpBuff, "  %d:%s", i, devProp.name);
+        strncat(buff, tmpBuff, BUFF_LEN);
+    }
+}
+```
+
+* __Proceso principal__
+
+```
+
+int main(int argc, char *argv[])
+{
+    int i, myrank, numprocs;
+    char pName[MPI_MAX_PROCESSOR_NAME],
+    buff[BUFF_LEN];
+
+    MPI_Init(&argc,&argv);
+    MPI_Comm_size(MPI_COMM_WORLD,&numprocs);
+    MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
+    MPI_Get_processor_name(pName, &i);
+
+    sprintf(buff, "%-15s %3d", pName, myrank);
+    // Find local CUDA devices
+    enumCudaDevices(buff);
+
+    // Collect and print the list of CUDA devices from all MPI processes
+    if (myrank == 0)
+    {
+        char devList[MAX_NODES][BUFF_LEN];
+
+        MPI_Gather(buff, BUFF_LEN, MPI_CHAR,
+                   devList, BUFF_LEN, MPI_CHAR,
+                   0, MPI_COMM_WORLD);
+        for (i = 0; i < numprocs; i++)
+            printf("%s\n", devList + i);
+    }
+    else
+        MPI_Gather(buff, BUFF_LEN, MPI_CHAR,
+                   NULL, 0, MPI_CHAR,
+                   0, MPI_COMM_WORLD);
+
+    MPI_Finalize();
+    return 0;
+}
+```
+
+## Instrucciónes para compilar Cuda Aware
+
+* Ejecutamos con nvcc
+
+```
+nvcc -I /opt/openmpi-2.0.2/include/ -L /opt/openmpi-2.0.2/lib cuda-mpi.cu -o cuda-mpi.o -lmpi
+
+```
+
+* Corremos el proceso con mpirun
+
+```
+mpiexec -np 5 ./cuda-mpi.o 
+
+```
 
