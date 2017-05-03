@@ -18,6 +18,6 @@ Equipo:
 
 * Integramos el codigo para lecturas de csv en el programa de multiplicacion de matrices en MPI sin embargo tenemos errores
 * [Liga al codigo](matmult.c)
-* ![Liga al error](Images/error.png)
+* ![Liga al error](Images/error.PNG)
 
 
