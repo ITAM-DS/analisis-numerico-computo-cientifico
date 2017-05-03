@@ -4,7 +4,7 @@ En la carpeta [MNO](MNO) encuentran información sobre el curso de Métodos Num�
 
 En la carpeta [C](C) encuentran clases para introducción y extensiones al lenguaje de programación C.
 
-Índice de este repositorio
+Índice de este repositorio. Cada número contiene notas del tema respectivo.
 
 ## I [Cómputo científico](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0):
 
@@ -20,19 +20,23 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 2.2 Sistemas de memoria distribuida: [MPI](C/extensiones_a_C/MPI).
 
-*[Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
+* [Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
 
-*[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/README.md)
+* [Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/)
 
-2.3 Sistemas de memoria compartida: Pthreads.
+2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
 
-2.4 Sistemas de memoria compartida: openMP.
+* [Ejemplos con Pthreads](C/extensiones_a_C/Pthreads/ejemplos/)
+
+2.4 Sistemas de memoria compartida: [openMP](C/extensiones_a_C/openMP)
+
+* [Ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/)
 
 2.5 Compute Unified Device Architecture ([CUDA](C/extensiones_a_C/CUDA/)).
 
-*[Instalación](C/extensiones_a_C/CUDA/instalacion)
+* [Instalación](C/extensiones_a_C/CUDA/instalacion)
 
-*[Ejemplos](C/extensiones_a_C/CUDA/ejemplos/)
+* [Ejemplos](C/extensiones_a_C/CUDA/ejemplos/)
 
 ## III [Cómputo matricial](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
@@ -43,6 +47,14 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 3.2.1 Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.
 
 3.2.2 Factorizaciones matriciales: SVD, Cholesky, QR. (Vista rápida).
+
+3.3 Aplicaciones del álgebra lineal numérica.
+
+## IV [Optimización convexa]
+
+4.1 Teoría de convexidad.
+
+4.2 Optimización convexa.
 
 ## [C](C/)
 

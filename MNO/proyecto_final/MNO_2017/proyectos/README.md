@@ -27,6 +27,8 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 
 * [Avance 17-04-2017](equipos/equipo_2/avance_17_04_2017).
 
+* [Avance 26-04-2017](equipos/equipo_2/avance_26_04_2017).
+
 ---
 
 
@@ -41,6 +43,8 @@ Objetivo adicional: Aplicar el algorithmo MCMC:Metropilis-Hasting para estimar i
 [Avance 07-04-2017](equipos/equipo_3/avance_07_04_2017). Comentario del prof: avance actualizado y allí aparecen referencias para la generación de números aleatorios en paralelo. Para el siguiente avance revísenlas (junto con las referencias de la integración por MC) para que esté clara la dificultad de la implementación en paralelo del método que elijan.
 
 [Avance 17-04-2017](equipos/equipo_3/avance_17_04_2017).
+
+[Avance 24-04-2017](equipos/equipo_3/avance_24_04_2017).
 
 ---
 
@@ -92,6 +96,9 @@ Objetivo del proyecto: Diseñar e implementar una plataforma hibrida (MPI/CUDA-C
 * [Avance 07-04-2017](equipos/equipo_6/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios y hay preguntas que espero me puedan responder :). Hay referencias para la teoría de la SVD en el [README.md](equipo_6/). Muy bien con respecto a `nvidia-docker`. Para el segundo avance revisen la teoría de la SVD y debemos determinar la herramienta para la distribución de los chunks de sus datos.
 
 * [Avance 17-04-2017](equipos/equipo_6/avance_17_04_2017). Comentario del prof:
+
+
+* [Avance 24-04-2017](equipos/equipo_6/avance_24_04_2017). Comentario del prof:
 
 ---
 
@@ -156,7 +163,7 @@ computacionales de optimización.
 
 * [Avance 07-04-2017](equipos/equipo_11/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay tres nuevas referencias en [REAMDE.md](equipo_11). Muy buen avance en la lectura de la teoría y el objetivo a realizar. Hay que hacer la liga con componentes principales y ver implementación de algún ordenamiento (por ejemplo el round robin) para el segundo avance.
 
-* [Avance 17-04-2017](equipos/equipo_11/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Para el tercer avance revisen la referencia de P. Pacheco, Parallel programming with MPI para distribución de columnas.
+* [Avance 17-04-2017](equipos/equipo_11/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Para el tercer avance revisen la referencia de P. Pacheco, Parallel programming with MPI para distribución de columnas. Hay nuevas referencias para el método one sided jacobi por bloques (si a alguna le interesa puede revisarlas pero esto es para futuro trabajo, no indispensable para la entrega del proyecto final).
 
 * [Avance 24-04-2017](equipos/equipo_11/avance_24_04_2017). 
 
@@ -190,6 +197,9 @@ Objetivo del proyecto: Crear un script que haga eficiente la obtención de una m
 
 * [Avance 07-04-2017](equipos/equipo_13/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios, hay una pregunta allí espero me puedan responder :) Muy bien respecto a su lectura y trabajo en equipo. Para el segundo avance pueden avanzar en implementación en C. 
 
+* [Avance 17-04-2017](equipo_13/avance_17_04_2017). 
+
+* [Avance 26-04-2017](equipo_13/avance_26_04_2017). 
 ---
 
 ## [Equipo ejemplo](equipos/equipo_ejemplo)
