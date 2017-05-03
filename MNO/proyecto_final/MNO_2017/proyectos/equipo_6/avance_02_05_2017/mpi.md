@@ -1,4 +1,4 @@
-# Docker NVIDIA
+# Cuda Aware for MPI
 
 ## Integrantes:
 
