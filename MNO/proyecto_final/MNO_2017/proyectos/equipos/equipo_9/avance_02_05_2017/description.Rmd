@@ -1,0 +1,403 @@
+---
+title: "Método de Diferencias Finitas para 3 dimensiones en CUDA-C" 
+author: "Carlos Pérez, Manuel Ríos @ ITAM "
+date: "Abril, 2017"
+output:
+  pdf_document:
+    toc: false
+    toc_depth: 3
+    #includes:
+    #    in_header: styles/mypackages.sty
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(out.width="100px",out.heigt="200px", dpi=120)
+```
+
+\newpage 
+
+# Introducción
+
+El objetivo del proyecto es implementar un FDTD en paralelo usando CUDA. Esto se intenta realizar en un instancia de Amazon usando Docker. La estructura del documento es como sigue, primero se presenta un overview de los conceptos básicos necesarios para poder entender el problema en términos físicos, matemáticos y computacionales. Se exponen los fundamentos de la teoría de aproximación en términos del cálculo difrencial multivariado representado en este caso por el método de diferencias finitas y su aplicación algorítmica sobre la rama de ecuaciones diferenciales ordinarias, en las que se busca encontrar una solución numérica a sistemas lineales. En particular se expone una variante del método en el cual se tiene un sistema con 4 dimensiones x,y,z,t en el cual se realiza una aplicación de diferencias finitas a través del dominio temporal, la cual es muy utilizada en varios sistemas físicos. Por otro lado se explicará brevemente la aplicación del método al caso del electromagnetismo, ya que es una rama importante de la física computacional que ha florecido con mayor precisión gracias a los avances tecnológicos como son los procesadores GPU.
+
+Luego de establecer los marcos teóricos básicos, es decir los conceptos básicos para el modelo físico, el modelo matemático y el modelo computacional, se presenta formalmente el problema a resolver asi como la implementación computacional que se lleva a cabo en el que se consideran los temas de eficiencia en un contexto de ejecución en paralelo.  Asimismo se explica el código que se utiliza para llevar a cabo dicha implementación y se discuten los puntos débiles y las medidas de control que son llevadas a cabo. 
+
+En otra sección se realiza la exposición de resultados numéricos en términos del performance y un análisis del error en el que se puede incurrir a partir de usar aproximaciones lineales en términos matemáticos, y los errores que se pueden ocasionar respecto al uso de aproximaciones de máquina en el caso de la aritmética de punto flotante así como la estabilidad y complejidad del algoritmo. 
+
+Por último se lleva a cabo una exposición de como hacer de esto un programa ejecutable en una infraestructura en la nube de amazon, a través de una imagen de docker que contiene la paquetería ed software de nvidia. 
+
+Como se verá más adelante, existe una serie de reglas importantes que seguir para optimizar el computo en paralelo, no obstante no siempre son aplicables y no siempre son las únicas decisiones que se tienen que llevar a cabo en términos de almacenamiento en memoria por ejemplo, ya que la forma de almacenar mallas multidimensionales no tiene una única forma de ejecutarse. Por lo tanto, no se pretende que sea un estudio exhaustivo de las diferentes configuraciones en las que se puede implementar el programa de diferencias finitas.  
+
+# Lit Review
+
+
+
+# Fundamentos  
+
+## Arquitectura Computacional:  CUDA 
+
+Las unidades de procesamiento grafico (GPU) están adecuadas especialmente para atacar problemas que pueden ser expresadas como computo en paralelo, esto es el mismo programa es ejecutado en muchos elementos en paralelo.  Por otro lado el algoritmo de diferencias finitas en el dominio temporal (FDTD) es ese tipo de algoritmos que ejecuta el mismo cálculo en todas las componentes del campo tridimensional en todas las celdas del dominio computacional. 
+
+CUDA C extiende el lenguaje de programación C al permitir que el programador defina funciones de C, llamadas kernels, que son aquellas que ejecutan N veces en paralelo por N diferentes threads. Cada thread que ejecuta el kernel tiene un ```threadId``` único que es posible de acceder desde el kernel a través de la variable ```threadIdx```, que por conveniencia es un vector de 3 componentes, de modo que los threads pueden ser identificados por un indice de 1,2 o 3 dimensiones formando un bloque de threads que puede ser de 1,2 o 3 dimensiones. 
+
+Dado que el kernel se ejecuta en bloques que tienen la misma forma, el numero total de threads es igual al numero de threads por bloque multiplicado por el número de bloques. Los múltiples bloques pueden estar organizados en una malla uni o bi dimensional. Cada bloque en la malla está identificado con un indice uni o bidimensional que es accesible desde el kernel a través de la variable ```blockIdx```.
+
+
+### Espacios de Memoria
+
+Los threads de CUDA pueden acceder a los datos desde múltples espacios de memoria durante su ejecución. Cada thread tiene una memoria local privada y una memoria compartida que es visible para todoss los threads del bloque y con la misma duración que el bloque. Todos los threads tienen acceso a la misma memoria global, la cual es el espacio  principal de memoria en el device en la que se almacenan los datos.  
+
+Acceso a la memoria global es muy limitada y se convierte en el principal cuello de botella en la ejecución del kernel. Por otro lado la memoria compartida es mucho más rápida de acceder pero en términos de tamaño es muy limitada. No obstante, provee de los medios para reutilizar datos y mejorar la eficiencia del kernel. 
+
+Los espacios de memoria constante y textura son dos espacios adicionales de lectura limitadas en tamaño y accedibles por todos los threads durante toda la aplicación. 
+
+El kernel ejecuta en una unidad de procesamiento gráfico a la que es referida como el *device* y el resto del programa se ejecuta en la unidad de procesamiento central y es referida como *host*  
+
+
+### Estrategias de optimización 
+
+En los manuales de programación de CUDA se exponen mejores prácticas, las cuales fungen como recomendaciones para optimizar las implementaciones de algoritmos en general. Entre las más importantes están 
+
+- Estructurar los algoritmos de forma que se exhiba el paralelismo en los cálculos tanto como sea posible
+
+- Una vez que el algoritmo tiene dicha estructura, es necesario un mapeo hacia el hardware tan eficiente como sea posible
+
+- Asegurarse que los accesos a memoria global sean te tipo coalesced siempre que sea posible... **\footnote{Coalescencia ... }
+
+- Minimizar el uso de memoria global y preferentemente usar en su lugar memoria compartida
+
+- Usar memoria compartida para evitar transferencias redundantes desde la memoria global
+
+- Reducir la latencia que surge de las dependencias con el register
+
+- Usar múltiplos de 32 para el número de threads por bloque, ya que estro permite eficiencia óptima en computo y facilita la coalescencia
+
+TODO: Las que no son evidentes por qué son importantes??? 
+
+
+## Método Matemático
+### Analisis de Error de aproximación  
+
+
+
+
+## Modelo Físico 
+
+Las ecuaciones de Maxwell están constituidas por un conjunto de ecuaciones diferenciales parciales, las cuales junto con una ley de fuerza de Lorentz, conforman el fundamento del electromagnetismo y óptica clásicos así como de los circuitos eléctricos.
+
+Las ecuaciones son nombradas en honor al físico y matemático James Clerk Maxwell, quien entre 1861 y 1862 publicó las ecuaciones así como una proposición de que la luz es un fenómenos electromagnético. 
+
+$$
+\begin{aligned}
+\nabla \cdot \mathbf {E} &=0\quad &\nabla \times \mathbf {E} &=-{\frac {\partial \mathbf {B} }{\partial t}},\\\nabla \cdot \mathbf {B} &=0\quad &\nabla \times \mathbf {B} &={\frac {1}{c^{2}}}{\frac {\partial \mathbf {E} }{\partial t}}
+\end{aligned}  
+$$
+
+o bien, utilizando ciertas identidades, en su forma de ecuación de onda se tiene que 
+
+$$
+\begin{aligned}{\frac {1}{c^{2}}}{\frac {\partial ^{2}\mathbf {E} }{\partial t^{2}}}-\nabla ^{2}\mathbf {E} =0\\{\frac {1}{c^{2}}}{\frac {\partial ^{2}\mathbf {B} }{\partial t^{2}}}-\nabla ^{2}\mathbf {B} =0
+\end{aligned}
+$$
+
+### Sistemas de Ecuaciones
+
+### Ejemplos
+
+
+# Implementación de FDTD en GPU
+
+La formulación considerada en CUDA está fundamentada en actualizar las ecuaciones para propiedades anisotropicas de materiales en las se que se incluyen permisividad, permeabilidad y conductividades eléctrica y magnética. El dominio para el problema FDTD es una celda, referida en la literatura como la celda de Yee, como se muestra a continuación.
+
+![Celda de Yee: Unidad del Dominio Computacional](img/yee_cell.png)
+
+
+## Construccion del Kernel 
+
+En cada iteración temporal del ciclo de FDTD se calculan tres valores para el campo magnético en cada celda del dominio computacional de forma simultánea con base en los valores pasados del campo eléctrico y asimismo se calculan tres valores que actualizan las componentes del campo eléctrico de forma simultánea. Dado que los cálculos para cada celda pueden ser realizados de forma independiente de las demás celdas, se puede diseñar una implementación que asigne el cálculo de cada celda a thread independientes y que así esta alcance un nivel alto de paralelización.
+
+En CUDA cada bloque tiene un máximo posible de 512 threads, los cuales pueden ser organizados en 1, 2 o 3 dimensiones. Por lo tanto una subsección del problema en un espacio tridimensional puede ser naturalmente mapeado a un bloque de threads tridimensional. Sin embargo, los bloques sólo pueden ser organizados en mallas de forma unidimensional o bidimensional, por lo que el dominio tridimensional entero del algoritmo de diferencias finitas en el dominio temporal no puede ser mapeado naturalmente a una malla uni o bi dimensional, por lo que se debe utilizar un mapeo alternativo para el dominio del algoritmo FDTD
+
+MAPEOS A CUDA BLOCKS!
+
+### Acceso a Memoria Global Coalesced
+
+Las instrucciones de memoria incluyen cualquier instrucción que lee desde o escribe a cualquier memoria compartida, local o global. Cuado se accede a la memoria local o global hay entre 400 y 600 clock cycles de memory latency. 
+
+En ciertas ocasiones está latencia puede ser escondida por el scheduler de threads si existen instrucciones arimeticas que puedes ser consideradas mientras se espera por el acceso a la memoria global. La mala noticia es que en el caso del FDTD las operaciones están dominadas por accesos a memoria más que por instrucciones aritméticas, por lo que el acceso ineficiente a memoria resulta el principal cuello de botella para los GPUS. 
+
+El ancho de banda de memoria global es usadata casi eficientemente cuando los accesos simultaneos por los threads en un half-warp (durante la ejecucion de una instrucción de escritura o lectura) puede ser coalescida en una sola transacción de memoria de 32 64 o 128 bytes. 
+
+### Acceso a Memoria Compartida
+
+El acceso a memoria compartida es mucho más rápida que la memoria local o global debido a que es una memoria on-chip. Aquellos parametros que residan en el espacio de memoria compartida de un bloque de threads tienen la misma duración que el bloque y son accedibles por todos losthreads del bloque. Por lo que si el kernel utilizará frecuentemente bloques de información de la memoria global es mejor cargar los datos en la memoria compartida para que exista reciclado de datos.
+
+Aunque los accesos que no son coalsced pueden ser eliminados usando memoria compartida existe un problema cuando se accede a la información de celdas vecinas a través de la memoria compartida. Cuando se carga la memoria compartida cada thread copia un elemetod de la memoria global a la memoria compartida, si el thread de la frontera del bloque desea acceder a la informacion de la celda vecina estos datos no estarán disponibles si no están cargados en la memoria compartida. Por lo tanto es necesario cargar otro conjunto de datos que inluye los datos de las celdas vecinas a la memoria compartida. 
+
+La asignación de espacio se extienda por 16 y en algunos threads del bloque son utilizados para copiar datos de la memoria global a esta extensión de la memoria compartida. 
+
+Así las transferencias de datos desde y hacia la memoria global deben ser evitadas tanto com osea posible. en algunos casos es mejor recalcular que volver a leer de la memoria global. En otras palabras si hay datos que ya han sido transferidos desde la memoria global ddeben ser utilizados tantas veces ssea posible. 
+
+
+## Código BASE
+
+A continuación llevamos a cabo la descripción del código de los archivos integrados en la carpeta de entrega el Lunes 17 de Abril. Parte de este cdigo viene de Nvidia.
+
+Descripción de la carpeta:
+
+* inc
+    + FDTD3d.h
+    + FDTD3dGPU.h
+    + FDTD3dGPUKernel.cuh
+    + FDTD3dReference.h
+* src
+    + FDTD3d.cpp
+    + FDTD3dGPU.cu
+    + FDTD3dReference.cpp
+* FDTD3d.txt
+* Makefile
+* NsightEclipse.xml
+* readme.txt
+
+#### INC
+
+En la carpeta **inc** incluimos todos los archivos a incluir en el codigo de C. Principalmente *header files* tanto para el caso paralelo como para el no-paralelo. Estos archivos despues seran "incluidos" `#include` en las partes "centrales" del codigo de C.
+
+**FDTD3d.h**
+
+*Header file.* Definimos las variables a usar para el caso no paralelo.
+
+```{r engine='Rcpp', eval=FALSE}
+#ifndef _FDTD3D_H_
+#define _FDTD3D_H_
+```
+
+Definimos las dimensiones minimas y maximas de las matrices. Estos se pueden ajustar pero cuando son operaciones de grandes dimensiones puede tomar muchisimo tiempo en correr.
+
+```{r engine='Rcpp', eval=FALSE}
+#define k_dim_min           96
+#define k_dim_max           376
+#define k_dim_qa            248
+```
+
+Definimos el radio que usara el kernel, lo definimos como 4 ya que se necesita una constante. Si se ajusta este variable se debe de hacer su respectivo ajuste en el kernel.
+
+```{r engine='Rcpp', eval=FALSE}
+#define k_radius_min        4
+#define k_radius_max        4
+#define k_radius_default    4
+```
+
+
+```{r engine='Rcpp', eval=FALSE}
+#define k_timesteps_min     1
+#define k_timesteps_max     10
+#define k_timesteps_default 5
+```
+
+**FDTD3dGPU.h**
+
+*Header file.* En esta parte definimos el codigo para el caso paralelo.
+
+```{r engine='Rcpp', eval=FALSE}
+#ifndef _FDTD3DGPU_H_
+#define _FDTD3DGPU_H_
+```
+
+
+```{r engine='Rcpp', eval=FALSE}
+#include <cstddef>
+#if defined(WIN32) || defined(_WIN32) || defined(WIN64) || defined(_WIN64) && defined(_MSC_VER)
+typedef unsigned __int64 memsize_t;
+#else
+#include <stdint.h>
+typedef uint64_t memsize_t;
+#endif
+
+```
+
+
+```{r engine='Rcpp', eval=FALSE}
+#define k_blockDimX    32
+#define k_blockDimMaxY 16
+#define k_blockSizeMin 128
+#define k_blockSizeMax (k_blockDimX * k_blockDimMaxY)
+```
+
+Definimos todas las variables usadas para el caso paralelo. Como el radio, las 3 dimensiones a usar, etc.
+
+```{r engine='Rcpp', eval=FALSE}
+bool getTargetDeviceGlobalMemSize(memsize_t *result, const int argc, const char **argv);
+bool fdtdGPU(float *output, const float *input, const float *coeff, const int dimx, const int dimy, const int dimz, const int radius, const int timesteps, const int argc, const char **argv);
+```
+
+
+**FDTD3dGPUKernel.cuh**
+
+*Header file de cuda.* Definimos las variables a usar en el kernel de CUDA:
+
+**FDTD3dGPUReference.h**
+
+*Header file.* Declaramos todas las variables a usar en partes posteriores del codigo. 
+
+```{r engine='Rcpp', eval=FALSE}
+void generateRandomData(float *data, const int dimx, const int dimy, const int dimz, const float lowerBound, const float upperBound);
+void generatePatternData(float *data, const int dimx, const int dimy, const int dimz, const float lowerBound, const float upperBound);
+bool fdtdReference(float *output, const float *input, const float *coeff, const int dimx, const int dimy, const int dimz, const int radius, const int timesteps);
+bool compareData(const float *output, const float *reference, const int dimx, const int dimy, const int dimz, const int radius, const float tolerance=0.0001f);
+```
+
+#### SRC
+
+En esta parte incluimos el *source code.* Esta es la parte "central" del programa.
+
+**FDTD3d.cpp**
+
+*Codigo para implemententacion de FDTD. No-paralelo.
+
+**FDTD3dGPU.cpp**
+
+*Codigo para implemententacion de FDTD usando GPU. Modo paralelo.
+
+**FDTD3dGPUReference.cpp**
+
+Definicion de variables a usar en el codigo de paralelo.
+
+#### Makefile
+
+Makefile para la compilacion del program. Incluye las partes del codigo de CUDA.
+
+#### NsightEclipse.xml
+
+*Project file.* Contiene la informacion acerca del proyecto.
+
+```{r engine='xml', eval = FALSE, include=FALSE}
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE entry SYSTEM "SamplesInfo.dtd">
+<entry>
+  <name>FDTD3d</name>
+  <description><![CDATA[This sample applies a finite differences time domain progression stencil on a 3D surface.]]></description>
+  <devicecompilation>whole</devicecompilation>
+  <includepaths>
+    <path>inc</path>
+    <path>./</path>
+    <path>../</path>
+    <path>../../common/inc</path>
+  </includepaths>
+  <keyconcepts>
+    <concept level="advanced">Performance Strategies</concept>
+  </keyconcepts>
+  <keywords>
+    <keyword>GPGPU</keyword>
+    <keyword>CUDA</keyword>
+    <keyword>finite difference</keyword>
+    <keyword>fdtd</keyword>
+    <keyword>differential equation</keyword>
+    <keyword>pde</keyword>
+    <keyword>ode</keyword>
+  </keywords>
+  <libraries>
+  </libraries>
+  <librarypaths>
+  </librarypaths>
+  <nsight_eclipse>true</nsight_eclipse>
+  <primary_file>FDTD3d.cpp</primary_file>
+  <scopes>
+    <scope>1:CUDA Advanced Topics</scope>
+    <scope>1:Performance Strategies</scope>
+  </scopes>
+  <sm-arch>sm20</sm-arch>
+  <sm-arch>sm30</sm-arch>
+  <sm-arch>sm35</sm-arch>
+  <sm-arch>sm37</sm-arch>
+  <sm-arch>sm50</sm-arch>
+  <sm-arch>sm52</sm-arch>
+  <sm-arch>sm60</sm-arch>
+  <supported_envs>
+    <env>
+      <arch>x86_64</arch>
+      <platform>linux</platform>
+    </env>
+    <env>
+      <platform>windows7</platform>
+    </env>
+    <env>
+      <arch>x86_64</arch>
+      <platform>macosx</platform>
+    </env>
+    <env>
+      <arch>arm</arch>
+    </env>
+    <env>
+      <arch>ppc64le</arch>
+      <platform>linux</platform>
+    </env>
+  </supported_envs>
+  <supported_sm_architectures>
+    <include>all</include>
+  </supported_sm_architectures>
+  <title>CUDA C 3D FDTD</title>
+  <type>exe</type>
+</entry>
+```
+
+# Ejecución del Código
+
+
+
+
+## Resultados / Analisis de Error Numerico  
+
+
+
+
+# Infraestructura de Instancias con CUDA en Amazon
+
+Para la implementacion del problema, usaremos una instancia EC2 de Amazon AWS de tipo G2. Estas instancias cuentan con 1,536 cores de CUDA para paralelizar, asi como un Intel Xeon E5-2670.
+
+La implementacion de FDTD suele ser demasiado costosa computacionalmente, el avance en el uso de tarjeta graficas para "general purpose programming" ha permitido que metodos como el FDTD puedan ser ejecutados en tiempos razonables.
+
+La "forma" tipica en la que es implementado un codigo en CUDA es similar al mostrado en la imagen a continuacion. 
+
+*Basic Code Flowchart*
+
+![Diagrama de Comunicación](img/flow.png)
+
+Fuente: D. Danielo,E.Alessandra,T.Luciano,C.Luca, Introduction to GPU Computing and CUDA Programming: A Case Study on FDTD, Unive ity of Stellenbosch, June 2010.
+
+El codigo, claro, esta escrito para que pueda ser ejecutado en forma paralela (Vease archivos de codigo), generalmete de la forma SIMT.  Diversos articulos de la literatura muestran un ganancia en eficiencie de hasta un 80% en cuestion de tiempo de ejecucion, este varia un poco dependiendo de la metrica que se use para medir la eficiencia. 
+
+El codigo se planea implementar de tal manera que todos los threads se utilicen en la maquina de Amazon, asi como eficientar el acceso a memoria.
+
+## Docker
+
+Crearemos un cluster de Docker en una maquina de Amazon. El ejemplo basico de la integracion de Docker con CUDA se puede observar en la imagen 1.2.
+
+Para esto, usaremos el Dockerfile oficial de Nvidia, con el ajuste para correr nuestro codigo. 
+
+![Arquitectura Fuente: Nvidia Github](img/dockercuda.png)
+
+
+Los pasos basicos a seguir para una correcta instalacion de CUDA en Docker y Amazon son:
+
+* Creamos la instancia de Amazon (puede ser via docker-machine)
+* Instalamos los drives de Nvidia
+* Descargamos la imagen de Docker de NVidia con CUDA o podemos usar una propia
+* Creamos los contenedores
+* Manejamos remotamente con `nvidia-docker`
+
+Esta parte se puede ejecutar corriendo el script de `docker-machine.sh`. Tal como se mencionaa arriba, creamos la isntancia de Amazon de tipo P2, instalaremos los drives de Nvidia asi como el docker, y despues haremos un deploy via nvidia-docker. El deploy se puede hacer usando `deploy.sh`.
+
+
+
+# Referencias 
+
+	- [Micikevicius, P. 3D finite difference computation on GPUs using CUDA. In Proceedings of 2nd workshop on general purpose processing on graphics processing units pp. 79-84., March, 2009 ](https://drive.google.com/open?id=0B1GlF2qCvHCXa0JYWHBNcVdmSUk)
+
+	- [V. Demir, A.Z. Elsherbeni, "Compute Unified Device Architecture (CUDA) Based Finite- Difference Time-Domain (FDTD) Implementation", Appl. Comput. Electromagn. Soc. J., vol. 25, n. 4, pp. 303-314, April 2010](https://drive.google.com/open?id=0B1GlF2qCvHCXUlk5NUx1THNxczQ)
+
+	- [Finite Difference Methods in CUDA C/C++, Part 1](https://devblogs.nvidia.com/parallelforall/finite-difference-methods-cuda-cc-part-1/)
+
+	- [Finite Difference Methods in CUDA C/C++, Part 2](https://devblogs.nvidia.com/parallelforall/finite-difference-methods-cuda-c-part-2/)
+
+	- [Yee, K. Numerical solution of initial boundary value problems involving Maxwell's equations in isotropic media. IEEE Transactions on antennas and propagation, 14(3), 302-307, 1966](https://drive.google.com/open?id=0B1GlF2qCvHCXMkJSWHdhSkFFRFE)
