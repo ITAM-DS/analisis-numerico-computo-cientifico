@@ -75,10 +75,103 @@ En los manuales de programación de CUDA se exponen mejores prácticas, las cual
 TODO: Las que no son evidentes por qué son importantes??? 
 
 
+
+
 ## Método Matemático
-### Analisis de Error de aproximación  
+
+La técnica de diferencias finitas en el dominio temporal ofrece muchas ventajas como una herramienta para modelar y simular y analizar en el campo del electromagnetismo ya que permite manejar una variedad arbitraria de geometrías tridimensionales así como con los parametro de conductividad, medio, respuesta, etc. Este método forma parte de una clase mayor en la disciplina de Termodinámica Computacional. Asi mismo el método de diferencias finitas en el dominio temporal es un caso particular del aproximaciones realizadas por el método de diferencias finitas. 
+
+La idea básica detrás del algoritmo de diferencias finitas es discretizar sistemas que tengan una especificación continua de modo que se aproximen los valores de las derivadas a través del cambios incrementales sobre la malla de discretización.
+
+En el caso univariado se tiene que 
+
+$$
+\begin{equation}
+ F'(x_0)= \begin{cases} 
+           \frac{F ( x_0 + \Delta x  )- F ( x_0 )}{\Delta x} & \text{Diferencia hacia adelante} \\
+           \frac{F ( x_0)- F ( x_0-\Delta x  )}{\Delta x} & \text{Diferencia hacia atrás} \\
+          \frac{F ( x_0 + \Delta x  )- F ( x_0 - \Delta x )}{2 \Delta x} & \text{Diferencia central} 
+   \end{cases}
+
+\end{equation}
+$$
+
+Si se recuerda un curso básico de cálculo siempre existe una sección en la que hablan de las aproximaciones de distinto tipo de orden sobre las derivadas de una función, en general la idea subyace en la expansion de Taylos de la función $F$. En particular para la expansion de Taylor para las cantidades anteriores son 
+
+$$
+\begin{align}
+F ( x_0 + \Delta x ) =& F ( x_0 ) + \Delta x F'( x_0 ) + \frac{\Delta x^2}{2}F''(x_0)  + \frac{\Delta x^3}{6} F'''( \xi_1 )  \xi_1 \in [x_0,x_0 + \Delta x] \\
+F ( x_0 - \Delta x ) =& F ( x_0 ) - \Delta x F'( x_0 ) + \frac{\Delta x^2}{2}F''(x_0)  - \frac{\Delta x^3}{6} F'''( \xi_2 )  \xi_2 \in [x_0-\Delta,x_0 ]
+\end{align}
+$$
+
+Por lo que estas expansión llevada al nivel de serie de potencias en la diferencia $\Delta x$, según aumente el orden de aproximación el error ocasionado por la discretización estará gobernado principalmente por una potencia de $\Delta x$. Dependiendo de la configuración se puede controlar mejor con esquemas distintos de diferencias 
+
+$$
+\begin{align}
+F'( x_0 ) =& \frac{F ( x_0 + \Delta x )-F ( x_0 )}{\Delta x} - \frac{\Delta x}{2}F''(x_0) - \frac{\Delta x^2}{6} F'''( \xi_1 )\text{ }  \xi_1 \in [x_0,x_0 + \Delta x] & \text{Diferencias Adelante/Atrás tiene un error de orden } O(\Delta x) \\
+F'( x_0 ) =& \frac{F ( x_0 + \Delta x )-F ( x_0 - \Delta x )}{2 \Delta x} - \frac{\Delta x^2}{6}F'''( \xi_3 )  \text{ } \xi_3 \in [x_0 - \Delta x, x_0 + \Delta x] & \text{ Diferencia Central tiene un error de orden } O(\Delta x^2)
+\end{align}
+$$
+
+Por lo cual se dice que el método de diferencias finitas centrales es de segundo orden, en el que se realiza un muestreo en el dominio. Esto es la sustitución $x = i \Delta x$ de modo que $F(x) = F(i)$ es decir se tiene el valor de la función en $x$ a través de evaluarla en un entero $i$ a través del proceso de discretización.
 
 
+### Método de Diferencias en más dimensiones
+
+En el caso de dos dimensiones se requiere del concepto general de campo vectorial y de los operadores que describen propiedades geométricas de los mismos. El símbolo nabla $\nabla$ denota la operación sobre campos escalares $f$ y generar un campo vectorial denominado gradiente de $f$ 
+
+$$
+\begin{equation}
+\nabla f = a_x \frac{\partial f}{\partial x} + a_y \frac{\partial f}{\partial y} +a_z \frac{\partial f}{\partial z}
+\end{equation}
+$$
+
+que de cierta forma mide el cambio en el campo al efectuar movimientos sobre trayectorias determinadas. 
+Se muestra a continuación la idea geométrica que subyace a las aproximaciones en más dimensiones para las cantidades geométricas que caracterizan a los camops vectoriales. 
+
+![Aproximación Discreta de la divergencia sobre el plano ](img/divergence.png)
+Considerese entonces las diferencias en el plano xy por ejemplo para la densidad del flujo eléctrico $D$
+
+$$
+\begin{equation}
+\frac{\partial D_x}{\partial x} + \frac{\partial D_y}{\partial y} \approx \frac{ D_x(x + \frac{\Delta x}{2},y) - D_x(x - \frac{\Delta x}{2},y)}{\Delta x} + \frac{ D_x(x ,y + \frac{\Delta y}{2}) - D_x(x, y- \frac{\Delta y}{2})}{\Delta y}
+\end{equation}
+$$
+
+Si se pone atención en los signos de la expresión anterior se puede encontrar el sentido del campo vectorial evaluado en los puntos, de modo que la divergencia es esencialemente la suma sobre los campos en las caras del rectángulo con los signos denotando flujo hacia adentro (negativo) y flujo hacia afuera (positivo). Esto tiene un fundamento importante en el comportamiento del flujo eléctrico en presencia de carga, en el cual la divergencia del campo representa la fuerza con que se es atractor o repulsor. 
+
+Por otro lado, si se considera el operador de torsión ahora sobre por ejemplo el campo eléctrico $E$
+
+$$
+\begin{equation}
+\nabla \times E = a_x (\frac{\partial E_z}{\partial y}  - \frac{\partial E_y}{\partial z}) + a_y(\frac{\partial E_x}{\partial z}  - \frac{\partial E_z}{\partial x}) +a_z(\frac{\partial E_y}{\partial x}  - \frac{\partial E_x}{\partial y}) 
+\end{equation}
+$$
+
+En este caso veamos el comportamiento únicamente de la componente $z$ del operador, que está gobernada por el plano xy. 
+$$
+\begin{equation}
+\frac{\partial E_y}{\partial x}  - \frac{\partial E_x}{\partial y} \approx  \frac{ E_y(x + \frac{\Delta x}{2},y) - E_y(x - \frac{\Delta x}{2},y)}{\Delta x} - \frac{ E_x(x ,y + \frac{\Delta y}{2}) - E_x(x, y- \frac{\Delta y}{2})}{\Delta y}
+\end{equation}
+$$
+De nuevo inspeccionando la fórmula anterior y siendo apoyado en la representación gráfica que se muestra a continuación se puede observar que las aproximaciones de diferencias finitas de nuevo están basadas en los valores del campo en las orillas del rectángulo que rodean el punto de interés $(x,y)$. No obstante, en este caso son las fuerzas tangenciales y no las fuerzas normales a los bordes del rectángulo. La suma del lado derecho tiene un signo positivo cuando la componente vectorial apunta en dirección contrario a las manecillas del reloj y es negativa cuando va en el sentido del reloj. En términos físicos, cuando la suma es positiva el campo electrico tiene a empujar carga positiva en la dirección contraria de las manecillas.
+
+
+![Aproximación Discreta de la divergencia sobre el plano ](img/curl.png)
+
+
+## Condición de Estabilidad 
+
+Courant (1928) tuvo un desarrollo importante para establecer las condiciones de estabilidad para el esquema de muestreo temporal para la aproximación de las derivadas en el esquema de diferencias finitas cuando se requiere resolver un sistema de ecuaciones clásico para la interacción entre campos eléctricos y campos magnéticos. La derivación de esta cota para la estabilidad en términos de convergencia cuadrática es muy similar a la que realiza Euler para el caso del método de aproximación para ecuaciones diferenciales ordinarias.
+
+$$
+\begin{equation}
+\Delta x \leq \frac{\lambda}{10}; \text{ Estabilidad si }  \Delta t \leq  \frac{\Delta x}{c \sqrt{\alpha}}
+\end{equation}
+$$
+
+donde $\alpha$ varía dependiendo si es un espacio $\alpha$ dimensional. Es decir $\alpha=1$ en el caso unidimensional, $\alpha=2$ en 2D y $\alpha=3$ en el caso de 3 dimensiones.
 
 
 ## Modelo Físico 
@@ -100,10 +193,11 @@ $$
 \end{aligned}
 $$
 
+En el modelo discretizado se tiene que las componentes electricas son tangenciales a la celda de Yee mientras que las componentes magnéticas son ortogonales a la caras de la celda.
+
 ### Sistemas de Ecuaciones
 
 ### Ejemplos
-
 
 # Implementación de FDTD en GPU
 
