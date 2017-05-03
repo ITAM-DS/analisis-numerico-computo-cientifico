@@ -12,7 +12,7 @@ Maximiliano Alvarez:
 Daniel Camarena:
 
 * Sigo intentando resolver el conflicto con el Docker Swarm Compose, aun no logro correr un helloworld desde esta arquitectura.
-* Moidifique el programa que lee los archivos csv en C para que usara apuntadores y este estructurado en funciones [Liga](read_csv.c)
+* Modifique el programa que lee los archivos csv en C para que usara apuntadores y este estructurado en funciones [Liga](read_csv.c)
 
 Equipo:
 
