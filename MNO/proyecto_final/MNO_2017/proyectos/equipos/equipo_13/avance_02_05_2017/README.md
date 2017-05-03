@@ -20,6 +20,8 @@ Las cuales fueron obtenidas del [UCI Network Data Repository](https://networkdat
 Las pruebas del código se muestran a continuación:
 ![redes](https://github.com/ollin18/complex_network_c/blob/master/redes.png)
 
+De conocimiento previo al estudiar las redes, los resultados son los que esperábamos.
+
 Aún falta ordenar el repositorio pero es el siguiente:
 * [Repositorio](https://github.com/ollin18/complex_network_c)
 
