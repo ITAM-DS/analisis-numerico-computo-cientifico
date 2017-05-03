@@ -60,7 +60,7 @@ Aparte de esto hemos comenzado ya con el documento, realizando un template gener
 
 #### [02 de mayo:](avance_02_05_2017)
 
-Durante esta semana continuamos leyendo referencias que nos ayudaron a aclarar algunas dudas que surgieron, estas referencias se detallan en el [avance_02_05_2017](./avance_01_05_2017). Tenemos la primera versión del código que se entregará aunque por el momento solo realice el cálculo dividiendo los números en tres subsecciones. Realizamos algunas validaciones de la primera versión del código aunque solo incluya la implementación para dividir el número en 3 subsecciones. Este código puede encontrarse [aquí](./codigo)
+Durante esta semana continuamos leyendo referencias que nos ayudaron a aclarar algunas dudas que surgieron, estas referencias se detallan en el [avance_02_05_2017](./avance_01_05_2017). Tenemos la primera versión del código que se entregará aunque por el momento solo realice el cálculo dividiendo los números en tres subsecciones. Realizamos algunas validaciones de la primera versión del código aunque solo incluya la implementación para dividir el número en 3 subsecciones. Este código puede encontrarse [aquí](./avance_01_05_2017/codigo)
 
 Discutimos acerca de los pasos a seguir para no perder precisión como consecuencia de resolver el sistema de ecuaciones con la matriz mal condicionada del último caso. Queda por decidir si se reducirá el scope del proyecto (a solo dividir en 3 o 4 secciones los números) o si se atacará este problema con otros métodos numéricos (como descomposición en valores singulares) esto se decidirá de acuerdo con los tiempos y que tanto nos ayuden estas aproximaciones a cumplir con los objetivos del proyecto. 
 
