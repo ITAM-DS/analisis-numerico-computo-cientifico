@@ -1,5 +1,3 @@
-
-
 # Docker NVIDIA
 
 ## Integrantes:
