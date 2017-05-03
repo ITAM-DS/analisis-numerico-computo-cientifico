@@ -30,8 +30,6 @@ Integrantes:
 
 * Una vez entendidas las características y propiedades de las reflexiones de Householder, en esta semana estudiamos su aplicación para el cálculo de QR secuencial.  Además, iniciamos con la programación de las funciones principales que requiere el algoritmo que calcula el vector de Householder.  Lo anterior se encuentra en la carpeta [avance_26_04_2017](avance_26_04_2017).
 
-* Avance.  [avance_02_05_2017](avance_02_05_2017).
-
 [Trabajo escrito](https://drive.google.com/drive/folders/0B5IJ1w6MjxegNUM2d29lTWdIREU?usp=sharing)
 
 [Presentacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegRHgwS090WFNLdWM?usp=sharing)
