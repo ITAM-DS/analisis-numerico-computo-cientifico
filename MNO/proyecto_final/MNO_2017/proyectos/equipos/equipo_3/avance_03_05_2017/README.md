@@ -17,7 +17,7 @@ Lo cual se puede probar con el atributo: MPI_Get_processor_name(processor_name, 
 
 Decidimos trabajar con la verión automática creada por *Nikle Nguyen* para levantar un cluster en mpi.
 Lo probamos en el cluster y entendimos que debemos tener cuidado con la forma de levantar el cluster porque puede estar trabajando sobre un único procesador, a pesar de tener varios procesos en varios contenedores.
-Por lo tanto, coordinamos la forma correcta de hacerlo y la pusimos en commentarios al fin del codigo[mc_integration_MPI.c](mc_integration_MPI.c).
+Por lo tanto, coordinamos la forma correcta de hacerlo y la pusimos en commentarios al fin del codigo [mc_integration_MPI.c](mc_integration_MPI.c).
 
 **Código:**
 
