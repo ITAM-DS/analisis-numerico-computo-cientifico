@@ -46,6 +46,8 @@ Objetivo adicional: Aplicar el algorithmo MCMC:Metropilis-Hasting para estimar i
 
 [Avance 24-04-2017](equipos/equipo_3/avance_24_04_2017).
 
+[Avance 03-05-2017](equipos/equipo_3/avance_03_05_2017).
+
 ---
 
 ## [Equipo 4](equipos/equipo_4)
