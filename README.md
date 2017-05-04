@@ -60,7 +60,7 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 4.2 Optimización convexa.
 
-4.3 [Optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
+4.3 [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
 ## [C](C/)
 
