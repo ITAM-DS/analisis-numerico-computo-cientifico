@@ -50,9 +50,9 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 3.3 Aplicaciones del álgebra lineal numérica.
 
-[3.4.1](https://www.dropbox.com/s/bgoua82py00h22o/3.4.1.Multiplicacion_de_matrices_con_computo_en_paralelo.pdf?dl=0) Multiplicación de matrices con cómputo en paralelo.
+3.4.1 [Multiplicación de matrices con cómputo en paralelo.](https://www.dropbox.com/s/bgoua82py00h22o/3.4.1.Multiplicacion_de_matrices_con_computo_en_paralelo.pdf?dl=0)
 
-[3.4.2](https://www.dropbox.com/s/p8p905v34uth28w/3.4.2.SVD_con_computo_en_paralelo.pdf?dl=0) SVD con cómputo en paralelo.
+3.4.2 [SVD con cómputo en paralelo.](https://www.dropbox.com/s/p8p905v34uth28w/3.4.2.SVD_con_computo_en_paralelo.pdf?dl=0)
 
 ## IV [Optimización convexa]
 
@@ -60,7 +60,7 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 4.2 Optimización convexa.
 
-[4.3](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0) Optimización, aprendizaje automático y cómputo en paralelo.
+4.3 [Optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
 ## [C](C/)
 
