@@ -36,14 +36,13 @@ double simul_processo[200];//El numero max de comm_siz debe ser <=200
 double ecart_type=0;	   //simul_processo sirve unicamente a guardar los simulaciones por processo para calcular despues la desviacion estandar.	
 
 MPI_Init(&argc,&argv); //Iniciamos: el communicator MPI_COMM_WORLD ,el alojamiento del espacio necessario
-					   //y el almacamiento de los variables anteriores en cada memoria associada a cada processo de MPI_COMM_WORLD.
+		       //y el almacamiento de los variables anteriores en cada memoria associada a cada processo de MPI_COMM_WORLD.
 
-MPI_Comm_size(MPI_COMM_WORLD, &comm_sz); //cambiamos la valor de comm_sz que va a ser igual a numeros de procesos en MPI_COMM_WORLD
+MPI_Comm_size(MPI_COMM_WORLD, &comm_sz);       //cambiamos la valor de comm_sz que va a ser igual a numeros de procesos en MPI_COMM_WORLD
 MPI_Comm_rank(MPI_COMM_WORLD, &rango_processo);//Cuando el processo lea esta funcion va a almacenar su rango dentro MPI_COMM_WORLD en el variable rango_processo
 
 simul_local=simulacion_local(a_x,b_x,a_y,b_y,a_z,b_z,N,time(NULL)+N*rango_processo);//Cada proceso llama la funcion simulacion_local
-																					//y les conserva en su espacio de memoria de direction &simul_local
-
+										    //y les conserva en su espacio de memoria de direction &simul_local
 //Aqui respetamos lo que dijimos en los comentarios de mc_integration:
 //Pusimos raiz(semilla)=time(NULL)+N*rango_processo para que el rand() del proceso pueda leer una seria de numeros diferente 
 //de las serias leidas por el rand() de los otros procesos con N*rango_processo.Ademas con time(NULL) cada nueva llamada del ejecutable tiene una seria de numeros differentes para rand().
@@ -52,17 +51,17 @@ simul_local=simulacion_local(a_x,b_x,a_y,b_y,a_z,b_z,N,time(NULL)+N*rango_proces
 if(rango_processo!=0){
 
 	MPI_Send(&simul_local,1,MPI_DOUBLE,0,1,MPI_COMM_WORLD);	//Cada processo de rango differente de cero envia su resultado de la funcion
-															//simulacion_local alamacenado en la direcion &simul_local de su memoria 
-															//al processo maestro (rango 0).
+							        //simulacion_local alamacenado en la direcion &simul_local de su memoria 
+							        //al processo maestro (rango 0).
 }
 
 else{
  
 	simul_processo[0]=simul_local;
 	simul_general+=simul_local; //Recordamos que cada processo tiene un lugar en su memoria(&simul_local) donde alamceniaron el resultado de la funcion
-								//simulacion_local(...). El processo 0 va a agregar progressivamente los resultados de todos los processos
+				    //simulacion_local(...). El processo 0 va a agregar progressivamente los resultados de todos los processos
 	                            //en la variable simul_general.Es por eso que antes que su variable simul_local cambie, guardamos el resultado de la primera 
-								//llamada de la funcion simulacion_local del processo 0 en simul_general.
+				    //llamada de la funcion simulacion_local del processo 0 en simul_general.
 
 	for(num_proceso=1;num_proceso<comm_sz;num_proceso++){
 
@@ -73,7 +72,7 @@ else{
 																							  //en el status de los processos mensajes.
 
 		simul_processo[num_proceso]=simul_local;//Guardamos aqui en la variable simul_processo todos los resultados de la funcion simulacion_locale en los otros processos.
-		simul_general+=simul_local;				//para calcular un aproximacion de la desviacion estandar despuès.
+		simul_general+=simul_local;		//para calcular un aproximacion de la desviacion estandar despuès.
 	}
 
 	 	
@@ -89,7 +88,7 @@ if (rango_processo==0){
 
 		ecart_type+=pow(simul_processo[j]-simul_general,2);// Hay un problema de promediar con esta manera la varianza. 
 		                                                   // ver el fin del codigo en el commentario sobre el problema de estimar la varianza
-	}													   // en el caso de MPI.		
+	}							   // en el caso de MPI.		
 
 	ecart_type=sqrt((1/(double)(comm_sz-1))*ecart_type);
 
