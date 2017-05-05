@@ -26,7 +26,7 @@ __Metodo para calculo de SVD__
 
 Se desarrollo la Fase 2 del metodo thin segun las notas de clase [3.2.2 Factorizaciones matriciales: SVD, Cholesky, QR.](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
-En el avance de esta semana detalla la [Fase 2 en el siguiente documento "SVD_DE_B.html"](https://drive.google.com/drive/folders/0B5eQQH_TPIY-YjVmSE5NS3BSYzQ) la cual consta de aplicar el metodo SVD a la matriz Bidiagonal (o tridiagonal en su caso).
+En el avance de esta semana detalla la [Fase 2 en el siguiente documento "SVD_DE_B.html"](https://drive.google.com/drive/folders/0B5eQQH_TPIY-YjVmSE5NS3BSYzQ) la cual consta de aplicar el metodo SVD a la matriz Bidiagonal (o tridiagonal en su caso). Para ello consultamos el capitulo 10 "Large Sparse Eigenvalue Problems" del libro `Matrix Computations` de H. Golub y F. Van Loan
 
 
 ### Equipo
