@@ -46,7 +46,7 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 3.2.1 Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.
 
-3.2.2 Factorizaciones matriciales: SVD, Cholesky, QR. (Vista rápida).
+3.2.2 [Factorizaciones matriciales: SVD, Cholesky, QR. (Vista rápida).](https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0)
 
 3.3 Aplicaciones del álgebra lineal numérica.
 
