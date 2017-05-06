@@ -29,6 +29,8 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 
 * [Avance 26-04-2017](equipos/equipo_2/avance_26_04_2017).
 
+* [Avance 02-05-2017](equipos/equipo_2/avance_02_05_2017).
+
 ---
 
 
