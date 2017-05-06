@@ -15,18 +15,18 @@ Trabajo:
 
 **Mónica Ballesteros**
 
-Texto.  
+Investigué MC y la aplicación de transformaciones Householder (QR) para resolverlo. Programó el vector de Householder con los insumos obtenidos de mu y sigma basado en las notas del Golub.  
 
 **Ariana López**
 
-Texto.
+Investigué MC y la aplicación de transformaciones Householder (QR) para resolverlo. Programó la matriz de reflexión H que se va actualizando para obtener la nueva A.
 
 **Fabiola Cerón**
 
-Texto.
+Investigué MC y la aplicación de transformaciones Householder (QR) para resolverlo. Construyó la parte del código para obtener mu y sigma.
 
 ### Equipo:
 
-* Luego de la lectura, principalmente a Golub y las Notas del Profesor, repasamos el Cálculo del vector de Househoulder, donde entendimos que en la práctica se normaliza, v(1)=1, quedando v(2:m) como la parte esencial del vector, y su implicación en el almacenamiento y sobreescritura en x(2:m).
-
-* Del 5.2.2 y 5.2.1 de Golub y Notas del Profesos (a partir de pag. 57), revisamos la factorización QR, y su solución con matrices de Householder (H), donde se realizan n pasos, obteniendo Hn,…H1A=R (producto de matrices ortogonales que logran una triangular superior), Q=H1,H2,..Hn, obteniendo así A=QR, operando sobre submatrices, lo grando hacer 0 en todas las posiciones debajo de la diagonal por columna en cada paso, el cual representa una ventaja, por ejemplo, respecto de las rotaciones de Givens.
+* Continuando con el plan de trabajo, realizamos la lectura del Capítulo 5 de [Eldén](https://drive.google.com/file/d/0BxMtevFKwTW_aDE2Tjg1Zk1FbTQ/view?usp=sharing) y 5.3  [Golub, Van Loan](https://drive.google.com/file/d/0B5IJ1w6MjxegWGg4V1pDbFhaSzQ/view?usp=sharing) para comprender la aplicación de QR a la solución de mínimos cuadrados. La lógica de este proceso es entender que como en general Ax ≠ b para los sistemas sobre determinados definimos un vector residuo r = b – Ax, en lugar de encontrar una solución exacta para Ax = b intentamos encontrar una x tal que r sea lo mas pequeño posible (equivalente a resolver min ||Ax-b||2). Se pueden construir transformaciones de Householder que reduzcan la matriz Amxm, con el algoritmo de thin QR, A=Q1R, resolviendo x=R-1Q1Tb de la forma Rx = Q1Tb
+Con respecto al código de factorización QR por Householder logramos desarrollar el código secuencial en C basado en la teoría encontrada en el libro de Golub y las notas de clase. Lo probamos con una matriz de 4x3 que calculamos a mano en la primera entrega de este proyecto, corroboramos los resultados siendo diferentes en el resultado final de A. Estamos llevando a cabo los ajustes necesarios para obtener el resultado correcto en cada sobreescritura de A.
+.
