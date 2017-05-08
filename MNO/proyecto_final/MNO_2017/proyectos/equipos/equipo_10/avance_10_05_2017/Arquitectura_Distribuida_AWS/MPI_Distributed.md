@@ -44,121 +44,210 @@ Usando la misma tecnica generaremos un programa en c que haga multiplicacion de 
 ```{engine='bash' eval=FALSE}
 #!/bin/bash
 
-echo"/**********************************************************************
-
-(MPI) Multiplicacion A*B = C
- 
-*********************************************************************/
-
-#include \"stdio.h\"
+echo"
 #include \"mpi.h\"
-#include <sys/time.h>
-#define N    500        /* numero de filas y columnas (supongamos que todo sera cuadrado) */
-
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MASTER 0               /* taskid of first task */
+#define FROM_MASTER 1          /* setting a message type */
+#define FROM_WORKER 2          /* setting a message type */
+int NRA = 0;
+int NRB = 0;
+int NCA = 0;
+int NCB = 0;
+void read_file(FILE *fp, int* rowMaxIndex, int* columnMaxIndex);
+double** allocate_matrix(int rowMaxIndex, int columnMaxIndex, FILE *fp);
+int main (int argc, char *argv[])
+{
+int	numtasks,              /* number of tasks in partition */
+	taskid,                /* a task identifier */
+	numworkers,            /* number of worker tasks */
+	source,                /* task id of message source */
+	dest,                  /* task id of message destination */
+	mtype,                 /* message type */
+	rows,                  /* rows of matrix A sent to each worker */
+	averow, extra, offset, /* used to determine rows sent to each worker */
+	i, j, k, rc;           /* misc */
+int rowMaxIndexA, columnMaxIndexA;
+int rowMaxIndexB, columnMaxIndexB;
+double **a, **b;
+FILE *fpA, *fpB;
 MPI_Status status;
 
-double a[N][N],b[N][N],c[N][N];  //matrix A, B y C
-       
-main(int argc, char **argv){
- struct timeval start, stop; //vamos a medir cuanto tarda
- int numberOfTasks, //numero de tareas
- mtype, //tipo de mensaje
- taskID, //id de la tarea
- numberOfWorkers, //numero de workers
- source, //quien manda el mensaje
- destination, //a quien le mandan el mensaje
- rows, //filas
- averageRow, //promedio de filas por nodo
- extra, //por si no se divide completo
- offset,i,j,k;
- //first initialization
- MPI_Init(&argc, &argv); //inicializamos MPI
- MPI_Comm_rank(MPI_COMM_WORLD, &taskID);
- MPI_Comm_size(MPI_COMM_WORLD, &numberOfTasks);
+MPI_Init(&argc,&argv);
+MPI_Comm_rank(MPI_COMM_WORLD,&taskid);
+MPI_Comm_size(MPI_COMM_WORLD,&numtasks);
+if (numtasks < 2 ) {
+  printf(\"Need at least two MPI tasks. Quitting...\n\");
+  MPI_Abort(MPI_COMM_WORLD, rc);
+  exit(1);
+  }
 
- numberOfWorkers = numberOfTasks-1;
-
- //---------------------------- master ----------------------------//
- /* VAMOS A DECIRLE AL MAESTRO QUE INICIALICE LAS MATRICES */
- 
- if (taskID == 0) { 
-   for (i=0; i<N; i++) {
-      for (j=0; j<N; j++) {   
-		a[i][j]= 1.0;
-		b[i][j]= 2.0;
+numworkers = numtasks-1;
+	  //Vamos a leer de los archivos
+	  fpA = fopen(\"filename.csv\",\"r\"); // read mode
+	  if(fpA == NULL){
+		perror(\"Error while opening the file.\n\");
+		exit(EXIT_FAILURE);
 		}
+	  read_file(fpA, &rowMaxIndexA, &columnMaxIndexA);
+	  a = allocate_matrix(rowMaxIndexA,columnMaxIndexA, fpA);
+	  NRA=rowMaxIndexA;
+	  NCA=columnMaxIndexA;	  
+	  fpB = fopen(\"filename2.csv\",\"r\"); // read mode
+	  if(fpB == NULL){
+        perror(\"Error while opening the file.\n\");
+        exit(EXIT_FAILURE);
+		}
+	  read_file(fpB, &rowMaxIndexB, &columnMaxIndexB);
+	  b = allocate_matrix(rowMaxIndexB,columnMaxIndexB, fpB);
+	  NRB=rowMaxIndexB;
+	  NCB=columnMaxIndexB;
+	  double c[NRA][NCB];
+	  if(columnMaxIndexA!=rowMaxIndexB){
+		printf(\"Multiplicacion indefinida\n\");
+		MPI_Abort(MPI_COMM_WORLD, rc);
+		exit(1);
+	  }
+
+/**************************** master task ************************************/
+   if (taskid == MASTER)
+   {
+      printf(\"mpi_mm has started with %d tasks.\n\",numtasks);
+      printf(\"Initializing arrays...\n\");
+      /* Send matrix data to the worker tasks */
+      averow = NRA/numworkers;
+      extra = NRA%numworkers;
+      offset = 0;
+      mtype = FROM_MASTER;
+      for (dest=1; dest<=numworkers; dest++)
+      {
+         rows = (dest <= extra) ? averow+1 : averow;
+         printf(\"Sending %d rows to task %d offset=%d\n\",rows,dest,offset);
+         MPI_Send(&offset, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+         MPI_Send(&rows, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+		 MPI_Send(&NCA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+		 MPI_Send(&NRA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+		 MPI_Send(&NCB, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+         offset = offset + rows;
+      }
+
+      /* Receive results from worker tasks */
+      mtype = FROM_WORKER;
+      for (i=1; i<=numworkers; i++)
+      {
+         source = i;
+         MPI_Recv(&offset, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
+         MPI_Recv(&rows, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
+         MPI_Recv(&c[offset][0], rows*NCB, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, &status);
+         printf(\"Received results from task %d\n\",source);
+      }
+
+      /* Print results */
+	  
+      printf(\"******************************************************\n\");
+      printf(\"Result Matrix:\n\");
+      for (i=0; i<NRA; i++)
+      {
+         printf(\"\n\"); 
+         for (j=0; j<NCB; j++) 
+			printf("%6.2f   ", c[i][j]);
+      }
+      printf(\"\n******************************************************\n\");
+      printf (\"Done.\n\");
+	  
+   }
+
+
+/**************************** worker task ************************************/
+   if (taskid > MASTER)
+   {
+      mtype = FROM_MASTER;
+      MPI_Recv(&offset, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+      MPI_Recv(&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+	  MPI_Recv(&NCA, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+	  MPI_Recv(&NCB, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+      for (k=0; k<NCB; k++)
+         for (i=0; i<rows; i++)
+         {
+            c[i][k] = 0.0;
+            for (j=0; j<NCA; j++)
+               c[i][k] = c[i][k] + a[i][j] * b[j][k];
+         }
+      mtype = FROM_WORKER;
+      MPI_Send(&offset, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD);
+      MPI_Send(&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD);
+      MPI_Send(&c, rows*NCB, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD);
+	  
+	  
+   }
+
+   MPI_Finalize();
+}
+
+
+void read_file(FILE *fp, int * rowMaxIndex, int * columnMaxIndex){
+	char part[1024];
+    char *token;
+	int idx;
+	*rowMaxIndex = 0;
+	*columnMaxIndex=0;
+	while(fgets(part,1024,fp) != NULL){
+        token = NULL;
+		 while((token = strtok((token == NULL)?part:NULL,",")) != NULL){
+            if(*rowMaxIndex == 0){ // only want to increment column count on first loop
+                *columnMaxIndex=*columnMaxIndex+1;
+            }
+			for(idx = 0;idx<strlen(token);idx++){
+                if(token[idx] == '\n'){ // this assumes there will be a \n (LF) at the end of the line
+                    *rowMaxIndex=*rowMaxIndex+1;
+                    break;
+                }
+			}
+		 }
+	}	
+}
+
+double** allocate_matrix(int rowMaxIndex,int columnMaxIndex, FILE *fp){
+    int idx;
+	double **mat;
+	int i, j;
+	char part[1024];
+	char *token;
+	// allocate the matrix
+    mat=malloc(sizeof(double *) * rowMaxIndex);
+	 if (mat == NULL){
+        printf(\"ERROR: out of memory\n\");
+    }
+	for(idx = 0;idx<rowMaxIndex;idx++){
+        mat[idx] = malloc(sizeof(double *) * columnMaxIndex);
+		if (mat[idx] == NULL){
+            printf(\"ERROR: out of memory\n\");
+            break;
+        }
+    }
+	
+	rewind(fp);
+	i = j = 0;
+    while(fgets(part,1024,fp) != NULL){
+        token = NULL;
+        while((token = strtok((token == NULL)?part:NULL,",")) != NULL){
+            mat[i][j] = atoi(token);
+            j = (j+1)%columnMaxIndex;
+        }
+        i++;
     }
 
-    /* mandamos los datos de las matrices a los workers*/
- 
- gettimeofday(&start, 0);
- 
- averageRow = N/numberOfWorkers; 
- extra= N%numberOfWorkers;
- offset = 0;
-    
- for (destination=1; destination<=numberOfWorkers; destination++){       
-	if(destination<=extra){
-		rows = averageRow+1;
-	}else{
-		rows = averageRow;
-	}
-    mtype = 1;
-    MPI_Send(&offset, 1, MPI_INT, destination, mtype, MPI_COMM_WORLD);
-    MPI_Send(&rows, 1, MPI_INT, destination, mtype, MPI_COMM_WORLD);
-    MPI_Send(&a[offset][0], rows*N, MPI_DOUBLE,destination,mtype, MPI_COMM_WORLD);
-    MPI_Send(&b, N*N, MPI_DOUBLE, destination, mtype, MPI_COMM_WORLD);
-    offset = offset + rows;
-  }
+    fclose(fp);
+	return mat;
+}
 
-  /* Recibimos los resultados de los workers */
-  for (i=1; i<=numberOfWorkers; i++){
-     mtype = 2;
-     source = i;
-     MPI_Recv(&offset, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
-     MPI_Recv(&rows, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
-     MPI_Recv(&c[offset][0], rows*N, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, &status);
-  }
-  gettimeofday(&stop, 0);
-  /*Imprimimos parte de los datos de la matriz de resultados c */
-  printf(\"c[0][0] = %6.2f    c[0][499] = %6.2f \n\",c[0][0],c[0][N-1]);
-  printf(\"c[499][0] = %6.2f  c[499][499] = %6.2f \n\",c[N-1][0],c[N-1][N-1]);
-  
-  fprintf(stdout,\"Tiempo = %.6f\n\n\",(stop.tv_sec+stop.tv_usec*1e-6)-(start.tv_sec+start.tv_usec*1e-6));
-
- 
- } 
-
-  /*---------------------------- workers----------------------------*/
- if (taskID > 0) {
-     source = 0;
-     mtype = 1;
-     MPI_Recv(&offset, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
-     MPI_Recv(&rows, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
-     MPI_Recv(&a, rows*N, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, &status);
-     MPI_Recv(&b, N*N, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, &status);
-  
-    /* Multiplicacion de matrices */
-	 for (k=0; k<N; k++)
-		for (i=0; i<rows; i++) {
-          c[i][k] = 0.0;
-		  for (j=0; j<N; j++)
-			c[i][k] = c[i][k] + a[i][j] * b[j][k];
-         }
-
-     mtype = 2;
-     MPI_Send(&offset, 1, MPI_INT, 0, mtype, MPI_COMM_WORLD);
-     MPI_Send(&rows, 1, MPI_INT, 0, mtype, MPI_COMM_WORLD);
-     MPI_Send(&c, rows*N, MPI_DOUBLE, 0, mtype, MPI_COMM_WORLD);
-	}  
-    
-  MPI_Finalize();
-}">mpimm.c
+">mpimm.c
 
 ```
 
-El siguiente paso es generar el archivo que nos ayuda a instalar *MPI* en todos nuestras mquinas. Estos archivos sern distribuidos en paralelo a todos nuestros nodos y de manera automatica para hacer nuestra arquitectura escalable de manera facil.
+El siguiente paso es generar el archivo que nos ayuda a instalar *MPI* en todos nuestras maquinas. Estos archivos seran distribuidos en paralelo a todos nuestros nodos y de manera automatica para hacer nuestra arquitectura escalable de manera facil.
 
 *installmpi.sh*
 
@@ -191,6 +280,8 @@ sudo ./configure --prefix=/opt/openmpi-2.0.2 --enable-orterun-prefix-by-default 
 
 sudo make all install
 
+
+
 ```
 
 Una vez instalado *MPI* en todos los nodos debemos cambiar algunas variables de ambiente en la consola, para eso generaremos un archivo llamado *sourcefile* que nos ayudara con esta tarea:
@@ -202,7 +293,7 @@ echo "export PATH=\"/opt/openmpi-2.0.2/bin:\$PATH\"
 export LD_LIBRARY_PATH=\"/opt/openmpi-2.0.2/lib:LD_LIBRARY_PATH\"">sourcefile2
 ```
 
-Por ltimo necesitamos un archivo maestro que nos ayude a orquestar el despliegue de los archivos a cada una de las mquinas y que ejecute todas estas tareas en rden. Dicho archivo lleva el nombre de *setup_env.sh* y su contenido se presenta a continuacion.
+Por ultimo necesitamos un archivo maestro que nos ayude a orquestar el despliegue de los archivos a cada una de las mquinas y que ejecute todas estas tareas en rden. Dicho archivo lleva el nombre de *setup_env.sh* y su contenido se presenta a continuacion.
 
 *setup_env.sh*
 
@@ -210,30 +301,29 @@ Por ltimo necesitamos un archivo maestro que nos ayude a orquestar el despliegue
 
 #!/bin/bash 
 
-#Obtenemos la informacion de nuestras instancias en AWS
 aws ec2 describe-instances | \
 jq '.Reservations[].Instances[].PublicDnsName' | \
 tr '"' ' ' > instancias
 
-#Quitamos los espacios en blanco que llegara a tener el archivo de instancias
 sed 's/ //g' instancias > instancias2
 rm instancias
 mv instancias2 instancias
 
-#Instalamos parallel en todas las maquinas
 parallel --nonall --slf instancias "sudo apt-get install -y parallel"
 
-#Distribuimos y ejecutamos el archivo installmpi.sh en todos los nodos
 parallel --nonall --basefile installmpi.sh  --slf instancias "./installmpi.sh"
 
-#distribuimos y ejecutamos el archivo sourcefile en todos los nodos
 parallel --nonall --basefile sourcefile  --slf instancias "source sourcefile"
 
-#Distribuimos y colocamos en la ruta correcta el archivo de hosts
 parallel --nonall --basefile hosts.sh  --slf instancias "./hosts.sh"
 
-#Distribuimos el codigo de prueba en C a todos los nodos para luego compilarlo
-parallel --nonall --basefile hello.sh  --slf instancias "./mpimm.sh"
+parallel --nonall --basefile mpimm.sh  --slf instancias "./mpimm.sh"
+
+parallel --nonall --basefile filename.sh  --slf instancias "./filename.sh"
+
+parallel --nonall --basefile filename2.sh  --slf instancias "./filename2.sh"
+
+
 
 ```
 
