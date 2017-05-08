@@ -60,11 +60,17 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 ## IV [Optimización convexa]
 
-4.1 Teoría de convexidad.
+4.1 [Introducción.](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
 
-4.2 Optimización convexa.
+4.2 [Teoría de convexidad.]
 
-4.3 [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
+4.3 [Problemas de optimización convexa.]
+
+4.4 [Dualidad.]
+
+4.5 [Algoritmos.]
+
+4.6 [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
 ## [C](C/)
 
