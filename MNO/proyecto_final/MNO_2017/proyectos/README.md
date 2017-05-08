@@ -203,9 +203,11 @@ Objetivo del proyecto: Crear un script que haga eficiente la obtención de una ma
 
 * [Avance 07-04-2017](equipos/equipo_13/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios, hay una pregunta allí espero me puedan responder :) Muy bien respecto a su lectura y trabajo en equipo. Para el segundo avance pueden avanzar en implementación en C. 
 
-* [Avance 17-04-2017](equipo_13/avance_17_04_2017). 
+* [Avance 17-04-2017](equipos/equipo_13/avance_17_04_2017). 
 
-* [Avance 26-04-2017](equipo_13/avance_26_04_2017). 
+* [Avance 26-04-2017](equipos/equipo_13/avance_26_04_2017). 
+
+* [Avance 02-05-2017](equipos/equipo_13/avance_02_05_2017). 
 ---
 
 ## [Equipo ejemplo](equipos/equipo_ejemplo)
