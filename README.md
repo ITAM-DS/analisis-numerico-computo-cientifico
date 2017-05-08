@@ -62,7 +62,7 @@ En la carpeta [C](C) encuentran clases para introducción y extensiones al lengu
 
 4.1 [Introducción.](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
 
-4.2 [Teoría de convexidad.]
+4.2 [Teoría de convexidad.](https://www.dropbox.com/s/5g7uwg6274k2yyf/4.2.Teoria_de_convexidad.pdf?dl=0)
 
 4.3 [Problemas de optimización convexa.]
 
