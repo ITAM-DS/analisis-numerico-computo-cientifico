@@ -67,3 +67,5 @@ Trabajo:
 	+ En el segundo se aplican las transformaciones calculadas durante la fase de panel factorizacion al resto de la matriz A.  A esta fase se le llama Trailing submatrix update.
 
 * Entendimos que no todo el proceso de factorización es paralelizable, sólo la actualización de la sub-matriz, por lo que la secuencia de statements que ejecutará el programa en paralelo se referirán sólo a la fase de Trailing Submatrix Update.
+
+* Ajustamos la normalización del vector de HH del Algoritmo secuencial: [QRHH](QRHH3.c)
