@@ -17,9 +17,11 @@
 
 ### Trabajo en equipo / individual:
 
-  - Analizamos todos los componentes del algoritmo, lo discutimos y buscamos la mejor manera de traducirlo al programa. Decidimos ademas, comenzar a trabajar en los entregables del proyecto de una vez, para que se vayan reflejando a la vez, en el codigo, el documento y la presentacion los avances que llevamos.
+  - Analizamos todos los componentes del algoritmo, lo discutimos y buscamos la mejor manera de traducirlo al programa. Decidimos ademas, comenzar a trabajar en los entregables del proyecto de una vez, para que se vayan reflejando, en el codigo, el documento y la presentacion los avances que llevamos.
   
-  - Instalamos PyCUDA
+  - Agregar Introduccion a Optimizacion no Lineales
+  
+  - Instalamos PyCUDA, Nsigth Eclipse
 
   - Documento de presentacion del proyecto final: https://drive.google.com/open?id=0ByF7NuX9EW1IVlRXVjVaczJidmc
 
