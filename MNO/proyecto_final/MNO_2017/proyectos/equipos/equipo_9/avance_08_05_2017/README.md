@@ -12,7 +12,7 @@
 
 Carlos: Finalización parte teórica.  Descripción del código y de la creación del kernel.. Ejecución de pruebas y Recomendaciones en manejo de memoria. 
 
-Manuel:
+Manuel: se ajusto documento de `docker-machine.sh`. Se creo la instancia en Amazon AWS y se instalaron los drivers necesarios para ejecutar CUDA. Se documento en Rmd.
 
 ### Equipo
 
