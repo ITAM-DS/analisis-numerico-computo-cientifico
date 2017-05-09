@@ -21,6 +21,8 @@
   
   - Agregar Introduccion a Optimizacion no Lineales
   
+  - Ya comenzamos la programaci+on en CUDA C
+  
   - Instalamos PyCUDA, Nsigth Eclipse
 
   - Documento de presentacion del proyecto final: https://drive.google.com/open?id=0ByF7NuX9EW1IVlRXVjVaczJidmc
