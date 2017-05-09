@@ -34,6 +34,12 @@ __Calendario:__
 3. Se documento la Fase 1
 4. Se valido algoritmo TEST de SVD en Rstudio
 
+* [Avance 02-05-2017](avance_02_05_2017).
+
+1. Se definio MPI para distribución de archivos.
+2. Se documento la Fase 2
+3. Se realizaron operaciones de multiplicación de diferentes matrices en `Rstudio`
+
 ## Referencias del proyecto:
 
 * http://math.nist.gov/~RPozo/
