@@ -30,15 +30,16 @@ La Fase 3 unicamente detalla la multiplicacion de las matrices U y V  obtenidas 
 
 Tambien se sigue leyendo el libro `Matrix Computations` de H. Golub y F. Van Loan en el capitulo 8.6.3 "The SVD Algorithm" en la fase 3. donde habla de las rotaciones de Givens y como una matriz bidiagonal se puede transformar en otra con diferentes entradas. Esto nos llamo la atencion por que antecede al algoritmo de Golub-Kahan que como lo vimos anteriormente habla de aplicar SVD a una matriz bidiagonal.
 
-Tenindo ya mas claro el algoritmo `SVD` en sus diferentes aplicaciones (matrices pequeñas o grandes) empezamos a documentar el [metodo implementado en CUDA-C](avance_17_04_2017/metodos-cuda.md) que generamos en el avance del 17 de Abril.
+Tenindo ya mas claro el algoritmo `SVD` en sus diferentes aplicaciones (matrices pequeñas o grandes) empezamos a documentar el [metodo implementado en CUDA-C](https://github.com/ricardolastra/analisis-numerico-computo-cientifico/blob/master/MNO/proyecto_final/MNO_2017/proyectos/equipos/equipo_6/avance_17_04_2017/metodos-cuda.md) que generamos en el avance del 17 de Abril.
 Esta documentacion se sigue elaborando y consistira en un documento que explique a detalle el metodo en `CUDA/CUBLAS`.
 
 ### Equipo
 Activamos nuevamente un par de EC2 de Amazon, y estuvimos batallando un rato con Star Cluster. Hubo varias cosas que encontramos que nos gustaria detallar mas en el proximo avance. 
 Siguieron las dificultades para la configuracion del Docker. 
-Tambien logramos un buen avance con la comprension del metodo Thin y para los casos Large & Sparse. Asi mismo comprendimos mas el metodo `Qr` y algunas transformaciones adiconales matriciales. Le dedicamos mucho tiempo al libro de `Matrix Computations` que desde capitulos anteriores al sugerido es muy interesante.
+Tambien logramos un buen avance con la comprension del metodo Thin y Large & Sparse. 
+Asi mismo comprendimos mas el metodo `Qr` y algunas transformaciones adiconales matriciales. Le dedicamos mucho tiempo al libro de `Matrix Computations` en varios capitulos ademas del sugerido anteriormente; es muy interesante y documentamos tambien algunas cosas.
 Queriamos subir el avance de la explicacion del metodo de `CUDA/CUBLAS` pero, deseamos detallarlo un poco mas y dejarlo muy bien para la proxima semana.
-Intentamos hacer el computo de matrices Bidiagonales y Tridiagonales en R o Python, pero no es tan sencillo. Logramos un avance muy sencillo, sin embargo decidimos leer un poco mas toda la teoria que tenemos ya. Asi como leer la documentacion a fondo de LAPACK y algunas subrutinas como EISPACK. Tambien revisamos la siguiente [tesis](ftp://ece.buap.mx/pub/profesor/academ48/Libros/TesisDavid.pdf) que nos parecio muy interesante, por la descripcion de como se alojan las matrices en memoria.
+Intentamos hacer el computo de matrices Bidiagonales y Tridiagonales en R o Python, pero no es tan sencillo, solo logramos un avance muy sencillo, sin embargo decidimos leer un poco mas toda la teoria que tenemos ya, asi como leer la documentacion a fondo de LAPACK y algunas subrutinas como EISPACK. Tambien revisamos la siguiente [tesis de : "Algoritmos Secuenciales y Paralelos para la Reduccion de Modelos en Sistemas Lineales de Control utilizando Librerias de Software Estandar de Algebra Lineal"](ftp://ece.buap.mx/pub/profesor/academ48/Libros/TesisDavid.pdf) que nos parecio muy interesante, por la descripcion de como se alojan las matrices en memoria.
 
 
 ## Comentarios sobre avance:
