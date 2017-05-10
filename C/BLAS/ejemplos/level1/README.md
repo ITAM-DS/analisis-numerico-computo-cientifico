@@ -12,7 +12,6 @@ Código que realiza el producto punto entre los vectores almacenados en los arch
 1
 0
 -3
-
 ```
 
 `v2.txt`:
@@ -21,7 +20,6 @@ Código que realiza el producto punto entre los vectores almacenados en los arch
 5
 8
 9
-
 ```
 
 Se deben tener los archivos `v1.txt` y `v2.txt`en el directorio de compilación y ejecución.
