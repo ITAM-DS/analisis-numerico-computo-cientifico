@@ -32,15 +32,11 @@ int *arr_int;
 }arreglo_1d;
 typedef arreglo_1d *arreglo_1d_T;
 
-
-
 //funciones
 void imprime_vector(arreglo_1d_T, char);
 void imprime_matriz(arreglo_2d_T);
 void inicializa_matriz(arreglo_2d_T, char *);
 void inicializa_vector(arreglo_1d_T, char *);
-
-
 ```
 
 * `funciones.c`:
@@ -90,7 +86,5 @@ void imprime_vector(arreglo_1d_T p, char s){
 				for(i=0;i<m;i++)
 					printf("vector[%d]=%d\n",i,entrada_vector_int(p,i));
 }
-
-
 ```
 
