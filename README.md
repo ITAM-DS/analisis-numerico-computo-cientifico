@@ -88,7 +88,7 @@ En la carpeta [C](C) encuentran clases para introducción, algunas funciones de 
 
 ## [BLAS](C/BLAS)
 
-Ejemplos:
+[Ejemplos](C/BLAS/ejemplos/):
 
 * [level1](C/BLAS/ejemplos/level1/)
 
