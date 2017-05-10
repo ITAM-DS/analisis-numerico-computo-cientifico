@@ -2,7 +2,7 @@
 
 En la carpeta [MNO](MNO) encuentran información sobre el curso de Métodos Numéricos y Optimización.
 
-En la carpeta [C](C) encuentran clases para introducción, algunas funciones de [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/) y extensiones al lenguaje de programación C: MPI, Pthreads, openMP, CUDA. 
+En la carpeta [C](C) encuentran clases para introducción, algunas funciones de [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/) y extensiones al lenguaje de programación C: [MPI](http://mpi-forum.org/), [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [openMP](http://www.openmp.org/), [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/). 
 
 Índice de este repositorio. Cada número contiene notas del tema respectivo.
 
@@ -87,5 +87,9 @@ En la carpeta [C](C) encuentran clases para introducción, algunas funciones de 
 [clase6](C/clases/clase6.md)
 
 ## [BLAS](C/BLAS)
+
+Ejemplos:
+
+* [level1](C/BLAS/ejemplos/level1/)
 
 ## [LAPACK](C/LAPACK)

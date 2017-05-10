@@ -1,4 +1,4 @@
-En las carpetas para los diferentes niveles de BLAS: level1, level2, level3 se tiene códigos que utilizan el header `definiciones.h` y `funciones.c`:
+En las carpetas para los diferentes niveles de BLAS: level1, level2, level3 se tienen códigos que utilizan el header `definiciones.h` y `funciones.c` siguiente:
 
 * `definiciones.h`:
 
