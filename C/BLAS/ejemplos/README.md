@@ -1,6 +1,6 @@
 Suponemos un sistema ubuntu y que está instalado `libblas-dev`.
 
-En las carpetas para los diferentes niveles de BLAS: [level1](http://www.netlib.org/blas/#_level_1), [level2](http://www.netlib.org/blas/#_level_2), [level3](http://www.netlib.org/blas/#_level_3) se tienen códigos que utilizan el header `definiciones.h` y `funciones.c` siguiente:
+En las carpetas para los diferentes niveles de BLAS: [level1](level1/), [level2](level2/), [level3](level3/) se tienen códigos que utilizan el header `definiciones.h` y `funciones.c` siguiente:
 
 * `definiciones.h`:
 
