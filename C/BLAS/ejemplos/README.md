@@ -1,6 +1,4 @@
-En la carpeta [ejemplos](ejemplos) se tiene códigos para diferentes niveles de BLAS: level1, level2, level3.
-
-En estos ejemplos se utiliza el header `definiciones.h` y `funciones.c`:
+En las carpetas para los diferentes niveles de BLAS: level1, level2, level3 se tiene códigos que utilizan el header `definiciones.h` y `funciones.c`:
 
 * `definiciones.h`:
 

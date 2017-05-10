@@ -71,7 +71,7 @@ Compilamos:
 
 ```
 $gcc -Wall dot_product.c funciones.c -o programa.out -lblas
-``
+```
 
 Ejecutamos:
 
