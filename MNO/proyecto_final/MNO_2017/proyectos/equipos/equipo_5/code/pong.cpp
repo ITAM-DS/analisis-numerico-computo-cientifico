@@ -32,11 +32,11 @@ void ClearScreen()
         printf( "\n\n\n\n\n\n\n\n\n\n" );
 }
 
-std::vector<int> preprocess(std::vector<unsigned char> data, int width, int height) {
+std::vector<float> preprocess(std::vector<unsigned char> data, int width, int height) {
     int top = 34;
     int bottom = 194;
     std::vector<unsigned char> interestingData = std::vector<unsigned char>(data.begin () + top * width, data.begin () + bottom * width);
-    std::vector<int> frame (80 * 80);
+    std::vector<float> frame (80 * 80);
 
     int count = 0;
     std::vector<unsigned char>::iterator it = interestingData.begin();
@@ -45,20 +45,20 @@ std::vector<int> preprocess(std::vector<unsigned char> data, int width, int heig
         count++;
         if(*it == 87){
             //std::cout << ' ';
-            frame[count] = 0;
+            frame[count] = 0.0;
         }else{
             if(*it == 147){
                 //std::cout << '1';
-                frame[count] = 1;
+                frame[count] = 1.0;
             }
             else{
                 if(*it == 148){
                     //std::cout << '2';
-                    frame[count] = 1;
+                    frame[count] = 1.0;
                 } else {
                     if(*it == 236) {
                         //std::cout << '3';
-                        frame[count] = 1;
+                        frame[count] = 1.0;
                     }
                     
                 }
@@ -73,12 +73,25 @@ std::vector<int> preprocess(std::vector<unsigned char> data, int width, int heig
     return frame;
 }
 
-std::vector<int> subs(std::vector<int> a, std::vector<int> b) {
-    std::vector<int> res(a.size());
+std::vector<float> subs(std::vector<float> a, std::vector<float> b) {
+    std::vector<float> res(a.size());
     for(int i=0; i < a.size(); i++) {
         res[i] = a[i] - b[i];
     }
     return res;
+}
+
+void printScreenToConsole(std::vector<float> frame) {
+    for(int i = 0; i < 80; i++) {
+        for(int j = 0; j < 80; j++) {
+            std::cout << frame[i * 80 + j];
+        }
+        std::cout << endl;
+    }
+}
+
+float getAction(int size) {
+    return rand() % 2 + 2;
 }
 
 
@@ -118,40 +131,52 @@ int main(int argc, char** argv) {
     cout << "height: " << height << endl;
 
     std::vector<unsigned char> data;
-    std::vector<int> last (80 * 80);
-    std::vector<int> current;
-    std::vector<int> frame;
-
-    // Play 10 episodes
+    std::vector<float> last (80 * 80);
+    std::vector<float> current;
+    std::vector<float> frame;
+    int episode = 0;
+    float totalReward = 0;
+    while(true) {
+        ale.getScreenGrayscale(data);
+        float act = getAction(legal_actions.size());
+        Action a = legal_actions[act];
+        //cout << "Action " << act << endl;
+        float reward = ale.act(a);
+        totalReward += reward;
+        if(ale.game_over()) {
+            episode++;
+            ale.reset_game();
+            ale.getScreenGrayscale(data);
+            cout << "Episode " << episode << " ended with score: " << totalReward << endl;
+            totalReward = 0;
+        }
+    }
+    /**
+    episode_number += 1
     for (int episode=0; episode<1; episode++) {
         float totalReward = 0;
         while (!ale.game_over()) {
             Action a = legal_actions[rand() % legal_actions.size()];
-            // Apply the action and get the resulting reward
             float reward = ale.act(a);
             totalReward += reward;
 
-
             ale.getScreenGrayscale(data);
-
-
+            ale.getScreenGrayscale(data);
+            ale.getScreenGrayscale(data);
+            ale.getScreenGrayscale(data);
 
             current = preprocess(data, width, height);
             
             frame = subs(current,last);
             
-            for(int i = 0; i < 80; i++) {
-                for(int j = 0; j < 80; j++) {
-                    std::cout << frame[i * 80 + j];
-                }
-                std::cout << endl;
-            }
+            printScreenToConsole(frame);
+        
             last = current;
         }
         
         cout << "Episode " << episode << " ended with score: " << totalReward << endl;
         ale.reset_game();
     }
-
+    **/
     return 0;
 }
