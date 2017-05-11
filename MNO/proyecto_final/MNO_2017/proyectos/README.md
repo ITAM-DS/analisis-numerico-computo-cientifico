@@ -42,13 +42,15 @@ Objetivo: Generar un algoritmo en MPI para el método de integración Monte Carlo 
 
 Objetivo adicional: Aplicar el algorithmo MCMC:Metropilis-Hasting para estimar integrales multidimensionales.
 
-[Avance 07-04-2017](equipos/equipo_3/avance_07_04_2017). Comentario del prof: avance actualizado y allí aparecen referencias para la generación de números aleatorios en paralelo. Para el siguiente avance revísenlas (junto con las referencias de la integración por MC) para que esté clara la dificultad de la implementación en paralelo del método que elijan.
+* [Avance 07-04-2017](equipos/equipo_3/avance_07_04_2017). Comentario del prof: avance actualizado y allí aparecen referencias para la generación de números aleatorios en paralelo. Para el siguiente avance revísenlas (junto con las referencias de la integración por MC) para que esté clara la dificultad de la implementación en paralelo del método que elijan.
 
-[Avance 17-04-2017](equipos/equipo_3/avance_17_04_2017).
+* [Avance 17-04-2017](equipos/equipo_3/avance_17_04_2017).
 
-[Avance 24-04-2017](equipos/equipo_3/avance_24_04_2017).
+* [Avance 24-04-2017](equipos/equipo_3/avance_24_04_2017).
 
-[Avance 03-05-2017](equipos/equipo_3/avance_03_05_2017).
+* [Avance 03-05-2017](equipos/equipo_3/avance_03_05_2017).
+
+* [Avance 10-05-2017](equipos/equipo_3/avance_10_05_2017).
 
 ---
 
