@@ -4,16 +4,18 @@ USE_SDL := 0
 ALE := ../../../../../../../../../c/Arcade-Learning-Environment/
 
 FLAGS := -I$(ALE)/src -I$(ALE)/src/controllers -I$(ALE)/src/os_dependent -I$(ALE)/src/environment -I$(ALE)/src/external -L$(ALE)
-CXX := g++
+CXX := nvcc
 FILE := pong
+CUDAFILE := matrixVectorMult
 LDFLAGS := -lale -lz
+CXXFLAGS := -std=c++11
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-    FLAGS += -Wl,-rpath=$(ALE)
+    FLAGS += -Xcompiler \"-Wl,-rpath,$(ALE)\"
 endif
 ifeq ($(UNAME_S),Darwin)
-    FLAGS += -framework Cocoa
+ #   FLAGS += -framework Cocoa
 endif
 
 ifeq ($(strip $(USE_SDL)), 1)
@@ -25,7 +27,7 @@ endif
 all: sharedLibraryInterfaceExample
 
 sharedLibraryInterfaceExample:
-	$(CXX) $(DEFINES) $(FLAGS) $(FILE).cpp $(LDFLAGS) -o $(FILE)
+	$(CXX) $(DEFINES) $(FLAGS) $(FILE).cpp $(CUDAFILE).cu $(LDFLAGS) -o $(FILE) $(CXXFLAGS)
 
 clean:
 	rm -rf sharedLibraryInterfaceExample *.o
