@@ -92,4 +92,6 @@ En la carpeta [C](C) encuentran clases para introducción, dentro de [C/BLAS](C/
 
 * [level1](C/BLAS/ejemplos/level1/)
 
+* [level2](C/BLAS/ejemplos/level2/)
+
 ## [LAPACK](C/LAPACK)
