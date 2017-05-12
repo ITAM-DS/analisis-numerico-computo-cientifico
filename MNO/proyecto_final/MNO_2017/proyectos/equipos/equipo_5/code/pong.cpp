@@ -17,6 +17,10 @@
 #include <iostream>
 #include <ale_interface.hpp>
 #include <cstdlib>
+#include <cstdlib>
+#include <cmath>
+#include <limits>
+#include <math.h>
 
 
 #ifdef __USE_SDL
@@ -25,74 +29,203 @@
 
 using namespace std;
 
-void ClearScreen()
-{
-    int n;
-    for (n = 0; n < 10; n++)
-        printf( "\n\n\n\n\n\n\n\n\n\n" );
-}
+#define H 200
+#define D (80 * 80)
+#define ROWS 80
+#define COLS 80
 
-std::vector<float> preprocess(std::vector<unsigned char> data, int width, int height) {
+
+std::vector<double> preprocessloop(std::vector<unsigned char> data, int width, int height) {
     int top = 34;
     int bottom = 194;
-    std::vector<unsigned char> interestingData = std::vector<unsigned char>(data.begin () + top * width, data.begin () + bottom * width);
-    std::vector<float> frame (80 * 80);
+    //cout << "debuggin "<< endl;
+    std::vector<unsigned char> interestingData = std::vector<unsigned char>(data.begin() + top * width, data.begin() + bottom * width);
+    //cout << "more "<< endl;
+    std::vector<double> frame(80*80);
 
     int count = 0;
-    std::vector<unsigned char>::iterator it = interestingData.begin();
-    while(it != interestingData.end()) {
+    //cout << "****************************************************************************************************************************************************************"<< endl;
+    //cout << "size:  " << interestingData.size() << endl;
+    
+    for(int i = 0; i < COLS * 2; i++) {
+        for(int j = 0; j < ROWS * 2; j++) {
+            int value = (int)interestingData[i * ROWS * 2 + j];
 
-        count++;
-        if(*it == 87){
-            //std::cout << ' ';
-            frame[count] = 0.0;
-        }else{
-            if(*it == 147){
-                //std::cout << '1';
-                frame[count] = 1.0;
-            }
-            else{
-                if(*it == 148){
-                    //std::cout << '2';
-                    frame[count] = 1.0;
-                } else {
-                    if(*it == 236) {
-                        //std::cout << '3';
-                        frame[count] = 1.0;
-                    }
-                    
+            if(i % 2 == 0 && j % 2 == 0) {
+                if(value == 87) {
+                    frame[i/2 * ROWS + j/2] = 0.0;
+                }else {
+                    frame[i/2 * ROWS + j/2] = 1.0;
                 }
             }
         }
-        
-        if(count%80 == 0) {
-            it+=160;
-        }
-        it+=2;
     }
     return frame;
 }
 
-std::vector<float> subs(std::vector<float> a, std::vector<float> b) {
-    std::vector<float> res(a.size());
+std::vector<double> subs(std::vector<double> a, std::vector<double> b) {
+    std::vector<double> res(a.size());
     for(int i=0; i < a.size(); i++) {
         res[i] = a[i] - b[i];
     }
     return res;
 }
 
-void printScreenToConsole(std::vector<float> frame) {
+void printScreenToConsole(std::vector<double> frame) {
     for(int i = 0; i < 80; i++) {
         for(int j = 0; j < 80; j++) {
-            std::cout << frame[i * 80 + j];
+            if (frame[i * 80 + j] > 0.0) {
+                std::cout << frame[i * 80 + j];
+            } else {
+                std::cout << " "; 
+            }
+            
         }
         std::cout << endl;
     }
 }
 
-float getAction(int size) {
-    return rand() % 2 + 2;
+
+
+void printVector(std::vector<int> vec) {
+    for(int i=0; i < vec.size(); i++) {
+        std::cerr << vec[i] << std::endl;
+    }
 }
+void printVectorDouble(std::vector<double> vec) {
+    for(int i=0; i < vec.size(); i++) {
+        std::cerr << vec[i] << std::endl;
+    }
+}
+
+
+double randUniform() {
+    return rand() / (RAND_MAX + 1.);
+}
+double randNormal(double mean, double stddev) {//Box muller method
+    static double n2 = 0.0;
+    static int n2_cached = 0;
+    if (!n2_cached)
+    {
+        double x, y, r;
+        do
+        {
+            x = 2.0*rand()/RAND_MAX - 1;
+            y = 2.0*rand()/RAND_MAX - 1;
+
+            r = x*x + y*y;
+        }
+        while (r == 0.0 || r > 1.0);
+        {
+            double d = sqrt(-2.0*log(r)/r);
+            double n1 = x*d;
+            n2 = y*d;
+            double result = n1*stddev + mean;
+            n2_cached = 1;
+            return result;
+        }
+    }
+    else
+    {
+        n2_cached = 0;
+        return n2*stddev + mean;
+    }
+}
+
+int getAction(double prob) {
+
+    if(randUniform() < prob) {
+        return 2;
+    } else {
+        return 3;
+    }
+    
+}
+
+int getRandomAction() {
+
+    if(randUniform() < 0.5) {
+        return 2;
+    } else {
+        return 3;
+    }
+    
+}
+
+std::vector<double> createRandomNormalMatrix(int width, int height, double normalizationFactor) {
+    int size = width * height;
+    std::vector<double> rarray(size);
+    for(int i = 0; i < size; i++){
+        rarray[i] = randNormal(0,1) / normalizationFactor;
+    }
+    return rarray;
+}
+
+std::vector<double> matrixMultiplication(std::vector<double> a, std::vector<double> b, int n, int m, int p) {
+    int size = n * p;
+    std::vector<double> c(size);
+    double sum;
+    for(int i = 0; i < n ; i++) {
+        for(int j = 0; j < p ; j++) {
+            sum = 0.0;
+            for(int k = 0; k < m ; k++) {
+                sum = sum + a[i * m + k] * b[k * p + j];
+            }
+            c[i * p + j] = sum;
+        }
+    }
+    return c;
+}
+
+void relu(std::vector<double> &h) {
+    int size = h.size();
+
+    for(int i = 0; i < size; i++) {
+        if(h[i] < 0.0) {
+            h[i] = 0.0;
+        }
+    }
+}
+
+
+
+double sigmoid(double x) {
+    //std:cout << "value in sigmoid: " << x << std::endl;
+    return 1.0 / (1.0 + exp(-x));
+}
+
+void test(){
+    double arr[] = {4.0, 1.5, -2.0, -3.0, 4.0, -5.5};
+    double arr2[] = {6.0, 7.0, 8.0};
+    std::vector<double> a (arr, arr + sizeof(arr) / sizeof(arr[0]) );
+    std::vector<double> b (arr2, arr2 + sizeof(arr2) / sizeof(arr2[0]) );
+    std::vector<double> mult = matrixMultiplication(a, b, 2, 3, 1);
+    
+
+
+
+}
+double policy_forward(std::vector<double> x, std::vector<double> w1, std::vector<double> w2){
+    double prob;
+    //std::cerr << " before h.size()" << std::endl;
+    std::vector<double> h= matrixMultiplication(w1,x,H,D,1);
+    int size = h.size();
+    //std::cerr << "h.size(): " << size << std::endl;
+    //printVectorDouble(h);
+    relu(h);
+    //printVectorDouble(h);
+    std::vector<double> logp= matrixMultiplication(w2,h,1,H,1);
+    //std::cerr << "**********************************" << std::endl;
+    //printVectorDouble(logp);
+    //std::cerr << "**********************************" << std::endl;
+    prob = sigmoid(logp[0]);
+    return prob;
+}
+
+int randSkip() {
+    return (rand() % 3) + 2;
+}
+
 
 
 int main(int argc, char** argv) {
@@ -100,6 +233,16 @@ int main(int argc, char** argv) {
         std::cerr << "Usage: " << argv[0] << " rom_file" << std::endl;
         return 1;
     }
+
+    //std::vector<double> H = createRandomNormalMatrix(50,50);
+    //printVectorDouble(H);
+
+    //test();
+
+    std::vector<double> w1 = createRandomNormalMatrix(H,D, sqrt(D));
+    std::vector<double> w2 = createRandomNormalMatrix(H,1, sqrt(H));
+
+    //printVectorDouble(w2);
 
     ALEInterface ale;
 
@@ -117,6 +260,9 @@ int main(int argc, char** argv) {
     // take effect.)
     ale.loadROM(argv[1]);
 
+
+    //test();
+
     // Get the vector of legal actions
     ActionVect legal_actions = ale.getMinimalActionSet();
 
@@ -127,56 +273,78 @@ int main(int argc, char** argv) {
     int height = ale.getScreen().height();
 
 
-    cout << "width: " << width << endl;
-    cout << "height: " << height << endl;
 
+    
+    //cout << "width: " << width << endl;
+    //cout << "height: " << height << endl;
     std::vector<unsigned char> data;
-    std::vector<float> last (80 * 80);
-    std::vector<float> current;
-    std::vector<float> frame;
+    std::vector<double> last (80 * 80);
+    std::vector<double> current;
+    std::vector<double> x;
+    int up = 0;
+    int down = 0;
     int episode = 0;
-    float totalReward = 0;
+    double totalReward = 0;
+    double reward;
     while(true) {
+        //cout << "Begin while "<< endl;
+        
+        //cout << "get data "<< endl;
         ale.getScreenGrayscale(data);
-        float act = getAction(legal_actions.size());
+        //cout << "proprocess "<< endl;
+        
+        current = preprocessloop(data, width, height);
+
+        //printScreenToConsole(current);
+        //cout << "substract "<< endl;
+        x = subs(current,last);
+        
+
+        last = current;
+
+        double prob = policy_forward(x, w1, w2);
+        //double prob = randUniform();
+
+        //cout << "prob " << prob << endl;
+
+
+        double act = getAction(prob);
+
+        if(act == 2) {
+            up++;
+        }else {
+            down++;
+        }
+
+
         Action a = legal_actions[act];
+
         //cout << "Action " << act << endl;
-        float reward = ale.act(a);
+        int skip = randSkip();
+
+        reward = 0.0;
+        for(int i = 0; i < skip; i++) {
+            reward += ale.act(a);
+        }
+        //cout << "Reward " << reward << endl;
         totalReward += reward;
+        //cout << "Toal reward " << totalReward << endl;
         if(ale.game_over()) {
             episode++;
             ale.reset_game();
             ale.getScreenGrayscale(data);
             cout << "Episode " << episode << " ended with score: " << totalReward << endl;
+            cout << "up: " << up <<endl;
+            cout << "down: " << down <<endl;
             totalReward = 0;
+            //up=0;
+            //down=0;
         }
-    }
-    /**
-    episode_number += 1
-    for (int episode=0; episode<1; episode++) {
-        float totalReward = 0;
-        while (!ale.game_over()) {
-            Action a = legal_actions[rand() % legal_actions.size()];
-            float reward = ale.act(a);
-            totalReward += reward;
 
-            ale.getScreenGrayscale(data);
-            ale.getScreenGrayscale(data);
-            ale.getScreenGrayscale(data);
-            ale.getScreenGrayscale(data);
-
-            current = preprocess(data, width, height);
-            
-            frame = subs(current,last);
-            
-            printScreenToConsole(frame);
-        
-            last = current;
+        if(reward > 0.0 || reward < 0.0) {
+            cout << "Episode game finished, reward: " << reward << endl;
         }
-        
-        cout << "Episode " << episode << " ended with score: " << totalReward << endl;
-        ale.reset_game();
+
     }
-    **/
     return 0;
 }
