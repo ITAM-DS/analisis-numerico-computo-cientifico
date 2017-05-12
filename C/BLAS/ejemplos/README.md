@@ -1,4 +1,4 @@
-Suponemos un sistema ubuntu y que está instalado `libblas-dev`.
+Suponemos un sistema ubuntu y que está instalado `libblas-dev` y `liblapack-dev`.
 
 En las carpetas para los diferentes niveles de BLAS: [level1](level1/), [level2](level2/), [level3](level3/) se tienen códigos que utilizan el header `definiciones.h` y `funciones.c` siguiente:
 
