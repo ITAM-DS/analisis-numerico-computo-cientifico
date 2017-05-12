@@ -100,6 +100,6 @@ En la carpeta [C](C) encuentran:
 
 * [level2](C/BLAS/ejemplos/level2/)
 
-* [level3](C/BLAS/ejemplos/level3/)]
+* [level3](C/BLAS/ejemplos/level3/)
 
 ## [LAPACK](C/LAPACK)
