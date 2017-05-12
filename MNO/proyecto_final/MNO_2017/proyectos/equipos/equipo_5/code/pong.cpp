@@ -14,6 +14,7 @@
  *  Sample code for running an agent with the shared library interface. 
  **************************************************************************** */
 
+#include"defcuda.h"
 #include <iostream>
 #include <ale_interface.hpp>
 #include <cstdlib>
