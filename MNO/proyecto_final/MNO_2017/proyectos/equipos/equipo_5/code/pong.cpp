@@ -34,6 +34,8 @@ using namespace std;
 #define D (80 * 80)
 #define ROWS 80
 #define COLS 80
+#define GAMMA 0.99
+#define BATCH_SIZE 10
 
 
 std::vector<double> preprocessloop(std::vector<unsigned char> data, int width, int height) {
@@ -70,6 +72,12 @@ std::vector<double> subs(std::vector<double> a, std::vector<double> b) {
         res[i] = a[i] - b[i];
     }
     return res;
+}
+
+void acum(std::vector<double> &a, std::vector<double> b) {
+    for(int i=0; i < a.size(); i++) {
+        a[i] =  a[i] + b[i];
+    }
 }
 
 void printScreenToConsole(std::vector<double> frame) {
@@ -188,6 +196,15 @@ void relu(std::vector<double> &h) {
     }
 }
 
+void prelu(std::vector<double> &h, std::vector<double> ref) {
+    int size = h.size();
+
+    for(int i = 0; i < size; i++) {
+        if(!(ref[i] > 0.0)) {
+            h[i] = 0.0;
+        }
+    }
+}
 
 
 double sigmoid(double x) {
@@ -200,13 +217,13 @@ void test(){
     double arr2[] = {6.0, 7.0, 8.0};
     std::vector<double> a (arr, arr + sizeof(arr) / sizeof(arr[0]) );
     std::vector<double> b (arr2, arr2 + sizeof(arr2) / sizeof(arr2[0]) );
-    std::vector<double> mult = matrixMultiplication(a, b, 2, 3, 1);
+    std::vector<double> mult = matrixMultiplication(a, b, 6, 1, 2);
     
 
-
+    printVectorDouble(mult);
 
 }
-double policy_forward(std::vector<double> x, std::vector<double> w1, std::vector<double> w2){
+double policy_forward(std::vector<double> x, std::vector<double> w1, std::vector<double> w2, std::vector<double> &hiddenStates){
     double prob;
     //std::cerr << " before h.size()" << std::endl;
     std::vector<double> h= matrixMultiplication(w1,x,H,D,1);
@@ -214,6 +231,9 @@ double policy_forward(std::vector<double> x, std::vector<double> w1, std::vector
     //std::cerr << "h.size(): " << size << std::endl;
     //printVectorDouble(h);
     relu(h);
+
+    hiddenStates.reserve(hiddenStates.size() + h.size());
+    hiddenStates.insert(hiddenStates.end(), h.begin(), h.end());
     //printVectorDouble(h);
     std::vector<double> logp= matrixMultiplication(w2,h,1,H,1);
     //std::cerr << "**********************************" << std::endl;
@@ -223,8 +243,50 @@ double policy_forward(std::vector<double> x, std::vector<double> w1, std::vector
     return prob;
 }
 
+void policy_backward(std::vector<double> w1, std::vector<double> w2, std::vector<double> &dw1, std::vector<double> &dw2, std::vector<double> exs, std::vector<double> dlogps, std::vector<double> hiddenStates, int numberOfGames) {
+    dw2 = matrixMultiplication(hiddenStates, dlogps, H, numberOfGames, 1);
+    cout << "dw2 " << dw2.size() << endl;
+    std::vector<double> dh = matrixMultiplication(w2, dlogps, H, 1, numberOfGames);
+    prelu(dh, hiddenStates);
+    dw1 = matrixMultiplication(dh, exs, H, numberOfGames, D);
+    cout << "dw1 " << dw1.size() << endl;
+}
+
+void discount_rewards(std::vector<double> &rewards) {
+    int size = rewards.size();
+    double acum = 0.0;
+    double meanAcum = 0.0;
+    for(int i = size - 1; i >= 0; i--) {
+        if(rewards[i] > 0.0 || rewards[i] < 0.0) {
+            acum = 0.0;
+        }
+        acum = acum * GAMMA + rewards[i];
+        rewards[i] = acum;
+        meanAcum = meanAcum + rewards[i];
+    }
+    meanAcum = meanAcum / size;
+    cout << "mean: " << meanAcum << endl;
+    double stdAcum = 0.0;
+    for(int i = 0; i < size; i++) {
+        stdAcum = stdAcum + (rewards[i] - meanAcum) * (rewards[i] - meanAcum);
+    }
+    stdAcum = sqrt(stdAcum / size);
+    cout << "std: " << stdAcum << endl;
+    for(int i = 0; i < size; i++) {
+        rewards[i] = (rewards[i] - meanAcum) / stdAcum;
+    }
+}
+
+
 int randSkip() {
     return (rand() % 3) + 2;
+}
+
+void modulateGradient(std::vector<double> &logps, std::vector<double> rewards) {
+    int size = logps.size();
+    for(int i = 0; i < size; i++) {
+        logps[i] = logps[i] * rewards[i];
+    }
 }
 
 
@@ -240,8 +302,7 @@ int main(int argc, char** argv) {
 
     //test();
 
-    std::vector<double> w1 = createRandomNormalMatrix(H,D, sqrt(D));
-    std::vector<double> w2 = createRandomNormalMatrix(H,1, sqrt(H));
+    
 
     //printVectorDouble(w2);
 
@@ -282,11 +343,26 @@ int main(int argc, char** argv) {
     std::vector<double> last (80 * 80);
     std::vector<double> current;
     std::vector<double> x;
+    std::vector<double> rewards;
+    std::vector<double> dlogps;
+    std::vector<double> hiddenStates;
+    std::vector<double> exs;
+
+    std::vector<double> w1 = createRandomNormalMatrix(H,D, sqrt(D));
+    std::vector<double> w2 = createRandomNormalMatrix(H,1, sqrt(H));
+    std::vector<double> dw1 (H * D);
+    std::vector<double> dw2 (H);
+    std::vector<double> dw1Buffer (H * D);
+    std::vector<double> dw2Buffer (H);
+    
+
     int up = 0;
     int down = 0;
     int episode = 0;
     double totalReward = 0;
     double reward;
+
+    int fakeLabel;
     while(true) {
         //cout << "Begin while "<< endl;
         
@@ -303,7 +379,9 @@ int main(int argc, char** argv) {
 
         last = current;
 
-        double prob = policy_forward(x, w1, w2);
+        double prob = policy_forward(x, w1, w2, hiddenStates);
+
+        //cout << "Size of hidden states: " << hiddenStates.size() << endl;
         //double prob = randUniform();
 
         //cout << "prob " << prob << endl;
@@ -311,12 +389,19 @@ int main(int argc, char** argv) {
 
         double act = getAction(prob);
 
+
+
         if(act == 2) {
             up++;
+            fakeLabel = 1;
         }else {
             down++;
+            fakeLabel = 0;
         }
 
+        exs.reserve(exs.size() + x.size());
+        exs.insert(exs.end(), x.begin(), x.end());
+        dlogps.push_back(fakeLabel - prob);
 
         Action a = legal_actions[act];
 
@@ -327,19 +412,48 @@ int main(int argc, char** argv) {
         for(int i = 0; i < skip; i++) {
             reward += ale.act(a);
         }
+
+        rewards.push_back(reward);
+
         //cout << "Reward " << reward << endl;
         totalReward += reward;
         //cout << "Toal reward " << totalReward << endl;
         if(ale.game_over()) {
+
             episode++;
             ale.reset_game();
             ale.getScreenGrayscale(data);
-            cout << "Episode " << episode << " ended with score: " << totalReward << endl;
-            cout << "up: " << up <<endl;
-            cout << "down: " << down <<endl;
+            //cout << "Episode " << episode << " ended with score: " << totalReward << endl;
+            //cout << "Size of rewards " << rewards.size() << endl;
+            //cout << "up: " << up <<endl;
+            //cout << "down: " << down <<endl;
             totalReward = 0;
-            //up=0;
-            //down=0;
+            //cout << "Size of hidden states: " << hiddenStates.size() << endl;
+            //cout << "Size of logsp: " << dlogps.size() << endl;
+            //cout << "Size of exs: " << exs.size() << endl;
+            //cout << "number of games: " << rewards.size() << endl;
+            discount_rewards(rewards);
+
+            modulateGradient(dlogps,rewards);
+
+            policy_backward(w1, w2, dw1, dw2, exs, dlogps, hiddenStates, rewards.size());
+
+            acum(dw1Buffer, w1);
+            acum(dw2Buffer, w2);
+            
+            if(episode % BATCH_SIZE == 0){
+
+                cout << "Batch finished: " << reward << endl;
+                std::fill(dw1Buffer.begin(), dw1Buffer.end(), 0);
+                std::fill(dw2Buffer.begin(), dw2Buffer.end(), 0);
+            }
+
+
+            rewards.clear();
+            exs.clear();
+            hiddenStates.clear();
+            dlogps.clear();
+
         }
 
         if(reward > 0.0 || reward < 0.0) {
