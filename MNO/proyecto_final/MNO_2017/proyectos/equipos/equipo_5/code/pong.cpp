@@ -36,7 +36,8 @@ using namespace std;
 #define COLS 80
 #define GAMMA 0.99
 #define BATCH_SIZE 10
-
+#define DECAY_RATE 0.99
+#define LEARNING_RATE 0.001
 
 std::vector<double> preprocessloop(std::vector<unsigned char> data, int width, int height) {
     int top = 34;
@@ -77,6 +78,18 @@ std::vector<double> subs(std::vector<double> a, std::vector<double> b) {
 void acum(std::vector<double> &a, std::vector<double> b) {
     for(int i=0; i < a.size(); i++) {
         a[i] =  a[i] + b[i];
+    }
+}
+
+void timesScalar(std::vector<double> &a, double scalar) {
+    for(int i=0; i < a.size(); i++) {
+        a[i] =  a[i] * scalar;
+    }
+}
+
+void elementWiseMultiplicationTimesScalar(std::vector<double> &a, std::vector<double> b, double scalar) {
+    for(int i=0; i < a.size(); i++) {
+        a[i] =  a[i] * b[i] * scalar;
     }
 }
 
@@ -354,6 +367,8 @@ int main(int argc, char** argv) {
     std::vector<double> dw2 (H);
     std::vector<double> dw1Buffer (H * D);
     std::vector<double> dw2Buffer (H);
+    std::vector<double> rmsPropW1Cache (H * D);
+    std::vector<double> rmsPropW2Cache (H);
     
 
     int up = 0;
@@ -438,17 +453,38 @@ int main(int argc, char** argv) {
 
             policy_backward(w1, w2, dw1, dw2, exs, dlogps, hiddenStates, rewards.size());
 
-            acum(dw1Buffer, w1);
-            acum(dw2Buffer, w2);
+            acum(dw1Buffer, dw1);
+            acum(dw2Buffer, dw2);
             
             if(episode % BATCH_SIZE == 0){
+
+                std::vector<int> dw1BufferCopy(dw1Buffer);
+                // I first do decay_rate * rmsprop_cache[k]
+                timesScalar(rmsPropW1Cache, DECAY_RATE);
+                // then (1 - decay_rate) * g**2
+                elementWiseMultiplicationTimesScalar(dw1BufferCopy, dw1BufferCopy, 1.0 - DECAY_RATE);
+                // and I sum them
+                acum(rmsPropW1Cache, dw1BufferCopy);
+                for(int i =0 ; i < dw1Buffer.size(); i++) {
+                    w1[i] = w1[i] + (LEARNING_RATE * dw1Buffer[i] / (sqrt(rmsPropW1Cache[i]) + 0.00001));
+                }
+
+                std::vector<int> dw1BufferCopy(dw2Buffer);
+                // I first do decay_rate * rmsprop_cache[k]
+                timesScalar(rmsPropW2Cache, DECAY_RATE);
+                // then (1 - decay_rate) * g**2
+                elementWiseMultiplicationTimesScalar(dw2BufferCopy, dw2BufferCopy, 1.0 - DECAY_RATE);
+                // and I sum them
+                acum(rmsPropW2Cache, dw2BufferCopy);
+                for(int i =0 ; i < dw2Buffer.size(); i++) {
+                    w2[i] = w2[i] + (LEARNING_RATE * dw2Buffer[i] / (sqrt(rmsPropW2Cache[i]) + 0.00001));
+                }
+
 
                 cout << "Batch finished: " << reward << endl;
                 std::fill(dw1Buffer.begin(), dw1Buffer.end(), 0);
                 std::fill(dw2Buffer.begin(), dw2Buffer.end(), 0);
             }
-
-
             rewards.clear();
             exs.clear();
             hiddenStates.clear();
