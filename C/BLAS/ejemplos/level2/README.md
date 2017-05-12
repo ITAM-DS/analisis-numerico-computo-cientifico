@@ -399,8 +399,6 @@ int main(int argc, char *argv[]){
 	for(j=0;j<renglones_vector(n_a)-1;j++)
 		entrada_vector(n_a,j)=nb;
 		entrada_vector(n_a,j)=(N%nb != 0)?N-(N/nb*nb):nb;
-	printf("vector:\n");
-	imprime_vector(n_a);
 
 	A_block=malloc(sizeof(A_block));
 
@@ -446,7 +444,7 @@ Compilamos:
 $gcc -Wall dgemm_mult_mat_vec_column_block.c funciones.c -o programa.out -llapack -lblas
 ```
 
-Ejecutamos:
+Por ejemplo, si quisiéramos dividir en bloques de tamaño número de renglones de A x 3 (tenemos 3 bloques, el primero de tamaño : número de renglones de A x 3, el segundo de tamaño: número de renglones de A x 3 y el último de tamaño: el primero de tamaño : número de renglones de A x 2).
 
 ```
 $./programa.out 4 8 3
@@ -455,10 +453,6 @@ $./programa.out 4 8 3
 Resultado:
 
 ```
-vector:
-vector[0]=3.0000000000000000
-vector[1]=3.0000000000000000
-vector[2]=2.0000000000000000
 matriz block:
 matriz[0][0]=0.0000000000000000	matriz[0][1]=1.5000000000000000	matriz[0][2]=4.2999999999999998
 matriz[1][0]=4.0000000000000000	matriz[1][1]=-5.0000000000000000	matriz[1][2]=0.0000000000000000
