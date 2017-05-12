@@ -444,7 +444,7 @@ Compilamos:
 $gcc -Wall dgemm_mult_mat_vec_column_block.c funciones.c -o programa.out -llapack -lblas
 ```
 
-Por ejemplo, si quisiéramos dividir en bloques de tamaño número de renglones de A x 3 (tenemos 3 bloques, el primero de tamaño : número de renglones de A x 3, el segundo de tamaño: número de renglones de A x 3 y el último de tamaño: el primero de tamaño : número de renglones de A x 2).
+Por ejemplo, si quisiéramos dividir en bloques de tamaño número de renglones de A x 3 (tenemos 3 bloques, el primero de tamaño : número de renglones de A x 3, el segundo de tamaño: número de renglones de A x 3 y el último de tamaño: número de renglones de A x 2).
 
 ```
 $./programa.out 4 8 3
