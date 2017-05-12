@@ -411,7 +411,7 @@ int main(int argc, char *argv[]){
 	for(j=0;j<renglones_vector(n_a);j++){
 		columnas(A_block)=entrada_vector(n_a,j);
 		entradas(A_block)=(j==0)?malloc(renglones(A)*columnas(A_block)*sizeof(double)):realloc(entradas(A_block), renglones(A)*columnas(A_block)*sizeof(double));
-		dlacpy_("General", &renglones(A), &columnas(A_block),entradas(A)+jj*renglones(A), &renglones(A_block), entradas(A_block), &renglones(A_block));	
+		dlacpy_("General", &renglones(A), &columnas(A_block),entradas(A)+jj*renglones(A), &renglones(A), entradas(A_block), &renglones(A_block));	
 		printf("matriz block:\n");
 		imprime_matriz(A_block);
 		printf("------------\n");
