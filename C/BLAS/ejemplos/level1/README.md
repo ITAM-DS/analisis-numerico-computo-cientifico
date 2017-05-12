@@ -24,6 +24,8 @@ Código que realiza el producto punto entre los vectores almacenados en los arch
 
 Se deben tener los archivos `v1.txt` y `v2.txt`en el directorio de compilación y ejecución.
 
+`dot_product.c`:
+
 ```
 #include<stdio.h>
 #include<stdlib.h>
@@ -75,4 +77,21 @@ Ejecutamos:
 
 ```
 $./programa.out 3
+```
+
+Resultado:
+
+```
+------------
+vector :
+vector[0]=1.0000000000000000
+vector[1]=0.0000000000000000
+vector[2]=-3.0000000000000000
+------------
+vector :
+vector[0]=5.0000000000000000
+vector[1]=8.0000000000000000
+vector[2]=9.0000000000000000
+------------
+resultado: -22.000000
 ```
