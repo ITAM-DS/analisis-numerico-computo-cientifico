@@ -219,9 +219,9 @@ matriz[2][0]=-1.00000	matriz[2][1]=-2.50000	matriz[2][2]=2.50000
 Pregunta: ¿Por qué funciona este trick?
 
 
-# Multiplicación matriz-matriz block based version i,j,k :
+# Multiplicación matriz-matriz block-based versión i,j,k :
 
-Código que realiza la multiplicación matriz-matriz con matrices almacenadas en los archivos:
+Código que realiza la multiplicación matriz-matriz block-based versión i, j, k con matrices almacenadas en los archivos:
 
 `A_block.txt`:
 
