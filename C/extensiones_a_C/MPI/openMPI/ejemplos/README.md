@@ -390,7 +390,7 @@ int MPI_Bcast(
 
 y cada proceso ejecuta el **broadcast** en un mismo orden, es decir, la secuencia de broadcasts que ejecuta el proceso 1 hacen match con la secuencia de broadcasts que ejecuta el proceso 0 en el mismo orden (sincronización), así se garantiza que se almacenen las variables en la localidad de memoria correcta.
 
-Obs: A diferencia de la comunicación punto a punto los argumentos `root`, `count` y `datatype` deben ser los mismos en todos los procesos del communicator `comm` y obsérvese que no se tiene un argumento para un `tag` (de hecho todas las funciones colectivas no usan tags).
+Obs: A diferencia de la comunicación punto a punto, los argumentos `root`, `count` y `datatype` deben ser los mismos en todos los procesos del communicator `comm` y obsérvese que no se tiene un argumento para un `tag` (de hecho todas las funciones colectivas no usan tags).
 
 Un último cambio al código anterior, sería ejecutar un **reduce** por todos los procesadores, así se evita que el proceso 0 tenga todo el trabajo de hacer la suma final:
 
