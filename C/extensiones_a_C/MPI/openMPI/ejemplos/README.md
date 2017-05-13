@@ -294,9 +294,9 @@ Valor de la integral de -1.000000 a 3.000000 es: 1.97176574820423e+01
 
 Obs: se usó diferentes tags sólo por seguridad, MPI garantiza que una secuencia de mensajes enviados de un proceso a otro serán recibidos en el orden en el que fueron enviados.
 
-### Comunicación colectiva (broadcast y reduce):
+## Comunicación colectiva (broadcast y reduce):
 
-Es mejor si utilizamos un broadcast para distribuir los valores de a, b y n a los demás procesos a partir del proceso que leyó los datos de entrada:
+Ahorramos escribir líneas de **send** y **receive** si utilizamos un **broadcast** para distribuir los valores de a, b y n a los demás procesos a partir del proceso que leyó los datos de entrada:
 
 `trapecio_compuesto_input_data_cmd_line_and_broadcast.c`:
 
@@ -390,7 +390,7 @@ int MPI_Bcast(
 
 y cada proceso ejecuta el **broadcast** en un mismo orden, es decir, la secuencia de broadcasts que ejecuta el proceso 1 hacen match con la secuencia de broadcasts que ejecuta el proceso 0 en el mismo orden (sincronización), así se garantiza que se almacenen las variables en la localidad de memoria correcta.
 
-Obs: A diferencia de la comunicación punto a punto (Send & Receive) los argumentos `root`, `count` y `datatype` deben ser los mismos en todos los procesos del communicator `comm` y obsérvese que no se tiene un argumento para un `tag` (de hecho todas las funciones colectivas no usan tags).
+Obs: A diferencia de la comunicación punto a punto los argumentos `root`, `count` y `datatype` deben ser los mismos en todos los procesos del communicator `comm` y obsérvese que no se tiene un argumento para un `tag` (de hecho todas las funciones colectivas no usan tags).
 
 Un último cambio al código anterior, sería ejecutar un **reduce** por todos los procesadores, así se evita que el proceso 0 tenga todo el trabajo de hacer la suma final:
 
