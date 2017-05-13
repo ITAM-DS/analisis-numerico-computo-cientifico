@@ -258,11 +258,11 @@ double policy_forward(std::vector<double> x, std::vector<double> w1, std::vector
 
 void policy_backward(std::vector<double> w1, std::vector<double> w2, std::vector<double> &dw1, std::vector<double> &dw2, std::vector<double> exs, std::vector<double> dlogps, std::vector<double> hiddenStates, int numberOfGames) {
     dw2 = matrixMultiplication(hiddenStates, dlogps, H, numberOfGames, 1);
-    cout << "dw2 " << dw2.size() << endl;
+    //cout << "dw2 " << dw2.size() << endl;
     std::vector<double> dh = matrixMultiplication(w2, dlogps, H, 1, numberOfGames);
     prelu(dh, hiddenStates);
     dw1 = matrixMultiplication(dh, exs, H, numberOfGames, D);
-    cout << "dw1 " << dw1.size() << endl;
+    //cout << "dw1 " << dw1.size() << endl;
 }
 
 void discount_rewards(std::vector<double> &rewards) {
@@ -278,13 +278,13 @@ void discount_rewards(std::vector<double> &rewards) {
         meanAcum = meanAcum + rewards[i];
     }
     meanAcum = meanAcum / size;
-    cout << "mean: " << meanAcum << endl;
+    //cout << "mean: " << meanAcum << endl;
     double stdAcum = 0.0;
     for(int i = 0; i < size; i++) {
         stdAcum = stdAcum + (rewards[i] - meanAcum) * (rewards[i] - meanAcum);
     }
     stdAcum = sqrt(stdAcum / size);
-    cout << "std: " << stdAcum << endl;
+    //cout << "std: " << stdAcum << endl;
     for(int i = 0; i < size; i++) {
         rewards[i] = (rewards[i] - meanAcum) / stdAcum;
     }
@@ -376,6 +376,7 @@ int main(int argc, char** argv) {
     int episode = 0;
     double totalReward = 0;
     double reward;
+    double runningReward = 0;
 
     int fakeLabel;
     while(true) {
@@ -442,7 +443,7 @@ int main(int argc, char** argv) {
             //cout << "Size of rewards " << rewards.size() << endl;
             //cout << "up: " << up <<endl;
             //cout << "down: " << down <<endl;
-            totalReward = 0;
+            
             //cout << "Size of hidden states: " << hiddenStates.size() << endl;
             //cout << "Size of logsp: " << dlogps.size() << endl;
             //cout << "Size of exs: " << exs.size() << endl;
@@ -458,7 +459,7 @@ int main(int argc, char** argv) {
             
             if(episode % BATCH_SIZE == 0){
 
-                std::vector<int> dw1BufferCopy(dw1Buffer);
+                std::vector<double> dw1BufferCopy(dw1Buffer);
                 // I first do decay_rate * rmsprop_cache[k]
                 timesScalar(rmsPropW1Cache, DECAY_RATE);
                 // then (1 - decay_rate) * g**2
@@ -469,7 +470,7 @@ int main(int argc, char** argv) {
                     w1[i] = w1[i] + (LEARNING_RATE * dw1Buffer[i] / (sqrt(rmsPropW1Cache[i]) + 0.00001));
                 }
 
-                std::vector<int> dw1BufferCopy(dw2Buffer);
+                std::vector<double> dw2BufferCopy(dw2Buffer);
                 // I first do decay_rate * rmsprop_cache[k]
                 timesScalar(rmsPropW2Cache, DECAY_RATE);
                 // then (1 - decay_rate) * g**2
@@ -490,11 +491,19 @@ int main(int argc, char** argv) {
             hiddenStates.clear();
             dlogps.clear();
 
+            if(!(runningReward > 0.0 || runningReward < 0.0)) {
+                runningReward = totalReward;
+            } else {
+                runningReward = runningReward * 0.99 + totalReward * 0.01;
+            }
+            cout << "Episode " << episode << " finished, reward: " << totalReward << " reward mean: " << runningReward << endl;
+            totalReward = 0;
         }
-
+        /**
         if(reward > 0.0 || reward < 0.0) {
             cout << "Episode game finished, reward: " << reward << endl;
         }
+        **/
 
     }
     return 0;
