@@ -294,7 +294,7 @@ Valor de la integral de -1.000000 a 3.000000 es: 1.97176574820423e+01
 
 Obs: se usó diferentes tags sólo por seguridad, MPI garantiza que una secuencia de mensajes enviados de un proceso a otro serán recibidos en el orden en el que fueron enviados.
 
-## Comunicación colectiva (broadcast y reduce):
+## Comunicación colectiva (broadcast, reduce y allreduce):
 
 Ahorramos escribir líneas de **send** y **receive** si utilizamos un **broadcast** para distribuir los valores de a, b y n a los demás procesos a partir del proceso que leyó los datos de entrada:
 
@@ -389,6 +389,8 @@ int MPI_Bcast(
 ```
 
 y cada proceso ejecuta el **broadcast** en un mismo orden, es decir, la secuencia de broadcasts que ejecuta el proceso 1 hacen match con la secuencia de broadcasts que ejecuta el proceso 0 en el mismo orden (sincronización), así se garantiza que se almacenen las variables en la localidad de memoria correcta.
+
+`root` es el proceso que se encargará de distribuir el mensaje.
 
 Obs: A diferencia de la comunicación punto a punto, los argumentos `root`, `count` y `datatype` deben ser los mismos en todos los procesos del communicator `comm` y obsérvese que no se tiene un argumento para un `tag` (de hecho todas las funciones colectivas no usan tags).
 
@@ -499,8 +501,108 @@ int MPI_Reduce(
 )
 ```
 
-Así como con `MPI_Broadcast` la función `MPI_Reduce` debe ser llamada por todos los procesos en el comunicator `comm` y `count`, `datatype`, `operator` y `root` deben tener los mismos valores. Obs: `operand` y `result` deben ser variables distintas.
+Así como con `MPI_Broadcast` la función `MPI_Reduce` debe ser llamada por todos los procesos en el comunicator `comm` y `count`, `datatype`, `operator` y `root` deben tener los mismos valores. Obs: `operand` y `result` deben ser variables distintas. `root` es el único proceso que tendrá el `result`, en el caso del programa del trapecio es `total_int`, si quisiéramos que todos los procesos almacenaran `total_int` en lugar de hacer primero un **reduce** seguido de un **broadcast** usaríamos la función `MPI_Allreduce` y por ejemplo si queremos que el proceso con rank igual a 1 imprima el resultado tendríamos:
 
+`trapecio_compuesto_input_data_cmd_line_and_broadcast_and_allreduce.out`:
 
+```
+#include<stdio.h>
+#include<mpi.h>
+#include<math.h>
+//prototipo de Trap:
+double Trap(double ext_izq, double ext_der, int num_trap_local, double longitud_base);
+void lee_constantes(double *ext_izq, double *ext_der, int *num_trap, int rank_proceso, int num_procesos);
+int main(void){
+    int mi_rango;
+    int comm_sz;
+    int n;//número de trapecios
+    int local_n;
+    double a, b,h;
+    double local_a, local_b,local_int, total_int;
+    //local_int estima por cada proceso con la regla del trapecio
+    //la integral
+    int num_proceso_contador;
 
+    MPI_Init(NULL, NULL);
+    MPI_Comm_size(MPI_COMM_WORLD, &comm_sz);
+    MPI_Comm_rank(MPI_COMM_WORLD, &mi_rango);
+    lee_constantes(&a, &b, &n, mi_rango, comm_sz);
+    h=(b-a)/n; //el valor de h es el mismo para todos los procesos
+    local_n = n/comm_sz;//número de subintervalos para cada proceso
+    local_a = a + mi_rango*local_n*h;//calculamos el extremo izquierdo
+    local_b = local_a + local_n*h;//calculamos el extremo derecho
+    local_int = Trap(local_a, local_b, local_n, h);
+    MPI_Allreduce(&local_int, &total_int, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+    if(mi_rango == 1)
+        printf("Valor de la integral de %f a %f es: %1.14e\n",a,b,total_int);
+    MPI_Finalize();
+    return 0;
+}//main
+//prototipo de f:
+double f(double nodo);
+double Trap(double ext_izq, double ext_der, int num_trap, double longitud_base){
+    double estimacion;
+    double x;
+    int contador;
+    estimacion = (f(ext_izq) + f(ext_der))/2.0;
+    for(contador=1;contador<=num_trap-1;contador++){
+        x =ext_izq + contador*longitud_base;
+        estimacion += f(x);
+    }
+    estimacion=estimacion*longitud_base;
+    return estimacion;
+}
+//la regla de correspondencia f del integrando
+double f(double nodo){
+    double valor_f;
+    valor_f = exp(nodo);
+    return valor_f;
+}
+void lee_constantes(double *a, double *b, int *n, int rank, int comm_sz){
+    int procesador_fuente=0, procesador_destino;
+    int tag;
+    MPI_Status status;
+    if(rank == 0){
+        printf("Introduce valores de a, b, n\n");
+        scanf("%lf %lf %d", a, b, n);
+    }
+    MPI_Bcast(a, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Bcast(b, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Bcast(n, 1, MPI_INT, 0, MPI_COMM_WORLD);
+}
 
+```
+
+La sintaxis de `MPI_Allreduce` es:
+
+```
+int MPI_ALLreduce(
+    void           *operand     /*in*/,
+    void           *result      /*out*/,
+    int             count       /*in*/,
+    MPI_Datatype    datatype    /*in*/,
+    MPI_Op          operator    /*in*/,
+    MPI_Comm        comm        /*in*/
+)
+
+```
+
+Compilamos:
+
+```
+$mpicc trapecio_compuesto_input_data_cmd_line_and_broadcast_and_allreduce.c -o trapecio_compuesto_input_data_cmd_line_and_broadcast_and_allreduce.out -lm
+```
+
+Ejecutamos:
+
+```
+$mpiexec -n 10 trapecio_compuesto_input_data_cmd_line_and_broadcast_and_allreduce.out
+```
+
+Resultado:
+
+```
+Introduce valores de a, b, n
+-1 3 1000000
+Valor de la integral de -1.000000 a 3.000000 es: 1.97176574820423e+01
+```
