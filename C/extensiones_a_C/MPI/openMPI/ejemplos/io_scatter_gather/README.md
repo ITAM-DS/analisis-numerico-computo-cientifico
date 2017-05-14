@@ -190,6 +190,8 @@ void incrementa_size_array(arreglo_1d_T a){
 }
 ```
 
+Observa en el archivo de `funciones.c` anterior las funciones para realizar *input*  `void scatter_contiguous_vector_by_block(arreglo_1d_T a, char *s)` y output `void imprime_valores_almacenados_en_procesos(arreglo_1d_T a)`.
+
 El programa `scatter_gather_example.c` es:
 
 ```
