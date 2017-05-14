@@ -31,7 +31,7 @@ y si son iniciados **4** procesos entonces el proceso con rank 0 recibirá los d
 int MPI_Scatter(
 	void				*send_data		*/in*/,
 	int 	 			send_count 		*/in*/,
-	MPI_Datatype	    	send_type 		*/in*/,
+	MPI_Datatype	       	send_type 		*/in*/,
 	void	 			*recv_data		*/out*/,
 	int 				recv_count 		*/in*/,
 	MPI_Datatype    		recv_type 		*/in*/,
