@@ -40,9 +40,9 @@ int main(int argc, char *argv[]){
 	double ALPHA, BETA;
     ALPHA = 1.0;
     BETA = 0.0;
-	A=malloc(sizeof(A));
-	B=malloc(sizeof(B));
-	C=malloc(sizeof(C));
+	A=malloc(sizeof(*A));
+	B=malloc(sizeof(*B));
+	C=malloc(sizeof(*C));
 	renglones(A)=M;
 	columnas(A)=K;
 	renglones(B)=K;
@@ -64,8 +64,11 @@ int main(int argc, char *argv[]){
 	inicializa_matriz_ceros(C);
 	dgemm_("No transpose", "No transpose", &M, &N, &K, &ALPHA, entradas(A), &M, entradas(B), &K, &BETA, entradas(C), &M);
 	imprime_matriz(C);
+	free(entradas(A));
 	free(A);
+	free(entradas(B));
 	free(B);
+	free(entadas(C));
 	free(C);
 	return 0;
 }
@@ -156,9 +159,9 @@ int main(int argc, char *argv[]){
 	double ALPHA, BETA;
     ALPHA = 1.0;
     BETA = 0.0;
-	A=malloc(sizeof(A));
-	B=malloc(sizeof(B));
-	C=malloc(sizeof(C));
+	A=malloc(sizeof(*A));
+	B=malloc(sizeof(*B));
+	C=malloc(sizeof(*C));
 	renglones(A)=M;
 	columnas(A)=K;
 	renglones(B)=K;
@@ -179,8 +182,11 @@ int main(int argc, char *argv[]){
 	inicializa_matriz_ceros(C);
 	dgemm_("No transpose", "No transpose", &N, &M, &K, &ALPHA, entradas(B), &N, entradas(A), &K, &BETA, entradas(C), &N);
 	imprime_matriz(C);
+	free(entradas(A));
 	free(A);
+	free(entradas(B));
 	free(B);
+	free(entradas(C));
 	free(C);
 	return 0;
 }
@@ -280,9 +286,9 @@ int main(int argc, char *argv[]){
 	double ALPHA, BETA;
     ALPHA = 1.0;
     BETA = 1.0;
-	A=malloc(sizeof(A));
-	B=malloc(sizeof(B));
-	C=malloc(sizeof(C));
+	A=malloc(sizeof(*A));
+	B=malloc(sizeof(*B));
+	C=malloc(sizeof(*C));
 	renglones(A)=M;
 	columnas(A)=K;
 	renglones(B)=K;
@@ -302,12 +308,12 @@ int main(int argc, char *argv[]){
 	printf("matriz 2:\n");
 	imprime_matriz(B);
 
-	A_block=malloc(sizeof(A_block));
-	B_block=malloc(sizeof(B_block));
+	A_block=malloc(sizeof(*A_block));
+	B_block=malloc(sizeof(*B_block));
 	
-	m_a=malloc(sizeof(m_a));
-	k_a_b=malloc(sizeof(k_a_b));
-	n_b=malloc(sizeof(n_b));
+	m_a=malloc(sizeof(*m_a));
+	k_a_b=malloc(sizeof(*k_a_b));
+	n_b=malloc(sizeof(*n_b));
 
 	inicializa_vectores_de_bloques(m_a, renglones(A), nb_rows_A);
 	inicializa_vectores_de_bloques(k_a_b, columnas(A), nb_columns_A_rows_B);
@@ -338,13 +344,21 @@ int main(int argc, char *argv[]){
 	printf("------------\n");
 	printf("resultado:\n");
 	imprime_matriz(C);
+	free(entradas(A));
 	free(A);
+	free(entradas(B));
 	free(B);
+	free(entradas(C));
 	free(C);
+	free(entradas(A_block));
 	free(A_block);
+	free(entradas(B_block));
 	free(B_block);
+	free(entradas_vector(m_a));
 	free(m_a);
+	free(entradas_vector(k_a_b));
 	free(k_a_b);
+	free(entadas_vector(n_b));
 	free(n_b);
 
 	return 0;

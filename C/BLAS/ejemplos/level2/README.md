@@ -41,9 +41,9 @@ int main(int argc, char *argv[]){
 	double ALPHA, BETA;
     ALPHA = 1.0;
    	BETA = 0.0;
-	A=malloc(sizeof(A));
-	v=malloc(sizeof(v));
-	v_resultado=malloc(sizeof(v_resultado));
+	A=malloc(sizeof(*A));
+	v=malloc(sizeof(*v));
+	v_resultado=malloc(sizeof(*v_resultado));
 
 	renglones(A)=M;
 	columnas(A)=N;
@@ -67,8 +67,11 @@ int main(int argc, char *argv[]){
 
 	dgemv_("No transpose", &M, &N, &ALPHA, entradas(A), &M, entradas_vector(v), &incx, &BETA, entradas_vector(v_resultado),&incx);
 	imprime_vector(v_resultado);
+	free(entradas(A));
 	free(A);
+	free(entradas_vector(v));
 	free(v);
+	free(entradas_vector(v_resultado));
 	free(v_resultado);
 	return 0;
 }
@@ -158,9 +161,9 @@ int main(int argc, char *argv[]){
 	double ALPHA, BETA;
     ALPHA = 1.0;
     BETA = 0.0;
-	A=malloc(sizeof(A));
-	v=malloc(sizeof(v));
-	v_resultado=malloc(sizeof(v_resultado));
+	A=malloc(sizeof(*A));
+	v=malloc(sizeof(*v));
+	v_resultado=malloc(sizeof(*v_resultado));
 
 	renglones(A)=M;
 	columnas(A)=N;
@@ -175,7 +178,7 @@ int main(int argc, char *argv[]){
 	entradas_vector(v_resultado)=malloc(M*sizeof(double));
 	inicializa_vector_ceros(v_resultado);
 
-	m_a=malloc(sizeof(m_a));
+	m_a=malloc(sizeof(*m_a));
 	renglones_vector(m_a)=(M%nb != 0)?M/nb+1:M/nb;
 	entradas_vector(m_a) = malloc(renglones_vector(m_a)*sizeof(double));
 
@@ -183,7 +186,7 @@ int main(int argc, char *argv[]){
 		entrada_vector(m_a,i)=nb;
 		entrada_vector(m_a,i)=(M%nb != 0)?M-(M/nb*nb):nb;
 
-	A_block=malloc(sizeof(A_block));
+	A_block=malloc(sizeof(*A_block));
 
 	columnas(A_block)=columnas(A);
 	ii=0;
@@ -207,10 +210,15 @@ int main(int argc, char *argv[]){
 	printf("vector resultado by blocks:\n");
 	imprime_vector(v_resultado);
 
+	free(entradas(A));
 	free(A);
+	free(entradas_vector(v));
 	free(v);
+	free(entradas_vector(v_resultado));
 	free(v_resultado);
+	free(entradas(A_block));
 	free(A_block);
+	free(entradas_vector(m_a));
 	free(m_a);
 	return 0;
 }
@@ -377,9 +385,9 @@ int main(int argc, char *argv[]){
 	double ALPHA, BETA;
     ALPHA = 1.0;
     BETA = 1.0;
-	A=malloc(sizeof(A));
-	v=malloc(sizeof(v));
-	v_resultado=malloc(sizeof(v_resultado));
+	A=malloc(sizeof(*A));
+	v=malloc(sizeof(*v));
+	v_resultado=malloc(sizeof(*v_resultado));
 
 	renglones(A)=M;
 	columnas(A)=N;
@@ -394,7 +402,7 @@ int main(int argc, char *argv[]){
 	entradas_vector(v_resultado)=malloc(M*sizeof(double));
 	inicializa_vector_ceros(v_resultado);
 
-	n_a=malloc(sizeof(n_a));
+	n_a=malloc(sizeof(*n_a));
 	renglones_vector(n_a)=(N%nb != 0)?N/nb+1:N/nb;
 	entradas_vector(n_a) = malloc(renglones_vector(n_a)*sizeof(double));
 
@@ -402,7 +410,7 @@ int main(int argc, char *argv[]){
 		entrada_vector(n_a,j)=nb;
 		entrada_vector(n_a,j)=(N%nb != 0)?N-(N/nb*nb):nb;
 
-	A_block=malloc(sizeof(A_block));
+	A_block=malloc(sizeof(*A_block));
 
 	printf("matriz block:\n");
 	imprime_matriz(A_block);
@@ -431,10 +439,15 @@ int main(int argc, char *argv[]){
 	printf("vector resultado by blocks:\n");
 	imprime_vector(v_resultado);
 
+	free(entradas(A));
 	free(A);
+	free(entradas_vector(v));
 	free(v);
+	free(entradas_vector(v_resultado));
 	free(v_resultado);
+	free(entradas(A_block));
 	free(A_block);
+	free(entradas(n_a));
 	free(n_a);
 	return 0;
 }
