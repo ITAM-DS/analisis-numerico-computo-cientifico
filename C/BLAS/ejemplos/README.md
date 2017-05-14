@@ -98,7 +98,7 @@ void imprime_vector(arreglo_1d_T p, char s){
 		else
 			if(s == tipo_int)
 				for(i=0;i<m;i++)
-					printf("vector[%d]=.5\n",i,entrada_vector_int(p,i));
+					printf("vector[%d]=%.5d\n",i,entrada_vector_int(p,i));
 }
 ```
 
