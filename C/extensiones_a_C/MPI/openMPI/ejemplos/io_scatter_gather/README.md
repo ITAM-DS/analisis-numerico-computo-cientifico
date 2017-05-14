@@ -49,14 +49,14 @@ Si después de distribuir los datos quisiéramos colectarlos nuevamente usaríam
 
 ```
 int MPI_Gather(
-	void				*send_data		*/in*/,
-	int 				send_count 		*/in*/,
-	MPI_Datatype 		send_type 		*/in*/,
-	void				*recv_data		*/out*/,
-	int 				recv_count 		*/in*/,
-	MPI_Datatype 		recv_type 		*/in*/,
-	int 				root 			*/in*/,
-	MPI_Comm 			comm 			*/in*/
+	void			*send_data		*/in*/,
+	int 			send_count 		*/in*/,
+	MPI_Datatype    	send_type 		*/in*/,
+	void			*recv_data		*/out*/,
+	int 			recv_count 		*/in*/,
+	MPI_Datatype    	recv_type 		*/in*/,
+	int 			root 			*/in*/,
+	MPI_Comm 		comm 			*/in*/
 )
 ```
 
