@@ -29,14 +29,14 @@ y si son iniciados **4** procesos entonces el proceso con rank 0 recibirá los d
 
 ```
 int MPI_Scatter(
-	void			*send_data		*/in*/,
-	int 			send_count 		*/in*/,
-	MPI_Datatype 	send_type 		*/in*/,
-	void			*recv_data		*/out*/,
-	int 			recv_count 		*/in*/,
-	MPI_Datatype 	recv_type 		*/in*/,
-	int 			root 			*/in*/,
-	MPI_Comm 		comm 			*/in*/
+	void				*send_data		*/in*/,
+	int 	 			send_count 		*/in*/,
+	MPI_Datatype	 	send_type 		*/in*/,
+	void	 			*recv_data		*/out*/,
+	int 				recv_count 		*/in*/,
+	MPI_Datatype 		recv_type 		*/in*/,
+	int 				root 			*/in*/,
+	MPI_Comm 			comm 			*/in*/
 )
 
 ```
@@ -49,14 +49,14 @@ Si después de distribuir los datos quisiéramos colectarlos nuevamente usaríam
 
 ```
 int MPI_Gather(
-	void			*send_data		*/in*/,
-	int 			send_count 		*/in*/,
-	MPI_Datatype 	send_type 		*/in*/,
-	void			*recv_data		*/out*/,
-	int 			recv_count 		*/in*/,
-	MPI_Datatype 	recv_type 		*/in*/,
-	int 			root 			*/in*/,
-	MPI_Comm 		comm 			*/in*/
+	void				*send_data		*/in*/,
+	int 				send_count 		*/in*/,
+	MPI_Datatype 		send_type 		*/in*/,
+	void				*recv_data		*/out*/,
+	int 				recv_count 		*/in*/,
+	MPI_Datatype 		recv_type 		*/in*/,
+	int 				root 			*/in*/,
+	MPI_Comm 			comm 			*/in*/
 )
 ```
 
@@ -190,7 +190,7 @@ void incrementa_size_array(arreglo_1d_T a){
 }
 ```
 
-Observa en el archivo de `funciones.c` anterior las funciones para realizar *input*  `void scatter_contiguous_vector_by_block(arreglo_1d_T a, char *s)` y output `void imprime_valores_almacenados_en_procesos(arreglo_1d_T a)`.
+Observa en el archivo de `funciones.c` anterior las funciones para realizar **input**  `scatter_contiguous_vector_by_block` y **output** ` imprime_valores_almacenados_en_procesos`.
 
 El programa `scatter_gather_example.c` es:
 
