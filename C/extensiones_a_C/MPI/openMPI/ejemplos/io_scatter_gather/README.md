@@ -208,8 +208,8 @@ int main(int argc, char *argv[]){
 	comm=MPI_COMM_WORLD;
 	Comm_pointer_vector(x_local)=&comm;
 	MPI_Comm_size(comm, &Comm_size(x_local));//Comm_size representa para este ejemplo
-										//el número de procesadores y por tanto
-										//número de bloques para dividir los datos
+							//el número de procesadores y por tanto
+							//número de bloques para dividir los datos
 	MPI_Comm_rank(comm, &Comm_rank(x_local));
 	
 	Comm_pointer_vector(x_local)=&comm;
