@@ -32,6 +32,7 @@ En la carpeta [C](C) encuentran:
 
 * [send_receive_broadcast_reduce](C/extensiones_a_C/MPI/openMPI/ejemplos/send_receive_broadcast_reduce)
 
+* [io_scatter_gather](C/extensiones_a_C/MPI/openMPI/ejemplos/io_scatter_gather)
 
 2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
 
