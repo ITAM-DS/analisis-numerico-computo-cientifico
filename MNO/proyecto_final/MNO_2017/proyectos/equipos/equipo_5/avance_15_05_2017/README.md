@@ -9,7 +9,7 @@
 
 **Ixchel**:  
 
-
+Implementé dos funciones en CUDA para multiplicación de matriz-matriz y matriz-vector y las integré al código que hizo Amaury.
 
 **Amaury**:
 
