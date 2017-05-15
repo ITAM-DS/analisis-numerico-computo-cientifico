@@ -29,6 +29,8 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 
 * [Avance 26-04-2017](equipos/equipo_2/avance_26_04_2017).
 
+* [Avance 02-05-2017](equipos/equipo_2/avance_02_05_2017).
+
 ---
 
 
@@ -45,6 +47,8 @@ Objetivo adicional: Aplicar el algorithmo MCMC:Metropilis-Hasting para estimar i
 [Avance 17-04-2017](equipos/equipo_3/avance_17_04_2017).
 
 [Avance 24-04-2017](equipos/equipo_3/avance_24_04_2017).
+
+[Avance 03-05-2017](equipos/equipo_3/avance_03_05_2017).
 
 ---
 
@@ -97,11 +101,11 @@ Objetivo del proyecto: Diseñar e implementar una plataforma hibrida (MPI/CUDA-C
 
 * [Avance 17-04-2017](equipos/equipo_6/avance_17_04_2017). Comentario del prof:
 
+
 * [Avance 24-04-2017](equipos/equipo_6/avance_24_04_2017). Comentario del prof:
 
-* [Avance 02-05-2017](equipos/equipo_6/avance_02_05_2017). Comentario del prof:
 
-* [Avance 08-05-2017](equipos/equipo_6/avance_08_05_2017). Comentario del prof:
+* [Avance 02-05-2017](equipos/equipo_6/avance_02_05_2017). Comentario del prof:
 
 ---
 
@@ -135,6 +139,10 @@ Objetivo del proyecto:  Entender y exponer el algoritmo de Diferencias Finitas e
 
 * [Avance 17-04-2017](equipos/equipo_9/avance_17_04_2017). Comentario del prof: 
 
+* [Avance 24-04-2017](equipos/equipo_9/avance_24_04_2017)
+
+* [Avance 02-05-2017](equipos/equipo_9/avance_02_05_2017)
+
 ---
 
 
@@ -149,6 +157,8 @@ Objetivo del proyecto: Construir un ambiente distribuido y portable que permita 
 * [Avance 17-04-2017](equipos/equipo_10/avance_17_04_2017).
 
 * [Avance 24-04-2017](equipos/equipo_10/avance_24_04_2017).
+
+* [Avance 03-05-2017](equipos/equipo_10/avance_03_05_2017).
 ---
 
 ## [Equipo 11](equipos/equipo_11)
@@ -200,9 +210,11 @@ Objetivo del proyecto: Crear un script que haga eficiente la obtención de una m
 
 * [Avance 07-04-2017](equipos/equipo_13/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios, hay una pregunta allí espero me puedan responder :) Muy bien respecto a su lectura y trabajo en equipo. Para el segundo avance pueden avanzar en implementación en C. 
 
-* [Avance 17-04-2017](equipo_13/avance_17_04_2017). 
+* [Avance 17-04-2017](equipos/equipo_13/avance_17_04_2017). 
 
-* [Avance 26-04-2017](equipo_13/avance_26_04_2017). 
+* [Avance 26-04-2017](equipos/equipo_13/avance_26_04_2017). 
+
+* [Avance 02-05-2017](equipos/equipo_13/avance_02_05_2017). 
 ---
 
 ## [Equipo ejemplo](equipos/equipo_ejemplo)

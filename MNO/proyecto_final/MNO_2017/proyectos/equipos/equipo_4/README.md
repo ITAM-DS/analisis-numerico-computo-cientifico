@@ -58,14 +58,19 @@ Comenzamos a construir el programa ya en el lenguaje de la entrega final que ser
 Aparte de esto hemos comenzado ya con el documento, realizando un template general de como estará estructurado el trabajo y hemos comenzado con la introducción. Además estamos buscando ejemplos muy claros con los que  nosotros y nuestros compañeros nos podamos topar que muestren problemas al perder precisión al realizar multiplicaciones de números grandes, esto con el fin de mostrar la relevancia de este problema en la vida real.
 
 
-#### [02 de mayo:](avance_02_05_2017)
+#### [02 de mayo:](avance_01_05_2017)
 
-Durante esta semana continuamos leyendo referencias que nos ayudaron a aclarar algunas dudas que surgieron, estas referencias se detallan en el [avance_02_05_2017](./avance_01_05_2017). Tenemos la primera versión del código que se entregará aunque por el momento solo realice el cálculo dividiendo los números en tres subsecciones. Realizamos algunas validaciones de la primera versión del código aunque solo incluya la implementación para dividir el número en 3 subsecciones. Este código puede encontrarse [aquí](./avance_01_05_2017/codigo)
+Durante esta semana continuamos leyendo referencias que nos ayudaron a aclarar algunas dudas que surgieron, estas referencias se detallan en el [avance_01_05_2017](./avance_01_05_2017). Tenemos la primera versión del código que se entregará aunque por el momento solo realice el cálculo dividiendo los números en tres subsecciones. Realizamos algunas validaciones de la primera versión del código aunque solo incluya la implementación para dividir el número en 3 subsecciones. Este código puede encontrarse [aquí](./avance_01_05_2017/codigo)
 
 Discutimos acerca de los pasos a seguir para no perder precisión como consecuencia de resolver el sistema de ecuaciones con la matriz mal condicionada del último caso. Queda por decidir si se reducirá el scope del proyecto (a solo dividir en 3 o 4 secciones los números) o si se atacará este problema con otros métodos numéricos (como descomposición en valores singulares) esto se decidirá de acuerdo con los tiempos y que tanto nos ayuden estas aproximaciones a cumplir con los objetivos del proyecto. 
 
 #### [08 de mayo:](avance_08_05_2017)
+Continuamos con la investigación de los métodos que podriamos utilizar para evitar perder precisión y de acuerdo con las sugerencias del profesor revisamos algunas referencias [1](http://web.mit.edu/be.400/www/SVD/Singular_Value_Decomposition.htm) y [2](https://www.mpp.mpg.de/~schieck/svd.pdf) de SVD y otra [referencia](https://www.dropbox.com/s/8flmijftnfk6her/chap8.pdf?dl=0) para decidir si utilizamos la matriz por interpolación de Newton o Lagrange para resolver nuestro problema. 
+
+Además continuamos avanzando con el documento final que se entregará, mismo que puede encontrarse [aquí](https://www.dropbox.com/scl/fi/prtfa2a24snrx9i6o4ewa/Trabajo%20final.docx?dl=0&oref=e&r=AAaa0MNkh97EqTnpysa1RsjQ-IKn_ny1yYna2TCGTshPicMl8iMKjiXizJz2NW8df1mY3r6GbssV8FYTuLZvP_oU0UH15dR-33rM216-Tg077bybqUyy2LvkWJCJ_0LbHDjBbo9CbQoGoxuvQmtmAP1j1c-VKnu2GcCzWOUb2OJYcQ&sm=1). 
+
+Por último continuamos generalizando el código para que las funciones se puedan utilizar para todos los casos del algoritmo y además se comenzó la implementación de la multiplicación de matrices que se utilizara para demostrar el uso de el algoritmo. 
 
 #### [15 de mayo:](avance_15_05_2017)
 
-
+#### [23 de mayo:](avance_23_05_2017)
