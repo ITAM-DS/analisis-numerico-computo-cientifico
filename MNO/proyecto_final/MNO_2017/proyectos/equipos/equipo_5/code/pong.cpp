@@ -230,7 +230,8 @@ void test(){
     double arr2[] = {6.0, 7.0, 8.0};
     std::vector<double> a (arr, arr + sizeof(arr) / sizeof(arr[0]) );
     std::vector<double> b (arr2, arr2 + sizeof(arr2) / sizeof(arr2[0]) );
-    std::vector<double> mult = matrixMultiplication(a, b, 6, 1, 2);
+//    std::vector<double> mult = matrixMultiplication(a, b, 6, 1, 2);
+    std::vector<double> mult = matrixMatrixMultiplication(a.data(), b.data(), 6, 1, 2);
     
 
     printVectorDouble(mult);
@@ -239,7 +240,8 @@ void test(){
 double policy_forward(std::vector<double> x, std::vector<double> w1, std::vector<double> w2, std::vector<double> &hiddenStates){
     double prob;
     //std::cerr << " before h.size()" << std::endl;
-    std::vector<double> h= matrixMultiplication(w1,x,H,D,1);
+//    std::vector<double> h= matrixMultiplication(w1,x,H,D,1);
+    std::vector<double> h= matrixMatrixMultiplication(w1.data(), x.data(), H, D, 1);
     int size = h.size();
     //std::cerr << "h.size(): " << size << std::endl;
     //printVectorDouble(h);
@@ -248,7 +250,8 @@ double policy_forward(std::vector<double> x, std::vector<double> w1, std::vector
     hiddenStates.reserve(hiddenStates.size() + h.size());
     hiddenStates.insert(hiddenStates.end(), h.begin(), h.end());
     //printVectorDouble(h);
-    std::vector<double> logp= matrixMultiplication(w2,h,1,H,1);
+//    std::vector<double> logp= matrixMultiplication(w2,h,1,H,1);
+    std::vector<double> logp= matrixMatrixMultiplication(w2.data(), h.data(), 1, H, 1);
     //std::cerr << "**********************************" << std::endl;
     //printVectorDouble(logp);
     //std::cerr << "**********************************" << std::endl;
@@ -257,11 +260,14 @@ double policy_forward(std::vector<double> x, std::vector<double> w1, std::vector
 }
 
 void policy_backward(std::vector<double> w1, std::vector<double> w2, std::vector<double> &dw1, std::vector<double> &dw2, std::vector<double> exs, std::vector<double> dlogps, std::vector<double> hiddenStates, int numberOfGames) {
-    dw2 = matrixMultiplication(hiddenStates, dlogps, H, numberOfGames, 1);
+//    dw2 = matrixMultiplication(hiddenStates, dlogps, H, numberOfGames, 1);
+    dw2 = matrixMatrixMultiplication(hiddenStates.data(), dlogps.data(), H, numberOfGames, 1);
     //cout << "dw2 " << dw2.size() << endl;
-    std::vector<double> dh = matrixMultiplication(w2, dlogps, H, 1, numberOfGames);
+//    std::vector<double> dh = matrixMultiplication(w2, dlogps, H, 1, numberOfGames);
+    std::vector<double> dh = matrixMatrixMultiplication(w2.data(), dlogps.data(), H, 1, numberOfGames);
     prelu(dh, hiddenStates);
-    dw1 = matrixMultiplication(dh, exs, H, numberOfGames, D);
+//    dw1 = matrixMultiplication(dh, exs, H, numberOfGames, D);
+    dw1 = matrixMatrixMultiplication(dh.data(), exs.data(), H, numberOfGames, D);
     //cout << "dw1 " << dw1.size() << endl;
 }
 

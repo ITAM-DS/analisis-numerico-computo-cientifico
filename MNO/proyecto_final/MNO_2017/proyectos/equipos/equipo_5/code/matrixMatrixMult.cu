@@ -2,10 +2,10 @@
 #include <iostream>
 #include <vector>
 
-__global__ void gaxpymm(int *y, int *a, int *b, int m, int n, int p){
+__global__ void gaxpymm(double *y, double *a, double *b, int m, int n, int p){
 	int bid = blockIdx.x;
         int tid = threadIdx.x;
-	extern __shared__ int dots_s[];
+	extern __shared__ double dots_s[];
 	if(bid<m)
 		if(tid<n){
 			for(int c=0;c<p;c++)
@@ -24,34 +24,34 @@ __global__ void gaxpymm(int *y, int *a, int *b, int m, int n, int p){
 	}
 }
 
-std::vector<int> matrixMatrixMultiplication(int* a, int* b, int mc, int nc, int pc){
+std::vector<double> matrixMatrixMultiplication(double* a, double* b, int mc, int nc, int pc){
 	int* m, *n, *p;
 	m = &mc;
 	n = &nc;
 	p = &pc;
-	std::vector<int> y(mc*pc,0);
-	int *device_y, *device_a, *device_b;
+	std::vector<double> y(mc*pc,0);
+	double *device_y, *device_a, *device_b;
 	int *device_m, *device_n, *device_p;
 	//alojando en device
-	cudaMalloc((void **)&device_y, sizeof(int)*mc*pc);
-	cudaMalloc((void **)&device_a, sizeof(int)*mc*nc);
-	cudaMalloc((void **)&device_b, sizeof(int)*nc*pc);
+	cudaMalloc((void **)&device_y, sizeof(double)*mc*pc);
+	cudaMalloc((void **)&device_a, sizeof(double)*mc*nc);
+	cudaMalloc((void **)&device_b, sizeof(double)*nc*pc);
 	cudaMalloc((void **)&device_m, sizeof(int));
 	cudaMalloc((void **)&device_n, sizeof(int));
 	cudaMalloc((void **)&device_p, sizeof(int));
 	//copiamos arreglos a, x a la GPU
-	cudaMemcpy(device_a,a,mc*nc*sizeof(int), cudaMemcpyHostToDevice);
-	cudaMemcpy(device_b,b,nc*pc*sizeof(int), cudaMemcpyHostToDevice);
-	cudaMemcpy(device_y,y.data(),mc*pc*sizeof(int), cudaMemcpyHostToDevice);
+	cudaMemcpy(device_a,a,mc*nc*sizeof(double), cudaMemcpyHostToDevice);
+	cudaMemcpy(device_b,b,nc*pc*sizeof(double), cudaMemcpyHostToDevice);
+	cudaMemcpy(device_y,y.data(),mc*pc*sizeof(double), cudaMemcpyHostToDevice);
 	cudaMemcpy(device_m,m,sizeof(int), cudaMemcpyHostToDevice);
 	cudaMemcpy(device_n,n,sizeof(int), cudaMemcpyHostToDevice);
 	cudaMemcpy(device_p,p,sizeof(int), cudaMemcpyHostToDevice);
 	//mandamos a llamar a suma_vect:
-	gaxpymm<<<mc,nc,sizeof(int)*mc*nc*pc>>>(device_y,device_a,device_b,mc,nc,pc);
+	gaxpymm<<<mc,nc,sizeof(double)*mc*nc*pc>>>(device_y,device_a,device_b,mc,nc,pc);
 //	for(unsigned i=0; i<y.size();i++)
 //		std::cout << "yi[i] = " << y[i] << "\n";
 	//copia del resultado al arreglo y:
-	cudaMemcpy(y.data(),device_y,mc*pc*sizeof(int),cudaMemcpyDeviceToHost);
+	cudaMemcpy(y.data(),device_y,mc*pc*sizeof(double),cudaMemcpyDeviceToHost);
 //	for(unsigned i=0; i<y.size();i++)
 //		std::cout << "yf[i] = " << y[i] << "\n";
 	cudaFree(device_y);

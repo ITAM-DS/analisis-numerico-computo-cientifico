@@ -1,3 +1,3 @@
 #include <vector>
-std::vector<int> matrixVectorMultiplication(int* a, int m, int n, int* x);
-std::vector<int> matrixMatrixMultiplication(int* a, int* b, int m, int n, int p);
+std::vector<double> matrixVectorMultiplication(double* a, int m, int n, double* x);
+std::vector<double> matrixMatrixMultiplication(double* a, double* b, int m, int n, int p);
