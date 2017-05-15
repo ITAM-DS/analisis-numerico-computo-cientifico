@@ -9,7 +9,7 @@
 
 **Ixchel**:  
 
-
+Comencé a investigar como programar multiplicaciones en CUDA.
 
 **Amaury**:
 
