@@ -2,7 +2,13 @@
 
 En la carpeta [MNO](MNO) encuentran información sobre el curso de Métodos Numéricos y Optimización.
 
-En la carpeta [C](C) encuentran clases para introducción, dentro de [C/BLAS](C/BLAS) y [C/LAPACK](C/LAPACK) se tienen funciones para ejecución de algunas rutinas de [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/) en un sistema ubuntu y extensiones al lenguaje de programación C: [MPI](http://mpi-forum.org/), [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [openMP](http://www.openmp.org/), [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/). 
+En la carpeta [C](C) encuentran:
+
+* Clases para introducción al lenguaje C de programación.
+
+* Dentro de [C/BLAS](C/BLAS) y [C/LAPACK](C/LAPACK) se tienen funciones para ejecución de algunas rutinas de [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/) en un sistema ubuntu.
+
+* Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [MPI](http://mpi-forum.org/), [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [openMP](http://www.openmp.org/), [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/). 
 
 Índice de este repositorio. Cada número contiene notas del tema respectivo.
 
@@ -22,7 +28,11 @@ En la carpeta [C](C) encuentran clases para introducción, dentro de [C/BLAS](C/
 
 * [Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
 
-* [Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/)
+[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/)
+
+* [send_receive_broadcast_reduce](C/extensiones_a_C/MPI/openMPI/ejemplos/send_receive_broadcast_reduce)
+
+* [io_scatter_gather](C/extensiones_a_C/MPI/openMPI/ejemplos/io_scatter_gather)
 
 2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
 
@@ -58,7 +68,7 @@ En la carpeta [C](C) encuentran clases para introducción, dentro de [C/BLAS](C/
 
 3.6.2 [SVD con cómputo en paralelo.](https://www.dropbox.com/s/p8p905v34uth28w/3.4.2.SVD_con_computo_en_paralelo.pdf?dl=0)
 
-## IV [Optimización convexa]
+## IV [Optimización convexa](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
 
 4.1 [Introducción.](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
 
@@ -91,5 +101,9 @@ En la carpeta [C](C) encuentran clases para introducción, dentro de [C/BLAS](C/
 [Ejemplos](C/BLAS/ejemplos/):
 
 * [level1](C/BLAS/ejemplos/level1/)
+
+* [level2](C/BLAS/ejemplos/level2/)
+
+* [level3](C/BLAS/ejemplos/level3/)
 
 ## [LAPACK](C/LAPACK)

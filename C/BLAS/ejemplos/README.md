@@ -1,4 +1,4 @@
-Suponemos un sistema ubuntu y que está instalado `libblas-dev`.
+Suponemos un sistema ubuntu y que está instalado `libblas-dev` y `liblapack-dev`.
 
 En las carpetas para los diferentes niveles de BLAS: [level1](level1/), [level2](level2/), [level3](level3/) se tienen códigos que utilizan el header `definiciones.h` y `funciones.c` siguiente:
 
@@ -37,6 +37,8 @@ void imprime_vector(arreglo_1d_T, char);
 void imprime_matriz(arreglo_2d_T);
 void inicializa_matriz(arreglo_2d_T, char *);
 void inicializa_vector(arreglo_1d_T, char *);
+void inicializa_matriz_ceros(arreglo_2d_T);
+void inicializa_vector_ceros(arreglo_1d_T);
 ```
 
 * `funciones.c`:
@@ -64,15 +66,27 @@ void inicializa_vector(arreglo_1d_T p, char *s){
 			fscanf(pFile,"%lf", &entrada_vector(p,i));
 	fclose(pFile);
 }
+void inicializa_matriz_ceros(arreglo_2d_T p){
+	int m = renglones(p);
+	int n = columnas(p);
+  	for(i=0;i<m;i++)
+		for(j=0;j<n;j++)
+			entrada(p,i,j)=0;
+}
+void inicializa_vector_ceros(arreglo_1d_T p){
+	int n = renglones_vector(p);
+	for(j=0;j<n;j++)
+		entrada_vector(p,j)=0;
+}
 void imprime_matriz(arreglo_2d_T p){
 	int m = renglones(p);
 	int n = columnas(p);
 		for(i=0;i<m;i++){
 			for(j=0;j<n;j++){
 				if(j<n-1)
-				printf("matriz[%d][%d]=%.16f\t",i,j,entrada(p,i,j));
+				printf("matriz[%d][%d]=%.5f\t",i,j,entrada(p,i,j));
 				else
-				printf("matriz[%d][%d]=%.16f\n",i,j,entrada(p,i,j));
+				printf("matriz[%d][%d]=%.5f\n",i,j,entrada(p,i,j));
 			}
 		}
 }
@@ -80,11 +94,11 @@ void imprime_vector(arreglo_1d_T p, char s){
 	int m = renglones_vector(p);
 		if(s == tipo_double)
 			for(i=0;i<m;i++)
-				printf("vector[%d]=%.16f\n",i,entrada_vector(p,i));
+				printf("vector[%d]=%.5f\n",i,entrada_vector(p,i));
 		else
 			if(s == tipo_int)
 				for(i=0;i<m;i++)
-					printf("vector[%d]=%d\n",i,entrada_vector_int(p,i));
+					printf("vector[%d]=%.5d\n",i,entrada_vector_int(p,i));
 }
 ```
 
