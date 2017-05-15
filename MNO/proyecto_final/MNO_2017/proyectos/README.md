@@ -163,6 +163,8 @@ Objetivo del proyecto: Construir un ambiente distribuido y portable que permita 
 * [Avance 24-04-2017](equipos/equipo_10/avance_24_04_2017).
 
 * [Avance 03-05-2017](equipos/equipo_10/avance_03_05_2017).
+
+* [Avance 10-05-2017](equipos/equipo_10/avance_10_05_2017).
 ---
 
 ## [Equipo 11](equipos/equipo_11)
