@@ -97,8 +97,8 @@ void inicializa_vector(arreglo_1d_T, char *);
 void inicializa_vector_ceros(arreglo_1d_T);
 void inicializa_vector_ceros_local(arreglo_1d_T);
 void imprime_vector_local(arreglo_1d_T p);
-void imprime_valores_almacenados_en_procesos(arreglo_1d_T);
-void scatter_contiguous_vector_by_block(arreglo_1d_T, char *);
+void imprime_entradas_almacenadas_en_procesos(arreglo_1d_T);
+void inicializa_vector_mpi(arreglo_1d_T, char *);
 void incrementa_size_array(arreglo_1d_T);
 ```
 
@@ -138,19 +138,15 @@ void imprime_vector_local(arreglo_1d_T p){
 		for(i=0;i<m;i++)
 				printf("vector[%d]=%.5f\n",i,entrada_vector_local(p,i));
 }
-void scatter_contiguous_vector_by_block(arreglo_1d_T a, char *s){
+void inicializa_vector_mpi(arreglo_1d_T a, char *s){
 	if(Comm_rank(a)==0){
 		entradas_vector(a)=malloc(renglones_vector_added_ceros(a)*sizeof(double));
 		inicializa_vector(a,s);
 		for(i=renglones_vector(a);i<renglones_vector_added_ceros(a);i++)
 			entrada_vector(a,i)=0.0;
 	}
-	MPI_Scatter(entradas_vector(a),renglones_vector_local(a),MPI_DOUBLE,entradas_vector_local(a),renglones_vector_local(a),MPI_DOUBLE,0,Comm_vector(a));
-	if(Comm_rank(a)==0)
-		free(entradas_vector(a));	
-
 }
-void imprime_valores_almacenados_en_procesos(arreglo_1d_T a){
+void imprime_entradas_almacenadas_en_procesos(arreglo_1d_T a){
 	int tag=0;
 	int destino=0;
 	int fuente;
@@ -198,7 +194,7 @@ El programa `scatter_gather_example.c` es:
 #include<stdio.h>
 #include<stdlib.h>
 #include"definiciones.h"
-#define arr_vector "x.txt"
+#define x_vector "x.txt"
 int main(int argc, char *argv[]){
 	arreglo_1d_T x_local;
 	MPI_Comm comm;
@@ -208,8 +204,8 @@ int main(int argc, char *argv[]){
 	comm=MPI_COMM_WORLD;
 	Comm_pointer_vector(x_local)=&comm;
 	MPI_Comm_size(comm, &Comm_size(x_local));//Comm_size representa para este ejemplo
-							//el número de procesadores y por tanto
-							//número de bloques para dividir los datos
+										//el número de procesadores y por tanto
+										//número de bloques para dividir los datos
 	MPI_Comm_rank(comm, &Comm_rank(x_local));
 	
 	Comm_pointer_vector(x_local)=&comm;
@@ -219,13 +215,26 @@ int main(int argc, char *argv[]){
 		incrementa_size_array(x_local);
 		renglones_vector_local(x_local)=renglones_vector_added_ceros(x_local)/Comm_size(x_local);
 	}
+	//Se broadcast lo hecho por el proceso con rank 0
 	MPI_Bcast(&renglones_vector(x_local),1,MPI_INT,0,Comm_vector(x_local));
 	MPI_Bcast(&renglones_vector_added_ceros(x_local),1,MPI_INT,0,Comm_vector(x_local));
 	MPI_Bcast(&renglones_vector_local(x_local),1,MPI_INT,0,Comm_vector(x_local));
+	
+	//alojar espacio e inicializar
 	entradas_vector_local(x_local)=malloc(renglones_vector_local(x_local)*sizeof(double));
 	inicializa_vector_ceros_local(x_local);
-	scatter_contiguous_vector_by_block(x_local, arr_vector);
-	imprime_valores_almacenados_en_procesos(x_local);
+	inicializa_vector_mpi(x_local, x_vector);
+
+	//Scatter el vector leído del archivo x.txt
+	MPI_Scatter(entradas_vector(x_local),renglones_vector_local(x_local),MPI_DOUBLE,entradas_vector_local(x_local),renglones_vector_local(x_local),MPI_DOUBLE,0,Comm_vector(x_local));
+	
+	if(Comm_rank(x_local)==0)
+		free(entradas_vector(x_local));
+
+	//Imprimir entradas almacenadas en procesos
+	imprime_entradas_almacenadas_en_procesos(x_local);
+
+	//Hacer Gather en un y_local
 	arreglo_1d_T y_local;
 	y_local=malloc(sizeof(*y_local));
 	if(Comm_rank(x_local)==0){
@@ -238,6 +247,8 @@ int main(int argc, char *argv[]){
 	}
 	MPI_Gather(entradas_vector_local(x_local), renglones_vector_local(x_local), MPI_DOUBLE, entradas_vector(y_local), 
 		renglones_vector_local(x_local), MPI_DOUBLE, 0, Comm_vector(x_local));
+	
+	//Free arreglo_1d_T
 	if(Comm_rank(x_local)==0){
 		renglones_vector(y_local)=renglones_vector(x_local);
 		printf("Vector y_local:\n");
