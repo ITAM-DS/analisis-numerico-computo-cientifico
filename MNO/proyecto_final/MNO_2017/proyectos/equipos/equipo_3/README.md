@@ -25,7 +25,7 @@ En la carpeta [avance_24_04_2017](avance_24_04_2017) nos propusimos generar de 2
 
 En la carpeta [avance_03_05_2017](avance_03_05_2017) programos y aplicamos el algoritmo [mc_integration_MPI.c](avance_03_05_2017/mc_integration_MPI.c) que permite de aplicar el integracion de MC en el cluster MPI de Nguyen.
 
-
+En la carpeta [avance_10_05_2017](avance_10_05_2017) se resolvió el problema del cálculo de la varianza global distribuida y se generó el primer draft de la función Box-Müller(simulación de distribución normal), en ambos casos, con el objetivo de poder generar una simulación Monte-Carlo posteriormente.
 
  
 
