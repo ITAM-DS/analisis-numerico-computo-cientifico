@@ -40,6 +40,12 @@ __Calendario:__
 2. Se documento la Fase 2
 3. Se realizaron operaciones de multiplicación de diferentes matrices en `Rstudio`
 
+* [Avance 08-05-2017](avance_08_05_2017).
+
+1. Se configuro cluster de AWS y Star Cluster.
+2. Se documento la Fase 3
+3. Se sigue leyendo el libro `Matrix Computations` de H. Golub y F. Van Loan desde el capitulo 8.
+
 ## Referencias del proyecto:
 
 * http://math.nist.gov/~RPozo/
@@ -53,5 +59,6 @@ __Calendario:__
 * Para revisar lo basico de SVD https://en.wikipedia.org/wiki/Singular_value_decomposition
 
 * Para repaso de algebra, muy bueno!!!, libro de  Algebra Lineal de Mina S. de Carakushansky y guilherme de La Penha Editorial Ma Graw Hill
+* Para revisar teoria de LAPACK y gestion de matrices en memoria. ftp://ece.buap.mx/pub/profesor/academ48/Libros/TesisDavid.pdf
 
 by __RIL && ADV__
