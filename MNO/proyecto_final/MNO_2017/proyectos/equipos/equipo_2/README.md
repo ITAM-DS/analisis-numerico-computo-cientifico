@@ -5,10 +5,10 @@ Integrantes:
 * Ariana López 
 * Fabiola Cerón
 
-**Título del proyecto:** `Paralelización de mínimos cuadrados con OpenMP` 
+**Título del proyecto:** `Factorización QR por reflexiones de Househoulder para Mínimos Cuadrados` 
 
 
-**Objetivos del proyecto:** Investigar y evaluar el algoritmo de factorización QR así como su implementación en OpenMP para la solución de mínimos cuadrados.
+**Objetivos del proyecto:** Investigar e implementar el algoritmo de factorización QR utilizando reflexiones de Householder así como su aplicación para la solución de mínimos cuadrados.
 
 **Programa de trabajo:**
 
@@ -18,9 +18,9 @@ Integrantes:
 | 2   	| 24/04/2017 	| Entender aplicación del método de Reflexiones de Householder para cálculo QR secuencial. *Inicio de programación secuencial de QR*.                                                                  	|
 | 3   	| 02/05/2017 	| Entender aplicación de QR a mínimos cuadrados (MC). *Código secuencial de QR terminado e inicio de código MC*.                                                                                       	|
 | 4   	| 08/05/2017 	| Investigación sobre implementación de QR en OpenMP e inicio de programación. *Código secuencial de MC terminado*. **Iniciar programación en paralelo de OpenMP**.  Empezar a redactar documento escrito. 	|
-| 5   	| 15/05/2017 	| **Códigos de implementación de QR en OpenMP y MC terminados**. Dependiendo del avance se evaluará la aplicación a un problema de regresión.                                                            	|
-| 6   	| 22/05/2017 	| Documento escrito terminado sin capítulo de complejidad y conclusiones.                                                                                                                            	|
-| 7   	| Por determinar 	| Complejidad de algoritmo QR y conclusiones. Entrega de repo final y presentación.                                                                                                                  	|
+| 5   	| 15/05/2017 	| **Ajuste del alcance del proyecto**. Derivado de la revisón de avance con Erick, se determinó modifcar el alcance del proyecto.                                                            	|
+| 6   	| 22/05/2017 	| Código QR secuencial terminado e inicio de MC.                                                                                                                            	|
+| 7   	| 30/05/2017	| Documento escrito terminado. Entrega de repo final y presentación.                                                                                                                  	|
 
 **Avances del Proyecto:**
 
@@ -33,6 +33,8 @@ Integrantes:
 * En la carpeta [avance_02_05_2017](avance_02_05_2017) se encuentra el código de la implementación del vector de Householder y del algoritmo QR.  El código muestra impresiones de cada cálculo en cada paso para ayudarnos a entender y verificar el cómputo tanto de los factores importantes como mu, sigma y la parte escencial del vector v.  En esa misma carpeta se encuentra también el reporte de avance en la teoría, ahora de mínimos cuadrados.
 
 * Esta semana leímos sobre la implementación de QR en OpenMP.  Investigamos las principales funciones de LAPACK que pueden ser utilizadas.  Repasamos la teoría sobre memoria compartida.  El detalle de todo lo anterior se encuentra en [avance_08_05_2017](avance_08_05_2017).
+
+* En la carpeta [avance_15_05_2017](avance_15_05_2017), se describe la modificación del alcance del proyecto, adicionalmente se reorganizó el calendario de trabajo.
 
 [Trabajo escrito](https://drive.google.com/drive/folders/0B5IJ1w6MjxegNUM2d29lTWdIREU?usp=sharing)
 
