@@ -19,7 +19,7 @@
 
 Programamos la función Round Robin que se encuentra en el folder [implementación](https://drive.google.com/drive/folders/0B_LXYl5QOPU5OUFraEFUUk8zUjA) el siguiente paso es paralelizar nuestro programa. 
 
-Queda pendiente generlizar la lecutra del vector inciaial de Roud Robin.
+Queda pendiente generalizar la lecutra del vector inciaial de Roud Robin.
 
 
 ---
