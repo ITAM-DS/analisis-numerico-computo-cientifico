@@ -17,7 +17,7 @@ Durante la semana pasada el agente se estuvo entrenando por varios días. El res
 
 ### Equipo
 
-Se comenzó el esquema para la [presentación](https://github.com/ixime/reveal.js) y trabajo escrito finales.
+Se comenzó el esquema para la [presentación](https://github.com/ixime/Pong-RL) y trabajo escrito finales.
 
  ## Referencias
  
