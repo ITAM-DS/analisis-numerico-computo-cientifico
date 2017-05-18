@@ -1,15 +1,15 @@
 ---
-title: "Método de Diferencias Finitas para 3 dimensiones en CUDA-C"
-author: 'Carlos Pérez, Manuel Ríos @ ITAM '
+title: "M<c3><a9>todo de Diferencias Finitas para 3 dimensiones en CUDA-C"
+author: 'Carlos P<c3><a9>rez, Manuel R<c3><ad>os @ ITAM '
 date: "Mayo, 2017"
 output:
+  html_document:
+    toc: no
+    toc_depth: '3'
   pdf_document:
     keep_tex: yes
     toc: no
     toc_depth: 3
-  html_document:
-    toc: no
-    toc_depth: '3'
 ---
 
 ```{r, include=FALSE}
@@ -563,30 +563,29 @@ __global__ void FiniteDifferencesKernel(float *output,
 En este archivo prácticamente se cargan librerías
 
 
-<cstdlib> (stdlib.h)
-C Standard General Utilities Library
-This header defines several general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
+* <cstdlib> (stdlib.h)
+"C Standard General Utilities Library".- Este header define las funciones "general-purpose", como el manejo dinamico de la memoria, la generacion de numeros aleatorios, la comunicacion con el ambiente, busqueda, "sorting" y conversiones.
 
-<cmath> (math.h) 
-C numerics library
-Header <cmath> declares a set of functions to compute common mathematical operations and transformations:
+* <cmath> (math.h) 
+C numerics library.- Header <cmath> declara una serie de funciones para realizar operaciones matematicas comunes y transformaciones.
 
-<iostream>
-Standard Input / Output Streams Library
-Header that defines the standard input/output stream objects:
+* <iostream>
+Standard Input / Output Streams Library.- Header que define los objectos estandard de i/o.
 
-<iomanip>
-IO Manipulators
-Header providing parametric manipulators: .. *para que sirven los manipulators??*
+* <iomanip>
+IO Manipulators.- Header que contiene los parametros de los "manipulator": .. *para que sirven los manipulators??*
 
-<stdio.h>
-Header defines three variable types, several macros, and various functions for performing input and output.
+* <stdio.h>
+Header que define 3 tipos de variables, algunas macros y funciones para desarrollar input and output:
 
 
-generateRandomData
-generatePatternData
-fdtdReference
-compareData
+          ** generateRandomData 
+          
+          ** generatePatternData
+          
+          ** fdtdReference
+          
+          ** compareData
 
 ```{r engine='Rcpp', eval=FALSE}
 
@@ -761,20 +760,25 @@ bool compareData(const float *output, const float *reference, const int dimx, co
 En el código fuente para el caso que no usa procesadores gráficos se tiene 
 
 
-<helper_functions.h>
-<math.h>
-<assert.h>
+* <helper_functions.h>
+* <math.h>
+* <assert.h>
+
+Las principales funciones dentro del codigo son:
+
+*CLAMP*.- funcion definida por el usuario
+
+*getTargetDeviceGlobalMemSize*.- funcion que obtiene el numero maximo de GPU habilitados para CUDA, selecciona el device "target" y regresa el maximo de memoria para alocar.
+
+*checkCmdLineFlag*.- funcion que regresa si la linea de commandos tiene un "device" ya esta especificado. 
+
+*compareData*.- funcion que compara la suma obtenida mediante GPU con la de CPUs.
+
+*generateRandomData*.- funcion para generar datos aleatorios del tamaño dado en megabytes. Usada principalmente para probar diversos escenarios de memoria.
+
+*showHelp*.- muestra ayuda sobre especificaciones de CUDA. Como el device, benchmarck, hostmemory, etc.
 
 
-qué hacen las siguientes>?
-CLAMP 
-getTargetDeviceGlobalMemSize
-checkCmdLineFlag
-compareData
-generateRandomData
-showHelp
-
-explica el uso de  calloc  malloc en las lineas 773-775y 794
 
 ```{r engine='Rcpp', eval=FALSE}
 
@@ -1301,7 +1305,7 @@ Los pasos basicos a seguir para una correcta instalacion de CUDA en Docker y Ama
 * Creamos los contenedores
 * Manejamos remotamente con `nvidia-docker`
 
-Esta parte se puede ejecutar corriendo el script de `docker-machine.sh`. Tal como se mencionaa arriba, creamos la isntancia de Amazon de tipo G2, instalaremos los drives de Nvidia asi como el docker, y despues haremos un deploy via nvidia-docker. El deploy se puede hacer usando `deploy.sh`.
+Esta parte se puede ejecutar corriendo el script de `docker-machine.sh`. Tal como se menciona arriba, se crea la instancia de Amazon de tipo G2, se instalan los drives de Nvidia asi como el docker, y despues se hace un deploy via nvidia-docker. 
 
 
 
