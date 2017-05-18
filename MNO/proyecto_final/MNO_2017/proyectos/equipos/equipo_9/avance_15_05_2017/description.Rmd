@@ -382,6 +382,11 @@ bool compareData(const float *output, const float *reference, const int dimx, co
 ```
 
 **FDTD3dGPU.h**
+De nuevo en este header se tiene la directiva sobre el identificador ```_FDTD3DGPU_H_``` así como el uso de la librería de definiciones estándares para C ```<cstddef>```  en el cual se definen varios tipos implícitos generadoos o utiilizados por ciertas expresiones. Un paso importante es la linea cuarta de código en la cual se define el tamaño de memoria a utilizar dependiendo del sistema operativo, junto con la carga del header ```<stdint.h>``` que define un conjunto de tipos de entero con ciertos requerimientos de tamaño junto con macro que espcifican los límites de los mismos. por ejemplo el ```uint64_t``` que define el tamaño memoria como un entero a 64 bits. 
+
+En las definiciones se encuentran los parámetros importantes para el uso de memoria. Se tiene la definición del tamaño de los bloques, como mínimo 128 threads por bloque y como máximo 32*16 =``` k_blockDimX x k_blockDimMaxY``` que resultan ser la dimensión horizontal y vertical del bloque. 
+
+Por último se tienen las funciones ```getTargetDeviceGlobalMemSize``` que obtiene el tamaño de memoria global del *device* y otro más con output booleana ```fdtdGPU``` que será la bandera que determinará si el algoritmo corrió con éxito o no. 
 
 ```{r engine='Rcpp', eval=FALSE}
 #ifndef _FDTD3DGPU_H_
@@ -406,6 +411,13 @@ bool fdtdGPU(float *output, const float *input, const float *coeff, const int di
 
 
 **FDTD3dGPUKernel.cuh**
+
+En este header de CUDA se manda a llamar el header de GPU definido arriba y se define los actores principales de este documento. El stencil de dimensión 5 por ahora y el Kernel de Diferencias Finitas.
+El kernel consta esencialmente de el mapeo de indices con el cual se traduce volumen tridimensional al grid de bloques de memoria a través de los enteros gtidx, gtidy, ltidx, ltidy, workx, worky. Se define *tile* como una variable bidimensional compartida. También están los stride_y stride_z. 
+
+Como se explico en el caso de uso de memoria, la parte fina realmente está en el orden del mapero sobre el plano xy y cómo se realizan las actualizaciones cuando se llega a las fronteras dentro del grid. Al final se calcula valor con base en las ecuaciones descritas arriba y se actualiza el vector output.
+
+Cabe mencionar el uso de #pragma unroll 4 y #pragma unroll 9 con el cual realiza el traslado de un del behind al front al momento de recorrer los slices.  
 
 ```{r engine='Rcpp', eval=FALSE}
 #include "FDTD3dGPU.h"
@@ -972,6 +984,8 @@ bool runTest(int argc, const char **argv)
 
 **FDTD3dGPU.cu**
 
+En este archivo de nuevo manda a llamar librerías auxiliares de CUDA, así como la librería de algoritmos que permite revisar el funcionamiento de las funciones. Luego de ejecutar el llamado de la memoria global del device junto con las propiedades del device, ejecuta la función de fdtdGPU en el cual se hace énfasis en el profiling de código y en cuidar que cada ejecución contenga un ```checkCudaErrors``` una función súper útil para el desarrollo de algoritmos eficientes. Además del priofiling en GPU, es importante mencionar la transferencia de información a través de ```cudaMemcp``` y ```cudaMemcpyHostToDevice``` luego de hacer un ```cudaMalloc``` a través de los buffers. Por otro lado existen otras funciones importantes para el funcionamiento correcto del programa como es el ```cudaDeviceSynchronize``` que hace la sincronización del device antes de realizar la transferencia de regreso con ```cudaMemcpyDeviceToHost```. En general luego de la llamada al kernel se tiene un perfilado del tiempo de ejecución así como la liberación de los buffers. 
+
 ```{r engine='Rcpp', eval=FALSE}
 #include "FDTD3dGPU.h"
 
@@ -1208,12 +1222,8 @@ bool fdtdGPU(float *output, const float *input, const float *coeff, const int di
 
 #### Makefile
 
-Makefile para la compilacion del program. Incluye las partes del codigo de CUDA.
-
-gencode arguments 
-checks compilers and architecture
-target rules 
-FDTD3d.o FDTD3dGPU.o FDTD3dReference.o
+Makefile para la compilacion del program. Incluye las partes del codigo de CUDA y de C.  
+En general tiene los argumento básicos para generar el ćodigo (gencode arguments) así como realizar la verificación de compiladores y arquitectura y reglas objetivo para los scripts. Al final se tienen los outputs ```FDTD3d.o``` ```FDTD3dGPU.o``` ```FDTD3dReference.o``` consolidados en ```FDTD3d```. 
 
 ```{r engine='bash', eval=FALSE}
 
