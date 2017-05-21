@@ -40,7 +40,6 @@ int main(int argc, char *argv[]){
 	int N=atoi(argv[1]);
 	int NRHS = atoi(argv[2]);
 
-
 	A=malloc(sizeof(A));
 	v=malloc(sizeof(v));
 	pivotes=malloc(sizeof(pivotes));
@@ -57,8 +56,6 @@ int main(int argc, char *argv[]){
 	inicializa_vector(v,v_vector);
 	entradas_vector_entero(pivotes)=malloc(N*sizeof(int));
 	
-
-
 	printf("matriz 1:\n");
 	imprime_matriz(A);
 	printf("------------\n");
