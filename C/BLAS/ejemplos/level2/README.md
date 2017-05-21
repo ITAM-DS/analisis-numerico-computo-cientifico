@@ -179,7 +179,7 @@ int main(int argc, char *argv[]){
 	inicializa_vector_ceros(v_resultado);
 
 
-	m_a=malloc(sizeof(m_a));
+	m_a=malloc(sizeof(*m_a));
 	renglones_vector(m_a)=(M%nb != 0)?M/nb+1:M/nb;
 	entradas_vector_entero(m_a) = malloc(renglones_vector(m_a)*sizeof(int));
 
@@ -223,6 +223,7 @@ int main(int argc, char *argv[]){
 	free(v_resultado);
 	free(entradas(A_block));
 	free(A_block);
+	free(entradas_vector_entero(m_a));
 	free(m_a);
 	return 0;
 }
@@ -408,11 +409,11 @@ int main(int argc, char *argv[]){
 
 	n_a=malloc(sizeof(*n_a));
 	renglones_vector(n_a)=(N%nb != 0)?N/nb+1:N/nb;
-	entradas_vector(n_a) = malloc(renglones_vector(n_a)*sizeof(double));
+	entradas_vector_entero(n_a) = malloc(renglones_vector(n_a)*sizeof(int));
 
 	for(j=0;j<renglones_vector(n_a)-1;j++)
-		entrada_vector(n_a,j)=nb;
-		entrada_vector(n_a,j)=(N%nb != 0)?N-(N/nb*nb):nb;
+		entrada_vector_entero(n_a,j)=nb;
+		entrada_vector_entero(n_a,j)=(N%nb != 0)?N-(N/nb*nb):nb;
 
 	A_block=malloc(sizeof(*A_block));
 
@@ -423,14 +424,14 @@ int main(int argc, char *argv[]){
 	renglones(A_block)=renglones(A);
 	jj=0;
 	for(j=0;j<renglones_vector(n_a);j++){
-		columnas(A_block)=entrada_vector(n_a,j);
+		columnas(A_block)=entrada_vector_entero(n_a,j);
 		entradas(A_block)=(j==0)?malloc(renglones(A)*columnas(A_block)*sizeof(double)):realloc(entradas(A_block), renglones(A)*columnas(A_block)*sizeof(double));
 		dlacpy_("General", &renglones(A), &columnas(A_block),entradas(A)+jj*renglones(A), &renglones(A), entradas(A_block), &renglones(A_block));	
 		printf("matriz block:\n");
 		imprime_matriz(A_block);
 		printf("------------\n");
 		dgemv_("No transpose", &renglones(A), &columnas(A_block), &ALPHA, entradas(A_block), &renglones(A), entradas_vector(v)+jj, &incx, &BETA, entradas_vector(v_resultado),&incx);
-		jj+=entrada_vector(n_a,j);
+		jj+=entrada_vector_entero(n_a,j);
 	}
 
 
@@ -451,7 +452,7 @@ int main(int argc, char *argv[]){
 	free(v_resultado);
 	free(entradas(A_block));
 	free(A_block);
-	free(entradas(n_a));
+	free(entradas_vector_entero(n_a));
 	free(n_a);
 	return 0;
 }
