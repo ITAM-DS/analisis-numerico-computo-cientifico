@@ -1,6 +1,6 @@
 Individual: Walter Martínez Santana
 
-En esta ocasión, analicé el algoritmo de factorización de Choleskyen dos propuestas diferentes: una que está en el libro de Douglas Faires y Burden, y el otro en el Fischer. 
+En esta ocasión, analicé el algoritmo de factorización de Cholesky en dos propuestas diferentes: una que está en el libro de Douglas Faires y Burden, y el otro en el Fischer. 
 La diferencia es que uno propone un algoritmo compacto en la forma de la redacción, pero computacionalmente y al programarlo, más amplio. En este caso es evidente la depedencia
 entre variables al momento del cálculo. El otro algoritmo, presenta una mayor uniformidad algorítmica, separando de mejor manera (según mi manera de verlo) las dependencias y
 logrando con ello abrir un escenario donde posiblemente se puedan manejar las dependencias de manera que puedan implementarse de manera paralela.
