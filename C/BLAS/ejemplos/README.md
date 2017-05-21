@@ -39,6 +39,7 @@ void inicializa_matriz(arreglo_2d_T, char *);
 void inicializa_vector(arreglo_1d_T, char *);
 void inicializa_matriz_ceros(arreglo_2d_T);
 void inicializa_vector_ceros(arreglo_1d_T);
+void imprime_vector_entero(arreglo_1d_T);
 ```
 
 * `funciones.c`:
@@ -95,15 +96,10 @@ void imprime_vector_entero(arreglo_1d_T p){
 		for(i=0;i<m;i++)
 				printf("vector[%d]=%d\n",i,entrada_vector_entero(p,i));
 }
-void imprime_vector(arreglo_1d_T p, char s){
+void imprime_vector(arreglo_1d_T p){
 	int m = renglones_vector(p);
-		if(s == tipo_double)
 			for(i=0;i<m;i++)
-				printf("vector[%d]=%.5f\n",i,entrada_vector(p,i));
-		else
-			if(s == tipo_int)
-				for(i=0;i<m;i++)
-					printf("vector[%d]=%.5d\n",i,entrada_vector_int(p,i));
+				printf("vector[%d]=%.16f\n",i,entrada_vector(p,i));
 }
 ```
 
