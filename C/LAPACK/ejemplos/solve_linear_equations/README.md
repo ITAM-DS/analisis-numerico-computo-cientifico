@@ -70,8 +70,11 @@ int main(int argc, char *argv[]){
 	imprime_vector_entero(pivotes);
 	printf("matriz 1 con factores L,U:\n");
 	imprime_matriz(A);
+	free(entradas(A));
 	free(A);
+	free(entradas_vector(v));
 	free(v);
+	free(entradas_vector_entero(pivotes));
 	free(pivotes);
 	return 0;
 }
