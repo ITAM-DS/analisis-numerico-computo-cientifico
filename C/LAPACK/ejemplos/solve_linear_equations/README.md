@@ -170,7 +170,7 @@ Código que resuelve un sistema de ecuaciones lineales con una matriz tridiagona
 ```
 
 
-Se deben tener los archivos v.txt, d.txt, dl.txt, du.txt en el directorio de compilación y ejecución.
+Se deben tener los archivos v.txt, d.txt, dl.txt, du.txt en el directorio de compilación y ejecución. dl.txt, du.txt y d.txt contienen la diagonal inferior, superior y la diagonal de la matriz del sistema respectivamente.
 
 
 `tridiagonal_linear_equations.c`:
@@ -190,7 +190,6 @@ int main(int argc, char *argv[]){
 	int info;
 	int N=atoi(argv[1]);
 	int NRHS = atoi(argv[2]);
-
 
 	b=malloc(sizeof(*b));
 	dl=malloc(sizeof(*dl));
