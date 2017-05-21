@@ -227,7 +227,6 @@ int main(int argc, char *argv[]){
 	imprime_vector(du);
 	printf("------------\n");
 
-
 	printf("vector resultado:\n");
 	dgtsv_(&N,&NRHS, entradas_vector(dl), entradas_vector(d), entradas_vector(du), entradas_vector(b), &N, &info);
 
@@ -297,8 +296,5 @@ vector[3]=19.50000
 vector[4]=20.50000
 ----------------
 ```
-
-
-
 
 
