@@ -5,9 +5,6 @@ En las carpetas para los diferentes niveles de BLAS: [level1](level1/), [level2]
 * `definiciones.h`:
 
 ```
-#define tipo_double 'd'
-#define tipo_int 'i'
-
 //arreglo2d:
 typedef struct{
 int m, n;
