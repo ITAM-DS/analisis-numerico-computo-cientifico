@@ -2,7 +2,7 @@ Para los siguientes ejemplos es necesario tener en la carpeta en la que se compi
 
 Información sobre resolver sistemas de ecuaciones lineales: [driver routines](http://www.netlib.org/lapack/lug/node25.html) y [computational routines](http://www.netlib.org/lapack/lug/node37.html).
 
-##Sistema denso:
+## Sistema denso:
 
 Código que resuelve un sistema de ecuaciones lineales con una matriz y un vector almacenados en los archivos:
 
