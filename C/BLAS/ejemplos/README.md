@@ -27,8 +27,8 @@ double *arr;
 int *arr_int;
 #define entradas_vector(arreglo) ((arreglo)->arr)
 #define entrada_vector(arreglo,i) ((arreglo)->arr[i])
-#define entradas_vector_int(arreglo) ((arreglo)->arr_int)
-#define entrada_vector_int(arreglo,i) ((arreglo)->arr_int[i])
+#define entradas_vector_entero(arreglo) ((arreglo)->arr_int)
+#define entrada_vector_entero(arreglo,i) ((arreglo)->arr_int[i])
 }arreglo_1d;
 typedef arreglo_1d *arreglo_1d_T;
 
@@ -89,6 +89,11 @@ void imprime_matriz(arreglo_2d_T p){
 				printf("matriz[%d][%d]=%.5f\n",i,j,entrada(p,i,j));
 			}
 		}
+}
+void imprime_vector_entero(arreglo_1d_T p){
+	int m = renglones_vector(p);
+		for(i=0;i<m;i++)
+				printf("vector[%d]=%d\n",i,entrada_vector_entero(p,i));
 }
 void imprime_vector(arreglo_1d_T p, char s){
 	int m = renglones_vector(p);

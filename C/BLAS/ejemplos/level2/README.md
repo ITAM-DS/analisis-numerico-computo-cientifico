@@ -178,28 +178,33 @@ int main(int argc, char *argv[]){
 	entradas_vector(v_resultado)=malloc(M*sizeof(double));
 	inicializa_vector_ceros(v_resultado);
 
-	m_a=malloc(sizeof(*m_a));
+
+	m_a=malloc(sizeof(m_a));
 	renglones_vector(m_a)=(M%nb != 0)?M/nb+1:M/nb;
-	entradas_vector(m_a) = malloc(renglones_vector(m_a)*sizeof(double));
+	entradas_vector_entero(m_a) = malloc(renglones_vector(m_a)*sizeof(int));
 
 	for(i=0;i<renglones_vector(m_a)-1;i++)
-		entrada_vector(m_a,i)=nb;
-		entrada_vector(m_a,i)=(M%nb != 0)?M-(M/nb*nb):nb;
+		entrada_vector_entero(m_a,i)=nb;
+		entrada_vector_entero(m_a,i)=(M%nb != 0)?M-(M/nb*nb):nb;
+	printf("vector:\n");
+	imprime_vector_entero(m_a);
 
 	A_block=malloc(sizeof(*A_block));
 
 	columnas(A_block)=columnas(A);
 	ii=0;
 	for(i=0;i<renglones_vector(m_a);i++){
-		renglones(A_block)=entrada_vector(m_a,i);
+		renglones(A_block)=entrada_vector_entero(m_a,i);
 		entradas(A_block)=(i==0)?malloc(renglones(A_block)*columnas(A)*sizeof(double)):realloc(entradas(A_block), renglones(A_block)*columnas(A)*sizeof(double));
 		dlacpy_("General", &renglones(A_block), &columnas(A),entradas(A)+ii, &renglones(A), entradas(A_block), &renglones(A_block));	
-        printf("matriz block:\n");
-        imprime_matriz(A_block);
-        printf("------------\n");
+		printf("matriz block:\n");
+		imprime_matriz(A_block);
+		printf("------------\n");
 		dgemv_("No transpose", &renglones(A_block), &columnas(A), &ALPHA, entradas(A_block), &renglones(A_block), entradas_vector(v), &incx, &BETA, entradas_vector(v_resultado)+ii,&incx);
-		ii+=entrada_vector(m_a,i);
+
+		ii+=entrada_vector_entero(m_a,i);
 	}
+
 
 	printf("matriz 1:\n");
 	imprime_matriz(A);
@@ -218,7 +223,6 @@ int main(int argc, char *argv[]){
 	free(v_resultado);
 	free(entradas(A_block));
 	free(A_block);
-	free(entradas_vector(m_a));
 	free(m_a);
 	return 0;
 }
