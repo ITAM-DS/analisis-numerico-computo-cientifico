@@ -186,7 +186,7 @@ void incrementa_size_array(arreglo_1d_T a){
 }
 ```
 
-Observa en el archivo de `funciones.c` anterior las funciones para realizar **input**  `scatter_contiguous_vector_by_block` y **output** ` imprime_valores_almacenados_en_procesos`.
+Observa en el archivo de `funciones.c` anterior la función para realizar **output** ` imprime_valores_almacenados_en_procesos` que el proceso con rank 0 es el encargado de imprimir en pantalla.
 
 El programa `scatter_gather_example.c` es:
 
