@@ -91,7 +91,7 @@ $gcc -Wall solve_linear_equations.c funciones.c -o programa.out -lblas -llapack
 Ejecutamos:
 
 ```
-./programa.out 3 2
+./programa.out 3 1
 ```
 
 Resultado:
