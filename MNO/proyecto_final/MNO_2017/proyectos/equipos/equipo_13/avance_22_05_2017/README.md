@@ -15,6 +15,8 @@ Dejo la liga al repositorio general donde se muestran los avances es los método
 
 [Repositorio](https://github.com/ollin18/complex_network_c/)
 
+# Actualización
+Actualizando las capturas de pantalla anteriores por el error en el nombre de la carpeta
 
 #### Equipo:
 Avanzamos en el trabajo escrito.
