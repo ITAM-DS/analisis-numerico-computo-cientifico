@@ -22,5 +22,9 @@ Actualizando las capturas de pantalla anteriores por el error en el nombre de la
 ![4th](https://github.com/ollin18/complex_network_c/blob/master/Capturas/4threads.png)
 ![6th](https://github.com/ollin18/complex_network_c/blob/master/Capturas/6threads.png)
 
+Vemos que la red cambió (número de aristas), por eso también cambié la imagen de secuencial. 
+
+Lo intenté para una red múcho más grande pero no alcanzó la memoria. También lo intenté con 7 y 8 threads pero mi compu no quiso.
+
 #### Equipo:
 Avanzamos en el trabajo escrito.
