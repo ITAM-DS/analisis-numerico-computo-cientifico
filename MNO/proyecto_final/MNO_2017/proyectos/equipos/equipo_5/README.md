@@ -21,6 +21,11 @@ En la carpeta [avance_26_04_2017](avance_26_04_2017) se encuentra el reporte del
 
 En la carpeta [avance_02_05_2017](avance_02_05_2017) se encuentra el reporte del cuarto avance para determinar y avanzar nuestro proyecto.
 
+En la carpeta [avance_08_05_2017](avance_08_05_2017) se encuentra el reporte del cuarto avance para determinar y avanzar nuestro proyecto.
+
+En la carpeta [avance_15_05_2017](avance_15_05_2017) se encuentra el reporte del cuarto avance para determinar y avanzar nuestro proyecto.
+
+
 ## Plan de trabajo
 
 ### [7 de abril](avance_07_04_2017)
@@ -39,9 +44,13 @@ Revisión de literatura recomendada por Erick. Pruebas de aprendizaje usando pol
 
 Revisión de literatura y notas para trabajo escrito y presentación. pruebas de aprendizaje usando policy gradient con el juego Breakout.
 
-### 8 de mayo.
+### [8 de mayo](avance_08_05_2017)
 
-### 15 de mayo.
+Inicio de implementación de código.
+
+### [15 de mayo](avance_15_05_2017)
+
+Implementación de código.
 
 ## Referencias
 

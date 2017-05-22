@@ -32,6 +32,8 @@ Integrantes:
 
 * En la carpeta [avance_02_05_2017](avance_02_05_2017) se encuentra el código de la implementación del vector de Householder y del algoritmo QR.  El código muestra impresiones de cada cálculo en cada paso para ayudarnos a entender y verificar el cómputo tanto de los factores importantes como mu, sigma y la parte escencial del vector v.  En esa misma carpeta se encuentra también el reporte de avance en la teoría, ahora de mínimos cuadrados.
 
+* Esta semana leímos sobre la implementación de QR en OpenMP.  Investigamos las principales funciones de LAPACK que pueden ser utilizadas.  Repasamos la teoría sobre memoria compartida.  El detalle de todo lo anterior se encuentra en [avance_08_05_2017](avance_08_05_2017).
+
 [Trabajo escrito](https://drive.google.com/drive/folders/0B5IJ1w6MjxegNUM2d29lTWdIREU?usp=sharing)
 
 [Presentacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegRHgwS090WFNLdWM?usp=sharing)
@@ -55,5 +57,7 @@ Integrantes:
 	+ [A. Buttari, J. Langou, J. Kurzak, J. Dongarra. A Class of Parallel Tiled Linear Algebra Algorithms for Multicore Architectures. 2009](http://www.netlib.org/utk/people/JackDongarra/PAPERS/206_2009_A%20Class-of-Parallel-Tiled-Linear-Algebra-Algorithms-for-Multicore-Architectures.pdf)
 
 	+ [D. P. O'Leary, P. Whitman. Parallel QR factorization by Householder and modified Gram-Schmidt algorithms. 1990](https://www.researchgate.net/publication/222459558_Parallel_QR_factorization_by_Householder_and_modified_Gram-Schmidt_algorithms)
+
+	+[A. Buttari, J. Langeou, J. Kurzak, J. Dongarra. Parallel tiled QR factorization for multicore architectures 2008](https://drive.google.com/file/d/0BxMtevFKwTW_OW5wZVF5dFdiV2c/view?usp=sharing)
 
 
