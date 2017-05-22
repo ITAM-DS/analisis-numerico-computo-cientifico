@@ -18,6 +18,7 @@ Dejo la liga al repositorio general donde se muestran los avances es los método
 # Actualización
 Actualizando las capturas de pantalla anteriores por el error en el nombre de la carpeta
 ![act_sec](https://github.com/ollin18/complex_network_c/blob/master/Capturas/actualizado_secuencial.png)
+![2th](https://github.com/ollin18/complex_network_c/blob/master/Capturas/2threads.png)
 
 #### Equipo:
 Avanzamos en el trabajo escrito.
