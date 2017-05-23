@@ -145,6 +145,8 @@ Objetivo del proyecto:  Entender y exponer el algoritmo de Diferencias Finitas e
 
 * [Avance 02-05-2017](equipos/equipo_9/avance_02_05_2017)
 
+* [Avance 15-05-2017](equipos/equipo_9/avance_15_05_2017)
+
 ---
 
 
