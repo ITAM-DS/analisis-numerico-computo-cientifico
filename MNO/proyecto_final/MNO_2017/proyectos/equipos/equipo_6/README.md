@@ -46,7 +46,7 @@ __Calendario:__
 2. Se documento la Fase 3
 3. Se sigue leyendo el libro `Matrix Computations` de H. Golub y F. Van Loan desde el capitulo 8.
 
-* [Avance 15-05-2017](avance_22_05_2017).
+* [Avance 15-05-2017](avance_15_05_2017).
 
 1. Se configuro para correr local  `A = U * Σ * V T` con la funcion __cusolverDnDgesvd__. 
 2. Se documento el algoritmo de la funcion `cusolverDnDgesvd` en un RMD.
