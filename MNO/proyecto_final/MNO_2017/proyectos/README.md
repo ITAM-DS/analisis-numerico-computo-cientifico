@@ -19,7 +19,7 @@ Titulo del proyecto: `Paralelización del algoritmo Word2Vec.`
 
 ## [Equipo 2](equipos/equipo_2)
 
-Titulo del proyecto: `Factorización QR por reflexiones de Househoulder para Mínimos Cuadrados.`
+Titulo del proyecto: `Solución de Mínimos Cuadrados con Factorización QR vía transformaciones Househoulder.`
 
 Objetivo del proyecto: Investigar e implementar el algoritmo de factorización QR utilizando reflexiones de Householder así como su aplicación para la solución de mínimos cuadrados. 
 
@@ -34,6 +34,8 @@ Objetivo del proyecto: Investigar e implementar el algoritmo de factorización Q
 * [Avance 08-05-2017](equipos/equipo_2/avance_08_05_2017).
 
 * [Avance 15-05-2017](equipos/equipo_2/avance_15_05_2017).
+
+* [Avance 22-05-2017](equipos/equipo_2/avance_22_05_2017).
 
 ---
 

@@ -5,7 +5,7 @@ Integrantes:
 * Ariana López 
 * Fabiola Cerón
 
-**Título del proyecto:** `Factorización QR por reflexiones de Househoulder para Mínimos Cuadrados` 
+**Título del proyecto:** `Solución de Mínimos Cuadrados con Factorización QR vía transformaciones Househoulder` 
 
 
 **Objetivos del proyecto:** Investigar e implementar el algoritmo de factorización QR utilizando reflexiones de Householder así como su aplicación para la solución de mínimos cuadrados.
@@ -36,11 +36,13 @@ Integrantes:
 
 * En la carpeta [avance_15_05_2017](avance_15_05_2017), se describe la modificación del alcance del proyecto, adicionalmente se reorganizó el calendario de trabajo.
 
-[Trabajo escrito](https://drive.google.com/drive/folders/0B5IJ1w6MjxegNUM2d29lTWdIREU?usp=sharing)
+* Esta semana se concluyó la implementación del algoritmo secuencial de factorización QR usando Reflexiones de Householder, además se inició la programación de mínimos cuadrados, mismos que se encuentran en la siguiente carpeta: [avance_22_05_2017](avance_22_05_2017). De forma paralela se está desarrollando el trabajo escrito y se ha definido su estructura general, el cual se puede consultar en la liga correspondiente:
+
+[Trabajo escrito](trabajo_escrito)
 
 [Presentacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegRHgwS090WFNLdWM?usp=sharing)
 
-[Implementacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegcWhTdXFvZnljeHc?usp=sharing)
+[Implementacion](codigo)
 
 ## Referencias:
 
