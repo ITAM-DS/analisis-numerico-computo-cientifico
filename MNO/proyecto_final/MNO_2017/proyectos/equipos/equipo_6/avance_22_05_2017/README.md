@@ -15,7 +15,7 @@ Adrián Vázquez (120028):
 
 __Validacion SVD CUDA__
 
-Realizamos el ejercicio de transformacion de la ![imagen original de entrada.](images/GTR.png) con  __cusolverDnDgesvd__ y obtuvimos los resultados de `U` , `Sigma` , `Vt` y comparamos con modelo en Python.
+Realizamos el ejercicio de transformacion de la imagen original de entrada con  __cusolverDnDgesvd__ y obtuvimos los resultados de `U` , `Sigma` , `Vt` y comparamos con modelo en Python.
 
 ____
 
@@ -24,7 +24,9 @@ Ricardo Lastra (160167):
 
 __SVD en Python__
 
-Desarollamos el siguiente [documento en Python](code) para leer la siguiente imagen ![original:](images/GTR.png)
+Desarollamos el siguiente [documento en Python](code) para leer la siguiente imagen original: 
+
+![original](images/GTR.png)
 
 Pasamos a una matriz la imagen original:
 
@@ -39,6 +41,9 @@ Obtuvimos los siguientes resultados de `U` , `Sigma` , `Vt`:
 Y al reconstruirla la pudimos visualizar asi: 
 
 ![imagen original de entrada.](images/recons_8vect.png)
+
+En el [documento en Python](code) mostramos como podemos ir mejorando la imagen vector a vector o de 10 en 10 vectores, esto con el fin de obtener la mejor resolucion de la imagen.
+
 
 
 ### Equipo
