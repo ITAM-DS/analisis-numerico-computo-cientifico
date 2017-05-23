@@ -48,7 +48,7 @@ __Calendario:__
 
 * [Avance 15-05-2017](avance_22_05_2017).
 
-1. Se configuro para correr local  `A = U * Σ * V H` con la funcion __cusolverDnDgesvd__. 
+1. Se configuro para correr local  `A = U * Σ * V T` con la funcion __cusolverDnDgesvd__. 
 2. Se documento el algoritmo de la funcion `cusolverDnDgesvd` en un RMD.
 
 * [Avance 22-05-2017](avance_22_05_2017).
