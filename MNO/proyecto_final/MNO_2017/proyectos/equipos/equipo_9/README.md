@@ -20,3 +20,5 @@ Objetivo del proyecto:  Enteder y exponer teoría e implementación vía GPU's, 
 | [avance_02_05_2017](avance_02_05_2017) | - Implementación y Ejecución del programa prototipo   |
 | [avance_08_05_2017](avance_02_05_2017) | - Adelantos Reporte Final \n Marco Teórico Computacional      |
 | [avance_15_05_2017](avance_15_05_2017) | Generación de Aplicaciones \n - Pruebas para algunas ecuaciones \n- Escritura Final del Reporte |
+| [avance_22_05_2017](avance_22_05_2017) | - Pruebas para algunas ecuaciones \n- Revision Parcial del Reporte\n - Detalles de Infraestructura en Amazón |
+
