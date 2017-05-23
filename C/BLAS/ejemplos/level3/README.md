@@ -68,7 +68,7 @@ int main(int argc, char *argv[]){
 	free(A);
 	free(entradas(B));
 	free(B);
-	free(entadas(C));
+	free(entradas(C));
 	free(C);
 	return 0;
 }
