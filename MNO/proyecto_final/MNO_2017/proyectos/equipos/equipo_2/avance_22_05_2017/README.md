@@ -14,13 +14,13 @@ Trabajo:
 ### Individual:
 
 **Mónica Ballesteros**
-* Restructuré las funciones mcol y vectorhh.
+* Reestructuré las funciones mcol y vectorhh.
 
 **Ariana López**
-* Resstructuré las funciones I_Bvvt.
+* Reestructuré la función I_Bvvt.
 
 **Fabiola Cerón**
-* Restructuré las funciones matrix_mul y factor_form_q y comencé con la función de mínimos cuadrados MC.
+* Reestructuré las funciones matrix_mul y factor_form_q y comencé con la función de mínimos cuadrados MC.
 
 ### Equipo:
 
@@ -32,12 +32,12 @@ Trabajo:
 
 * Los archivos de programaciones anteriores utilizan como insumos los siguientes archivos de texto:
 
-    +A1.txt: Contiene la matriz A a factorizar del sistema de ecuaciones.
-    +b.txt: Contiene b, del sistema Ax=b.
+    + A1.txt: Contiene la matriz A a factorizar del sistema de ecuaciones.
+    + b.txt: Contiene b, del sistema Ax=b.
 
 * Modificamos la estructura de las matrices en la implementación en C para facilitar el acceso a las entradas de acuerdo con los ejemplos de BLAS compartidos por el profesor. 
 
-* El resultado del algoritmo se encuentra en [Resultado](SalidaA1.txt), donde el Factor Form Q y R: Es la matriz A actualizada, donde la parte triangular superior de A se sobreescribe con la parte triangular superior de R, y la parte esencial del vector de Householder se sobreescribe debajo de la diagonal de A.
+* El resultado del algoritmo se encuentra en [Resultado](SalidaA1), donde el Factor Form Q y R: es la matriz A actualizada, donde la parte triangular superior de A se sobreescribe con la parte triangular superior de R, y la parte esencial del vector de Householder se sobreescribe debajo de la diagonal de A.
 
 * Se definió la estructura general del documento, con un avance al 25%.
 
