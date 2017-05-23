@@ -12,7 +12,7 @@
 
 Carlos: Se continuaron con las pruebas en Amazon y Docker ya que existen algunos detalles para levantar instancias P2. También se realizó la ejecución del código en local. El cual se reporta en el la descripcion.Rmd. 
 
-Manuel: Se termino de entender más a fondo la parte teorica. Se comentaron las funciones del codigo en base a este aprendizaje. Se aumento el contenido del reporte final y se probo la ejecucion del script de docker-machine.
+Manuel: Se continuo entendiendo la parte teorica en base a las referencias. Se acompleto documento de avances. Se hicieron ajustes a errores de versiones previas.
 
 ### Equipo
 
