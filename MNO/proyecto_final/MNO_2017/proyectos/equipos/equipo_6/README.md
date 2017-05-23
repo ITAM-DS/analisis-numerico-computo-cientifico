@@ -46,6 +46,18 @@ __Calendario:__
 2. Se documento la Fase 3
 3. Se sigue leyendo el libro `Matrix Computations` de H. Golub y F. Van Loan desde el capitulo 8.
 
+* [Avance 15-05-2017](avance_22_05_2017).
+
+1. Se configuro para correr local  `A = U * Σ * V H` con la funcion __cusolverDnDgesvd__. 
+2. Se documento el algoritmo de la funcion `cusolverDnDgesvd` en un RMD.
+
+* [Avance 22-05-2017](avance_22_05_2017).
+
+1. Finalmente se corrio una prueba final con una Matriz real MxN usando __cusolverDnDgesvd__.
+2. Se implemento en `Python` el metodo SVD para descomposicion y aproximacion de una imagen, a traves de obtener los valores singulares de la imagen en su forma de matriz, y con los valores de `U` , `Sigma` , `Vt` validamos los resultados con el __cusolverDnDgesvd__.
+ 
+
+
 ## Referencias del proyecto:
 
 * http://math.nist.gov/~RPozo/
