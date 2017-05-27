@@ -22,6 +22,13 @@ Actualizando las capturas de pantalla anteriores por el error en el nombre de la
 ![4th](https://github.com/ollin18/complex_network_c/blob/master/Capturas/4threads.png)
 ![6th](https://github.com/ollin18/complex_network_c/blob/master/Capturas/6threads.png)
 
+# Actualización 2
+Hice modificaciones a mi implementación en Julia para leer una red de formato gml por el STDIN y generar la matriz de Hashimoto. Vi que es sencilla de comprender pero no muy eficiente computacionalmente, está hecha secuencial y los resultados son los siguientes:
+
+![julia](https://github.com/ollin18/complex_network_c/blob/master/Capturas/julia.png)
+
+No es sorpresa que tardara tanto puesto que esa fue la razón por la cual propuse el proyecto.
+
 Vemos que la red cambió (número de aristas), por eso también cambié la imagen de secuencial. 
 
 Lo intenté para una red múcho más grande pero no alcanzó la memoria. También lo intenté con 7 y 8 threads pero mi compu no quiso.
