@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo "127.0.0.1 localhost
-54.183.132.168 master
-54.215.247.103 nodo1
-54.67.43.159 nodo2
+54.183.187.216 master
+54.241.142.234 nodo1
+54.219.172.190 nodo2
 
 
 # The following lines are desirable for IPv6 capable hosts

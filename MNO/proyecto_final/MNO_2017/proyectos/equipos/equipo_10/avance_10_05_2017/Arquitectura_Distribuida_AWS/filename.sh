@@ -1,4 +1,4 @@
 #!/bin/bash
-echo"1,2,3
+echo "1,2,3
 3,1,4
-4,1,5\n">filename.csv
+4,1,5">filename.csv
