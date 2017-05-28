@@ -8,8 +8,6 @@ Para los siguientes ejemplos es necesario tener en la carpeta en la que se compi
 
 Información sobre operaciones [level1](http://www.netlib.org/blas/#_level_1).
 
-
-
 ## Scatter, Reduce y dot product:
 
 Código que distribuye entradas de un vector entre los procesos lanzados por el usuario de manera que cada proceso realice un producto punto "local" y finalmente el proceso con rank 0 haga un reduce con `MPI_SUM` para calcular el producto punto entre dos vectores almacenados en los archivos:
@@ -95,8 +93,8 @@ int main(int argc, char *argv[]){
 
 void inicializa_parametros_vector_mpi(arreglo_1d_T a, int n){
 	MPI_Comm_size(Comm_vector(a), &Comm_size_vector(a));//Comm_size representa para este ejemplo
-										//el número de procesadores y por tanto
-										//número de bloques para dividir los datos
+								//el número de procesadores y por tanto
+								//número de bloques para dividir los datos
 	MPI_Comm_rank(Comm_vector(a), &Comm_rank_vector(a));
 	if(Comm_rank_vector(a)==0){
 		renglones_vector(a)=n;
