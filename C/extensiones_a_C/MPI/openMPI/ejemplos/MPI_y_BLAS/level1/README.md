@@ -6,7 +6,7 @@ Se compilarán y ejecutarán los ejemplos en el master_container.
 
 Para los siguientes ejemplos es necesario tener en la carpeta en la que se compilará y ejecutará los siguientes códigos, los archivos `definiciones.h` y `funciones.h` los cuales los encuentran [aquí](../) y se debe tener instalado en sus sistemas ubuntu `libblas-dev`.
 
-Información sobre operaciones [level1](http://www.netlib.org/blas/#_level_1).
+Información sobre operaciones [level1](http://www.netlib.org/blas/#_level_1) de BLAS. 
 
 ## Scatter, Reduce y dot product:
 
