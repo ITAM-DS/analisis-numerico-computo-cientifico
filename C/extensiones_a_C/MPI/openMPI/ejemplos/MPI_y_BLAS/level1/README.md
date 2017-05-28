@@ -4,10 +4,15 @@ Para los siguientes ejemplos, se supone que se ha [levantado un cluster de forma
 
 Se compilarán y ejecutarán los ejemplos en el master_container.
 
+Para los siguientes ejemplos es necesario tener en la carpeta en la que se compilará y ejecutará los siguientes códigos, los archivos `definiciones.h` y `funciones.h` los cuales los encuentran [aquí](../) y se debe tener instalado en sus sistemas ubuntu `libblas-dev`.
+
+Información sobre operaciones [level1](http://www.netlib.org/blas/#_level_1).
+
+
 
 ## Scatter, Reduce y dot product:
 
-Código que realiza el producto punto entre dos vectores almacenados en los archivos:
+Código que distribuye entradas de un vector entre los procesos lanzados por el usuario de manera que cada proceso realice un producto punto "local" y finalmente el proceso con rank 0 haga un reduce con `MPI_SUM` para calcular el producto punto entre dos vectores almacenados en los archivos:
 
 `x.txt`:
 
@@ -58,7 +63,6 @@ Se deben tener los archivos `x.txt` y `y.txt` en el directorio de compilación y
 extern double ddot_(int *n, double *x, int *incx, double *y, int *incy);
 void inicializa_parametros_vector_mpi(arreglo_1d_T a, int dimension);
 void free_vector_mpi(arreglo_1d_T a);
-int serial_dot_product(arreglo_1d_T a1, arreglo_1d_T a2);
 int main(int argc, char *argv[]){
 	arreglo_1d_T x_local, y_local;
 	double resultado_dot_product=0, local_dot_product=0;
@@ -78,10 +82,6 @@ int main(int argc, char *argv[]){
 	MPI_Scatter(entradas_vector(x_local),renglones_vector_local(x_local),MPI_DOUBLE,entradas_vector_local(x_local),renglones_vector_local(x_local),MPI_DOUBLE,0,Comm_vector(x_local));
 	MPI_Scatter(entradas_vector(y_local),renglones_vector_local(y_local),MPI_DOUBLE,entradas_vector_local(y_local),renglones_vector_local(y_local),MPI_DOUBLE,0,Comm_vector(y_local));
 	
-	//printf("x_local:\n");
-	//imprime_entradas_almacenadas_en_procesos(x_local);
-	//printf("y_local:\n");
-	//imprime_entradas_almacenadas_en_procesos(y_local);
 	local_dot_product=ddot_(&renglones_vector_local(x_local), entradas_vector_local(x_local), &incx, entradas_vector_local(y_local), &incx);
 	MPI_Reduce(&local_dot_product, &resultado_dot_product, 1, MPI_DOUBLE, MPI_SUM, 0, Comm_vector(x_local));
 	if(Comm_rank_vector(x_local)==0)
