@@ -107,3 +107,7 @@ En la carpeta [C](C) encuentran:
 * [level3](C/BLAS/ejemplos/level3/)
 
 ## [LAPACK](C/LAPACK)
+
+[Ejemplos](C/LAPACK/ejemplos/):
+
+* [solve_linear_equations](C/LAPACK/ejemplos/solve_linear_equations/)
