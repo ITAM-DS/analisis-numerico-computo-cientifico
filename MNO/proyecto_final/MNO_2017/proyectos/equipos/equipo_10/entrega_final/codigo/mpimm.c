@@ -14,7 +14,7 @@ void read_file(FILE *fp, int* rowMaxIndex, int* columnMaxIndex);
 double** allocate_matrix(int rowMaxIndex, int columnMaxIndex, FILE *fp);
 int main (int argc, char *argv[])
 {
-intnumtasks,              /* number of tasks in partition */
+int numtasks,              /* number of tasks in partition */
 taskid,                /* a task identifier */
 numworkers,            /* number of worker tasks */
 source,                /* task id of message source */
