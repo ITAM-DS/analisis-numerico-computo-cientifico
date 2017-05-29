@@ -2,6 +2,8 @@ Suponemos un sistema ubuntu y que está instalado libblas-dev y liblapack-dev.
 
 En las carpetas para los diferentes niveles de BLAS: [level1](level1), level2, level3 se tienen códigos que utilizan los archivos `definiciones.h` y `funciones.c` siguiente:
 
+`definiciones.h`:
+
 ```
 #include<mpi.h>
 typedef struct{
@@ -75,6 +77,7 @@ void incrementa_size_array_2d(arreglo_2d_T);
 void lee_entradas_matriz_distribuye_block_row(arreglo_2d_T , char *, arreglo_1d_T );
 ```
 
+`funciones.c`:
 
 ```
 #include<stdio.h>
