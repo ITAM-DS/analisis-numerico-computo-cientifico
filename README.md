@@ -28,7 +28,7 @@ En la carpeta [C](C) encuentran:
 
 * [Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
 
-[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/)
+[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/):
 
 * [send_receive_broadcast_reduce](C/extensiones_a_C/MPI/openMPI/ejemplos/send_receive_broadcast_reduce)
 
