@@ -4,4 +4,4 @@ Cada carpeta tiene ejemplos de funciones en openmpi:
 
 * [io_scatter_gather](io_scatter_gather): ejemplo de distribución/colección de datos de un vector, I/O en mpi.
 
-* [MPI_y_BLAS](MPI_y_BLAS): ejemplo de distribución de datos entre procesos y uso de rutinas de BLAS. Se sugiere revisar [ejemplos](/C/BLAS/ejemplos) de [BLAS](/C/BLAS) sin uso de MPI para una mejor comprensión.
+* [openMPI_y_BLAS](openMPI_y_BLAS): ejemplo de distribución de datos entre procesos y uso de rutinas de BLAS. Se sugiere revisar [ejemplos](/C/BLAS/ejemplos) de [BLAS](/C/BLAS) sin uso de MPI para una mejor comprensión.
