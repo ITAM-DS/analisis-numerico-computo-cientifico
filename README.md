@@ -34,7 +34,7 @@ En la carpeta [C](C) encuentran:
 
 * [io_scatter_gather](C/extensiones_a_C/MPI/openMPI/ejemplos/io_scatter_gather)
 
-* [MPI y BLAS](C/extensiones_a_C/MPI/openMPI/ejemplos/MPI_y_BLAS/)
+* [openMPI y BLAS](C/extensiones_a_C/MPI/openMPI/ejemplos/openMPI_y_BLAS/)
 
 2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
 
