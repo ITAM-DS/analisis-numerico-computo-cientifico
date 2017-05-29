@@ -198,6 +198,8 @@ computacionales de optimización.
 
 * [Avance 15-05-2017](equipos/equipo_11/avance_15_05_2017). 
 
+* [Avance 28-05-2017](equipos/equipo_11/avance_28_05_2017). 
+
 [Trabajo escrito](equipos/equipo_11/trabajo_escrito).
 
 [Presentación](equipos/equipo_11/presentacion).
