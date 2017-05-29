@@ -13,7 +13,7 @@ He estado haciendo el [reporte](../reporte/trabajo-escrito.pdf) con base en los 
 
 **Amaury**:
 
-Se terminó el entrenamiento del agente después de 7 días de estar corriendo, se generó un video con motivos de la presentación el día del examen final.
+Se terminó el entrenamiento del agente después de 7 días de estar corriendo, se generó un video con motivos de la [presentación](https://ixime.github.io/Pong-RL/#/) el día del examen final.
 
 
 ### Equipo
