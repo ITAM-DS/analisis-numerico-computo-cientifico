@@ -27,17 +27,20 @@ int main(void){
     printf("Imprime Matriz R\n");
     
     /*Round Robin*/
-    for(i = 0; i < 9; i++){
-        for(j = 0; j < 10; j = j+2){
-            col1 = matrizR[i][j];
-            //printf("col1 %d\n", col1);
-            col2 = matrizR[i][j+1];
-            //printf("col2 %d\n", col2);
-            paro = jacobi(col1, col2, matrizA, matrizI);
-
+    while (paro < pow(10,-8)) {
+        for(i = 0; i < 9; i++){
+            for(j = 0; j < 10; j = j+2){
+                col1 = matrizR[i][j];
+                //printf("col1 %d\n", col1);
+                col2 = matrizR[i][j+1];
+                //printf("col2 %d\n", col2);
+                paro = jacobi(col1, col2, matrizA, matrizI);
+                
+            }
         }
+
     }
-    //imprime_matriz(matrizI);
+        //imprime_matriz(matrizI);
     imprime_matriz(matrizA);
     
     //imprime_matriz(matrizR);
@@ -51,7 +54,8 @@ int main(void){
 
 
 double jacobi(int i, int j, double **matriz1, double **matriz2){
-    double a, b, c, epsilon, t, sgn, cs, sn, temp, paro, num,den,eps_maq;
+    double a, b, c, epsilon, t, sgn, cs, sn, temp, paro, num,den;
+    double eps_maq = 1.0;
     int l;
     
     a = multiplica_vector(i, i, matriz1);
@@ -65,24 +69,27 @@ double jacobi(int i, int j, double **matriz1, double **matriz2){
     epsilon = (b-a)/(2*c);
     sgn = (epsilon)/fabs(epsilon);
     t = sgn/(fabs(epsilon) + sqrt(1+ pow(epsilon,2) ) );
-    cs = 1/sqrt(1 + pow(epsilon,2));
+    cs = 1/sqrt(1 + pow(t,2));
     sn = cs*t;
     
-    paro = c/(pow(a,.5)*pow(b,.5));
+    paro = c/(sqrt(a) * sqrt(b));
     num = a - b;
     den = 2*c;
-    eps_maq = pow(10,-4);
     
-    if (fabs(den) > eps_maq*fabs(num)) {
+   // while(1.0+eps_maq != 1.0){
+   //     eps_maq = eps_maq/2.0;
+   // }
+
+    if (c > pow(10,-16)) {
         
         for(l= 0; l < 10; l++){
             matriz1[l][i] = cs*matriz1[l][i] - matriz1[l][j]*sn;
-            matriz1[l][j] = cs*matriz1[l][i] - matriz1[l][j]*sn;
+            matriz1[l][j] = sn*matriz1[l][i] + matriz1[l][j]*cs;
         }
     
         for(l= 0; l < 10; l++){
             matriz2[l][i] = cs*matriz2[l][i] - matriz2[l][j]*sn;
-            matriz2[l][j] = cs*matriz2[l][i] - matriz2[l][j]*sn;
+            matriz2[l][j] = sn*matriz2[l][i] + matriz2[l][j]*cs;
         }
     
     }
@@ -109,7 +116,7 @@ void imprime_matriz(double **matriz){
     
     for(i = 0; i < 10; i++){
         for(j = 0; j < 10; j++) {
-            printf("mat[%d,%d] = %lf\n", i, j, matriz[i][j]);
+            printf("mat[%d,%d] = %e\n", i, j, matriz[i][j]);
         }
     }
 }
