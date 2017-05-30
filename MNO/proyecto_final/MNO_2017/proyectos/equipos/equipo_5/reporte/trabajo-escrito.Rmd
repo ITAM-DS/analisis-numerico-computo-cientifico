@@ -325,6 +325,55 @@ Esto simplifica el cálculo del gradiente para la función de pérdida:
 
 Simulamos varios episodios siguiendo este método y guardando en cada momento la información sobre las decisiones, los *frames*, los gradientes y las recompensas obtenidas. Después de 10 episodios, acumulamos el gradiente y hacemos backpropagation sobre la matriz de pesos. Es aquí donde modificamos el comportamiento de la red y hacemos que cada vez ofrezca mejores resultados.
 
+## Multiplicación de matrices en CUDA
+
+Tanto en el algoritmo de policy forward, como en el de policy backward se tienen que hacer multiplicaciones matriz por matriz de diferentes dimensiones, en otras ocasiones fueron multiplicaciones matriz vector. Estas operaciones del programa son las que se paralelizaron en CUDA.
+
+Primero se programó la multiplicación de una matriz por un vector haciendo operaciones gaxpy row *oriented*, sin embargo para evitar una *race condition* se realizaron primero las multiplicaciones $r_{ij}*x_j$ en un thread cada una de un bloque, por lo que se hicieron un número de bloques igual a los renglones de la matriz. En cada bloque se hizo un punto de sincronización para después hacer la suma de las multiplicaciones y asignarlas a y. El kernel es el siguiente:
+```
+__global__ void gaxpy(double *y, double *a, double *x, int m, int n){
+	int bid = blockIdx.x;
+        int tid = threadIdx.x;
+	extern __shared__ double dots_s[];
+	if(bid<m)
+		if(tid<n){
+
+			dots_s[bid*n+tid] = a[bid*n+tid] * *(x+tid);
+	__syncthreads();
+	if(tid == 0){
+		for(int i=1;i<n;i++){
+			dots_s[bid*n] +=dots_s[bid*n+i];
+		}
+		*(y+bid)=dots_s[bid*n];
+		}
+	}
+}
+```
+
+Después se vio la necesidad dehacer la multiplicación matriz por matriz, por lo que se hizo con base en la multiplicación matriz-vector por medio de operaciones saxpyEn este caso también para evitar una *race condition* al actualizar el valor de $c_{.i}$, se paralelizaron las multiplicaciones $a_{.k}*b_{k,j}$. El kernel es el siguiente.
+
+```
+__global__ void gaxpymm(double *y, double *a, double *b, int m, int n, int p){
+	int bid = blockIdx.x;
+        int tid = threadIdx.x;
+	extern __shared__ double dots_s[];
+	if(bid<m)
+		if(tid<n){
+			for(int c=0;c<p;c++)
+				dots_s[bid*n*p+tid*p+c] = a[bid*n+tid] * *(b+(tid*p+c));
+	__syncthreads();
+	if(tid == 0){
+		for(int c=0;c<p;c++)
+			for(int i=1;i<n;i++){
+				dots_s[bid*n*p+c] +=dots_s[bid*n*p+i*p+c];
+			}
+		for(int c=0;c<p;c++)
+			*(y+(bid*p+c))=dots_s[bid*n*p+c];
+		}
+	}
+}
+```
+
 ## Backpropagation
 
 Durante la etapa de *backpropagation* usamos un método del curso de Coursera llamado RSMprop.
