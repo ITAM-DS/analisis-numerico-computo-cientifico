@@ -28,7 +28,7 @@ Objetivo del proyecto: Realizar una implementación en CUDA-C para que al dar de
 
 [Trabajo_Escrito](trabajo_escrito/hashimoto_equipo_13.pdf). El código qr también es un link que manda al repositorio donde se encuentra el código pero no sirve en el preview del navegador, hay que descargarlo. El código qr sí sirve en el preview.
 
-[Código] (http://www.github.com/ollin18/complex_network_c)
+[Código](http://www.github.com/ollin18/complex_network_c)
 -
 
 Referencias: 
