@@ -148,9 +148,9 @@ exit(1);
          printf(\"Sending %d rows to task %d offset=%d\n\",rows,dest,offset);
          MPI_Send(&offset, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
          MPI_Send(&rows, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
- MPI_Send(&NCA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
- MPI_Send(&NRA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
- MPI_Send(&NCB, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+		 MPI_Send(&NCA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+		 //MPI_Send(&NRA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+		 MPI_Send(&NCB, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
          //MPI_Send(&a[offset][0], rows*NCA, MPI_DOUBLE, dest, mtype, MPI_COMM_WORLD);
          //MPI_Send(&b, NCA*NCB, MPI_DOUBLE, dest, mtype, MPI_COMM_WORLD);
          offset = offset + rows;
@@ -163,7 +163,7 @@ exit(1);
          source = i;
          MPI_Recv(&offset, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
          MPI_Recv(&rows, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
-         MPI_Recv(&c[offset][0], rows*NCA, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, &status);
+         MPI_Recv(&c[offset][0], rows*NCB, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, &status);
          printf(\"Received results from task %d\n\",source);
       }
 
@@ -189,8 +189,8 @@ exit(1);
       mtype = FROM_MASTER;
       MPI_Recv(&offset, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
       MPI_Recv(&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
-  MPI_Recv(&NCA, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
-  MPI_Recv(&NCB, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+	  MPI_Recv(&NCA, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+	  MPI_Recv(&NCB, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
       //MPI_Recv(a, rows*NCA, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD, &status);
       //MPI_Recv(&b, NCA*NCB, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD, &status);
       for (k=0; k<NCB; k++)
@@ -204,7 +204,7 @@ exit(1);
       mtype = FROM_WORKER;
       MPI_Send(&offset, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD);
       MPI_Send(&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD);
-      MPI_Send(&c, rows*NCA, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD);
+      MPI_Send(&c, rows*NCB, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD);
   
   
    }
@@ -292,6 +292,7 @@ return mat;
 }
 
 ">mpimm.c
+
 
 
 ```
