@@ -146,6 +146,8 @@ Objetivo del proyecto: El objetivo del proyecto es utilizar la API de OpenMP par
 [Presentación](https://www.dropbox.com/s/0m6i7582fdgo3xn/presentacion_ordenamiento.pdf?dl=0).
 
 [Implementación](https://www.dropbox.com/sh/dy0jgl91g6e3fcf/AABnA5Swayva54J_SKgwKAVxa?dl=0).
+
+
 ---
 
 ## [Equipo 8](equipos/equipo_8)
