@@ -143,7 +143,7 @@ exit(1);
       mtype = FROM_MASTER;
       MPI_Recv(&offset, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
       MPI_Recv(&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
-  MPI_Recv(&NCA, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+  MPI_Recv(&NRA, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
   MPI_Recv(&NCB, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
       //MPI_Recv(a, rows*NCA, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD, &status);
       //MPI_Recv(&b, NCA*NCB, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD, &status);
@@ -151,7 +151,7 @@ exit(1);
          for (i=0; i<rows; i++)
          {
 	   c[i][k]= 0.0;
-            for (j=0; j<NCA; j++)
+            for (j=0; j<NRA; j++)
                c[i][k] = c[i][k] + a[i][j] * b[j][k];
        //printf(\"c[%d][%d]: %f\n\", i,k,c[i][k]);
          }
