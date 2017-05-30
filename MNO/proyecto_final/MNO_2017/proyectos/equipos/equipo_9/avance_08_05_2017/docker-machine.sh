@@ -7,7 +7,7 @@ export AWS_ACCESS_KEY_ID=
 export AWS_SECRET_ACCESS_KEY=
 export AWS_DEFAULT_REGION=us-west-1
 export AWS_VPC_ID=vpc-0dfe5569
-export AWS_INSTANCE_TYPE=g2.2xlarge
+export AWS_INSTANCE_TYPE=p2.2large
 export AWS_AMI=ami-2afbde4a
 
 #Creamos instancia con docker-machine 

@@ -73,4 +73,13 @@ Por último continuamos generalizando el código para que las funciones se pueda
 
 #### [15 de mayo:](avance_15_05_2017)
 
-#### [23 de mayo:](avance_23_05_2017)
+Continuamos con la investigación de los métodos que podriamos usar para evitar perder precisión por tener que resolver un  sistema lineal con una matriz mal condicionada. Nuestro principal problema es que después de resolver el sistema de ecuaciones lineales se utilizan esos resultados para realizar una suma desplazada en la que cada número se suma en una posición diferente para representar cientos, miles, millones, etc. Esto nos provoca problemas extras ya que si los métodos de aproximación nos hacen perder solo algunos dígitos de precisión al hace la suma este error se recorrería a posiciones más elevadas del número por lo que decidimos junto con el profesor limitar los casos que impllementaremos a dividir los números en 3 y 4 secciones y eliminar el caso de realizar 5 secciones. 
+
+#### [22 de mayo:](avance_22_05_2017)
+
+Ya que decidimos acotar nuestro enfoque a Toom-3 para evitar posibles problemas ocasionados por la matriz mal condicionada que se genera al evaluar en el polinomio terminamos el código para esta implementación. Este código puede encontrarse [aquí](./avance_22_05_2017/codigoC). Además realizamos una implementación en R de la multiplicación de matrices de números grandes. Esta implementación puede encontrarse [aquí](./avance_22_05_2017/codigoR). Es necesario para que esta implementación funciona generar un código que sume los números grandes sin perder precisión, es decir que los sume por secciones y regularize los resultados. 
+Por último se continuo trabajando en la versión final del trabajo escrito. 
+
+#### [29 de mayo:](avance_29_05_2017)
+
+Durante esta semana se programó la multiplicación de matrices en *pthreads* utilizando la función de multiplicación de números grandes y una función de suma de números grandes que fue necesario programar desde cero (esta función realiza la suma por medio de secciones del número y regulariza el resultado.) La versión final del código puede entcontrarse [aquí](./avance_29_05_2017/codigoC). Además llegamos a la versión final del trabajo escrito, mismo que puede encontrarse en esta [liga](https://www.dropbox.com/home/trabajo%20final?preview=Trabajo+final.docx)

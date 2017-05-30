@@ -166,3 +166,8 @@ Revisión examen módulo 1
 
 [IV/4.1 y IV/4.2 (introducción a optimización)](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
 
+## Clase 18
+
+15 de mayo
+
+Examen módulo 3 y dudas de proyecto final.

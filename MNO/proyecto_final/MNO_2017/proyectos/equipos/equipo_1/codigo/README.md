@@ -17,13 +17,13 @@
 
 Calendario:
 - 07Abril2017: Definir el alcance del proyecto, discutirlo con Erick y buscar referencias a los temas que vamos a resolver.
-- 17Abril2017:
-- 24Abril2017:
-- 02Mayo2017:
-- 08Mayo2017:
-- 15Mayo2017:
-- 1era semana finales:
-- 2da semana finales:
+- 17Abril2017: Comenzamos la investigación del algoritmo Word2Ved.
+- 24Abril2017: Cambio del Algoritmo al entrenamiento de una Red Neuronal Multicapa.
+- 02Mayo2017: Análisis del algoritmo completo: entrenamiento con los cálculos de las probabilidades conjuntas, la tasa de aprendizaje, gradiente descendente para minimizar los errores y finalmente el cálculo de los nuevos pesos ajustados.
+- 08Mayo2017: Continuamos analizando los componentes del algoritmo. Comenzamos a trabajar en los entregables del proyecto de una vez, para que se vayan reflejando, en el codigo, el documento y la presentacion los avances que llevamos.
+- 15Mayo2017: Encontramos una alternativa de optimizacion del algoritmo de softmax a softmax jerarquico, que utiliza árboles binarios de Huffman para armar los caminos de las cercanías de las palabras usando la representación del codigo binario de la palabra dado el contexto
+- 1era semana finales: Incorporamos una sección con las estructuras de Datos del algoritmo.
+- 2da semana finales: 
 
 
 **Referencias:**

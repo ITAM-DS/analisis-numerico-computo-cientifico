@@ -28,11 +28,13 @@ En la carpeta [C](C) encuentran:
 
 * [Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
 
-[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/)
+[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/):
 
 * [send_receive_broadcast_reduce](C/extensiones_a_C/MPI/openMPI/ejemplos/send_receive_broadcast_reduce)
 
 * [io_scatter_gather](C/extensiones_a_C/MPI/openMPI/ejemplos/io_scatter_gather)
+
+* [openMPI y BLAS](C/extensiones_a_C/MPI/openMPI/ejemplos/openMPI_y_BLAS/)
 
 2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
 
@@ -107,3 +109,7 @@ En la carpeta [C](C) encuentran:
 * [level3](C/BLAS/ejemplos/level3/)
 
 ## [LAPACK](C/LAPACK)
+
+[Ejemplos](C/LAPACK/ejemplos/):
+
+* [solve_linear_equations](C/LAPACK/ejemplos/solve_linear_equations/)

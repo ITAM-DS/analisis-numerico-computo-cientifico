@@ -19,9 +19,9 @@ Titulo del proyecto: `Paralelización del algoritmo Word2Vec.`
 
 ## [Equipo 2](equipos/equipo_2)
 
-Titulo del proyecto: `Paralelización de mínimos cuadrados con OpenMP.`
+Titulo del proyecto: `Solución de Mínimos Cuadrados con Factorización QR vía transformaciones Househoulder.`
 
-Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR así como su implementación en OpenMP para la solución de mínimos cuadrados. 
+Objetivo del proyecto: Investigar e implementar el algoritmo de factorización QR utilizando reflexiones de Householder así como su aplicación para la solución de mínimos cuadrados. 
 
 * [Avance 07-04-2017](equipos/equipo_2/avance_07_04_2017). Comentario del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](equipo_2), acótense a éstas. (Es buena idea normalizar el nombre de su carpeta equipo_2 al de equipo_2 :), hagan los cambios necesarios para que las ligas estén correctas de acuerdo al nombre equipo_2)
 
@@ -31,6 +31,13 @@ Objetivo del proyecto: Investigar y evaluar el algoritmo de factorización QR as
 
 * [Avance 02-05-2017](equipos/equipo_2/avance_02_05_2017).
 
+* [Avance 08-05-2017](equipos/equipo_2/avance_08_05_2017).
+
+* [Avance 15-05-2017](equipos/equipo_2/avance_15_05_2017).
+
+* [Avance 22-05-2017](equipos/equipo_2/avance_22_05_2017).
+
+* [Avance 29-05-2017](equipos/equipo_2/avance_29_05_2017).
 ---
 
 
@@ -109,6 +116,12 @@ Objetivo del proyecto: Diseñar e implementar una plataforma hibrida (MPI/CUDA-C
 
 * [Avance 02-05-2017](equipos/equipo_6/avance_02_05_2017). Comentario del prof:
 
+[Trabajo escrito](equipos/equipo_6/trabajo_escrito.md).
+
+[Presentaci�n](equipos/equipo_6/presentacion.md).
+
+[Implementaci�n](equipos/equipo_6/implementacion.md).
+
 ---
 
 ## [Equipo 7](equipos/equipo_7)
@@ -145,6 +158,10 @@ Objetivo del proyecto:  Entender y exponer el algoritmo de Diferencias Finitas e
 
 * [Avance 02-05-2017](equipos/equipo_9/avance_02_05_2017)
 
+* [Avance 15-05-2017](equipos/equipo_9/avance_15_05_2017)
+
+* [Avance 22-05-2017](equipos/equipo_9/avance_22_05_2017)
+
 ---
 
 
@@ -161,6 +178,12 @@ Objetivo del proyecto: Construir un ambiente distribuido y portable que permita 
 * [Avance 24-04-2017](equipos/equipo_10/avance_24_04_2017).
 
 * [Avance 03-05-2017](equipos/equipo_10/avance_03_05_2017).
+
+* [Avance 10-05-2017](equipos/equipo_10/avance_10_05_2017).
+
+* [Avance 22-05-2017](equipos/equipo_10/avance_22_05_2017).
+
+* [Entrega Final](equipos/equipo_10/entrega_final).
 ---
 
 ## [Equipo 11](equipos/equipo_11)
@@ -187,6 +210,8 @@ computacionales de optimización.
 * [Avance 08-05-2017](equipos/equipo_11//avance_08_05_2017). 
 
 * [Avance 15-05-2017](equipos/equipo_11/avance_15_05_2017). 
+
+* [Avance 28-05-2017](equipos/equipo_11/avance_28_05_2017). 
 
 [Trabajo escrito](equipos/equipo_11/trabajo_escrito).
 
