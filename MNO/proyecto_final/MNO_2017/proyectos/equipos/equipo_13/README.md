@@ -25,7 +25,9 @@ Objetivo del proyecto: Realizar una implementación en CUDA-C para que al dar de
 
 * [Avance 29-05-2017](equipos/equipo_13/avance_29_05_2017). Paralelización y funciones CUDA además del trabajo escrito.
 
-[Trabajo_Escrito](equipos/equipo_13/trabajo_escrito/hashimoto_equipo_13.pdfñ)
+[Trabajo_Escrito](equipos/equipo_13/trabajo_escrito/hashimoto_equipo_13.pdf). El código qr también es un link que manda al repositorio donde se encuentra el código pero no sirve en el preview del navegador, hay que descargarlo. El código qr sí sirve en el preview.
+
+[Código] (http://www.github.com/ollin18/complex_network_c)
 -
 
 Referencias: 
