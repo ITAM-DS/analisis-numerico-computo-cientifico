@@ -1,4 +1,3 @@
-
 #include "mpi.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,7 +13,7 @@ void read_file(FILE *fp, int* rowMaxIndex, int* columnMaxIndex);
 double** allocate_matrix(int rowMaxIndex, int columnMaxIndex, FILE *fp);
 int main (int argc, char *argv[])
 {
-intnumtasks,              /* number of tasks in partition */
+int numtasks,              /* number of tasks in partition */
 taskid,                /* a task identifier */
 numworkers,            /* number of worker tasks */
 source,                /* task id of message source */
@@ -27,11 +26,15 @@ int rowMaxIndexA, columnMaxIndexA;
 int rowMaxIndexB, columnMaxIndexB;
 double **a, **b;
 FILE *fpA, *fpB;
+rowMaxIndexA=0;
+columnMaxIndexA=0;
+rowMaxIndexB=0;
+columnMaxIndexB=0;
 MPI_Status status;
 
-MPI_Init(\&argc,\&argv);
-MPI_Comm_rank(MPI_COMM_WORLD,\&taskid);
-MPI_Comm_size(MPI_COMM_WORLD,\&numtasks);
+MPI_Init(&argc,&argv);
+MPI_Comm_rank(MPI_COMM_WORLD,&taskid);
+MPI_Comm_size(MPI_COMM_WORLD,&numtasks);
 if (numtasks < 2 ) {
   printf("Need at least two MPI tasks. Quitting...\n");
   MPI_Abort(MPI_COMM_WORLD, rc);
@@ -45,16 +48,16 @@ numworkers = numtasks-1;
 perror("Error while opening the file.\n");
 exit(EXIT_FAILURE);
 }
-  read_file(fpA, \&rowMaxIndexA, \&columnMaxIndexA);
+  read_file(fpA, &rowMaxIndexA, &columnMaxIndexA);
   a = allocate_matrix(rowMaxIndexA,columnMaxIndexA, fpA);
   NRA=rowMaxIndexA;
-  NCA=columnMaxIndexA;  
+  NCA=columnMaxIndexA;
   fpB = fopen("filename2.csv","r"); // read mode
   if(fpB == NULL){
         perror("Error while opening the file.\n");
         exit(EXIT_FAILURE);
 }
-  read_file(fpB, \&rowMaxIndexB, \&columnMaxIndexB);
+  read_file(fpB, &rowMaxIndexB, &columnMaxIndexB);
   b = allocate_matrix(rowMaxIndexB,columnMaxIndexB, fpB);
   NRB=rowMaxIndexB;
   NCB=columnMaxIndexB;
@@ -79,11 +82,11 @@ exit(1);
       {
          rows = (dest <= extra) ? averow+1 : averow;
          printf("Sending %d rows to task %d offset=%d\n",rows,dest,offset);
-         MPI_Send(\&offset, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
-         MPI_Send(\&rows, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
- MPI_Send(\&NCA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
- MPI_Send(\&NRA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
- MPI_Send(\&NCB, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+         MPI_Send(&offset, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+         MPI_Send(&rows, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+         MPI_Send(&NCA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+        // MPI_Send(&NRA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+         MPI_Send(&NCB, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
          offset = offset + rows;
       }
 
@@ -92,25 +95,25 @@ exit(1);
       for (i=1; i<=numworkers; i++)
       {
          source = i;
-         MPI_Recv(\&offset, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, \&status);
-         MPI_Recv(\&rows, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, \&status);
-         MPI_Recv(\&c[offset][0], rows*NCB, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, \&status);
+         MPI_Recv(&offset, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
+         MPI_Recv(&rows, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
+         MPI_Recv(&c[offset][0], rows*NCB, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, &status);
          printf("Received results from task %d\n",source);
       }
 
       /* Print results */
-  
+
       printf("******************************************************\n");
       printf("Result Matrix:\n");
       for (i=0; i<NRA; i++)
       {
-         printf("\n"); 
-         for (j=0; j<NCB; j++) 
+         printf("\n");
+         for (j=0; j<NCB; j++)
 printf("%6.2f   ", c[i][j]);
       }
       printf("\n******************************************************\n");
       printf ("Done.\n");
-  
+
    }
 
 
@@ -118,23 +121,26 @@ printf("%6.2f   ", c[i][j]);
    if (taskid > MASTER)
    {
       mtype = FROM_MASTER;
-      MPI_Recv(\&offset, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, \&status);
-      MPI_Recv(\&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, \&status);
-  MPI_Recv(\&NCA, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, \&status);
-  MPI_Recv(\&NCB, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, \&status);
+      MPI_Recv(&offset, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+      MPI_Recv(&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+      MPI_Recv(&NCA, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+      MPI_Recv(&NCB, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+      printf("Columnas de B %d\n", NCB);
+      printf("rows %d\n", rows);
       for (k=0; k<NCB; k++)
          for (i=0; i<rows; i++)
          {
-            c[i][k] = 0.0;
+            c[i][k] = 1.0;
             for (j=0; j<NCA; j++)
                c[i][k] = c[i][k] + a[i][j] * b[j][k];
-         }
+        printf("Imprimiendo matriz C[%d][%d] %f\n",i,k,c[i][k]);
+        }
       mtype = FROM_WORKER;
-      MPI_Send(\&offset, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD);
-      MPI_Send(\&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD);
-      MPI_Send(\&c, rows*NCB, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD);
-  
-  
+      MPI_Send(&offset, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD);
+      MPI_Send(&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD);
+      MPI_Send(&c, rows*NCB, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD);
+
+
    }
 
    MPI_Finalize();
@@ -196,5 +202,3 @@ i = j = 0;
     fclose(fp);
 return mat;
 }
-
-

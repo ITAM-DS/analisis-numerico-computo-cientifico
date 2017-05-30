@@ -148,9 +148,9 @@ exit(1);
          printf(\"Sending %d rows to task %d offset=%d\n\",rows,dest,offset);
          MPI_Send(&offset, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
          MPI_Send(&rows, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
- MPI_Send(&NCA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
- MPI_Send(&NRA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
- MPI_Send(&NCB, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+		 MPI_Send(&NCA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+		 //MPI_Send(&NRA, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
+		 MPI_Send(&NCB, 1, MPI_INT, dest, mtype, MPI_COMM_WORLD);
          //MPI_Send(&a[offset][0], rows*NCA, MPI_DOUBLE, dest, mtype, MPI_COMM_WORLD);
          //MPI_Send(&b, NCA*NCB, MPI_DOUBLE, dest, mtype, MPI_COMM_WORLD);
          offset = offset + rows;
@@ -175,7 +175,7 @@ exit(1);
       {
          printf(\"\n\"); 
          for (j=0; j<NCB; j++) 
-printf(\"%6.2f   \", c[i][j]);
+	printf(\"%6.5f  \", c[i][j]);
       }
       printf(\"\n******************************************************\n\");
       printf (\"Done.\n\");
@@ -189,14 +189,14 @@ printf(\"%6.2f   \", c[i][j]);
       mtype = FROM_MASTER;
       MPI_Recv(&offset, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
       MPI_Recv(&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
-  MPI_Recv(&NCA, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
-  MPI_Recv(&NCB, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+	  MPI_Recv(&NCA, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
+	  MPI_Recv(&NCB, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD, &status);
       //MPI_Recv(a, rows*NCA, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD, &status);
       //MPI_Recv(&b, NCA*NCB, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD, &status);
       for (k=0; k<NCB; k++)
          for (i=0; i<rows; i++)
          {
-            c[i][k] = 0.0;
+	   c[i][k]= 0.0;
             for (j=0; j<NCA; j++)
                c[i][k] = c[i][k] + a[i][j] * b[j][k];
        //printf(\"c[%d][%d]: %f\n\", i,k,c[i][k]);
@@ -259,7 +259,7 @@ i = j = 0;
     while(fgets(part,1024,fp) != NULL){
         token = NULL;
         while((token = strtok((token == NULL)?part:NULL,\",\")) != NULL){
-            mat[i][j] = atoi(token);
+            mat[i][j] = atof(token);
             j = (j+1)%columnMaxIndex;
         }
         i++;
@@ -292,6 +292,8 @@ return mat;
 }
 
 ">mpimm.c
+
+
 
 ```
 

@@ -67,9 +67,9 @@
 
 \thispagestyle{fancy}
 
-\initial{E}\textbf{l }
 
 \section{Introducción}
+A continuación, presentaremos los detalles de la implementación de un programa que ejecuta la multiplicación de dos matrices, $A$, $B$, dentro de un cluster de servidores usando la librería \textit{openMPI}.
 
 \subsection{Definición del problema}
 
@@ -99,7 +99,7 @@ Un sistema de memoria distribuida consiste en una colección de pares core-memor
 
 Existen diversas APIs (application programming interfaces) para la programación en los sistemas de memoria distribuida. Una de las APIs más populares es message passing interface, la cual es implementada de manera relativamente sencilla mediante la implementación de dos funciones principales: la función send (encargada de mandar tareas o datos del nodo maestro a los workers) y la función receive (encargada de recibir en el nodo maestro el resultado de los cálculos realizados por los workers).
 
-Una implementación de esta API comúnmente utilizada para es openMPI, misma que fue utilizada durante la implementación de nuestro algorítmo de multiplicación de matrices.
+Una implementación de esta API comúnmente utilizada para es $openMPI$, misma que fue utilizada durante la implementación de nuestro algorítmo de multiplicación de matrices.
 
 MPI es una \textit{message passing library interface specification}, dirigida al modelo de programación de message passing en paralelo. Entre sus objeticos se encuentran:
 
@@ -112,7 +112,7 @@ MPI es una \textit{message passing library interface specification}, dirigida al
 MPI es una API poderosa y versátil, pero es de bajo nivel, en el sentido que hay una gran cantidad de detalle que el programador tiene que escribir. Las estructuras de datos tienen que ser replicadas por los procesos o ser explícitamente distribuidas.
 
 \section{Arquitectura}
-Dado el problema que buscamos resolver, necesitamos contar con un ambiente distribuído el cual puede ser construido con una serie de máquinas en la misma red o con servidores dentro de un servicio de \textit{IaS} (Infrastructure as a Service). Para el caso partícular de este análisis escogimos contratar servidores dentro de Amazon Web Services debido a la facilidad de configuración y su bajo costo.
+Dado el problema que buscamos resolver, necesitamos contar con un ambiente distribuido, el cual puede ser construido a partir de una serie de máquinas en una misma red o con servidores dentro de un servicio Infrastructure as a Service (\textit{IaS}). Para el caso particular de este análisis, optamos por contratar servidores dentro de Amazon Web Services (AWS), debido a la facilidad de configuración y su bajo costo.
 
 \subsection{Amazon Web Services}
 
@@ -123,99 +123,106 @@ Usamos AWS para crear un cluster basado en la nube. Esto nos provee una solució
 Para levantar un ambiente distribuido de MPI utilizando AWS, realizamos los siguientes pasos:
 
 \begin{enumerate}
-    \item Levantamos $N$ servidores, donde uno de ellos deberá de ser el nodo \textit{master} y los demás \textit{workers}.
-    \item Mediante la ayuda de \textit{GNU Parallels} distribuiremos archivos alojados en nuestra máquina local a los servidores en AWS
-    \item Nos aseguramos que los servidores tengan instalados \textit{GNU Parallels}
-    \item Con la ayuda de \textit{Parallels} instalamos \textit{openmpi 2.0.2} en todos nuestros servidores
-    \item Generamos un archivo de hosts con la ip publica y nombre de los servidores miembros del cluster y lo distribuimos a cada uno de los servidores
-    \item Usando la misma técnica, generamos un programa en C que haga la multiplicación de matrices en un cluster utilizando \textit{openMPI}. 
-    \item El archivo \texit{sourcefile} configura algunas variables de ambiente en la consola en cada uno de los servidores
-    \item Generamos los archivos que contienen las matrices A y B y los distribuimos a cada uno de los servidores.
+    \item Levantamos $N$ servidores, donde uno de ellos deberá de ser el nodo \textit{master} y los demás nodos serán \textit{workers}.
+    \item Mediante la aplicación de \textit{GNU Parallels}, distribuiremos archivos alojados en nuestra máquina local a los servidores en AWS (para ello, es necesario asegurarnos que este esté instalado en todos los servidores).
+    \item Con la ayuda de \textit{GNU Parallels}, instalamos \textit{openmpi 2.0.2} en todos nuestros servidores
+    \item Generamos un archivo de hosts con la ip publica y nombre de los servidores miembros del cluster y lo distribuimos a cada uno de estos servidores.
+    \item Usando el mismo procedimiento, generamos un programa en C que haga la multiplicación de matrices en un cluster utilizando \textit{openMPI}. 
+    \item Usando el archivo \texit{sourcefile}, configuramos algunas variables de ambiente en la consola en cada uno de los servidores.
+    \item Generamos los archivos que contienen las matrices $A$ y $B$ y los distribuimos a cada uno de los servidores.
 \end{enumerate}
 
-Todos estos pasos están contenidos en un archivo que orquesta la instalación del ambiente que necesitamos en cada uno de los servidores dentro de nuestro cluster. Para que esta instalación sea exitosa, requerimos que la máquina desde donde se hace la instalación cuente con el cliente de \textit{AWS} y \textit{GNU Parallels}.
+Todos estos pasos están contenidos en un archivo que orquesta la instalación del ambiente que necesitamos en cada uno de los servidores dentro de nuestro cluster. Para que esta instalación sea exitosa, requerimos que la máquina desde donde se hace la instalación cuente con el cliente de AWS y \textit{GNU Parallels}.
 
 \subsection{Docker}
-Para poder hacer este ambiente portable y fácilmente reproducible utilizamos \textit{Docker}, el cual nos permite generar máquinas virtuales que contengan las librerías de \textit{openMPI} previamente instaladas y listas para ser utilizadas. La máquina virtual de \textit{openMPI} fue publicada en \textit{Docker Hub} con el siguiente tag: \textit{johnydickens\openmpi}
 
-Una vez publicada esta maquina virtual en el \textit{Docker Hub} podremos hacer uso de \textit{Docker Swarm} para levantar un servicio distribuido 
+Para poder hacer este ambiente portable y fácilmente reproducible utilizamos Docker, el cual nos permite generar máquinas virtuales que contengan las librerías de \textit{openMPI} previamente instaladas y listas para ser utilizadas (la máquina virtual de \textit{openMPI} fue publicada en Docker Hub con el siguiente tag: \textit{johnydickens\openmpi}).
 
-\subsection{MPI Cluster en un Swarm de Docker-Compose}
+Una vez publicada esta maquina virtual en el Docker Hub, podremos hacer uso de Docker Swarm para levantar un servicio distribuido.
 
-Usando \textit{Docker-Compose}, es posible construir sistemas de múltiples partes, idóneos para el problema que estamos atendiendo. Sin embargo, estas partes corren de forma aislada. \textit{Swarm} nos permite resolverlo, ya que es una herramienta para manejar un conjunto de \textit{Docker} containers en un mismo host o en un cluster y conectarlos mediante el uso de una red virtual. Así, con \textit{Swarm} podemos gestionar un cluster de \textit{openMPI}.
+\subsection{MPI cluster en un Swarm de Docker Compose}
 
-Para poder armar el servicio de \textit{Swarm} es necesario contar con un un archivo .yml en el cual se indica el nombre de cada uno de los contenedores, los puertos que cada contenedor tendrá expuesto. Además, en este mismo archivo conectaremos los contenedores a una red virtual para asegurar que todos los contenedores se vean entre sí.
+Usando Docker Compose, es posible construir sistemas de múltiples partes, idóneos para el problema que estamos atendiendo. Sin embargo, cada una de estas partes corren de forma aislada. Swarm nos permite resolverlo, ya que es una herramienta para manejar un conjunto de Docker containers en un mismo $host$ o en un cluster y conectarlos mediante el uso de una red virtual. Así, con Swarm podemos gestionar un cluster de \textit{openMPI}.
 
-Si todo está bien ejecutado nuestra arquitectura portable estará formada por un nodo \textit{maestro} y n \textit{workers} (docker compose permite replicar un servicio n veces). 
+Para poder construir el servicio de Swarm, es necesario contar con un un archivo .yml, en el cual se indique el nombre de cada uno de los contenedores y los puertos que cada contenedor tendrá expuesto. Además, en este mismo archivo conectaremos los contenedores a una red virtual para asegurar que todos los contenedores se vean entre sí.
+
+Si todo está bien ejecutado nuestra arquitectura portable estará formada por un nodo \textit{master} y $n$ \textit{workers} (Docker Compose permite replicar un servicio $n$ veces). 
 
 \subsubsection{Complicaciones}
 
-EL cluster de \textit{Swarm} es generado satisfactoriamente, se generan llaves ssh para que un servicio en un contenedor pueda hacer login en otro contenedor sin necesidad de usar una clave, sin embargo al momento de querer ejecutar un programa usando el \textit{mpirun} o el \textit{mpiexec} el cluster tarda un tiempo en responder y la respuesta que obtenemos es que no se pudo lograr la conexión entre los contenedores.
+El cluster de Swarm es generado satisfactoriamente y se generan llaves ssh para que un servicio en un contenedor pueda hacer login en otro contenedor sin necesidad de usar una clave; sin embargo, al momento de querer ejecutar un programa usando \textit{mpirun} o \textit{mpiexec}, el cluster tarda un tiempo significativo en responder y la respuesta que obtenemos indica que no se pudo lograr la conexión entre los contenedores.
 
 \subsubsection{Pasos a seguir}
 
-Se hizo un debugging del cluster conectándonos a cada uno de los containers del servicio haciendo ping a los demas containers. La respuesta del ping fue exitosa en cada uno de los casos. El siguiente paso fue realizar una conexión ssh de un container a cada uno de los demás containers dentro del servicio, resultando en una resultado positivo en cada uno de los casos.
+Se hizo un $debugging$ del cluster conectándonos a cada uno de los containers del servicio haciendo $ping$ a los demás containers. La respuesta del $ping$ fue exitosa en cada uno de los casos. El siguiente paso fue realizar una conexión ssh de un container a cada uno de los demás containers dentro del servicio, resultando en una resultado positivo en cada uno de los casos.
 
-Valdrá la pena continuar realizando algunas pruebas y buscando documentación sobre puertos que deban estar abiertos dentro de las políticas de seguridad definidas para cada uno de los hosts que ejecutan a los containers.
+Valdría la pena continuar realizando algunas pruebas y buscando documentación sobre puertos que deban estar abiertos dentro de las políticas de seguridad definidas para cada uno de los hosts que ejecutan a los containers.
 
-\section{Programa mpimm.c}
+\section{Algoritmo}
 
-Como se ha mencionado a lo largo de este artículo, se implementó un algoritmo de multiplicación de matrices distribuido utilizando la librería openMPI en C. Dicho algoritmo está implementado dentro del programa \textit{mpimm.c}.
+\subsection{Programa mpimm.c}
+
+Como se ha mencionado a lo largo de este artículo, se implementó un algoritmo de multiplicación de matrices distribuido utilizando la librería \textit{openMPI} en C. Dicho algoritmo está implementado dentro del programa \textit{mpimm.c}.
 
 El programa \textit{mpimm.c} consta de tres partes principales:
 
 \begin{enumerate}
-    \item incialización y declaración de variables
-    \item inicialización de funciones propias de openMPI, específicamente las funciones send y recieve
-    \item distribuición de datos para paralelizar el cálculo de la matriz C = A * B
+    \item Inicialización y declaración de variables.
+    \item Inicialización de funciones propias de \textit{openMPI}, específicamente las funciones \textit{send} y \textit{recieve}.
+    \item Distribuición de datos para paralelizar el cálculo de la matriz $C = A * B$.
 \end{enumerate}
 
-El programa \textit{mpimm.c} está construido de tal forma que recibe las matrices A y B de archivos separados por coma (CSV), esto nos permite cambiar las matrices de entrada sin necesidad de recompilar el código. Además, las variables que alojan a cada una de las matrices A y B tienen alojamiento dinámico de memoria, lo cual nos da cierta flexibilidad sobre el tamaño de las matrices a multiplicar.
+El programa \textit{mpimm.c} está construido de tal forma que recibe las matrices $A$ y $B$ de archivos separados por coma (csv); esto nos permite cambiar las matrices de entrada sin necesidad de recompilar el código. Además, las variables que alojan a cada una de las matrices $A$ y $B$ tienen alojamiento dinámico de memoria, lo cual nos da cierta flexibilidad sobre el tamaño de las matrices a multiplicar.
 
 \subsection{mpimm.c paso a paso}
 
-El programa mpimm.c consta de dos subrutinas y una rutina principal:
+El programa \textit{mpimm.c} consta de dos subrutinas y una rutina principal:
 
 \begin{enumerate}
     \item \textit{readfile}: Recibe un apuntador a un archivo, un apuntador a un entero que indica el número de columnas y un apuntador a un entero que indica el número de renglones.
-    \item \textit{allocate_matrix}: Recibe el numero de renglones, numero de columnas y el archivo del cuál se leerá la información de la matriz, como resultado obtenemos la matriz en un formato pointer to pointer (**).
+    \item \textit{allocate matrix}: Recibe el numero de renglones, número de columnas y el archivo del cual se leerá la información de la matriz; como resultado obtenemos la matriz en un formato \textit{pointer to pointer} (**).
 \end{enumerate}
 
-Vale la pena hacer la siguiente anotación: la subrutina \textit{readfile} únicamente recorre el archivo indicado para saber cuantos renglones y cuantas columnas contiene algún archivo, posteriormente la subrutina \textit{allocate_matrix} será la encargada de cargar la matriz en memoria haciendo uso de \textit{malloc}.
+\textit{Nota a considerar}: la subrutina \textit{readfile} únicamente recorre el archivo indicado para saber cuántos renglones y cuántas columnas contiene algún archivo; posteriormente la subrutina \textit{allocate matrix} será la encargada de cargar la matriz en memoria haciendo uso de \textit{malloc}.
 
-La rutina principal es la encargada de detonar las llamadas a cada una de estas subrutinas. Además distribuye datos entre los \textit{workers} y recibe los cálculos parciales de cada uno de ellos para completar el cálculo de la multipliación de matrices. A continuación se presenta una explicación detallada de la rutina \textit{main}
+La rutina principal es la encargada de detonar las llamadas a cada una de estas subrutinas. Además, distribuye datos entre los \textit{workers} y recibe los cálculos parciales de cada uno de ellos para completar el cálculo de la multiplicación de matrices. A continuación se presenta una explicación detallada de la rutina \textit{main}.
 
 \begin{enumerate}
-    \item La rutina \textit{main} comienza declarando las variables y apuntadores necesarios para el funcionamiento de nuestro algoritmo.
-    \item Se inicializa \textit{MPI} y se define el \textit{rank} y \textit{size}. Además si no se cuenta con mas de dos tareas el programa no podrá ser ejecutado.
-    \item Se obtiene la información de la matriz A y B de los archivos correspondientes y se valida que la multiplicación de estas dos matrices sea definida. (Estos tres pasos son ejecutados indistintamente en el nodo \textit{maestro} y los \textit{workers})
-    \item Si el nodo es el maestro entonces se calculan los índices de los renglones que serán enviados a cada uno de los \textit{workers}. En este caso cada \textit{worker} calculará la multiplicación de la matriz usando bloques de renglones calculados de la siguiente manera:
+    \item La rutina \textit{main} comienza declarando las variables y apuntadores necesarios para el funcionamiento del algoritmo.
+    \item Se inicializa MPI y se define el \textit{rank} y \textit{size} (si no se cuenta con más de dos tareas, el programa no podrá ser ejecutado).
+    \item Se obtiene la información de la matriz $A$ y $B$ de los archivos correspondientes y se valida que la multiplicación de estas dos matrices sea definida (estos tres pasos son ejecutados indistintamente en el nodo \textit{master} y los nodos \textit{workers}).
+    \item Si el nodo es el \textit{master}, entonces se calculan los índices de los renglones que serán enviados a cada uno de los \textit{workers}. En este caso cada \textit{worker} calculará la multiplicación de la matriz usando bloques de renglones correspondientes, obtenidos de la siguiente manera:
     \begin{equation}
-        rows = \frac{\#rows(A)}{\#workers}
+        rows = \frac{number \phantom{1} of \phantom{1} rows(A)}{number \phantom{1} of \phantom{1} workers}
     \end{equation}
-    Para el caso particular en que $\# rows(A) \phantom{1} \% \phantom{1} \# workers \neq 0$, los renglones adicionales se envían al último de los \textit{workers}.
+    Para el caso particular en que $number \phantom{1} of \phantom{1} rows(A) \phantom{1} \% \phantom{1} number \phantom{1} of \phantom{1} workers \neq 0$, los renglones adicionales se envían al último de los \textit{workers}.
     \item Una vez que cada uno de los \textit{workers} recibe la instrucción sobre qué rango de renglones de la matriz realizará la multiplicación, procede a calcular la entrada $i,k$ de la siguiente forma:
     \begin{equation}
         c_{ik}=a_{ij}b_{jk}
     \end{equation}
     Para cada una de las entradas $j$ de los $i$ renglones de la matriz $A$ que recibe.
-    \item Una vez calculadas todas las entradas de la matriz C, el nodo maestro la imprime en el \textit{stdout}.
+    \item Una vez calculadas todas las entradas de la matriz $C$, el nodo \textit{master} la imprime en el \textit{stdout}.
 \end{enumerate}
 
-\subsection{Compilación y Ejecución}
+\subsection{Compilación y ejecución}
 
-Es importante subrayar que para que la ejecución en paralelo del programa \textit{mpimm.c} funcione, este deberá ser compilado en cada uno de los nodos, para hacerlo se deberá ejecutar la siguiente instrucción en cada uno de ellos:
+Es importante subrayar que para que la ejecución en paralelo del programa \textit{mpimm.c} funcione, este deberá ser compilado en cada uno de los nodos; para hacerlo se deberá ejecutar la siguiente instrucción en cada uno de ellos:
+\begin{itemize}
+    \item mpicc mpimm.c -o mpimm.out
+\end{itemize}
 
-\textit{mpicc mpimm.c -o mpimm.out}
+Una vez compilado el programa en todos los nodos, se puede ejecutar desde el nodo \textit{master} utilizando la siguiente instrucción:
 
-Una vez compilado el programa en todos los nodos, se puede ejecutar desde el nodo maestro utilizando la siguiente instrucción:
-
-\textit{mpirun --prefix /opt/openmpi-2.0.2/ -n 3 -H master,nodo1,nodo2 mpimm.out}
+\begin{itemize}
+    \item mpirun --prefix /opt/openmpi-2.0.2/ -n 3 -H master,nodo1,nodo2 mpimm.out
+\end{itemize}
 
 \section{Conclusiones}
-La implementación del programa \textit{mpimm.c} representa un ejercicio de programación en paralelo utilizando \textit{openMPI} y distribuyendo datos entre nuestros nodos.
-Durante este ejercicio pudimos comprobar que existe cierta complejidad al implementar la librería \textit{openMPI} para crear programas en paralelo, sin embargo la curva de aprendizaje de esta librería es corta y existe documentación suficiente en la red para resolver los problemas que comúnmente se presentan durante la programación.
 
-La implementación de la arquitectura también es compleja, se debe tener mucho cuidado y precisión al momento de crear la red entre los nodos y asegurar que las políticas de seguridad estén correctamente configuradas ya que de lo contrario la ejecución en paralelo no será exitosa.
+La implementación del programa \textit{mpimm.c} representa un ejercicio de programación en paralelo utilizando \textit{openMPI} y distribuyendo datos entre nuestros nodos.
+
+Durante este ejercicio, pudimos comprobar que existe cierta complejidad al implementar la librería \textit{openMPI} para crear programas en paralelo. Sin embargo, la curva de aprendizaje de esta librería es corta y existe documentación suficiente en la red para resolver los problemas que comúnmente se presentan durante la programación.
+
+La implementación de la arquitectura también es compleja; se debe de prestar especial atención y cuidado durante la creación de la red entre los nodos y asegurar que las políticas de seguridad estén correctamente configuradas, ya que de lo contrario, la ejecución en paralelo no será exitosa.
 
 \end{document}
