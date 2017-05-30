@@ -223,6 +223,8 @@ Objetivo del proyecto: Crear un script que haga eficiente la obtención de una m
 * [Avance 12-05-2017](equipos/equipo_13/avance_15_05_2017). 
 
 * [Avance 22-05-2017](equipos/equipo_13/avance_22_05_2017). 
+
+* [Avance 29-05-2017](equipos/equipo_13/avance_29_05_2017). 
 ---
 
 ## [Equipo ejemplo](equipos/equipo_ejemplo)
