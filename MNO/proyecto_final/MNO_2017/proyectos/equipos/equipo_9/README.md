@@ -14,6 +14,9 @@ Objetivo del proyecto:  Enteder y exponer teoría e implementación vía GPU's, 
 
 Se puede encontrar en la carpeta [trabajo_escrito](trabajo_escrito). 
 
+### Presentación 
+
+Se encuentra en el drive en esta [liga](https://drive.google.com/file/d/0B1GlF2qCvHCXZjZHV1RjV0NjT2M/view?usp=sharing)
 
 ## Cronograma 
 
