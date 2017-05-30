@@ -31,7 +31,7 @@ Al revisar el código que Ollin subió, encontré secciones del código que tend
 
 #### Raúl
 
-Junto con Ollin apoye a probar el código y encontramos algunos errores que pudimos resolver. en conjunto con Isabel identificamos varias regiones del código que pueden ser paralelizable, particularmente aquellas que mueven información hacia la matriz y entre esta y el resultado que buscamos obtener.   
+En conjunto con Isabel identificamos varias regiones del código que pueden ser paralelizable, particularmente aquellas que mueven información hacia la matriz y entre esta y el resultado que buscamos obtener.   
 
 
 ### Equipo

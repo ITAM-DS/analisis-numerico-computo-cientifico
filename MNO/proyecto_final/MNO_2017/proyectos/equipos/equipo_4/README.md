@@ -73,4 +73,6 @@ Por último continuamos generalizando el código para que las funciones se pueda
 
 #### [15 de mayo:](avance_15_05_2017)
 
+Continuamos con la investigación de los métodos que podriamos usar para evitar perder precisión por tener que resolver un  sistema lineal con una matriz mal condicionada. Nuestro principal problema es que después de resolver el sistema de ecuaciones lineales se utilizan esos resultados para realizar una suma desplazada en la que cada número se suma en una posición diferente para representar cientos, miles, millones, etc. Esto nos provoca problemas extras ya que si los métodos de aproximación nos hacen perder solo algunos dígitos de precisión al hace la suma este error se recorrería a posiciones más elevadas del número por lo que decidimos junto con el profesor limitar los casos que impllementaremos a dividir los números en 3 y 4 secciones y eliminar el caso de realizar 5 secciones. 
+
 #### [23 de mayo:](avance_23_05_2017)

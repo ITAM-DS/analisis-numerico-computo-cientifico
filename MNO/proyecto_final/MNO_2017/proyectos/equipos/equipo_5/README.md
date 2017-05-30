@@ -25,6 +25,7 @@ En la carpeta [avance_08_05_2017](avance_08_05_2017) se encuentra el reporte del
 
 En la carpeta [avance_15_05_2017](avance_15_05_2017) se encuentra el reporte del cuarto avance para determinar y avanzar nuestro proyecto.
 
+En la carpeta [avance_22_05_2017](avance_22_05_2017) se encuentra el reporte del cuarto avance para determinar y avanzar nuestro proyecto.
 
 ## Plan de trabajo
 
@@ -51,6 +52,10 @@ Inicio de implementación de código.
 ### [15 de mayo](avance_15_05_2017)
 
 Implementación de código.
+
+### [22 de mayo](avance_22_05_2017)
+
+Reporte y presentación.
 
 ## Referencias
 

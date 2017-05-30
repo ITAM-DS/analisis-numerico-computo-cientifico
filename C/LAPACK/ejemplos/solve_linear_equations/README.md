@@ -1,6 +1,6 @@
 Para los siguientes ejemplos es necesario tener en la carpeta en la que se compilará y ejecutará los siguientes códigos, los archivos `definiciones.h` y `funciones.h` los cuales los encuentran [aquí](../) y se debe tener instalado en sus sistemas ubuntu `libblas-dev` y `liblapack-dev`.
 
-Información sobre resolver sistemas de ecuaciones lineales: [driver routines](http://www.netlib.org/lapack/lug/node25.html) y [computational routines](http://www.netlib.org/lapack/lug/node37.html).
+Información sobre resolver sistemas de ecuaciones lineales con LAPACK: [driver routines](http://www.netlib.org/lapack/lug/node25.html) y [computational routines](http://www.netlib.org/lapack/lug/node37.html).
 
 ## Sistema denso:
 
