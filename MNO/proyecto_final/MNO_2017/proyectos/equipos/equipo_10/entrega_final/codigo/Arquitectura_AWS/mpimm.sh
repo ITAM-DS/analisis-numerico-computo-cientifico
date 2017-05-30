@@ -129,7 +129,7 @@ exit(1);
       {
          printf(\"\n\"); 
          for (j=0; j<NCB; j++) 
-printf(\"%f  \", c[i][j]);
+	printf(\"%6.5f  \", c[i][j]);
       }
       printf(\"\n******************************************************\n\");
       printf (\"Done.\n\");
@@ -213,7 +213,7 @@ i = j = 0;
     while(fgets(part,1024,fp) != NULL){
         token = NULL;
         while((token = strtok((token == NULL)?part:NULL,\",\")) != NULL){
-            mat[i][j] = atoi(token);
+            mat[i][j] = atof(token);
             j = (j+1)%columnMaxIndex;
         }
         i++;
