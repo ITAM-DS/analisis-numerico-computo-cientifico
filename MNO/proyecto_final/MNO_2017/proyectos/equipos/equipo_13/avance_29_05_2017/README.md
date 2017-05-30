@@ -12,3 +12,5 @@ Hice un gran esfuerzo por lograr la paralelización en CUDA pero me encontré co
 
 #### Equipo:
 Realizamos el reporte escrito y la presentación.
+
+[Trabajo_Escrito](../trabajo_escrito/hashimoto_equipo_13.pdf)

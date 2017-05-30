@@ -24,6 +24,8 @@ Objetivo del proyecto: Realizar una implementación en CUDA-C para que al dar de
 * [Avance 22-05-2017](equipos/equipo_13/avance_22_05_2017). Paralelización de la matriz de Hashimoto y código de Julia inicial.
 
 * [Avance 29-05-2017](equipos/equipo_13/avance_29_05_2017). Paralelización y funciones CUDA además del trabajo escrito.
+
+[Trabajo_Escrito](equipos/equipo_13/trabajo_escrito/hashimoto_equipo_13.pdfñ)
 -
 
 Referencias: 
