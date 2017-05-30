@@ -163,7 +163,7 @@ exit(1);
          source = i;
          MPI_Recv(&offset, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
          MPI_Recv(&rows, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
-         MPI_Recv(&c[offset][0], rows*NCB, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, &status);
+         MPI_Recv(&c[offset][0], rows*NCA, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, &status);
          printf(\"Received results from task %d\n\",source);
       }
 
@@ -175,7 +175,7 @@ exit(1);
       {
          printf(\"\n\"); 
          for (j=0; j<NCB; j++) 
-printf(\"%6.2f   \", c[i][j]);
+	printf(\"%6.5f  \", c[i][j]);
       }
       printf(\"\n******************************************************\n\");
       printf (\"Done.\n\");
@@ -196,7 +196,7 @@ printf(\"%6.2f   \", c[i][j]);
       for (k=0; k<NCB; k++)
          for (i=0; i<rows; i++)
          {
-            c[i][k] = 0.0;
+	   c[i][k]= 0.0;
             for (j=0; j<NCA; j++)
                c[i][k] = c[i][k] + a[i][j] * b[j][k];
        //printf(\"c[%d][%d]: %f\n\", i,k,c[i][k]);
@@ -204,7 +204,7 @@ printf(\"%6.2f   \", c[i][j]);
       mtype = FROM_WORKER;
       MPI_Send(&offset, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD);
       MPI_Send(&rows, 1, MPI_INT, MASTER, mtype, MPI_COMM_WORLD);
-      MPI_Send(&c, rows*NCB, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD);
+      MPI_Send(&c, rows*NCA, MPI_DOUBLE, MASTER, mtype, MPI_COMM_WORLD);
   
   
    }
@@ -259,7 +259,7 @@ i = j = 0;
     while(fgets(part,1024,fp) != NULL){
         token = NULL;
         while((token = strtok((token == NULL)?part:NULL,\",\")) != NULL){
-            mat[i][j] = atoi(token);
+            mat[i][j] = atof(token);
             j = (j+1)%columnMaxIndex;
         }
         i++;
@@ -292,6 +292,7 @@ return mat;
 }
 
 ">mpimm.c
+
 
 ```
 
