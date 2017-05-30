@@ -129,7 +129,7 @@ exit(1);
       {
          printf(\"\n\"); 
          for (j=0; j<NCB; j++) 
-printf(\"%6.2f   \", c[i][j]);
+printf(\"%f  \", c[i][j]);
       }
       printf(\"\n******************************************************\n\");
       printf (\"Done.\n\");
@@ -150,7 +150,7 @@ printf(\"%6.2f   \", c[i][j]);
       for (k=0; k<NCB; k++)
          for (i=0; i<rows; i++)
          {
-            c[i][k] = 0.0;
+	   c[i][k]= 0.0;
             for (j=0; j<NCA; j++)
                c[i][k] = c[i][k] + a[i][j] * b[j][k];
        //printf(\"c[%d][%d]: %f\n\", i,k,c[i][k]);
