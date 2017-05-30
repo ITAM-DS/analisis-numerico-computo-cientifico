@@ -6,6 +6,8 @@
 #define A_matriz "A1.txt" //de tamaño MxN
 #define b_vector "b.txt" //de tamaño M
 
+// gcc mcqrhh.c funciones2.c -o mcqrhh.out -lm
+// ./mcqrhh.out 4 3
 double beta,v_1;
 
 int main(int argc, char *argv[]){
@@ -18,7 +20,7 @@ int main(int argc, char *argv[]){
 	
 	renglones(A)=M; // renglones
 	columnas(A)=N; // columnas
-	renglones_vector(b)=M; // renglones
+	renglones_vector(b)=M; // renglones de b 
 
 	entradas(A)=malloc(renglones(A)*columnas(A)*sizeof(double));
 	entradas_vector(b)=malloc(renglones_vector(b)*sizeof(double));
@@ -30,7 +32,7 @@ int main(int argc, char *argv[]){
 	printf("------------\n");
 	printf("Vector b:\n");
 	imprime_vector(b);
-	printf("------------\n");
+	printf("\n------------\n");
 	printf("Inicio del Algortitmo QR\n");
 	printf("------------\n");
 	
@@ -43,7 +45,7 @@ int main(int argc, char *argv[]){
 	D=malloc(sizeof(*D));
 	H=malloc(sizeof(*H));
 
-
+//Algoritmo para calcular QR con Reflexiones de Householder
 	for (k = 0; k < (*A).n; k++) {
 
 		renglones_mr(D)=M-k; // renglones
@@ -57,17 +59,19 @@ int main(int argc, char *argv[]){
 		inicializa_submatriz(A,D,k);
 		vectorc = realloc(vectorc,sizeof(double)*(M-k));
 		vhh = realloc(vhh,sizeof(double)*(M-k));
-		printf("\nCálculo del Vector de Householder, MU, SIGMA y V_1(Evaluación del signo):\n");
+		printf("\nCálculo del Vector de Householder, MU, SIGMA y V(1) (Evaluación del signo):\n");
+		printf("\nVector columna: %d \n",k);
 		for(i=0; i < M-k; i++) {
   			vectorc[i] = entrada(A,i+k,k);
   			vhh[i] = 0;
-  			printf("Vector[%d]=%.5f\n",i,vectorc[i]);
+  			printf("Vector [%d]=%.5f\n",i,vectorc[i]);
 		} 
 
 		double mu[1] = {0},sigma[1] = {0};
 		mcol(A,vectorc,M-k,mu,sigma);
 		printf("MU: %8.3f \n", mu[0]);
 		printf("SIGMA: %8.3f \n", sigma[0]);
+		printf("\nVector de Householder:\n");
 		vectorHH(A,vectorc,mu,sigma,vhh,M-k);
 		printf("BETA: %f\n",beta); 
 		printf("V_1: %f \n",v_1);
@@ -77,7 +81,7 @@ int main(int argc, char *argv[]){
 	}
 
 	printf("\n------------\n");
-	printf("Inicio del Algortitmo MC\n");
+	printf("Inicio del Algortitmo MC: Ax=b\n");
 	printf("------------\n");
 	
 	MC(A,b);

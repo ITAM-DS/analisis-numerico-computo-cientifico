@@ -37,6 +37,7 @@ Objetivo del proyecto: Investigar e implementar el algoritmo de factorización Q
 
 * [Avance 22-05-2017](equipos/equipo_2/avance_22_05_2017).
 
+* [Avance 29-05-2017](equipos/equipo_2/avance_29_05_2017).
 ---
 
 

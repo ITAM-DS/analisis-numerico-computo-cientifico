@@ -38,11 +38,13 @@ Integrantes:
 
 * En la carpeta [avance_22_05_2017](avance_22_05_2017) se reporta el avance de esta semana, donde se concluyó la implementación del algoritmo secuencial de factorización QR usando Reflexiones de Householder, además se inició la programación de mínimos cuadrados, mismos que se encuentran en la siguiente carpeta: [Implementacion](codigo). De forma paralela se está desarrollando el trabajo escrito y se ha definido su estructura general, el cual se puede consultar en la liga correspondiente.
 
+* Se presenta en la carpeta [avance_29_05_2017](avance_29_05_2017) el avance final del proyecto.  En la carpeta [Trabajo escrito](trabajo_escrito) se encuentra el documento final del proyecto y en la carpeta [Implementación](codigo) los archivos en C de la implementación.  Finalmente se anexa la [Presentación](https://drive.google.com/file/d/0B5IJ1w6MjxegSlhFc2xPOW9fRE0/view?usp=sharing).
+
 [Trabajo escrito](trabajo_escrito)
 
-[Presentacion](https://drive.google.com/drive/folders/0B5IJ1w6MjxegRHgwS090WFNLdWM?usp=sharing)
+[Presentación](https://drive.google.com/file/d/0B5IJ1w6MjxegSlhFc2xPOW9fRE0/view?usp=sharing)
 
-[Implementacion](codigo)
+[Implementación](codigo)
 
 ## Referencias:
 
