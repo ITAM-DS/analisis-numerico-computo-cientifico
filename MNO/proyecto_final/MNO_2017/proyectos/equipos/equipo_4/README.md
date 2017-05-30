@@ -93,6 +93,7 @@ Durante esta semana se programó la multiplicación de matrices en *pthreads* ut
 [Implementación](codigo)
 
 [Presentación](https://www.dropbox.com/s/ryj5rq1jlmqmz6v/presentacion_final_toom_cook.pdf?dl=0)
+
 ---
 
 ### Referencias:
