@@ -17,7 +17,7 @@
 
 ### Trabajo en equipo / individual:
 
-  - Nos encontramos con una posibilidad de optiizacion del algoritmo de softmax a softmax jerarquico, que utiliza árboles binarios de Huffman para armar los caminos de las cercanías de las palabras usando la representación del codigo binario de la palabra dado el contexto
+  - Nos encontramos con una posibilidad de optimizacion del algoritmo de softmax a softmax jerarquico, que utiliza árboles binarios de Huffman para armar los caminos de las cercanías de las palabras usando la representación del codigo binario de la palabra dado el contexto
 
   
   - Agregamos nociones de Optimizacion no Lineales al documento final
