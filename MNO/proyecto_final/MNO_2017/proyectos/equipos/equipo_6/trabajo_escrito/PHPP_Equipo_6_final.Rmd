@@ -1,0 +1,247 @@
+---
+title: "Plataforma Hibrida de Procesamiento Paralelo (PHPP)"
+author: "Equipo_6  Adrian Vazquez - Ricardo Lastra"
+date: "29 de mayo de 2017"
+output:
+  html_document: default
+  pdf_document: default
+pdf_document: default
+---
+```{r, include=FALSE}
+library(mrbsizeR)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+&nbsp;
+
+* __Introducción__
+
+Mediante el siguiente reporte  mostraremos la aplicación de herramientas innovadoras  de cómputo en paralelo y cómputo matricial, así como explicaremos una implementación de la factorización SVD a la vida real en el ramo de Seguros de Automóviles.
+
+Describiremos un panorama innovador para la lectura y cómputo de imágenes, su descomposición y composición de una forma matricial a otra a través de un método de cómputo en paralelo implementado en una extensión del conocido lenguaje C.
+
+&nbsp;
+
+* __Objetivo__
+
+Nuestro objetivo es diseñar e implementar una plataforma hibrida basada en el procesamiento de GPU's para la ejecución en paralelo de la factorización SVD como sigue:
+
+  1. Implementar Plataforma Hibrida de procesamiento en Paralelo (PHPP)
+  2. Implementar la factorización de una matriz SVD en cómputo en paralelo con CUDA-C. Dentro de este objetivo buscaremos cubrir los
+  siguientes objetivos particulares:
+      a. Obtener los valores singulares de una imagen visualizada como una matriz.
+      b. Lograr una la reconstrucción de una imagen a partir de valores singulares computados por CUDA-C y las funciones cuBLAS.
+      
+&nbsp;
+
+* __Problema a resolver__
+
+En la actualidad las empresas de seguros tienen gastos considerables para el manejo de documentos digitales. La cantidad de información que se genera a partir de fotografías o documentos digitalizados derivados de la operación de seguros crece muy rápido. Por esta situación cada vez se hace más complejo el control de dicha información.
+
+En una compañía de seguros de tamaño medio, se digitalizan más de 3,000 documentos diariamente, además de los documentos que se reciben a través de la red por parte de los proveedores, ajustadores y clientes mismos. Es por ello que integrar cada documento a un expediente digital se hace una tarea difícil. 
+
+Aunque existen ya herramientas que provee el mercado para el manejo y visualización de estos documentos, trabajar con imágenes de gran tamaño es todo un reto. Entonces se buscara resolver el problema de dimensión o tamaño de una imagen y una forma inteligente de almacenarla y visualizarla a través de las herramientas de computo en paralelo que existen hoy en día.
+
+
+&nbsp;
+
+* __Motivación__
+
+La motivación de realizar una implementación inteligente a nuestro problema se fundamenta por 2 cosas.
+
+  1. La gran potencia computacional y ancho de banda de memoria muy alta con la que se cuenta hoy en día a través de una GPU  es increíble, gracias a NVIDIA y su capacidad de satisfacer al mercado de un insaciable "tiempo real" ha permitido que sus
+  tarjetas gráficas a través del lenguaje CUDA-C  conviertan el procesamiento de gráficos a un propósito general;
+  entonces las aplicaciones pueden ser tantas nuestra mente pueda imaginar.
+  
+  2. La gran tendencia al uso de programas OpenSource y la eficiencia de las rutinas ya establecidas en los diferentes
+  lenguajes de programación, nos impulsa a generar modelos de rápido desarrollo y fácil aplicación. La simplicidad de
+  lenguajes como R o Python nos permite computar operaciones básicas del algebra lineal y a través de extensiones del     
+  lenguaje C podemos computar estas operaciones en paralelo, lo que hace esto aún más útil e interesante.
+
+&nbsp;
+  
+* __Software utilizado__
+
+  + CUDA-C 8.0
+    + CuBlas 8.0.6
+    + cusolverDn
+    + cusolverDnDgesvd
+    
+  + RStudio
+    + R Markdown
+    + mrbsizeR
+    
+  + Python 3.5
+    + matplotlib
+    + numpy
+    + PIL
+    + csv
+
+&nbsp;
+
+* __Datos__
+
+Para nuestro problema utilizamos varias imagenes de muestra las cuales fueron cargadas a Python y con la libreria Pil obtuvimos el contenido de las imagenes como un objeto con cada valor de un pixel. Posteriormente estos valores fueron acomodados al orden de una matriz `A` de $MxN$.
+
+La imagen que usamos fue la siguiente:
+
+```{r fig.width=1.5, fig.height=1.5,echo=FALSE, fig.align = "center"}
+library(png)
+library(grid)
+img1 <- readPNG("C:/Users/FORANEA110/Desktop/METODOS_NUMERICOS/Trabajo_escrito/tesla_img.png")
+grid.raster(img1)
+```
+
+Su representación matricial es:
+
+```{r fig.width=2, fig.height=1.5,echo=FALSE, fig.align = "center"}
+library(png)
+library(grid)
+img2 <- readPNG("C:/Users/FORANEA110/Desktop/METODOS_NUMERICOS/Trabajo_escrito/tesla_matrix.png")
+grid.raster(img2)
+```
+
+&nbsp;
+
+* __Arquitectura__
+
+La arquitectura propuesta al inicio de la investigación con Sun Grid Engine o MPI convertía a nuestro problema en un problema híbrido, ya que se trataban de diferentes componentes de arquitectura para resolver un mismo problema. Sin embargo durante la investigación nos percatamos que el uso de GPU local era muy eficiente.
+
+Logramos configurar algunas máquinas de Amazon así como levantar algunos clusters con Docker para el uso de CUDA, sin embargo, la arquitectura final fue local para convertir el problema en algo más sencillo.
+
+Se definió un pipeline local, usando Python para la lectura de imágenes y su transformación a forma matricial, se importaron estos valores con CUDA-C, computando la $SVD$ con __cusolverDnDgesvd__ para que posteriormente los resultados fueran leídos nuevamente por Python y a su vez interpretados. 
+
+De esta forma, dejamos la parte computacional pesada a la tarjeta grafica de NVIDIA y la parte sencilla a nuestro CPU.
+
+
+&nbsp;
+
+* __Método__
+
+Para nuestro problema usamos la factorización SVD o "Descomposicion de Valores Singulares".
+
+La forma de $SVD$ es: $A=U\Sigma V^T$ 
+
+Donde:
+$U$ es una matriz unitaria $mxm$ (entonces $K=R$ las matrices unitarias son matrices ortogonales).
+
+$\Sigma$ es una matriz diagonal $mxn$ con numeros reales no negativos en la diagonal.
+
+$V$ es una matriz unitaria $nxn$ sobre $K$.
+
+$V^*$ es la matriz unitaria transpuesta ortogonal $nxn$ de $V$.
+
+El método numerico para calcular la SVD que usa nuestra libreria implementada __cusolverDnDgesvd__ es el metodo `thin`.
+
+Este método `thin` nos dice que necesitamos encontrar la matriz $Vi$ ortogonal de $nxn$ y una matriz $Ui$ con columnas ortonormales de $mxn$ tales que $Ui^T A-V=B$ sea Bidiagonal.
+
+Las entradas diagonales $Sigma i$ de $\Sigma$ son conocidos como los valores singulares de $A$, los $Ui$ son los vectores singulares izquierdos de $A$, los $Vi$ son los vectores singulares derechos de $A$
+
+La siguiente imagen ilustra como suceden estas transformaciones:
+
+```{r fig.width=3, fig.height=3,echo=FALSE, fig.align = "center"}
+library(png)
+library(grid)
+img3 <- readPNG("C:/Users/FORANEA110/Desktop/METODOS_NUMERICOS/Trabajo_escrito/svd.png")
+grid.raster(img3)
+```
+
+&nbsp;
+
+* __Código__
+
+La implementación de SVD en CUDA con __cuBLAS__ y __cusolverDnDgesvd__ fue lo más complejo ya que hay que entender los parametros de las librerias, la forma de alojamiento de los datos en memoria  y lo mas importante los **inputs** y __outputs__ que brindan las rutinas.
+
+Al inicio de nuestra investigación pudimos correr prubas locales, comparando los resultados obtenidos a través de nuestro demo con CUDA y los mismos resultados con Python. De esta forma pudimos optimizar el tiempo para buscar soluciones en la arquitectura.
+
+Al introducir una imagen real a nuestro programa, pudimos observar cosas importantes en esta implemetación.
+
+  a. Observamos la facilidad de reconstruccion de una imagen vector a vector teniendo ya los valores singulares.
+  b. Observamos que los calculos con la rutina __gesvd__ solo soportaban matrices $m>=n$.
+  c. Tambien nos dimos cuenta que la rutina __gesvd__ en su valor de ssalida de $V$ nos devuielve unicamente $V^T$ y no solo
+  $V$.
+
+&nbsp;
+
+* __Resultados__
+
+En la primera prueba pudimos validar los resultados de la siguiente forma:
+
+```{r fig.width=3, fig.height=3,echo=FALSE, fig.align = "center"}
+library(png)
+library(grid)
+img4 <- readPNG("C:/Users/FORANEA110/Desktop/METODOS_NUMERICOS/Trabajo_escrito/cuda_python_resul.png")
+grid.raster(img4)
+```
+
+&nbsp;
+
+Entonces comparando los resultados obtenidos de una matriz mas grande con Python y con CUDA visualizando solo los numeros, no es lo optimo. Asi que en el pipeline despues de computar la $SVD$ con __cusolverDnDgesvd__ los resultados son regresados a Python para que puedan ser computadas las aproximaciones usando la primera columna de $U$ y la primera fila de $V$ reporduciendo la imagen, cada columna de pixeles es una ponderacion de los mismos valores originales $\overrightarrow{U}_1$. Con estas aproximaciones validamos que conforme tomamos mas vectores, la imagen se reconstruye con una mejor calidad visual. (Ver siguientes 4 imágenes)
+
+```{r fig.width=4, fig.height=4,echo=FALSE, fig.align = "center"}
+library(png)
+library(lattice)
+library(grid)
+lims <- current.panel.limits()
+x <- 1:2
+y <- 1:2
+ll <- list.files(path="C:/Users/FORANEA110/Desktop/METODOS_NUMERICOS/Trabajo_escrito/", patt= "^[t]",full.names=T)
+imgs <- lapply(ll,function(x){
+       as.raster(readPNG(x))  
+   })
+dat <- expand.grid(x,y)
+xyplot(Var2~Var1|rownames(dat),data=dat,layout=c(2,2),
+      panel=function(x,y,...){
+        lims <- current.panel.limits()
+        grid.raster(image =imgs[[panel.number()]],sum(lims$xlim)/2,sum(lims$ylim)/2,
+                                      width =diff(lims$xlim),
+                                          height=diff(lims$ylim),def='native' )
+
+       })
+```
+
+&nbsp;
+
+* __Conclusiones__
+
+Pudimos observar el poder de cómputo a través de la GPU y comprobamos que es muy viable su uso en producción, es decir, es posible implementar en un flujo de trabajo ya establecido algunos métodos numéricos programados en CUDA. Como principal ventaja de los modelos en paralelo es que las rutinas pueden ser llamadas múltiples veces, dependerá de la capacidad del programador la eficiencia del modelo.
+
+Logramos al final un pipeline muy sencillo para resolver nuestro problema, evitando arquitecturas complejas y robustas. Pudimos comprobar a través de este pipeline la calidad de los resultados al computar __SVD__ con __cusolverDnDgesvd__, ya que pudimos reconstruir la imagen original 
+
+Observamos tal como vimos en clase que la __SVD__ existe para todas las matrices y con __cusolverDn__ CUDA define los inputs de las matrices, es decir, CUDA permite alojar diferentes tipos de variables de entrada.
+
+Así mismo llegamos a la conclusión que las áreas que puede abarcar aplicar SVD a imágenes son muy amplias, ya que podemos hacer un ensamble de modelos de Machine Learning para detección de patrones, para indexado automático, y para búsquedas rápidas de imágenes.
+
+&nbsp;
+
+* __Por hacer__
+
+Nos quedamos con la satisfacción del modelo para implementarlo, aunque la curva de aprendizaje fue difícil, no tardamos mucho tiempo en obtener resultados positivos de la factorización `SVD`. El comprobarlos con Python fue fácil, lo que nos despierta más entusiasmo para poder implementar modelos de Machine Learning e irlos cotejando como lo hicimos con `SVD`.
+
+Pensamos que una versión mas nueva en `AWS` de las Amis de CUDA podrían ser una solución muy rentable a muchos problemas de computo
+numérico, la relación costo beneficio hoy en día es un equilibrio perfecto para considerar una EC2 en un producto de datos.
+
+Así mismo se piensa desarrollar un proyecto interno de Seguros para implementar `SVD` en algunas áreas operativas que por cuestiones de privacidad no se darán muchos detalles.
+
+&nbsp;
+
+* __Referencias__
+
+http://math.nist.gov/~RPozo/
+
+https://en.wikipedia.org/wiki/JAMA_(numerical_linear_algebra_library)
+
+
+https://en.wikipedia.org/wiki/Singular_value_decomposition
+
+
+ftp://ece.buap.mx/pub/profesor/academ48/Libros/TesisDavid.pdf
+
+SVD en cuda: S. Lahabar, P. J. Narayanan. Singular Value Decomposition on GPU using CUDA
+
+G. Golub, W. Kahan. Calculating the singular values and pseudo inverse of a matrix y el capítulo 8 del libro: G. H. Golub, C. F. Van Loan, Matrix Computations. John Hopkins University Press, 2013
+
+Algebra Lineal de Mina S. de Carakushansky y guilherme de La Penha Editorial Ma Graw Hill
