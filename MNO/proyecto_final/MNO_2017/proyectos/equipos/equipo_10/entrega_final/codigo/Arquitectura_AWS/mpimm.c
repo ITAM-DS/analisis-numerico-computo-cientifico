@@ -14,7 +14,7 @@ void read_file(FILE *fp, int* rowMaxIndex, int* columnMaxIndex);
 double** allocate_matrix(int rowMaxIndex, int columnMaxIndex, FILE *fp);
 int main (int argc, char *argv[])
 {
-intnumtasks,              /* number of tasks in partition */
+int numtasks,              /* number of tasks in partition */
 taskid,                /* a task identifier */
 numworkers,            /* number of worker tasks */
 source,                /* task id of message source */
@@ -94,7 +94,7 @@ exit(1);
          source = i;
          MPI_Recv(\&offset, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, \&status);
          MPI_Recv(\&rows, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, \&status);
-         MPI_Recv(\&c[offset][0], rows*NCB, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, \&status);
+         MPI_Recv(\&c[offset][0], rows*NCA, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, \&status);
          printf("Received results from task %d\n",source);
       }
 
@@ -126,7 +126,7 @@ printf("%6.2f   ", c[i][j]);
          for (i=0; i<rows; i++)
          {
             c[i][k] = 0.0;
-            for (j=0; j<NRA; j++)
+            for (j=0; j<NCA; j++)
                c[i][k] = c[i][k] + a[i][j] * b[j][k];
          }
       mtype = FROM_WORKER;

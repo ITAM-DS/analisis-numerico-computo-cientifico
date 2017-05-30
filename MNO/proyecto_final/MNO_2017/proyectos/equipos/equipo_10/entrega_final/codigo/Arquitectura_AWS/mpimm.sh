@@ -117,7 +117,7 @@ exit(1);
          source = i;
          MPI_Recv(&offset, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
          MPI_Recv(&rows, 1, MPI_INT, source, mtype, MPI_COMM_WORLD, &status);
-         MPI_Recv(&c[offset][0], rows*NCB, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, &status);
+         MPI_Recv(&c[offset][0], rows*NCA, MPI_DOUBLE, source, mtype, MPI_COMM_WORLD, &status);
          printf(\"Received results from task %d\n\",source);
       }
 
@@ -151,7 +151,7 @@ exit(1);
          for (i=0; i<rows; i++)
          {
 	   c[i][k]= 0.0;
-            for (j=0; j<NRA; j++)
+            for (j=0; j<NCA; j++)
                c[i][k] = c[i][k] + a[i][j] * b[j][k];
        //printf(\"c[%d][%d]: %f\n\", i,k,c[i][k]);
          }
