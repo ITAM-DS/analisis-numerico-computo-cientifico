@@ -1,7 +1,7 @@
 
 **Equipo 3**
 
-Esta semana terminamos las diferentes partes del trabajo escrto y la presentación final.
+Esta semana terminamos las diferentes partes del trabajo escrito y la presentación final.
 
 **Camilo**
 A mi me tocó elavorar la presentación, corregir y redactar la mitad de documento.
