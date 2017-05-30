@@ -4,13 +4,13 @@
 
 ## [Equipo 1](equipos/equipo_1)
 
-Titulo del proyecto: `Paralelización del algoritmo Word2Vec.`
+Titulo del proyecto: `ParalelizaciÃ³n del algoritmo Word2Vec.`
 
-**Objetivo del proyecto:** _*Optimizar el algoritmo Word2Vec (CBOW) a través de la paralelización de redes neuronales de retro propagación implementado con PyCuda.*_
+**Objetivo del proyecto:** _*Optimizar el algoritmo Word2Vec (CBOW) a travÃ©s de la paralelizaciÃ³n de redes neuronales de retro propagaciÃ³n implementado con PyCuda.*_
 
   * Avances del proyecto:
 
-    - [Avance 07-04-2017](equipos/equipo_1/avance_07_04_2017). Comentario del prof: avance actualizado y allí aparecen referencias para multiplicación de matrices en CUDA (que fue el método que se habló personalmente). Para el siguiente avance revísenlas para que esté clara la dificultad de la implementación en paralelo de este método y también discutan sus referencias del word embedding para definir objetivo del proyecto (consideren tiempos y entendimiento del material). Hay algunas dudas espero me puedan responder :)
+    - [Avance 07-04-2017](equipos/equipo_1/avance_07_04_2017). Comentario del prof: avance actualizado y allÃ­ aparecen referencias para multiplicaciÃ³n de matrices en CUDA (que fue el mÃ©todo que se hablÃ³ personalmente). Para el siguiente avance revÃ­senlas para que estÃ© clara la dificultad de la implementaciÃ³n en paralelo de este mÃ©todo y tambiÃ©n discutan sus referencias del word embedding para definir objetivo del proyecto (consideren tiempos y entendimiento del material). Hay algunas dudas espero me puedan responder :)
     
     - [Avance 17-04-2017](equipos/equipo_1/avance_17_04_2017)
 
@@ -19,11 +19,11 @@ Titulo del proyecto: `Paralelización del algoritmo Word2Vec.`
 
 ## [Equipo 2](equipos/equipo_2)
 
-Titulo del proyecto: `Solución de Mínimos Cuadrados con Factorización QR vía transformaciones Househoulder.`
+Titulo del proyecto: `SoluciÃ³n de MÃ­nimos Cuadrados con FactorizaciÃ³n QR vÃ­a transformaciones Househoulder.`
 
-Objetivo del proyecto: Investigar e implementar el algoritmo de factorización QR utilizando reflexiones de Householder así como su aplicación para la solución de mínimos cuadrados. 
+Objetivo del proyecto: Investigar e implementar el algoritmo de factorizaciÃ³n QR utilizando reflexiones de Householder asÃ­ como su aplicaciÃ³n para la soluciÃ³n de mÃ­nimos cuadrados. 
 
-* [Avance 07-04-2017](equipos/equipo_2/avance_07_04_2017). Comentario del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teoría. Hay referencias en el [README.md](equipo_2), acótense a éstas. (Es buena idea normalizar el nombre de su carpeta equipo_2 al de equipo_2 :), hagan los cambios necesarios para que las ligas estén correctas de acuerdo al nombre equipo_2)
+* [Avance 07-04-2017](equipos/equipo_2/avance_07_04_2017). Comentario del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teorÃ­a. Hay referencias en el [README.md](equipo_2), acÃ³tense a Ã©stas. (Es buena idea normalizar el nombre de su carpeta equipo_2 al de equipo_2 :), hagan los cambios necesarios para que las ligas estÃ©n correctas de acuerdo al nombre equipo_2)
 
 * [Avance 17-04-2017](equipos/equipo_2/avance_17_04_2017).
 
@@ -43,13 +43,13 @@ Objetivo del proyecto: Investigar e implementar el algoritmo de factorización Q
 
 ## [Equipo 3](equipos/equipo_3)
 
-Título del proyecto: Integración MC (Reglas de integración)
+TÃ­tulo del proyecto: IntegraciÃ³n MC (Reglas de integraciÃ³n)
 
-Objetivo: Generar un algoritmo en MPI para el método de integración Monte Carlo para estimar integrales multidimensionales.
+Objetivo: Generar un algoritmo en MPI para el mÃ©todo de integraciÃ³n Monte Carlo para estimar integrales multidimensionales.
 
 Objetivo adicional: Aplicar el algorithmo MCMC:Metropilis-Hasting para estimar integrales multidimensionales.
 
-[Avance 07-04-2017](equipos/equipo_3/avance_07_04_2017). Comentario del prof: avance actualizado y allí aparecen referencias para la generación de números aleatorios en paralelo. Para el siguiente avance revísenlas (junto con las referencias de la integración por MC) para que esté clara la dificultad de la implementación en paralelo del método que elijan.
+[Avance 07-04-2017](equipos/equipo_3/avance_07_04_2017). Comentario del prof: avance actualizado y allÃ­ aparecen referencias para la generaciÃ³n de nÃºmeros aleatorios en paralelo. Para el siguiente avance revÃ­senlas (junto con las referencias de la integraciÃ³n por MC) para que estÃ© clara la dificultad de la implementaciÃ³n en paralelo del mÃ©todo que elijan.
 
 * [Avance 17-04-2017](equipos/equipo_3/avance_17_04_2017).
 
@@ -63,11 +63,11 @@ Objetivo adicional: Aplicar el algorithmo MCMC:Metropilis-Hasting para estimar i
 
 ## [Equipo 4](equipos/equipo_4)
 
-Titulo del proyecto: `Implementación de multiplicación de números grandes sin perdida de precisión.`
+Titulo del proyecto: `ImplementaciÃ³n de multiplicaciÃ³n de nÃºmeros grandes sin perdida de precisiÃ³n.`
 
-Objetivo del proyecto: Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de grandes números sin perder precisión en los cálculos.
+Objetivo del proyecto: Implementar el algoritmo de Toom-Cook para realizar multiplicaciones de grandes nÃºmeros sin perder precisiÃ³n en los cÃ¡lculos.
 
-* [Avance 07-04-2017](equipos/equipo_4/avance_07_04_2017). Comentario del prof: no está creado el directorio "avance_07_04_2017", no estaba actualizado este README.md con la descripción que se pide (título, objetivo, avances), las ligas de referencias que te llevan a un dropbox es mejor si las separan por bullets en su README.md del nivel de equipo_4, no hay descripción de trabajo individual, ni de equipo. Sé que me han platicado de su proyecto personalmente pero, en verdad esta es la entrega de su primer avance? Observen lo que han realizado los equipos 6, 10 u 11...
+* [Avance 07-04-2017](equipos/equipo_4/avance_07_04_2017). Comentario del prof: no estÃ¡ creado el directorio "avance_07_04_2017", no estaba actualizado este README.md con la descripciÃ³n que se pide (tÃ­tulo, objetivo, avances), las ligas de referencias que te llevan a un dropbox es mejor si las separan por bullets en su README.md del nivel de equipo_4, no hay descripciÃ³n de trabajo individual, ni de equipo. SÃ© que me han platicado de su proyecto personalmente pero, en verdad esta es la entrega de su primer avance? Observen lo que han realizado los equipos 6, 10 u 11...
 
 Entregas fuera de tiempo y en forma como se solicitan.
 
@@ -90,13 +90,13 @@ Entregas fuera de tiempo y en forma como se solicitan.
 ---
 ## [Equipo 5](equipos/equipo_5)
 
-Título del proyecto: `Policy Gradients utilizando CUDA aplicado al juego Breakout de ATARI`
+TÃ­tulo del proyecto: `Policy Gradients utilizando CUDA aplicado al juego Breakout de ATARI`
 
-Objetivo del proyecto: Crear de un agente que pueda aprender a jugar el videojuego Breakout a partir de la secuencia de matrices de pixeles que constituyen el juego. Para lograr esto, se propone el uso de una red neuronal utilizando el método clásicos de optimización descenso de gradiente. La entrada de la red sería la matriz de pixeles y la salida es un elemento del espacio de acciones que el agente puede tomar.
+Objetivo del proyecto: Crear de un agente que pueda aprender a jugar el videojuego Breakout a partir de la secuencia de matrices de pixeles que constituyen el juego. Para lograr esto, se propone el uso de una red neuronal utilizando el mÃ©todo clÃ¡sicos de optimizaciÃ³n descenso de gradiente. La entrada de la red serÃ­a la matriz de pixeles y la salida es un elemento del espacio de acciones que el agente puede tomar.
 
 * [Avance 07-04-2017](equipos/equipo_5/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay sugerencias en cuanto al objetivo del proyecto.
 
-* [Avance 07-04-2017](equipos/equipo_5/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Lean las referencias que están en este 2o avance para el 3ero.
+* [Avance 07-04-2017](equipos/equipo_5/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Lean las referencias que estÃ¡n en este 2o avance para el 3ero.
 
 ---
 
@@ -104,9 +104,9 @@ Objetivo del proyecto: Crear de un agente que pueda aprender a jugar el videojue
 
 Titulo del proyecto: `Plataforma Hibrida de Procesamiento Paralelo (PHPP)`
 
-Objetivo del proyecto: Diseñar e implementar una plataforma hibrida (MPI/CUDA-C) basada en el procesamiento de GPU's para la ejecución en paralelo de la factorización SVD.
+Objetivo del proyecto: DiseÃ±ar e implementar una plataforma hibrida (MPI/CUDA-C) basada en el procesamiento de GPU's para la ejecuciÃ³n en paralelo de la factorizaciÃ³n SVD.
 
-* [Avance 07-04-2017](equipos/equipo_6/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios y hay preguntas que espero me puedan responder :). Hay referencias para la teoría de la SVD en el [README.md](equipo_6/). Muy bien con respecto a `nvidia-docker`. Para el segundo avance revisen la teoría de la SVD y debemos determinar la herramienta para la distribución de los chunks de sus datos.
+* [Avance 07-04-2017](equipos/equipo_6/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios y hay preguntas que espero me puedan responder :). Hay referencias para la teorÃ­a de la SVD en el [README.md](equipo_6/). Muy bien con respecto a `nvidia-docker`. Para el segundo avance revisen la teorÃ­a de la SVD y debemos determinar la herramienta para la distribuciÃ³n de los chunks de sus datos.
 
 * [Avance 17-04-2017](equipos/equipo_6/avance_17_04_2017). Comentario del prof:
 
@@ -118,9 +118,9 @@ Objetivo del proyecto: Diseñar e implementar una plataforma hibrida (MPI/CUDA-C
 
 [Trabajo escrito](equipos/equipo_6/trabajo_escrito.md).
 
-[Presentaci�n](equipos/equipo_6/presentacion.md).
+[Presentación](equipos/equipo_6/presentacion.md).
 
-[Implementaci�n](equipos/equipo_6/implementacion.md).
+[Implementación](equipos/equipo_6/implementacion.md).
 
 ---
 
@@ -133,7 +133,7 @@ Objetivo del proyecto: El objetivo del proyecto es utilizar la API de OpenMP par
 [Avances del proyecto](equipos/equipo_7):
 
 * [Avance 07-04-2017](equipos/equipo_7/avance_07_04_2017). Comentario del prof: Avance actualizado. 
-* [Avance 17-04-2017](equipos/equipo_7/avance_17_04_2017). Comentario del prof: Lo que tienen en el avance_17_04_2017 lo tomo como avance_07_04_2017 (pues en el momento que revisé estaba este avance_17_04_2017). Revisen comentarios de ambos avances. Muevan, actualicen lo necesario en sus README's de sus avances. Hay una nueva referencia en [README.md](equipos/equipo_7) que seguro les ayuda.
+* [Avance 17-04-2017](equipos/equipo_7/avance_17_04_2017). Comentario del prof: Lo que tienen en el avance_17_04_2017 lo tomo como avance_07_04_2017 (pues en el momento que revisÃ© estaba este avance_17_04_2017). Revisen comentarios de ambos avances. Muevan, actualicen lo necesario en sus README's de sus avances. Hay una nueva referencia en [README.md](equipos/equipo_7) que seguro les ayuda.
 
 ---
 
@@ -146,11 +146,11 @@ Objetivo del proyecto: El objetivo del proyecto es utilizar la API de OpenMP par
 
 ## [Equipo 9](equipos/equipo_9)
 
-Título del proyecto: `Método de Diferencias Finitas para 3 dimensiones en CUDA-C`
+TÃ­tulo del proyecto: `MÃ©todo de Diferencias Finitas para 3 dimensiones en CUDA-C`
 
-Objetivo del proyecto:  Entender y exponer el algoritmo de Diferencias Finitas en 3 dimensiones así como su implementación vía GPU's y una aplicación del mismo a las ecuaciones diferenciales.
+Objetivo del proyecto:  Entender y exponer el algoritmo de Diferencias Finitas en 3 dimensiones asÃ­ como su implementaciÃ³n vÃ­a GPU's y una aplicaciÃ³n del mismo a las ecuaciones diferenciales.
 
-* [Avance 07-04-2017](equipos/equipo_9/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios y hay preguntas que espero me puedan responder :). Muy buen avance. Para el siguiente avance podrían escribir en el trabajo individual lo que han revisado, entendido, como tipo discusión.
+* [Avance 07-04-2017](equipos/equipo_9/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios y hay preguntas que espero me puedan responder :). Muy buen avance. Para el siguiente avance podrÃ­an escribir en el trabajo individual lo que han revisado, entendido, como tipo discusiÃ³n.
 
 * [Avance 17-04-2017](equipos/equipo_9/avance_17_04_2017). Comentario del prof: 
 
@@ -167,11 +167,11 @@ Objetivo del proyecto:  Entender y exponer el algoritmo de Diferencias Finitas e
 
 ## [Equipo 10](equipos/equipo_10)
 
-Titulo del proyecto: `Multipliación de matrices en un ambiente MPI distribuido usando AWS, docker, swarm y compose`
+Titulo del proyecto: `MultipliaciÃ³n de matrices en un ambiente MPI distribuido usando AWS, docker, swarm y compose`
 
-Objetivo del proyecto: Construir un ambiente distribuido y portable que permita la multiplicación de matrices.
+Objetivo del proyecto: Construir un ambiente distribuido y portable que permita la multiplicaciÃ³n de matrices.
 
-* [Avance 07-04-2017](equipos/equipo_10/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay referencias en el [README.md](equipo_10). Para el segundo avance realicen la lectura de esas referencias y lo que mencionan en este readme, pero determinen si eligen multiplicación de matrices o factorización LU de acuerdo a lo que lean, entiendan y consideren tiempos. También es importante que prueben `hello worlds` en cada máquina en el AWS con mpi, docker swarm y compose.
+* [Avance 07-04-2017](equipos/equipo_10/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay referencias en el [README.md](equipo_10). Para el segundo avance realicen la lectura de esas referencias y lo que mencionan en este readme, pero determinen si eligen multiplicaciÃ³n de matrices o factorizaciÃ³n LU de acuerdo a lo que lean, entiendan y consideren tiempos. TambiÃ©n es importante que prueben `hello worlds` en cada mÃ¡quina en el AWS con mpi, docker swarm y compose.
 
 * [Avance 17-04-2017](equipos/equipo_10/avance_17_04_2017).
 
@@ -188,20 +188,20 @@ Objetivo del proyecto: Construir un ambiente distribuido y portable que permita 
 
 ## [Equipo 11](equipos/equipo_11)
 
-Título del proyecto: `PCA aplicado al consumo de Proteínas en las Dietas de 25 Países`
+TÃ­tulo del proyecto: `PCA aplicado al consumo de ProteÃ­nas en las Dietas de 25 PaÃ­ses`
 
 Objetivo del proyecto: El objetivo del proyecto es 
-detectar patrones de consumo de proteínas en las dietas
+detectar patrones de consumo de proteÃ­nas en las dietas
 de 25 pases implementando componentes principales y 
-descomposición de valores singulares (SVD) en 
-el lenguaje de programación C usando metodologías
-computacionales de optimización.
+descomposiciÃ³n de valores singulares (SVD) en 
+el lenguaje de programaciÃ³n C usando metodologÃ­as
+computacionales de optimizaciÃ³n.
 
 [Avances del proyecto](equipos/equipo_11):
 
-* [Avance 07-04-2017](equipos/equipo_11/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay tres nuevas referencias en [REAMDE.md](equipo_11). Muy buen avance en la lectura de la teoría y el objetivo a realizar. Hay que hacer la liga con componentes principales y ver implementación de algún ordenamiento (por ejemplo el round robin) para el segundo avance.
+* [Avance 07-04-2017](equipos/equipo_11/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Hay tres nuevas referencias en [REAMDE.md](equipo_11). Muy buen avance en la lectura de la teorÃ­a y el objetivo a realizar. Hay que hacer la liga con componentes principales y ver implementaciÃ³n de algÃºn ordenamiento (por ejemplo el round robin) para el segundo avance.
 
-* [Avance 17-04-2017](equipos/equipo_11/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Para el tercer avance revisen la referencia de P. Pacheco, Parallel programming with MPI para distribución de columnas. Hay nuevas referencias para el método one sided jacobi por bloques (si a alguna le interesa puede revisarlas pero esto es para futuro trabajo, no indispensable para la entrega del proyecto final).
+* [Avance 17-04-2017](equipos/equipo_11/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Para el tercer avance revisen la referencia de P. Pacheco, Parallel programming with MPI para distribuciÃ³n de columnas. Hay nuevas referencias para el mÃ©todo one sided jacobi por bloques (si a alguna le interesa puede revisarlas pero esto es para futuro trabajo, no indispensable para la entrega del proyecto final).
 
 * [Avance 24-04-2017](equipos/equipo_11/avance_24_04_2017). 
 
@@ -215,27 +215,39 @@ computacionales de optimización.
 
 [Trabajo escrito](equipos/equipo_11/trabajo_escrito).
 
-[Presentación](equipos/equipo_11/presentacion).
+[PresentaciÃ³n](equipos/equipo_11/presentacion).
 
-[Implementación](equipos/equipo_11/implementacion).
+[ImplementaciÃ³n](equipos/equipo_11/implementacion).
 
 ---
 ## [Equipo 12](equipos/equipo_12)
+Título del proyecto: Programación paralela de la descomposición de matrices LU.
 
-* [Avance 07-04-2017](equipos/equipo_12/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Las referencias las coloqué en [readme.md](equipo_12). Para el segundo avance deben leer las referencias. (es buena idea normalizar el nombre readme.md a README.md :), hagan los cambios necesarios para que las ligas estén correctas de acuerdo al nombre README.md)
+Objetivo del proyecto: El objetivo del proyecto es aplicar programación paralela a través del uso de MPI con la intención de factorizar cualquier matriz cuadrada con el método LU, una matriz L triangular inferior con 1's en la diagonal y una matriz U triangular superior, de tal forma que A pueda ser escrita como A=LU.
 
+* [Avance 1](equipos/equipo_12/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Las referencias las coloquÃ© en [readme.md](equipo_12). Para el segundo avance deben leer las referencias. (es buena idea normalizar el nombre readme.md a README.md :), hagan los cambios necesarios para que las ligas estÃ©n correctas de acuerdo al nombre README.md)
+
+* [Avance 2](equipos/equipo_12/avance_02)
+
+* [Avance 3](equipos/equipo_12/avance_03)
+
+* [Avance 4](equipos/equipo_12/avance_04)
+
+* [Avance 5](equipos/equipo_12/avance_06)
+
+* [Reporte Final](equipos/equipo_12/reporte_final)
 
 ---
 
 ## [Equipo 13](equipos/equipo_13)
 
-Título del proyecto: `Implementación en CUDA para la obtención de matrices Nonbacktracking`
+TÃ­tulo del proyecto: `ImplementaciÃ³n en CUDA para la obtenciÃ³n de matrices Nonbacktracking`
 
-Objetivo del proyecto: Crear un script que haga eficiente la obtención de una matriz nonbacktracking dado un archivo de extensión gml que represente a una red o un grafo. Debido al alto requerimiento de operaciones que esto requiere, se utilizará una implementación en CUDA C para llevar a cabo lo anterior. Dicha matriz es de interés pues muchos estudios están demostrando la gran diversidad de problemas que se pueden resolver gracias a ella dado que es posible representar caminatas aleatorias sin retornos mediante la misma pudiendo así llevar a terrenos conocidos cuestiones como la percolación óptima o detectar comunidades.
+Objetivo del proyecto: Crear un script que haga eficiente la obtenciÃ³n de una matriz nonbacktracking dado un archivo de extensiÃ³n gml que represente a una red o un grafo. Debido al alto requerimiento de operaciones que esto requiere, se utilizarÃ¡ una implementaciÃ³n en CUDA C para llevar a cabo lo anterior. Dicha matriz es de interÃ©s pues muchos estudios estÃ¡n demostrando la gran diversidad de problemas que se pueden resolver gracias a ella dado que es posible representar caminatas aleatorias sin retornos mediante la misma pudiendo asÃ­ llevar a terrenos conocidos cuestiones como la percolaciÃ³n Ã³ptima o detectar comunidades.
 
 [Avances del proyecto](equipos/equipo_13):
 
-* [Avance 07-04-2017](equipos/equipo_13/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios, hay una pregunta allí espero me puedan responder :) Muy bien respecto a su lectura y trabajo en equipo. Para el segundo avance pueden avanzar en implementación en C. 
+* [Avance 07-04-2017](equipos/equipo_13/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios, hay una pregunta allÃ­ espero me puedan responder :) Muy bien respecto a su lectura y trabajo en equipo. Para el segundo avance pueden avanzar en implementaciÃ³n en C. 
 
 * [Avance 17-04-2017](equipos/equipo_13/avance_17_04_2017). 
 
