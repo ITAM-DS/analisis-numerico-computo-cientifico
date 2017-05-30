@@ -16,8 +16,9 @@ Nuestro objetivo es crear un agente que pueda aprender a jugar el videojuego Pon
 ## Introducción
 
 Hay dos tipos de problemas de optimización que surgen en machine learning:
-- problemas de optimización convexa -derivados de el uso de regresión logística o support vector machines
-- problemas no convexos y altamente no lineales -derivados del uso de redes neuronales DNN.
+
+* problemas de optimización convexa -derivados de el uso de regresión logística o support vector machines
+* problemas no convexos y altamente no lineales -derivados del uso de redes neuronales DNN
 
 En el contexto de machine learning a gran escala se ha tenido gran interés la propuesta de Robbins y Monro de algoritmos estocásticos, como el método de gradiente estocástico SG.
 
@@ -31,8 +32,6 @@ El problema de optimización en este contexto involucra un training set ${(x_1,y
 
 $$min {1 \over n} \sum_{i=1}^n l(h(x_i;w),y_i)$$
 Como ya se mencionó dicho problema es no convexo altamente no lineal, sin embargo se han calculado soluciones aproximadas por medio de métodos basados en el gradiente, pues el gradiente del objetivo en la ecuación anterior con respecto al vector parámetro *w* se puede calcular por medio de la regla de la cadena usando diferenciación algorítmica. Ésta técnica de diferenciación es conocida como *back propagation*.
-
-Los problemas de optimización en machine learning surgen a través de la definición de las funciones de pérdida y predicción que aparecen en medidas de riesgo empírico y esperado que intentamos minimizar.
 
 ### Métodos de optimización
 
@@ -50,12 +49,6 @@ Como en aprendizaje supervisado se tiene acceso a un set de muestras entrada-sal
 
 Por lo general la minimización de $R_n$ es considerado como el problema práctico de optimización de interés.
 
-#### Método estocástico de gradiente
-
-En el contexto de minimizar el riesgo empírico $R_n$ con $w_1 \in \mathbb R^d$ el método estocástico de gradiente SG se define como $$w_{k+1} \leftarrow w_k - \alpha_k \nabla f_{ik}(w_k)$$
-
-donde para todo $k \in \mathbb N:=\{1,2,...\}$, el índice $i_k$, correspondiente a la seed $\xi[i_k]$ como el par muestra $(x_{i_k},y_{i_k})$, es escogido aleatoriamente de $\{1,...,n\}$ y $\alpha_k$ es un paso positivo. Cada iteración de este método involucra sólo el cálculo del gradiente $\nabla f_{ik}(w_{ik})$ correspondiente a una muestra. A diferencia de un algoritmo de optimización determinística, en éste método la secuencia de iteración no está determinada únicamente por la función $R_n$, el punto de inicio $w_1$ y el paso de la secuencia $\{\alpha_k\}$, sino que $\{\alpha_k\}$ es un proceso estocástico cuyo comportamiento está determinado por la secuencia aleatoria $\{i_k\}$. Aunque cada dirección $-\nabla f_{i_k}(w_k)$ pueda no ser descendiente de $w_k$ al producir una derivada direccional negativa para $R_n$ de $w_k$, si es una dirección descendiente *en espera*, entonces la secuencia $\{w_k\}$ puede ser guiada hacia un mínimo de $R_n$.
-
 #### Método batch de gradiente
 
 El método más simple es el algoritmo *steepest descent* o *gradiente batch* definido con la iteración
@@ -66,11 +59,16 @@ donde el cálculo del paso $-\alpha_k \nabla R_n(w_k)$ es más costoso que el de
 
 Al utilizar métodos tipo batch se tienen a disposición una serie de técnicas de optimización no lineal que han sido desarrolladas a lo largo de varias décadas, incluyendo los métodos full gradient, gradiente acelerado, gradiente conjugado, quasi-Newton y Newton inexacto. Además gracias a la estructura de suma de $R_n$ el método batch puede ser paralelizado pues la mayoría de los cálculos son para evaluar $R_n$ y $\nabla R_n$.
 
-#### Método de gradiente estocástico
+
+#### Método estocástico de gradiente
+
+En el contexto de minimizar el riesgo empírico $R_n$ con $w_1 \in \mathbb R^d$ el método estocástico de gradiente SG se define como $$w_{k+1} \leftarrow w_k - \alpha_k \nabla f_{ik}(w_k)$$
+
+donde para todo $k \in \mathbb N:=\{1,2,...\}$, el índice $i_k$, correspondiente a la seed $\xi[i_k]$ como el par muestra $(x_{i_k},y_{i_k})$, es escogido aleatoriamente de $\{1,...,n\}$ y $\alpha_k$ es un paso positivo. Cada iteración de este método involucra sólo el cálculo del gradiente $\nabla f_{ik}(w_{ik})$ correspondiente a una muestra. A diferencia de un algoritmo de optimización determinística, en éste método la secuencia de iteración no está determinada únicamente por la función $R_n$, el punto de inicio $w_1$ y el paso de la secuencia $\{\alpha_k\}$, sino que $\{\alpha_k\}$ es un proceso estocástico cuyo comportamiento está determinado por la secuencia aleatoria $\{i_k\}$. Aunque cada dirección $-\nabla f_{i_k}(w_k)$ pueda no ser descendiente de $w_k$ al producir una derivada direccional negativa para $R_n$ de $w_k$, si es una dirección descendiente *en espera*, entonces la secuencia $\{w_k\}$ puede ser guiada hacia un mínimo de $R_n$.
 
 En general la función objetivo es el riesgo esperado o empírico $$F: \mathbb R^d \rightarrow \mathbb R, R(w) = \mathbb E [f(w;\xi)] or R_n(w)= {1 \over n} \sum_{i=1}^n f_i(w)$$
 
-Para ambos casos aplica el análisis, la única diferencia es la forma en que se escogen los estimados del gradiente estocástico en el método.
+Tanto para el método de gradiente estocástico como para el tipo batch aplica el análisis, la única diferencia es la forma en que se escogen los estimados del gradiente estocástico en el método.
 
 El algoritmo es el siguiente:
 
@@ -81,13 +79,6 @@ El algoritmo es el siguiente:
     5. Escoger un tamaño de paso $\alpha_k > 0$
     6. Establecer la nueva iteración como $w_{k+1} \leftarrow w_k - \alpha_k g(w_k, \xi_k)$
 7. fin de bucle
-
-
-El algoritmo establece la existencia de tres herramientas computacionales:
-
-1. Un mecanismo para generar una realización de una variable aleatoria $\xi_k$, donde $\{ \xi_k \}$ representa una secuencia de variables aleatorias mutuamente independientes
-2. Dada una iteración $w_k \in \mathbb R^d$ y la realización de $\xi_k$, existe un mecanismo para calcular un vector estocástico $g(w_k,\xi_k) \in \mathbb R^d$
-3. Dado un número de iteración $k \in \mathbb N$, existe un mecanismo para calcular un paso escalar $\alpha_k > 0$
 
 Se deben considerar varios aspectos del algoritmo general: primero, el valor de la variable aleatoria $\xi_k$ se considera sólo como una semilla para generar una dirección estocástica, por lo que escogerla puede verse como la elección de una muestra de entrenamiento como en el método simple de SG o puede representar un set de muestras como en el método mini-batch SG. Segundo, $g(w_k,\xi_k)$ puede representar un gradiente estocástico como por ejemplo un estimador imparcial de $\nabla F(w_k)$ como en el método clásico de Robbins y Monro, o puede representar una dirección estocástica Newton o quasi-Newton. Por lo que $g(w_k,\xi_k)$ puede ser $$\nabla f(w_k;\xi_k)$$
 o $${1\over n_k}\sum_{i=1}^{n_k}\nabla f(w_k;\xi_{k,i})$$
@@ -107,7 +98,7 @@ Es un algoritmo muy popular en el aprendizaje de redes neuronales, porque es con
 Al diseñar y entrenar una red que usa backpropagation se debe escoger arbitrariamente el número de nodos, capas, razones de entrenamiento, sets de entrenamiento y de prueba entre otras.
 Estas elecciones son críticas y dependen en gran medida del problema y de los datos disponibles.
 
-La forma más simple de machine learning multicapas con aprendizaje basado en gradiente es un conjunto de modulos, cada uno de los cuales implementa una función $X_n=F_n(W_n,X_{n-1})$ donde $X_n$ es un vector representando la salida del módulo, $W_n$ es el vector de parámetros modificables en el módulo y $X_{n-1}$ es el vector de entrada al módulo. La entrada $X_0$ al primer módulo es el patrón de entrada $Z^P$. Si la derivada parcial de $E^P$ con respecto de $X_n$ es conocida, entonces la derivada parcial de $E^P$ con respecto de $W_n$ y $X_{n-1}$ se puede calcular usando la recurrencia backward $${\partial E^P \over \partial W_n}={\partial F \over \partial W}(W_n,X_{n-1}){\partial E^P \over \partial X_n}$$ 
+La forma más simple de machine learning multicapas con aprendizaje basado en gradiente es un conjunto de módulos, cada uno de los cuales implementa una función $X_n=F_n(W_n,X_{n-1})$ donde $X_n$ es un vector representando la salida del módulo, $W_n$ es el vector de parámetros modificables en el módulo y $X_{n-1}$ es el vector de entrada al módulo. La entrada $X_0$ al primer módulo es el patrón de entrada $Z^P$. Si la derivada parcial de $E^P$ con respecto de $X_n$ es conocida, entonces la derivada parcial de $E^P$ con respecto de $W_n$ y $X_{n-1}$ se puede calcular usando la recurrencia backward $${\partial E^P \over \partial W_n}={\partial F \over \partial W}(W_n,X_{n-1}){\partial E^P \over \partial X_n}$$ 
 y
 $${\partial E^P \over \partial X_{n-1}}={\partial F \over \partial X}(W_n,X_{n-1}){\partial E^P \over \partial X_n}$$
 
@@ -156,6 +147,12 @@ La *Arcade Learning Environment (ALE)* es una plataforma para investigación de 
 Ale es un framework orientado a objetos con soporte para añadir agentes y juegos que permite el entrenamiento de agentes de aprendizaje por refuerzo, además su código es multiplataformas y los agentes programados en c++ tienen acceso a todas las características de ALE.
 
 Cabe señalar que ALE permite la extracción automática del marcador y la señal de finalización de más de 50 juegos. 
+
+### CUDA
+
+*Copute Unified Device Architecture (CUDA)* es una plataforma de cómputo en paralelo de nVidia, que incluye un compilador y herramientas de desarrollo que permite programar en C, C++ y Fortran para usar los recursos del GPU. 
+
+Entre las ventajas de CUDA se encuentran que el código puede leer direcciones arbitrarias en la memoria lo que permite lecturas dispersas, además se cuenta con una memoria virtual unificada, y una memoria compartida por regiones que es compartida por los threads de un bloque, sin embargo la velocidad de la lectura entre la memoria del host y del device depende del ancho de banda del bus y hay un número máximo de threads por bloque, lo que puede repercutir en el diseño del código para realizar operaciones de grandes cantidades de datos.
 
 ## Caso de estudio
 
