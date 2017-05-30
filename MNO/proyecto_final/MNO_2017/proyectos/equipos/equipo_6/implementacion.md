@@ -159,7 +159,7 @@ int main(int argc, char*argv[])
 
 ```
 
-* step 1: creamos funcionalidad para lectura del Archivo con la matriz resultante generada por python usando numpy, en este caso el archivo es ![transp_imgmatriz.txt](code/transp_imgmatriz.txt)
+* step 1: creamos funcionalidad para lectura del Archivo con la matriz resultante generada por python usando numpy, en este caso el archivo es [transp_imgmatriz.txt](code/transp_imgmatriz.txt)
 ```
 
 	if (argc<2) {
@@ -271,7 +271,7 @@ int main(int argc, char*argv[])
 
 ```
 
-* step 6: sacamos en archivos el resultado de las matrices [S](code/output_S.txt), [U](code/output_S.txt), [VT](code/output_S.txt) 
+* step 6: sacamos en archivos el resultado de las matrices [S](code/output_S.txt), [U](code/output_U.txt), [VT](code/output_VT.txt) 
 ```
 
     printf("S = (matlab base-1)\n");
