@@ -1,6 +1,5 @@
 # Equipo 8:
 	-Walter Martínez Santana
-	-Norma Verónica Trinidad
 	-José Carlos Castro Montes
 
 ## Descenso por coordenadas para L1
