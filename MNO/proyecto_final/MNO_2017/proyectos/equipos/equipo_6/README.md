@@ -56,7 +56,12 @@ __Calendario:__
 1. Finalmente se corrio una prueba final con una Matriz real MxN usando __cusolverDnDgesvd__.
 2. Se implemento en `Python` el metodo SVD para descomposicion y aproximacion de una imagen, a traves de obtener los valores singulares de la imagen en su forma de matriz, y con los valores de `U` , `Sigma` , `Vt` validamos los resultados con el __cusolverDnDgesvd__.
  
+* [Avance 29-05-2017].
 
+1. Se concluye proyecto en tiempo y forma. Se incluyen las carpetas y link a presentacion final. Muchas Gracias!
+* [Codigo](code).
+* [Trabajo Final](trabajo_escrito).
+* [Link a Presentacion](https://drive.google.com/drive/folders/0B5eQQH_TPIY-YjVmSE5NS3BSYzQ).
 
 ## Referencias del proyecto:
 
