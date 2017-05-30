@@ -1,0 +1,232 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{article}
+%\usepackage[spanish]{babel}
+\textwidth     =  7.0in
+\textheight    =  9.0in
+\oddsidemargin = -0.2in
+\topmargin     = -.5in
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath, amsthm, amssymb, latexsym}
+\usepackage[pdftex]{graphicx}
+\newtheorem{lma}{Lema}
+\newtheorem{thm}{Teorema}
+\newtheorem{prb}{Prueba}
+%----------------------------------------------------------------------
+%
+% Archivo LaTeX para el proyecto de reconocimiento de patrones
+%
+% curso:       Modelos matematicos y numericos
+% instructor:  Jose Luis Morales
+%              Departamento de Matematicas
+%              I T A M
+%              agosto 2015
+%
+%----------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\complex}{\mathbb{C}}
+\newcommand{\feal}{\mathbb{F}}
+\newcommand{\ul}{\underline}
+%
+\usepackage[]{algorithm2e} %para escribir bien un pseudocódigo
+\usepackage{algorithm}% http://ctan.org/pkg/algorithm
+\usepackage{algpseudocode}
+%
+\newcommand{\noi}{\noindent}
+\newcommand{\pa}{\partial}
+%
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+%
+\newcommand{\beas}{\begin{eqnarray*}}
+\newcommand{\eeas}{\end{eqnarray*}}
+%
+\newcommand{\non}{\nonumber}
+%
+\newcommand{\bit}{\begin{itemize}}
+\newcommand{\eit}{\end{itemize}}
+%
+\newcommand{\bee}{\begin{enumerate}}
+\newcommand{\eee}{\end{enumerate}}
+%
+\newcommand{\bed}{\begin{description}}
+\newcommand{\edd}{\end{description}}
+%
+\newcommand{\bec}{\begin{center}}
+\newcommand{\edc}{\end{center}}
+%
+\begin{document}
+\title{\textbf{Análisis numérico y computo científico} \\
+\textit{Factorización de Cholesky en GPU con arquitectura CUDA}}
+\author{Instructor: Erick Palacios \\ Walter Santana \\ José Carlos Castro}
+\date{\today}
+\maketitle
+
+
+\subsection*{Introducci\'on}
+El propósito del presente proyecto es implementar un algoritmo distribuido de la descomposición de Cholesky en una unidad de procesador gráfico. Mediante el uso de la arquitectura CUDA vamos a desarrollar el modelo de programación en paralelo. La idea es paralelizar el algoritmo de optimización secuencial y distribuir sobre las GPUs.  
+
+\subsection*{Fundamentos matem\'aticos}
+\subsubsection*{Descomposici\'on de Cholesky}
+ 
+ Si $A$ es una matriz simétrica positiva definida de $n \times n$, entonces existen matrices triangulares tales que:
+
+\[
+   A = \left [ \begin{array}{cccc} a_{11} & a_{12} & \hdots & a_{1n} \\
+                                  a_{21} & a_{22} & \hdots & a_{2n} \\
+                                  \vdots & \dddots & \ddots & \vdots \\
+                                  a_{n1} & a_{n2} & \hdots & a_{nn}              
+                   \end{array} 
+            \right ] = \left [ \begin{array}{cccc} u_{11} & 0 & \hdots & 0 \\
+                                  u_{21} & u_{22} & \hdots & 0 \\
+                                  \vdots & \dddots & \ddots & \vdots \\
+                                  u_{n1} & u_{n2} & \hdots & u_{nn}              
+                   \end{array} 
+            \right ]  \left [ \begin{array}{cccc} u_{11} & u_{12} & \hdots & u_{1n} \\
+                                  0 & u_{22} & \hdots & u_{2n} \\
+                                  \vdots & \dddots & \ddots & \vdots \\
+                                  0 & 0 & \hdots & u_{nn}              
+                   \end{array} 
+            \right ]       
+\]
+
+
+Por lo que cada entrada de $A$, $a_{ij}$ puede estar representada por entradas de $U$ operadas entre ellas, i.e 
+
+\[
+   A = \left [ \begin{array}{cccc} a_{11} & a_{12} & \hdots & a_{1n} \\
+                                  a_{21} & a_{22} & \hdots & a_{2n} \\
+                                  \vdots & \dddots & \ddots & \vdots \\
+                                  a_{n1} & a_{n2} & \hdots & a_{nn}              
+                   \end{array} 
+            \right ] = \left [ \begin{array}{cccc} u_{11}^2 & u_{11}u_{12} & \hdots & u_{11}u_{1n} \\
+                                  u_{11}u_{12} & u_{12}^2 + u_{22}^2 & \hdots & u_{12}u_{1n} + u_{22}u_{2n} \\
+                                  \vdots & \dddots & \ddots & \vdots \\
+                                  u_{11}u_{n1} & u_{12}u_{1n} + u_{22}u_{2n} & \hdots & \Sigma_{i=1} ^n u_{ii} ^ 2              
+                   \end{array} 
+            \right ]         
+\]
+
+Por lo que para obtener las u's es necesario igualar y así obtenemos una solución recursiva por la derecha. Y obtenemos los coeficientes de $u_{ij}$, en términos de $a_{ij}$ $u_{i-k,j-l}$ para $k, \, l = 1, \hdots ,n-1$. Por ejemplo si $n=4$.
+
+\begin{equation*}
+    
+   \qquad \qquad u_{11} = \sqrt{a_{11}},\, u_{12} = \dfrac{a_{12}}{u_{11}}, \, u_{12} = \dfrac{a_{13}}{u_{11}}, u_{13} = \dfrac{a_{13}}{u_{11}}, u_{14} = \dfrac{a_{14}}{u_{11}}, \\
+   
+   \qquad \qquad u_{21} = 0,\, u_{22} = \sqrt{a_{22}-u_{12}^2}, \, u_{23} = \dfrac{a_{23} - u_{12}u_{13} }{u_{22}}, u_{24} = \dfrac{a_{24} - u_{12}u_{14} }{u_{22}}, \\
+   
+    \qquad \qquad u_{31} = 0,\, u_{32} = 0 \, u_{33} = \sqrt{a_{33}-u_{13}^2-u_{23}^2}, \, u_{34} = \dfrac{a_{34} - u_{13}u_{14} - u_{23}u_{24}}{u_{33}}, \\
+    
+    \qquad \qquad u_{41} = 0,\, u_{42} = 0 \,  u_{43} = 0 \, u_{44} = \sqrt{a_{44}-u_{14}^2-u_{24}^2 - u_{34}^2}
+    
+\end{equation*}
+
+Y de lo anterior podemos por hipótesis de inducción sobre n: 
+
+\begin{equation*}
+    
+   \qquad \qquad u_{ij} =  \sqrt{a_{jj} - \Sigma^{j-1}_{k=1} u_{j,k}^2} \qquad si \; j=i, \\ 
+   
+    
+    \qquad \qquad u_{ij} = \dfrac{1}{u_{jj}}(a_{ij} - \Sigma^{j-1}_{k=1} u_{i,k}u_{j,k}} ), \qquad si \; j<i 
+    
+\end{equation*}
+
+Antes de escribir un pseudocódigo para la forma general de las matrices triangulares, notemos que en general es fácil recorrer en $u_{ij}$ sobre las j's, ya que lo que se necesita se conoce en el paso inmediato anterior. Y como partimos de $a_{11}$ para conocer nuestra primera incógnita $u{_11}$. Entonces únicamente mediante elementos de A se pueden conocer los elementos de U, sin embargo si existen relaciones de dependencia con las entradas anteriores. Como podemos ver en nuestro pseudocódigo:
+
+
+\subsubsection*{Pseudocódigo}
+
+\begin{algorithm}
+  \caption{Descomposición de cholesky}\label{Chol $n \times n}
+  \begin{algorithmic}[1]
+    \Procedure{Chol}{$n \times n$}\Comment{A positiva definida}
+      \State $ n = dim(A)$
+      \State $\mathbf{int}  \, i,j,k  $
+      \State $ \mathbf{for} \; k \; in \; 1:n-1 $
+      \State $a_{kk} = \sqrt{a_{kk}}$
+      \State \qquad $ \mathbf{for} \; j \; in \; k+1:n-1 $
+      \State \qquad $a_{k,j}=a_{k,j}/a_{k,k}$
+      \State \qquad \textbf{end}
+      \State \qquad $ \mathbf{for} \; j \; in \; k+1:n-1 $
+      \State \qquad \qquad $\mathbf{for}\; j \; in \; i:n-1$
+      \State \qquad \qquad $a_{i,j}=a_{i,j}-a_{k,i}a_{k,j}$
+      \State \qquad \qquad $\mathbf{end}$     
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+    
+\subsection*{Fundamentos num\'ericos}
+
+El m\'etodo de la factorización de Cholesky para ser realizado computacionalmente para una matriz $A$ de $nxn$ necesita unicamente el triangulo superior o inferior de $A$, ya que es simétrica por lo que comenzamos con $\dfrac{n \times n}{2} + n$ valores, a partir de los cuales tenemos dos tipos de operaciones. Entonces el costo total es el numero de multiplicaciones mas el número de sumas(ó restas).
+
+\begin{equation*}
+(m+1)(m-k) - \Sigma_{j=k+1}^m j = \dfrac{(m-k)(m-k+1)}{2} \; multiplicaciones \\
+
+\qquad \qquad \; (m+1)(m-k) - \Sigma_{j=k+1}^m j = \dfrac{(m-k)(m-k+1)}{2} \; restas
+
+\end{equation*}
+
+Además el ciclo for de afuera corre de 1 a m por lo que tendrá $m-1$ divisiones, $\frac{1}{3}m(m^2-1)$ multiplicaciones y  $\frac{1}{3}m(m^2-1)$ restas. Por lo tanto el costo del algoritmo es de aproximadamente $\frac{2}{3}m^3 + f\rac{1}{3}m$ operaciones por lo que a gran escala podemos decir que es del orden de $\frac{2}{3}m^3$.\\ 
+
+Por otra parte si el algoritmo descrito se utiliza para resolver un sistema de ecuaciones esta sujeto a tener un error de aproximación a $x$ ya que únicamente encontramos $\hat{x}$ por lo que tenemos que analizar el error numérico inducido por el número de condición de la matriz i.e el error en los datos y también el error numérico de nuestra aproximación, i.e el error en el algorítmo. 
+
+Sea $A \in \mathbf{R}^{n \times n}$ matriz positiva definida, i.e $A = A*, x*Ax \leq 0 $, entonces tomando el costo del algoritmo
+\begin{eqnarray*}
+                 A &=& U^T U \\
+     \Vert U \Vert &=& \sqrt{ \Vert A \Vert } \\
+     A + \delta A  &=& \hat{U}^T \hat{U} \\
+                   &=& \dfrac{\Vert \delta A \Vert}{\Vert U \Vert \Vert U^T \Vert}\\
+                   &=& \dfrac{\Vert \delta A \Vert}{\Vert A \Vert}\\                   
+                   &=& \mathcal{O}(\epsilon)          
+\end{eqnarray*}
+Por lo que el algoritmo será siempre numéricamente estable hacia atrás.  
+
+\subsection*{Paralelización en GPU utilizando arquitectura CUDA}
+
+\subsubsection*{Pseudocódigo}
+
+\begin{algorithm}
+  \caption{Descomposición de cholesky}\label{Chol $n \times n}
+  \begin{algorithmic}[1]
+    \Procedure{Chol}{$n \times n$}\Comment{A positiva definida}
+      \State $ N = dim(A)$
+      \State $\mathbf{while} \, (k < N)$
+      \State \qquad $\mathbf{if}\,( rd1 \,==\, inicio)$
+      \State \qquad $\mathbf{else}$
+      \State \qquad \qquad $\mathbf{while}\, (rd1 < N2)$
+      \State \qquad \qquad \qquad $\mathbf{while}\, (rd1 < N2)$
+      \State \qquad \qquad \qquad $M(rd1) = M(id1)/M(inicio)$ 
+      \State \qquad \qquad \qquad $id1 += B_{mx}C_{rix}D_{mx}$
+      \State  \qquad \qquad $\_ \_ synctrhead();$
+      \State  \qquad rd = ids;
+      \State \qquad$inicio = (N-K);$
+      
+      \State \qquad $\mathbf{while} \, (NN < N(N+1)/2)$;
+      \State \qquad \qquad $id2 = id + NN$;
+      \State \qquad \qquad $\mathbf{while}(id2 \, < \, NN \,+ \,(N-KK)$;
+      \State \qquad \qquad \qquad m(id2) = m(id2) - m (id + kk) - m(kk);
+      \State \qquad \qquad \qquad id2 += Grrd BLock;
+      \State  \qquad \qquad $\_ \_ synctrhead();$
+      \State  \qquad NN += N-KK;
+      \State  \qquad KK++;
+      \State K++
+      \State N2 += N-K;
+      
+      \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+
+
+
+El algoritmo que se muestra se centra en la idea de distribuir la factorización de cholesky, por lo que el propósito es escribir un archivo .cu que contenga tanto como el host como los kernels. Utilizando nuestro algoritmo base se sube la matriz al host y luego se copia a la memoria ram de nuestra tarjeta NVIDIA. Y aquí entra nuestra primera iteración que recorrerá las columnas. Y en cada iteración se inicializa algún Kernel y cada uno ejecuta una vez por cada elemento en la parte superior ó inferior de la matriz. Esta es la idea principal de como inicializar nuestro algorítmo, sin embargo hay más de una manera de decidir como se van a inicializar los Kernel   
+
+
+\subsection*{Conclusiones}
+
+
+\enddocument

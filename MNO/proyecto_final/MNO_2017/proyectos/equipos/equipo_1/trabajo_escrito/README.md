@@ -11,8 +11,11 @@
 
 ---
 
-**Título del proyecto:** Optimización del Algoritmo Word Embeddings utilizando CUDA c, cómputo en paralelo y matricial.
+DOCUMENTO FINAL WORD: https://drive.google.com/open?id=0ByF7NuX9EW1IaVFraEJuUTlYUHM
 
-**Objetivo del proyecto:** Nuestro objetivo en este proyecto es aplicar técnicas de cómputo en paralelo y matricial para optimizar el algoritmo de Word Embeddings.
+DOCUMENTO FINAL PDF: https://drive.google.com/open?id=0ByF7NuX9EW1IVk1kbEo3ekNaQ1U
 
+PRESENTACION PPTX: https://drive.google.com/open?id=0ByF7NuX9EW1IeGl5SzlUdDVySDg
+
+PRESENTACION PDF: https://drive.google.com/open?id=0ByF7NuX9EW1IV2lGSFItS0dPLWs
 ---
