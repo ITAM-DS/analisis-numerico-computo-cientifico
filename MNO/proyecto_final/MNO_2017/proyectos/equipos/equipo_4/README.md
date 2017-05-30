@@ -99,10 +99,17 @@ Durante esta semana se programó la multiplicación de matrices en *pthreads* ut
 ### Referencias:
 
 [---. Singular Value Decomposition (SVD) tutorial.](http://web.mit.edu/be.400/www/SVD/Singular_Value_Decomposition.htm)
+
 [---. Toom 3-Way Multiplication.](https://gmplib.org/manual/Toom-3_002dWay-Multiplication.html)
+
 [---. Toom–Cook multiplication.](https://en.m.wikipedia.org/wiki/Toom%E2%80%93Cook_multiplication)
+
 [Bodrato, M., & Zanoni, A. (2006). What About Toom-Cook Matrices Optimality.](http://www.bodrato.it/papers/WhatAboutToomCookMatricesOptimality.pdf)
+
 [Parhi, K. Fast Convolution.](https://www.dropbox.com/s/8flmijftnfk6her/chap8.pdf?dl=0)
+
 [Schieck, J. Solving of linear Equations using SVD.](https://www.mpp.mpg.de/%7Eschieck/svd.pdf)
+
 [Yedugani, S. Toom Cook.](https://www.dropbox.com/s/bwziz0hnv78pgp6/ToomCook.pdf?dl=0)
+
 [Zanoni, A. Iterative Toom-Cook Methods For Very Unbalanced Long Integers Multiplication.](https://www.dropbox.com/s/catd6x49sdc451n/iterative_Toom_Cook.pdf?dl=0)
