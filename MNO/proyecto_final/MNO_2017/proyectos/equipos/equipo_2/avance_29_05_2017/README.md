@@ -21,13 +21,13 @@ Con esta entrega damos por finalizado el proyecto.  Se logró cumplir satisfacto
 
 * En este trabajo se eligió el método de Householder con el fin de profundizar en las propiedades y ventajas de su uso en la factorización QR para solucionar mínimos cuadrados;  sin embargo, existen otros métodos que podrían ser mas eficientes para este tipo de problemas, por ejemplo, el método de SVD que sería de gran interés implementar en un futuro. 
 
-**Implementación en C**: Se entregan los siguientes archivos de programación.  
+**Implementación en C**: Se entregan los siguientes archivos de programación.  [Implementación](../codigo)
 
     + definciones.h: Contiene la definición de las estructuras de matrices y vectores.
     + funciones2.c: Contiene todas las funciones utilizadas por la función main.         
     + mcqrhh.c: Contiene la función main, que ocupa funciones2 para realizar cálculo de QR y MC.
 
-* Los archivos de programaciones anteriores utilizan como insumos los siguientes archivos de texto:
+* Los archivos de programación anteriores utilizan como insumos los siguientes archivos de texto:
 
     + A1.txt: Contiene la matriz A a factorizar del sistema de ecuaciones.
     + b.txt: Contiene b, del sistema Ax=b.
@@ -42,9 +42,9 @@ Con esta entrega damos por finalizado el proyecto.  Se logró cumplir satisfacto
 
 * Adicionalmente, se verifica el algoritmo programado utilizando como insumos el [ejemplo proporcionado por el profesor](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/LAPACK/ejemplos) comprobando que los resultados son correctos.  La salida de este ejercicio se presentan en [Resultado Sistema Erick](VerificacionEjercicioProfesor).
 
-**Trabajo Escrito**: Se entrega la versión final de nuestro trabajo escrito que presenta la investigación realizada así como los resultados y la implementación: [Trabajo escrito](trabajo_escrito).
+**Trabajo Escrito**: Se entrega la versión final de nuestro trabajo escrito que presenta la investigación realizada así como los resultados y la implementación: [Trabajo escrito](../trabajo_escrito).
 
-**Presentación**: Se anexa también la presentación que servirá como base para explicar nuestro proyecto en el examen final: [Presentacion](https://drive.google.com/file/d/0B5IJ1w6MjxegSlhFc2xPOW9fRE0/view?usp=sharing).
+**Presentación**: Se anexa también la presentación que servirá como base para explicar nuestro proyecto en el examen final: [Presentación](https://drive.google.com/file/d/0B5IJ1w6MjxegSlhFc2xPOW9fRE0/view?usp=sharing).
 
 
 
