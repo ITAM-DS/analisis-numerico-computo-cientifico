@@ -58,14 +58,28 @@ Comenzamos a construir el programa ya en el lenguaje de la entrega final que ser
 Aparte de esto hemos comenzado ya con el documento, realizando un template general de como estará estructurado el trabajo y hemos comenzado con la introducción. Además estamos buscando ejemplos muy claros con los que  nosotros y nuestros compañeros nos podamos topar que muestren problemas al perder precisión al realizar multiplicaciones de números grandes, esto con el fin de mostrar la relevancia de este problema en la vida real.
 
 
-#### [02 de mayo:](avance_02_05_2017)
+#### [02 de mayo:](avance_01_05_2017)
 
-Durante esta semana continuamos leyendo referencias que nos ayudaron a aclarar algunas dudas que surgieron, estas referencias se detallan en el [avance_02_05_2017](./avance_01_05_2017). Tenemos la primera versión del código que se entregará aunque por el momento solo realice el cálculo dividiendo los números en tres subsecciones. Realizamos algunas validaciones de la primera versión del código aunque solo incluya la implementación para dividir el número en 3 subsecciones. Este código puede encontrarse [aquí](./avance_01_05_2017/codigo)
+Durante esta semana continuamos leyendo referencias que nos ayudaron a aclarar algunas dudas que surgieron, estas referencias se detallan en el [avance_01_05_2017](./avance_01_05_2017). Tenemos la primera versión del código que se entregará aunque por el momento solo realice el cálculo dividiendo los números en tres subsecciones. Realizamos algunas validaciones de la primera versión del código aunque solo incluya la implementación para dividir el número en 3 subsecciones. Este código puede encontrarse [aquí](./avance_01_05_2017/codigo)
 
 Discutimos acerca de los pasos a seguir para no perder precisión como consecuencia de resolver el sistema de ecuaciones con la matriz mal condicionada del último caso. Queda por decidir si se reducirá el scope del proyecto (a solo dividir en 3 o 4 secciones los números) o si se atacará este problema con otros métodos numéricos (como descomposición en valores singulares) esto se decidirá de acuerdo con los tiempos y que tanto nos ayuden estas aproximaciones a cumplir con los objetivos del proyecto. 
 
 #### [08 de mayo:](avance_08_05_2017)
+Continuamos con la investigación de los métodos que podriamos utilizar para evitar perder precisión y de acuerdo con las sugerencias del profesor revisamos algunas referencias [1](http://web.mit.edu/be.400/www/SVD/Singular_Value_Decomposition.htm) y [2](https://www.mpp.mpg.de/~schieck/svd.pdf) de SVD y otra [referencia](https://www.dropbox.com/s/8flmijftnfk6her/chap8.pdf?dl=0) para decidir si utilizamos la matriz por interpolación de Newton o Lagrange para resolver nuestro problema. 
+
+Además continuamos avanzando con el documento final que se entregará, mismo que puede encontrarse [aquí](https://www.dropbox.com/scl/fi/prtfa2a24snrx9i6o4ewa/Trabajo%20final.docx?dl=0&oref=e&r=AAaa0MNkh97EqTnpysa1RsjQ-IKn_ny1yYna2TCGTshPicMl8iMKjiXizJz2NW8df1mY3r6GbssV8FYTuLZvP_oU0UH15dR-33rM216-Tg077bybqUyy2LvkWJCJ_0LbHDjBbo9CbQoGoxuvQmtmAP1j1c-VKnu2GcCzWOUb2OJYcQ&sm=1). 
+
+Por último continuamos generalizando el código para que las funciones se puedan utilizar para todos los casos del algoritmo y además se comenzó la implementación de la multiplicación de matrices que se utilizara para demostrar el uso de el algoritmo. 
 
 #### [15 de mayo:](avance_15_05_2017)
 
+Continuamos con la investigación de los métodos que podriamos usar para evitar perder precisión por tener que resolver un  sistema lineal con una matriz mal condicionada. Nuestro principal problema es que después de resolver el sistema de ecuaciones lineales se utilizan esos resultados para realizar una suma desplazada en la que cada número se suma en una posición diferente para representar cientos, miles, millones, etc. Esto nos provoca problemas extras ya que si los métodos de aproximación nos hacen perder solo algunos dígitos de precisión al hace la suma este error se recorrería a posiciones más elevadas del número por lo que decidimos junto con el profesor limitar los casos que impllementaremos a dividir los números en 3 y 4 secciones y eliminar el caso de realizar 5 secciones. 
 
+#### [22 de mayo:](avance_22_05_2017)
+
+Ya que decidimos acotar nuestro enfoque a Toom-3 para evitar posibles problemas ocasionados por la matriz mal condicionada que se genera al evaluar en el polinomio terminamos el código para esta implementación. Este código puede encontrarse [aquí](./avance_22_05_2017/codigoC). Además realizamos una implementación en R de la multiplicación de matrices de números grandes. Esta implementación puede encontrarse [aquí](./avance_22_05_2017/codigoR). Es necesario para que esta implementación funciona generar un código que sume los números grandes sin perder precisión, es decir que los sume por secciones y regularize los resultados. 
+Por último se continuo trabajando en la versión final del trabajo escrito. 
+
+#### [29 de mayo:](avance_29_05_2017)
+
+Durante esta semana se programó la multiplicación de matrices en *pthreads* utilizando la función de multiplicación de números grandes y una función de suma de números grandes que fue necesario programar desde cero (esta función realiza la suma por medio de secciones del número y regulariza el resultado.) La versión final del código puede entcontrarse [aquí](./avance_29_05_2017/codigoC). Además llegamos a la versión final del trabajo escrito, mismo que puede encontrarse en esta [liga](https://www.dropbox.com/home/trabajo%20final?preview=Trabajo+final.docx)

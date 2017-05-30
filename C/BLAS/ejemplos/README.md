@@ -1,13 +1,10 @@
 Suponemos un sistema ubuntu y que está instalado `libblas-dev` y `liblapack-dev`.
 
-En las carpetas para los diferentes niveles de BLAS: [level1](level1/), [level2](level2/), [level3](level3/) se tienen códigos que utilizan el header `definiciones.h` y `funciones.c` siguiente:
+En las carpetas para los diferentes niveles de BLAS: [level1](level1/), [level2](level2/), [level3](level3/) se tienen códigos que utilizan los archivos `definiciones.h` y `funciones.c` siguiente:
 
 * `definiciones.h`:
 
 ```
-#define tipo_double 'd'
-#define tipo_int 'i'
-
 //arreglo2d:
 typedef struct{
 int m, n;
@@ -27,18 +24,19 @@ double *arr;
 int *arr_int;
 #define entradas_vector(arreglo) ((arreglo)->arr)
 #define entrada_vector(arreglo,i) ((arreglo)->arr[i])
-#define entradas_vector_int(arreglo) ((arreglo)->arr_int)
-#define entrada_vector_int(arreglo,i) ((arreglo)->arr_int[i])
+#define entradas_vector_entero(arreglo) ((arreglo)->arr_int)
+#define entrada_vector_entero(arreglo,i) ((arreglo)->arr_int[i])
 }arreglo_1d;
 typedef arreglo_1d *arreglo_1d_T;
 
 //funciones
-void imprime_vector(arreglo_1d_T, char);
+void imprime_vector(arreglo_1d_T);
 void imprime_matriz(arreglo_2d_T);
 void inicializa_matriz(arreglo_2d_T, char *);
 void inicializa_vector(arreglo_1d_T, char *);
 void inicializa_matriz_ceros(arreglo_2d_T);
 void inicializa_vector_ceros(arreglo_1d_T);
+void imprime_vector_entero(arreglo_1d_T);
 ```
 
 * `funciones.c`:
@@ -90,15 +88,15 @@ void imprime_matriz(arreglo_2d_T p){
 			}
 		}
 }
-void imprime_vector(arreglo_1d_T p, char s){
+void imprime_vector_entero(arreglo_1d_T p){
 	int m = renglones_vector(p);
-		if(s == tipo_double)
+		for(i=0;i<m;i++)
+				printf("vector[%d]=%d\n",i,entrada_vector_entero(p,i));
+}
+void imprime_vector(arreglo_1d_T p){
+	int m = renglones_vector(p);
 			for(i=0;i<m;i++)
 				printf("vector[%d]=%.5f\n",i,entrada_vector(p,i));
-		else
-			if(s == tipo_int)
-				for(i=0;i<m;i++)
-					printf("vector[%d]=.5\n",i,entrada_vector_int(p,i));
 }
 ```
 

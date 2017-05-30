@@ -40,6 +40,24 @@ __Calendario:__
 2. Se documento la Fase 2
 3. Se realizaron operaciones de multiplicación de diferentes matrices en `Rstudio`
 
+* [Avance 08-05-2017](avance_08_05_2017).
+
+1. Se configuro cluster de AWS y Star Cluster.
+2. Se documento la Fase 3
+3. Se sigue leyendo el libro `Matrix Computations` de H. Golub y F. Van Loan desde el capitulo 8.
+
+* [Avance 15-05-2017](avance_15_05_2017).
+
+1. Se configuro para correr local  `A = U * Σ * V T` con la funcion __cusolverDnDgesvd__. 
+2. Se documento el algoritmo de la funcion `cusolverDnDgesvd` en un RMD.
+
+* [Avance 22-05-2017](avance_22_05_2017).
+
+1. Finalmente se corrio una prueba final con una Matriz real MxN usando __cusolverDnDgesvd__.
+2. Se implemento en `Python` el metodo SVD para descomposicion y aproximacion de una imagen, a traves de obtener los valores singulares de la imagen en su forma de matriz, y con los valores de `U` , `Sigma` , `Vt` validamos los resultados con el __cusolverDnDgesvd__.
+ 
+
+
 ## Referencias del proyecto:
 
 * http://math.nist.gov/~RPozo/
@@ -53,5 +71,6 @@ __Calendario:__
 * Para revisar lo basico de SVD https://en.wikipedia.org/wiki/Singular_value_decomposition
 
 * Para repaso de algebra, muy bueno!!!, libro de  Algebra Lineal de Mina S. de Carakushansky y guilherme de La Penha Editorial Ma Graw Hill
+* Para revisar teoria de LAPACK y gestion de matrices en memoria. ftp://ece.buap.mx/pub/profesor/academ48/Libros/TesisDavid.pdf
 
 by __RIL && ADV__

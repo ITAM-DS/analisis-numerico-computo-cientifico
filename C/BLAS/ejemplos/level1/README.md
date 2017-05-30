@@ -39,8 +39,8 @@ int main(int argc, char *argv[]){
 	int incx=1;
 	int N=atoi(argv[1]);
 
-	v1=malloc(sizeof(v1));
-	v2=malloc(sizeof(v2));
+	v1=malloc(sizeof(*v1));
+	v2=malloc(sizeof(*v2));
 
 	renglones_vector(v1)=N;
 	renglones_vector(v2)=N;
@@ -60,7 +60,9 @@ int main(int argc, char *argv[]){
 
 	resultado=ddot_(&N, entradas_vector(v1), &incx, entradas_vector(v2), &incx);
 	printf("resultado: %lf\n", resultado);
+	free(entradas_vector(v1));
 	free(v1);
+	free(entradas_vector(v2));
 	free(v2);
 	return 0;
 }
