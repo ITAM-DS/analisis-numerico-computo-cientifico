@@ -226,12 +226,16 @@ Título del proyecto: Programación paralela de la descomposición de matrices L
 Objetivo del proyecto: El objetivo del proyecto es aplicar programación paralela a través del uso de MPI con la intención de factorizar cualquier matriz cuadrada con el método LU, una matriz L triangular inferior con 1's en la diagonal y una matriz U triangular superior, de tal forma que A pueda ser escrita como A=LU.
 
 * [Avance 1](equipos/equipo_12/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios. Las referencias las coloquÃ© en [readme.md](equipo_12). Para el segundo avance deben leer las referencias. (es buena idea normalizar el nombre readme.md a README.md :), hagan los cambios necesarios para que las ligas estÃ©n correctas de acuerdo al nombre README.md)
-* [Avance 2](equipos/equipo_12/avance_02)
-* [Avance 3](equipos/equipo_12/avance_03)
-* [Avance 4](equipos/equipo_12/avance_04)
-* [Avance 5](equipos/equipo_12/avance_06)
-* [Reporte Final](equipos/equipo_12/reporte_final)
 
+* [Avance 2](equipos/equipo_12/avance_02)
+
+* [Avance 3](equipos/equipo_12/avance_03)
+
+* [Avance 4](equipos/equipo_12/avance_04)
+
+* [Avance 5](equipos/equipo_12/avance_06)
+
+* [Reporte Final](equipos/equipo_12/reporte_final)
 
 ---
 
