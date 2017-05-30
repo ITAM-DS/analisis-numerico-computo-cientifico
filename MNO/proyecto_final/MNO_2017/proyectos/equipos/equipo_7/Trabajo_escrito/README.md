@@ -3,7 +3,7 @@ Tabajo Escrito Final y Presentación
 
 
 
-[Trabajo escrito](https://www.dropbox.com/s/gh2v0s7s32s95wb/proyecto_ordenamiento%20%281%29.pdf?dl=0).
+[Trabajo escrito](https://www.dropbox.com/s/iirafsv9mj6pm2j/proyecto_ordenamiento.pdf?dl=0).
 
 [Presentación](https://www.dropbox.com/s/0m6i7582fdgo3xn/presentacion_ordenamiento.pdf?dl=0).
 
