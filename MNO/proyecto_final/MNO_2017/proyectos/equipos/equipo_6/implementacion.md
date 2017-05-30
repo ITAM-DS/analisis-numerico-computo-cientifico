@@ -50,14 +50,13 @@ cusolverDnDgesvd (
 ## Implementación SVD con CUDA
 
 * La implementación original fue tomada del [sitio](http://docs.nvidia.com/cuda/) 
-* Se valido el resultado del programa con el programa realizado en python: 
-	![cuda vs python](images/cuda_python_resul.png)
 * Leer imagen, descomposicion de valores singulares (SVD) y hacer U V y Sigmas(S)
 
 
 
-* Python Implementación __Fase I__
-##Se importan librerias para graficar, para matrices y para leer imagenes
+## Python Implementación __Fase I__
+
+* Se importan librerias para graficar, para matrices y para leer imagenes
 
 ```
 %matplotlib inline
@@ -66,7 +65,7 @@ import numpy as np
 from PIL import Image
 ```
 
-##Se le una imagen
+* Se le una imagen
 ```
 img = Image.open('tesla.png')
 imggray = img.convert('LA')
@@ -74,7 +73,8 @@ plt.figure(figsize=(6, 6))
 plt.imshow(imggray)
 
 ```
-##Se guarda en una matriz con Numpy y se grafica la imagen
+
+* Se guarda en una matriz con Numpy y se grafica la imagen
 ```
 imgmatriz = np.array(list(imggray.getdata(band=0)), float)
 imgmatriz.shape = (imggray.size[1], imggray.size[0])
@@ -82,17 +82,16 @@ imgmatriz = np.matrix(imgmatriz)
 ```
 ![Tesla_1](images/tesla_1.png)
 
-## Transponemos la matriz, esto para agilizar la lectura en el codigo CUDA
+* Transponemos la matriz, esto para agilizar la lectura en el codigo CUDA
 ```
 transp_imgmatriz=imgmatriz.transpose()
 np.savetxt('transp_imgmatriz.txt', transp_imgmatriz)
 
 ```
 
-* __SVD Implementation__ __Fase II__
+## __SVD Implementation__ __Fase II__
 
-## Step 0: Inicialización de Variables y prototipo para la función printMatrix()
-
+* Step 0: Inicialización de Variables y prototipo para la función printMatrix()
 ```
 #include <stdio.h>
 #include <stdlib.h>
@@ -160,8 +159,7 @@ int main(int argc, char*argv[])
 
 ```
 
-## step 1: creamos funcionalidad para lectura del Archivo con la matriz resultante generada por python usando numpy, en este caso el archivo es ![transp_imgmatriz.txt](code/transp_imgmatriz.txt)
-
+* step 1: creamos funcionalidad para lectura del Archivo con la matriz resultante generada por python usando numpy, en este caso el archivo es ![transp_imgmatriz.txt](code/transp_imgmatriz.txt)
 ```
 
 	if (argc<2) {
@@ -189,8 +187,8 @@ int main(int argc, char*argv[])
                 file >> A.el[i];
 
 ```
-## step 2: creamos cusolverDn/cublas handle
 
+* step 2: creamos cusolverDn/cublas handle
 ```
     cusolver_status = cusolverDnCreate(&cusolverH);
     assert(CUSOLVER_STATUS_SUCCESS == cusolver_status);
@@ -200,9 +198,7 @@ int main(int argc, char*argv[])
 
 ```
 
-## step 3: copiar los datos A y B al device
-
-
+* step 3: copiar los datos A y B al device
 ```
     cudaStat1 = cudaMalloc ((void**)&d_A  , sizeof(double)*lda*n);
     cudaStat2 = cudaMalloc ((void**)&d_S  , sizeof(double)*n);
@@ -222,8 +218,7 @@ int main(int argc, char*argv[])
 
 ```
 
-## step 4: consulta el espacio de trabajo para SVD
-
+* step 4: consulta el espacio de trabajo para SVD
 ```
     cusolver_status = cusolverDnDgesvd_bufferSize(
         cusolverH,
@@ -237,8 +232,7 @@ int main(int argc, char*argv[])
 
 ```
 
-## step 5: procesa SVD
-
+* step 5: procesa SVD
 ```
     signed char jobu = 'A'; // all m columns of U
     signed char jobvt = 'A'; // all n columns of VT
@@ -277,8 +271,7 @@ int main(int argc, char*argv[])
 
 ```
 
-## step 6: sacamos en archivos el resultado de las matrices [S](code/output_S.txt), [U](code/output_S.txt), [VT](code/output_S.txt) 
-
+* step 6: sacamos en archivos el resultado de las matrices [S](code/output_S.txt), [U](code/output_S.txt), [VT](code/output_S.txt) 
 ```
 
     printf("S = (matlab base-1)\n");
@@ -304,9 +297,7 @@ int main(int argc, char*argv[])
 
 ```
 
-## step 7: calcula presición de error del SVD
-
-
+* step 7: calcula presición de error del SVD
 ```
     double ds_sup = 0;
     for(int j = 0; j < n; j++){
@@ -317,9 +308,7 @@ int main(int argc, char*argv[])
 
 ```
 
-## step 8: |A - U*S*VT|
-
-
+* step 8: |A - U*S*VT|
 ```
 
     cublas_status = cublasDdgmm(
@@ -363,8 +352,7 @@ int main(int argc, char*argv[])
     printf("|A - U*S*VT| = %E \n", dR_fro);
 ```
 
-## step 9: free resources
-
+* step 9: free resources
 ```
     if (d_A    ) cudaFree(d_A);
     if (d_S    ) cudaFree(d_S);
@@ -391,16 +379,16 @@ int main(int argc, char*argv[])
 
 `nvcc -I /usr/local/cuda-8.0/include svd_example.cu -o svd_example.out -lcublas -lcusolver -lcudart -lcusparse -llapack -lblas -arch=sm_30`
 
-* Validamos resultados  __Fase III__
+## Validamos resultados  __Fase III__
 
-## Cargamos los resultados con Numpy de los datps computados por el codigo CUDA
+* Cargamos los resultados con Numpy de los datps computados por el codigo CUDA
 ```
 sigma = np.loadtxt('output_S.txt')
 U = np.loadtxt('output_U.txt')
 V = np.loadtxt('output_VT.txt')
 ```
 
-## Reconstruimos de 10 en 10 vectores para validar cuando se reproduce una imagen similar a la original ...
+* Reconstruimos de 10 en 10 vectores para validar cuando se reproduce una imagen similar a la original ...
 ```
     for i in range(10,50, 10):
     reconstimg = np.matrix(U[:, :i]) * np.diag(sigma[:i]) * np.matrix(V[:i, :])
@@ -421,15 +409,6 @@ V = np.loadtxt('output_VT.txt')
 
 ## En las imagenes de arriba nos pudimos percatar que la composicion mas similar a la origina esta en aprox. n=40 con una imagen muy clara.
 
-- revisar codigo [svd_example.cu](code/svd-sdk-cuda/svd_example.cu) 
-
-* __Lineas de investigación:__
-
-- Se instalaran utilerias para leer los archivos `chunk-001, chunk-002` `...chunk-00n`
-
-- Buscaremos generar __warps__ para ejecutar SVD desde Kernel para funciones como ` __cusolverDnDgesvd__` y `__cublasDdgmm__`.
-
-- Validaremos que estemos ejecutando tipo de operaciones __Level 3 Routines **distributed matrix-matrix operations**__
-
+- revisar codigo [svd_example.cu](code/svd_example.cu) 
 
 by ADVP
