@@ -118,9 +118,11 @@ Objetivo del proyecto: DiseÃ±ar e implementar una plataforma hibrida (MPI/CUDA
 
 [Trabajo escrito](equipos/equipo_6/trabajo_escrito.md).
 
+
 [Presentación](equipos/equipo_6/presentacion.md).
 
 [Implementación](equipos/equipo_6/implementacion.md).
+
 
 ---
 
@@ -213,11 +215,14 @@ computacionales de optimizaciÃ³n.
 
 * [Avance 28-05-2017](equipos/equipo_11/avance_28_05_2017). 
 
+* [Avance 30-05-2017](equipos/equipo_11/avance_30_05_2017). 
+
 [Trabajo escrito](equipos/equipo_11/trabajo_escrito).
 
 [PresentaciÃ³n](equipos/equipo_11/presentacion).
 
-[ImplementaciÃ³n](equipos/equipo_11/implementacion).
+[Implementación](equipos/equipo_11/codigo).
+
 
 ---
 ## [Equipo 12](equipos/equipo_12)
