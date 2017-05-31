@@ -27,5 +27,10 @@ En la carpeta [avance_03_05_2017](avance_03_05_2017) programos y aplicamos el al
 
 En la carpeta [avance_10_05_2017](avance_10_05_2017) se resolvió el problema del cálculo de la varianza global distribuida y se generó el primer draft de la función Box-Müller(simulación de distribución normal), en ambos casos, con el objetivo de poder generar una simulación Monte-Carlo posteriormente.
 
+En la carpeta [avance_30_05_2017](avance_30_05_2017).
+- Elavoración documento escrito 
+- Elavoración Presentación
+- Resumen de Resultados Prácticos
+
  
 
