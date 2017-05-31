@@ -3,8 +3,8 @@
 
 # Creamos variables globales
 export MACHINE_DRIVER=amazonec2
-export AWS_ACCESS_KEY_ID=AKIAJLGCVQR763WQ23TQ
-export AWS_SECRET_ACCESS_KEY=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
+export AWS_ACCESS_KEY_ID=****
+export AWS_SECRET_ACCESS_KEY=***
 export AWS_DEFAULT_REGION=us-west-1
 export AWS_VPC_ID=vpc-0dfe5569
 export AWS_INSTANCE_TYPE=g2.2xlarge
