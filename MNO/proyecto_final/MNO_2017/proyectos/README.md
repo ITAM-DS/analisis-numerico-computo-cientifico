@@ -11,7 +11,7 @@ Titulo del proyecto: `ParalelizaciÃ³n del algoritmo Word2Vec.`
   * Avances del proyecto:
 
     - [Avance 07-04-2017](equipos/equipo_1/avance_07_04_2017). Comentario del prof: avance actualizado y allÃ­ aparecen referencias para multiplicaciÃ³n de matrices en CUDA (que fue el mÃ©todo que se hablÃ³ personalmente). Para el siguiente avance revÃ­senlas para que estÃ© clara la dificultad de la implementaciÃ³n en paralelo de este mÃ©todo y tambiÃ©n discutan sus referencias del word embedding para definir objetivo del proyecto (consideren tiempos y entendimiento del material). Hay algunas dudas espero me puedan responder :)
-    
+
     - [Avance 17-04-2017](equipos/equipo_1/avance_17_04_2017)
 
 
@@ -21,7 +21,7 @@ Titulo del proyecto: `ParalelizaciÃ³n del algoritmo Word2Vec.`
 
 Titulo del proyecto: `SoluciÃ³n de MÃ­nimos Cuadrados con FactorizaciÃ³n QR vÃ­a transformaciones Househoulder.`
 
-Objetivo del proyecto: Investigar e implementar el algoritmo de factorizaciÃ³n QR utilizando reflexiones de Householder asÃ­ como su aplicaciÃ³n para la soluciÃ³n de mÃ­nimos cuadrados. 
+Objetivo del proyecto: Investigar e implementar el algoritmo de factorizaciÃ³n QR utilizando reflexiones de Householder asÃ­ como su aplicaciÃ³n para la soluciÃ³n de mÃ­nimos cuadrados.
 
 * [Avance 07-04-2017](equipos/equipo_2/avance_07_04_2017). Comentario del prof: Revisen los comentarios en este avance. Sugiero se organice mejor el equipo para la lectura de la teorÃ­a. Hay referencias en el [README.md](equipo_2), acÃ³tense a Ã©stas. (Es buena idea normalizar el nombre de su carpeta equipo_2 al de equipo_2 :), hagan los cambios necesarios para que las ligas estÃ©n correctas de acuerdo al nombre equipo_2)
 
@@ -134,8 +134,22 @@ Objetivo del proyecto: El objetivo del proyecto es utilizar la API de OpenMP par
 
 [Avances del proyecto](equipos/equipo_7):
 
-* [Avance 07-04-2017](equipos/equipo_7/avance_07_04_2017). Comentario del prof: Avance actualizado. 
-* [Avance 17-04-2017](equipos/equipo_7/avance_17_04_2017). Comentario del prof: Lo que tienen en el avance_17_04_2017 lo tomo como avance_07_04_2017 (pues en el momento que revisÃ© estaba este avance_17_04_2017). Revisen comentarios de ambos avances. Muevan, actualicen lo necesario en sus README's de sus avances. Hay una nueva referencia en [README.md](equipos/equipo_7) que seguro les ayuda.
+* [Avance 07-04-2017](equipos/equipo_7/avance_07_04_2017). Comentario del prof: Avance actualizado.
+* [Avance 17-04-2017](equipos/equipo_7/avance_17_04_2017). Comentario del prof: Lo que tienen en el avance_17_04_2017 lo tomo como avance_07_04_2017 (pues en el momento que revisé estaba este avance_17_04_2017). Revisen comentarios de ambos avances. Muevan, actualicen lo necesario en sus README's de sus avances. Hay una nueva referencia en [README.md](equipos/equipo_7) que seguro les ayuda.
+* [Avance 24-04-2017](equipos/equipo_7/avance_24_04_2017)
+* [Avance 03-05-2017](equipos/equipo_7/avance_03_05_2017)
+* [Avance 08-05-2017](equipos/equipo_7/avance_08_08_2017)
+* [Avance 15-05-2017](equipos/equipo_7/avance_15_05_2017)
+* [Avance 22-05-2017](equipos/equipo_7/avance_22_05_2017)
+
+
+[Trabajo escrito](https://www.dropbox.com/s/iirafsv9mj6pm2j/proyecto_ordenamiento.pdf?dl=0).
+
+[Presentación](https://www.dropbox.com/s/0m6i7582fdgo3xn/presentacion_ordenamiento.pdf?dl=0).
+
+[Implementación](https://www.dropbox.com/sh/dy0jgl91g6e3fcf/AABnA5Swayva54J_SKgwKAVxa?dl=0).
+
+[Resultados Output](https://www.dropbox.com/s/f1poyi1cvqw8tzo/output_orden_170508.txt?dl=0).
 
 ---
 
@@ -154,7 +168,7 @@ Objetivo del proyecto:  Entender y exponer el algoritmo de Diferencias Finitas e
 
 * [Avance 07-04-2017](equipos/equipo_9/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios y hay preguntas que espero me puedan responder :). Muy buen avance. Para el siguiente avance podrÃ­an escribir en el trabajo individual lo que han revisado, entendido, como tipo discusiÃ³n.
 
-* [Avance 17-04-2017](equipos/equipo_9/avance_17_04_2017). Comentario del prof: 
+* [Avance 17-04-2017](equipos/equipo_9/avance_17_04_2017). Comentario del prof:
 
 * [Avance 24-04-2017](equipos/equipo_9/avance_24_04_2017)
 
@@ -192,10 +206,10 @@ Objetivo del proyecto: Construir un ambiente distribuido y portable que permita 
 
 TÃ­tulo del proyecto: `PCA aplicado al consumo de ProteÃ­nas en las Dietas de 25 PaÃ­ses`
 
-Objetivo del proyecto: El objetivo del proyecto es 
+Objetivo del proyecto: El objetivo del proyecto es
 detectar patrones de consumo de proteÃ­nas en las dietas
-de 25 pases implementando componentes principales y 
-descomposiciÃ³n de valores singulares (SVD) en 
+de 25 pases implementando componentes principales y
+descomposiciÃ³n de valores singulares (SVD) en
 el lenguaje de programaciÃ³n C usando metodologÃ­as
 computacionales de optimizaciÃ³n.
 
@@ -205,15 +219,15 @@ computacionales de optimizaciÃ³n.
 
 * [Avance 17-04-2017](equipos/equipo_11/avance_17_04_2017). Comentario del prof: Avance actualizado con comentarios. Para el tercer avance revisen la referencia de P. Pacheco, Parallel programming with MPI para distribuciÃ³n de columnas. Hay nuevas referencias para el mÃ©todo one sided jacobi por bloques (si a alguna le interesa puede revisarlas pero esto es para futuro trabajo, no indispensable para la entrega del proyecto final).
 
-* [Avance 24-04-2017](equipos/equipo_11/avance_24_04_2017). 
+* [Avance 24-04-2017](equipos/equipo_11/avance_24_04_2017).
 
-* [Avance 02-05-2017](equipos/equipo_11//avance_02_05_2017). 
+* [Avance 02-05-2017](equipos/equipo_11//avance_02_05_2017).
 
-* [Avance 08-05-2017](equipos/equipo_11//avance_08_05_2017). 
+* [Avance 08-05-2017](equipos/equipo_11//avance_08_05_2017).
 
-* [Avance 15-05-2017](equipos/equipo_11/avance_15_05_2017). 
+* [Avance 15-05-2017](equipos/equipo_11/avance_15_05_2017).
 
-* [Avance 28-05-2017](equipos/equipo_11/avance_28_05_2017). 
+* [Avance 28-05-2017](equipos/equipo_11/avance_28_05_2017).
 
 * [Avance 30-05-2017](equipos/equipo_11/avance_30_05_2017). 
 
@@ -252,21 +266,21 @@ Objetivo del proyecto: Crear un script que haga eficiente la obtenciÃ³n de una
 
 [Avances del proyecto](equipos/equipo_13):
 
-* [Avance 07-04-2017](equipos/equipo_13/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios, hay una pregunta allÃ­ espero me puedan responder :) Muy bien respecto a su lectura y trabajo en equipo. Para el segundo avance pueden avanzar en implementaciÃ³n en C. 
+* [Avance 07-04-2017](equipos/equipo_13/avance_07_04_2017). Comentario del prof: Avance actualizado con comentarios, hay una pregunta allÃ­ espero me puedan responder :) Muy bien respecto a su lectura y trabajo en equipo. Para el segundo avance pueden avanzar en implementaciÃ³n en C.
 
-* [Avance 17-04-2017](equipos/equipo_13/avance_17_04_2017). 
+* [Avance 17-04-2017](equipos/equipo_13/avance_17_04_2017).
 
-* [Avance 26-04-2017](equipos/equipo_13/avance_26_04_2017). 
+* [Avance 26-04-2017](equipos/equipo_13/avance_26_04_2017).
 
-* [Avance 02-05-2017](equipos/equipo_13/avance_02_05_2017). 
+* [Avance 02-05-2017](equipos/equipo_13/avance_02_05_2017).
 
-* [Avance 08-05-2017](equipos/equipo_13/avance_08_05_2017). 
+* [Avance 08-05-2017](equipos/equipo_13/avance_08_05_2017).
 
-* [Avance 12-05-2017](equipos/equipo_13/avance_15_05_2017). 
+* [Avance 12-05-2017](equipos/equipo_13/avance_15_05_2017).
 
-* [Avance 22-05-2017](equipos/equipo_13/avance_22_05_2017). 
+* [Avance 22-05-2017](equipos/equipo_13/avance_22_05_2017).
 
-* [Avance 29-05-2017](equipos/equipo_13/avance_29_05_2017). 
+* [Avance 29-05-2017](equipos/equipo_13/avance_29_05_2017).
 ---
 
 ## [Equipo ejemplo](equipos/equipo_ejemplo)
