@@ -255,4 +255,51 @@ vector[9]=-6.00000
 vector[10]=2.00000
 ```
 
+Obsérvese que no es necesario que el número de entradas de los vectores sea divisible por el número de procesos lanzados y es posible lanzar a lo más 11 procesos:
+
+```
+$mpiexec -n 11 programa.out 11 5
+
+```
+
+Resultado:
+
+```
+Vector
+vector[0]=1
+vector[1]=1
+vector[2]=1
+vector[3]=1
+vector[4]=1
+vector[5]=1
+vector[6]=1
+vector[7]=1
+vector[8]=1
+vector[9]=1
+vector[10]=1
+resizing vector, número de renglones : 11
+vector[0]=1
+vector[1]=1
+vector[2]=1
+vector[3]=1
+vector[4]=1
+vector[5]=1
+vector[6]=1
+vector[7]=1
+vector[8]=1
+vector[9]=1
+vector[10]=1
+vector resultado by blocks:
+vector[0]=5.10000
+vector[1]=4.00000
+vector[2]=1.00000
+vector[3]=5.10000
+vector[4]=4.00000
+vector[5]=10.00000
+vector[6]=5.10000
+vector[7]=-3.00000
+vector[8]=17.00000
+vector[9]=-6.00000
+vector[10]=2.00000
+```
 
