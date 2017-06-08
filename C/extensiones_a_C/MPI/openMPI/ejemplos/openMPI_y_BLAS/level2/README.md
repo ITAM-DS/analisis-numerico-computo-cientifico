@@ -152,7 +152,6 @@ void inicializa_vector_m_a(arreglo_2d_T matriz, arreglo_1d_T vector){
 	MPI_Status status;
 	if(Comm_rank_matriz(matriz)==0){
 		renglones_vector(vector)=Comm_size_matriz(matriz);
-		//entradas_vector_entero(vector) = malloc(renglones_vector(vector)*sizeof(int));
 		entradas_vector_entero(vector) = calloc(renglones_vector(vector),sizeof(int));
 		for(i=0;i<renglones_vector(vector) && renglones(matriz)-suma>0;i++){
 			entrada_vector_entero(vector,i)=min(renglones_local(matriz),renglones(matriz)-suma);
@@ -169,9 +168,7 @@ void inicializa_vector_m_a(arreglo_2d_T matriz, arreglo_1d_T vector){
 	MPI_Bcast(&renglones_vector(vector), 1 , MPI_INT, 0, Comm_matriz(matriz));
 
 	if(renglones_vector(vector)-1==Comm_rank_matriz(matriz)){
-		//printf("rank: %d\n", Comm_rank_matriz(matriz));
 		MPI_Recv(&renglones_local(matriz), 1, MPI_INT, 0,0, Comm_matriz(matriz), &status);
-		//printf("num renglones local: %d\n", renglones_local(matriz));
 	}
 }
 
