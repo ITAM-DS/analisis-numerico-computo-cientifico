@@ -255,7 +255,7 @@ vector[9]=-6.00000
 vector[10]=2.00000
 ```
 
-Obsérvese que no es necesario que el número de entradas de los vectores sea divisible por el número de procesos lanzados y es posible lanzar a lo más 11 procesos:
+Obsérvese que no es necesario que el número de de renglones de la matriz sea divisible por el número de procesos lanzados y es posible lanzar a lo más 11 procesos:
 
 ```
 $mpiexec -n 11 programa.out 11 5
