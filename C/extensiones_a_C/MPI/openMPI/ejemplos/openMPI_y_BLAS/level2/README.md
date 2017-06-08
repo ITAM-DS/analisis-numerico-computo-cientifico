@@ -10,7 +10,7 @@ Información sobre operaciones [level2](http://www.netlib.org/blas/#_level_2) de
 
 ## Distribuye block-row una matriz y dgemv:
 
-Código que lee una matriz de un archivo y distribuye en una forma block-row order entre los procesos lanzados por la usuaria de modo que cada proceso llama a dgemv para realizar el producto matriz-vector. Se usa `MPI_Gather` para colectar el resultado en el proceso con rank 0. Este ejemplo además muestra la creación de grupos con MPI.
+Código que lee una matriz de un archivo y distribuye en una forma block-row order entre los procesos lanzados por la usuaria de modo que cada proceso llama a dgemv para realizar el producto matriz-vector. Se usa `MPI_Gather` para colectar el resultado en el proceso con rank 0. Este ejemplo además muestra cómo crear un communicator y un grupo con openMPI.
 
 Los siguientes archivos deben estar en la carpeta en la que se compila:
 
@@ -56,7 +56,7 @@ extern void dgemv_(char *transpose_a, int *m, int *n, double *alpha, double *a, 
 void inicializa_parametros_matriz_mpi(arreglo_2d_T matriz, int num_ren, int num_col);
 void inicializa_vector_m_a(arreglo_2d_T matriz, arreglo_1d_T vector);
 void inicializa_parametros_vectores_mpi(arreglo_2d_T matriz, arreglo_1d_T a, arreglo_1d_T a_resultado, arreglo_1d_T a_resultado_local, int n_a, int n_a_resultado);
-void crea_grupo_gather(arreglo_1d_T a, int *process_gather, MPI_Group *grupo_world, MPI_Group *grupo_gather, MPI_Comm *comu_gather);
+void crea_grupo_y_communicator_para_gather_y_dgemv(arreglo_1d_T a, int *process_gather, MPI_Group *grupo_world, MPI_Group *grupo_gather, MPI_Comm *comu_gather);
 void free_vector_local_mpi(arreglo_1d_T a);
 void free_vector_mpi(arreglo_1d_T a);
 void free_matriz_local_mpi(arreglo_2d_T matriz);
@@ -102,7 +102,7 @@ int main(int argc, char *argv[]){
 
 	//crea grupo de procesos que realizarán dgemv y gather
 	process_gather=malloc(renglones_vector(m_a)*sizeof(int));
-	crea_grupo_gather(m_a, process_gather, &group_world, &group_gather, &comm_gather);
+	crea_grupo_y_communicator_para_gather_y_dgemv(m_a, process_gather, &group_world, &group_gather, &comm_gather);
 	
 	//dgemv y gather:
 	if((Comm_rank_matriz(A_block_local)+1)*renglones_local(A_block_local)<=renglones(A_block_local)){
@@ -184,10 +184,10 @@ void inicializa_parametros_vectores_mpi(arreglo_2d_T matriz, arreglo_1d_T a, arr
 	renglones_vector_local(a_resultado_local)=renglones_local(matriz);
 	entradas_vector_local(a_resultado_local)=calloc(renglones_vector_local(a_resultado_local),sizeof(double));
 }
-void crea_grupo_gather(arreglo_1d_T a, int *procesos, MPI_Group *grupo_world, MPI_Group *grupo_gather, MPI_Comm *comu_gather){
-	int i_gather_comm;
-	for(i_gather_comm=0;i_gather_comm<renglones_vector(a);i_gather_comm++)
-		procesos[i_gather_comm]=i_gather_comm;
+void crea_grupo_y_communicator_para_gather_y_dgemv(arreglo_1d_T a, int *procesos, MPI_Group *grupo_world, MPI_Group *grupo_gather, MPI_Comm *comu_gather){
+	int i;
+	for(i=0;i<renglones_vector(a);i++)
+		procesos[i]=i;
 
 	MPI_Comm_group(MPI_COMM_WORLD, grupo_world);
 	MPI_Group_incl(*grupo_world, renglones_vector(a), procesos, grupo_gather);
