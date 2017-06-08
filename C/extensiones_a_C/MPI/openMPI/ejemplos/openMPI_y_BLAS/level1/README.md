@@ -4,7 +4,7 @@ Para los siguientes ejemplos, se supone que se ha [levantado un cluster de forma
 
 Se compilarán y ejecutarán los ejemplos en el master_container.
 
-Para los siguientes ejemplos es necesario tener en la carpeta en la que se compilará y ejecutará los siguientes códigos, los archivos `definiciones.h` y `funciones.h` los cuales los encuentran [aquí](../) y se debe tener instalado en sus sistemas ubuntu `libblas-dev`.
+Es necesario tener en la carpeta en la que se compilará y ejecutará los siguientes códigos los archivos `definiciones.h` y `funciones.h` los cuales los encuentran [aquí](../) y se debe tener instalado en sus sistemas ubuntu `libblas-dev`.
 
 Información sobre operaciones [level1](http://www.netlib.org/blas/#_level_1) de BLAS. 
 
@@ -79,7 +79,9 @@ int main(int argc, char *argv[]){
 
 	MPI_Scatter(entradas_vector(x_local),renglones_vector_local(x_local),MPI_DOUBLE,entradas_vector_local(x_local),renglones_vector_local(x_local),MPI_DOUBLE,0,Comm_vector(x_local));
 	MPI_Scatter(entradas_vector(y_local),renglones_vector_local(y_local),MPI_DOUBLE,entradas_vector_local(y_local),renglones_vector_local(y_local),MPI_DOUBLE,0,Comm_vector(y_local));
-	
+	if(Comm_rank_vector(x_local)==0)
+		printf("vector x_local:\n");
+	imprime_entradas_almacenadas_en_procesos(x_local);
 	local_dot_product=ddot_(&renglones_vector_local(x_local), entradas_vector_local(x_local), &incx, entradas_vector_local(y_local), &incx);
 	MPI_Reduce(&local_dot_product, &resultado_dot_product, 1, MPI_DOUBLE, MPI_SUM, 0, Comm_vector(x_local));
 	if(Comm_rank_vector(x_local)==0)
@@ -134,17 +136,48 @@ $mpiexec -n 4 programa.out 13
 Resultado:
 
 ```
+vector x_local:
+arreglo_local[0] = 1.00000
+arreglo_local[1] = 0.00000
+arreglo_local[2] = -1.00000
+arreglo_local[3] = 0.00000
+arreglo_local[4] = 0.00000 recibido de 1
+arreglo_local[5] = 0.00000 recibido de 1
+arreglo_local[6] = 1.00000 recibido de 1
+arreglo_local[7] = 0.00000 recibido de 1
+arreglo_local[8] = 0.00000 recibido de 2
+arreglo_local[9] = 0.00000 recibido de 2
+arreglo_local[10] = 1.00000 recibido de 2
+arreglo_local[11] = 1.00000 recibido de 2
+arreglo_local[12] = -1.00000 recibido de 3
+arreglo_local[13] = 0.00000 recibido de 3
+arreglo_local[14] = 0.00000 recibido de 3
+arreglo_local[15] = 0.00000 recibido de 3
 resultado del producto punto entre x y: 17.000000
 ```
 
-Obsérvese que no es necesario que el número de entradas de los vectores sea divisible por el número de procesos lanzados:
+Obsérvese que no es necesario que el número de entradas de los vectores sea divisible por el número de procesos lanzados y es posible lanzar a lo más 13 procesos
 
 ```
-$mpiexec -n 7 programa.out 13
+$mpiexec -n 13 programa.out 13
 ```
 
 Resultado:
 
 ```
+vector x_local:
+arreglo_local[0] = 1.00000
+arreglo_local[1] = 0.00000 recibido de 1
+arreglo_local[2] = -1.00000 recibido de 2
+arreglo_local[3] = 0.00000 recibido de 3
+arreglo_local[4] = 0.00000 recibido de 4
+arreglo_local[5] = 0.00000 recibido de 5
+arreglo_local[6] = 1.00000 recibido de 6
+arreglo_local[7] = 0.00000 recibido de 7
+arreglo_local[8] = 0.00000 recibido de 8
+arreglo_local[9] = 0.00000 recibido de 9
+arreglo_local[10] = 1.00000 recibido de 10
+arreglo_local[11] = 1.00000 recibido de 11
+arreglo_local[12] = -1.00000 recibido de 12
 resultado del producto punto entre x y: 17.000000
 ```
