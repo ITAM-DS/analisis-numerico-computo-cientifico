@@ -156,7 +156,7 @@ arreglo_local[15] = 0.00000 recibido de 3
 resultado del producto punto entre x y: 17.000000
 ```
 
-Obsérvese que no es necesario que el número de entradas de los vectores sea divisible por el número de procesos lanzados y es posible lanzar a lo más 13 procesos
+Obsérvese que no es necesario que el número de entradas de los vectores sea divisible por el número de procesos lanzados y es posible lanzar a lo más 13 procesos:
 
 ```
 $mpiexec -n 13 programa.out 13
