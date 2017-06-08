@@ -115,7 +115,6 @@ void inicializa_matriz_local_ceros(arreglo_2d_T p){
   	for(i=0;i<m;i++)
 		for(j=0;j<n;j++)
 			entrada_local(p,i,j,m,n)=0;
-			//*(entradas_local(p)+j*renglones_local(p)+i)=0.0;
 }
 void inicializa_vector_ceros(arreglo_1d_T p){
 	int n = renglones_vector(p);
@@ -146,9 +145,7 @@ void imprime_matriz_local(arreglo_2d_T p){
 			for(j=0;j<n;j++){
 				if(j<n-1)
 				printf("matriz_local[%d][%d]=%.5f\t",i,j,entrada_local(p,i,j,m,n));
-				//printf("matriz_local[%d][%d]=%.5f\t",i,j,*(entradas_local(p)+j*renglones_local(p)+i));
 				else
-					//printf("matriz_local[%d][%d]=%.5f\n",i,j,*(entradas_local(p)+j*renglones_local(p)+i));
 				printf("matriz_local[%d][%d]=%.5f\n",i,j,entrada_local(p,i,j,m,n));
 			}
 		}
@@ -253,10 +250,8 @@ void lee_entradas_matriz_distribuye_block_row(arreglo_2d_T mat_local, char *s, a
 				}
 			}
 			contador+=1;
-			if(contador==entrada_vector_entero(m_a,destino) || (ii+contador)==m){
+			if(contador==entrada_vector_entero(m_a,destino)){	
 				if(destino!=0 && (ii+contador)<=m){
-					printf("enviando a destino %d\n", destino);
-					imprime_matriz_local(temp);
 					MPI_Send(entradas_local(temp), contador*columnas_local(mat_local), MPI_DOUBLE, destino, 0,Comm_matriz(mat_local));
 				}
 				contador=0;
@@ -270,11 +265,9 @@ void lee_entradas_matriz_distribuye_block_row(arreglo_2d_T mat_local, char *s, a
 	}
 	else{
 		if((Comm_rank_matriz(mat_local)+1)*renglones_local(mat_local)<=renglones(mat_local)){
-			printf("rank: %d\n", Comm_rank_matriz(mat_local));
 			MPI_Recv(entradas_local(mat_local), renglones_local(mat_local)*columnas_local(mat_local), MPI_DOUBLE, 0, 0, Comm_matriz(mat_local), &status);
 
 		}
 	}
 }
-
 ```
