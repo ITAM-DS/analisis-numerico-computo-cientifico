@@ -121,6 +121,12 @@ Examen módulo 1 parte 2
 
 ## Clase 13
 
+1 de abril
+
+[III/3.2.1 (hasta factorización LU)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+## Clase 14
+
 3 de abril
 
 Revisión examen módulo 1
@@ -129,7 +135,7 @@ Revisión examen módulo 1
 
 [III/3.2.1 (hasta dificultades en la implementación de eliminación Gaussiana simple) ](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
-## Clase 14
+## Clase 15
 
 17 de abril
 
@@ -137,7 +143,7 @@ Revisión examen módulo 1
 
 [III/3.2.2 (hasta nota sobre algunos conceptos geométricos)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
-## Clase 15
+## Clase 16
 
 24 de abril
 
@@ -146,7 +152,7 @@ Revisión examen módulo 1
 * En esta nota faltó revisar algoritmos para Cholesky, QR, pero para tener clases de optimización en el curso, sólo a aquellas personas interesadas les quedará de tarea leer estas secciones de la nota.
 
 
-## Clase 16
+## Clase 17
 
 6 de mayo
 
@@ -156,7 +162,7 @@ Revisión examen módulo 1
 
 [III/3.6.1 y III/3.6.2 (revisión de algoritmos en paralelo)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
-## Clase 17
+## Clase 18
 
 8 de mayo
 
@@ -166,8 +172,14 @@ Revisión examen módulo 1
 
 [IV/4.1 y IV/4.2 (introducción a optimización)](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
 
-## Clase 18
+## Clase 19
 
 15 de mayo
 
 Examen módulo 3 y dudas de proyecto final.
+
+## Clase 20
+
+30 de mayo
+
+Presentaciones de trabajos finales.
