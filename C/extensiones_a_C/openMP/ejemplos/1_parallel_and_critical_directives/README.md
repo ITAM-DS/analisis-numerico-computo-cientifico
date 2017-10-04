@@ -38,12 +38,10 @@ Ejemplo:
 
 void Hello(void); //prototipo de función a ejecutar por los threads.
 int main(int argc, char *argv[]){
-    long thread_count;
-    thread_count = strtol(argv[1], NULL, 10);
 
     //Siempre iniciamos con un #pragma omp ... :
 
-    #pragma omp parallel num_threads(thread_count) //directive parallel: #pragma omp parallel
+    #pragma omp parallel //directive parallel: #pragma omp parallel
        //structured block que sólo consiste del llamado a la función Hello: 
         Hello();
 return 0;
@@ -68,6 +66,20 @@ $gcc -Wall -fopenmp hello_omp.c -o hello_omp.out
 ```
 
 añadimos la flag **Wall** para que se detecten warnings o posibles errores al momento de compilación y la flag fopenmp para soporte de openMP.
+
+Ejecutamos:
+
+```
+$./hello_omp.out
+```
+
+Resultado:
+
+```
+Hola del thread: 0 de 1
+```
+
+Dependiendo del número de cores de nuestro sistema tendremos diferentes número de printf.
 
 Podemos usar diferentes tipos de clauses a continuación del nombre **parallel**. Por ejemplo:
 
