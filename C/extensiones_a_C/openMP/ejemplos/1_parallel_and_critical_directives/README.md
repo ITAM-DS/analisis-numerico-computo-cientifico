@@ -4,13 +4,13 @@ Para los siguientes ejemplos suponemos un sistema ubuntu 14.04 (o más reciente)
 
 ```
 $sudo apt-get update -y && sudo apt-get install -y build-essential
-
 ```
+
 para instalar el compilador **gcc**.
 
 Usamos **pragmas** para indicar al preprocesador (vía la compilación) que ejecutaremos una instrucción que no se encuentra en la especificación básica del lenguaje C, esto se le conoce con el nombre de **directive**.
 
-Cabe señalar que las versiones más recientes de **gcc** sí soportan a los **pragmas** y todas las preprocessor directive son por default de longitud una línea. Si no cabe en una línea usamos un escaping (precedemos con un backslash '\' la "nueva línea").
+Cabe señalar que las versiones más recientes de **gcc** sí soportan a los **pragmas** y todas las preprocessor directive son por default de longitud una línea. Si no cabe en una línea usamos un escaping (precedemos con un backslash \\ la "nueva línea").
 
 Los pragmas de openMP siempre inician con:
 
@@ -18,7 +18,7 @@ Los pragmas de openMP siempre inician con:
 # pragma omp
 ```
 
-#Directive parallel.
+# Directive parallel.
 
 La directive parallel en openMP se utiliza como:
 
@@ -26,7 +26,7 @@ La directive parallel en openMP se utiliza como:
 # pragma omp parallel 
 ```
 
-y podemos usar diferentes tipos de clauses a continuación del texto parallel, por ejemplo:
+Ejemplo:
 
 ## Programa de hello world:
 
@@ -36,14 +36,15 @@ y podemos usar diferentes tipos de clauses a continuación del texto parallel, p
 #include<omp.h> //header file con prototipos y macro definitions para 
                 //la librería de funciones y macros de openMP.
 
-void Hello(void); //función a ejecutar por los threads
+void Hello(void); //prototipo de función a ejecutar por los threads.
 int main(int argc, char *argv[]){
     long thread_count;
     thread_count = strtol(argv[1], NULL, 10);
-    //Siempre iniciamos con un #pragma omp la directive:
+
+    //Siempre iniciamos con un #pragma omp ... :
 
     #pragma omp parallel num_threads(thread_count) //directive parallel: #pragma omp parallel
-       //structured block: 
+       //structured block que sólo consiste del llamado a la función Hello: 
         Hello();
 return 0;
 }
@@ -52,8 +53,8 @@ return 0;
 void Hello(void){
     int my_rank = omp_get_thread_num(); //obtenemos el rank dado por
                     //el run-time system a cada thread
-    int thread_count = omp_get_num_threads(); //obtenemos
-                    //el número de threads que realizaron un fork
+    int thread_count = omp_get_num_threads(); //obtenemos el número de threads 
+                    //que realizaron un fork
                     //del master thread
     printf("Hola del thread: %d de %d\n", my_rank, thread_count);
 }
@@ -67,6 +68,41 @@ $gcc -Wall -fopenmp hello_omp.c -o hello_omp.out
 ```
 
 añadimos la flag **Wall** para que se detecten warnings o posibles errores al momento de compilación y la flag fopenmp para soporte de openMP.
+
+Podemos usar diferentes tipos de clauses a continuación del nombre **parallel**. Por ejemplo:
+
+## Programa de hello world con un número de threads definido por la usuaria:
+
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include<omp.h> //header file con prototipos y macro definitions para 
+                //la librería de funciones y macros de openMP.
+
+void Hello(void); //prototipo de función a ejecutar por los threads.
+int main(int argc, char *argv[]){
+    long thread_count;
+    thread_count = strtol(argv[1], NULL, 10);
+
+    //Siempre iniciamos con un #pragma omp ... :
+
+    #pragma omp parallel num_threads(thread_count) //directive parallel: #pragma omp parallel
+       //structured block que sólo consiste del llamado a la función Hello: 
+        Hello();
+return 0;
+}
+
+//función que será ejecutada por los threads
+void Hello(void){
+    int my_rank = omp_get_thread_num(); //obtenemos el rank dado por
+                    //el run-time system a cada thread
+    int thread_count = omp_get_num_threads(); //obtenemos el número de threads 
+                    //que realizaron un fork
+                    //del master thread
+    printf("Hola del thread: %d de %d\n", my_rank, thread_count);
+}
+
+```
 
 Ejecutar con 5 threads:
 
@@ -86,7 +122,7 @@ Hola del thread: 1 de 5
 
 obsérvese el no determinismo.
 
-Lo que continúa a la línea de **#pragma omp parallel num_threads(thread_count)** es un structured block, es decir, un statement o conjunto de statements que tienen un punto de entrada y un punto de salida, no se permiten statements por ejemplo:
+Lo que continúa a la línea de **#pragma omp parallel num_threads(thread_count)** es un structured block, es decir, un statement o conjunto de statements que tienen un punto de entrada y un punto de salida, no se permiten statements como los siguientes:
 
 ```
 #pragma omp parallel
