@@ -30,11 +30,11 @@ En la carpeta [C](C) encuentran:
 
 [Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/):
 
-* [send_receive_broadcast_reduce](C/extensiones_a_C/MPI/openMPI/ejemplos/send_receive_broadcast_reduce)
+* [send_receive_broadcast_reduce](C/extensiones_a_C/MPI/openMPI/ejemplos/1_send_receive_broadcast_reduce)
 
-* [io_scatter_gather](C/extensiones_a_C/MPI/openMPI/ejemplos/io_scatter_gather)
+* [io_scatter_gather](C/extensiones_a_C/MPI/openMPI/ejemplos/2_io_scatter_gather)
 
-* [openMPI y BLAS](C/extensiones_a_C/MPI/openMPI/ejemplos/openMPI_y_BLAS/)
+* [openMPI y BLAS](C/extensiones_a_C/MPI/openMPI/ejemplos/3_openMPI_y_BLAS/)
 
 2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
 
@@ -44,11 +44,11 @@ En la carpeta [C](C) encuentran:
 
 [Ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/)
 
-* [parallel_and_critical_directives]
+* [parallel_and_critical_directives](C/extensiones_a_C/openMP/ejemplos/1_parallel_and_critical_directives/)
 
-* [reduction_clause]
+* [reduction_clause](C/extensiones_a_C/openMP/ejemplos/2_reduction_clause/)
 
-* [parallel_for_directive]
+* [parallel_for_directive](C/extensiones_a_C/openMP/ejemplos/3_parallel_for_directive/)
 
 2.5 Compute Unified Device Architecture ([CUDA](C/extensiones_a_C/CUDA/)).
 
