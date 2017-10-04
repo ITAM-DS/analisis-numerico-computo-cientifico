@@ -81,6 +81,27 @@ Hola del thread: 0 de 1
 
 Dependiendo del número de cores de nuestro sistema tendremos diferentes número de printf.
 
+Lo que continúa a la línea de **#pragma omp parallel num_threads(thread_count)** es un structured block, es decir, un statement o conjunto de statements que tienen un punto de entrada y un punto de salida, no se permiten statements como los siguientes:
+
+```
+#pragma omp parallel
+    if(...) break;
+
+```
+
+o bien:
+
+```
+#pragma omp parallel
+    {
+        if(variable == valor) return 1;
+        return -1;
+    }
+
+```
+
+
+
 Podemos usar diferentes tipos de clauses a continuación del nombre **parallel**. Por ejemplo:
 
 ## Programa de hello world con un número de threads definido por la usuaria:
@@ -133,26 +154,6 @@ Hola del thread: 1 de 5
 ```
 
 obsérvese el no determinismo.
-
-Lo que continúa a la línea de **#pragma omp parallel num_threads(thread_count)** es un structured block, es decir, un statement o conjunto de statements que tienen un punto de entrada y un punto de salida, no se permiten statements como los siguientes:
-
-```
-#pragma omp parallel
-    if(...) break;
-
-```
-
-o bien:
-
-```
-#pragma omp parallel
-    {
-        if(variable == valor) return 1;
-        return -1;
-    }
-
-```
-
 
 
 ## Programa de la regla del trapecio:
