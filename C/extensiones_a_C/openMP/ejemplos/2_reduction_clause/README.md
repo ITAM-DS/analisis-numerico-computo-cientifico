@@ -67,7 +67,7 @@ int main(int argc, char *argv[]){
     double objetivo=19.717657482016225;
     conteo_threads = strtol(argv[1], NULL, 10);
     #pragma omp parallel num_threads(conteo_threads) \
-    reduction(+: suma_global) //reduction clause
+    			reduction(+: suma_global) //reduction clause
         suma_global+=Trap(a,b,n);
     printf("Integral de %f a %f = %1.15e\n", a,b,suma_global);
     printf("Error relativo de la solución: %1.15e\n", fabs(suma_global-objetivo)/fabs(objetivo));
