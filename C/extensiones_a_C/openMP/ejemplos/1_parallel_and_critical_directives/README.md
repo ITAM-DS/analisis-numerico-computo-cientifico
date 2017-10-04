@@ -1,22 +1,50 @@
+# Ejemplos con openMP
+
+Para los siguientes ejemplos suponemos un sistema ubuntu 14.04 (o más reciente) y que está instalado el paquete build-essential o hacemos:
+
+```
+$sudo apt-get update -y && sudo apt-get install -y build-essential
+
+```
+para instalar el compilador **gcc**.
+
+Usamos **pragmas** para indicar al preprocesador (vía la compilación) que ejecutaremos una instrucción que no se encuentra en la especificación básica del lenguaje C, esto se le conoce con el nombre de **directive**.
+
+Cabe señalar que las versiones más recientes de **gcc** sí soportan a los **pragmas** y todas las preprocessor directive son por default de longitud una línea. Si no cabe en una línea usamos un escaping (precedemos con un backslash "\" la "nueva línea").
+
+Los pragmas de openMP siempre inician con:
+
+```
+# pragma omp
+```
+
 ## Programa de hello world:
 
 ```
 #include<stdio.h>
 #include<stdlib.h>
-#include<omp.h>
+#include<omp.h> //header file con prototipos y macro definitions para 
+                //la librería de funciones y macros de openMP.
+
 void Hello(void); //función a ejecutar por los threads
 int main(int argc, char *argv[]){
     long thread_count;
     thread_count = strtol(argv[1], NULL, 10);
-    #pragma omp parallel num_threads(thread_count) //directiva
-                    //pragma omp
+    //Siempre iniciamos con un #pragma omp la directive:
+
+    #pragma omp parallel num_threads(thread_count) //directive parallel
+       //structured block: 
         Hello();
 return 0;
 }
+
+//función que será ejecutada por los threads
 void Hello(void){
-    int my_rank = omp_get_thread_num();
+    int my_rank = omp_get_thread_num(); //obtenemos el rank dado por
+                    //el run-time system a cada thread
     int thread_count = omp_get_num_threads(); //obtenemos
-                    //el número de threads que fueron forkeados
+                    //el número de threads que realizaron un fork
+                    //del master thread
     printf("Hola del thread: %d de %d\n", my_rank, thread_count);
 }
 
@@ -28,11 +56,25 @@ Compilar:
 $gcc -Wall -fopenmp hello_omp.c -o hello_omp.out
 ```
 
-Ejecutar:
+añadimos la flag **Wall** para que se detecten warnings o posibles errores al momento de compilación y la flag fopenmp para soporte de openMP.
+
+Ejecutar con 5 threads:
 
 ```
 ./hello_omp.out 5
 ```
+
+Resultado:
+
+```
+Hola del thread: 0 de 5
+Hola del thread: 4 de 5
+Hola del thread: 3 de 5
+Hola del thread: 2 de 5
+Hola del thread: 1 de 5
+```
+
+obsérvese el no determinismo.
 
 ## Programa de la regla del trapecio:
 
