@@ -10,13 +10,23 @@ para instalar el compilador **gcc**.
 
 Usamos **pragmas** para indicar al preprocesador (vía la compilación) que ejecutaremos una instrucción que no se encuentra en la especificación básica del lenguaje C, esto se le conoce con el nombre de **directive**.
 
-Cabe señalar que las versiones más recientes de **gcc** sí soportan a los **pragmas** y todas las preprocessor directive son por default de longitud una línea. Si no cabe en una línea usamos un escaping (precedemos con un backslash "\" la "nueva línea").
+Cabe señalar que las versiones más recientes de **gcc** sí soportan a los **pragmas** y todas las preprocessor directive son por default de longitud una línea. Si no cabe en una línea usamos un escaping (precedemos con un backslash '\' la "nueva línea").
 
 Los pragmas de openMP siempre inician con:
 
 ```
 # pragma omp
 ```
+
+#Directive parallel.
+
+La directive parallel en openMP se utiliza como:
+
+```
+# pragma omp parallel 
+```
+
+y podemos usar diferentes tipos de clauses a continuación del texto parallel, por ejemplo:
 
 ## Programa de hello world:
 
@@ -32,7 +42,7 @@ int main(int argc, char *argv[]){
     thread_count = strtol(argv[1], NULL, 10);
     //Siempre iniciamos con un #pragma omp la directive:
 
-    #pragma omp parallel num_threads(thread_count) //directive parallel
+    #pragma omp parallel num_threads(thread_count) //directive parallel: #pragma omp parallel
        //structured block: 
         Hello();
 return 0;
@@ -75,6 +85,27 @@ Hola del thread: 1 de 5
 ```
 
 obsérvese el no determinismo.
+
+Lo que continúa a la línea de **#pragma omp parallel num_threads(thread_count)** es un structured block, es decir, un statement o conjunto de statements que tienen un punto de entrada y un punto de salida, no se permiten statements por ejemplo:
+
+```
+#pragma omp parallel
+    if(...) break;
+
+```
+
+o bien:
+
+```
+#pragma omp parallel
+    {
+        if(variable == valor) return 1;
+        return -1;
+    }
+
+```
+
+
 
 ## Programa de la regla del trapecio:
 
