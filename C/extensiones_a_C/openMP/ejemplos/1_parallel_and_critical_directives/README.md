@@ -30,6 +30,8 @@ Ejemplo:
 
 ## Programa de hello world:
 
+```hello_world_omp.c```:
+
 ```
 #include<stdio.h>
 #include<stdlib.h>
@@ -62,7 +64,7 @@ void Hello(void){
 Compilar:
 
 ```
-$gcc -Wall -fopenmp hello_omp.c -o hello_omp.out
+$gcc -Wall -fopenmp hello_world_omp.c -o hello_world_omp.out
 ```
 
 añadimos la flag **Wall** para que se detecten warnings o posibles errores al momento de compilación y la flag fopenmp para soporte de openMP.
@@ -70,7 +72,7 @@ añadimos la flag **Wall** para que se detecten warnings o posibles errores al m
 Ejecutamos:
 
 ```
-$./hello_omp.out
+$./hello_world_omp.out
 ```
 
 Resultado:
@@ -101,10 +103,11 @@ o bien:
 ```
 
 
-
-Podemos usar diferentes tipos de clauses a continuación del nombre **parallel**. Por ejemplo:
+A continuación del nombre **parallel** podemos usar diferentes tipos de clauses, una clause en openMP es un texto que modifica una directive. Por ejemplo, podemos usar la clause **num_threads** para permitir a la programadora especificar el número de threads que ejecutarán el structured block:
 
 ## Programa de hello world con un número de threads definido por la usuaria:
+
+```hello_world_omp_modificado.c```:
 
 ```
 #include<stdio.h>
@@ -119,7 +122,7 @@ int main(int argc, char *argv[]){
 
     //Siempre iniciamos con un #pragma omp ... :
 
-    #pragma omp parallel num_threads(thread_count) //directive parallel: #pragma omp parallel
+    #pragma omp parallel num_threads(thread_count) //directive parallel con clause num_threads
        //structured block que sólo consiste del llamado a la función Hello: 
         Hello();
 return 0;
@@ -137,10 +140,17 @@ void Hello(void){
 
 ```
 
+Compilamos:
+
+```
+$gcc -Wall -fopenmp hello_world_omp_modificado.c -o hello_world_omp_modificado.out
+```
+
+
 Ejecutar con 5 threads:
 
 ```
-./hello_omp.out 5
+./hello_world_omp_modificado.out 5
 ```
 
 Resultado:
@@ -153,49 +163,131 @@ Hola del thread: 2 de 5
 Hola del thread: 1 de 5
 ```
 
-obsérvese el no determinismo.
+obsérvese el no determinismo. Además pueden haber límites del número de threads que la usuaria puede especificar, esto es definido por el sistema. La mayoría de los sistemas pueden iniciar centenares o miles de threads y casi siempre se obtiene esta cantidad de threads.
 
 
 ## Programa de la regla del trapecio:
+
+### Forma secuencial:
+
+
+```trapecio_secuencial.c```:
+
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h> //header para funciones de mate
+void Trap(double ext_izq, double ext_der, int num_trap,\
+    double *suma_global_p);
+double f(double node);
+int main(int argc, char *argv[]){
+    double suma_global = 0.0;
+    double a=-1.0, b=3.0;
+    int n=1e7; //número de subintervalos
+    double objetivo=19.717657482016225;
+    Trap(a,b,n,&suma_global);
+    printf("Integral de %f a %f = %1.15e\n", a,b,suma_global);
+    printf("Error relativo de la solución: %1.15e\n", fabs(suma_global-objetivo)/fabs(objetivo));
+    return 0;
+}
+void Trap(double a, double b, int n, double *sum){
+    double h=(b-a)/n;
+    double x;
+    int i;
+    *sum = (f(a)+f(b))/2.0;
+    for(i=0;i<=n-1;i++){
+        x = a+i*h;
+        *sum+=f(x);
+    }
+    *sum =h*(*sum);
+}
+double f(double nodo){
+    double valor_f;
+    valor_f = exp(nodo);
+    return valor_f;
+}
+```
+
+Compilamos:
+
+```
+$gcc -Wall trapecio_secuencial.c -o trapecio_secuencial.out -lm
+```
+
+Ejecutamos:
+
+```
+./trapecio_secuencial.out
+```
+
+Resultado:
+
+```
+Integral de -1.000000 a 3.000000 = 1.971765762916886e+01
+Error relativo de la solución: 7.462987594950100e-09
+```
+
+### Forma en paralelo:
+
+Dividimos el número de subintervalos  **n** entre el número de threads que deseamos lanzar, por esto, **n** debe ser **divisible** entre **thread_count** y esta cantidad es el número de subintervalos contiguos que le corresponde a cada thread.
+
+Además, se debe de agregar el resultado de la suma de cada thread. Esto es posible realizar de forma sencilla definiendo una variable que sea **shared**. Una variable es **shared** en openMP si puede ser accesada por todos los threads de un **team** y al definir la variable en la función **main** y antes de un parallel block el default es que sea considerada como **shared** . Y como este recurso compartido será actualizado por cada uno de los threads se debe manejar la **critical section**, por esto hacemos uso de la **directive critical** que se escribe como sigue:
+
+```
+#pragma omp critical
+```
+
+y como consecuencia se tiene que la ejecución del structured block que le continúa a la critical section es secuencial.
+
+
+Ejemplo:
+
+```trapecio_paralelo_omp.c```:
+
 
 ```
 #include<stdio.h>
 #include<stdlib.h>
 #include<omp.h>
-#include<math.h>
+#include<math.h> //header para funciones de mate
 void Trap(double ext_izq, double ext_der, int num_trap,\
-    double *global_result_p);
-double f(double node);
+    double *suma_global_p);
+double f(double nodo);
 int main(int argc, char *argv[]){
-    double global_result = 0.0;
+    double suma_global = 0.0; //variable que es shared, en esta se sumarán los resultados
+                //de las aproximaciones de cada uno de los threads.
     double a=-1.0, b=3.0;
-    int n=1e8; //número de subintervalos
-    int thread_count;
-    thread_count = strtol(argv[1], NULL, 10);
-    #pragma omp parallel num_threads(thread_count)
-        Trap(a,b,n,&global_result);
-    printf("Integral de %f a %f = %1.14f\n", a,b,global_result);
+    int n=1e7; //número de subintervalos
+    int conteo_threads;
+    double objetivo=19.717657482016225;
+    conteo_threads = strtol(argv[1], NULL, 10);
+    #pragma omp parallel num_threads(conteo_threads)
+        Trap(a,b,n,&suma_global);
+    printf("Integral de %f a %f = %1.15e\n", a,b,suma_global);
+    printf("Error relativo de la solución: %1.15e\n", fabs(suma_global-objetivo)/fabs(objetivo));
     return 0;
 }
-void Trap(double a, double b, int n, double *global_result_p){
+void Trap(double a, double b, int n, double *suma_global_p){
     double h=(b-a)/n;
-    double x, my_result;
+    double x, local_int; //local_int es la aproximación de cada thread a la integral en los
+                    //subintervalos contiguos designados a cada thread.
     double local_a, local_b;
     int i,local_n;
-    int my_rank = omp_get_thread_num();
-    int thread_count = omp_get_num_threads();
-    local_n = n/thread_count;
-    local_a = a + my_rank*local_n*h;
-    local_b = local_a + local_n*h;
-    my_result = (f(local_a)+f(local_b))/2.0;
+    int mi_rango = omp_get_thread_num();
+    int conteo_threads = omp_get_num_threads();
+    local_n = n/conteo_threads; //número de subintervalos para cada thread
+    local_a = a + mi_rango*local_n*h; //extremo izquierdo para un thread
+    local_b = local_a + local_n*h; //extremo derecho para un thread
+    local_int = (f(local_a)+f(local_b))/2.0;
     for(i=0;i<=local_n-1;i++){
         x = local_a+i*h;
-        my_result+=f(x);
+        local_int+=f(x);
     }
-    my_result =h*my_result;
+    local_int =h*local_int;
     //directiva critical:
     #pragma omp critical
-        *global_result_p+=my_result;
+        *suma_global_p+=local_int; //critical section, esta línea será ejecutada de forma secuencial
+                                //por el uso de la directive critical
 }
 double f(double nodo){
     double valor_f;
@@ -207,16 +299,30 @@ double f(double nodo){
 Compilar:
 
 ```
-$gcc -Wall -fopenmp omp_trap.c -o omp_trap.out -lm
+$gcc -Wall -fopenmp trapecio_paralelo_omp.c -o trapecio_paralelo_omp.out -lm
 ```
 
 Ejecutar:
 
 ```
-./omp_trap.out 10
+./trapecio_paralelo_omp.out 10
 ```
 
-Una alternativa para este programa es:
+Resultado:
+
+```
+Integral de -1.000000 a 3.000000 = 1.971767351834608e+01
+Error relativo de la solución: 8.132979220043139e-07
+```
+
+Obsérvese que para el mismo número de subintervalos **n = 1e7** se tiene un error relativo menor para el caso del algoritmo en su forma secuencial que en su forma en paralelo. Esto es probablemente resultado de la no asociatividad de la suma en la aritmética de un sistema de punto flotante.
+
+
+Para este ejemplo, las variables que son shared son: **n, a, b, conteo_threads, suma_global, objetivo** y las variables que son **private** resultan ser las que fueron definidas en la función Trap, una de ellas **suma_global_p** hace referencia a la variable shared **suma_global**, esto es indispensable para la agregación del resultado de cada uno de los threads.
+
+Una alternativa para este programa haciendo que Trap devuelva un valor es el siguiente programa:
+
+```trapecio_paralelo_omp_alternativa.c```:
 
 ```
 #include<stdio.h>
@@ -226,39 +332,41 @@ Una alternativa para este programa es:
 double Trap(double ext_izq, double ext_der, int num_trap);
 double f(double node);
 int main(int argc, char *argv[]){
-    double global_result = 0.0;
+    double suma_global = 0.0;
     double a=-1.0, b=3.0;
-    int n=1e8; //número de subintervalos
-    int thread_count;
-    thread_count = strtol(argv[1], NULL, 10);
-    #pragma omp parallel num_threads(thread_count)
+    int n=1e7; //número de subintervalos
+    int conteo_threads;
+    double objetivo=19.717657482016225;
+    conteo_threads = strtol(argv[1], NULL, 10);
+    #pragma omp parallel num_threads(conteo_threads)
     {
-        double my_result = 0.0;
-        my_result=Trap(a,b,n);
+        double local_int = 0.0;
+        local_int=Trap(a,b,n);
     //directiva critical:
     #pragma omp critical
-        global_result+=my_result;
+        suma_global+=local_int;
     }
-    printf("Integral de %f a %f = %1.14f\n", a,b,global_result);
+    printf("Integral de %f a %f = %1.15e\n", a,b,suma_global);
+    printf("Error relativo de la solución: %1.15e\n", fabs(suma_global-objetivo)/fabs(objetivo));
     return 0;
 }
 double Trap(double a, double b, int n){
     double h=(b-a)/n;
-    double x, my_result;
+    double x, local_int;
     double local_a, local_b;
     int i,local_n;
-    int my_rank = omp_get_thread_num();
-    int thread_count = omp_get_num_threads();
-    local_n = n/thread_count;
-    local_a = a + my_rank*local_n*h;
+    int mi_rango = omp_get_thread_num();
+    int conteo_threads = omp_get_num_threads();
+    local_n = n/conteo_threads;
+    local_a = a + mi_rango*local_n*h;
     local_b = local_a + local_n*h;
-    my_result = (f(local_a)+f(local_b))/2.0;
+    local_int = (f(local_a)+f(local_b))/2.0;
     for(i=0;i<=local_n-1;i++){
         x = local_a+i*h;
-        my_result+=f(x);
+        local_int+=f(x);
     }
-    my_result =h*my_result;
-    return my_result;
+    local_int =h*local_int;
+    return local_int;
 }
 double f(double nodo){
     double valor_f;
@@ -271,13 +379,18 @@ double f(double nodo){
 Compilar: 
 
 ```
-$gcc -Wall -fopenmp omp_trap_alternativa.c -o omp_trap_alternativa.out -lm
+$gcc -Wall -fopenmp trapecio_paralelo_omp_alternativa.c -o trapecio_paralelo_omp_alternativa.out -lm
 ```
 
 Ejecutar:
 
 ```
-$./omp_trap_alternativa.out 10
+$./trapecio_paralelo_omp_alternativa.out 10
 ```
 
+Resultado:
 
+```
+Integral de -1.000000 a 3.000000 = 1.971767351834609e+01
+Error relativo de la solución: 8.132979221844932e-07
+```
