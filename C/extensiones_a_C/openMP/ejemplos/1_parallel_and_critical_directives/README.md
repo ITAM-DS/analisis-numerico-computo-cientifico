@@ -320,7 +320,7 @@ Obsérvese que para el mismo número de subintervalos **n = 1e7** se tiene un er
 
 Para este ejemplo, las variables que son shared son: **n, a, b, conteo_threads, suma_global, objetivo** y las variables que son **private** resultan ser las que fueron definidas en la función Trap, una de ellas **suma_global_p** hace referencia a la variable shared **suma_global**, esto es indispensable para la agregación del resultado de cada uno de los threads.
 
-Una alternativa para este programa haciendo que Trap devuelva un valor es el siguiente programa:
+Una alternativa para este programa haciendo que Trap devuelva un valor double es el siguiente programa:
 
 ```trapecio_paralelo_omp_alternativa.c```:
 
@@ -329,7 +329,8 @@ Una alternativa para este programa haciendo que Trap devuelva un valor es el sig
 #include<stdlib.h>
 #include<omp.h>
 #include<math.h>
-double Trap(double ext_izq, double ext_der, int num_trap);
+double Trap(double ext_izq, double ext_der, int num_trap); //la función Trap devuelve
+                                //un valor double.
 double f(double node);
 int main(int argc, char *argv[]){
     double suma_global = 0.0;
@@ -340,11 +341,13 @@ int main(int argc, char *argv[]){
     conteo_threads = strtol(argv[1], NULL, 10);
     #pragma omp parallel num_threads(conteo_threads)
     {
-        double local_int = 0.0;
+        double local_int = 0.0; //variable que es privada y se usará para 
+                                //almacenar el valor aproximado de la Integral
+                                //por cada thread
         local_int=Trap(a,b,n);
     //directiva critical:
     #pragma omp critical
-        suma_global+=local_int;
+        suma_global+=local_int; //manejo de la critical section
     }
     printf("Integral de %f a %f = %1.15e\n", a,b,suma_global);
     printf("Error relativo de la solución: %1.15e\n", fabs(suma_global-objetivo)/fabs(objetivo));
