@@ -42,7 +42,13 @@ En la carpeta [C](C) encuentran:
 
 2.4 Sistemas de memoria compartida: [openMP](C/extensiones_a_C/openMP)
 
-* [Ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/)
+[Ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/)
+
+* [parallel_and_critical_directives]
+
+* [reduction_clause]
+
+* [parallel_for_directive]
 
 2.5 Compute Unified Device Architecture ([CUDA](C/extensiones_a_C/CUDA/)).
 
