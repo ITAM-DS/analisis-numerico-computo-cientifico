@@ -231,7 +231,7 @@ Error relativo de la solución: 7.462987594950100e-09
 
 Dividimos el número de subintervalos  **n** entre el número de threads que deseamos lanzar, por esto, **n** debe ser **divisible** entre **conteo_threads** y esta cantidad es el número de subintervalos contiguos que le corresponde a cada thread.
 
-Además, se debe de agregar el resultado de la suma de cada thread. Esto es posible realizar de forma sencilla definiendo una variable que sea **shared**. Una variable es **shared** en openMP si puede ser accesada por todos los threads de un **team** y al definir la variable en la función **main** y antes de un parallel block el default es que sea considerada como **shared** . Y como este recurso compartido será actualizado por cada uno de los threads se debe manejar la **critical section**, por esto hacemos uso de la **directive critical** que se escribe como sigue:
+Además, se debe de agregar el resultado de la suma de cada thread. Esto es posible realizar de forma sencilla definiendo una variable que sea **shared**. Una variable es **shared** en openMP si puede ser accesada por todos los threads de un **team** y al definir la variable en la función **main** y antes de un parallel block el default es que sea considerada como **shared** . Y como este recurso compartido será actualizado por cada uno de los threads se debe manejar la **critical section** (ver [Notas del curso MNO](https://www.dropbox.com/s/vcxbrqkk6x946d7/2.4.Sistemas_de_memoria_compartida_openMP.pdf?dl=0) para un ejemplo de critical section) por esto hacemos uso de la **directive critical** que se escribe como sigue:
 
 ```
 #pragma omp critical
