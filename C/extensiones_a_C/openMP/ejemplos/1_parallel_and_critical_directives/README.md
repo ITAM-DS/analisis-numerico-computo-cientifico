@@ -53,10 +53,10 @@ return 0;
 void Hello(void){
     int mi_rango = omp_get_thread_num(); //obtenemos el rank dado por
                     //el run-time system a cada thread
-    int thread_count = omp_get_num_threads(); //obtenemos el número de threads 
+    int conteo_threads = omp_get_num_threads(); //obtenemos el número de threads 
                     //que realizaron un fork
                     //del master thread
-    printf("Hola del thread: %d de %d\n", mi_rango, thread_count);
+    printf("Hola del thread: %d de %d\n", mi_rango, conteo_threads);
 }
 
 ```
@@ -117,12 +117,12 @@ A continuación del nombre **parallel** podemos usar diferentes tipos de clauses
 
 void Hello(void); //prototipo de función a ejecutar por los threads.
 int main(int argc, char *argv[]){
-    long thread_count;
-    thread_count = strtol(argv[1], NULL, 10);
+    long conteo_threads;
+    conteo_threads = strtol(argv[1], NULL, 10);
 
     //Siempre iniciamos con un #pragma omp ... :
 
-    #pragma omp parallel num_threads(thread_count) //directive parallel con clause num_threads
+    #pragma omp parallel num_threads(conteo_threads) //directive parallel con clause num_threads
        //structured block que sólo consiste del llamado a la función Hello: 
         Hello();
 return 0;
@@ -132,10 +132,10 @@ return 0;
 void Hello(void){
     int mi_rango = omp_get_thread_num(); //obtenemos el rank dado por
                     //el run-time system a cada thread
-    int thread_count = omp_get_num_threads(); //obtenemos el número de threads 
+    int conteo_threads = omp_get_num_threads(); //obtenemos el número de threads 
                     //que realizaron un fork
                     //del master thread
-    printf("Hola del thread: %d de %d\n", mi_rango, thread_count);
+    printf("Hola del thread: %d de %d\n", mi_rango, conteo_threads);
 }
 
 ```
@@ -229,7 +229,7 @@ Error relativo de la solución: 7.462987594950100e-09
 
 ### Forma en paralelo:
 
-Dividimos el número de subintervalos  **n** entre el número de threads que deseamos lanzar, por esto, **n** debe ser **divisible** entre **thread_count** y esta cantidad es el número de subintervalos contiguos que le corresponde a cada thread.
+Dividimos el número de subintervalos  **n** entre el número de threads que deseamos lanzar, por esto, **n** debe ser **divisible** entre **conteo_threads** y esta cantidad es el número de subintervalos contiguos que le corresponde a cada thread.
 
 Además, se debe de agregar el resultado de la suma de cada thread. Esto es posible realizar de forma sencilla definiendo una variable que sea **shared**. Una variable es **shared** en openMP si puede ser accesada por todos los threads de un **team** y al definir la variable en la función **main** y antes de un parallel block el default es que sea considerada como **shared** . Y como este recurso compartido será actualizado por cada uno de los threads se debe manejar la **critical section**, por esto hacemos uso de la **directive critical** que se escribe como sigue:
 
