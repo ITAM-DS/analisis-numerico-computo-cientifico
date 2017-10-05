@@ -51,12 +51,12 @@ return 0;
 
 //función que será ejecutada por los threads
 void Hello(void){
-    int my_rank = omp_get_thread_num(); //obtenemos el rank dado por
+    int mi_rango = omp_get_thread_num(); //obtenemos el rank dado por
                     //el run-time system a cada thread
     int thread_count = omp_get_num_threads(); //obtenemos el número de threads 
                     //que realizaron un fork
                     //del master thread
-    printf("Hola del thread: %d de %d\n", my_rank, thread_count);
+    printf("Hola del thread: %d de %d\n", mi_rango, thread_count);
 }
 
 ```
@@ -130,12 +130,12 @@ return 0;
 
 //función que será ejecutada por los threads
 void Hello(void){
-    int my_rank = omp_get_thread_num(); //obtenemos el rank dado por
+    int mi_rango = omp_get_thread_num(); //obtenemos el rank dado por
                     //el run-time system a cada thread
     int thread_count = omp_get_num_threads(); //obtenemos el número de threads 
                     //que realizaron un fork
                     //del master thread
-    printf("Hola del thread: %d de %d\n", my_rank, thread_count);
+    printf("Hola del thread: %d de %d\n", mi_rango, thread_count);
 }
 
 ```
@@ -179,7 +179,7 @@ obsérvese el no determinismo. Además pueden haber límites del número de thre
 #include<math.h> //header para funciones de mate
 void Trap(double ext_izq, double ext_der, int num_trap,\
     double *suma_global_p);
-double f(double node);
+double f(double nodo);
 int main(int argc, char *argv[]){
     double suma_global = 0.0;
     double a=-1.0, b=3.0;
@@ -258,7 +258,7 @@ int main(int argc, char *argv[]){
                 //de las aproximaciones de cada uno de los threads.
     double a=-1.0, b=3.0;
     int n=1e7; //número de subintervalos
-    int conteo_threads;
+    int conteo_threads;//conteo_threads debe dividir de forma exacta a n
     double objetivo=19.717657482016225;
     conteo_threads = strtol(argv[1], NULL, 10);
     #pragma omp parallel num_threads(conteo_threads)
@@ -275,7 +275,8 @@ void Trap(double a, double b, int n, double *suma_global_p){
     int i,local_n;
     int mi_rango = omp_get_thread_num();
     int conteo_threads = omp_get_num_threads();
-    local_n = n/conteo_threads; //número de subintervalos para cada thread
+    local_n = n/conteo_threads; //número de subintervalos para cada thread, esta 
+                                //división es exacta
     local_a = a + mi_rango*local_n*h; //extremo izquierdo para un thread
     local_b = local_a + local_n*h; //extremo derecho para un thread
     local_int = (f(local_a)+f(local_b))/2.0;
@@ -331,12 +332,12 @@ Una alternativa para este programa haciendo que Trap devuelva un valor double es
 #include<math.h>
 double Trap(double ext_izq, double ext_der, int num_trap); //la función Trap devuelve
                                 //un valor double.
-double f(double node);
+double f(double nodo);
 int main(int argc, char *argv[]){
     double suma_global = 0.0;
     double a=-1.0, b=3.0;
     int n=1e7; //número de subintervalos
-    int conteo_threads;
+    int conteo_threads; //conteo_threads debe dividir de forma exacta a n
     double objetivo=19.717657482016225;
     conteo_threads = strtol(argv[1], NULL, 10);
     #pragma omp parallel num_threads(conteo_threads)
@@ -360,7 +361,7 @@ double Trap(double a, double b, int n){
     int i,local_n;
     int mi_rango = omp_get_thread_num();
     int conteo_threads = omp_get_num_threads();
-    local_n = n/conteo_threads;
+    local_n = n/conteo_threads; //división exacta
     local_a = a + mi_rango*local_n*h;
     local_b = local_a + local_n*h;
     local_int = (f(local_a)+f(local_b))/2.0;
