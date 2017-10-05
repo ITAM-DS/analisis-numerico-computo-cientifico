@@ -11,7 +11,7 @@ para instalar el compilador **gcc**.
 
 ## Parallel for directive.
 
-OpenMP provee una directive con el nombre **parallel for**. Esta directive ayuda a paralelizar ciclos for que tienen una forma canónica (ver más abajo para revisar a qué se refiere esto). Por ejemplo, para la regla del trapecio en su forma secuencial se tienen los statements:
+OpenMP provee una directive con el nombre **parallel for**. Esta directive ayuda a paralelizar ciclos for que tienen una forma canónica (ver [imagen]() para saber qué es un ciclo for en forma canónica). Por ejemplo, para la regla del trapecio en su forma secuencial se tienen los statements:
 
 ```
 double h=(b-a)/n;
@@ -64,10 +64,10 @@ suma_global = h*suma_global;
 entonces suma_global es **shared** y cada thread la actualiza generando una **race condition**. Para race condition y critical section, ver [Notas del curso MNO](https://www.dropbox.com/s/vcxbrqkk6x946d7/2.4.Sistemas_de_memoria_compartida_openMP.pdf?dl=0) para una explicación de esto.
 
 
-* Como default, todas las variables definidas antes de una directive parallel son compartida **pero en la directiva parallel for la variable del ciclo i es private**, cada thread tiene su propia copia de la variable **i**.
+* Por default todas las variables definidas antes de una directive parallel son compartidas **pero en la directiva parallel for**, la variable del ciclo i es **private**, cada thread tiene su propia copia de la variable **i**.
 
 
-De esta forma, el programa para realizar la regla compuesta del Trapecio con una directive parallel for es:
+Así, el programa para realizar la regla compuesta del Trapecio con una directive parallel for es:
 
 ```trapecio_parallel_for.c```:
 
@@ -125,6 +125,51 @@ Error relativo de la solución: 7.462953721242119e-09
 ```
 
 Obsérvese el error relativo y compárese con el programa secuencial en [1_parallel_and_critical_directives](../1_parallel_and_critical_directives).
+
+
+## Consideraciones en el uso de la directive parallel for.
+
+* OpenMP sólo paraleliza ciclos for, no paraleliza ciclos while o do-while.
+
+* OpenMP sólo paraleliza los ciclos for en los que pueda determinarse el número de iteraciones:
+
+	* con el statement del for (la línea de código que involucra: **for(...;...;...)).
+
+	* previamente a la ejecución del ciclo.
+
+	* Los loops:
+
+	```
+		for(;;){
+		...
+	}
+	```
+	```
+	for(i=0;i<n;i++){
+		if(...) break;
+		...
+	}
+	```
+
+	**no** pueden paralelizarse pues no hay una forma de determinarse el número de iteraciones con sólo el statement del for.
+
+* OpenMP sólo paraleliza ciclos for que se encuentren en su forma canónica.
+
+* Para la [imagen]() se debe cumplir:
+
+	* La variable **indice** debe ser tipo ```int``` o ```pointer```.
+
+	* Las variables **inicio**, **fin**, e **incr** deben tener tipo compatible. Por ejemplo, si **indice** es ```int```, entonces **incr** debe ser tipo ```int```.
+
+	* Las expresiones **inicio**, **fin** e **incr** no deben cambiar durante la ejecución del ciclo.
+
+	* Durante la ejecución del ciclo, la variable **indice** sólo puede ser modificada por la expresión que la incrementa.
+
+
+Con estas consideraciones, el runt-time system determina el número de iteraciones antes de que se ejecute el ciclo (también es posible tener llamadas a **exit** en el cuerpo del ciclo).
+
+
+
 
 
 
