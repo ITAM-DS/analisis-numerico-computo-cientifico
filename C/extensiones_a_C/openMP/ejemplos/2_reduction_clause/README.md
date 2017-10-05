@@ -74,6 +74,8 @@ La variable que está en la **reduction clause** es **shared**. Sin embargo una 
 
 Ejemplo de uso del nombre ```suma_global``` para definir una variable **private** y **shared** en una **reduction clause**:
 
+```ejemplo_variable_private_shared_reduction_clause.c```
+
 ```
 #include<stdio.h>
 #include<stdlib.h>
@@ -110,6 +112,18 @@ printf("suma global al inicio : %d\n", suma_global);
 return 0;
 }
 
+```
+
+Compilamos:
+
+```
+$gcc -Wall -fopenmp ejemplo_variable_private_shared_reduction_clause.c ejemplo_variable_private_shared_reduction_clause.out 
+```
+
+Ejecutamos:
+
+```
+$./ejemplo_variable_private_shared_reduction_clause.out 2
 ```
 
 Resultado:
