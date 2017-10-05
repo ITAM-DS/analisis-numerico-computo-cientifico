@@ -133,19 +133,17 @@ Obsérvese el error relativo y compárese con el programa secuencial en [1_paral
 
 * OpenMP sólo paraleliza los ciclos for en los que pueda determinarse el número de iteraciones:
 
-	* con el statement del for (la línea de código que involucra: **for(...;...;...)).
+	* con el statement del for (la línea de código que involucra: **for(...;...;...)**).
 
 	* previamente a la ejecución del ciclo.
 
 	* Los loops:
 
-	```
-		for(;;){
+	```for(;;){
 		...
 	}
 	```
-	```
-	for(i=0;i<n;i++){
+	```for(i=0;i<n;i++){
 		if(...) break;
 		...
 	}
@@ -153,7 +151,7 @@ Obsérvese el error relativo y compárese con el programa secuencial en [1_paral
 
 	**no** pueden paralelizarse pues no hay una forma de determinarse el número de iteraciones con sólo el statement del for.
 
-* OpenMP sólo paraleliza ciclos for que se encuentren en su forma canónica.
+* OpenMP sólo paraleliza ciclos for que se encuentren en su forma canónica (ver [imagen]() para saber qué es un ciclo for en forma canónica).
 
 * Para la [imagen]() se debe cumplir:
 
@@ -165,8 +163,9 @@ Obsérvese el error relativo y compárese con el programa secuencial en [1_paral
 
 	* Durante la ejecución del ciclo, la variable **indice** sólo puede ser modificada por la expresión que la incrementa.
 
+* Es posible tener llamadas a **exit** en el cuerpo del ciclo.
 
-Con estas consideraciones, el runt-time system determina el número de iteraciones antes de que se ejecute el ciclo (también es posible tener llamadas a **exit** en el cuerpo del ciclo).
+Con estas consideraciones, el run-time system determina el número de iteraciones antes de que se ejecute el ciclo.
 
 
 
