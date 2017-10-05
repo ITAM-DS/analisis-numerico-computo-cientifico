@@ -44,7 +44,7 @@ Puntos a señalar:
 
 * La directive **parallel for** realiza el proceso de fork para que un team de threads ejecuten el **structured block** que continúa a la directive, pero este structured block **debe ser un ciclo for**.
 
-* Con la directive **parallel for** se dividen **las iteraciones del loop entre los threads** y no el trabajo. En la directive parallel se divide **el trabajo entre los threads**, ver para esto el programa de la regla del trapecio en [2_reduction_clause](../2_reduction_clause/) y las [Notas del curso MNO](https://www.dropbox.com/s/vcxbrqkk6x946d7/2.4.Sistemas_de_memoria_compartida_openMP.pdf?dl=0)
+* Con la directive **parallel for** se dividen **las iteraciones del loop entre los threads** y no el trabajo. En la directive parallel se divide **el trabajo entre los threads** (ver el tipo de tareas que se tienen que realizar para la regla del trapecio en las [Notas del curso MNO](https://www.dropbox.com/s/vcxbrqkk6x946d7/2.4.Sistemas_de_memoria_compartida_openMP.pdf?dl=0)).
 
 * Obsérvese en el ejemplo anterior que se utilizó la **reduction clause** para definir a la variable suma_global como una **reduction_variable** y de esta forma no tener una critical section pues si el código hubiera sido:
 
