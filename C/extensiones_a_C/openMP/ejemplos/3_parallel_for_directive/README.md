@@ -137,13 +137,16 @@ Obsérvese el error relativo y compárese con el programa secuencial en [1_paral
 
 	* previamente a la ejecución del ciclo.
 
-	* Los loops:
+	* Los ciclos:
 
-	```for(;;){
+	```
+	for(;;){
 		...
 	}
 	```
-	```for(i=0;i<n;i++){
+
+	```
+	for(i=0;i<n;i++){
 		if(...) break;
 		...
 	}
