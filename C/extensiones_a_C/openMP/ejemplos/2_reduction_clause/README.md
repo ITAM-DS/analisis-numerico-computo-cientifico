@@ -60,7 +60,7 @@ suma_global = 0.0;
 }
 ```
 
-Es equivalente al código:
+es equivalente al código:
 
 ```
 suma_global=0.0
@@ -69,7 +69,7 @@ suma_global=0.0
 
 ```
 
-La variable que está en la **reduction clause** es **shared**. Sin embargo una variable **private** es creada por cada thread en el team (con el mismo nombre que aparece en la **reduction clause**) y si un thread ejecuta un statement en el parallel block que involucra a la variable, entonces se utiliza la variable **private** y al finalizar el parallel block, los valores calculados en las variables **private** son combinados en la variable **shared**
+La variable que está en la **reduction clause** es **shared**. Sin embargo una variable **private** es creada por cada thread en el team (**con el mismo nombre** que aparece en la **reduction clause**) y si un thread ejecuta un statement en el parallel block que involucra a la variable, entonces se utiliza la variable **private** y al finalizar el parallel block, los valores calculados en las variables **private** son combinados en la variable **shared**
 
 
 Ejemplo de uso del nombre ```suma_global``` para definir una variable **private** y **shared** en una **reduction clause**:
@@ -112,6 +112,20 @@ return 0;
 
 ```
 
+Resultado:
+
+```
+suma global al inicio : 7
+suma_global, 1 printf del thread 0: 0
+suma_global, 2 printf del thread 0: 10
+suma_global, 3 printf del thread 0: 11
+suma_global, 1 prinftf thread 1: 0
+suma_global, 2 printf del thread 1: 20
+suma_global, 3 printf del thread 1: 22
+suma_global al final de la directive parallel 40
+```
+
+Obsérvese que la variable **suma_global** se inicializa en 0. En general, las variables **private** creadas para una **reduction clause** son inicializadas al **identity value** para el **operator**, por ejemplo, si el **operator** es la multiplicación, entonces las variables **private** son inicializadas en 1.
 
 Así, el ejemplo de la regla del trapecio con la reduction clause queda como sigue:
 
