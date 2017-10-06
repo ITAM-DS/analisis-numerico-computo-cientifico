@@ -170,6 +170,132 @@ Obsérvese el error relativo y compárese con el programa secuencial en [1_paral
 
 Con estas consideraciones, el run-time system determina el número de iteraciones antes de que se ejecute el ciclo.
 
+También es indispensable saber que si un cálculo en una iteración de un ciclo **depende** del resultado de una o más iteraciones anteriores, no será posible utilizar la directive parallel for sin obtener resultados diferentes. Por ejemplo, el siguiente código calcula los números de fibonacci:
+
+```fibonacci.c```:
+
+```
+#include<stdio.h>
+int main(){
+	int n=12;
+	int fibo[12];
+	int i;
+	fibo[0] = fibo[1] = 1;
+	for(i = 2; i<n; i++)
+		fibo[i] = fibo[i-1] + fibo[i-2];
+	for(i=0;i<n;i++)
+		printf("fibo[%d] = %d\n", i,fibo[i]);
+
+return 0;
+}
+```
+
+Compilamos:
+
+```
+$gcc -Wall fibonacci.c -o fibonacci.out
+```
+
+Ejecutamos:
+
+```
+./fibonacci.out
+```
+
+Con **n=12** obtenemos:
+
+```
+fibo[0] = 1
+fibo[1] = 1
+fibo[2] = 2
+fibo[3] = 3
+fibo[4] = 5
+fibo[5] = 8
+fibo[6] = 13
+fibo[7] = 21
+fibo[8] = 34
+fibo[9] = 55
+fibo[10] = 89
+fibo[11] = 144
+```
+
+Pero si usamos la directive parallel for:
+
+```
+#include<stdio.h>
+#include<stdlib.h>
+int main(int argc, char *argv[]){
+	int n=12;
+	int fibo[12]={0};
+	int i;
+	long conteo_threads;
+	fibo[0] = fibo[1] = 1;
+	conteo_threads = strtol(argv[1], NULL, 10);
+	#pragma omp parallel for num_threads(conteo_threads)
+	for(i = 2; i<n; i++)
+		fibo[i] = fibo[i-1] + fibo[i-2];
+	for(i=0;i<n;i++)
+		printf("fibo[%d] = %d\n", i,fibo[i]);
+
+return 0;
+}
+```
+
+Compilamos:
+
+```
+$gcc -Wall -fopenmp fibonacci_parallel_for.c -o fibonacci_parallel_for.out
+```
+
+Ejecutamos:
+
+```
+$./fibonacci_parallel_for.out 4
+```
+
+Resultado:
+
+```
+fibo[0] = 1
+fibo[1] = 1
+fibo[2] = 2
+fibo[3] = 3
+fibo[4] = 5
+fibo[5] = 8
+fibo[6] = 13
+fibo[7] = 21
+fibo[8] = 0
+fibo[9] = 0
+fibo[10] = 0
+fibo[11] = 0
+```
+
+entonces es probable que el último thread haya iniciado los cálculos antes que el tercer thread termine su trabajo.
+
+Se tiene entonces:
+
+* Los compiladores de openMP no checan dependencias entre las iteraciones.
+
+* Un ciclo en el que los resultados de una o más iteraciones dependen de otras iteraciones **no se puede** paralelizar de forma correcta con openMP.
+
+* En este ejemplo del cálculo de números de fibonacci, la dependencia de fibo[5] en el cálculo de fibo[4] se le llama **dependencia en los datos** y dado que el valor de fibo[4] es calculado en una iteración y su resultado se utiliza en una iteración subsecuente, se dice que la dependencia es del tipo **loop-carried dependence**.
+
+## ¿Cómo encontrar loop-carried dependences?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
