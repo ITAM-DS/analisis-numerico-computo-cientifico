@@ -282,13 +282,369 @@ Se tiene entonces:
 
 ## ¿Cómo encontrar loop-carried dependences?
 
+Una forma es identificar que aunque existan **dependencia en los datos** en las líneas del código, puede ser que no sean **loop-carried dependences** por ejemplo:
+
+```
+for(i=0;i<n;i++){
+	x[i] = a + i*h;
+	y[i] = exp(x[i]);
+}
+```
+
+Se observa en el código anterior que la última línea del for depende de la primera, sin embargo, no hay problema con utilizar la directive parallel for, pues el cálculo de **x[i]** y su subsecuente uso serán siempre realizados por el mismo thread:
+
+```
+#pragma omp parallel num_threads(conteo_threads)
+	for(i=0;i<n;i++){
+	x[i] = a + i*h;
+	y[i] = exp(x[i]);
+}
+```
+
+Otra forma de identificar loop-carried dependences es encontrar las variables que son escritas o actualizadas por el código, es decir, se deben encontrar aquellas variables que son leídas o escritas en una iteración y escritas en otra iteración. En el ejemplo de los números de fibonacci la línea de código que se realiza lo anterior es:
+
+```
+fibo[i] = fibo[i-1] + fibo[i-2];
+```
+
+## Ejemplo de estimación del número pi.
+
+Un código secuencial para estimar al número pi es el siguiente:
+
+```estimacion_pi_secuencial.c```:
+
+```
+#include<stdio.h>
+#include<math.h>
+int main(){
+	double aprox;
+	double factor = 1.0;
+	double sum = 0.0;
+	double objetivo = M_PI;
+	int k;
+	int n=1000;
+	for(k=0;k<n;k++){
+		sum+=factor/(2*k+1);
+		factor = -factor;
+	}
+	aprox = 4.0*sum;
+	printf("estimación de pi %.15e\n", aprox);
+	printf("error relativo: %.15e\n", fabs(objetivo-aprox)/fabs(objetivo));
+return 0;
+}
+```
+
+Compilamos:
+
+```
+$gcc -Wall estimacion_pi_secuencial.c -o estimacion_pi_secuencial.out -lm
+```
+
+Ejecutamos:
+
+```
+$./estimacion_pi_secuencial.out
+```
+
+Resultado:
+
+```
+estimación de pi 3.140592653839794e+00
+error relativo: 3.183098066059948e-04
+```
+
+Si quisiéramos paralelizar este código, podríamos pensar que una forma de hacerlo es:
+
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int main(int argc, char *argv[]){
+	double aprox;
+	double factor = 1.0;
+	double sum = 0.0;
+	double objetivo = M_PI;
+	int k;
+	int n=1000;
+	long conteo_threads;
+	conteo_threads = strtol(argv[1], NULL, 10);
+	# pragma omp parallel for num_threads(conteo_threads) reduction(+:sum)
+	for(k=0;k<n;k++){
+		sum+=factor/(2*k+1);
+		factor = -factor;
+	}
+	aprox = 4.0*sum;
+	printf("estimación de pi %.15e\n", aprox);
+	printf("error relativo: %.15e\n", fabs(objetivo-aprox)/fabs(objetivo));
+return 0;
+}
+```
+
+Compilamos:
+
+```
+$gcc -Wall -fopenmp estimacion_pi_parallel_for_1.c -o estimacion_pi_parallel_for_1.out -lm
+```
+
+Ejecutamos con 2 threads:
+
+```
+./estimacion_pi_parallel_for_1.out 2
+```
+
+Resultado:
+
+```
+estimación de pi 3.140592653839795e+00
+error relativo: 3.183098066058534e-04
+```
+
+y si usamos 200 threads, tenemos de resultado:
+
+```
+estimación de p 3.529323649726084e+00
+error relativo: 1.234186092500706e-01
+```
+
+pero en otra ejecución con 200 threads se obtuvo:
+
+```
+estimación de p -2.977077292895603e+00
+error relativo: 1.947633134261947e+00
+```
+
+Lo que estamos observando es una **loop-carried dependence**. Esta dependencia surge para la variable **factor** en la segunda línea del ciclo for y su subsecuente uso en la primer línea de este ciclo. Podríamos pensar que si la iteración k se asigna a un thread y la iteración k+1 es asignado a otro thread, entonces no hay garantía que el valor de la variable **factor** esté correcto.
+
+### ¿Cómo podríamos arreglar lo anterior?
+
+Si analizamos el código y en particular observamos que para valores pares de **k**, la variable **factor** debería ser **+1** y para valor impares de **k**, **factor** tendría que ser **-1**. Una posibilidad sería reemplazar:
+
+```
+sum+=factor/(2*k+1);
+factor=-factor;
+```
+
+por:
+
+```
+factor=(k%2==0)?1.0:-1.0;
+sum+=factor/(2*k+1);
+```
+
+y al probar el código:
+
+```estimacion_pi_parallel_for_2.c```:
+
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int main(int argc, char *argv[]){
+	double aprox;
+	double factor = 1.0;
+	double sum = 0.0;
+	double objetivo = M_PI;
+	int k;
+	int n=1000;
+	long conteo_threads;
+	conteo_threads = strtol(argv[1], NULL, 10);
+	# pragma omp parallel for num_threads(conteo_threads) reduction(+:sum)
+	for(k=0;k<n;k++){
+		factor=(k%2==0)?1.0:-1.0;
+		sum+=factor/(2*k+1);
+	}
+	aprox = 4.0*sum;
+	printf("estimación de pi %.15e\n", aprox);
+	printf("error relativo: %.15e\n", fabs(objetivo-aprox)/fabs(objetivo));
+return 0;
+}
+
+```
+
+Compilamos:
+
+```
+$gcc -Wall -fopenmp estimacion_pi_parallel_for_2.c -o estimacion_pi_parallel_for_2.out -lm
+```
+
+Ejecutamos:
+
+```
+./estimacion_pi_parallel_for_2.out 800
+```
+
+Resultado:
+
+```
+estimación de pi 3.140592653839793e+00
+error relativo: 3.183098066062775e-04
+```
+
+y en otras ejecuciones obtenemos:
+
+```
+estimación de pi 3.105658156023199e+00
+error relativo: 1.143830583049419e-02
+```
+
+### Private clause.
+
+Otro detalle que no se ha considerado, es que la variable **factor** al ser declarada antes de la directive parallel for implica que es **shared** por lo que si un thread la actualiza antes que otro thread la utilice, podría tenerse un error. Entonces la variable **factor** debe de ser privada para cada thread, esto se logra con la **private clause**. Así se tiene el código:
 
 
+```estimacion_pi_parallel_for_3.c```:
 
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int main(int argc, char *argv[]){
+	double aprox;
+	double factor = 1.0;
+	double sum = 0.0;
+	double objetivo = M_PI;
+	int k;
+	int n=1000;
+	long conteo_threads;
+	conteo_threads = strtol(argv[1], NULL, 10);
+	# pragma omp parallel for num_threads(conteo_threads) reduction(+:sum) \
+		private(factor)
+	for(k=0;k<n;k++){
+		factor=(k%2==0)?1.0:-1.0;
+		sum+=factor/(2*k+1);
+	}
+	aprox = 4.0*sum;
+	printf("estimación de pi %.15e\n", aprox);
+	printf("error relativo: %.15e\n", fabs(objetivo-aprox)/fabs(objetivo));
+return 0;
+}
+```
 
+Compilamos:
 
+```
+$gcc -Wall -fopenmp estimacion_pi_parallel_for_3.c -o estimacion_pi_parallel_for_3.out -lm
+```
 
+Ejecutamos:
 
+```
+$./estimacion_pi_parallel_for_3.out 800
+```
+
+Resultado:
+
+```
+estimación de pi 3.140592653839794e+00
+error relativo: 3.183098066061361e-04
+```
+
+**Nota**:
+
+* El valor de una variable **private** no está especificado antes del parallel block ni después del parallel block (de igual forma para el parallel for block) a diferencia de una variable **shared** que tienen el mismo valor definido antes del parallel o parallel for block y su valor después del block es aquel que se le asignó en el último paso del block.
+
+### default clause.
+
+Es buena práctica utilizar la **default clause** para obligarnos a definir si las variables que serán utilizadas en un parallel block o en un parallel for block son **shared** o son **private**.
+
+Añadiendo la clause:
+
+```
+default(none)
+```
+
+a nuestra directive parallel o a la directive parallel for, el compilador exigirá que se defina si las variables a utilizar en el block y que fueron definidas **antes** del block si son **shared** o **private**. Por ejemplo, debemos para las 4 variables que se utilizarán en el ciclo for, definir lo anterior:
+
+```estimacion_pi_parallel_for_4.c```:
+
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int main(int argc, char *argv[]){
+	double aprox;
+	double factor = 1.0;
+	double sum = 0.0;
+	double objetivo = M_PI;
+	int k;
+	int n=1000;
+	long conteo_threads;
+	conteo_threads = strtol(argv[1], NULL, 10);
+	# pragma omp parallel for num_threads(conteo_threads) default(none) \
+		reduction(+:sum) private(k, factor) shared(n)
+	for(k=0;k<n;k++){
+		factor=(k%2==0)?1.0:-1.0;
+		sum+=factor/(2*k+1);
+	}
+	aprox = 4.0*sum;
+	printf("estimación de pi %.15e\n", aprox);
+	printf("error relativo: %.15e\n", fabs(objetivo-aprox)/fabs(objetivo));
+return 0;
+}
+
+```
+
+Compilamos:
+
+```
+$gcc -Wall -fopenmp estimacion_pi_parallel_for_4.c -o estimacion_pi_parallel_for_4.out -lm
+```
+
+Ejecutamos:
+
+```
+./estimacion_pi_parallel_for_4.out 800
+```
+
+Resultado:
+
+```
+estimación de pi 3.140592653839793e+00
+error relativo: 3.183098066062775e-04
+```
+
+Obsérvese, que si no se define si son **shared** o **private** se obtiene al momento de compilar:
+
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+int main(int argc, char *argv[]){
+	double aprox;
+	double factor = 1.0;
+	double sum = 0.0;
+	double objetivo = M_PI;
+	int k;
+	int n=1000;
+	long conteo_threads;
+	conteo_threads = strtol(argv[1], NULL, 10);
+	# pragma omp parallel for num_threads(conteo_threads) default(none) \
+		reduction(+:sum)
+	for(k=0;k<n;k++){
+		factor=(k%2==0)?1.0:-1.0;
+		sum+=factor/(2*k+1);
+	}
+	aprox = 4.0*sum;
+	printf("estimación de pi %.15e\n", aprox);
+	printf("error relativo: %.15e\n", fabs(objetivo-aprox)/fabs(objetivo));
+return 0;
+}
+```
+
+los errores:
+
+```
+estimacion_pi_parallel_for_5.c: In function 'main':
+estimacion_pi_parallel_for_5.c:13:11: error: 'n' not specified in enclosing parallel
+  # pragma omp parallel for num_threads(conteo_threads) default(none) \
+           ^
+estimacion_pi_parallel_for_5.c:13:11: error: enclosing parallel
+estimacion_pi_parallel_for_5.c:16:9: error: 'factor' not specified in enclosing parallel
+   factor=(k%2==0)?1.0:-1.0;
+         ^
+estimacion_pi_parallel_for_5.c:13:11: error: enclosing parallel
+  # pragma omp parallel for num_threads(conteo_threads) default(none) \
+```
 
 
 
