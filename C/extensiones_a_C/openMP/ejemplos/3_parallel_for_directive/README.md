@@ -11,7 +11,7 @@ para instalar el compilador **gcc**.
 
 ## Parallel for directive.
 
-OpenMP provee una directive con el nombre **parallel for**. Esta directive ayuda a paralelizar ciclos for que tienen una forma canónica (ver [imagen]() para saber qué es un ciclo for en forma canónica). Por ejemplo, para la regla del trapecio en su forma secuencial se tienen los statements:
+OpenMP provee una directive con el nombre **parallel for**. Esta directive ayuda a paralelizar ciclos for que tienen una forma canónica (ver [imagen](https://www.dropbox.com/s/qw1dui3gfewl2jx/for_canonico_openmp.jpg?dl=0) para saber qué es un ciclo for en forma canónica). Por ejemplo, para la regla del trapecio en su forma secuencial se tienen los statements:
 
 ```
 double h=(b-a)/n;
