@@ -154,9 +154,9 @@ Obsérvese el error relativo y compárese con el programa secuencial en [1_paral
 
 	**no** pueden paralelizarse pues no hay una forma de determinarse el número de iteraciones con sólo el statement del for.
 
-* OpenMP sólo paraleliza ciclos for que se encuentren en su forma canónica (ver [imagen]() para saber qué es un ciclo for en forma canónica).
+* OpenMP sólo paraleliza ciclos for que se encuentren en su forma canónica (ver [imagen](C/extensiones_a_C/openMP/ejemplos/3_parallel_for_directive/README.md) para saber qué es un ciclo for en forma canónica).
 
-* Para la [imagen]() se debe cumplir:
+* Para la [imagen](C/extensiones_a_C/openMP/ejemplos/3_parallel_for_directive/README.md) se debe cumplir:
 
 	* La variable **indice** debe ser tipo ```int``` o ```pointer```.
 
