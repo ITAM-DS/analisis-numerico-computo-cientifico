@@ -103,7 +103,7 @@ double Trap(double ext_izq, double ext_der, int num_trap, double longitud_base);
 int main(void){
     int mi_rango;
     int comm_sz;
-    int n=1e6;//número de trapecios
+    int n=1e7;//número de trapecios
     int local_n;
     double a=-1.0, b=3.0,h;
     double objetivo=19.717657482016225;
