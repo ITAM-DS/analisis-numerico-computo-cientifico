@@ -199,6 +199,7 @@ int main(void){
     int local_n;
     double a, b,h;
     double local_a, local_b,local_int, total_int;
+    double objetivo=19.717657482016225;
     //local_int estima por cada proceso con la regla del trapecio
     //la integral
     int num_proceso_contador;
@@ -221,8 +222,10 @@ int main(void){
             total_int+=local_int;
         }//for
     }//else
-    if(mi_rango == 0)
+    if(mi_rango == 0){
         printf("Valor de la integral de %f a %f es: %1.14e\n",a,b,total_int);
+        printf("Error relativo de la solución: %1.15e\n", fabs(total_int-objetivo)/fabs(objetivo));
+    }
     MPI_Finalize();
     return 0;
 }//main
@@ -317,6 +320,7 @@ int main(void){
     int local_n;
     double a, b,h;
     double local_a, local_b,local_int, total_int;
+    double objetivo=19.717657482016225;
     //local_int estima por cada proceso con la regla del trapecio
     //la integral
     int num_proceso_contador;
@@ -339,8 +343,10 @@ int main(void){
             total_int+=local_int;
         }//for
     }//else
-    if(mi_rango == 0)
+    if(mi_rango == 0){
         printf("Valor de la integral de %f a %f es: %1.14e\n",a,b,total_int);
+        printf("Error relativo de la solución: %1.15e\n", fabs(total_int-objetivo)/fabs(objetivo));
+    }
     MPI_Finalize();
     return 0;
 }//main
@@ -416,6 +422,7 @@ int main(void){
     int local_n;
     double a, b,h;
     double local_a, local_b,local_int, total_int;
+    double objetivo=19.717657482016225;
     //local_int estima por cada proceso con la regla del trapecio
     //la integral
     int num_proceso_contador;
@@ -430,8 +437,10 @@ int main(void){
     local_b = local_a + local_n*h;//calculamos el extremo derecho
     local_int = Trap(local_a, local_b, local_n, h);
     MPI_Reduce(&local_int, &total_int, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
-    if(mi_rango == 0)
+    if(mi_rango == 0){
         printf("Valor de la integral de %f a %f es: %1.14e\n",a,b,total_int);
+        printf("Error relativo de la solución: %1.15e\n", fabs(total_int-objetivo)/fabs(objetivo));
+    }
     MPI_Finalize();
     return 0;
 }//main
@@ -522,6 +531,7 @@ int main(void){
     int local_n;
     double a, b,h;
     double local_a, local_b,local_int, total_int;
+    double objetivo=19.717657482016225;
     //local_int estima por cada proceso con la regla del trapecio
     //la integral
     int num_proceso_contador;
@@ -536,8 +546,10 @@ int main(void){
     local_b = local_a + local_n*h;//calculamos el extremo derecho
     local_int = Trap(local_a, local_b, local_n, h);
     MPI_Allreduce(&local_int, &total_int, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
-    if(mi_rango == 1)
+    if(mi_rango == 1){
         printf("Valor de la integral de %f a %f es: %1.14e\n",a,b,total_int);
+        printf("Error relativo de la solución: %1.15e\n", fabs(total_int-objetivo)/fabs(objetivo));
+    }
     MPI_Finalize();
     return 0;
 }//main
