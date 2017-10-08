@@ -92,7 +92,7 @@ int MPI_Recv(
 
 ### Programa de trapecio compuesto:
 
-`trapecio_compuesto_mpi`:
+`trapecio_compuesto_mpi.c`:
 
 ```
 #include<stdio.h>
@@ -106,6 +106,7 @@ int main(void){
     int n=1e6;//número de trapecios
     int local_n;
     double a=-1.0, b=3.0,h;
+    double objetivo=19.717657482016225;
     double local_a, local_b,local_int, total_int;
     //local_int estima por cada proceso con la regla del trapecio
     //la integral
@@ -127,8 +128,10 @@ int main(void){
             total_int+=local_int;
         }//for
     }//else
-    if(mi_rango == 0)
+    if(mi_rango == 0){
         printf("Valor de la integral de %f a %f es: %1.14e\n",a,b,total_int);
+        printf("Error relativo de la solución: %1.15e\n", fabs(total_int-objetivo)/fabs(objetivo));
+    }
     MPI_Finalize();
     return 0;
 }//main
