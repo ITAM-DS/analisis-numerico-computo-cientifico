@@ -1,21 +1,23 @@
-# Métodos Numéricos y Optimización 2017
+# Métodos Numéricos y Optimización 2018
+
+[Temario]()
 
 [El curso, calificación y entregas, correo al cual escribir](https://www.dropbox.com/s/x8cdh55krqlpcxn/Curso_MNO_2017.pdf?dl=0)
 
-[Equipos de MNO](https://www.dropbox.com/s/49a4gqmk5aiz27n/Equipos%20MNO%202017.rtf?dl=0)
+[Equipos de MNO]()
 
-[Lista alumn@s con calificaciones](https://www.dropbox.com/s/l50nmi7ice26qdh/salon_pf_103.xlsx?dl=0)
+[Lista alumn@s con calificaciones]()
 
 [Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
 
-[Indicaciones para proyecto final MNO 2017](proyecto_final/MNO_2017)
+[Indicaciones para proyecto final MNO 2018](proyecto_final/MNO_2017)
 
-[Lista de proyectos finales MNO 2017](proyecto_final/MNO_2017/proyectos)
+[Lista de proyectos finales MNO 2018](proyecto_final/MNO_2017/proyectos)
 
 
 ## Clase 1
 
-16 de enero
+15 de enero
 
 [I/1.1](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
