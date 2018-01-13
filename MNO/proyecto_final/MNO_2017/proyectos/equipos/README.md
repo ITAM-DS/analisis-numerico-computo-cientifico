@@ -1,1 +1,0 @@
-Carpetas de equipos para el proyecto final.

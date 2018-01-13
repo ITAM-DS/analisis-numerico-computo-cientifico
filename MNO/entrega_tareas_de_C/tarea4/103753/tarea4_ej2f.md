@@ -1,1 +1,0 @@
-El efecto que tiene escribir ```extern``` en cada una de las funciones es permitir que estas variables sean accedidas o vistas por otras funciones declaradas en el script de C. 
