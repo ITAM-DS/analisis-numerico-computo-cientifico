@@ -1,121 +1,185 @@
-# analisis-numerico-computo-cientifico
+# Métodos Numéricos y Optimización 2017
 
-En la carpeta [MNO](MNO) encuentran información sobre el curso de Métodos Numéricos y Optimización.
+[El curso, calificación y entregas, correo al cual escribir](https://www.dropbox.com/s/x8cdh55krqlpcxn/Curso_MNO_2017.pdf?dl=0)
 
-En la carpeta [C](C) encuentran:
+[Equipos de MNO](https://www.dropbox.com/s/49a4gqmk5aiz27n/Equipos%20MNO%202017.rtf?dl=0)
 
-* Clases para introducción al lenguaje C de programación.
+[Lista alumn@s con calificaciones](https://www.dropbox.com/s/l50nmi7ice26qdh/salon_pf_103.xlsx?dl=0)
 
-* Dentro de [C/BLAS](C/BLAS) y [C/LAPACK](C/LAPACK) se tienen funciones para ejecución de algunas rutinas de [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/) en un sistema ubuntu.
+[Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
 
-* Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [MPI](http://mpi-forum.org/), [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [openMP](http://www.openmp.org/), [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/). 
+[Indicaciones para proyecto final MNO 2017](proyecto_final/MNO_2017)
 
-Índice de este repositorio. Cada número contiene notas del tema respectivo.
+[Lista de proyectos finales MNO 2017](proyecto_final/MNO_2017/proyectos)
 
-## I [Cómputo científico](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0):
 
-1.1 [Analisis numérico y cómputo científico.](https://www.dropbox.com/s/0q8l0w7mgckqz7p/1.1Analisis_numerico_y_computo_cientifico.pdf?dl=0)
+## Clase 1
 
-1.2 [Sistema de punto flotante.](https://www.dropbox.com/s/9fsupm3bhwmv7cb/1.2.Sistema_de_punto_flotante.pdf?dl=0)
+16 de enero
 
-1.3 [Condición, estabilidad y normas.](https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad_y_normas.pdf?dl=0)
+[I/1.1](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
-## II [Cómputo en paralelo](https://www.dropbox.com/sh/vrdgj7bugi1flyp/AAAMP6R2n5GZY71KXkWT4ZEja?dl=0):
+[I/1.2 (hasta aritmética en punto flotante)](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
-2.1 [Un poco de historia y generalidades](https://www.dropbox.com/s/z465znq3wwao9ad/2.1.Un_poco_de_historia_y_generalidades.pdf?dl=0).
+## Clase 2
 
-2.2 Sistemas de memoria distribuida: [MPI](C/extensiones_a_C/MPI).
+23 de enero
 
-* [Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
+[I/1.2 (terminamos la nota)](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
-[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/):
+[I/1.3 (hasta normas matriciales)](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
-* [send_receive_broadcast_reduce](C/extensiones_a_C/MPI/openMPI/ejemplos/1_send_receive_broadcast_reduce)
+[C/clase1](../C/clases/clase1.md)
 
-* [io_scatter_gather](C/extensiones_a_C/MPI/openMPI/ejemplos/2_io_scatter_gather)
+## Clase 3
 
-* [openMPI y BLAS](C/extensiones_a_C/MPI/openMPI/ejemplos/3_openMPI_y_BLAS/)
+28 de enero
 
-2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
+[I/1.3 (hasta número de condición de una matriz)](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
 
-* [Ejemplos con Pthreads](C/extensiones_a_C/Pthreads/ejemplos/)
+[II/2.1 (hasta threading)](https://www.dropbox.com/sh/vrdgj7bugi1flyp/AAAMP6R2n5GZY71KXkWT4ZEja?dl=0)
 
-2.4 Sistemas de memoria compartida: [openMP](C/extensiones_a_C/openMP)
+[C/clase2](../C/clases/clase2.md)
 
-[Ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/)
+## Clase 4
 
-* [parallel_and_critical_directives](C/extensiones_a_C/openMP/ejemplos/1_parallel_and_critical_directives/)
+30 de enero
 
-* [reduction_clause](C/extensiones_a_C/openMP/ejemplos/2_reduction_clause/)
+[II/2.1 (terminamos la nota)](https://www.dropbox.com/sh/vrdgj7bugi1flyp/AAAMP6R2n5GZY71KXkWT4ZEja?dl=0)
 
-* [parallel_for_directive](C/extensiones_a_C/openMP/ejemplos/3_parallel_for_directive/)
+[C/clase3](../C/clases/clase3.md)
 
-2.5 Compute Unified Device Architecture ([CUDA](C/extensiones_a_C/CUDA/)).
+## Clase 5
 
-* [Instalación](C/extensiones_a_C/CUDA/instalacion)
+11 de febrero
 
-* [Ejemplos](C/extensiones_a_C/CUDA/ejemplos/)
+[C/clase3 (continuación)](../C/clases/clase3.md)
 
-## III [Cómputo matricial](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+[C/clase4](../C/clases/clase4.md)
 
-3.1.1 [Multiplicación de matrices y estructura de datos.](https://www.dropbox.com/s/fyqwiqasqaa3wlt/3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf?dl=0)
+[II/2.2 (construimos imagen de openmpi)](https://www.dropbox.com/sh/y1jr4xl160mhg18/AABT4JphiB2R9YWcBCbRYm9ja?dl=0)
 
-3.1.2 [Localidad y vectorización. Análisis del error en cómputos matriciales básicos.](https://www.dropbox.com/s/l4hq45rj860ql9f/3.1.2.Localidad_y_vectorizacion.Analisis_del_error_en_computos_matriciales_basicos.pdf?dl=0)
+## Clase 6
 
-3.2.1 [Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
+13 de febrero
 
-3.2.2 [Factorizaciones matriciales: SVD, Cholesky, QR. (Vista rápida).](https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0)
+[C/clase5](../C/clases/clase5.md)
 
-3.3 [Sistemas de ecuaciones lineales: métodos iterativos.]
+[II/2.2 (nota hasta communicators, MPI_Comm_size, MPI_Comm_rank y hello world con openmpi )](https://www.dropbox.com/sh/y1jr4xl160mhg18/AABT4JphiB2R9YWcBCbRYm9ja?dl=0)
 
-3.4 [Tensores. Una introducción.](https://www.dropbox.com/s/udwrro2f11j2a0q/3.4.Tensores.pdf?dl=0)
+## Clase 7
 
-3.5 [Aplicaciones del álgebra lineal numérica.](https://www.dropbox.com/s/dfwk0y04ksgfilv/3.3.Aplicaciones_del_algebra_lineal_numerica.pdf?dl=0)
+21 de febrero
 
-3.6.1 [Multiplicación de matrices con cómputo en paralelo.](https://www.dropbox.com/s/bgoua82py00h22o/3.4.1.Multiplicacion_de_matrices_con_computo_en_paralelo.pdf?dl=0)
+[C/clase6](../C/clases/clase6.md)
 
-3.6.2 [SVD con cómputo en paralelo.](https://www.dropbox.com/s/p8p905v34uth28w/3.4.2.SVD_con_computo_en_paralelo.pdf?dl=0)
+[II/2.2 (terminamos la nota)](https://www.dropbox.com/sh/y1jr4xl160mhg18/AABT4JphiB2R9YWcBCbRYm9ja?dl=0)
 
-## IV [Optimización convexa](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
+## Clase 8
 
-4.1 [Introducción.](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
+27 de febrero
 
-4.2 [Teoría de convexidad.](https://www.dropbox.com/s/5g7uwg6274k2yyf/4.2.Teoria_de_convexidad.pdf?dl=0)
+Examen de C
 
-4.3 [Problemas de optimización convexa.]
+[II/2.3 (hasta critical section)](https://www.dropbox.com/sh/son1drrd3epa3m7/AAD8AxzRROISvtWB7IPt_NFra?dl=0)
 
-4.4 [Dualidad.]
+## Clase 9
 
-4.5 [Algoritmos.]
+6 de marzo
 
-4.6 [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
+[II/2.3 (terminamos la nota)](https://www.dropbox.com/sh/son1drrd3epa3m7/AAD8AxzRROISvtWB7IPt_NFra?dl=0)
 
-## [C](C/)
+[II/2.4 (terminamos la nota)](https://www.dropbox.com/sh/18fjosdqj9saft8/AAAI1FZoIQ6LxC7iN3LKME3ra?dl=0)
 
-[clase1](C/clases/clase1.md)
+[II/2.5 (introducción)](https://www.dropbox.com/sh/c6gfuli2ewolhui/AABGWdK52vENPDDA0IzEphkQa?dl=0)
 
-[clase2](C/clases/clase2.md)
+## Clase 10
 
-[clase3](C/clases/clase3.md)
+11 de marzo
 
-[clase4](C/clases/clase4.md)
+[II/2.5 (terminamos la nota)](https://www.dropbox.com/sh/c6gfuli2ewolhui/AABGWdK52vENPDDA0IzEphkQa?dl=0)
 
-[clase5](C/clases/clase5.md)
+## Clase 11
 
-[clase6](C/clases/clase6.md)
+13 de marzo
 
-## [BLAS](C/BLAS)
+Examen módulo 1 parte 1
 
-[Ejemplos](C/BLAS/ejemplos/):
+[III/3.1.1 (hasta block matrices)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
-* [level1](C/BLAS/ejemplos/level1/)
+## Clase 12
 
-* [level2](C/BLAS/ejemplos/level2/)
+27 de marzo
 
-* [level3](C/BLAS/ejemplos/level3/)
+Examen módulo 1 parte 2
 
-## [LAPACK](C/LAPACK)
+[III/3.1.1 (terminamos la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
-[Ejemplos](C/LAPACK/ejemplos/):
+[III/3.1.2 (terminamos la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
-* [solve_linear_equations](C/LAPACK/ejemplos/solve_linear_equations/)
+[III/3.2.1 (inicio de la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+## Clase 13
+
+1 de abril
+
+[III/3.2.1 (hasta factorización LU)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+## Clase 14
+
+3 de abril
+
+Revisión examen módulo 1
+
+[I/1.3 (número de condición de una matriz)](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0)
+
+[III/3.2.1 (hasta dificultades en la implementación de eliminación Gaussiana simple) ](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+## Clase 15
+
+17 de abril
+
+[III/3.2.1 (terminamos la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+[III/3.2.2 (hasta nota sobre algunos conceptos geométricos)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+## Clase 16
+
+24 de abril
+
+[III/3.2.2 (revisamos los conceptos geométricos de proyecciones, reflexiones y rotaciones, SVD y matriz positiva definida)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+* En esta nota faltó revisar algoritmos para Cholesky, QR, pero para tener clases de optimización en el curso, sólo a aquellas personas interesadas les quedará de tarea leer estas secciones de la nota.
+
+
+## Clase 17
+
+6 de mayo
+
+[III/3.2.2 (revisamos factorización QR)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+[III/3.5 (hasta reduced-rank least squares models)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+[III/3.6.1 y III/3.6.2 (revisión de algoritmos en paralelo)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+## Clase 18
+
+8 de mayo
+
+[III/3.4 (terminamos la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+[III/3.5 (terminamos la nota)](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+
+[IV/4.1 y IV/4.2 (introducción a optimización)](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
+
+## Clase 19
+
+15 de mayo
+
+Examen módulo 3 y dudas de proyecto final.
+
+## Clase 20
+
+30 de mayo
+
+Presentaciones de trabajos finales.
