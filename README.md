@@ -1,6 +1,6 @@
 # analisis-numerico-computo-cientifico
 
-En la carpeta [MNO](MNO) encuentran información sobre el curso de Métodos Numéricos y Optimización.
+Información sobre el curso de Métodos Numéricos y Optimización en diferentes fechas ir a la rama correspondiente de este repositorio.
 
 En la carpeta [C](C) encuentran:
 
