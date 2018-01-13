@@ -14,11 +14,11 @@ creará un directorio, en el que se tendrán niveles de directorios para los ava
 
 `analisis-numerico-computo-cientifico/proyecto_final/proyectos/equipos/equipo_ejemplo/README.md`
 
- se realizarán comentarios generales sobre el proyecto [(ver ejemplo)](proyecto_final/proyectos/equipos/equipo_ejemplo).
+ se realizarán comentarios generales sobre el proyecto [(ver ejemplo)](../proyectos/equipos/equipo_ejemplo).
 
 Lo que se busca con esta forma de calificar es que para la semana 5 o 6 el proyecto esté en un 80% de avance y no se realice todo al final (penúltima o última semana) y que los integrantes participen activamente de forma semanal.
 
-El archivo [README.md](proyecto_final/proyectos) debajo del nivel:
+El archivo [README.md](../proyectos) debajo del nivel:
 
  `analisis-numerico-computo-cientifico/proyecto_final/proyectos/
 ` 
