@@ -1,4 +1,4 @@
-# Métodos Numéricos y Optimización
+# Métodos Numéricos y Optimización 2018
 
 [Temario](https://www.dropbox.com/s/je8py3q0623u7jk/TEMARIO_MNO.pdf?dl=0)
 
