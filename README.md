@@ -14,6 +14,7 @@
 
 [Lista de proyectos finales MNO](proyecto_final/proyectos)
 
+[Liga hacia clases de C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C)
 
 ## Clase 1
 
