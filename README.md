@@ -78,7 +78,7 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 ## IV Cómputo en la nube
 
-4.1 [Amazon Web Services](https://www.dropbox.com/s/u077us908ex6vvl/notas_computo_en_la_nube_AWS.md?dl=0)
+4.1 [Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling)
 
 ## V [Optimización convexa](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
 
