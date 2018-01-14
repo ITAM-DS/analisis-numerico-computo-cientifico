@@ -1,7 +1,5 @@
 # analisis-numerico-computo-cientifico
 
-Información sobre el curso de Métodos Numéricos y Optimización en diferentes fechas ir a la rama correspondiente de este repositorio.
-
 En la carpeta [C](C) encuentran:
 
 * Clases para introducción al lenguaje C de programación.
@@ -9,6 +7,8 @@ En la carpeta [C](C) encuentran:
 * Dentro de [C/BLAS](C/BLAS) y [C/LAPACK](C/LAPACK) se tienen funciones para ejecución de algunas rutinas de [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/) en un sistema ubuntu.
 
 * Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [MPI](http://mpi-forum.org/), [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [openMP](http://www.openmp.org/), [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/). 
+
+Para información sobre el curso de Métodos Numéricos y Optimización impartido en ITAM, ir a la rama correspondiente de este repositorio y seleccionar la fecha de interés.
 
 Índice de este repositorio. Cada número contiene notas del tema respectivo.
 
