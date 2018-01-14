@@ -29,7 +29,7 @@ es un archivo de control para la lista de proyectos y sólo se actualiza y/o se 
 
 *Fechas para reportes de avances en el proyecto:
 
-* 7 de abril.
+* 10 de abril.
 
 * 17 de abril.
 
