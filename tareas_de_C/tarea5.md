@@ -1,6 +1,6 @@
 # Tarea 5
 
-Se entrega el lunes 27 de marzo. De forma individual crear una carpeta con nombre igual a su clave única, debajo del nivel: 
+Se entrega. De forma individual crear una carpeta con nombre igual a su clave única, debajo del nivel: 
 
 ```
 analisis-numerico-computo-cientifico/MNO/entrega_tareas_de_C/tarea5
