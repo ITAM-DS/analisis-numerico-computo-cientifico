@@ -16,11 +16,11 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 1.1 [Analisis numérico y cómputo científico.](https://www.dropbox.com/s/0q8l0w7mgckqz7p/1.1Analisis_numerico_y_computo_cientifico.pdf?dl=0)
 
-* [Preguntas tema 1.1](https://www.dropbox.com/s/geg0wji899tuf89/preguntas_analisis_numerico_computo_cientifico.txt?dl=0)
+* [Preguntas 1.1](https://www.dropbox.com/s/geg0wji899tuf89/preguntas_analisis_numerico_computo_cientifico.txt?dl=0)
 
 1.2 [Sistema de punto flotante.](https://www.dropbox.com/s/9fsupm3bhwmv7cb/1.2.Sistema_de_punto_flotante.pdf?dl=0)
 
-* [Preguntas tema 1.2](https://www.dropbox.com/s/rfqs34rpav2hjs3/preguntas_sistema_de_punto_flotante.txt?dl=0)
+* [Preguntas 1.2](https://www.dropbox.com/s/rfqs34rpav2hjs3/preguntas_sistema_de_punto_flotante.txt?dl=0)
 
 1.3 [Condición, estabilidad y normas.](https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad_y_normas.pdf?dl=0)
 
