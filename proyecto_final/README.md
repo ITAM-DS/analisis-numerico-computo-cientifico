@@ -47,6 +47,7 @@ La calificación se conforma de los porcentajes anteriores:
 
 El porcentaje del proyecto de acuerdo a la primera clase del curso tiene un porcentaje del `50%` de la calificación final.
 
+**Ojo:** deben entregarse los 4 rubros: implementación, trabajo escrito, presentación y avances para que se considere válido el proyecto final. Si alguno de estos rubros no es entregado se tendrá 0 en el mismo.
 
 # Lista ejemplo de métodos numéricos para proyectos:
 
