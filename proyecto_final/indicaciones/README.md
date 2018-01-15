@@ -27,7 +27,7 @@ es un archivo de control para la lista de proyectos y sólo se actualiza y/o se 
 
 *Las ligas hacia el trabajo escrito y presentación son hacia otro lado (p.ej. una liga de dropbox en donde tienen `pdfs` o lo que utilicen para realizar esto) y no hacia directorios dentro del repositorio de la materia. Así evitamos tener archivos grandes en este repo :) y la liga hacia la implementación **sí** es al repo.
 
-* **Ojo:** deben entregarse los 4 rubros: implementación, trabajo escrito, presentación y avances para que se considere válido el proyecto final. Si alguno de estos rubros no es entregado se tendrá 0 en el mismo.
+* **Ojo:** deben entregarse los 4 rubros: implementación, trabajo escrito, presentación y avances para que se considere válido el proyecto final. Si alguno de estos rubros no es entregado en tiempo y forma se tendrá 0 en el proyecto final.
 
 *Fechas para reportes de avances en el proyecto:
 
