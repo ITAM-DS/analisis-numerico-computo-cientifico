@@ -14,7 +14,7 @@ main(void){
 }
 ```
 
-Si lo ejecutas, para salir del programa utiliza `ctrl + c`
+Si lo ejecutas para salir del programa utiliza `ctrl + c`.
 
 1) Investiga lo que quieren decir las letras `EOF`. ¿Por qué se debe definir c como `int`?
 
@@ -36,4 +36,4 @@ entonces el programa imprime `4`
 
 De manera individual cada persona haga un directorio con su clave y coloquen ahí sus resultados.
 
-Se entrega el lunes 13 de febrero.
+Se entrega .

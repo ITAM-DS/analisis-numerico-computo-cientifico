@@ -90,5 +90,5 @@ Y la función 2 imprime:
 
 De manera individual cada persona haga un directorio con su CLAVE y coloquen ahí sus resultados: código y output.
 
-Se entrega el lunes 20 de febrero.
+Se entrega.
 

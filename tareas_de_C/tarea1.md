@@ -4,5 +4,5 @@ Terminar el ejercicio de las notas [I/1.2](https://www.dropbox.com/sh/2o888m9v7i
 
 Se realiza de forma individual.
 
-Se entrega el lunes 30 de enero.
+Se entrega .
 
