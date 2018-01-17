@@ -4,7 +4,7 @@
 
 [El curso, calificación y entregas, correo al cual escribir](https://www.dropbox.com/s/j4duvz17oxm70ts/Curso_MNO.pdf?dl=0)
 
-[Equipos de MNO](https://www.dropbox.com/s/751kwt2ibuummvk/equipos_solo_claves.txt?dl=0)
+[Equipos de MNO](https://www.dropbox.com/s/06t0yvzhg4d860l/equipos_por_nombres.txt?dl=0)
 
 [Lista alumn@s con calificaciones](https://www.dropbox.com/s/7istu5rzfa4zlol/salon_pf_103.xlsx?dl=0)
 
