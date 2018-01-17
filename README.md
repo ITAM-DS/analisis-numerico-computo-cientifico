@@ -23,6 +23,7 @@
 Introducción, forma de calificar, dinámica de clase, generalidades del curso.
 
 Revisamos notas: 
+
 [I/1.1](https://www.dropbox.com/s/0q8l0w7mgckqz7p/1.1Analisis_numerico_y_computo_cientifico.pdf?dl=0)
 
 [I/1.2](https://www.dropbox.com/s/9fsupm3bhwmv7cb/1.2.Sistema_de_punto_flotante.pdf?dl=0) hasta ejercicio de aritmética en punto flotante.
