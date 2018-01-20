@@ -109,7 +109,7 @@ main(){
 		printf("Fin de while\n");
 		printf("Variable después del while: %d\n",variable);
 	}
-}
+
 ```
 
 ¿Cuál es la diferencia entre los siguientes programas?:
