@@ -16,6 +16,8 @@
 
 [Liga hacia clases de C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C)
 
+[Liga hacia índice de la rama master](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master)
+
 ## Clase 1
 
 15 de enero
@@ -36,4 +38,4 @@ Revisión de notas [I/1.1](https://www.dropbox.com/s/z5ifw3ti66gukdy/1.1.Analisi
 
 Nota [I/1.3](https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad_y_normas.pdf?dl=0) hasta normas matriciales.
 
-Introducción a C: [clase1](C/clases/clase1.md), [historia de clase de C](https://www.dropbox.com/s/2btpracfm4munik/historia_clase1.txt?dl=0)
+Introducción a C: [clase1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase1.md), [historia de clase de C](https://www.dropbox.com/s/2btpracfm4munik/historia_clase1.txt?dl=0)
