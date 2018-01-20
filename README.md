@@ -24,9 +24,13 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 1.3 [Condición, estabilidad y normas.](https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad_y_normas.pdf?dl=0)
 
+* [Preguntas 1.3](https://www.dropbox.com/s/zbf78u0uxr31ei0/preguntas_condicion_estabilidad_normas.txt?dl=0)
+
 ## II [Cómputo en paralelo](https://www.dropbox.com/sh/vrdgj7bugi1flyp/AAAMP6R2n5GZY71KXkWT4ZEja?dl=0):
 
 2.1 [Un poco de historia y generalidades](https://www.dropbox.com/s/z465znq3wwao9ad/2.1.Un_poco_de_historia_y_generalidades.pdf?dl=0).
+
+* [Preguntas 2.1](https://www.dropbox.com/s/lm0z67b7q5a7qqi/preguntas_generalidades_computo_paralelo.txt?dl=0)
 
 2.2 Sistemas de memoria distribuida: [MPI](C/extensiones_a_C/MPI).
 
