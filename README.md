@@ -16,7 +16,7 @@
 
 [Liga hacia clases de C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C)
 
-[Liga hacia índice de la rama master](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master)
+[Liga hacia índice del branch master](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master)
 
 ## Clase 1
 
