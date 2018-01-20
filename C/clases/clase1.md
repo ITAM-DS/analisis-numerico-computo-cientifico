@@ -94,7 +94,7 @@ main(){
 	variable_int2 = -1;
 	variable_double1 = 5.0;
 	variable_double2 = -3.0;
-	variable_double3 = 0.6789281736281947
+	variable_double3 = 0.6789281736281947;
 	variable_int1 = variable_int1/variable_int2;
 	printf("Variable entera divida por -1: %d\n", variable_int1);
 	variable_double1 = variable_double1/variable_double2;
