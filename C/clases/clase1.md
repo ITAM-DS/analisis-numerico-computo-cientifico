@@ -158,8 +158,8 @@ main(){
 	double variable_double = -3.0;
 	//función: truncf
 	printf("Valor x_8 con truncf: %1.5f", truncf(x_8));
-	x_5 = truncf(x_5*1e5)*1e-5;
-	printf("Valor x_5: %e\n",x_5);
+	x_5 = truncf(x_8*1e5)*1e-5;
+	printf("Valor x_5: %1.4e\n",x_5);
 	printf("fabs: %f\n", fabs(variable_double));
 }
 ```
