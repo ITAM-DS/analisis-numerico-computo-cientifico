@@ -39,3 +39,9 @@ Revisión de notas [I/1.1](https://www.dropbox.com/s/z5ifw3ti66gukdy/1.1.Analisi
 Nota [I/1.3](https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad_y_normas.pdf?dl=0) hasta normas matriciales.
 
 Introducción a C: [clase1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase1.md), [historia de clase de C](https://www.dropbox.com/s/2btpracfm4munik/historia_clase1.txt?dl=0)
+
+## Clase 3
+
+22 de enero
+
+Revisión de notas [I/1.3](https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad_y_normas.pdf?dl=0) y [II/2.1](https://www.dropbox.com/s/z465znq3wwao9ad/2.1.Un_poco_de_historia_y_generalidades.pdf?dl=0) hasta Cache
