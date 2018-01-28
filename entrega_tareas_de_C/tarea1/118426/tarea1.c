@@ -33,26 +33,26 @@ main(){
 	out8 = x + y;
 	out8 = truncf(out8*1e8)*1e-8;
 	out5 = x_5 + y_5;
-	out5 = truncf(out5*1e4)*1e-4;
+	out5 = truncf(out5*1e5)*1e-5;
 	printf("x + y\t\t");
 	printf("%1.7e\t",out8);
 	printf("%1.4e\t\t\t", out5);
 	err_a = out8 - out5;
-	printf("%f\t", err_a);
+	printf("%e\t", err_a);
 	err_r = err_a/out8;
-	printf("%f\n", err_r);
+	printf("%e\n", err_r);
 	//	x * y
 	out8 = x * y;
 	out8 = truncf(out8*1e8)*1e-8;
 	out5 = x_5 * y_5;
-	out5 = truncf(out5*1e4)*1e-4;
+	out5 = truncf(out5*1e5)*1e-5;
 	printf("x * y\t\t");
 	printf("%1.7e\t",out8);
 	printf("%1.4e\t\t\t", out5);
 	err_a = out8 - out5;
-	printf("%f\t", err_a);
+	printf("%e\t", err_a);
 	err_r = err_a/out8;
-	printf("%f\n", err_r);
+	printf("%e\n", err_r);
 	//	x - u
         out8 = x - u;
         out8 = truncf(out8*1e8)*1e-8;
@@ -62,9 +62,9 @@ main(){
         printf("%1.7e\t",out8);
         printf("%1.4e\t\t\t", out5);
         err_a = out8 - out5;
-        printf("%f\t", err_a);
+        printf("%e\t", err_a);
         err_r = err_a/out8;
-        printf("%f\n", err_r);
+        printf("%e\n", err_r);
 
         //     (x - u)v
         out8 = x - u;
@@ -79,8 +79,8 @@ main(){
         printf("%1.7e\t",out8);
         printf("%1.4e\t\t\t", out5);
         err_a = out8 - out5;
-        printf("%f\t", err_a);
+        printf("%e\t", err_a);
         err_r = err_a/out8;
-        printf("%f\n", err_r);
+        printf("%e\n", err_r);
 
 }
