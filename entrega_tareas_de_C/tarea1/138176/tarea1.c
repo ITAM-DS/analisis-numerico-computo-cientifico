@@ -78,12 +78,12 @@ double x_menos_u_k5 = rounder(x_k5 - u_k5, 5);
 double erra_x_menos_u = fabs(x_menos_u - x_menos_u_k5);
 double errr_x_menos_u = fabs(erra_x_menos_u) / fabs(x_menos_u);
 
-// (x-u)/v
-char divi[10] = "(x-u)/v";
-double x_menos_u_entre_v = rounder(x_menos_u / v, 8);
-double x_menos_u_entre_v_k5 = rounder(x_menos_u_k5 / v_k5, 5);
-double erra_x_menos_u_entre_v = fabs(x_menos_u_entre_v - x_menos_u_entre_v_k5);
-double errr_x_menos_u_entre_v = fabs(erra_x_menos_u_entre_v) / fabs(x_menos_u_entre_v);
+// (x-u)*v
+char divi[10] = "(x-u)*v";
+double x_menos_u_por_v = rounder(x_menos_u * v, 8);
+double x_menos_u_por_v_k5 = rounder(x_menos_u_k5 * v_k5, 5);
+double erra_x_menos_u_por_v = fabs(x_menos_u_por_v - x_menos_u_por_v_k5);
+double errr_x_menos_u_por_v = fabs(erra_x_menos_u_por_v) / fabs(x_menos_u_por_v);
 
 // Imprimimos la tabla con los resultados en la terminal
 char heading[100] = "Operación     Valor a 8     Aritmética de Máquina     Error Abs     Error Rel";
@@ -91,19 +91,16 @@ printf("%s \n", heading);
 printf("%s         %.8e      %.5e          %.3e    %.3e\n", suma, x_mas_y,x_mas_y_k5,erra_x_mas_y,errr_x_mas_y);
 printf("%s         %.8e      %.5e          %.3e    %.3e\n", mult, x_por_y,x_por_y_k5,erra_x_por_y,errr_x_por_y);
 printf("%s         %.8e      %.5e          %.3e    %.3e\n", resta, x_menos_u,x_menos_u_k5,erra_x_menos_u,errr_x_menos_u);
-printf("%s     %.8e      %.5e          %.3e    %.3e\n", divi, x_menos_u_entre_v,x_menos_u_entre_v_k5,erra_x_menos_u_entre_v,errr_x_menos_u_entre_v);
+printf("%s     %.8e      %.5e          %.3e    %.3e\n", divi, x_menos_u_por_v,x_menos_u_por_v_k5,erra_x_menos_u_por_v,errr_x_menos_u_por_v);
 
 // Guardamos la tabla de resultados en un .txt
 FILE *f = fopen("resultados.txt", "w");
-if (f == NULL)
-{
-    printf("Error opening file!\n");
-}
+
 fprintf(f,"%s \n", heading);
 fprintf(f,"  %s       %.8e      %.5e           %.3e    %.3e\n", suma, x_mas_y,x_mas_y_k5,erra_x_mas_y,errr_x_mas_y);
 fprintf(f,"  %s       %.8e      %.5e           %.3e    %.3e\n", mult, x_por_y,x_por_y_k5,erra_x_por_y,errr_x_por_y);
 fprintf(f,"  %s       %.8e      %.5e           %.3e    %.3e\n", resta, x_menos_u,x_menos_u_k5,erra_x_menos_u,errr_x_menos_u);
-fprintf(f,"%s     %.8e      %.5e           %.3e    %.3e\n", divi, x_menos_u_entre_v,x_menos_u_entre_v_k5,erra_x_menos_u_entre_v,errr_x_menos_u_entre_v);
+fprintf(f,"%s     %.8e      %.5e           %.3e    %.3e\n", divi, x_menos_u_por_v,x_menos_u_por_v_k5,erra_x_menos_u_por_v,errr_x_menos_u_por_v);
 
 fclose(f);
 
