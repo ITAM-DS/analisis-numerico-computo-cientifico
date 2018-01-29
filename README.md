@@ -86,23 +86,24 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 3.6.2 [SVD con cómputo en paralelo.](https://www.dropbox.com/s/p8p905v34uth28w/3.4.2.SVD_con_computo_en_paralelo.pdf?dl=0)
 
-## IV Cómputo en la nube
+## IV [Optimización convexa](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
 
-4.1 [Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling)
+4.1 [Introducción.](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
 
-## V [Optimización convexa](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
+4.2 [Teoría de convexidad.](https://www.dropbox.com/s/5g7uwg6274k2yyf/4.2.Teoria_de_convexidad.pdf?dl=0)
 
-5.1 [Introducción.](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
+4.3 [Problemas de optimización convexa.]
 
-5.2 [Teoría de convexidad.](https://www.dropbox.com/s/5g7uwg6274k2yyf/4.2.Teoria_de_convexidad.pdf?dl=0)
+4.4 [Dualidad.]
 
-5.3 [Problemas de optimización convexa.]
+4.5 [Algoritmos.]
 
-5.4 [Dualidad.]
+4.6 [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
-5.5 [Algoritmos.]
+## V Cómputo en la nube
 
-5.6 [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
+5.1 [Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling)
+
 
 ## [C](C/)
 
