@@ -16,7 +16,7 @@ Equipo 1
       x = x*10;
       val = val -1;
     }
-    double res = roundf(x * pow(10, digits)) / pow(10, digits);
+    double res = round(x * pow(10, digits)) / pow(10, digits);
     res = res * pow(10, val);
     return res;
   }
@@ -30,12 +30,6 @@ int main(int argc, char const *argv[]) {
   double v = 98765.9;
   double w = 0.111111E-4;
 
-
-  x = rounder(x, 8);
-  y = rounder(y, 8);
-  u = rounder(u, 8);
-  v = rounder(v, 8);
-  w = rounder(w, 8);
 
 printf("Se toman los valores originales redondeando a 8 dígitos\n");
   printf("Valor de x: %.8e\n", x);
@@ -67,29 +61,29 @@ printf("Se toman los valores originales redondeando a 8 dígitos\n");
 char suma[10] = "x+y";
 double x_mas_y = rounder(x+y,8);
 double x_mas_y_k5 = rounder(x_k5 + y_k5,5);
-double erra_x_mas_y = x_mas_y - x_mas_y_k5;
-double errr_x_mas_y = erra_x_mas_y / x_mas_y;
+double erra_x_mas_y = fabs(x_mas_y - x_mas_y_k5);
+double errr_x_mas_y = fabs(erra_x_mas_y) / fabs(x_mas_y);
 
 // x*y
 char mult[10] = "x*y";
 double x_por_y = rounder(x * y,8);
 double x_por_y_k5 = rounder(x_k5 * y_k5, 5);
-double erra_x_por_y = x_por_y - x_por_y_k5;
-double errr_x_por_y = erra_x_por_y / x_por_y;
+double erra_x_por_y = fabs(x_por_y - x_por_y_k5);
+double errr_x_por_y = fabs(erra_x_por_y) / fabs(x_por_y);
 
 // x-u
 char resta[10] = "x-u";
 double x_menos_u = rounder(x - u, 8);
 double x_menos_u_k5 = rounder(x_k5 - u_k5, 5);
-double erra_x_menos_u = x_menos_u - x_menos_u_k5;
-double errr_x_menos_u = erra_x_menos_u / x_menos_u;
+double erra_x_menos_u = fabs(x_menos_u - x_menos_u_k5);
+double errr_x_menos_u = fabs(erra_x_menos_u) / fabs(x_menos_u);
 
 // (x-u)/v
 char divi[10] = "(x-u)/v";
 double x_menos_u_entre_v = rounder(x_menos_u / v, 8);
 double x_menos_u_entre_v_k5 = rounder(x_menos_u_k5 / v_k5, 5);
-double erra_x_menos_u_entre_v = x_menos_u_entre_v - x_menos_u_entre_v_k5;
-double errr_x_menos_u_entre_v = erra_x_menos_u_entre_v / x_menos_u_entre_v;
+double erra_x_menos_u_entre_v = fabs(x_menos_u_entre_v - x_menos_u_entre_v_k5);
+double errr_x_menos_u_entre_v = fabs(erra_x_menos_u_entre_v) / fabs(x_menos_u_entre_v);
 
 // Imprimimos la tabla con los resultados en la terminal
 char heading[100] = "Operación     Valor a 8     Aritmética de Máquina     Error Abs     Error Rel";
@@ -106,10 +100,10 @@ if (f == NULL)
     printf("Error opening file!\n");
 }
 fprintf(f,"%s \n", heading);
-fprintf(f,"  %s       %.8e      %.5e             %.3e     %.3e\n", suma, x_mas_y,x_mas_y_k5,erra_x_mas_y,errr_x_mas_y);
-fprintf(f,"  %s       %.8e      %.5e             %.3e     %.3e\n", mult, x_por_y,x_por_y_k5,erra_x_por_y,errr_x_por_y);
-fprintf(f,"  %s       %.8e      %.5e          %.3e    %.3e\n", resta, x_menos_u,x_menos_u_k5,erra_x_menos_u,errr_x_menos_u);
-fprintf(f,"%s     %.8e      %.5e          %.3e    %.3e\n", divi, x_menos_u_entre_v,x_menos_u_entre_v_k5,erra_x_menos_u_entre_v,errr_x_menos_u_entre_v);
+fprintf(f,"  %s       %.8e      %.5e           %.3e    %.3e\n", suma, x_mas_y,x_mas_y_k5,erra_x_mas_y,errr_x_mas_y);
+fprintf(f,"  %s       %.8e      %.5e           %.3e    %.3e\n", mult, x_por_y,x_por_y_k5,erra_x_por_y,errr_x_por_y);
+fprintf(f,"  %s       %.8e      %.5e           %.3e    %.3e\n", resta, x_menos_u,x_menos_u_k5,erra_x_menos_u,errr_x_menos_u);
+fprintf(f,"%s     %.8e      %.5e           %.3e    %.3e\n", divi, x_menos_u_entre_v,x_menos_u_entre_v_k5,erra_x_menos_u_entre_v,errr_x_menos_u_entre_v);
 
 fclose(f);
 
