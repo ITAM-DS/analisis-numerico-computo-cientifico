@@ -44,6 +44,8 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 * [openMPI y BLAS](C/extensiones_a_C/MPI/openMPI/ejemplos/3_openMPI_y_BLAS/)
 
+* [Preguntas 2.2](https://www.dropbox.com/s/l5x3tjaocj949e8/preguntas_mpi.txt?dl=0)
+
 2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
 
 * [Ejemplos con Pthreads](C/extensiones_a_C/Pthreads/ejemplos/)
