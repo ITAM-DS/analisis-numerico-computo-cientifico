@@ -16,7 +16,7 @@ Equipo 1
       x = x*10;
       val = val -1;
     }
-    double res = round(x * pow(10, digits)) / pow(10, digits);
+    double res = truncf(x * pow(10, digits)) / pow(10, digits);
     res = res * pow(10, val);
     return res;
   }
@@ -29,6 +29,12 @@ int main(int argc, char const *argv[]) {
   double u = 0.714251;
   double v = 98765.9;
   double w = 0.111111E-4;
+
+  x = rounder(x,8);
+  y = rounder(y,8);
+  u = rounder(u,8);
+  v = rounder(v,8);
+  w = rounder(w,8);
 
 
 printf("Se toman los valores originales redondeando a 8 dígitos\n");
