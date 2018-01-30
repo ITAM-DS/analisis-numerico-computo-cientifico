@@ -40,7 +40,7 @@ main(){
 	err_rel_3 = err_ab_3/fabs(val_8_3);
 	err_rel_4 = err_ab_4/fabs(val_8_4);
 
-
+	printf("Operacion	Valor a 8	Arit Maq	Error Absoluto	Error Relativo \n");	
 	printf("1) x-y      \t %0.8f \t %0.5f \t %1.2e \t %1.2e \n", val_8_1, arit_maq_1, err_ab_1, err_rel_1);
 	printf("2) x/y      \t %0.8f \t %0.5f \t %1.2e \t %1.2e \n", val_8_2, arit_maq_2, err_ab_2, err_rel_2);
 	printf("3) (x-u)/w     \t %0.8f \t %0.5f \t %1.2e \t %1.2e \n", val_8_3, arit_maq_3, err_ab_3, err_rel_3);
