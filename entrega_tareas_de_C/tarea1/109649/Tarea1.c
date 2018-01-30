@@ -22,17 +22,17 @@ main(){
 	fl_u = trunc(u*1e5)*1e-5;
 	fl_v = trunc(v);
 	fl_w = trunc(pow(w_1*w_2, w_3)*1e5)*1e-5;
-	printf(" Operación | Valor a 8  | Aritmética de Maq | Error Abs  |  Error Rel\n");
-	printf("    x-y    | %1.8f |      %1.5f      | %1.8f | %1.8f\n", trunc((x_1/x_2 -y_1/y_2)*1e8)*1e-8, trunc((fl_x-fl_y)*1e5)*1e-5,
+	printf(" Operación |   Valor a 8   | Aritmética de Maq | Error Abs  |  Error Rel\n");
+	printf("    x-y    |   %1.8f  |      %1.5f      | %1.8f | %1.8f\n", trunc((x_1/x_2 -y_1/y_2)*1e8)*1e-8, trunc((fl_x-fl_y)*1e5)*1e-5,
 		trunc((x_1/x_2 -y_1/y_2)*1e8)*1e-8-trunc((fl_x-fl_y)*1e5)*1e-5, 
 		(trunc((x_1/x_2 -y_1/y_2)*1e8)*1e-8-trunc((fl_x-fl_y)*1e5)*1e-5)/(trunc((x_1/x_2 -y_1/y_2)*1e8)*1e-8));	
-	printf("    x/y    | %1.8f |      %1.5f      | %1.8f | %1.8f\n", trunc((x_1/x_2)/(y_1/y_2)*1e8)*1e-8, trunc((fl_x/fl_y)*1e5)*1e-5,
+	printf("    x/y    |   %1.8f  |      %1.5f      | %1.8f | %1.8f\n", trunc((x_1/x_2)/(y_1/y_2)*1e8)*1e-8, trunc((fl_x/fl_y)*1e5)*1e-5,
 		fabs(trunc((x_1/x_2)/(y_1/y_2)*1e8)*1e-8-trunc((fl_x/fl_y)*1e5)*1e-5), 
 		fabs((trunc((x_1/x_2)/(y_1/y_2)*1e8)*1e-8-trunc((fl_x/fl_y)*1e5)*1e-5)/(trunc((x_1/x_2)/(y_1/y_2)*1e8)*1e-8)));
-	printf("  (x-u)/w) | %1.8f |      %1.5f      | %1.8f | %1.8f\n", trunc(((x_1/x_2)-u)/(pow(w_1*w_2, w_3))*1e-8)*1e8, trunc((fl_x-fl_u)/fl_w*1e5)*1e-5, 
+	printf("  (x-u)/w) | %1.7e |        %1.5f        |     %1.8f    |     %1.8f\n", trunc(((x_1/x_2)-u)/(pow(w_1*w_2, w_3))), trunc((fl_x-fl_u)/fl_w*1e5)*1e-5, 
 		fabs(trunc(((x_1/x_2)-u)/(pow(w_1*w_2, w_3))*1e8)*1e-8-trunc((fl_x-fl_u)/fl_w*1e5)*1e-5), 
 		fabs((trunc(((x_1/x_2)-u)/(pow(w_1*w_2, w_3))*1e8)*1e-8-trunc((fl_x-fl_u)/fl_w*1e5)*1e-5)/(trunc(((x_1/x_2)-u)/(pow(w_1*w_2, w_3))*1e8))*1e-8));
-	printf("    u+v    | %1.3f  |      %1.1f      | %1.8f | %1.8f\n", fabs(trunc((trunc((u+v)*1e-5)-(u+v)*1e-5)*1e8)*1e-3), trunc((u*1e-5+v*1e-5)*1e5), 
+	printf("    u+v    |   %1.3f   |      %1.1f      | %1.8f | %1.8f\n", fabs(trunc((trunc((u+v)*1e-5)-(u+v)*1e-5)*1e8)*1e-3), trunc((u*1e-5+v*1e-5)*1e5), 
 		fabs(trunc((trunc((u+v)*1e-5)-(u+v)*1e-5)*1e8)*1e-3)-trunc((u*1e-5+v*1e-5)*1e5), 
 		(fabs(trunc((trunc((u+v)*1e-5)-(u+v)*1e-5)*1e8)*1e-3)-trunc((u*1e-5+v*1e-5)*1e5))/fabs(trunc((trunc((u+v)*1e-5)-(u+v)*1e-5)*1e8)*1e-3));
 }
