@@ -41,6 +41,8 @@ Nota [I/1.3](https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad
 
 Introducción a C: [clase1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase1.md), [historia de clase de C](https://www.dropbox.com/s/2btpracfm4munik/historia_clase1.txt?dl=0)
 
+Clase 27 de enero introducción a C. [historia de clase de C, repetición](https://www.dropbox.com/s/ci934tf4vvzsi0e/historial_clase1_repetcion.txt?dl=0)
+
 ## Clase 3
 
 22 de enero
