@@ -36,4 +36,4 @@ entonces el programa imprime `4`
 
 De manera individual cada persona haga un directorio con su clave y coloquen ahí sus resultados.
 
-Se entrega .
+Se entrega el 7 de febrero.
