@@ -1,0 +1,63 @@
+Daniel Sharp - 138176
+
+1. ¿Investiga lo que quieren decir las letras EOF. ¿Por qué se debe definir c como int?
+
+Por sus siglas en inglés, EOF significa 'End of file' o fin del archivo. Es un valor predefinido en C que significa que la lectura del archivo ha llegado a su fin, no hay más texto para leer. La variable c se debe definir como un int porque bajo este formato es equivalente a los valores ASCII de las letras y símbolos, y es de esta forma que puede evaluar la condición del while (c != EOF), ya que C toma EOF como -1. Cuando el programa alcanza el último símbolo del string que introducimos nosotros getchar regresa el valor -1, con lo cual se rompe el while, para lo cual es necesario que c se evalúe como entero.
+
+
+2. Modifica main para eliminar la línea: c = getchar(); antes del while y hacer el llamado a getchar en la condición del while.
+
+El programa se encuentra en el archivo tarea2-2.c en la carpeta y además se muestra a continuación:
+
+#include <stdio.h>
+main(void){
+    int c;
+//    c = getchar();
+    while(getchar() != EOF){
+        putchar(c);
+        c = getchar();
+    }
+}
+
+
+La diferencia entre este programa y el anterior es que únicamente se imprimen los caracteres pares del texto que se introduce, pues la asignación a la variable c se lleva a cabo cada dos caracteres. Esto sucede porque se ejecuta un getchar en la condicion del while y el segundo se asigna a la variable c dentro del while, lo que implica que los caracteres impares quedan fuera de la impresión.
+
+
+3. Utiliza getchar para escribir un programa que cuente el número de caracteres dado un stdin e imprima este número. Al dar enter (salto de línea) el programa termina. Por ejemplo: $echo -e "hola\n" | ./ejecutable.out entonces el programa imprime 4
+
+El programa se encuentra en el archivo tarea2-3.c en la carpeta y además se muestra a continuación:
+
+#include <stdio.h>
+main(void){
+    int c, count;
+    c = getchar();
+    count = 0;
+    while(c != 10){ // se evalúa la condición con el número 10 porque en ASCII representa el salto de línea que es lo que pide el inciso.
+        c = getchar();
+	count++;
+    }
+    printf("%i\n", count);
+}
+
+
+
+4. Modifica el programa de 3) para que cuente el número de líneas dado un archivo de stdin: ./ejecutable.out < archivo.txt
+
+El programa se encuentra en el archivo tarea2-4.c en la carpeta y además se muestra a continuación:
+
+#include <stdio.h>
+main(void){
+    int c, count;
+    c = getchar();
+    count = 0;
+    while(c != EOF){ // Se recorre el archivo mientras no se llegue a su final.
+    if(c == 10){ // El if evalúa si el char actual es igual a 10, pues este representa un salto de línea en ASCII.
+        count++;
+      }
+      c = getchar();
+    }
+    printf("%i\n", count);
+}
+
+Este programa recorre el archivo en cada caracter hasta que encuentre el End of file. Mientras lo recorre, cuenta el número de veces que se hizo salto de línea. Al final, imprime el número de líneas identificado en el archivo. Se incluye el archivo 'archivo.txt' que tiene 5 líneas, con el que se puede porbar el programa utilizando el comando que se definió en las instrucciones.
+
