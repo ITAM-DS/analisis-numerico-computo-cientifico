@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<math.h>
+main(){
+	double x_8 = 0.71428571;
+	double y_8 = 0.33333333;
+	double x_5;
+	double y_5;
+	double variable_double = -3.0;
+	double v = 98765.9;
+	double u = 0.714251;
+	double w = 0.0000111111;
+	double oper1_8;
+	double oper1_5;
+	double ErrAbsoper1;
+	double ErrReloper1;
+	double oper2_8;
+	double oper2_5;
+	double ErrAbsoper2;
+	double ErrReloper2;
+	double oper3_8;
+	double oper3_5;
+	double ErrAbsoper3;
+	double ErrReloper3;
+	double oper4_8;
+	double oper4_5;
+	double ErrAbsoper4;
+	double ErrReloper4;
+	//función: truncf
+	x_5 = truncf(x_8*1e5)*1e-5;
+	y_5 = truncf(y_8*1e5)*1e-5;
+	oper1_8 = x_8 - y_8;
+	oper1_5 = truncf((x_5 - y_5)*1e5)*1e-5;
+	ErrAbsoper1 = fabs(oper1_8 - oper1_5);
+	ErrReloper1 = ErrAbsoper1 / oper1_8;
+	oper2_8 = x_8 / y_8;
+        oper2_5 = truncf((x_5 / y_5)*1e5)*1e-5;
+        ErrAbsoper2 = fabs(oper2_8 - oper2_5);
+        ErrReloper2 = ErrAbsoper2 / oper2_8;
+	oper3_8 = (x_8 - u) / w;
+        oper3_5 = truncf(((x_5 - u) / w)*1e5)*1e-5;
+        ErrAbsoper3 = fabs(oper3_8 - oper3_5);
+        ErrReloper3 = ErrAbsoper3 / oper3_8;
+	oper4_8 = u + v;
+        oper4_5 = truncf((u + v)*1e5)*1e-5;
+        ErrAbsoper4 = fabs(oper4_8 - oper4_5);
+        ErrReloper4 = ErrAbsoper4 / oper4_8;
+	printf("Valor a 8 de (x - y) : %1.9e\n",oper1_8);
+	printf("Valor a 5 de (x - y) : %1.4e\n",oper1_5);
+	printf("Error absoluto de (x - y) : %1.9e\n",ErrAbsoper1);
+	printf("Error relativo de (x - y) : %1.9e\n",ErrReloper1);
+	printf("Valor a 8 de (x / y) : %1.9e\n",oper2_8);
+        printf("Valor a 5 de (x / y) : %1.4e\n",oper2_5);
+        printf("Error absoluto de (x / y) : %1.9e\n",ErrAbsoper2);
+        printf("Error relativo de (x / y) : %1.9e\n",ErrReloper2);
+	printf("Valor a 8 de (x - u)/w : %1.9e\n",oper3_8);
+        printf("Valor a 5 de (x - u)/w : %1.4e\n",oper3_5);
+        printf("Error absoluto de (x - u)/w : %1.9e\n",ErrAbsoper3);
+        printf("Error relativo de (x - u)/w : %1.9e\n",ErrReloper3);
+	printf("Valor a 8 de (u + v) : %1.9e\n",oper4_8);
+        printf("Valor a 5 de (u + v) : %1.4e\n",oper4_5);
+        printf("Error absoluto de (u + v) : %1.9e\n",ErrAbsoper4);
+        printf("Error relativo de (u + v) : %1.9e\n",ErrReloper4);
+}
