@@ -103,6 +103,8 @@ int numero_renglones, numero_columnas;
 printf("Total de bytes para arreglo_multidimensional :%ld\n", sizeof(arreglo_multidimensional));
 printf("Total de bytes para arreglo_multidimensional[0]: %ld\n",sizeof(arreglo_multidimensional[0]));
 printf("Total de bytes para arreglo_multidimensional[0][0]: %ld\n", sizeof(arreglo_multidimensional[0][0]));
+printf("Número de renglones: %d\n",sizeof(arreglo_multidimensional)/sizeof(arreglo_multidimensional[0]));
+printf("Número de columnas: %d\n",sizeof(arreglo_multidimensional[0])/sizeof(arreglo_multidimensional[0][0]))
 }
 ```
 
@@ -281,7 +283,6 @@ main(){
 
 ```
 
-
 Si tenemos un arreglo definido y declarado, los operadores `+` y `-` los podemos usar para los apuntadores. Por ejemplo:
 
 
@@ -389,12 +390,14 @@ main(){
 	void *apuntador;
 	variable = -10;
 	apuntador = &variable;	
-	printf("Valor de apuntador2: %p\n", apuntador);
+	printf("Valor de apuntador: %p\n", apuntador);
 	printf("Dirección de memoria variable: %p\n", &variable);
 	variable2 = *apuntador; //warning y posible error¡¡¡
 	printf("Valor de variable2: %d\n", variable2);
 }
 ```
+
+(Si se intentó compilar, no se genera un ejecutable)
 
 Pero si podemos convertir "cast" un apuntador de tipo `void` hacia otro tipo, por ejemplo `int`:
 
@@ -409,10 +412,13 @@ main(){
 	printf("Dirección de memoria variable: %p\n", &variable);
 	apuntador = (int *)apuntador2; //cast
 	printf("Dereferenced apuntador: *apuntador: %d\n", *apuntador);
+	printf("Valor de apuntador: %p\n",apuntador); //mismo valor que apuntador2
 }
 ```
 
 Otro ejemplo para "cast" de un apuntador a un tipo de dato `void`:
+
+(Útil si no se sabe el tipo de apuntador que debe definirse, entonces se utiliza un apuntador hacia un tipo void)
 
 ```
 #include<stdio.h>
@@ -421,7 +427,7 @@ main(){
     							//sistema en el que se esté trabajando: 32 o 64 bits
     void *apuntador;
     variable = -10;
-    apuntador = (void *)variable; //cast a un apuntador de tipo de dato void
+    apuntador = (void *)variable; //cast a un apuntador hacia un tipo de dato void
     printf("Valor de apuntador: %p\n", apuntador);
     printf("Dirección de memoria variable: %p\n", &variable);
     //las dos líneas anteriores imprimen direcciones de memoria distintas
