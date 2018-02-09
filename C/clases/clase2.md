@@ -12,7 +12,8 @@ main(){
 }
 ```
 
-Un ejemplo entre conversión y una suma de un número tipo `double` y un número tipo `int`
+Un ejemplo entre conversión y una suma de un número tipo `double` y un número tipo `int`, en la operación de `double + int` el `int` se convierte a `double`:
+
 ```
 #include<stdio.h>
 main(){
@@ -24,6 +25,8 @@ main(){
 	printf("variable_double+variable_int=%f\n",variable_double+variable_int);
 }
 ```
+
+La función de printf considera variables double con `%f` e int con `%d`, no importando si son de un tamaño menor.
 
 Una expresión utilizada es con el doble signo `+`, y doble signo `-`
 
@@ -187,10 +190,3 @@ main(){
 
 
 ```
-
-
-
-
-
-
-
