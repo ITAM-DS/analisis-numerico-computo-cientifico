@@ -418,7 +418,7 @@ main(){
 
 Otro ejemplo para "cast" de un apuntador a un tipo de dato `void`:
 
-(Útil si no se sabe el tipo de apuntador que debe definirse, entonces se utiliza un apuntador hacia un tipo void)
+(Útil si no se conoce el tipo de apuntador que debe definirse, por ejemplo en los parámetros de una función, entonces se utiliza un apuntador hacia un tipo void)
 
 ```
 #include<stdio.h>
