@@ -102,7 +102,7 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 ## V Cómputo en la nube
 
-5.1 [Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling)
+5.1 [Amazon Web Services y OpenMPI](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling)
 
 
 ## [C](C/)
