@@ -20,7 +20,6 @@ service ssh start
 INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
 PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
 aws ec2 create-tags --resources $INSTANCE_ID --tag Key=Name,Value=$name_instance-$PUBLIC_IP --region=$region
-
 ```
 
 
@@ -48,20 +47,19 @@ USER mpi_user
 RUN cd $inst_ompi/ && ./configure --prefix=$inst_ompi -with-sge && make all install
 ENV PATH=$inst_ompi/bin:$PATH
 ENV LD_LIBRARY_PATH=$inst_ompi/lib:$LD_LIBRARY_PATH
-
 ```
 
 El Dockerfile anterior debe estar en una carpeta, por ejemplo:
 
 ```
-$/home/ubuntu/docker_mpi/
+/home/ubuntu/docker_mpi/
 ```
 
 
 Revisamos:
 
 ```
-$ls /home/ubuntu/docker_mpi/
+ls /home/ubuntu/docker_mpi/
 Dockerfile 			
 ```
 
@@ -70,23 +68,23 @@ Cambiamos a la ruta `/home/ubuntu/docker_mpi/` y construímos la imagen con nomb
 
 
 ```
-$cd /home/ubuntu/docker_mpi/
-$file_ompi=$(wget https://www.open-mpi.org/software/ompi/v3.0/downloads/ -q -O -|grep -m 1 .tar.gz|sed -n 's/.*"\(openmpi.*\)".*/\1/;p')
-$dir_ompi=$(basename -s ".tar.gz" $file_ompi)
-$inst_ompi=/home/mpi_user/openmpi/installation/$dir_ompi
-$sudo docker build --build-arg file_ompi=$file_ompi --build-arg dir_ompi=$dir_ompi --build-arg inst_ompi=$inst_ompi -t openmpi_mno/openmpi:v1 .
+cd /home/ubuntu/docker_mpi/
+file_ompi=$(wget https://www.open-mpi.org/software/ompi/v3.0/downloads/ -q -O -|grep -m 1 .tar.gz|sed -n 's/.*"\(openmpi.*\)".*/\1/;p')
+dir_ompi=$(basename -s ".tar.gz" $file_ompi)
+inst_ompi=/home/mpi_user/openmpi/installation/$dir_ompi
+sudo docker build --build-arg file_ompi=$file_ompi --build-arg dir_ompi=$dir_ompi --build-arg inst_ompi=$inst_ompi -t openmpi_mno/openmpi:v1 .
 ```
 
 Una vez construída esta imagen (teniendo un `Successfully build`) es recomendable tener la versión instalada de su openmpi en el archivo `.profile`:
 
 ```
-$echo "inst_ompi=$inst_ompi" >> /home/ubuntu/.profile
+echo "inst_ompi=$inst_ompi" >> /home/ubuntu/.profile
 ```
 
 y crear un directorio en el que estén los programas de mpi. Por ejemplo:
 
 ```
-$mkdir /home/ubuntu/openmpi_ejemplos
+mkdir /home/ubuntu/openmpi_ejemplos
 ```
 
 Creamos una docker network:
@@ -94,14 +92,12 @@ Creamos una docker network:
 ```
 sudo docker network create ompi-network
 sudo docker network create -d bridge --subnet 172.18.0.1/16 ompi-network
-
 ```
 
 Levantamos el contenedor de master con nombre `master_container` y una ip de `172.18.0.2` a partir de la imagen construída, se mapea el directorio de `/home/ubuntu/openmpi_ejemplos` dentro del contenedor a la ruta `/openmpi_ejemplos`, se abre el puerto 22 del contenedor y se mapea al puerto 2222 y el hostname es `master_ompi`.
 
 ```
 sudo docker run --net=ompi-network --ip=172.18.0.2 -dit -v /home/ubuntu/openmpi_ejemplos:/openmpi_ejemplos -p 2222:22 -h master_ompi --name master_container openmpi_mno/openmpi:v1 /bin/bash
-
 ```
 
 Levantamos el contenedor nodo1 con nombre `nodo1_container` y una ip de `172.18.0.3` el hostname es `nodo1_ompi`.
@@ -114,7 +110,7 @@ sudo docker run --net=ompi-network --ip=172.18.0.3 -dit -v /home/ubuntu/openmpi_
 Entren al `master_container` haciendo:
 
 ```
-$docker exec -it master_container /bin/bash
+docker exec -it master_container /bin/bash
 ```
 
 Reinicien servicio ssh:
@@ -133,9 +129,7 @@ Ejecutar:
 
 ```
 sudo docker exec -it master_container sudo /bin/bash -c 'echo "172.18.0.2 master" >> /etc/hosts'
-
 sudo docker exec -it master_container sudo /bin/bash -c 'echo "172.18.0.3 nodo1" >> /etc/hosts'
-
 ```
 
 Generar una llave para autenticar conexiones del master al nodo1:
@@ -160,7 +154,6 @@ sudo docker exec -it nodo1_container /bin/bash
 ```
 mpi_user@nodo1_container:/$sudo service ssh restart
 mpi_user@nodo1_container:/$exit
-
 ```
 
 Copien la llave al `nodo1_container`:
