@@ -110,7 +110,7 @@ sudo docker run --net=ompi-network --ip=172.18.0.3 -dit -v /home/ubuntu/openmpi_
 Entren al `master_container` haciendo:
 
 ```
-docker exec -it master_container /bin/bash
+sudo docker exec -it master_container /bin/bash
 ```
 
 Reinicien servicio ssh:
