@@ -49,7 +49,7 @@ ENV PATH=$inst_ompi/bin:$PATH
 ENV LD_LIBRARY_PATH=$inst_ompi/lib:$LD_LIBRARY_PATH
 ```
 
-El Dockerfile anterior debe estar en una carpeta, por ejemplo:
+El Dockerfile anterior debe estar en una carpeta, por ejemplo: **(OJO: esta ruta está creada en el sistema, existe un user llamado ubuntu, deben modificar lo respectivo para cada persona)**
 
 ```
 /home/ubuntu/docker_mpi/
