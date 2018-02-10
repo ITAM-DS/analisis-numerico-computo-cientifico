@@ -90,7 +90,6 @@ mkdir /home/ubuntu/openmpi_ejemplos
 Creamos una docker network:
 
 ```
-sudo docker network create ompi-network
 sudo docker network create -d bridge --subnet 172.18.0.1/16 ompi-network
 ```
 
