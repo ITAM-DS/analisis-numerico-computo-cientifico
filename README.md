@@ -65,7 +65,7 @@ Finalizamos nota [II/2.1](https://www.dropbox.com/s/z465znq3wwao9ad/2.1.Un_poco_
 
 [Levantamos clúster de forma pseudodistribuida con docker y openMPI.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/MPI/openMPI)
 
-Se inició la configuración en la cuenta de AWS de acuerdo al [tutorial.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI). Se indicó finalizar el mismo para la clase de lunes 12.
+Se inició la configuración en la cuenta de AWS de acuerdo al [tutorial](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI). Se indicó finalizar el mismo para la clase de lunes 12.
 
 
 
