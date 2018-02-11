@@ -75,7 +75,7 @@ inst_ompi=/home/mpi_user/openmpi/installation/$dir_ompi
 sudo docker build --build-arg file_ompi=$file_ompi --build-arg dir_ompi=$dir_ompi --build-arg inst_ompi=$inst_ompi -t openmpi_mno/openmpi:v1 .
 ```
 
-Una vez construída esta imagen (teniendo un `Successfully build`) es recomendable tener la versión instalada de su openmpi en el archivo `.profile`:
+Una vez construída esta imagen (teniendo un `Successfully built`) es recomendable tener la versión instalada de su openmpi en el archivo `.profile`:
 
 ```
 echo "inst_ompi=$inst_ompi" >> /home/ubuntu/.profile
