@@ -23,7 +23,7 @@ aws ec2 create-tags --resources $INSTANCE_ID --tag Key=Name,Value=$name_instance
 ```
 
 
-Usaremos una imagen de docker construída con el siguiente Dockerfile para instalar [openmpi](https://www.open-mpi.org/):
+Supondremos un sistema ubuntu 16.04 en el que se tiene un user `ubuntu` y usaremos una imagen de docker construída con el siguiente Dockerfile para instalar [openmpi](https://www.open-mpi.org/):
 
 ```
 FROM ubuntu:xenial
