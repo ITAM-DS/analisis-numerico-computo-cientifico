@@ -59,11 +59,13 @@ Clases de C: [clase2](https://github.com/ITAM-DS/analisis-numerico-computo-cient
 
 ## Clase 5
 
+10 de febrero
+
 Finalizamos nota [II/2.1](https://www.dropbox.com/s/z465znq3wwao9ad/2.1.Un_poco_de_historia_y_generalidades.pdf?dl=0) 
 
 [Levantamos clúster de forma pseudodistribuida con docker y openMPI.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/MPI/openMPI)
 
-Se inició la configuración en la cuenta de AWS de acuerdo al [tutorial.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI)
+Se inició la configuración en la cuenta de AWS de acuerdo al [tutorial.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI). Se indicó finalizar el mismo para la clase de lunes 12.
 
 
 
