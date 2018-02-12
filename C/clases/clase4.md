@@ -353,7 +353,21 @@ main(){
 }
 ```
 
-Un programa similar al anterior pero en el que debemos definir el tamaño del `arreglo_char_mul`:
+**Recuerden que en la primera entrada de arreglo_str se tiene un apuntador a un `char` cuyo valor es la posición inicial del string "Hola" y con un `printf` y `%s` es posible imprimir éste string, similar al ejemplo de programa:**
+
+```
+#include<stdio.h>
+main(){
+	char string[]="Hola, este es un string";
+	char *string2;
+	string2 = string;
+	printf("string2: %s\n", string2);
+}
+
+```
+
+
+Un programa similar al anterior para inicializar un arreglo multidimensional pero en el que debemos definir el tamaño del `arreglo_char_mul` es el siguiente:
 
 ```
 #include<stdio.h>
@@ -367,3 +381,4 @@ main(){
 }
 ```
 
+Obsérvese que es necesario definir la longitud de 100.
