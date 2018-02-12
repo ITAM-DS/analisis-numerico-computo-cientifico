@@ -382,3 +382,33 @@ main(){
 ```
 
 Obsérvese que es necesario definir la longitud de 100.
+
+## El operador "->"
+
+* Es utilizado para apuntadores hacia structs.
+
+* Su uso es equivalente a tener un statement del tipo "(* mistruct_pointer).miembro_de_struct", es decir, se obtiene el struct al que hace referencia `mistruct_pointer` y se accesa a su miembro (el operador `.` tiene mayor jerarquía sobre `*`, por ello se colocan paréntesis).
+
+* `->` tiene mayor jerarquía respecto a `*`. 
+
+Ejemplo:
+
+```
+#include<stdio.h>
+main(){
+	typedef struct{
+		double *numero1;
+	}Mistruct;
+	Mistruct sct;
+	Mistruct *sct_p;
+	double variable=-1.0;
+	sct.numero1=&variable;
+	printf("sct.numero1:%p\n",sct.numero1);
+	sct_p = &sct;
+	printf("sct_p->numero1: %p\n",sct_p->numero1);
+	printf("*sct_p->numero1: %f, mayor jerarquía de -> sobre *\n", *sct_p->numero1); //mayor jerarquía de -> sobre *
+	printf("(*sct_p).numero1: %p\n", (*sct_p).numero1);
+	printf("*(*sct_p).numero1: %f, mayor jerarquía de . sobre *\n", *(*sct_p).numero1);
+}
+```
+
