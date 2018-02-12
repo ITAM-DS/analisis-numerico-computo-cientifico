@@ -45,6 +45,49 @@ main(){
 }
 ```
 
+Podemos usar la keyword `typedef` para evitar tener que escribir:
+
+```
+struct fraccion f1;
+```
+
+por ejemplo:
+
+```
+#include<stdio.h>
+main(){
+    typedef struct{
+        int numerador;
+        char caracter;
+    }Fraccion; //se define el tipo Fraccion a partir del struct con miembros numerador y char
+	Fraccion f1; //definimos y declaramos f: el struct fraccion
+	f1.numerador = -5; //inicializamos al miembro int
+	f1.caracter = 'E'; //inicializamos al miembro caracter
+	printf("struct fraccion numerador: %d\n", f1.numerador);
+	printf("scruct fraccion caracter: %c\n", f1.caracter);
+}
+```
+
+y la sintaxis es:
+
+```
+typedef <type> <name>;
+
+```
+
+por ejemplo:
+
+```
+#include<stdio.h>
+
+main(){
+	typedef unsigned int Mi_u_int;
+	Mi_u_int m=10; //la variable mi_u_int es una variable tipo Mi_u_int
+	printf("m: %u\n",m);
+}
+
+```
+
 
 ## Arrays
 
@@ -438,8 +481,7 @@ Otro ejemplo para "cast" de un apuntador a un tipo de dato `void`:
 ```
 #include<stdio.h>
 main(){
-    long int variable, variable2; //deben ambas variables ser tipo long int y depende de la arquitectura del 
-    							//sistema en el que se esté trabajando: 32 o 64 bits
+    long int variable, variable2; 
     void *apuntador;
     variable = -10;
     apuntador = (void *)variable; //cast a un apuntador hacia un tipo de dato void
@@ -451,5 +493,7 @@ main(){
 }
 ```
 
+**Obsérvese el uso de `long int` en el ejemplo anterior, depende de la arquitectura del 
+sistema en el que se esté trabajando: 32 o 64 bits, podríamos haber usado `int` y recibiríamos warnings del tipo: "...different size [-Wint-to-pointer-cast]..."**
 
 
