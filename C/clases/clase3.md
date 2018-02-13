@@ -497,3 +497,18 @@ main(){
 sistema en el que se esté trabajando: 32 o 64 bits, podríamos haber usado `int` y recibiríamos warnings del tipo: "...different size [-Wint-to-pointer-cast]..."**
 
 
+## ¿Por qué usar apuntadores?
+
+* Permiten alojamiento dinámico de memoria (veremos esto más adelante).
+
+* Se utilizan para implementar estructuras de datos como listas ligadas,árboles, pilas y colas.
+
+* Manejo eficiente de la memoria, por ejemplo, en lugar de realizar una copia de un arreglo en una función, sólo se envía la dirección de memoria de su base address.
+
+* Pasar variables por referencia, uso en arreglos, alternativa a variables globales, regresar múltiples valores de una función son típicos casos en los que se utilizan los apuntadores.
+
+
+
+
+
+
