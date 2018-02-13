@@ -67,6 +67,13 @@ Finalizamos nota [II/2.1](https://www.dropbox.com/s/z465znq3wwao9ad/2.1.Un_poco_
 
 Se inició la configuración en la cuenta de AWS de acuerdo al [tutorial](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI). Se indicó finalizar el mismo para la clase de lunes 12.
 
+## Clase 6
+
+12 de febrero
+
+Nota [II/2.2](https://www.dropbox.com/s/v4ub0p3ndf7w1p0/2.2.Sistemas_de_memoria_distribuida_MPI.pdf?dl=0) hasta ejemplo de `hello_world.c`
+
+Clases de C: [clase3](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase3.md), [clase4](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase3.md) hasta definición y declaración de arreglos de apuntadores.
 
 
 
