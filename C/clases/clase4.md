@@ -262,21 +262,7 @@ Obsérvese que en la última forma de impresión es equivalente para un apuntado
 realizar ```*apuntador``` que ```apuntador[0]``` o ```*(apuntador + 2)``` que ```apuntador[2]```
 siempre que esté inicializado ```apuntador + 2```. Y el operador `[]` tiene mayor jerarquía que el operador `*`.
 
-```
-#include<stdio.h>
-main(){
 
-	int *apuntador;
-	int variable1 = -10;
-	int variable2 = 5;
-	apuntador = &variable1;
-	printf("apuntador[0]: %d\n", apuntador[0]);
-	apuntador = apuntador + 2;
-	apuntador = &variable2;
-	apuntador = apuntador - 2;
-	printf("apuntador[2] : %d\n", apuntador[2]);
-
-}
 ```
 
 La precedencia del operador `[]` es mayor a la del operador `*`. Si ponemos paréntesis
