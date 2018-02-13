@@ -263,8 +263,6 @@ realizar ```*apuntador``` que ```apuntador[0]``` o ```*(apuntador + 2)``` que ``
 siempre que esté inicializado ```apuntador + 2```. Y el operador `[]` tiene mayor jerarquía que el operador `*`.
 
 
-```
-
 La precedencia del operador `[]` es mayor a la del operador `*`. Si ponemos paréntesis
 como en el ejemplo siguiente, tenemos un apuntador a un arreglo de tamaño 2 de enteros
 
