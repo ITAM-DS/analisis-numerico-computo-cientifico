@@ -97,7 +97,7 @@ main(){
 
 ```
 
-Los argumentos son evaluados dos veces, uno para la prueba y otro para producir el resultado.
+Los argumentos son evaluados dos veces, uno para la prueba del operador `>` y otro para producir el resultado de la condición del `if`.
 
 2) El uso de paréntesis es necesario:
 
