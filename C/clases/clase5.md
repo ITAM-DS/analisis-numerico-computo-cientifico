@@ -4,7 +4,7 @@
 
 Un programa se traduce en distintas fases. Las primeras fases están relacionadas con transformaciones léxicas a partir de `directivas` que involucran líneas que empiezan con el caracter `#` y permiten comunicarse con el preprocesador y realizar sustituciones macro, inclusión de archivos o compilación condicional. Al finalizar el preprocesamiento, el programa ha sido reducido a una secuencia de `tokens`, entre los que se encuentran los `identificadores` o nombres.
 
-Una línea de la forma: `#define identificador secuencia-token` como se vio en la [clase2](../clase2.md) realiza una sustitución del identificador con la `secuencia-token`. Y una línea de la forma `#define identificador(lista-de-identificadores) secuencia-token` es una definición macro con parámetros dados en `lista-de-identificadores`.
+Una línea de la forma: `#define identificador secuencia-token` como se vio en la [clase2](/C/clases/clase2.md) realiza una sustitución del identificador con la `secuencia-token`. Y una línea de la forma `#define identificador(lista-de-identificadores) secuencia-token` es una definición macro con parámetros dados en `lista-de-identificadores`.
 
 
 Ejemplo1:
