@@ -314,7 +314,7 @@ int main(void){
 
 ```
 
-Ejemplo para alojar 10 bloques de memoria contiguos en la memoria heap:
+Ejemplo para alojar 10 bloques de memoria contiguos en la memoria heap para almacenar cada bloque un`int`, es decir, un arreglo de tamaño 10*4 = 40 bytes:
 
 Podemos usar a la función `assert` para revisar que `malloc` nos devuelve no `NULL`:
 
@@ -338,7 +338,7 @@ main(void){
 
 ```
 
-Ejemplo para alojar `20*1e9` =(20gb) bloques de memoria contiguos en la memoria heap:
+Ejemplo para alojar 20*1e9 bloques de memoria contiguos en la memoria heap para almacenar cada bloque un `int`, es decir, un arreglo de tamaño 20*1e9*4 = 80 gb:
 
 ```
 #include<stdio.h>
