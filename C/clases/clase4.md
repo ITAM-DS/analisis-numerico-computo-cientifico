@@ -39,7 +39,7 @@ main(){
 y esto no es posible con arreglos de enteros, es decir para imprimir un arreglo de enteros requerimos un `for`.
 
 
-Como se vio en la [clase3](../clase3) los nombres de los arreglos son apuntadores hacia el base address del mismo, así, el nombre `string` es un apuntador:
+Como se vio en la [clase3](/C/clases/clase3.md) los nombres de los arreglos son apuntadores hacia el base address del mismo, así, el nombre `string` es un apuntador:
 
 ```
 #include<stdio.h>
