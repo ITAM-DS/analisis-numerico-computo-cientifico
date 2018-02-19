@@ -32,6 +32,7 @@ Revisamos notas:
 
 
 ## Clase 2
+
 20 de enero
 
 Revisión de notas [I/1.1](https://www.dropbox.com/s/z5ifw3ti66gukdy/1.1.Analisis_numerico_y_computo_cientifico.pdf?dl=0), [I/1.2](https://www.dropbox.com/s/9fsupm3bhwmv7cb/1.2.Sistema_de_punto_flotante.pdf?dl=0)
@@ -47,3 +48,33 @@ Clase 27 de enero introducción a C. [historia de clase de C, repetición](https
 22 de enero
 
 Revisión de notas [I/1.3](https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad_y_normas.pdf?dl=0) y [II/2.1](https://www.dropbox.com/s/z465znq3wwao9ad/2.1.Un_poco_de_historia_y_generalidades.pdf?dl=0) hasta Cache
+
+## Clase 4
+
+29 de enero
+
+Nota [II/2.1](https://www.dropbox.com/s/z465znq3wwao9ad/2.1.Un_poco_de_historia_y_generalidades.pdf?dl=0) hasta términos de paralelo, concurrencia y distribuido.
+
+Clases de C: [clase2](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase2.md), [clase3](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase3.md) hasta arreglos.
+
+## Clase 5
+
+10 de febrero
+
+Finalizamos nota [II/2.1](https://www.dropbox.com/s/z465znq3wwao9ad/2.1.Un_poco_de_historia_y_generalidades.pdf?dl=0) 
+
+[Levantamos clúster de forma pseudodistribuida con docker y openMPI.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/MPI/openMPI)
+
+Se inició la configuración en la cuenta de AWS de acuerdo al [tutorial](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI). Se indicó finalizar el mismo para la clase de lunes 12.
+
+## Clase 6
+
+12 de febrero
+
+Nota [II/2.2](https://www.dropbox.com/s/v4ub0p3ndf7w1p0/2.2.Sistemas_de_memoria_distribuida_MPI.pdf?dl=0) hasta ejemplo de `hello_world.c`
+
+Clases de C: [clase3](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase3.md), [clase4](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase3.md) hasta definición y declaración de arreglos de apuntadores.
+
+
+
+
