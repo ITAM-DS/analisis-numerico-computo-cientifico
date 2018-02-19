@@ -338,7 +338,7 @@ main(void){
 
 ```
 
-Ejemplo para alojar 201e9 bloques de memoria contiguos en la memoria heap para almacenar cada bloque un `int`, es decir, un arreglo de tamaño 201e9*4 = 80 gb:
+Ejemplo para alojar 20\*1e9 bloques de memoria contiguos en la memoria heap para almacenar cada bloque un `int`, es decir, un arreglo de tamaño 20\*1e9\*4 = 80 gb:
 
 ```
 #include<stdio.h>
