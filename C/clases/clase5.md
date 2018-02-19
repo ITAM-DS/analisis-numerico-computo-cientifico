@@ -161,7 +161,7 @@ ejecutar:
 $gcc -E ejemplo_sustitucion_texto.c
 ```
 
-para observar la sustitución de texto que realiza C. Output:
+para observar la sustitución de texto que realiza C. Output de la compilación:
 
 ```
 # 1 "ejemplo_sustitucion_texto.c"
