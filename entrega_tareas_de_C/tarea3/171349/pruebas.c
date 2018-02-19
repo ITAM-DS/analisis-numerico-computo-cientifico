@@ -37,18 +37,4 @@ funcion_2(arr_1, n);
 printf("\n\n\n\n ARREGLO 2 ==================================\n\n\n");
 funcion_1(arr_2, n2);
 funcion_2(arr_2, n2);
-//
-//int funcion_2(int *apuntador2, int n2){
-//        printf("\n ======== \n Función 2 \n\n");
-//        for (i=1;i<n2;i=i+2){
-//                printf("Entrada %i: %i \n", i, apuntador2[i]);
-//        }
-//
-//        for (i=1;i<n2;i=i+2){
-//                printf("Direccion %i: %p \n", i, (apuntador2+i));
-//        }
-//
-//}
-//funcion_2(arr_2, n2);
-
 }
