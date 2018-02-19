@@ -63,7 +63,7 @@ Ejecutar de forma pseudo distribuida:
 $mpirun --prefix $inst_ompi -n 2 -H master,nodo1 hello_clase.out
 ```
 
-*(La variable `inst_ompi` está definida en el ambiente de bash y apunta a la ruta en la que está instalado openMPI)*
+**(La variable `inst_ompi` está definida en el ambiente de bash y apunta a la ruta en la que está instalado openMPI)**
 
 La sintaxis de las funciones `MPI_Send` y `MPI_Recv` es:
 
