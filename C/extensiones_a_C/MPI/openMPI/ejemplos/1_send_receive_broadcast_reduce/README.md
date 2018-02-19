@@ -1,8 +1,6 @@
 # Ejemplos con openmpi
 
-Para los siguientes ejemplos, se supone que se ha [levantado un cluster de forma pseudo distribuida con openMPI y docker](../../). 
-
-Se compilarán y ejecutarán los ejemplos en el master_container.
+Para los siguientes ejemplos, se supone que se ha [levantado un cluster de forma pseudo distribuida con openMPI y docker](../../) o bien se siguió el [tutorial de uso de AWS con OpenMPI](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI) ambos enfoques para un sistema ubuntu. De acuerdo a las arquitecturas anteriores compilar y ejectuar los siguientes programas ejemplo.
 
 ## Comunicación punto a punto:
 
@@ -46,7 +44,7 @@ $mpicc hello_clase.c -o hello_clase.out
 Ejecutar con un sólo procesador:
 
 ```
-$mpiexec -n 5 hello_clase.out
+$mpirun -n 5 hello_clase.out
 ```
 
 Resultado:
@@ -62,8 +60,10 @@ Hola del procesador 4 de 5!
 Ejecutar de forma pseudo distribuida:
 
 ```
-$mpirun --prefix /opt/openmpi-2.0.2/ -n 2 -H master,nodo1 hello_clase.out
+$mpirun --prefix $inst_ompi -n 2 -H master,nodo1 hello_clase.out
 ```
+
+*(La variable `inst_ompi` está definida en el ambiente de bash y apunta a la ruta en la que está instalado openMPI)*
 
 La sintaxis de las funciones `MPI_Send` y `MPI_Recv` es:
 
@@ -172,7 +172,7 @@ $mpiexec -n 10 trapecio_compuesto_mpi.out
 Ejecutar de forma pseudodistribuida:
 
 ```
-$mpirun --prefix /opt/openmpi-2.0.2/ -n 2 -H master,nodo1 trapecio_compuesto_mpi.out
+$mpirun --prefix $inst_ompi -n 2 -H master,nodo1 trapecio_compuesto_mpi.out
 ```
 
 Resultado:
