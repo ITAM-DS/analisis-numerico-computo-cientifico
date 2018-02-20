@@ -1,6 +1,7 @@
 # Ejemplos con openmpi
 
-Para los siguientes ejemplos, se supone que se ha [levantado un cluster de forma pseudo distribuida con openMPI y docker](../../) o bien se siguió el [tutorial de uso de AWS con OpenMPI](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI) ambos enfoques para un sistema ubuntu. De acuerdo a las arquitecturas anteriores compilar y ejectuar los siguientes programas ejemplo.
+Para los siguientes ejemplos, se supone que se ha [levantado un cluster de forma pseudo distribuida con openMPI y docker](/C/extensiones_a_C/MPI/openMPI/
+) o bien se siguió el [tutorial de uso de AWS con OpenMPI](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI) ambos enfoques para un sistema ubuntu. De acuerdo a las arquitecturas anteriores compilar y ejectuar los siguientes programas ejemplo.
 
 ## Comunicación colectiva (scatter, gather):
 
