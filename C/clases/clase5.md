@@ -128,6 +128,8 @@ main(){
 
 ```
 
+**(Observa que si se llama a la macro SQUARE con el argumento `(variable+1)` obtenemos para `variable3` un valor de 100)**
+
 3) Podemos llamar más de una vez a la macro:
 
 ```
