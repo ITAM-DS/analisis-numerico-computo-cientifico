@@ -73,8 +73,14 @@ Se inició la configuración en la cuenta de AWS de acuerdo al [tutorial](https:
 
 Nota [II/2.2](https://www.dropbox.com/s/v4ub0p3ndf7w1p0/2.2.Sistemas_de_memoria_distribuida_MPI.pdf?dl=0) hasta ejemplo de `hello_world.c`
 
-Clases de C: [clase3](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase3.md), [clase4](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase3.md) hasta definición y declaración de arreglos de apuntadores.
+Clases de C: [clase3](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase3.md), [clase4](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase4.md) hasta definición y declaración de arreglos de apuntadores.
 
+## Clase 7
 
+19 de febrero
+
+Clases de C: [clase4](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase4.md) y [clase 5](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase5.md)
+
+Se revisó hasta el punto 6.2 del [tutorial](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI) para levantar un clúster en AWS y openMPI.
 
 
