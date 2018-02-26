@@ -122,7 +122,7 @@ main(){
 Al definir y declarar el arreglo1 de tamaño 5, son designados 5 bloques
 de memoria contiguos de tamaño int (=4 bytes) que en total son 20 bytes 
 
-Podemos obtener la longitud de un arreglo con la función `sizeof`
+Podemos obtener la longitud de un arreglo con el operador `sizeof`
 
 ```
 #include<stdio.h>
