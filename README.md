@@ -18,6 +18,8 @@
 
 [Liga hacia índice del branch master](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master)
 
+[Archivo con instrucciones para activar créditos de Amazon Web Services](https://dl.dropboxusercontent.com/s/daqjxjif3k5hs90/aws_MCD.html?dl=0)
+
 ## Clase 1
 
 15 de enero
