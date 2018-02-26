@@ -2,7 +2,7 @@
 
 Si queremos en nuestros sistemas levantar un cluster de forma pseudo distribuida (es decir, nuestros nodos estarán en nuestra máquina local) es necesario tener [docker](https://www.docker.com/) instalado.
 
-Si tienen una instancia en AWS con una imagen de ubuntu 16.04 se puede usar el siguiente script para la instalación de docker e identificar a su instancia:
+Si tienen una instancia en AWS con una imagen de ubuntu 16.04 se puede usar el siguiente script para la instalación de docker, la imagen de openmpi y la network a usar en cada contenedor `ompi-network` e identificar a su instancia: (de hecho este bash-script serviría para crear una imagen de AWS)
 
 ```
 #!/bin/bash
@@ -20,6 +20,39 @@ service ssh start
 INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
 PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
 aws ec2 create-tags --resources $INSTANCE_ID --tag Key=Name,Value=$name_instance-$PUBLIC_IP --region=$region
+
+mkdir -p /home/ubuntu/docker_mpi/
+echo -e "FROM ubuntu:xenial \n
+RUN apt-get update -y && apt-get install -y build-essential \
+	nano \
+	man \
+	sudo \
+	openssh-server \n
+RUN groupadd mpi_user \n
+RUN useradd mpi_user -g mpi_user -m -s /bin/bash \n
+ARG file_ompi=\$file_ompi \n
+ARG dir_ompi=\$dir_ompi \n
+RUN mkdir -p /home/mpi_user/openmpi/installation \n
+RUN if [ ! -d "/home/mpi_user/openmpi/installation/\$dir_ompi" ]; then mkdir -p /home/mpi_user/openmpi/installation/; wget https://www.open-mpi.org/software/ompi/v3.0/downloads/\$file_ompi -P /home/mpi_user/openmpi/installation; cd /home/mpi_user/openmpi/installation && tar -xzvf \$file_ompi;fi \n
+ARG inst_ompi=\$inst_ompi \n
+RUN cd /home/mpi_user/openmpi/installation && chown -hR mpi_user:mpi_user \$dir_ompi \n
+RUN mkdir -p /var/run/sshd \n
+RUN echo 'mpi_user ALL=(ALL:ALL) NOPASSWD:ALL' | (EDITOR='tee -a' visudo) \n
+RUN echo 'mpi_user:mpi' | chpasswd \n
+USER mpi_user \n
+RUN cd \$inst_ompi/ && ./configure --prefix=\$inst_ompi -with-sge && make all install \n
+ENV PATH=\$inst_ompi/bin:\$PATH \n
+ENV LD_LIBRARY_PATH=\$inst_ompi/lib:\$LD_LIBRARY_PATH \n" > /home/ubuntu/docker_mpi/Dockerfile
+
+cd /home/ubuntu/docker_mpi/
+file_ompi=$(wget https://www.open-mpi.org/software/ompi/v3.0/downloads/ -q -O -|grep -m 1 .tar.gz|sed -n 's/.*"\(openmpi.*\)".*/\1/;p')
+dir_ompi=$(basename -s ".tar.gz" $file_ompi)
+inst_ompi=/home/mpi_user/openmpi/installation/$dir_ompi
+sudo docker build --build-arg file_ompi=$file_ompi --build-arg dir_ompi=$dir_ompi --build-arg inst_ompi=$inst_ompi -t openmpi_mno/openmpi:v1 .
+echo "inst_ompi=$inst_ompi" >> /home/ubuntu/.profile
+mkdir -p /home/ubuntu/openmpi_ejemplos
+sudo docker network create -d bridge --subnet 172.18.0.1/16 ompi-network
+
 ```
 
 
