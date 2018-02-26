@@ -22,6 +22,7 @@ PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
 aws ec2 create-tags --resources $INSTANCE_ID --tag Key=Name,Value=$name_instance-$PUBLIC_IP --region=$region
 
 mkdir -p /home/ubuntu/docker_mpi/
+chmod gou+wxr /home/ubuntu/docker_mpi/
 echo -e "FROM ubuntu:xenial \n
 RUN apt-get update -y && apt-get install -y build-essential \
 	nano \
@@ -51,6 +52,7 @@ inst_ompi=/home/mpi_user/openmpi/installation/$dir_ompi
 sudo docker build --build-arg file_ompi=$file_ompi --build-arg dir_ompi=$dir_ompi --build-arg inst_ompi=$inst_ompi -t openmpi_mno/openmpi:v1 .
 echo "inst_ompi=$inst_ompi" >> /home/ubuntu/.profile
 mkdir -p /home/ubuntu/openmpi_ejemplos
+chmod gou+wrx /home/ubuntu/openmpi_ejemplos
 sudo docker network create -d bridge --subnet 172.18.0.1/16 ompi-network
 
 ```
