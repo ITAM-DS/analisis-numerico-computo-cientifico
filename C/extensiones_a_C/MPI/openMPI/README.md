@@ -2,7 +2,7 @@
 
 Si queremos en nuestros sistemas levantar un cluster de forma pseudo distribuida (es decir, nuestros nodos estarán en nuestra máquina local) es necesario tener [docker](https://www.docker.com/) instalado.
 
-Si tienen una instancia en AWS con una imagen de ubuntu 16.04 se puede usar el siguiente script para la instalación de docker, la imagen de openmpi y la network a usar en cada contenedor `ompi-network` e identificar a su instancia: (de hecho este bash-script serviría para crear una imagen de AWS)
+Si tienen una instancia en AWS con una imagen de ubuntu 16.04 se puede usar el siguiente script para el launching de la instancia y se realice: instalación de docker, creación de imagen de openmpi y creación de la network a usar en cada contenedor `ompi-network` e identificar a su instancia: **(de hecho este bash-script serviría para crear una imagen de AWS)**
 
 ```
 #!/bin/bash
