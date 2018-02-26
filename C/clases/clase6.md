@@ -193,7 +193,7 @@ y también un warning en el ejemplo:
 ```
 #include<stdio.h>
 int funcion(int var);
-extern int variable_externa=-2; //declaración de variable_externa
+extern int variable_externa=-2; //declaración de variable_externa, tenemos un warning por haber inicializado la variable extern
 int main(void){
 	int variable_main=10;
 	int respuesta;
@@ -207,7 +207,6 @@ int variable_externa; //definición y declaración de variable externa
 							//es global para todas las funciones
 							//definidas en este programa
 
-variable_externa=2; //esta línea genera un warning al compilar
 int funcion(int variable_funcion){
 	int variable2_funcion=5;
 	variable_externa = 1;
