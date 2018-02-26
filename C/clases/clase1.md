@@ -52,10 +52,10 @@ el símbolo de "="
 #include<stdio.h>
 /*Definición y declaración de variables*/
 main(){
-	char variable_char; //8 bits, entera
-	int variable_int; //32 bits, entera
-	float variable_float; //32 bits, punto flotante
-	double variable_double; //64 bits, punto flotante
+	char variable_char; //8 bits, entera (aunque el tamaño depende de la arquitectura del sistema)
+	int variable_int; //32 bits, entera (aunque el tamaño depende de la arquitectura del sistema)
+	float variable_float; //32 bits, punto flotante (aunque el tamaño depende de la arquitectura del sistema)
+	double variable_double; //64 bits, punto flotante (aunque el tamaño depende de la arquitectura del sistema)
 }
 ```
 
