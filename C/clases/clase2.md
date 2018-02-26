@@ -12,7 +12,7 @@ main(){
 }
 ```
 
-Un ejemplo entre conversión y una suma de un número tipo `double` y un número tipo `int`, en la operación de `double + int` el `int` se convierte a `double`:
+Un ejemplo entre conversión y una suma de un número tipo `double` y un número tipo `int`, en la operación de `double + int` el `int` se convierte a `double`, esto se llama **promotion**:
 
 ```
 #include<stdio.h>
