@@ -85,4 +85,18 @@ Clases de C: [clase4](https://github.com/ITAM-DS/analisis-numerico-computo-cient
 
 Se revisó hasta el punto 6.2 del [tutorial](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI) para levantar un clúster en AWS y openMPI.
 
+## Clase 8
+
+26 de febrero
+
+Clase 6 de C: [clase6](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase6.md)
+
+Se terminó el  [tutorial](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI) para levantar un clúster en AWS y openMPI.
+
+Se corrieron los [ejemplos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/MPI/openMPI/ejemplos/1_send_receive_broadcast_reduce) hello_clase.c y trapecio_compuesto.c en el clúster de AWS.
+
+Terminamos la nota [II/2.2](https://www.dropbox.com/s/v4ub0p3ndf7w1p0/2.2.Sistemas_de_memoria_distribuida_MPI.pdf?dl=0), sólo faltan algunas observaciones para MPI.
+
+
+
 
