@@ -97,6 +97,13 @@ Se corrieron los [ejemplos](https://github.com/ITAM-DS/analisis-numerico-computo
 
 Terminamos la nota [II/2.2](https://www.dropbox.com/s/v4ub0p3ndf7w1p0/2.2.Sistemas_de_memoria_distribuida_MPI.pdf?dl=0), sólo faltan algunas observaciones para MPI.
 
+Fijamos fecha de exámenes: 
+
+* 5 de marzo de teoría preguntas de temas: 1.1, 1.2, 1.3, 2.1 (ir a la branch de [master](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master) para tener las preguntas)
+
+* 12 de marzo examen de C
+
+
 
 
 
