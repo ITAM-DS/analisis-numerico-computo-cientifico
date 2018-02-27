@@ -271,7 +271,7 @@ ejemplo2_variables_externas.c:
 
 ```
 #include<stdio.h>
-extern variable_externa;
+extern int variable_externa;
 void funcion2(void){
 	printf("variable_externa: %d\n", variable_externa);
 }
