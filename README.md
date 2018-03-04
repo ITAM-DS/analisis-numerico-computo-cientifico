@@ -102,7 +102,9 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 ## V Cómputo en la nube
 
-5.1 [Amazon Web Services y OpenMPI](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI), [tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Activar-creditos-de-AWS)
+\*[Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Activar-creditos-de-AWS)
+
+5.1 [Amazon Web Services y OpenMPI.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI) 
 
 
 ## [C](C/)
