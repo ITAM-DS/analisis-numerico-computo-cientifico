@@ -1,33 +1,40 @@
 #include<stdio.h>
-#define MAXLINEA 1000 /*máximo tamaño de una línea*/
-/*definición de variables externas*/
-int max;
+#define MAXLINEA 1000 /*m  ximo tama  o de una l  nea*/
+/*definici  n de variables externas*/
 char linea[MAXLINEA];
 char linea_max[MAXLINEA];
+char linea_junta[MAXLINEA];
  
 /*Prototipo de funciones:*/
  
 int obtenlinea(void);
-void copia(void);
+void copia(int);
+void quita_espacios(void);
  
-/*imprime la línea con tamaño más grande*/
+/*imprime la l  nea con tama  o m  s grande*/
 int main(void){
     int longitud;
     extern int max;
     extern char linea_max[MAXLINEA];
-    max=0;
+    printf("\n\na) Modifica el programa para que imprima sólo aquellas líneas que tienen más de 80 caracteres.\n\n");
     while((longitud = obtenlinea()) > 0)
         if( longitud > 80){
-            max = longitud;
             copia();
-	printf("%s\n", linea_max);
+            printf("%s\n", linea);
         }
-//    if(max > 0)
-//        printf("%s\n", linea_max);
-return 0;
+
+     rewind(stdin);
+     printf("\n\n\nb) Modifica el programa para que quite los espacios de cada línea leída.\n\n");
+     while((longitud = obtenlinea()) > 0){
+        quita_espacios();
+        printf("%s", linea_junta);
+     }
+    printf("\n\nc) Modifica la funci  n copia para que no use break pero todavía debe de usar el índice i.");
+    printt("\n los outputs correspondientes están hechos utlilizando esta modificación")
+    return 0;
 }
  
-/*obtenlinea: lee una linea en el arreglo linea, regresa longitud*/
+/*obtenlinea: lee una línea en el arreglo linea, regresa longitud*/
 int obtenlinea(void){
     int c;
     int i;
@@ -43,13 +50,29 @@ int obtenlinea(void){
 }
  
 /*copia: copia del arreglo "linea" al arreglo "linea_max"*/
-void copia(void){
+void copia(int longitud){
     int i;
     extern char linea[], linea_max[];
-    i=0;
-    while(1){
+    for (i=0;i<=longitud;i++){
         linea_max[i] = linea[i];
-        if(linea_max[i] == '\0') break;
-        i++;
     }
+}
+
+//Funci  n para quitar espacios en cada l  nea
+void quita_espacios(void){
+    int i=0;
+    int j=0;
+    extern char linea[];
+    extern char linea_junta[];
+        while(1){
+            if(linea[i] == '\0') break;
+            if(linea[i] == ' '){
+                 i++;
+                }
+            else {
+                linea_junta[j] = linea[i];
+                i++;
+                j++;
+                }
+        }
 }
