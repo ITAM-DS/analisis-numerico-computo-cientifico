@@ -103,6 +103,15 @@ Fijamos fecha de exámenes:
 
 * 12 de marzo examen de C
 
+## Clase 9
+
+5 de marzo
+
+Finalizamos tema de MPI.
+
+Examen módulo 1 hasta 2.1
+
+Iniciamos nota [II/2.3](https://www.dropbox.com/s/oauifmx3e19ofyq/2.3.Sistemas_de_memoria_compartida_Pthreads.pdf?dl=0) y [ejemplos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/Pthreads/ejemplos)
 
 
 
