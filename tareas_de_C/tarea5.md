@@ -24,4 +24,4 @@ Dirígite a la rama de master a la ruta [analisis-numerico-computo-cientifico/C/
 
 5) Haz un programa que utilice la subrutina `daxpy` de Fortran.
 
-
+**La tarea se hace de forma individual y personal.**
