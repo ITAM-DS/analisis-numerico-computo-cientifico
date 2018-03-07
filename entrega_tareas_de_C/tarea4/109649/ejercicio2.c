@@ -1,8 +1,8 @@
 #include<stdio.h>
-#define MAXLINEA 1000 /*m  ximo tama  o de una l  nea*/
-/*definici  n de variables externas*/
+#define MAXLINEA 1000 /*máximo tamaño de una línea*/
+/*definición de variables externas*/
 char linea[MAXLINEA];
-char linea_max[MAXLINEA];
+char linea_copia[MAXLINEA];
 char linea_junta[MAXLINEA];
  
 /*Prototipo de funciones:*/
@@ -10,16 +10,18 @@ char linea_junta[MAXLINEA];
 int obtenlinea(void);
 void copia(int);
 void quita_espacios(void);
+void copia_apuntadores(char*, char*, int);
+void voltea(char*, int);
  
-/*imprime la l  nea con tama  o m  s grande*/
+/*imprime la línea con tamaño mayor a 80 caracteres*/
 int main(void){
     int longitud;
     extern int max;
-    extern char linea_max[MAXLINEA];
+    extern char linea_copia[MAXLINEA];
     printf("\n\na) Modifica el programa para que imprima sólo aquellas líneas que tienen más de 80 caracteres.\n\n");
     while((longitud = obtenlinea()) > 0)
         if( longitud > 80){
-            copia();
+            copia(longitud);
             printf("%s\n", linea);
         }
 
@@ -30,7 +32,33 @@ int main(void){
         printf("%s", linea_junta);
      }
     printf("\n\nc) Modifica la funci  n copia para que no use break pero todavía debe de usar el índice i.");
-    printt("\n los outputs correspondientes están hechos utlilizando esta modificación")
+    printf("\n los outputs correspondientes están hechos utlilizando esta modificación\n");
+
+    printf("\n\n d) Modifica la función `copia` para que no use índices y sólo apuntadores.");
+    printf("\n Se ejecuta el código copia_apuntadores");
+    rewind(stdin);
+    
+    char *apuntador_linea;
+    char *apuntador_linea_copia;
+    int n=0;
+
+    while((longitud = obtenlinea()) > 0){
+            apuntador_linea = linea;
+            apuntador_linea_copia = linea_copia;
+            copia_apuntadores(apuntador_linea, apuntador_linea_copia, longitud);
+            n++;
+            printf("copia_apuntadores, copiada línea %d \n", n);
+    }
+
+    printf("\n\n e) Escribe una función `voltea` que reciba un string `s` e imprima el string `s` al revés. Añade esta función para que el programa lea líneas y las imprima volteadas.\n\n");
+    rewind(stdin);
+
+    while((longitud = obtenlinea()) > 0){
+        longitud = obtenlinea();
+        apuntador_linea = linea;
+        voltea(apuntador_linea, longitud);
+}
+
     return 0;
 }
  
@@ -49,16 +77,26 @@ int obtenlinea(void){
     return i;
 }
  
-/*copia: copia del arreglo "linea" al arreglo "linea_max"*/
+/*copia: copia del arreglo "linea" al arreglo "linea_max" sin el uso de break*/
 void copia(int longitud){
     int i;
-    extern char linea[], linea_max[];
+    extern char linea[], linea_copia[];
     for (i=0;i<=longitud;i++){
-        linea_max[i] = linea[i];
+        linea_copia[i] = linea[i];
     }
 }
 
-//Funci  n para quitar espacios en cada l  nea
+/* copia_apuntadores es la modificación de copia para su uso solo con apuntadores */
+void copia_apuntadores(char *apuntador_linea, char *apuntador_linea_copia, int longitud){
+    int i = 0;
+    for (i=0;i<=longitud;i++){
+        *apuntador_linea_copia = *apuntador_linea;
+        apuntador_linea++;
+        apuntador_linea_copia++;
+    }
+}
+
+//Función para quitar espacios en cada línea
 void quita_espacios(void){
     int i=0;
     int j=0;
@@ -75,4 +113,13 @@ void quita_espacios(void){
                 j++;
                 }
         }
+}
+
+//Función voltea que refleja el string s que se le manda
+void voltea(char *apuntador_linea, int longitud){
+    char linea_volteada[longitud];
+    int i = 0;
+    for(i=0;i<longitud;i++){
+        printf("%c", *(apuntador_linea+longitud-i-1));
+    }
 }
