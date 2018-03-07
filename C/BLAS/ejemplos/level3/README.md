@@ -60,8 +60,7 @@ int main(int argc, char *argv[]){
 	imprime_matriz(B);
 	printf("------------\n");
 	printf("matriz resultado:\n");
-	entradas(C)=malloc(renglones(C)*columnas(C)*sizeof(double));
-	inicializa_matriz_ceros(C);
+	entradas(C)=calloc(renglones(C)*columnas(C),sizeof(double));
 	dgemm_("No transpose", "No transpose", &M, &N, &K, &ALPHA, entradas(A), &M, entradas(B), &K, &BETA, entradas(C), &M);
 	imprime_matriz(C);
 	free(entradas(A));
@@ -112,9 +111,6 @@ Podemos hacer un trick si usamos el siguiente archivo de definiciones:
 `definiciones.h`:
 
 ```
-#define tipo_double 'd'
-#define tipo_int 'i'
-
 typedef struct{
 int m, n;
 #define renglones(arreglo) ((arreglo)->m)
@@ -128,16 +124,18 @@ typedef struct{
 int n;
 #define renglones_vector(arreglo) ((arreglo)->n)
 double *arr;
+int *arr_int;
 #define entradas_vector(arreglo) ((arreglo)->arr)
 #define entrada_vector(arreglo,i) ((arreglo)->arr[i])
+#define entradas_vector_entero(arreglo) ((arreglo)->arr_int)
+#define entrada_vector_entero(arreglo,i) ((arreglo)->arr_int[i])
 }arreglo_1d;
 typedef arreglo_1d *arreglo_1d_T;
 void imprime_vector(arreglo_1d_T);
 void imprime_matriz(arreglo_2d_T);
 void inicializa_matriz(arreglo_2d_T, char *);
 void inicializa_vector(arreglo_1d_T, char *);
-void inicializa_matriz_ceros(arreglo_2d_T);
-void inicializa_vector_ceros(arreglo_1d_T);
+void imprime_vector_entero(arreglo_1d_T);
 ```
 
 Observa que la diferencia con el archivo de definiciones de [aquí](../) es que en este caso estamos almacenando row major. Entonces la multiplicación de matrices se realiza con el código:
@@ -178,8 +176,7 @@ int main(int argc, char *argv[]){
 	printf("matriz 2:\n");
 	imprime_matriz(B);
 	printf("matriz 3:\n");
-	entradas(C)=malloc(renglones(C)*columnas(C)*sizeof(double));
-	inicializa_matriz_ceros(C);
+	entradas(C)=calloc(renglones(C)*columnas(C),sizeof(double));
 	dgemm_("No transpose", "No transpose", &N, &M, &K, &ALPHA, entradas(B), &N, entradas(A), &K, &BETA, entradas(C), &N);
 	imprime_matriz(C);
 	free(entradas(A));
@@ -300,8 +297,7 @@ int main(int argc, char *argv[]){
 	entradas(B)=malloc(renglones(B)*columnas(B)*sizeof(double));
 	inicializa_matriz(B,B_matriz);
 	
-	entradas(C)=malloc(renglones(C)*columnas(C)*sizeof(double));
-	inicializa_matriz_ceros(C);
+	entradas(C)=calloc(renglones(C)*columnas(C),sizeof(double));
 	printf("matriz 1:\n");
 	imprime_matriz(A);
 	printf("------------\n");
@@ -358,7 +354,7 @@ int main(int argc, char *argv[]){
 	free(m_a);
 	free(entradas_vector(k_a_b));
 	free(k_a_b);
-	free(entadas_vector(n_b));
+	free(entradas_vector(n_b));
 	free(n_b);
 
 	return 0;
