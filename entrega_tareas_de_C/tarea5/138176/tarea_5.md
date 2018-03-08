@@ -37,13 +37,30 @@ Automatically Tuned Linear Algebra (ATLAS) provee interfaces para BLAS y algunas
 ### 3. En la carpeta analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level1/ ejecuta el programa dot_product.c y realiza pruebas con diferentes vectores definidos por ti.  
 
 Pruebo el ejemplo de las notas:  
-```{bash}
+
+```bash
 gcc -Wall dot_product.c funciones.c -o programa.out -lblas
 ./programa.out 3
 ```
 
+```
+## ------------
+## vector :
+## vector[0]=1.00000
+## vector[1]=0.00000
+## vector[2]=-3.00000
+## ------------
+## vector :
+## vector[0]=5.00000
+## vector[1]=8.00000
+## vector[2]=9.00000
+## ------------
+## resultado: -22.000000
+```
+
 Pruebo con vectores de 5 valores:  
-```{bash}
+
+```bash
 echo "2
 4" >> v1.txt
 echo "5
@@ -52,8 +69,28 @@ gcc -Wall dot_product.c funciones.c -o programa.out -lblas
 ./programa.out 5
 ```
 
+```
+## ------------
+## vector :
+## vector[0]=1.00000
+## vector[1]=0.00000
+## vector[2]=-3.00000
+## vector[3]=2.00000
+## vector[4]=4.00000
+## ------------
+## vector :
+## vector[0]=5.00000
+## vector[1]=8.00000
+## vector[2]=9.00000
+## vector[3]=5.00000
+## vector[4]=12.00000
+## ------------
+## resultado: 36.000000
+```
+
 Pruebo con vector de 10 valores:  
-```{bash}
+
+```bash
 echo "12
 54
 13
@@ -66,6 +103,35 @@ echo "9
 18" >> v2.txt
 gcc -Wall dot_product.c funciones.c -o programa.out -lblas
 ./programa.out 10
+```
+
+```
+## ------------
+## vector :
+## vector[0]=1.00000
+## vector[1]=0.00000
+## vector[2]=-3.00000
+## vector[3]=2.00000
+## vector[4]=4.00000
+## vector[5]=12.00000
+## vector[6]=54.00000
+## vector[7]=13.00000
+## vector[8]=10.00000
+## vector[9]=1.00000
+## ------------
+## vector :
+## vector[0]=5.00000
+## vector[1]=8.00000
+## vector[2]=9.00000
+## vector[3]=5.00000
+## vector[4]=12.00000
+## vector[5]=9.00000
+## vector[6]=7.00000
+## vector[7]=11.00000
+## vector[8]=15.00000
+## vector[9]=18.00000
+## ------------
+## resultado: 833.000000
 ```
 
 ### 4. Investiga* sobre la subrutina de Fortran ddot (parámetros que recibe y la salida).  
@@ -97,13 +163,85 @@ Es importante mencionar que daxpy regresa el resultado en el mismo vector DY, po
 
 El código para este problema se encuentra en el archivo ej5_daxpy.c, además se muestra a continuación. La constante que multiplica al primer vector se recibe como el segundo argumento en la línea de comando, donde el primero es la longitud de los vectores y el segundo el antes mencionado. La salida de este programa es de la siguiente forma:  
 
-```{bash}
+
+```bash
 gcc -Wall ej5_daxpy.c funciones.c -o daxpy.out -lblas
 ./daxpy.out 3 10
-```  
+```
+
+```
+## ------------
+## vector :
+## vector[0]=1.00000
+## vector[1]=0.00000
+## vector[2]=-3.00000
+## ------------
+## vector :
+## vector[0]=5.00000
+## vector[1]=8.00000
+## vector[2]=9.00000
+## ------------
+## Resultado:
+## 15.000000
+## 8.000000
+## -21.000000
+```
 Código para daxpy
-```{bash}
+
+```bash
 cat ej5_daxpy.c
+```
+
+```
+## // Daniel Sharp 138176
+## 
+## #include<stdio.h>
+## #include<stdlib.h>
+## #include"definiciones.h"
+## /* Se cambian los archivos de los vectores para que el resutlado del programa sea
+## facilmente legible en la terminal
+## */
+## #define v1_vector "v1_daxpy.txt" //de tamaño Nx1
+## #define v2_vector "v2_daxpy.txt" //de tamaño Nx1
+## extern void daxpy_(int *n, double *a, double *x, int *incx, double *y, int *incy);
+## int main(int argc, char *argv[]){
+## 	arreglo_1d_T v1, v2;
+## 	int incx=1;
+## 	int N=atoi(argv[1]);
+## 	// Se toma como segundo argumento la constante A que multiplicará al primer vector
+## 	double a=atof(argv[2]);
+## 
+## 	v1=malloc(sizeof(*v1));
+## 	v2=malloc(sizeof(*v2));
+## 
+## 	renglones_vector(v1)=N;
+## 	renglones_vector(v2)=N;
+## 
+## 	entradas_vector(v1)=malloc(N*sizeof(double));
+## 	inicializa_vector(v1,v1_vector);
+## 	entradas_vector(v2)=malloc(N*sizeof(double));
+## 	inicializa_vector(v2,v2_vector);
+## 
+## 	printf("------------\n");
+## 	printf("vector :\n");
+## 	imprime_vector(v1);
+## 	printf("------------\n");
+## 	printf("vector :\n");
+## 	imprime_vector(v2);
+## 	printf("------------\n");
+## 
+## 	daxpy_(&N, &a,entradas_vector(v1), &incx, entradas_vector(v2), &incx);
+## 	printf("%s\n", "Resultado:");
+## 	// Se itera sobre el vector v2 pues ahí es donde la función almacena la solución
+## 	for(int i = 0; i<N; i++){
+## 		printf("%lf\n", entradas_vector(v2)[i]);
+## 	}
+## 	free(entradas_vector(v1));
+## 	free(v1);
+## 	free(entradas_vector(v2));
+## 	free(v2);
+## 	return 0;
+## }
 ```
 
 
