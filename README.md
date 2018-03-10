@@ -48,9 +48,13 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
 
-* [Ejemplos con Pthreads](C/extensiones_a_C/Pthreads/ejemplos/)
+* [Preguntas 2.3](https://www.dropbox.com/s/kfazlrd7crdlch4/preguntas_pthreads.txt?dl=0)
+
+[Ejemplos con Pthreads](C/extensiones_a_C/Pthreads/ejemplos/)
 
 2.4 Sistemas de memoria compartida: [openMP](C/extensiones_a_C/openMP)
+
+* [Preguntas 2.4](https://www.dropbox.com/s/oytugjz8s3znvrl/preguntas_openmp.txt?dl=0)
 
 [Ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/)
 
