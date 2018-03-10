@@ -25,7 +25,7 @@ El nivel 3 BLAS realiza operaciones matriz - matriz.
 3) En la carpeta [analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level1/](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/BLAS/ejemplos/level1) ejecuta el programa `dot_product.c` y realiza pruebas con diferentes vectores definidos por ti.
 
 
-Se modificó el programa [dot_product.c](dot_product.c) para que reciba como parámetros desde la línea de comandos el tamño de los vectores, el nombre de los archivos de los vectores y una bandera si debe imprimir los vectores originales. 
+Se modificó el programa [dot_product.c](dot_product.c) para que reciba como parámetros desde la línea de comandos el tamaño de los vectores, el nombre de los archivos de los vectores y una bandera si debe imprimir los vectores originales. 
 
 Para las pruebas se usan
 
