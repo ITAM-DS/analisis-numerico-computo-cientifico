@@ -1,33 +1,25 @@
 #include<stdio.h>
 #define MAXLINEA 1000 /*máximo tamaño de una línea*/
-#define mas_de 80
- 
 /*definición de variables externas*/
 int max;
 char linea[MAXLINEA];
 char linea_max[MAXLINEA];
- 
+int longitud; 
 /*Prototipo de funciones:*/
  
 int obtenlinea(void); 
-void copia(void);
-
+void voltea(void);
+ 
 /*imprime la línea con tamaño más grande*/
 int main(void){
-    int longitud;
+    extern int longitud;
     extern int max;
     extern char linea_max[MAXLINEA];
-    max=0;
     while((longitud = obtenlinea()) > 0)
-        // si es mayor a mas_de
-	if( longitud >= mas_de){
-            copia();
-            printf("longitud de linea %d \n", longitud);
-            printf("%s \n", linea_max);
-        }
+    	voltea();
+	printf("%s", linea_max);
 return 0;
 }
-  
  
 /*obtenlinea: lee una linea en el arreglo linea, regresa longitud*/
 int obtenlinea(void){
@@ -44,14 +36,24 @@ int obtenlinea(void){
     return i;
 }
  
-/*copia: copia del arreglo "linea" al arreglo "linea_max"*/
-void copia(void){ 
-    int i;
-    extern char linea[], linea_max[];
-    i=0;
-    while(1){
-        linea_max[i] = linea[i];
-        if(linea_max[i] == '\0') break;
-        i++;    
-    }
+// Función para voltear linea en el arreglo. Imprime el arreglo volteado
+void voltea(void){
+	int i, n, u;
+	extern char linea[], linea_max[];
+	extern int longitud;
+	i=0;
+	n=longitud+10;
+	// printf("%s", linea);
+    	linea_max[n+1]='\0';
+	while(1){
+		linea_max[n-i] = linea[i];
+		if(linea[i]=='\0'){
+		//printf(" %s \n", linea);
+		for(u=0;u<n;u++){
+			printf("%c",linea_max[u]);
+		}
+		break;
+		}
+		i++;	
+	}
 }
