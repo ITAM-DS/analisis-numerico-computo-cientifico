@@ -7,9 +7,9 @@ PROGS       := $(patsubst %.c, %, $(SRCS))
 all: clean build
 
 clean:
-		rm -f $(addsuffix $(PROG_SUFFIX), $(PROGS))
+	rm -f $(addsuffix $(PROG_SUFFIX), $(PROGS))
 
 build: $(PROGS)
-    
+
 $(PROGS): %: %.c
-		$(CC) $(CFLAGS) -o $@$(PROG_SUFFIX) $<
+	$(CC) $(CFLAGS) -o $@$(PROG_SUFFIX) $<
