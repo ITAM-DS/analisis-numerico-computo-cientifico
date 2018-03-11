@@ -18,6 +18,8 @@
 
 [Liga hacia índice del branch master](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master)
 
+[Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Activar-creditos-de-AWS)
+
 ## Clase 1
 
 15 de enero
@@ -73,7 +75,43 @@ Se inició la configuración en la cuenta de AWS de acuerdo al [tutorial](https:
 
 Nota [II/2.2](https://www.dropbox.com/s/v4ub0p3ndf7w1p0/2.2.Sistemas_de_memoria_distribuida_MPI.pdf?dl=0) hasta ejemplo de `hello_world.c`
 
-Clases de C: [clase3](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase3.md), [clase4](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase3.md) hasta definición y declaración de arreglos de apuntadores.
+Clases de C: [clase3](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase3.md), [clase4](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase4.md) hasta definición y declaración de arreglos de apuntadores.
+
+## Clase 7
+
+19 de febrero
+
+Clases de C: [clase4](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase4.md) y [clase 5](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase5.md)
+
+Se revisó hasta el punto 6.2 del [tutorial](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI) para levantar un clúster en AWS y openMPI.
+
+## Clase 8
+
+26 de febrero
+
+Clase 6 de C: [clase6](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase6.md)
+
+Se terminó el  [tutorial](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI) para levantar un clúster en AWS y openMPI.
+
+Se corrieron los [ejemplos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/MPI/openMPI/ejemplos/1_send_receive_broadcast_reduce) hello_clase.c y trapecio_compuesto.c en el clúster de AWS.
+
+Terminamos la nota [II/2.2](https://www.dropbox.com/s/v4ub0p3ndf7w1p0/2.2.Sistemas_de_memoria_distribuida_MPI.pdf?dl=0), sólo faltan algunas observaciones para MPI.
+
+Fijamos fecha de exámenes: 
+
+* 5 de marzo de teoría preguntas de temas: 1.1, 1.2, 1.3, 2.1 (ir a la branch de [master](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master) para tener las preguntas)
+
+* 12 de marzo examen de C
+
+## Clase 9
+
+5 de marzo
+
+Finalizamos tema de MPI.
+
+Examen módulo 1 hasta 2.1
+
+Iniciamos nota [II/2.3](https://www.dropbox.com/s/oauifmx3e19ofyq/2.3.Sistemas_de_memoria_compartida_Pthreads.pdf?dl=0) y [ejemplos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/Pthreads/ejemplos)
 
 
 
