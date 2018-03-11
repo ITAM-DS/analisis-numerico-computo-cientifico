@@ -5,7 +5,7 @@ make all (Compila todos los ejercicios)
 
 o
 
-make <ejercicio_N_a> (Compila un ejercicio en especifico)
+make ejercicio_1_a (Compila un ejercicio en especifico)
 ```
 
 ```
