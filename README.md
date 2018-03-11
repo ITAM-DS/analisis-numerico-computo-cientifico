@@ -34,6 +34,8 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 2.2 Sistemas de memoria distribuida: [MPI](C/extensiones_a_C/MPI).
 
+* [Preguntas 2.2](https://www.dropbox.com/s/l5x3tjaocj949e8/preguntas_mpi.txt?dl=0)
+
 * [Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
 
 [Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/):
@@ -46,9 +48,13 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
 
-* [Ejemplos con Pthreads](C/extensiones_a_C/Pthreads/ejemplos/)
+* [Preguntas 2.3](https://www.dropbox.com/s/kfazlrd7crdlch4/preguntas_pthreads.txt?dl=0)
+
+[Ejemplos con Pthreads](C/extensiones_a_C/Pthreads/ejemplos/)
 
 2.4 Sistemas de memoria compartida: [openMP](C/extensiones_a_C/openMP)
+
+* [Preguntas 2.4](https://www.dropbox.com/s/oytugjz8s3znvrl/preguntas_openmp.txt?dl=0)
 
 [Ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/)
 
@@ -84,23 +90,26 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 3.6.2 [SVD con cómputo en paralelo.](https://www.dropbox.com/s/p8p905v34uth28w/3.4.2.SVD_con_computo_en_paralelo.pdf?dl=0)
 
-## IV Cómputo en la nube
+## IV [Optimización convexa](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
 
-4.1 [Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling)
+4.1 [Introducción.](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
 
-## V [Optimización convexa](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
+4.2 [Teoría de convexidad.](https://www.dropbox.com/s/5g7uwg6274k2yyf/4.2.Teoria_de_convexidad.pdf?dl=0)
 
-5.1 [Introducción.](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
+4.3 [Problemas de optimización convexa.]
 
-5.2 [Teoría de convexidad.](https://www.dropbox.com/s/5g7uwg6274k2yyf/4.2.Teoria_de_convexidad.pdf?dl=0)
+4.4 [Dualidad.]
 
-5.3 [Problemas de optimización convexa.]
+4.5 [Algoritmos.]
 
-5.4 [Dualidad.]
+4.6 [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
-5.5 [Algoritmos.]
+## V Cómputo en la nube
 
-5.6 [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
+\*[Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Activar-creditos-de-AWS)
+
+5.1 [Amazon Web Services y OpenMPI.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI) 
+
 
 ## [C](C/)
 

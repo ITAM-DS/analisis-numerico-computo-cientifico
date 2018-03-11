@@ -34,8 +34,6 @@ void imprime_vector(arreglo_1d_T);
 void imprime_matriz(arreglo_2d_T);
 void inicializa_matriz(arreglo_2d_T, char *);
 void inicializa_vector(arreglo_1d_T, char *);
-void inicializa_matriz_ceros(arreglo_2d_T);
-void inicializa_vector_ceros(arreglo_1d_T);
 void imprime_vector_entero(arreglo_1d_T);
 ```
 
@@ -63,18 +61,6 @@ void inicializa_vector(arreglo_1d_T p, char *s){
   	for(i=0;i<m;i++)
 			fscanf(pFile,"%lf", &entrada_vector(p,i));
 	fclose(pFile);
-}
-void inicializa_matriz_ceros(arreglo_2d_T p){
-	int m = renglones(p);
-	int n = columnas(p);
-  	for(i=0;i<m;i++)
-		for(j=0;j<n;j++)
-			entrada(p,i,j)=0;
-}
-void inicializa_vector_ceros(arreglo_1d_T p){
-	int n = renglones_vector(p);
-	for(j=0;j<n;j++)
-		entrada_vector(p,j)=0;
 }
 void imprime_matriz(arreglo_2d_T p){
 	int m = renglones(p);

@@ -55,8 +55,7 @@ int main(int argc, char *argv[]){
 	entradas_vector(v)=malloc(N*sizeof(double));
 	inicializa_vector(v,v_vector);
 
-	entradas_vector(v_resultado)=malloc(M*sizeof(double));
-	inicializa_vector_ceros(v_resultado);
+	entradas_vector(v_resultado)=calloc(M,sizeof(double));
 	printf("matriz 1:\n");
 	imprime_matriz(A);
 	printf("------------\n");
@@ -175,8 +174,7 @@ int main(int argc, char *argv[]){
 	entradas_vector(v)=malloc(N*sizeof(double));
 	inicializa_vector(v,v_vector);
 
-	entradas_vector(v_resultado)=malloc(M*sizeof(double));
-	inicializa_vector_ceros(v_resultado);
+	entradas_vector(v_resultado)=calloc(M,sizeof(double));
 
 
 	m_a=malloc(sizeof(*m_a));
@@ -404,8 +402,7 @@ int main(int argc, char *argv[]){
 	entradas_vector(v)=malloc(N*sizeof(double));
 	inicializa_vector(v,v_vector);
 
-	entradas_vector(v_resultado)=malloc(M*sizeof(double));
-	inicializa_vector_ceros(v_resultado);
+	entradas_vector(v_resultado)=calloc(M,sizeof(double));
 
 	n_a=malloc(sizeof(*n_a));
 	renglones_vector(n_a)=(N%nb != 0)?N/nb+1:N/nb;
@@ -419,7 +416,7 @@ int main(int argc, char *argv[]){
 
 	printf("matriz block:\n");
 	imprime_matriz(A_block);
-	printf("------------\n");*/
+	printf("------------\n");
 
 	renglones(A_block)=renglones(A);
 	jj=0;

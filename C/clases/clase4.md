@@ -15,7 +15,7 @@ main(){
 }
 ```
 
-Lo anterior es similar para un arreglo de enteros:
+Es similar para un arreglo de enteros la siguiente inicialización:
 
 ```
 #include<stdio.h>
@@ -23,6 +23,8 @@ main(){
 	int arreglo[] = {2, 3, -1};
 }
 ```
+
+Obsérvese que para los programas anteriores no se definió el tamaño de los arreglos, al compilar se determina esto gracias a la inicialización.
 
 Podemos imprimir el string completo con el format specifier `%s` en printf:
 
@@ -34,10 +36,10 @@ main(){
 }
 ```
 
-Algo que no es posible con arreglos de enteros.
+y esto no es posible con arreglos de enteros, es decir para imprimir un arreglo de enteros requerimos un `for`.
 
 
-Como se vio anteriormente, el nombre `string` es un apuntador. Entonces:
+Como se vio en la [clase3](/C/clases/clase3.md) los nombres de los arreglos son apuntadores hacia el base address del mismo, así, el nombre `string` es un apuntador:
 
 ```
 #include<stdio.h>
@@ -109,7 +111,7 @@ main(){
 ```
 
 
-Como se mencionó al inicio, un string es un arreglo en el que la última posición se utiliza para guardar el caracter '\0' :
+Como se describió al inicio, un string es un arreglo en el que la última posición se utiliza para guardar el caracter '\0' :
 
 ```
 #include<stdio.h>
@@ -235,7 +237,6 @@ main(){
 	arreglo[0] = arr_mult[0];
 	arreglo[1] = arr_mult2[1];
 	arreglo[2] = arr_mult[2];
-
 	//Algunos valores para arr_mult:
 	arr_mult[0][0] = -10;
 	arr_mult[0][1] = 2;
@@ -246,9 +247,9 @@ main(){
 	arr_mult2[1][1] = 5;
 	arr_mult2[1][2] = 6;
 	//imprimimos algunas entradas de arreglo:
-	printf("*(arreglo[0]) : %d\n", *arreglo[0]);
+	printf("*(arreglo[0]) : %d\n", *arreglo[0]); //mayor jerarquía en el orden de operaciones entre el operador [] y el operador *
 	printf("*(arreglo[0] + 1): %d\n", *(arreglo[0]+1));
-	printf("*(arreglo[1]) : %d\n", *arreglo[1]);
+	printf("*(arreglo[1]) : %d\n", *arreglo[1]); 
 	printf("*(arreglo[1] +1 ) : %d\n", *(arreglo[1] +1));
 	printf("*(arreglo[1] +2 ) : %d\n", *(arreglo[1] +2));
 	//Otra forma de imprimir entradas de arreglo:
@@ -257,27 +258,10 @@ main(){
 }
 ```
 
-Observa en la última forma de impresión que es equivalente para un apuntador inicializado
+Obsérvese que en la última forma de impresión es equivalente para un apuntador inicializado
 realizar ```*apuntador``` que ```apuntador[0]``` o ```*(apuntador + 2)``` que ```apuntador[2]```
-siempre que esté inicializado ```apuntador + 2```.
+siempre que esté inicializado ```apuntador + 2```. Y el operador `[]` tiene mayor jerarquía que el operador `*`.
 
-```
-#include<stdio.h>
-main(){
-
-	int *apuntador;
-	int variable1 = -10;
-	int variable2 = 5;
-	apuntador = &variable1;
-	printf("apuntador[0]: %d\n", apuntador[0]);
-	apuntador = apuntador + 2;
-	apuntador = &variable2;
-	apuntador = apuntador - 2;
-	printf("apuntador[2] : %d\n", apuntador[2]);
-
-}
-
-```
 
 La precedencia del operador `[]` es mayor a la del operador `*`. Si ponemos paréntesis
 como en el ejemplo siguiente, tenemos un apuntador a un arreglo de tamaño 2 de enteros
@@ -298,11 +282,26 @@ main(){
 Observa que genera un warning si en la asignación de arreglo se escribe:
 
 ```
-arreglo = arr_mult[1];
+apuntador = arr_mult[1];
 
 ```
 
-pero al ejecutar el `.out` obtenemos lo deseado.
+pero al ejecutar el `.out` obtenemos lo deseado:
+
+```
+#include<stdio.h>
+main(){
+	int (*apuntador)[2]; //apuntador a un arreglo de tamaño 2
+	int arr_mult[3][2];
+	apuntador = arr_mult[1]; //warning del tipo: assignment from incompatible pointer type [-Wincompatible-pointer-types]
+	arr_mult[1][0] = -4;
+	arr_mult[1][1] = 2;
+	printf("(*apuntador)[0] :%d\n", (*apuntador)[0]);
+	printf("(*apuntador)[1] : %d\n", (*apuntador)[1]);
+}
+
+```
+
 
 También podemos definir y declarar un arreglo de apuntadores a tipo de datos `char`:
 
@@ -326,10 +325,10 @@ O bien con la inicialización:
 #include<stdio.h>
 main(){
 	char *arreglo_str[] = {"Hola\n", 
-							"este es un\n",
-							"ejemplo\t",
-							"de un arreglo de apuntadores\n"
-							};
+					"este es un\n",
+					"ejemplo\t",
+					"de un arreglo de apuntadores\n"
+					};
 
 	printf("*arreglo_str: %s\n", *arreglo_str);
 	printf("*(arreglo_str+1) : %s\n", *(arreglo_str+1));
@@ -338,6 +337,21 @@ main(){
 }
 ```
 
+**Recuerden que en la primera entrada de arreglo_str se tiene un apuntador a un `char` cuyo valor es la posición inicial del string "Hola" y con un `printf` y `%s` es posible imprimir éste string, similar al ejemplo de programa:**
+
+```
+#include<stdio.h>
+main(){
+	char string[]="Hola, este es un string";
+	char *string2;
+	string2 = string;
+	printf("string2: %s\n", string2);
+}
+
+```
+
+
+Un programa similar al anterior para inicializar un arreglo multidimensional pero en el que debemos definir el tamaño del `arreglo_char_mul` es el siguiente:
 
 ```
 #include<stdio.h>
@@ -348,6 +362,37 @@ main(){
 	{"de un arreglo multidimensional de chars\n"}};
 	printf("arreglo_char_mult[0]: %s\n", arreglo_char_mult[0]);
 	printf("arreglo_char_mult[0][0]: %c\n", arreglo_char_mult[0][0]);
+}
+```
+
+Obsérvese que es necesario definir la longitud de 100.
+
+## El operador "->"
+
+* Es utilizado para apuntadores hacia structs.
+
+* Su uso es equivalente a tener un statement del tipo "(* mistruct_pointer).miembro_de_struct", es decir, se obtiene el struct al que hace referencia `mistruct_pointer` y se accesa a su miembro (el operador `.` tiene mayor jerarquía sobre `*`, por ello se colocan paréntesis).
+
+* `->` tiene mayor jerarquía respecto a `*`. 
+
+Ejemplo:
+
+```
+#include<stdio.h>
+main(){
+	typedef struct{
+		double *numero1;
+	}Mistruct;
+	Mistruct sct;
+	Mistruct *sct_p;
+	double variable=-1.0;
+	sct.numero1=&variable;
+	printf("sct.numero1:%p\n",sct.numero1);
+	sct_p = &sct;
+	printf("sct_p->numero1: %p\n",sct_p->numero1);
+	printf("*sct_p->numero1: %f, mayor jerarquía de -> sobre *\n", *sct_p->numero1); //mayor jerarquía de -> sobre *
+	printf("(*sct_p).numero1: %p\n", (*sct_p).numero1);
+	printf("*(*sct_p).numero1: %f, mayor jerarquía de . sobre *\n", *(*sct_p).numero1);
 }
 ```
 

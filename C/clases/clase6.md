@@ -89,7 +89,7 @@ int funcion(int variable_funcion){
 
 ```
 
-Observa que si se define y declara `variable_externa` después de `main` entonces antes de main hay que declarar con el keyword `extern` a `variable_externa`, es decir, tenemos un error al compilar el programa:
+Observa que si se define y declara `variable_externa` después de `main` entonces antes de main hay que declarar con el keyword `extern` a `variable_externa`, es decir, tenemos un **error** al compilar el programa:
 
 ```
 #include<stdio.h>
@@ -179,13 +179,42 @@ int variable_externa; //definición y declaración de variable externa
 							//es global para todas las funciones
 							//definidas en este programa
 
-variable_externa=2; //esta línea genera un warning al compilar
+variable_externa=-2; //esta línea genera un warning al compilar
 int funcion(int variable_funcion){
 	int variable2_funcion=5;
 	variable_externa = 1;
 	return (variable_funcion - variable2_funcion)/variable_externa;
 }
 ```
+
+y también un warning en el ejemplo:
+
+
+```
+#include<stdio.h>
+int funcion(int var);
+extern int variable_externa=-2; //declaración de variable_externa, tenemos un warning por haber inicializado la variable extern
+int main(void){
+	int variable_main=10;
+	int respuesta;
+	printf("variable_externa:%d\n", variable_externa);
+	respuesta=funcion(variable_main);
+	printf("respuesta:%d\n", respuesta);
+	printf("variable_externa:%d\n", variable_externa);
+	return 0;
+}
+int variable_externa; //definición y declaración de variable externa
+							//es global para todas las funciones
+							//definidas en este programa
+
+int funcion(int variable_funcion){
+	int variable2_funcion=5;
+	variable_externa = 1;
+	return (variable_funcion - variable2_funcion)/variable_externa;
+}
+```
+
+
 
 En el caso de arreglos externos, en la definición se especifica su tamaño, en la declaración su tamaño es opcional, es decir:
 
@@ -242,7 +271,7 @@ ejemplo2_variables_externas.c:
 
 ```
 #include<stdio.h>
-extern variable_externa;
+extern int variable_externa;
 void funcion2(void){
 	printf("variable_externa: %d\n", variable_externa);
 }
@@ -251,17 +280,17 @@ void funcion2(void){
 compilamos:
 
 ```
-gcc ejemplo.c ejemplo2.c -o ejemplo_variables_externas.out
+gcc -Wall ejemplo_variables_externas.c ejemplo2_variables_externas.c -o ejemplo_variables_externas.out
 
 ```
 
 ##  Heap memory
 
-La memoria heap o memoria dinámica es una alternativa para la local stack memory (ver inicio de esta clase), la cual es alojada automáticamente al llamar a una función y es desalojada automáticamente al terminar la ejecución de la misma, otras características de la stack memory es que este alojamiento y desalojamiento está optimizado en tiempo y espacio y hay un límite para el tamaño de las variables que pueden ser alojadas en el stack.
+La memoria heap o memoria dinámica es una alternativa para la local stack memory (ver inicio de esta clase), la cual es alojada **automáticamente** al llamar a una función y es desalojada ****automáticamente al terminar la ejecución de la misma, otras características de la stack memory es que este alojamiento y desalojamiento está **optimizado en tiempo y espacio** y hay un **límite** para el tamaño de las variables que pueden ser alojadas en el stack.
 
-En la memoria heap, explícitamente se solicita al sistema el alojamiento de un bloque de memoria de tamaño particular, y este bloque continúa siendo alojado hasta que de forma explícita se solicite su desalojo. Lo anterior representa como mínimo dos ventajas:
+En la memoria heap, explícitamente **se solicita al sistema el alojamiento** de un bloque de memoria de tamaño particular, y este bloque continúa siendo alojado hasta que de forma explícita se **solicite su desalojo**. Lo anterior representa como mínimo **dos ventajas**:
 
-La primera es que el tiempo de vida de las variables es modificado pues persisten entre llamados a funciones, así la función caller puede recibir de la función callee una estructura de datos creada en la función callee en la memoria heap, por ejemplo. La segunda es que el tamaño de la memoria alojada en la memoria heap puede ser controlada con más detalle, por ejemplo en lugar de definir y declarar un string como sigue:
+1) La primera es que el tiempo de vida de las variables es modificado pues **persisten** entre llamados a funciones, así la función caller puede recibir de la función callee una estructura de datos creada en la función callee en la memoria heap. 2) La segunda es que el **tamaño** de la memoria alojada en la memoria heap puede ser controlada con más detalle, por ejemplo en lugar de definir y declarar un string como sigue:
 
 
 ```
@@ -270,9 +299,9 @@ char string[100];
 
 podemos con la memoria heap, definir at run time, el tamaño exacto del string.
 
-La memoria heap es un área de memoria que está disponible para el uso del programa con límite en tamaño para las variables de acuerdo a las limitaciones físicas de cada máquina.
+La memoria heap es un área de memoria que está **disponible para el uso del programa** con **límite en tamaño** para las variables **de acuerdo a las limitaciones físicas de cada máquina**.
 
-Entre las desventajas al usar la memoria heap, es que la lectura y escritura en esta memoria es lento en comparación con la memoria stack pues los alojamientos de bloques de memoria para variables distintas en la memoria heap no necesariamente son contiguos (como en la memoria stack), otra desventaja es que explícitamente en el código se tienen que alojar y desalojar a los bloques de memoria y por ello potencialmente más bugs podrían existir en el código; un memory leak es un bloque de memoria alojado en la memoria heap que nunca fue desalojado por un programa, el resultado de esto es que la memoria heap puede gradualmente "llenarse" por lo que el programa puede dejar de funcionar o "crash" si se ejecuta por un tiempo indeterminado.
+Entre las **desventajas** al usar la memoria heap, es que la lectura y escritura en esta memoria es lento en comparación con la memoria stack pues los alojamientos de bloques de memoria para **variables distintas** en la memoria heap **no necesariamente son contiguos** (como en la memoria stack), otra desventaja es que **explícitamente** en el código se tienen que **alojar y desalojar** a los bloques de memoria y por ello potencialmente más bugs podrían existir en el código; un **memory leak** es un bloque de memoria alojado en la memoria heap que nunca fue desalojado por un programa, el resultado de esto es que la memoria heap puede **gradualmente llenarse** por lo que el programa puede dejar de funcionar o "crash" si se ejecuta por un tiempo indeterminado.
 
 En C usamos las funciones `malloc` y `free` para alojar y desalojar bloques de memoria respectivamente:
 
@@ -280,16 +309,16 @@ En C usamos las funciones `malloc` y `free` para alojar y desalojar bloques de m
 void* malloc(size_t size);
 ```
 
-`malloc` devuelve un apuntador a un bloque de memoria heap (en bytes) contiguo del tamaño dado por el 
-parámetro `size` o `NULL` si no pudo satisfacerse el pedido. `size_t` es un tipo de dato `unsigned long` y con `sizeof` se puede calcular el tamaño en bytes de un tipo, por ejemplo `sizeof(int)`. El apuntador que devuelve malloc es del tipo `void*`.
+`malloc` devuelve un apuntador a un bloque de memoria heap (en bytes) **contiguo** del tamaño dado por el 
+parámetro `size` o `NULL` si no pudo satisfacerse el pedido. `size_t` es un tipo de dato `unsigned long` y con el operador `sizeof` se puede calcular el tamaño en bytes de un tipo, por ejemplo `sizeof(int)`. El apuntador que devuelve malloc es del tipo `void*`.
 
 
 ```
 void free(void* heap_block);
 ```
 
-`free` recibe el apuntador al bloque de memoria heap alojado por malloc() y regresa este bloque al 
-heap para su reuso. El apuntador que se pasa a `free` debe ser exactamente el apuntador que fue regresado por `malloc` no cualquier apuntador al bloque en la memoria heap. Si se llama a `free` con el apuntador que regresa `malloc` y se vuelve a llamar a `free` entonces se tiene un error. El bloque alojado en la memoria heap una vez desalojado no debe de ser desalojado por una segunda vez
+`free` recibe el apuntador al bloque de memoria heap **alojado por malloc()** y regresa este bloque al 
+heap para su reuso. El apuntador que se pasa a `free` debe ser **exactamente** el apuntador que fue regresado por `malloc` no cualquier apuntador al bloque en la memoria heap. Si se llama a `free` con el apuntador que regresa `malloc` y se vuelve a llamar a `free` entonces se tiene un error. El bloque alojado en la memoria heap una vez desalojado **no debe** ser desalojado por una segunda vez.
 
 
 Ejemplo:
@@ -314,7 +343,7 @@ int main(void){
 
 ```
 
-Ejemplo para alojar 10 bloques de memoria contiguos en la memoria heap:
+Ejemplo para alojar 10 bloques de memoria contiguos en la memoria heap para almacenar cada bloque un`int`, es decir, un arreglo de tamaño 10*4 = 40 bytes:
 
 Podemos usar a la función `assert` para revisar que `malloc` nos devuelve no `NULL`:
 
@@ -338,7 +367,7 @@ main(void){
 
 ```
 
-Ejemplo para alojar `20*1e9` =(20gb) bloques de memoria contiguos en la memoria heap:
+Ejemplo para alojar 20\*1e9 bloques de memoria contiguos en la memoria heap para almacenar cada bloque un `int`, es decir, un arreglo de tamaño 20\*1e9\*4 = 80 gb:
 
 ```
 #include<stdio.h>

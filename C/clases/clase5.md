@@ -4,7 +4,7 @@
 
 Un programa se traduce en distintas fases. Las primeras fases están relacionadas con transformaciones léxicas a partir de `directivas` que involucran líneas que empiezan con el caracter `#` y permiten comunicarse con el preprocesador y realizar sustituciones macro, inclusión de archivos o compilación condicional. Al finalizar el preprocesamiento, el programa ha sido reducido a una secuencia de `tokens`, entre los que se encuentran los `identificadores` o nombres.
 
-Una línea de la forma: `#define identificador secuencia-token` como se vio en la [clase2](../clase2.md) realiza una sustitución del identificador con la `secuencia-token`. Y una línea de la forma `#define identificador(lista-de-identificadores) secuencia-token` es una definición macro con parámetros dados en `lista-de-identificadores`.
+Una línea de la forma: `#define identificador secuencia-token` como se vio en la [clase2](/C/clases/clase2.md) realiza una sustitución del identificador con la `secuencia-token`. Y una línea de la forma `#define identificador(lista-de-identificadores) secuencia-token` es una definición macro con parámetros dados en `lista-de-identificadores`.
 
 
 Ejemplo1:
@@ -97,7 +97,7 @@ main(){
 
 ```
 
-Los argumentos son evaluados dos veces, uno para la prueba y otro para producir el resultado.
+Los argumentos son evaluados dos veces, uno para la prueba del operador `>` y otro para producir el resultado de la condición del `if` en la definición de la macro.
 
 2) El uso de paréntesis es necesario:
 
@@ -127,6 +127,8 @@ main(){
 }
 
 ```
+
+**(Observa que si se llama a la macro SQUARE con el argumento `(variable+1)` obtenemos para `variable3` un valor de 100)**
 
 3) Podemos llamar más de una vez a la macro:
 
@@ -161,7 +163,7 @@ ejecutar:
 $gcc -E ejemplo_sustitucion_texto.c
 ```
 
-para observar la sustitución de texto que realiza C. Output:
+para observar la sustitución de texto que realiza C. Output de la compilación:
 
 ```
 # 1 "ejemplo_sustitucion_texto.c"
