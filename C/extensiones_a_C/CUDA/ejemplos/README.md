@@ -1,5 +1,8 @@
 # Ejemplos
 
+Asumimos que tenemos un sólo device.
+
+
 ## Programa de hello world:
 
 ```
@@ -28,7 +31,7 @@ Ejecutamos:
 
 ## Programa hello world 2:
 
-Usamos la función `cudaDeviceSynchronize` para que el CPU thread espere (0% de uso) hasta que el device haya completado todos los tasks previos.
+Usamos la función `cudaDeviceSynchronize` para que el CPU-thread espere hasta que el device haya completado todos los tasks previos.
 
 
 ```
@@ -37,7 +40,7 @@ __global__ void func(void){
 	printf("Hello world del bloque %d del thread %d!\n", blockIdx.x, threadIdx.x);
 }
 int main(void){
-	func<<<10,10>>>(); //10 bloques de 10 threads cada uno
+	func<<<3,3>>>(); //3 bloques de 3 threads cada uno
 	cudaDeviceSynchronize();
 	printf("Hola del cpu thread\n");
 	return 0;
@@ -56,6 +59,41 @@ Ejecutamos:
 ```
 ./hello_world_2.out
 ```
+
+Salida:
+
+```
+Hello world del bloque 1 del thread 0!
+Hello world del bloque 1 del thread 1!
+Hello world del bloque 1 del thread 2!
+Hello world del bloque 0 del thread 0!
+Hello world del bloque 0 del thread 1!
+Hello world del bloque 0 del thread 2!
+Hello world del bloque 2 del thread 0!
+Hello world del bloque 2 del thread 1!
+Hello world del bloque 2 del thread 2!
+Hola del cpu thread
+
+```
+
+En la [documentación](http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g10e20b05a95f638a4071a655503df25d) de la función `cudaDeviceSynchronize` se menciona que para que el cpu-thread espere teniendo un 0% de uso hay que definir una flag llamada `cudaDeviceScheduleBlockingSync`:
+
+
+```
+#include<stdio.h>
+__global__ void func(void){
+	printf("Hello world del bloque %d del thread %d!\n", blockIdx.x, threadIdx.x);
+}
+int main(void){
+	cudaSetDeviceFlags(cudaDeviceScheduleBlockingSync);
+	func<<<3,3>>>();
+	cudaDeviceSynchronize();
+	printf("Hola del cpu thread\n");
+	return 0;
+}
+
+```
+
 
 ## Programa de suma:
 
