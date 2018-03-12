@@ -28,7 +28,8 @@ RUN apt-get update -y && apt-get install -y build-essential \
 	nano \
 	man \
 	sudo \
-	openssh-server \n
+	openssh-server \
+	sshpass \n
 RUN groupadd mpi_user \n
 RUN useradd mpi_user -g mpi_user -m -s /bin/bash \n
 ARG file_ompi=\$file_ompi \n
@@ -66,7 +67,8 @@ RUN apt-get update -y && apt-get install -y build-essential \
 	nano \
 	man \
 	sudo \
-	openssh-server
+	openssh-server \
+	sshpass
 RUN groupadd mpi_user
 RUN useradd mpi_user -g mpi_user -m -s /bin/bash
 ARG file_ompi=$file_ompi
@@ -140,30 +142,10 @@ Levantamos el contenedor nodo1 con nombre `nodo1_container` y una ip de `172.18.
 sudo docker run --net=ompi-network --ip=172.18.0.3 -dit -v /home/ubuntu/openmpi_ejemplos:/openmpi_ejemplos -p 2223:22 -h nodo1_ompi --name nodo1_container openmpi_mno/openmpi:v1 /bin/bash
 ```
 
-
-Entren al `master_container` haciendo:
-
-```
-sudo docker exec -it master_container /bin/bash
-```
-
-Reinicien servicio ssh:
-
-```
-mpi_user@master_ompi:/$sudo service ssh restart
-```
-
-y salgan:
-
-```
-mpi_user@master_ompi:/$exit
-```
-
 Ejecutar:
 
 ```
 sudo docker exec -it master_container sudo /bin/bash -c 'echo "172.18.0.2 master" >> /etc/hosts'
-sudo docker exec -it master_container sudo /bin/bash -c 'echo "172.18.0.3 nodo1" >> /etc/hosts'
 ```
 
 Generar una llave para autenticar conexiones del master al nodo1:
@@ -172,29 +154,36 @@ Generar una llave para autenticar conexiones del master al nodo1:
 sudo docker exec -it master_container ssh-keygen -f /home/mpi_user/.ssh/id_rsa -t rsa -N ''
 ```
 
+en la ruta:
 
 ```
 /home/mpi_user/.ssh/id_rsa.pub
 ```
 
-Entren al `nodo1_container`, reinicien servicio ssh y salgan
+Reiniciar servicio ssh en master:
 
 ```
-sudo docker exec -it nodo1_container /bin/bash
+sudo docker exec master_container /bin/sh -c 'sudo /etc/init.d/ssh restart'
 ```
 
+Crear archivo de ssh en master:
+
 ```
-mpi_user@nodo1_container:/$sudo service ssh restart
-mpi_user@nodo1_container:/$exit
+sudo docker exec master_container /bin/sh -c 'echo "Host nodo1\nHostname 172.18.0.3\nUser mpi_user\nStrictHostKeyChecking no" > /home/mpi_user/.ssh/config'
+
+```
+Reiniciar servicio ssh en nodo1:
+
+```
+sudo docker exec nodo1_container /bin/sh -c 'sudo /etc/init.d/ssh restart'
+
 ```
 
 Copien la llave al `nodo1_container`:
 
 ```
-sudo docker exec -it master_container /bin/bash -c 'ssh-copy-id -i /home/mpi_user/.ssh/id_rsa.pub mpi_user@nodo1'
+sudo docker exec -it master_container /bin/bash -c 'sshpass -p "mpi" ssh-copy-id -i /home/mpi_user/.ssh/id_rsa.pub mpi_user@nodo1'
 ```
-
-Escriban el password `mpi`.
 
 Si ejecutan la siguiente línea deberían de entrar al nodo1_container sin que se les pida password:
 
