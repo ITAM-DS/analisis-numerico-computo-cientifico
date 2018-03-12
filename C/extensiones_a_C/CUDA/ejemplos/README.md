@@ -28,7 +28,7 @@ Ejecutamos:
 
 ## Programa hello world 2:
 
-Usamos la función `cudaDeviceSynchronize` para bloquear el device hasta que haya completado todos los tasks previos.
+Usamos la función `cudaDeviceSynchronize` para bloquear el CPU thread hasta que el device haya completado todos los tasks previos.
 
 
 ```
@@ -37,8 +37,9 @@ __global__ void func(void){
 	printf("Hello world del bloque %d del thread %d!\n", blockIdx.x, threadIdx.x);
 }
 int main(void){
-	func<<<10,10>>>();
+	func<<<10,10>>>(); //10 bloques de 10 threads cada uno
 	cudaDeviceSynchronize();
+	printf("Hola del cpu thread\n");
 	return 0;
 }
 
