@@ -28,7 +28,7 @@ Ejecutamos:
 
 ## Programa hello world 2:
 
-Usamos la función `cudaDeviceSynchronize` para bloquear el CPU thread hasta que el device haya completado todos los tasks previos.
+Usamos la función `cudaDeviceSynchronize` para que el CPU thread espere (0% de uso) hasta que el device haya completado todos los tasks previos.
 
 
 ```
