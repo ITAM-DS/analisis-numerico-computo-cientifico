@@ -59,4 +59,5 @@ gcc ejercicio_3_a.C -o out
 
 gcc ejercicio_3_b.C -o out
 
- 
+### Ejercicio 4
+gcc ejercicio_4_a.C -o out 
