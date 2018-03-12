@@ -169,10 +169,8 @@ sudo docker exec -it master_container sudo /bin/bash -c 'echo "172.18.0.3 nodo1"
 Generar una llave para autenticar conexiones del master al nodo1:
 
 ```
-sudo docker exec -it master_container ssh-keygen
+sudo docker exec -it master_container ssh-keygen -f /home/mpi_user/.ssh/id_rsa -t rsa -N ''
 ```
-
-Den `enter` (poco seguro, en cuestión de autentificación) hasta que obtengan una llave generada en la ruta:
 
 
 ```
