@@ -8,7 +8,6 @@ Si tienen una instancia en AWS con una imagen de ubuntu 16.04 se puede usar el s
 #!/bin/bash
 region=us-west-2
 name_instance=ompi-node
-pushd /tmp
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 # Adding docker repository.
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
