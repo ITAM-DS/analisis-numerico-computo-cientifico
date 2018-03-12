@@ -76,7 +76,7 @@ Hola del cpu thread
 
 ```
 
-En la [documentación](http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g10e20b05a95f638a4071a655503df25d) de la función `cudaDeviceSynchronize` se menciona que para que el cpu-thread espere teniendo un 0% de uso hay que definir una flag llamada `cudaDeviceScheduleBlockingSync`:
+En la [documentación](http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g10e20b05a95f638a4071a655503df25d) de la función `cudaDeviceSynchronize` se menciona que para que el cpu-thread espere teniendo un 0% de uso hay que definir una flag llamada `cudaDeviceScheduleBlockingSync` (en el ejemplo anterior el cpu-thread realiza un busy-waiting):
 
 
 ```
