@@ -206,4 +206,9 @@ sudo docker exec -w=$ruta_ompi -it master_container mpirun -n 1 -H master hello_
 sudo docker exec -e inst_ompi=$inst_ompi -w=$ruta_ompi -it master_container mpirun --prefix $inst_ompi -n 1 -H nodo1 hello_clase.out
 
 sudo docker exec -e inst_ompi=$inst_ompi -w=$ruta_ompi -it master_container mpirun --prefix $inst_ompi -n 2 -H master,nodo1 hello_clase.out
+
+sudo docker exec -w=$ruta_ompi -it master_container mpicc trapecio_compuesto_mpi.c -o trapecio_compuesto_mpi.out -lm
+
+sudo docker exec -e inst_ompi=$inst_ompi -w=$ruta_ompi -it master_container mpirun --prefix $inst_ompi -n 2 -H master,nodo1 trapecio_compuesto_mpi.out
+
 ```
