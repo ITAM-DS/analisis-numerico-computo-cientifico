@@ -5,6 +5,8 @@ Asumimos que tenemos un sólo device.
 
 ## Programa de hello world:
 
+`hello_world.cu`:
+
 ```
 #include<stdio.h>
 __global__ void func(void){
@@ -26,13 +28,14 @@ $nvcc hello_world.cu -o hello_world.out
 Ejecutamos:
 
 ```
-./hello_world.out
+$./hello_world.out
 ```
 
 ## Programa hello world 2:
 
 Usamos la función `cudaDeviceSynchronize` para que el CPU-thread espere hasta que el device haya completado todos los tasks previos.
 
+`hello_world_2.cu`
 
 ```
 #include<stdio.h>
@@ -57,7 +60,7 @@ $nvcc hello_world_2.cu -o hello_world_2.out
 Ejecutamos:
 
 ```
-./hello_world_2.out
+$./hello_world_2.out
 ```
 
 Salida:
@@ -97,6 +100,8 @@ int main(void){
 
 ## Programa de suma:
 
+`suma.cu`:
+
 ```
 #include<stdio.h>
 __global__ void suma(int a, int b, int *c){
@@ -124,13 +129,21 @@ $nvcc suma.cu -o suma.out
 Ejecutamos:
 
 ```
-./suma.out
+$./suma.out
+```
+
+Salida:
+
+```
+2+7 = 9
 ```
 
 ## Programa de suma vectorial:
 
 Lanzamos `N` bloques de 1 thread que ejecuten el kernel.
 
+
+`suma_vectorial.cu`:
 
 ```
 #include<stdio.h>
@@ -170,19 +183,35 @@ int main(void){
 
 ```
 
+Compilamos:
+
+```
+$nvcc suma_vectorial.cu -o suma_vectorial.out
+
+```
 
 
+Ejecutamos:
 
 
+```
+$./suma_vectorial.out
+```
 
+Salida:
 
-
-
-
-
-
-
-
+```
+0+0 = 0
+1+1 = 2
+2+4 = 6
+3+9 = 12
+4+16 = 20
+5+25 = 30
+6+36 = 42
+7+49 = 56
+8+64 = 72
+9+81 = 90
+```
 
 
 
