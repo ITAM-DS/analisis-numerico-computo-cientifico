@@ -28,6 +28,9 @@ Ejecutamos:
 
 ## Programa hello world 2:
 
+Usamos la función `cudaDeviceSynchronize` para bloquear el device hasta que haya completado todos los tasks previos.
+
+
 ```
 #include<stdio.h>
 __global__ void func(void){
@@ -86,6 +89,9 @@ Ejecutamos:
 ```
 
 ## Programa de suma vectorial:
+
+Lanzamos `N` bloques de 1 thread que ejecuten el kernel.
+
 
 ```
 #include<stdio.h>
