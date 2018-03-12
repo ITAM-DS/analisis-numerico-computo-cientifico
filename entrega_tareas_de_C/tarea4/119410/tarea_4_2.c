@@ -1,12 +1,8 @@
 #include<stdio.h>
+#include<string.h>
 #define MAXLINEA 1000 /*máximo tamaño de una línea*/
 
-// Modificar la función copia para que no use break pero que sí use el índice i
-// Modificar la función copia para que no use índices y sólo use apuntadores
-// Escribe una función voltea que reciba un string s e imprima el string al revés.
-// Añade la función para que el programa lea líneas y las imprima volteadas
 // ¿Qué efecto tiene escribir extern para la declaración de variables dentro de main(), getline() y copia()?
-
 // Cuando se escribe extern no se tiene que inicializar la variable adentro de la función
 
 /*definición de variables externas*/
@@ -18,11 +14,13 @@ char linea_max[MAXLINEA];
 
 int obtenlinea(void);
 void copia(void);
-void voltea(void);
+char *voltea(char *p);
+void copia2(void);
 
 /*imprime la línea con tamaño más grande*/
 int main(void){
     int longitud;
+    char *s_flip;
     extern int max;
     extern char linea_max[MAXLINEA];
     max=0;
@@ -32,8 +30,11 @@ int main(void){
             copia();
         }
     if(max > 0) {
-      printf("%s\n", linea_max);
-      printf("%d\n", max);
+      printf("linea mas larga: %s\n", linea_max);
+      printf("tamaño: %d\n", max);
+      char *p = linea_max;
+      s_flip = voltea(p);
+      printf("linea mas larga volteada: %s\n", s_flip);
       }
 return 0;
 }
@@ -61,20 +62,45 @@ int obtenlinea(void){
     return i;
 }
 
-/*copia: copia del arreglo "linea" al arreglo "linea_max"*/
+/*copia: copia del arreglo "linea" al arreglo "linea_max" - sin break, con índice*/
 void copia(void){
     int i;
+    int j;
     extern char linea[], linea_max[];
     i=0;
-    while(1){
+    j=1;
+    while(j){
         linea_max[i] = linea[i];
-        if(linea_max[i] == '\0') break;
+        if(linea_max[i] == '\0') {
+          j=0;
+        }
         i++;
     }
 }
 
-//void voltea(void) {  //regresa las lineas volteadas
-//  extern char s = linea[];
-//  char e = s + strlen(s);
-//  while ( --e > s ) { t = s;s++=e;e=t; }
-//}
+// función copia con apuntadores
+
+void copia2(void){
+    extern char linea[], linea_max[];
+    char *p = linea;
+    char *pmax = linea_max;
+    while(*p){
+        *pmax = *p;
+        p++;
+        pmax++;
+    }
+}
+
+char *voltea(char *p) {
+  char *inicio = p;
+  char *fin = inicio + strlen(p) -1;
+  char temp;
+  while (fin>inicio)
+  {
+    temp = *inicio;
+    *inicio++ = *fin;
+    *fin-- = temp;
+
+  }
+  return p;
+}
