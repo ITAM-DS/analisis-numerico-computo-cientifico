@@ -237,7 +237,7 @@ Ejecutar:
 $./mult_mat_pthreads.out 4
 ```
 
-## Ejemplo de función ejecutada por threads para regresar valor:
+## Ejemplo de función ejecutada por Pthreads para regresar valor:
 
 ```
 #include<stdio.h>
@@ -276,3 +276,11 @@ Ejecutar:
 ```
 ./ejemplo_regreso_de_funcion_pthreads.out
 ```
+
+Salida:
+
+```
+valor regresado de funcion: valor igual a cero
+valor regresado de funcion: valor igual a uno
+```
+
