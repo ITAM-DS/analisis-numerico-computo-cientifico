@@ -190,7 +190,7 @@ int main(int argc, char *argv[]){
 
 ```
 
-Compilamos:
+Compilamos: **(en una carpeta coloca los archivos de `definiciones.h` anterior, `funciones.c` de [aquí](../) y `dgemm_mult_mat_trick.c`)**
 
 ```
 $gcc -Wall dgemm_mult_mat_trick.c funciones.c -o programa.out -lblas
