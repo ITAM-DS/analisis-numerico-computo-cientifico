@@ -22,6 +22,8 @@ Dirígite a la rama de master a la ruta [analisis-numerico-computo-cientifico/C/
 
 7) En la carpeta del punto anterior encuentras la sección **Multiplicación matriz-matriz con trick**. Ejecuta el programa de esta sección con diferentes matrices definidas por ti y resuelve la pregunta **¿por qué funciona este trick?**.
 
+8) Haz un programa que utilice la subrutina `dsymm` de Fortran.
+
 **\*Para sus investigaciones utilicen las referencias de los README's:**
 
 [analisis-numerico-computo-cientifico/C/BLAS/](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/BLAS)
