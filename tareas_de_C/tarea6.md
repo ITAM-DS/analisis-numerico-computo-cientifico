@@ -1,6 +1,6 @@
 # Tarea 6
 
-Se entrega el 21 de marzo. De forma individual crear una carpeta con nombre igual a su clave única, debajo del nivel: 
+Se entrega el 23 de marzo. De forma individual crear una carpeta con nombre igual a su clave única, debajo del nivel: 
 
 ```
 analisis-numerico-computo-cientifico/MNO/entrega_tareas_de_C/tarea6
@@ -21,6 +21,9 @@ Dirígite a la rama de master a la ruta [analisis-numerico-computo-cientifico/C/
 6) En la carpeta [analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level3/](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/BLAS/ejemplos/level3) ejecuta el programa `dgemm_mult_mat.c` y realiza pruebas con diferentes matrices definidas por ti.
 
 7) En la carpeta del punto anterior encuentras la sección **Multiplicación matriz-matriz con trick**. Ejecuta el programa de esta sección con diferentes matrices definidas por ti y resuelve la pregunta **¿por qué funciona este trick?**.
+
+8) Haz un programa que utilice la subrutina `dsymm` de Fortran.
+
 
 **\*Para sus investigaciones utilicen las referencias de los README's:**
 
