@@ -14,7 +14,7 @@ Dirígite a la rama de master a la ruta [analisis-numerico-computo-cientifico/C/
 
 3) Haz un programa que utilice la subrutina `dger` de Fortran.
 
-4) Después de haber estudiado  y entendido los archivos de `definiciones.h` y `funciones.c` y realizado los puntos anteriores y la tarea 5 responde: ¿es necesario instalar CBlas? ¿cómo es que podemos llamar a las rutinas de Fortran (que almacena en una forma column-major order los arreglos de dos dimensiones) para operaciones con arreglos 2-dimensionales, si en clase se dijo que almacenar arreglos de dos dimensiones en C es en un row-major order?
+4) Después de haber estudiado  y entendido los archivos de `definiciones.h` y `funciones.c` y realizado los puntos anteriores y la tarea 5 responde: ¿es necesario instalar CBLAS? ¿cómo es que podemos llamar a las rutinas de Fortran (que almacena en una forma column-major order los arreglos de dos dimensiones) para operaciones con arreglos 2-dimensionales, si en clase se dijo que almacenar arreglos de dos dimensiones en C es en un row-major order?
 
 5) Investiga\* sobre la subrutina de Fortran `dgemm` y reporta sobre esta investigación que realizas.
 
