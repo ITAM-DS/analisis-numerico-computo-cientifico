@@ -73,7 +73,7 @@ Se inició la configuración en la cuenta de AWS de acuerdo al [tutorial](https:
 
 12 de febrero
 
-Nota [II/2.2](https://www.dropbox.com/s/v4ub0p3ndf7w1p0/2.2.Sistemas_de_memoria_distribuida_MPI.pdf?dl=0) hasta ejemplo de `hello_world.c`
+Nota de MPI [II/2.2](https://www.dropbox.com/s/v4ub0p3ndf7w1p0/2.2.Sistemas_de_memoria_distribuida_MPI.pdf?dl=0) hasta ejemplo de `hello_world.c`
 
 Clases de C: [clase3](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase3.md), [clase4](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/clases/clase4.md) hasta definición y declaración de arreglos de apuntadores.
 
@@ -95,7 +95,7 @@ Se terminó el  [tutorial](https://github.com/ITAM-DS/analisis-numerico-computo-
 
 Se corrieron los [ejemplos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/MPI/openMPI/ejemplos/1_send_receive_broadcast_reduce) hello_clase.c y trapecio_compuesto.c en el clúster de AWS.
 
-Terminamos la nota [II/2.2](https://www.dropbox.com/s/v4ub0p3ndf7w1p0/2.2.Sistemas_de_memoria_distribuida_MPI.pdf?dl=0), sólo faltan algunas observaciones para MPI.
+Terminamos la nota  de MPI [II/2.2](https://www.dropbox.com/s/v4ub0p3ndf7w1p0/2.2.Sistemas_de_memoria_distribuida_MPI.pdf?dl=0), sólo faltan algunas observaciones para MPI.
 
 Fijamos fecha de exámenes: 
 
@@ -111,7 +111,27 @@ Finalizamos tema de MPI.
 
 Examen módulo 1 hasta 2.1
 
-Iniciamos nota [II/2.3](https://www.dropbox.com/s/oauifmx3e19ofyq/2.3.Sistemas_de_memoria_compartida_Pthreads.pdf?dl=0) y [ejemplos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/Pthreads/ejemplos)
+Iniciamos nota sobre Pthreads [II/2.3](https://www.dropbox.com/s/oauifmx3e19ofyq/2.3.Sistemas_de_memoria_compartida_Pthreads.pdf?dl=0) y [ejemplos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/Pthreads/ejemplos)
+
+
+## Clase 10
+
+10 de marzo
+
+Finalizamos notas de Pthreads [II/2.3](https://www.dropbox.com/s/oauifmx3e19ofyq/2.3.Sistemas_de_memoria_compartida_Pthreads.pdf?dl=0) y openMP [II/2.4](https://www.dropbox.com/s/vcxbrqkk6x946d7/2.4.Sistemas_de_memoria_compartida_openMP.pdf?dl=0) con [ejemplos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/openMP/ejemplos) de directivas y clauses o cláusulas de openMP.
+
+
+## Clase 11
+
+12 de marzo
+
+Nota sobre CUDA [II/2.4](https://www.dropbox.com/s/yjijtfuky3s5dfz/2.5.Compute_Unified_Device_Architecture.pdf?dl=0) hasta CUDA memories.
+
+Examen de C.
+
+
+
+
 
 
 
