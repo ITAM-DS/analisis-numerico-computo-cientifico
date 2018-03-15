@@ -14,3 +14,7 @@ $./ejercicio1.out < palabras.txt $
 El standar input del ejercico será texto.txt
 y la impresión de resultados del script será por inciso.
 
+### Ejercicio 3 y Ejercicio 4:
+
+Se modifican las funciones cuando se requiere, el output sigue
+siendo el mismo.
