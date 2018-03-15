@@ -9,8 +9,8 @@ int longitud_string(char *s){
     int i;
     i=0;
     while(*s != '\0'){
-      i++;
       s = s+1;
+      i++;
     }
 return i;
 }
@@ -18,11 +18,13 @@ return i;
 int main(void){
     char input[100];
     int c;
-    do{
+    
+    scanf("%s", input); //scanf lee inputs de archivo.txt
+    printf("Longitud de string %s: %d\n", input, longitud_string(input));
+    while((c = getchar()!= '\n')){
       scanf("%s", input); //scanf lee inputs de archivo.txt
       printf("Longitud de string %s: %d\n", input, longitud_string(input));
-    } while((c = getchar() != 10));
-
+    }
 
     // char string1[] = CADENA_PRUEBA; //definición y declaracion de variable e inicializacion.
     // char string2[MAX_LONG]; //definición y declaracion.

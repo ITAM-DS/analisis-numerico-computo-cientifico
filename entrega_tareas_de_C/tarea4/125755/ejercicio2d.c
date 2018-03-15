@@ -54,13 +54,19 @@ void copia(void){
     // i=0;
 
     // Se modifica el loop para que no tenga i.
-
-    while(1){
-        *pm = *p;
-        if(*pm == '\0') break;
-        pm = pm+1;
-        p = p+1;
+    // Más bonito que la versión anterior.
+    while(*p != '\0'){
+      *pm = *p;
+      pm = pm + 1;
+      p = p + 1;
     }
+
+    // while(1){
+    //     *pm = *p;
+    //     if(*pm == '\0') break;
+    //     pm = pm+1;
+    //     p = p+1;
+    // }
 
 
     // Se modifica el loop para que no aparezca un break dentro.

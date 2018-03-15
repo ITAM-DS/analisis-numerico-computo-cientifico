@@ -3,6 +3,7 @@
 
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 #define MAXLINEA 1000 /*máximo tamaño de una línea*/
 /*definición de variables externas*/
 int max;
@@ -13,7 +14,7 @@ char linea_max[MAXLINEA];
 
 int obtenlinea(void);
 void copia(void);
-void voltea(void);
+char *voltea(char *s);
 
 /*imprime la línea con tamaño más grande*/
 int main(void){
@@ -25,10 +26,9 @@ int main(void){
         if( longitud > max){
             max = longitud;
             copia();
-            voltea();
         }
     if(max > 0)
-        printf("%s", linea_max);
+        printf("%s", voltea(linea_max));
 return 0;
 }
 
@@ -57,13 +57,19 @@ void copia(void){
     // i=0;
 
     // Se modifica el loop para que no tenga i.
-
-    while(1){
-        *pm = *p;
-        if(*pm == '\0') break;
-        pm = pm+1;
-        p = p+1;
+    // Más bonito que la versión anterior.
+    while(*p != '\0'){
+      *pm = *p;
+      pm = pm + 1;
+      p = p + 1;
     }
+
+    // while(1){
+    //     *pm = *p;
+    //     if(*pm == '\0') break;
+    //     pm = pm+1;
+    //     p = p+1;
+    // }
 
     // Se modifica el loop para que no aparezca un break dentro.
     // while(linea[i] != '\0'){
@@ -79,14 +85,15 @@ void copia(void){
     // }
 }
 
-void voltea(void){
-  extern char linea[], linea_max[];
-  char *p = linea + strlen(linea) - 2;
-  char *pm = linea_max;
+char *voltea(char *s){
+  int i;
+  char *p;
 
-  while(*p){
-    (*pm++) = (*p--);
+  p = malloc(strlen(s) + 1);
+
+  for(i = strlen(s); i > 0; i--){
+    p[strlen(s) - i] = s[i-2];
   }
-  (pm+1) + '\n';
-  pm = '\0';
+  return p;
+
 }

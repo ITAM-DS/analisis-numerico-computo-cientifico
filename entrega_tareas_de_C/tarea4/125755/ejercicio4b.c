@@ -13,14 +13,13 @@ char *duplica_string(char *s){
 }
 
 char *voltea_string(char *s){
-    char *p = malloc(strlen(s) + 1);
-    char *p2 = s + strlen(s) - 1;
+  int i;
 
-    int i = 0;
-    while(i < strlen(s)){
-      p[i++] = *p2--;
-    }
-    return p;
+  char *p = malloc(strlen(s) +1);
+  for(i = strlen(s); i > 0; i--){
+    p[strlen(s) - i] = s[i-1];
+  }
+  return p;
 }
 
 int main(void){

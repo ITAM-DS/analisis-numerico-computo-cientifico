@@ -46,10 +46,10 @@ int obtenlinea(void){
     // tomamos los caracteres excepto los espacios.
     for(i=0; i < MAXLINEA-1 && (c=getchar())!=EOF && c!= '\n'; i++){
       // Aquí es donde se hace el cambio de la línea.
-      if (c != ' ') {
-        linea[i] = c;
-      }else{
+      if (c == ' ') {
         i = i - 1;
+      }else{
+        linea[i] = c;
       }
     }
         linea[i] = c;
