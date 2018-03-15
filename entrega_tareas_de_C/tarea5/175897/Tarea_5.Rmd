@@ -1,0 +1,63 @@
+---
+title: "Tarea_5_MNO"
+author: "Victor Quintero Marmol Gonzalez"
+date: "March 14, 2018"
+output: html_document
+---
+
+1. Estudia y entiende los archivos definiciones.h y funciones.c de ahí, en particular investiga por qué se usan "" en la línea que tiene #include en funciones.c en lugar de usar < >. Investiga el uso de static en la definición de variables externas de funciones.c
+
+La diferencia entre el uso de < > y "" es el path de busqueda que le estamos indicando al programa. Si usamos "" le estamos indicando que busque esa librería en el mismo directorio del programa, por lo que se ocupa para librerías creadas por nosotros. Si usamos < > le estamos indicando que busquen en el directorio default del compilador gcc, donde se encuentran librerías como stdio.h y stdlib.h
+
+Static es la clase de almacenamiento por default de variables goblales pero también se puede ocupar en variables locales. Se usa para almacenar las variables en la memoria estatica en lugar de la automatica. Por lo que entendí, esto quiere decir que las variables declaras static permanecen durante toda la vida del programa, mientras que las que de memoria automatica solo permanecen por la duración del bloque.
+
+
+2. Investiga* sobre BLAS, CBLAS, LAPACK, ATLAS y las operaciones de nivel 1, nivel 2 y nivel 3 de BLAS y reporta sobre esta investigación que realizas. Es una investigación que contiene principalmente una descripción sobre los paquetes y niveles anteriores.
+
+BLAS (Basic Linear Algebra Subprograms): Es un paquete gratuito de rutinas que proporcionan bloques para realizar operaciones básicas de vectores y matrices. Debido a su portabilidad y eficiencia, se usa comunmente en el desarrollor de de otros software de algebra lineal de alta calidad, como LAPACK. Está dividido en 3 niveles:
+
+  1) El Nivel 1 realiza operaciones con escalares, con vectores, y operaciones del tipo vector-vector.
+  
+  2) El Nivel 2 realiza operaciones matriz-vector
+  
+  3) El Nivel 3 realiza operaciones de matriz-matriz
+  
+  
+CBLAS: Es la implementacion en C de BLAS.
+
+LAPACK (Linear Algebra PACKage): Es un paque gratuito que provee rutinas para resolver sistemas de ecuaciones lineales simultáneas, soluciones de mínimos cuadrados de sistemas de ecuaciones lineales, problemas de valores propios y problemas de valores singulares, entre otras. Esta diseñado para explotar el Nivel 3 de BLAS. Surgió como un proyecto para poder correr en paralelo las libreríasEISPACK y LINPACK.
+
+ATLAS (Automatically Tuned Linear Algebra Software): es una librería para algebra lineal. Proporciona APIS de BLAS para C  y Fortran77. Se recomienda como una forma de generar automáticamente una biblioteca BLAS optimizada. 
+
+3. En la carpeta analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level1/ ejecuta el programa dot_product.c y realiza pruebas con diferentes vectores definidos por ti.
+
+Se realizó pruebas con el ejemplo y otros vectores. Se puede ver los resultados ene el archivo "output_ej3.txt". 
+
+Se puede observar en el penúltimo ejercico que si cambiamos el último número de la sentencia $./programa.out a uno menor que el de los vectores dados en el txt, simplementa considera las n primeras entradas de cada vector. Y por otra parte, si se da un número mayor, vemos en el último ejemplo que llena con 0 las entradas faltantes del vector.
+
+
+4. Investiga sobre la subrutina de Fortran ddot (parámetros que recibe y la salida).
+
+Es una función de doble precisión que pertene al Nivel 1 de BLAS. Regresa el producto punto de dos vectores. Es de la forma "ddot(N,DX,INCX,DY,INCY)"donde:
+
+  N: es el núemro de elementos en el vector(es), es de tipo Integer.
+  DX: es un arreglo de dimensiones ( 1 + ( N - 1 )*abs( INCX ) ), es de tipo Double.
+  INCX: es el espacio de almacenamiento entre los elementos de DX, es de tipo Integer.
+  DY: es un arreglo de dimensiones  ( 1 + ( N - 1 )*abs( INCY ) ), es de tipo Double.
+  INCY: es el espacio de almacenamiento entre los elementos de DY, es de tipo Integer.
+
+
+5. Haz un programa que utilice la subrutina daxpy de Fortran.
+
+daxpy es una subrutina que multiplica un escalar por un vector y luego al resultado le suma otro vector, utiliza bucles desenrollados para incrementos iguales a uno.
+
+Es de la forma DAXPY(N,DA,DX,INCX,DY,INCY), donde:
+
+  N: es el núemro de elementos en el vector(es), es de tipo Integer.
+  DA: Un escalar alpha, es de tipo Double.
+  DX: es un arreglo de dimensiones ( 1 + ( N - 1 )*abs( INCX ) ), es de tipo Double.
+  INCX: es el espacio de almacenamiento entre los elementos de DX, es de tipo Integer.
+  DY: es un arreglo de dimensiones  ( 1 + ( N - 1 )*abs( INCY ) ), es de tipo Double.
+  INCY: es el espacio de almacenamiento entre los elementos de DY, es de tipo Integer.
+  
+Para el programa me base en el ejercicio del punto 3. Se puede ver el códico en "daxpy_ej5.c" y los resultados en "output_ej5.txt"
