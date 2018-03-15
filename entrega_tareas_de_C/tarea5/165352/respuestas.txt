@@ -1,0 +1,218 @@
+1. Estudia y entiende los archivos definiciones.h y funciones.c de ahí, en particular investiga por qué se usan "" en la línea que tiene #include en funciones.c en lugar de usar < >. Investiga el uso de static en la definición de variables externas de funciones.c.
+La diferencia entre <> y "" en la sentencia de include, es que con <> se indica que se busque en los directorios pre-designados por el compilador/IDE; mientras que con "", se busca primero en el mismo directorio donde está contenido y después se pasa a buscar en los directorios usuales. Definir las variables externas como static, hace que los valores solamente puedan ser vistos en el archivo en el que fueron declaradas. También permite que se mantengan sus valores entre invocaciones.
+
+2. Investiga* sobre BLAS, CBLAS, LAPACK, ATLAS y las operaciones de nivel 1, nivel 2 y nivel 3 de BLAS y reporta sobre esta investigación que realizas. Es una investigación que contiene principalmente una descripción sobre los paquetes y niveles anteriores.
+LAPACK - esta escrito en Fortran 90 y proporciona rutinas para resolver sistemas de ecuaciones lineales simultáneas, soluciones de mínimos cuadrados de sistemas de ecuaciones lineales, problemas de valores propios y problemas de valores singulares. Las factorizaciones matriciales aociadas (LU, Cholesky, QR, SVD, Schur, Schur generalizado) también se proporcionan, al igual que los cálculos relacionados, como el reordenamiento de las factorizaciones de Schur y la estimación de los números de condición. Se manejan matrices densas y en bandas, pero no matrices dispersas generales. En todas las áreas, se proporciona una funcionalidad similar para matrices reales y complejas, tanto en precisipon simple como doble. Las rutinas de LAPACK se escriben de modo que la mayor parte posible del cálculo se realice mediante llamadas a los subprogramas de álgebra lineal básica (BLAS).
+
+ATLAS - (Automatically Tuned Linear Algebra Software) es una biblioteca de software para álgebra lineal. Proporciona una implementación madura de código abierto de las API BLAS para C y Fortran77. ATLAS  a menudo se recomiendo como una forma de generar automáticamente una biblioteca BLAS optimizada. Si bien su desempeño a menudo es similar al de las bibliotecas especializadas escritas para una plataforma de hardware específica, a menudo es la primera o incluso la única implementación optimizada de BLAS disponible en los nuevos sistemas y es una gran mejora con respecto a BLAS genérico.
+
+BLAS - (Basic Linear Algebra Subprograms) son rutinas que proveen bloques de construcción estándar para realizar operaciones básicas de vectores y matrices. El Nivel 1 BLAS realiza operaciones escalares, vectoriales y vector-vector, el BLAS de Nivel 2 realiza operaciones de matriz-vector, y el BLAS de Nivel 3 realiza operaciones de matriz-matriz. Debido a que los BLAS son eficientes, portátiles y ampliamente disponibles, se usan comúnmente en el desarrollo de software de álgebra lineal de alta calidad, como el ya mencionado LAPACK. A continuación, se listan las operaciones de los diferentes niveles de BLAS, en cada nivel se dividen en SINGLE, DOUBLE, COMPLEX y DOUBLE COMPLEX
+LEVEL 1
+    SINGLE
+        SROTG - setup Givens rotation
+        SROTMG - setup modified Givens rotation
+        SROT - apply Givens rotation
+        SROTM - apply modified Givens rotation
+        SSWAP - swap x and y
+        SSCAL - x = a*x
+        SCOPY - copy x into y
+        SAXPY - y = a*x + y
+        SDOT - dot product
+        SDSDOT - dot product with extended precision accumulation
+        SNRM2 - Euclidean norm
+        SCNRM2- Euclidean norm
+        SASUM - sum of absolute values
+        ISAMAX - index of max abs value
+    DOUBLE
+        DROTG - setup Givens rotation
+        DROTMG - setup modified Givens rotation
+        DROT - apply Givens rotation
+        DROTM - apply modified Givens rotation
+        DSWAP - swap x and y
+        DSCAL - x = a*x
+        DCOPY - copy x into y
+        DAXPY - y = a*x + y
+        DDOT - dot product
+        DSDOT - dot product with extended precision accumulation
+        DNRM2 - Euclidean norm
+        DZNRM2 - Euclidean norm
+        DASUM - sum of absolute values
+        IDAMAX - index of max abs value
+    COMPLEX
+        CROTG - setup Givens rotation
+        CSROT - apply Givens rotation
+        CSWAP - swap x and y
+        CSCAL - x = a*x
+        CSSCAL - x = a*x
+        CCOPY - copy x into y
+        CAXPY - y = a*x + y
+        CDOTU - dot product
+        CDOTC - dot product, conjugating the first vector
+        SCASUM - sum of absolute values
+        ICAMAX - index of max abs value
+    DOUBLE COMLPEX
+        ZROTG - setup Givens rotation
+        ZDROTF - apply Givens rotation
+        ZSWAP - swap x and y
+        ZSCAL - x = a*x
+        ZDSCAL - x = a*x
+        ZCOPY - copy x into y
+        ZAXPY - y = a*x + y
+        ZDOTU - dot product
+        ZDOTC - dot product, conjugating the first vector
+        DZASUM - sum of absolute values
+        IZAMAX - index of max abs value
+
+LEVEL 2
+    Single
+        SGEMV - matrix vector multiply
+        SGBMV - banded matrix vector multiply
+        SSYMV - symmetric matrix vector multiply
+        SSBMV - symmetric banded matrix vector multiply
+        SSPMV - symmetric packed matrix vector multiply
+        STRMV - triangular matrix vector multiply
+        STBMV - triangular banded matrix vector multiply
+        STPMV - triangular packed matrix vector multiply
+        STRSV - solving triangular matrix problems
+        STBSV - solving triangular banded matrix problems
+        STPSV - solving triangular packed matrix problems
+        SGER - performs the rank 1 operation A := alpha*x*y' + A
+        SSYR - performs the symmetric rank 1 operation A := alpha*x*x' + A
+        SSPR - symmetric packed rank 1 operation A := alpha*x*x' + A
+        SSYR2 - performs the symmetric rank 2 operation, A := alpha*x*y' + alpha*y*x' + A
+        SSPR2 - performs the symmetric packed rank 2 operation, A := alpha*x*y' + alpha*y*x' + A
+    Double
+        DGEMV - matrix vector multiply
+        DGBMV - banded matrix vector multiply
+        DSYMV - symmetric matrix vector multiply
+        DSBMV - symmetric banded matrix vector multiply
+        DSPMV - symmetric packed matrix vector multiply
+        DTRMV - triangular matrix vector multiply
+        DTBMV - triangular banded matrix vector multiply
+        DTPMV - triangular packed matrix vector multiply
+        DTRSV - solving triangular matrix problems
+        DTBSV - solving triangular banded matrix problems
+        DTPSV - solving triangular packed matrix problems
+        DGER - performs the rank 1 operation A := alpha*x*y' + A
+        DSYR - performs the symmetric rank 1 operation A := alpha*x*x' + A
+        DSPR - symmetric packed rank 1 operation A := alpha*x*x' + A
+        DSYR2 - performs the symmetric rank 2 operation, A := alpha*x*y' + alpha*y*x' + A
+        DSPR2 - performs the symmetric packed rank 2 operation, A := alpha*x*y' + alpha*y*x' + A
+    Complex
+        CGEMV - matrix vector multiply
+        CGBMV - banded matrix vector multiply
+        CHEMV - hermitian matrix vector multiply
+        CHBMV - hermitian banded matrix vector multiply
+        CHPMV - hermitian packed matrix vector multiply
+        CTRMV - triangular matrix vector multiply
+        CTBMV - triangular banded matrix vector multiply
+        CTPMV - triangular packed matrix vector multiply
+        CTRSV - solving triangular matrix problems
+        CTBSV - solving triangular banded matrix problems
+        CTPSV - solving triangular packed matrix problems
+        CGERU - performs the rank 1 operation A := alpha*x*y' + A
+        CGERC - performs the rank 1 operation A := alpha*x*conjg( y' ) + A
+        CHER - hermitian rank 1 operation A := alpha*x*conjg(x') + A
+        CHPR - hermitian packed rank 1 operation A := alpha*x*conjg( x' ) + A
+        CHER2 - hermitian rank 2 operation
+        CHPR2 - hermitian packed rank 2 operation
+    Double Complex
+        ZGEMV - matrix vector multiply
+        ZGBMV - banded matrix vector multiply
+        ZHEMV - hermitian matrix vector multiply
+        ZHBMV - hermitian banded matrix vector multiply
+        ZHPMV - hermitian packed matrix vector multiply
+        ZTRMV - triangular matrix vector multiply
+        ZTBMV - triangular banded matrix vector multiply
+        ZTPMV - triangular packed matrix vector multiply
+        ZTRSV - solving triangular matrix problems
+        ZTBSV - solving triangular banded matrix problems
+        ZTPSV - solving triangular packed matrix problems
+        ZGERU - performs the rank 1 operation A := alpha*x*y' + A
+        ZGERC - performs the rank 1 operation A := alpha*x*conjg( y' ) + A
+        ZHER - hermitian rank 1 operation A := alpha*x*conjg(x') + A
+        ZHPR - hermitian packed rank 1 operation A := alpha*x*conjg( x' ) + A
+        ZHER2 - hermitian rank 2 operation
+        ZHPR2 - hermitian packed rank 2 operation
+
+LEVEL 3
+    Single
+        SGEMM - matrix matrix multiply
+        SSYMM - symmetric matrix matrix multiply
+        SSYRK - symmetric rank-k update to a matrix
+        SSYR2K - symmetric rank-2k update to a matrix
+        STRMM - triangular matrix matrix multiply
+        STRSM - solving triangular matrix with multiple right hand sides
+    Double
+        DGEMM - matrix matrix multiply
+        DSYMM - symmetric matrix matrix multiply
+        DSYRK - symmetric rank-k update to a matrix
+        DSYR2K - symmetric rank-2k update to a matrix
+        DTRMM - triangular matrix matrix multiply
+        DTRSM - solving triangular matrix with multiple right hand sides
+    Complex
+        CGEMM - matrix matrix multiply
+        CSYMM - symmetric matrix matrix multiply
+        CHEMM - hermitian matrix matrix multiply
+        CSYRK - symmetric rank-k update to a matrix
+        CHERK - hermitian rank-k update to a matrix
+        CSYR2K - symmetric rank-2k update to a matrix
+        CHER2K - hermitian rank-2k update to a matrix
+        CTRMM - triangular matrix matrix multiply
+        CTRSM - solving triangular matrix with multiple right hand sides
+    Double Complex
+        ZGEMM - matrix matrix multiply
+        ZSYMM - symmetric matrix matrix multiply
+        ZHEMM - hermitian matrix matrix multiply
+        ZSYRK - symmetric rank-k update to a matrix
+        ZHERK - hermitian rank-k update to a matrix
+        ZSYR2K - symmetric rank-2k update to a matrix
+        ZHER2K - hermitian rank-2k update to a matrix
+        ZTRMM - triangular matrix matrix multiply
+        ZTRSM - solving triangular matrix with multiple right hand sides
+
+3. En la carpeta analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level1/ ejecuta el programa dot_product.c y realiza pruebas con diferentes vectores definidos por ti.
+batu@BatuCompu:~/Documents/metodos_numericos_y_optimizacion/tarea5$ ./programa.out 3
+------------
+vector :
+vector[0]=-14.00000
+vector[1]=-23.00000
+vector[2]=12.00000
+------------
+vector :
+vector[0]=-45.00000
+vector[1]=-8.00000
+vector[2]=-9000.00000
+------------
+resultado: -107186.000000
+
+4. Investiga* sobre la subrutina de Fortran ddot (parámetros que recibe y la salida).
+DDOT realiza el producto punto de dos vectores. Utiliza loops desenrollados para incrementos iguales a uno.
+
+double precision function ddot (integer N, 
+				double precision, 
+				dimension(*) DX, 
+				integer INCX, 
+				double precision, 
+				dimension(*) DY,
+				integer INCY)
+
+N es entero, representa el numero de elementos en el vector de entrada(s)
+      
+DX es un array de doble precision, dimension (1+(N-1)*abs(INCX))
+
+INCX es entero, espacio de almacenamiento entre elementos de DX
+         
+DY es un array de doble precision, dimension (1 + (N-1)*abs(INCY))
+
+INCY es entero, espacio de almacenamiento entre elementos de Dy
+
+5. Haz un programa que utilice la subrutina daxpy de Fortran.
+
+
+
+
+
+
+
+
