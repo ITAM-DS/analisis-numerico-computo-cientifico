@@ -30,7 +30,7 @@
     ```
       ./dot_product.out dot_product.txt
     ```
-  * Resultados en dot_product.txt
+  * Resultados en el archivo dot_product.txt
 
 4. Investiga* sobre la subrutina de Fortran ddot (parámetros que recibe y la salida).
   * La funcion ddot recibe 5 parametros:
@@ -50,5 +50,5 @@
     ```
       ./daxpy_product.out 5 4.5
     ```
-  * Resultados en daxpy_product.txt
+  * Resultados en el archivo daxpy_product.txt
   
