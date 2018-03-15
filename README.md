@@ -116,9 +116,22 @@ Iniciamos nota sobre Pthreads [II/2.3](https://www.dropbox.com/s/oauifmx3e19ofyq
 
 ## Clase 10
 
-12 de marzo
+10 de marzo
 
 Finalizamos notas de Pthreads [II/2.3](https://www.dropbox.com/s/oauifmx3e19ofyq/2.3.Sistemas_de_memoria_compartida_Pthreads.pdf?dl=0) y openMP [II/2.4](https://www.dropbox.com/s/vcxbrqkk6x946d7/2.4.Sistemas_de_memoria_compartida_openMP.pdf?dl=0) con [ejemplos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/openMP/ejemplos) de directivas y clauses o cláusulas de openMP.
+
+
+## Clase 11
+
+12 de marzo
+
+Nota sobre CUDA [II/2.4](https://www.dropbox.com/s/yjijtfuky3s5dfz/2.5.Compute_Unified_Device_Architecture.pdf?dl=0) hasta CUDA memories.
+
+Examen de C.
+
+
+
+
 
 
 
