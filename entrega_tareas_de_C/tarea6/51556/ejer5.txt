@@ -1,0 +1,70 @@
+5.-Investiga* sobre la subrutina de Fortran dgemm (parámetros que recibe y la salida)
+
+
+DGEMM realiza una de las operaciones matriz-matriz
+C: = alpha * op (A) * op (B) + beta * C,
+ donde op (X) es uno de
+op (X) = X o op (X) = X ** T,
+
+alfa y beta son escalares, y A, B y C son matrices, con op (A) una matriz de m por k, op (B) una matriz de k por n y matriz de C m por n.
+
+Parámetros:
+
+TRANSA
+TRANSA CHARACTER*1
+Al ingresar, TRANSA especifica la forma de op (A) que se utilizará en
+la multiplicación de la matriz de la siguiente manera:
+
+TRANSA = 'N' o 'n', op (A) = A.
+
+TRANSA = 'T' o 't', op (A) = A ** T.
+
+TRANSA = 'C' o 'c', op (A) = A ** T.
+TRANSB
+TRANSB CHARACTER*1
+En la entrada, TRANSB especifica la forma de op (B) que se utilizará en la multiplicación de la matriz de la siguiente manera:
+
+ TRANSB = 'N' o 'n', op (B) = B.
+ TRANSB = 'T' o 't', op (B) = B ** T.
+TRANSB = 'C' o 'c', op (B) = B ** T.
+METRO
+ M es INTEGER
+En la entrada, M especifica el número de filas de la matriz op (A) y de la matriz C. M debe ser al menos cero.
+norte
+N es INTEGER En la entrada, N especifica el número de columnas de la matriz
+op (B) y el número de columnas de la matriz C. N debe ser al menos cero.
+K
+K es INTEGER En la entrada, K especifica el número de columnas de la matriz
+op (A) y el número de filas de la matriz op (B). K debe ser al menos cero.
+
+ALFA
+ALPHA es DOBLE PRECISIÓN.
+En la entrada, ALPHA especifica el escalar alfa.
+
+
+
+A es matriz DOBLE PRECISIÓN, dimensión (LDA, ka), donde ka es
+k cuando TRANSA = 'N' o 'n', y es m de lo contrario.
+Antes de ingresar con TRANSA = 'N' o 'n', la letra m por k
+parte de la matriz A debe contener la matriz A, de lo contrario, la parte principal k por m de la matriz A debe contener la matriz A.
+
+ LDA es INTEGER Al ingresar, LDA especifica la primera dimensión de A como declarada en el programa que llama (sub). Cuando TRANSA = 'N' o 'n', entonces
+LDA debe ser al menos máxima (1, m); de lo contrario, LDA debe ser al menos máxima (1, k).
+
+B es matriz DOBLE PRECISIÓN, dimensión (LDB, kb), donde kb es
+n cuando TRANSB = 'N' o 'n', y es k de lo contrario.
+Antes de la entrada con TRANSB = 'N' o 'n', el principio k por n
+parte de la matriz B debe contener la matriz B; de lo contrario, la parte inicial n por k de la matriz B debe contener la matriz B.
+
+ LDB es INTEGER
+Al ingresar, LDB especifica la primera dimensión de B como declarada
+en el (sub) programa de llamadas. Cuando TRANSB = 'N' o 'n', LDB debe ser al menos máximo (1, k); de lo contrario, LDB debe ser al menos max (1, n).
+
+BETA es DOBLE PRECISIÓN.
+En la entrada, BETA especifica el escalar beta. Cuando BETA se suministra como cero, entonces C no necesita configurarse en la entrada.
+
+C es DOBLE PRECISIÓN matriz, dimensión (LDC, N) Antes de la entrada, la parte inicial de m by n de la matriz C debe contener la matriz C, excepto cuando beta es cero, en la cual
+el caso C no necesita configurarse en la entrada.
+Al salir, la matriz C sobreescribe la matriz C (alfa * op (A) * op (B) + beta * C).
+
+LDC es INTEGER Al ingresar, LDC especifica la primera dimensión de C declarada en el programa (sub) de llamada. LDC debe ser al menos máximo (1, m).
