@@ -1,0 +1,312 @@
+---
+title: "Tarea 6 MNO"
+author: "Daniel Sharp 138176"
+date: "March 15, 2018"
+geomtry: "left=1cm,right=1cm"
+output: html_document
+---
+<style>
+    body .main-container {
+        max-width: 1300px;
+    }
+</style>
+
+#### 1. Investiga* sobre la subrutina de Fortran dgemv (parámetros que recibe y la salida).  
+
+La rutina de DGEMV realiza una de las siguientes multiplicaciones de matrices:  
+
+$y = \alpha*A*x + \beta*y$ o $y=\alpha*A^t*x + \beta*y$  
+  
+  
+donde $\alpha,\beta$ son escalares, $x,y$ son vectores y $A$ es una matriz de m por n.
+
+Como parámetros recibe:
+  
+* **TRANS**: especifica la operación a realizar, donde:  
+    + TRANS = 'N' o 'n' -> $y = \alpha*A*x + \beta*y$  
+    + TRANS = 'T' o 't' -> $y=\alpha*A^t*x + \beta*y$
+    + TRANS = 'C' o 'c' -> $y=\alpha*A^t*x + \beta*y$
+* **M**: número de renglones en la matriz A.  
+* **N**: número de columnas en la matriz A.  
+* **$\alpha$**: Valor del escalar  
+* **$A$**: Arreglo de dimension (LDA, n)  
+* **LDA**: Especifica la primera dimension de A  
+* **$x$**: Arreglo de dimensión al menos (1 + (n-1)abs(INCX)) si TRANS ='N' o 'n' o de al menos (1 + (m-1)abs(INCX)) de otra manera.  
+* **INCX**: El incremento para los elementos de x  
+* **$\beta$**: Valor del escalar  
+* **$y$**: Arreglo de dimensión al menos (1 + (m-1)abs(INCY)) si TRANS ='N' o 'n' o de al menos (1 + (n-1)abs(INCY)) de otra manera.  
+* **INCY**: Incremento para los elementos de y  
+
+La subrutina no tiene un return como tal, lo que hace es sobreescribir y con el valor actualizado de acuerdo a la función.  
+
+
+
+#### 2. En la carpeta analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level2/ ejecuta el programa dgemv_mult_mat_vec.c y realiza pruebas con diferentes matrices y vectores definidos por ti.  
+
+Probamos inicialmente el ejemplo de clase:  
+```{bash}
+echo "1
+0" > v.txt
+echo "0 1.5
+4 -5
+-1 2.5" > A.txt
+gcc -Wall dgemv_mult_mat_vec.c funciones.c -o programa.out -lblas
+./programa.out 3 2
+```  
+Modificamos la matrix y los vectores:  
+
+```{bash}
+echo "1
+0
+5" > v.txt
+echo "0 1.5 4
+4 -5 7
+-1 2.5 -1" > A.txt
+gcc -Wall dgemv_mult_mat_vec.c funciones.c -o programa.out -lblas
+./programa.out 3 3
+```   
+Volvemos a modificarlos:  
+
+```{bash}
+echo "7
+2
+1
+23" > v.txt
+echo "0 1.5 -5 -8
+4 -5 12 -3
+-1 2.5 9 -1
+1.5 -7 -6.5 10
+1 3 7 11" > A.txt
+gcc -Wall dgemv_mult_mat_vec.c funciones.c -o programa.out -lblas
+./programa.out 5 4
+``` 
+
+
+#### 3. Haz un programa que utilice la subrutina dger de Fortran.  
+
+Esta subrutina realiza la siguiente operación:  
+$A= \alpha*x*y^t + A$,  
+Dado que los inputs de la subrutina de dger son muy similares a los que utiliza la función dgemv, reciclaré parte del código de esta última función:  
+
+```{bash}
+cat dger_funcion.c
+```  
+
+Y probamos su ejecución:  
+
+```{bash}
+echo "1
+0
+2" > x.txt
+echo "1
+2
+3" > y.txt
+echo "1 0 0
+0 1 0
+0 0 1" > A.txt
+
+gcc -Wall dger_funcion.c funciones.c -o programa.out -lblas
+./programa.out 3 3 1
+
+```
+
+
+#### 4. Después de haber estudiado y entendido los archivos de definiciones.h y funciones.c y realizado los puntos anteriores y la tarea 5 responde: ¿cómo fue que pudimos llamar a las rutinas de Fortran (que almacena en una forma column-major order los arreglos de dos dimensiones) para operaciones con arreglos 2-dimensionales sin haber instalado CBLAS, si en clase se dijo que almacenar arreglos de dos dimensiones en C es en un row-major order?  
+Observando el código de 'funciones.h', se puede ver que la función inicializa_matriz lee los valores en row-major order. Sin embargo, la función que almacena los valores, que es 'entrada(p,i,j)', lo hace en column-major order. Esta función se encuentra en la estructura de arreglo_2d, que también se muestra a continuación:  
+
+```{c eval=FALSE}
+void inicializa_matriz(arreglo_2d_T p, char *s){
+	int m = renglones(p);
+	int n = columnas(p);
+	FILE * pFile;
+  	pFile = fopen (s,"r");
+  	for(i=0;i<m;i++)
+		for(j=0;j<n;j++)
+			fscanf(pFile,"%lf", &entrada(p,i,j));
+	fclose(pFile);
+}
+
+typedef struct{
+int m, n;
+#define renglones(arreglo) ((arreglo)->m)
+#define columnas(arreglo) ((arreglo)->n)
+double *arr;
+#define entradas(arreglo) ((arreglo)->arr)
+#define entrada(arreglo,i,j) ((arreglo)->arr[j*m+i]) //almacenamos column major
+}arreglo_2d;
+typedef arreglo_2d *arreglo_2d_T;
+```  
+Es esta característica la que permite que se puedan utilizar las rutinas de Fortran.  
+
+
+#### 5. Investiga* sobre la subrutina de Fortran dgemm (parámetros que recibe y la salida).  
+La subrutina dgemm se utiliza para multiplicaciones de matrices:  
+
+$C = \alpha*op( A )*op( B ) + \beta*C$,  
+
+donde  $op( X )$ es una función tal que, dependiendo del parámetro TRANS, hace lo siguiente:  
+
+$op( X ) = X$   o   $op( X ) = X^t$,  
+
+$\alpha$ y $\beta$ son escalares, y A, B y C son matrices, donde $op( A )$ es una matriz m por k,  $op( B )$  es una matriz k por n y C una matriz m por n.  
+
+Como parámetros recibe:
+  
+* **TRANSA**: especifica la operación a realizar, donde:  
+    + TRANSA = 'N' o 'n' -> $op(A) = A$  
+    + TRANSA = 'T' o 't' -> $op(A) = A^t$
+    + TRANSA = 'C' o 'c' -> $op(A) = A^t$  
+* **TRANSB**: hace lo mismo que TRANSA pero con $op(B)$
+* **M**: número de renglones en la matriz op(A).  
+* **N**: número de columnas en la matriz op(B).
+* **K**: número de columnas de op(A) y de renglones de op(B)
+* **$\alpha$**: Valor del escalar  
+* **$A$**: Arreglo de dimension (LDA, ka)  
+* **LDA**: Especifica la primera dimension de A  
+* **$B$**: Arreglo de dimension (LDA, kb)  
+* **LDB**: Especifica la primera dimension de B  
+* **$\beta$**: Valor del escalar  
+* **$C$**: Arreglo de dimension (LDA, N)  
+* **LDC**: Especifica la primera dimension de C 
+
+La subrutina no tiene un return como tal, lo que hace es sobreescribir C con el valor actualizado de acuerdo a la función.  
+
+#### 6. En la carpeta analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level3/ ejecuta el programa dgemm_mult_mat.c y realiza pruebas con diferentes matrices definidas por ti.  
+Ejecuto el ejemplo de las notas:  
+```{bash}
+echo "1 1.5
+4 -5
+-1 2.5" > A.txt
+echo "1 0 0
+0 -1 1" > B.txt
+
+gcc -Wall dgemm_mult_mat.c funciones.c -o programa.out -lblas
+./programa.out 3 2 2 3
+```  
+Pruebo con otras matrices:  
+```{bash}
+echo "4 7 3
+0 -8 23
+12 5 9
+1 11 18" > A.txt
+echo "1 0
+0 -1
+9 1" > B.txt
+
+gcc -Wall dgemm_mult_mat.c funciones.c -o programa.out -lblas
+./programa.out 4 3 3 2
+```  
+Pruebo con otras:  
+```{bash}
+echo "8 7.5 4
+3 2 1
+55 7.5 11
+-5 -15 -10
+-5 5 -10
+2.5 12 10
+-23.1 15 1
+10 -1 8.9" > A.txt
+echo "1 -5.5 8 9 1 4
+0 9 3 2 1 54.5
+1 23.5 11 3 15 2" > B.txt
+
+gcc -Wall dgemm_mult_mat.c funciones.c -o programa.out -lblas
+./programa.out 8 3 3 6
+```
+
+
+#### 7. En la carpeta del punto anterior encuentras la sección Multiplicación matriz-matriz con trick. Ejecuta el programa de esta sección con diferentes matrices definidas por ti y resuelve la pregunta ¿por qué funciona este trick?.  
+Voy a ejecutar este programa utilizando los mismos ejemplos que en el inciso anterior. Comenzando igual por las notas:  
+```{bash}
+echo "1 1.5
+4 -5
+-1 2.5" > A.txt
+echo "1 0 0
+0 -1 1" > B.txt
+
+gcc -Wall dgemm_mult_mat_trick.c funcionest.c -o programa.out -lblas
+./programa.out 3 2 2 3
+```  
+Pruebo con otras matrices:  
+```{bash}
+echo "4 7 3
+0 -8 23
+12 5 9
+1 11 18" > A.txt
+echo "1 0
+0 -1
+9 1" > B.txt
+
+gcc -Wall dgemm_mult_mat_trick.c funcionest.c -o programa.out -lblas
+./programa.out 4 3 3 2
+```  
+Pruebo con otras:  
+```{bash}
+echo "8 7.5 4
+3 2 1
+55 7.5 11
+-5 -15 -10
+-5 5 -10
+2.5 12 10
+-23.1 15 1
+10 -1 8.9" > A.txt
+echo "1 -5.5 8 9 1 4
+0 9 3 2 1 54.5
+1 23.5 11 3 15 2" > B.txt
+
+gcc -Wall dgemm_mult_mat_trick.c funcionest.c -o programa.out -lblas
+./programa.out 8 3 3 6
+```  
+
+El 'truco' que utiliza el segundo programa para evitar el problema del column-major order sin tener que almacenar los datos de esta forma es invertir el orden de los parámetros de M y N, de está forma, las matrices se leen como si estuvieran en column-major order. Esto se ve a continuación:  
+```{c eval=FALSE}
+//Ejecución Normal, en archivo dgemm_mult_mat.c
+dgemm_("No transpose", "No transpose", &M, &N, &K, &ALPHA, entradas(A), &M, entradas(B), &K, &BETA, entradas(C), &M);
+
+//Ejecución con 'truco', en archivo dgemm_mult_mat_trick.c
+dgemm_("No transpose", "No transpose", &N, &M, &K, &ALPHA, entradas(B), &N, entradas(A), &K, &BETA, entradas(C), &N);
+```  
+
+
+#### 8. Haz un programa que utilice la subrutina dsymm de Fortran.
+
+dsymm realiza una multiplicación de matrices, que puede ser de las siguientes formas:  
+
+$C = \alpha*A*B + \beta*C$, o, $C = \alpha*B*A + \beta*C$,  
+  
+  donde $\alpha$ y $\beta$ son escalares, $A$ es una matriz simétrica y, $B$ y $C$ son matrices m por n.   
+
+De nuevo, reciclaré parte del código utilizado en los programas anteriores ya que son muy similares:  
+
+Código:  
+```{bash}
+cat dsymm_funcion.c
+```
+Por como esta programada la función, la subrutina de dsymm únicamente referenciará el triangulo inferior de la matriz simétrica.  
+Probamos ejecución. Notar que la matriz 'A' aquí definida es simétrica:  
+```{bash}
+echo "1 4 1
+4 2 2
+1 2 3" > A.txt
+echo "1 0 
+0 -1
+1 0" > B.txt
+
+gcc -Wall dsymm_funcion.c funciones.c -o programa.out -lblas
+./programa.out 3 2
+```  
+Probamos el mismo programa con una matriz únicamente con el tríangulo inferior definido (el triangulo superior con puros ceros), lo que debería de producir el mismo resultado que en la ejecución anterior:  
+```{bash}
+echo "1 0 0
+4 2 0
+1 2 3" > A.txt
+echo "1 0 
+0 -1
+1 0" > B.txt
+
+gcc -Wall dsymm_funcion.c funciones.c -o programa.out -lblas
+./programa.out 3 2
+```    
+Efectivamente es el mismo resultado.  
+
+
