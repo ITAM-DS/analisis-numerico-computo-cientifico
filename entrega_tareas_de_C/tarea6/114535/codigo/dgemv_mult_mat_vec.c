@@ -1,8 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"definiciones.h"
-#define A_matriz "A.txt" //de tamaño MxN
-#define v_vector "v.txt" //de tamaño Nx1
+//#define A_matriz "A.txt" //de tamaño MxN
+//#define v_vector "v.txt" //de tamaño Nx1
+#define A_matriz "A2.txt" //de tamaño MxN
+#define v_vector "v2.txt" //de tamaño Nx1
+
 extern void dgemv_(char *transpose_a, int *m, int *n, double *alpha, double *a, int *lda, double *x, int *incx, double *beta, double *y, int *incy);
 int main(int argc, char *argv[]){
 	arreglo_2d_T A;
