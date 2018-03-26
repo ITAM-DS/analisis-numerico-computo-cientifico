@@ -1,58 +1,56 @@
-#include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <mkl.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include"definiciones.h"
+#define A_matriz "A.txt"
+#define v_vector "v.txt"
+#define w_vector "w.txt" 
 
-//tomado de https://stackoverflow.com/questions/30270916/how-do-you-use-cblas-dgemm-to-do-a-vector-outer-product 
+extern void dger_( int *m, int *n, double *alpha, double *x, int *incx, double *y, int *incy, double *transpose_a, int *lda) ;
 
-void PrintMatrix(double* pMatrix, const size_t nR, const size_t nC, const CBLAS_ORDER Order) {
-    unsigned int i, j;
-    if (Order == CblasRowMajor) {
-        for (i = 0; i < nR; i++) {
-            for (j = 0; j < nC; j++) {
-                printf("%f \t ", pMatrix[i * nC + j]); // !!!
-            }
-            printf("\n"); // !!!
-        }
-    } else {
-        for (i = 0; i < nR; i++) {
-            for (j = 0; j < nC; j++) {
-                printf("%f \t ", pMatrix[i + j* nR ]); // !!!
-            }
-            printf("\n"); // !!!
-        }
-    }
-    printf("\n"); // !!!
-}
+int main(int argc, char *argv[]){
+	arreglo_2d_T A;
+	arreglo_1d_T v, w;
+	int M=atoi(argv[1]);
+	int N=atoi(argv[2]);
+	int incx=1;
+	int incy=1;
+	int lda=M;
+	double ALPHA;
+    ALPHA = 2.0;
+   	A=malloc(sizeof(*A));
+	v=malloc(sizeof(*v));
+	w=malloc(sizeof(*w));
+	renglones(A)=M;
+	columnas(A)=N;
+	renglones_vector(v)=M;
+	renglones_vector(w)=N;
+	entradas(A)=malloc(renglones(A)*columnas(A)*sizeof(double));
+	inicializa_matriz(A,A_matriz);
 
+	entradas_vector(v)=malloc(M*sizeof(double));
+	inicializa_vector(v,v_vector);
 
-int main(void)
-{
-    const int m = 20;
-    const int n = 5;
-    const int k = 1;
+	// vector A := alpha*x*y' + A,
+    entradas_vector(w)=malloc(N*sizeof(double));
+	inicializa_vector(w,w_vector);
 
-    double A[] = { 8, 4, 7, 3, 5, 1, 1, 3, 2, 1, 2, 3, 2, 0, 1, 1, 2, 3, 4, 1};
-    double B[] = { -1, 2, -1, 1, 2 };
+	printf("matriz A:\n");
+	imprime_matriz(A);
+	printf("------------\n");
+	printf("vector v :\n");
+	imprime_vector(v);
+	printf("vector w:\n");
+	imprime_vector(w);
+	
+	dger_(&M, &N, &ALPHA, entradas_vector(v), &incx, entradas_vector(w), &incy, entradas(A), &lda);
 
-    double alpha = 1.0, beta = 0.0;
-
-    double * C = (double*) malloc(m * n * sizeof(double));
-    double * D = (double*) malloc(m * n * sizeof(double));
-
-    for (int i = 0; i < m*n; i++) C[i] = 0.0;
-    for (int i = 0; i < m*n; i++) D[i] = 0.0;
-
-    int lda = 20;
-    int ldc = 20;
-
-    cblas_dger(CblasColMajor, m, n, alpha, A, 1, B, 1, C, ldc);
-
-    PrintMatrix(C, m, n, CblasRowMajor);
-
-    free(C);
-
-    return 0;
+	printf("resultado 1:\n");
+	imprime_matriz(A);
+	free(entradas(A));
+	free(A);
+	free(entradas_vector(v));
+	free(entradas_vector(w));
+	free(v);
+	free(w);
+	return 0;
 }
