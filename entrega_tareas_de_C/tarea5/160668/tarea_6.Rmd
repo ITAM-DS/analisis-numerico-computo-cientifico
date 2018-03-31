@@ -1,0 +1,274 @@
+---
+title: "Tarea5"
+author: "David_Rivera_160668"
+date: "March 31, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Estudia y entiende los archivos definiciones.h y funciones.c de ahí, en particular investiga por qué se usan "" en la línea que tiene #include en funciones.c en lugar de usar < >. Investiga el uso de static en la definición de variables externas de funciones.c .
+
+Cuando se tiene #include <file>, C busca por un archivo llamado file en una lista estándar de directorios de sistema.
+
+Y cuando se tiene #include "file", C busca por un archivo llamado file pero primero en el directorio que contiene el archivo actual, después en el direcotrio entre comillas y finalmente en el mismo directorio usado para <file> en ese orden.
+
+
+Una variable estática dentro de una función mantiene sus valores entre invocaciones, ejemplo:
+
+```{r, eval = FALSE}
+#include <stdio.h>
+
+void foo()
+{
+    int a = 10;
+    static int sa = 10;
+
+    a += 5;
+    sa += 5;
+
+    printf("a = %d, sa = %d\n", a, sa);
+}
+
+
+int main()
+{
+    int i;
+
+    for (i = 0; i < 10; ++i)
+        foo();
+}
+
+```
+
+Imprime:
+
+```{r, eval=FALSE}
+a = 15, sa = 15
+a = 15, sa = 20
+a = 15, sa = 25
+a = 15, sa = 30
+a = 15, sa = 35
+a = 15, sa = 40
+a = 15, sa = 45
+a = 15, sa = 50
+a = 15, sa = 55
+a = 15, sa = 60
+```
+
+## 2. Investiga* sobre BLAS, CBLAS, LAPACK, ATLAS y las operaciones de nivel 1, nivel 2 y nivel 3 de BLAS y reporta sobre esta investigación que realizas. Es una investigación que contiene principalmente una descripción sobre los paquetes y niveles anteriores.
+
+BLAS (Basic Linear Algebra Subprograms) – Subprogramas básicos de álgebra lineal: son subrutinas que proveen de bloques de construcción estándar para realizar operaciones básicas de vectores y matrices. El nivel 1 BLAS lleva a cabo operaciones de escalar, vector y vector – vector. El nivel 2 BLAS lleva a cabo operaciones matriz – vector 	y el nivel 3 BLAS lleva a cabo operaciones matriz – matriz.
+
+CBLAS es la implementación en C de los subprogramas BLAS
+
+LAPACK (Linear Algebra Package) paquete de algebra lineal, provee rutinas para resolver sistemas de ecuaciones, minimos cuadrados, problemas de eigenvalores y descomposición singular.
+
+ATLAS (Automatically Tuned Linear Algebra Software)  Software de algebra lineal tuneado automáticamente. Desempeño portable para C y Fortran de BLAS y algunas rutinas de LAPACK
+
+BLAS NIVEL 1
+
+      SROTG - Configuración de rotación de Givens
+
+      SROTMG - Configuración de rotación de Givens modificada
+
+      SROT - Aplica la rotación de givens
+
+      SROTM - Aplica la rotación de givens modificada
+
+      SSWAP - Intercambia x,y
+
+      SSCAL - x = a*x
+
+      SCOPY - Copia contenido de x hacia y
+
+      etc.
+
+BLAS NIVEL 2
+
+    SGEMV - Multiplicación matriz-vector
+    
+    SGBMV - Multiplicación matriz-vector en bandas(banded)
+    
+    SSYMV - Multiplicación matriz vector simétrica
+    
+    SSBMV - Multiplicación matriz vector simétrica(banded)
+    
+    SSPMV - Multiplicación matriz-vector empacada(packed) simétrica
+    
+    STRMV - Multiplicación matriz-vector triangular
+
+BLAS NIVEL 3.
+    
+    SGEMM - Multiplicacion matriz-matriz
+
+    SSYMM - Multiplicación simétrica matriz-matriz
+
+    SSYRK - Actualiza rank-k simétrico de una matriz
+
+    SSYR2K - Actualiza rank-2k simétrico de una matriz
+
+    STRMM - Multiplicación triangular matriz-matriz
+    
+## 3. En la carpeta analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level1/ ejecuta el programa dot_product.c y realiza pruebas con diferentes vectores definidos por ti.
+
+```{r eval=FALSE}
+Definiendo vector = [67,21,11], vector2 = [18,2,99]
+Comando: ./programa.out 3
+Resultado:
+------------
+vector :
+vector[0]=67.00000
+vector[1]=21.00000
+vector[2]=11.00000
+------------
+vector :
+vector[0]=18.00000
+vector[1]=2.00000
+vector[2]=99.00000
+------------
+resultado: 2337.000000
+```
+
+Podemos observar que el producto punto se lleva a cabo tal cual como lo esperamos que es la suma de la multiplicación componente a componente.
+
+```{r eval=FALSE}
+Defiendo vector = [1,2,3], vector 2= [81,12,66,78,12,6]
+Comando: ./programa.out 6
+Resultado:
+------------
+vector :
+vector[0]=1.00000
+vector[1]=2.00000
+vector[2]=3.00000
+vector[3]=0.00000
+vector[4]=0.00000
+vector[5]=0.00000
+------------
+vector :
+vector[0]=81.00000
+vector[1]=12.00000
+vector[2]=66.00000
+vector[3]=78.00000
+vector[4]=12.00000
+vector[5]=6.00000
+------------
+resultado: 303.000000
+```
+
+Es interesante ver que pasa si se realiza el producto punto de vectores de longitud distinta. En este caso se rellena con ceros el vector más corto para poder realizar el ddot.
+
+```{r eval=FALSE}
+Definiendo vector = [79,23,7], vector2 = [9,4,21]
+Comando./programa.out 3
+Resultado
+------------
+vector :
+vector[0]=79.00000
+vector[1]=23.00000
+vector[2]=7.00000
+------------
+vector :
+vector[0]=9.00000
+vector[1]=4.00000
+vector[2]=21.00000
+------------
+resultado: 950.000000
+```
+
+
+Al igual que el primer ejercicio hace producto punto de manera satisfactoria.
+
+## 4.Investiga* sobre la subrutina de Fortran ddot (parámetros que recibe y la salida).
+
+Subrutina ddot, realiza el producto punto entre dos vectores, recibe:
+N – entero, número de elementos en los vectores a multiplicar
+Dx – arreglo de doble precisión, es  el vector x a multiplicar por el otro vector, debe de ser de tamaño (1 + (N – 1)*abs(INCX))
+INCX – entero, espaciamiento entre elementos de Dx
+Dy – arreglo de doble precisión, es  el vector y a multiplicar por el otro vector, debe de ser de tamaño (1 + (N – 1)*abs(INCX)) 
+INCY – entero, espaciamiento entre elementos de Dy
+
+## 5. Haz un programa que utilice la subrutina daxpy de Fortran.
+
+La subrutina daxpy hace lo siguiente 
+
+Conceptualmente:
+vector1 = [1,2,3], vector2 = [81,12,66], escalar = 4, no_elementos = 3
+
+daxpy (no_elementos, escalar, vector1, vector2) 
+
+La operación superior hará lo siguiente: 
+multiplicar vector1 * escalar  4*[1,2,3] = [4,8,12]
+El resultado de la operación siguiente que es un vector lo suma componente a componente con vector 2: [4,8,12]+[81,12,66] = [85,20,78]
+
+Código
+```{r eval=FALSE}
+#include<stdio.h>
+#include<stdlib.h>
+#include"definiciones.h"
+#define v1_vector "v1.txt" //de tamaño Nx1
+#define v2_vector "v2.txt" //de tamaño Nx1
+
+extern double daxpy_(int *n, double *da ,double *dx, int *incx, double *dy, int *incy); 
+
+int main(int argc, char *argv[]){
+	arreglo_1d_T v1, v2;
+	double resultado;
+	int incx=1;
+	int N=atoi(argv[1]);
+        double escalar = atoi(argv[2]);
+
+	v1=malloc(sizeof(*v1));
+	v2=malloc(sizeof(*v2));
+
+	renglones_vector(v1)=N;
+	renglones_vector(v2)=N;
+
+	entradas_vector(v1)=malloc(N*sizeof(double));
+	inicializa_vector(v1,v1_vector);
+	entradas_vector(v2)=malloc(N*sizeof(double));
+	inicializa_vector(v2,v2_vector);
+
+	printf("------------\n");
+	printf("vector :\n");
+	imprime_vector(v1);
+	printf("------------\n");
+	printf("vector :\n");
+	imprime_vector(v2);
+	printf("------------\n");
+
+	daxpy_(&N, &escalar, entradas_vector(v1), &incx, entradas_vector(v2), &incx); 
+	//resultado=ddot_(&N, entradas_vector(v1), &incx, entradas_vector(v2), &incx);
+	printf("El vector resultado es: \n");
+	imprime_vector(v2);
+	//printf("resultado: %lf\n", v2);
+	free(entradas_vector(v1));
+	free(v1);
+	free(entradas_vector(v2));
+	free(v2);
+	return 0;
+}
+```
+
+Resultado:
+```{r eval=FALSE}
+Comando: ./programa.out 3 4
+Resultado
+------------
+vector :
+vector[0]=1.00000
+vector[1]=2.00000
+vector[2]=3.00000
+------------
+vector :
+vector[0]=81.00000
+vector[1]=12.00000
+vector[2]=66.00000
+------------
+El vector resultado es: 
+vector[0]=85.00000
+vector[1]=20.00000
+vector[2]=78.00000
+```
