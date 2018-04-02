@@ -1,6 +1,115 @@
 # Ejemplos
 
-Se ejecutarán en 1 device los siguientes programas:
+Se asume que se ha levantado una instancia en Amazon Web Services utilizando las indicaciones de [aquí](/C/extensiones_a_C/CUDA/instalacion/).
+
+Se utilizará una instancia tipo `p2.xlarge` de AWS.
+
+
+## Información del device:
+
+
+Para obtener información del device seguimos las instrucciones de la sección [Running the Binaries](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#running-binaries):
+
+```
+cd /usr/local/cuda/samples/1_Utilities/deviceQuery && sudo make all Makefile && cd
+
+```
+
+Ejecutamos:
+
+```
+/usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery
+
+```
+
+Resultado:
+
+```
+/usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery Starting...
+
+ CUDA Device Query (Runtime API) version (CUDART static linking)
+
+
+Detected 1 CUDA Capable device(s)
+
+Device 0: "Tesla K80"
+  CUDA Driver Version / Runtime Version          9.1 / 9.1
+  CUDA Capability Major/Minor version number:    3.7
+  Total amount of global memory:                 11441 MBytes (11996954624 bytes)
+  (13) Multiprocessors, (192) CUDA Cores/MP:     2496 CUDA Cores
+  GPU Max Clock rate:                            824 MHz (0.82 GHz)
+  Memory Clock rate:                             2505 Mhz
+  Memory Bus Width:                              384-bit
+  L2 Cache Size:                                 1572864 bytes
+  Maximum Texture Dimension Size (x,y,z)         1D=(65536), 2D=(65536, 65536), 3D=(4096, 4096, 4096)
+  Maximum Layered 1D Texture Size, (num) layers  1D=(16384), 2048 layers
+  Maximum Layered 2D Texture Size, (num) layers  2D=(16384, 16384), 2048 layers
+  Total amount of constant memory:               65536 bytes
+  Total amount of shared memory per block:       49152 bytes
+  Total number of registers available per block: 65536
+  Warp size:                                     32
+  Maximum number of threads per multiprocessor:  2048
+  Maximum number of threads per block:           1024
+  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)
+  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)
+  Maximum memory pitch:                          2147483647 bytes
+  Texture alignment:                             512 bytes
+  Concurrent copy and kernel execution:          Yes with 2 copy engine(s)
+  Run time limit on kernels:                     No
+  Integrated GPU sharing Host Memory:            No
+  Support host page-locked memory mapping:       Yes
+  Alignment requirement for Surfaces:            Yes
+  Device has ECC support:                        Enabled
+  Device supports Unified Addressing (UVA):      Yes
+  Supports Cooperative Kernel Launch:            No
+  Supports MultiDevice Co-op Kernel Launch:      No
+  Device PCI Domain ID / Bus ID / location ID:   0 / 0 / 30
+  Compute Mode:
+     < Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) >
+
+deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 9.1, CUDA Runtime Version = 9.1, NumDevs = 1
+Result = PASS
+```
+
+Para descripciones de los siguientes puntos dar click:
+
+* [Compute capability](http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities) devices con compute capability >=1.3 soportan single y double precision.
+
+* [Propiedades del device](http://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g1bf9d625a931d657e08db2b4391170f0)
+
+
+
+## Información del NVIDIA driver:
+
+
+```
+$nvidia-smi
+```
+**(smi: system management interface)**
+
+Salida:
+
+```
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 390.30                 Driver Version: 390.30                    |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla K80           Off  | 00000000:00:1E.0 Off |                    0 |
+| N/A   41C    P0    73W / 149W |      0MiB / 11441MiB |     99%      Default |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
+```
+
+
 
 ## Programa de hello world:
 
