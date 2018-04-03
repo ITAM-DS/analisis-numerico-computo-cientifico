@@ -65,6 +65,8 @@ El siguiente bash script identifica una instancia con el nombre de la variable `
 region=us-west-2
 name_instance=conabio-gpu-node
 apt-get update
+apt-get install linux-headers-$(uname -r) #to have kernel headers and development
+#packages accordingly to the current kernel
 apt-get install -y awscli build-essential
 #for RunCommand service of EC2
 wget https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb
@@ -77,10 +79,12 @@ aws ec2 create-tags --resources $INSTANCE_ID --tag Key=Name,Value=$name_instance
 toolkit_inst_network=$(wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/ -q -O -|grep ".*repo.*amd64"|tail -1|sed -n 's/.*\(cuda-repo.*deb\).*/\1/;p')
 mkdir /home/ubuntu/cuda_toolkit
 wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/$toolkit_inst_network -P /home/ubuntu/cuda_toolkit
-sudo dpkg -i /home/ubuntu/cuda_toolkit/$toolkit_inst_network
-sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
-sudo apt-get update
-sudo apt-get install -y cuda
+dpkg -i /home/ubuntu/cuda_toolkit/$toolkit_inst_network #install toolkit
+apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+apt-get update
+apt-get install linux-headers-$(uname -r) #to have kernel headers and development
+#packages accordingly to the current kernel
+apt-get install -y cuda #this will install nvidia driver, cuda driver and all libraries required
 cuda_version=$(ls /usr/local/|grep cuda-)
 echo "export PATH=/usr/local/$cuda_version/bin${PATH:+:${PATH}}" >> /home/ubuntu/.profile
 echo "export LD_LIBRARY_PATH=/usr/local/$cuda_version/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" >>/home/ubuntu/.profile
