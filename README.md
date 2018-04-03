@@ -130,6 +130,12 @@ Nota sobre CUDA [II/2.4](https://www.dropbox.com/s/yjijtfuky3s5dfz/2.5.Compute_U
 Examen de C.
 
 
+## Clase 12
+
+2 de abril
+
+Revisión de nota [II/2.4](https://www.dropbox.com/s/yjijtfuky3s5dfz/2.5.Compute_Unified_Device_Architecture.pdf?dl=0) hasta CUDA memories y levantamiento en AWS de una instancia con toolkit de CUDA instalado de acuerdo a [liga](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/CUDA/instalacion)
+
 
 
 
