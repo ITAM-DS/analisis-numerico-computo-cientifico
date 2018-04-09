@@ -94,7 +94,7 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 4.1 [Introducción.](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
 
-4.2 [Problemas de optimización convexa.](https://www.dropbox.com/s/5g7uwg6274k2yyf/4.3.Teoria_de_convexidad.pdf?dl=0)
+4.2 [Problemas de optimización convexa.](https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0)
 
 * [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
