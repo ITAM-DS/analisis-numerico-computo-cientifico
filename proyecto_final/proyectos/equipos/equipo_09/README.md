@@ -28,7 +28,7 @@ Calendario de entregas
 |10/04/18  | Integrar bibliografía y plan de trabajo|
 |17/04/18  | Investigar aplicaciones vía Householder y rotaciones Givens.|
 |24/04/08  | Comprender características y propiedades de las transformaciones. Iniciar programación secuencial de QR.|
-|02/04/18  | Concluir programación secuencial de QR |
+|02/05/18  | Concluir programación secuencial de QR |
 |08/05/18  | Conclusiones y comienzo de redación de trabajo escrito.|
 |15/05/18  | Trabajo escrito terminado. Elaborar presentación. |
 |22/05/18  | Integrar entregables (documento escrito, presentación, código)
