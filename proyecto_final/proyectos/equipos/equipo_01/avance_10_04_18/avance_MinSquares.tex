@@ -1,0 +1,177 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Implementación de método de optimización convexa con mínimos cuadrados, a través de descenso en gradiente estocástico},
+            pdfauthor={Elizabeth Solis; Daniel Sharp; Christian Challu},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Implementación de método de optimización convexa con mínimos cuadrados,
+a través de descenso en gradiente estocástico}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Elizabeth Solis \\ Daniel Sharp \\ Christian Challu}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \date{}
+  \predate{}\postdate{}
+
+
+\begin{document}
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introducción}
+
+\subsection{Deficinición de mínimos cuadrados en contexto de optimización convexa}
+
+La optimización convexa consiste básicamente en resolver el problema:\\
+\[minimizar \quad f_0(x) \\
+  sujeto \ a \quad f_i(x) \leq b_i, \quad i=1,...,m  \\
+  donde \ las \ funciones \ f_0,...,f_m:R^n \to R \ son \ convexas\]
+
+Bajo el contexto de optimización convexa, tenemos que podemos resolver
+el problema de mínimos cuadrados utilziando el siguiente
+planteamiento:\\
+\[minimizar \quad f(x):||a^Tx -b||^2_2 \\
+sin \ restricciones, \\
+con \ A \in R^{m \ x \ n}, m \geq n, a_i^T \ son \ los \ renglones \ de \ A\]
+
+Con esto, sabemos que dado que \[f(x)\] es diferenciable y convexa,
+necesitamos encontrar una \[x*\] tal que \[\nabla f(x*) = 0\], que es
+condición suficiente para afirmar que ese es el valor óptimo de \[x*\]
+que minimiza la función.
+
+A esta definición del problema también se le pueden agregar términos de
+regularización, que penalizan la magnitud de los valores de x.
+
+Utilizando estas ideas, se han formulado una serie de algorítmos
+iterativos cuyo objetivo es encontrar el valor de la \[x*\] definida
+anteriormente.
+
+\newpage
+
+\section{Algorítmos de optimización convexa}
+
+\subsection{Método de Descenso}
+
+El método de descenso consiste en producir una secuencia de valores
+\[x^{(k)}, \ k=1,...,\] de la siguiente forma:\\
+\[x^{(k+1)}= x^{(k)}+t^{(k)}\triangle x^{(k)}\]\\
+donde \[t^{(k)} > 0\] es un escalar denominado como el tamaño de paso.
+Esta secuencia cumple la característica de que
+\[f(x^{(k+1)})<f(x^{(k)})\], excepto en el caso cuando \[x^{(k)}\] es el
+óptimo.
+
+\begin{algorithm}[H]
+ \KwData{this text}
+ \KwResult{how to write algorithm with \LaTeX2e }
+ initialization\;
+ \While{not at end of this document}{
+  read current\;
+  \eIf{understand}{
+   go to next section\;
+   current section becomes this one\;
+   }{
+   go back to the beginning of current section\;
+  }
+ }
+ \caption{How to write algorithms}
+\end{algorithm}
+
+\subsection{Método de Descenso en Gradiente}
+
+\subsection{Método de Descenso Máximo}
+
+\subsection{Método de Newton}
+
+\newpage
+
+\section{Conclusiones}
+
+\newpage
+
+\section{Anexo}
+
+En esta sección se encuentran los códigos implementados.
+
+\subsection{Código implementado para el método de ordenamiento por inserción}
+
+\newpage
+
+\section{Referencias}
+
+
+\end{document}

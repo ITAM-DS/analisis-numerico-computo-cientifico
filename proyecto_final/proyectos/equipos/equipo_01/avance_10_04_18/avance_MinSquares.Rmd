@@ -1,0 +1,94 @@
+---
+title: "Implementación de método de optimización convexa con mínimos cuadrados, a través de descenso en gradiente estocástico"
+author:
+  - Elizabeth Solis
+  - Daniel Sharp
+  - Christian Challu
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+\newpage
+
+\tableofcontents
+
+\newpage
+\section{Introducción}
+
+\subsection{Deficinición de mínimos cuadrados en contexto de optimización convexa}
+
+La optimización convexa consiste básicamente en resolver el problema:  
+  $$minimizar \quad f_0(x) \\
+  sujeto \ a \quad f_i(x) \leq b_i, \quad i=1,...,m  \\
+  donde \ las \ funciones \ f_0,...,f_m:R^n \to R \ son \ convexas$$  
+  
+Bajo el contexto de optimización convexa, tenemos que podemos resolver el problema de mínimos cuadrados utilziando el siguiente planteamiento:    
+$$minimizar \quad f(x):||a^Tx -b||^2_2 \\
+sin \ restricciones, \\
+con \ A \in R^{m \ x \ n}, m \geq n, a_i^T \ son \ los \ renglones \ de \ A$$  
+
+Con esto, sabemos que dado que $$f(x)$$ es diferenciable y convexa, necesitamos encontrar una $$x*$$ tal que $$\nabla f(x*) = 0$$, que es condición suficiente para afirmar que ese es el valor óptimo de $$x*$$ que minimiza la función.  
+
+A esta definición del problema también se le pueden agregar términos de regularización, que penalizan la magnitud de los valores de x.  
+
+Utilizando estas ideas, se han formulado una serie de algorítmos iterativos cuyo objetivo es encontrar el valor de la $$x*$$ definida anteriormente.  
+
+\newpage
+\section{Algorítmos de optimización convexa: Métodos de Descenso}  
+
+El método de descenso consiste en producir una secuencia de valores $$x^{(k)}, \ k=1,...,$$ de la siguiente forma:  
+$$x^{(k+1)}= x^{(k)}+t^{(k)}\triangle x^{(k)}$$  
+donde $$t^{(k)} > 0$$ es un escalar denominado como el tamaño de paso. Esta secuencia cumple la característica de que $$f(x^{(k+1)})<f(x^{(k)})$$, excepto en el caso cuando $$x^{(k)}$$ es el óptimo.
+
+**Algorítmo de Descenso General**  
+Dado un punto inicial $$x \in dom \ f$$  
+Repetir:  
+1. Determinar dirección de descenso $$\triangle x$$  
+2. Elegir tamaño de paso $$t>0$$  
+3. Actualizar $$x:=x+ t \triangle x$$  
+Hasta que el criterio de fin se satisfaga.  
+
+El criterio de fin generalmente tiene la forma $$||\nabla f(x)||_2 \leq \eta$$, para $$\eta$$ muy pequeña y positiva.  
+\subsection{Método de Descenso en Gradiente}  
+Un ejemplo de un algorítmo de descenso es el que es conocido como descenso en gradiente. Su particularidad con respecto al modelo de descenso general, es la elección para la dirección de descenso, que en este caso es la siguiente:  
+$$\triangle x = - \nabla f(x)$$. Con esto, resulta en el siguiente algorítmo:  
+
+**Algorítmo de Descenso en Gradiente**  
+Dado un punto inicial $$x \in dom \ f$$  
+Repetir:  
+1. $$\triangle x = - \nabla f(x)$$  
+2. Elegir tamaño de paso $$t>0$$  
+3. Actualizar $$x:=x+ t \triangle x$$  
+Hasta que el criterio de fin se satisfaga. 
+
+
+\subsection{Método de Descenso Máximo}  
+
+\subsection{Método de Newton}
+
+\newpage
+\section{Conclusiones}
+
+
+\newpage
+\section{Anexo}
+
+En esta sección se encuentran los códigos implementados.
+
+\subsection{Código implementado para el método de ordenamiento por inserción}
+
+
+\newpage
+\section{Referencias}
+
+* Boyd, S. P., & Vandenberghe, L. (2009). Convex optimization. Cambridge: Cambridge University Press.  
+  + Capítulo 1 y 9
+
+
+
+
+
+
+
