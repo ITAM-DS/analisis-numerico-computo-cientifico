@@ -4,13 +4,20 @@
 
 ### Individual
 
+- Elizabeth Solis: 
+	- Investigamos algunas definiciones básicas como qué es un arreglo, tipos de arreglos, operaciones que se realizan con arreglos y nos enfocamos en el ordenamiento de arreglos. 
+	- Revisamos algunos algoritmos de ordenamiento como el método de burbuja, de selección, inserción, entre otros. Dada la investigación decidimos iniciar el trabajo escrito.
+	- Implementamos en C el algoritmo de ordenamiento de inserción
+
+
+
 - Daniel Sharp
 
 - Christian Challu
 
-- Elizabeth Solis: Investigamos algunas definiciones básicas como qué es un arreglo, tipos de arreglos, operaciones que se realizan con arreglos y nos enfocamos en el ordenamiento de arreglos. Revisamos algunos algoritmos de ordenamiento como el método de burbuja, de selección, inserción, entre otros. Dada la investigación decidimos iniciar el trabajo escrito.
+
 
 ### Equipo
 
-En este primer avance investigamos desde lo más básico que incluirá nuestro tema y empezamos a notar que métodos son más eficientes que otros.
+En este primer avance investigamos desde lo más básico que incluirá nuestro tema y empezamos a notar qué métodos son más eficientes que otros.
 
