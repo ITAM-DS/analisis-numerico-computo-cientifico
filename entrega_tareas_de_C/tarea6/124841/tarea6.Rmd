@@ -1,0 +1,330 @@
+##Tarea 6
+
+###124841
+
+####Para ejecutar los programas se deben tener todos los archivos en una misma carpeta y ejecutar los programas desde ahi. 
+
+####1)
+Subrutina DGEMV
+
+
+Realiza alguna operación matriz-vector, ya sea 
+1) y := alpha*A*x + beta*y
+2) y := alpha*A'*x + beta*y
+
+Parámetros que recibe:
+DGEMV (TRANS, M, N, ALPHA, A, LDA, X, INCX, BETA, Y, INCY)
+
+Argumentos escalares:
+De tipo double: 
+ALPHA: valor escalar alpha
+BETA: valor escalar beta
+De tipo integer: 
+INCX: da el incremento para los elementos de x 
+INCY: da el incremento para los elementos de y 
+LDA: entero que indica la primera dimensión de la matriz A. 
+M=especifica el número de filas de la matriz A.
+N=especifica el número de columnas de la matriz A. 
+De tipo caracter: 
+TRANS= puede ser N o n, que indica la operacion 1), también puede ser T, t, C, o c que indica la operación 2).
+Argumentos de tipo array:
+De tipo double: 
+A: Arreglo de dimensiones (LDA, n)
+X: Arreglo de dimensión mínima de (1+(n-1)*abs(INCX)) si TRANS= N o de al menos (1+(m-1)*abs(INCX) en cualquier otro caso
+Y: Arreglo de dimensión mínima de (1+(m-1)*abs(INCY) si TRANS= N o de 
+dimensión mínima de (1+(n-1)*abs(INCY)) en cualquier otro caso
+
+Return value:
+Todos los parámetros de entrada se mantienen iguales al terminar la rutina excepto el arreglo y.
+El valor de Y se actualiza al resultado de la operación realizada ya sea 1) y := alpha*A*x + beta*y o 2) y := alpha*A'*x + beta*y.
+
+
+####2)
+Ejecutar:
+./Tarea6-2.sh, los resultados se guardan en el documento Resultados6-2.txt
+
+
+Resultados:
+
+
+Vector y matriz originales :
+matriz 1:
+matriz[0][0]=0.00000	matriz[0][1]=1.50000
+matriz[1][0]=4.00000	matriz[1][1]=-5.00000
+matriz[2][0]=-1.00000	matriz[2][1]=2.50000
+------------
+vector :
+vector[0]=1.00000
+vector[1]=0.00000
+------------
+vector resultado:
+vector[0]=0.00000
+vector[1]=4.00000
+vector[2]=-1.00000
+
+Prueba 1:
+matriz 1:
+matriz[0][0]=1.00000	matriz[0][1]=2.20000	matriz[0][2]=3.00000	matriz[0][3]=-2.00000
+matriz[1][0]=11.00000	matriz[1][1]=-10.00000	matriz[1][2]=-3.00000	matriz[1][3]=1.00000
+matriz[2][0]=0.00000	matriz[2][1]=2.00000	matriz[2][2]=6.00000	matriz[2][3]=2.00000
+------------
+vector :
+vector[0]=1.00000
+vector[1]=2.00000
+vector[2]=0.00000
+vector[3]=0.00000
+------------
+vector resultado:
+vector[0]=5.40000
+vector[1]=-9.00000
+vector[2]=4.00000
+
+Prueba 2:
+matriz 1:
+matriz[0][0]=1.00000	matriz[0][1]=0.00000	matriz[0][2]=15.00000
+matriz[1][0]=2.00000	matriz[1][1]=-3.00000	matriz[1][2]=23.00000
+------------
+vector :
+vector[0]=1.00000
+vector[1]=-5.00000
+vector[2]=3.00000
+------------
+vector resultado:
+vector[0]=46.00000
+vector[1]=86.00000
+
+Prueba 3:
+matriz 1:
+matriz[0][0]=7.00000	matriz[0][1]=13.00000	matriz[0][2]=20.00000
+matriz[1][0]=-2.00000	matriz[1][1]=1.00000	matriz[1][2]=-3.00000
+matriz[2][0]=12.00000	matriz[2][1]=3.00000	matriz[2][2]=2.00000
+------------
+vector :
+vector[0]=2.00000
+vector[1]=-5.00000
+vector[2]=6.00000
+------------
+vector resultado:
+vector[0]=69.00000
+vector[1]=-27.00000
+vector[2]=21.00000
+
+####3)
+Ejecutar:
+gcc -Wall tarea6-3.c funciones.c -o tarea6-3.out -lblas
+./tarea6-3.out > Resultados6-3.txt
+Resultados:
+
+Introduce el parámetro alpha
+2
+Introduce el vector x:
+x[1]:
+1
+x[2]:
+2
+x[3]:
+3
+Introduce el vector y:
+y[1]:
+4
+y[2]:
+5
+
+Parámetro alpha: 2.000000
+
+Vector x:
+x[1]=1.000000 x[2]=2.000000 
+
+Vector y:
+y[1]=4.000000 y[2]=5.000000 
+matriz A:
+matriz[0][0]=7.00000	matriz[0][1]=13.00000
+matriz[1][0]=-2.00000	matriz[1][1]=1.00000
+matriz[2][0]=12.00000	matriz[2][1]=3.00000
+------------
+
+Resultado A  :=  alpha*x*y'  +  A
+matriz[0][0]=15.00000	matriz[0][1]=23.00000
+matriz[1][0]=14.00000	matriz[1][1]=21.00000
+matriz[2][0]=36.00000	matriz[2][1]=33.00000
+
+
+####4)
+Lo que resuelve el conflicto es que en el archivo definiciones.h la estructura arreglo_2d se reacomoda para que la matriz quede column-major, aunque la funcion inicializa_matriz la guarde primero de manera row-major.
+
+####5)
+
+Subrutina dgemm
+Realiza la siguiente operacion matriz matriz:
+
+ C := alpha*op( A )*op( B ) + beta*C
+
+Donde las matrices A, B y C son matrices y alpha y beta son parámetros escalares.
+La subrutina no regresa ningun valor, solamente se actualiza el valor de C al resultado de la operación C := alpha*op( A )*op( B ) + beta*C
+con los parámetros que le hayamos pasado.
+
+Parámetros:
+
+TRANSA=tipo caracter puede valer 'N' o 'n' y en este caso op(A)=A, o puede valer 'T', 't', 'C', 'c' y en este caso op(A)=A**T
+TRANSB= tipo caracter, es análogo a TRANSA pero para op(B).
+M=tipo integer especifica el número de filas de las matrices op(A) y C.
+N=tipo integer especifica el número de columnas de la matriz op(B) y de la matriz C. 
+K= tipo integer, especifica el número de columnas de la matriz op(A) y el número de filas de la matriz op(B).
+ALPHA=tipo double, parámetro escalar alpha. 
+A= arreglo tipo double, que puede ser de dimensión (LDA, k) o (LDA, m), en diferentes casos. 
+LDA= tipo integer, indica la primera dimensión de A, puede valer m o k. 
+B=arreglo tipo double, puede ser de dimensión (LDB,n) o (LDB,k)
+LDB=tipo integer, indica la primera dimensión de B puede valer n o k.
+BETA=es de tipo double y es el escalar beta.
+C=arreglo de tipo double de dimensiones (LDC, N) este es el único parámetro que se modifica al terminar la subrutina. 
+LDC=es de tipo int y especifica la primera deimension de C, debe valer al menos m. 
+
+####6) 
+Ejecutar:
+./Tarea6-6.sh 
+Los resultados se muestran a continuación pero al ejecutar el script anterior se guardan en el archivo Resultados6-6.txt
+
+Matrices originales :
+matriz 1:
+matriz[0][0]=0.00000	matriz[0][1]=1.50000
+matriz[1][0]=4.00000	matriz[1][1]=-5.00000
+matriz[2][0]=-1.00000	matriz[2][1]=2.50000
+------------
+matriz 2:
+matriz[0][0]=1.00000	matriz[0][1]=0.00000	matriz[0][2]=0.00000
+matriz[1][0]=0.00000	matriz[1][1]=-1.00000	matriz[1][2]=1.00000
+------------
+matriz resultado:
+matriz[0][0]=0.00000	matriz[0][1]=-1.50000	matriz[0][2]=1.50000
+matriz[1][0]=4.00000	matriz[1][1]=5.00000	matriz[1][2]=-5.00000
+matriz[2][0]=-1.00000	matriz[2][1]=-2.50000	matriz[2][2]=2.50000
+Prueba 1:
+matriz 1:
+matriz[0][0]=1.00000	matriz[0][1]=12.00000
+matriz[1][0]=13.00000	matriz[1][1]=0.00000
+------------
+matriz 2:
+matriz[0][0]=3.00000	matriz[0][1]=-1.00000	matriz[0][2]=2.00000
+matriz[1][0]=-1.00000	matriz[1][1]=-1.00000	matriz[1][2]=11.00000
+------------
+matriz resultado:
+matriz[0][0]=-9.00000	matriz[0][1]=-13.00000	matriz[0][2]=134.00000
+matriz[1][0]=39.00000	matriz[1][1]=-13.00000	matriz[1][2]=26.00000
+Prueba 2:
+matriz 1:
+matriz[0][0]=0.00000	matriz[0][1]=1.00000	matriz[0][2]=2.00000	matriz[0][3]=3.00000	matriz[0][4]=4.00000
+matriz[1][0]=5.00000	matriz[1][1]=2.00000	matriz[1][2]=-2.00000	matriz[1][3]=3.00000	matriz[1][4]=-5.00000
+matriz[2][0]=7.00000	matriz[2][1]=0.00000	matriz[2][2]=8.00000	matriz[2][3]=0.00000	matriz[2][4]=8.00000
+------------
+matriz 2:
+matriz[0][0]=0.00000	matriz[0][1]=1.00000
+matriz[1][0]=-3.00000	matriz[1][1]=-2.00000
+matriz[2][0]=0.00000	matriz[2][1]=0.00000
+matriz[3][0]=0.00000	matriz[3][1]=0.00000
+matriz[4][0]=0.00000	matriz[4][1]=0.00000
+------------
+matriz resultado:
+matriz[0][0]=-3.00000	matriz[0][1]=-2.00000
+matriz[1][0]=-6.00000	matriz[1][1]=1.00000
+matriz[2][0]=0.00000	matriz[2][1]=7.00000
+Prueba 3:
+matriz 1:
+matriz[0][0]=1.00000	matriz[0][1]=1.00000
+matriz[1][0]=13.00000	matriz[1][1]=10.00000
+matriz[2][0]=-1.00000	matriz[2][1]=-2.00000
+matriz[3][0]=-3.00000	matriz[3][1]=-5.00000
+------------
+matriz 2:
+matriz[0][0]=1.00000	matriz[0][1]=-12.00000
+matriz[1][0]=0.00000	matriz[1][1]=-2.00000
+------------
+matriz resultado:
+matriz[0][0]=1.00000	matriz[0][1]=-14.00000
+matriz[1][0]=13.00000	matriz[1][1]=-176.00000
+matriz[2][0]=-1.00000	matriz[2][1]=16.00000
+matriz[3][0]=-3.00000	matriz[3][1]=46.00000
+
+
+####7)
+Sin truco:
+ dgemm_("No transpose", "No transpose", &M, &N, &K, &ALPHA, entradas(A), &M, entradas(B), &K, &BETA, entradas(C), &M);
+	
+ Las matrices estan en forma column-major que es como fortram las procesa y los parámetros se pasan normales. 
+ A es de m x k 
+ B es de k x n 
+ al hacer alpha * A * B queda una matriz de m x n que se suma a la matriz C tambien de m x n. 
+
+
+Con truco:
+ dgemm_("No transpose", "No transpose", &N, &M, &K, &ALPHA, entradas(B), &N, entradas(A), &K, &BETA, entradas(C), &N);
+
+ Ahora las matrices estan en forma row-major osea para fortran estan:
+
+ A es de k x m 
+ B es de n x k
+
+ Antes de llamar a dgemm_ C no se ha inicializado solo se han especificado sus dimensiones que siguen siendo m x n como en el caso sin truco. 
+
+ El truco lo que hace es invertir los parametros a la hora de llamar a dgemm_
+
+Entonces en lugar de que se haga la multiplicación 
+
+ A x B que en este caso no se podría
+
+
+ Se hace: 
+
+ B x A que dara como resultado una matriz de dimensiones n x m, pero una matriz de n x m en FORTRAM viene siendo una matriz m x n en C, como sucedió al inicializar A y B. 
+
+Ejecutar:
+Tarea6-7.sh
+
+Los resultados se guardaran en el archivo Resultados6-7.txt
+
+Se ocuparon los mismos ejemplos que para el inciso anterior y se obtuvieron los mismos resultados, como podemos ver aquí para el primer ejemplo:
+
+Matrices originales :
+matriz 1:
+matriz[0][0]=0.00000	matriz[0][1]=1.50000
+matriz[1][0]=4.00000	matriz[1][1]=-5.00000
+matriz[2][0]=-1.00000	matriz[2][1]=2.50000
+------------
+matriz 2:
+matriz[0][0]=1.00000	matriz[0][1]=0.00000	matriz[0][2]=0.00000
+matriz[1][0]=0.00000	matriz[1][1]=-1.00000	matriz[1][2]=1.00000
+matriz 3:
+matriz[0][0]=0.00000	matriz[0][1]=-1.50000	matriz[0][2]=1.50000
+matriz[1][0]=4.00000	matriz[1][1]=5.00000	matriz[1][2]=-5.00000
+matriz[2][0]=-1.00000	matriz[2][1]=-2.50000	matriz[2][2]=2.50000
+
+
+
+####8)
+Ejecutar:
+
+ gcc -Wall tarea6-8.c funciones.c -o tarea6-8.out -lblas
+./tarea6-8.out 3 4 > Resultados6-8.txt
+
+Resultados:
+
+
+Parámetro alpha: 2.000000
+
+Parámetro beta: 2.000000
+matriz A:
+matriz[0][0]=1.00000	matriz[0][1]=2.00000	matriz[0][2]=3.00000
+matriz[1][0]=2.00000	matriz[1][1]=7.00000	matriz[1][2]=8.00000
+matriz[2][0]=3.00000	matriz[2][1]=8.00000	matriz[2][2]=5.00000
+------------
+matriz B:
+matriz[0][0]=1.00000	matriz[0][1]=2.00000	matriz[0][2]=3.00000	matriz[0][3]=4.00000
+matriz[1][0]=5.00000	matriz[1][1]=6.00000	matriz[1][2]=7.00000	matriz[1][3]=8.00000
+matriz[2][0]=9.00000	matriz[2][1]=10.00000	matriz[2][2]=11.00000	matriz[2][3]=12.00000
+------------
+
+Resultado  C := alpha*A*B + beta*C
+matriz[0][0]=76.00000	matriz[0][1]=88.00000	matriz[0][2]=100.00000	matriz[0][3]=112.00000
+matriz[1][0]=218.00000	matriz[1][1]=252.00000	matriz[1][2]=286.00000	matriz[1][3]=320.00000
+matriz[2][0]=176.00000	matriz[2][1]=208.00000	matriz[2][2]=240.00000	matriz[2][3]=272.00000
+------------
+ 
