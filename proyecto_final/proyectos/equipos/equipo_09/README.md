@@ -51,3 +51,19 @@ Referencias
 [A. Buttari, J. Langou, J. Kurzak, J. Dongarra. A (2009). Class of Parallel Tiled Linear Algebra Algorithms for Multicore Architectures.](http://www.netlib.org/utk/people/JackDongarra/PAPERS/206_2009_A%20Class-of-Parallel-Tiled-Linear-Algebra-Algorithms-for-Multicore-Architectures.pdf)
 
 [A. Buttari, J. Langeou, J. Kurzak, J. Dongarra (2008). Parallel tiled QR factorization for multicore architectures.](https://drive.google.com/file/d/0BxMtevFKwTW_OW5wZVF5dFdiV2c/view)
+
+[Demmel, et al., Communication-avoiding parallel and sequential QR factorizations](http://bebop.cs.berkeley.edu/pubs/mhoemmen2008-tsqr-tech-report.pdf)
+
+[Eisenlohr, et al. (2008), QR Factorization in OpenMP and Cilk Plus: Development Experience and Performance Analysis ](https://www.tacc.utexas.edu/documents/13601/f4a6eba3-95ff-46b4-b180-7cbb90eda407)
+
+[Kurzak, J. y Dongarra, J. (2008), QR Factorization for the CELL Processor](https://www.researchgate.net/publication/237322338_QR_factorization_for_the_CELL_processor)
+
+[Palacios, M. (2001), Sistemas de ecuaciones lineales: métodos directos.](http://pcmap.unizar.es/~mpala/C_N_lecci/CN_1II2_SELdir.pdf)
+
+[Michailidis, P. y Margaritis, K. (2015), Scientific computations on multi-core systems using different programming frameworks](http://users.uom.gr/~pmichailidis/jpapers/jpaper015.pdf)
+
+[Granat, et al. (2009), A Novel Parallel QR Algorith for Hybrid Distributed Memory HPC Systems](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.297.638&rep=rep1&type=pdf)
+
+[Honecker, A. y Schüle, J. (2007) OpenMP Implementation of the Householder Reduction for Large Complex Hermitian Eigenvalue Problems](https://pdfs.semanticscholar.org/aea4/3bd940575642beb7a73deffad0079b315290.pdf)
+
+[Bova, S., (2001) et al. Parallel Programming with Message Passing and Directives](https://engineering.purdue.edu/paramnt/publications/MpiOmp01.pdf)

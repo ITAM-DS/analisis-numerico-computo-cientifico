@@ -49,6 +49,17 @@ Existe una biblioteca llamada **MAGMA** (Matrix Algebra for GPU and Multicore Ar
 
 Fernando:
 
+### Actividades de esta semana
+
+La factorización QR es una de las operaciones más importantes en la álgebra lineal, dando un método numéricamente estable para resolver sistemas de acuaciones lineales, incluso con sistemas sobredeterminados o subdeterminados. Sin emvargo, la implementación del código QR sufre de limitaciones debido a las operaciones matriz-vector en la fase de factorización por páneles. Buscaremos una implementación en la que se pueda paralelizar esta factorización. 
+
+Me enfoqué en buscar bibliografía de diversas implementaciones en paralelo de la factorización QR. 
+
+### Pendientes
+
++ Hacia la próxima semana buscaré sistematizar esta información y tenerla disponible para los documentos entregables.
++ Es necesario determinar cuál de los caminos para implementar QR elegiremos
+
 ### Equipo
 
 Definimos el plan de trabajo con la primera versión de las actividades a realizar, esta lista se puede actualizar conforme avancemos en el desarrollo del proyecto, también hicimos una revisión de las referencias. 
