@@ -136,9 +136,14 @@ Examen de C.
 
 Revisión de nota [II/2.4](https://www.dropbox.com/s/yjijtfuky3s5dfz/2.5.Compute_Unified_Device_Architecture.pdf?dl=0) hasta CUDA memories y levantamiento en AWS de una instancia con toolkit de CUDA instalado de acuerdo a [liga](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/CUDA/instalacion)
 
+## Clase 13
 
+9 de abril
 
+Finalizamos [II/2.4](https://www.dropbox.com/s/yjijtfuky3s5dfz/2.5.Compute_Unified_Device_Architecture.pdf?dl=0) y revisamos [instalación del CUDA toolkit en AWS](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/CUDA/instalacion) y ejemplos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/CUDA/ejemplos)
 
+Introducción a optimización, nota [IV/4.1](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
 
+Próxima clase (16 abril) examen de temas 2.2, 2.3, 2.4 y 2.5 (ir a la branch de [master](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master) para tener las preguntas)
 
 
