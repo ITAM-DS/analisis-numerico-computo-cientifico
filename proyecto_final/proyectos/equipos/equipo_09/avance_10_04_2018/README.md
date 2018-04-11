@@ -20,6 +20,15 @@ Integrantes
 
 Karen: 
 
+Con base en el plan de trabajo, realicé una revisión del tema con base en las [notas de clase](https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0) y el libro ["Matrix computations (cap 5)".](https://drive.google.com/file/d/0B5IJ1w6MjxegWGg4V1pDbFhaSzQ/view)  
+El método de factorización QR se busca: realizar la descomposición de una matriz ortogonal por una matriz triangular superior. Para realizar el cálculo existen tres caminos 
++ Ortogonalización Gram-Schmith 
++ Householder
++ Givens  
+
+Como lo menciona José García en su libro:  ["Desarrollo de herramientas para una programación eficiente"](https://books.google.com.mx/books?id=LjYCOk-bfqMC&pg=PA65&lpg=PA65&dq=househodler+eficiente&source=bl&ots=Ebxhr4_Jt5&sig=uLISVKsC0g1SusaEecurV0T3DhI&hl=es-419&sa=X&ved=0ahUKEwi7kLCco7HaAhUn0oMKHUzIA44Q6AEIKjAA#v=onepage&q&f=false) el método de Householder es el más eficiente en un ordenador secuencial debido a que es el más rápido de los tres.
+
+
 
 Miguel: 
 
