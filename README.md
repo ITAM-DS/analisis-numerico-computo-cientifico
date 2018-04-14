@@ -8,7 +8,7 @@ En la carpeta [C](C) encuentran:
 
 * Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [MPI](http://mpi-forum.org/), [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [openMP](http://www.openmp.org/), [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/). 
 
-Para información sobre el curso de Métodos Numéricos y Optimización impartido en ITAM, ir a la rama correspondiente de este repositorio y seleccionar la fecha de interés. Aquí el [temario](https://www.dropbox.com/s/je8py3q0623u7jk/TEMARIO_MNO.pdf?dl=0)
+Para información sobre el curso de Métodos Numéricos y Optimización impartido en ITAM, ir a la rama correspondiente de este repositorio y seleccionar la fecha de interés. Dar click [aquí](https://www.dropbox.com/s/je8py3q0623u7jk/TEMARIO_MNO.pdf?dl=0) para el temario.
 
 Índice de notas. Cada número contiene información del tema respectivo.
 
