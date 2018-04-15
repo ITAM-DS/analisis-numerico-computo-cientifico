@@ -100,7 +100,9 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 * [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
-4.3 [Teoría de convexidad.](https://www.dropbox.com/s/5g7uwg6274k2yyf/4.3.Teoria_de_convexidad.pdf?dl=0)
+4.3.1 [Teoría de convexidad: conjuntos convexos.](https://www.dropbox.com/s/ko86cce1olbtsbk/4.3.1.Teoria_de_convexidad_Conjuntos_convexos.pdf?dl=0)
+
+4.3.2 [Teoría de convexidad: funciones convexas.]
 
 4.4 [Dualidad.]
 
