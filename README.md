@@ -146,4 +146,12 @@ Introducción a optimización, nota [IV/4.1](https://www.dropbox.com/s/qb3swgkpa
 
 Próxima clase (16 abril) examen de temas 2.2, 2.3, 2.4 y 2.5 (ir a la branch de [master](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master) para tener las preguntas)
 
+## Clase 14
+
+14 de abril
+
+Finalizamos nota de introducción a optimización [IV/4.1](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
+
+Nota sobre problemas de optimización [IV/4.2](https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0) hasta problemas de clasificación.
+
 
