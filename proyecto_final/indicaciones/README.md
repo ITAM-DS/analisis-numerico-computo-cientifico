@@ -29,6 +29,8 @@ es un archivo de control para la lista de proyectos y sólo se actualiza y/o se 
 
 * **Ojo:** deben entregarse los 4 rubros: implementación, trabajo escrito, presentación y avances para que se considere válido el proyecto final. Si alguno de estos rubros no es entregado en tiempo y forma se tendrá 0 en el proyecto final.
 
+* **Ojo:** Dos ceros en un avance (sean seguidos o no) para una persona implica cero en el rubro de avances y cero en el proyecto final. No se aceptan entregas de avances en las fechas posteriores a las indicadas a continuación.
+
 *Fechas para reportes de avances en el proyecto:
 
 * 10 de abril.
