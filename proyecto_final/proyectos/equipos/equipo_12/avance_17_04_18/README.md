@@ -33,12 +33,14 @@ Por tal motivo es necesario generar un algoritmo que genere una semilla cada vez
 
 Un primer algoritmo que encontré es el que usa una combinación lineal de factores y calcula su módulo un entero primo p
 
-x0=seed
-xi= (a1xi-1 + a2xi-2 +... + anxi-n ) mod p
+$x0=seed$
+$xi= (a1xi-1 + a2xi-2 +... + anxi-n ) mod p$
 
 Sin embargo, este algoritmo depende en gran medida de los valores ai, n y el número primo p. Y que el máximo periodo antes de comenzar a identificar patrones es de pn-1, y eso considerando que se escogieron los valores correctos para garantizar este máximo periodo. Cabe destacar que este algoritmo, en un primer análisis, no es posible paralelizar ya que depende de valores calculados previamente. Pero encontré que puede servir como una nueva función “seed” que genere un “bloque de semillas” para algoritmos más complicados.
 
 La próxima semana terminaré de analizar otros algoritmos encontrados para plantear mis propuestas al equipo sobre los algoritmos a implementar.
+
+Los avances se pueden ver [aquí](https://github.com/oliab/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_17_04_18/codigo)
 
 
 Carlos:
