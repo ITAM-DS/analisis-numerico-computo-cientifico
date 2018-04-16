@@ -23,7 +23,7 @@ El archivo [README.md](../proyectos) debajo del nivel:
  `analisis-numerico-computo-cientifico/proyecto_final/proyectos/
 ` 
 
-es un archivo de control para la lista de proyectos y sólo se actualiza y/o se modifica por cada equipo con ligas hacia sus avances, trabajo escrito, presentación e implementación de su proyecto.
+es un archivo de control para la lista de proyectos y yo sólo lo actualizo/modifico con comentarios para sus avances, títulos y objetivos de su proyectos y ligas hacia sus avances, trabajo escrito, presentación e implementación de su proyecto.
 
 *Las ligas hacia el trabajo escrito y presentación son hacia otro lado (p.ej. una liga de dropbox en donde tienen `pdfs` o lo que utilicen para realizar esto) y no hacia directorios dentro del repositorio de la materia. Así evitamos tener archivos grandes en este repo :) y la liga hacia la implementación **sí** es al repo.
 
