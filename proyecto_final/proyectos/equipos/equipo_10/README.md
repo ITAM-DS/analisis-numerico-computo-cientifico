@@ -1,14 +1,11 @@
-Equipo 10
+## Equipo 10
 
 Integrantes:
 
-Rodrigo Cedeño 176576
+* Rodrigo Cedeño (176576)
+* Abraham Nieto (51556)
+* Roberto Acevedo (89750)
 
-Abraham Nieto 51556
+Título del proyecto `SVD para sistemas de recomendación`
 
-Roberto Acevedo 89750
-
-
-Título del proyecto: SVD
-
-Objetivo del proyecto: 
+Objetivo del Proyecto: `Desarrollar un algoritmo de sistemas de recomendación basado en descomposición SVD en paralelo` 
