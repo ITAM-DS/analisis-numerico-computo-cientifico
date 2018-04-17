@@ -1,9 +1,11 @@
-## Equipo 2
+# Equipo 2
+# `Tema del proyecto: Cholesky Factorization.
 
-### Integrantes:
+## Integrantes:
+```
+ +Alejandro Nivón Ruíz
+ +Uriel Miranda Miñón
+ +Héctor Adolfo Corro Zárate 
+```
 
-    +Alejandro Nivón Ruíz
-    +Uriel Miranda Miñón
-    +Héctor Adolfo Corro Zárate
-
-Tema del proyecto: Cholesky Factorization
+ - avance_17_04_2018
