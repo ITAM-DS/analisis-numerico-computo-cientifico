@@ -46,3 +46,4 @@ En este primer avance investigamos desde lo más básico que incluirá nuestro t
 
 ### NOTA: 
 Por recomendación de Erick cambiaremos a un tema de optimización visto en la clase de hoy por lo que esta entrega será la única que realizaremos de este tema. A partir de la segunda entrega el tema será otro y definiremos en el transcurso de la semana.
+Hemos creado un repositorio auxiliar para el trabajo escrito y otros avances que no serán agregados a este repo en https://github.com/lizsolisd/optimizacion_convexa_minimos_cuadrados
