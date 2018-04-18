@@ -80,7 +80,7 @@ Error relativo de la solución: 7.462953360883524e-09
 Para el caso de CUDA se utiliza una computadora con tarjeta NVIDIA GeForce 940MX con 2 Mb de memoria y 384 cores CUDA. 
 
 Para configurar el contenedor es necesario realizar la instalación del driver de CUDA en nuestro caso usamos la versión 
-384.111 del driver, adicionalmente se configura nvidia docker utilizando la url [Docker NVIDIA](https://github.com/NVIDIA/nvidia-docker). 
+384.111 del driver, adicionalmente se configura nvidia docker utilizando las indicaciones de la URL [Docker NVIDIA](https://github.com/NVIDIA/nvidia-docker). 
 
 ```
 ARG cuda_version=9.0
