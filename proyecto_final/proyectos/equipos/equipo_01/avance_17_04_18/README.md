@@ -29,7 +29,8 @@ Decidimos incluir otros métodos de búsqueda de línea aparte de SGD, como mét
 
 ### Nota:
 
-Los avances en el trabajo escrito mencionados se encuentran en: https://www.sharelatex.com/8622136819pgzgfyspbpgr
+Los avances en el trabajo escrito mencionados se encuentran en: 
+https://www.sharelatex.com/read/kbgxbypyfjvk
 
 
 
