@@ -37,10 +37,12 @@ de transformación de Householder del libro [Open CL in Action](https://livebook
 
 Fernando:
 
+He estado trabajando en sintetizar la información de la base teórica del algoritmo QR y los distintos enfoques para lograrlo. Estos constituirían los primeros apartados del documento final y servirán como referencia para el trabajo de programación.
+
 
 ### Equipo
 
-Definimos el plan de trabajo con la primera versión de las actividades a realizar, esta lista se puede actualizar conforme avancemos en el desarrollo del proyecto, también hicimos una revisión de las referencias. 
+Durante esta semana estuvimos distribuyendo el trabajo para abordar temas indispensables para la implementación: método de mínimos cuadrados, definición del ambiente de desarrollo generando dockerfiles con openmp y openmp-cuda. 
 
 
 
