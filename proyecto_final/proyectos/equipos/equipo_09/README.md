@@ -36,6 +36,7 @@ Calendario de entregas
 Entrega de Avances
 --------------------------------------------------
 En la carpeta [avance_10_04_2018](avance_10_04_2018) se encuentra el reporte del primer avance del proyecto.
+
 En la carpeta [avance_17_04_2018](avance_17_04_2018) se encuentra el reporte del segundo avande del proyecto.
 
 Referencias
