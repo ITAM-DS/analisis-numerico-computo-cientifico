@@ -1,3 +1,5 @@
+## Avance_17_04_18
+
 ### Equipo 1:
 
 * Daniel Sharp
@@ -6,12 +8,14 @@
 
 * Elizabeth Solis
 
-## Avance_17_04_18:
+
+
 
 - Elizabeth:
 
-Se realizó una investigación de mínimos cuadrados con la finalidad de dar un *overview* del proyecto y una base teórica del problema, lo cual fue plasamado en el escrito. Las referencias bibliográficas han sido incorporadas en el escrito. 
-Para un mejor entendimiento del problema de mínimos cuadrados fue implementado en C (la idea es que sea lo más didáctico y explícito posible), fue ejecutado con distintos valores y se encuentra en la carpeta de `código`. 
+Con base en lo comentarios de la semana pasada fueron eliminados los archivos pdf, Rmd y tex. Se han reorganizado las carpetas y eliminado todo lo referente al tema que descartamos de ordenamiento de arreglos.
+Se ha realizado una investigación de mínimos cuadrados con la finalidad de dar un *overview* del proyecto y una base teórica del problema, lo cual fue plasmado en el escrito. Las referencias bibliográficas han sido incorporadas en el escrito. 
+Para un mejor entendimiento del problema de mínimos cuadrados fue implementado en C (la idea es que sea lo más didáctico y explícito posible), fue ejecutado con distintos valores y se encuentra en la carpeta de `código`.
 
 - Daniel:
 
@@ -21,3 +25,11 @@ Con base en la investigación desarrollada la semana pasada, revisando los mater
  - Cristian:
 
 Decidimos incluir otros métodos de búsqueda de línea aparte de SGD, como métodos con probabilidades adaptativas y métodos de momentos adaptativos. Estos últimos incluyen a los algoritmos más utilizados en la actualidad, sobre todo en ML. Para este avance investigué sobre los distintos métodos de búsqueda de línea estocásticos para implementarlos. En particular, investigué sobre métodos con probabilidades adaptativas (AP-SGD en el escrito), ADAGrad, ADAM y AMSGrad. Luego de esta investigación redacté la sección “Métodos de optimización” en el escrito, que incluye una sección de notación, el algoritmo 1 (Métodos Generales de Búsqueda de Línea Estocásticos) y como se especifican todos los otros métodos a partir de este algoritmo general. La bibliografia consultada se encuentra en la seccion de Bibliografia en el escrito. Se intentará en un comienzo implementar SGD y ADAM, para luego pasar a AP-SGD y AMSGrad.
+
+
+### Nota:
+
+Los avances en el trabajo escrito mencionados se encuentran en: https://www.sharelatex.com/8622136819pgzgfyspbpgr
+
+
+
