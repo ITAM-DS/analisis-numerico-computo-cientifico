@@ -33,12 +33,14 @@ Se implementó el código en C de mínimos cuadrados: `min_cuadrados_basico.c`
 ### Compilación de programa
 
 En la consola se ejecuta la siguiente instrucción:
+
 `gcc min_cuadrados_basico.c -o min_cuadrados_basico.out -lm`
 
 ### Ejecución de programa
 
 Con la siguiente instrucción:
-`/min_cuadrados_basico.out`
+
+`./min_cuadrados_basico.out`
 
 ### Ejemplo de corrida
 
