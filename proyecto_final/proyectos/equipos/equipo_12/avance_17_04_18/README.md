@@ -57,7 +57,7 @@ Un algoritmo sencillo de implementar el el de recurrencia lineal módulo un núm
 
 El algoritmo previo, puede ser usado como una entrada a algoritmos que trabajen el paralelo, para esto es necesario incluir un proceso que se llama “Block Splitting” u otro de nombre “Leapfrogging”.
 
-Block Splitting consiste en generar una secuencia de números aleatorios y particionarla en bloques adyacentes tantos como procesos paralelos se vayan a ejecutar. Leapfrogging consiste en ir dando “saltos” en la secuencia, estos saltos deben ser del tamaño igual al número de proceso a ejecutar. El diagrama siguiente diagrama ilustra ambos procesos.
+Block Splitting consiste en generar una secuencia de números aleatorios y particionarla en bloques adyacentes tantos como procesos paralelos se vayan a ejecutar. Leapfrogging consiste en ir dando “saltos” en la secuencia, estos saltos deben ser del tamaño igual al número de proceso a ejecutar. El diagrama que se encuentra en la versión de la [liga](https://docs.google.com/document/d/1-bw1rVVeuS97q3tsk7enykFDidSMQHoIhXpq0bdsyZM/edit?usp=sharing) completa.
 
 
 
