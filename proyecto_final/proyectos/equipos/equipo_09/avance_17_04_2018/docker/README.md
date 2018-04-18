@@ -18,7 +18,7 @@ Integrantes
 
 Para el caso de **OpenMP** hice la configuración con la versión 
 
-`
+```
 FROM ubuntu:16.04
 
 LABEL maintainer="Equipo 9 MNO 2018"
@@ -37,14 +37,14 @@ RUN groupadd mno_user
 RUN useradd mno_user -g mno_user -m -s /bin/bash  
 RUN echo "mno_user ALL=(ALL:ALL) NOPASSWD:ALL" | (EDITOR="tee -a" visudo)
 RUN echo "mno_user:mno" | chpasswd
-`
+```
 [Dockerfile](OpenMP/Dockerfile)
 
 Para construir la imagen se debe ejecutar dentro de la carpeta OpenMP
 
-`
+```
 docker build -t mno_gcc . 
-`
+```
 
 [Script](OpenMP/construye.sh)
 
@@ -52,28 +52,28 @@ Probar la configuración:
 
 Para iniciar el contenedor se debe ejecutar:
 
-`
+```
 docker run -dit -v $PWD:/programas --name=mno_2018 mno_gcc  
-`
+```
 
 Para compilar un programa [trapecio.c](OpenMP/trapecio.c)
 
-`
+```
 docker exec -it mno_2018 gcc -Wall -fopenmp /programas/trapecio.c -o /programas/trapecio.out -lm
-`
+```
 
 Se ejecuta el programa: 
 
-`
+```
 docker exec -it mno_2018 /programas/trapecio.out 20
-`
+```
 
 El resultado es: 
 
-`
+```
 Integral de -1.000000 a 3.000000 = 1.971765762916818e+01
 Error relativo de la solución: 7.462953360883524e-09
-`
+```
 
 ## Configuración de ambiente CUDA
 
@@ -82,7 +82,7 @@ Para el caso de CUDA se utiliza una computadora con tarjeta NVIDIA GeForce 940MX
 Para configurar el contenedor es necesario realizar la instalación del driver de CUDA en nuestro caso usamos la versión 
 384.111 del driver, adicionalmente se configura nvidia docker utilizando la url [Docker NVIDIA](https://github.com/NVIDIA/nvidia-docker). 
 
-`
+```
 ARG cuda_version=9.0
 ARG cudnn_version=7
 FROM nvidia/cuda:${cuda_version}-cudnn${cudnn_version}-devel
@@ -109,27 +109,27 @@ RUN groupadd mno_user
 RUN useradd mno_user -g mno_user -m -s /bin/bash  
 RUN echo "mno_user ALL=(ALL:ALL) NOPASSWD:ALL" | (EDITOR="tee -a" visudo)
 RUN echo "mno_user:mno" | chpasswd
-`
+```
 [Dockerfile](CUDA/Dockerfile)
 
 Para el proyecto configuramos el contenedor con la versión de CUDA 9 y la versión 7 de Cudnn, estos valores se pueden ajustar desde los parámetros ARG en caso de ser requeridos, adicionalmente este contenedor tambien se puede utilizar para OpenMP.
 
 Para construir se debe ejecutar
 
-`
+```
 docker build -t mno_cuda_gcc . 
-`
+```
 
 [Script](CUDA/construye.sh)
 
 Para probar la instalación:
 
-`
+```
 nvidia-docker run --runtime=nvidia --rm mno_cuda_gcc nvidia-smi
-`
+```
 Con el resultado: 
 
-`
+```
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 384.111                Driver Version: 384.111                   |
 |-------------------------------+----------------------+----------------------+
@@ -145,26 +145,26 @@ Con el resultado:
 |  GPU       PID   Type   Process name                             Usage      |
 |=============================================================================|
 +-----------------------------------------------------------------------------+
-`
+```
 
 Verificamos la versión del compilador: 
 
-`
+```
 nvidia-docker run --runtime=nvidia --rm mno_cuda_gcc nvcc --version
-`
+```
 
 Con el resultado: 
 
-`
+```
 nvcc: NVIDIA (R) Cuda compiler driver
 Copyright (c) 2005-2017 NVIDIA Corporation
 Built on Fri_Sep__1_21:08:03_CDT_2017
 Cuda compilation tools, release 9.0, V9.0.176
-`
+```
 
 Probando el queryDevice tenemos el resultado con las caracteristicas de la tarjeta: 
 
-`
+```
  CUDA Device Query (Runtime API) version (CUDART static linking)
 
 Detected 1 CUDA Capable device(s)
@@ -204,31 +204,31 @@ Device 0: "GeForce 940MX"
 
 deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 9.0, CUDA Runtime Version = 9.0, NumDevs = 1, Device0 = GeForce 940MX
 Result = PASS
-`
+```
 
 Probamos compilar un programa 
 
 Iniciamos el contenedor 
 
-`
+```
 nvidia-docker run -dit -v $PWD:/programas  --name=mno_cuda_gpu  mno_cuda_gcc
-`
+```
 
 Compilamos:
 
-`
+```
 nvidia-docker exec -it mno_cuda_gpu nvcc /programas/suma_vectorial.cu -o suma_vectorial.out
-`
+```
 
 Ejecutamos:
 
-`
+```
 nvidia-docker exec -it mno_cuda_gpu  /programas/suma_vectorial.out 10
-`
+```
 
 Con resultado: 
 
-`
+```
 0+0 = 0
 1+1 = 2
 2+4 = 6
@@ -239,6 +239,6 @@ Con resultado:
 7+49 = 56
 8+64 = 72
 9+81 = 90
-`
+```
 
 
