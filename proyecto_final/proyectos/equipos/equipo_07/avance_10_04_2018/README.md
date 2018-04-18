@@ -2,9 +2,11 @@
 
 ## Integrantes:
 
-* Erick
+* David
 
-* Erica
+* Mirtha
+
+* Luis
 
 ## Trabajo:
 
