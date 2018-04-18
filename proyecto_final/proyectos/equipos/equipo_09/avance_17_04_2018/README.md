@@ -24,8 +24,7 @@ Karen:
 
 Miguel: 
 
-Realicé la configuración de los ambientes de trabajo usando contenedores de Docker, para el caso de openMP y otra configuración con CUDA, en la carpeta   
-[Docker](docker) se encuentran los archivos de configuración y la evidencia de la configuración. Adicionalmente revise la implementación del algoritmo 
+Realicé la configuración de los ambientes de trabajo usando contenedores de Docker, para el caso de openMP y otra configuración con CUDA, en la carpeta [Docker](docker) se encuentran los archivos de configuración y la evidencia de la configuración. Adicionalmente revise la implementación del algoritmo 
 de transformación de Householder del libro [Open CL in Action](https://livebook.manning.com/#!/book/opencl-in-action/chapter-12/156) capítulo 12, si bien la implementación está hecha en OpenCl se explica de manera clara como se implementa el algoritmo. 
 
 
