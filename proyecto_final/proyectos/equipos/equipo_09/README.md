@@ -26,9 +26,9 @@ Calendario de entregas
 | Fecha    | Descripción de actividades   |
 |:--------:|:---------------------------- |
 |10/04/18  | Integrar bibliografía y plan de trabajo|
-|17/04/18  | Investigar aplicaciones vía Householder y rotaciones Givens.|
-|24/04/08  | Comprender características y propiedades de las transformaciones. Iniciar programación secuencial de QR.|
-|02/05/18  | Concluir programación secuencial de QR |
+|17/04/18  | Investigar en qué consiste el método de mínimos cuadrados. Investigar aplicaciones vía Householder y rotaciones Givens. Definición del ambiente de desarrollo generando dockerfiles uno para openmp y otro openmp-cuda|
+|24/04/08  | Comprender características y propiedades de las transformaciones así como el método . Iniciar programación secuencial de QR en alguno de los ambientes.|
+|02/05/18  | Concluir programación secuencial de QR en el ambiente. |
 |08/05/18  | Conclusiones y comienzo de redación de trabajo escrito.|
 |15/05/18  | Trabajo escrito terminado. Elaborar presentación. |
 |22/05/18  | Integrar entregables (documento escrito, presentación, código)
@@ -37,7 +37,9 @@ Entrega de Avances
 --------------------------------------------------
 En la carpeta [avance_10_04_2018](avance_10_04_2018) se encuentra el reporte del primer avance del proyecto.
 
-En la carpeta [avance_17_04_2018](avance_17_04_2018) se encuentra el reporte del segundo avande del proyecto.
+En la carpeta [avance_17_04_2018](avance_17_04_2018) se encuentra el reporte del segundo avande del proyecto. Cabe mencionar que se realizó un ajuste en la aplicación (como se comentó en clase). Nos enfocaremos en resolver el problema de mínimos cuadrados a partir del ambiente de desarrollo generando dockerfiles uno para openmp y openmp-cuda (aún estamos por definir cuál emplearemos).
+
+Actualizamos nuestro calendario para tal efecto.
 
 Referencias
 --------------------------------------------------

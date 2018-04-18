@@ -20,7 +20,13 @@ Integrantes
 
 Karen: 
 
+Con base en el plan de trabajo, se revisó el tema de solución del problema de mínimos cuadrados, particularmente la porción 5.2 que aparece en el libro ["Matrix Methods in Data Mining and Pattern Recognition"](https://drive.google.com/file/d/0BxMtevFKwTW_aDE2Tjg1Zk1FbTQ/view)  
 
+El método de mínimos cuadrados es una técnica de análisis numérico que busca optimizar y encontrar una función continua dentro de una familia de funciones que se aproxime mejor a los datos, se busca obtener el mínimo error cuadrático.
+Por el lado de su implementación a partir de la Factorización por QR se parte de que Ax ≠ b para sistemas sobredeterminados (cuando se determinan los parámetros de un modelo mediante un ajuste a datos
+experimentales), la solución se obtiene minimizando la magnitud del vector "residual" definido como r = b - Ax
+de tal forma que se busca encontrar x minimizando la magnitud del vector residual (min ||Ax- b||2).
+En ese sentido, las transformaciones householder nos permiten reducir la matriz con el algoritmo QR pues se resuelve A = Q1R a partir de x = R-1Q1Tb de la forma Rx = Q1Tb 
 
 Miguel: 
 
