@@ -1,5 +1,5 @@
 
-El primer reporte con imagenes se puede ver en : https://docs.google.com/document/d/1-bw1rVVeuS97q3tsk7enykFDidSMQHoIhXpq0bdsyZM/edit
+El primer reporte con imagenes se puede ver en :https://docs.google.com/document/d/1-bw1rVVeuS97q3tsk7enykFDidSMQHoIhXpq0bdsyZM/edit?usp=sharing
 
 
 Reporte_1
