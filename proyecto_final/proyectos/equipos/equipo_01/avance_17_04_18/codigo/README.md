@@ -1,4 +1,4 @@
-## 1.Implementación de Descenso en Gradiente Secuencial  
+## 1.Implementación de Descenso en Gradiente Secuencial  - *Daniel*
 
 Ejemplo de Regresión Lineal utilizando los datos de Boston Housing  
 
@@ -10,23 +10,27 @@ En especifico, los archivos requeridos para ejecutar este programa se encuentran
 
 Para compilar el programa se ejecuta la siguiente instrucción en la consola:  
   
-* gcc -Wall descenso_gradiente_secuencial.c funciones.c -o programa.out -lblas -lm
+`gcc -Wall descenso_gradiente_secuencial.c funciones.c -o programa.out -lblas -lm`
 
 La ejecución del programa se hace de la siguiente forma:  
 
-* ./programa.out <renglones_entrenamiento> <columnas_entrenamiento> <renglones_validación> <columnas_validación> <iteraciones> <-tasa_aprendizaje> 
+`./programa.out <renglones_entrenamiento> <columnas_entrenamiento> <renglones_validación> <columnas_validación> <iteraciones> <-tasa_aprendizaje>` 
   
 Se encontró que los siguientes parámetros obtienen un buen resultado con estos datos, demostrando el aprendizaje del modelo de regresión y antes de sobreajustar:  
 
-* ./programa.out 222 14 111 14 25 -0.0002
+`./programa.out 222 14 111 14 25 -0.0002`
 
 
-## 2.Implementación de mínimos cuadrados en C
+
+
+
+
+## 2.Implementación de mínimos cuadrados en C - *Elizabeth*
 
 Se implementó el código en C de mínimos cuadrados: `min_cuadrados_basico.c`
 
 
-### Compilado de programa
+### Compilación de programa
 
 En la consola se ejecuta la siguiente instrucción:
 `gcc min_cuadrados_basico.c -o min_cuadrados_basico.out -lm`
