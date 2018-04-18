@@ -34,7 +34,6 @@ Realicé la configuración de los ambientes de trabajo usando contenedores de Do
 de transformación de Householder del libro [Open CL in Action](https://livebook.manning.com/#!/book/opencl-in-action/chapter-12/156) capítulo 12, si bien la implementación está hecha en OpenCL se explica de manera clara como se implementa el algoritmo. 
 
 
-
 Fernando:
 
 He estado trabajando en sintetizar la información de la base teórica del algoritmo QR y los distintos enfoques para lograrlo. Estos constituirían los primeros apartados del documento final y servirán como referencia para el trabajo de programación.
