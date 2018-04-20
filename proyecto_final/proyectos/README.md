@@ -42,9 +42,9 @@ Objetivo del proyecto: Paralelizar factorización QR
 
 ## [Equipo 4](equipos/equipo_04)
 
-Ttulo del proyecto: ``
+Ttulo del proyecto: `Reconocimiento de caras utilizando cómputo en paralelo.`
 
-Objetivo del proyecto: objetivo
+Objetivo del proyecto: El objetivo de nuestro proyecto es la construcción de un sistema de detección de rostros con la capacidad de obtener la identidad de los rostros dada una base de datos de imágenes.
 
 [Avances del proyecto](equipos/equipo_04):
 
@@ -160,9 +160,9 @@ Objetivo del proyecto: Implementación de un algoritmo para generar números ale
 
 ## [Equipo 13](equipos/equipo_13)
 
-Ttulo del proyecto: ``
+Ttulo del proyecto: `Cálculo del AUC`
 
-Objetivo del proyecto: objetivo
+Objetivo del proyecto: Implementación de un algoritmo para el cálculo del área bajo la curva (AUC) de forma paralela.
 
 [Avances del proyecto](equipos/equipo_13):
 
