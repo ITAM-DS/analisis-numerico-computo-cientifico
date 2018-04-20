@@ -154,4 +154,10 @@ Finalizamos nota de introducción a optimización [IV/4.1](https://www.dropbox.c
 
 Nota sobre problemas de optimización [IV/4.2](https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0) hasta problemas de clasificación.
 
+## Clase 15
 
+16 de abril
+
+Finalizamos nota sobre problemas de optimización [IV/4.2](https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0)
+
+Examen de temas 2.2, 2.3, 2.4 y 2.5
