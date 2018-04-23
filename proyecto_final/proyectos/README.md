@@ -158,7 +158,7 @@ Objetivo del proyecto: Implementar el algoritmo Dijkstra en C y su versión en p
 
 * [Avance 10-04-18](equipos/equipo_11/avance_10_04_18): Coloquen el formato pedido sus carpetas pues me es más difícil la revisión con formatos diferentes, es mejor normalizar vean [equipo_ejemplo](equipos/equipo_ejemplo). Gracias por su descripción de trabajo individual. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
-* [Avance 17-04-18](equipos/equipo_11/avance_17_04_18): Thalía y Lorena realicen más detalle de la lectura de sus referencias, pues es muy general su descripción después que han leído ambas el mismo artículo "A note on two problems connected with graphs", ¿quizás mencionando lo que han realizado directamente en el trabajo escrito?. Para las referencias de su proyecto después de estos dos avances ¿ya han decidido cuáles serán? Roberto, si añades output de la implementación estaría muy bien. Para el siguiente avance coloquen las referencias en su carpeta inicial.
+* [Avance 17-04-18](equipos/equipo_11/avance_17_04_18): Thalía y Lorena realicen más detalle de la lectura de sus referencias, pues es muy general su descripción en este avance después que han leído ambas el mismo artículo "A note on two problems connected with graphs", ¿quizás mencionando lo que han realizado directamente en el trabajo escrito? ¿quizás discusión? piensen en una forma de presentarme su trabajo. Para las referencias de su proyecto después de estos dos avances ¿han decidido cuáles serán? si es así coloquen las referencias en su carpeta inicial. Roberto  ¿ya funciona la implementación en python? ¿supongo que funciona para el grafo que está en el main?. Den más descripción de su trabajo individual, revisé lo que llevan de trabajo escrito para darme una idea de lo que Thalía y Lorena realizaron y revisé el código de Roberto para de igual forma tener esta idea de su trabajo, en este sentido facilitenme la lectura de lo que realizaron.
 
 ---
 
@@ -172,7 +172,7 @@ Objetivo del proyecto: Implementación de un algoritmo para generar números ale
 
 * [Avance 10-04-18](equipos/equipo_12/avance_10_04_18): No hay descripción, carpetas iniciales creadas, referencias. Nada que comentar.
 
-* [Avance 17-04-18](equipos/equipo_12/avance_17_04_18): El formato de despliegue de las referencias en su carpeta inicial no es legible. 
+* [Avance 17-04-18](equipos/equipo_12/avance_17_04_18): El formato de despliegue de las referencias en su carpeta inicial no es legible, arreglen esto. El trabajo consistirá en medir ¿eficiencia? ¿probar que es posible generar números pseudo-aleatorios con cómputo en paralelo? ¿realizar pruebas para el generador de números pseudo-aleatorios, en el sentido de calidad de los números obtenidos? Para el siguiente avance definan lo anterior y empiecen con el trabajo escrito y revisen implementaciones.
 
 
 ---
@@ -187,6 +187,7 @@ Objetivo del proyecto: Implementación de un algoritmo para el cálculo del áre
 
 * [Avance 10-04-18](equipos/equipo_13/avance_10_04_2018): Buen avance, gracias por su descripción individual. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
+* [Avance 17-04-18](equipos/equipo_13/avance_17_04_2018): Definan si realizarán una implementación en CUDA pues Alejandro menciona que no se ha hallado tal implementación al realizar una búsqueda. Esto tomen en cuenta pues el proyecto final no consiste en desarrollar algo nuevo, eso podría tomar más tiempo del estimado. Den oportunidad en la semana de buscar algo respecto a esto, si no encuentran opten por otra extensión a C. ¿Cómo ven la integración por MC? ¿viable, factible en tiempo y entregas? pues aquí se encuentran con generación de números pseudo aleatorios [equipo12](equipos/equipo_12)
 
 ---
 
@@ -200,7 +201,7 @@ Objetivo del proyecto: implementación de un algoritmo para la multiplicación d
 
 * [Avance 10-04-18](equipos/equipo_14/avance_10_04_2018): Buen avance, gracias por la descripción individual. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
-
+* [Avance 17-04-18](equipos/equipo_14/avance_17_04_2018): Revisen el libro de P. Pacheco, parallel programming with MPI para la multiplicación de matrices. 
 
 
 
