@@ -2,7 +2,7 @@
 
 Después de reunirnos, discutir las opciones que teniamos para resolver nuestro problema (MPI u OpenMP) y definir que el enfoque que tomaremos es el de OpenMP,
 revisé los códigos de multiplicación de matrices que vimos en la tarea6 y, utilizando los archivos definiciones.h y funciones.c,
-dediqué el avance a la programación del [código](Código) secuencial para la multiplicación de matrices. Para poder utilizar este código es necesario
+dediqué el avance a la programación del [Código](https://github.com/patricio-hdz/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_14/C%C3%B3digo) secuencial para la multiplicación de matrices. Para poder utilizar este código es necesario
 tener las matrices a multiplicar A y B en archivos de texto plano.
 
 
@@ -10,7 +10,7 @@ tener las matrices a multiplicar A y B en archivos de texto plano.
 
 Como menciona Alex, una vez que definimos utilizar el efoque de openMP y comenzamos a planear los próximos avances y debido a que 
 queremos hacer muchos comparativos para mostrar la mejora que se tiene con la paralelización, notamos que será necesario generar muchas
-matrices de prueba por lo que desarrollé el [código](Código) para esto.
+matrices de prueba por lo que desarrollé el [Código](https://github.com/patricio-hdz/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_14/C%C3%B3digo) para esto.
 
 ## Equipo
 Definimos la metodología final que utilizaremos para la paralelización: paralelización de tareas entre los cores. Comenzamos a desarrollar la 
