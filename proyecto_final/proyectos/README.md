@@ -12,6 +12,8 @@ Objetivo del proyecto: objetivo
 
 * [Avance 10-04-18](equipos/equipo_01/avance_10_04_18): Ok con el cambio de tema. Añadan md's para que directamente pueda leerlos de la página de github y borren los Rmd's, .tex o html's, esos no los suban al repo xfa. Detallen el trabajo individual para el siguiente avance y califique a cada persona (está bien que hayan puesto el trabajo en equipo). Coloquen en su carpeta inicial las referencias (vean el [equipo_ejemplo](equipos/equipo_ejemplo)). Escriban el objetivo de su proyecto (vean el [equipo_ejemplo](equipos/equipo_ejemplo)).
 
+* [Avance 17-04-18](equipos/equipo_02/avance_17_04_18): Super con su avance tanto en trabajo como en código. ¿Liz los datos son los mismos que usó Daniel para el programa `min_cuadrados_basico.c? me parece que no pero podrías documentar qué datos, dimensiones se usan para este programa? si deseas en el mismo código o en la sección de [aquí](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_01/avance_17_04_18/codigo) o [aquí](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_01/avance_17_04_18) porque me quedó duda las dimensiones de tus datos y al final se obtiene un polinomio de grado 2 y ¿eso lo usarán para comparar?. Bien Daniel con tu trabajo. Cristian en la sección de Métodos de optimización del trabajo ¿podrías detallar el uso del operador de proyección? ¿qué ganancia se tiene el utilizar tal operador?
+
 
 ---
 
@@ -25,6 +27,9 @@ Objetivo del proyecto: objetivo
 
 * [Avance 10-04-18](equipos/equipo_02/avance_10_04_18): No suban html's, Rmd's. xfa borren el .html. No hay avance entonces no tengo qué calificar :( faltan carpetas, referencias (vean el [equipo_ejemplo](equipos/equipo_ejemplo)). Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
+* [Avance 17-04-2018](equipos/equipo_02/avance_17_04_2018): Bien sus referencias, los autores Dongarra y Demmel son de los más importantes en cuestión del álgebra lineal numérica. Coloquen las referencias que usarán para su proyecto en su carpeta inicial y también su implementación. LAPACK tiene la factorización de Cholesky pueden revisarla, está bien que hayan buscado otra implementación pero aprovechen lo que vieron en las tareas, en las notas que encuentran en el repo (tema 3, cómputo matricial) también está descrita tal factorización en una forma con tres fors (como tienen [aquí](https://github.com/alexnivi/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_02/avance_17_04_2018/implementacion/choleskyEjemplo.c)) y en una forma block-wise, está basado en el libro de matrix computations de Golub y Van Loan, Héctor y Uriel me parece que este libro les ayudará también. Revisen SCALAPACK. El año pasado un equipo implementó Cholesky en CUDA, también pueden revisar esto para su siguiente avance. Di click a las referencias y me llevó a una página de dropbox que me pedía iniciar sesión. Remuevan el README.html de su carpeta inicial xfa.
+
+
 ---
 
 ## [Equipo 3](equipos/equipo_03)
@@ -37,6 +42,7 @@ Objetivo del proyecto: Paralelizar factorización QR
 
 * [Avance 10-04-18](equipos/equipo_03/avance_10_04_2018): [referencia QR en Map Reduce](https://arxiv.org/abs/1301.1071).  Buen avance, gracias por el detalle de cada uno. [Aquí] referencias para la factorización QR en paralelo. El [equipo9](equipos/equipo_09) también revisa QR, debemos definir qué hará cada equipo. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas). Di click en dropbox y me pide iniciar sesión.
 
+* [Avance 17-04-18](equipos/equipo_03/avance_17_04_2018): Para implementación de QR pueden revisar las notas de cómputo matricial del repo (tema 3) que están basadas en el libro de matrix computations de Golub y Van Loan y la factorización QR está implementada en LAPACK, pueden usarla. Revisen de igual forma SCALAPACK. Por su descripción Map Reduce podrían considerarlo en otro tiempo, ahora dediquen esfuerzos para la QR. Realicen una implementación para el siguiente avance (puede ser lo de LAPACK que les mencionaba).
 
 ---
 
@@ -50,6 +56,7 @@ Objetivo del proyecto: El objetivo de nuestro proyecto es la construcción de un
 
 * [Avance 10-04-18](equipos/equipo_04/avance_10_04_18): Entrega tarde avance.
 
+* [Avance 17-04-2018](equipos/equipo_04/avance_17_04_2018): Pueden usar algo ya implementado para su objetivo y realizar un trabajo descriptivo, es decir, qué método(s) se utilizó(aron), la teoría, el problema de optimización que se resuelve. Me parece la parte de computación está resuelta. Las referencias que colocan en su carpeta inicial son aquellas que les ayudan a realizar su proyecto, no es necesario que escriban cada modelo/método que existe en CV para el reconocimiento de caras.
 
 ---
 
@@ -63,6 +70,7 @@ Objetivo del proyecto: Encontrar la distribución óptima de las actividades req
 
 * [Avance 10-04-18](equipos/equipo_05/avance_10_04_18): Coloquen la estructura del [equipo_ejemplo](equipos/equipo_ejemplo) en su README.md y añadan referencias en este, así me facilita la revisión. Escriban los avances/problemas que están enfrentando y el trabajo que realizaron para los mismos en sus carpetas de avances. Les puede ayudar la referencia: CUDA Programming de Shane Cook, 2013. Aunque es clara la presentación preferiría un formato que no tenga que descargar a mi máquina y usar pptx (den un link y remuevan el .pptx del repo) :). El nombre de su carpeta es "equipo_05", cambien el nombre "equipo_Paco_Miguel". Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
+* [Avance 17-04-18](equipos/equipo_05/avance_17_04_18): No hay avance para esta entrega :(
 
 
 ---
@@ -75,8 +83,9 @@ Objetivo del proyecto: Paralelizar en GPU un algoritmo de Hit & Run definido por
 
 [Avances del proyecto](equipos/equipo_6):
 
-* [Avance 10-04-18](equipos/equipo_6/avance_10_04_2018): Buen avance, bien sus referencias. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-2018](equipos/equipo_6/avance_10_04_2018): Buen avance, bien sus referencias. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
+* [Avance 17-04-2018](equipos/equipo_6/avance_17_04_2018): Pueden usar funciones de LAPACK para calcular funciones sencillas como el de la norma. Buena idea utilizar lo ya hecho como lo de lpsolve. Podrían empezar a realizar el inicio de su trabajo escrito para el próximo avance.
 
 
 ---
