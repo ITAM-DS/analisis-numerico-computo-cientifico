@@ -12,7 +12,7 @@ Objetivo del proyecto: objetivo
 
 * [Avance 10-04-18](equipos/equipo_01/avance_10_04_18): Ok con el cambio de tema. Añadan md's para que directamente pueda leerlos de la página de github y borren los Rmd's, .tex o html's, esos no los suban al repo xfa. Detallen el trabajo individual para el siguiente avance y califique a cada persona (está bien que hayan puesto el trabajo en equipo). Coloquen en su carpeta inicial las referencias (vean el [equipo_ejemplo](equipos/equipo_ejemplo)). Escriban el objetivo de su proyecto (vean el [equipo_ejemplo](equipos/equipo_ejemplo)).
 
-* [Avance 17-04-18](equipos/equipo_02/avance_17_04_18): Super con su avance tanto en trabajo como en código. ¿Liz los datos son los mismos que usó Daniel para el programa `min_cuadrados_basico.c? me parece que no pero podrías documentar qué datos, dimensiones se usan para este programa? si deseas en el mismo código o en la sección de [aquí](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_01/avance_17_04_18/codigo) o [aquí](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_01/avance_17_04_18) porque me quedó duda las dimensiones de tus datos y al final se obtiene un polinomio de grado 2 y ¿eso lo usarán para comparar?. Bien Daniel con tu trabajo. Cristian en la sección de Métodos de optimización del trabajo ¿podrías detallar el uso del operador de proyección? ¿qué ganancia se tiene el utilizar tal operador?
+* [Avance 17-04-18](equipos/equipo_02/avance_17_04_18): Super con su avance tanto en trabajo como en código. ¿Liz los datos son los mismos que usó Daniel para el programa `min_cuadrados_basico.c`? me parece que no pero podrías documentar qué datos, dimensiones se usan para este programa? si deseas en el mismo código o en la sección de [aquí](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_01/avance_17_04_18/codigo) o [aquí](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_01/avance_17_04_18) porque me quedó duda las dimensiones de tus datos y al final se obtiene un polinomio de grado 2 y ¿eso lo usarán para comparar?. Bien Daniel con tu trabajo. Cristian en la sección de Métodos de optimización del trabajo ¿podrías detallar el uso del operador de proyección? ¿qué ganancia se tiene el utilizar tal operador?
 
 
 ---
@@ -100,6 +100,8 @@ Objetivo del proyecto: Implementar el análisis de componenetes principales a un
 
 * [Avance 10-04-18](equipos/equipo_7/avance_10_04_2018): Enmarquen el objetivo, ahora es muy general (esto se ve con el título también). Modifiquen la sección Integrantes del README del avance. Luis mejor si colocas los títulos de tus referencias en lugar de escribir la palabra referencia muchas veces (después de dar click en la última olvidé cuál era la tercera). Me parece que su enfoque es googlear algo relacionado con PCA y cómputo en paralelo, si bien es una forma de buscar me parece que una persona termina con mucha literatura y no se tiene algo concreto, creo que deberían iniciar con un problema y objetivo a resolver. Ahora tenemos: map-reduce, CUDA, Gram Schmidt, hyperspectral images, Face recognition, iterative PCA, dimensionality reduction y dicen que en dos semanas les tomará implementar los algoritmos ¿? (perdonen pero creo que si no tienen el objetivo o título definidos es muy aventurado dar una fecha). Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
+* [Avance 17-04-18](equipos/equipo_7/avance_17_04_2018): Bien en su avance. ¿Han hablado con el equipo 10?. Una vez tengan las referencias que les ayudará a su proyecto coloquen las mismas en la carpeta inicial de su equipo.
+
 
 ---
 
@@ -114,6 +116,8 @@ Objetivo del proyecto: objetivo
 * [Avance 10-04-18](equipos/equipo_8/avance_10_04_18): No coloquen html's pues son pesados, si quieren den una liga o pueden poner un md en lugar de esto. Falta crear carpetas correspondientes. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas). ¿Tienen ligas a sus referencias? pregunto para que sea más fácil el acceso a ellas.
 
 
+* [Avance 17-04-18](equipos/equipo_8/avance_17_04_18): Quiten el archivo Avance_10_04_2018.html en su carpeta inicial. Entiendo pero es difícil de leer: $$ \frac{\partial \pi_{i} }{\partial q_{i}} = (q_{1}+q_{2})^{-\frac{1}{n}} - \frac{1}{n}(q_{1}+q_{2})^{\frac{-1}{\eta - 1}}q_{i}-c_{i}q_{i}=0$$ ¿hay una mejor forma de desplegar esto? quizás en su trabajo escrito?. Está bien los artículos que escribe Mónica pero detalla más (y hablas de un tercero pero ¿cuál es? ¿el de Quoc et. al que está en su página de inicio de referencias), aquí hay un clásico de métodos numéricos para optimización: Numerical optimization de Nocedal & Wright. ¿Para el próximo avance tienen contemplado uso de funciones/librerías hechas en C? Para el siguiente avance finalicen la revisión de literatura y comiencen con el trabajo escrito.
+
 ---
 
 ## [Equipo 9](equipos/equipo_09)
@@ -126,6 +130,7 @@ Objetivo del proyecto: Implementar el algoritmo QR para el lenguaje de programac
 
 * [Avance 10-04-18](equipos/equipo_09/avance_10_04_2018): su carpeta tiene el año 2017, cambien esto. Buen avance, gracias por el detalle de cada uno. [Aquí] referencias para la factorización QR en paralelo. El [equipo3](equipos/equipo_03) también revisa QR, debemos definir qué hará cada equipo.
 
+* [Avance 17-04-18](equipos/equipo_09/avance_17_04_2018): ¿pudieron hablar con el equipo3?  Fernando, el avance anterior mencionas la búsqueda de implementaciones en paralelo de QR, para este avance no haces mención a esto y es general la descripción de tu trabajo individual. Para el siguiente avance comiencen con el trabajo escrito y finalicen la lectura de literatura.
 
 ---
 
@@ -137,8 +142,9 @@ Objetivo del proyecto: Desarrollar un algoritmo de sistemas de recomendación ba
 
 [Avances del proyecto](equipos/equipo_10):
 
-* [Avance 10-04-18](equipos/equipo_10/avance_10_04_2018): Buen avance, gracias por la descripción individual. [Aquí] referencias para la SVD en paralelo. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-18](equipos/equipo_10/Avance_10_04_18): Buen avance, gracias por la descripción individual. [Aquí] referencias para la SVD en paralelo. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
+* [Avance 17-04-18](equipos/equipo_10/Avance_17_04_18): Bien en su avance. Escriban la referencia  de lo que utiliza cuSolver o MAGMA para la SVD (una liga, un párrafo) y que apoye lo que mencionan que en cuSolver una forma es con el método de Jacobi. ¿Entonces será la SVD con CUDA? Puede ser un trabajo que utilice lo ya realizado en código y se haga una descripción/investigación de lo que detrás está realizando las funciones.
 
 ---
 
@@ -150,8 +156,9 @@ Objetivo del proyecto: Implementar el algoritmo Dijkstra en C y su versión en p
 
 [Avances del proyecto](equipos/equipo_11):
 
-* [Avance 10-04-18](equipos/equipo_11/avance_10_04_2018): Coloquen el formato pedido sus carpetas pues me es más difícil la revisión con formatos diferentes, es mejor normalizar vean [equipo_ejemplo](equipos/equipo_ejemplo). Gracias por su descripción de trabajo individual. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-18](equipos/equipo_11/avance_10_04_18): Coloquen el formato pedido sus carpetas pues me es más difícil la revisión con formatos diferentes, es mejor normalizar vean [equipo_ejemplo](equipos/equipo_ejemplo). Gracias por su descripción de trabajo individual. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
+* [Avance 17-04-18](equipos/equipo_11/avance_17_04_18): Thalía y Lorena realicen más detalle de la lectura de sus referencias, pues es muy general su descripción después que han leído ambas el mismo artículo "A note on two problems connected with graphs", ¿quizás mencionando lo que han realizado directamente en el trabajo escrito?. Para las referencias de su proyecto después de estos dos avances ¿ya han decidido cuáles serán? Roberto, si añades output de la implementación estaría muy bien. Para el siguiente avance coloquen las referencias en su carpeta inicial.
 
 ---
 
@@ -164,6 +171,9 @@ Objetivo del proyecto: Implementación de un algoritmo para generar números ale
 [Avances del proyecto](equipos/equipo_12):
 
 * [Avance 10-04-18](equipos/equipo_12/avance_10_04_18): No hay descripción, carpetas iniciales creadas, referencias. Nada que comentar.
+
+* [Avance 17-04-18](equipos/equipo_12/avance_17_04_18): El formato de despliegue de las referencias en su carpeta inicial no es legible. 
+
 
 ---
 
