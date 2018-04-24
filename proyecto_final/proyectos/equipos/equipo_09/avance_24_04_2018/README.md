@@ -1,4 +1,4 @@
-# Avance_17_04_2018
+# Avance_24_04_2018
 
 Equipo 9 
 =================================================
@@ -25,7 +25,7 @@ Miguel:
 
 En este avance trabajé en la implementación de la factorización utilizando CUDA, para hacerlo utilicé la biblioteca cuSolver, de acuerdo a la pruebas la mayor parte del tiempo de ejecución se encuentra en copiar la memoria del host al device y del host al device, por lo que prefentemente haremos la mayor cantidad de operaciones en el device y sólo hasta mostrar los resultados mover la memoria del device al host. Para la siguiente entrega voy a trabajar en que las matrices de entrada se lean desde un archivo para mayor flexibilidad en la ejecución y no tener que compilar para cada cambio de matrices, en imprimir las matrices en formato de renglón, actualmente está como column major, adicionalmente en la siguiente entrega trabajaré en la implementación de mínimos cuadrados usando la factorización QR. 
 
-Para compilar el programa use el contenedor de docker configurado en la entrega pasada, ejecutando: 
+Para compilar el programa usé el contenedor de docker configurado en la entrega pasada, ejecutando: 
 
 Iniciar el contenedor: 
 
