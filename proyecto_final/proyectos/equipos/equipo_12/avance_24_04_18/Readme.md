@@ -42,7 +42,7 @@ El **ciclo** de nuestra primer cadena de números aleatorios es igual a **22**, 
 - Observamos que después de 22 números generados el ciclo se repite.
 - La siguiente cadena contiene poco más de 50 números por lo que vemos que el ciclo se repite dos veces.
 
-![Imagen1](https://www.dropbox.com/s/s90ssfih3qzbaxp/imagen1.png?dl=0)
+![Imagen1](https://drive.google.com/uc?id=1AkgF9fjCJFVf-uZCmXuoqX3lF_ES6IzG)
 
 
 Ahora, vamos a generar una segunda cadena con los siguientes parámetros: *m = 1034*,  *a = 5*, *c = 45* y *X_0 = 7*.
@@ -50,11 +50,11 @@ Ahora, vamos a generar una segunda cadena con los siguientes parámetros: *m = 1
 - Observamos que después de 230 números generados la cadena se repite.
 - La siguiente cadena contiene poco más de 500 números por lo que vemos que el ciclo se repite dos veces.
 
-![Imagen2](https://www.dropbox.com/s/340oic18qkjgp2w/imagen2.png?dl=1)
+![Imagen2](https://drive.google.com/uc?id=)
 
 Finalmente, probamos una tercer cadena con parámetros definidos por el estándar **Turbo Pascal** para generar números aletorios, en esta caso, los parámetros son *m = 4,294,967,296*,  *a = 1,664,525*, *c = 1,013,904,223* y *X_0 = 234*.
 
-![Imagen3](https://www.dropbox.com/s/2e8gxrdk5kjbn2x/imagen3.png?dl=1)
+![Imagen3](https://drive.google.com/uc?id=)
 
 En esta última cadena generamos 15,000 números aletorios y nunca encontramos un número repetidos por lo que la longitud del ciclo es de, al menos, 15,000. A diferencia de las dos primeras cadenas observamos que todos los parámetros son mucho más grandes, en particular recordemos que los parámetros *a*, *c* y *X_0* son menores que *m* por lo que aumentan su magnitud permite más "libertad" al algoritmo para generar más números antes de repetirse.
 
