@@ -154,8 +154,10 @@ ejecutar las pruebas de las secuencias que generemos con los algoritmos.
 Los detalles teóricos están en la siguiente
 [liga](https://docs.google.com/document/d/1m4rcsfr39bRoOpqFL8m2_KiRlr2V5CiEmb05Ot9pEYA/edit?usp=sharing)
 
-Para la siguiente entrega las tareas que tenemos son: - Oliab: Generar
-secuencias con la librería que encontró - Carlos y Victor: Plantear el
+Para la siguiente entrega las tareas que tenemos son: 
+- Oliab: Generar
+secuencias con la librería que encontró 
+- Carlos y Victor: Plantear el
 problema de optimización para la longitud de la secuencia
 
 
