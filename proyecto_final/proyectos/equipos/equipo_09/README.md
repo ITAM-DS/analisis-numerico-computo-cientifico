@@ -1,6 +1,6 @@
 Equipo 9 
 =================================================
-**Título del proyecto:** Factorización QR
+**Título del proyecto:** Mínimos Cuadrados usando la Factorización QR y CUDA
 
 **Objetivo del proyecto:** Implementar el algoritmo QR para el lenguaje de programación C bajo un enforque de programación en paralelo
 
@@ -38,6 +38,9 @@ Entrega de Avances
 En la carpeta [avance_10_04_2018](avance_10_04_2018) se encuentra el reporte del primer avance del proyecto.
 
 En la carpeta [avance_17_04_2018](avance_17_04_2018) se encuentra el reporte del segundo avande del proyecto. Cabe mencionar que se realizó un ajuste en la aplicación (como se comentó en clase). Nos enfocaremos en resolver el problema de mínimos cuadrados a partir del ambiente de desarrollo generando dockerfiles uno para openmp y openmp-cuda (aún estamos por definir cuál emplearemos).
+
+En la carpeta [avance_24_04_2018](avance_24_04_2018) se encuentra el reporte del tercer avande del proyecto.
+
 
 Actualizamos nuestro calendario para tal efecto.
 
