@@ -21,14 +21,14 @@ Debido al potencial del tema y al límite de tiempo que tenemos para entregarlo,
 
 Referencias del proyecto:
 
-https://www.technologyreview.com/s/418445/first-evidence-that-quantum-processes-generate-truly-random-numbers/
-http://spie.org/newsroom/1698-the-physical-generation-of-true-random-numbers?SSO=1
-https://www.jstor.org/stable/1403789?seq=1#page_scan_tab_contents
-https://drive.google.com/file/d/1fK1bZdFn-54UFPEcSqmK_HLUkNKs6PYq/view?usp=sharing
-https://drive.google.com/file/d/1IEET1OyJZUHnxMIlTDFxZ5Ze7xwO6psU/view?usp=sharing
-https://drive.google.com/file/d/1B0weDqK0e9lf42qsYG8lSKes45bgWXSR/view?usp=sharing
-https://drive.google.com/file/d/18KJhCW6M_xOX4a3m426qALqDOFoW2z-a/view?usp=sharing
-https://drive.google.com/file/d/1dvK-WCaEfB9cUOSLe-sDuGnNwh72d3Cd/view?usp=sharing
-https://drive.google.com/file/d/1ZRB5hHGVeSQ-3d9ud57LgWpMJw8DTOtB/view?usp=sharing
+https://www.technologyreview.com/s/418445/first-evidence-that-quantum-processes-generate-truly-random-numbers/  
+http://spie.org/newsroom/1698-the-physical-generation-of-true-random-numbers?SSO=1  
+https://www.jstor.org/stable/1403789?seq=1#page_scan_tab_contents  
+https://drive.google.com/file/d/1fK1bZdFn-54UFPEcSqmK_HLUkNKs6PYq/view?usp=sharing  
+https://drive.google.com/file/d/1IEET1OyJZUHnxMIlTDFxZ5Ze7xwO6psU/view?usp=sharing  
+https://drive.google.com/file/d/1B0weDqK0e9lf42qsYG8lSKes45bgWXSR/view?usp=sharing  
+https://drive.google.com/file/d/18KJhCW6M_xOX4a3m426qALqDOFoW2z-a/view?usp=sharing  
+https://drive.google.com/file/d/1dvK-WCaEfB9cUOSLe-sDuGnNwh72d3Cd/view?usp=sharing  
+https://drive.google.com/file/d/1ZRB5hHGVeSQ-3d9ud57LgWpMJw8DTOtB/view?usp=sharing  
 
 
