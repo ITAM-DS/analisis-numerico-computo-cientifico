@@ -167,4 +167,4 @@ Examen de temas 2.2, 2.3, 2.4 y 2.5
 
 23 de abril
 
-Cubrimos nota teoría de convexidad: conjuntos convexos [IV/4.3.1](https://www.dropbox.com/s/ko86cce1olbtsbk/4.3.1.Teoria_de_convexidad_Conjuntos_convexos.pdf?dl=0) y llegamos hasta ejemplos de funciones convexas de nota teoría de convexidad: funciones convexas[IV/4.3.2](https://www.dropbox.com/s/mmd1uzvwhdwsyiu/4.3.2.Teoria_de_convexidad_Funciones_convexas.pdf?dl=0)
+Cubrimos nota teoría de convexidad: conjuntos convexos [IV/4.3.1](https://www.dropbox.com/s/ko86cce1olbtsbk/4.3.1.Teoria_de_convexidad_Conjuntos_convexos.pdf?dl=0) y llegamos hasta ejemplos de funciones convexas de nota teoría de convexidad: funciones convexas [IV/4.3.2](https://www.dropbox.com/s/mmd1uzvwhdwsyiu/4.3.2.Teoria_de_convexidad_Funciones_convexas.pdf?dl=0)
