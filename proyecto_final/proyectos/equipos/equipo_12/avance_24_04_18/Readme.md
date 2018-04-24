@@ -10,7 +10,7 @@ output: md_document
 - Carlos Castro Correa 103531
 - Víctor Augusto Samayoa Donado 175750
 
-###Introducción del avance 3
+### Introducción del avance 3
 
 Durante esta semana hemos continuado con la investigación de diversos algoritmos congruenciales para la generación de cadenas de número pseudo-aleatorios; en esta etapa, podemos destacar la importancia de algunas caracterísitcas importantes al simularlos:
 
@@ -21,17 +21,18 @@ Durante esta semana hemos continuado con la investigación de diversos algoritmo
 
 En las siguientes secciones vamos a utilizar los términos mencionados anteriormente para facilitar las explicación y el avance de la semana.
 
-###Método congruencial.
+### Método congruencial.
 
 El método congruencial consiste en una de las opciones disponibles para la generación de números aleatorios, se trata de uno de los algoritmos más sencillos, fáciles de comprender e implementar. Una de las ventajas de este método es que una vez que sus parámetros son definidos, el ciclo de la cadena es fijo y siempre es el mismo, esto representa una característica deseable a la hora de reproducir experimentos o investigación. 
 
 Esta técnica consiste en un algoritmo que produce una secuencia de número pseudo-aletorios generados a partir de una ecuación lineal. El algoritmo está definido por la siguiente relación de recurrencia, restricciones y variables:
 
-- <img src="https://latex.codecogs.com/gif.latex?X_{n+1} = (aX_n + c)\text { mod } m " /> 
-- <img src="https://latex.codecogs.com/gif.latex?m, 0 < m " /> 
-- <img src="https://latex.codecogs.com/gif.latex?a, 0 < a < m " /> 
-- <img src="https://latex.codecogs.com/gif.latex?c, 0 \leq c < m " /> 
-- <img src="https://latex.codecogs.com/gif.latex?X_0, 0 \leq X_0 < m " /> 
+$X_{n+1} = (aX_n + c)$ mod $m$  
+
+$m$, 0 $< m$.  
+$a$, 0 $< a < m$.  
+$c$, 0 $\leq c < m$.  
+$X_0$, 0 $\leq X_0 < m$.
 
 
 Para este trabajo, programamos una primer rutina del método congruencial en C (adjuntamos la rutina en nuestro reposotorio como **metodo_congruencial.C**); para una prueba inicial, utilizaremos los siguientes parámetros: *m = 67*,  *a = 3*, *c = 4* y *X_0 = 2* y las siguientes observaciones:
@@ -49,11 +50,11 @@ Ahora, vamos a generar una segunda cadena con los siguientes parámetros: *m = 1
 - Observamos que después de 230 números generados la cadena se repite.
 - La siguiente cadena contiene poco más de 500 números por lo que vemos que el ciclo se repite dos veces.
 
-![Imagen2](https://www.dropbox.com/s/340oic18qkjgp2w/imagen2.png?dl=0)
+![Imagen2](https://www.dropbox.com/s/340oic18qkjgp2w/imagen2.png?dl=1)
 
 Finalmente, probamos una tercer cadena con parámetros definidos por el estándar **Turbo Pascal** para generar números aletorios, en esta caso, los parámetros son *m = 4,294,967,296*,  *a = 1,664,525*, *c = 1,013,904,223* y *X_0 = 234*.
 
-![Imagen3](https://www.dropbox.com/s/2e8gxrdk5kjbn2x/imagen3.png?dl=0)
+![Imagen3](https://www.dropbox.com/s/2e8gxrdk5kjbn2x/imagen3.png?dl=1)
 
 En esta última cadena generamos 15,000 números aletorios y nunca encontramos un número repetidos por lo que la longitud del ciclo es de, al menos, 15,000. A diferencia de las dos primeras cadenas observamos que todos los parámetros son mucho más grandes, en particular recordemos que los parámetros *a*, *c* y *X_0* son menores que *m* por lo que aumentan su magnitud permite más "libertad" al algoritmo para generar más números antes de repetirse.
 
@@ -87,8 +88,9 @@ Para esto, se hizo un algoritmo que calcula la frecuencia (y la probabilidad) de
 Se llegó a la conclusion de usar la batería de pruebas del NIST se pueda descargar de este [link](https://csrc.nist.gov/projects/random-bit-generation/documentation-and-software), y el artículo que explica su funcionamiento es el [2]. En particular, el capítulo 5 da las instrucciones sobre cómo instalar el programa. En estos momentos ya contamos con el programa compilado y listo para ejecutar las pruebas de las secuencias que generemos con los algoritmos. Los detalles teóricos están en la siguiente [liga](https://docs.google.com/document/d/1m4rcsfr39bRoOpqFL8m2_KiRlr2V5CiEmb05Ot9pEYA/edit?usp=sharing)
 
 
-
-
+Para la siguiente entrega las tareas que tenemos son:
+- Oliab: Generar secuencias con la librería que encontró
+- Carlos y Victor: Plantear el problema de optimización para la longitud de la secuencia
 
 
 
