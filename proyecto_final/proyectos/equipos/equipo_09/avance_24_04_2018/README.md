@@ -20,10 +20,15 @@ Integrantes
 
 Karen: 
 
+Durante esta semana inicié con la redacción del [trabajo escrito](https://drive.google.com/drive/folders/1qdO82g4tMUY4IvcM4a0dw17bH8PqgW85) a partir del material que como equipo hemos reunido.  
+Por otro lado, leí el artículo: [Parallel tiled QR factorization
+for multicore architectures](https://drive.google.com/file/d/0BxMtevFKwTW_OW5wZVF5dFdiV2c/view) que detalla los diferentes métodos para paralelizar.  
+El artículo comienza con una introducción sobre los cambios que se han realizado en los últimos 20 años (considerando su fecha de publicación en 2008) donde los fabricantes de micropocesadores han sido impulsados por la necesidad de tasas de rendimiento más altas. 
+Se menciona también la importancia de las bibliotecas de software LAPACK y ScaLAPACK que  representan un estándar cuando se requiere realizar cálculos de álgebra lineal de alto rendimiento; estos existen para arquitecturas de memoria compartida y memoria distribuida. Para efectos de este trabajo, emplearemos una modificación de la rutina DGEQRFP de lapack. 
  
 Miguel: 
 
-En este avance trabajé en la implementación de la factorización utilizando CUDA, para hacerlo utilicé la biblioteca cuSolver, de acuerdo a la pruebas la mayor parte del tiempo de ejecución se encuentra en copiar la memoria del host al device y del host al device, por lo que prefentemente haremos la mayor cantidad de operaciones en el device y sólo hasta mostrar los resultados mover la memoria del device al host. Para la siguiente entrega voy a trabajar en que las matrices de entrada se lean desde un archivo para mayor flexibilidad en la ejecución y no tener que compilar para cada cambio de matrices, en imprimir las matrices en formato de renglón, actualmente está como column major, adicionalmente en la siguiente entrega trabajaré en la implementación de mínimos cuadrados usando la factorización QR. 
+En este avance trabajé en la implementación de la factorización utilizando CUDA, para hacerlo utilicé la biblioteca cuSolver, de acuerdo a las pruebas la mayor parte del tiempo de ejecución se encuentra en copiar la memoria del host al device y del device al host, por lo que prefentemente haremos la mayor cantidad de operaciones en el device y sólo hasta mostrar los resultados mover la memoria del device al host. Para la siguiente entrega voy a trabajar en que las matrices de entrada se lean desde un archivo para mayor flexibilidad en la ejecución y no tener que compilar para cada cambio de matrices, en imprimir las matrices en formato de renglón, actualmente está como column major, adicionalmente en la siguiente entrega trabajaré en la implementación de mínimos cuadrados usando la factorización QR. 
 
 Para compilar el programa usé el contenedor de docker configurado en la entrega pasada, ejecutando: 
 

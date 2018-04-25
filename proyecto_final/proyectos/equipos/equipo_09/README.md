@@ -39,10 +39,10 @@ En la carpeta [avance_10_04_2018](avance_10_04_2018) se encuentra el reporte del
 
 En la carpeta [avance_17_04_2018](avance_17_04_2018) se encuentra el reporte del segundo avande del proyecto. Cabe mencionar que se realizó un ajuste en la aplicación (como se comentó en clase). Nos enfocaremos en resolver el problema de mínimos cuadrados a partir del ambiente de desarrollo generando dockerfiles uno para openmp y openmp-cuda (aún estamos por definir cuál emplearemos).
 
-En la carpeta [avance_24_04_2018](avance_24_04_2018) se encuentra el reporte del tercer avande del proyecto.
-
-
 Actualizamos nuestro calendario para tal efecto.
+
+En la carpeta [avance_24_04_2018](avance_24_04_2018) se encuentra el reporte del tercer avance del proyecto.
+
 
 Referencias
 --------------------------------------------------
