@@ -28,7 +28,7 @@ Se menciona también la importancia de las bibliotecas de software LAPACK y ScaL
  
 Miguel: 
 
-En este avance trabajé en la implementación de la factorización utilizando CUDA, para hacerlo utilicé la biblioteca cuSolver, de acuerdo a las pruebas la mayor parte del tiempo de ejecución se encuentra en copiar la memoria del host al device y del device al host, por lo que prefentemente haremos la mayor cantidad de operaciones en el device y sólo hasta mostrar los resultados mover la memoria del device al host. Para la siguiente entrega voy a trabajar en que las matrices de entrada se lean desde un archivo para mayor flexibilidad en la ejecución y no tener que compilar para cada cambio de matrices, en imprimir las matrices en formato de renglón, actualmente está como column major, adicionalmente en la siguiente entrega trabajaré en la implementación de mínimos cuadrados usando la factorización QR. 
+En este avance trabajé en la implementación de la factorización utilizando CUDA, para hacerlo utilicé la biblioteca cuSolver, de acuerdo a las pruebas la mayor parte del tiempo de ejecución se encuentra en copiar la memoria del host al device y del device al host, por lo que preferentemente haremos la mayor cantidad de operaciones en el device y sólo hasta mostrar los resultados mover la memoria del device al host. Para la siguiente entrega voy a trabajar en que las matrices de entrada se lean desde un archivo para mayor flexibilidad en la ejecución y no tener que compilar para cada cambio de matrices, en imprimir las matrices en formato de renglón, actualmente está como column major, adicionalmente en la siguiente entrega trabajaré en la implementación de mínimos cuadrados usando la factorización QR. 
 
 Para compilar el programa usé el contenedor de docker configurado en la entrega pasada, ejecutando: 
 
@@ -38,7 +38,7 @@ Iniciar el contenedor:
 nvidia-docker run -dit -v $PWD:/programas  --name=mno_cuda_gpu  mno_cuda_gcc
 ```
 
-Para compilar me conecte al contenedor: 
+Para compilar me conecté al contenedor: 
 
 ```
 nvidia-docker exec -it mno_cuda_gpu /bin/bash
@@ -89,6 +89,9 @@ Es importante que si se compila el programa sin el contenedor se debe utilizar l
 
 
 Fernando:
+
+Esta semana me dediqué a compilar la información del fundamento teórico detrás de la factorización QR, el algoritmo QR y los tres mecanismos que se emplean de forma común para resolver ambos. El resultado es el texto que vinculo [liga](documentos/documento.rmd)
+
 
 
 ### Equipo

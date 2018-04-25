@@ -1,0 +1,153 @@
+---
+title: Una aplicación de la descomposición QR implementado en paralelo a través de CUDA para el problema de mínimos
+  cuadrados
+author: " "
+date: "17 de abril de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Objetivos
+
+Implementar el algoritmo QR para el lenguaje de programación C bajo un enforque de programación en paralelo.
+
+## 2. Algoritmo QR
+
+### 2.1 Generalidades
+
+El Algoritmo QR es un algoritmo usado en álgebra lineal para el cálculo de valores y vectores propios de una matriz.
+
+Se basa en la descomposición QR, desarrollada en la década de 1950 por John G.F. Francis (Reino Unido) y Vera N. Kublanovskaya (URSS), de forma independiente. Esto es, usa la oportunidad de representar cualquier matriz regular $A$ en forma de producto de $A=QR$ de una matriz ortogonal $Q$ por una matriz triangular superior $R$. La idea básica es usar dicha descomposición para reescribir la matriz como el producto de una matriz ortogonal y una matriz triangular superior. Si se multiplica a la inversa, la matriz resultante sigue teniendo los mismos valores propios e iterando se puede llegar a una matriz que los contenga en la diagonal.
+
+### 2.2 El algoritmo QR
+
+Se alterna entre computar factores QR y revertir su orden, de la siguiente forma:
+
+1. Se inicia con $A_1= A\in \Re^{nxn}$.
+
+2. Luego se factoriza: $A_1=Q_1R_1$
+
+3. Se fija:            $A_2=R_1Q_1$
+
+4. Se factoriza:       $A_2=Q_2R_2$
+
+5. Se fija:            $A_3=R_2Q_2$
+
+Y así en adelante...
+
+En general, $A_{k+1}=R_kQ_k$, en los que $R_k$ y $Q_k$ son los factores $QR$ de $A_k$.
+
+Si $P_k = Q_1Q_2Q_3...Q_k$, entonces cada $P_k$ es una matriz ortogonal tal que:
+
+$P_1^TAP_1=Q_1^TQ_1R_1Q_1=A_2$
+
+$P_2^TAP_2=Q_2^TQ_1A_1Q_1Q_2=Q_2^TA_2Q_2=A_3$
+
+De tal forma que:
+
+$P_k^TAP_k=A_{k+1}$
+
+Es decir, $A_1,A_2,A_3,A_4,...$ son ortogonalmente similares a $A$ y entonces $ \sigma (A_k)=\sigma (A)$ para toda $k$.
+
+Si el proceso converge, entonces $\lim_{k\to\infty}A_k=R$ que es una matriz triangular superior con los eigenvalores de $A$ como valores en su diagonal.
+
+Si $P_k \to P$, entonces:
+
+$Q_k=P_{k-1}^TP_k \to P^TP=I$ y $R_k = A_{k+1}Q_k^T \to RI=R$
+
+De tal forma que:
+
+$\lim_{k\to\infty}A_k=\lim_{k\to\infty}Q_kR_k =R$
+
+Que es una matriz diagonal superior con valores en su diagonal iguales a los eigenvalores de $A$.
+
+### 2.3 Tres caminos para resolver este problema
+
+En general, la matriz $A$ busca ser transformada a una matriz Hessenberg superior para reducir el costo computacional. Para lograr esto, se proponen tres caminos distintos (Higham, 2002): 
+
+#### 2.3.1 Gram-Schmidt
+
+Es un algoritmo que secuencialmente ortogonaliza las columnas de la matriz A. Se trata del proceso más antiguo y más descrito en los libros de texto.
+
+Se deriva de la ecuación $A=QR$ en la que $A,Q \in \Re^{m \times n}$ y $R \in \Re^{n \times n}$. Sea $a_j$ y $q_j$ las j-ésimas columnas de A y Q:
+
+$a_j=\sum_{k=1}^{j} r_{kj}q_k$
+
+Si se premultiplica por $q_i^T$, se obtiene, dado que $Q$ tiene columnas ortonormales, $q_i^Ta_j=r_{ij}$, $i=1:j-1$. Entonces,
+
+$q_j=q_j'/r_{jj}$
+
+En donde,
+
+$q_j'=a_j-\sum^{j-1}_{k=1}r_{kj}q_k$, $r_{jj}= ||q_j'||_2$
+
+Así podemos calcular $Q$ y $R$ una columna a la vez. Pera asegurarnos que $r_{jj}>0$, se requiere que $A$ sea de rango completo.
+
+El número de operaciones para una factorización QR usando el método de Gram-Schmidt es $2mn^2$ flops para una matriz de $m \times n$ 
+
+#### 2.3.2 Rotaciones Givens
+
+Suelen preferirse cuando la matriz A tiene una estructura esparza, tal como una banda o una estructura Hessenberg.
+
+Una rotación Givens $G(i,j,\theta)\in\Re^{n\times n}$ es igual a la matriz identidad, excepto por:
+
+$G([i,j],[i,j])=\begin{bmatrix} c & s \\ -s & c \end{bmatrix}$
+
+Donde $c= cos\theta$ y $s=sen\theta$. La multiplicación $y=G(i,j,\theta)x$ rota a x en $\theta$ radianes en sentido de las manecillas del reloj en el plano $(i,j)$. Algebraicamente esto significa:
+
+$y_k= x_k$ para $k \neq i,j$
+
+$y_k= cx_i+sx_j$ para $k = i$
+
+$y_k= -sx_i+cx_j$ para $k = j$
+
+Y entonces $y_j=0$ si
+
+$s= \frac{x_j}{\sqrt{x_i^2+x_j^2}}$, y $c= \frac{x_i}{\sqrt{x_i^2+x_j^2}}$
+
+De esta forma, a través de rotaciones Givens, podemos introducir ceros en un vector uno a uno.
+
+El número de operaciones para una factorización QR usando el método de rotaciones de Givens de una matriz $m \times n$ (para $m > n$) es $3n^2(m-n/2)$ flops, que es más de 50% que para una factorización usando el método Householder.
+
+### 2.3.3 Transformaciones Householder
+
+Son las preferidas para la factorización QR. Se desarrolló para computar la factorización QR con menos operaciones aritméticas (especialmente raíces cuadradas) que en las rotaciones Givens.
+
+Una matriz Householder es una matriz con la forma:
+
+$P=I-\frac{2}{v^Tv}vv^T$, $0 \neq v \in \Re^n$
+
+Tiene sumetría, ortogonalidad, de tal forma que $P^2=I$. Cuando multiplicamos $P$ por un vector:
+
+$Px=x- \bigg( \frac{2v^Tx}{v^Tv}\bigg)v$
+
+Estas matrices son de gran utilidad para introducir ceros en vectores. Dado que $P$ es ortogonal, si requerimos que para una $x$ y $y$ determinadas, si se establece que $||x||_2=||y||_2$ entonces podemos encontrar una matriz $P$ tal que $Px=y$. 
+
+El costo computacional de una reducción Householder a una forma triangular es $2n^2(m-n/3)$ flops.
+
+#### 2.3.4 Discusión
+
+En general, el método de Householder es considerado el más eficiente en cómputo secuencial debido a que es más rápido. Esto, debido a que cada rotación solo modifica dos columnas y que es posible intercambiar el orden de las rotaciones. Asimismo, en una implementación basada en Householder, hay una mayor fracción de operaciones BLAS nivel 2 que nivel 1, lo que hace que sea más sencilla de optimizar en una computadora de uso común. 
+
+Las rotaciones de Givens consumen bastante memoria cuando se trabaja en una matriz densa y grande. Si uno quiere reducir una matriz a su forma Hessenberg superior entonces para cada elemento debajo de la subdiagonal será necesario hacer un producto matriz. Si uno quisiera reducir una matriz de 1 millón x un millón, este tipo de operaciones pueden costar demasiado esfuerzo computacional. El método de Householder es más sencillo porque primero reduce una columna entera y luego se centra en un solo elemento.
+
+## 3. Implementación para cómputo en paralelo
+
+
+
+## Referencias:
+
+http://www.math.usm.edu/lambers/mat610/sum10/lecture9.pdf 
+https://mathoverflow.net/questions/227543/why-householder-reflection-is-better-than-givens-rotation-in-dense-linear-algebr 
+https://blogs.mathworks.com/cleve/2016/07/25/compare-gram-schmidt-and-householder-orthogonalization-algorithms/
+http://persson.berkeley.edu/18.335/lec6handout6pp.pdf
+http://www.math.usm.edu/lambers/mat610/sum10/lecture9.pdf
+https://courses.engr.illinois.edu/cs554/fa2013/notes/11_qr.pdf
+http://www.math.ubbcluj.ro/~tradu/nlalgslides/lec3b_HouseGivens.pdf 
+http://www.cimat.mx/~joaquin/mn11/clase13.pdf 
+https://math.dartmouth.edu/~m116w17/Householder.pdf 
+
+Higham (2002, Nicholas J., Accuracy and Stability of Numerical Algorithms, Society for Industrial and Applied Mathematics, University of Manchester, Manchester, England.
