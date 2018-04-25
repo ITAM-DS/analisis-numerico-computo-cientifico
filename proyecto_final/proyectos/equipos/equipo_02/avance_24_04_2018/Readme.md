@@ -37,7 +37,7 @@ Se incluye en implementación un ejemplo simple del filtro de Kalman en C.
 La factoriación de Cholesky entra en elmomento de procesar y calcular la matriz inversa de la matriz de varianzas-covarianza para la función de logverosimilitud que va a optimizarse después de la iteración de Kalman con las estimaciones posteriores.
 
 Algo de la literatura recomendada para el filtro de Kalman:
-(introduction to random signals and applied kalman filtering pdf)[https://wp.kntu.ac.ir/ghaffari/Advanced%20Control-II-2017/Introduction_to_Random_Signals_and_Applied_Kalman_Filtering-4th_edition.pdf]
+[introduction to random signals and applied kalman filtering pdf](https://wp.kntu.ac.ir/ghaffari/Advanced%20Control-II-2017/Introduction_to_Random_Signals_and_Applied_Kalman_Filtering-4th_edition.pdf)
 
 la cual ilustra perfectamente el uso del Filtro para procesamiento de señales y da algunas nociones básicas de procesos estocásticos para ser manipulados mediante el filtro.
 
