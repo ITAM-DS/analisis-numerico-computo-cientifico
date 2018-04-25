@@ -11,6 +11,8 @@ En la carpeta [avance_10_04_2018](avance_10_04_2018) se encuentra el reporte del
 
 Al comenzar a desarrollar la implementación nos dimos cuenta que hay bastas opciones para atacar este tema, por lo que propusimos un plan de trabajo para evitar aislarnos a una sóla opción, esto se encuentra en la carpeta [avance_17_04_2018](avance_17_04_2018).
 
+Hemos definido el alcance completo del proyecto y tenemos los primeros scripts de la implementación, se puede consultar un resumen de lo anterior en [avance_24_04_2018](avance_24_04_2018).
+
 Referencias del proyecto:
 
 * http://www.hpcc.unn.ru/mskurs/ENG/PPT/pp08.pdf
