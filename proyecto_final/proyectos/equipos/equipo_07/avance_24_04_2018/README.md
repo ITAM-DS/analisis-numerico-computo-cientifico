@@ -1,10 +1,10 @@
 # Equipo 7
 
-Luis Federico Puente
-David Rivera 
-Mirtha Ayala
+  * Luis Federico Puente
+  * David Rivera 
+  * Mirtha Ayala
 
-24 de Abril de 2018
+# 24 de Abril de 2018
 
 En esta etapa comenzamos a trabajar en equipo dado que iniciaremos con la implementación del proyecto en C.
 
@@ -19,11 +19,11 @@ La implementación que incluimos en esta entrega, corresponde a la lectura de un
 
 Adicional, identificamos los pasos siguientes tales como el escalamiento/normalización de las variables (xi -  x_barra/des est), para ello implementamos los pasos necesarios para calcular el promedio de cada variable. En la siguiente entrega concluiremos el proceso de escalamiento y comenzaremos con la descomposición de la matriz en valores singulares, cuyos pasos mapeamos a continuación:
 
-El primer paso es hacer los datos).
-Identificar las var resp y las x's y separar la matriz de variables X y vector Y.
-Calcular la matriz de varianzas y covarianzas de X1 vs X2 (variance-covariance matrix).
-Posteriormente se resuelve el sistema de ecuaciones para encontrar los eigenvalores y eigenvectores.
-En seguida se realizan algunas operaciones con matrices para expresar las matrices de la descomposición.
+  * El primer paso es hacer los datos.
+  * Identificar las var resp y las x's y separar la matriz de variables X y vector Y.
+  * Calcular la matriz de varianzas y covarianzas de X1 vs X2 (variance-covariance matrix).
+  * Posteriormente se resuelve el sistema de ecuaciones para encontrar los eigenvalores y eigenvectores.
+  * En seguida se realizan algunas operaciones con matrices para expresar las matrices de la descomposición.
 
 # Instrucciones para compilacion del programa
  
