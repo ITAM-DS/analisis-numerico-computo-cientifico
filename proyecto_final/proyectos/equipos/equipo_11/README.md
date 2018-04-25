@@ -25,9 +25,9 @@ Las actividades se irán actualizando con los objetivos semana a semana.
 | 5 |  8 de Mayo |||
 
 
-#Bibliografía
+# Bibliografía
 
-##Semana 2
+## Semana 2
 
 Dijkstra, E. W. (1959). "A note on two problems in connexion with graphs". *Numerische Mathematik* 1: 269–271. doi: 10.1007/BF01386390 (http://www-m3.ma.tum.de/foswiki/pub/MN0506/WebHome/dijkstra.pdf).
 
@@ -35,5 +35,5 @@ Misa, Thomas, ed. 2010. "An Interview with Edsger W. Dijkstra". *Communications 
 
 Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2009), “Introduction to algorithms”. Chapter 24.
 
-##Semana 3
+# Semana 3
 Pacheco, Peter. 2011. An introduction to parallel programming. Massachussetts: Elsevier (http://instructor.sdu.edu.kz/~andrey/CSS%20314%20Parallel%20Computing/An%20Introduction%20to%20Parallel%20Programming.pdf)
