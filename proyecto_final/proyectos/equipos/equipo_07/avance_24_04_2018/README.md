@@ -28,18 +28,18 @@ En seguida se realizan algunas operaciones con matrices para expresar las matric
 # Instrucciones para compilacion del programa
  
   Nuestro programa depende en el compilador gcc y la herramienta make. Para compilar el
-  programa debe ejecutar:
+  programa debe ejecutarse el siguiente comando:
  
   ```
     make build
   ````
-  Para borrar los programas compilados debe ejecutar los siguientes comandos:
+  Para borrar los programas compilados debe ejecutarse el siguientes comando:
 
   ```
     make clean
   ```
  
-# Instrucciones para ejecutar el program
+# Instrucciones para ejecutar el programa
 
   ```
     ./pca
