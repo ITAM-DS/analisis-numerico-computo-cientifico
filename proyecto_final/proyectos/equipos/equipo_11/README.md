@@ -33,7 +33,7 @@ Dijkstra, E. W. (1959). "A note on two problems in connexion with graphs". *Nume
 
 Misa, Thomas, ed. 2010. "An Interview with Edsger W. Dijkstra". *Communications of the ACM* 53(8): 41-47. Agosto de 2010. (https://cacm.acm.org/magazines/2010/8/96632-an-interview-with-edsger-w-dijkstra/fulltext#PageTop)
 
-Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2009), “Introduction to algorithms”. Chapter 24.
+Cormen, Thomas H.; Leiserson, Charles E.; Rivest, Ronald L.; Stein, Clifford (2009), “Introduction to algorithms”. Third edition. Chapter 24.(https://drive.google.com/drive/u/0/folders/1W-WJZURh7QZXKTHlkiomsqiasEUOW_jF)
 
 # Semana 3
 Pacheco, Peter. 2011. An introduction to parallel programming. Massachussetts: Elsevier (http://instructor.sdu.edu.kz/~andrey/CSS%20314%20Parallel%20Computing/An%20Introduction%20to%20Parallel%20Programming.pdf)
