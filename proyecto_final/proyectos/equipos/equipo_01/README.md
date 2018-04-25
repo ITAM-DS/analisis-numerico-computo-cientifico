@@ -8,5 +8,5 @@ Integrantes:
 
 * Elizabeth Solis
 
-Título del proyecto: `Ordenamiento de elementos en un arreglo`
+Título del proyecto: `Implementación de método de optimización convexa con mínimos cuadrados, a través de descenso en gradiente estocástico`  
 
