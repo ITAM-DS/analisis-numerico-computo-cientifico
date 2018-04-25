@@ -1,0 +1,72 @@
+fuente: http://www.netlib.org/lapack/explore-html/d1/d54/group__double__blas__level3_gaeda3cbd99c8fb834a60a6412878226e1.html#gaeda3cbd99c8fb834a60a6412878226e1
+
+------------------------------------------------------------------------------
+1.-   dgemv: Realiza operaciones matriciales de dos tipos:
+y := alpha*A*x + beta*y, ó  y := alpha*A'*x + beta*y
+Con alpha & beta estalares, x & y vectores, y A matriz.
+
+Prototipo de dgemv:
+dgemv 	( 	character  	TRANS,
+   integer  	M,
+   integer  	N,
+   double precision  	ALPHA,
+   double precision, dimension(lda,*)  	A,
+   integer  	LDA,
+   double precision, dimension(*)  	X,
+   integer  	INCX,
+   double precision  	BETA,
+   double precision, dimension(*)  	Y,
+   integer  	INCY
+ )
+
+
+------------------------------------------------------------------------------
+4.- Gracias a funciones y definiciones. EN definiciones se recorre de manera column major:
+#define entrada(arreglo,i,j) ((arreglo)->arr[j*m+i]) //almacenamos column major
+ De esta forma la matriz que se genera con el struct es column major. En cada algoritmo se agrega
+ el header correspondiente. Para el trick de la pregunta 7, se define funciones2 y definiciones2.
+
+------------------------------------------------------------------------------
+5.- Prototipo de dgemm:
+
+dgemm 	( 	character  	TRANSA,
+		character  	TRANSB,
+		integer  	M,
+		integer  	N,
+		integer  	K,
+		double precision  	ALPHA,
+		double precision, dimension(lda,*)  	A,
+		integer  	LDA,
+		double precision, dimension(ldb,*)  	B,
+		integer  	LDB,
+		double precision  	BETA,
+		double precision, dimension(ldc,*)  	C,
+		integer  	LDC
+	)
+ Salida : Matriz C
+
+  DGEMM  performs one of the matrix-matrix operations
+
+     C := alpha*op( A )*op( B ) + beta*C,
+
+  where  op( X ) is one of
+
+     op( X ) = X   or   op( X ) = X**T,
+
+  alpha and beta are scalars, and A, B and C are matrices, with op( A )
+  an m by k matrix,  op( B )  a  k by n matrix and  C an m by n matrix.
+
+------------------------------------------------------------------------------
+7.- Podemos observar que la diferencia es como se define la matriz:
+
+#define entrada(arreglo,i,j) ((arreglo)->arr[j*m+i]) //almacenamos column major
+dgemm_("No transpose", "No transpose", &M, &N, &K, &ALPHA, entradas(A), &M, entradas(B), &K, &BETA, entradas(C), &M);
+
+                              vs
+
+#define entrada(arreglo,i,j) ((arreglo)->arr[i*n+j]) //almacenamos row major
+dgemm_("No transpose", "No transpose", &N, &M, &K, &ALPHA, entradas(B), &N, entradas(A), &K, &BETA, entradas(C), &N);
+
+Funciona pues se realiza una multiplicación equivalente en la que se intercambian A y B, y M con N, y al definirlo row major es equivalente
+a realizar las operaciones de manera transpuesta (A*B)' = B'*A' & A*B= (B'*A')'. Los escalares no son afectados por transponer. De tal manera que se esta realizando
+esta operación en el trick, pues se intercambiaron los lugares de A y B con M & N intercambiados, y la matriz definida por i*n+j, equivale a realizar la operación de matrices transpuestas y volverlas a transponer.

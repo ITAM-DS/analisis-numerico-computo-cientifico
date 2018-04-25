@@ -24,7 +24,8 @@ Si lo ejecutas para salir del programa utiliza `ctrl + c`.
     c = getchar();
 ```
 
-antes del while y hacer el llamado a getchar en la condición del while.
+antes del while y hacer el llamado a getchar en la condición del while de modo
+que el programa realice lo mismo.
 
 3) Utiliza `getchar` para escribir un programa que cuente el número de caracteres dado un `stdin` e imprima este número. Al dar enter (salto de línea) el programa termina. Por ejemplo:
 
