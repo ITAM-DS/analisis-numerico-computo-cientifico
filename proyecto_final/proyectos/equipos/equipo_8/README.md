@@ -13,6 +13,10 @@ Objetivo del proyecto: Implementar el método de descenso en gradiente para enco
 Avances:
 + [10 de abril de 2018](avance_10_04_18/entrega1_1.md): definimos el problema a resolver. Primero buscamos encontrar soluciones de Stackelberg, pero es un problema demasiado complicado como para resolverlo en tan poco tiempo. Entonces fue que nos decidimos por encontrar máximos en el juego de Cournot y, además, nos adentramos en la literatura del tema.
 + [17 de abril de 2018](avance_17_04_18/segunda_entrega.md): continuó la revisión de la literatura y, además, se hicieron las primeras implementaciones tanto en R como en Python.
++ [24 de abril de 2018](avance_24_04_18/): se empezó con la elaboración del trabajo escrito. Específicamente:
+  * Luis Fernando Cantú: escribió una parte de modelo de competencia de Cournot en el capítulo de revisión de la literatura y también el capítulo en el que se describe el modelo.
+  * Mónica Vargas González: añadió la introducción, el objetivo y una descripción general de Cournot en el capítulo de revisión de la literatura.
+  * Eduardo Hidalgo García: escribió la explicación del algoritmo de descenso por gradiente, el contexto teórico sobre su uso y su aplicación a problemas con funciones objetivos doblemente diferenciables y continuas.
 
 Referencias:
 
