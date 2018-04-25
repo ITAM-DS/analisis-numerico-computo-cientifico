@@ -14,3 +14,7 @@ Roberto:lectura para la sección de software paralelo, la lectura enfatiza la ne
 
 La bibliografía para las lecturas fue:
 Pacheco, Peter. 2011. *An introduction to parallel programming*. Massachussetts: Elsevier (http://instructor.sdu.edu.kz/~andrey/CSS%20314%20Parallel%20Computing/An%20Introduction%20to%20Parallel%20Programming.pdf)
+
+
+Link al drive del trabajo:
+https://drive.google.com/drive/u/0/folders/1ktdmi_lLQ891fWLHCqm2vzFAKxFxW06k
