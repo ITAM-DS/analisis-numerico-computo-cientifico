@@ -90,7 +90,7 @@ Es importante que si se compila el programa sin el contenedor se debe utilizar l
 
 Fernando:
 
-Esta semana me dediqué a compilar la información del fundamento teórico detrás de la factorización QR, el algoritmo QR y los tres mecanismos que se emplean de forma común para resolver ambos. El resultado es el texto que vinculo [liga](documentos/documento.rmd)
+Esta semana me dediqué a compilar la información del fundamento teórico detrás de la factorización QR, el algoritmo QR y los tres mecanismos que se emplean de forma común para resolver ambos. El resultado es el texto que vinculo [liga](https://drive.google.com/drive/folders/1qdO82g4tMUY4IvcM4a0dw17bH8PqgW85)
 
 
 
