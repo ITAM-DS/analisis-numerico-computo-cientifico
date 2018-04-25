@@ -121,6 +121,11 @@ En los últimos años se han realizado más investigaciones en el área de recon
 Referencia: http://www.face-rec.org/algorithms/Video/NRC-48216.pdf
 
 
+#### RGBA
+
+Es un modelo de color que permite la representación de cualquier color mediante una mezcla de 3 colores (rojo, azul y verde). Sin embargo, debido que no existe una definición concreta de los colores primarios (rojo, azul y verde) se da el caso de que ante mismos valores para representar un color en particular se tengan representaciones de imágenes diferentes. Posteriormente al modelo RGB se le agregó un cuarto componente o canal, conocido como "alpha" que define la opacidad de un pixel en una imagen. En consecuencia, la combinación de los colores más la opacidad de los mismos permite homogenizar las imágenes producidas por distintos modelos RGB. En nuestro ejemplo la rutina lib.pngtest nos permite descomponer una imagen dada en las 4 columnas que se mencionan en el modelo RGBA.
+
+
 ### Referencias Adicionales
 http://cs231n.github.io/convolutional-networks/
 http://www.face-rec.org/algorithms/
@@ -128,3 +133,14 @@ https://devtalk.nvidia.com/default/topic/493003/face-detection-using-opencv-and-
 https://www.researchgate.net/publication/238648508_Implementing_face_recognition_using_a_parallel_image_processing_environment_based_on_algorithmic_skeletons
 https://medium.com/@ageitgey/machine-learning-is-fun-part-4-modern-face-recognition-with-deep-learning-c3cffc121d78
 https://www.researchgate.net/publication/238648508_Implementing_face_recognition_using_a_parallel_image_processing_environment_based_on_algorithmic_skeletons
+
+
+###Referencias Pytorch
+https://github.com/pytorch/pytorch
+https://github.com/yunjey/pytorch-tutorial
+http://pytorch.org/about/
+https://www.analyticsvidhya.com/blog/2018/02/pytorch-tutorial/
+
+
+###Otras Referencias 
+https://gist.github.com/niw/5963798
