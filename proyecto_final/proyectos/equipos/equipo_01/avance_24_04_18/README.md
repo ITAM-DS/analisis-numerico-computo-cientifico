@@ -10,7 +10,7 @@ Para esta entrega, una alta proporción del trabajo se llevó a cabo de forma co
 
 **Daniel Sharp**
 
-Además de trabajar en equipo en la implementación del código, para esta semana agregué contenido al trabajo escrito en la sección de instrucciones. Detallé el algorítmo de Descenso en Gradiente e incluí una sección para explicar CUDA y sus utilidades, pues hemos decidido que nuestra implementación final se desarrollará en esta plataforma de GPGPU. También detalle la información del código trabajado en equipo, incluyendo la descripción de los errores que nos encontramos y los intentos para solucionarlos.
+Además de trabajar en equipo en la implementación del código, para esta semana agregué contenido al trabajo escrito en la sección de introducción. Detallé el algorítmo de Descenso en Gradiente e incluí una sección para explicar CUDA y sus utilidades, pues hemos decidido que nuestra implementación final se desarrollará en esta plataforma de GPGPU. También detalle la información del código trabajado en equipo, incluyendo la descripción de los errores que nos encontramos y los intentos para solucionarlos.
 
 **Christian Challu**
 
