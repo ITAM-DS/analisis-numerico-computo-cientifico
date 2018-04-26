@@ -41,6 +41,11 @@ Adicional, identificamos los pasos siguientes tales como el escalamiento/normali
  
 # Instrucciones para ejecutar el programa
 
+  Para ejecutar el programa deben seguirse los siguientes pasos:
+
+  1. Descargar el dataset [train.csv](https://gist.github.com/lckymirth/4225fb3f4e5e0c89a34dedbc9aef8332) y guardar el archivo como train.csv
+
+  2. Ejecutar el programa compilado
   ```
     ./pca
   ```
