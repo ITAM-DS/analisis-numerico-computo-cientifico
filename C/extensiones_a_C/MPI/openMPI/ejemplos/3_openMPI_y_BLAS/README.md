@@ -19,7 +19,7 @@ int m, n;
 #define columnas(arreglo) ((arreglo)->n)
 double *arr;
 #define entradas(arreglo) ((arreglo)->arr)
-#define entrada(arreglo,i,j) ((arreglo)->arr[j*m+i]) //almacenamos column major
+#define entrada(arreglo,i,j) ((arreglo)->arr[j*renglones(arreglo)+i]) //almacenamos column major
 int nlocal;
 #define columnas_local(arreglo) ((arreglo)->nlocal)
 int mlocal;
@@ -28,7 +28,7 @@ int m_ceros_added;
 #define renglones_added_ceros(arreglo) ((arreglo)->m_ceros_added)
 double *arrlocal;
 #define entradas_local(arreglo) ((arreglo)->arrlocal)
-#define entrada_local(arreglo,i,j,m_local,n_local) ((arreglo)->arrlocal[j*m_local+i])
+#define entrada_local(arreglo,i,j,m_local,n_local) ((arreglo)->arrlocal[j*renglones_local(arreglo)+i]) //check this define executing examples
 }arreglo_2d;
 typedef arreglo_2d *arreglo_2d_T;
 
