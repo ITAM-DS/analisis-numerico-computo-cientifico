@@ -162,6 +162,8 @@ Objetivo del proyecto: Desarrollar un algoritmo de sistemas de recomendación ba
 
 * [Avance 17-04-18](equipos/equipo_10/Avance_17_04_18): Bien en su avance. Escriban la referencia  de lo que utiliza cuSolver o MAGMA para la SVD (una liga, un párrafo) y que apoye lo que mencionan que en cuSolver una forma es con el método de Jacobi. ¿Entonces será la SVD con CUDA? Puede ser un trabajo que utilice lo ya realizado en código y se haga una descripción/investigación de lo que detrás está realizando las funciones.
 
+* [Avance 24-04-18](equipos/equipo_10/Avance_24_04_18): Sugiero usen CUDA de forma nativa, es decir no con docker para iniciar, después podrían considerar usar docker+NVIDIA (una vez hecho pruebas con cusolver por ejemplo). Inicien con el trabajo escrito para el siguiente avance. Suban el notebook al repo en lugar que deba descargarse (es muy pesado? si no, entonces podrían añadirlo). Es probable que el examen final sea la última semana de mayo, lo menciono para que ajusten lo necesario en su cronograma. Es importante que realicen pruebas para que revisen que todo está bien con configuración de instancia, librerías necesarias y puedan seguir avanzando o resolver lo que surja. Se ve bien la configuración de la instancia (aunque la instancia no tenía tag de nombre...) añade una compilación de hello_world y output de cusolver para apoyar lo anterior que comentaba (chequeo de dependencias para CUDA y librerías necesarias).
+
 ---
 
 ## [Equipo 11](equipos/equipo_11)
@@ -174,15 +176,17 @@ Objetivo del proyecto: Implementar el algoritmo Dijkstra en C y su versión en p
 
 * [Avance 10-04-18](equipos/equipo_11/avance_10_04_18): Coloquen el formato pedido sus carpetas pues me es más difícil la revisión con formatos diferentes, es mejor normalizar vean [equipo_ejemplo](equipos/equipo_ejemplo). Gracias por su descripción de trabajo individual. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
-* [Avance 17-04-18](equipos/equipo_11/avance_17_04_18): Thalía y Lorena realicen más detalle de la lectura de sus referencias, pues es muy general su descripción en este avance después que han leído ambas el mismo artículo "A note on two problems connected with graphs", ¿quizás mencionando lo que han realizado directamente en el trabajo escrito? ¿quizás discusión? piensen en una forma de presentarme su trabajo. Para las referencias de su proyecto después de estos dos avances ¿han decidido cuáles serán? si es así coloquen las referencias en su carpeta inicial. Roberto  ¿ya funciona la implementación en python? ¿supongo que funciona para el grafo que está en el main?. Den más descripción de su trabajo individual, revisé lo que llevan de trabajo escrito para darme una idea de lo que Thalía y Lorena realizaron y revisé el código de Roberto para de igual forma tener esta idea de su trabajo, en este sentido facilitenme la lectura de lo que realizaron.
+* [Avance 17-04-18](equipos/equipo_11/avance_17_04_18): Thalía y Lorena realicen más detalle de la lectura de sus referencias (su trabajo individual), pues es muy general su descripción en este avance después que han leído ambas el mismo artículo "A note on two problems connected with graphs", ¿quizás mencionando lo que han realizado directamente en el trabajo escrito? ¿quizás discusión? piensen en una forma de presentarme su trabajo. Para las referencias de su proyecto después de estos dos avances ¿han decidido cuáles serán? si es así coloquen las referencias en su carpeta inicial. Roberto  ¿ya funciona la implementación en python? ¿supongo que funciona para el grafo que está en el main?. Den más descripción de su trabajo individual, revisé lo que llevan de trabajo escrito para darme una idea de lo que Thalía y Lorena realizaron y revisé el código de Roberto para de igual forma tener esta idea de su trabajo, en este sentido facilítenme la lectura de lo que realizaron.
+
+* [Avance 24-04-18](equipos/equipo_11/avance_24_04_18): Coloquen la liga de su trabajo escrito en su equipo_11/README.md como [equipo_ejemplo](equipos/equipo_ejemplo) y un comentario respecto a esto: la liga a su trabajo escrito me llevó a un folder, mejor una liga que me lleve al trabajo escrito directamente. La lectura de software/hardware paralelo debió de cubrirse con el examen que hicimos en clase el mes anterior y para este avance no  se cubrió algo diferente (salvo quizás lo de ¿eficiencia?). Remuevan de su trabajo escrito la sección de software paralelo y hardware paralelo pues no es necesaria (¿o mediran eficiencia? si es así conserven esa parte, si no remuevan esa sección), vayan directo a la implementación en paralelo de Dijkstra ¿han encontrado referencias para esto último?. Muestren los resultados en su forma secuencial que les mencioné en el avance anterior (sin respuesta a las preguntas que hacía en específico a la implementación en python). Tres personas trabajaron lo de hardware/software paralelo, sugiero asignen mejor sus tareas, una persona podría haber desarrollado lo anterior y las demás la parte de código/implementación/secuencial/paralelo de Dijkstra. Comiencen con la implementación en C si ya funciona lo de python secuencial para el siguiente avance antes de usar openmp.
 
 ---
 
 ## [Equipo 12](equipos/equipo_12)
 
-Ttulo del proyecto: `Números Aleatorios`
+Ttulo del proyecto: `Generación de método aleatorios mediante algoritmos implementados en C.`
 
-Objetivo del proyecto: Implementación de un algoritmo para generar números aleatorios de forma paralela.
+Objetivo del proyecto: Programar un algoritmo para la generación de una cadena de número aleatorios, optimizando su longitud. Medir su eficiencia a través de distintos criterios como pruebas de aleatoriedad, longitud de la cadena generada y la comparación con otras cadenas de números aleatorios obtenidos por fuentes naturales de aleatoriedad como procesos cuánticos: fotones y partículas.
 
 [Avances del proyecto](equipos/equipo_12):
 
@@ -190,6 +194,7 @@ Objetivo del proyecto: Implementación de un algoritmo para generar números ale
 
 * [Avance 17-04-18](equipos/equipo_12/avance_17_04_18): El formato de despliegue de las referencias en su carpeta inicial no es legible, arreglen esto. El trabajo consistirá en medir ¿eficiencia? ¿probar que es posible generar números pseudo-aleatorios con cómputo en paralelo? ¿realizar pruebas para el generador de números pseudo-aleatorios, en el sentido de calidad de los números obtenidos? Para el siguiente avance definan lo anterior y empiecen con el trabajo escrito y revisen implementaciones.
 
+* [Avance 24-04-18](equipos/equipo_12/avance_24_04_18): Dan buenas referencias en este avance ¿serán utilizadas en el objetivo de su proyecto? si es así colóquenlas en equipo_12/README.md y un comentario sobre sus referencias de este README, es mejor si colocan el título de sus referencias en lugar de las ligas con nombre de google docs pues si yo veo una por una después se me olvida cuál era la tercera. Comiencen con su trabajo escrito y lo que añade para este avance Víctor lo pueden incluir allí. Muy bien su descripción de trabajo individual, gracias por eso.
 
 ---
 
@@ -204,6 +209,8 @@ Objetivo del proyecto: Implementación de un algoritmo para el cálculo del áre
 * [Avance 10-04-18](equipos/equipo_13/avance_10_04_2018): Buen avance, gracias por su descripción individual. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
 * [Avance 17-04-18](equipos/equipo_13/avance_17_04_2018): Definan si realizarán una implementación en CUDA pues Alejandro menciona que no se ha hallado tal implementación al realizar una búsqueda. Esto tomen en cuenta pues el proyecto final no consiste en desarrollar algo nuevo, eso podría tomar más tiempo del estimado. Den oportunidad en la semana de buscar algo respecto a esto, si no encuentran opten por otra extensión a C. ¿Cómo ven la integración por MC? ¿viable, factible en tiempo y entregas? pues aquí se encuentran con generación de números pseudo aleatorios [equipo12](equipos/equipo_12)
+
+* [Avance 24-04-18](equipos/equipo_13/avance_24_04_2018): Empiecen con su trabajo escrito para el siguiente avance con lo que se ha investigado por ustedes. Ok con lo de MPI. La propuesta de Federico podrían implementarla también en el siguiente avance de forma secuencial y hacer pruebas de ejecución y presentar outputs. Si hay referencias que añadir en equipo_13/README.md realícenlo.
 
 ---
 
@@ -220,8 +227,7 @@ Objetivo del proyecto: implementación de un algoritmo para la multiplicación d
 * [Avance 17-04-18](equipos/equipo_14/avance_17_04_2018): Revisen el libro de P. Pacheco, parallel programming with MPI para la multiplicación de matrices. 
 
 
-* [Avance 24-04-18](equipos/equipo_14/avance_24_04_2018): Remuevan y cambien nombre a esto: equipos/equipo_14/Co\314\201digo/ (no es buena idea colocar espacios o acentos en bash, no importa la ortografía).
-
+* [Avance 24-04-18](equipos/equipo_14/avance_24_04_2018): Remuevan y cambien nombre a esto: equipos/equipo_14/Co\314\201digo/ (no es buena idea colocar espacios o acentos en bash, no importa la ortografía). Empiecen con el trabajo escrito, ya han investigado lo de paralelizar la multiplicación de matrices en openmp y lo de eficiencia, eso lo pueden ir añadiendo a su trabajo escrito, no lo dejen para semana de finales. Modifiqué recientemente el archivo de `definiciones.h` para manejo de arreglos-2d, vi Alex que tienes `entrada(C,i,j,M)` me parece que con la modificación que hice no requieres pasar la M en esta macro, revísenlo.
 
 ---
 
