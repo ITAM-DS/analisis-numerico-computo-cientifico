@@ -25,6 +25,7 @@ Código que resuelve un sistema de ecuaciones lineales con una matriz y un vecto
 -1 1 1 0
 ```
 
+`solve_linear_equations.c`:
 
 ```
 #include<stdio.h>
@@ -91,7 +92,7 @@ $gcc -Wall solve_linear_equations.c funciones.c -o programa.out -lblas -llapack
 Ejecutamos:
 
 ```
-./programa.out 3 1
+./programa.out 4 1
 ```
 
 Resultado:
@@ -125,7 +126,6 @@ matriz[0][0]=2.00000	matriz[0][1]=3.00000	matriz[0][2]=-2.00000	matriz[0][3]=1.0
 matriz[1][0]=1.00000	matriz[1][1]=-5.00000	matriz[1][2]=2.00000	matriz[1][3]=0.00000
 matriz[2][0]=0.50000	matriz[2][1]=-0.30000	matriz[2][2]=3.60000	matriz[2][3]=-1.50000
 matriz[3][0]=-0.50000	matriz[3][1]=-0.50000	matriz[3][2]=0.27778	matriz[3][3]=0.91667
-
 ```
 
 ## Sistema tridiagonal:
@@ -173,7 +173,7 @@ Código que resuelve un sistema de ecuaciones lineales con una matriz tridiagona
 ```
 
 
-Se deben tener los archivos v.txt, d.txt, dl.txt, du.txt en el directorio de compilación y ejecución. dl.txt, du.txt y d.txt contienen la diagonal inferior, superior y la diagonal de la matriz del sistema respectivamente.
+Se deben tener los archivos b.txt, d.txt, dl.txt, du.txt en el directorio de compilación y ejecución. dl.txt, du.txt y d.txt contienen la diagonal inferior, superior y la diagonal de la matriz del sistema respectivamente.
 
 
 `tridiagonal_linear_equations.c`:
