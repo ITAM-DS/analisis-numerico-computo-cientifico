@@ -12,7 +12,7 @@ int m, n;
 #define columnas(arreglo) ((arreglo)->n)
 double *arr;
 #define entradas(arreglo) ((arreglo)->arr)
-#define entrada(arreglo,i,j) ((arreglo)->arr[j*m+i]) //almacenamos column major
+#define entrada(arreglo,i,j) ((arreglo)->arr[j*renglones(arreglo)+i]) //almacenamos column major
 }arreglo_2d;
 typedef arreglo_2d *arreglo_2d_T;
 
