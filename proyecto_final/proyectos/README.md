@@ -98,26 +98,28 @@ Objetivo del proyecto: Paralelizar en GPU un algoritmo de Hit & Run definido por
 
 ---
 
-## [Equipo 7](equipos/equipo_7)
+## [Equipo 7](equipos/equipo_07)
 
-Ttulo del proyecto: `PCA`
+Ttulo del proyecto: `PCA, implementación en C. Secuencial / Paralelo`
 
-Objetivo del proyecto: Implementar el análisis de componenetes principales a una base de con gran número de datos de preferencia en paralelo
+Objetivo del proyecto: Implementar el método de “Principal Component Analysis” (PCA) en C, posteriormente de manera secuencial y posteriormente en paralelo. Este trabajo será complementado con lenguajes de alto nivel (ej. R, Python).
 
-[Avances del proyecto](equipos/equipo_7):
+[Avances del proyecto](equipos/equipo_07):
 
-* [Avance 10-04-18](equipos/equipo_7/avance_10_04_2018): Enmarquen el objetivo, ahora es muy general (esto se ve con el título también). Modifiquen la sección Integrantes del README del avance. Luis mejor si colocas los títulos de tus referencias en lugar de escribir la palabra referencia muchas veces (después de dar click en la última olvidé cuál era la tercera). Me parece que su enfoque es googlear algo relacionado con PCA y cómputo en paralelo, si bien es una forma de buscar me parece que una persona termina con mucha literatura y no se tiene algo concreto, creo que deberían iniciar con un problema y objetivo a resolver. Ahora tenemos: map-reduce, CUDA, Gram Schmidt, hyperspectral images, Face recognition, iterative PCA, dimensionality reduction y dicen que en dos semanas les tomará implementar los algoritmos ¿? (perdonen pero creo que si no tienen el objetivo o título definidos es muy aventurado dar una fecha). Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-18](equipos/equipo_07/avance_10_04_2018): Enmarquen el objetivo, ahora es muy general (esto se ve con el título también). Modifiquen la sección Integrantes del README del avance. Luis mejor si colocas los títulos de tus referencias en lugar de escribir la palabra referencia muchas veces (después de dar click en la última olvidé cuál era la tercera). Me parece que su enfoque es googlear algo relacionado con PCA y cómputo en paralelo, si bien es una forma de buscar me parece que una persona termina con mucha literatura y no se tiene algo concreto, creo que deberían iniciar con un problema y objetivo a resolver. Ahora tenemos: map-reduce, CUDA, Gram Schmidt, hyperspectral images, Face recognition, iterative PCA, dimensionality reduction y dicen que en dos semanas les tomará implementar los algoritmos ¿? (perdonen pero creo que si no tienen el objetivo o título definidos es muy aventurado dar una fecha). Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
-* [Avance 17-04-18](equipos/equipo_7/avance_17_04_2018): Bien en su avance. ¿Han hablado con el equipo 10?. Una vez tengan las referencias que les ayudará a su proyecto coloquen las mismas en la carpeta inicial de su equipo.
+* [Avance 17-04-18](equipos/equipo_07/avance_17_04_2018): Bien en su avance. ¿Han hablado con el equipo 10?. Una vez tengan las referencias que les ayudará a su proyecto coloquen las mismas en la carpeta inicial de su equipo.
+
+* [Avance 24-04-18](equipos/equipo_07/avance_24_04_2018): En su equipo_07/README.md coloquen sus referencias como [equipo_ejemplo](equipos/equipo_ejemplo). Pueden usar BLAS para las operaciones de normalización de su matriz (sugerencia). Añadan forma de compilar y output de su programa.
 
 
 ---
 
 ## [Equipo 8](equipos/equipo_8)
 
-Ttulo del proyecto: `Optimización por descenso de gradiente`
+Ttulo del proyecto: `Método de descenso en gradiente en juegos de Cournot`
 
-Objetivo del proyecto: objetivo
+Objetivo del proyecto: Implementar el método de descenso en gradiente para encontrar el equilibrio de Cournot-Nash de un juego de Cournot.
 
 [Avances del proyecto](equipos/equipo_8):
 
@@ -125,6 +127,8 @@ Objetivo del proyecto: objetivo
 
 
 * [Avance 17-04-18](equipos/equipo_8/avance_17_04_18): Quiten el archivo Avance_10_04_2018.html en su carpeta inicial. Entiendo pero es difícil de leer: $$ \frac{\partial \pi_{i} }{\partial q_{i}} = (q_{1}+q_{2})^{-\frac{1}{n}} - \frac{1}{n}(q_{1}+q_{2})^{\frac{-1}{\eta - 1}}q_{i}-c_{i}q_{i}=0$$ ¿hay una mejor forma de desplegar esto? quizás en su trabajo escrito?. Está bien los artículos que escribe Mónica pero detalla más (y hablas de un tercero pero ¿cuál es? ¿el de Quoc et. al que está en su página de inicio de referencias), aquí hay un clásico de métodos numéricos para optimización: Numerical optimization de Nocedal & Wright. ¿Para el próximo avance tienen contemplado uso de funciones/librerías hechas en C? Para el siguiente avance finalicen la revisión de literatura y comiencen con el trabajo escrito.
+
+* [Avance 24-04-18](equipos/equipo_8/avance_24_04_18): Gracias por remover el html. Coloquen la liga a su trabajo escrito en equipo_8/README.md como [equipo_ejemplo](equipos/equipo_ejemplo). En la página 4 al final hay algunas cosas que cambiar, por ejemplo separar la palabra "para" y hay dos "si". La figura al inicio de la página 5 no hacen referencia a ella. Están bien sus figuras aunque se ven algo borrosas, hay una forma de desplegar los algoritmos de una forma más legible con .tex, revísenla. Para el siguiente avance consideren iniciar con su implementación en C y continúen completando su trabajo escrito.
 
 ---
 
