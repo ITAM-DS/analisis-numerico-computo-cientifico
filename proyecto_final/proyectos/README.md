@@ -134,15 +134,19 @@ Objetivo del proyecto: Implementar el método de descenso en gradiente para enco
 
 ## [Equipo 9](equipos/equipo_09)
 
-Ttulo del proyecto: `Factorización QR`
+Ttulo del proyecto: `Mínimos Cuadrados usando la Factorización QR y CUDA`
 
-Objetivo del proyecto: Implementar el algoritmo QR para el lenguaje de programación C bajo un enforque de programación en paralelo
+Objetivo del proyecto: Implementar el algoritmo QR para el lenguaje de programación C bajo un enforque de programación en paralelo usando CUDA
 
 [Avances del proyecto](equipos/equipo_09):
 
 * [Avance 10-04-18](equipos/equipo_09/avance_10_04_2018): su carpeta tiene el año 2017, cambien esto. Buen avance, gracias por el detalle de cada uno. [Aquí] referencias para la factorización QR en paralelo. El [equipo3](equipos/equipo_03) también revisa QR, debemos definir qué hará cada equipo.
 
 * [Avance 17-04-18](equipos/equipo_09/avance_17_04_2018): ¿pudieron hablar con el equipo3?  Fernando, el avance anterior mencionas la búsqueda de implementaciones en paralelo de QR, para este avance no haces mención a esto y es general la descripción de tu trabajo individual. Para el siguiente avance comiencen con el trabajo escrito y finalicen la lectura de literatura.
+
+* [Avance 24-04-18](equipos/equipo_09/avance_24_04_2018): pueden usar lo hecho en tareas 5, 6 para lectura de archivos de texto, imprimir vectores, matrices y manejo de arreglos de 1d y 2d en forma column major (sugerencia). Miguel tiene buenos avances en la programación desde el avance 1. Para este avance no está clara la aportación de Karen y Fernando en el trabajo escrito (que está mal organizado y escrito). Había mencionado a Fernando en el comentario de su primer avance que él habla sobre búsqueda de implementaciones en paralelo de QR, lo repetí para el avance 2 y para este tercero sigue sin haber comentarios al respecto salvo lo que  Karen refiere del paper de Dongarra. Su trabajo escrito tiene enunciados incompletos como "El método de mínimos cuadrados en palabras de Miller, busca minimizar la diferencia entre
+los datos observados y la ecuación de la recta de la forma para" (falta referencia a lo de Miller y completar el enunciado) o "La combinación de puntos que mejor se ajusta a los puntos se encuentra dada por la siguiente
+ecuación: (vacío)" y así otros. Al inicio de la sección de "Factorización QR mediante el uso de reflexiones de Householder" se describe el uso de QR para eigenvalores/eigenvectores, perdonen pero ¿cuál es la idea de abordar este tema en la sección de reflexiones de Householder?. No hay buena calificación para Karen y Fernando para este avance.  
 
 ---
 
