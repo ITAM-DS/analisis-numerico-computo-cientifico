@@ -227,7 +227,7 @@ Objetivo del proyecto: implementación de un algoritmo para la multiplicación d
 * [Avance 17-04-18](equipos/equipo_14/avance_17_04_2018): Revisen el libro de P. Pacheco, parallel programming with MPI para la multiplicación de matrices. 
 
 
-* [Avance 24-04-18](equipos/equipo_14/avance_24_04_2018): Remuevan y cambien nombre a esto: equipos/equipo_14/Co\314\201digo/ (no es buena idea colocar espacios o acentos en bash, no importa la ortografía). Empiecen con el trabajo escrito, ya han investigado lo de paralelizar la multiplicación de matrices en openmp y lo de eficiencia, eso lo pueden ir añadiendo a su trabajo escrito, no lo dejen para semana de finales. Modifiqué recientemente el archivo de `definiciones.h` para manejo de arreglos-2d, vi Alex que tienes `entrada(C,i,j,M)` me parece que con la modificación que hice no requieres pasar la M en esta macro, revísenlo.
+* [Avance 24-04-18](equipos/equipo_14/avance_24_04_2018): Remuevan y cambien nombre a esto: equipos/equipo_14/Co\314\201digo/ (no es buena idea colocar espacios o acentos en bash, no importa la ortografía) pero gracias por esa carpeta y su readme fue de ayuda. Empiecen con el trabajo escrito, ya han investigado lo de paralelizar la multiplicación de matrices en openmp y lo de eficiencia, eso lo pueden ir añadiendo a su trabajo escrito, no lo dejen para semana de finales. Modifiqué recientemente el archivo de `definiciones.h` para manejo de arreglos-2d, vi Alex que tienes `entrada(C,i,j,M)` me parece que con la modificación que hice no requieres pasar la M en esta macro, revísenlo.
 
 ---
 
