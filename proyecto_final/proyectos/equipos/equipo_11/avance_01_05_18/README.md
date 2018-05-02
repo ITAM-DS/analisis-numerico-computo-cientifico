@@ -15,7 +15,7 @@
 Lorena: 
 Implementación en C del algoritmo de Dijkstra de manera secuencial, se armó la primera parte, las estructura de datos para almacenar el Grafo, las distancias entre el nodo origen y los nodos destino, así como la lista de nodos visitados: [codigo](avance_01_05_18/codigo).
 
-Roberto: Leí la referencia [referencia] (https://www.researchgate.net/profile/Kurt_Mehlhorn/publication/47842024_A_Parallelization_of_Dijkstra%27s_Shortest_Path_Algorithm/links/00b4951cbf96929546000000/A-Parallelization-of-Dijkstras-Shortest-Path-Algorithm.pdf): 
+Roberto: Leí la [referencia](https://www.researchgate.net/profile/Kurt_Mehlhorn/publication/47842024_A_Parallelization_of_Dijkstra%27s_Shortest_Path_Algorithm/links/00b4951cbf96929546000000/A-Parallelization-of-Dijkstras-Shortest-Path-Algorithm.pdf): 
 A. Crauser, K. Melhorn, U. Meyer, P. Sanders. (1998) A Parallelization of Dijkstra's Shortest Path Algorithm, que discute la manera de dividir el algoritmo en fases, donde las operaciones de cada fase se pueden ejecutar en paralelo. 
 
 Thalía:
