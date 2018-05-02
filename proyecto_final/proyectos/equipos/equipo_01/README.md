@@ -12,6 +12,7 @@
 `Implementación de método de optimización convexa con mínimos cuadrados, a través de descenso en gradiente estocástico`
 
 ### Objetivo del proyecto:
+Implementación de algoritmos de optimización convexa de descenso en gradiente estocástico en paralelo y secuencial con la finalidad de compararlos.
 
 ### Trabajo escrito:
 https://www.sharelatex.com/read/kbgxbypyfjvk
