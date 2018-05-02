@@ -25,6 +25,8 @@ Las actividades se irán actualizando con los objetivos semana a semana.
 | 5 |  8 de Mayo |||
 
 
+
+
 # Bibliografía
 
 ## Semana 2
