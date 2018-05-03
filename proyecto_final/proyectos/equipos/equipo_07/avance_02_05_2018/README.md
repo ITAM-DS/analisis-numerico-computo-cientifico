@@ -1,29 +1,28 @@
 # Equipo 7
 
+## Integrantes:
   * Luis Federico Puente
   * David Rivera 
   * Mirtha Ayala
 
-# 24 de Abril de 2018
+## Principal Component Analisys
+# 02 de mayo de 2018
 
-En esta etapa comenzamos a trabajar en equipo dado que iniciaremos con la implementación del proyecto en C.
+En esta etapa continuamos con la implementacion para estandarizar los variables de la matriz, hasta este momento hemos logrado 
+generar los parametros Media y Desviación estandar usando algunas de las funciones de la biblioteca math como pow() y sqrt, para
+el calculo de la potencia y la raiz cuadrada. También agregamos otra nueva estructura de datos para almancenar las matrices normalizadas.
 
-Previamente mapeamos los pasos para llegar a la descomposición SVD de tal forma que tenemos claro la secuencia de pasos a seguir:
+Aún estamos investigando las funciones para la normalización de la matriz por medio de las funciones de BLAS.
 
-Seleccionar una base de datos con variables numéricas
-Lectura de la base de datos y creación de la matriz correspondiente
-Descomposición de la matriz
+Adicionalmente estamos trabajando en la funcionalidad para poder especificar diferentes argumentos en la entrada del programa. Ejemplo:
 
-Cambiamos la base inicialmente elegida para efectos de trabajar con variables numéricas. Esta nueva base la encontramos en Kaggle: “House Prices: Advanced Regression Technique” la variable a predecir es el Precio de la casa, consta de 81 variables de las cuales 17 continuas.
-La implementación que incluimos en esta entrega, corresponde a la lectura de un archivo CSV  con una funcionalidad flexible en cuanto al número de registros y columnas. Dicho archivo debe contener los headers de las variables y se asumirá que los datos de entrada están limpios y completos y que son enteros pues una vez que es leído el archivo y construida la matriz, cada registro es convertido a entero. 
+```
+./pca -f archivo.csv -h off 
+```
+# Referencias
 
-Adicional, identificamos los pasos siguientes tales como el escalamiento/normalización de las variables (xi -  x_barra/des est), para ello implementamos los pasos necesarios para calcular el promedio de cada variable. En la siguiente entrega concluiremos el proceso de escalamiento y comenzaremos con la descomposición de la matriz en valores singulares, cuyos pasos mapeamos a continuación:
-
-  * El primer paso es hacer los datos.
-  * Identificar las var resp y las x's y separar la matriz de variables X y vector Y.
-  * Calcular la matriz de varianzas y covarianzas de X1 vs X2 (variance-covariance matrix).
-  * Posteriormente se resuelve el sistema de ecuaciones para encontrar los eigenvalores y eigenvectores.
-  * En seguida se realizan algunas operaciones con matrices para expresar las matrices de la descomposición.
+  * https://www.tutorialspoint.com/c_standard_library/math_h.htm
+  * https://sourceforge.net/projects/cccsvparser/
 
 # Instrucciones para compilacion del programa
  
