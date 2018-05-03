@@ -34,8 +34,8 @@ int main() {
   m->vectors = vectors_ptr;
 
   const char **headerFields = CsvParser_getFields(header);
-  double *averages = malloc(sizeof(double) * m->cols);
-  double *std_deviations = malloc(sizeof(double) * m->cols);
+  double *averages = calloc(m->cols, sizeof(double));
+  double *std_deviations = calloc(m->cols, sizeof(double));
   for(int i = 0; i < m->cols; i++) {
     averages[i] = average(m, i);
     std_deviations[i] = sqrt(variance(m, i, averages[i]));
