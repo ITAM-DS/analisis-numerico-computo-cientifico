@@ -6,7 +6,7 @@
 
 double average(matrix *m, int col);
 double variance(matrix *m, int col, double average);
-void free_rows(matrix *m);
+void free_matrix(matrix *m);
 
 int main() {
   CsvParser *csvparser = CsvParser_new("train.csv", ",", 1);
@@ -50,10 +50,7 @@ int main() {
 
   free(averages);
   free(std_deviations);
-  for(int i = 0; i < m->rows; i++) {
-    free(m->vectors[i]);
-  }
-  free(m);
+  free_matrix(m);
   CsvParser_destroy(csvparser);
   return 0;
 }
@@ -74,3 +71,9 @@ double variance(matrix *m, int col, double average) {
   return sum / (double)m->rows;
 }
 
+void free_matrix(matrix *m) {
+  for(int i = 0; i < m->rows; i++) {
+    free(m->vectors[i]);
+  }
+  free(m);
+}
