@@ -40,8 +40,6 @@ int main() {
   printf("Total rows: %zu\n", m->rows);
   printf("Total cols: %zu\n", m->cols);
   
-  for(int i = 0; i < m->rows; i++) {
-  }
   free_rows(m);
   free(m);
   CsvParser_destroy(csvparser);
