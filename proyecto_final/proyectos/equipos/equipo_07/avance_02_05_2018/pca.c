@@ -24,16 +24,10 @@ int main() {
   while ((row = CsvParser_getRow(csvparser)) ) {
     vectors_ptr[m->rows] = row;
     vectors_ptr = realloc(vectors_ptr, (++m->rows + 1) * sizeof(CsvRow));
-    //CsvParser_destroy_row(row);
   }
   m->vectors = vectors_ptr;
   
   const char **headerFields = CsvParser_getFields(header);
-  /* for (int i = 0 ; i < CsvParser_getNumFields(header) ; i++)
-    printf("%s\t", headerFields[i]);
-  printf("\n");
-  */
-  
   for(int i = 0; i < m->cols; i++) {
     float avg =  average(m, i);
     float std_deviation = sqrt(variance(m, i, avg));
