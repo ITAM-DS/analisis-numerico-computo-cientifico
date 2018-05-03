@@ -24,9 +24,8 @@ int main() {
   while ((row = CsvParser_getRow(csvparser)) ) {
     const char **rowFields = CsvParser_getFields(row);
     double *vector = calloc(m->cols, sizeof(double));
-    for(int i = 0; i < m->cols; i++) {
+    for(int i = 0; i < m->cols; i++)
      vector[i] = atof(rowFields[i]);
-    }
     vectors_ptr[m->rows] = vector;
     vectors_ptr = realloc(vectors_ptr, (++m->rows + 1) * sizeof(double));
     CsvParser_destroy_row(row);
@@ -57,23 +56,22 @@ int main() {
 
 double average(matrix *m, int col) {
   double sum = 0.0;
-  for(int i = 0; i < m->rows; i++) {
+  for(int i = 0; i < m->rows; i++)
     sum += m->vectors[i][col];
-  }
+
   return sum / (double)m->rows;
 }
 
 double variance(matrix *m, int col, double average) {
  double sum = 0.0;
-  for(int i = 0; i < m->rows; i++) {
+  for(int i = 0; i < m->rows; i++)
     sum += pow((m->vectors[i][col] - average), 2);
-  }
+
   return sum / (double)m->rows;
 }
 
 void free_matrix(matrix *m) {
-  for(int i = 0; i < m->rows; i++) {
+  for(int i = 0; i < m->rows; i++)
     free(m->vectors[i]);
-  }
   free(m);
 }
