@@ -9,11 +9,11 @@ Descenso en Gradiente Estocástico Secuencial utilizando AMSGrad
 #include <math.h>
 #include"definiciones.h"
 // Lectura de las tablas de datos
-#define X_matriz "X_bh.txt" //de tamaño MxN
-#define X_v_matriz "X_v_bh.txt" //de tamaño MxN
+#define X_matriz "X_ent.txt" //de tamaño MxN
+#define X_v_matriz "X_valida.txt" //de tamaño MxN
 #define b_vector "b_bh.txt" //de tamaño Nx1
-#define y_vector "y_bh.txt" //de tamaño Mx1
-#define y_v_vector "y_v_bh.txt" //de tamaño Mx1
+#define y_vector "y_train.txt" //de tamaño Mx1
+#define y_v_vector "y_val.txt" //de tamaño Mx1
 
 // Prototipos para las funciones de FORTRAN que se utilizaron para la multiplicación de matrices
 extern void dgemv_(char *transpose_a, int *m, int *n, double *alpha, double *a, int *lda, double *x, int *incx, double *beta, double *y, int *incy);
