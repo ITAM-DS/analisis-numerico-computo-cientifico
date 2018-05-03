@@ -12,7 +12,7 @@
 `Implementación de método de optimización convexa con mínimos cuadrados, a través de descenso en gradiente estocástico`
 
 ### Objetivo del proyecto:
-Implementación de algoritmos de optimización convexa de descenso en gradiente estocástico en paralelo y secuencial con la finalidad de compararlos.
+Implementación de los algorítmos ADAM y AMSGrad de descenso en gradiente utilizando las librerías de BLAS y cuBLAS (en el runtime de CUDA). Evaluar incremento en desempeño de ejecución en GPU.
 
 ### Trabajo escrito:
 https://www.sharelatex.com/read/kbgxbypyfjvk
