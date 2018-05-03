@@ -15,6 +15,8 @@ Implementación de un algoritmo para el cálculo del área bajo la curva (AUC) d
 
 - En la carpeta [avance_24_04_2018](avance_24_04_2018/README.md) se encuentra el tercer avance de nuestro proyecto.
 
+- En la carpeta [avance_02_05_2018](avance_02_05_2018/README.md) se encuentra el cuarto avance de nuestro proyecto.
+
 # Referencias
 
 - [https://www3.nd.edu/~zxu2/acms60212-40212/CUDA_C_Programming_Guide_V7.5.pdf](https://www3.nd.edu/~zxu2/acms60212-40212/CUDA_C_Programming_Guide_V7.5.pdf)
