@@ -8,16 +8,26 @@ Integrantes:
 
 Título del proyecto: `Método de descenso en gradiente en juegos de Cournot`
 
+Liga a trabajo escrito: [carpeta Dropbox](https://www.dropbox.com/sh/j43sr790kcdl5lf/AACYIRnGhhEvhlVdk7-iG9Wqa?dl=0)
+
 Objetivo del proyecto: Implementar el método de descenso en gradiente para encontrar el equilibrio de Cournot-Nash de un juego de Cournot.
 
 Avances:
+
 + [10 de abril de 2018](avance_10_04_18/entrega1_1.md): definimos el problema a resolver. Primero buscamos encontrar soluciones de Stackelberg, pero es un problema demasiado complicado como para resolverlo en tan poco tiempo. Entonces fue que nos decidimos por encontrar máximos en el juego de Cournot y, además, nos adentramos en la literatura del tema.
+
 + [17 de abril de 2018](avance_17_04_18/segunda_entrega.md): continuó la revisión de la literatura y, además, se hicieron las primeras implementaciones tanto en R como en Python.
+
 + [24 de abril de 2018](avance_24_04_18/): se empezó con la elaboración del trabajo escrito. Específicamente:
   * Luis Fernando Cantú: escribió una parte de modelo de competencia de Cournot en el capítulo de revisión de la literatura y también el capítulo en el que se describe el modelo.
   * Mónica Vargas González: añadió la introducción, el objetivo y una descripción general de Cournot en el capítulo de revisión de la literatura.
   * Eduardo Hidalgo García: escribió la explicación del algoritmo de descenso por gradiente, el contexto teórico sobre su uso y su aplicación a problemas con funciones objetivos doblemente diferenciables y continuas.
 
++ [02 de mayo de 2018](avance_02_05_18/): se empezó con la elaboración del trabajo escrito. Específicamente:
+  * Luis Fernando Cantú: continúo con la elaboración del trabajo escrito. Específicamente, contribuyó a la parte del modelo del juego de Cournot y al ejemplo del caso lineal..
+  * Mónica Vargas González: Investigación sobre implementación de descenso de gradiente en C.
+  * Eduardo Hidalgo García: Modificaciones al md de inicio de la carpeta del equipo, modificacion del archivo escrito. En especifico, continuo con el sustento teórico de los métodos de descenso por gradiente
+  
 Referencias:
 
 1.  Kolstad, Charles D. and Mathiesen, Lars. (1987). "Necessary and Sufficient Conditions for Uniqueness of a Cournot Equilibrium", The Review of Economic Studies, v.54, No.4, p.681-690. <https://www.jstor.org/stable/2297489?seq=1#page_scan_tab_contents>
