@@ -148,7 +148,7 @@ La siguiente gráica se genero para un valor de *m* = 2048 y algunas de
 las posibles combinaciones de *a*, *c*, *s**e**e**d* ∈ ℤ, tales que
 *a*, *b*, *s**e**e**d* &lt; 2048.
 
-![](https://drive.google.com/open?id=1QV5b7_gpXY3yzZnpJCMOeUF-OW6zTl0d)
+![](https://drive.google.com/uc?id=1QV5b7_gpXY3yzZnpJCMOeUF-OW6zTl0d)
 
 En este caso, notamos que cualquier combinación de
 *a* ∈ {65, 1229, 1365} y *c* = 1 nos generará un cíclo máximo (en este
@@ -162,7 +162,7 @@ también se necesitan analizar las condiciones de aleatoriedad .
 Observemos los siguientes diagramas de dispersión para las combinaciones
 que generan un cíclo máximo.
 
-![](https://drive.google.com/open?id=1NbTV8htYlTSuisaxy5qjw4U7yZX_vplV)
+![](https://drive.google.com/uc?id=1NbTV8htYlTSuisaxy5qjw4U7yZX_vplV)
 
 En la gráfica anerior es posible ver que los valores se distribuyen
 uniformemente sobre todo el cuadrado de 2048 × 2048, lo cuál nos hace
