@@ -140,12 +140,13 @@ Es importante que si se compila el programa sin el contenedor se debe utilizar l
 
 Fernando:
 
+Esta semana integré la parte teórica desarrollada durante la semana pasada al documento iniciado por Karen y atendí el comentario de las entregas pasadas en torno a explorar la bibliografía que estudia la paralelización del algoritmo QR. En general, se encuentran varios casos en los cuales se logra esto (para cualquiera de los tres métodos). La próxima semana me acercaré más a la implementación y resultados de la paralelización en CUDA que Miguel ha preparado.
 
 
 
 ### Equipo
 
-Platicamos con el equipo 3 y ellos comentaron que van a trabajar con OpenMP, por lo que nosotros vamos a trabajar con CUDA.
+Platicamos entre nosotros del trabajo escrito y del avance en la implementación en CUDA.
 
 
 
