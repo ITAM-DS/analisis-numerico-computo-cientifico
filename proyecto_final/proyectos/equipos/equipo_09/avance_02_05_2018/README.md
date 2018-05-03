@@ -60,7 +60,7 @@ la liga:
 
 [https://devblogs.nvidia.com/separate-compilation-linking-cuda-device-code/](https://devblogs.nvidia.com/separate-compilation-linking-cuda-device-code/)
 
-Para poder probar la implementación con diferentes matrices A y vectores B generó matrices con numeros aleatorios entre los valores [-5,5], el numero de columnas y el total de vectores B se pasan como argumentos al programa
+Para poder probar la implementación con diferentes matrices A y vectores B generó matrices con números aleatorios entre los valores [-5,5], el número de columnas y el total de vectores B se pasan como argumentos al programa
 
 
 Para compilar el programa usé el contenedor de docker configurado para el proyecto, ejecutando: 
