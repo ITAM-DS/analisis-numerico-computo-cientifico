@@ -60,7 +60,7 @@ la liga:
 
 [https://devblogs.nvidia.com/separate-compilation-linking-cuda-device-code/](https://devblogs.nvidia.com/separate-compilation-linking-cuda-device-code/)
 
-Para poder probar la implementación con diferentes matrices A y vectores B generó matrices con números aleatorios entre los valores [-5,5], el número de columnas y el total de vectores B se pasan como argumentos al programa
+Para poder probar la implementación con diferentes matrices A y vectores B generé matrices con números aleatorios entre los valores [-5,5], el número de columnas y el total de vectores B se pasan como argumentos al programa
 
 
 Para compilar el programa usé el contenedor de docker configurado para el proyecto, ejecutando: 
@@ -83,7 +83,7 @@ Para compilar el programa ejecuté dentro de la carpeta programas
 make compila
 ```
 
-Para ejecutarlo y probar con una matriz generada de manera aleatoria de 6x6 y 4 vectores de B lo cual generaría 4 vectores solución (X) se debe ejecutar: 
+Para ejecutarlo y probar con una matriz generada de manera aleatoria de 6x6 y 4 vectores de B lo cual generaría 4 vectores solución X se debe ejecutar: 
 
 ```
 ./SolverQr.out 6 4
