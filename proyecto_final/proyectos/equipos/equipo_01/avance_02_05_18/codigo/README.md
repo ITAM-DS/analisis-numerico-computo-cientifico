@@ -64,6 +64,9 @@ Se experimentó con los parámetros, sin embargo, es necesario realizar más pru
 **Evidencia**  
 ![Inicio Script](evidencia/amsgrad.png)
 
+**NOTA:**  
+Los ejemplos de ejecución se hicieron solamente con 10 iteracinoes para demostrar el funcionamiento correcto del programa. Para las prubeas que haremos en esta semana se desarrollarán más iteraciones.  
+
 Esta carpeta tiene el código en C de la implementación de los programas. Para evitar la sobrecarga del repositorio de la clase creamos un repositorio paralelo que contiene los archivos adicionales.  
 <br />
 En especifico, los archivos requeridos para ejecutar este programa se encuentran en la siguiente liga: https://github.com/lizsolisd/optimizacion_convexa_minimos_cuadrados/tree/master/codigo/avance_02_05_18
