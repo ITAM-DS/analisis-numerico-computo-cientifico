@@ -24,7 +24,44 @@ Karen:
  
 Miguel: 
 
-En este avance trabajé en la implementación de la factorización utilizando CUDA, para hacerlo utilicé la biblioteca cuSolver, de acuerdo a las pruebas la mayor parte del tiempo de ejecución se encuentra en copiar la memoria del host al device y del device al host, por lo que preferentemente haremos la mayor cantidad de operaciones en el device y sólo hasta mostrar los resultados mover la memoria del device al host. Para la siguiente entrega voy a trabajar en que las matrices de entrada se lean desde un archivo para mayor flexibilidad en la ejecución y no tener que compilar para cada cambio de matrices, en imprimir las matrices en formato de renglón, actualmente está como column major, adicionalmente en la siguiente entrega trabajaré en la implementación de mínimos cuadrados usando la factorización QR. 
+En este avance trabajé en la implementación de la solución Ax = B utilizando la factorización QR. 
+
+Para obtenerla se realizan los pasos 
+
+|Operación|Rutina cuSolver|
+|---|---|
+|A = Q x R|cusolverDnDgeqrf|
+|B = Q^T x B|cusolverDnDormqr|
+|R x X = B|cusolverDnDormqr|
+
+Para esta entrega tenía contemplado incluir la lectura de las matrices conforme lo trabajamos en las tareas 5 y 6 ([funciones.c](codigo/funciones.c) y [definiciones.h](codigo/definiciones.h)) pero tuve varios problemas para integrarlos con CUDA, el primero es que la función malloc como la usamos en C no es necesario especificar un cast al invocar la función y en el caso de usar el compilador nvcc está usando el comportamiento como si fuera c++ por lo que para usar la función malloc es necesario indicarle el un cast
+
+Por ejemplo, en el caso de la compilación con gcc se puede hacer: 
+
+```
+A = malloc(sizeof(arreglo_2d_T));
+```
+
+Pero compilando con nvcc marca un error al indicar que la función regresa un void por lo que tuve que hacer:
+
+```
+A = (arreglo_2d_T) malloc(sizeof(arreglo_2d_T));
+```
+
+El segundo problema es la compilación de archivos cu y de archivo c y h, el compilador nvcc marcó un error al compilar de la siguiente forma : 
+
+```
+$(CC) $(CFLAGS) $(CINCLUDE) SolverQr.cu funciones.c definiciones.h -o SolverQr.out $(CLIBS)
+```
+[Makefile](codigo/Makefile)
+
+Voy a trabajar en hacer los cambios en la definición de las funciones  y en el archivo Makefile para poder hacer la compilación, busqué una referencia de como se puede atender este problema y encontré
+la liga:
+
+[https://devblogs.nvidia.com/separate-compilation-linking-cuda-device-code/](https://devblogs.nvidia.com/separate-compilation-linking-cuda-device-code/)
+
+Para poder probar la implementación con diferentes matrices A y vectores B generó matrices con numeros aleatorios entre los valores [-5,5], el numero de columnas y el total de vectores B se pasan como argumentos al programa
+
 
 Para compilar el programa usé el contenedor de docker configurado para el proyecto, ejecutando: 
 
@@ -43,11 +80,18 @@ nvidia-docker exec -it mno_cuda_gpu /bin/bash
 Para compilar el programa ejecuté dentro de la carpeta programas
 
 ```
-make ejecuta
+make compila
 ```
+
+Para ejecutarlo y probar con una matriz generada de manera aleatoria de 6x6 y 4 vectores de B lo cual generaría 4 vectores solución (X) se debe ejecutar: 
+
+```
+./SolverQr.out 6 4
+```
+
 [Makefile](codigo/Makefile)
 
-[Qr.cu](codigo/SolverQr.cu)
+[SolverQr.cu](codigo/SolverQr.cu)
 
 Con el siguiente resultado: 
 

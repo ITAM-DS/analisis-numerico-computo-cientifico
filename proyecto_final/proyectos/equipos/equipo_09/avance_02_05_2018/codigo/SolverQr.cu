@@ -40,10 +40,6 @@ int main(int argc, char*argv[])
     int nrhs = 2; 
     arreglo_2d_T AA, BB;
 
-    //double A[lda*m] = { -1.3, 4.1, 1.2, -3.2, 1.3, 8.1, -2.0, 1.0, -1.0}; 
-    //double B[ldb*nrhs] = { -3.5, 10.1, -2.31, 1, 1, 0}; 
-    //double XC[ldb*nrhs]; 
-
 
     srand(175840);
 
@@ -64,25 +60,7 @@ int main(int argc, char*argv[])
     for(int i =0;i<m*nrhs;i++)
         B[i] = randomRange(-5,5);
 
-    // Recibe como parametros m, matrix A, vector B
-
-    
-    //m = atoi(argv[1]);
-    //lda = m;
-    //ldb = m;
-    //nrhs = 1;  // para determinar el numero de vectores solución
-
-    //char* A_matriz = argv[2];
-    //char* B_matriz = argv[3];
-
-
-    //AA = (arreglo_2d_T) malloc(sizeof(arreglo_2d_T));
- 
-    //renglones(AA)= m;
-    //columnas(AA) = m;
-    
-    
-    
+        
 
     double *d_A = NULL; 
     double *d_tau = NULL; 
@@ -95,10 +73,10 @@ int main(int argc, char*argv[])
 
     printf("Matriz A:\n");
     imprimeMatriz(m, m, A, lda, "A");
-    printf("==============\n");
+    printf("=======================\n");
     printf("Vector B:\n");
     imprimeMatriz(m, nrhs, B, ldb, "B");
-    printf("==============\n");
+    printf("=======================\n");
 
     cusolver_status = cusolverDnCreate(&cusolverH);
     
@@ -136,6 +114,7 @@ int main(int argc, char*argv[])
 
   printf("Vector Solución X\n");
   imprimeMatriz(m, nrhs, XC, ldb, "X");
+  printf("=======================\n");
 
   if (d_A    ) cudaFree(d_A);
   if (d_tau  ) cudaFree(d_tau);
