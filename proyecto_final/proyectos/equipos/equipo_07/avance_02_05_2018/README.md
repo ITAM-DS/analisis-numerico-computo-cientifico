@@ -10,9 +10,9 @@
 
 En esta etapa continuamos con la implementacion para estandarizar los variables de la matriz, hasta este momento hemos logrado 
 generar los parametros Media y Desviación estandar usando algunas de las funciones de la biblioteca math como pow() y sqrt, para
-el calculo de la potencia y la raiz cuadrada. También agregamos otra nueva estructura de datos para almancenar las matrices normalizadas.
+el calculo de la potencia y la raiz cuadrada. 
 
-También simplificamos la manera en la que leemos la matrix y convertimos todos los valores a doubles para reducir las funciones.
+También actualizamos la estructura de datos para almancenar las matrices con vectores de doubles y simplificamos la manera en la que llenamos la matrix y reducimos las funciones.
 
 Aún estamos investigando las funciones para la normalización de la matriz por medio de las funciones de BLAS.
 
