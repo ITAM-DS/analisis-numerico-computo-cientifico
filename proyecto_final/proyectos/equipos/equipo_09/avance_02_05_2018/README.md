@@ -1,0 +1,99 @@
+# Avance_02_05_2018
+
+Equipo 9 
+=================================================
+**Título del proyecto:** Mínimos Cuadrados usando la Factorización QR y CUDA
+
+**Objetivo del proyecto:** Implementar el algoritmo QR para el lenguaje de programación C bajo un enforque de programación en paralelo usando CUDA
+
+
+Integrantes
+---------------------------------------------------
++ Karen Peña (175952)
++ Miguel Catañeda (175840)
++ Fernando Briseño (171349)
+
+
+## Trabajo:
+
+### Individual
+
+Karen: 
+
+
+ 
+Miguel: 
+
+En este avance trabajé en la implementación de la factorización utilizando CUDA, para hacerlo utilicé la biblioteca cuSolver, de acuerdo a las pruebas la mayor parte del tiempo de ejecución se encuentra en copiar la memoria del host al device y del device al host, por lo que preferentemente haremos la mayor cantidad de operaciones en el device y sólo hasta mostrar los resultados mover la memoria del device al host. Para la siguiente entrega voy a trabajar en que las matrices de entrada se lean desde un archivo para mayor flexibilidad en la ejecución y no tener que compilar para cada cambio de matrices, en imprimir las matrices en formato de renglón, actualmente está como column major, adicionalmente en la siguiente entrega trabajaré en la implementación de mínimos cuadrados usando la factorización QR. 
+
+Para compilar el programa usé el contenedor de docker configurado para el proyecto, ejecutando: 
+
+Iniciar el contenedor: 
+
+```
+nvidia-docker run -dit -v $PWD:/programas  --name=mno_cuda_gpu  mno_cuda_gcc
+```
+
+Para compilar me conecté al contenedor: 
+
+```
+nvidia-docker exec -it mno_cuda_gpu /bin/bash
+```
+
+Para compilar el programa ejecuté dentro de la carpeta programas
+
+```
+make ejecuta
+```
+[Makefile](codigo/Makefile)
+
+[Qr.cu](codigo/SolverQr.cu)
+
+Con el siguiente resultado: 
+
+```
+root@8ee7dfffba40:/programas# ./SolverQr.out 6 4
+Matriz A:
+A[1,1] = -0.321278	A[1,2] = 3.861394	A[1,3] = 0.455748	A[1,4] = 4.221673	A[1,5] = -2.855513	A[1,6] = -3.653388	
+A[2,1] = 2.136530	A[2,2] = 0.613998	A[2,3] = 2.114917	A[2,4] = -1.884198	A[2,5] = 2.290007	A[2,6] = 0.345506	
+A[3,1] = -4.120763	A[3,2] = -0.567862	A[3,3] = 4.771340	A[3,4] = -1.022164	A[3,5] = -4.976972	A[3,6] = 2.270012	
+A[4,1] = -2.088790	A[4,2] = -3.885424	A[4,3] = -0.307358	A[4,4] = -1.810088	A[4,5] = -1.551438	A[4,6] = -2.774151	
+A[5,1] = -3.961546	A[5,2] = -4.080688	A[5,3] = -1.068173	A[5,4] = 1.477438	A[5,5] = -4.333216	A[5,6] = 3.256716	
+A[6,1] = 2.801884	A[6,2] = 4.394467	A[6,3] = 2.984427	A[6,4] = -0.169516	A[6,5] = -4.866518	A[6,6] = 3.308465	
+==============
+Vector B:
+B[1,1] = -4.972267	B[1,2] = -1.145663	B[1,3] = -3.389895	B[1,4] = -4.581575	
+B[2,1] = 2.118110	B[2,2] = -1.311567	B[2,3] = 2.602747	B[2,4] = -2.062853	
+B[3,1] = -1.077536	B[3,2] = -3.043308	B[3,3] = 4.004322	B[3,4] = -2.228233	
+B[4,1] = -0.540129	B[4,2] = -1.374322	B[4,3] = 0.587941	B[4,4] = -4.558548	
+B[5,1] = 3.232685	B[5,2] = 3.381075	B[5,3] = -4.207340	B[5,4] = 1.385709	
+B[6,1] = -0.158225	B[6,2] = 0.888519	B[6,3] = 0.481760	B[6,4] = -1.561449	
+==============
+Vector Solución X
+X[1,1] = 1.195821	X[1,2] = 0.663631	X[1,3] = -0.971599	X[1,4] = -1.386290	
+X[2,1] = -1.515703	X[2,2] = -0.502829	X[2,3] = 0.970302	X[2,4] = 1.386197	
+X[3,1] = 0.723005	X[3,2] = -0.473488	X[3,3] = 0.157991	X[3,4] = -1.603250	
+X[4,1] = 0.905290	X[4,2] = 0.574159	X[4,3] = -1.569452	X[4,4] = -0.875513	
+X[5,1] = 0.196784	X[5,2] = -0.223206	X[5,3] = 0.349953	X[5,4] = 0.606948	
+X[6,1] = 0.636335	X[6,2] = 0.502635	X[6,3] = -0.028532	X[6,4] = 1.154998	
+
+```
+
+Es importante que si se compila el programa sin el contenedor se debe utilizar la versión 9 de CUDA. 
+
+
+Fernando:
+
+
+
+
+### Equipo
+
+Platicamos con el equipo 3 y ellos comentaron que van a trabajar con OpenMP, por lo que nosotros vamos a trabajar con CUDA.
+
+
+
+
+
+
+
