@@ -7,12 +7,6 @@
 typedef struct matrix {
   size_t cols;
   size_t rows;
-  CsvRow **vectors;
+  double **vectors;
 } matrix;
-
-typedef struct normalized_matrix {
-  size_t cols;
-  size_t rows;
-  float **vectors;
-} normalized_matrix;
 
