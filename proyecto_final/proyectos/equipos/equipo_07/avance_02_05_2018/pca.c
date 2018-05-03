@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <csvparser.h>
 #include "matrix.h"
 
-double mean(matrix *m, int col);
+double average(matrix *m, int col);
+double variance(matrix *m, int col, double average);
 void free_rows(matrix *m);
 
 int main() {
@@ -27,12 +29,18 @@ int main() {
   m->vectors = vectors_ptr;
   
   const char **headerFields = CsvParser_getFields(header);
-  for (int i = 0 ; i < CsvParser_getNumFields(header) ; i++)
+  /* for (int i = 0 ; i < CsvParser_getNumFields(header) ; i++)
     printf("%s\t", headerFields[i]);
   printf("\n");
+  */
   
   for(int i = 0; i < m->cols; i++) {
-    printf("%*f\t", 10, mean(m, i));
+    float avg =  average(m, i);
+    float std_deviation = sqrt(variance(m, i, avg));
+    printf("Field: %s\n", headerFields[i]);
+    printf("Average: %*f\n", 5, avg);
+    printf("Standard deviation: %*f\n", 5, std_deviation);
+    printf("\n");
   }
   printf("\n");
   printf("Total rows: %zu\n", m->rows);
@@ -46,14 +54,22 @@ int main() {
   return 0;
 }
 
-double mean(matrix *m, int col) {
+double average(matrix *m, int col) {
   double sum = 0.0;
-  //double **v = malloc(sizeof(double) * m->rows);
   for(int i = 0; i < m->rows; i++) {
     const char **rowFields = CsvParser_getFields(m->vectors[i]);
     sum += atof(rowFields[col]);
   }
-  return  sum / (double)m->rows;
+  return sum / (double)m->rows;
+}
+
+double variance(matrix *m, int col, double average) {
+ double sum = 0.0;
+  for(int i = 0; i < m->rows; i++) {
+    const char **rowFields = CsvParser_getFields(m->vectors[i]);
+    sum += pow(atof(rowFields[col]) - average, 2);
+  }
+  return sum / (double)m->rows;
 }
 
 void free_rows(matrix *m) {
