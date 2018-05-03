@@ -20,6 +20,18 @@ Integrantes
 
 Karen: 
 
+Durante esta semana trabajé en el desarrollo del [trabajo escrito](https://drive.google.com/drive/folders/1qdO82g4tMUY4IvcM4a0dw17bH8PqgW85) en particular sobre los apartados: 
++ Introducción
++ Fundamentos 
+    + Método de mínimos Cuadrados
+    + Factorización QR mediante el uso de reflexiones de Householder
+    + Factorización QR para el problema de mínimos cuadrados
++ Bibliografía
+
+Por otro lado, con el objetivo de continuar abarcando la bibliografía prevista, revisé el artículo de Buttari, et al. ["Parallel computing"](http://www.netlib.org/utk/people/JackDongarra/PAPERS/206_2009_A%20Class-of-Parallel-Tiled-Linear-Algebra-Algorithms-for-Multicore-Architectures.pdf) en donde se describe el paso abordan los algoritmos para la factorización Cholesky, LU y QR donde las operaciones se pueden representar como una secuencia de pequeñas tareas que operan en bloques cuadrados de datos. Menciona que estas tareas pueden programarse dinámicamente en función de las dependencias entre ellas y de la disponibilidad de los recursos computacionales. Esto puede dar como resultado la ejecución fuera de servicio de tareas que ocultará por completo la presencia de tareas intrínsecamente secuenciales en la factorización. 
+Por otro lado, aborda las comparaciones en cuanto a rendimiento con algoritmos LAPACK donde el paralelismo solo se puede explotar a nivel de las operaciones BLAS. 
+Considero que presenta un buen panorama general en el que muestra un ejemplo de algoritmo para la factorización QR pues facilita algunos diagramas que son de gran utilidad para comprender su funcionamiento de forma más didáctica. 
+Finalmente concluye con la comparación de cada uno de los algoritmos evidenciando que el método de factorización QR es competente más no el mejor.
 
  
 Miguel: 
