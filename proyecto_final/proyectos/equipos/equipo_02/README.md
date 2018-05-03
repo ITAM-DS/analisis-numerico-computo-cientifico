@@ -1,5 +1,5 @@
 # Equipo 2
-# `Tema del proyecto: Cholesky Factorization.
+# Tema del proyecto: Cholesky Factorization.
 
 ## Integrantes:
 ```
@@ -7,6 +7,10 @@
  +Uriel Miranda Miñón
  +Héctor Adolfo Corro Zárate 
 ```
+
+## Objetivo:
+
+El objetivo de este trabajo consiste en aprovechar las oportunidades creadas o generadas por las tecnologías actuales para la paralelización de rutinas del cálculo numérico, para cuestiones de este trabajo y para la implementación de alguna de los paradigmas de programación vistos en la clase de Análisis Numérico y Computo Científico. Se hará uso de openMP para la factorización Cholesky.
 
  - [avance_17_04_2018](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_02/avance_17_04_2018)
  - [avance_24_04_2018](https://github.com/alexnivi/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_02/avance_24_04_2018)
