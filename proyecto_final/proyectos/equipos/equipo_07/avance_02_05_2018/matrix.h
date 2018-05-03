@@ -10,3 +10,9 @@ typedef struct matrix {
   CsvRow **vectors;
 } matrix;
 
+typedef struct normalized_matrix {
+  size_t cols;
+  size_t rows;
+  float **vectors;
+} normalized_matrix;
+
