@@ -13,6 +13,8 @@ Al comenzar a desarrollar la implementación nos dimos cuenta que hay bastas opc
 
 Hemos definido el alcance completo del proyecto y tenemos los primeros scripts de la implementación, se puede consultar un resumen de lo anterior en [avance_24_04_2018](avance_24_04_2018).
 
+Comenzamos a realizar pruebas con el código que tenemos, así como a generar código para automatizar dichas pruebas. Por otro lado siguiendo la recomendación de Erick tenemos un primer borrador del trabajo final, aún sin incluir los resultados obtenidos de esta primera fase de pruebas, se puede consultar el detalle en [avance_02_05_2018](avance_02_05_2018).
+
 Referencias del proyecto:
 
 * http://www.hpcc.unn.ru/mskurs/ENG/PPT/pp08.pdf
