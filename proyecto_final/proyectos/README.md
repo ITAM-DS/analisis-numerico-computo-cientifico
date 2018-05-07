@@ -22,7 +22,7 @@ Objetivo del proyecto: objetivo
 
 Ttulo del proyecto: `Cholesky Factorization`
 
-Objetivo del proyecto: Realizar una implementación de la factorización de cholesky en alguna de las tecnologías de cómputo distribuido o compartido visto en clase.
+Objetivo del proyecto: El objetivo de este trabajo consiste en aprovechar las oportunidades creadas o generadas por las tecnologías actuales para la paralelización de rutinas del cálculo numérico, para cuestiones de este trabajo y para la implementación de alguna de los paradigmas de programación vistos en la clase de Análisis Numérico y Computo Científico. Se hará uso de openMP para la factorización Cholesky.
 
 [Avances del proyecto](equipos/equipo_02):
 
@@ -31,6 +31,8 @@ Objetivo del proyecto: Realizar una implementación de la factorización de chol
 * [Avance 17-04-2018](equipos/equipo_02/avance_17_04_2018): Bien sus referencias, los autores Dongarra y Demmel son de los más importantes en cuestión del álgebra lineal numérica. Coloquen las referencias que usarán para su proyecto en su carpeta inicial y también su implementación. LAPACK tiene la factorización de Cholesky pueden revisarla, está bien que hayan buscado otra implementación pero aprovechen lo que vieron en las tareas, en las notas que encuentran en el repo (tema 3, cómputo matricial) también está descrita tal factorización en una forma con tres fors (como tienen [aquí](https://github.com/alexnivi/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_02/avance_17_04_2018/implementacion/choleskyEjemplo.c)) y en una forma block-wise, está basado en el libro de matrix computations de Golub y Van Loan, Héctor y Uriel me parece que este libro les ayudará también. Revisen SCALAPACK. El año pasado un equipo implementó Cholesky en CUDA, también pueden revisar esto para su siguiente avance. Di click a las referencias y me llevó a una página de dropbox que me pedía iniciar sesión. Remuevan el README.html de su carpeta inicial xfa.
 
 * [Avance 24-04-2018](equipos/equipo_02/avance_24_04_2018): Gracias por sus referencias en su README de su carpeta inicial (equipo_02/README.md) pero la liga que se llama Dropbox me pide iniciar sesión y vi en mi correo que me enviaron la invitación pero mejor si escriben una por una las referencias que tengan en esta liga. Vayan realizando su trabajo escrito con introducción, algoritmos a utilizar para Cholesky y se puedan leer mejor la escritura matemática que reporta Uriel para este avance. No tienen que poner una liga [referencia](https://docs.google.com/document/d/1_VOtnyJGHTWvyHCHC9L-mSRSNSslY22qrSikXzquL2g/edit?ts=5ad56af8) con una bitácora de todos los avances. Falta en equipo_02/README.md colocar su objetivo y ligas a su trabajo escrito como [equipo_ejemplo](equipos/equipo_ejemplo). Para algoritmos de optimización usen Boyd & Vandenbergue parte 3 (capítulos 9, 10 y 11) y el libro de Nocedal & Wright de numerical optimization. La referencia de introduction to random signals and applied kalman filtering pdf, no la pude visualizar, pueden arreglar esto? Remuevan y cambien nombre a esto: equipos/equipo_02/avance_24_04_2018/implementacio\314\201n/ (no es buena idea colocar espacios o acentos en bash, no importa la ortografía).
+
+* [Avance 02-05-2018](equipos/equipo_02/avance_02_05_2018): Gracias por sus ligas a su trabajo escrito en su equipo_02/README.md pero como el comentario del avance anterior ésta liga conduce a un documento que tiene secciones de avance de cada persona, esto no lo coloquen como su trabajo escrito, o no he visto la liga al trabajo escrito (hacia google docs que menciona Uriel en este avance) o no la han puesto, revisen esto. Para la liga de Dropbox que está en su equipo_02/README.md en la sección de referencias vean el comentario de avance anterior. Muy buenas referencias que proporciona Alejandro ¿quizás añadirlas en el equipo_02/README.md? (si es que serán de utilidad para el objetivo de su proyecto o enmarcaran la factorización de Cholesky en los objetivos de los papers). Cuidado con el archivo de nombre [verosim.c](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_02/avance_02_05_2018/implementacion/verosim.c) pues hasta el final aparece no lenguaje de C. Remuevan y cambien nombre a esto: equipos/equipo_02/avance_24_04_2018/implementacio\314\201n/ (no es buena idea colocar espacios o acentos en bash, no importa la ortografía). Pueden usar lo hecho en tareas 5, 6 para lectura de archivos de texto, imprimir vectores, matrices y manejo de arreglos de 1d y 2d en forma column major (sugerencia).
 
 ---
 
@@ -136,7 +138,7 @@ Objetivo del proyecto: Implementar el método de descenso en gradiente para enco
 
 Ttulo del proyecto: `Mínimos Cuadrados usando la Factorización QR y CUDA`
 
-Objetivo del proyecto: Implementar el algoritmo QR para el lenguaje de programación C bajo un enforque de programación en paralelo usando CUDA
+Objetivo del proyecto: Implementar el algoritmo QR para el lenguaje de programación C bajo un enforque de programación en paralelo.
 
 [Avances del proyecto](equipos/equipo_09):
 
@@ -146,7 +148,10 @@ Objetivo del proyecto: Implementar el algoritmo QR para el lenguaje de programac
 
 * [Avance 24-04-18](equipos/equipo_09/avance_24_04_2018): pueden usar lo hecho en tareas 5, 6 para lectura de archivos de texto, imprimir vectores, matrices y manejo de arreglos de 1d y 2d en forma column major (sugerencia). Miguel tiene buenos avances en la programación desde el avance 1. Para este avance no está clara la aportación de Karen y Fernando en el trabajo escrito (que está mal organizado y escrito). Había mencionado a Fernando en el comentario de su primer avance que él habla sobre búsqueda de implementaciones en paralelo de QR, lo repetí para el avance 2 y para este tercero sigue sin haber comentarios al respecto salvo lo que  Karen refiere del paper de Dongarra. Su trabajo escrito tiene enunciados incompletos como "El método de mínimos cuadrados en palabras de Miller, busca minimizar la diferencia entre
 los datos observados y la ecuación de la recta de la forma para" (falta referencia a lo de Miller y completar el enunciado) o "La combinación de puntos que mejor se ajusta a los puntos se encuentra dada por la siguiente
-ecuación: (vacío)" y así otros. Al inicio de la sección de "Factorización QR mediante el uso de reflexiones de Householder" se describe el uso de QR para eigenvalores/eigenvectores, perdonen pero ¿cuál es la idea de abordar este tema en la sección de reflexiones de Householder?. No hay buena calificación para Karen y Fernando para este avance.  
+ecuación: (vacío)" y así otros. Al inicio de la sección de "Factorización QR mediante el uso de reflexiones de Householder" se describe el uso de QR para eigenvalores/eigenvectores, perdonen pero ¿cuál es la idea de abordar este tema en la sección de reflexiones de Householder?. No hay buena calificación para Karen y Fernando para este avance. 
+
+
+* [Avance 02-05-18](equipos/equipo_09/avance_02_05_2018):La liga a su trabajo escrito me llevó a un folder, mejor una liga que me lleve al trabajo escrito directamente y colóquenla en equipo_09/README como [equipo_ejemplo](equipos/equipo_ejemplo). Mmmmm creo o no estoy viendo el trabajo escrito correcto (debido a que en su carpeta me aparecen 4 documentos y estoy confundio en cuál debo ver) o siguen teniendo frases inconclusas y secciones vacías ¿pueden revisar esto? En la sección de rotaciones Givens cambien "matrix sparse -> matriz rala". Gracias Karen por detallar lo que has realizado en el trabajo escrito y me queda la pregunta de lo que Fernando ha incluido en el mismo. Fernando incluye más detalle en tu trabajo individual para el siguiente avance, ahora no es claro tu investigación/aporte al trabajo escrito. Gracias Miguel por la revisión del uso de los archivos de las tareas, indica que falta una sección importante en el repositorio de la materia sobre CUDA, coloca tus referencias al respecto en equipo_09/README.md.
 
 ---
 
@@ -228,6 +233,8 @@ Objetivo del proyecto: implementación de un algoritmo para la multiplicación d
 
 
 * [Avance 24-04-18](equipos/equipo_14/avance_24_04_2018): Remuevan y cambien nombre a esto: equipos/equipo_14/Co\314\201digo/ (no es buena idea colocar espacios o acentos en bash, no importa la ortografía) pero gracias por esa carpeta y su readme fue de ayuda. Empiecen con el trabajo escrito, ya han investigado lo de paralelizar la multiplicación de matrices en openmp y lo de eficiencia, eso lo pueden ir añadiendo a su trabajo escrito, no lo dejen para semana de finales. Modifiqué recientemente el archivo de `definiciones.h` para manejo de arreglos-2d, vi Alex que tienes `entrada(C,i,j,M)` me parece que con la modificación que hice no requieres pasar la M en esta macro, revísenlo.
+
+*[Avance 02-05-18](equipos/equipo_14/avance_02_05_2018): Gracias por cambiar el nombre a la carpeta de Codigo. Coloquen las ligas al trabajo escrito y presentación en su carpeta inicial: equipo_14/README.md como [equipo_ejemplo](equipos/equipo_ejemplo/). Vi que tienen `entrada(C,i,j,M)` me parece que con la modificación que hice (al archivo de [definiciones.h](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/BLAS/ejemplos) no requieres pasar la M en esta macro, revísenlo. Ok con el avance del trabajo escrito, continuén en su desarrollo.
 
 ---
 
