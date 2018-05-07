@@ -1,6 +1,6 @@
 ## Equipo 1
 
-Integrantes:
+### Integrantes:
 
 * Daniel Sharp
 
@@ -8,7 +8,20 @@ Integrantes:
 
 * Elizabeth Solis
 
-Título del proyecto: `Implementación de método de optimización convexa con mínimos cuadrados, a través de descenso en gradiente estocástico`
+### Título del proyecto:
+`Implementación de método de optimización convexa con mínimos cuadrados, a través de descenso en gradiente estocástico`
+
+### Objetivo del proyecto:
+Implementación de los algorítmos ADAM y AMSGrad de descenso en gradiente utilizando las librerías de BLAS y cuBLAS (en el runtime de CUDA). Evaluar incremento en desempeño de ejecución en GPU.
+
+### Trabajo escrito:
+https://www.sharelatex.com/read/kbgxbypyfjvk
+
+### Presentación
+(proximamente)
+
+### Implementación:
+En cada avance agregamos una carpeta `codigo` en la cual se encuentra el avance en la implementación correspondiente a esa semana.
 
 #### Referencias del proyecto:  
 
