@@ -123,7 +123,7 @@ Objetivo del proyecto: Implementar el método de “Principal Component Analysis
 
 * [Avance 24-04-18](equipos/equipo_07/avance_24_04_2018): En su equipo_07/README.md coloquen sus referencias como [equipo_ejemplo](equipos/equipo_ejemplo). Pueden usar BLAS para las operaciones de normalización de su matriz (sugerencia). Añadan forma de compilar y output de su programa.
 
-* [Avance 02-05-18](equipos/equipo_07/avance_02_05_2018): En su equipo_07/README.md coloquen sus referencias como [equipo_ejemplo](equipos/equipo_ejemplo) (comentario avance pasado). Falta descripción de trabajo individual o ¿tod@s realizaron lo del escalamiento? quizás una opción de realizar esto es que una persona haga una función, otra busque x librería, otra trabaje en la lectura de archivos (si es el caso) piensen en una forma de presentar su trabajo individual. Comiencen con el trabajo escrito y coloquen la liga en equipo_07/README.md 
+* [Avance 02-05-18](equipos/equipo_07/avance_02_05_2018): En su equipo_07/README.md coloquen sus referencias como [equipo_ejemplo](equipos/equipo_ejemplo) (comentario avance pasado). Falta descripción de trabajo individual o ¿tod@s realizaron lo del escalamiento? quizás una opción de realizar esto es que una persona haga una función, otra busque x librería, otra trabaje en la lectura de archivos (si es el caso) piensen en una forma de presentar su trabajo individual (está pendiente la calificación de este avance de forma individual, actualizo esto al tener su descripción individual, pueden añadirla cuando hagan el pull request para el siguiente avance). Comiencen con el trabajo escrito y coloquen la liga en equipo_07/README.md 
 
 
 ---
