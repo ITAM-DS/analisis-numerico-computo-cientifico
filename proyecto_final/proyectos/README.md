@@ -98,6 +98,9 @@ Objetivo del proyecto: Paralelizar en GPU un algoritmo de Hit & Run definido por
 
 * [Avance 24-04-2018](equipos/equipo_6/avance_24_04_2018): No hay entrega de avance.
 
+
+* [Avance 1-05-2018](equipos/equipo_6/avance_1_05_2018): Coloquen la liga de su trabajo escrito e implementaciones en su equipo_6/README.md como [equipo_ejemplo](equipos/equipo_ejemplo). En las notas que encuentran en el repo (tema 3, cómputo matricial) está la factorización QR y también en el libro de Golub y Van Loan de Matrix computations para la referencia sobre proyección con reflexiones de Householder.  Los avances que consistan en lecturas de papers (además de la lectura) acompáñenlos de un borrador (mejor si tienen algo escrito en forma) en su trabajo escrito (o discusión del paper), algo más que los 3-6 renglones que escriben en su descripción individual. Las referencias que usen para su objetivo colóquenlas en equipo_6/README.md. Bien por el avance en trabajo escrito (no sé si estoy acostumbrado a la lectura en inglés pero entendí muy bien/rápido lo que escribieron, just saying) y una pregunta ¿qué indican los super índices prima de la sección 2.2?.
+
 ---
 
 ## [Equipo 7](equipos/equipo_07)
@@ -185,6 +188,8 @@ Objetivo del proyecto: Implementar el algoritmo Dijkstra en C y su versión en p
 
 * [Avance 24-04-18](equipos/equipo_11/avance_24_04_18): Coloquen la liga de su trabajo escrito en su equipo_11/README.md como [equipo_ejemplo](equipos/equipo_ejemplo) y un comentario respecto a esto: la liga a su trabajo escrito me llevó a un folder, mejor una liga que me lleve al trabajo escrito directamente. La lectura de software/hardware paralelo debió de cubrirse con el examen que hicimos en clase el mes anterior y para este avance no  se cubrió algo diferente (salvo quizás lo de ¿eficiencia?). Remuevan de su trabajo escrito la sección de software paralelo y hardware paralelo pues no es necesaria (¿o mediran eficiencia? si es así conserven esa parte, si no remuevan esa sección), vayan directo a la implementación en paralelo de Dijkstra ¿han encontrado referencias para esto último?. Muestren los resultados en su forma secuencial que les mencioné en el avance anterior (sin respuesta a las preguntas que hacía en específico a la implementación en python). Tres personas trabajaron lo de hardware/software paralelo, sugiero asignen mejor sus tareas, una persona podría haber desarrollado lo anterior y las demás la parte de código/implementación/secuencial/paralelo de Dijkstra. Comiencen con la implementación en C si ya funciona lo de python secuencial para el siguiente avance antes de usar openmp.
 
+* [Avance 01-05-18](equipos/equipo_11/avance_01_05_18): Muy bien por el avance en la implementación en C. Lorena, si estás usando arreglos 1-dimensionales para por ejemplo la variable `distance` o también arreglos de enteros `visited` (para éstos falta definir una macro como renglones_vectores_entero para guardar su tamaño, pero tú puedes implementarla, es muy similar a la macro renglones_vector) hay una definición de arreglo_1d en definiciones.h (sugerencia si prefieres saltar el paso de uso de apuntadores :) ) Para el siguiente avance muestra forma de compilar y output de tus códigos. Detallen quién realiza secciones del trabajo escrito, por ejemplo lo de relajación. Los avances que consistan en lecturas de papers (además de la lectura) acompáñenlos de un borrador (mejor si tienen algo escrito en forma) en su trabajo escrito (o discusión del paper, algo más que los 3-6 renglones que escriben en su descripción individual, ya había mencionado esto en el comentario de avance 2), lo menciono pues deben definir si será posible realizar en paralelo Dijkstra o acotar la implementación a secuencial, restan 4 avances por entregar y es tiempo de ir finalizando la lectura de referencias.
+
 ---
 
 ## [Equipo 12](equipos/equipo_12)
@@ -216,6 +221,8 @@ Objetivo del proyecto: Implementación de un algoritmo para el cálculo del áre
 * [Avance 17-04-18](equipos/equipo_13/avance_17_04_2018): Definan si realizarán una implementación en CUDA pues Alejandro menciona que no se ha hallado tal implementación al realizar una búsqueda. Esto tomen en cuenta pues el proyecto final no consiste en desarrollar algo nuevo, eso podría tomar más tiempo del estimado. Den oportunidad en la semana de buscar algo respecto a esto, si no encuentran opten por otra extensión a C. ¿Cómo ven la integración por MC? ¿viable, factible en tiempo y entregas? pues aquí se encuentran con generación de números pseudo aleatorios [equipo12](equipos/equipo_12)
 
 * [Avance 24-04-18](equipos/equipo_13/avance_24_04_2018): Empiecen con su trabajo escrito para el siguiente avance con lo que se ha investigado por ustedes. Ok con lo de MPI. La propuesta de Federico podrían implementarla también en el siguiente avance de forma secuencial y hacer pruebas de ejecución y presentar outputs. Si hay referencias que añadir en equipo_13/README.md realícenlo.
+
+* [Avance 02-05-18](equipos/equipo_13/avance_02_05_2018): Coloquen la liga a su trabajo escrito e implementaciones en equipo_13/README.md como [equipo_ejemplo](equipos/equipo_ejemplo). ¿Y utilizaran un clúster en su implementación de openMPI? o ¿será algo pseudo distribuido con docker?. Se ve extraño que esté en inglés la sección de su trabajo escrito de Implementación en paralelo - Riemann. ¿Usarán la implementación que desarrollen en openMPI para alguna aplicación? por ejemplo en ¿estadística, finanzas u otra rama?.
 
 ---
 
