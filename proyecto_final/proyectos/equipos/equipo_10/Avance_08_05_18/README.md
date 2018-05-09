@@ -6,11 +6,11 @@
 
 **Roberto:**
 
-Se profundizó en el código svd.cu y se elaboró un reporte del proceso de cómputo para realizar la descomposición de valores singulares en CUDA y como se interactúa entre el CPU y la GPU. El reporte se puede ver [aquí](https://drive.google.com/open?id=1DQtzUqefoYp6oyAw3vjYBY7O5bBp3z62)
+`Se profundizó en el código svd.cu y se elaboró un reporte del proceso de cómputo para realizar la descomposición de valores singulares en CUDA y como se interactúa entre el CPU y la GPU. El reporte se puede ver` [aquí](https://drive.google.com/open?id=1DQtzUqefoYp6oyAw3vjYBY7O5bBp3z62)
 
-Por otra parte, se buscaron ejemplos de implementación de códigos de CUDA en AWS y se encontró el siguiente [video]( https://www.youtube.com/watch?v=dov5IUfJlkc)
+`Por otra parte, se buscaron ejemplos de implementación de códigos de CUDA en AWS y se encontró el siguiente` [video]( https://www.youtube.com/watch?v=dov5IUfJlkc)
 
-En el vídeo se ve como se configura una imagen a partir de una búsqueda de la palabra “nvidia” en AWS Marketplace, y lo más importante, se elige una instancia de tipo “g2.2xlarge” para realizar el demo.
+`En el vídeo se ve como se configura una imagen a partir de una búsqueda de la palabra “nvidia” en AWS Marketplace, y lo más importante, se elige una instancia de tipo “g2.2xlarge” para realizar el demo.`
 
 
 **Rodrigo;**
