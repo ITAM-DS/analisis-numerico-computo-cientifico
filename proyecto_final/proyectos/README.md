@@ -16,6 +16,9 @@ Objetivo del proyecto: objetivo
 
 * [Avance 24-04-18](equipos/equipo_01/avance_24_04_18): Revisen la ecuación de la página 2 después de las palabras: "Operando con ellas", la parte de en medio en específico. En la página 5 el cuadro del Algorithm 1 definan qué es THETA  (lo mencionan en la sección de Notación pero lo pueden añadir en la línea de Input). En la parte de notación de la página 5 también se hace mención al conjunto de matrices definidas positivas pero en el libro de Boyd & Vandenberghe utilizan dos signos positivos para este conjunto. Al final de la página 5 sólo es algo en español el Hessiano cambien por la Hessiana (es una matriz, la matriz Hessiana). En la página 6 hay un signo de interrogación que se ve como un typo en las referencias de AMSGRAD y también para AMSGRAD definan qué es beta_1 y beta_2. No encontré el programa de `min_cuadrados_basico.c` con la actualización de este avance (lectura de archivo) añádenlo en el siguiente avance xfa. Falta colocar su objetivo y ligas a su trabajo escrito como [equipo_ejemplo](equipos/equipo_ejemplo) en equipo_01/README.md.
 
+
+* [Avance 02-05-18](equipos/equipo_01/avance_02_05_18): Está bajando la RSS pero también monitoreen la norma del gradiente de la función objetivo, el valor de la función y utilicen un `while` en lugar de un `for`; como criterio de paro utilicen un valor de máximo de iteraciones y la norma antes mencionada con una tolerancia por ejemplo de 10 ^(-12). En cada iteración impriman tal norma. Muy bien sus avances, son muy claros. Daniel me preguntó sobre unified memory en CUDA ¿podrían poner tal pregunta? relacionada con c++.
+
 ---
 
 ## [Equipo 2](equipos/equipo_02)
@@ -49,6 +52,8 @@ Objetivo del proyecto: Paralelizar factorización QR
 * [Avance 17-04-18](equipos/equipo_03/avance_17_04_2018): Para implementación de QR pueden revisar las notas de cómputo matricial del repo (tema 3) que están basadas en el libro de matrix computations de Golub y Van Loan y la factorización QR está implementada en LAPACK, pueden usarla. Revisen de igual forma SCALAPACK. Por su descripción Map Reduce podrían considerarlo en otro tiempo, ahora dediquen esfuerzos para la QR con  una implementación para el siguiente avance (puede ser lo de LAPACK que les mencionaba).
 
 * [Avance 24-04-18](equipos/equipo_03/avance_24_04_2018): Diego, sube tus implementaciones al repo, no son pesadas (kb's), y añade outputs de tus ejecuciones, puedes usar lo hecho en tareas 5, 6 para lectura de archivos de texto, imprimir vectores, matrices y manejo de arreglos de 1d y 2d (sugerencia). Rafael sí, inicien el trabajo escrito para el siguiente avance, el autor Dongarra ha sido y continúa siendo muy importante en el álgebra lineal numérica. Víctor, sube tus implementaciones al repo y añade outputs de tus ejecuciones. Para esto aprovechen el markdown. También pueden usar lo de las tareas 5, 6 para leer de archivos, imprimir vectores, matrices y manejo de arreglos 1d y 2d (sugerencia). Una vez inicien el trabajo escrito, coloquen la liga al mismo como [equipo_ejemplo](equipos/equipo_ejemplo) en equipo_03/README.md.
+
+* [Avance 02-05-18](equipos/equipo_03/avance_02_05_2018): Su trabajo escrito está muy bien :) y buena descripción individual. Nuevamente comentarios del avance pasado para su output y lectura de datos con funciones y definiciones ya creadas.
 
 ---
 
@@ -143,6 +148,9 @@ Objetivo del proyecto: Implementar el método de descenso en gradiente para enco
 
 * [Avance 24-04-18](equipos/equipo_8/avance_24_04_18): Gracias por remover el html. Coloquen la liga a su trabajo escrito en equipo_8/README.md como [equipo_ejemplo](equipos/equipo_ejemplo). En la página 4 al final hay algunas cosas que cambiar, por ejemplo separar la palabra "para" y hay dos "si". La figura al inicio de la página 5 no hacen referencia a ella. Están bien sus figuras aunque se ven algo borrosas, hay una forma de desplegar los algoritmos de una forma más legible con .tex, revísenla. Para el siguiente avance consideren iniciar con su implementación en C y continúen completando su trabajo escrito.
 
+
+* [Avance 02-05-18](equipos/equipo_8/avance_02_05_18): Liga a su trabajo escrito no a carpeta, directamente que sea al documento. Mismo comentario que vez anterior para las figuras. Página 8 es algo sútil por el lenguaje, Jacobiano--->Jacobiana (es una matriz). Página 9 "más empinado" ---> "máximo descenso", "regla de parado" ---> "regla de paro", "colineares"--->"colineales". Página 10 "puntero"---> "apuntador" (o coloquen puntero en todos lados). Mónica, mejor en tu descripción individual del .md escribe las secciones que escribiste en el trabajo en lugar de un copy-paste. Eduardo no encontré la tabla 1.1 ni la actualización de imágenes por tablas (está pendiente tu calificación para este avance). Hay que ir resolviendo lo de la implementación en C.
+
 ---
 
 ## [Equipo 9](equipos/equipo_09)
@@ -180,6 +188,8 @@ Objetivo del proyecto: Desarrollar un algoritmo de sistemas de recomendación ba
 
 * [Avance 24-04-18](equipos/equipo_10/Avance_24_04_18): Sugiero usen CUDA de forma nativa, es decir no con docker para iniciar, después podrían considerar usar docker+NVIDIA (una vez hecho pruebas con cusolver por ejemplo). Inicien con el trabajo escrito para el siguiente avance. Suban el notebook al repo en lugar que deba descargarse (es muy pesado? si no, entonces podrían añadirlo). Es probable que el examen final sea la última semana de mayo, lo menciono para que ajusten lo necesario en su cronograma. Es importante que realicen pruebas para que revisen que todo está bien con configuración de instancia, librerías necesarias y puedan seguir avanzando o resolver lo que surja. Se ve bien la configuración de la instancia (aunque la instancia no tenía tag de nombre...) añade una compilación de hello_world y output de cusolver para apoyar lo anterior que comentaba (chequeo de dependencias para CUDA y librerías necesarias).
 
+* [Avance 02-05-18](equipos/equipo_10/Avance_02_05_18): ¿por qué falla el deviceQuery? y ¿pueden añadir descripción de trabajo individual de cada persona xfa? sus calificaciones están pendientes. El trabajo escrito busquen una mejor forma de presentarlo, .md no es buena idea y pueden utilizar  el tema 3 cómputo matricial (3.2.2, 3.6.2) y el libro de matrix computations de Golub y Van Loan para el mismo. Las referencias de su equipo_10/README.md en lugar de colocar páginas de internet coloquen los títulos o nombres
+
 ---
 
 ## [Equipo 11](equipos/equipo_11)
@@ -214,6 +224,8 @@ Objetivo del proyecto: Programar un algoritmo para la generación de una cadena 
 
 * [Avance 24-04-18](equipos/equipo_12/avance_24_04_18): Dan buenas referencias en este avance ¿serán utilizadas en el objetivo de su proyecto? si es así colóquenlas en equipo_12/README.md y un comentario sobre sus referencias de este README, es mejor si colocan el título de sus referencias en lugar de las ligas con nombre de google docs pues si yo veo una por una después se me olvida cuál era la tercera. Comiencen con su trabajo escrito y lo que añade para este avance Víctor lo pueden incluir allí. Muy bien su descripción de trabajo individual, gracias por eso.
 
+
+* [Avance 02-05-18](equipos/equipo_12/avance_02_05_18): añadan su trabajo escrito en equipo_12/README.md como [equipo_ejemplo](equipos/equipo_ejemplo), así como ligas a su presentación e implementación. Falta avance en trabajo escrito. Añádanlo para el avance del 8 de mayo. Incluyan referencia a algoritmo de Mersenne Twister en sus referencias de equipo_12/README.md
 ---
 
 ## [Equipo 13](equipos/equipo_13)
