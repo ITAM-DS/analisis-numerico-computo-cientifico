@@ -112,9 +112,9 @@ Para la siguiente entrega voy a agregar pruebas con otros conjuntos de datos y h
 
 
 
-
-
 Fernando:
+
+Esta semana revisé los materiales de la implementación en CUDA. No tengo un resultado concreto para reportar, sino hasta la próxima semana.
 
 
 ### Equipo
