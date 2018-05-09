@@ -16,6 +16,9 @@ Objetivo del proyecto: objetivo
 
 * [Avance 24-04-18](equipos/equipo_01/avance_24_04_18): Revisen la ecuación de la página 2 después de las palabras: "Operando con ellas", la parte de en medio en específico. En la página 5 el cuadro del Algorithm 1 definan qué es THETA  (lo mencionan en la sección de Notación pero lo pueden añadir en la línea de Input). En la parte de notación de la página 5 también se hace mención al conjunto de matrices definidas positivas pero en el libro de Boyd & Vandenberghe utilizan dos signos positivos para este conjunto. Al final de la página 5 sólo es algo en español el Hessiano cambien por la Hessiana (es una matriz, la matriz Hessiana). En la página 6 hay un signo de interrogación que se ve como un typo en las referencias de AMSGRAD y también para AMSGRAD definan qué es beta_1 y beta_2. No encontré el programa de `min_cuadrados_basico.c` con la actualización de este avance (lectura de archivo) añádenlo en el siguiente avance xfa. Falta colocar su objetivo y ligas a su trabajo escrito como [equipo_ejemplo](equipos/equipo_ejemplo) en equipo_01/README.md.
 
+
+* [Avance 02-05-18](equipos/equipo_01/avance_02_05_18): Está bajando la RSS pero también monitoreen la norma del gradiente de la función objetivo y utilicen un `while` en lugar de un `for`; como criterio de paro utilicen un valor de máximo de iteraciones y la norma antes mencionada con una tolerancia por ejemplo de 10 ^(-12). En cada iteración impriman tal norma. Muy bien sus avances, son muy claros. Daniel me preguntó sobre unified memory en CUDA ¿podrían poner tal pregunta? relacionada con c++.
+
 ---
 
 ## [Equipo 2](equipos/equipo_02)
