@@ -22,6 +22,11 @@ A continuación, mencionaremos los avances puntuales y pruebas realizadas
 en cada uno de estos aspectos, de igual forma, incluimos los códigos y
 gráficas que fueron utilizadas en nuestro trabajo semanal.
 
+Además agregamos:
+[Adelanto de avance escrito](https://drive.google.com/open?id=1eNuVrLHSqpCU5S-ioY034zv_03jCJysL)
+[Adelanto de presentación](https://drive.google.com/open?id=1Fwx4zHhlSrEhpZWHnoax7to2N7cjp5r-)
+[Adelanto de implementación](https://github.com/oliab/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_08_05_18/Codigo)
+
 ### Longitud de la cadena de números aleatorios.
 
 #### Avance Carlos
@@ -111,13 +116,13 @@ número esté en representación binaria. Entonces se creó una función que
 recibe un número entero y lo transforma a base 2 para después imprimirlo
 en la salida estándar. Este programa se juntó con los dos anteriores
 para generar un programa en C que regresará número aleatorios pero
-convertidos en binarios (ver script DecimalToBinary.C). Una vez
+convertidos en binarios (ver script [DecimalToBinary.C](https://github.com/oliab/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_08_05_18/Codigo/DecimalToBinary.c)). Una vez
 funcionando el programa se ejecutó 100,000 veces para generar una cadena
 de números aleatorios lo suficientemente larga para las pruebas, esto se
-hizo con un loop en shell (ver rand.sh). Lo anterior se repitió para los
+hizo con un loop en shell (ver [rand.sh](https://github.com/oliab/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_08_05_18/Codigo/rand.sh)). Lo anterior se repitió para los
 parámetros encontrados en el avance previo; m = 2048, c = 1 y a = 65,
-1229, 1365.Los números generados pueden verse
-[aquí.](https://drive.google.com/open?id=1nVI6XT4NMOQAzmtz8QnFogb1a0MfRHSq)
+1229, 1365.Los números generados pueden verse 
+[aquí.](https://drive.google.com/open?id=1Z0nml_4Wi3uibX9EH4U5GGJZt0T1J6vm)
 
 Los resultados de las pruebas se ven en los archivos
 [finalAnalysisiReport](https://drive.google.com/open?id=17OI55U7bqcRxCqyJjQgVzoUzSvfXxKt7)
@@ -148,7 +153,5 @@ velocidad en problemas de grandes numeros, pues paralelizar es una gran
 herramienta.A
 
 El código modificado para enteros que se usaran en las pruebas se puede
-ver en la carpeta de código al igual que el código base que usaremos
-como referencia para la paralelización es este. Los números generados
-para pruebas se pueden ver
-[aquí.](https://drive.google.com/open?id=1nVI6XT4NMOQAzmtz8QnFogb1a0MfRHSq)
+ver en este [enlace](https://github.com/oliab/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_08_05_18/Codigo/random_MT.c) y   el código base que usaremos
+como referencia para la paralelización es [este.](https://github.com/oliab/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_08_05_18/Codigo/numeros_paralell.c) la referencia de este código ya fue añadido a las referencias 
