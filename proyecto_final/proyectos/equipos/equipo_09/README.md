@@ -17,7 +17,7 @@ Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://drive.google.co
 
 Presentación (fuera del repo): [liga_presentación](https://drive.google.com/drive/folders/1KN2nghXPG8c8GwU9f5t46snOMRBbrf-F)
 
-Implementación (en el repo): [código](../codigo/MCQR.cu)
+Implementación (en el repo): [código](codigo/MCQR.cu)
 
 
 
