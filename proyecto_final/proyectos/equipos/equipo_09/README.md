@@ -1,15 +1,25 @@
 Equipo 9 
 =================================================
-**Título del proyecto:** Mínimos Cuadrados usando la Factorización QR y CUDA
-
-**Objetivo del proyecto:** Implementar el algoritmo QR para el lenguaje de programación C bajo un enforque de programación en paralelo
-
 
 Integrantes
 ---------------------------------------------------
 + Karen Peña (175952)
 + Miguel Catañeda (175840)
 + Fernando Briseño (171349)
+
+
+**Título del proyecto:** Mínimos Cuadrados usando la Factorización QR y CUDA
+
+**Objetivo del proyecto:** Implementar el algoritmo QR para el lenguaje de programación C bajo un enforque de programación en paralelo
+
+
+Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://drive.google.com/drive/folders/1EkRomjpJLi_mLgXNvKZA1uizJJKIVNlk)
+
+Presentación (fuera del repo): [liga_presentación](https://drive.google.com/drive/folders/1KN2nghXPG8c8GwU9f5t46snOMRBbrf-F)
+
+Implementación (en el repo): [código](../codigo/MCQR.cu)
+
+
 
 Plan de trabajo 
 --------------------------------------------------
@@ -44,6 +54,10 @@ Actualizamos nuestro calendario para tal efecto.
 En la carpeta [avance_24_04_2018](avance_24_04_2018) se encuentra el reporte del tercer avance del proyecto.
 
 En la carpeta [avance_02_05_2018](avance_02_05_2018) se encuentra el reporte del cuarto avance del proyecto.
+
+En la carpeta [avance_08_05_2018](avance_08_05_2018) se encuentra el reporte del quinto avance del proyecto.
+
+
 
 
 Referencias
