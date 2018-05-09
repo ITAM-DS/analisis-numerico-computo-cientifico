@@ -89,7 +89,7 @@ void dijkstra_distance()
       #pragma omp single
       {  nthreads = omp_get_num_threads();  nodos = NV/nthreads;
          printf("there are %d threads\n",nthreads);  }
-      // Note 3
+ 
       startv = me * nodos;
       endv = startv + nodos - 1;
       for (step = 0; step < NV; step++)  {
