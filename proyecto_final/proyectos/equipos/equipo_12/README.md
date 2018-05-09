@@ -32,11 +32,11 @@ Referencias del proyecto:
 [Randomness Criteria of the RMT-test Compared to the NIST](https://drive.google.com/file/d/1ZRB5hHGVeSQ-3d9ud57LgWpMJw8DTOtB/view?usp=sharing)    
   
 
-Agrego referencias sobre generación de números aleatorios en C:
-[Parallelisation techniques for random numbers generators](https://www.nag.co.uk/IndustryArticles/gpu_gems_article.pdf)  
-[Random123 (libreria de c)](https://www.deshawresearch.com/resources_random123.html ) 
+Agrego referencias sobre generación de números aleatorios en C:  
+[Parallelisation techniques for random numbers generators](https://www.nag.co.uk/IndustryArticles/gpu_gems_article.pdf)    
+[Random123 (libreria de c)](https://www.deshawresearch.com/resources_random123.html )   
 
-Referencias de paralelización del algoritmo Marsene Twister:
-[código y teoría](https://www.nag.co.uk/IndustryArticles/gpu_gems_article.pdf)
+Referencias de paralelización del algoritmo Marsene Twister:  
+[código y teoría](https://www.nag.co.uk/IndustryArticles/gpu_gems_article.pdf)  
 [código presentado como base](http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/VERSIONS/C-LANG/deifik.c)
 
