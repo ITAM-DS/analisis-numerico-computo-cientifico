@@ -53,6 +53,8 @@ Objetivo del proyecto: Paralelizar factorización QR
 
 * [Avance 24-04-18](equipos/equipo_03/avance_24_04_2018): Diego, sube tus implementaciones al repo, no son pesadas (kb's), y añade outputs de tus ejecuciones, puedes usar lo hecho en tareas 5, 6 para lectura de archivos de texto, imprimir vectores, matrices y manejo de arreglos de 1d y 2d (sugerencia). Rafael sí, inicien el trabajo escrito para el siguiente avance, el autor Dongarra ha sido y continúa siendo muy importante en el álgebra lineal numérica. Víctor, sube tus implementaciones al repo y añade outputs de tus ejecuciones. Para esto aprovechen el markdown. También pueden usar lo de las tareas 5, 6 para leer de archivos, imprimir vectores, matrices y manejo de arreglos 1d y 2d (sugerencia). Una vez inicien el trabajo escrito, coloquen la liga al mismo como [equipo_ejemplo](equipos/equipo_ejemplo) en equipo_03/README.md.
 
+* [Avance 05-03-18](equipos/equipo_03/avance_05_02_2018): Su trabajo escrito está muy bien :) y buena descripción individual. Nuevamente comentarios del avance pasado para su output y lectura de datos con funciones y definiciones ya creadas.
+
 ---
 
 ## [Equipo 4](equipos/equipo_04)
