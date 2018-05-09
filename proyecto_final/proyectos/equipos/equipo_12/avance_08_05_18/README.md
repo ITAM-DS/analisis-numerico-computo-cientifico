@@ -23,9 +23,9 @@ en cada uno de estos aspectos, de igual forma, incluimos los códigos y
 gráficas que fueron utilizadas en nuestro trabajo semanal.
 
 Además agregamos:
-[Adelanto de avance escrito](https://drive.google.com/open?id=1eNuVrLHSqpCU5S-ioY034zv_03jCJysL)
-[Adelanto de presentación](https://drive.google.com/open?id=1Fwx4zHhlSrEhpZWHnoax7to2N7cjp5r-)
-[Adelanto de implementación](https://github.com/oliab/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_08_05_18/Codigo)
+[Adelanto de avance escrito](https://drive.google.com/open?id=1eNuVrLHSqpCU5S-ioY034zv_03jCJysL)  
+[Adelanto de presentación](https://drive.google.com/open?id=1Fwx4zHhlSrEhpZWHnoax7to2N7cjp5r-)  
+[Adelanto de implementación](https://github.com/oliab/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_08_05_18/Codigo)  
 
 ### Longitud de la cadena de números aleatorios.
 
