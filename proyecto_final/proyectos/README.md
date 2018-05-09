@@ -225,7 +225,7 @@ Objetivo del proyecto: Programar un algoritmo para la generación de una cadena 
 * [Avance 24-04-18](equipos/equipo_12/avance_24_04_18): Dan buenas referencias en este avance ¿serán utilizadas en el objetivo de su proyecto? si es así colóquenlas en equipo_12/README.md y un comentario sobre sus referencias de este README, es mejor si colocan el título de sus referencias en lugar de las ligas con nombre de google docs pues si yo veo una por una después se me olvida cuál era la tercera. Comiencen con su trabajo escrito y lo que añade para este avance Víctor lo pueden incluir allí. Muy bien su descripción de trabajo individual, gracias por eso.
 
 
-* [Avance 02-05-18](equipos/equipo_12/avance_02_05_18): añadan su trabajo escrito en equipo_12/README.md como [equipo_ejemplo](equipos/equipo_ejemplo), así como ligas a su presentación e implementación. Falta avance en trabajo escrito. Añádanlo para el avance del 8 de mayo.
+* [Avance 02-05-18](equipos/equipo_12/avance_02_05_18): añadan su trabajo escrito en equipo_12/README.md como [equipo_ejemplo](equipos/equipo_ejemplo), así como ligas a su presentación e implementación. Falta avance en trabajo escrito. Añádanlo para el avance del 8 de mayo. Incluyan referencia a algoritmo de Mersenne Twister en sus referencias de equipo_12/README.md
 ---
 
 ## [Equipo 13](equipos/equipo_13)
