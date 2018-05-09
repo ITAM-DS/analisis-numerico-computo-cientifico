@@ -21,7 +21,7 @@ void init_genrand64(unsigned long long seed)
 {
     mt[0] = seed;
     for (mti=1; mti<NN; mti++) 
-        mt[mti] =  (6364136223846793005ULL * (mt[mti-1] ^ (mt[mti-1] >> 62)) + mti);
+        mt[mti] =  (6364136323846793049ULL * (mt[mti-1] ^ (mt[mti-1] >> 62)) + mti);
 }
 
 
@@ -95,30 +95,20 @@ double genrand64_real1(void)
     return (genrand64_int64() >> 11) * (1.0/9007199254740991.0);  /* Por qué escogen este número */
 }
 
-
 int main(void)
 {
     int i;
-    FILE *f = fopen("file.txt", "w");
-		if (f == NULL)
-		{
-   		 printf("Error opening file!\n");
-    		exit(1);
-		}
+    FILE * fp;
+   
     unsigned long long init[4]={0x12345ULL, 0x23456ULL, 0x34567ULL, 0x45678ULL}, length=4;
     init_by_array64(init, length);
+    fp = fopen("prueba_mt9.txt","w");
     printf("10000 outputs of genrand64_int64()\n");
     for (i=0; i<10000; i++) {
-      printf("%20llu ", genrand64_int64())
-      fprintf(f, "Integer: %d", genrand64_int64());
+      fprintf(fp,"%20llu ", genrand64_int64());
       if (i%5==4) printf("\n");
     }
-    printf("\n1000 outputs of genrand64_real1()\n");
-    for (i=0; i<10000; i++) {
-      printf("%10.8f ", genrand64_real1());
-      if (i%5==4) printf("\n");
-    }
+    fclose(fp);
     return 0;
 }
-
 
