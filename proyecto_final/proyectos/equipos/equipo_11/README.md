@@ -12,11 +12,14 @@ Implementación de algoritmo Dijkstra
 # Objetivo del proyecto
 Implementar el algoritmo Dijkstra en C y su versión en paralelo.
 
-[Trabajo escrito](https://drive.google.com/open?id=1aEVsgc1DzfbZVOUnJVxzwItpL6q0h1p0)
+ [Trabajo escrito](https://drive.google.com/open?id=1aEVsgc1DzfbZVOUnJVxzwItpL6q0h1p0)
 
-[Codigo: Estructuras de datos para el algoritmo y lectura del grafo](avance_01_05_18/codigo)
-[Codigo:Dijkstra secuencial](https://github.com/taguerram/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_11/avance_08_05_18/dijkstra_secuencial.c)
-[Codigo:Dijkstra en paralelo](https://github.com/taguerram/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_11/avance_08_05_18/dijkstra_paralelo.c)
+ [Codigo: Estructuras de datos para el algoritmo y lectura del grafo](avance_01_05_18/codigo)
+
+ [Codigo:Dijkstra secuencial](https://github.com/taguerram/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_11/avance_08_05_18/dijkstra_secuencial.c)
+
+ [Codigo:Dijkstra en paralelo](https://github.com/taguerram/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_11/avance_08_05_18/dijkstra_paralelo.c)
+
 # Calendario
 
 Las actividades se irán actualizando con los objetivos semana a semana.
