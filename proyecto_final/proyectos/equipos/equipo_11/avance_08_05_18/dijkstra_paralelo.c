@@ -16,7 +16,7 @@ int am[NV][NV],  // distancia entre nodos
 
 int main ( int argc, char **argv );
 void adjacency_matrix ( int am[NV][NV] );
-void dijkstra_distance ();
+int dijkstra_distance ();
 void encuentra_corto ( int mind[NV], int visitado[NV], int *d, int *v );
 void update_mind ( int mv, int visitado[NV], int am[NV][NV], int mind[NV] );
 
@@ -60,23 +60,24 @@ return;
 }
 
 
-void update_mind(int mv, int visitado[NV], int am[NV][NV], int mind[NV])
-{  int i;
-   int max = 99999999;
-   for (i = 0; i < NV; i++)
-   // Si no se ha visitado
-   if (!visitado[i]){
-       if ( am[mv][i] < max ){
-           if ( mind[mv] + am[mv][i] < mind[i]){
-               mind[i] = mind[mv] + am[mv][i];
-             }
-        }
-    }
+void update_mind(int mv, int visitado[NV], int am[NV][NV], int mind[NV]) {
+  int i;
+  int max = 99999999;
+  for (i = 0; i < NV; i++)
+  // Si no se ha visitado
+  if (!visitado[i]){
+     if ( am[mv][i] < max ){
+         if ( mind[mv] + am[mv][i] < mind[i]){
+             mind[i] = mind[mv] + am[mv][i];
+           }
+      }
   }
 return;
 }
 
-void dijkstra_distance()
+
+
+int dijkstra_distance()
 {
    int max = 99999999;
    #pragma omp parallel
@@ -89,14 +90,14 @@ void dijkstra_distance()
       #pragma omp single
       {  nthreads = omp_get_num_threads();  nodos = NV/nthreads;
          printf("there are %d threads\n",nthreads);  }
- 
+
       startv = me * nodos;
       endv = startv + nodos - 1;
       for (step = 0; step < NV; step++)  {
 
          #pragma omp single
          {  md = max; mv = 0;  }
-         findmymin(startv,endv,&mymd,&mymv);
+         encuentra_corto(startv,endv,&mymd,&mymv);
 
          #pragma omp critical
          {  if (mymd < md)
@@ -106,7 +107,7 @@ void dijkstra_distance()
          #pragma omp single
          { !visitado[mv] = 0;  }
 
-         updateohd(startv,endv);
+         update_mind(startv,endv, am, mind);
          #pragma omp barrier
       }
    }

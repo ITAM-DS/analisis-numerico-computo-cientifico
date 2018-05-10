@@ -20,6 +20,7 @@ int main ( int argc, char **argv ){
     adjacency_matrix( am );
 
     // Imprimir la matriz de adyacencia
+    printf("matriz de adyacencia: \n \n");
     for ( i = 0; i < NV; i++ ){
         for ( j = 0; j < NV; j++ ){
             if ( am[i][j] == max){
@@ -32,6 +33,7 @@ int main ( int argc, char **argv ){
     mind = dijkstra_distance(am);
 
     // Imprimir las distancias mínimas para todo el vector
+    printf("\n Distancias minimas al nodo cero para el vector: \n");
     for (i = 0; i< NV; i++){
         fprintf (stdout, "  %2d  %2d\n", i, mind[i]);
     }
