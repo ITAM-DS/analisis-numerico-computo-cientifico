@@ -51,3 +51,7 @@ A. Crauser, K. Melhorn, U. Meyer, P. Sanders. (1998) *A Parallelization of Dijks
 
 
 Nadira Jasika, Naida Alispahic, Arslanagic Elma, Kurtovic Ilvana, et al. (2012)*Dijkstra's shortest path algorithm serial and parallel execution performance analysis*. Proceedings of the 35th International Convention MIPRO. https://ieeexplore.ieee.org/document/6240942/ 
+
+#Semana 5 
+
+Fredman, Michael; Tarjan Robert E.(1984). *Fibonacci heaps and their uses in improved network optimization algorithms*. 25th Annual Symposiums on Foundations of Computer Science. IEEE pp. 338-346.
