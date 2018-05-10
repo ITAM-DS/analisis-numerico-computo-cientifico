@@ -51,3 +51,4 @@ Vector de distancias inicializado:
 
 ------------
 
+![Ejecución.](https://drive.google.com/file/d/1cEm00qbApkFyBJEkN31RXUGhMCOucqP2/view)
