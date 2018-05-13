@@ -99,15 +99,22 @@ double genrand64_real1(void)
 int main(void)
 {
     int i;
+    FILE *f = fopen("file.txt", "w");
+		if (f == NULL)
+		{
+   		 printf("Error opening file!\n");
+    		exit(1);
+		}
     unsigned long long init[4]={0x12345ULL, 0x23456ULL, 0x34567ULL, 0x45678ULL}, length=4;
     init_by_array64(init, length);
-    printf("1000 outputs of genrand64_int64()\n");
-    for (i=0; i<1000; i++) {
-      printf("%20llu ", genrand64_int64());
+    printf("10000 outputs of genrand64_int64()\n");
+    for (i=0; i<10000; i++) {
+      printf("%20llu ", genrand64_int64())
+      fprintf(f, "Integer: %d", genrand64_int64());
       if (i%5==4) printf("\n");
     }
     printf("\n1000 outputs of genrand64_real1()\n");
-    for (i=0; i<1000; i++) {
+    for (i=0; i<10000; i++) {
       printf("%10.8f ", genrand64_real1());
       if (i%5==4) printf("\n");
     }
