@@ -33,4 +33,4 @@ Para ejecutarlo:
 ./dijkstra_paraleloc
 
 El output se puede ver también [aquí](https://drive.google.com/open?id=1-59KJU_49mf7_NCyfyrHiEnuqe93V1MU).
-Todo el código de la semana está  [aquí] ().
+Todo el código de la semana está  [aquí] (https://github.com/lmalpicas/analisis-numerico-computo-cientifico/tree/master/proyecto_final/proyectos/equipos/equipo_11/avance_15_05_18/codigo).
