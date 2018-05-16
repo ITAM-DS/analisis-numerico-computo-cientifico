@@ -11,7 +11,7 @@ Título del proyecto `SVD para sistemas de recomendación`
 Objetivo del Proyecto: `Desarrollar un algoritmo de sistemas de recomendación basado en descomposición SVD en paralelo` 
 
 
-Trabajo escrito (fuera del repo): [Trabajo escrito](https://drive.google.com/open?id=1umhS7cKuaOsY3cjQhn4BFUijz9AncHO_) 
+Trabajo escrito (fuera del repo): [Trabajo escrito](https://drive.google.com/open?id=1z-b_zTksXNujDiJc2sg_0eJND8RpjNmE) 
 
 Implementación: [Implementación](Implementacion)
 
