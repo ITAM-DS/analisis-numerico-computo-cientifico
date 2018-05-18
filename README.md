@@ -104,6 +104,8 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 4.3.1 [Teoría de convexidad: conjuntos convexos.](https://www.dropbox.com/s/ko86cce1olbtsbk/4.3.1.Teoria_de_convexidad_Conjuntos_convexos.pdf?dl=0)
 
+* [Preguntas 4.3](https://www.dropbox.com/s/h1fwqnah55f1qu7/preguntas_conjuntos_convexos.pdf?dl=0)
+
 4.3.2 [Teoría de convexidad: funciones convexas.](https://www.dropbox.com/s/mmd1uzvwhdwsyiu/4.3.2.Teoria_de_convexidad_Funciones_convexas.pdf?dl=0)
 
 4.4 [Dualidad.](https://www.dropbox.com/s/t56pkshibyydbj7/4.4.Dualidad.pdf?dl=0)
