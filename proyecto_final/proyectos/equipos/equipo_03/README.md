@@ -14,6 +14,17 @@ Factorización de Matriz usando factorización QR.
 ## Objetivo:
 Paralelizar factorización QR.
 
+Trabajo escrito: [liga_trabajo_escrito](https://www.dropbox.com/s/d2gkj7jc06d7mzn/trabajo_escrito.pdf?dl=0)
+
+Presentación:
+
+Implementación avance_24_04_2018: [liga_implementaciones_avance_24_04_2018](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_03/avance_24_04_2018/Implementaciones)
+
+Implementación avance_02_05_2018: [liga_implementaciones_avance_02_05_2018](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_03/avance_02_05_2018/Implementaciones)
+
+Implementación avance_08_05_2018: [liga_implementaciones_avance_08_05_2018](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_03/avance_08_05_2018/Implementaciones)
+
+
 En la carpeta [avance_10_04_2018](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_03/avance_10_04_2018) se encuentra el primer avance del proyecto.
 
 Para el segundo avance, continuamos documentandonos sobre los diferentes métodos de factorización QR e implementaciones en paralelo. Este avance se puede ver en la carpetan avance_17_04_2018.
