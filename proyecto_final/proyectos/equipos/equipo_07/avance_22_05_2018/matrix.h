@@ -19,5 +19,3 @@ void free_matrix2d(matrix2d *m);
 void free_matrix(matrix *m);
 void print_matrix2d(matrix2d *m);
 void print_matrix(matrix *m);
-// matrix2d *allocate_matrix(int rows, int cols);
-//void normalize_matrix(matrix *m);
