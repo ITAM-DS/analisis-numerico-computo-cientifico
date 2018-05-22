@@ -19,9 +19,9 @@ e imprimir matrices.
 Además, integramos las funciones previamente desarrolladas para calcular la Media
 y la Desviación Estándar, con las nuevas funciones para hacer la normalización
 de la matriz usando funciones de la biblioteca BLAS. Este fue especialmente un
-reto interesante porque fue necesario convertir la matriz de 2 dimensiones a un
-matriz/vector de una dimensión para poder usar las funciones de blas usando el
-row-major (C) order en lugar de el col-major(Fortran) order.
+reto interesante, porque convertimos la matriz de 2 dimensiones a una
+matriz/vector de una dimensión para usar las funciones de blas usando el
+row-major (C) order en lugar de el col-major(Fortran) order, además de combinarlo con una matriz diagonal.
 
 Finalmente, usamos las condicionales ifdef y elif junto con las macros de sistema
 pre-definidas con el objetivo de determinar el archivo de cabecera  de acuerdo
