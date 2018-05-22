@@ -2,35 +2,51 @@
 
 ## Integrantes:
   * Luis Federico Puente
-  * David Rivera 
+  * David Rivera
   * Mirtha Ayala
 
 ## Principal Component Analisys
-# 02 de mayo de 2018
+# 22 de mayo de 2018
 
-En esta etapa continuamos con la implementacion para estandarizar los variables de la matriz, hasta este momento hemos logrado 
-generar los parametros Media y Desviación estandar usando algunas de las funciones de la biblioteca math como pow() y sqrt, para
-el calculo de la potencia y la raiz cuadrada. 
+En esta etapa concluímos la implementación de la normalización de una matriz usando
+funciones de blas, a través del uso de una matriz de 2 dimensiones para almacenar
+los datos de entrada desde un archivo CSV.
 
-También actualizamos la estructura de datos para almancenar las matrices con vectores de doubles y simplificamos la manera en la que llenamos la matrix y reducimos las funciones.
+Agregamos una biblioteca para la gestión de matrices de 1 y 2 dimensiones, que
+incluyen estructuras de datos, funciones para alojar y liberar matrices en memoria,
+e imprimir matrices.
 
-Aún estamos investigando las funciones para la normalización de la matriz por medio de las funciones de BLAS.
+Además, integramos las funciones previamente desarrolladas para calcular la Media
+y la Desviación Estándar, con las nuevas funciones para hacer la normalización
+de la matriz usando funciones de la biblioteca BLAS. Este fue especialmente un
+reto interesante porque fue necesario convertir la matriz de 2 dimensiones a un
+matriz/vector de una dimensión para poder usar las funciones de blas usando el
+row-major (C) order en lugar de el col-major(Fortran) order.
 
-Adicionalmente estamos trabajando en la funcionalidad para poder especificar diferentes argumentos en la entrada del programa. Ejemplo:
+Finalmente, usamos las condicionales ifdef y elif junto con las macros de sistema
+pre-definidas con el objetivo de determinar el archivo de cabecera  de acuerdo
+al sistema operativo donde se compile el programa (Linux o MacOS).
+
+# Dependencias del programa
+
+Antes de compilar el programa deben instalarse las bibliotecas blas y lapack
+del disponibles en el paquete ATLAS base en un sistema Ubuntu:
 
 ```
-./pca -f archivo.csv -h off 
+sudo apt-get install libatlas-base-dev
 ```
-# Referencias
 
-  * https://www.tutorialspoint.com/c_standard_library/math_h.htm
-  * https://sourceforge.net/projects/cccsvparser/
+Ambas bibliotecas son incluídas por defecto en MacOS y pueden usarse a través del framework Accelerate. Si tienes XCode instalado en tu Mac, puedes usar este comando para instalar
+las herramientas de línea de comando:
+
+```
+xcode-select --install
+```
 
 # Instrucciones para compilacion del programa
- 
-  Nuestro programa depende en el compilador gcc y la herramienta make. Para compilar el
-  programa debe ejecutarse el siguiente comando:
- 
+
+  Nuestro programa depende en el compilador gcc/clang, blas y la herramienta make. Para compilar el programa debe ejecutarse el siguiente comando:
+
   ```
     make build
   ````
@@ -39,14 +55,12 @@ Adicionalmente estamos trabajando en la funcionalidad para poder especificar dif
   ```
     make clean
   ```
- 
+
 # Instrucciones para ejecutar el programa
 
   Para ejecutar el programa deben seguirse los siguientes pasos:
 
-  1. Descargar el [dataset](https://gist.github.com/lckymirth/4225fb3f4e5e0c89a34dedbc9aef8332) y guardar el archivo como train.csv
-
-  2. Ejecutar el programa compilado
+  1. Ejecutar el programa compilado
   ```
     ./pca
   ```
@@ -54,3 +68,14 @@ Adicionalmente estamos trabajando en la funcionalidad para poder especificar dif
 # Ejemplo de los resultados
 
   Puede encontrarse un ejemplo de la salida del programa en el archivo resultados.txt
+
+# Referencias
+
+  * https://www.tutorialspoint.com/c_standard_library/math_h.htm
+  * https://sourceforge.net/projects/cccsvparser/
+  * https://developer.apple.com/documentation/accelerate?language=objc
+  * https://developer.apple.com/documentation/accelerate/blas?language=objc
+  * https://developer.apple.com/documentation/accelerate/1513298-cblas_daxpy?language=objc
+  * https://developer.apple.com/documentation/accelerate/1513282-cblas_dgemm?language=objc
+  * https://gcc.gnu.org/onlinedocs/cpp/Ifdef.html
+  * https://gcc.gnu.org/onlinedocs/cpp/System-specific-Predefined-Macros.html#System-specific-Predefined-Macros
