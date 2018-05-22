@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#if defined(__linux__)
+#ifdef __linux__
   #include <cblas.h>
-#elif defined(__APPLE__) && defined(__MACH__)
+#elif __APPLE__ && __MACH__
   #include <Accelerate/Accelerate.h>
 #else
   #error Unknown environment!
