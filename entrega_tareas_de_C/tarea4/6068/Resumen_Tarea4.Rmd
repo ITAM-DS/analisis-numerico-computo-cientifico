@@ -1,0 +1,570 @@
+---
+title: "Tarea_4"
+author: "Miguel de Lascurain"
+date: "March 8, 2018"
+output: html_document
+---
+##Problema 1.a
+```{r setup, eval=FALSE}
+//Problema 1.a
+//
+#include<stdio.h>
+#include<string.h>
+#define MAX_LONG 200
+#define CADENA_PRUEBA "Hola a todos"
+int longitud_string(char *s){
+    int i;
+    i=0;
+//
+//Modificación
+//
+    while(*s != '\0'){
+        i++;
+        s=s+1;}
+    return i;
+}
+ 
+int main(void){
+    char string1[] = CADENA_PRUEBA; //definición y declaracion de variable e inicializacion.
+    char string2[MAX_LONG]; //definición y declaracion.
+    printf("cadena: %s\n", string1);
+    printf("longitud cadena: %d\n", longitud_string(string1));
+    strcpy(string2, "leer libros y revistas"); //inicializacion de string2
+    printf("cadena2: %s\n", string2);
+    printf("longitud cadena: %d\n", longitud_string(string2));
+return 0;
+}
+
+OUTPUT:
+  
+  cadena: Hola a todos
+longitud cadena: 12
+cadena2: leer libros y revistas
+longitud cadena: 22
+
+```
+
+##Problema 1.scanf
+```
+#include<stdio.h>
+#include<string.h>
+int longitud_string(char *s){
+    int i;
+    i=0;
+    while(*s != '\0'){
+        i++;
+        s = s+1;
+    }
+return i;
+}
+
+void main(){
+
+	char str [100];
+	
+	while (scanf("%s",str)>0){
+	        printf("el tamaño de %s:  es %d\n", str, longitud_string(str));
+    }
+}
+
+OUTPUT:
+
+el tamaño de hamburguesas:  es 12
+el tamaño de permisos:  es 8
+el tamaño de exponencialmente:  es 16
+el tamaño de 549:  es 3
+```
+##Problema 2.a
+```
+#include<stdio.h>
+#define MAXLINEA 1000 /*máximo tamaño de una línea*/
+/*definición de variables externas*/
+int max;
+char linea[MAXLINEA];
+char linea_max[MAXLINEA];
+ 
+/*Prototipo de funciones:*/
+ 
+int obtenlinea(void); 
+void copia(void);
+ 
+/*imprime la línea con tamaño más grande*/
+int main(void){
+    int longitud;
+    //extern int max;
+    //extern char linea_max[MAXLINEA];
+    extern char linea[];
+    //max=0;
+    while((longitud = obtenlinea()) > 0)
+        if( longitud >= 80){
+            //max = longitud;
+            //copia();
+            printf("longitud de línea: %d\n", longitud);
+            printf("%s", linea);
+        }
+    //if(max > 0)
+      //  printf("%s", linea_max);
+return 0;
+}
+ 
+/*obtenlinea: lee una linea en el arreglo linea, regresa longitud*/
+int obtenlinea(void){
+    int c;
+    int i;
+    extern char linea[];
+    for(i=0; i < MAXLINEA-1 && (c=getchar())!=EOF && c!= '\n'; i++)
+        linea[i] = c;
+    if(c == '\n'){
+        linea[i] = c;
+        i++;
+    }
+    linea[i]='\0'; //este caracter es necesario para almacenar strings
+    return i;
+}
+ 
+/*copia: copia del arreglo "linea" al arreglo "linea_max"*/
+void copia(void){ 
+    int i;
+    extern char linea[], linea_max[];
+    i=0;
+    while(1){
+        linea_max[i] = linea[i];
+        if(linea_max[i] == '\0') break;
+        i++;    
+    }
+}
+
+OUTPUT:
+
+longitud de línea: 85
+the role. The ministers, afraid of losing their splendid position at court, give the
+longitud de línea: 81
+courage and self-sacrifice. The six ministers are convinced that Stach will fall
+```
+##Problema 2.b
+```
+//Problema 2.b
+//
+#include<stdio.h>
+#define MAXLINEA 1000 /*máximo tamaño de una línea*/
+/*definición de variables externas*/
+int max;
+char linea[MAXLINEA];
+//char linea_max[MAXLINEA];
+ 
+/*Prototipo de funciones:*/
+ 
+int obtenlinea(void); 
+void copia(void);
+ 
+/*imprime la línea con tamaño más grande*/
+int main(void){
+    int longitud;
+    extern char linea[];
+    //extern int max;
+    //extern char linea_max[MAXLINEA];
+    //max=0;
+    while((longitud = obtenlinea()) > 0)
+      //  if( longitud > max){
+        //    max = longitud;
+          //  copia();
+   //     }
+    //if(max > 0)
+        //printf("%s", linea_max);
+        printf("%s", linea);
+return 0;
+}
+ 
+/*obtenlinea: lee una linea en el arreglo linea, regresa longitud*/
+int obtenlinea(void){
+    int c;
+    int i;
+    int j = 0;
+    extern char linea[];
+    for(i=0; i < MAXLINEA-1 && (c=getchar())!=EOF && c!= '\n'; i++){
+        if(c != ' ') {
+            linea[j] = c;
+            j++;}
+    }
+    if(c == '\n'){
+        linea[j] = c;
+        j++;
+    }
+    linea[j]='\0'; //este caracter es necesario para almacenar strings
+    return j;
+}
+ 
+/*copia: copia del arreglo "linea" al arreglo "linea_max"*/
+//void copia(void){ 
+  //  int i;
+    //extern char linea[], linea_max[];
+    //i=0;
+    //while(1){
+      //  linea_max[i] = linea[i];
+        //if(linea_max[i] == '\0') break;
+       // i++;    
+    //}
+//}
+
+OUTPUT:
+
+ThemerryoldkingofKatorenhasdied
+andthere’snoheirtothethrone.Sixsourministersruletheland
+andclaimthatthey’relookingforanewking,
+butnothinghappens–forseventeenyears.
+Thensuddenlythere’saboystandingatthedooroftheroyal
+palacewhowasbornonthenightthekingdied.
+
+Thisboy,Stach,hasfirmlyresolvedtobecomethenewkingofKatorenand
+heasksthesixministerswhathemustdoinordertobeconsideredfor
+therole.Theministers,afraidoflosingtheirsplendidpositionatcourt,givethe
+boysevenalmostimpossibletasks,whichcanbebroughttoasuccessful
+conclusiononlybyonewhopossesseskinglyattributessuchaswisdom,
+courageandself-sacrifice.ThesixministersareconvincedthatStachwillfall
+atthefirsthurdle,butheturnsouttohaveanamazingamountof
+persistenceandingenuity.
+```
+
+##Problema 2.c
+```
+//Problema 2.c
+//#include<stdio.h>
+#define MAXLINEA 1000 /*máximo tamaño de una línea*/
+/*definición de variables externas*/
+int max;
+char linea[MAXLINEA];
+char linea_max[MAXLINEA];
+ 
+/*Prototipo de funciones:*/
+ 
+int obtenlinea(void); 
+void copia(void);
+ 
+/*imprime la línea con tamaño más grande*/
+int main(void){
+    int longitud;
+    extern int max;
+    extern char linea_max[MAXLINEA];
+    max=0;
+    while((longitud = obtenlinea()) > 0)
+        if( longitud > max){
+            max = longitud;
+            copia();
+        }
+    if(max > 0)
+        printf("%s", linea_max);
+return 0;
+}
+ 
+/*obtenlinea: lee una linea en el arreglo linea, regresa longitud*/
+int obtenlinea(void){
+    int c;
+    int i;
+    extern char linea[];
+    for(i=0; i < MAXLINEA-1 && (c=getchar())!=EOF && c!= '\n'; i++)
+        linea[i] = c;
+    if(c == '\n'){
+        linea[i] = c;
+        i++;
+    }
+    linea[i]='\0'; //este caracter es necesario para almacenar strings
+    return i;
+}
+ 
+/*copia: copia del arreglo "linea" al arreglo "linea_max"*/
+void copia(void){ 
+    int i;
+    extern int max;
+    extern char linea[], linea_max[];
+    i=0;
+    while(i <= max){
+        linea_max[i] = linea[i];
+        //if(linea_max[i] == '\0') break;
+        i++;    
+    }
+}
+
+OUTPUT:
+
+the role. The ministers, afraid of losing their splendid position at court, give the
+```
+##Problema 2.d
+```
+//Problema 2.d
+//
+#include<stdio.h>
+#define MAXLINEA 1000 /*máximo tamaño de una línea*/
+/*definición de variables externas*/
+int max;
+char linea[MAXLINEA];
+char linea_max[MAXLINEA];
+ 
+/*Prototipo de funciones:*/
+ 
+int obtenlinea(void); 
+void copia(void);
+ 
+/*imprime la línea con tamaño más grande*/
+int main(void){
+    int longitud;
+    extern int max;
+    extern char linea_max[MAXLINEA];
+    max=0;
+    while((longitud = obtenlinea()) > 0)
+        if( longitud > max){
+            max = longitud;
+            copia();
+        }
+    if(max > 0)
+        printf("%s", linea_max);
+return 0;
+}
+ 
+/*obtenlinea: lee una linea en el arreglo linea, regresa longitud*/
+int obtenlinea(void){
+    int c;
+    int i;
+    extern char linea[];
+    for(i=0; i < MAXLINEA-1 && (c=getchar())!=EOF && c!= '\n'; i++)
+        linea[i] = c;
+    if(c == '\n'){
+        linea[i] = c;
+        i++;
+    }
+    linea[i]='\0'; //este caracter es necesario para almacenar strings
+    return i;
+}
+ 
+/*copia: copia del arreglo "linea" al arreglo "linea_max"*/
+//Uso apuntadores
+void copia(void){ 
+    int i;
+    char *p;
+    extern char linea[], linea_max[];
+    i=0;
+    p=linea;
+    while(1){
+        linea_max[i] = *p;
+        if(linea_max[i] == '\0') break;
+        i++;
+        p++;    
+    }
+}
+
+OUTPUT:
+
+the role. The ministers, afraid of losing their splendid position at court, give the
+```
+##Problema 2.e
+```
+//Problema 2.e
+//
+#include<stdio.h>
+#define MAXLINEA 1000 /*máximo tamaño de una línea*/
+/*definición de variables externas*/
+int max;
+char linea[MAXLINEA];
+char linea_max[MAXLINEA];
+
+/*Prototipo de funciones:*/
+
+int obtenlinea(void);
+void copia(void);
+void voltea(void);
+void prueba(void);
+
+/*imprime la línea con tamaño más grande*/
+int main(void){
+  int longitud;
+  extern int max;
+  extern char linea_max[MAXLINEA];
+  extern char linea[MAXLINEA];
+  max=0;
+
+  while((longitud = obtenlinea()) > 0)
+    if( longitud > max){
+      max = longitud;
+      copia();
+
+    }
+
+  if(max > 0){
+  //Volteo linea_max
+
+    voltea();
+    
+  }
+  return 0;
+}
+
+/*obtenlinea: lee una linea en el arreglo linea, regresa longitud*/
+
+int obtenlinea(void){
+  int c;
+  int i;
+  extern char linea[];
+
+  for(i=0; i < MAXLINEA-1 && (c=getchar())!=EOF && c!= '\n'; i++)
+    linea[i] = c;
+  if(c == '\n'){
+    linea[i] = c;
+    i++;
+  }
+  linea[i]='\0'; //este caracter es necesario para almacenar strings
+  return i;
+
+}
+
+/*copia: copia del arreglo "linea" al arreglo "linea_max"*/
+void copia(void){
+  int i;
+  extern int max;
+  extern char linea[], linea_max[];
+  i=0;
+  while(i <= max){
+    linea_max[i] = linea[i];
+    //if(linea_max[i] == '\0') break;
+    i++;
+  }
+}
+
+//*Voltea: Recibe un string y lo imprime al revés. En este caso volteo linea_max.
+
+
+void voltea(void){
+  int i, j;
+  extern int max;
+  extern char linea[], linea_max[];
+  i=0;
+  j=max-2;
+  while(i<max-1){
+    linea[j] = linea_max[i];
+    i++;
+    j = j-1;
+  }
+  linea[max]='\0';
+  printf("%s", linea);
+  
+}
+
+OUTPUT:
+
+eht evig ,truoc ta noitisop didnelps rieht gnisol fo diarfa ,sretsinim ehT .elor eht
+```
+##Problema 2.f
+```
+El usar extern hace que las variables sean las mismas en todas las rutinas. Es equivalente al 
+common de FORTRAN.
+```
+##Problema3.a
+```
+//Problema 3.a
+//
+#include<stdio.h>
+#include<string.h>
+
+char *corta_string(char *apuntador){
+    apuntador=apuntador+1;
+   
+    return apuntador;}
+
+int main(void){
+    int lon_string;
+    char *s="C";
+    lon_string=strlen(s);
+    printf("%d\n",lon_string);
+    if (lon_string==1)
+        {
+    	printf ("Error \n");}
+    else{
+    	s=corta_string(s);
+    	printf("%s\n",s);}
+   return 0;
+}
+
+OUTPUT:
+
+1
+Error 
+```
+##Problema 4.a
+```
+//Problema 4.a
+//
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+char *duplica_string(char *s){  
+    char *p;
+    p = malloc(strlen(s)+1); /* sumamos uno para almacenar el caracter '\0'*/
+        if(p!=NULL)
+        strcpy(p,s);
+    return p;
+}
+int main(void){
+    //char s[50] = "Campos verdes";
+    char *s;
+    char *s_duplicado;
+    s=malloc(1000);
+    s="Campos verdes y fértiles";
+    s_duplicado = duplica_string(s);
+    printf("%s\n", s_duplicado);
+    free(s_duplicado);
+    return 0;
+}
+
+OUTPUT:
+
+Campos verdes y fértiles
+```
+##Problema 4.b
+```
+//Problema 4.b
+//
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+char *duplica_string(char *s){  
+    char *p;
+    p = malloc(strlen(s)+1); /* sumamos uno para almacenar el caracter '\0'*/
+        if(p!=NULL)
+        strcpy(p,s);
+    return p;
+}
+char *voltea_string(char *s){  
+    char *p;
+    char longitud, i, j, temporal;
+    longitud = strlen(s);
+    p = malloc(longitud+1); /* sumamos uno para almacenar el caracter '\0'*/
+    if(p!=NULL)
+        strcpy(p,s);
+//Rutina tomada de LWP. Mucho mejor que la usada en el ejercicio_2_e.
+        for(i=0, j=longitud-1; i < longitud/2; i++, j--){
+            temporal = p[i];
+            p[i] = p[j];
+            p[j] = temporal;
+    }
+    return p;
+}
+int main(void){
+    //char s[50] = "Campos verdes";
+    char *s;
+    char *s_duplicado;
+    char *s_invertido;
+    s=malloc(1000);
+    s="Campos verdes y foliosos";
+    s_duplicado = duplica_string(s);
+    printf("%s\n", s_duplicado);
+    free(s_duplicado);
+    s_invertido = voltea_string(s);
+    printf("%s\n", s_invertido);
+    free(s_invertido);
+    return 0;
+}
+
+OUTPUT:
+
+Campos verdes y foliosos
+sosoilof y sedrev sopmaC
+```
+

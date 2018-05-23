@@ -1,0 +1,68 @@
+CU. 129318
+
+5) Investiga* sobre la subrutina de Fortran dgemm (parámetros que recibe y la salida).
+
+DGEMM realiza la siguiente operación entre matrices:
+    C := alpha*op( A )*op( B ) + beta*C,
+
+ donde op( X ) es uno de
+
+    op( X ) = X   o   op( X ) = X**T,
+
+  y donde alpha y beta son escalares y A, B y C son matrices con op(A)
+  siendo una matriz de k por n y C siendo una matriz de m por n.
+
+la subrutina necesita las siguientes entradas:
+subroutine dgemm 	( 	character  	TRANSA,
+		                  character  	TRANSB,
+		                    integer  	M,
+		                    integer  	N,
+		                    integer  	K,
+		           double precision  	ALPHA,
+               double precision 	A,
+		                    integer  	LDA,
+		           double precision 	B,
+		                    integer  	LDB,
+		           double precision  	BETA,
+		             double precision 	C,
+		                      integer  	LDC
+	)
+
+Donde:
+-TRANSA: es un caracter que especifica la forma de op(A) que se usará para la multiplicación de matriz:
+
+            TRANSA = 'N' o 'n',  op( A ) = A.
+
+            TRANSA = 'T' o  't',  op( A ) = A**T.
+
+            TRANSA = 'C' o  'c',  op( A ) = A**T.
+
+-TRANSB: es un caracter que especifica la forma de op(B) que se usará para la multiplicación de matriz:
+
+            TRANSB = 'N' or 'n',  op( B ) = B.
+
+            TRANSB = 'T' or 't',  op( B ) = B**T.
+
+            TRANSB = 'C' or 'c',  op( B ) = B**T.
+
+-M: entero que especifica el número de renglones de op(A) y de la matriz C (mayor e igual a
+-N: entero que especifica el número de columnas de op(B) y de la matriz C (mayor e igual a
+-K: entero que especifica el número de columnas de op(A) y el número de renglones de op(B)
+-ALPHA: doble precision que especifica un escalares
+-A: arreglo de doble precision y dimension (LDA, ka)
+DONDE KA ES K CUANDO transa = 'N' o 'n', y es m de otra manera.
+Antes de entrar con TRANSA = 'N' o 'n', la parte delantera m por k de arreglo A debe contener la matriz A,
+de otra manera la parte delantera k por m del arreglo A debe contener la matriz A.
+-LDA: entero que especifica la primera dimension de A como fue declarada en el (sub) programa.
+ Cuando TRANS = 'N' o 'n' entonces LDA debe de ser al menos max(1, m), de otra manera LDA debe al menor ser max(1,k)
+-B: arreglo de doble precision y dimension (LDA, kb)
+donde kb es n cuando TRANSB = 'N' o 'n', la parte delantera k por n del arreglo B debe contener a la matriz B,
+ de otra manera, la parte delantera n por k del arreglo B debe contener a la matriz B.
+-LDB: entero que especifica la primera dimension de B como se declaro en el (sub) programa.
+Cuando TRANSB = 'N' o 'n' entonces LDB debe ser al menos max(1,k), de otra manera LDB debe ser al menos max(1,n).
+-BETA: double precision que especifica el escalar beta. Cuando BETA es zero, entonces C no necesita ser ingresado.
+-C: arreglo de doble precision y dimension (LDC,N).
+Antes de entrar, la parte delantera m por n del arreglo C debe contener a la matriz C, escepto cuando beta es zero,
+en cuyo caso C no necesita ser ingresado.
+ Al salir, el arreglo C es sobreescrito por la matriz m por n ( alpha*op( A )*op( B ) + beta*C ).           .
+-LDC: entero que especifica la primera dimension de C como se declaro en el el (sub) programa. LDC debe ser al menos max(1,m).
