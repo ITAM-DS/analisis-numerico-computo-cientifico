@@ -17,7 +17,11 @@ gcc -o dijkstra_paraleloc -fopenmp dijkstra_paralelo.c
 
 Lorena: Empecé a implementar las funciones que ya tenemos en C en Cython ocupando Jupyter-Notebook, esto con el objetivo de tener un ejemplo interactivo que tenga parte del código en Python y parte del código (la parte que requiere optimizarse y la que está programada en paralelo) en C. 
 
-![Cython](fotos/cython.png)
+![Cython](fotos/cython1.png)
+
+![Cython](fotos/cython2.png)
+
+
 
 
 Roberto:
