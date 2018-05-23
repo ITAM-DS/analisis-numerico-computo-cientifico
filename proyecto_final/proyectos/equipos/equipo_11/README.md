@@ -14,7 +14,7 @@ Implementar el algoritmo Dijkstra en C y su versión en paralelo.
 
  [Trabajo escrito](https://drive.google.com/open?id=1_edvCMJje75oSF46WjvKv6OmfmkKxOAo)
 
- [Codigo:](https://github.com/lmalpicas/analisis-numerico-computo-cientifico/tree/master/proyecto_final/proyectos/equipos/equipo_11/avance_15_05_18/codigo).
+ [Codigo](22_05/codigo).
 
 
 # Calendario
