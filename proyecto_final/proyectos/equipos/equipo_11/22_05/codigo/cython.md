@@ -1,4 +1,4 @@
-
+```
 %load_ext Cython
 
 %%cython --annotate
@@ -17,8 +17,5 @@ cdef void adjacency_matrix (int am[5][5]):
     }
     print(file_name)
     print("hello world")
-
-
-```python
 
 ```
