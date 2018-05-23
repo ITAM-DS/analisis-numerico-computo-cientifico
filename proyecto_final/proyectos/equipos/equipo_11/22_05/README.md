@@ -12,12 +12,12 @@ gcc -o dijkstra_paraleloc -fopenmp dijkstra_paralelo.c
 ./dijkstra_paraleloc
 
 ```
-![]("/fotos/paralelo.png")
+![Paralelo](/fotos/paralelo.png)
 
 
 Lorena: Empecé a implementar las funciones que ya tenemos en C en Cython ocupando Jupyter-Notebook, esto con el objetivo de tener un ejemplo interactivo que tenga parte del código en Python y parte del código (la parte que requiere optimizarse y la que está programada en paralelo) en C. 
 
-![]("/fotos/cython.png")
+![Cython](/fotos/cython.png)
 
 
 Roberto:
@@ -30,10 +30,10 @@ Para ejecutar: ./dijkstra_secuencial.out
 
 ```
 
-![]("/fotos/secuencial.png")
+![Secuencial](fotos/secuencial.png)
 
 
 
 Link al trabajo escrito: (https://drive.google.com/open?id=1_edvCMJje75oSF46WjvKv6OmfmkKxOAo)
 
-Link al codigo: (/22_05/codigo)
+Link al codigo: [codigo](22_05/codigo)
