@@ -36,4 +36,4 @@ Para ejecutar: ./dijkstra_secuencial.out
 
 Link al trabajo escrito: (https://drive.google.com/open?id=1_edvCMJje75oSF46WjvKv6OmfmkKxOAo)
 
-Link al codigo: (22_05/codigo)
+Link al codigo: (/22_05/codigo)
