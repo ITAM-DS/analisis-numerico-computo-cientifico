@@ -5,22 +5,24 @@
   * David Rivera
   * Mirtha Ayala
 
-## Principal Component Analisys
-# 22 de mayo de 2018
+##  Singular Value Decomposition
+# 29 de mayo de 2018
 
-En esta etapa concluímos la implementación de la normalización de una matriz usando
-funciones de blas, a través del uso de una matriz de 2 dimensiones para almacenar
-los datos de entrada desde un archivo CSV.
+En esta etapa concluímos la implementación del Singular Value Decomposition usando
+la función dgesvd de las bibliotecaLAPACK(dgesvd).
+
+La normalización de matriz se hace usando funciones de BLAS (daxpy y dgemm), desde
+una matriz de 2 dimensiones usada inicialmenet para almacenar los datos de entrada 
+(desde un archivo CSV).
 
 Agregamos una biblioteca para la gestión de matrices de 1 y 2 dimensiones, que
 incluyen estructuras de datos, funciones para alojar y liberar matrices en memoria,
 e imprimir matrices.
 
-Además, integramos las funciones previamente desarrolladas para calcular la Media
-y la Desviación Estándar, con las nuevas funciones para hacer la normalización
-de la matriz usando funciones de la biblioteca BLAS. Este fue especialmente un
-reto interesante, porque convertimos la matriz de 2 dimensiones a una
-matriz/vector de una dimensión para usar las funciones de blas usando el
+Además, integramos las funciones para calcular la Media y la Desviación Estándar, 
+con las nuevas funciones para hacer la normalización de la matriz. Esto
+fue especialmente un reto interesante, porque convertimos la matriz de 2 dimensiones 
+a una matriz/vector de una dimensión para usar las funciones de blas usando el
 row-major (C) order en lugar de el col-major(Fortran) order, además de combinarlo con una matriz diagonal.
 
 Finalmente, usamos las condicionales ifdef y elif junto con las macros de sistema
@@ -62,7 +64,7 @@ xcode-select --install
 
   1. Ejecutar el programa compilado
   ```
-    ./pca
+    ./svd
   ```
 
 # Ejemplo de los resultados
@@ -79,3 +81,5 @@ xcode-select --install
   * https://developer.apple.com/documentation/accelerate/1513282-cblas_dgemm?language=objc
   * https://gcc.gnu.org/onlinedocs/cpp/Ifdef.html
   * https://gcc.gnu.org/onlinedocs/cpp/System-specific-Predefined-Macros.html#System-specific-Predefined-Macros
+  * https://www.ibm.com/support/knowledgecenter/en/SSFHY8_5.4.0/com.ibm.cluster.essl.v5r4.essl100.doc/am5gr_hgesvd.htm
+  * http://www.netlib.org/lapack/explore-html/d1/d7e/group__double_g_esing_ga84fdf22a62b12ff364621e4713ce02f2.html#ga84fdf22a62b12ff364621e4713ce02f2
