@@ -9,11 +9,10 @@
 # 29 de mayo de 2018
 
 En esta etapa concluímos la implementación del Singular Value Decomposition usando
-la función dgesvd de las bibliotecaLAPACK(dgesvd).
+la función dgesvd de las biblioteca LAPACK.
 
 La normalización de matriz se hace usando funciones de BLAS (daxpy y dgemm), desde
-una matriz de 2 dimensiones usada inicialmenet para almacenar los datos de entrada 
-(desde un archivo CSV).
+una matriz de 2 dimensiones para almacenar los datos de entrada (desde un archivo CSV).
 
 Agregamos una biblioteca para la gestión de matrices de 1 y 2 dimensiones, que
 incluyen estructuras de datos, funciones para alojar y liberar matrices en memoria,
