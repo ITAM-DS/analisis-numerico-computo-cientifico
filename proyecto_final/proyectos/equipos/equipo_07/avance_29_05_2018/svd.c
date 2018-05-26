@@ -3,6 +3,9 @@
 #include <math.h>
 #ifdef __linux__
   #include <cblas.h>
+  extern void dgesvd_(char* jobu, char* jobvt, int* m, int* n, double* a,
+                int* lda, double* s, double* u, int* ldu, double* vt, int* ldvt,
+                double* work, int* lwork, int* info);
 #elif __APPLE__ && __MACH__
   #include <Accelerate/Accelerate.h>
 #else
@@ -14,9 +17,6 @@
 double average(matrix2d *m, int col);
 double variance(matrix2d *m, int col, double average);
 void normalize_matrix(matrix2d *m, matrix *c);
-extern void dgesvd(char* jobu, char* jobvt, int* m, int* n, double* a,
-                int* lda, double* s, double* u, int* ldu, double* vt, int* ldvt,
-                double* work, int* lwork, int* info);
                    
 int main() {
   CsvParser *csvparser = CsvParser_new("train-short.csv", ",", 1);
@@ -55,12 +55,12 @@ int main() {
 
   // Busqueda y alojamiento de espacio de trabajo optimo (lwork)
   int lwork = -1;
-  dgesvd("All", "All", &nm->cols, &nm->rows, nm->vectors, &lda, s->vectors, u->vectors, &ldu, vt->vectors, 
+  dgesvd_("All", "All", &nm->cols, &nm->rows, nm->vectors, &lda, s->vectors, u->vectors, &ldu, vt->vectors,
          &ldvt, &wkopt, &lwork, &info);
   lwork = (int)wkopt;
   work = (double*)malloc(lwork*sizeof(double) );
   // Calcula SVD
-  dgesvd("All", "All", &nm->cols, &nm->rows, nm->vectors, &lda, s->vectors, u->vectors, &ldu, vt->vectors, 
+  dgesvd_("All", "All", &nm->cols, &nm->rows, nm->vectors, &lda, s->vectors, u->vectors, &ldu, vt->vectors,
           &ldvt, work, &lwork, &info);
 
   if ( info > 0 ) {
