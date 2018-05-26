@@ -53,15 +53,20 @@ int main() {
   double wkopt;
   double* work;
 
-  /* Query and allocate the optimal workspace */
+  // Busqueda y alojamiento de espacio de trabajo optimo (lwork)
   int lwork = -1;
   dgesvd("All", "All", &nm->cols, &nm->rows, nm->vectors, &lda, s->vectors, u->vectors, &ldu, vt->vectors, 
          &ldvt, &wkopt, &lwork, &info);
   lwork = (int)wkopt;
   work = (double*)malloc(lwork*sizeof(double) );
-  /* Compute SVD */
+  // Calcula SVD
   dgesvd("All", "All", &nm->cols, &nm->rows, nm->vectors, &lda, s->vectors, u->vectors, &ldu, vt->vectors, 
           &ldvt, work, &lwork, &info);
+
+  if ( info > 0 ) {
+   printf("El calculo de SVD ha fallado ;(\n");
+   exit(1);
+  }
 
   printf("Matriz de entrada\n");
   print_matrix2d(m);
@@ -74,6 +79,7 @@ int main() {
   printf("VT\n");
   print_matrix(vt);
 
+  free( (void*)work);
   free_matrix(vt);
   free_matrix(s);
   free_matrix(u);
