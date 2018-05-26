@@ -112,6 +112,8 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 4.4 [Dualidad.](https://www.dropbox.com/s/t56pkshibyydbj7/4.4.Dualidad.pdf?dl=0)
 
+* [Preguntas 4.4](https://www.dropbox.com/s/w64oxxcdoc3lucn/preguntas_dualidad.pdf?dl=0)
+
 4.5 [Algoritmos.]
 
 * [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
