@@ -14,6 +14,9 @@
 double average(matrix2d *m, int col);
 double variance(matrix2d *m, int col, double average);
 void normalize_matrix(matrix2d *m, matrix *c);
+extern void dgesvd(char* jobu, char* jobvt, int* m, int* n, double* a,
+                int* lda, double* s, double* u, int* ldu, double* vt, int* ldvt,
+                double* work, int* lwork, int* info);
                    
 int main() {
   CsvParser *csvparser = CsvParser_new("train-short.csv", ",", 1);
@@ -41,8 +44,39 @@ int main() {
 
   matrix *nm = allocate_matrix(m->rows, m->cols);
   normalize_matrix(m, nm);
-  //print_matrix2d(m);
+
+  int lda = nm->cols, ldu = nm->cols, ldvt = nm->rows;
+  matrix *s = allocate_matrix(1, nm->cols);
+  matrix *u = allocate_matrix(ldu, nm->rows);
+  matrix *vt = allocate_matrix(ldvt, nm->cols);
+  int info;
+  double wkopt;
+  double* work;
+
+  /* Query and allocate the optimal workspace */
+  int lwork = -1;
+  dgesvd("All", "All", &nm->cols, &nm->rows, nm->vectors, &lda, s->vectors, u->vectors, &ldu, vt->vectors, 
+         &ldvt, &wkopt, &lwork, &info);
+  lwork = (int)wkopt;
+  work = (double*)malloc(lwork*sizeof(double) );
+  /* Compute SVD */
+  dgesvd("All", "All", &nm->cols, &nm->rows, nm->vectors, &lda, s->vectors, u->vectors, &ldu, vt->vectors, 
+          &ldvt, work, &lwork, &info);
+
+  printf("Matriz de entrada\n");
+  print_matrix2d(m);
+  printf("Matriz normalizada\n");
   print_matrix(nm);
+  printf("U\n");
+  print_matrix(u);
+  printf("Valores singulares (SIGMA)\n");
+  print_matrix(s);
+  printf("VT\n");
+  print_matrix(vt);
+
+  free_matrix(vt);
+  free_matrix(s);
+  free_matrix(u);
   free_matrix(nm);
   free_matrix2d(m);
   CsvParser_destroy(csvparser);
