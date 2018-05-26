@@ -1,5 +1,5 @@
 # https://www.gnu.org/software/make/manual/make.html
-CFLAGS      := -Wall -g
+CFLAGS      := -Wall
 UNAME       := $(shell uname)
 ifeq ($(UNAME),Darwin)
 	CFLAGS += -framework Accelerate
