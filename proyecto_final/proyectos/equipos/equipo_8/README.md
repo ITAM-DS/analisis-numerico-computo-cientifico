@@ -27,6 +27,11 @@ Avances:
   * Luis Fernando Cantú: continúo con la elaboración del trabajo escrito. Específicamente, contribuyó a la parte del modelo del juego de Cournot y al ejemplo del caso lineal..
   * Mónica Vargas González: Investigación sobre implementación de descenso de gradiente en C.
   * Eduardo Hidalgo García: Modificaciones al md de inicio de la carpeta del equipo, modificacion del archivo escrito. En especifico, continuo con el sustento teórico de los métodos de descenso por gradiente
+
++ [08 de mayo de 2018](avance_02_05_18/): se empezó con la elaboración del trabajo escrito. Específicamente:
+  * Luis Fernando Cantú: escribió la sección 3.2: La rutina Minimize_Down_the_Line, que contiene la descripción de una de las rutinas de C para implementar descenso en gradiente.
+  * Mónica Vargas González: escribió la sección 3.1: La rutina Steepest_Descent, que contiene la descripción de una de las rutinas de C para implementar descenso en gradiente.
+  * Eduardo Hidalgo García: escribio la seección 3.3, que contiene la investiagación sobre la libreia en C MPFIT, la cual implementa el metodo de Levenberg-Marquard para resolver el problema de mínimos cuadrados. Lo que hará es ajustar una función provista por el usuario (el "modelo") a un conjunto de datos tambien provistos por el usuario.
   
 Referencias:
 
@@ -37,3 +42,6 @@ Referencias:
 3.  Quoc, Tran Dinh and Muu Le, Dung. (2011). "A splitting proximal point method for Nash-cournot equilibrium models involving nonconvex cost functions",Journal of Nonlinear and Convex Analysis, v.12, p.519--533. <https://arxiv.org/abs/1105.2632>
 
 4. Schmedders, Karl. (2008). Numerical Optimization Methods in Economics. 1-27. 10.1057/978-1-349-95121-5\_2232-1. <https://www.researchgate.net/publication/313867455_Numerical_Optimization_Methods_in_Economics?enrichId=rgreq-d983e8a6585dd0a533e66b02013921c9-XXX&enrichSource=Y292ZXJQYWdlOzMxMzg2NzQ1NTtBUzo0NzkzMTkxMzU5MjAxMzNAMTQ5MTI4OTk5NTg2OA%3D%3D&el=1_x_3&_esc=publicationCoverPdf>
+
+
+4. MPFIT documentation  http://cow.physics.wisc.edu/~craigm/idl/cmpfit.html
