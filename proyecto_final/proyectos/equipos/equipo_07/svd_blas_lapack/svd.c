@@ -72,14 +72,31 @@ int main() {
   print_matrix2d(m);
   printf("Matriz normalizada\n");
   print_matrix(nm);
-  printf("U\n");
+  printf("L\n");
   print_matrix(u);
-  printf("Valores singulares (SIGMA)\n");
+  printf("Raiz de valores singulares\n");
   print_matrix(s);
-  printf("VT\n");
+  printf("Vectores propios\n");
   print_matrix(vt);
 
-  free( (void*)work);
+  // Calcula PCA
+  double *s2 = calloc(s->cols, sizeof(double));
+  double sum = 0;
+  for (int i = 0; i < s->cols; i++) {
+     s2[i] = pow(s->vectors[i], 2);
+     sum += s2[i];
+  }
+
+  matrix *pca = allocate_matrix(1, s->cols);
+  for (int i = 0; i < s->cols; i++)
+    pca->vectors[i] = s2[i] / sum;
+
+  printf("Porcentaje de varianza explicada\n");
+  print_matrix(pca);
+  
+  free(s2);
+  free_matrix(pca);
+  free((void*)work);
   free_matrix(vt);
   free_matrix(s);
   free_matrix(u);
