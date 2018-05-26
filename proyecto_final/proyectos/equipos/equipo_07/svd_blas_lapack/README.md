@@ -6,7 +6,8 @@
   * Mirtha Ayala
 
 ##  Singular Value Decomposition and Principal Component Analysis
-# 29 de mayo de 2018
+
+# Implementacion final (29 de mayo de 2018)
 
 En esta etapa concluímos la implementación del Singular Value Decomposition usando
 la función dgesvd de las biblioteca LAPACK y el Porcentaje de varianza explicada.
