@@ -33,17 +33,20 @@ void free_matrix(matrix *m) {
 }
 
 void print_matrix2d(matrix2d *m) {
+  print_line_header(m->cols);
   for (int i = 0; i < m->rows; i++) {
     for (int j = 0; j < m->cols; j++)
       printf("%.4f\t", m->vectors[i][j]);
     printf("\n");
   }
+  printf("\n");
 }
 
 void print_matrix(matrix *m) {
   int i = 0;
   int j = m->cols;
   int total = m->rows * m->cols;
+  print_line_header(m->cols);
   while (i < total) {
     printf("%.4f\t", m->vectors[i++]); 
     if (i >= j) {
@@ -51,4 +54,11 @@ void print_matrix(matrix *m) {
       j = j + m->cols;
     }
   }
+  printf("\n");
+}
+
+void print_line_header(cols) {
+  for (int i = 0; i < cols; i++)
+    printf("-------\t");
+  printf("\n");
 }

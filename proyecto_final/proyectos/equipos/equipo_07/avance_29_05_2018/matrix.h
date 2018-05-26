@@ -19,3 +19,4 @@ void free_matrix2d(matrix2d *m);
 void free_matrix(matrix *m);
 void print_matrix2d(matrix2d *m);
 void print_matrix(matrix *m);
+void print_line_header(int cols);
