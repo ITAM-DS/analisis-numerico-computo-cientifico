@@ -57,7 +57,7 @@ void print_matrix(matrix *m) {
   printf("\n");
 }
 
-void print_line_header(cols) {
+void print_line_header(int cols) {
   for (int i = 0; i < cols; i++)
     printf("-------\t");
   printf("\n");
