@@ -26,8 +26,9 @@ a una matriz/vector de una dimensión para usar las funciones de blas usando el
 row-major (C) order en lugar de el col-major(Fortran) order, además de combinarlo con una matriz diagonal.
 
 Finalmente, usamos las condicionales ifdef y elif junto con las macros de sistema
-pre-definidas con el objetivo de determinar el archivo de cabecera  de acuerdo
-al sistema operativo donde se compile el programa (Linux o MacOS).
+pre-definidas para determinar el archivo de cabecera de blas y la declaración
+de la función dgesvd_ de LAPACK para compatibilidad entre los sistemas operativos
+Linux y MacOS.
 
 # Dependencias del programa
 
