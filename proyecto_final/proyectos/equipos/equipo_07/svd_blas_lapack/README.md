@@ -5,11 +5,11 @@
   * David Rivera
   * Mirtha Ayala
 
-##  Singular Value Decomposition
+##  Singular Value Decomposition and Principal Component Analysis
 # 29 de mayo de 2018
 
 En esta etapa concluímos la implementación del Singular Value Decomposition usando
-la función dgesvd de las biblioteca LAPACK.
+la función dgesvd de las biblioteca LAPACK y el Porcentaje de varianza explicada.
 
 La normalización de matriz se hace con funciones de BLAS (daxpy y dgemm) y 
 una matriz de 2 dimensiones para almacenar los datos de entrada (desde un archivo CSV).
@@ -64,7 +64,7 @@ xcode-select --install
 
   1. Ejecutar el programa compilado
   ```
-    ./svd
+    ./svd_pca
   ```
 
 # Ejemplo de los resultados
