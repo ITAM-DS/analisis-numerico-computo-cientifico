@@ -8,7 +8,7 @@ endif
 all: clean build
 
 clean:
-	rm -f ./third_party/csvparser/libcsvparser.so svd libmatrix.so
+	rm -f ./third_party/csvparser/libcsvparser.so libmatrix.so svd_pca
 
 build: 
 	$(CC) $(CFLAGS) -c -o ./third_party/csvparser/libcsvparser.so ./third_party/csvparser/csvparser.c
