@@ -36,6 +36,7 @@ Avances:
 + [22 de mayo de 2018](avance_22_05_18/sexta_entrega.md): se terminaron los modelos en los lenguajes C y Julia. Se corrieron y ambos funcionan correctamente: hay ejemplos en archivos de texto dentro de las carpetas correspondientes. Falta comentar el código de C. Las contribuciones individuales en el md de la sexta entrega.
 
 
+
 Referencias:
 
 1.  Kolstad, Charles D. and Mathiesen, Lars. (1987). "Necessary and Sufficient Conditions for Uniqueness of a Cournot Equilibrium", The Review of Economic Studies, v.54, No.4, p.681-690. <https://www.jstor.org/stable/2297489?seq=1#page_scan_tab_contents>
@@ -47,3 +48,4 @@ Referencias:
 4. Schmedders, Karl. (2008). Numerical Optimization Methods in Economics. 1-27. 10.1057/978-1-349-95121-5\_2232-1. <https://www.researchgate.net/publication/313867455_Numerical_Optimization_Methods_in_Economics?enrichId=rgreq-d983e8a6585dd0a533e66b02013921c9-XXX&enrichSource=Y292ZXJQYWdlOzMxMzg2NzQ1NTtBUzo0NzkzMTkxMzU5MjAxMzNAMTQ5MTI4OTk5NTg2OA%3D%3D&el=1_x_3&_esc=publicationCoverPdf>
 
 4. MPFIT documentation  http://cow.physics.wisc.edu/~craigm/idl/cmpfit.html
+
