@@ -212,7 +212,7 @@ Objetivo del proyecto: Implementar el algoritmo Dijkstra en C y su versión en p
 
 [Presentacion](liga hacia presentacion)
 
-[Implementacion](equipos/equipo_11/22_05/codigo)
+[Implementacion](equipos/equipo_11/22_05/codigo) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado.
 
 ---
 
