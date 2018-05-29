@@ -161,16 +161,22 @@ Objetivo del proyecto: Implementar el algoritmo QR para el lenguaje de programac
 
 [Avances del proyecto](equipos/equipo_09):
 
-* [Avance 10-04-18](equipos/equipo_09/avance_10_04_2018): su carpeta tiene el año 2017, cambien esto. Buen avance, gracias por el detalle de cada uno. [Aquí] referencias para la factorización QR en paralelo. El [equipo3](equipos/equipo_03) también revisa QR, debemos definir qué hará cada equipo.
+* [Avance 10-04-18](equipos/equipo_09/avance_10_04_2018)
 
-* [Avance 17-04-18](equipos/equipo_09/avance_17_04_2018): ¿pudieron hablar con el equipo3?  Fernando, el avance anterior mencionas la búsqueda de implementaciones en paralelo de QR, para este avance no haces mención a esto y es general la descripción de tu trabajo individual. Para el siguiente avance comiencen con el trabajo escrito y finalicen la lectura de literatura.
+* [Avance 17-04-18](equipos/equipo_09/avance_17_04_2018)
 
-* [Avance 24-04-18](equipos/equipo_09/avance_24_04_2018): pueden usar lo hecho en tareas 5, 6 para lectura de archivos de texto, imprimir vectores, matrices y manejo de arreglos de 1d y 2d en forma column major (sugerencia). Miguel tiene buenos avances en la programación desde el avance 1. Para este avance no está clara la aportación de Karen y Fernando en el trabajo escrito (que está mal organizado y escrito). Había mencionado a Fernando en el comentario de su primer avance que él habla sobre búsqueda de implementaciones en paralelo de QR, lo repetí para el avance 2 y para este tercero sigue sin haber comentarios al respecto salvo lo que  Karen refiere del paper de Dongarra. Su trabajo escrito tiene enunciados incompletos como "El método de mínimos cuadrados en palabras de Miller, busca minimizar la diferencia entre
-los datos observados y la ecuación de la recta de la forma para" (falta referencia a lo de Miller y completar el enunciado) o "La combinación de puntos que mejor se ajusta a los puntos se encuentra dada por la siguiente
-ecuación: (vacío)" y así otros. Al inicio de la sección de "Factorización QR mediante el uso de reflexiones de Householder" se describe el uso de QR para eigenvalores/eigenvectores, perdonen pero ¿cuál es la idea de abordar este tema en la sección de reflexiones de Householder?. No hay buena calificación para Karen y Fernando para este avance. 
+* [Avance 24-04-18](equipos/equipo_09/avance_24_04_2018)
 
 
-* [Avance 02-05-18](equipos/equipo_09/avance_02_05_2018):La liga a su trabajo escrito me llevó a un folder, mejor una liga que me lleve al trabajo escrito directamente y colóquenla en equipo_09/README como [equipo_ejemplo](equipos/equipo_ejemplo). Mmmmm creo o no estoy viendo el trabajo escrito correcto (debido a que en su carpeta me aparecen 4 documentos y estoy confundio en cuál debo ver) o siguen teniendo frases inconclusas y secciones vacías ¿pueden revisar esto? En la sección de rotaciones Givens cambien "matrix sparse -> matriz rala". Gracias Karen por detallar lo que has realizado en el trabajo escrito y me queda la pregunta de lo que Fernando ha incluido en el mismo. Fernando incluye más detalle en tu trabajo individual para el siguiente avance, ahora no es claro tu investigación/aporte al trabajo escrito. Gracias Miguel por la revisión del uso de los archivos de las tareas, indica que falta una sección importante en el repositorio de la materia sobre CUDA, coloca tus referencias al respecto en equipo_09/README.md.
+* [Avance 02-05-18](equipos/equipo_09/avance_02_05_2018)
+
+* [Avance 08-05-18](equipos/equipo_09/avance_08_05_2018)
+
+[Trabajo escrito](https://drive.google.com/drive/folders/1EkRomjpJLi_mLgXNvKZA1uizJJKIVNlk) Que la liga lleve directo al trabajo escrito (no volver a dar click en un folder de google drive)
+
+[Presentacion](https://drive.google.com/drive/folders/1KN2nghXPG8c8GwU9f5t46snOMRBbrf-F) Que la liga lleve directo al trabajo escrito (no volver a dar click en un folder de google drive)
+
+[Implementacion](equipos/equipo_11/22_05/codigo) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
@@ -208,11 +214,13 @@ Objetivo del proyecto: Implementar el algoritmo Dijkstra en C y su versión en p
 
 * [Avance 01-05-18](equipos/equipo_11/avance_01_05_18)
 
+* [Avance 08-05-18](equipos/equipo_11/avance_08_05_18)
+
 [Trabajo escrito](https://drive.google.com/open?id=1_edvCMJje75oSF46WjvKv6OmfmkKxOAo)
 
 [Presentacion](liga hacia presentacion)
 
-[Implementacion](equipos/equipo_11/22_05/codigo) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado.
+[Implementacion](equipos/equipo_11/22_05/codigo) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
