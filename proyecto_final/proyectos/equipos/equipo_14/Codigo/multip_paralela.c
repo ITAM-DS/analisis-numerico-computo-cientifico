@@ -37,7 +37,7 @@ void main(int argc, char *argv[]){
       for(j=0;j<N;j++){
 	//entrada(C,i,j) = 0.0;
 	for(k=0;k<K;k++){
-	  entrada(C,i,j,M) = entrada(C,i,j,M) + entrada(A,i,k,M)*entrada(B,k,j,M);
+	  entrada(C,i,j) = entrada(C,i,j) + entrada(A,i,k)*entrada(B,k,j);
 	}
       }
     }
