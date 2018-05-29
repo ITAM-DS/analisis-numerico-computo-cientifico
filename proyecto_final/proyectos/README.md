@@ -200,13 +200,19 @@ Objetivo del proyecto: Implementar el algoritmo Dijkstra en C y su versión en p
 
 [Avances del proyecto](equipos/equipo_11):
 
-* [Avance 10-04-18](equipos/equipo_11/avance_10_04_18): Coloquen el formato pedido sus carpetas pues me es más difícil la revisión con formatos diferentes, es mejor normalizar vean [equipo_ejemplo](equipos/equipo_ejemplo). Gracias por su descripción de trabajo individual. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-18](equipos/equipo_11/avance_10_04_18)
 
-* [Avance 17-04-18](equipos/equipo_11/avance_17_04_18): Thalía y Lorena realicen más detalle de la lectura de sus referencias (su trabajo individual), pues es muy general su descripción en este avance después que han leído ambas el mismo artículo "A note on two problems connected with graphs", ¿quizás mencionando lo que han realizado directamente en el trabajo escrito? ¿quizás discusión? piensen en una forma de presentarme su trabajo. Para las referencias de su proyecto después de estos dos avances ¿han decidido cuáles serán? si es así coloquen las referencias en su carpeta inicial. Roberto  ¿ya funciona la implementación en python? ¿supongo que funciona para el grafo que está en el main?. Den más descripción de su trabajo individual, revisé lo que llevan de trabajo escrito para darme una idea de lo que Thalía y Lorena realizaron y revisé el código de Roberto para de igual forma tener esta idea de su trabajo, en este sentido facilítenme la lectura de lo que realizaron.
+* [Avance 17-04-18](equipos/equipo_11/avance_17_04_18)
 
-* [Avance 24-04-18](equipos/equipo_11/avance_24_04_18): Coloquen la liga de su trabajo escrito en su equipo_11/README.md como [equipo_ejemplo](equipos/equipo_ejemplo) y un comentario respecto a esto: la liga a su trabajo escrito me llevó a un folder, mejor una liga que me lleve al trabajo escrito directamente. La lectura de software/hardware paralelo debió de cubrirse con el examen que hicimos en clase el mes anterior y para este avance no  se cubrió algo diferente (salvo quizás lo de ¿eficiencia?). Remuevan de su trabajo escrito la sección de software paralelo y hardware paralelo pues no es necesaria (¿o mediran eficiencia? si es así conserven esa parte, si no remuevan esa sección), vayan directo a la implementación en paralelo de Dijkstra ¿han encontrado referencias para esto último?. Muestren los resultados en su forma secuencial que les mencioné en el avance anterior (sin respuesta a las preguntas que hacía en específico a la implementación en python). Tres personas trabajaron lo de hardware/software paralelo, sugiero asignen mejor sus tareas, una persona podría haber desarrollado lo anterior y las demás la parte de código/implementación/secuencial/paralelo de Dijkstra. Comiencen con la implementación en C si ya funciona lo de python secuencial para el siguiente avance antes de usar openmp.
+* [Avance 24-04-18](equipos/equipo_11/avance_24_04_18)
 
-* [Avance 01-05-18](equipos/equipo_11/avance_01_05_18): Muy bien por el avance en la implementación en C. Lorena, si estás usando arreglos 1-dimensionales para por ejemplo la variable `distance` o también arreglos de enteros `visited` (para éstos falta definir una macro como renglones_vectores_entero para guardar su tamaño, pero tú puedes implementarla, es muy similar a la macro renglones_vector) hay una definición de arreglo_1d en definiciones.h (sugerencia si prefieres saltar el paso de uso de apuntadores :) ) Para el siguiente avance muestra forma de compilar y output de tus códigos. Detallen quién realiza secciones del trabajo escrito, por ejemplo lo de relajación. Los avances que consistan en lecturas de papers (además de la lectura) acompáñenlos de un borrador (mejor si tienen algo escrito en forma) en su trabajo escrito (o discusión del paper, algo más que los 3-6 renglones que escriben en su descripción individual, ya había mencionado esto en el comentario de avance 2), lo menciono pues deben definir si será posible realizar en paralelo Dijkstra o acotar la implementación a secuencial, restan 4 avances por entregar y es tiempo de ir finalizando la lectura de referencias.
+* [Avance 01-05-18](equipos/equipo_11/avance_01_05_18)
+
+[Trabajo escrito](https://drive.google.com/open?id=1_edvCMJje75oSF46WjvKv6OmfmkKxOAo)
+
+[Presentacion](liga hacia presentacion)
+
+[Implementacion](equipos/equipo_11/22_05/codigo)
 
 ---
 
