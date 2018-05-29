@@ -18,4 +18,4 @@ La forma en que correríamos el código sería "sh loop.sh >> resultados.csv" y 
 
 Hice un pequeño reacomodo de los archivos que hemos estado trabajando para mantener organizado el repositorio. Además siguiendo las recomendaciones de Erick arregle la carpeta de "Codigo" para evitar símbolos raros y comencé a desarrollar el trabajo final, los avances del trabajo final se pueden consultar en el siguiente link:
 
-![TrabajoFinal](https://github.com/patricio-hdz/ProyectoFinal/blob/master/Borrador_TrabajoFinal.md)
+![TrabajoFinal](https://github.com/patricio-hdz/ProyectoFinal/blob/master/TrabajoFinal.md)

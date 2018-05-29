@@ -32,14 +32,15 @@ void main(int argc, char *argv[]){
    for(int j=0;j<N;j++){
      //entrada(C,i,j) = 0.0;
     for(int k=0;k<M;k++){
-      entrada(C,i,j,M) = entrada(C,i,j,M) + entrada(A,i,k,M)*entrada(B,k,j,M);
+      entrada(C,i,j) = entrada(C,i,j) + entrada(A,i,k)*entrada(B,k,j);
     }
    }
   }
   gettimeofday(&t1,0);
   //imprime_matriz(C);
   double elapsed = (t1.tv_sec-t0.tv_sec)*1.0f+(t1.tv_usec-t0.tv_usec)/1000000.0f;
-  printf("\nTiempo: %f \n",elapsed);
+  //printf("\nTiempo: %f \n",elapsed);
+  printf("\n%f,%d,%d,1",elapsed,renglones(C),columnas(C));
   free(entradas(A));
   free(A);
   free(entradas(B));
@@ -47,5 +48,4 @@ void main(int argc, char *argv[]){
   free(entradas(C));
   free(C);
   return 0;
-
 }
