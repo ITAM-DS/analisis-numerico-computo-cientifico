@@ -141,15 +141,22 @@ Objetivo del proyecto: Implementar el método de descenso en gradiente para enco
 
 [Avances del proyecto](equipos/equipo_8):
 
-* [Avance 10-04-18](equipos/equipo_8/avance_10_04_18): No coloquen html's pues son pesados, si quieren den una liga o pueden poner un md en lugar de esto. Falta crear carpetas correspondientes. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas). ¿Tienen ligas a sus referencias? pregunto para que sea más fácil el acceso a ellas.
+* [Avance 10-04-18](equipos/equipo_8/avance_10_04_18)
+
+* [Avance 17-04-18](equipos/equipo_8/avance_17_04_18)
+
+* [Avance 24-04-18](equipos/equipo_8/avance_24_04_18)
 
 
-* [Avance 17-04-18](equipos/equipo_8/avance_17_04_18): Quiten el archivo Avance_10_04_2018.html en su carpeta inicial. Entiendo pero es difícil de leer: $$ \frac{\partial \pi_{i} }{\partial q_{i}} = (q_{1}+q_{2})^{-\frac{1}{n}} - \frac{1}{n}(q_{1}+q_{2})^{\frac{-1}{\eta - 1}}q_{i}-c_{i}q_{i}=0$$ ¿hay una mejor forma de desplegar esto? quizás en su trabajo escrito?. Está bien los artículos que escribe Mónica pero detalla más (y hablas de un tercero pero ¿cuál es? ¿el de Quoc et. al que está en su página de inicio de referencias), aquí hay un clásico de métodos numéricos para optimización: Numerical optimization de Nocedal & Wright. ¿Para el próximo avance tienen contemplado uso de funciones/librerías hechas en C? Para el siguiente avance finalicen la revisión de literatura y comiencen con el trabajo escrito.
+* [Avance 02-05-18](equipos/equipo_8/avance_02_05_18)
 
-* [Avance 24-04-18](equipos/equipo_8/avance_24_04_18): Gracias por remover el html. Coloquen la liga a su trabajo escrito en equipo_8/README.md como [equipo_ejemplo](equipos/equipo_ejemplo). En la página 4 al final hay algunas cosas que cambiar, por ejemplo separar la palabra "para" y hay dos "si". La figura al inicio de la página 5 no hacen referencia a ella. Están bien sus figuras aunque se ven algo borrosas, hay una forma de desplegar los algoritmos de una forma más legible con .tex, revísenla. Para el siguiente avance consideren iniciar con su implementación en C y continúen completando su trabajo escrito.
+* [Avance 08-05-18](equipos/equipo_8/avance_08_05_18)
 
+[Trabajo escrito](https://www.dropbox.com/sh/hdty83mu03hoiy8/AAC_-McE3iFrOt6bFdsGHfPIa?dl=0) Que la liga lleve directo al trabajo escrito (no a un folder de dropbox). Falta que arreglen palabras que les pedí cambiaran en el avance del 2 de mayo.
 
-* [Avance 02-05-18](equipos/equipo_8/avance_02_05_18): Liga a su trabajo escrito no a carpeta, directamente que sea al documento. Mismo comentario que vez anterior para las figuras. Página 8 es algo sútil por el lenguaje, Jacobiano--->Jacobiana (es una matriz). Página 9 "más empinado" ---> "máximo descenso", "regla de parado" ---> "regla de paro", "colineares"--->"colineales". Página 10 "puntero"---> "apuntador" (o coloquen puntero en todos lados). Mónica, mejor en tu descripción individual del .md escribe las secciones que escribiste en el trabajo en lugar de un copy-paste. Eduardo no encontré la tabla 1.1 ni la actualización de imágenes por tablas (está pendiente tu calificación para este avance). Hay que ir resolviendo lo de la implementación en C.
+[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_8 como el del trabajo escrito)
+
+[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_8 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
