@@ -148,9 +148,9 @@ Objetivo del proyecto: Implementar el método de descenso en gradiente para enco
 * [Avance 24-04-18](equipos/equipo_8/avance_24_04_18)
 
 
-* [Avance 02-05-18](equipos/equipo_8/avance_02_05_18)
+* [Avance 02-05-18](equipos/equipo_8/entrega_02_05_18)
 
-* [Avance 08-05-18](equipos/equipo_8/avance_08_05_18)
+* [Avance 08-05-2018](equipos/equipo_8/avance_08_05_2018)
 
 [Trabajo escrito](https://www.dropbox.com/sh/hdty83mu03hoiy8/AAC_-McE3iFrOt6bFdsGHfPIa?dl=0) Que la liga lleve directo al trabajo escrito (no a un folder de dropbox). Falta que arreglen palabras que les pedí cambiaran en el avance del 2 de mayo.
 
