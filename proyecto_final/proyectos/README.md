@@ -315,13 +315,25 @@ Objetivo del proyecto: Implementación de un algoritmo para el cálculo del áre
 
 [Avances del proyecto](equipos/equipo_13):
 
-* [Avance 10-04-18](equipos/equipo_13/avance_10_04_2018): Buen avance, gracias por su descripción individual. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-18](equipos/equipo_13/avance_10_04_2018)
 
-* [Avance 17-04-18](equipos/equipo_13/avance_17_04_2018): Definan si realizarán una implementación en CUDA pues Alejandro menciona que no se ha hallado tal implementación al realizar una búsqueda. Esto tomen en cuenta pues el proyecto final no consiste en desarrollar algo nuevo, eso podría tomar más tiempo del estimado. Den oportunidad en la semana de buscar algo respecto a esto, si no encuentran opten por otra extensión a C. ¿Cómo ven la integración por MC? ¿viable, factible en tiempo y entregas? pues aquí se encuentran con generación de números pseudo aleatorios [equipo12](equipos/equipo_12)
+* [Avance 17-04-18](equipos/equipo_13/avance_17_04_2018)
 
-* [Avance 24-04-18](equipos/equipo_13/avance_24_04_2018): Empiecen con su trabajo escrito para el siguiente avance con lo que se ha investigado por ustedes. Ok con lo de MPI. La propuesta de Federico podrían implementarla también en el siguiente avance de forma secuencial y hacer pruebas de ejecución y presentar outputs. Si hay referencias que añadir en equipo_13/README.md realícenlo.
+* [Avance 24-04-18](equipos/equipo_13/avance_24_04_2018)
 
-* [Avance 02-05-18](equipos/equipo_13/avance_02_05_2018): Coloquen la liga a su trabajo escrito e implementaciones en equipo_13/README.md como [equipo_ejemplo](equipos/equipo_ejemplo). ¿Y utilizaran un clúster en su implementación de openMPI? o ¿será algo pseudo distribuido con docker?. Se ve extraño que esté en inglés la sección de su trabajo escrito de Implementación en paralelo - Riemann. ¿Usarán la implementación que desarrollen en openMPI para alguna aplicación? por ejemplo en ¿estadística, finanzas u otra rama?.
+* [Avance 02-05-18](equipos/equipo_13/avance_02_05_2018)
+
+* [Avance 08-05-18](equipos/equipo_13/avance_08_05_2018)
+
+
+Renombren a sus referencias en el README.md de equipos/equipo_13 de modo que sean los títulos en lugar de direcciones de internet
+
+[Trabajo escrito](coloquen la liga en su readme de su carpeta de equipos/equipo_13, que la liga lleve directamente al trabajo y no a una carpeta con contenido. Hay algunos typos y faltas de ortografía en su documento escrito, revísenlas)
+
+[Presentacion](coloquen la liga en su readme de su carpeta de equipos/equipo_13 como el del trabajo escrito)
+
+[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_13 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+
 
 ---
 
