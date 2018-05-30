@@ -111,14 +111,27 @@ Objetivo del proyecto: Paralelizar en GPU un algoritmo de Hit & Run definido por
 
 [Avances del proyecto](equipos/equipo_6):
 
-* [Avance 10-04-2018](equipos/equipo_6/avance_10_04_2018): Buen avance, bien sus referencias. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-2018](equipos/equipo_6/avance_10_04_2018)
 
-* [Avance 17-04-2018](equipos/equipo_6/avance_17_04_2018): Pueden usar funciones de LAPACK para calcular funciones sencillas como el de la norma. Buena idea utilizar lo ya hecho como lo de lpsolve. Podrían empezar a realizar el inicio de su trabajo escrito para el próximo avance.
+* [Avance 17-04-2018](equipos/equipo_6/avance_17_04_2018)
 
-* [Avance 24-04-2018](equipos/equipo_6/avance_24_04_2018): No hay entrega de avance.
+* [Avance 01-05-2018](equipos/equipo_6/avance_1_05_2018)
+
+* [Avance 08-05-2018](equipos/equipo_6/avance_8_05_2018)
+
+* [Avance 22-05-2018](equipos/equipo_6/avance_22_05_2018)
 
 
-* [Avance 1-05-2018](equipos/equipo_6/avance_1_05_2018): Coloquen la liga de su trabajo escrito e implementaciones en su equipo_6/README.md como [equipo_ejemplo](equipos/equipo_ejemplo). En las notas que encuentran en el repo (tema 3, cómputo matricial) está la factorización QR y también en el libro de Golub y Van Loan de Matrix computations para la referencia sobre proyección con reflexiones de Householder.  Los avances que consistan en lecturas de papers (además de la lectura) acompáñenlos de un borrador (mejor si tienen algo escrito en forma) en su trabajo escrito (o discusión del paper), sólo lo menciono para futuros avances, ahora estuvo bien. Las referencias que usen para su objetivo colóquenlas en equipo_6/README.md. Bien por el avance en trabajo escrito (no sé si estoy acostumbrado a la lectura en inglés pero entendí muy bien/rápido lo que escribieron, just saying) y una pregunta ¿qué indican los super índices prima de la sección 2.2?.
+Coloquen referencias en el readme de equipos/equipo_07 de los posts, MKL, MAGMA
+
+[Trabajo escrito](Falta liga en readme de carpeta equipos/equipo_6)
+
+[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_6 como el del trabajo escrito)
+
+[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_6 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+
+
+
 
 ---
 
@@ -144,9 +157,9 @@ Coloquen referencias en el readme de equipos/equipo_07
 
 [Trabajo escrito](Falta liga en readme de carpeta equipos/equipo_07)
 
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_8 como el del trabajo escrito)
+[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_07 como el del trabajo escrito)
 
-[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_8 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_07 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
