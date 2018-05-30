@@ -65,14 +65,22 @@ Objetivo del proyecto: El objetivo de nuestro proyecto es la construcción de un
 
 [Avances del proyecto](equipos/equipo_04):
 
-* [Avance 10-04-18](equipos/equipo_04/avance_10_04_18): Entrega tarde avance.
+* [Avance 10-04-18](equipos/equipo_04/avance_10_04_18)
 
-* [Avance 17-04-2018](equipos/equipo_04/avance_17_04_2018): Pueden usar algo ya implementado para su objetivo y realizar un trabajo descriptivo, es decir, qué método(s) se utilizó(aron), la teoría, el problema de optimización que se resuelve. Me parece la parte de computación está resuelta. Las referencias que colocan en su carpeta inicial son aquellas que les ayudan a realizar su proyecto, no es necesario que escriban cada modelo/método que existe en CV para el reconocimiento de caras.
+* [Avance 17-04-2018](equipos/equipo_04/avance_17_04_2018)
 
-* [Avance 24-04-2018](equipos/equipo_04/avance_24_04_2018): Están bien sus avances pero mejor si añaden ejecuciones y output de sus resultados. También ¿cómo ejecutan su programa, qué requieren instalar, con cuál ejemplo ya lo probaron? Comiencen con el trabajo escrito y añadan ligas como aquí [equipo_ejemplo](equipos/equipo_ejemplo) en equipo_04/README.md. 
+* [Avance 24-04-2018](equipos/equipo_04/avance_24_04_2018)
 
-* [Avance 02-05-2018](equipos/equipo_04/avance_02_05_2018): Arturo Torre, está bien lo que escribes en el README de este avance pero añádelo al trabajo escrito en la sección de introducción (por ejemplo) tiene algunos typos y uso de palabras repetidas (redacción) y la escritura matemática se leería mejor en un procesador de texto designado para ello y no el md, pero en general se entiende y sirve bien como intro, gracias por esto. Gracias por la descripción Arturo González de tu trabajo individual y de lo que se debe ir realizando paso a paso con sus códigos y datos, también añadirlo en el trabajo escrito sería buena idea. Las referencias que colocaron en este avance si van a seguir utilizándolas, escríbanlas en equipo_04/README.md y aprovecho para mencionar que mejoren esta sección de referencias adicionales, referencias Pytorch y otras referencias de este README pues ahora están amontonadas y poco legibles, mejor si ponen algo como `Implementing_face_recognition_using_a_parallel_image_processing_environment_based_on_algorithmic_skeletons` y la liga hacia esto en lugar de la página de internet. ¿Habrá algo de código de C o será el uso de pytorch-Alexnet? 
+* [Avance 02-05-2018](equipos/equipo_04/avance_02_05_2018)
 
+* [Avance 08-05-2018](equipos/equipo_04/avance_08_05_2018)
+
+
+[Trabajo escrito](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_04)
+
+[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_04 como el del trabajo escrito)
+
+[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_04 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
@@ -141,15 +149,22 @@ Objetivo del proyecto: Implementar el método de descenso en gradiente para enco
 
 [Avances del proyecto](equipos/equipo_8):
 
-* [Avance 10-04-18](equipos/equipo_8/avance_10_04_18): No coloquen html's pues son pesados, si quieren den una liga o pueden poner un md en lugar de esto. Falta crear carpetas correspondientes. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas). ¿Tienen ligas a sus referencias? pregunto para que sea más fácil el acceso a ellas.
+* [Avance 10-04-18](equipos/equipo_8/avance_10_04_18)
+
+* [Avance 17-04-18](equipos/equipo_8/avance_17_04_18)
+
+* [Avance 24-04-18](equipos/equipo_8/avance_24_04_18)
 
 
-* [Avance 17-04-18](equipos/equipo_8/avance_17_04_18): Quiten el archivo Avance_10_04_2018.html en su carpeta inicial. Entiendo pero es difícil de leer: $$ \frac{\partial \pi_{i} }{\partial q_{i}} = (q_{1}+q_{2})^{-\frac{1}{n}} - \frac{1}{n}(q_{1}+q_{2})^{\frac{-1}{\eta - 1}}q_{i}-c_{i}q_{i}=0$$ ¿hay una mejor forma de desplegar esto? quizás en su trabajo escrito?. Está bien los artículos que escribe Mónica pero detalla más (y hablas de un tercero pero ¿cuál es? ¿el de Quoc et. al que está en su página de inicio de referencias), aquí hay un clásico de métodos numéricos para optimización: Numerical optimization de Nocedal & Wright. ¿Para el próximo avance tienen contemplado uso de funciones/librerías hechas en C? Para el siguiente avance finalicen la revisión de literatura y comiencen con el trabajo escrito.
+* [Avance 02-05-18](equipos/equipo_8/entrega_02_05_18)
 
-* [Avance 24-04-18](equipos/equipo_8/avance_24_04_18): Gracias por remover el html. Coloquen la liga a su trabajo escrito en equipo_8/README.md como [equipo_ejemplo](equipos/equipo_ejemplo). En la página 4 al final hay algunas cosas que cambiar, por ejemplo separar la palabra "para" y hay dos "si". La figura al inicio de la página 5 no hacen referencia a ella. Están bien sus figuras aunque se ven algo borrosas, hay una forma de desplegar los algoritmos de una forma más legible con .tex, revísenla. Para el siguiente avance consideren iniciar con su implementación en C y continúen completando su trabajo escrito.
+* [Avance 08-05-2018](equipos/equipo_8/avance_08_05_2018)
 
+[Trabajo escrito](https://www.dropbox.com/sh/hdty83mu03hoiy8/AAC_-McE3iFrOt6bFdsGHfPIa?dl=0) Que la liga lleve directo al trabajo escrito (no a un folder de dropbox). Falta que arreglen palabras que les pedí cambiaran en el avance del 2 de mayo.
 
-* [Avance 02-05-18](equipos/equipo_8/avance_02_05_18): Liga a su trabajo escrito no a carpeta, directamente que sea al documento. Mismo comentario que vez anterior para las figuras. Página 8 es algo sútil por el lenguaje, Jacobiano--->Jacobiana (es una matriz). Página 9 "más empinado" ---> "máximo descenso", "regla de parado" ---> "regla de paro", "colineares"--->"colineales". Página 10 "puntero"---> "apuntador" (o coloquen puntero en todos lados). Mónica, mejor en tu descripción individual del .md escribe las secciones que escribiste en el trabajo en lugar de un copy-paste. Eduardo no encontré la tabla 1.1 ni la actualización de imágenes por tablas (está pendiente tu calificación para este avance). Hay que ir resolviendo lo de la implementación en C.
+[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_8 como el del trabajo escrito)
+
+[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_8 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
@@ -161,16 +176,22 @@ Objetivo del proyecto: Implementar el algoritmo QR para el lenguaje de programac
 
 [Avances del proyecto](equipos/equipo_09):
 
-* [Avance 10-04-18](equipos/equipo_09/avance_10_04_2018): su carpeta tiene el año 2017, cambien esto. Buen avance, gracias por el detalle de cada uno. [Aquí] referencias para la factorización QR en paralelo. El [equipo3](equipos/equipo_03) también revisa QR, debemos definir qué hará cada equipo.
+* [Avance 10-04-18](equipos/equipo_09/avance_10_04_2018)
 
-* [Avance 17-04-18](equipos/equipo_09/avance_17_04_2018): ¿pudieron hablar con el equipo3?  Fernando, el avance anterior mencionas la búsqueda de implementaciones en paralelo de QR, para este avance no haces mención a esto y es general la descripción de tu trabajo individual. Para el siguiente avance comiencen con el trabajo escrito y finalicen la lectura de literatura.
+* [Avance 17-04-18](equipos/equipo_09/avance_17_04_2018)
 
-* [Avance 24-04-18](equipos/equipo_09/avance_24_04_2018): pueden usar lo hecho en tareas 5, 6 para lectura de archivos de texto, imprimir vectores, matrices y manejo de arreglos de 1d y 2d en forma column major (sugerencia). Miguel tiene buenos avances en la programación desde el avance 1. Para este avance no está clara la aportación de Karen y Fernando en el trabajo escrito (que está mal organizado y escrito). Había mencionado a Fernando en el comentario de su primer avance que él habla sobre búsqueda de implementaciones en paralelo de QR, lo repetí para el avance 2 y para este tercero sigue sin haber comentarios al respecto salvo lo que  Karen refiere del paper de Dongarra. Su trabajo escrito tiene enunciados incompletos como "El método de mínimos cuadrados en palabras de Miller, busca minimizar la diferencia entre
-los datos observados y la ecuación de la recta de la forma para" (falta referencia a lo de Miller y completar el enunciado) o "La combinación de puntos que mejor se ajusta a los puntos se encuentra dada por la siguiente
-ecuación: (vacío)" y así otros. Al inicio de la sección de "Factorización QR mediante el uso de reflexiones de Householder" se describe el uso de QR para eigenvalores/eigenvectores, perdonen pero ¿cuál es la idea de abordar este tema en la sección de reflexiones de Householder?. No hay buena calificación para Karen y Fernando para este avance. 
+* [Avance 24-04-18](equipos/equipo_09/avance_24_04_2018)
 
 
-* [Avance 02-05-18](equipos/equipo_09/avance_02_05_2018):La liga a su trabajo escrito me llevó a un folder, mejor una liga que me lleve al trabajo escrito directamente y colóquenla en equipo_09/README como [equipo_ejemplo](equipos/equipo_ejemplo). Mmmmm creo o no estoy viendo el trabajo escrito correcto (debido a que en su carpeta me aparecen 4 documentos y estoy confundio en cuál debo ver) o siguen teniendo frases inconclusas y secciones vacías ¿pueden revisar esto? En la sección de rotaciones Givens cambien "matrix sparse -> matriz rala". Gracias Karen por detallar lo que has realizado en el trabajo escrito y me queda la pregunta de lo que Fernando ha incluido en el mismo. Fernando incluye más detalle en tu trabajo individual para el siguiente avance, ahora no es claro tu investigación/aporte al trabajo escrito. Gracias Miguel por la revisión del uso de los archivos de las tareas, indica que falta una sección importante en el repositorio de la materia sobre CUDA, coloca tus referencias al respecto en equipo_09/README.md.
+* [Avance 02-05-18](equipos/equipo_09/avance_02_05_2018)
+
+* [Avance 08-05-18](equipos/equipo_09/avance_08_05_2018)
+
+[Trabajo escrito](https://drive.google.com/drive/folders/1EkRomjpJLi_mLgXNvKZA1uizJJKIVNlk) Que la liga lleve directo al trabajo escrito (no volver a dar click en un folder de google drive)
+
+[Presentacion](https://drive.google.com/drive/folders/1KN2nghXPG8c8GwU9f5t46snOMRBbrf-F) Que la liga lleve directo al trabajo escrito (no volver a dar click en un folder de google drive)
+
+[Implementacion](equipos/equipo_09/codigo/MCQR.cu) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
@@ -182,13 +203,22 @@ Objetivo del proyecto: Desarrollar un algoritmo de sistemas de recomendación ba
 
 [Avances del proyecto](equipos/equipo_10):
 
-* [Avance 10-04-18](equipos/equipo_10/Avance_10_04_18): Buen avance, gracias por la descripción individual. [Aquí] referencias para la SVD en paralelo. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-18](equipos/equipo_10/Avance_10_04_18)
 
-* [Avance 17-04-18](equipos/equipo_10/Avance_17_04_18): Bien en su avance. Escriban la referencia  de lo que utiliza cuSolver o MAGMA para la SVD (una liga, un párrafo) y que apoye lo que mencionan que en cuSolver una forma es con el método de Jacobi. ¿Entonces será la SVD con CUDA? Puede ser un trabajo que utilice lo ya realizado en código y se haga una descripción/investigación de lo que detrás está realizando las funciones.
+* [Avance 17-04-18](equipos/equipo_10/Avance_17_04_18)
 
-* [Avance 24-04-18](equipos/equipo_10/Avance_24_04_18): Sugiero usen CUDA de forma nativa, es decir no con docker para iniciar, después podrían considerar usar docker+NVIDIA (una vez hecho pruebas con cusolver por ejemplo). Inicien con el trabajo escrito para el siguiente avance. Suban el notebook al repo en lugar que deba descargarse (es muy pesado? si no, entonces podrían añadirlo). Es probable que el examen final sea la última semana de mayo, lo menciono para que ajusten lo necesario en su cronograma. Es importante que realicen pruebas para que revisen que todo está bien con configuración de instancia, librerías necesarias y puedan seguir avanzando o resolver lo que surja. Se ve bien la configuración de la instancia (aunque la instancia no tenía tag de nombre...) añade una compilación de hello_world y output de cusolver para apoyar lo anterior que comentaba (chequeo de dependencias para CUDA y librerías necesarias).
+* [Avance 24-04-18](equipos/equipo_10/Avance_24_04_18)
 
-* [Avance 02-05-18](equipos/equipo_10/Avance_02_05_18): ¿por qué falla el deviceQuery? y ¿pueden añadir descripción de trabajo individual de cada persona xfa? sus calificaciones están pendientes. El trabajo escrito busquen una mejor forma de presentarlo, .md no es buena idea y pueden utilizar  el tema 3 cómputo matricial (3.2.2, 3.6.2) y el libro de matrix computations de Golub y Van Loan para el mismo. Las referencias de su equipo_10/README.md en lugar de colocar páginas de internet coloquen los títulos o nombres
+* [Avance 02-05-18](equipos/equipo_10/Avance_02_05_18)
+
+* [Avance 08-05-18](equipos/equipo_10/Avance_08_05_18)
+
+[Trabajo escrito](https://drive.google.com/open?id=1z-b_zTksXNujDiJc2sg_0eJND8RpjNmE)
+
+[Presentacion](liga hacia presentacion)
+
+[Implementacion](equipos/equipo_10/Implementacion)
+
 
 ---
 
@@ -200,13 +230,21 @@ Objetivo del proyecto: Implementar el algoritmo Dijkstra en C y su versión en p
 
 [Avances del proyecto](equipos/equipo_11):
 
-* [Avance 10-04-18](equipos/equipo_11/avance_10_04_18): Coloquen el formato pedido sus carpetas pues me es más difícil la revisión con formatos diferentes, es mejor normalizar vean [equipo_ejemplo](equipos/equipo_ejemplo). Gracias por su descripción de trabajo individual. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-18](equipos/equipo_11/avance_10_04_18)
 
-* [Avance 17-04-18](equipos/equipo_11/avance_17_04_18): Thalía y Lorena realicen más detalle de la lectura de sus referencias (su trabajo individual), pues es muy general su descripción en este avance después que han leído ambas el mismo artículo "A note on two problems connected with graphs", ¿quizás mencionando lo que han realizado directamente en el trabajo escrito? ¿quizás discusión? piensen en una forma de presentarme su trabajo. Para las referencias de su proyecto después de estos dos avances ¿han decidido cuáles serán? si es así coloquen las referencias en su carpeta inicial. Roberto  ¿ya funciona la implementación en python? ¿supongo que funciona para el grafo que está en el main?. Den más descripción de su trabajo individual, revisé lo que llevan de trabajo escrito para darme una idea de lo que Thalía y Lorena realizaron y revisé el código de Roberto para de igual forma tener esta idea de su trabajo, en este sentido facilítenme la lectura de lo que realizaron.
+* [Avance 17-04-18](equipos/equipo_11/avance_17_04_18)
 
-* [Avance 24-04-18](equipos/equipo_11/avance_24_04_18): Coloquen la liga de su trabajo escrito en su equipo_11/README.md como [equipo_ejemplo](equipos/equipo_ejemplo) y un comentario respecto a esto: la liga a su trabajo escrito me llevó a un folder, mejor una liga que me lleve al trabajo escrito directamente. La lectura de software/hardware paralelo debió de cubrirse con el examen que hicimos en clase el mes anterior y para este avance no  se cubrió algo diferente (salvo quizás lo de ¿eficiencia?). Remuevan de su trabajo escrito la sección de software paralelo y hardware paralelo pues no es necesaria (¿o mediran eficiencia? si es así conserven esa parte, si no remuevan esa sección), vayan directo a la implementación en paralelo de Dijkstra ¿han encontrado referencias para esto último?. Muestren los resultados en su forma secuencial que les mencioné en el avance anterior (sin respuesta a las preguntas que hacía en específico a la implementación en python). Tres personas trabajaron lo de hardware/software paralelo, sugiero asignen mejor sus tareas, una persona podría haber desarrollado lo anterior y las demás la parte de código/implementación/secuencial/paralelo de Dijkstra. Comiencen con la implementación en C si ya funciona lo de python secuencial para el siguiente avance antes de usar openmp.
+* [Avance 24-04-18](equipos/equipo_11/avance_24_04_18)
 
-* [Avance 01-05-18](equipos/equipo_11/avance_01_05_18): Muy bien por el avance en la implementación en C. Lorena, si estás usando arreglos 1-dimensionales para por ejemplo la variable `distance` o también arreglos de enteros `visited` (para éstos falta definir una macro como renglones_vectores_entero para guardar su tamaño, pero tú puedes implementarla, es muy similar a la macro renglones_vector) hay una definición de arreglo_1d en definiciones.h (sugerencia si prefieres saltar el paso de uso de apuntadores :) ) Para el siguiente avance muestra forma de compilar y output de tus códigos. Detallen quién realiza secciones del trabajo escrito, por ejemplo lo de relajación. Los avances que consistan en lecturas de papers (además de la lectura) acompáñenlos de un borrador (mejor si tienen algo escrito en forma) en su trabajo escrito (o discusión del paper, algo más que los 3-6 renglones que escriben en su descripción individual, ya había mencionado esto en el comentario de avance 2), lo menciono pues deben definir si será posible realizar en paralelo Dijkstra o acotar la implementación a secuencial, restan 4 avances por entregar y es tiempo de ir finalizando la lectura de referencias.
+* [Avance 01-05-18](equipos/equipo_11/avance_01_05_18)
+
+* [Avance 08-05-18](equipos/equipo_11/avance_08_05_18)
+
+[Trabajo escrito](https://drive.google.com/open?id=1_edvCMJje75oSF46WjvKv6OmfmkKxOAo)
+
+[Presentacion](liga hacia presentacion)
+
+[Implementacion](equipos/equipo_11/22_05/codigo) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
@@ -216,16 +254,24 @@ Ttulo del proyecto: `Generación de método aleatorios mediante algoritmos imple
 
 Objetivo del proyecto: Programar un algoritmo para la generación de una cadena de número aleatorios, optimizando su longitud. Medir su eficiencia a través de distintos criterios como pruebas de aleatoriedad, longitud de la cadena generada y la comparación con otras cadenas de números aleatorios obtenidos por fuentes naturales de aleatoriedad como procesos cuánticos: fotones y partículas.
 
-[Avances del proyecto](equipos/equipo_12):
+[Avances del proyecto](equipos/equipo_12)
 
-* [Avance 10-04-18](equipos/equipo_12/avance_10_04_18): No hay descripción, carpetas iniciales creadas, referencias. Nada que comentar.
+* [Avance 10-04-18](equipos/equipo_12/avance_10_04_18)
 
-* [Avance 17-04-18](equipos/equipo_12/avance_17_04_18): El formato de despliegue de las referencias en su carpeta inicial no es legible, arreglen esto. El trabajo consistirá en medir ¿eficiencia? ¿probar que es posible generar números pseudo-aleatorios con cómputo en paralelo? ¿realizar pruebas para el generador de números pseudo-aleatorios, en el sentido de calidad de los números obtenidos? Para el siguiente avance definan lo anterior y empiecen con el trabajo escrito y revisen implementaciones.
+* [Avance 17-04-18](equipos/equipo_12/avance_17_04_18)
 
-* [Avance 24-04-18](equipos/equipo_12/avance_24_04_18): Dan buenas referencias en este avance ¿serán utilizadas en el objetivo de su proyecto? si es así colóquenlas en equipo_12/README.md y un comentario sobre sus referencias de este README, es mejor si colocan el título de sus referencias en lugar de las ligas con nombre de google docs pues si yo veo una por una después se me olvida cuál era la tercera. Comiencen con su trabajo escrito y lo que añade para este avance Víctor lo pueden incluir allí. Muy bien su descripción de trabajo individual, gracias por eso.
+* [Avance 24-04-18](equipos/equipo_12/avance_24_04_18)
 
+* [Avance 02-05-18](equipos/equipo_12/avance_02_05_18)
 
-* [Avance 02-05-18](equipos/equipo_12/avance_02_05_18): añadan su trabajo escrito en equipo_12/README.md como [equipo_ejemplo](equipos/equipo_ejemplo), así como ligas a su presentación e implementación. Falta avance en trabajo escrito. Añádanlo para el avance del 8 de mayo. Incluyan referencia a algoritmo de Mersenne Twister en sus referencias de equipo_12/README.md
+* [Avance 08-05-18](equipos/equipo_12/avance_08_05_18)
+
+[Trabajo escrito](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_12)
+
+[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_12 como el del trabajo escrito. Revisen que las ligas se visualizan correctamente)
+
+[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_12 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+
 ---
 
 ## [Equipo 13](equipos/equipo_13)

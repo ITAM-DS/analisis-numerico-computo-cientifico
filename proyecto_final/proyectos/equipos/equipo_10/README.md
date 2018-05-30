@@ -11,7 +11,7 @@ Título del proyecto `SVD para sistemas de recomendación`
 Objetivo del Proyecto: `Desarrollar un algoritmo de sistemas de recomendación basado en descomposición SVD en paralelo` 
 
 
-Trabajo escrito (fuera del repo): [Trabajo escrito](https://drive.google.com/open?id=1umhS7cKuaOsY3cjQhn4BFUijz9AncHO_) 
+Trabajo escrito (fuera del repo): [Trabajo escrito](https://drive.google.com/open?id=1z-b_zTksXNujDiJc2sg_0eJND8RpjNmE) 
 
 Implementación: [Implementación](Implementacion)
 
@@ -20,7 +20,8 @@ En la carpeta [Avance_10_04_18](Avance_10_04_18). se encuentra el reporte del pr
 En la carpeta [Avance_17_04_18](Avance_17_04_18). se encuentra el reporte del segundo avance en nuestro proyecto. 
 En la carpeta [Avance_24_04_18](Avance_24_04_18). se encuentra el reporte del 3er avance en nuestro proyecto.
 En la carpeta [Avance_02_05_18](Avance_02_05_18). se encuentra el reporte del 4to avance en nuestro proyecto. 
-En la carpeta [Avance_08_05_18](Avance_08_05_18). se encuentra el reporte del 5to avance en nuestro proyecto.
+En la carpeta [Avance_08_05_18](Avance_08_05_18). se encuentra el reporte del 5to avance en nuestro proyecto. 
+En la carpeta [Avance_15_05_18](Avance_15_05_18). se encuentra el reporte del 6to avance en nuestro proyecto.
 
 Referencias del Proyecto:
 
