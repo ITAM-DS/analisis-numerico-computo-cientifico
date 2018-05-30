@@ -130,14 +130,23 @@ Objetivo del proyecto: Implementar el método de “Principal Component Analysis
 
 [Avances del proyecto](equipos/equipo_07):
 
-* [Avance 10-04-18](equipos/equipo_07/avance_10_04_2018): Enmarquen el objetivo, ahora es muy general (esto se ve con el título también). Modifiquen la sección Integrantes del README del avance. Luis mejor si colocas los títulos de tus referencias en lugar de escribir la palabra referencia muchas veces (después de dar click en la última olvidé cuál era la tercera). Me parece que su enfoque es googlear algo relacionado con PCA y cómputo en paralelo, si bien es una forma de buscar me parece que una persona termina con mucha literatura y no se tiene algo concreto, creo que deberían iniciar con un problema y objetivo a resolver. Ahora tenemos: map-reduce, CUDA, Gram Schmidt, hyperspectral images, Face recognition, iterative PCA, dimensionality reduction y dicen que en dos semanas les tomará implementar los algoritmos ¿? (perdonen pero creo que si no tienen el objetivo o título definidos es muy aventurado dar una fecha). Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-18](equipos/equipo_07/avance_10_04_2018)
 
-* [Avance 17-04-18](equipos/equipo_07/avance_17_04_2018): Bien en su avance. ¿Han hablado con el equipo 10?. Una vez tengan las referencias que les ayudará a su proyecto coloquen las mismas en la carpeta inicial de su equipo.
+* [Avance 17-04-18](equipos/equipo_07/avance_17_04_2018)
 
-* [Avance 24-04-18](equipos/equipo_07/avance_24_04_2018): En su equipo_07/README.md coloquen sus referencias como [equipo_ejemplo](equipos/equipo_ejemplo). Pueden usar BLAS para las operaciones de normalización de su matriz (sugerencia). Añadan forma de compilar y output de su programa.
+* [Avance 24-04-18](equipos/equipo_07/avance_24_04_2018)
 
-* [Avance 02-05-18](equipos/equipo_07/avance_02_05_2018): En su equipo_07/README.md coloquen sus referencias como [equipo_ejemplo](equipos/equipo_ejemplo) (comentario avance pasado). Falta descripción de trabajo individual o ¿tod@s realizaron lo del escalamiento? quizás una opción de realizar esto es que una persona haga una función, otra busque x librería, otra trabaje en la lectura de archivos (si es el caso) piensen en una forma de presentar su trabajo individual (está pendiente la calificación de este avance de forma individual, actualizo esto al tener su descripción individual, pueden añadirla cuando hagan el pull request para el siguiente avance). Comiencen con el trabajo escrito y coloquen la liga en equipo_07/README.md 
+* [Avance 02-05-18](equipos/equipo_07/avance_02_05_2018)
 
+* [Avance 22-05-18](equipos/equipo_07/avance_22_05_2018)
+
+Coloquen referencias en el readme de equipos/equipo_07
+
+[Trabajo escrito](Falta liga en readme de carpeta equipos/equipo_07)
+
+[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_8 como el del trabajo escrito)
+
+[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_8 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
@@ -307,7 +316,7 @@ Objetivo del proyecto: implementación de un algoritmo para la multiplicación d
 
 * [Avance 24-04-18](equipos/equipo_14/avance_24_04_2018): Remuevan y cambien nombre a esto: equipos/equipo_14/Co\314\201digo/ (no es buena idea colocar espacios o acentos en bash, no importa la ortografía) pero gracias por esa carpeta y su readme fue de ayuda. Empiecen con el trabajo escrito, ya han investigado lo de paralelizar la multiplicación de matrices en openmp y lo de eficiencia, eso lo pueden ir añadiendo a su trabajo escrito, no lo dejen para semana de finales. Modifiqué recientemente el archivo de `definiciones.h` para manejo de arreglos-2d, vi Alex que tienes `entrada(C,i,j,M)` me parece que con la modificación que hice no requieres pasar la M en esta macro, revísenlo.
 
-*[Avance 02-05-18](equipos/equipo_14/avance_02_05_2018): Gracias por cambiar el nombre a la carpeta de Codigo. Coloquen las ligas al trabajo escrito y presentación en su carpeta inicial: equipo_14/README.md como [equipo_ejemplo](equipos/equipo_ejemplo/). Vi que tienen `entrada(C,i,j,M)` me parece que con la modificación que hice (al archivo de [definiciones.h](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/BLAS/ejemplos) no requieres pasar la M en esta macro, revísenlo. Ok con el avance del trabajo escrito, continuén en su desarrollo.
+* [Avance 02-05-18](equipos/equipo_14/avance_02_05_2018): Gracias por cambiar el nombre a la carpeta de Codigo. Coloquen las ligas al trabajo escrito y presentación en su carpeta inicial: equipo_14/README.md como [equipo_ejemplo](equipos/equipo_ejemplo/). Vi que tienen `entrada(C,i,j,M)` me parece que con la modificación que hice (al archivo de [definiciones.h](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/BLAS/ejemplos) no requieres pasar la M en esta macro, revísenlo. Ok con el avance del trabajo escrito, continuén en su desarrollo.
 
 ---
 
