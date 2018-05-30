@@ -203,13 +203,22 @@ Objetivo del proyecto: Desarrollar un algoritmo de sistemas de recomendación ba
 
 [Avances del proyecto](equipos/equipo_10):
 
-* [Avance 10-04-18](equipos/equipo_10/Avance_10_04_18): Buen avance, gracias por la descripción individual. [Aquí] referencias para la SVD en paralelo. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-18](equipos/equipo_10/Avance_10_04_18)
 
-* [Avance 17-04-18](equipos/equipo_10/Avance_17_04_18): Bien en su avance. Escriban la referencia  de lo que utiliza cuSolver o MAGMA para la SVD (una liga, un párrafo) y que apoye lo que mencionan que en cuSolver una forma es con el método de Jacobi. ¿Entonces será la SVD con CUDA? Puede ser un trabajo que utilice lo ya realizado en código y se haga una descripción/investigación de lo que detrás está realizando las funciones.
+* [Avance 17-04-18](equipos/equipo_10/Avance_17_04_18)
 
-* [Avance 24-04-18](equipos/equipo_10/Avance_24_04_18): Sugiero usen CUDA de forma nativa, es decir no con docker para iniciar, después podrían considerar usar docker+NVIDIA (una vez hecho pruebas con cusolver por ejemplo). Inicien con el trabajo escrito para el siguiente avance. Suban el notebook al repo en lugar que deba descargarse (es muy pesado? si no, entonces podrían añadirlo). Es probable que el examen final sea la última semana de mayo, lo menciono para que ajusten lo necesario en su cronograma. Es importante que realicen pruebas para que revisen que todo está bien con configuración de instancia, librerías necesarias y puedan seguir avanzando o resolver lo que surja. Se ve bien la configuración de la instancia (aunque la instancia no tenía tag de nombre...) añade una compilación de hello_world y output de cusolver para apoyar lo anterior que comentaba (chequeo de dependencias para CUDA y librerías necesarias).
+* [Avance 24-04-18](equipos/equipo_10/Avance_24_04_18)
 
-* [Avance 02-05-18](equipos/equipo_10/Avance_02_05_18): ¿por qué falla el deviceQuery? y ¿pueden añadir descripción de trabajo individual de cada persona xfa? sus calificaciones están pendientes. El trabajo escrito busquen una mejor forma de presentarlo, .md no es buena idea y pueden utilizar  el tema 3 cómputo matricial (3.2.2, 3.6.2) y el libro de matrix computations de Golub y Van Loan para el mismo. Las referencias de su equipo_10/README.md en lugar de colocar páginas de internet coloquen los títulos o nombres
+* [Avance 02-05-18](equipos/equipo_10/Avance_02_05_18)
+
+* [Avance 08-05-18](equipos/equipo_10/Avance_08_05_18)
+
+[Trabajo escrito](https://drive.google.com/open?id=1z-b_zTksXNujDiJc2sg_0eJND8RpjNmE)
+
+[Presentacion](liga hacia presentacion)
+
+[Implementacion](equipos/equipo_10/Implementacion)
+
 
 ---
 
