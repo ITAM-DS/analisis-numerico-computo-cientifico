@@ -29,13 +29,26 @@ Objetivo del proyecto: El objetivo de este trabajo consiste en aprovechar las op
 
 [Avances del proyecto](equipos/equipo_02):
 
-* [Avance 10-04-18](equipos/equipo_02/avance_10_04_18): No suban html's, Rmd's. xfa borren el .html. No hay avance entonces no tengo qué calificar :( faltan carpetas, referencias (vean el [equipo_ejemplo](equipos/equipo_ejemplo)). Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
 
-* [Avance 17-04-2018](equipos/equipo_02/avance_17_04_2018): Bien sus referencias, los autores Dongarra y Demmel son de los más importantes en cuestión del álgebra lineal numérica. Coloquen las referencias que usarán para su proyecto en su carpeta inicial y también su implementación. LAPACK tiene la factorización de Cholesky pueden revisarla, está bien que hayan buscado otra implementación pero aprovechen lo que vieron en las tareas, en las notas que encuentran en el repo (tema 3, cómputo matricial) también está descrita tal factorización en una forma con tres fors (como tienen [aquí](https://github.com/alexnivi/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_02/avance_17_04_2018/implementacion/choleskyEjemplo.c)) y en una forma block-wise, está basado en el libro de matrix computations de Golub y Van Loan, Héctor y Uriel me parece que este libro les ayudará también. Revisen SCALAPACK. El año pasado un equipo implementó Cholesky en CUDA, también pueden revisar esto para su siguiente avance. Di click a las referencias y me llevó a una página de dropbox que me pedía iniciar sesión. Remuevan el README.html de su carpeta inicial xfa.
+* [Avance 17-04-2018](equipos/equipo_02/avance_17_04_2018)
 
-* [Avance 24-04-2018](equipos/equipo_02/avance_24_04_2018): Gracias por sus referencias en su README de su carpeta inicial (equipo_02/README.md) pero la liga que se llama Dropbox me pide iniciar sesión y vi en mi correo que me enviaron la invitación pero mejor si escriben una por una las referencias que tengan en esta liga. Vayan realizando su trabajo escrito con introducción, algoritmos a utilizar para Cholesky y se puedan leer mejor la escritura matemática que reporta Uriel para este avance. No tienen que poner una liga [referencia](https://docs.google.com/document/d/1_VOtnyJGHTWvyHCHC9L-mSRSNSslY22qrSikXzquL2g/edit?ts=5ad56af8) con una bitácora de todos los avances. Falta en equipo_02/README.md colocar su objetivo y ligas a su trabajo escrito como [equipo_ejemplo](equipos/equipo_ejemplo). Para algoritmos de optimización usen Boyd & Vandenbergue parte 3 (capítulos 9, 10 y 11) y el libro de Nocedal & Wright de numerical optimization. La referencia de introduction to random signals and applied kalman filtering pdf, no la pude visualizar, pueden arreglar esto? Remuevan y cambien nombre a esto: equipos/equipo_02/avance_24_04_2018/implementacio\314\201n/ (no es buena idea colocar espacios o acentos en bash, no importa la ortografía).
+* [Avance 24-04-2018](equipos/equipo_02/avance_24_04_2018)
 
-* [Avance 02-05-2018](equipos/equipo_02/avance_02_05_2018): Gracias por sus ligas a su trabajo escrito en su equipo_02/README.md pero como el comentario del avance anterior ésta liga conduce a un documento que tiene secciones de avance de cada persona, esto no lo coloquen como su trabajo escrito, o no he visto la liga al trabajo escrito (hacia google docs que menciona Uriel en este avance) o no la han puesto, revisen esto. Para la liga de Dropbox que está en su equipo_02/README.md en la sección de referencias vean el comentario de avance anterior. Muy buenas referencias que proporciona Alejandro ¿quizás añadirlas en el equipo_02/README.md? (si es que serán de utilidad para el objetivo de su proyecto o enmarcaran la factorización de Cholesky en los objetivos de los papers). Cuidado con el archivo de nombre [verosim.c](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_02/avance_02_05_2018/implementacion/verosim.c) pues hasta el final aparece no lenguaje de C. Remuevan y cambien nombre a esto: equipos/equipo_02/avance_24_04_2018/implementacio\314\201n/ (no es buena idea colocar espacios o acentos en bash, no importa la ortografía). Pueden usar lo hecho en tareas 5, 6 para lectura de archivos de texto, imprimir vectores, matrices y manejo de arreglos de 1d y 2d en forma column major (sugerencia).
+* [Avance 02-05-2018](equipos/equipo_02/avance_02_05_2018)
+
+* [Avance 08-05-2018](equipos/equipo_02/avance_08_05_2018)
+
+* [Avance 22-05-2018](equipos/equipo_02/avance_22_05_2018)
+
+Remuevan la referencia "Dropbox en su README.md de equipos/equipo_02"
+
+
+[Trabajo escrito](https://docs.google.com/document/d/1rZKXnf_56cQ0r0dyJ_M_H3khKhs_tSdgW3_IPnS2EfI/edit)
+
+[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_02 como el del trabajo escrito)
+
+[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_02 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+
 
 ---
 
