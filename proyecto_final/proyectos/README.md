@@ -65,14 +65,22 @@ Objetivo del proyecto: El objetivo de nuestro proyecto es la construcción de un
 
 [Avances del proyecto](equipos/equipo_04):
 
-* [Avance 10-04-18](equipos/equipo_04/avance_10_04_18): Entrega tarde avance.
+* [Avance 10-04-18](equipos/equipo_04/avance_10_04_18)
 
-* [Avance 17-04-2018](equipos/equipo_04/avance_17_04_2018): Pueden usar algo ya implementado para su objetivo y realizar un trabajo descriptivo, es decir, qué método(s) se utilizó(aron), la teoría, el problema de optimización que se resuelve. Me parece la parte de computación está resuelta. Las referencias que colocan en su carpeta inicial son aquellas que les ayudan a realizar su proyecto, no es necesario que escriban cada modelo/método que existe en CV para el reconocimiento de caras.
+* [Avance 17-04-2018](equipos/equipo_04/avance_17_04_2018)
 
-* [Avance 24-04-2018](equipos/equipo_04/avance_24_04_2018): Están bien sus avances pero mejor si añaden ejecuciones y output de sus resultados. También ¿cómo ejecutan su programa, qué requieren instalar, con cuál ejemplo ya lo probaron? Comiencen con el trabajo escrito y añadan ligas como aquí [equipo_ejemplo](equipos/equipo_ejemplo) en equipo_04/README.md. 
+* [Avance 24-04-2018](equipos/equipo_04/avance_24_04_2018)
 
-* [Avance 02-05-2018](equipos/equipo_04/avance_02_05_2018): Arturo Torre, está bien lo que escribes en el README de este avance pero añádelo al trabajo escrito en la sección de introducción (por ejemplo) tiene algunos typos y uso de palabras repetidas (redacción) y la escritura matemática se leería mejor en un procesador de texto designado para ello y no el md, pero en general se entiende y sirve bien como intro, gracias por esto. Gracias por la descripción Arturo González de tu trabajo individual y de lo que se debe ir realizando paso a paso con sus códigos y datos, también añadirlo en el trabajo escrito sería buena idea. Las referencias que colocaron en este avance si van a seguir utilizándolas, escríbanlas en equipo_04/README.md y aprovecho para mencionar que mejoren esta sección de referencias adicionales, referencias Pytorch y otras referencias de este README pues ahora están amontonadas y poco legibles, mejor si ponen algo como `Implementing_face_recognition_using_a_parallel_image_processing_environment_based_on_algorithmic_skeletons` y la liga hacia esto en lugar de la página de internet. ¿Habrá algo de código de C o será el uso de pytorch-Alexnet? 
+* [Avance 02-05-2018](equipos/equipo_04/avance_02_05_2018)
 
+* [Avance 08-05-2018](equipos/equipo_04/avance_08_05_2018)
+
+
+[Trabajo escrito](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_04)
+
+[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_04 como el del trabajo escrito)
+
+[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_04 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
