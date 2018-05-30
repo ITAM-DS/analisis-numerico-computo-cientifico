@@ -8,9 +8,28 @@ Integrantes:
 
 Título del proyecto: `Método de descenso en gradiente en juegos de Cournot`
 
-Liga a trabajo escrito: [carpeta Dropbox](https://www.dropbox.com/sh/hdty83mu03hoiy8/AAC_-McE3iFrOt6bFdsGHfPIa?dl=0)
-
 Objetivo del proyecto: Implementar el método de descenso en gradiente para encontrar el equilibrio de Cournot-Nash de un juego de Cournot.
+
+Liga a trabajo escrito: [Dropbox](https://www.dropbox.com/s/0966eupkrlqmzg2/escrito.pdf?dl=0)
+
+Presentación: [Dropbox](https://www.dropbox.com/s/x6herlud9tx8x9c/Implementacion%20de%20Cournot%20en%20C.pptx?dl=0)
+
+Implementación en C: [Github](avance_30_05_18/C_files/cournot_nash_equilibrium.c)
+
+Ya una vez compilado el archivo de C, por ejemplo con el nombre `cournot.out`, lo único que resta por hacer es correrlo en la terminal especificando, en el orden descrito, los siguientes argumentos:
+
+1. Número de empresas. Debe de ser de tipo `int`.
+2. Tasa de aprendizaje. Es de tipo `double`.
+3. Alpha: ordenada al origen de la función inversa de la demanda. Es de tipo `double`.
+4. Beta: pendiente de la función inversa de la demanda. Es de tipo `double`.
+5. Gamma: costo marginal de las empresas. La implementación en C solo permite que todas las empresas tengan el mismo costo marginal. Es de tipo `double`.
+
+Ejemplo de una simulación con 500 empresas. Correr en terminal:
+`./cournot.out 500 0.0005 50 2 2`
+
+Ejemplo de corrida de C: [Dropbox](https://www.dropbox.com/s/3s3l7x9tsyy2v9f/ejemplo_100_empresas.txt?dl=0)
+
+
 
 Avances:
 
@@ -34,6 +53,8 @@ Avances:
   * Eduardo Hidalgo García: escribio la seección 3.3, que contiene la investiagación sobre la libreia en C MPFIT, la cual implementa el metodo de Levenberg-Marquard para resolver el problema de mínimos cuadrados. Lo que hará es ajustar una función provista por el usuario (el "modelo") a un conjunto de datos tambien provistos por el usuario.
 
 + [22 de mayo de 2018](avance_22_05_18/sexta_entrega.md): se terminaron los modelos en los lenguajes C y Julia. Se corrieron y ambos funcionan correctamente: hay ejemplos en archivos de texto dentro de las carpetas correspondientes. Falta comentar el código de C. Las contribuciones individuales en el md de la sexta entrega.
+
++ [30 de mayo de 2018](avance_30_05_18/ultima_entrega.md): se terminó de comentar el código de los lenguajes C y Julia. Se terminaron la presentación y el trabajo escrito.
 
 
 
