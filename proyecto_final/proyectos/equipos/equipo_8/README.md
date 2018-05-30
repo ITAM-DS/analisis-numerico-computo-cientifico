@@ -14,7 +14,7 @@ Liga a trabajo escrito: [Dropbox](https://www.dropbox.com/s/0966eupkrlqmzg2/escr
 
 Presentación: [Dropbox](https://www.dropbox.com/s/x6herlud9tx8x9c/Implementacion%20de%20Cournot%20en%20C.pptx?dl=0)
 
-Implementación: [Github](avance_30_05_18/ultima_entrega.md)
+Implementación en C: [Github](avance_30_05_18/C_files/cournot_nash_equilibrium.c)
 
 Ya una vez compilado el archivo de C, por ejemplo con el nombre `cournot.out`, lo único que resta por hacer es correrlo en la terminal especificando, en el orden descrito, los siguientes argumentos:
 
@@ -54,7 +54,7 @@ Avances:
 
 + [22 de mayo de 2018](avance_22_05_18/sexta_entrega.md): se terminaron los modelos en los lenguajes C y Julia. Se corrieron y ambos funcionan correctamente: hay ejemplos en archivos de texto dentro de las carpetas correspondientes. Falta comentar el código de C. Las contribuciones individuales en el md de la sexta entrega.
 
-+ [30 de mayo de 2018](avance_30_05_18/ultima_entrega.md): se terminó de comentar el código de los lenguajes C y Julia. Se terminó la presentacin y el trabajo escrito.
++ [30 de mayo de 2018](avance_30_05_18/ultima_entrega.md): se terminó de comentar el código de los lenguajes C y Julia. Se terminaron la presentación y el trabajo escrito.
 
 
 
