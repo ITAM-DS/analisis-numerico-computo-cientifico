@@ -92,14 +92,25 @@ Objetivo del proyecto: Encontrar la distribución óptima de las actividades req
 
 [Avances del proyecto](equipos/equipo_05):
 
-* [Avance 10-04-18](equipos/equipo_05/avance_10_04_2018): Coloquen la estructura del [equipo_ejemplo](equipos/equipo_ejemplo) en su README.md y añadan referencias en este, así me facilita la revisión. Escriban los avances/problemas que están enfrentando y el trabajo que realizaron para los mismos en sus carpetas de avances. Les puede ayudar la referencia: CUDA Programming de Shane Cook, 2013. Aunque es clara la presentación preferiría un formato que no tenga que descargar a mi máquina y usar pptx (den un link y remuevan el .pptx del repo) :). El nombre de su carpeta es "equipo_05", cambien el nombre "equipo_Paco_Miguel". Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-18](equipos/equipo_05/avance_10_04_2018)
 
-* [Avance 17-04-18](equipos/equipo_05/avance_17_04_2018): No hay avance para esta entrega :(
+* [Avance 17-04-18](equipos/equipo_05/avance_17_04_2018)
 
-* [Avance 24-04-18](equipos/equipo_05/avance_24_04_2018): Es un trabajo enorme lo que han realizado pero es difícil de seguir.  Sólo algo mínimo: cambien carpetas "2017" por "2018". Falta la liga a la documentación que mencionan en este avance. Añádanla en la carpeta inicial del README (equipo_05/README.md) y también referencias (por ejemplo: Klein & Scholl, Armin), como aquí [equipo_ejemplo](equipos/equipo_ejemplo). Inicien con el trabajo escrito. Ya acepté la invitación al repo de Paco para lo del código, son varios archivos (todos son indispensables?), quizás una documentación de lo que realiza cada archivo?  En su trabajo escrito coloquen una introducción al problema de balanceo, referencias, documentación de códigos. La presentación ayuda en este sentido pero traten de compactarla pues el día que presenten su trabajo sólo tendrán 10 min o como máximo 15 y en el trabajo escrito sí pueden escribir el contenido de ésta y más información. Entonces en resumen para el siguiente avance concéntrense en compactar la presentación, incluir un trabajo escrito con lo pedido anteriormente, escribir en su README de su carpeta inicial (equipo_05/README.md) referencias, ligas a su trabajo escrito, presentación y en lo concerniente a los archivos de código, dar una descripción o documentación de los mismos (también no sé si sirven todos esos archivos).
+* [Avance 24-04-18](equipos/equipo_05/avance_24_04_2018)
 
-* [Avance 01-05-18](equipos/equipo_05/avance_01_05_2018): Gracias por borrar la carpeta de equipo_Paco_Miguel. No se atendieron los comentarios del avance pasado: cambien el nombre de carpetas "2017" por "2018" en equipo_05. Escribir en equipo_05/README.md sus referencias (por ejemplo: Klein & Scholl, Armin, algoritmo depth first y otras que uds consideren) ligas a su trabajo escrito, presentación y en lo concerniente a los archivos de código, dar una descripción o documentación de los mismos pues me pierdo fácilmente en ellos. Al usar datos o hacer referencias a códigos escriban ` balanceolinea/Data_BL/Problem_Set/LASCURAIN.IN2` para encontrar fácilmente en el repo privado.
+* [Avance 01-05-18](equipos/equipo_05/avance_01_05_2018)
 
+* [Avance 08-05-18](equipos/equipo_05/avance_08_05_2018)
+
+
+
+Coloquen referencias en el readme de equipos/equipo_05 de Klein & Scholl, Armin, algoritmo depth first y otras que uds consideren
+
+[Trabajo escrito](Falta liga en readme de carpeta equipos/equipo_05)
+
+[Presentacion](falta liga a presentación en readme de carpeta equipos/equipo_05)
+
+[Implementacion] Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
