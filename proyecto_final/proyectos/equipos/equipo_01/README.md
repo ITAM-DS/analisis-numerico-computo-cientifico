@@ -47,3 +47,7 @@ https://github.com/lizsolisd/analisis-numerico-computo-cientifico/tree/avance_fn
   
 * Matthew D. Zeiler. ADADELTA: an adaptive learning rate method. CoRR, abs/1212.5701, 2012
 
+* Andrzej Chrzeszczyk, Jacob Anders, Matrix computations on the GPU CUBLAS, CUSOLVER and MAGMA by example, NVIDIA, 2017
+
+* NVIDIA Developer Zone
+
