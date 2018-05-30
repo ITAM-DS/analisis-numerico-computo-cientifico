@@ -41,7 +41,7 @@ $ ./dijkstra_paraleloc > ./dijkstra_paralelo.txt
 Para esta implememtación se utilizó una [matriz](https://github.com/taguerram/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_11/avance_30_05_18/dist.txt) de 18x18 en la que se muestran las distancias entre 18 municipios aleatorios dentro del estado de Oaxaca. Las disntacias se obtuvieron de la [api de Google](https://developers.google.com/maps/documentation/distance-matrix/intro).
 
 
-![](/home/thalia/Imágenes/dist.png)
+![](fotos/dist.png)
 
 ### Output:
 
@@ -49,12 +49,12 @@ El output tanto del [algoritmo secuencial](https://drive.google.com/file/d/1H_ih
 
 Output Dijkstra secuencial:
 
-![](/home/thalia/Imágenes/secuencial.png)
+![](fotos/secuencial.png)
 
 Output Dijkstra paralelo:
 
-![](/home/thalia/Imágenes/paralelo.png)
-![](/home/thalia/Imágenes/paralelo2.png)
+![](fotos/paralelo.png)
+![](fotos/paralelo2.png)
 
 ### Resultados:
 
