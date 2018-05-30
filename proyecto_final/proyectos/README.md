@@ -296,7 +296,7 @@ Actualicen las referencias para investigación/implementación que ustedes consi
 
 [Trabajo escrito](https://drive.google.com/open?id=1z-b_zTksXNujDiJc2sg_0eJND8RpjNmE)
 
-[Presentacion](liga hacia presentacion)
+[Presentacion](falta liga hacia presentacion)
 
 [Implementacion](equipos/equipo_10/Implementacion)
 
@@ -325,7 +325,7 @@ Actualicen las referencias para investigación/implementación que ustedes consi
 
 [Trabajo escrito](https://drive.google.com/open?id=1_edvCMJje75oSF46WjvKv6OmfmkKxOAo)
 
-[Presentacion](liga hacia presentacion)
+[Presentacion](falta liga hacia presentacion)
 
 [Implementacion](equipos/equipo_11/22_05/codigo) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
@@ -399,16 +399,25 @@ Objetivo del proyecto: implementación de un algoritmo para la multiplicación d
 
 [Avances del proyecto](equipos/equipo_14):
 
-* [Avance 10-04-18](equipos/equipo_14/avance_10_04_2018): Buen avance, gracias por la descripción individual. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas).
+* [Avance 10-04-18](equipos/equipo_14/avance_10_04_2018)
 
-* [Avance 17-04-18](equipos/equipo_14/avance_17_04_2018): Revisen el libro de P. Pacheco, parallel programming with MPI para la multiplicación de matrices. 
+* [Avance 17-04-18](equipos/equipo_14/avance_17_04_2018)
 
+* [Avance 24-04-18](equipos/equipo_14/avance_24_04_2018)
 
-* [Avance 24-04-18](equipos/equipo_14/avance_24_04_2018): Remuevan y cambien nombre a esto: equipos/equipo_14/Co\314\201digo/ (no es buena idea colocar espacios o acentos en bash, no importa la ortografía) pero gracias por esa carpeta y su readme fue de ayuda. Empiecen con el trabajo escrito, ya han investigado lo de paralelizar la multiplicación de matrices en openmp y lo de eficiencia, eso lo pueden ir añadiendo a su trabajo escrito, no lo dejen para semana de finales. Modifiqué recientemente el archivo de `definiciones.h` para manejo de arreglos-2d, vi Alex que tienes `entrada(C,i,j,M)` me parece que con la modificación que hice no requieres pasar la M en esta macro, revísenlo.
+* [Avance 02-05-18](equipos/equipo_14/avance_02_05_2018)
 
-* [Avance 02-05-18](equipos/equipo_14/avance_02_05_2018): Gracias por cambiar el nombre a la carpeta de Codigo. Coloquen las ligas al trabajo escrito y presentación en su carpeta inicial: equipo_14/README.md como [equipo_ejemplo](equipos/equipo_ejemplo/). Vi que tienen `entrada(C,i,j,M)` me parece que con la modificación que hice (al archivo de [definiciones.h](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/BLAS/ejemplos) no requieres pasar la M en esta macro, revísenlo. Ok con el avance del trabajo escrito, continuén en su desarrollo.
+* [Avance 08-05-18](equipos/equipo_14/avance_08_05_2018)
 
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
+Renombren a sus referencias en el README.md de equipos/equipo_14 de modo que sean los títulos en lugar de direcciones de internet
+
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial. Por ejemplo el de dropbox uploader.
+
+[Trabajo escrito](https://github.com/patricio-hdz/ProyectoFinal/blob/master/TrabajoFinal.md) Muevan la liga al repo, es un md entonces colóquenla allí en una ruta de su carpeta inicial por ejemplo equipo_14/trabajo_escrito.
+
+[Presentacion](coloquen la liga en su readme de su carpeta de equipos/equipo_14 como el del trabajo escrito)
+
+[Implementacion](equipos/equipo_14/Codigo) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
