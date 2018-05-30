@@ -150,7 +150,7 @@ Ejecutamos:
 
 ## 3.Uso de la matrices
 
-Esta última fase se puede ver en el notebook [3ra fase.ipynb](3ra fase.ipynb) hecho en python.
+Esta última fase se puede ver en el notebook [3rafase.ipynb](3ra_fase.ipynb) hecho en python.
 
 Cargamos las matrices U,S,VT resultantes de Cuda en python usando la librería numpy:
 
@@ -161,7 +161,8 @@ V = np.loadtxt('VT_cols.txt')
 
 ```
 
-y ahora vemos cual es la mejor k para las predicciones haciendo el producto U*sigma*V con distintas k's:
+y ahora vemos cual es la mejor k para las predicciones haciendo el producto U sigma V con distintas k's y medimos la precisión con respecto a test_data_matrix
+que es nuestra matriz de prueba:
 
 ```
 k=[] 
