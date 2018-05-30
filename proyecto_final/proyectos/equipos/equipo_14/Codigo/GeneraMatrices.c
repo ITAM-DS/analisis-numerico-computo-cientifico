@@ -15,7 +15,7 @@ char *name=argv[3];
 //scanf("%s", name) ;
 fp = fopen(name, "w+");
 
-int mat[1000][1000] ;
+int mat[1100][1100] ;
 int i, j;
 int row=atoi(argv[1]);
 int col=atoi(argv[2]);
