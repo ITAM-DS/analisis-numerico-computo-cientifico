@@ -22,4 +22,4 @@ Trabajo escrito: [liga_trabajo_escrito](https://www.dropbox.com/s/d2gkj7jc06d7mz
 
 Presentación: [liga_presentacion](https://www.dropbox.com/s/1jyucw5kvq9grp0/presentacion.pdf?dl=0).
 
-Implementación Avance Final: [liga_implementaciones_avance_final](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_03/avance_final/Implementaciones).
+Implmentación Avance Final: https://github.com/rafael-larrazolo/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_03/avance_final/Implementaciones
