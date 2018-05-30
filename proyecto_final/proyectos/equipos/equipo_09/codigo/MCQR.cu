@@ -5,7 +5,7 @@
  *  Para ejecutar el programa, se debe realizar:
  *  make ejecutarlo 
  *  Si se quiere compilar sin el archivo make
- *  nvcc  -I/usr/local/cuda/include Solver.cu -lcublas -lcusolver
+ *  nvcc  -I/usr/local/cuda/include MCQR.cu -lcublas -lcusolver
  *  Rutina para calcular mínimos cuadrados usando la factorización QR
  */
 
@@ -18,9 +18,7 @@
 #include <cusolverDn.h>
 #include "definiciones.h"
 
-void imprimeMatriz(int m, int n, const double*A, int lda, const char* name);
 double randomRange(double m,double n);
-static int i,j;
 
 int main(int argc, char*argv[])
 {
@@ -32,18 +30,21 @@ int main(int argc, char*argv[])
     cudaError_t cudaStat2 = cudaSuccess;
     cudaError_t cudaStat3 = cudaSuccess;
     cudaError_t cudaStat4 = cudaSuccess;
-    int m = 3;
+    int m = 1;
     int lda = m;
     int ldb = m;
-    int nrhs = 2; 
+    int nrhs = 1; 
     arreglo_2d_T AA, BB, XX;
 
     // Lee matriz A
 
+
+    m = atoi(argv[1]);
+
     AA = (arreglo_2d_T) malloc(sizeof(*AA));
     
-    renglones(AA)=3;
-    columnas(AA)=3;
+    renglones(AA)=m;
+    columnas(AA)=m;
     entradas(AA)=(double*)malloc(renglones(AA)*columnas(AA)*sizeof(double));
     inicializa_matriz(AA,"A.txt");
     imprime_matriz(AA);
@@ -55,7 +56,7 @@ int main(int argc, char*argv[])
 
     BB = (arreglo_2d_T) malloc(sizeof(*BB));
     
-    renglones(BB)=3;
+    renglones(BB)=m;
     columnas(BB)=1;
     entradas(BB)=(double*)malloc(renglones(BB)*columnas(BB)*sizeof(double));
     inicializa_matriz(BB,"B.txt");
@@ -66,13 +67,10 @@ int main(int argc, char*argv[])
 
     XX = (arreglo_2d_T) malloc(sizeof(*XX));
 
-    renglones(XX)=3;
+    renglones(XX)=m;
     columnas(XX)=1;
     entradas(XX)=(double*)malloc(renglones(XX)*columnas(XX)*sizeof(double));
 
-
-
-    m = 3;
     nrhs = 1;
     
     lda = m;
@@ -117,25 +115,25 @@ int main(int argc, char*argv[])
     cudaStat1 = cudaMemcpy(entradas(XX), d_B, sizeof(double)*ldb*nrhs, cudaMemcpyDeviceToHost);
 
 
-  printf("\n");        
-  printf("=======================\n");        
-  printf("Solución X\n");
-  imprime_matriz(XX);
-  printf("=======================\n");
+    printf("\n");        
+    printf("=======================\n");        
+    printf("Solución X\n");
+    imprime_matriz(XX);
+    printf("=======================\n");
 
-  if (d_A    ) cudaFree(d_A);
-  if (d_tau  ) cudaFree(d_tau);
-  if (d_B    ) cudaFree(d_B);
-  if (devInfo) cudaFree(devInfo);
-  if (d_work ) cudaFree(d_work);
+    if (d_A    ) cudaFree(d_A);
+    if (d_tau  ) cudaFree(d_tau);
+    if (d_B    ) cudaFree(d_B);
+    if (devInfo) cudaFree(devInfo);
+    if (d_work ) cudaFree(d_work);
 
 
-  if (cublasH ) cublasDestroy(cublasH);   
-  if (cusolverH) cusolverDnDestroy(cusolverH);   
+    if (cublasH ) cublasDestroy(cublasH);   
+    if (cusolverH) cusolverDnDestroy(cusolverH);   
 
-  cudaDeviceReset();
+    cudaDeviceReset();
 
-  return 0;
+    return 0;
 }
 
 double randomRange(double m,double n){
