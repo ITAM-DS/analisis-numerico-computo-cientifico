@@ -207,6 +207,10 @@ Objetivo del proyecto: Implementar el método de “Principal Component Analysis
 
 * [Avance 22-05-18](equipos/equipo_07/avance_22_05_2018)
 
+[Trabajo Escrito](equipos/equipo_7/proyecto_final)
+
+[Presentacion](equipos/equipo_7/presentacion)
+
 Coloquen referencias en el readme de equipos/equipo_07
 
 Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
