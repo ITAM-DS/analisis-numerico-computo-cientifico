@@ -192,7 +192,24 @@ pred=pred.transpose()
 
 y finalmente si graficamos el número de factores vs. el rmse vemos que a mayor número de factores el error se incrementa, el mejor k es 10.
 
-![Inicio Script](graf.png)
+![Inicio Script](graf.png) 
+
+Al final hacemos un comparativo del tiempo de ejecucución de CUDA vs. python en el SVD:
+
+Python
+```
+%%time 
+from numpy import *
+U,s,V = linalg.svd(train_data_matrix.transpose())
+
+``` 
+CPU times: user 4.74 s, sys: 2.39 s, total: 7.13 s
+
+CUDA:
+
+user 1.55s  total 5.04s
+
+Podemos observar que CUDA tarda 5 seg vs. 7 de python. 
 
 
 
