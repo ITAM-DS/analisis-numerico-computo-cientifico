@@ -19,6 +19,9 @@ Implementación de un algoritmo para el cálculo del área bajo la curva (AUC) d
 
 - En la carpeta [avance_08_05_2018](avance_08_05_2018/README.md) se encuentra el quinto avance de nuestro proyecto.
 
+- En la carpeta [avance_30_05_2018](avance_30_05_2018/README.md) se encuentra la entrega final de nuestro proyecto.
+
+
 # Referencias
 
 - [https://www3.nd.edu/~zxu2/acms60212-40212/CUDA_C_Programming_Guide_V7.5.pdf](https://www3.nd.edu/~zxu2/acms60212-40212/CUDA_C_Programming_Guide_V7.5.pdf)
@@ -36,4 +39,3 @@ Implementación de un algoritmo para el cálculo del área bajo la curva (AUC) d
 - [http://genepi.med.utah.edu/~alun/teach/stats/week09.pdf](http://genepi.med.utah.edu/~alun/teach/stats/week09.pdf)
 
 -  I. W. A. Swardiana, T. Wirahman and R. Sadikin, "An Efficient Parallel Algorithm for Simpson Cumulative Integration on GPU," 2015 Third International Symposium on Computing and Networking (CANDAR), Sapporo, 2015, pp. 346-349
-
