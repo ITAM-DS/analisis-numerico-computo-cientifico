@@ -7,9 +7,13 @@
 
 En este avance hacemos la entrega de lo siguiente:
 
- - Informe final escrito.
+ - Informe final escrito: [https://www.dropbox.com/s/4d85cdsqc0d7aqi/proyecto_final_mno.pdf?dl=0](https://www.dropbox.com/s/4d85cdsqc0d7aqi/proyecto_final_mno.pdf?dl=0)
 
- - Implementaciones.
+
+
+ - Implementaciones: [https://www.dropbox.com/sh/m6hcqpnjhg0muzf/AAAVsrTuubV3wFnsQtO8swzWa?dl=0](https://www.dropbox.com/sh/m6hcqpnjhg0muzf/AAAVsrTuubV3wFnsQtO8swzWa?dl=0)
+
+
 
 La presente entrega final se puede descargar en su totalidad del siguiente vínculo de dropbox:
 
