@@ -11,9 +11,11 @@ Título del proyecto `SVD para sistemas de recomendación`
 Objetivo del Proyecto: `Desarrollar un algoritmo de sistemas de recomendación basado en descomposición SVD en paralelo` 
 
 
-Trabajo escrito (fuera del repo): [Trabajo escrito](https://drive.google.com/open?id=1z-b_zTksXNujDiJc2sg_0eJND8RpjNmE) 
+Trabajo escrito (fuera del repo): [Trabajo escrito](https://drive.google.com/open?id=1gSRaoKZ0QOswZAwW2dkbJ2QW9adrY6YQ) 
 
 Implementación: [Implementación](Implementacion)
+
+Presentación: [Presentacion](https://drive.google.com/open?id=1PIs8o0PQ4uXHsJSYNwhIEzey5VsaHkPcbD0j1aMGuEE)
 
 
 En la carpeta [Avance_10_04_18](Avance_10_04_18). se encuentra el reporte del primer avance en nuestro proyecto.
@@ -41,5 +43,7 @@ Referencias del Proyecto:
 
 [Netflix Recommendations: Beyond the 5 stars (Part 1)](https://medium.com/netflix-techblog/netflix-recommendations-beyond-the-5-stars-part-1-55838468f429) 
 
-[Netflix Prize and SVD](http://buzzard.ups.edu/courses/2014spring/420projects/math420-UPS-spring-2014-gower-netflix-SVD.pdf)
+[Netflix Prize and SVD](http://buzzard.ups.edu/courses/2014spring/420projects/math420-UPS-spring-2014-gower-netflix-SVD.pdf) 
+
+[OrangeOwlSolutions](https://github.com/OrangeOwlSolutions/Linear-Algebra/blob/master/SVD/SVD.cu)
 
