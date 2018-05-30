@@ -52,6 +52,7 @@ Objetivo del proyecto: El objetivo de este trabajo consiste en aprovechar las op
 
 Remuevan la referencia "Dropbox en su README.md de equipos/equipo_02"
 
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
 [Trabajo escrito](https://docs.google.com/document/d/1rZKXnf_56cQ0r0dyJ_M_H3khKhs_tSdgW3_IPnS2EfI/edit)
 
@@ -70,13 +71,23 @@ Objetivo del proyecto: Paralelizar factorización QR
 
 [Avances del proyecto](equipos/equipo_03):
 
-* [Avance 10-04-18](equipos/equipo_03/avance_10_04_2018): [referencia QR en Map Reduce](https://arxiv.org/abs/1301.1071).  Buen avance, gracias por el detalle de cada uno. [Aquí] referencias para la factorización QR en paralelo. El [equipo9](equipos/equipo_09) también revisa QR, debemos definir qué hará cada equipo. Coloquen las referencias que usarán para su proyecto en su carpeta inicial (ver [equipo_ejemplo](equipos/equipo_ejemplo)) (una vez definidas). Di click en dropbox y me pide iniciar sesión.
+* [Avance 10-04-18](equipos/equipo_03/avance_10_04_2018)
 
-* [Avance 17-04-18](equipos/equipo_03/avance_17_04_2018): Para implementación de QR pueden revisar las notas de cómputo matricial del repo (tema 3) que están basadas en el libro de matrix computations de Golub y Van Loan y la factorización QR está implementada en LAPACK, pueden usarla. Revisen de igual forma SCALAPACK. Por su descripción Map Reduce podrían considerarlo en otro tiempo, ahora dediquen esfuerzos para la QR con  una implementación para el siguiente avance (puede ser lo de LAPACK que les mencionaba).
+* [Avance 17-04-18](equipos/equipo_03/avance_17_04_2018)
 
-* [Avance 24-04-18](equipos/equipo_03/avance_24_04_2018): Diego, sube tus implementaciones al repo, no son pesadas (kb's), y añade outputs de tus ejecuciones, puedes usar lo hecho en tareas 5, 6 para lectura de archivos de texto, imprimir vectores, matrices y manejo de arreglos de 1d y 2d (sugerencia). Rafael sí, inicien el trabajo escrito para el siguiente avance, el autor Dongarra ha sido y continúa siendo muy importante en el álgebra lineal numérica. Víctor, sube tus implementaciones al repo y añade outputs de tus ejecuciones. Para esto aprovechen el markdown. También pueden usar lo de las tareas 5, 6 para leer de archivos, imprimir vectores, matrices y manejo de arreglos 1d y 2d (sugerencia). Una vez inicien el trabajo escrito, coloquen la liga al mismo como [equipo_ejemplo](equipos/equipo_ejemplo) en equipo_03/README.md.
+* [Avance 24-04-18](equipos/equipo_03/avance_24_04_2018)
 
-* [Avance 02-05-18](equipos/equipo_03/avance_02_05_2018): Su trabajo escrito está muy bien :) y buena descripción individual. Nuevamente comentarios del avance pasado para su output y lectura de datos con funciones y definiciones ya creadas.
+* [Avance 02-05-18](equipos/equipo_03/avance_02_05_2018)
+
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
+
+[Trabajo escrito](https://www.dropbox.com/s/d2gkj7jc06d7mzn/trabajo_escrito.pdf?dl=0)
+
+[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_03 como el del trabajo escrito)
+
+[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_03 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+
+
 
 ---
 
@@ -98,6 +109,8 @@ Objetivo del proyecto: El objetivo de nuestro proyecto es la construcción de un
 
 * [Avance 08-05-2018](equipos/equipo_04/avance_08_05_2018)
 
+
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
 [Trabajo escrito](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_04)
 
@@ -127,7 +140,9 @@ Objetivo del proyecto: Encontrar la distribución óptima de las actividades req
 
 
 
-Coloquen referencias en el readme de equipos/equipo_05 de Klein & Scholl, Armin, algoritmo depth first y otras que uds consideren
+Coloquen referencias en el readme de equipos/equipo_05 de Klein & Scholl, Armin, algoritmo depth first.
+
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
 [Trabajo escrito](Falta liga en readme de carpeta equipos/equipo_05)
 
@@ -157,6 +172,8 @@ Objetivo del proyecto: Paralelizar en GPU un algoritmo de Hit & Run definido por
 
 
 Coloquen referencias en el readme de equipos/equipo_07 de los posts, MKL, MAGMA
+
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
 [Trabajo escrito](Falta liga en readme de carpeta equipos/equipo_6)
 
@@ -189,6 +206,8 @@ Objetivo del proyecto: Implementar el método de “Principal Component Analysis
 
 Coloquen referencias en el readme de equipos/equipo_07
 
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
+
 [Trabajo escrito](Falta liga en readme de carpeta equipos/equipo_07)
 
 [Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_07 como el del trabajo escrito)
@@ -215,6 +234,8 @@ Objetivo del proyecto: Implementar el método de descenso en gradiente para enco
 * [Avance 02-05-18](equipos/equipo_8/entrega_02_05_18)
 
 * [Avance 08-05-2018](equipos/equipo_8/avance_08_05_2018)
+
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
 [Trabajo escrito](https://www.dropbox.com/sh/hdty83mu03hoiy8/AAC_-McE3iFrOt6bFdsGHfPIa?dl=0) Que la liga lleve directo al trabajo escrito (no a un folder de dropbox). Falta que arreglen palabras que les pedí cambiaran en el avance del 2 de mayo.
 
@@ -243,6 +264,8 @@ Objetivo del proyecto: Implementar el algoritmo QR para el lenguaje de programac
 
 * [Avance 08-05-18](equipos/equipo_09/avance_08_05_2018)
 
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
+
 [Trabajo escrito](https://drive.google.com/drive/folders/1EkRomjpJLi_mLgXNvKZA1uizJJKIVNlk) Que la liga lleve directo al trabajo escrito (no volver a dar click en un folder de google drive)
 
 [Presentacion](https://drive.google.com/drive/folders/1KN2nghXPG8c8GwU9f5t46snOMRBbrf-F) Que la liga lleve directo al trabajo escrito (no volver a dar click en un folder de google drive)
@@ -268,6 +291,8 @@ Objetivo del proyecto: Desarrollar un algoritmo de sistemas de recomendación ba
 * [Avance 02-05-18](equipos/equipo_10/Avance_02_05_18)
 
 * [Avance 08-05-18](equipos/equipo_10/Avance_08_05_18)
+
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
 [Trabajo escrito](https://drive.google.com/open?id=1z-b_zTksXNujDiJc2sg_0eJND8RpjNmE)
 
@@ -296,6 +321,8 @@ Objetivo del proyecto: Implementar el algoritmo Dijkstra en C y su versión en p
 
 * [Avance 08-05-18](equipos/equipo_11/avance_08_05_18)
 
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
+
 [Trabajo escrito](https://drive.google.com/open?id=1_edvCMJje75oSF46WjvKv6OmfmkKxOAo)
 
 [Presentacion](liga hacia presentacion)
@@ -321,6 +348,8 @@ Objetivo del proyecto: Programar un algoritmo para la generación de una cadena 
 * [Avance 02-05-18](equipos/equipo_12/avance_02_05_18)
 
 * [Avance 08-05-18](equipos/equipo_12/avance_08_05_18)
+
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
 [Trabajo escrito](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_12)
 
@@ -351,6 +380,8 @@ Objetivo del proyecto: Implementación de un algoritmo para el cálculo del áre
 
 Renombren a sus referencias en el README.md de equipos/equipo_13 de modo que sean los títulos en lugar de direcciones de internet
 
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
+
 [Trabajo escrito](coloquen la liga en su readme de su carpeta de equipos/equipo_13, que la liga lleve directamente al trabajo y no a una carpeta con contenido. Hay algunos typos y faltas de ortografía en su documento escrito, revísenlas)
 
 [Presentacion](coloquen la liga en su readme de su carpeta de equipos/equipo_13 como el del trabajo escrito)
@@ -376,6 +407,8 @@ Objetivo del proyecto: implementación de un algoritmo para la multiplicación d
 * [Avance 24-04-18](equipos/equipo_14/avance_24_04_2018): Remuevan y cambien nombre a esto: equipos/equipo_14/Co\314\201digo/ (no es buena idea colocar espacios o acentos en bash, no importa la ortografía) pero gracias por esa carpeta y su readme fue de ayuda. Empiecen con el trabajo escrito, ya han investigado lo de paralelizar la multiplicación de matrices en openmp y lo de eficiencia, eso lo pueden ir añadiendo a su trabajo escrito, no lo dejen para semana de finales. Modifiqué recientemente el archivo de `definiciones.h` para manejo de arreglos-2d, vi Alex que tienes `entrada(C,i,j,M)` me parece que con la modificación que hice no requieres pasar la M en esta macro, revísenlo.
 
 * [Avance 02-05-18](equipos/equipo_14/avance_02_05_2018): Gracias por cambiar el nombre a la carpeta de Codigo. Coloquen las ligas al trabajo escrito y presentación en su carpeta inicial: equipo_14/README.md como [equipo_ejemplo](equipos/equipo_ejemplo/). Vi que tienen `entrada(C,i,j,M)` me parece que con la modificación que hice (al archivo de [definiciones.h](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/BLAS/ejemplos) no requieres pasar la M en esta macro, revísenlo. Ok con el avance del trabajo escrito, continuén en su desarrollo.
+
+Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
 ---
 
