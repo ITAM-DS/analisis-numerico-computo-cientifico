@@ -79,6 +79,9 @@ Objetivo del proyecto: Paralelizar factorización QR
 
 * [Avance 02-05-18](equipos/equipo_03/avance_02_05_2018)
 
+* [Avance 08-05-18](equipos/equipo_03/avance_08_05_2018)
+
+
 Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
 [Trabajo escrito](https://www.dropbox.com/s/d2gkj7jc06d7mzn/trabajo_escrito.pdf?dl=0)
@@ -99,7 +102,7 @@ Objetivo del proyecto: El objetivo de nuestro proyecto es la construcción de un
 
 [Avances del proyecto](equipos/equipo_04):
 
-* [Avance 10-04-18](equipos/equipo_04/avance_10_04_18)
+* [Avance 10-04-2018](equipos/equipo_04/avance_10_04_18)
 
 * [Avance 17-04-2018](equipos/equipo_04/avance_17_04_2018)
 
@@ -233,7 +236,7 @@ Objetivo del proyecto: Implementar el método de descenso en gradiente para enco
 
 * [Avance 02-05-18](equipos/equipo_8/entrega_02_05_18)
 
-* [Avance 08-05-2018](equipos/equipo_8/avance_08_05_2018)
+* [Avance 08-05-18](equipos/equipo_8/avance_08_05_2018)
 
 Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
@@ -408,6 +411,9 @@ Objetivo del proyecto: implementación de un algoritmo para la multiplicación d
 * [Avance 02-05-18](equipos/equipo_14/avance_02_05_2018)
 
 * [Avance 08-05-18](equipos/equipo_14/avance_08_05_2018)
+
+* [Avance 29-05-18](equipos/equipo_14/avance_29_05_2018)
+
 
 Renombren a sus referencias en el README.md de equipos/equipo_14 de modo que sean los títulos en lugar de direcciones de internet
 
