@@ -23,7 +23,7 @@ Se sugiere/sospecha que escribir a disco podría ser una opción.
 
 4. La descripción general de la ejecución del código se encuentra en [liga_descripcion](descripcion_codigo.md)
 
-Notas: Se agregó también al folder el código del [main_secuencial](main_secuencial.cpp), [main_paralelo](main_paralelo.cpp) y el [kernel  de cuda](kernels_LBP.cu). Asimismo, se añade una [salida del método secuencial](salida_lascurain_secuencial.txt) y una del método en paralelo.
+Notas: Se agregó también al folder el código del [main_secuencial](main_secuencial.cpp), [main_paralelo](main_paralelo.cpp) y el [kernel  de cuda](kernels_LBP.cu). Asimismo, se añade una [salida del método secuencial](salida_lascurain_secuencial.txt) y una del [método en paralelo](salida_paralelo.txt).
 
 
 Miguel: 
