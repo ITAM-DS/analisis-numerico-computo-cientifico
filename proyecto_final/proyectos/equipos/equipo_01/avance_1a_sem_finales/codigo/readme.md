@@ -52,6 +52,7 @@ Por ejemplo:
 ```
 
 
-+ Evidencia
-
++ Evidencia  
+[video aqui](https://drive.google.com/open?id=1WvqhxysPvrnMYpWztewH_UfPfP8maRzO)
 ![](images/sgd_sec1.png)
+
