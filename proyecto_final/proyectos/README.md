@@ -245,16 +245,24 @@ Ttulo del proyecto: `Generación de método aleatorios mediante algoritmos imple
 
 Objetivo del proyecto: Programar un algoritmo para la generación de una cadena de número aleatorios, optimizando su longitud. Medir su eficiencia a través de distintos criterios como pruebas de aleatoriedad, longitud de la cadena generada y la comparación con otras cadenas de números aleatorios obtenidos por fuentes naturales de aleatoriedad como procesos cuánticos: fotones y partículas.
 
-[Avances del proyecto](equipos/equipo_12):
+[Avances del proyecto](equipos/equipo_12)
 
-* [Avance 10-04-18](equipos/equipo_12/avance_10_04_18): No hay descripción, carpetas iniciales creadas, referencias. Nada que comentar.
+* [Avance 10-04-18](equipos/equipo_12/avance_10_04_18)
 
-* [Avance 17-04-18](equipos/equipo_12/avance_17_04_18): El formato de despliegue de las referencias en su carpeta inicial no es legible, arreglen esto. El trabajo consistirá en medir ¿eficiencia? ¿probar que es posible generar números pseudo-aleatorios con cómputo en paralelo? ¿realizar pruebas para el generador de números pseudo-aleatorios, en el sentido de calidad de los números obtenidos? Para el siguiente avance definan lo anterior y empiecen con el trabajo escrito y revisen implementaciones.
+* [Avance 17-04-18](equipos/equipo_12/avance_17_04_18)
 
-* [Avance 24-04-18](equipos/equipo_12/avance_24_04_18): Dan buenas referencias en este avance ¿serán utilizadas en el objetivo de su proyecto? si es así colóquenlas en equipo_12/README.md y un comentario sobre sus referencias de este README, es mejor si colocan el título de sus referencias en lugar de las ligas con nombre de google docs pues si yo veo una por una después se me olvida cuál era la tercera. Comiencen con su trabajo escrito y lo que añade para este avance Víctor lo pueden incluir allí. Muy bien su descripción de trabajo individual, gracias por eso.
+* [Avance 24-04-18](equipos/equipo_12/avance_24_04_18)
 
+* [Avance 02-05-18](equipos/equipo_12/avance_02_05_18)
 
-* [Avance 02-05-18](equipos/equipo_12/avance_02_05_18): añadan su trabajo escrito en equipo_12/README.md como [equipo_ejemplo](equipos/equipo_ejemplo), así como ligas a su presentación e implementación. Falta avance en trabajo escrito. Añádanlo para el avance del 8 de mayo. Incluyan referencia a algoritmo de Mersenne Twister en sus referencias de equipo_12/README.md
+* [Avance 08-05-18](equipos/equipo_12/avance_08_05_18)
+
+[Trabajo escrito](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_12)
+
+[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_12 como el del trabajo escrito. Revisen que las ligas se visualizan correctamente)
+
+[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_12 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+
 ---
 
 ## [Equipo 13](equipos/equipo_13)
