@@ -10,14 +10,24 @@ Objetivo del proyecto: objetivo
 
 [Avances del proyecto](equipos/equipo_01):
 
-* [Avance 10-04-18](equipos/equipo_01/avance_10_04_18): Ok con el cambio de tema. Añadan md's para que directamente pueda leerlos de la página de github y borren los Rmd's, .tex o html's, esos no los suban al repo xfa. Detallen el trabajo individual para el siguiente avance y califique a cada persona (está bien que hayan puesto el trabajo en equipo). Coloquen en su carpeta inicial las referencias (vean el [equipo_ejemplo](equipos/equipo_ejemplo)). Escriban el objetivo de su proyecto (vean el [equipo_ejemplo](equipos/equipo_ejemplo)).
+* [Avance 10-04-18](equipos/equipo_01/avance_10_04_18)
 
-* [Avance 17-04-18](equipos/equipo_01/avance_17_04_18): Super con su avance tanto en trabajo como en código. ¿Liz los datos son los mismos que usó Daniel para el programa `min_cuadrados_basico.c`? me parece que no pero podrías documentar qué datos, dimensiones se usan para este programa? si deseas en el mismo código o en la sección de [aquí](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_01/avance_17_04_18/codigo) o [aquí](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_01/avance_17_04_18) porque me quedó duda las dimensiones de tus datos y al final se obtiene un polinomio de grado 2 y ¿eso lo usarán para comparar?. Bien Daniel con tu trabajo. Cristian en la sección de Métodos de optimización del trabajo ¿podrías detallar el uso del operador de proyección? ¿qué ganancia se tiene el utilizar tal operador?
+* [Avance 17-04-18](equipos/equipo_01/avance_17_04_18)
 
-* [Avance 24-04-18](equipos/equipo_01/avance_24_04_18): Revisen la ecuación de la página 2 después de las palabras: "Operando con ellas", la parte de en medio en específico. En la página 5 el cuadro del Algorithm 1 definan qué es THETA  (lo mencionan en la sección de Notación pero lo pueden añadir en la línea de Input). En la parte de notación de la página 5 también se hace mención al conjunto de matrices definidas positivas pero en el libro de Boyd & Vandenberghe utilizan dos signos positivos para este conjunto. Al final de la página 5 sólo es algo en español el Hessiano cambien por la Hessiana (es una matriz, la matriz Hessiana). En la página 6 hay un signo de interrogación que se ve como un typo en las referencias de AMSGRAD y también para AMSGRAD definan qué es beta_1 y beta_2. No encontré el programa de `min_cuadrados_basico.c` con la actualización de este avance (lectura de archivo) añádenlo en el siguiente avance xfa. Falta colocar su objetivo y ligas a su trabajo escrito como [equipo_ejemplo](equipos/equipo_ejemplo) en equipo_01/README.md.
+* [Avance 24-04-18](equipos/equipo_01/avance_24_04_18)
+
+* [Avance 02-05-18](equipos/equipo_01/avance_02_05_18)
+
+* [Avance 08-05-18](equipos/equipo_01/avance_08_05_18)
 
 
-* [Avance 02-05-18](equipos/equipo_01/avance_02_05_18): Está bajando la RSS pero también monitoreen la norma del gradiente de la función objetivo, el valor de la función y utilicen un `while` en lugar de un `for`; como criterio de paro utilicen un valor de máximo de iteraciones y la norma antes mencionada con una tolerancia por ejemplo de 10 ^(-12). En cada iteración impriman tal norma. Muy bien sus avances, son muy claros. Daniel me preguntó sobre unified memory en CUDA ¿podrían poner tal pregunta? relacionada con c++.
+Coloquen su referencia de nvidia en README.md de equipos/equipo_01 (Matrix computations on the GPU) y otras para implementación que ustedes consideren les ayudaron a su proyecto.
+
+[Trabajo escrito](https://www.sharelatex.com/read/kbgxbypyfjvk)
+
+[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_01 como el del trabajo escrito)
+
+[Implementacion](coloquen la liga de su implementación final en su readme de su carpeta de equipos/equipo_01 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
 ---
 
