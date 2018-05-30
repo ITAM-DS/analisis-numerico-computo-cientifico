@@ -41,5 +41,7 @@ Referencias del Proyecto:
 
 [Netflix Recommendations: Beyond the 5 stars (Part 1)](https://medium.com/netflix-techblog/netflix-recommendations-beyond-the-5-stars-part-1-55838468f429) 
 
-[Netflix Prize and SVD](http://buzzard.ups.edu/courses/2014spring/420projects/math420-UPS-spring-2014-gower-netflix-SVD.pdf)
+[Netflix Prize and SVD](http://buzzard.ups.edu/courses/2014spring/420projects/math420-UPS-spring-2014-gower-netflix-SVD.pdf) 
+
+[OrangeOwlSolutions](https://github.com/OrangeOwlSolutions/Linear-Algebra/blob/master/SVD/SVD.cu)
 

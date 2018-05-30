@@ -71,7 +71,12 @@ Guardamos la matriz de entrenamiento en un archivo txt:
 ## 2.Descomposición SVD
 
 Para Hacer la descomposición de la matriz train_data_matrix_T.txt usamos el siguiente programa de Cuda 
-[svd_f.cu](svd_f.cu) el cual está basado en el programa [svd.cu](svd.cu)
+[svd_f.cu](svd_f.cu) el cual está basado en el programa [svd.cu](svd.cu) 
+
+El flujo del programa es el siguiente:
+
+![Inicio Script](flujo.png)
+
 
 1-Ponemos la Lectura de archivo para la matriz [train_data_matrix_T.txt](train_data_matrix_T.txt):
 
