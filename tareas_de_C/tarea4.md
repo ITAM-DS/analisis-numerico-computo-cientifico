@@ -1,12 +1,12 @@
 # Tarea 4
 
-Se entrega de marzo. De forma individual crear una carpeta con nombre igual a su clave única, debajo del nivel: 
+Se entrega el 5 de marzo. De forma individual crear una carpeta con nombre igual a su clave única, debajo del nivel: 
 
 ```
 analisis-numerico-computo-cientifico/MNO/entrega_tareas_de_C/tarea4
 ```
 
-##Ejercicio 1
+## Ejercicio 1
 
 a) Modifica la función `longitud_string` del siguiente programa siguiendo estos dos pasos:
 
@@ -72,7 +72,7 @@ longitud 549: 3
 
 Considera 549 como string.
 
-##Ejercicio 2:
+## Ejercicio 2:
 
 El siguiente programa lee un conjunto de líneas del archivo `archivo.txt` e imprime la línea más larga:
 
@@ -175,7 +175,7 @@ e) Escribe una función `voltea` que reciba un string `s` e imprima el string `s
 f) Qué efecto tiene escribir `extern` para la declaración de variables dentro de main(), getline() y copia()?
 
 
-##Ejercicio 3
+## Ejercicio 3
 
 El siguiente programa elimina el primer caracter de un string:
 
@@ -204,7 +204,7 @@ a) La funcion `corta_string` no hace un chequeo si el string que recibe como par
 b) Cómo modificas la forma en que es llamada `corta_string` dentro de main de modo que devuelva: ` verdes` ?? (hay un espacio antes del string "verdes").
 
 
-##Ejercicio 4
+## Ejercicio 4
 
 El siguiente programa duplica un string:
 

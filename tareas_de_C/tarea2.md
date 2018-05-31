@@ -18,7 +18,14 @@ Si lo ejecutas para salir del programa utiliza `ctrl + c`.
 
 1) Investiga lo que quieren decir las letras `EOF`. ¿Por qué se debe definir c como `int`?
 
-2) Modifica `main` para que sólo se llame una vez a la función `getchar()`
+2) Modifica `main` para eliminar la línea:
+
+```
+    c = getchar();
+```
+
+antes del while y hacer el llamado a getchar en la condición del while de modo
+que el programa realice lo mismo.
 
 3) Utiliza `getchar` para escribir un programa que cuente el número de caracteres dado un `stdin` e imprima este número. Al dar enter (salto de línea) el programa termina. Por ejemplo:
 
@@ -36,4 +43,4 @@ entonces el programa imprime `4`
 
 De manera individual cada persona haga un directorio con su clave y coloquen ahí sus resultados.
 
-Se entrega .
+Se entrega el 7 de febrero.

@@ -1,0 +1,585 @@
+Federico Riveroll 
+105898
+
+Puse en este archivo todos los programas de cada inciso de cada pregunta con lo que imprimen para más facil revisión del 
+profesor. Sin embargo están todos los programas y fuentes por si se quieren correr.
+
+
+
+// cc program-source-code.c -o executable-file-name
+// ./executable-file-name
+
+
+-------------------------------------------------------------------------------------------
+// unoA.c)
+
+#include<stdio.h>
+#include<string.h>
+#define MAX_LONG 200
+#define CADENA_PRUEBA "Hola a todos"
+
+int longitud_string(char*s){
+    int i = 0;
+   while (*s != '\0') {
+      i++;
+      s++;
+   }
+   return i;
+}
+
+ 
+int main(void){
+    char string1[] = CADENA_PRUEBA; //definición y declaracion de variable e inicializacion.
+    char string2[MAX_LONG]; //definición y declaracion.
+    
+    printf("cadena: %s\n", string1);
+    printf("longitud cadena: %d\n", longitud_string(string1));
+    printf("longitud cadena2: %d\n", longitud_string(string1));
+    strcpy(string2, "leer libros y revistas"); //inicializacion de string2
+    printf("cadena2: %s\n", string2);
+    printf("longitud cadena: %d\n", longitud_string(string2));
+return 0;
+}
+
+---------OUTPUT de unoA.c:
+
+cadena: Hola a todos
+longitud cadena: 12
+longitud cadena2: 12
+cadena2: leer libros y revistas
+longitud cadena: 22
+
+
+-------------------------------------------------------------------------------------------
+// unoB.c)
+
+
+#include<stdio.h>
+#include<string.h>
+#define MAX_LONG 200
+#define CADENA_PRUEBA "Hola a todos"
+
+int longitud_string(char s[]){
+    int i;
+    i=0;
+    while(s[i] != '\0')
+        i++;
+return i;
+}
+ 
+int main()
+{
+	int i;
+	i = 0;
+	char str1[20], str2[30];
+
+	while(i < 4)
+	{
+	   scanf("%s", str1);
+	   printf("Palabra: %s\n", str1);
+	   printf("Longitud: %i\n\n", longitud_string(str1));
+	   i++;
+	}
+
+}
+
+---------OUTPUT de unoB.c: (./unoB < ../archivos/archivo1b.txt)
+
+Palabra: hamburguesas
+Longitud: 12
+
+Palabra: permisos
+Longitud: 8
+
+Palabra: exponencialmente
+Longitud: 16
+
+Palabra: 549
+Longitud: 3
+
+
+
+
+-------------------------------------------------------------------------------------------
+// dosA.c)
+
+#include<stdio.h>
+#define MAXLINEA 1000 /*máximo tamaño de una línea*/
+/*definición de variables externas*/
+int max;
+char linea[MAXLINEA];
+char linea_max[MAXLINEA];
+ 
+/*Prototipo de funciones:*/
+ 
+int obtenlinea(void); 
+void copia(void);
+ 
+/*imprime la línea con tamaño más grande*/
+int main(void){
+    int longitud;
+    extern int max;
+    extern char linea_max[MAXLINEA];
+    max=0;
+    while((longitud = obtenlinea()) > 0)
+        if( longitud >  80){
+            printf("%s", linea);
+        }
+return 0;
+}
+ 
+/*obtenlinea: lee una linea en el arreglo linea, regresa longitud*/
+int obtenlinea(void){
+    int c;
+    int i;
+    extern char linea[];
+    for(i=0; i < MAXLINEA-1 && (c=getchar())!=EOF && c!= '\n'; i++)
+        linea[i] = c;
+    if(c == '\n'){
+        linea[i] = c;
+        i++;
+    }
+    linea[i]='\0'; //este caracter es necesario para almacenar strings
+    return i;
+}
+ 
+/*copia: copia del arreglo "linea" al arreglo "linea_max"*/
+void copia(void){ 
+    int i;
+    extern char linea[], linea_max[];
+    i=0;
+    while(1){
+        linea_max[i] = linea[i];
+        if(linea_max[i] == '\0') break;
+        i++;    
+    }
+}
+
+---------OUTPUT de dosA.c: (./dosA < ../archivos/archivo2a.txt)
+
+the role. The ministers, afraid of losing their splendid position at court, give the
+courage and self-sacrifice. The six ministers are convinced that Stach will fall
+
+(Nota: son las únicas dos líneas de más de 80 caracteres).
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+// dosB.c)
+
+#include<stdio.h>
+#define MAXLINEA 1000 /*máximo tamaño de una línea*/
+/*definición de variables externas*/
+int max;
+char linea[MAXLINEA];
+char linea_max[MAXLINEA];
+ 
+/*Prototipo de funciones:*/
+ 
+int obtenlinea(void); 
+void copia(void);
+void RemoveSpaces(void);
+ 
+/*imprime la línea con tamaño más grande*/
+int main(void){
+    int longitud;
+    extern int max;
+    extern char linea_max[MAXLINEA];
+    max=0;
+    while((longitud = obtenlinea()) > 0){
+	 RemoveSpaces();
+         printf("%s", linea);
+    }
+return 0;
+}
+ 
+void RemoveSpaces(void)
+{
+  char* source = linea;
+  char* i = source;
+  char* j = source;
+  while(*j != 0)
+  {
+    *i = *j++;
+    if(*i != ' ')
+      i++;
+  }
+  *i = 0;
+}
+
+/*obtenlinea: lee una linea en el arreglo linea, regresa longitud*/
+int obtenlinea(void){
+    int c;
+    int i;
+    extern char linea[];
+    for(i=0; i < MAXLINEA-1 && (c=getchar())!=EOF && c!= '\n'; i++)
+        linea[i] = c;
+    if(c == '\n'){
+        linea[i] = c;
+        i++;
+    }
+    linea[i]='\0'; //este caracter es necesario para almacenar strings
+    return i;
+}
+ 
+/*copia: copia del arreglo "linea" al arreglo "linea_max"*/
+void copia(void){ 
+    int i;
+    extern char linea[], linea_max[];
+    i=0;
+    while(1){
+        linea_max[i] = linea[i];
+        if(linea_max[i] == '\0') break;
+        i++;    
+    }
+}
+
+
+---------OUTPUT de dosB.c: (./dosB < ../archivos/archivo2a.txt)
+
+ThemerryoldkingofKatorenhasdied
+andthere’snoheirtothethrone.Sixsourministersruletheland
+andclaimthatthey’relookingforanewking,
+butnothinghappens–forseventeenyears.
+Thensuddenlythere’saboystandingatthedooroftheroyal
+palacewhowasbornonthenightthekingdied.
+
+Thisboy,Stach,hasfirmlyresolvedtobecomethenewkingofKatorenand
+heasksthesixministerswhathemustdoinordertobeconsideredfor
+therole.Theministers,afraidoflosingtheirsplendidpositionatcourt,givethe
+boysevenalmostimpossibletasks,whichcanbebroughttoasuccessful
+conclusiononlybyonewhopossesseskinglyattributessuchaswisdom,
+courageandself-sacrifice.ThesixministersareconvincedthatStachwillfall
+atthefirsthurdle,butheturnsouttohaveanamazingamountof
+persistenceandingenuity.
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+// dosC.c)
+
+#include<stdio.h>
+#define MAXLINEA 1000 /*máximo tamaño de una línea*/
+/*definición de variables externas*/
+int max;
+char linea[MAXLINEA];
+char linea_max[MAXLINEA];
+ 
+/*Prototipo de funciones:*/
+ 
+int obtenlinea(void); 
+void copia(void);
+ 
+/*imprime la línea con tamaño más grande*/
+int main(void){
+    int longitud;
+    extern int max;
+    extern char linea_max[MAXLINEA];
+    max=0;
+    while((longitud = obtenlinea()) > 0)
+        if( longitud > max){
+            max = longitud;
+            copia();
+        }
+    if(max > 0)
+        printf("%s", linea_max);
+return 0;
+}
+ 
+/*obtenlinea: lee una linea en el arreglo linea, regresa longitud*/
+int obtenlinea(void){
+    int c;
+    int i;
+    extern char linea[];
+    for(i=0; i < MAXLINEA-1 && (c=getchar())!=EOF && c!= '\n'; i++)
+        linea[i] = c;
+    if(c == '\n'){
+        linea[i] = c;
+        i++;
+    }
+    linea[i]='\0'; //este caracter es necesario para almacenar strings
+    return i;
+}
+ 
+/*copia: copia del arreglo "linea" al arreglo "linea_max"*/
+void copia(void){ 
+    int i;
+    extern char linea[], linea_max[];
+    int sigue = 1;
+    i=0;
+    while(sigue == 1){
+        linea_max[i] = linea[i];
+        if(linea_max[i] == '\0') sigue = 0;
+        i++;    
+    }
+}
+
+
+---------OUTPUT de dosC.c: (./dosC < ../archivos/archivo2a.txt)
+
+the role. The ministers, afraid of losing their splendid position at court, give the
+
+El output es el mismo que el primer ejercicio.
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+// dosD.c)
+
+
+/* Sólo puse la función por que todo lo demás es igual y lo que imprime es igual*/
+void copia(void){ 
+    extern char linea[], linea_max[];
+    int* i = linea_max;
+    int* j = linea;
+    int sigue = 1;
+    while(sigue == 1){
+        *i = *j;
+        if(*i == '\0') sigue = 0;
+        i++;
+        j++;    
+    }
+}
+
+
+---------OUTPUT de dosD.c: (./dosD < ../archivos/archivo2a.txt)
+
+the role. The ministers, afraid of losing their splendid position at court, give the
+
+
+
+
+-------------------------------------------------------------------------------------------
+// dosE.c)
+
+
+#include<stdio.h>
+#include<string.h>
+#define MAXLINEA 1000 /*máximo tamaño de una línea*/
+/*definición de variables externas*/
+int max;
+char linea[MAXLINEA];
+char linea_max[MAXLINEA];
+ 
+/*Prototipo de funciones:*/
+ 
+int obtenlinea(void); 
+void copia(void);
+ 
+/*imprime la línea con tamaño más grande*/
+int main(void){
+    int longitud;
+    extern int max;
+    extern char linea_max[MAXLINEA];
+    max=0;
+    while((longitud = obtenlinea()) > 0){
+	reverse();
+        printf("%s", linea);
+        }
+return 0;
+}
+ 
+/*obtenlinea: lee una linea en el arreglo linea, regresa longitud*/
+int obtenlinea(void){
+    int c;
+    int i;
+    extern char linea[];
+    for(i=0; i < MAXLINEA-1 && (c=getchar())!=EOF && c!= '\n'; i++)
+        linea[i] = c;
+    if(c == '\n'){
+        linea[i] = c;
+        i++;
+    }
+    linea[i]='\0'; //este caracter es necesario para almacenar strings
+    return i;
+}
+ 
+/*copia: copia del arreglo "linea" al arreglo "linea_max"*/
+void copia(void){ 
+    extern char linea[], linea_max[];
+    int* i = linea_max;
+    int* j = linea;
+    int sigue = 1;
+    while(sigue == 1){
+        *i = *j;
+        if(*i == '\0') sigue = 0;
+        i++;
+        j++;    
+    }
+}
+
+
+void reverse(void)
+{
+    char *src = linea;
+    char *end = src + strlen(src) - 1;
+    while (end > src)
+    {
+        char t = *end;
+        *end-- = *src;
+        *src++ = t;
+    }
+}
+
+
+
+---------OUTPUT de dosE.c: (./dosD < ../archivos/archivo2a.txt)
+deid sah nerotaK fo gnik dlo yrrem ehT
+dnal eht elur sretsinim ruos xiS .enorht eht ot rieh on s���ereht dna
+,gnik wen a rof gnikool er���yeht taht mialc dna
+ .sraey neetneves rof ��� sneppah gnihton tub
+layor eht fo rood eht ta gnidnats yob a s���ereht ylneddus nehT
+.deid gnik eht thgin eht no nrob saw ohw ecalap
+
+dna nerotaK fo gnik wen eht emoceb ot devloser ylmrif sah ,hcatS ,yob sihT
+ rof deredisnoc eb ot redro ni od tsum eh tahw sretsinim xis eht sksa eh
+eht evig ,truoc ta noitisop didnelps rieht gnisol fo diarfa ,sretsinim ehT .elor eht
+lufsseccus a ot thguorb eb nac hcihw ,sksat elbissopmi tsomla neves yob
+,modsiw sa hcus setubirtta ylgnik sessessop ohw eno yb ylno noisulcnoc
+llaf lliw hcatS taht decnivnoc era sretsinim xis ehT .ecifircas-fles dna egaruoc
+fo tnuoma gnizama na evah ot tuo snrut eh tub ,eldruh tsrif eht ta
+.ytiunegni dna ecnetsisrep
+
+
+-------------------------------------------------------------------------------------------
+// dosF.c)
+
+Que referencia a la variable previamente declarada afuera. Afuera se define y adentro se declara o apunta a ella para modificarla y para que 
+todas la puedan modificar.
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+// tresA.c)
+
+#include<stdio.h>
+char *corta_string(char *apuntador){
+    apuntador=apuntador+1;
+    if(*apuntador == '\0'){
+	return "Error";
+    }
+    return apuntador;
+}
+
+int main(void){
+    char *s="";
+    s=corta_string(s);
+    printf("%s\n",s);
+ 
+return 0;
+}
+
+
+----OUTPUT
+Imprime el string sin el primer caracter si no es vacío, e imprime error de lo contrario.
+
+
+-------------------------------------------------------------------------------------------
+// tresB.c)
+
+#include<stdio.h>
+char *corta_string(char *apuntador){
+    while(*apuntador != ' ')
+    	apuntador=apuntador+1;
+    apuntador=apuntador+1;
+    if(*apuntador == '\0'){
+	return "Error";
+    }
+    return apuntador;
+}
+
+int main(void){
+    char *s="Campos verdes";
+    s=corta_string(s);
+    printf("%s\n",s);
+ 
+return 0;
+}
+
+
+----OUTPUT
+verdes
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+// cuatroA.c)
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+char *duplica_string(char *s){  
+    char *p;
+    p = malloc(strlen(s)+1); /* sumamos uno para almacenar el caracter '\0'*/
+        if(p!=NULL)
+        strcpy(p,s);
+    return p;
+}
+
+
+
+int main(void){
+    char *s;
+    s = (char *) malloc(sizeof(int)*10);
+    strcpy(s,"Campos verdes");
+    char *s_duplicado;
+    s_duplicado = duplica_string(s);
+    printf("%s\n", s_duplicado);
+    free(s_duplicado);
+    return 0;
+}
+
+
+----OUTPUT
+Imprime lo mismo (Campos verdes)
+
+
+
+-------------------------------------------------------------------------------------------
+// cuatroB.c)
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+char *voltea_string(char *s){  
+    char *end = s + strlen(s) - 1;
+    while (end > s)
+    {
+        char t = *end;
+        *end-- = *s;
+        *s++ = t;
+    }
+}
+
+int main(void){
+    char *s;
+    s = (char *) malloc(sizeof(int)*10);
+    strcpy(s,"Campos verdes");
+    char *s_volteado;
+    s_volteado = voltea_string(s);
+    printf("%s\n", s_volteado);
+
+    return 0;
+}
+
+
+----OUTPUT
+sedrev sopmaC
+
+
+
