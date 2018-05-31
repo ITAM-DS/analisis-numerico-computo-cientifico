@@ -363,14 +363,22 @@ Objetivo del proyecto: Programar un algoritmo para la generación de una cadena 
 * [Avance 08-05-18](equipos/equipo_12/avance_08_05_18)
 
 
-[Trabajo escrito](https://drive.google.com/open?id=1xKd7PsOsSm2eYufby6vn57mdtFoC9oaC)
+[Trabajo escrito](https://drive.google.com/open?id=1W9ZeMvQiRDKzUcIJX5GjNE5034ajM_Je)
 
-[Presentacion](https://drive.google.com/open?id=1a-ZdK2aM01iOor0tXdi2yfVZ-wyMwzkg)
+[Presentacion](https://drive.google.com/open?id=1I3YLhxO2SEveO8PLjLq0bXVdAqNChlUh)
 
-[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_12 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Instrucciones implementación](https://github.com/oliab/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_30_05_18/Codigo)
 
+[Código pruebas](equipos/equipo_12/avance_30_05_18/Codigo/Pruebas/)
+
+[Generadores paralelos](equipos/equipo_12/avance_30_05_18/Codigo/Generadores_paralelos/)
+
+
+[Generadores no paralelos](equipos/equipo_12/avance_30_05_18/Codigo/Generadores_no_paralelos/)
 
 [salida de implementación](https://drive.google.com/open?id=160P8Rv0qCESNVFGC8hHb2SAVGL0gzdrmGLv7gWLbAbY)
+
+[Aplicaciones](equipos/equipo_12/avance_30_05_18/Codigo/Aplicaciones/Aplicaciones.Rmd)
 
 
 ---
