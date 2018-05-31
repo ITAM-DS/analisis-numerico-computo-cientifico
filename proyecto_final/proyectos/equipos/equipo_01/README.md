@@ -18,10 +18,10 @@ Implementación de los algorítmos ADAM y AMSGrad de descenso en gradiente utili
 https://www.sharelatex.com/read/kbgxbypyfjvk
 
 ### Presentación
-(proximamente)
+https://docs.google.com/presentation/d/1d027lMi-_XNCW81WQ8_kk50A2GO6XEpvVAZ6atcrRok/edit#slide=id.g3b7859ebba_0_300
 
 ### Implementación:
-En cada avance agregamos una carpeta `codigo` en la cual se encuentra el avance en la implementación correspondiente a esa semana.
+https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_01/avance_1a_sem_finales/codigo
 
 #### Referencias del proyecto:  
 
@@ -46,4 +46,8 @@ En cada avance agregamos una carpeta `codigo` en la cual se encuentra el avance 
 * Sebastian U. Stich, Anant Raj, and Martin Jaggi.  Safe adaptive importance sampling. CoRR, abs/1711.02637, 2017.  
   
 * Matthew D. Zeiler. ADADELTA: an adaptive learning rate method. CoRR, abs/1212.5701, 2012
+
+* Andrzej Chrzeszczyk, Jacob Anders, Matrix computations on the GPU CUBLAS, CUSOLVER and MAGMA by example, NVIDIA, 2017
+
+* NVIDIA Developer Zone
 

@@ -12,12 +12,20 @@ Generación de método aleatorios mediante algoritmos implementados en C.
 Objetivo del proyecto: 
 Programar un algoritmo para la generación de una cadena de número aleatorios, optimizando  su longitud. Medir su eficiencia a través de distintos criterios como pruebas de aleatoriedad, longitud de la cadena generada y la comparación con otras cadenas de números aleatorios obtenidos por fuentes naturales de aleatoriedad como procesos cuánticos: fotones y partículas. 
 
-En la carpeta avance_10_04_2018 se encuentra la definición del proyecto.
-
-En la capeta avance_17_04_2018 el reporte del primer avance en nuestro proyecto. Hemos platicado con Erick sobre el objetivo de nuestro proyecto y reunimos una serie de referencias para guiarnos en el proyecto.
-
-
 Debido al potencial del tema y al límite de tiempo que tenemos para entregarlo, decidimos acotar  nuestro avance a la implementación de un algoritmo, evaluación y comparación de su desempeño y, si el tiempo es suficiente, agregaremos algunos casos de aplicación práctica.
+
+[Trabajo Final Escrito](https://drive.google.com/open?id=1W9ZeMvQiRDKzUcIJX5GjNE5034ajM_Je)  
+
+[Implementación](https://github.com/oliab/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_30_05_18/Codigo)  
+
+[Presentacion](https://drive.google.com/open?id=1I3YLhxO2SEveO8PLjLq0bXVdAqNChlUh)  
+
+
+Los outputs de los generadores de números se encuentran en se encuentran en esta [liga](https://drive.google.com/open?id=160P8Rv0qCESNVFGC8hHb2SAVGL0gzdrmGLv7gWLbAbY)  
+
+
+Los resulrados de las pruebas de NIST se encuentran en esta [liga](https://drive.google.com/open?id=1RWKqmWjgXfO5nVA6RdBrtdi6QDDzjhMi)  
+
 
 Referencias del proyecto:
 
@@ -39,4 +47,8 @@ Agrego referencias sobre generación de números aleatorios en C:
 Referencias de paralelización del algoritmo Marsene Twister:  
 [código y teoría](https://www.nag.co.uk/IndustryArticles/gpu_gems_article.pdf)  
 [código presentado como base](http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/VERSIONS/C-LANG/deifik.c)
+
+Referencias de cuRAND:
+
+[Documentacion](https://docs.nvidia.com/cuda/curand/index.html)
 

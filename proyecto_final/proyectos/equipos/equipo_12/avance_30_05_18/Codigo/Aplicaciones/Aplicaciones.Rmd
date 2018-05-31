@@ -1,0 +1,219 @@
+---
+title: "Aplicaciones"
+output: html_document
+---
+
+```{r, include=FALSE}
+library(readxl)
+library(readr)
+library(tidyverse)
+library(plyr)
+library(ggplot2)
+library(lubridate)
+library(tidyverse)
+library(textreuse)
+library(tidygraph)
+library(ggraph)
+library(visNetwork)
+library(knitr)
+library(gridExtra)
+library(plotly)
+library(htmlwidgets)
+```
+
+## Cadenas de números aleatorios y sus aplicaciones
+
+El objetivo de esta sección en nuestro trabajo consiste en evaluar la eficiencia de las cadenas de números aleatorios que hemos generado, a través de distintos generadores, por medio de su aplicación en problemas reales.
+
+Los números obtenidos por los generadores presentados son un insumo importante en diversas áreas. En particular, las matemáticas y estadística se han visto beneficiadas a través de la **simulación Monte Carlo**, esta técnica se encarga de modelar fenómenos que están sujetos a incertidumbre pero, a diferencia de la simulación física, usa el lenguaje de probabilidad y el cómputo científico como herramienta.
+
+El ejemplo más sencillo de cómo la simulación Monte Carlo, basada en cadenas de números aleatorios, puede aplicarse para resolver problemas reales consiste en aproximar el área de una integral o el área de un círculo. En ocasiones, las integrales no tienen una solución analítica sencilla por lo cual es necesario aproximarlas con simulación; por otra parte, aunque conocemos bien la fórmula para calcular el área de un círculo o el método para determinarla, también podemos utilizar la simulación y números aleatorios para estimarla.
+
+Imaginemos que tenemos un cuadrado, con longitud de lado 1, centrado en el origen de un plano cartesiano, dentro de este cuadrado hay un círculo centrado como se muestra en la imagen:
+
+```{r, echo=FALSE, fig.align='center', out.width = '50%'}
+setwd("~/Desktop/Carlos/MsC/SegundoSemestre/Analisis_Numerico/Proyecto_final/Aplicaciones")
+knitr::include_graphics("foto1.png")
+```
+
+El problema de calcular el área del círculo tiene, al menos, dos soluciones: la primera es usando integrales, lo cual daría como solución $πr^2$ y la segunda es utilizar la simulación Monte Carlo. Para realizar la simulación es necesario generar dos conjuntos de números aleatorios, para las coordenadas $x$ y $y$, respectivamente.
+
+Con la ecuación del círculo $x^2 + y^2 ≤ r^2$, y tomando en cuenta que en el problema $r$=0.5 podemos seguir los siguientes pasos para encontrar el área:
+
+-a) Tomamos un número de cada cadena de números aleatorios y elevamos cada uno al cuadrado.
+
+-b) Definimos una variable $Z_i$ tal que $Z_i=1$ si $r^2 ≤ 0.25$ y $Z_i$ = 0 en otro caso.
+
+-c) Para calcular el área del círculo, tenemos que dividir la suma de los valores $X_i$ entre la longitud de una cadena de números aleatorios.
+
+Por ejemplo, si después de realizar una simulación con dos cadenas $x$ y $y$ de 100 números aleatorios obtuvimos que 78 números cayeron dentro del círculo, la estimación del área es igual a $78 / 100 = 0.78$. Comparando este resultado con el que se obtiene de la fórmula analítica **exacta** (igual a 0.7854) del círculo definimos el **error de predicción** como **| 0.7854 - 0.78| = 0.0054.**
+
+Detráas de esta téecnica de aproximación se encuentra una justificacióon matemática, cuyo comportamiento asintóotico hace que la simulación sea máas exacta:
+
+- Sean $S_n$ la suma de $n$ variables aleatorias $X_i$, independientes, idéenticamente distribuidas, con media $μ$ y varianza $σ^2$ finitas:
+
+$S_n = X_1 + X_2 + ... + X_n$
+
+Si hacemos una estandarización de $S_n$ como:
+
+```{r, echo=FALSE, fig.align='center', out.width = '15%'}
+setwd("~/Desktop/Carlos/MsC/SegundoSemestre/Analisis_Numerico/Proyecto_final/Aplicaciones")
+knitr::include_graphics("foto2.png")
+```
+
+```{r, echo=FALSE, fig.align='center', out.width = '80%'}
+setwd("~/Desktop/Carlos/MsC/SegundoSemestre/Analisis_Numerico/Proyecto_final/Aplicaciones")
+knitr::include_graphics("foto3.png")
+```
+
+El segundo resultado estadístico a utilizar dice que si una variable aleatoria $Z$ se distribuye $Z ∼ N(μ,σ^2)$ y elegimos un valor que provenga de esta distribución, con probabilidad .997, se va encontrar entre $μ − 3σ$ y $μ + 3σ$, es decir:
+
+```{r, echo=FALSE, fig.align='center', out.width = '40%'}
+setwd("~/Desktop/Carlos/MsC/SegundoSemestre/Analisis_Numerico/Proyecto_final/Aplicaciones")
+knitr::include_graphics("foto4.png")
+```
+
+En nuestro modelo, utilizando alguú generador de nñummeros aleatorios obtenemos dos colecciones de variables aleatorias $X_1, X_2, ...X_n$ y otra $Y_1, Y_2, ...Y_n$ independientes e idénticamente distribuidas con media $μ$ y varianza $σ^2$, entonces, por el teorema central de límite, si $n$ es suficientemente grande:
+
+```{r, echo=FALSE, fig.align='center', out.width = '25%'}
+setwd("~/Desktop/Carlos/MsC/SegundoSemestre/Analisis_Numerico/Proyecto_final/Aplicaciones")
+knitr::include_graphics("foto5.png")
+```
+
+Recurriendo al resultado estadístico antes mencionado:
+
+```{r, echo=FALSE, fig.align='center', out.width = '45%'}
+setwd("~/Desktop/Carlos/MsC/SegundoSemestre/Analisis_Numerico/Proyecto_final/Aplicaciones")
+knitr::include_graphics("foto6.png")
+```
+
+Por último definimos una variable aleatoria discreta $X$ tal que:
+
+```{r, echo=FALSE, fig.align='center', out.width = '30%'}
+setwd("~/Desktop/Carlos/MsC/SegundoSemestre/Analisis_Numerico/Proyecto_final/Aplicaciones")
+knitr::include_graphics("foto7.png")
+```
+
+Después de generar diferentes conjuntos números aleatorios, observamos entonces que para muestras suficientemente grandes, el cálculo de la media artimética resulta ser un buen modelo de simulación estocástica pues la medida el error de predicción |X − μ| está acotado por $3σ$ con una probabilidad de 0.997. Es decir, entre más larga sea la longitud de las cadenas $n$ de números aleatorios más pequeña será la cota superior que mide el error entre el promedio y el valor real de la media de la variable.
+
+### Resultados de las cadena y comparación
+
+Además de las pruebas de bondad que podemos implementar para medir la aleatoriedad de una cadena, podemos pensar en un uso más inmediato mediante las siguientes preguntas:
+
+- En el método congruencial, ¿la correcta elección de los parámetros reduce el tiempo?
+- ¿Cuanto tiempo tardan las distintas cadenas de números aleatorios que generamos en este trabajo en acercarse al valor real del área?
+
+Para esta aplicación utilizamos el **generador de números aleatorios congruencial** con los "mejores" parámetros que hemos encontrado en nuestro trabajo (al cual llamaremos **Propio**) y comparándolo con otrosde acuerdo a distintas referencias, implementaciones o software comercial:
+
+```{r, echo=FALSE, warning=FALSE, cache=TRUE}
+tabla <- data.frame(Nombre = c("Numerical Recipes","Turbo Pascal","Microsoft Visual Basic","cc65","Propio"),
+                    a = c(1664525,134775813,1140671485,16843009,8192),
+                    m = c(4294967296,4294967296,16777216,4294967296,8191),
+                    c= c(1013904223,1,12820163,826366247,5751))
+tabla
+```
+
+###Convergencia
+
+Para medir el desempeño de nuestros distintos generadores (parámetros), podemos graficar cadenas de 10,000 números y ver qué tan rápido se aproximan al valor real del área del círculo igual a **0.7854**:
+
+- Como esperamos, de acuerdo al Teorema Central del Límite, al inicio todas las cadenas tienen una alta varianza.
+- A partir de la iteración 250 empiezan a acercarse a un valor hasta que poco a poco las cadenas empiezan a converger.
+- Notamos que a partir de la iteración 500 nuestro algoritmo **Propio** converge a un valor, pero alejado aún del valor real. 
+
+```{r, echo=FALSE, warning=FALSE, cache=FALSE}
+Cadenas <- read_excel("Cadenas.xlsx","Resultados")
+
+#mayor <- which(Cadenas$Iteracion <= 1000)
+#Cadenas <- Cadenas[mayor,]
+p1 <- ggplot() + geom_line(aes(y = resultado, x = Iteracion, colour = method),
+                           data = Cadenas, stat="identity")
+
+p1
+```
+
+- Si solo observamos las últimas 2,000 iteraciones, la convergencia es muy clara.
+- Podemos observar que el método Turbo Pascal es método que más se acerca a la solución real.
+- Debido al tamaño de la cadena, prácticamente todos los algoritmos reprensentan una buena aproximación, sin embargo, Turbo Pascal se aproxima más al valor real del área.
+- De nueva cuenta, podemos ver que el error cuadrático medio del algoritmo **Propio** oscila en un rango alejado del valor real.
+
+```{r, echo=FALSE, warning=FALSE, cache=TRUE}
+Cadenas <- read_excel("Cadenas.xlsx","Resultados")
+
+
+mayor <- which(Cadenas$Iteracion >= 8000)
+Cadenas <- Cadenas[mayor,]
+
+cutoff <- data.frame( x = c(-Inf, Inf), y = 0.7854, cutoff = factor(0.7854) )
+p1 <- ggplot() + geom_line(aes(y = resultado, x = Iteracion, colour = method),
+                           data = Cadenas, stat="identity") + 
+        geom_line(aes( x, y, linetype = cutoff ), cutoff)
+p1
+```
+
+###Error cuadrático medio
+
+Otra forma de ver qué tan bien funcionan nuestros algormitmos es con el **error cuadrático medio** (al valor real de nuestro algoritmo), reptiendo la idea anterior, observamos que en la siguiente gráfica:
+
+- Observamos que el error cuadrático medio en todas las cadenas es grande en la primeras iteraciones, posteriormente después de 500 números parece que el error cuadrático para todos los casos comienza a converger a cero.
+- El algoritmo **Propio** tiene un error cuadrático medio más grande que el obtenido por los demás métodos, además se queda alrededor de este durante toda la simulación.
+
+```{r, echo=FALSE, warning=FALSE, cache=TRUE}
+
+Cadenas <- read_excel("Cadenas.xlsx","Resultados")
+Cadenas$resultado <- (0.7854 - Cadenas$resultado)^(2)
+
+#mayor <- which(Cadenas$Iteracion > 8500)
+#  Cadenas <- Cadenas[mayor,]
+p2 <- ggplot() + geom_line(aes(y = resultado, x = Iteracion, colour = method),
+                           data = Cadenas, stat="identity")
+p2
+```
+
+- Si observamos las primeras 500 iteraciones podemos ver una alta varianza en el error cuadrático medio.
+- El algoritmo que más tarda en empezar a converger es el de Microsoft Visual Basic.
+
+```{r, echo=FALSE, warning=FALSE, cache=TRUE}
+
+Cadenas <- read_excel("Cadenas.xlsx","Resultados")
+Cadenas$resultado <- (0.7854 - Cadenas$resultado)^(2)
+
+mayor <- which(Cadenas$Iteracion < 500)
+  Cadenas <- Cadenas[mayor,]
+p2 <- ggplot() + geom_line(aes(y = resultado, x = Iteracion, colour = method),
+                           data = Cadenas, stat="identity")
+p2
+```
+
+- Finalmente, si observamos las últimas 2,000 iteraciones, verificamos que el error cuadrático medio es muy cercano a 0.
+- Notemos que el orden de magnitud es de $10^-5$.
+- Confirmamos que el Turbo Pascal es el algoritmo que funciona mejor, es el más cercano a cero y, al parecer, sigue convergiendo.
+
+```{r, echo=FALSE, warning=FALSE, cache=TRUE}
+
+Cadenas <- read_excel("Cadenas.xlsx","Resultados")
+Cadenas <- Cadenas[which(Cadenas$method != "Propio"),]
+Cadenas$resultado <- (0.7854 - Cadenas$resultado)^(2)
+
+mayor <- which(Cadenas$Iteracion >= 8000)
+  Cadenas <- Cadenas[mayor,]
+p2 <- ggplot() + geom_line(aes(y = resultado, x = Iteracion, colour = method),
+                           data = Cadenas, stat="identity")
+p2
+```
+
+- Si incluimos en la gráfica el error de nuestro algoritmo notamos que el orden de magnitud es muy distinto respecto a los demás:
+
+```{r, echo=FALSE, warning=FALSE, cache=TRUE}
+
+Cadenas <- read_excel("Cadenas.xlsx","Resultados")
+Cadenas$resultado <- (0.7854 - Cadenas$resultado)^(2)
+
+mayor <- which(Cadenas$Iteracion >= 8000)
+  Cadenas <- Cadenas[mayor,]
+p2 <- ggplot() + geom_line(aes(y = resultado, x = Iteracion, colour = method),
+                           data = Cadenas, stat="identity")
+p2
+```
+
+

@@ -1,4 +1,4 @@
-## Avance 1a semana finales
+## Avance 2a semana finales
 
 ### Integrantes:
 
@@ -7,14 +7,4 @@
 * Christian Challu
 
 * Elizabeth Solis
-
-## Trabajo 
-
-
-### Individual
-
-
-
-### Equipo
-
 
