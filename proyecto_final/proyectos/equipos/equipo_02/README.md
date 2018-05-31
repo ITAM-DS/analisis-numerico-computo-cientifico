@@ -21,7 +21,11 @@ El objetivo de este trabajo consiste en aprovechar las oportunidades creadas o g
  - [avance_08_05_2018](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_02/avance_08_05_2018)
  		- [Implementación](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_02/avance_08_05_2018/implementacion)
 
- - El trabajo escrito también cooperativo está [aquí](https://docs.google.com/document/d/1rZKXnf_56cQ0r0dyJ_M_H3khKhs_tSdgW3_IPnS2EfI/edit)
+ - El trabajo escrito está [aquí](https://www.dropbox.com/s/eu629dhfdzto9ay/escrito.pdf?dl=0)
+ - [Presentación:](https://www.dropbox.com/s/y3mftahbwfkz9i3/presentacion.pdf?dl=0)
+
+ El instructivo para implementar el script del algoritmo:
+ [aquí:]()
 
 ### Referencias:
 
