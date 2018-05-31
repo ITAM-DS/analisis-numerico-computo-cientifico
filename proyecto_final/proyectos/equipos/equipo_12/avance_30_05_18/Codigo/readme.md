@@ -1,6 +1,6 @@
 En esta carpeta encontramos los códigos utilizados para las diferentes partes del proyecto.
 
-Generadores_no paralelos:
+[Generadores_no paralelos:](https://github.com/oliab/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_30_05_18/Codigo/Generadores_no_paralelos)  
 
 Estos generadores se crearon en el contendor de docjer que se hizo siguiendo las instrucciones de la [primer clase de c](https://www.dropbox.com/s/2btpracfm4munik/historia_clase1.txt?dl=0)
 
@@ -13,23 +13,23 @@ Para correr utilizamos
 - metodo_congruencial.c  Implementación del método congruencial en c
 - random_MT.c  Implementación del método Mersenne Twister en c
 
-Generadores_paralelos:
+[Generadores_paralelos:](https://github.com/oliab/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_30_05_18/Codigo/Generadores_paralelos)  
 
-Este código está implementado en un sevvidor de AWS tipo p2.xlarge que se configuró de acuerdo a la [guia](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/CUDA/instalacion) vista en clase.
-Los dos programas son implementaciones de cuRAND, el generador de números aleatorios de CUDA que viene en el toolkit.
+Este código está implementado en un sevvidor de AWS tipo p2.xlarge que se configuró de acuerdo a la [guia](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/CUDA/instalacion) vista en clase.  
+Los dos programas son implementaciones de cuRAND, el generador de números aleatorios de CUDA que viene en el toolkit.  
 
 El compendio de cadenas generadas se encuentra [aqui](https://drive.google.com/open?id=160P8Rv0qCESNVFGC8hHb2SAVGL0gzdrmGLv7gWLbAbY) y son los que se utilizaron para generar las aplicaciones y las pruebas o en cada carpeta hay une ejemplo de los outputs de cada algoritmo.
 
 Para poder compilar usamos el comando:
-nvcc rand_parallel.cu -o rand_parallel.out
-
+nvcc rand_parallel.cu -o rand_parallel.out  
+  
 Para correr utilizamos
-./rand_parallel.out
+./rand_parallel.out  
 
-- rand_parallel.cu Implementación de método congruencial en CUDA
-- mt_parallel.cu Implementación del método Marsenne Twister en CUDA
+- rand_parallel.cu Implementación de método congruencial en CUDA  
+- mt_parallel.cu Implementación del método Marsenne Twister en CUDA  
 
-Pruebas:
+[Pruebas:](https://github.com/oliab/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_30_05_18/Codigo/Pruebas)
 
 Código generado para la implementación de pruebas tal como cálculo de frecuencia, pruebas de NIST y cambio de números a binarios para poder ejecutar las pruebas.
 Para compilar los scripts es necesario ejecutar los siguientes comandos
@@ -79,8 +79,12 @@ El número de repeticiones que se ahcen a las pruebas
 Que el archivo es en formato ASCII de ceros y unos
 0
 
-Aplicaciones:
+[Aplicaciones:](https://github.com/oliab/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_30_05_18/Codigo/Aplicaciones)  
+
 Código en el que se usan las cadenas en la resolución de problemas reales, en particular el cálculo del área de un círculo.
+
+El código es un RMD que puede ser ejecutado en una terminal de R o en RStudio. Utiliza como insumos el archivo .xlsx Cadenas, el cual contiene un compendio de las cadenas que fueron generadas por los diferentes algoritmos.
+
 
 -Aplicaciones.rmd Calculo del área de un circulo y medición del error de este cálculo
 
