@@ -25,9 +25,9 @@ Coloquen su referencia de nvidia en README.md de equipos/equipo_01 (Matrix compu
 
 [Trabajo escrito](https://www.sharelatex.com/read/kbgxbypyfjvk)
 
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_01 como el del trabajo escrito)
+[Presentacion](https://docs.google.com/presentation/d/1d027lMi-_XNCW81WQ8_kk50A2GO6XEpvVAZ6atcrRok/edit#slide=id.g3b7859ebba_0_300)
 
-[Implementacion](coloquen la liga de su implementación final en su readme de su carpeta de equipos/equipo_01 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Implementacion](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_01/avance_1a_sem_finales/codigo)
 
 ---
 
