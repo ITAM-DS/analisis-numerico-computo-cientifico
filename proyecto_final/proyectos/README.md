@@ -303,13 +303,13 @@ Objetivo del proyecto: Desarrollar un algoritmo de sistemas de recomendación ba
 
 * [Avance 08-05-18](equipos/equipo_10/Avance_08_05_18)
 
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
-[Trabajo escrito](https://drive.google.com/open?id=1z-b_zTksXNujDiJc2sg_0eJND8RpjNmE)
 
-[Presentacion](falta liga hacia presentacion)
+[Trabajo escrito](https://drive.google.com/open?id=1gSRaoKZ0QOswZAwW2dkbJ2QW9adrY6YQ)
 
-[Implementacion](equipos/equipo_10/Implementacion)
+[Presentacion](https://drive.google.com/open?id=1PIs8o0PQ4uXHsJSYNwhIEzey5VsaHkPcbD0j1aMGuEE)
+
+[Implementacion e instrucciones](equipos/equipo_10/Implementacion)
 
 
 ---
