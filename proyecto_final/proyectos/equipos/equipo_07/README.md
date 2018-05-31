@@ -8,23 +8,31 @@ Integrantes:
 
 * David Rivera Flores
 
-### Título del proyecto: `PCA, implementación en  C.  Secuencial / Paralelo`
+### Título del proyecto: 
 
-### Objetivo del proyecto: `Implementar el método de “Principal Component Analysis” (PCA) en C, posteriormente de manera secuencial y posteriormente en paralelo. Este trabajo será complementado con lenguajes de alto nivel (ej. R, Python).`
+PCA, implementación en  C.  Secuencial / Paralelo
+
+### Objetivo del proyecto: 
+
+Implementar el método de “Principal Component Analysis” (PCA) en C, posteriormente de manera secuencial y posteriormente en paralelo. Este trabajo será complementado con lenguajes de alto nivel (ej. R, Python).
 
 En la carpeta [avance_10_04_2018](avance_10_04_2018) se encuentra el reporte del primer avance en nuestro proyecto.
 
 Segundo Avance [avance_17_04_2018](avance_17_04_2018)
 
+### Trabajo Escrito
 
-[Trabajo Escrito](https://drive.google.com/open?id=1hUzezAT_lKEiTuRvIhG-SZUBqkuaUfkC)
+[Liga al trabajo](https://drive.google.com/open?id=1hUzezAT_lKEiTuRvIhG-SZUBqkuaUfkC)
 
-[Presentación](https://drive.google.com/open?id=1usGKe1h9TBYu70oltBzwe6D5EwLJLYZf)
+### Presentacion
 
-[Implementación](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_07/svd_blas_lapack)
+[Liga a la presentacion](https://drive.google.com/open?id=1usGKe1h9TBYu70oltBzwe6D5EwLJLYZf)
+
+### Implementacion
+
+[Liga a la implementacion](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_07/svd_blas_lapack)
 
 ### Referencias
-
 
 [C Library (math.h)](https://www.tutorialspoint.com/c_standard_library/math_h.htm)
 
