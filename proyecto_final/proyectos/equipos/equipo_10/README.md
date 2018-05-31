@@ -45,5 +45,7 @@ Referencias del Proyecto:
 
 [Netflix Prize and SVD](http://buzzard.ups.edu/courses/2014spring/420projects/math420-UPS-spring-2014-gower-netflix-SVD.pdf) 
 
-[OrangeOwlSolutions](https://github.com/OrangeOwlSolutions/Linear-Algebra/blob/master/SVD/SVD.cu)
+[OrangeOwlSolutions](https://github.com/OrangeOwlSolutions/Linear-Algebra/blob/master/SVD/SVD.cu) 
+
+[Explicación_Bidiagonalización](http://www3.math.tu-berlin.de/Vorlesungen/SS14/MatricesGraphsPDEs/paper_for_students/0711019.pdf)
 

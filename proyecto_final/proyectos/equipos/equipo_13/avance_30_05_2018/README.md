@@ -14,6 +14,11 @@ En este avance hacemos la entrega de lo siguiente:
  - Implementaciones: [https://www.dropbox.com/sh/m6hcqpnjhg0muzf/AAAVsrTuubV3wFnsQtO8swzWa?dl=0](https://www.dropbox.com/sh/m6hcqpnjhg0muzf/AAAVsrTuubV3wFnsQtO8swzWa?dl=0)
 
 
+ - Presentación:
+[https://www.dropbox.com/s/ej7pic3rn60h6q7/MNO_equipo13.pdf?dl=0](https://www.dropbox.com/s/ej7pic3rn60h6q7/MNO_equipo13.pdf?dl=0)
+
+
+
 
 La presente entrega final se puede descargar en su totalidad del siguiente vínculo de dropbox:
 
