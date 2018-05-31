@@ -1,0 +1,26 @@
+Convex Optimization for Big Data
+
+La optimización convexa ha comenzado a volverse más importante en la última década principalmente por la existencia de nuevos algoritmos de soluciones óptimas y el uso de geometría convexa para comprobar propiedades de la solución. El uso de bases de datos muy grandes no permite que los problemas de optimización se procesen localmente y para las que las rutinas básicas de algebra lineal son prohibitivas. 
+
+Sin embargo, esto coloca a los algoritmos convexos bajo enormes presión para acomodar dimensiones y conjuntos de datos muy grandes.
+Por esta razón la optimización convexa está buscando nuevas estrategias para resolver problemas donde los datos y parámetros los tamaños de los problemas de optimización son demasiado grandes para procesar localmente, y donde incluso el álgebra lineal básica y rutinas como las descomposiciones de Cholesky y las multiplicaciones matriz-matriz o matriz-vector son difíciles de lograr. 
+
+Para lograrlo el paper describe algunas estrategias básicas para la optimización en big data, que al combinarse se puede lograr los problemas para poder aplicarlos a Big Data.
+
+
+1. Métodos de Primer Orden: 
+
+Estos métodos generalmente obtienen bajo o mediana precisión en soluciones numéricas usando solamente información de primer orden.  El autor explora distintos modelos como la regresión regularizada LASSO que consiste en incorporar un parámetro lamda a la regularización que realiza la regularización y selección de variables dentro del mismo algoritmo. Después el autor describe el uso de descenso en gradiente incluso para casos en donde las funciones objetivo no sean suaves. 
+Usar descenso en gradiente, aunque requiere de más iteraciones para alcanzar el mínimo global, requiere de menos tiempo por iteración que otros algoritmos más complicados y comenta que es posible modificar la forma funcional del problema de minimización para mejorar las capacidades computacionales y de modelaje. Esto puede ayudar a aplicar Métodos de Primer Orden en aplicaciones como Análisis Robusto de Componentes Principales o aprendizaje de grafos. 
+
+
+
+2. Aleatorización: 
+
+El autor menciona que aunque ñps métodos de primer orden están bien preparados para resolver problemas de dimensión muy grande en la práctica comienzan a ser privativos desde el punto de vista de poder computacional y comenta que las técnicas de aleatorización que maximizan las capacidades y alcance de los métodos de primer orden porque permite controlar el comportamiento esperado. Entre las metodologías de aleatorización que comenta se encuentran: reemplazar los cálculos determinísticos con estimadores estadísticos y acelerar las rutinas de álgebra lineal básica aleatorizando. Esto es posible ya que los Métodos de Primer Orden son robustos a sus aproximaciones, que se pueden encontrar utilizando aleatorización. El descenso gradiente estocástico, que actualiza todas las coordenadas de manera simultánea usando gradientes aproximados.  Y finalmente, comenta que recientemente se ha realizado esfuerzos importantes de cara a la aleatorización de las operaciones algebraicas.
+
+3. Cómputo paralelo y distribuido: 
+
+El autor comenta que existen dos problemas principales para la paralelización de los algoritmos: 1) El problema de comunicación el autor menciona que una posible solución se puede encontrar en a) minimizar la cantidad de comunicación y b) la creación de copias locales de los vectores de variables que eventualmente lleguen a un consenso en convergencia. 2) Y la sincronización, el autor sugiere que el uso de algoritmos asíncronos que utilizan una versión no actualizada del mismo vector. Al paralelizar los Métodos de Primer Orden se logra una comunicación confiable entre procesadores uniformes. Algunos modelos de programación que paralelizan Métodos de Primer Orden son Hadoop, Spark, Mahout, MADlib, etc.
+
+

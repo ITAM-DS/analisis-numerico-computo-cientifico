@@ -1,0 +1,32 @@
+Singular Value Decomposition on GPU using CUDA
+
+La descomposición en valores singulares o SVD por sus siglas en inglés es una aplicación de álgebra lineal importante para varias ramas de la ciencia, es una técnica utilizada para la factorización de  matrices rectangulares reales o complejas. Sus aplicaciones son muy variadas y están relacionadas con análisis de componentes, reconocimiento de patrones, procesamiento de imágenes
+
+La SVD de una matriz $A$ de tamaño $m x n$ es cualquier factorización de la forma:
+$$ A = U \Sigma V^T$$
+
+donde: 
+
+$U$ es una matriz ortogonal de $m x m$
+
+$V$ es una matriz ortogonal de $n x n$
+
+$\Sigma$ es una matriz diagonal de $m x n$ con $s_{ij} = 0$ si $i \neq j$ y $s_{ii} \geq 0$ en orden descendiente en la diagonal.
+
+El autor propone una implementación de solución para SVD en GPU usando la paquetería CUBLAS (implementación de BLAS en GPU) de NVIDIA y kernels de CUDA utilizando el enfoque de Golub-reinsh que consiste en una Bidiagonalización y una Diagonalización para obtener la descomposición SVD. En primer lugar se reduce la matriz A a una matriz bidiagonal que posteriormente es diagonalizada empleando un factorización QR iterativa que se describe con mayor detalle a continuación: 
+
+
+1.  $B \leftarrow Q^T AP$  Bidiagonalización de A a B
+
+Bidiagonalización de $A$ a $B$. Sea A una matriz que se descompone $A = QBP^T$ donde $B$ es una matriz bidiagonal y $Q$ , $P$ son matrices unitarias. Se debe de transferir la matriz $A$ de CPU a GPU y las operaciones se realizan en los datos que están en GPU usando CUBLAS para calcular de manera eficiente operaciones dividiendo en sub-bloques de tamaño L a la matriz original de m x n. Una vez que se termina la bidiagonalización de $A$ se transfieren los elementos de la diagonal y de la superdiagonal al CPU, mientras que las matrices $Q$ y $P^T$ se mantienen en el GPU.
+ 
+2.  $\Sigma \leftarrow X^T BY$ Bidiagonalización de B a Ʃ
+
+Diagonalizacióń de $B$ a $\Sigma$. La matriz $B$ se puede descomponer como $\Sigma = X^T BY$, y se puede reducir a una matriz diagonal aplicando el algoritmo QR. Al converger a la descomposición anterior, la matriz diagonal ($\Sigma$) contiene los valores singulares de $B$ y $X$ y $Y^T$ tienen los vectores singulares de $B$. Con los elementos de la diagonal y la superdiagonal se calculan los vectores de coeficientes en el CPU. El cálculo de las filas de $Y^T$ y de las columnas de $X$ requiere, respectivamente, información de la fila y de la columna anterior, por lo que no se puede paralelizar. Sin embargo, los autores utilizan GPU para procesar los elementos de cada fila en paralelo. Los autores proponen usar  “threads” en el GPU para computar de forma paralela cada renglón, la cantidad de threads lanzados dependerá del tamaño de la matriz pero oscila entre 64 a 25
+
+3. $U \leftarrow QX$ y $V^T \leftarrow (PY)^T$ Calcular la matrices ortogonales
+
+Posteriormente se deben calcular las matrices ortogonales $U$ y $V^T$ y la SVD de $A = U \Sigma V^T$ . Los autores lo implementaron mediante las rutinas estándar de CUBLAS en la GPU. Estas últimas matrices son copiadas directamente al CPU y los elementos de la diagonal contienen los eigenvalores de la matriz
+
+* Evaluación
+Para la evaluación del desempeño los autores generaron 10 matrices densas de manera aleatoria para cada uno de los tamaños definidos, se corrió el algoritmo 10 veces para cada una de las matrices y se obtuvo el promedio para cada uno de los tamaños de las matrices. Los autores comentan que esta implementación es más rápida que la de SVD de Intel MKL y mucho más rápida que la de MATLAB.
