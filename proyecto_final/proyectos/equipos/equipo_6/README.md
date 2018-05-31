@@ -1,18 +1,32 @@
-Integrantes:
+# Integrantes:
 
 - Mario Vazquez Corte
 - Saúl Caballero Ramírez
 
-Titulo del proyecto: `Generating a Random Collection of Discrete Joint
+**Titulo del proyecto**: `Generating a Random Collection of Discrete Joint
 Probability Distributions Subject to Partial Information`
 
-Objetivo del proyecto: `Paralelizar en GPU un algoritmo de Hit & Run definido por restricciones lineales aplicada a distribuciones de probabilidad discretas`
+**Objetivo del proyecto**: `Paralelizar en GPU un algoritmo de Hit & Run definido por restricciones lineales aplicada a distribuciones de probabilidad discretas`
 
-En la carpeta [avance_10_04_2018](avance_10_04_2018) está el primer avance.
 
-En la carpeta [avance_17_04_2018](avance_17_04_2018) está el segundo avance.
+# Trabajo escrito
 
-Presentación: https://www.dropbox.com/s/u1mpmyy0oqgba4k/presentacion.pdf?dl=0
+[PDF](link)
+
+# Presentación
+
+[Hit & Run Algorithm in GPGPUs for probability distributions ](https://www.dropbox.com/s/u1mpmyy0oqgba4k/presentacion.pdf?dl=0)
+
+# Implementación
+
+[Código](https://github.com/Jokerthief/hit_run)
+
 Referencias
 ---
-[Generating a Random Collection of Discrete Joint Probability Distributions Subject to Partial Information](https://link.springer.com/article/10.1007/s11009-012-9292-9)
+* [Montiel and Bickel. Generating a Random Collection of Discrete Joint Probability Distributions Subject to Partial Information](https://link.springer.com/article/10.1007/s11009-012-9292-9)
+
+* [MAGMA](https://developer.nvidia.com/magma)
+
+* [CUBLAS](https://docs.nvidia.com/cuda/cublas/index.html)
+
+* [lp_solve 5.5](http://lpsolve.sourceforge.net/5.5/)
