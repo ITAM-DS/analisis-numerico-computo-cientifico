@@ -99,4 +99,8 @@ Las limitaciones con respecto a los métodos de primer orden para la paralelizar
 
 En resumen los nuevos descubrimientos y aplicaciones se deben en gran medida a los elementos disponibles actualmente, ya sea grandes cantidades de datos así como tecnología y capacidad de cómputo. Los nuevos paradigmas de la programación presentan una oportunidad de actualizar los métodos de optimización convexa  y poder utilizarlos de mejor manera.
 
+Referencia:
+Volkan Cevher, Stephen Becker†, and Mark Schmidt. (September 2014). Convex Optimization for Big Data.
 
+Liga al trabajo con imágenes:
+https://drive.google.com/file/d/1L4NhTowAhdm9CsP7rl9awLLR8CxlCrdD/view?usp=sharing
