@@ -14,7 +14,7 @@ Liga a trabajo escrito: [Dropbox](https://www.dropbox.com/s/0966eupkrlqmzg2/escr
 
 Presentación: [Dropbox](https://www.dropbox.com/s/dddb12yakr9av18/Cournot.pdf?dl=0)
 
-Implementación en C: [Github](avance_30_05_18/C_files/cournot_nash_equilibrium.c)
+**Implementación en C:** [Github](avance_30_05_18/C_files/cournot_nash_equilibrium.c)
 
 Ya una vez compilado el archivo de C, por ejemplo con el nombre `cournot.out`, lo único que resta por hacer es correrlo en la terminal especificando, en el orden descrito, los siguientes argumentos:
 
@@ -25,11 +25,27 @@ Ya una vez compilado el archivo de C, por ejemplo con el nombre `cournot.out`, l
 5. Gamma: costo marginal de las empresas. La implementación en C solo permite que todas las empresas tengan el mismo costo marginal. Es de tipo `double`.
 
 Ejemplo de una simulación con 500 empresas. Correr en terminal:
+
 `./cournot.out 500 0.0005 50 2 2`
 
-Ejemplo de corrida de C: [Dropbox](https://www.dropbox.com/s/3s3l7x9tsyy2v9f/ejemplo_100_empresas.txt?dl=0)
+Ejemplo en C: [Dropbox](https://www.dropbox.com/s/3s3l7x9tsyy2v9f/ejemplo_100_empresas.txt?dl=0)
 
+**Implementación en Julia:** [Github](avance_30_05_18/Julia_files/cournot_nash_equilibrium.jl)
 
+Para correr el código, simplemente hay que correr en el REPL de Julia:
+
+1. `ìnclude("cournot_nash_equilibrium.jl")`
+2. La función `run_cournot` toma como argumentos: 
+ + `n`: el número de empresas.
+ + `lr`: la tasa de aprendizaje.
+ + `alpha`: ordenada al origen de la función inversa de la demanda.
+ + `beta`: pendiente de la función inversa de la demanda.
+ + `gamma`: es el costo marginal de las empresas. La implementación en Julia toma como input un `array` de longitud `n`. Esto permite que las empresas puedan tener diferentes costos marginales.
+
+Despúes de lo anterior, correr en el REPL de Julia:
+`run_cournot(500, 0.0005, 50, 2, [2 for i in 1:500])`
+
+Ejemplo en Julia: [Github](avance_30_05_18/Julia_files/ejemplo_1000_empresas.txt)
 
 Avances:
 
