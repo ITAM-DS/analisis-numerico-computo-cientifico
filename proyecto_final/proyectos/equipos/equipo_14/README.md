@@ -29,9 +29,20 @@ En estas semanas arreglamos los bugs que teníamos en las entregas anteriores, r
 
 Referencias del proyecto:
 
-* http://www.hpcc.unn.ru/mskurs/ENG/PPT/pp08.pdf
-* http://www.dsi.unive.it/~calpar/6_Progetto-06-07.pdf
-* http://www.cs.nthu.edu.tw/~cherung/teaching/2011anm/note02.pdf 
-* http://solomonik.cs.illinois.edu/talks/vecpar-2012.pdf
-* http://personal.cimat.mx:8181/~miguelvargas/Course%20notes/Computo%20en%20paralelo%20con%20OpenMP%201.pdf
-* https://prezi.com/amgiu_nlad9u/multiplicacion-de-matrices/
+* Gergel V.P. (2005). Introduction to Parallel Programming: Parallel Methods for Matrix Multiplication. University of Nizhni Novgorod.
+http://www.hpcc.unn.ru/mskurs/ENG/PPT/pp08.pdf
+
+* Orlando Salvatore (2006-2007). Progetto del corso di Calcolo Parallelo: Dense Matrix-Matrix Multiplication in Parallel. Università Ca'Foscari Venezia.
+http://www.dsi.unive.it/~calpar/6_Progetto-06-07.pdf
+
+* Hsu Po-Yi (2011). Advanced Numerical Methods, Lecture Notes 2: Parallel matrix multiplication. National Tsing Hua University.
+http://www.cs.nthu.edu.tw/~cherung/teaching/2011anm/note02.pdf
+
+* Solomonik Edgar, Demmel James (2012). Matrix multiplication on multidimensional torus networks. University of California, Berkeley.
+http://solomonik.cs.illinois.edu/talks/vecpar-2012.pdf
+
+* Vargas-Félix Miguel (2015). Cómputo en paralelo con OpenMP 1. CIMAT.
+http://personal.cimat.mx:8181/~miguelvargas/Course%20notes/Computo%20en%20paralelo%20con%20OpenMP%201.pdf
+
+* Nóblega Valeria (2013). Multiplicación de Matrices. Prezi.
+https://prezi.com/amgiu_nlad9u/multiplicacion-de-matrices/
