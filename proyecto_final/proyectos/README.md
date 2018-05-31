@@ -277,11 +277,11 @@ Objetivo del proyecto: Implementar el algoritmo QR para el lenguaje de programac
 
 Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
-[Trabajo escrito](https://drive.google.com/drive/folders/1EkRomjpJLi_mLgXNvKZA1uizJJKIVNlk) Que la liga lleve directo al trabajo escrito (no volver a dar click en un folder de google drive)
+[Trabajo escrito](https://www.dropbox.com/s/ctu5y11cf50xtg1/Factorizaci%C3%B3n%20QR_300518.pdf?dl=0)
 
-[Presentacion](https://drive.google.com/drive/folders/1KN2nghXPG8c8GwU9f5t46snOMRBbrf-F) Que la liga lleve directo al trabajo escrito (no volver a dar click en un folder de google drive)
+[Presentacion](https://www.dropbox.com/s/dj4x3mw7ycxt6w0/Factorizaci%C3%B3n_qr.pptx?dl=0)
 
-[Implementacion](equipos/equipo_09/codigo/MCQR.cu) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Implementacion e instrucciones](equipos/equipo_09/codigo/)
 
 ---
 
