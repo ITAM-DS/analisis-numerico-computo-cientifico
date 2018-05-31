@@ -6,7 +6,7 @@
 
 Ttulo del proyecto: `Implementación de método de optimización convexa con mínimos cuadrados, a través de descenso en gradiente estocástico`
 
-Objetivo del proyecto: objetivo
+Objetivo del proyecto: Implementación de los algorítmos ADAM y AMSGrad de descenso en gradiente utilizando las librerías de BLAS y cuBLAS (en el runtime de CUDA). Evaluar incremento en desempeño de ejecución en GPU.
 
 [Avances del proyecto](equipos/equipo_01):
 
@@ -20,8 +20,6 @@ Objetivo del proyecto: objetivo
 
 * [Avance 08-05-18](equipos/equipo_01/avance_08_05_18)
 
-
-Coloquen su referencia de nvidia en README.md de equipos/equipo_01 (Matrix computations on the GPU) y otras para implementación que ustedes consideren les ayudaron a su proyecto.
 
 [Trabajo escrito](https://www.sharelatex.com/read/kbgxbypyfjvk)
 
@@ -50,13 +48,10 @@ Objetivo del proyecto: El objetivo de este trabajo consiste en aprovechar las op
 
 * [Avance 22-05-2018](equipos/equipo_02/avance_22_05_2018)
 
-Remuevan la referencia "Dropbox en su README.md de equipos/equipo_02"
-
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
 [Trabajo escrito](https://docs.google.com/document/d/1rZKXnf_56cQ0r0dyJ_M_H3khKhs_tSdgW3_IPnS2EfI/edit)
 
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_02 como el del trabajo escrito)
+[Presentacion](https://www.dropbox.com/home/Cholesky-Theory?preview=presentacion.pdf)
 
 [Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_02 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
@@ -82,15 +77,15 @@ Objetivo del proyecto: Paralelizar factorización QR
 * [Avance 08-05-18](equipos/equipo_03/avance_08_05_2018)
 
 
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
-
 [Trabajo escrito](https://www.dropbox.com/s/d2gkj7jc06d7mzn/trabajo_escrito.pdf?dl=0)
 
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_03 como el del trabajo escrito)
+[Presentacion](https://www.dropbox.com/s/1jyucw5kvq9grp0/presentacion.pdf?dl=0)
 
-[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_03 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Implementación](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_03/avance_final/Implementaciones)
 
+[Instrucciones para implementación](equipos/equipo_03/avance_final/README.md)
 
+[ejemplo de salida de implementación](equipos/equipo_03/avance_final/Implementaciones/prueba_a.txt)
 
 ---
 
@@ -113,13 +108,13 @@ Objetivo del proyecto: El objetivo de nuestro proyecto es la construcción de un
 * [Avance 08-05-2018](equipos/equipo_04/avance_08_05_2018)
 
 
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
+[Trabajo escrito](https://www.dropbox.com/s/aenqkvbc6v2c7m4/Proyecto%20Final.pdf?dl=0)
 
-[Trabajo escrito](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_04)
+[Presentacion](https://www.dropbox.com/s/1y9p26oa5o7u6ox/CUDA-MNO.html?dl=0)
 
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_04 como el del trabajo escrito)
+[Implementacion](equipos/equipo_04/avance_final/codigos/)
 
-[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_04 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Instrucciones para implementación y ejemplo de salida](equipos/equipo_04/avance_final/codigos/ejecucion-programas.md)
 
 ---
 
@@ -142,16 +137,15 @@ Objetivo del proyecto: Encontrar la distribución óptima de las actividades req
 * [Avance 08-05-18](equipos/equipo_05/avance_08_05_2018)
 
 
+[Trabajo escrito](equipos/equipo_05/avance_30_05_2018/Soluciones_al_problema_BLP.docx)
 
-Coloquen referencias en el readme de equipos/equipo_05 de Klein & Scholl, Armin, algoritmo depth first.
+[Presentacion](https://docs.google.com/presentation/d/1QFajvdVtlx-0lgN-7gol41Sk_bMVp9cwIbEXb-fNUUM/edit?ts=5aa965fd#slide=id.p3)
 
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
+[Implementacion](equipos/equipo_05/avance_30_05_2018/descripcion_codigo.md)
 
-[Trabajo escrito](Falta liga en readme de carpeta equipos/equipo_05)
+[salida del método secuencial](equipos/equipo_05/avance_30_05_2018/salida_lascurain_secuencial.txt)
 
-[Presentacion](falta liga a presentación en readme de carpeta equipos/equipo_05)
-
-[Implementacion] Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[salida del método en paralelo](equipos/equipo_05/avance_30_05_2018/salida_paralelo.txt).
 
 ---
 
@@ -180,7 +174,7 @@ Actualicen las referencias para investigación/implementación que ustedes consi
 
 [Trabajo escrito](Falta liga en readme de carpeta equipos/equipo_6)
 
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_6 como el del trabajo escrito)
+[Presentacion](https://www.dropbox.com/s/u1mpmyy0oqgba4k/presentacion.pdf?dl=0)
 
 [Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_6 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
