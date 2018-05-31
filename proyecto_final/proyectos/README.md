@@ -372,7 +372,6 @@ Objetivo del proyecto: Programar un algoritmo para la generación de una cadena 
 
 [salida de implementación](https://drive.google.com/open?id=160P8Rv0qCESNVFGC8hHb2SAVGL0gzdrmGLv7gWLbAbY)
 
-[salida de implementación](https://drive.google.com/drive/folders/1cZaWAkG5KT4Ig5fFG5emJf-9B6UQNQTW)
 
 ---
 
