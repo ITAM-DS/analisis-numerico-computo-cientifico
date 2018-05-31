@@ -141,6 +141,10 @@ Objetivo del proyecto: Encontrar la distribución óptima de las actividades req
 
 [Implementacion](equipos/equipo_05/avance_30_05_2018/descripcion_codigo.md)
 
+[salida del método secuencial](equipos/equipo_05/avance_30_05_2018/salida_lascurain_secuencial.txt)
+
+[salida del método en paralelo](equipos/equipo_05/avance_30_05_2018/salida_paralelo.txt).
+
 ---
 
 ## [Equipo 6](equipos/equipo_6)
