@@ -87,3 +87,6 @@ Referencias:
 
 Sheetal Lahabar, P J Narayanan. (May 2009). Singular Value Decomposition on GPU using CUDA. Centre for Visual Information Technology International Institute of Information Technology: IEEE International Parallel Distributed Processing Symposium.
 
+
+Trabajo final con Imágenes:
+https://drive.google.com/file/d/1nQ1m2DpeH_f-NPFIoKXtwFXpStmn4_VT/view?usp=sharing
