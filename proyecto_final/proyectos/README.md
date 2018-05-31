@@ -53,8 +53,9 @@ Objetivo del proyecto: El objetivo de este trabajo consiste en aprovechar las op
 
 [Presentacion](https://www.dropbox.com/home/Cholesky-Theory?preview=presentacion.pdf)
 
-[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_02 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Implementacion](equipos/equipo_02/avance_final/source/)
 
+[Instrucciones para implementación](equipos/equipo_02/avance_final/Instructivo.md)
 
 ---
 
