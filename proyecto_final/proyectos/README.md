@@ -362,14 +362,17 @@ Objetivo del proyecto: Programar un algoritmo para la generación de una cadena 
 
 * [Avance 08-05-18](equipos/equipo_12/avance_08_05_18)
 
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
-[Trabajo escrito](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_12)
+[Trabajo escrito](https://drive.google.com/open?id=1xKd7PsOsSm2eYufby6vn57mdtFoC9oaC)
 
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_12 como el del trabajo escrito. Revisen que las ligas se visualizan correctamente)
+[Presentacion](https://drive.google.com/open?id=1a-ZdK2aM01iOor0tXdi2yfVZ-wyMwzkg)
 
 [Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_12 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
+
+[salida de implementación](https://drive.google.com/open?id=160P8Rv0qCESNVFGC8hHb2SAVGL0gzdrmGLv7gWLbAbY)
+
+[salida de implementación](https://drive.google.com/open?id=1cZaWAkG5KT4Ig5fFG5emJf-9B6UQNQTW)
 ---
 
 ## [Equipo 13](equipos/equipo_13)
