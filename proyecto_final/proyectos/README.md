@@ -209,11 +209,14 @@ Coloquen referencias en el readme de equipos/equipo_07
 
 Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
-[Trabajo escrito](Falta liga en readme de carpeta equipos/equipo_07)
+[Trabajo escrito](fuera del repo)
 
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_07 como el del trabajo escrito)
+[Presentacion](fuera del repo)
 
-[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_07 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Implementacion](equipos/equipo_07/svd_blas_lapack/)
+
+[ejemplo de salida de implementación](equipos/equipo_07/svd_blas_lapack/resultados.txt
+)
 
 ---
 
