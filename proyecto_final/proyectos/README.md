@@ -6,7 +6,7 @@
 
 Ttulo del proyecto: `Implementación de método de optimización convexa con mínimos cuadrados, a través de descenso en gradiente estocástico`
 
-Objetivo del proyecto: objetivo
+Objetivo del proyecto: Implementación de los algorítmos ADAM y AMSGrad de descenso en gradiente utilizando las librerías de BLAS y cuBLAS (en el runtime de CUDA). Evaluar incremento en desempeño de ejecución en GPU.
 
 [Avances del proyecto](equipos/equipo_01):
 
