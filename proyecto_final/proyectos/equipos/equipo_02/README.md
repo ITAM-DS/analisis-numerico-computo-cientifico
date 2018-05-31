@@ -25,7 +25,7 @@ El objetivo de este trabajo consiste en aprovechar las oportunidades creadas o g
  - [Presentación:](https://www.dropbox.com/s/y3mftahbwfkz9i3/presentacion.pdf?dl=0)
 
  El instructivo para implementar el script del algoritmo:
- [aquí:]()
+ [aquí:](https://github.com/alexnivi/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_02/avance_final/Instructivo.md)
 
 ### Referencias:
 
