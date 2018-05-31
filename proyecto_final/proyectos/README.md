@@ -81,7 +81,9 @@ Objetivo del proyecto: Paralelizar factorización QR
 
 [Presentacion](https://www.dropbox.com/s/1jyucw5kvq9grp0/presentacion.pdf?dl=0)
 
-[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_03 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Implementación](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_03/avance_final/Implementaciones)
+
+[Instrucciones para implementación](equipos/equipo_03/avance_final/README.md)
 
 
 
