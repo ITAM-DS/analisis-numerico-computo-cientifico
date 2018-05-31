@@ -28,6 +28,10 @@ Implementación de un algoritmo para el cálculo del área bajo la curva (AUC) d
 
 - Implementaciones: [https://www.dropbox.com/sh/m6hcqpnjhg0muzf/AAAVsrTuubV3wFnsQtO8swzWa?dl=0](https://www.dropbox.com/sh/m6hcqpnjhg0muzf/AAAVsrTuubV3wFnsQtO8swzWa?dl=0)
 
+Asimismo, incluimos las instrucciones para compilar y ejecutar el código en [secuencial](avance_30_05_2018/implementaciones/secuencial/README.md) y para ejecutar y compilar el código en [paralelo](avance_30_05_2018/implementaciones/paralelo/README.md).
+
+
+
 - Presentación:
 [https://www.dropbox.com/s/ej7pic3rn60h6q7/MNO_equipo13.pdf?dl=0](https://www.dropbox.com/s/ej7pic3rn60h6q7/MNO_equipo13.pdf?dl=0)
 
