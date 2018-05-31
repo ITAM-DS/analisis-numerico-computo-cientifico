@@ -1,0 +1,891 @@
+---
+title: "Tarea_6"
+author: "Miguel de Lascurain"
+date: "March 14, 2018"
+output: html_document
+---
+
+
+```{r setup, eval=FALSE}
+##Pregunta 1
+La definición de la subrutina en código fortran se presenta enseguida, 
+así como el significado de sus parámetros.
+
+   SUBROUTINE DGEMV ( TRANS, M, N, ALPHA, A, LDA, X, INCX,
+     $                   BETA, Y, INCY )
+     .. Scalar Arguments ..
+      DOUBLE PRECISION   ALPHA, BETA
+      INTEGER            INCX, INCY, LDA, M, N
+      CHARACTER*1        TRANS
+     .. Array Arguments ..
+      DOUBLE PRECISION   A( LDA, * ), X( * ), Y( * )
+     ..
+
+  Purpose
+  =======
+
+  DGEMV  performs one of the matrix-vector operations
+
+     y := alpha*A*x + beta*y,   or   y := alpha*A'*x + beta*y,
+
+  where alpha and beta are scalars, x and y are vectors and A is an
+  m by n matrix.
+
+  Parameters
+  ==========
+
+  TRANS  - CHARACTER*1.
+           On entry, TRANS specifies the operation to be performed as
+           follows:
+
+              TRANS = 'N' or 'n'   y := alpha*A*x + beta*y.
+
+              TRANS = 'T' or 't'   y := alpha*A'*x + beta*y.
+
+              TRANS = 'C' or 'c'   y := alpha*A'*x + beta*y.
+
+           Unchanged on exit.
+
+  M      - INTEGER.
+           On entry, M specifies the number of rows of the matrix A.
+           M must be at least zero.
+           Unchanged on exit.
+
+  N      - INTEGER.
+           On entry, N specifies the number of columns of the matrix A.
+           N must be at least zero.
+           Unchanged on exit.
+
+  ALPHA  - DOUBLE PRECISION.
+           On entry, ALPHA specifies the scalar alpha.
+           Unchanged on exit.
+
+  A      - DOUBLE PRECISION array of DIMENSION ( LDA, n ).
+           Before entry, the leading m by n part of the array A must
+           contain the matrix of coefficients.
+           Unchanged on exit.
+
+  LDA    - INTEGER.
+           On entry, LDA specifies the first dimension of A as declared
+           in the calling (sub) program. LDA must be at least
+           max( 1, m ).
+           Unchanged on exit.
+
+  X      - DOUBLE PRECISION array of DIMENSION at least
+           ( 1 + ( n - 1 )*abs( INCX ) ) when TRANS = 'N' or 'n'
+           and at least
+           ( 1 + ( m - 1 )*abs( INCX ) ) otherwise.
+           Before entry, the incremented array X must contain the
+           vector x.
+           Unchanged on exit.
+
+  INCX   - INTEGER.
+           On entry, INCX specifies the increment for the elements of
+           X. INCX must not be zero.
+           Unchanged on exit.
+
+  BETA   - DOUBLE PRECISION.
+           On entry, BETA specifies the scalar beta. When BETA is
+           supplied as zero then Y need not be set on input.
+           Unchanged on exit.
+
+  Y      - DOUBLE PRECISION array of DIMENSION at least
+           ( 1 + ( m - 1 )*abs( INCY ) ) when TRANS = 'N' or 'n'
+           and at least
+           ( 1 + ( n - 1 )*abs( INCY ) ) otherwise.
+           Before entry with BETA non-zero, the incremented array Y
+           must contain the vector y. On exit, Y is overwritten by the
+           updated vector y.
+
+  INCY   - INTEGER.
+           On entry, INCY specifies the increment for the elements of
+           Y. INCY must not be zero.
+           Unchanged on exit.
+
+
+```
+
+##Pregunta 2 
+```
+Programa de la clase 
+
+#include<stdio.h>
+#include<stdlib.h>
+#include"definiciones.h"
+#define A_matriz "A.txt" //de tamaño MxN
+#define v_vector "v.txt" //de tamaño Nx1
+extern void dgemv_(char *transpose_a, int *m, int *n, double *alpha, double *a, int *lda, double *x, int *incx, double *beta, double *y, int *incy);
+int main(int argc, char *argv[]){
+	arreglo_2d_T A;
+	arreglo_1d_T v, v_resultado;
+	int M=atoi(argv[1]);
+	int N=atoi(argv[2]);
+	int incx=1;
+	double ALPHA, BETA;
+    ALPHA = 1.0;
+   	BETA = 0.0;
+	A=malloc(sizeof(*A));
+	v=malloc(sizeof(*v));
+	v_resultado=malloc(sizeof(*v_resultado));
+
+	renglones(A)=M;
+	columnas(A)=N;
+	renglones_vector(v)=N;
+	renglones_vector(v_resultado) = M;
+	entradas(A)=malloc(renglones(A)*columnas(A)*sizeof(double));
+	inicializa_matriz(A,A_matriz);
+
+	entradas_vector(v)=malloc(N*sizeof(double));
+	inicializa_vector(v,v_vector);
+
+	entradas_vector(v_resultado)=calloc(M,sizeof(double));
+	printf("matriz 1:\n");
+	imprime_matriz(A);
+	printf("------------\n");
+	printf("vector :\n");
+	imprime_vector(v);
+	printf("------------\n");
+	printf("vector resultado:\n");
+
+	dgemv_("No transpose", &M, &N, &ALPHA, entradas(A), &M, entradas_vector(v), &incx, &BETA, entradas_vector(v_resultado),&incx);
+	imprime_vector(v_resultado);
+	free(entradas(A));
+	free(A);
+	free(entradas_vector(v));
+	free(v);
+	free(entradas_vector(v_resultado));
+	free(v_resultado);
+	return 0;
+}
+
+#Prueba con los datos de la clase:
+
+matriz 1:
+matriz[0][0]=0.00000	matriz[0][1]=1.50000
+matriz[1][0]=4.00000	matriz[1][1]=-5.00000
+matriz[2][0]=-1.00000	matriz[2][1]=2.50000
+------------
+vector :
+vector[0]=1.00000
+vector[1]=0.00000
+------------
+vector resultado:
+vector[0]=0.00000
+vector[1]=4.00000
+vector[2]=-1.00000
+
+#Segunda prueba con datos cambiados:
+
+matriz 1:
+matriz[0][0]=0.50000	matriz[0][1]=2.00000
+matriz[1][0]=4.40000	matriz[1][1]=-5.20000
+matriz[2][0]=1.30000	matriz[2][1]=2.40000
+------------
+vector :
+vector[0]=1.00000
+vector[1]=-1.00000
+------------
+vector resultado:
+vector[0]=-1.50000
+vector[1]=9.60000
+vector[2]=-1.10000
+
+#Tercera prueba:
+
+matriz 1:
+matriz[0][0]=10.00000	matriz[0][1]=15.00000
+matriz[1][0]=44.40000	matriz[1][1]=-50.20000
+matriz[2][0]=10.30000	matriz[2][1]=-2.40000
+------------
+vector :
+vector[0]=1.00000
+vector[1]=-1.00000
+------------
+vector resultado:
+vector[0]=-5.00000
+vector[1]=94.60000
+vector[2]=12.70000
+ 
+```
+##Pregunta 3
+```
+Descripción de la Subrutina DGER:
+
+NAME
+      DGER - perform the rank 1 operation   A := alpha*x*y' + A,
+
+ SYNOPSIS
+      SUBROUTINE DGER ( M, N, ALPHA, X, INCX, Y, INCY, A, LDA )
+
+          DOUBLE      PRECISION ALPHA
+
+          INTEGER     INCX, INCY, LDA, M, N
+
+          DOUBLE      PRECISION A( LDA, * ), X( * ), Y( * )
+
+ PURPOSE
+      DGER   performs the rank 1 operation
+
+      where alpha is a scalar, x is an m element vector, y is an n
+      element vector and A is an m by n matrix.
+
+ PARAMETERS
+      M      - INTEGER.
+             On entry, M specifies the number of rows of the
+             matrix A.  M must be at least zero.  Unchanged on
+             exit.
+
+      N      - INTEGER.
+             On entry, N specifies the number of columns of the
+             matrix A.  N must be at least zero.  Unchanged on
+             exit.
+
+      ALPHA  - DOUBLE PRECISION.
+             On entry, ALPHA specifies the scalar alpha.
+             Unchanged on exit.
+
+      X      - DOUBLE PRECISION array of dimension at least
+             ( 1 + ( m - 1 )*abs( INCX ) ).  Before entry, the
+             incremented array X must contain the m element vector
+             x.  Unchanged on exit.
+
+      INCX   - INTEGER.
+             On entry, INCX specifies the increment for the ele-
+             ments of X. INCX must not be zero.  Unchanged on
+             exit.
+
+      Y      - DOUBLE PRECISION array of dimension at least
+             ( 1 + ( n - 1 )*abs( INCY ) ).  Before entry, the
+             incremented array Y must contain the n element vector
+             y.  Unchanged on exit.
+
+      INCY   - INTEGER.
+             On entry, INCY specifies the increment for the ele-
+             ments of Y. INCY must not be zero.  Unchanged on
+
+             exit.
+
+      A      - DOUBLE PRECISION array of DIMENSION ( LDA, n ).
+             Before entry, the leading m by n part of the array A
+             must contain the matrix of coefficients. On exit, A
+             is overwritten by the updated matrix.
+
+      LDA    - INTEGER.
+             On entry, LDA specifies the first dimension of A as
+             declared in the calling (sub) program. LDA must be at
+              least max( 1, m ).  Unchanged on exit.``
+
+```
+##Programa pregunta 3.
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include"definiciones.h"
+#define A_matriz "A.txt" //de tamaño MxN
+#define v_vector "v.txt" //de tamaño Mx1
+#define w_vector "w.txt" //de tamaño Nx1
+extern void dger_( int *m, int *n, double *alpha, double *x, int *incx, double *y, int *incy, double *transpose_a, int *lda) ;
+int main(int argc, char *argv[]){
+	arreglo_2d_T A;
+	arreglo_1d_T v, w;
+	int M=atoi(argv[1]);
+	int N=atoi(argv[2]);
+	int incx=1;
+	int incy=1;
+	int lda=M;
+	double ALPHA;
+    ALPHA = 2.0;
+   	A=malloc(sizeof(*A));
+	v=malloc(sizeof(*v));
+	w=malloc(sizeof(*w));
+	renglones(A)=M;
+	columnas(A)=N;
+	renglones_vector(v)=M;
+	renglones_vector(w)=N;
+	entradas(A)=malloc(renglones(A)*columnas(A)*sizeof(double));
+	inicializa_matriz(A,A_matriz);
+
+	entradas_vector(v)=malloc(M*sizeof(double));
+	inicializa_vector(v,v_vector);
+
+	entradas_vector(w)=malloc(N*sizeof(double));
+	inicializa_vector(w,w_vector);
+
+	printf("matriz 1:\n");
+	imprime_matriz(A);
+	printf("------------\n");
+	printf("vector_1 :\n");
+	imprime_vector(v);
+	printf("vector_2 :\n");
+	imprime_vector(w);
+	
+	dger_(&M, &N, &ALPHA, entradas_vector(v), &incx, entradas_vector(w), &incy, entradas(A), &lda);
+
+	printf("nueva matriz 1:\n");
+	imprime_matriz(A);
+	free(entradas(A));
+	free(A);
+	free(entradas_vector(v));
+	free(entradas_vector(w));
+	free(v);
+	free(w);
+	return 0;
+}
+
+CORRIDAS:
+
+matriz 1:
+matriz[0][0]=10.00000	matriz[0][1]=15.00000
+matriz[1][0]=20.00000	matriz[1][1]=25.00000
+matriz[2][0]=30.00000	matriz[2][1]=35.00000
+------------
+vector_1 :
+vector[0]=1.00000
+vector[1]=0.00000
+vector[2]=0.00000
+vector_2 :
+vector[0]=1.00000
+vector[1]=0.00000
+nueva matriz 1:
+matriz[0][0]=12.00000	matriz[0][1]=15.00000
+matriz[1][0]=20.00000	matriz[1][1]=25.00000
+matriz[2][0]=30.00000	matriz[2][1]=35.00000
+
+
+matriz 1:
+matriz[0][0]=10.00000	matriz[0][1]=15.00000
+matriz[1][0]=20.00000	matriz[1][1]=25.00000
+matriz[2][0]=30.00000	matriz[2][1]=35.00000
+------------
+vector_1 :
+vector[0]=1.00000
+vector[1]=1.00000
+vector[2]=0.00000
+vector_2 :
+vector[0]=1.00000
+vector[1]=0.00000
+nueva matriz 1:
+matriz[0][0]=12.00000	matriz[0][1]=15.00000
+matriz[1][0]=22.00000	matriz[1][1]=25.00000
+matriz[2][0]=30.00000	matriz[2][1]=35.00000
+```
+##Pregunta 4
+```
+Creo que el truco consiste en que se están vectorizando las matrices, de tal modo que coincidan las representaciones vectoriales en los dos lenguajes.
+```
+
+##Pregunta 5
+
+```
+Descripción de la subrutina dgemm.
+
+ NAME
+      DGEMM - perform one of the matrix-matrix operations   C :=
+      alpha*op( A )*op( B ) + beta*C,
+
+ SYNOPSIS
+      SUBROUTINE DGEMM ( TRANSA, TRANSB, M, N, K, ALPHA, A, LDA,
+                       B, LDB, BETA, C, LDC )
+
+          CHARACTER*1  TRANSA, TRANSB
+
+          INTEGER      M, N, K, LDA, LDB, LDC
+
+          DOUBLE       PRECISION ALPHA, BETA
+
+          DOUBLE       PRECISION A( LDA, * ), B( LDB, * ), C( LDC,
+                       * )
+
+ PURPOSE
+      DGEMM  performs one of the matrix-matrix operations
+
+      where  op( X ) is one of
+
+         op( X ) = X   or   op( X ) = X',
+
+      alpha and beta are scalars, and A, B and C are matrices,
+      with op( A ) an m by k matrix,  op( B )  a  k by n matrix
+      and  C an m by n matrix.
+
+ PARAMETERS
+      TRANSA - CHARACTER*1.  On entry, TRANSA specifies the form
+      of op( A ) to be used in the matrix multiplication as fol-
+      lows:
+
+      TRANSA = 'N' or 'n',  op( A ) = A.
+
+      TRANSA = 'T' or 't',  op( A ) = A'.
+
+      TRANSA = 'C' or 'c',  op( A ) = A'.
+
+      Unchanged on exit.
+
+      TRANSB - CHARACTER*1.  On entry, TRANSB specifies the form
+      of op( B ) to be used in the matrix multiplication as fol-
+      lows:
+
+      TRANSB = 'N' or 'n',  op( B ) = B.
+
+      TRANSB = 'T' or 't',  op( B ) = B'.
+
+      TRANSB = 'C' or 'c',  op( B ) = B'.
+
+      Unchanged on exit.
+
+      M      - INTEGER.
+             On entry,  M  specifies  the number  of rows  of the
+             matrix op( A )  and of the  matrix  C.  M  must  be
+             at least  zero.  Unchanged on exit.
+
+      N      - INTEGER.
+             On entry,  N  specifies the number  of columns of the
+             matrix op( B ) and the number of columns of the
+             matrix C. N must be at least zero.  Unchanged on
+             exit.
+
+      K      - INTEGER.
+             On entry,  K  specifies  the number of columns of the
+             matrix op( A ) and the number of rows of the matrix
+             op( B ). K must be at least  zero.  Unchanged on
+             exit.
+
+      ALPHA  - DOUBLE PRECISION.
+             On entry, ALPHA specifies the scalar alpha.
+             Unchanged on exit.
+
+ ka is
+      A      -
+              DOUBLE PRECISION array of DIMENSION ( LDA, ka ), where
+             k  when  TRANSA = 'N' or 'n',  and is  m  otherwise.
+             Before entry with  TRANSA = 'N' or 'n',  the leading
+             m by k part of the array  A  must contain the matrix
+             A,  otherwise the leading  k by m  part of the array
+             A  must contain  the matrix A.  Unchanged on exit.
+
+      LDA    - INTEGER.
+             On entry, LDA specifies the first dimension of A as
+             declared in the calling (sub) program. When  TRANSA =
+             'N' or 'n' then LDA must be at least  max( 1, m ),
+             otherwise  LDA must be at least  max( 1, k ).
+             Unchanged on exit.
+
+ kb is
+      B      -
+              DOUBLE PRECISION array of DIMENSION ( LDB, kb ), where
+             n  when  TRANSB = 'N' or 'n',  and is  k  otherwise.
+             Before entry with  TRANSB = 'N' or 'n',  the leading
+             k by n part of the array  B  must contain the matrix
+             B,  otherwise the leading  n by k  part of the array
+             B  must contain  the matrix B.  Unchanged on exit.
+
+      LDB    - INTEGER.
+             On entry, LDB specifies the first dimension of B as
+             declared in the calling (sub) program. When  TRANSB =
+             'N' or 'n' then LDB must be at least  max( 1, k ),
+
+             otherwise  LDB must be at least  max( 1, n ).
+             Unchanged on exit.
+
+      BETA   - DOUBLE PRECISION.
+             On entry,  BETA  specifies the scalar  beta.  When
+             BETA  is supplied as zero then C need not be set on
+             input.  Unchanged on exit.
+
+      C      - DOUBLE PRECISION array of DIMENSION ( LDC, n ).
+             Before entry, the leading  m by n  part of the array
+             C must contain the matrix  C,  except when  beta  is
+             zero, in which case C need not be set on entry.  On
+             exit, the array  C  is overwritten by the  m by n
+             matrix ( alpha*op( A )*op( B ) + beta*C ).
+
+      LDC    - INTEGER.
+             On entry, LDC specifies the first dimension of C as
+             declared in  the  calling  (sub)  program.   LDC
+             must  be  at  least max( 1, m ).  Unchanged on exit.
+------------
+
+
+```
+##Pregunta 6
+
+```
+## Código de clase
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include"definiciones.h"
+#define A_matriz "A.txt" //de tamaño MxK
+#define B_matriz "B.txt" //de tamaño KxN
+extern void dgemm_(char *transposeA, char *transposeB,int *m,int *n,int *k,double *alpha,double *A,int *lda,double *B,int *ldb,double *beta,double *C,int *ldc);
+int main(int argc, char *argv[]){
+	arreglo_2d_T A, B, C;
+	int M=atoi(argv[1]);
+	int K=atoi(argv[2]);
+	int N=atoi(argv[4]);
+	double ALPHA, BETA;
+    ALPHA = 1.0;
+    BETA = 0.0;
+	A=malloc(sizeof(*A));
+	B=malloc(sizeof(*B));
+	C=malloc(sizeof(*C));
+	renglones(A)=M;
+	columnas(A)=K;
+	renglones(B)=K;
+	columnas(B)=N;
+	renglones(C) = M;
+	columnas(C) = N;
+	entradas(A)=malloc(renglones(A)*columnas(A)*sizeof(double));
+	inicializa_matriz(A,A_matriz);
+	entradas(B)=malloc(renglones(B)*columnas(B)*sizeof(double));
+	inicializa_matriz(B,B_matriz);
+	printf("matriz 1:\n");
+	imprime_matriz(A);
+	printf("------------\n");
+	printf("matriz 2:\n");
+	imprime_matriz(B);
+	printf("------------\n");
+	printf("matriz resultado:\n");
+	entradas(C)=calloc(renglones(C)*columnas(C),sizeof(double));
+	dgemm_("No transpose", "No transpose", &M, &N, &K, &ALPHA, entradas(A), &M, entradas(B), &K, &BETA, entradas(C), &M);
+	imprime_matriz(C);
+	free(entradas(A));
+	free(A);
+	free(entradas(B));
+	free(B);
+	free(entradas(C));
+	free(C);
+	return 0;
+}
+
+OUTPUT USANDO LOS MISMOS DATOS:
+
+matriz 1:
+matriz[0][0]=0.00000	matriz[0][1]=1.50000
+matriz[1][0]=4.00000	matriz[1][1]=-5.00000
+matriz[2][0]=-1.00000	matriz[2][1]=2.50000
+------------
+matriz 2:
+matriz[0][0]=1.00000	matriz[0][1]=0.00000	matriz[0][2]=0.00000
+matriz[1][0]=0.00000	matriz[1][1]=-1.00000	matriz[1][2]=1.00000
+------------
+matriz resultado:
+matriz[0][0]=0.00000	matriz[0][1]=-1.50000	matriz[0][2]=1.50000
+matriz[1][0]=4.00000	matriz[1][1]=5.00000	matriz[1][2]=-5.00000
+matriz[2][0]=-1.00000	matriz[2][1]=-2.50000	matriz[2][2]=2.50000
+
+OUTPUT CON OTROS DATOS:
+
+matriz 1:
+matriz[0][0]=1.00000	matriz[0][1]=2.50000
+matriz[1][0]=5.00000	matriz[1][1]=-6.00000
+matriz[2][0]=-2.00000	matriz[2][1]=3.50000
+------------
+matriz 2:
+matriz[0][0]=2.00000	matriz[0][1]=1.00000	matriz[0][2]=1.00000
+matriz[1][0]=1.00000	matriz[1][1]=-2.00000	matriz[1][2]=2.00000
+------------
+matriz resultado:
+matriz[0][0]=4.50000	matriz[0][1]=-4.00000	matriz[0][2]=6.00000
+matriz[1][0]=4.00000	matriz[1][1]=17.00000	matriz[1][2]=-7.00000
+matriz[2][0]=-0.50000	matriz[2][1]=-9.00000	matriz[2][2]=5.00000
+
+```
+##Pregunta 7
+
+```
+Código con truco
+
+#include<stdio.h>
+#include<stdlib.h>
+#include"definicione2.h"
+#define A_matriz "A.txt" //de tamaño MxK
+#define B_matriz "B.txt" //de tamaño KxN
+extern void dgemm_(char *transposeA, char *transposeB,int *m,int *n,int *k,double *alpha,double *A,int *lda,double *B,int *ldb,double *beta,double *C,int *ldc);
+int main(int argc, char *argv[]){
+	arreglo_2d_T A, B, C;
+	int M=atoi(argv[1]);
+	int K=atoi(argv[2]);
+	int N=atoi(argv[4]);
+	double ALPHA, BETA;
+    ALPHA = 1.0;
+    BETA = 0.0;
+	A=malloc(sizeof(*A));
+	B=malloc(sizeof(*B));
+	C=malloc(sizeof(*C));
+	renglones(A)=M;
+	columnas(A)=K;
+	renglones(B)=K;
+	columnas(B)=N;
+	renglones(C) = M;
+	columnas(C) = N;
+	entradas(A)=malloc(renglones(A)*columnas(A)*sizeof(double));
+	inicializa_matriz(A,A_matriz);
+	entradas(B)=malloc(renglones(B)*columnas(B)*sizeof(double));
+	inicializa_matriz(B,B_matriz);
+	printf("matriz 1:\n");
+	imprime_matriz(A);
+	printf("------------\n");
+	printf("matriz 2:\n");
+	imprime_matriz(B);
+	printf("matriz 3:\n");
+	entradas(C)=calloc(renglones(C)*columnas(C),sizeof(double));
+	dgemm_("No transpose", "No transpose", &N, &M, &K, &ALPHA, entradas(B), &N, entradas(A), &K, &BETA, entradas(C), &N);
+	imprime_matriz(C);
+	free(entradas(A));
+	free(A);
+	free(entradas(B));
+	free(B);
+	free(entradas(C));
+	free(C);
+	return 0;
+}
+
+OUTPUT CON LOS DATOS DE CLASE:
+
+matriz 1:
+matriz[0][0]=0.00000	matriz[0][1]=1.50000
+matriz[1][0]=4.00000	matriz[1][1]=-5.00000
+matriz[2][0]=-1.00000	matriz[2][1]=2.50000
+------------
+matriz 2:
+matriz[0][0]=1.00000	matriz[0][1]=0.00000	matriz[0][2]=0.00000
+matriz[1][0]=0.00000	matriz[1][1]=-1.00000	matriz[1][2]=1.00000
+------------
+matriz resultado:
+matriz[0][0]=0.00000	matriz[0][1]=-1.50000	matriz[0][2]=1.50000
+matriz[1][0]=4.00000	matriz[1][1]=5.00000	matriz[1][2]=-5.00000
+matriz[2][0]=-1.00000	matriz[2][1]=-2.50000	matriz[2][2]=2.50000
+
+
+
+OUTPUT CON LOS DATOS CAMBIADOS
+
+matriz 1:
+matriz[0][0]=1.00000	matriz[0][1]=2.50000
+matriz[1][0]=5.00000	matriz[1][1]=-6.00000
+matriz[2][0]=-2.00000	matriz[2][1]=3.50000
+------------
+matriz 2:
+matriz[0][0]=2.00000	matriz[0][1]=1.00000	matriz[0][2]=1.00000
+matriz[1][0]=1.00000	matriz[1][1]=-2.00000	matriz[1][2]=2.00000
+------------
+matriz resultado:
+matriz[0][0]=4.50000	matriz[0][1]=-4.00000	matriz[0][2]=6.00000
+matriz[1][0]=4.00000	matriz[1][1]=17.00000	matriz[1][2]=-7.00000
+matriz[2][0]=-0.50000	matriz[2][1]=-9.00000	matriz[2][2]=5.00000
+
+Son los mismos resultados. En un caso se está linearizando por column major y, en el otro, por row major. A la hora de llamar a la rutina de Fortran se invierten las columnas por las filas.
+```
+##Pregunta 8
+
+Rutina dsymm de Fortran:
+
+dsymm
+
+ NAME
+      DSYMM - 
+      
+ SYNOPSIS
+      SUBROUTINE DSYMM ( SIDE, UPLO, M, N, ALPHA, A, LDA, B, LDB,
+                       BETA, C, LDC )
+
+          CHARACTER*1  SIDE, UPLO
+
+          INTEGER      M, N, LDA, LDB, LDC
+
+          DOUBLE       PRECISION ALPHA, BETA
+
+          DOUBLE       PRECISION A( LDA, * ), B( LDB, * ), C( LDC, * )
+
+ PURPOSE
+ 
+      DSYMM  performs one of the matrix-matrix operations
+      
+    C := alpha*A*B + beta*C,
+    
+      or
+    C := alpha*B*A + beta*C,
+    
+
+      where alpha and beta are scalars,  A is a symmetric matrix
+      and  B and C are  m by n matrices.
+
+ PARAMETERS
+      SIDE   - CHARACTER*1.
+             On entry,  SIDE  specifies whether  the  symmetric
+             matrix  A appears on the  left or right  in the
+             operation as follows:
+
+             SIDE = 'L' or 'l'   C := alpha*A*B + beta*C,
+
+             SIDE = 'R' or 'r'   C := alpha*B*A + beta*C,
+
+             Unchanged on exit.
+
+      UPLO   - CHARACTER*1.
+             On  entry,   UPLO  specifies  whether  the  upper  or
+             lower triangular  part  of  the  symmetric  matrix
+             A  is  to  be referenced as follows:
+
+             UPLO = 'U' or 'u'   Only the upper triangular part of
+             the symmetric matrix is to be referenced.
+
+             UPLO = 'L' or 'l'   Only the lower triangular part of
+             the symmetric matrix is to be referenced.
+
+             Unchanged on exit.
+
+      M      - INTEGER.
+             On entry,  M  specifies the number of rows of the
+             matrix  C.  M  must be at least zero.  Unchanged on
+             exit.
+
+      N      - INTEGER.
+             On entry, N specifies the number of columns of the
+             matrix C.  N  must be at least zero.  Unchanged on
+             exit.
+
+      ALPHA  - DOUBLE PRECISION.
+             On entry, ALPHA specifies the scalar alpha.
+             Unchanged on exit.
+
+ ka is
+      A      -
+              DOUBLE PRECISION array of DIMENSION ( LDA, ka ), where
+             m  when  SIDE = 'L' or 'l'  and is  n otherwise.
+             Before entry  with  SIDE = 'L' or 'l',  the  m by m
+             part of the array  A  must contain the  symmetric
+             matrix,  such that when  UPLO = 'U' or 'u', the lead-
+             ing m by m upper triangular part of the array  A
+             must contain the upper triangular part of the  sym-
+             metric matrix and the  strictly  lower triangular
+             part of  A  is not referenced,  and when  UPLO = 'L'
+             or 'l', the leading  m by m  lower triangular part
+             of the  array  A must  contain  the  lower triangular
+             part  of the  symmetric matrix and the  strictly
+             upper triangular part of  A  is not referenced.
+             Before entry  with  SIDE = 'R' or 'r',  the  n by n
+             part of the array  A  must contain the  symmetric
+             matrix,  such that when  UPLO = 'U' or 'u', the lead-
+             ing n by n upper triangular part of the array  A
+             must contain the upper triangular part of the  sym-
+             metric matrix and the  strictly  lower triangular
+             part of  A  is not referenced,  and when  UPLO = 'L'
+             or 'l', the leading  n by n  lower triangular part
+             of the  array  A must  contain  the  lower triangular
+             part  of the  symmetric matrix and the  strictly
+             upper triangular part of  A  is not referenced.
+             Unchanged on exit.
+
+      LDA    - INTEGER.
+             On entry, LDA specifies the first dimension of A as
+             declared in the calling (sub) program.  When  SIDE =
+             'L' or 'l'  then LDA must be at least  max( 1, m ),
+             otherwise  LDA must be at least  max( 1, n ).
+             Unchanged on exit.
+
+      B      - DOUBLE PRECISION array of DIMENSION ( LDB, n ).
+             Before entry, the leading  m by n part of the array
+             B  must contain the matrix B.  Unchanged on exit.
+
+      LDB    - INTEGER.
+             On entry, LDB specifies the first dimension of B as
+             declared in  the  calling  (sub)  program.   LDB
+             must  be  at  least max( 1, m ).  Unchanged on exit.
+
+      BETA   - DOUBLE PRECISION.
+             On entry,  BETA  specifies the scalar  beta.  When
+             BETA  is supplied as zero then C need not be set on
+             input.  Unchanged on exit.
+
+      C      - DOUBLE PRECISION array of DIMENSION ( LDC, n ).
+             Before entry, the leading  m by n  part of the array
+             C must contain the matrix  C,  except when  beta  is
+             zero, in which case C need not be set on entry.  On
+             exit, the array  C  is overwritten by the  m by n
+             updated matrix.
+
+      LDC    - INTEGER.
+             On entry, LDC specifies the first dimension of C as
+             declared in  the  calling  (sub)  program.   LDC
+             must  be  at  least max( 1, m ).  Unchanged on exit.
+
+```
+##Código pregunta 8
+```
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include"definiciones.h"
+#define A_matriz "A.txt" //de tamaño MxM
+#define B_matriz "B.txt" //de tamaño MxN
+#define C_matriz "C.txt" //de tamaño MxN
+extern void dsymm_(char *side, char *uplo,int *m,int *n,double *alpha,double *A,int *lda,double *B,int *ldb,double *beta,double *C,int *ldc);
+int main(int argc, char *argv[]){
+	arreglo_2d_T A, B, C;
+	int M=atoi(argv[1]);
+	int N=atoi(argv[2]);
+	double ALPHA, BETA;
+    ALPHA = 1.0;
+    BETA = 1.0;
+	A=malloc(sizeof(*A));
+	B=malloc(sizeof(*B));
+	C=malloc(sizeof(*C));
+	renglones(A)=M;
+	columnas(A)=M;
+	renglones(B)=M;
+	columnas(B)=N;
+	renglones(C)=M;
+	columnas(C)=N;
+	entradas(A)=malloc(renglones(A)*columnas(A)*sizeof(double));
+	inicializa_matriz(A,A_matriz);
+	entradas(B)=malloc(renglones(B)*columnas(B)*sizeof(double));
+	inicializa_matriz(B,B_matriz);
+	entradas(C)=malloc(renglones(C)*columnas(C)*sizeof(double));
+	inicializa_matriz(C,C_matriz);
+
+	printf("matriz 1:\n");
+	imprime_matriz(A);
+	printf("------------\n");
+	printf("matriz 2:\n");
+	imprime_matriz(B);
+	printf("------------\n");
+	printf("matriz 3:\n");
+	imprime_matriz(C);
+	printf("------------\n");
+	dsymm_("L", "U", &M, &N, &ALPHA, entradas(A), &M, entradas(B), &M, &BETA, entradas(C), &M);
+	printf("matriz resultado:\n");
+	imprime_matriz(C);
+	free(entradas(A));
+	free(A);
+	free(entradas(B));
+	free(B);
+	free(entradas(C));
+	free(C);
+	return 0;
+}
+
+
+OUTPUT:
+
+matriz 1:
+matriz[0][0]=1.00000	matriz[0][1]=4.00000	matriz[0][2]=5.00000
+matriz[1][0]=4.00000	matriz[1][1]=2.00000	matriz[1][2]=6.00000
+matriz[2][0]=5.00000	matriz[2][1]=6.00000	matriz[2][2]=3.00000
+------------
+matriz 2:
+matriz[0][0]=9.00000	matriz[0][1]=7.00000
+matriz[1][0]=2.00000	matriz[1][1]=4.00000
+matriz[2][0]=1.00000	matriz[2][1]=6.00000
+------------
+matriz 3:
+matriz[0][0]=9.00000	matriz[0][1]=2.00000
+matriz[1][0]=-1.00000	matriz[1][1]=5.00000
+matriz[2][0]=-2.00000	matriz[2][1]=3.00000
+------------
+matriz resultado:
+matriz[0][0]=31.00000	matriz[0][1]=55.00000
+matriz[1][0]=45.00000	matriz[1][1]=77.00000
+matriz[2][0]=58.00000	matriz[2][1]=80.00000
+```

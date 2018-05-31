@@ -136,6 +136,51 @@ Examen de C.
 
 Revisión de nota [II/2.4](https://www.dropbox.com/s/yjijtfuky3s5dfz/2.5.Compute_Unified_Device_Architecture.pdf?dl=0) hasta CUDA memories y levantamiento en AWS de una instancia con toolkit de CUDA instalado de acuerdo a [liga](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/CUDA/instalacion)
 
+## Clase 13
+
+9 de abril
+
+Finalizamos [II/2.4](https://www.dropbox.com/s/yjijtfuky3s5dfz/2.5.Compute_Unified_Device_Architecture.pdf?dl=0) y revisamos [instalación del CUDA toolkit en AWS](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/CUDA/instalacion) y [ejemplos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/CUDA/ejemplos)
+
+Introducción a optimización, nota [IV/4.1](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
+
+Próxima clase (16 abril) examen de temas 2.2, 2.3, 2.4 y 2.5 (ir a la branch de [master](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master) para tener las preguntas)
+
+## Clase 14
+
+14 de abril
+
+Finalizamos nota de introducción a optimización [IV/4.1](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
+
+Nota sobre problemas de optimización [IV/4.2](https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0) hasta problemas de clasificación.
+
+## Clase 15
+
+16 de abril
+
+Finalizamos nota sobre problemas de optimización [IV/4.2](https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0)
+
+Examen de temas 2.2, 2.3, 2.4 y 2.5
+
+
+## Clase 16
+
+23 de abril
+
+Cubrimos nota teoría de convexidad: conjuntos convexos [IV/4.3.1](https://www.dropbox.com/s/ko86cce1olbtsbk/4.3.1.Teoria_de_convexidad_Conjuntos_convexos.pdf?dl=0) y llegamos hasta ejemplos de funciones convexas de nota teoría de convexidad: funciones convexas [IV/4.3.2](https://www.dropbox.com/s/mmd1uzvwhdwsyiu/4.3.2.Teoria_de_convexidad_Funciones_convexas.pdf?dl=0)
+
+## Clase 17
+
+7 de mayo
+
+Revisión de conceptos de funciones convexas y ejemplos, llegamos hasta función conjugada  [IV/4.3.2](https://www.dropbox.com/s/mmd1uzvwhdwsyiu/4.3.2.Teoria_de_convexidad_Funciones_convexas.pdf?dl=0)
+
+
+## Clase 18
+
+14 de mayo
+
+Dualidad nota [IV/4.4](https://www.dropbox.com/s/t56pkshibyydbj7/4.4.Dualidad.pdf?dl=0) hasta dualidad débil.
 
 
 
