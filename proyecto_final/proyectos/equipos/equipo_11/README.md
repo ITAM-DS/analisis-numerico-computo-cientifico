@@ -28,7 +28,7 @@ $ gcc dijkstra_secuencial.c -o dijkstra_secuencial.out
 
 $ ./dijkstra_secuencial.out > ./dijkstra_secuencial.txt
 
- [Codigo:Dijkstra en paralelo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_11/avance_30_05_18/dijkstra_secuencial.c):
+ [Codigo:Dijkstra en paralelo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/mno-2018-1/proyecto_final/proyectos/equipos/equipo_11/avance_30_05_18/dijkstra_paralelo.c):
 
 Para ejecutar el código, dentro de la carpeta que contiene tanto el código como el archivo .txt con la matriz de distancias:
 
