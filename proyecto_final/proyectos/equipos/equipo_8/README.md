@@ -12,7 +12,7 @@ Objetivo del proyecto: Implementar el método de descenso en gradiente para enco
 
 Liga a trabajo escrito: [Dropbox](https://www.dropbox.com/s/0966eupkrlqmzg2/escrito.pdf?dl=0)
 
-Presentación: [Dropbox](https://www.dropbox.com/s/x6herlud9tx8x9c/Implementacion%20de%20Cournot%20en%20C.pptx?dl=0)
+Presentación: [Dropbox](https://www.dropbox.com/s/dddb12yakr9av18/Cournot.pdf?dl=0)
 
 Implementación en C: [Github](avance_30_05_18/C_files/cournot_nash_equilibrium.c)
 
