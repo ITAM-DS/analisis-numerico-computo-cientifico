@@ -51,7 +51,7 @@ Objetivo del proyecto: El objetivo de este trabajo consiste en aprovechar las op
 
 [Trabajo escrito](https://docs.google.com/document/d/1rZKXnf_56cQ0r0dyJ_M_H3khKhs_tSdgW3_IPnS2EfI/edit)
 
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_02 como el del trabajo escrito)
+[Presentacion](https://www.dropbox.com/home/Cholesky-Theory?preview=presentacion.pdf)
 
 [Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_02 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
@@ -168,7 +168,7 @@ Actualicen las referencias para investigación/implementación que ustedes consi
 
 [Trabajo escrito](Falta liga en readme de carpeta equipos/equipo_6)
 
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_6 como el del trabajo escrito)
+[Presentacion](https://www.dropbox.com/s/u1mpmyy0oqgba4k/presentacion.pdf?dl=0)
 
 [Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_6 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
