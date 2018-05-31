@@ -366,7 +366,7 @@ Objetivo del proyecto: Programar un algoritmo para la generación de una cadena 
 
 [Trabajo escrito](https://drive.google.com/open?id=1W9ZeMvQiRDKzUcIJX5GjNE5034ajM_Je)
 
-[Presentacion](https://drive.google.com/open?id=1I3YLhxO2SEveO8PLjLq0bXVdAqNChlUh)
+[Presentacion](https://rawgit.com/oliab/prueba/master/Presentacion_MNO.html)
 
 [Instrucciones implementación](https://github.com/oliab/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_12/avance_30_05_18/Codigo)
 
