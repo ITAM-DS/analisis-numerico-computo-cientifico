@@ -48,8 +48,6 @@ Objetivo del proyecto: El objetivo de este trabajo consiste en aprovechar las op
 
 * [Avance 22-05-2018](equipos/equipo_02/avance_22_05_2018)
 
-Remuevan la referencia "Dropbox en su README.md de equipos/equipo_02"
-
 
 [Trabajo escrito](https://docs.google.com/document/d/1rZKXnf_56cQ0r0dyJ_M_H3khKhs_tSdgW3_IPnS2EfI/edit)
 
@@ -108,11 +106,9 @@ Objetivo del proyecto: El objetivo de nuestro proyecto es la construcción de un
 * [Avance 08-05-2018](equipos/equipo_04/avance_08_05_2018)
 
 
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
+[Trabajo escrito](https://www.dropbox.com/s/0izbhyuult1767a/CUDA-MNO.pdf?dl=0)
 
-[Trabajo escrito](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_04)
-
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_04 como el del trabajo escrito)
+[Presentacion](https://www.dropbox.com/s/k4i8fmypcwa8h70/CUDA-MNO.html?dl=0)
 
 [Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_04 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
@@ -137,16 +133,11 @@ Objetivo del proyecto: Encontrar la distribución óptima de las actividades req
 * [Avance 08-05-18](equipos/equipo_05/avance_08_05_2018)
 
 
+[Trabajo escrito](equipos/equipo_04/avance_30_05_2018/Soluciones_al_problema_BLP.docx)
 
-Coloquen referencias en el readme de equipos/equipo_05 de Klein & Scholl, Armin, algoritmo depth first.
+[Presentacion](https://docs.google.com/presentation/d/1QFajvdVtlx-0lgN-7gol41Sk_bMVp9cwIbEXb-fNUUM/edit?ts=5aa965fd#slide=id.p3)
 
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
-
-[Trabajo escrito](Falta liga en readme de carpeta equipos/equipo_05)
-
-[Presentacion](falta liga a presentación en readme de carpeta equipos/equipo_05)
-
-[Implementacion] Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Implementacion](equipos/equipo_04/avance_30_05_2018/descripcion_codigo.md)
 
 ---
 
