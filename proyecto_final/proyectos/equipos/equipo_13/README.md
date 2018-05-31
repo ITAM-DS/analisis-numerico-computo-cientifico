@@ -22,20 +22,35 @@ Implementación de un algoritmo para el cálculo del área bajo la curva (AUC) d
 - En la carpeta [avance_30_05_2018](avance_30_05_2018/README.md) se encuentra la entrega final de nuestro proyecto.
 
 
+# Entrega final
+
+- Informe final escrito: [https://www.dropbox.com/s/epc1hcwfhrduhnh/proyecto_final_mno.pdf?dl=0](https://www.dropbox.com/s/epc1hcwfhrduhnh/proyecto_final_mno.pdf?dl=0)
+
+- Implementaciones: [https://www.dropbox.com/sh/m6hcqpnjhg0muzf/AAAVsrTuubV3wFnsQtO8swzWa?dl=0](https://www.dropbox.com/sh/m6hcqpnjhg0muzf/AAAVsrTuubV3wFnsQtO8swzWa?dl=0)
+
+- Presentación:
+[https://www.dropbox.com/s/ej7pic3rn60h6q7/MNO_equipo13.pdf?dl=0](https://www.dropbox.com/s/ej7pic3rn60h6q7/MNO_equipo13.pdf?dl=0)
+
+
 # Referencias
 
-- [https://www3.nd.edu/~zxu2/acms60212-40212/CUDA_C_Programming_Guide_V7.5.pdf](https://www3.nd.edu/~zxu2/acms60212-40212/CUDA_C_Programming_Guide_V7.5.pdf)
 
-- [http://heather.cs.ucdavis.edu/~matloff/158/PLN/ParProcBook.pdf](http://heather.cs.ucdavis.edu/~matloff/158/PLN/ParProcBook.pdf)
+- Matloff, Norm, "Programming on Parallel Machines: GPU, Multicore, Clusters and More", University of California, Davis
+ [referencia 1](http://heather.cs.ucdavis.edu/~matloff/158/PLN/ParProcB
 
-- [http://www.ece.utah.edu/~ece6340/LECTURES/Jan30/Numerical%20Integration.pdf](http://www.ece.utah.edu/~ece6340/LECTURES/Jan30/Numerical%20Integration.pdf)
+- Nagel, James R., "Introduction to Numerical Integration", Department of Electrical and Computer Engineering, University of Utah, Salt Lake City, Utah, 2012, ECE 5340/6340
+[referencia 2](http://www.ece.utah.edu/~ece6340/LECTURES/Jan30/Numerical%20Integration.pdf)
 
-- [http://www.shodor.org/media/content//petascale/materials/UPModules/AreaUnderCurve/AUC_Module_Document_pdf.pdf](http://www.shodor.org/media/content//petascale/materials/UPModules/AreaUnderCurve/AUC_Module_Document_pdf.pdf)
+- Weeden, Aron, "Parallelization: Area Under a Curve", Module Document, Shodor Education Foundation, Inc.
+[referencia 3](http://www.shodor.org/media/content//petascale/materials/UPModules/AreaUnderCurve/AUC_Module_Document_pdf.pdf)
 
-- [https://math.berkeley.edu/~scanlon/m16bs04/ln/16b2lec15.pdf](https://math.berkeley.edu/~scanlon/m16bs04/ln/16b2lec15.pdf)
+- Scanlon, Thomas, "Section 9.4: Approximation of Definite Integrals Review of Riemann Sums", Analytic Geometry and Calculus, Spring 2004, Lecture 15, University of California, Berkeley.
+[referencia 4](https://math.berkeley.edu/~scanlon/m16bs04/ln/16b2lec15.pdf)
 
-- [http://www.math.harvard.edu/~knill/teaching/math1a_2012/handouts/40-numerical.pdf](http://www.math.harvard.edu/~knill/teaching/math1a_2012/handouts/40-numerical.pdf)
+- Knill, Oliver, "Math 1A: introduction to functions and calculus", 2012, Harvard University.
+[referencia 5](http://www.math.harvard.edu/~knill/teaching/math1a_2012/handouts/40-numerical.pdf)
 
-- [http://genepi.med.utah.edu/~alun/teach/stats/week09.pdf](http://genepi.med.utah.edu/~alun/teach/stats/week09.pdf)
+- Alun, Thomas, "Week 9: Markov chain Monte Carlo integration. MCMC", Statistics for Biomedical Informatics, 2009, The University of Utah.
+[referencia 6](http://genepi.med.utah.edu/~alun/teach/stats/week09.pdf)
 
 -  I. W. A. Swardiana, T. Wirahman and R. Sadikin, "An Efficient Parallel Algorithm for Simpson Cumulative Integration on GPU," 2015 Third International Symposium on Computing and Networking (CANDAR), Sapporo, 2015, pp. 346-349
