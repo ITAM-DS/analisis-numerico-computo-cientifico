@@ -29,7 +29,7 @@ En estas semanas arreglamos los bugs que teníamos en las entregas anteriores, r
 
 Referencias del proyecto:
 
-* http://www.hpcc.unn.ru/mskurs/ENG/PPT/pp08.pdf
+* Gergel V.P. (2005). Introduction to Parallel Programming: Parallel Methods for Matrix Multiplication. University of Nizhni Novgorod. Recuperado de http://www.hpcc.unn.ru/mskurs/ENG/PPT/pp08.pdf
 * http://www.dsi.unive.it/~calpar/6_Progetto-06-07.pdf
 * http://www.cs.nthu.edu.tw/~cherung/teaching/2011anm/note02.pdf 
 * http://solomonik.cs.illinois.edu/talks/vecpar-2012.pdf
