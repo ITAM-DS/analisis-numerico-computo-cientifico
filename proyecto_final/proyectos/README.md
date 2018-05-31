@@ -133,11 +133,11 @@ Objetivo del proyecto: Encontrar la distribución óptima de las actividades req
 * [Avance 08-05-18](equipos/equipo_05/avance_08_05_2018)
 
 
-[Trabajo escrito](equipos/equipo_04/avance_30_05_2018/Soluciones_al_problema_BLP.docx)
+[Trabajo escrito](equipos/equipo_05/avance_30_05_2018/Soluciones_al_problema_BLP.docx)
 
 [Presentacion](https://docs.google.com/presentation/d/1QFajvdVtlx-0lgN-7gol41Sk_bMVp9cwIbEXb-fNUUM/edit?ts=5aa965fd#slide=id.p3)
 
-[Implementacion](equipos/equipo_04/avance_30_05_2018/descripcion_codigo.md)
+[Implementacion](equipos/equipo_05/avance_30_05_2018/descripcion_codigo.md)
 
 ---
 
