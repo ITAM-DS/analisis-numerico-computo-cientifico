@@ -85,7 +85,7 @@ Objetivo del proyecto: Paralelizar factorización QR
 
 [Instrucciones para implementación](equipos/equipo_03/avance_final/README.md)
 
-
+[ejemplo de salida](equipos/equipo_03/avance_final/Implementaciones/prueba_a.txt)
 
 ---
 
