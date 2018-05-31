@@ -11,7 +11,7 @@ Probability Distributions Subject to Partial Information`
 
 # Trabajo escrito
 
-[PDF](link)
+[PDF](https://www.dropbox.com/s/0x9jaw4ndatt9gr/Hit___Run.pdf?dl=0)
 
 # Presentación
 
