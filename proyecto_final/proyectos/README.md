@@ -336,7 +336,7 @@ Objetivo del proyecto: Implementar el algoritmo Dijkstra en C y su versión en p
 
 [Presentacion](https://docs.google.com/presentation/d/1jMNw1H-GfnYy81Yj4QRlg7OEpL1cyD7DBYiAL8408Ak/edit?usp=sharing)
 
-[Implementacion](equipos/equipo_11/22_05/codigo) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Implementacion](equipos/equipo_11/22_05/codigo)
 
 
 [Instrucciones de implementación](equipos/equipo_11/)
@@ -372,7 +372,8 @@ Objetivo del proyecto: Programar un algoritmo para la generación de una cadena 
 
 [salida de implementación](https://drive.google.com/open?id=160P8Rv0qCESNVFGC8hHb2SAVGL0gzdrmGLv7gWLbAbY)
 
-[salida de implementación](https://drive.google.com/open?id=1cZaWAkG5KT4Ig5fFG5emJf-9B6UQNQTW)
+[salida de implementación](https://drive.google.com/drive/folders/1cZaWAkG5KT4Ig5fFG5emJf-9B6UQNQTW)
+
 ---
 
 ## [Equipo 13](equipos/equipo_13)
