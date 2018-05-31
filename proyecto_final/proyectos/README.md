@@ -332,13 +332,15 @@ Objetivo del proyecto: Implementar el algoritmo Dijkstra en C y su versión en p
 
 * [Avance 08-05-18](equipos/equipo_11/avance_08_05_18)
 
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
+[Trabajo escrito](https://drive.google.com/file/d/1HWgavQvjIV0EGP7VekVUUPRXBjwxV3cI/view)
 
-[Trabajo escrito](https://drive.google.com/open?id=1_edvCMJje75oSF46WjvKv6OmfmkKxOAo)
-
-[Presentacion](falta liga hacia presentacion)
+[Presentacion](https://docs.google.com/presentation/d/1jMNw1H-GfnYy81Yj4QRlg7OEpL1cyD7DBYiAL8408Ak/edit?usp=sharing)
 
 [Implementacion](equipos/equipo_11/22_05/codigo) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+
+
+[Instrucciones de implementación](equipos/equipo_11/)
+
 
 ---
 
