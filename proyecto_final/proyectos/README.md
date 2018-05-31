@@ -402,15 +402,13 @@ Objetivo del proyecto: Implementación de un algoritmo para el cálculo del áre
 * [Avance 08-05-18](equipos/equipo_13/avance_08_05_2018)
 
 
-Renombren a sus referencias en el README.md de equipos/equipo_13 de modo que sean los títulos en lugar de direcciones de internet
+[Trabajo escrito](https://www.dropbox.com/s/epc1hcwfhrduhnh/proyecto_final_mno.pdf?dl=0)
 
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
+[Presentacion](https://www.dropbox.com/s/ej7pic3rn60h6q7/MNO_equipo13.pdf?dl=0)
 
-[Trabajo escrito](coloquen la liga en su readme de su carpeta de equipos/equipo_13, que la liga lleve directamente al trabajo y no a una carpeta con contenido. Hay algunos typos y faltas de ortografía en su documento escrito, revísenlas)
+[Implementacion paralelo](equipos/equipo_13/avance_30_05_2018/implementaciones/paralelo)
 
-[Presentacion](coloquen la liga en su readme de su carpeta de equipos/equipo_13 como el del trabajo escrito)
-
-[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_13 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Instrucciones para implementación en paralelo]
 
 
 ---
