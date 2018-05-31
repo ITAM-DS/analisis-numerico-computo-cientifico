@@ -1,0 +1,114 @@
+---
+title: "Tarea 6"
+author: "Cristian Challu"
+date: "March 23, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Pregunta 1
+
+Esta subrutina realiza operaciones de la forma y = alpha\*A\*x + beta\*y ó y = alpha\*A'\*x + beta\*y
+
+Recibe los siguientes parametros:
+
+TRANS: caracter con el que se especifica la operacion: 
+
+TRANS = 'N' o 'n'   y := alpha\*A\*x + beta\*y
+
+TRANS = 'T' o 't'   y := alpha\*A'\*x + beta\*y
+
+TRANS = 'C' o 'c'   y := alpha\*A'\*x + beta\*y
+
+M: entero, número de renglones de A.
+
+N: entero, número de columnas de A.
+
+alpha: doble precision, escalar
+
+A: arreglo de doble precision de dimension (LDA, n)
+
+LDA: entero,primera dimension de A
+
+x: arreglo de doble precision
+
+INCX: entero, incremento para las entradas de x
+
+beta: doble precision, escalar
+
+y: arreglo de doble precision
+
+INCY: entero, incremento para las entradas de x
+
+
+### Pregunta 2
+Output en archivo pregunta2_output.txt
+
+### Pregunta 3
+Output en archivo pregunta3_output.txt
+
+### Pregunta 4
+Es posible porque en el archivo "Definiciones.h" se tiene en la struct "arreglo_2d":
+
+define entrada(arreglo,i,j) ((arreglo)->arr[j*m+i]) //almacenamos column major
+
+### Pregunta 5
+Esta subrutina realiza multiplicaciones de matrices de la forma:
+
+C = alpha\*op( A )\*op( B ) + beta*C donde,
+
+dop( X ) = X, ó op( X ) = X', alpha y beta son escalares.
+
+Los parametros son:
+
+TRANSA: caracter, especifica la forma de op( A )
+
+TRANSA = 'N' or 'n',  op( A ) = A
+
+TRANSA = 'T' or 't',  op( A ) = A'
+
+TRANSA = 'C' or 'c',  op( A ) = A'
+
+TRANSB: análogo al anterior para la matriz B
+
+M: entero, especifica numero de renglones de op(A) y C
+
+N: entero, especifica numero de renglones de op(B) y C
+
+K: entero, especifica numero de columnas de op(A)
+
+alpha: doble precision, escalar
+
+A: arreglo de doble precision de dimension (LDA, ka), con ka = k cuando TRANSA = 'N', m en otro caso
+
+LDA: entero, primera dimension de A
+
+B: arreglo de doble precision de dimension (LDB, kb), con kb = n cuando TRANSB = 'N', k en otro caso
+
+LDB: entero, primera dimension de B
+
+beta: doble precision, escalar
+
+C: arreglo de doble precision de dimension (LDC, n)
+
+LDB: entero, primera dimension de C
+
+### Pregunta 6
+Output en archivo pregunta6_output.txt
+
+### Pregunta 7
+Output en archivo pregunta7_output.txt. 
+
+Funciona porque en el archivo "Definiciones.h" se tiene:
+
+define entrada(arreglo,i,j) ((arreglo)->arr[i*n+j]) //almacenamos row major
+
+luego se invierten las matrices a la hora de llamar la subrutina:
+
+dgemm_("No transpose", "No transpose", &N, &M, &K, &ALPHA, entradas(B), &N, entradas(A), &K, &BETA, entradas(C), &N);
+
+### Pregunta 8
+Output en archivo pregunta8_output.txt. 
