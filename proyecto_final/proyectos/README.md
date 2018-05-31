@@ -21,8 +21,6 @@ Objetivo del proyecto: objetivo
 * [Avance 08-05-18](equipos/equipo_01/avance_08_05_18)
 
 
-Coloquen su referencia de nvidia en README.md de equipos/equipo_01 (Matrix computations on the GPU) y otras para implementación que ustedes consideren les ayudaron a su proyecto.
-
 [Trabajo escrito](https://www.sharelatex.com/read/kbgxbypyfjvk)
 
 [Presentacion](https://docs.google.com/presentation/d/1d027lMi-_XNCW81WQ8_kk50A2GO6XEpvVAZ6atcrRok/edit#slide=id.g3b7859ebba_0_300)
