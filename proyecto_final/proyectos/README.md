@@ -82,9 +82,9 @@ Objetivo del proyecto: Paralelizar factorización QR
 
 Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
-[Trabajo escrito](https://www.dropbox.com/s/d2gkj7jc06d7mzn/trabajo_escrito.pdf?dl=0)
+[Trabajo escrito](https://docs.google.com/document/d/1rZKXnf_56cQ0r0dyJ_M_H3khKhs_tSdgW3_IPnS2EfI/edit)
 
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_03 como el del trabajo escrito)
+[Presentacion](https://www.dropbox.com/home/Cholesky-Theory?preview=presentacion.pdf)
 
 [Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_03 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
 
