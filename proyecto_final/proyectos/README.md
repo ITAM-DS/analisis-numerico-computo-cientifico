@@ -207,8 +207,6 @@ Objetivo del proyecto: Implementar el método de “Principal Component Analysis
 
 Coloquen referencias en el readme de equipos/equipo_07
 
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
-
 [Trabajo escrito](fuera del repo)
 
 [Presentacion](fuera del repo)
@@ -239,13 +237,23 @@ Objetivo del proyecto: Implementar el método de descenso en gradiente para enco
 
 * [Avance 08-05-18](equipos/equipo_8/avance_08_05_2018)
 
-Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial
 
-[Trabajo escrito](https://www.dropbox.com/sh/hdty83mu03hoiy8/AAC_-McE3iFrOt6bFdsGHfPIa?dl=0) Que la liga lleve directo al trabajo escrito (no a un folder de dropbox). Falta que arreglen palabras que les pedí cambiaran en el avance del 2 de mayo.
 
-[Presentacion](falta liga, coloquen la liga en su readme de su carpeta de equipos/equipo_8 como el del trabajo escrito)
+[Trabajo escrito](https://www.dropbox.com/s/0966eupkrlqmzg2/escrito.pdf?dl=0)
 
-[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_8 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Presentacion](https://www.dropbox.com/s/dddb12yakr9av18/Cournot.pdf?dl=0)
+
+[Implementacion](equipos/equipo_8/avance_30_05_18/C_files/)
+
+[Instrucciones implementación](equipos/equipo_8/README.md)
+
+[Ejemplo salida implementación en C](equipos/equipo_8/avance_30_05_18/C_files/
+ejemplo_100_empresas.txt)
+
+[Implementación en Julia](equipos/equipo_8/avance_30_05_18/avance_30_05_18/Julia_files)
+
+[Ejemplo salida implementación en Julia](equipos/equipo_8/avance_30_05_18/Julia_files/ejemplo_1000_empresas.txt)
+
 
 ---
 
