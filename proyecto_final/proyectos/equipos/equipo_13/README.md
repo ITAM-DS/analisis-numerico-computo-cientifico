@@ -36,7 +36,7 @@ Implementación de un algoritmo para el cálculo del área bajo la curva (AUC) d
 
 
 - Matloff, Norm, "Programming on Parallel Machines: GPU, Multicore, Clusters and More", University of California, Davis
- [referencia 1](http://heather.cs.ucdavis.edu/~matloff/158/PLN/ParProcB
+ [referencia 1](http://heather.cs.ucdavis.edu/~matloff/158/PLN/ParProcB)
 
 - Nagel, James R., "Introduction to Numerical Integration", Department of Electrical and Computer Engineering, University of Utah, Salt Lake City, Utah, 2012, ECE 5340/6340
 [referencia 2](http://www.ece.utah.edu/~ece6340/LECTURES/Jan30/Numerical%20Integration.pdf)
