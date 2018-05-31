@@ -1,0 +1,107 @@
+
+1. Investiga* sobre la subrutina de Fortran dgemv (parámetros que recibe y la salida).
+
+La función dgemv permite llevar a cabo la operación entre matrices y vectores que consiste en que realizar el producto de una escalar, una matriz y un vector y obtener una vector para posteriormente realizar la suma de dicho vector resultante con otro vector tal cual o bien ese otro vector también puede estar multiplicado por un escalar.
+
+y := alpha*A*x + beta*y,   o   y := alpha*A**T*x + beta*y,
+
+Los parámetros que recibe son los siguientes:
+
+dgemv(TRANS, M, N, ALPHA, A, LDA, X, INCX, BETA, Y, INCY)
+
+donde:
+
+TRANS: Es un caracter que difine la operación que se llevará a cabo ya sea con la matriz tal cual o su transpuesta.
+
+M: Es un entero que especifica el número de renglones de la matriz A.
+
+N: Es un entero que especifica el número de columnas de la matriz A.
+
+ALPHA: Es el escalar por el cual se multiplica la matriz A y es de tipo double.
+
+A: Es la matriz de la operación, la cual es de dimensión (LDA,N) y es de tipo double.
+
+LDA: Representa la primera dimesión de la matriz A, debe ser un entero.
+
+X: Es el vector de doubles por el cual se multiplica la parte matricial de la operación.
+
+INCX: Es un entero que especifíca el incremento que tendrán los elementos de X.
+
+BETA: Es el escalar por el cual se multiplica el vector que opera externo a la parte matricial, debe ser un double.
+
+Y: Es el array que opera externo a la parte matricial y que es multiplicado por beta.
+
+INCY: Es un entero que especifíca el incremento que tendrán los elementos de Y.
+
+2. En la carpeta analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level2/ ejecuta el programa dgemv_mult_mat_vec.c y realiza pruebas con diferentes matrices y vectores definidos por ti.
+
+Los resultados de las distintas pruebas de este ejercicio los coloqué en archivos txts que comienzan con ej2_, probe distintos números y luego vectores linealmente independientes para revisar que el producto fuera 0.
+
+3. Haz un programa que utilice la subrutina dger de Fortran.
+
+El código se encuentra en el programa dger_mult_mat_vec.c, y básicamente modifiqué el programa que nos dieron como muestra para dgemv, primordialmente había que devolver una matriz y no un vector, además de que aquí la matriz A debe coincidir con las dimesiones de los otros 2 vectores parámetro, en este caso los vectores son v y v2 y la matriz es A.
+
+Un ejemplo de la salida está en el archivo ej3.txt.
+
+4. Después de haber estudiado y entendido los archivos de definiciones.h y funciones.c y realizado los puntos anteriores y la tarea 5 responde: ¿cómo fue que pudimos llamar a las rutinas de Fortran (que almacena en una forma column-major order los arreglos de dos dimensiones) para operaciones con arreglos 2-dimensionales sin haber instalado CBLAS, si en clase se dijo que almacenar arreglos de dos dimensiones en C es en un row-major order?
+
+En el archivo definiciones.h viene la definición de entrada(arreglo,i,j), la cual hace el truco de almacenar en column-major, inclusive observamos que la función que inicializa las mátrices lee en row-major, pero como ya se mencionó el switch lo hace entrada(arreglo,i,j).
+
+5. Investiga* sobre la subrutina de Fortran dgemm (parámetros que recibe y la salida).
+
+Esta función realiza una de las operaciones matriz-matriz, la cual consiste en un producto escalar por una matriz A por otra matriz B y al resultado sumamos una tercera matriz multiplicada por un escalar, lo que se vuelve interesante en este caso es el manejo de las dimensiones ya que como sabemos para que 2 matrices A y B se puedan multiplicar A debe tener dimensión ixp y en este caso B debe tener dimensión pxw, la clave está entonces en las p's. Derivado de lo anterior la función se encarga de transponer en caso de ser necesario a la matriz A o B para que las operciones se puedan llevar a cabo.
+
+C := alpha*op( A )*op( B ) + beta*C
+
+donde op( X ) = X   or   op( X ) = X**T
+
+Recibe como parámetros dgemm (TRANSA, TRANSB, M, N, K, ALPHA, A, LDA, B, LDB, BETA, C, LDC):
+
+TRANSA: Es un caracter que define si las operaciones referentes a A serán realizadas con A o con la transpuesta de A.
+
+TRANSB:  Es un caracter que define si las operaciones referentes a B serán realizadas con B o con la transpuesta de B.
+
+M: Es un entero no negativo, que define el número de renglones de las matrices A y C.
+
+N: Es un entero no negativo, que define el número de columnas de las matrices B y C.
+
+K: Es un entero no negativo y juega el papel de la p que explicamos hace unos momentos, es decir, es el parámetro que permite el producto de las matrices, por lo que es el número de columnas de A y el número de renglones de B.
+
+ALPHA: Es un double que especifica el escalar que forma parte del primer producto entre las matrices A y B que describimos inicialmente.
+
+A: Es un double que define a una de las matrices que forman parte del primer producto de la operación, tiene dimensión (LDA,m).
+
+LDA: Es un entero que define la primera dimensión de la matriz A.
+
+B: Es un double que define a la otra matriz que forma parte del primer producto de la operación, tiene dimensión (LDB,n).
+
+LDB: Es un entero que define la primera dimensión de la matriz B.
+
+BETA:  Es un double que especifica el escalar que forma parte del segundo componente que describimos inicialmente para la operación.
+
+C: Es un double que define a la matriz que pertence al segundo componente de la operación, tiene dimensión (LDC,N).
+
+LDC: Es un entero que define la dimensión de la primera entrada de la matriz C.
+
+6. En la carpeta analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level3/ ejecuta el programa dgemm_mult_mat.c y realiza pruebas con diferentes matrices definidas por ti.
+
+Los resultado de estas iteraciones se encuentran en archivos txt's que comienzan con ej6_.
+
+7. En la carpeta del punto anterior encuentras la sección Multiplicación matriz-matriz con trick. Ejecuta el programa de esta sección con diferentes matrices definidas por ti y resuelve la pregunta ¿por qué funciona este trick?.
+
+Los resultados de estas iteraciones se encuentran en archivos txt's que comienzan con ej7_. Todo el código referente a esta sección está dentro de la carpeta trick.
+
+La razón de que funcione este "trick" es que en la parte donde se aplica la función dgemm_ dentro del main, el código para el trick tiene al revés los parámetros &M y &N, en el caso que estudiamos primero se tiene primero &M y luego &N, para el caso del programa de trick se tiene primero &N y luego &M.
+
+8. Haz un programa que utilice la subrutina dsymm de Fortran.
+
+El código se encuentra en el programa dsymm_mult_mat_vec.c, y básicamente modifiqué el programa que nos dieron como muestra para dgemm, y se simplifica por la forma simétrica de A.
+
+Un ejemplo de la salida está en el archivo ej8.txt.
+
+
+
+
+
+
+

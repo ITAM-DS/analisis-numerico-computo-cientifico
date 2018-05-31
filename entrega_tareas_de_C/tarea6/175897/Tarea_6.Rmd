@@ -1,0 +1,120 @@
+---
+title: "Tarea 6"
+author: "Victor Quintero Marmol Gonzalez"
+date: "March 21, 2018"
+output: html_document
+---
+
+**1. Investiga sobre la subrutina de Fortran dgemv (parámetros que recibe y la salida).**
+
+dgemv es una subrutina del nivel 2 de BLAS para hacer operaciones de tipo matriz-vector $y := alpha*A*x + beta*y$,   o   $y := alpha*A^T*x + beta*y$, donde $alpha$ y $beta$ son escalares, $x$ y $y$ son vectores y $A$ es una matriz de dimensiones $m*n$.
+
+Tiene los siguientes parámetros:
+
+TRANS: Es una variable tipo character. Nos indica que operación va a ser efectuada:
+ 	        'N' o 'n' es para $y := alpha*A*x + beta*y$
+ 	        'T' o 't' es para $y := alpha*A^T*x + beta*y$
+ 	        'C' o 'c' es para $y := alpha*A^T*x + beta*y$
+ 	        
+M: Es una variable tipo integer. Especifica el número de renglones de la matriz A, no puede tomar valores negativos.
+
+N: Es una variable tipo integer. Especifica el número de columnas de la matriz A, no puede tomar valores negativos.
+
+ALPHA: Es una variable tipo double precision. Especifica el escalar $alpha$
+
+A: Es un arreglo de tipo double precision. Es la parte principal de la matriz m por n, tiene dimensión (lda,n)
+
+LDA: Es una variable tipo integer. La primera dimensión del arreglo A.
+
+X: Es un arreglo tipo double precision. Es de dimensión al menos $( 1 + ( n - 1 )*abs( INCX ) )$ si TRANS='N' o $( 1 + ( m - 1 )*abs( INCX ) )$ en otro caso.
+
+INCX: Es una variable tipo integer. Especifica el incremento para los elementos de $X$.
+
+BETA: Es una variable tipo double precision. Es el escalar $beta$, cuando es cero no se tiene que especificar $Y$
+
+Y: Es un arreglo de tipo double precision. Es de dimensión al menos $( 1 + ( m - 1 )*abs( INCY ) )$ si TRANS='N' o $( 1 + ( n - 1 )*abs( INCY ) )$ en otro caso.
+
+INCY: Es una variable tipo integer. Especifica el incremento para los elementos de $Y$.
+ 	
+
+
+**2. En la carpeta analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level2/ ejecuta el programa dgemv_mult_mat_vec.c y realiza pruebas con diferentes matrices y vectores definidos por ti.**
+
+Se puede ver el ouput de las pruebas que se hicieron en el archivo "output_ej2.txt". Se puede ver en el programa que $beta$ es cero, por lo que no es necesario que metamos un vector $Y$, también podemos observar que como $alpha$ lo definimos como 1, todo queda en una multiplicación de matriz-vector. Otra cosa curiosa que noté es que si se especifica mal las dimensiones a la hora de correr el programa (por ejemplo ./programa.out 3 3) el programa llena el arreglo $A$ renglon de acuerdo a los valores ingresados en A.txt, sin respetar la estructura que ya se había dado.
+
+
+**3. Haz un programa que utilice la subrutina dger de Fortran.**
+
+Esta subrutina realiza la operación $A := alpha*x*y^T + A,$. Donde alpha es un escalar, $x$ es un vector de tamaño m, $y$ es un vector de tamaño n, y $A$ es una matriz de m por n.
+
+Para el programa me base en el ejercicio anterior. Se puede ver el códico en "dger_ej3.c" y el resultado de que funciona correctamente en "output_ej3.txt", también incluyo los archivos "x.txt" y "y.txt" que usaron para la prueba.
+
+**4. Después de haber estudiado y entendido los archivos de definiciones.h y funciones.c y realizado los puntos anteriores y la tarea 5 responde: ¿cómo fue que pudimos llamar a las rutinas de Fortran (que almacena en una forma column-major order los arreglos de dos dimensiones) para operaciones con arreglos 2-dimensionales sin haber instalado CBLAS, si en clase se dijo que almacenar arreglos de dos dimensiones en C es en un row-major order?**
+
+Es posible hacer esto por los archivos de "funciones.c" y "definiciones.h". En "funciones.c" vemos que la se lee la matriz de manera row-major order con la función "inicializa_matriz", sin embargo en "definiciones.h" vemos que se hace el cambio a column-major order en la parte de "arreglo2d".
+
+**5. Investiga sobre la subrutina de Fortran dgemm (parámetros que recibe y la salida).**
+
+Es una subrutina que realiza la operación de tipo matriz-matriz: $C := alpha*op( A )*op( B ) + beta*C$, donde $op(X)$ es $op( X ) = X$  o $op( X ) = X^T$. Alpha y beta son escalares mientras que A, B y C son matrices, op(A) es una matriz m por k, op(B) es una matriz k por n y op(C) es una matriz m por n. Tiene los siguientes parámetros:
+
+TRANSA: Es una variable de tipo character. Especifica la forma en que op(A) va a ser utilizada en la multiplicación de matrices. Se define como:
+ 	
+TRANSA = 'N' o 'n',  op( A ) = $A$.
+TRANSA = 'T' o 't',  op( A ) = $A^T$.
+TRANSA = 'C' o 'c',  op( A ) = $A^T$.
+ 	
+TRANSB: Es una variable de tipo character. Especifica la forma en que op(B) va a ser utilizada en la multiplicación de matrices. Se define como:
+ 	
+TRANSA = 'N' o 'n',  op( B ) = $B$.
+TRANSA = 'T' o 't',  op( B ) = $B^T$.
+TRANSA = 'C' o 'c',  op( B ) = $B^T$.
+  
+M: Es una variable de tipo integer. Especifica el número de renglones en la matriz op(A) y C.
+
+N: Es una variable de tipo integer. Especifica el número de columnas en la matriz op(B) y C.
+
+K: Es una variable de tipo integer. Especifica el número de columnas en la matriz op(A) y el número de renglones en la matriz op(B).
+
+ALPHA: Es una variable de tipo double precision. Especifica el escalar alpha
+
+A: Es un arreglo de tipo double precision, dimension(lda,ka)
+
+LDA: Es una variable de tipo integer. Representa la primera demensión de A
+
+B: Es un arreglo de tipo double precision, dimension(ldb,kb)
+
+LDB: Es una variable de tipo integer. Representa la primera demensión de B
+
+BETA: Es una variable de tipo double precision. Especifica el escalar beta
+
+C: Es un arreglo de tipo double precision, dimension(ldc,n). Es sobreescrita por la matriz resultante de $( alpha*op( A )*op( B ) + beta*C )$
+
+LDC: Es una variable de tipo integer. Es la primera dimensión de C
+ 	
+ 	
+**6. En la carpeta analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level3/ ejecuta el programa dgemm_mult_mat.c y realiza pruebas con diferentes matrices definidas por ti.**
+
+Los resultados de las pruebas estan en el archivo "output_ej6.txt". Vemos que los resultados fueron los correctos.
+
+
+**7. En la carpeta del punto anterior encuentras la sección Multiplicación matriz-matriz con trick. Ejecuta el programa de esta sección con diferentes matrices definidas por ti y resuelve la pregunta ¿por qué funciona este trick?.**
+
+Los resultados de las pruebas estan en el archivo "output_ej7.txt", vemos que los resultados fueron los correctos.
+
+Este trick funciona porque, al ahora leer la matriz de manera row major, se cambian los valores que le damos a los parámertros de la subrutina dgemm, invirtiendo las entradas para M y N, y para A y B. Para que quede más claro pomgo las dos subrutinas:
+
+Sin trick:
+dgemm_("No transpose", "No transpose", &M, &N, &K, &ALPHA, entradas(A), &M, entradas(B), &K, &BETA, entradas(C), &M);
+
+Con trick:
+dgemm_("No transpose", "No transpose", &N, &M, &K, &ALPHA, entradas(B), &N, entradas(A), &K, &BETA, entradas(C), &N);
+
+
+**8. Haz un programa que utilice la subrutina dsymm de Fortran.**
+
+La subrutina dsymm hace operaciones matriz-matriz de tipo:  $C := alpha*A*B + beta*C$ o $C := alpha*B*A + beta*C$, donde alpha y beta son escalares, A es una matriz simétrica y B y C son matrices de dimensión m por n.
+
+Para el programa me base en el ejercicio 6. Se puede ver el códico en "dsymm_ej3.c" y el resultado de que funciona correctamente en "output_ej8.txt". Los archivos "A.txt" y "B.txt" son los que se ocuparon para esta prueba.
+
+
+

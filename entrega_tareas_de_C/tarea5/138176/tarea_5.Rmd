@@ -1,0 +1,114 @@
+---
+title: "Tarea 5"
+author: "Daniel Sharp"
+date: "March 7, 2018"
+output: 
+  html_document:
+    keep_md: true
+---
+
+### 1. Estudia y entiende los archivos definiciones.h y funciones.c de ahí, en particular investiga por qué se usan "" en la línea que tiene #include en funciones.c en lugar de usar < >. Investiga el uso de static en la definición de variables externas de funciones.c .  
+
+Cuando se utilizan las comillas ("") se indica al programa que primero busque el archivo entre comillas en el directorio que contiene el programa que está compilando y, si no lo encuentra, que lo busque posteriormente en el directorio estándar del sistema que contiene arhivos como stdin.h y string.h. Únicamente tiene sentido utilizarlas cuando se quiere agregar un programa propio.
+
+Static se utiliza para funciones que solamente son visibles para otras funciones en el mismo ejecutable o unidad de traducción. Es decir, en este caso las funciones static únicamente serán visibles para los archivos que se encuentren en el comando: gcc main.c funciones.c -o programa.out, en este caso, para main.c. Es una forma de encapsular el programa.  
+  
+### 2. Investiga* sobre BLAS, CBLAS, LAPACK, ATLAS y las operaciones de nivel 1, nivel 2 y nivel 3 de BLAS y reporta sobre esta investigación que realizas. Es una investigación que contiene principalmente una descripción sobre los paquetes y niveles anteriores.  
+
+#### BLAS  
+Basic Lineal Algebra Subprograms (BLAS) es una librería con rutinas para resolver problemas de álgebra lineal. Sus funciones se dividen en tres niveles de acuerdo a su nivel de complejidad:  
+
+- Nivel 1: trabaja con escalares, vectores y operaraciones vector-vector  
+
+- Nivel 2: operaciones matriz-vector  
+
+- Nivel 3: operaciones matriciales (matriz-matriz)  
+
+#### CBLAS  
+Por lo que se puede entender en las referencias proporcionadas, es el archivo 'cblas.h' que contiene los prototipos para que todas las funciones que puede realizar BLAS se puedan correr desde C. El código original está escrito en Fortran. Proporciona una interfaz para utilizar las funciones de BLAS en C.  
+
+#### LAPACK  
+Linear Algebra Package (LAPACK) que provee rutinas de algebra lineal para resolver sistemas de ecuaciones lineales, obtener soluciones de mínimos cuadrados, problemas con eigenvalores y de valores singulares. El objetivo incial de LAPACK consistió en ejecutar las liberías de EISPACK y LINPACK de froma eficiente en procesadores paralelos de memoria compartida. LAPACK está diseñado de tal forma que realiza todas las operaciones que le sea posible a través de BLAS. De hecho, LAPACK está diseñado para optimizar el Nivel 3 de BLAS. LAPACK aprovecha la gruesa granularidad de las operaciones de BLAS Nivel 3, que son altamente eficientes en computadoras de alto desempeño.  
+
+#### ATLAS  
+Automatically Tuned Linear Algebra (ATLAS) provee interfaces para BLAS y algunas rutinas de LAPACK para ser ejecutadas en C y Fortran77. El principal objetivo de ATLAS es proveer librerías optimizadas.  
+
+
+### 3. En la carpeta analisis-numerico-computo-cientifico/C/BLAS/ejemplos/level1/ ejecuta el programa dot_product.c y realiza pruebas con diferentes vectores definidos por ti.  
+
+Pruebo el ejemplo de las notas:  
+```{bash}
+gcc -Wall dot_product.c funciones.c -o programa.out -lblas
+./programa.out 3
+```
+
+Pruebo con vectores de 5 valores:  
+```{bash}
+echo "2
+4" >> v1.txt
+echo "5
+12" >> v2.txt
+gcc -Wall dot_product.c funciones.c -o programa.out -lblas
+./programa.out 5
+```
+
+Pruebo con vector de 10 valores:  
+```{bash}
+echo "12
+54
+13
+10
+1" >> v1.txt
+echo "9
+7
+11
+15
+18" >> v2.txt
+gcc -Wall dot_product.c funciones.c -o programa.out -lblas
+./programa.out 10
+```
+
+### 4. Investiga* sobre la subrutina de Fortran ddot (parámetros que recibe y la salida).  
+* La fuente indicada para BLAS conduce a [este manual de LAPACK]( http://www.netlib.org/lapack/explore-html/de/da4/group__double__blas__level1_ga75066c4825cb6ff1c8ec4403ef8c843a.html#ga75066c4825cb6ff1c8ec4403ef8c843a), pero parece ser aplicable a BLAS   
+
+La función ddot() recibe los siguientes 5 parámetros:  
+- N: Número de elementos en vectores a evaluar  
+- DX: Arreglo de 'doubles', con dimension ( 1 + ( N - 1 )abs( INCX ) )  
+- INCX: Entero con los espacios de almacenamiento entre elementos de DX  
+- DY: Arreglo de 'doubles', con dimension ( 1 + ( N - 1 )abs( INCY ) )  
+- INCY: Entero con los espacios de almacenamiento entre elementos de DY  
+
+La función regresa un double, con el valor del producto punto entre los vectores provistos.  
+
+### 5. Haz un programa que utilice la subrutina daxpy de Fortran.  
+* Las especificaciones de esta función las obtuve del mismo manual mecionado en el inciso anteior.  
+
+La función daxpy ejecuta la multiplicación de una constante por un vector y le suma otro vector, regresa el vector resulante. Para hacer este programa se utilizarán como base los scripts utilizados en el inciso 3. 
+
+La función daxpy() recibe los siguientes parámetros:  
+- N: Número de elementos en vectores a evaluar  
+- DA: Double constante por el cual multiplicar el primer vector  
+- DX: Arreglo de 'doubles', con dimension ( 1 + ( N - 1 )abs( INCX ) )  
+- INCX: Entero con los espacios de almacenamiento entre elementos de DX  
+- DY: Arreglo de 'doubles', con dimension ( 1 + ( N - 1 )abs( INCY ) )  
+- INCY: Entero con los espacios de almacenamiento entre elementos de DY  
+
+Es importante mencionar que daxpy regresa el resultado en el mismo vector DY, por lo que no se asinga a una variable de salida, si no que la función es 'void' y sobreescribe el segundo vector de entrada.  
+
+El código para este problema se encuentra en el archivo ej5_daxpy.c, además se muestra a continuación. La constante que multiplica al primer vector se recibe como el segundo argumento en la línea de comando, donde el primero es la longitud de los vectores y el segundo el antes mencionado. La salida de este programa es de la siguiente forma:  
+
+```{bash}
+gcc -Wall ej5_daxpy.c funciones.c -o daxpy.out -lblas
+./daxpy.out 3 10
+```  
+Código para daxpy
+```{bash}
+cat ej5_daxpy.c
+```
+
+
+
+
+
+
+

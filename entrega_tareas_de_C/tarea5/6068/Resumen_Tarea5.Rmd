@@ -1,0 +1,194 @@
+---
+title: "Tarea_5"
+author: "Miguel de Lascurain"
+date: "March 14, 2018"
+output: html_document
+---
+##Pregunta 1
+```{r setup, eval=FALSE}
+Pregunta 1.
+a.) ¿Por qué se usan “ “ en la línea que tiene  include en funciones.c en lugar de usar < >?
+
+  Normalmente, si el header file está entre < >, el preprocesador lo buscará en el directorio sobre una ruta predeterminada. Si está entre “ “, entonces el preprocesador buscará el header file en el mismo directorio en donde resida el archivo fuente.
+
+
+b.) ¿Cuál es el uso de static en la definición de variables externas de funciones.c?
+
+  Las variables definidas como static int i, j, funcionan como variables globales solamente para las funciones que están definidas debajo de esta definición.
+```
+
+##Pregunta 2 
+```
+BLAS (Basic Linear Algebra Subprograms) es un conjunto de rutinas, escritas originalmente en Fortran, para efectuar operaciones con vectores y matrices. Tiene tres niveles. En el primer nivel se encuentran rutinas que efectúan operaciones entre vectores. En el segundo, rutinas que hacen operaciones entre matrices y vectores; y, en el tercero, operaciones entre matrices.
+
+CBLAS, es una interface estilo C para ligar las rutinas de BLAS. Se puede llamar a CBLAS usando llamadas normales de C.
+
+LAPACK, está escrito en Fortran 90 y tiene rutinas para resolver sistemas de ecuaciones simultáneas, soluciones de mínimos cuadrados, problemas para encontrar eigen valores y problemas de valores singulares.
+
+ATLAS, (Automatically Tuned Linear Algebra Software) realiza implementaciones de BLAS con un mejor desempeño. 
+```
+##Pregunta 3
+```
+//Programa dot_product.c
+
+longitud de línea: 85#include<stdio.h>
+#include<stdlib.h>
+#include"definiciones.h"
+#define v1_vector "v1.txt" //de tamaño Nx1
+#define v2_vector "v2.txt" //de tamaño Nx1
+extern double ddot_(int *n, double *x, int *incx, double *y, int *incy);
+int main(int argc, char *argv[]){
+	arreglo_1d_T v1, v2;
+	double resultado;
+	int incx=1;
+	int N=atoi(argv[1]);
+
+	v1=malloc(sizeof(*v1));
+	v2=malloc(sizeof(*v2));
+
+	renglones_vector(v1)=N;
+	renglones_vector(v2)=N;
+
+	entradas_vector(v1)=malloc(N*sizeof(double));
+	inicializa_vector(v1,v1_vector);
+	entradas_vector(v2)=malloc(N*sizeof(double));
+	inicializa_vector(v2,v2_vector);
+
+	printf("------------\n");
+	printf("vector :\n");
+	imprime_vector(v1);
+	printf("------------\n");
+	printf("vector :\n");
+	imprime_vector(v2);
+	printf("------------\n");
+
+	resultado=ddot_(&N, entradas_vector(v1), &incx, entradas_vector(v2), &incx);
+	printf("resultado: %lf\n", resultado);
+	free(entradas_vector(v1));
+	free(v1);
+	free(entradas_vector(v2));
+	free(v2);
+	return 0;
+}
+
+
+OUTPUT 1:
+
+------------
+vector :
+vector[0]=1.00000
+vector[1]=2.00000
+vector[2]=3.00000
+------------
+vector :
+vector[0]=9.00000
+vector[1]=8.00000
+vector[2]=7.00000
+------------
+resultado: 46.000000
+
+OUTPUT 2:
+
+------------
+vector :
+vector[0]=1.00000
+vector[1]=2.00000
+vector[2]=3.00000
+------------
+vector :
+vector[0]=-9.00000
+vector[1]=-8.00000
+vector[2]=-7.00000
+------------
+resultado: -46.000000
+
+```
+##Pregunta 4
+```
+La rutina de Fortran ddot realiza productos punto entre dos vectores de doble precisión. Los parámetros de entrada son:
+N: Número de elementos de los vectores X y Y. (No cambia).
+Vector X de tamaño (1 + (N-1) * abs (INCX)). (No cambia).
+Vector Y de tamaño (1 + (N-1) * abs (INCY)). (Cambia con el resultado).
+INCX, INCY: Incrementos para los elementos de los vectores X y Y, respectivamente. (No cambian).
+
+```
+
+##Pregunta 5
+```
+//
+//Programa daxpy
+//
+#include<stdio.h>
+#include<stdlib.h>
+#include"definiciones.h"
+#define v1_vector "v1.txt" //de tamaño Nx1
+#define v2_vector "v2.txt" //de tamaño Nx1
+extern void daxpy_ (int *n, double *alpha, double *x, int *incx, double *y, int *incy);
+
+	int main(int argc, char *argv[]){
+	arreglo_1d_T v1, v2;
+	int incx=1;
+	int N=atoi(argv[1]);
+	v1=malloc(sizeof(*v1));
+	v2=malloc(sizeof(*v2));
+
+	renglones_vector(v1)=N;
+	renglones_vector(v2)=N;
+
+	entradas_vector(v1)=malloc(N*sizeof(double));
+	inicializa_vector(v1,v1_vector);
+	entradas_vector(v2)=malloc(N*sizeof(double));
+	inicializa_vector(v2,v2_vector);
+
+	printf("------------\n");
+	printf("vectores iniciales :\n");
+	imprime_vector(v1);
+	printf("------------\n");
+	printf("vector :\n");
+	imprime_vector(v2);
+	printf("------------\n");
+
+	double alpha = 2.0;
+	daxpy_(&N, &alpha, entradas_vector(v1), &incx, entradas_vector(v2), &incx);
+	printf("------------\n");
+	printf("vectores modificados con alpha = 2 :\n");
+	imprime_vector(v1);
+	printf("------------\n");
+	printf("vector :\n");
+	imprime_vector(v2);
+	printf("------------\n");
+	free(entradas_vector(v1));
+	free(v1);
+	free(entradas_vector(v2));
+	free(v2);
+	return 0;
+}
+
+INPUT OUTPUT
+
+------------
+vectores iniciales :
+vector[0]=1.00000
+vector[1]=2.00000
+vector[2]=3.00000
+------------
+vector :
+vector[0]=-9.00000
+vector[1]=-8.00000
+vector[2]=-7.00000
+------------
+------------
+vectores modificados con alpha = 2 :
+vector[0]=1.00000
+vector[1]=2.00000
+vector[2]=3.00000
+------------
+vector :
+vector[0]=-7.00000
+vector[1]=-4.00000
+vector[2]=-1.00000
+------------
+
+```
+```
+
