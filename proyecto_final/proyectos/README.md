@@ -407,14 +407,11 @@ Objetivo del proyecto: Implementación de un algoritmo para el cálculo del áre
 
 [Presentacion](https://www.dropbox.com/s/ej7pic3rn60h6q7/MNO_equipo13.pdf?dl=0)
 
-[Implementacion secuencial](equipos/equipo_13/avance_30_05_2018/implementaciones/secuencial)
+[Implementacion e instrucciones secuencial](equipos/equipo_13/avance_30_05_2018/implementaciones/secuencial)
 
 
-[Implementacion paralelo](equipos/equipo_13/avance_30_05_2018/implementaciones/paralelo)
+[Implementacion e instrucciones paralelo](equipos/equipo_13/avance_30_05_2018/implementaciones/paralelo)
 
-[instrucciones implementación secuencial](equipos/equipo_13/avance_30_05_2018/implementaciones/secuencial/README.md)
-
-[instrucciones implementación paralelo](equipos/equipo_13/avance_30_05_2018/implementaciones/paralelo/README.md)
 
 ---
 
