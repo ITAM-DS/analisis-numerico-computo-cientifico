@@ -247,10 +247,9 @@ Objetivo del proyecto: Implementar el método de descenso en gradiente para enco
 
 [Instrucciones implementación](equipos/equipo_8/README.md)
 
-[Ejemplo salida implementación en C](equipos/equipo_8/avance_30_05_18/C_files/
-ejemplo_100_empresas.txt)
+[Ejemplo salida implementación en C](equipos/equipo_8/avance_30_05_18/C_files/ejemplo_100_empresas.txt)
 
-[Implementación en Julia](equipos/equipo_8/avance_30_05_18/avance_30_05_18/Julia_files)
+[Implementación en Julia](equipos/equipo_8/avance_30_05_18/Julia_files)
 
 [Ejemplo salida implementación en Julia](equipos/equipo_8/avance_30_05_18/Julia_files/ejemplo_1000_empresas.txt)
 
