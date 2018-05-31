@@ -85,7 +85,7 @@ Objetivo del proyecto: Paralelizar factorización QR
 
 [Instrucciones para implementación](equipos/equipo_03/avance_final/README.md)
 
-[ejemplo de salida](equipos/equipo_03/avance_final/Implementaciones/prueba_a.txt)
+[ejemplo de salida de implementación](equipos/equipo_03/avance_final/Implementaciones/prueba_a.txt)
 
 ---
 
@@ -108,11 +108,13 @@ Objetivo del proyecto: El objetivo de nuestro proyecto es la construcción de un
 * [Avance 08-05-2018](equipos/equipo_04/avance_08_05_2018)
 
 
-[Trabajo escrito](https://www.dropbox.com/s/0izbhyuult1767a/CUDA-MNO.pdf?dl=0)
+[Trabajo escrito](https://www.dropbox.com/s/aenqkvbc6v2c7m4/Proyecto%20Final.pdf?dl=0)
 
-[Presentacion](https://www.dropbox.com/s/k4i8fmypcwa8h70/CUDA-MNO.html?dl=0)
+[Presentacion](https://www.dropbox.com/s/1y9p26oa5o7u6ox/CUDA-MNO.html?dl=0)
 
-[Implementacion](coloquen la liga en su readme de su carpeta de equipos/equipo_04 como el de la presentación y trabajo escrito) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Implementacion](equipos/equipo_04/avance_final/codigos/)
+
+[Instrucciones para implementación y ejemplo de salida](equipos/equipo_04/avance_final/codigos/ejecucion-programas.md)
 
 ---
 
