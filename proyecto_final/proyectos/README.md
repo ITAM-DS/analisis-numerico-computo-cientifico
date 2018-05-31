@@ -438,11 +438,14 @@ Renombren a sus referencias en el README.md de equipos/equipo_14 de modo que sea
 
 Actualicen las referencias para investigación/implementación que ustedes consideren les ayudaron a su proyecto en su README.md de carpeta inicial. Por ejemplo el de dropbox uploader.
 
-[Trabajo escrito](https://github.com/patricio-hdz/ProyectoFinal/blob/master/TrabajoFinal.md) Muevan la liga al repo, es un md entonces colóquenla allí en una ruta de su carpeta inicial por ejemplo equipo_14/trabajo_escrito.
+[Trabajo escrito](https://github.com/patricio-hdz/ProyectoFinal/blob/master/TrabajoFinal.md)
 
-[Presentacion](coloquen la liga en su readme de su carpeta de equipos/equipo_14 como el del trabajo escrito)
+[Presentacion](https://github.com/patricio-hdz/ProyectoFinal/blob/master/180529-Multiplicacion_matrices.pdf)
 
-[Implementacion](equipos/equipo_14/Codigo) Coloquen una descripción de cómo ejecutar el código, qué datos usar, output de muestra y resultado en un README.md.
+[Implementacion e instrucciones](equipos/equipo_14/Codigo)
+
+
+[Salida de implementación](https://www.dropbox.com/sh/uq8qbh6ykf6p0pg/AADlJu9HpQNPw14dgJY6KkPga/Resultados_Proyecto/Resultados_2018-05-15?dl=0)
 
 ---
 
