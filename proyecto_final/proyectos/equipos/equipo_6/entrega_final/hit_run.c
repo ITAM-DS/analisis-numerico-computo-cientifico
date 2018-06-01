@@ -246,11 +246,16 @@ x[i][0]=x_0[i];
 
 double lambda[2];
 double theta = 1;
+double c;
 
-unsigned T = 1000;
+unsigned T = 10000;
 
 //L= segunda matriz de proyección
 // H primera matriz de proyección
+
+
+
+
 for(int t = 0; t<T; t++)
 {
 
@@ -273,12 +278,16 @@ for(int i =0; i < n ; i++)
    0,
    0
   );
+  //matrix_debug(L,n,1);
 
-
-for(int i ; i < n ; i++)
+for(int i=0 ; i < n ; i++)
 {
+
   dp[i][0] += L[i][0];
 }
+
+//matrix_debug(dp,n,1);
+//printf("%lf\n",c );
 
 // Numerator
   matrix_multiplication(
@@ -293,21 +302,24 @@ for(int i ; i < n ; i++)
   );
 
 
-  for(int i ; i < n ; i++)
+  for(int i=0 ; i < mi ; i++)
   {
     num[i][0] = P_INEQUALITY->b[i] - num[i][0];
 
   }
 
 
+//matrix_debug(num,mi,1);
 
 // Denominator
 
 for(int i = 0 ; i<n ; i++)
 {
-  aux[i][0] = dp[i][0]-x[i][0];
+  aux[i][0] = dp[i][0]- x[i][0];
 
 }
+//matrix_debug(aux,n,1);
+
 
 matrix_multiplication(
  IN, // Pointer to matrix A
@@ -319,46 +331,72 @@ matrix_multiplication(
  0,
  0
 );
+//matrix_debug(den,mi,1);
 
 lambda[0]=1.00;
 lambda[1]=1.00;
 
+ //matrix_debug(den,mi,1);
+
+// for(int i = 0; i <mi; i++)
+// {
+//   if((den[i][0] > 0.00000001) | (den[i][0] < -0.00000001 )){
+//     den[i][0]=(num[i][0]/den[i][0]);
+//   }
+//   if(den[i][0]<0.0000001) {
+//     den[i][0]=0.0;
+//   }
+//    if(den[i][0]>1.0) {
+//     den[i][0]=.9;
+//   }
+//
+//
+// }
 
 for(int i = 0; i <mi; i++)
 {
-  if(den[i][0]!=0.0){
-    den[i][0]=(num[i][0]/den[i][0]);
-  } else  {
-    den[i][0]=1.0;
-  }
-
+  if((den[i][0] > 0.00000001) | (den[i][0] < -0.00000001 )){
+    den[i][0]=fabs(num[i][0]/den[i][0]);
+  }else {     den[i][0]=1;}
 }
 
 
 
+
+
+ //matrix_debug(den,mi,1);
+
+
 for(int i = 0; i <mi; i++)
 {
-  if(  fabs(den[i][0])<lambda[0])
+  if(  den[i][0]<lambda[0])
   {
-    lambda[0]=fabs(den[i][0]);
+    lambda[0]=den[i][0];
   }
-
 
 }
 
-theta = (double) ((double)rand()/RAND_MAX - 1+ lambda[0]);
-double control = 0;
+ //printf(" %lf \n",lambda[0]);
 
+ c=0;
+
+if(lambda[0]!=0){
+theta = (double) (double)rand()/RAND_MAX * lambda[0];
+// printf(" %lf \n",lambda[0]);
+//
+//printf(" %lf \n",theta);
 
 for(int i = 0 ; i < n ; i++)
 {
   x[i][0]  = (1-theta) *x[i][0] + theta*dp[i][0];
-
+  x[i][0] = x[i][0];
+  c += x[i][0];
+}
+  printf("\n Norma del vector :%lf", c);
+ matrix_debug(x,n,1);
 }
 
-matrix_debug(x,n,1);
-
-
+//matrix_debug(x,n,1);
 // // this is for standariaztion
 // for(int i = 0 ; i < n ; i++)
 // {
