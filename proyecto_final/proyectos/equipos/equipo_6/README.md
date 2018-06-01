@@ -10,7 +10,7 @@ Probability Distributions Subject to Partial Information`
 
 Para instalar magma:
 
-[MAGMA](avance_8_05_2018/codigo/magma)
+[MAGMA](avance_8_05_2018/codigo/MAGMA)
 
 # Trabajo escrito
 
