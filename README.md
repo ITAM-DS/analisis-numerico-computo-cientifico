@@ -120,9 +120,24 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 ## V Cómputo en la nube
 
-\*[Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Activar-creditos-de-AWS)
+### Amazon Web Services (AWS).
 
-5.1 [Amazon Web Services y OpenMPI.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Iniciar-cluster-con-Autoscaling-y-OpenMPI) 
+AWS.0 [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Activar-creditos-de-AWS)
+
+AWS.1 [Configuración de servicios básicos de AWS](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.Configuracion-de-servicios-basicos-para-uso-de-AWS) 
+
+AWS.2 [AWS y OpenMPI](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/2.AWS-y-OpenMPI)
+
+AWS.3 [AWS y Sun Grid Engine](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/3.AWS-y-Sun-Grid-Engine)
+
+AWS.4 [AWS y Kubernetes](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/4.AWS-y-Kubernetes)
+
+AWS.adicional1 [AWS: S3]
+
+AWS.adicional2 [AWS: Relational Database System]
+
+
+
 
 
 ## [C](C/)
