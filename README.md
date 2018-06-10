@@ -122,7 +122,7 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 ### Amazon Web Services (AWS).
 
-AWS.0 [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/Activar-creditos-de-AWS)
+AWS.0 [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.Activar-creditos-de-AWS)
 
 AWS.1 [Configuración de servicios básicos de AWS](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.Configuracion-de-servicios-basicos-para-uso-de-AWS) 
 
