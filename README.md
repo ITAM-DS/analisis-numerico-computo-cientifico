@@ -132,9 +132,7 @@ AWS.3 [AWS y Sun Grid Engine](https://github.com/ITAM-DS/analisis-numerico-compu
 
 AWS.4 [AWS y Kubernetes](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/4.AWS-y-Kubernetes)
 
-AWS.adicional1 [AWS: S3]
-
-AWS.adicional2 [AWS: Relational Database System]
+AWS.adicional1 [AWS: Relational Database System]
 
 
 
