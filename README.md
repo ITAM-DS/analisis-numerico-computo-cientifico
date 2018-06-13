@@ -122,9 +122,11 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 Ejemplos de Uso:
 
-1. [Pangeo](http://matthewrocklin.com/blog/work/2018/01/22/pangeo-2)
+1. [Antares3](https://conabio.github.io/antares3/)
 
-2. [Antares3](https://conabio.github.io/antares3/)
+2. [Pangeo](http://matthewrocklin.com/blog/work/2018/01/22/pangeo-2)
+
+
 
 ### Amazon Web Services (AWS).
 
