@@ -120,6 +120,12 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 ## V Cómputo en la nube
 
+Ejemplos de Uso:
+
+1. [Pangeo](http://matthewrocklin.com/blog/work/2018/01/22/pangeo-2)
+
+2. [Antares3](https://conabio.github.io/antares3/)
+
 ### Amazon Web Services (AWS).
 
 AWS.0 [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.Activar-creditos-de-AWS)
