@@ -20,7 +20,7 @@ es un archivo de control para la lista de proyectos y **únicamente lo actualiza
 
 * **Ojo:** deben entregarse los 4 rubros: implementación, trabajo escrito, presentación y avances para que se considere válido el proyecto final. Si alguno de estos rubros no es entregado en tiempo y forma se tendrá 0 en el proyecto final.
 
-* **Ojo:** Si un equipo no presenta avance alguno en las fechas de los sábados de abril y mayo que se le pide asistan tendrán 0 en el rubro de avances y por tanto 0 en el proyecto final. 
+* **Ojo:** Si un equipo no presenta avance alguno en las fechas de los sábados de abril y mayo que se le pide asistan, tendrán 0 en el rubro de avances y por tanto 0 en el proyecto final. 
 
 
 *Fechas de los sábados de abril y mayo en los que los equipos tendrán que presentar avances  del proyecto:
