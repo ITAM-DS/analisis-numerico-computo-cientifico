@@ -22,6 +22,8 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 * [Preguntas 1.2](https://www.dropbox.com/s/rfqs34rpav2hjs3/preguntas_sistema_de_punto_flotante.txt?dl=0)
 
+* [Ejemplo de análisis del error en los métodos de diferenciación e integración numérica](https://www.dropbox.com/s/jfrxanjls8kndjp/Diferenciacion_e_Integracion.pdf?dl=0).
+
 1.3 [Condición, estabilidad y normas.](https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad_y_normas.pdf?dl=0)
 
 * [Preguntas 1.3](https://www.dropbox.com/s/zbf78u0uxr31ei0/preguntas_condicion_estabilidad_normas.txt?dl=0)
