@@ -1,12 +1,12 @@
 # Métodos Numéricos y Optimización
 
-[Temario](https://www.dropbox.com/s/je8py3q0623u7jk/TEMARIO_MNO.pdf?dl=0)
+[Temario](https://www.dropbox.com/s/krs3d8xec09dkqv/TEMARIO_MNO.pdf?dl=0)
 
-[El curso, calificación y entregas, correo al cual escribir](https://www.dropbox.com/s/j4duvz17oxm70ts/Curso_MNO.pdf?dl=0)
+[El curso, calificación y entregas, correo al cual escribir](https://www.dropbox.com/s/krs3d8xec09dkqv/TEMARIO_MNO.pdf?dl=0)
 
 [Equipos de MNO]()
 
-[Lista alumn@s con calificaciones]()
+[Lista alumn@s con calificaciones](https://www.dropbox.com/s/9t03f6drg23oru3/salon_pf_102.xlsx?dl=0)
 
 [Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
 
@@ -21,5 +21,4 @@
 [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.Activar-creditos-de-AWS)
 
 ## Clase 1
-
 
