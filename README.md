@@ -2,7 +2,7 @@
 
 [Temario](https://www.dropbox.com/s/krs3d8xec09dkqv/TEMARIO_MNO.pdf?dl=0)
 
-[El curso, calificación y entregas, correo al cual escribir](https://www.dropbox.com/s/krs3d8xec09dkqv/TEMARIO_MNO.pdf?dl=0)
+[El curso, calificación y entregas, correo al cual escribir](hhttps://www.dropbox.com/s/pgvmia2ltahlktf/Curso_MNO_2019.pdf?dl=0)
 
 [Equipos de MNO]()
 
