@@ -22,3 +22,12 @@
 
 ## Clase 1
 
+16 de enero
+
+Introducción, forma de calificar, dinámica de clase, generalidades del curso.
+
+Revisamos notas: 
+
+[I/1.1](https://www.dropbox.com/s/z5ifw3ti66gukdy/1.1.Analisis_numerico_y_computo_cientifico.pdf?dl=0)
+
+[I/1.2](https://www.dropbox.com/s/9fsupm3bhwmv7cb/1.2.Sistema_de_punto_flotante.pdf?dl=0) hasta diagrama de representación de un SPF.
