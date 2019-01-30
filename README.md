@@ -40,3 +40,7 @@ Finalizamos nota
 [I/1.2](https://www.dropbox.com/s/9fsupm3bhwmv7cb/1.2.Sistema_de_punto_flotante.pdf?dl=0)
 
 Ejercicio de graficación de error relativo vs h en diferenciación numérica de la nota [Ejemplo de análisis del error en los métodos de diferenciación e integración numérica](https://www.dropbox.com/s/jfrxanjls8kndjp/Diferenciacion_e_Integracion.pdf?dl=0)
+
+[Soluciones a ejercicio de punto flotante](https://www.dropbox.com/sh/8uqplypfvbnvd7n/AAAwKmvbc-3xRChqQSVoF996a?dl=0)
+
+[Soluciones a ejercicio de diferenciación numérica]()
