@@ -43,4 +43,4 @@ Ejercicio de graficación de error relativo vs h en diferenciación numérica de
 
 [Soluciones a ejercicio de punto flotante](https://www.dropbox.com/sh/8uqplypfvbnvd7n/AAAwKmvbc-3xRChqQSVoF996a?dl=0)
 
-[Soluciones a ejercicio de diferenciación numérica]()
+[Soluciones a ejercicio de diferenciación numérica](https://www.dropbox.com/sh/epgwzj8knzrumj0/AABcMHRtyOmQ-ZzJ5SHirNm0a?dl=0)
