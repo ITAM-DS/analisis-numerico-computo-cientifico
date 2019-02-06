@@ -34,7 +34,7 @@ Revisamos notas:
 
 ## Clase 2
 
-24 de enero
+23 de enero
 
 Finalizamos nota 
 [I/1.2](https://www.dropbox.com/s/9fsupm3bhwmv7cb/1.2.Sistema_de_punto_flotante.pdf?dl=0)
@@ -44,3 +44,14 @@ Ejercicio de graficación de error relativo vs h en diferenciación numérica de
 [Soluciones a ejercicio de punto flotante](https://www.dropbox.com/sh/8uqplypfvbnvd7n/AAAwKmvbc-3xRChqQSVoF996a?dl=0)
 
 [Soluciones a ejercicio de diferenciación numérica](https://www.dropbox.com/sh/epgwzj8knzrumj0/AABcMHRtyOmQ-ZzJ5SHirNm0a?dl=0)
+
+
+## Clase 3
+
+30 de enero
+
+Polinomios de Taylor y diferenciación numérica de nota [Ejemplo de análisis del error en los métodos de diferenciación e integración numérica](https://www.dropbox.com/s/jfrxanjls8kndjp/Diferenciacion_e_Integracion.pdf?dl=0)
+
+[Soluciones a ejercicio de Taylor](https://www.dropbox.com/sh/ztxfx01a32k7rp6/AAAfSTac48INFhhx6cW8UoNfa?dl=0)
+
+[Soluciones a ejercicio de aproximación de gradiente](https://www.dropbox.com/sh/yub2s0ydmp3slsk/AAAkjVpX9UV_MThHEBrcAHF3a?dl=0)
