@@ -62,7 +62,7 @@ Polinomios de Taylor y diferenciación numérica de nota [Ejemplo de análisis d
 
 Integración numérica de nota [Ejemplo de análisis del error en los métodos de diferenciación e integración numérica](https://www.dropbox.com/s/jfrxanjls8kndjp/Diferenciacion_e_Integracion.pdf?dl=0)
 
-Estabilidad y condición de un algoritmo de nota[1.3.Condicion_estabilidad_y_normas](https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad_y_normas.pdf?dl=0)
+Estabilidad y condición de un algoritmo de nota [1.3.Condicion_estabilidad_y_normas](https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad_y_normas.pdf?dl=0)
 
 [Soluciones a ejercicio de integración](https://www.dropbox.com/sh/njscxvvwyce21dc/AADifFvr8hCDrTSFIaOECisea?dl=0)
 
