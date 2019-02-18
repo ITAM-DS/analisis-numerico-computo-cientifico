@@ -146,7 +146,9 @@ Ejemplos de Uso:
 
 AWS.0 [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.Activar-creditos-de-AWS)
 
-AWS.1 [Configuración de servicios básicos de AWS](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.Configuracion-de-servicios-basicos-para-uso-de-AWS) 
+AWS.1.1 [Configuración de servicios básicos de AWS](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.1.Configuracion-de-servicios-basicos-para-uso-de-AWS) 
+
+AWS.1.2 [Instalación de herramientas útiles en AWS](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.2.Instalaci%C3%B3n-de-herramientas-%C3%BAtiles-en-AWS)
 
 AWS.2 [AWS y OpenMPI](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/2.AWS-y-OpenMPI)
 
@@ -154,7 +156,7 @@ AWS.3 [AWS y Sun Grid Engine](https://github.com/ITAM-DS/analisis-numerico-compu
 
 AWS.4 [AWS y Kubernetes](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/4.AWS-y-Kubernetes)
 
-AWS.5 [Instalación de herramientas útiles en AWS](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/5.Instalaci%C3%B3n-de-herramientas-%C3%BAtiles-en-AWS)
+
 
 AWS.adicional1 [AWS: Relational Database System]
 
