@@ -79,3 +79,5 @@ Estabilidad y condición de un algoritmo de nota [1.3.Condicion_estabilidad_y_no
 13 de febrero
 
 Introducción a temas [3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf](https://www.dropbox.com/s/fyqwiqasqaa3wlt/3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf?dl=0) y [3.1.2.Localidad_y_vectorizacion.Analisis_del_error_en…iales_basicos.pdf](https://www.dropbox.com/s/l4hq45rj860ql9f/3.1.2.Localidad_y_vectorizacion.Analisis_del_error_en_computos_matriciales_basicos.pdf?dl=0)
+
+Petición de instalación OpenBLAS en máquinas de estudiantes para su uso en R o en Python (para % de participación)
