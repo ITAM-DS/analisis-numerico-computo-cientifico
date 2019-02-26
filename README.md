@@ -130,6 +130,8 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 4.5.1 [Algoritmos de optimización sin restricciones](https://www.dropbox.com/s/eb018pou0mbhx6g/4.5.1.Algoritmos_optimizacion_sin_restricciones.pdf?dl=0)
 
+4.5.2 [Algoritmos de optimización con restricciones de igualdad](https://www.dropbox.com/s/5ojoufyp9czqecw/4.5.2.Algoritmos-optimizacion-con-restricciones-de-igualdad.pdf?dl=0)
+
 * [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
 ## V Cómputo en la nube
