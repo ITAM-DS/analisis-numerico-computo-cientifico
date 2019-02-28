@@ -86,12 +86,12 @@ Petición de instalación OpenBLAS en máquinas de estudiantes para su uso en R 
 
 20 de febrero
 
-Comentarios sobre [3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf](https://www.dropbox.com/s/fyqwiqasqaa3wlt/3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf?dl=0) y [3.1.2.Localidad_y_vectorizacion.Analisis_del_error_en…iales_basicos.pdf](https://www.dropbox.com/s/l4hq45rj860ql9f/3.1.2.Localidad_y_vectorizacion.Analisis_del_error_en_computos_matriciales_basicos.pdf?dl=0) relacionados con las diferentes versiones del algoritmo de multiplicación de matrices (6 versiones)
+Comentarios sobre [3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf](https://www.dropbox.com/s/fyqwiqasqaa3wlt/3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf?dl=0) y [3.1.2.Localidad_y_vectorizacion.Analisis_del_error_en…iales_basicos](https://www.dropbox.com/s/l4hq45rj860ql9f/3.1.2.Localidad_y_vectorizacion.Analisis_del_error_en_computos_matriciales_basicos.pdf?dl=0) relacionados con las diferentes versiones del algoritmo de multiplicación de matrices (6 versiones)
 
 
 ## Clase 8
 
 28 de febrero
 
-Implementación de multiplicación matricial vectorizando dos loops más internos de acuerdo a: [3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf](https://www.dropbox.com/s/fyqwiqasqaa3wlt/3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf?dl=0) 
+Implementación de multiplicación matricial vectorizando dos loops más internos de acuerdo a: [3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos](https://www.dropbox.com/s/fyqwiqasqaa3wlt/3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf?dl=0) 
 Métodos de sustitución hacia atrás, hacia delante y eliminación Gaussiana simple [Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
