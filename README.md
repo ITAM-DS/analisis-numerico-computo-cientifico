@@ -91,7 +91,11 @@ Comentarios sobre [3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf](h
 
 ## Clase 8
 
-28 de febrero
+27 de febrero
 
 Implementación de multiplicación matricial vectorizando dos loops más internos de acuerdo a: [3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos](https://www.dropbox.com/s/fyqwiqasqaa3wlt/3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf?dl=0) 
 Métodos de sustitución hacia atrás, hacia delante y eliminación Gaussiana simple [Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
+
+[Soluciones a ejercicios de multiplicación de matrices](https://www.dropbox.com/sh/smfgpmp2q08k093/AACGyKkiEh5OeVzTfM0m66roa?dl=0)
+
+[Soluciones a ejercicios de sustitución hacia delante y hacia atrás](https://www.dropbox.com/sh/zmv7e3mdmvnovbp/AAAbX1S0qIQyC422R2EtUmj9a?dl=0)
