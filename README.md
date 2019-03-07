@@ -99,3 +99,9 @@ Métodos de sustitución hacia atrás, hacia delante y eliminación Gaussiana si
 [Soluciones a ejercicios de multiplicación de matrices](https://www.dropbox.com/sh/smfgpmp2q08k093/AACGyKkiEh5OeVzTfM0m66roa?dl=0)
 
 [Soluciones a ejercicios de sustitución hacia delante y hacia atrás](https://www.dropbox.com/sh/zmv7e3mdmvnovbp/AAAbX1S0qIQyC422R2EtUmj9a?dl=0)
+
+
+## Clase 9
+6 de marzo
+
+Discusión de algoritmos de sustitución hacia delante versión saxpy y por bloques y eliminación Gaussiana simple en su versión outer product de nota [Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
