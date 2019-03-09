@@ -105,3 +105,10 @@ Métodos de sustitución hacia atrás, hacia delante y eliminación Gaussiana si
 6 de marzo
 
 Discusión de algoritmos de sustitución hacia delante versión saxpy y por bloques y eliminación Gaussiana simple en su versión outer product de nota [Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
+
+
+## Clase 10
+
+9 de marzo (sábado)
+
+[sesión 9 de marzo](https://www.dropbox.com/s/23lp2g0ysrms5ic/sesion_9_marzo_2019.md?dl=0)
