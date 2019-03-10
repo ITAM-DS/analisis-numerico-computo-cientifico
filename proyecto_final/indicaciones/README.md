@@ -33,7 +33,7 @@ es un archivo de control para la lista de proyectos y **únicamente lo actualiza
 
 * 4 de mayo.
 
-* 18 de mayo. 
+*  de mayo. 
 
 * 25 de mayo.
 
