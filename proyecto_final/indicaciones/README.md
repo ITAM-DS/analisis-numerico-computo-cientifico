@@ -39,4 +39,16 @@ es un archivo de control para la lista de proyectos y **únicamente lo actualiza
 
 El proyecto final se presenta en la segunda semana de finales.
 
+*Asignación de equipos en las fechas anteriores:
+
+	Fechas	Equipos
+	
+	06-abr	4, 5, 6, 16
+	13-abr	7,11,13, 14, 15
+	27-abr	2,3,9,10,12
+
+	04-may	1,4,5,6,8
+	? Mayo	16,….
+	25-may	….
+
 
