@@ -33,7 +33,7 @@ es un archivo de control para la lista de proyectos y **únicamente lo actualiza
 
 * 4 de mayo.
 
-* 15 de mayo. 
+* 15 de mayo (no es sábado, después de la clase del miércoles se entrega el avance). 
 
 * 25 de mayo.
 
