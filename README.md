@@ -60,7 +60,7 @@ Polinomios de Taylor y diferenciación numérica de nota [Ejemplo de análisis d
 
 9 de febrero (sábado)
 
-Introducción a AWS y configuración de servicios básicos [AWS.1.1.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.1.Configuracion-de-servicios-basicos-para-uso-de-AWS) e instalación de herramientas útiles en AWS [AWS.1.2](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.2.Instalaci%C3%B3n-de-herramientas-%C3%BAtiles-en-AWS)
+Introducción a AWS y configuración de servicios básicos [AWS.1.1.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.1.Configuracion-de-servicios-basicos-para-uso-de-AWS) e instalación de herramientas útiles en AWS [AWS.1.2](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.2.Instalaci%C3%B3n-de-herramientas-%C3%BAtiles-en-AWS) (docker, Rstudio)
 
 ## Clase 5
 
@@ -94,7 +94,7 @@ Comentarios sobre [3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf](h
 27 de febrero
 
 Implementación de multiplicación matricial vectorizando dos loops más internos de acuerdo a: [3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos](https://www.dropbox.com/s/fyqwiqasqaa3wlt/3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf?dl=0) 
-Métodos de sustitución hacia atrás, hacia delante y eliminación Gaussiana simple [Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
+Métodos de sustitución hacia atrás, hacia delante y eliminación Gaussiana simple [3.2.1.Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
 
 [Soluciones a ejercicios de multiplicación de matrices](https://www.dropbox.com/sh/smfgpmp2q08k093/AACGyKkiEh5OeVzTfM0m66roa?dl=0)
 
@@ -104,11 +104,16 @@ Métodos de sustitución hacia atrás, hacia delante y eliminación Gaussiana si
 ## Clase 9
 6 de marzo
 
-Discusión de algoritmos de sustitución hacia delante versión saxpy y por bloques y eliminación Gaussiana simple en su versión outer product de nota [Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
+Discusión de algoritmos de sustitución hacia delante versión saxpy y por bloques y eliminación Gaussiana simple en su versión outer product de nota [3.2.1.Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
 
+[Soluciones a ejercicios de sustitución hacia delante versión saxpy y bloques](https://www.dropbox.com/sh/sarq2i4c6xgohr5/AAAjWHlSoapAEeu7m_67qysea?dl=0)
+
+[Soluciones a ejercicios de eliminación Gaussiana](https://www.dropbox.com/sh/7abv78g69k4rvur/AAAOpiYaR6qBehMg6hyPzTVGa?dl=0)
 
 ## Clase 10
 
 9 de marzo (sábado)
+
+Cnfiguración de servicios básicos [AWS.1.1.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.1.Configuracion-de-servicios-basicos-para-uso-de-AWS) e instalación de herramientas útiles en AWS [AWS.1.2](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.2.Instalaci%C3%B3n-de-herramientas-%C3%BAtiles-en-AWS) (jupyterlab y postgreSQL)
 
 [sesión 9 de marzo](https://www.dropbox.com/s/23lp2g0ysrms5ic/sesion_9_marzo_2019.md?dl=0)
