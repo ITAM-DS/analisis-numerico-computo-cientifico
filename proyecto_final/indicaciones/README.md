@@ -33,7 +33,7 @@ es un archivo de control para la lista de proyectos y **únicamente lo actualiza
 
 * 4 de mayo.
 
-*  de mayo. 
+* 15 de mayo. 
 
 * 25 de mayo.
 
@@ -48,7 +48,7 @@ El proyecto final se presenta en la segunda semana de finales.
 	27-abr	2,3,9,10,12
 
 	04-may	1,4,5,6,8
-	? Mayo	16,….
+	15-may	16,….
 	25-may	….
 
 
