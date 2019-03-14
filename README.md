@@ -117,3 +117,10 @@ Discusión de algoritmos de sustitución hacia delante versión saxpy y por bloq
 Cnfiguración de servicios básicos [AWS.1.1.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.1.Configuracion-de-servicios-basicos-para-uso-de-AWS) e instalación de herramientas útiles en AWS [AWS.1.2](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.2.Instalaci%C3%B3n-de-herramientas-%C3%BAtiles-en-AWS) (jupyterlab y postgreSQL)
 
 [sesión 9 de marzo](https://www.dropbox.com/s/23lp2g0ysrms5ic/sesion_9_marzo_2019.md?dl=0)
+
+
+## Clase 11
+
+13 de marzo
+
+Discusión de algoritmos para calcular la factorización LU en su versión outer product y gaxpy e inicio de pivoteo parcial para eliminación Gaussiana de nota [3.2.1.Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
