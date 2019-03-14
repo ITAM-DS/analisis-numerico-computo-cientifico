@@ -13,7 +13,7 @@ Cada equipo realiza una investigación del método numérico elegido para su est
 
 La implementación de los métodos numéricos es fundamental para el proyecto. Esta implementación utiliza código escrito en R, Python, Matlab o C para resolver los objetivos de cada equipo. Se propone a cada equipo el uso de lenguajes de alto nivel (python, matlab, R) para trabajo no pesado y/o gráficas y el lenguaje de programación en C para el trabajo rudo.
 
-Tiene un porcentaje de 40% y la calificación es por equipo. Se entrega el código de la implementación en una liga a ella, más información sobre esta liga [aquí](indicaciones).
+Tiene un porcentaje de 40% y la calificación es por equipo. El código de la implementación se subirá al repo, más información [aquí](indicaciones).
 
 ## Trabajo escrito
 
