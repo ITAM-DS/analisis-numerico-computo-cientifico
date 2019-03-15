@@ -104,7 +104,11 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 3.4 [Tensores. Una introducción.](https://www.dropbox.com/s/udwrro2f11j2a0q/3.4.Tensores.pdf?dl=0)
 
+* [Preguntas 3.4](https://www.dropbox.com/s/6p2xzftozyca3uk/preguntas_tensores.txt?dl=0)
+
 3.5 [Aplicaciones del álgebra lineal numérica.](https://www.dropbox.com/s/dfwk0y04ksgfilv/3.3.Aplicaciones_del_algebra_lineal_numerica.pdf?dl=0)
+
+* [Preguntas 3.5](https://www.dropbox.com/s/h3j2acb39twln7o/preguntas_aplicaciones_algebra_lineal_numerica.txt?dl=0)
 
 3.6.1 [Multiplicación de matrices con cómputo en paralelo.](https://www.dropbox.com/s/bgoua82py00h22o/3.4.1.Multiplicacion_de_matrices_con_computo_en_paralelo.pdf?dl=0)
 
