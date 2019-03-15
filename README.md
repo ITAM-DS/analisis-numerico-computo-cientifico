@@ -94,7 +94,11 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 3.2.1 [Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
 
+* [Preguntas 3.2.1](https://www.dropbox.com/s/g3w9sfa09nkn94p/preguntas_eliminacion_Gaussiana_factorizacion_LU.txt?dl=0)
+
 3.2.2 [Factorizaciones matriciales: SVD, Cholesky, QR. (Vista rápida).](https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0)
+
+* [Preguntas 3.2.2](https://www.dropbox.com/s/iwpn6a8nr7w6h5d/preguntas_SVD_QR_Cholesky.txt?dl=0)
 
 3.3 [Sistemas de ecuaciones lineales: métodos iterativos.]
 
