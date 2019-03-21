@@ -124,3 +124,9 @@ Cnfiguración de servicios básicos [AWS.1.1.](https://github.com/ITAM-DS/analis
 13 de marzo
 
 Discusión de algoritmos para calcular la factorización LU en su versión outer product y gaxpy e inicio de pivoteo parcial para eliminación Gaussiana de nota [3.2.1.Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
+
+## Clase 12
+
+20 de marzo
+
+Factorización LU con pivoteo parcial en su versión outer product de nota [3.2.1.Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0) Inicio de nota [3.2.2 Factorizaciones matriciales: SVD, Cholesky, QR. (Vista rápida).](https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0)
