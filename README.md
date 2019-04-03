@@ -125,6 +125,8 @@ Cnfiguración de servicios básicos [AWS.1.1.](https://github.com/ITAM-DS/analis
 
 Discusión de algoritmos para calcular la factorización LU en su versión outer product y gaxpy e inicio de pivoteo parcial para eliminación Gaussiana de nota [3.2.1.Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
 
+[soluciones a ejercicios de factorización LU](https://www.dropbox.com/sh/klpqijafrs7w5ap/AADd9ItZ0Vp_L3986z-OMhrwa?dl=0)
+
 ## Clase 12
 
 20 de marzo
@@ -137,5 +139,10 @@ Factorización LU con pivoteo parcial en su versión outer product y ejercicio d
 
 Levantar un clúster de kubernetes y clúster de contenedores de acuerdo a [4.AWS y Kubernetes](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/4.AWS-y-Kubernetes)
 
+## Clase 14
+
+27 de marzo
+
+Ejercicios de nota [3.2.2 Factorizaciones matriciales: SVD, Cholesky, QR. (Vista rápida).](https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0)
 
 
