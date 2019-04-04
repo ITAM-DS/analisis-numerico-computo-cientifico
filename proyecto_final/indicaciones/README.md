@@ -41,9 +41,9 @@ El proyecto final se presenta en la segunda semana de finales.
 
 *Asignación de equipos en las fechas anteriores:
 
-	Fechas	Equipos
+	Fechas	Equipos			Salón		Horario
 	
-	06-abr	4, 5, 6, 16
+	06-abr	4, 5, 6, 16 		305		media hora cada equipo iniciando 8:00 am con equipo 4, luego el 5 y así sucesivamente
 	13-abr	7,11,13, 14, 15
 	27-abr	2,3,9,10,12
 
