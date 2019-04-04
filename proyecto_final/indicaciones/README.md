@@ -41,14 +41,14 @@ El proyecto final se presenta en la segunda semana de finales.
 
 ### Asignación de equipos en las fechas anteriores:
 
-	Fechas	Equipos			Salón		Horario
+	Fechas	Equipos			Salón		 Horario
 	
-	06-abr	4, 5, 6, 16 		305		media hora cada equipo iniciando 8:00 am con equipo 4, luego el 5 y así sucesivamente
-	13-abr	7,11,13, 14, 15
-	27-abr	2,3,9,10,12
+	06-abr	4, 5, 6, 16 		305 RH		 8:00 am media hora cada equipo iniciando 8:00 am con equipo 4, luego el 5 y así sucesivamente
+	13-abr	7,11,13, 14, 15         305 RH           8:00 am media hora cada equipo iniciando 8:00 am con equipo 7
+	27-abr	2,3,9,10,12             103 santa Teresa 8:00 am media hora cada equipo iniciando 8:00 am con equipo 2
 
-	04-may	1,4,5,6,8
-	15-may	16,….
-	25-may	….
+	04-may	1,4,5,6,8               305 RH           8:00 am media hora cada equipo iniciando 8:00 am con equipo 1
+	15-may	16,….                   (por definir)    (después de la clase del miércoles)
+	25-may	….                      101 santa Teresa 8:00 am media hora cada equipo iniciando 8:00 am con equipo ? 
 
 
