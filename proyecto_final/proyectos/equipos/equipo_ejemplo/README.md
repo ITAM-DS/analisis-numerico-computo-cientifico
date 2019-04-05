@@ -23,5 +23,5 @@ Determinamos reducir la cantidad de trabajo que queríamos hacer en el proyecto 
 
 Referencias del proyecto:
 
-* http://docs.nvidia.com/cuda/cuda-c-programming-guide/#axzz4cvQxAHMZ
+* [Liga a documentación de NVIDIA: cuda-c-programming-guide](http://docs.nvidia.com/cuda/cuda-c-programming-guide/#axzz4cvQxAHMZ)
 * (referencia)
