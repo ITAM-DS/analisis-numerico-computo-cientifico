@@ -136,7 +136,7 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 * [Preguntas 4.4](https://www.dropbox.com/s/w64oxxcdoc3lucn/preguntas_dualidad.pdf?dl=0)
 
-4.5.1 [Problemas de optimización convexa: definiciones]
+4.5.1 [Problemas de optimización convexa: definiciones](https://drive.google.com/file/d/1xtkxPCx05Xg4Dj7JZoQ-LusBDrtYUqOF/view?usp=sharing)
 
 4.5.2 [Algoritmos de optimización sin restricciones](https://www.dropbox.com/s/eb018pou0mbhx6g/4.5.2.Algoritmos_optimizacion_sin_restricciones.pdf?dl=0)
 
