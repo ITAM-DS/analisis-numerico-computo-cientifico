@@ -132,17 +132,17 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 * [Preguntas 4.3.2](https://www.dropbox.com/s/bdhmmito6aa4zpc/preguntas_funciones_convexas.pdf?dl=0)
 
-4.4 [Dualidad.](https://www.dropbox.com/s/t56pkshibyydbj7/4.4.Dualidad.pdf?dl=0)
+4.4 [Dualidad.](https://drive.google.com/file/d/1zCIHNAxe5Shc36Qo0XjehHgwrafKSJ_t/view?usp=sharing)
 
 * [Preguntas 4.4](https://www.dropbox.com/s/w64oxxcdoc3lucn/preguntas_dualidad.pdf?dl=0)
 
 4.5.1 [Problemas de optimización convexa: definiciones](https://drive.google.com/file/d/1xtkxPCx05Xg4Dj7JZoQ-LusBDrtYUqOF/view?usp=sharing)
 
-4.5.2 [Algoritmos de optimización sin restricciones](https://www.dropbox.com/s/eb018pou0mbhx6g/4.5.2.Algoritmos_optimizacion_sin_restricciones.pdf?dl=0)
+4.5.2 [Algoritmos de optimización sin restricciones](https://drive.google.com/file/d/16-_PvWNaO0Zc9x04-SRsxCRdn5fxebf2/view?usp=sharing)
 
-4.5.3 [Algoritmos de optimización con restricciones de igualdad](https://www.dropbox.com/s/tgjb82pjoeiqiou/4.5.3.Algoritmos_optimizacion_con_restricciones_de_igualdad.pdf?dl=0)
+4.5.3 [Algoritmos de optimización con restricciones de igualdad](https://drive.google.com/file/d/12L7rOCgW7NEKl_xJbIGZz05XXVrOaPBz/view?usp=sharing)
 
-4.5.4 [Algoritmos de optimización con restricciones de igualdad y desigualdad](https://www.dropbox.com/s/livw9uo3zxco10p/4.5.4.Algoritmos_optimizacion_con_restricciones_de_igualdad_y_desigualdad.pdf?dl=0)
+4.5.4 [Algoritmos de optimización con restricciones de igualdad y desigualdad](https://drive.google.com/file/d/1CEJX60GQVQ-8BEcU7q6NbimAQHLwPmLS/view?usp=sharing)
 
 * [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
