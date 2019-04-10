@@ -138,11 +138,13 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 4.5.1 [Problemas de optimización convexa: definiciones](https://drive.google.com/file/d/1xtkxPCx05Xg4Dj7JZoQ-LusBDrtYUqOF/view?usp=sharing)
 
+* [Métodos de bisección, punto fijo y Newton para resolver ecuaciones no lineales](https://www.dropbox.com/s/6zree47e1u3p5wx/Ecuaciones_no_lineales.pdf?dl=0)
+
 4.5.2 [Algoritmos de optimización sin restricciones](https://drive.google.com/file/d/16-_PvWNaO0Zc9x04-SRsxCRdn5fxebf2/view?usp=sharing)
 
 4.5.3 [Algoritmos de optimización con restricciones de igualdad](https://drive.google.com/file/d/12L7rOCgW7NEKl_xJbIGZz05XXVrOaPBz/view?usp=sharing)
 
-4.5.4 [Algoritmos de optimización con restricciones de igualdad y desigualdad](https://drive.google.com/file/d/1CEJX60GQVQ-8BEcU7q6NbimAQHLwPmLS/view?usp=sharing)
+4.5.4 [Algoritmos de optimización con restricciones de igualdad y desigualdad](https://drive.google.com/file/d/1RMwUXEN_SOHKue-J9Cx3Ldvj9bejLjiM/view?usp=sharing)
 
 * [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
