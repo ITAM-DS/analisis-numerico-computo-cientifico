@@ -138,7 +138,7 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 4.5.1 [Problemas de optimización convexa: definiciones](https://drive.google.com/file/d/1xtkxPCx05Xg4Dj7JZoQ-LusBDrtYUqOF/view?usp=sharing)
 
-* [Métodos de bisección, punto fijo y Newton para resolver ecuaciones no lineales](https://www.dropbox.com/s/6zree47e1u3p5wx/Ecuaciones_no_lineales.pdf?dl=0)
+[Ejemplo de métodos de bisección, punto fijo y Newton para resolver ecuaciones no lineales](https://www.dropbox.com/s/6zree47e1u3p5wx/Ecuaciones_no_lineales.pdf?dl=0)
 
 4.5.2 [Algoritmos de optimización sin restricciones](https://drive.google.com/file/d/16-_PvWNaO0Zc9x04-SRsxCRdn5fxebf2/view?usp=sharing)
 
