@@ -100,7 +100,7 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 * [Preguntas 3.2.2](https://www.dropbox.com/s/iwpn6a8nr7w6h5d/preguntas_SVD_QR_Cholesky.txt?dl=0)
 
-3.3 [Sistemas de ecuaciones lineales: métodos iterativos.](https://www.dropbox.com/s/0qwn5di6bnkpo8n/Gauss_Seidel.html?dl=0)
+3.3 [Sistemas de ecuaciones lineales: métodos iterativos.](https://www.dropbox.com/sh/uikk6wfh1aqoc6m/AACddaJWDlHa6hMxgdy5DCVza?dl=0)
 
 3.4 [Tensores. Una introducción.](https://www.dropbox.com/s/udwrro2f11j2a0q/3.4.Tensores.pdf?dl=0)
 
