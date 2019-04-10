@@ -133,6 +133,8 @@ Discusión de algoritmos para calcular la factorización LU en su versión outer
 
 Factorización LU con pivoteo parcial en su versión outer product y ejercicio de programación para versión gaxpy de nota [3.2.1.Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0) Inicio de nota [3.2.2 Factorizaciones matriciales: SVD, Cholesky, QR. (Vista rápida).](https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0)
 
+[Soluciones a ejercicios de PLU con gaxpy](https://www.dropbox.com/sh/y4klvkql9960cz0/AACJNHY2SGASSoT8IPw7ElKja?dl=0)
+
 ## Clase 13
 
 23 de marzo (sábado)
@@ -145,4 +147,11 @@ Levantar un clúster de kubernetes y clúster de contenedores de acuerdo a [4.AW
 
 Ejercicios de nota [3.2.2 Factorizaciones matriciales: SVD, Cholesky, QR. (Vista rápida).](https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0)
 
+## Clase 15
+
+3 de abril
+
+Revisamos notas [4.1 Introducción a convexidad](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0) y [4.2 Problemas de optimización convexa.] combinando con [Aplicaciones del álgebra lineal numérica.](https://www.dropbox.com/s/dfwk0y04ksgfilv/3.3.Aplicaciones_del_algebra_lineal_numerica.pdf?dl=0) para el problema de mínimos cuadrados y una forma de actualizar el ajuste con factorización QR.
+
+[Soluciones a ejercicios de actualización vía QR para mínimos cuadrados](https://www.dropbox.com/sh/q64l09o7xpxvabe/AAA0GHNQ3X3BMTt_qaI92QWDa?dl=0)
 
