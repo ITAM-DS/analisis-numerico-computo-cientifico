@@ -157,7 +157,7 @@ Ejercicios en papel de nota [3.2.2 Factorizaciones matriciales: SVD, Cholesky, Q
 
 Examen módulo II (cómputo matricial)
 
-Revisamos notas [4.1 Introducción a convexidad](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0) y [4.2 Problemas de optimización convexa.](https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0) combinando con [3.5 Aplicaciones del álgebra lineal numérica.](https://www.dropbox.com/s/dfwk0y04ksgfilv/3.3.Aplicaciones_del_algebra_lineal_numerica.pdf?dl=0) para el problema de mínimos cuadrados y una forma de actualizar el ajuste con factorización QR.
+Revisamos notas [4.1 Introducción a convexidad](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0) y [4.2 Problemas de optimización convexa.](https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0) combinando con [3.5 Aplicaciones del álgebra lineal numérica.](https://www.dropbox.com/s/dfwk0y04ksgfilv/3.3.Aplicaciones_del_algebra_lineal_numerica.pdf?dl=0) para el problema de mínimos cuadrados y se revisó una forma de actualizar el ajuste con factorización QR.
 
 
 [Soluciones a ejercicios de actualización vía QR para mínimos cuadrados](https://www.dropbox.com/sh/q64l09o7xpxvabe/AAA0GHNQ3X3BMTt_qaI92QWDa?dl=0)
