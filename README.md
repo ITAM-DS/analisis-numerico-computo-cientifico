@@ -162,3 +162,8 @@ Revisamos notas [4.1 Introducción a convexidad](https://www.dropbox.com/s/qb3sw
 
 [Soluciones a ejercicios de actualización vía QR para mínimos cuadrados](https://www.dropbox.com/sh/q64l09o7xpxvabe/AAA0GHNQ3X3BMTt_qaI92QWDa?dl=0)
 
+## Clase 16
+
+10 de abril
+
+Revisamos nota [Ejemplo de métodos de bisección, punto fijo y Newton para resolver ecuaciones no lineales](https://www.dropbox.com/s/6zree47e1u3p5wx/Ecuaciones_no_lineales.pdf?dl=0) y se dejaron ejercicios de ecuaciones no lineales y minimización sin restricciones
