@@ -168,9 +168,14 @@ Objetivo del proyecto: objetivo
 
 ## [Equipo 11](equipos/equipo_11)
 
-Ttulo del proyecto: ``
+Ttulo del proyecto: `Componentes principales para la compresión y representación de audio`
 
-Objetivo del proyecto: objetivo
+Objetivo del proyecto: El uso de componentes principales para la compresión de audio no suele ser utilizado frecuentemente dado que requiere la implementación del algoritmo y requiere mucho espacio.  Lo anterior implica que el uso de PCA requiere sacrificar la calidad de la reconstrucción del audio para poder ser utilizado.  En segundo lugar, está el problema de la transmisión de audio.  PCA se basa en dos componentes: el flujo de datos y una matriz utilizada para reconstruir la señal original. Si bien es fácil transmitir los datos, no puede transmitir esa matriz. E incluso si divide el flujo en pequeños bloques para darle una pequeña matriz, debe garantizar que la matriz llegue; Si no tiene esa matriz, el flujo de datos no tendrá ningún sentido.
+
+El problema de PCA para la representación de audio puede abordarse desde dos ejes: 1.- la representación del audio en el tiempo, y 2) la representación del audio en términos de frecuencia.
+
+Considerando que este problema implica utilizar la transformada de Fourier, la cuál se torna en un problema de integración, nuestro proyecto busca optimizar el algoritmo PCA para la compresión y transmisión de audio siguiendo los ejes mencionados para realizar una comparación de tiempo, costo computacional y calidad de los resultados.
+
 
 [Avances del proyecto]
 
@@ -200,7 +205,7 @@ Objetivo del proyecto: objetivo
 
 ## [Equipo 13](equipos/equipo_13)
 
-Ttulo del proyecto: ``
+Ttulo del proyecto: `Sistema de recomendación de Netflix.`
 
 Objetivo del proyecto: Implementación del método de mínimos cuadrados alternados con regularización para un sistema de recomendación de Netflix.
 
