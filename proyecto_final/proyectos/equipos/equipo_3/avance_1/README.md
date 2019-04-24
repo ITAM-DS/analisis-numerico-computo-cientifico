@@ -17,7 +17,13 @@ Marissa:
 - Lectura del funcionamiento detrás de NVIDIA Tesla V100 a través del documento técnico
 
 Eddie:
-
+- Investigación de los diferentes tipos de procesadores disponibles en cómputo en la nube (CPU VS TPU VS GPU):
+   - Arquitectura
+   - Ventajas / Desventajas
+   - Casos de uso
+- Investigación de Google Cloud Computing (GCP):
+   - Cómo utilizar instancias con TPU en GCP
+   - Qué problemas/algoritmos aprovechan las ventajas que ofrece TPU
 
 Delia:
 - Investigación base sobre Azure y creditos otorgados
