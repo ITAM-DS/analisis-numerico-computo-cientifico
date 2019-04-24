@@ -21,7 +21,7 @@ Eddie:
 
 Delia:
 - Investigación base sobre Azure y creditos otorgados
-- Implementación del algoritmo de mínimos cuadrados tanto en R como en Python
+- Implementación del algoritmo de mínimos cuadrados tanto en [R](https://github.com/DeliaDelAguila/analisis-numerico-computo-cientifico-delia/blob/master/minimos-cuadrados.R) como en [Python](https://github.com/DeliaDelAguila/analisis-numerico-computo-cientifico-delia/blob/master/minimos-cuadrados.ipynb)
 - Investigación de cómo crear matrices "grandes" para simular un problema de ecuaciones lineales y poder correrlo en la instancia
 - Al darnos cuenta que quizás el algoritmo no sería suficiente para hacer el benchmark, investigué sobre la implementación de un algoritmo de machine learning que podamos usar como pruieba
 - Actualización del repo de Github
