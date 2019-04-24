@@ -167,3 +167,4 @@ Revisamos notas [4.1 Introducción a convexidad](https://www.dropbox.com/s/qb3sw
 10 de abril
 
 Revisamos nota [Ejemplo de métodos de bisección, punto fijo y Newton para resolver ecuaciones no lineales](https://www.dropbox.com/s/6zree47e1u3p5wx/Ecuaciones_no_lineales.pdf?dl=0) y se dejaron ejercicios de ecuaciones no lineales y minimización sin restricciones
+[Prof solución a ejercicio de ecuaciones no lineales](https://www.dropbox.com/sh/s1afcmr73vn3k59/AAC0KFUdd9qu6K8MAoYPYisja?dl=0)
