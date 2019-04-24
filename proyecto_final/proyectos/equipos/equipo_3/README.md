@@ -26,4 +26,5 @@ Referencias del proyecto:
 * [Benchmark que usamos de inspiración](https://www.vpsbenchmarks.com/compare/ec2_vs_gce)
 * [Documentación de Google Cloud Platform](https://cloud.google.com/tpu/?hl=en)
 * [Documentación de Instancias de AWS](https://www.ec2instances.info)
+* [Nvidia Tesla V100 GPU Architecture](https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf) 
 * [Documentación de Mínimos Cuadrados usando SVD](http://math.uchicago.edu/~may/REU2012/REUPapers/Lee.pdf)
