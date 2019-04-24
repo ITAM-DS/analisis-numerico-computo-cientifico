@@ -11,7 +11,10 @@
 ### Individual
 
 Marissa: 
-
+- Lectura de los tipos de Instancias en AWS
+- De acuerdo a lo leído, determinar que sea una instancia de tipo P3 la que se usé en el proyecto. 
+- Documentar las características y costos que definen la instancia P3.
+- Lectura del funcionamiento detrás de NVIDIA Tesla V100 a través del documento técnico
 
 Eddie:
 
