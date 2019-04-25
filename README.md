@@ -169,3 +169,9 @@ Revisamos notas [4.1 Introducción a convexidad](https://www.dropbox.com/s/qb3sw
 Revisamos nota [Ejemplo de métodos de bisección, punto fijo y Newton para resolver ecuaciones no lineales](https://www.dropbox.com/s/6zree47e1u3p5wx/Ecuaciones_no_lineales.pdf?dl=0) y se dejaron ejercicios de ecuaciones no lineales y minimización sin restricciones
 
 [Prof solución a ejercicio de ecuaciones no lineales](https://www.dropbox.com/sh/s1afcmr73vn3k59/AAC0KFUdd9qu6K8MAoYPYisja?dl=0)
+
+## Clase 17
+
+24 de abril
+
+Revisamos notas [4.2 Problemas de optimización convexa.](https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0) y [4.5.2 Algoritmos de optimización sin restricciones](https://drive.google.com/file/d/16-_PvWNaO0Zc9x04-SRsxCRdn5fxebf2/view?usp=sharing) Se dejó ejercicio para programación de métodos de descenso y backtracking. Para los métodos de descenso las direcciones son la del gradiente, Newton y descenso por coordenadas.
