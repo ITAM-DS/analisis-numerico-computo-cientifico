@@ -28,7 +28,7 @@ Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://www.dropbox.com
 
 Presentación (fuera del repo): [liga_presentación](https://www.dropbox.com/s/lqb1b5ryh5q33gp/presentacion.pdf?dl=0)
 
-Implementación (en el repo): [liga_a_código](https://www.dropbox.com/sh/5zy2hkev6q7a1ca/AACbaFxenCdSfoc94ocQSef8a?dl=0) 
+Implementación (en el repo): [liga_a_código](src) 
 
 
 En la carpeta [avance_1](avance_1) se encuentra el reporte del primer avance en nuestro proyecto. 
