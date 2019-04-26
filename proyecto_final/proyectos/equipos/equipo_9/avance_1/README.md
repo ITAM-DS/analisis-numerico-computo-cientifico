@@ -12,3 +12,6 @@ Participamos en la construcción del trabajo escrito final.
 
 + **Ariel:** Dado el dataframe de payoffs en todas las trayectorias simuladas, escribió una rutina que describe explícitamente los escenarios de ejercicio de la call (o put), además determina los días en los que el ejercicio es óptimo y finalmente estimar el precio de la opción Americana en estudio. Está pensando en una rutina de acoplamiento para las matrices de diseño de dimensión variable. Apoyo git, código esqueleto.
 
+## Agenda
+
+[Aquí](agenda.md) se encuentra la agenda y lo que tenemos planeado realizar durante las siguientes semanas.
