@@ -5,7 +5,7 @@
 ### Agenda
 
 | Semana   	| Fecha de Reunión  	| Actividad  											| Avance 	|
-|---		|---			|---												| 		|
+|---		|---			|---												|--- 		|
 | 0		| 03,10,25/04/2019	| Investigación de temas; Organización de la Reunión de Avance 1; Actualizar Git: primer pull request | OK		|
 | 1		| 27/04/2019  		| Actualizar Git; Trabajo Escrito; Programación de Métodos: código  				| 		|
 | 2  		| 01/05/2019  		| Actualizar Git; Trabajo Escrito; Programación de Métodos: código  				| 		|
