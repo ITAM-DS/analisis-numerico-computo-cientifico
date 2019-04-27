@@ -6,9 +6,9 @@ Integrantes:
 * Eddie Junior Lozada Jeronimo 175938
 * Delia Yolanda Del Águila Fernández 167188
 
-Título del proyecto: `Benchmark de Distintos Servicios en la Nube`
+Título del proyecto: `Ajuste y optimización del método de mínimos cuadrados para la resolución de problemas de supervivencia`
 
-Objetivo del proyecto: `Comparar los Servicios en la nube más conocidos y definir cuál tiene mejor performance sobre un algoritmo de mínimos cuadrados.`
+Objetivo del proyecto: `Ajuste y optimización del algoritmo de mínimos cuadrados para solucionar un problema de supervivencia escolar con datos truncados y censurados. Se buscará predecir la probabilidad de que un alumno del sistema educativo nacional concluya su educación básica con base en sus calificaciones y asistencia a largo de los distintos grados escolares. Se compararán en R los métodos de SVD y eliminación Gaussiana.`
 
 Trabajo escrito (fuera del repo) TBD: [liga_trabajo_escrito]()
 
@@ -23,8 +23,3 @@ Determinamos reducir la cantidad de trabajo que queríamos hacer en el proyecto 
 
 Referencias del proyecto:
 
-* [Benchmark que usamos de inspiración](https://www.vpsbenchmarks.com/compare/ec2_vs_gce)
-* [Documentación de Google Cloud Platform](https://cloud.google.com/tpu/?hl=en)
-* [Documentación de Instancias de AWS](https://www.ec2instances.info)
-* [Nvidia Tesla V100 GPU Architecture](https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf) 
-* [Documentación de Mínimos Cuadrados usando SVD](http://math.uchicago.edu/~may/REU2012/REUPapers/Lee.pdf)
