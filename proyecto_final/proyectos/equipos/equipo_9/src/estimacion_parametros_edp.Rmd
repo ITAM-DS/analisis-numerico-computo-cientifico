@@ -1,0 +1,84 @@
+---
+title: "estimacion_parametros"
+author: "Eduardo Martínez"
+date: "27 de abril de 2019"
+output: html_document
+---
+
+Sea $(S_t)_{\geq 0}$ un proceso estocástico que representa el precio de un activo, i.e. $S_t$ es el precio de la acción al tiempo $t$.
+
+Se dice que el proceso $(S_t)_{\geq 0}$ es un movimiento Browniano geométrico con parámetros $\mu,\sigma>0$ si es la solución de la ecuación diferencial estocástica
+$$dS_t = \mu S_t dt + \sigma S_t dW_t$$
+para algún valor inicial $S_0$.
+Esta expresión se puede reescribir como
+$$\frac{dS_t}{S_t} = \mu dt + \sigma dW_t$$
+
+Se puede dar una interpretación de la ecuación anterior de la siguiente manera
+$$\frac{S_{t+dt}-S_t}{S_t}=\frac{dS_t}{S_t} = \mu dt + \sigma dW_t = \mbox{contribución determinista + constribución estocástica}$$
+
+donde se supone que la contribución determinista es proporcional y la parte estocástica tiene ley Gaussiana.
+
+A la constante $\mu$ se le conoce como drift del proceso y $\sigma$ se conoce  como parámetro volatilidad o de difusión.
+
+Se puede demostrar que una solución explícita para la ecuación diferencial estocástica anterior es
+$$S_t =  S_0 \exp\left\{\alpha t + \sigma W_t\right\} =  S_0 \exp\left\{\mu t -\frac{1}{2}\sigma^2t + \sigma W_t\right\},$$
+donde $\alpha = \mu-\frac{1}{2}\sigma^2$.
+
+Observación:
+Si $\sigma = 0$, i.e. no hay ruido estocástico, entonces la ecuación se convierte en
+$$\frac{dS_t}{S_t} = \mu dt,$$
+equivalentemente
+$$\frac{d}{dt}\log(S_t) = \mu$$
+y por lo tanto
+$$S_t = S_0 e^{\mu t}$$
+
+Nótese que la diferencia entre la solución determinista y no determinista es el término $\sigma W_t-\frac{1}{2}\sigma^2t$.
+
+A partir de la solución $$S_t = S_0 \exp\left\{\mu t -\frac{1}{2}\sigma^2t + \sigma W_t\right\}$$
+se puede ver que $S_t$ es la exponencial de un movimiento Browniano, i.e. es la exponencial de una variable aleatoria con distribución normal. Equivalentemente $S_t$ tiene distribución log-normal. Esta es una de las razones por las que el movimiento Browniano es adecuado para aplicaciones financieras.
+
+Considérese $t_0=0 < t_1 < t_2 <\ldots<t_n=T$ puntos en el horizonte de tiempo $[0,T]$. Defínase $Y_1,\ldots,Y_n$ como
+
+$$Y_i = \frac{S_{t_i}-S_{t_{i-1}}}{S_{t_{i-1}}}=\frac{S_{t_i}}{S_{t_{i-1}}}-1$$
+
+Si se considera la expansión de Taylor de la función $\log(1+z)$, se tiene que que para $z$ suficientemente pequeña
+$$\log(1+z) = z-\frac{1}{2}z^2 + o(z) \approx z$$
+Entonces si $X_i = 1+ Y_i$, entonces
+$$\log(X_i) = \log(1+Y_i) \approx Y_i = \log(S_{t_i})-\log(S_{t_{i-1}})$$
+Esto significa que los rendimientos exactos son casi idénticos a los log-rendimientos
+$$X_i = \log(S_{t_i})-\log(S_{t_{i-1}}),\ i\in\{1,\ldots,n\}$$
+
+Sea $\Delta t = t_i - t_{i-1}$ para $i\in\{1,\ldots,n\}$. Generalmente $\Delta t = \frac{1}{252}$ si se consideran periodos anuales.
+
+$$X_i + \ldots + X_{i+n-1}=\sum_{k=i}^{i+n-1}[\log(S_{t_i})-\log(S_{t_{i-1}})]=\log(S_{i+n-1})-\log(S_{i-1})$$
+
+Finalmente
+$$X_i = \log(S_{t_i})-\log(S_{t_{i-1}}) = \log\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)$$
+$$=\alpha \Delta t + \sigma[W_{t_i}-W_{t_{i-1}}]\sim N(\alpha t , \sigma^2 t)$$
+Es decir,
+$$X_i = \log\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right) = \alpha \Delta t + \sigma\sqrt{\Delta t}Z,$$
+donde $Z\sim N(0,1)$
+
+además, para $i\neq j$ $X_{t_i}$ es independiente de $X_{t_j}$ pues cada una depende de incrementos disjuntos del movimiento Browniano estándar.
+
+Estimación de parámetros
+
+Gracias al análisis anterior se puede considerar a $X_1,\ldots,X_n$ como variables aleatorias independientes, idénticamente distribuidas $N(\alpha\Delta t,\sigma^2t \Delta t)$. Los estimadores máximo verosímiles para $\alpha$ y $\sigma^2$ son
+$$\widehat{\alpha}=\frac{1}{\Delta t}\frac{1}{n}\sum_{i=1}^n X_i$$
+$$\widehat{\sigma}^2 = \frac{1}{\Delta t}\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2=\frac{\widehat{S}^2}{\Delta t}$$
+
+De aquí que un estimador para $\mu$ es
+$$\widehat{\mu} = \widehat{\alpha} + \frac{1}{2}\widehat{\sigma}^2$$
+
+Observación:
+Nótese que 
+$$\sum_{i=1}^n X_i = \sum_{i=1}^n [\log(S_{t_i})-\log(S_{t_{i-1}})]=\log(S_{t_n})-\log(S_0)$$
+
+De aquí que
+
+$$\widehat{\alpha}=\frac{1}{n\Delta t}[\log(S_{t_n})-\log(S_0)]$$
+
+y entonces
+
+$$\widehat{\mu} =\frac{\log(S_{t_n})-\log(S_0)}{n\Delta t}+ \frac{1}{\Delta t}\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2=\frac{\widehat{S}^2}{\Delta t}$$
+$$\widehat{\sigma}^2 = \frac{1}{\Delta t}\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2=\frac{\widehat{S}^2}{\Delta t}$$

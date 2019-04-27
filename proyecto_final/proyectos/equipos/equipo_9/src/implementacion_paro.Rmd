@@ -1,0 +1,235 @@
+---
+title: "Untitled"
+author: "Eduardo Martínez"
+date: "26 de abril de 2019"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(DT)
+```
+
+```{r}
+trayectoria <- 1:8
+tiempo0 <- rep(1, 8)
+tiempo1 <- c(1.09, 1.16, 1.22, 0.93, 1.11, 0.76, 0.92, 0.88)
+tiempo2 <- c(1.08, 1.26, 1.07, 0.97, 1.56, 0.77, 0.84, 1.22)
+tiempo3 <- c(1.34, 1.54, 1.03, 0.92, 1.52, 0.9, 1.01, 1.34)
+precios <- data.frame(trayectoria = trayectoria,
+                         tiempo0 = tiempo0,
+                         tiempo1 = tiempo1,
+                         tiempo2 = tiempo2,
+                         tiempo3 = tiempo3)
+```
+
+```{r}
+precios
+```
+
+```{r}
+# Se determina el precio strike de la put (o call) y la tasa libre de riesgo
+K <- 1.1 #Precio strike
+r <- 0.06 #tasa libre de riesgo
+```
+
+Se utilizará la siguiente expresión para calcular la función máximo que no requiera comparaciones de orden.
+
+$$\max(a,b)=\frac{1}{2}(a+b+|a+b|)$$
+
+```{r}
+payoffs <- precios %>% 
+  mutate(payoff3 = (K-tiempo3 + abs(K - tiempo3))/2) %>% 
+  select(payoff3)
+```
+
+```{r}
+payoffs
+```
+
+
+
+```{r}
+# Sólo para imprimir NO para calcular (i.e. sólo para el reporte)
+imprimible <- precios %>% select(trayectoria, tiempo2) %>% 
+  mutate(payoff2 = (K-tiempo2 + abs(K - tiempo2))/2, VP_payoff3 = exp(-0.06)*(payoffs$payoff3)) %>% mutate(ejer2 = if_else(payoff2 > 0, 1, 0))
+```
+
+```{r}
+imprimible
+```
+
+
+```{r}
+datatable(imprimible) %>% formatStyle(
+  'ejer2',
+  target = 'row',
+  backgroundColor = styleEqual(c(0, 1), c('white', 'orchid'))
+)
+```
+
+
+```{r}
+df_regresion <- precios %>% select(trayectoria, tiempo2) %>% 
+  mutate(payoff2 = (K-tiempo2 + abs(K - tiempo2))/2, VP_payoff3 = exp(-0.06)*(payoffs$payoff3)) %>% filter(payoff2 > 0)
+```
+
+```{r}
+df_regresion
+```
+
+```{r}
+modelin <- lm(VP_payoff3 ~ tiempo2 + I(tiempo2^2) , data = df_regresion)
+```
+
+```{r}
+tiempo2_gorro <- predict(modelin, data = df_regresion)
+tiempo2_gorro
+```
+
+```{r}
+df_regresion <- df_regresion %>% mutate(payoff2_act = if_else(payoff2 > tiempo2_gorro, payoff2,0))
+```
+
+```{r}
+df_regresion
+```
+
+```{r}
+#df_regresion$trayectoria
+
+for(i in 1:nrow(df_regresion)){
+    imprimible$payoff2[df_regresion$trayectoria[i]] = df_regresion$payoff2_act[i]
+    }
+imprimible$payoff2
+```
+
+```{r}
+payoffs <- payoffs %>% mutate(payoff2 = imprimible$payoff2)
+```
+
+```{r}
+payoffs
+```
+
+---
+
+```{r}
+# Sólo para imprimir NO para calcular (i.e. sólo para el reporte)
+imprimible <- precios %>% select(trayectoria, tiempo1) %>% 
+  mutate(payoff1 = (K-tiempo1 + abs(K - tiempo1))/2, VP_payoff2 = exp(-0.06)*(payoffs$payoff2)) %>% mutate(ejer1 = if_else(payoff1 > 0, 1, 0))
+```
+
+```{r}
+imprimible
+```
+
+
+```{r}
+datatable(imprimible) %>% formatStyle(
+  'ejer1',
+  target = 'row',
+  backgroundColor = styleEqual(c(0, 1), c('white', 'orchid'))
+)
+```
+
+
+```{r}
+df_regresion <- precios %>% select(trayectoria, tiempo1) %>% 
+  mutate(payoff1 = (K-tiempo1 + abs(K - tiempo1))/2, VP_payoff2 = exp(-0.06)*(payoffs$payoff2)) %>% filter(payoff1 > 0)
+```
+
+```{r}
+df_regresion
+```
+
+```{r}
+modelin <- lm(VP_payoff2 ~ tiempo1 + I(tiempo1^2) , data = df_regresion)
+```
+
+```{r}
+tiempo1_gorro <- predict(modelin, data = df_regresion)
+tiempo1_gorro
+```
+
+```{r}
+df_regresion <- df_regresion %>% mutate(payoff1_act = if_else(payoff1 > tiempo1_gorro, payoff1,0))
+```
+
+```{r}
+df_regresion
+```
+
+```{r}
+#df_regresion$trayectoria
+
+for(i in 1:nrow(df_regresion)){
+    imprimible$payoff1[df_regresion$trayectoria[i]] = df_regresion$payoff1_act[i]
+    }
+imprimible$payoff1
+```
+
+```{r}
+payoffs <- payoffs %>% mutate(payoff1 = imprimible$payoff1)
+```
+
+```{r}
+payoffs
+```
+
+```{r}
+payoffs <- payoffs %>% select(ncol(payoffs):1)
+```
+
+```{r}
+payoffs
+```
+
+```{r}
+indices <- function(m, r){
+  # Para cada fila obtengo el indice del 1er. valor > 0, si el registro contiene todos 0's retorna 0:
+  ids <- unlist(lapply(apply(m, 1, function(x) which(x>0)), function(l) ifelse(length(l)>0, l[[1]],0) ))
+  # Genero lista de la cantidad de registros:
+  pos <- seq(1,length(ids))
+  # Armo matriz con Posición + ID ibtenido en el 1er. paso facilitar el recorrido de los datos:
+  ids_m <- matrix(c(pos, ids), ncol=2, byrow = FALSE)
+  # Recorro la matriz original y para cada pos. tomo el valor del ID y calculo el precio:
+  vps <- matrix(lapply(pos, function(i) ifelse( ids_m[i,2] > 0,m[ids_m[i],ids_m[i,2]] * exp(-1*ids_m[i,2]*r),0)))
+  # Retorno matrix con: Posición, ID, VP: 
+  ids_m <- cbind(ids_m, vps)
+  return(ids_m)
+}
+```
+
+```{r}
+matriz_payoffs <- as.matrix(payoffs)
+colnames(matriz_payoffs) <- NULL
+```
+
+```{r}
+r <- 2
+datos <- sample(0:3,30,replace=T) 
+datos_m <- matrix(datos, ncol = 5, byrow = TRUE)
+datos_m
+
+vps <- indices(datos_m, r)
+vps
+```
+
+```{r}
+datos_m
+```
+
+```{r}
+matriz_payoffs
+```
+
+
+```{r}
+output_final <- indices(matriz_payoffs, r)
+```
+
+```{r}
+output_final[,3] %>% unlist() %>% mean()
+```

@@ -12,4 +12,5 @@
 |   		| 04/05/2019  		| Actualizar Git; Trabajo Escrito; Programación de Métodos: validación, pruebas, correcciones	| 		|
 | 3  		| 11/05/2019  		| Actualizar Git; Trabajo Escrito; Presentación (borrador)  					| 		|
 | 4  		| 18/05/2019  		| Actualizar Git; Trabajo Escrito (final); Presentación (final) 				| 		|
-| 5  		| TBD ~20-31/05  	| Presentación; Examen Final  							|
+| 5  		| 22/05/2019  		| Entrega Trabajo Escrito		  							|		|
+|  		| 29/05/2019  		| Presentación; Examen Final  									|		|
