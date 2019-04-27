@@ -36,9 +36,11 @@ Objetivo del proyecto: Implementación y evaluación de los algoritmos  CUR Desc
 
 ## [Equipo 3](equipos/equipo_3)
 
-Ttulo del proyecto: ``
+Ttulo del proyecto: `Benchmark de Distintos Servicios en la Nube`
 
-Objetivo del proyecto: objetivo
+Objetivo del proyecto: Comparar los Servicios en la nube más conocidos y definir cuál tiene mejor performance sobre un algoritmo de mínimos cuadrados.
+
+Construiremos un algoritmo básico de Mínimos Cuadrados para solucionar problemas de regresión lineal en los lenguajes de programación Python y R los cuales estará contenidos en una imagen de docker y esta será desplegada en instancias de Amazon Web Services (AWS) y Google Cloud Platform (GCP). Se buscará comparar las ventajas y desventajas, tales como performance y facilidad de usar las herramienta, entendiendo la arquitectura que corre debajo de ellas para finalmente hacer una recomendación de uso.
 
 [Avances del proyecto]
 
@@ -135,9 +137,21 @@ Objetivo del proyecto: objetivo
 
 ## [Equipo 9](equipos/equipo_9)
 
-Ttulo del proyecto: ``
+Ttulo del proyecto: `Implementación del Método de Longstaff & Schwartz para valuación de opciones americanas`
 
-Objetivo del proyecto: objetivo
+Objetivo del proyecto:     
+
+0. Describir algunas generalidades de opciones put y call, los tipos de contratos que hay de este tipo de instrumentos. El framework general de Black & Scholes y la fórmula cerrada para opciones Europeas.
+
+1. Dado un histórico de los precios de una acción, se estiman los parámetros de drift y difusión para implementar el esquema se simulación Monte-Carlo.
+
+2. Se hacen 100,000 (esto puede cambiar o se puede modular) simulaciones, i.e. se obtienen 100,000 trayectorias del proceso de precios de activo subyacente al derivado.
+
+3. Para cada fecha, sobre todas las simulaciones, se estima el valor de continuación vía regresión polinomial, basándose en polinomio de Laguerre, Hermite, Legendre, Chebyshev o Jacobi. Es decir, se resuelven 100,000 -1 problemas de optimización para estimar los valores de continuación, i.e. se resuelven 100,000-1 problemas con ayuda de descomposiciones SVD. En cada regresión se van eliminando las trayectorias en las que no es óptimo continuar con el contrato, es decir, las matrices de diseño van disminuyendo de dimensión.
+
+4. Una vez que se estiman los valores de continuación, se construye una estrategia de ejercicio y se procede a valuar la opción al promediar el valor presente de los payoffs que determinó la estrategia de ejercicio.
+
+5. Se puede paralelizar algunas etapas tanto de la simulación de trayectorias, resolución del problema de optimización y construcción de la estrategia de ejercicio.
 
 [Avances del proyecto]
 
@@ -151,9 +165,11 @@ Objetivo del proyecto: objetivo
 
 ## [Equipo 10](equipos/equipo_10)
 
-Ttulo del proyecto: ``
+Ttulo del proyecto: `Uso del modelo de Black-Scholes para estimación de valor en opciones`
 
-Objetivo del proyecto: objetivo
+Objetivo del proyecto: El método de descomposición de Adomian, permite encontrar una solución “semi” analítica para una ecuación diferencial (ordinaria o parcial). La idea básica es descomponer la ecuación en parte lineal y no lineal, dentro de la misma detectar los distintos operadores involucrados e invertir el de mayor orden; descomponer la parte no lineal en polinomios (mejor conocidos los polinomios de Adomian)
+
+Se busca aplicar este método a un modelo de Black-Scholes, creando una especie de “intefaz” o proceso automático que mediante API’s genere los datos necesarios para predecir los valores de las opciones en el futuro.
 
 [Avances del proyecto]
 
@@ -189,9 +205,9 @@ Considerando que este problema implica utilizar la transformada de Fourier, la c
 
 ## [Equipo 12](equipos/equipo_12)
 
-Ttulo del proyecto: ``
+Ttulo del proyecto: `Trade War y la Relevancia de los Estados Unidos analizados a través del Precio de Opciones Financieras empleando Algoritmos de Optimización`
 
-Objetivo del proyecto: objetivo
+Objetivo del proyecto: El proyecto trata de examinar algunos modelos clave para determinar los precios de opciones financieras de tipo europeo y modelos de optimización que son empleados en estos para poder estimar los parámetros necesarios en cada modelo y lograr un óptimo funcionamiento.
 
 [Avances del proyecto]
 
