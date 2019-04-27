@@ -13,4 +13,4 @@
 | 3  		| 11/05/2019  		| Actualizar Git; Trabajo Escrito; Presentación (borrador)  					| 		|
 | 4  		| 18/05/2019  		| Actualizar Git; Trabajo Escrito (final); Presentación (final) 				| 		|
 | 5  		| 22/05/2019  		| Entrega Trabajo Escrito		  							|		|
-| 5  		| 29/05/2019  		| Presentación; Examen Final  									|		|
+|  		| 29/05/2019  		| Presentación; Examen Final  									|		|
