@@ -41,7 +41,7 @@ Iker:
 
 Propuesta del [Data Set] (https://github.com/luis58/recommendation_algorithms/blob/master/documentaci%C3%B3n/MNO%20-%20Proyecto%20Final.docx)
 
-Lectura de Artículo SVD acelerado usando otimización de descenso en gradiente (https://www.sciencedirect.com/science/article/pii/S1319157818300636)
+Lectura de Artículo SVD acelerado usando optimización de descenso en gradiente (https://www.sciencedirect.com/science/article/pii/S1319157818300636)
 
 
 
@@ -55,7 +55,7 @@ Revisión de documentación de [Cuda] (https://docs.nvidia.com/cuda/cusolver/ind
 Revisión de artículos de implementaciones para iniciar pruebas (http://cdn.iiit.ac.in/cdn/cvit.iiit.ac.in/images/ConferencePapers/2009/Sheetal09Singular.pdf)
 
 
-Implementé la siguiente [función](codigo/funcion_imprime_hello_world_cuda.cu) en CUDA-C para realizar un hello world.
+
 
 ### Equipo
 
