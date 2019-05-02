@@ -14,7 +14,7 @@ Trabajo escrito (fuera del repo) (En progreso): [liga_trabajo_escrito](https://d
 
 Presentación (fuera del repo) TBD: [liga_presentación]()
 
-Implementación (en el repo) (En progreso): [https://github.com/DeliaDelAguila/analisis-numerico-computo-cientifico-delia/tree/master/Proyecto%20Final]() 
+Implementación (en el repo) (En progreso): [liga_presentación](https://github.com/DeliaDelAguila/analisis-numerico-computo-cientifico-delia/tree/master/Proyecto%20Final)
 
 
 Carpeta 
