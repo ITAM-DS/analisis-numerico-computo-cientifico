@@ -20,6 +20,8 @@
 
 [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.Activar-creditos-de-AWS)
 
+##
+
 [Lista de ejercicios para entregar examen número 4](https://www.dropbox.com/s/31yt4139gd74quw/Ejercicios_programas_ecuaciones_no_lineales_optimizacion.pdf?dl=0)
 
 ## Clase 1
