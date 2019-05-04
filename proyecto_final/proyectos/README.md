@@ -121,9 +121,9 @@ Objetivo del proyecto: Estudiar el problema de minimización de costos de flujo 
 
 ## [Equipo 8](equipos/equipo_8)
 
-Ttulo del proyecto: ``
+Ttulo del proyecto: `Método de Crank-Nicolson para valuación de opciones`
 
-Objetivo del proyecto: objetivo
+Objetivo del proyecto: Usaremos el método de Black-Scholes para hacer el planteamiento de las ecuaciones de derivadas parciales en el cálculo de valuación de opciones. Como estas ecuaciones no siempre tienen solución exacta, se utilizará el método de Crank-Nicolson y el método de Líneas para aproximar su valor. Una vez planteado el sistema de ecuaciones, buscaremos resolverlo con factorización LU con pivoteo parcial y el algoritmo de Thomas para encontrar la combinación de métodos más adecuada.
 
 [Avances del proyecto]
 
