@@ -57,7 +57,7 @@ Construiremos un algoritmo básico de Mínimos Cuadrados para solucionar problem
 
 Ttulo del proyecto: `Aplicación del algoritmo de Optimización de Enjambre de Partículas en la inversión de datos geofísicos gravimétricos`
 
-Objetivo del proyecto: Verificar la implementación correcta del método para el problema anomalía gravimétrica de tres cilindros en subsuelo (qué sobresale del campo gravitatorio).
+Objetivo del proyecto: Implementar el algoritmo de Optimización de Enjambre de Partículas para la inversión de la anomalía gravimétrica de tres cilindros en subsuelo.
 
 [Avances del proyecto]
 
