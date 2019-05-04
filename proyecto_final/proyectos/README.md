@@ -6,7 +6,7 @@
 
 Ttulo del proyecto: `Reducing Commercial Aviation Fatalities`
 
-Objetivo del proyecto: El objetivo del proyecto, desde la perspectiva del análisis y optimización numérica, es aplicar un regresión logística multinomial en donde se pretende clasificar cada evento observado en las categorías CDA, DA, SS o A. Los problemas de optimización de esta forma parten de minimizar la devianza generada por el modelo propuesto y por los datos disponibles.
+Objetivo del proyecto: Este proyecto aborda el problema descrito en la competencia de Kaggle llamada “Reducing Commercial Aviation Fatalities”. El propósito de esta competencia es identificar si los pilotos de aviones presentan algún estado cognitivo que pueda ser peligroso en diversas simulaciones de vuelo, así como cuáles son sus causas. El objetivo del proyecto, desde la perspectiva del análisis y optimización numérica, es aplicar un regresión logística multinomial en donde se pretende clasificar cada evento observado en las categorías Atención Canalizada (CDA), Atención Desviada (DA), Sorpresa (SS) o Ausencia de ella (A). Los problemas de optimización de esta forma parten de minimizar la devianza generada por el modelo propuesto y por los datos disponibles.
 
 
 [Avances del proyecto]
