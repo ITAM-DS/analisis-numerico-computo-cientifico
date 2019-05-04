@@ -4,9 +4,10 @@
 
 ## [Equipo 1](equipos/equipo_1)
 
-Ttulo del proyecto: ``
+Ttulo del proyecto: `Reducing Commercial Aviation Fatalities`
 
-Objetivo del proyecto: objetivo
+Objetivo del proyecto: El objetivo del proyecto, desde la perspectiva del análisis y optimización numérica, es aplicar un regresión logística multinomial en donde se pretende clasificar cada evento observado en las categorías CDA, DA, SS o A. Los problemas de optimización de esta forma parten de minimizar la devianza generada por el modelo propuesto y por los datos disponibles.
+
 
 [Avances del proyecto]
 
