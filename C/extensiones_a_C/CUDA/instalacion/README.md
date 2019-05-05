@@ -58,7 +58,7 @@ En esta [página](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/inde
 
 Seleccionar una **AMI** AWS ubuntu 18.04. 
 
-El siguiente bash script identifica una instancia con el nombre de la variable `name_instance`, en la region `us-west-2`, instala `amazon-ssm-agent.deb` para uso del servicio de  `RunCommand` de AWS e instala el toolkit de CUDA. Utilizarlo en la sección de **User data** de la configuración de una instancia:
+El siguiente bash script identifica una instancia con el nombre de la variable `name_instance`, en la region `us-west-2`. Cambiar variables `region`, `user`, `ubuntu`, `name_instance` de acuerdo a su configuración. Utilizarlo en la sección de **User data** de la configuración de una instancia:
 
 ```
 #!/bin/bash
