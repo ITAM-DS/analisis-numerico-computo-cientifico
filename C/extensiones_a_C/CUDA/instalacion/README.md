@@ -77,9 +77,9 @@ aws ec2 create-tags --resources $INSTANCE_ID --tag Key=Name,Value=$name_instance
 toolkit_inst_network=$(wget http://developer.download.nvidia.com/compute/cuda/repos/$ubuntu_version/x86_64/ -q -O -|grep ".*repo.*amd64"|tail -1|sed -n 's/.*\(cuda-repo.*deb\).*/\1/;p')
 
 mkdir /home/$user/cuda_toolkit
-wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/$toolkit_inst_network -P /home/$user/cuda_toolkit
-dpkg -i /home/ubuntu/cuda_toolkit/$toolkit_inst_network #install toolkit
-apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+wget http://developer.download.nvidia.com/compute/cuda/repos/$ubuntu_version/x86_64/$toolkit_inst_network -P /home/$user/cuda_toolkit
+dpkg -i /home/$user/cuda_toolkit/$toolkit_inst_network #install toolkit
+apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/$ubuntu_version/x86_64/7fa2af80.pub
 apt-get update
 apt-get install linux-headers-$(uname -r) #to have kernel headers and development
 #packages accordingly to the current kernel
