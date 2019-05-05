@@ -178,4 +178,4 @@ Revisamos nota [Ejemplo de métodos de bisección, punto fijo y Newton para reso
 
 Revisamos notas [4.2 Problemas de optimización convexa.](https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0) y [4.5.2 Algoritmos de optimización sin restricciones](https://drive.google.com/file/d/16-_PvWNaO0Zc9x04-SRsxCRdn5fxebf2/view?usp=sharing) Se dejó ejercicio para programación de métodos de descenso y backtracking. Para los métodos de descenso las direcciones son la del gradiente, Newton y descenso por coordenadas.
 
-[Prof solución a ejercicio de optimización sin restricciones: método de Newton + backtracking](https://www.dropbox.com/sh/vmfgl1py59bix0m/AAAlYMAa2PG8hAj_bQcWckpCa?dl=0)
+[Prof solución a ejercicio de optimización sin restricciones: método de Newton con aproximación al gradiente y Hessiana + backtracking](https://www.dropbox.com/sh/vmfgl1py59bix0m/AAAlYMAa2PG8hAj_bQcWckpCa?dl=0)
