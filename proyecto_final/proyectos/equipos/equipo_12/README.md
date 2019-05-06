@@ -1,8 +1,13 @@
 Equipo 12 
 
 Integrantes: 
-    Alexis Solis 
-    Arantza Ivonne Pineda 
+
+Alexis Solis 
+
+
+Arantza Ivonne Pineda 
+
+
 Ana Luisa Masetto 
     
 Título del Proyecto: Estados Unidos vs. China: Guerra de Comercio analizada a través del Precio de Opciones Financieras empleando Algoritmos de Optimización 
