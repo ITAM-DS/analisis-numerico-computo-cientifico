@@ -82,6 +82,8 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 * [Ejemplos](C/extensiones_a_C/CUDA/ejemplos/)
 
+* [PyCUDA](PyCUDA/)
+
 ## III [Cómputo matricial](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
 3.1.1 [Multiplicación de matrices y estructura de datos.](https://www.dropbox.com/s/fyqwiqasqaa3wlt/3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf?dl=0)
