@@ -20,4 +20,6 @@ En google_drive: https://drive.google.com/drive/folders/1pkep72hP5BkiEekaXVAkIC8
 En el repositorio: 
 
 En la carpeta avance_1 se encuentra el reporte del primer avance en nuestro proyecto.
+
+
 Referencias del proyecto:
