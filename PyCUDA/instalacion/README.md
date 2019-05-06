@@ -3,14 +3,14 @@ Lo siguiente se realiza en AWS para un sistema operativo Ubuntu 18.04 en alguna 
 Siguiendo las instrucciones de [Installing PyCUDA on Linux](https://wiki.tiker.net/PyCuda/Installation/Linux) lo primero es instalar el toolkit NVIDIA CUDA, lo cual se realiza con [estas instrucciones](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/CUDA/instalacion#amazon-web-services)
 
 
-Una vez en la máquina es útil tener un ambiente virtual con [virtualenv](https://virtualenv.pypa.io/en/latest/) en el que se instalarán diferentes paquetes incluyendo PyCUDA:
+Una vez en la máquina es útil tener un ambiente virtual con [virtualenv](https://virtualenv.pypa.io/en/latest/) en el que se instalarán diferentes dependencias y paquetes incluyendo PyCUDA:
 
 ```
 sudo apt-get install -y python3-dev python3-pip python3-venv
 sudo pip3 install --upgrade pip 
 ```
 
-Usamos [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) para trabajar en el ambiente virtual de una forma sencilla:
+usamos [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) para trabajar en el ambiente virtual de una forma sencilla:
 
 ```
 user=ubuntu
@@ -63,7 +63,7 @@ Y habilitamos los grupos de seguridad en AWS para que nuestra IP pueda acceder e
 <Public DNS IPV4>:8888
 ```
 
-Instalamos [pycuda](https://documen.tician.de/pycuda/) en el ambiente virtual `py_ve`:
+Instalamos [Pycuda](https://documen.tician.de/pycuda/) en el ambiente virtual `py_ve`:
 
 ```
 pip install pycuda
