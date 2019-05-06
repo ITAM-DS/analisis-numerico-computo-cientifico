@@ -1,5 +1,13 @@
-PyCUDA
+[PyCUDA](https://developer.nvidia.com/pycuda)
 
-* [Instalación]
+Referencias:
 
-* [Ejemplos]
+* https://github.com/inducer/pycuda/
+
+* https://mathema.tician.de/software/pycuda/
+
+* https://documen.tician.de/pycuda/
+
+[Instalación]
+
+[Ejemplos]
