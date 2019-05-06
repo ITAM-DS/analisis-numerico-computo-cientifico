@@ -35,3 +35,6 @@ Equipo:
 5. Entre todos se desarrollo el entregable de este avance. 
 6. Desarrollo de la Teoría Financiera
 7. Puntos a considerar en el EDA
+
+
+Liga del drive con la carpeta del primer avance: https://drive.google.com/drive/folders/1RQOik_V8v3npJfY287o_rPJ3q_KLHnFE?usp=sharing
