@@ -8,6 +8,8 @@ Referencias:
 
 * https://documen.tician.de/pycuda/
 
+* https://wiki.tiker.net/PyCuda/FrequentlyAskedQuestions#
+
 [Instalación](instalacion/)
 
-[Ejemplos]
+[Ejemplos](ejemplos/)
