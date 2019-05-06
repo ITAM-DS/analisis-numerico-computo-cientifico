@@ -1,4 +1,4 @@
-Lo siguiente se realiza en AWS para un sistema operativo Ubuntu 18.04 en alguna instancia `GPU capable`.
+Lo siguiente se realiza en AWS para un sistema operativo Ubuntu 18.04 en alguna instancia [CUDA capable](https://docs.aws.amazon.com/dlami/latest/devguide/gpu.html).
 
 Siguiendo las instrucciones de [Installing PyCUDA on Linux](https://wiki.tiker.net/PyCuda/Installation/Linux) lo primero es instalar el toolkit NVIDIA CUDA, lo cual se realiza con [estas instrucciones](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/extensiones_a_C/CUDA/instalacion#amazon-web-services)
 
