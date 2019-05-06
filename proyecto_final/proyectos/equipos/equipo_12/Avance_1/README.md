@@ -8,20 +8,20 @@ Trabajo:
 
 Individual: 
 
-Alexis
+Alexis:
 EDA
 Teoría de Opciones Financieras 
 Implementación del modelo BSM (Modelo de Pricing, cálculo del MSE)
 
 
-Ivonne 
+Ivonne: 
 Contextualización 
 Teoría de Opciones Financieras 
 EDA
 
 
 
-Ana 
+Ana:
 EDA
 Teoría de Opciones Financieras
 Implementación de NR 
