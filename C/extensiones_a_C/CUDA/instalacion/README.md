@@ -89,6 +89,8 @@ echo "export PATH=/usr/local/$cuda_version/bin${PATH:+:${PATH}}" >> /home/$user/
 echo "export LD_LIBRARY_PATH=/usr/local/$cuda_version/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" >>/home/$user/.profile
 ```
 
+Recomendable revisar [optimizing GPU](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/optimize_gpu.html) de la documentación de AWS.
+
 ## Docker:
 
 
