@@ -1,6 +1,6 @@
 # Instalación 
 
-Para usar CUDA es necesario que sus máquinas tengan una GPU de NVIDIA.
+Para usar CUDA es necesario que sus máquinas tengan una GPU de NVIDIA que sea CUDA capable.
 
 Se debe descargar el toolkit NVIDIA CUDA de [aquí](https://developer.nvidia.com/cuda-downloads) dependiendo de su sistema operativo.
 
