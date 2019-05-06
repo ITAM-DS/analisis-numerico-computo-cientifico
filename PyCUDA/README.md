@@ -8,6 +8,6 @@ Referencias:
 
 * https://documen.tician.de/pycuda/
 
-[Instalación]
+[Instalación](instalacion/)
 
 [Ejemplos]
