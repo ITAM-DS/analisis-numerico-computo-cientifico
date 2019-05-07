@@ -63,5 +63,15 @@ Luis:
 
 Compartimos impresiones sobre las lecturas de Reducción de Dimensionalidad y Sistemas de Recomendación, bases para el proyecto y que nos facilitarán entender los avances de nuestros compañeros en tareas más específicas.
 
+### Comentarios Revisión
+
+Ver publicaciones de Leon Bottou:
+
+* ["Tradeoffs" de aprandizaje con datos en gran escala](https://leon.bottou.org/publications/pdf/nips-2007.pdf)
+
+* [Aprendizaje con descenso en gradiente estocástico con datos de gran escala](http://khalilghorbal.info/assets/spa/papers/ML_GradDescent.pdf)
+
+Implementar primero una versión en python de CUR, SVD y SVD con descenso estocásitco posteriormente analizar si se puede aplicar en CUDA
+
 
 
