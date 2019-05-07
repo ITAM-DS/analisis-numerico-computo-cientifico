@@ -20,20 +20,17 @@ echo 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3' >>/home/$user/.profile
 sudo pip3 install virtualenvwrapper
 ```
 
-Instalamos `numpy`:
-
-```
-sudo apt-get install python-numpy -y
-```
 
 
-Creamos el ambiente virtual `pycuda_ve` e instalamos [jupyterlab](https://jupyterlab.readthedocs.io/en/stable/) en tal ambiente:
+
+Creamos el ambiente virtual `pycuda_ve` e instalamos numpy, [jupyterlab](https://jupyterlab.readthedocs.io/en/stable/) en tal ambiente:
 
 ```
 /bin/bash -c "source /usr/local/bin/virtualenvwrapper.sh && alias python=python3 && mkvirtualenv pycuda_ve"
 sudo apt-get install nodejs
 workon pycuda_ve
-pip3 install jupyter jupyterlab --upgrade
+pip install numpy
+pip install jupyter jupyterlab --upgrade
 jupyter notebook --generate-config
 ```
 
@@ -67,6 +64,14 @@ Instalamos [Pycuda](https://documen.tician.de/pycuda/) en el ambiente virtual `p
 
 ```
 pip install pycuda
+```
+
+Si se desea utilizar las librerías `CUSOLVER`, `CUBLAS` se recomienda instalar [scikit-cuda](https://scikit-cuda.readthedocs.io/en/latest/)
+
+
+```
+pip install scipy nose mako setuptools
+pip install scikit-cuda	
 ```
 
 
