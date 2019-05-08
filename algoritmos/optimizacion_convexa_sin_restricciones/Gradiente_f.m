@@ -1,4 +1,4 @@
-function grad_f = gradiente_f(f,x)
+function grad_f = Gradiente_f(f,x)
 %In:
 %f función a la que se le calculará su gradiente
 %x punto en el que se aproximará el gradiente de f
