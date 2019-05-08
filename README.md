@@ -152,6 +152,8 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 ## Implementaciones de algoritmos para ecuaciones no lineales y optimización
 
+[Ecuaciones no lineales](algoritmos/ecuaciones_no_lineales/)
+
 
 ## V Cómputo en la nube
 
