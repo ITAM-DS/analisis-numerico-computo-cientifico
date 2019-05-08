@@ -7,7 +7,7 @@ Una vez en la máquina es útil tener un ambiente virtual con [virtualenv](https
 
 ```
 sudo apt-get install -y python3-dev python3-pip python3-venv
-sudo pip3 install --upgrade pip 
+sudo pip install --upgrade pip 
 ```
 
 usamos [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) para trabajar en el ambiente virtual de una forma sencilla:
@@ -17,7 +17,7 @@ user=ubuntu
 echo 'source /usr/local/bin/virtualenvwrapper.sh' >> /home/$user/.bash_aliases
 echo "alias python=python3" >> /home/$user/.bash_aliases
 echo 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3' >>/home/$user/.profile
-sudo pip3 install virtualenvwrapper
+sudo pip install virtualenvwrapper
 ```
 
 
