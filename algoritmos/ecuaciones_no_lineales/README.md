@@ -1,6 +1,6 @@
 Utilizamos el siguiente script para resolver la ecuación no lineal:
 
-$$e^{-x}-x=0$$
+exp(-x)-x=0
 
 
 ```
