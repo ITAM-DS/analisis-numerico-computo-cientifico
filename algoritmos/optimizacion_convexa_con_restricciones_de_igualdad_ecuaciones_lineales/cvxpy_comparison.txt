@@ -1,0 +1,170 @@
+#cvxpy comparison
+
+#see:
+
+https://www.cvxpy.org/
+https://github.com/cvxgrp/cvxpy
+
+#1)
+# Create two scalar optimization variables.
+
+import cvxpy as cp
+
+x1 = cp.Variable()
+x2 = cp.Variable()
+
+# Create two constraints.
+constraints = [x1 == 0]
+
+# Form objective. f = @(x) x(1)^2+2*x(1)*x(2)+x(2)^2-2*x(2)
+
+obj = cp.Minimize(x1**2+2*x1*x2+x2**2-2*x2)
+
+# Form and solve problem.
+prob = cp.Problem(obj, constraints)
+prob.solve()  # Returns the optimal value.
+
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/root/.virtualenvs/cvxpy_ve/lib/python3.5/site-packages/cvxpy/problems/problem.py", line 271, in solve
+    return solve_func(self, *args, **kwargs)
+  File "/root/.virtualenvs/cvxpy_ve/lib/python3.5/site-packages/cvxpy/problems/problem.py", line 493, in _solve
+    self._construct_chains(solver=solver, gp=gp)
+  File "/root/.virtualenvs/cvxpy_ve/lib/python3.5/site-packages/cvxpy/problems/problem.py", line 450, in _construct_chains
+    raise e
+  File "/root/.virtualenvs/cvxpy_ve/lib/python3.5/site-packages/cvxpy/problems/problem.py", line 439, in _construct_chains
+    construct_intermediate_chain(self, candidate_solvers, gp=gp)
+  File "/root/.virtualenvs/cvxpy_ve/lib/python3.5/site-packages/cvxpy/reductions/solvers/intermediate_chain.py", line 52, in construct_intermediate_chain
+    raise DCPError("Problem does not follow DCP rules." + append)
+cvxpy.error.DCPError: Problem does not follow DCP rules. However, the problem does follow DGP rules. Consider calling this function with `gp=True`.
+
+
+
+
+#1mod)
+
+import cvxpy as cp
+
+x1 = cp.Variable()
+x2 = cp.Variable()
+
+# Create two constraints.
+constraints = [x1 == 0]
+
+# Form objective.
+
+obj = cp.Minimize((x1+x2)**2-2*x2)
+
+# Form and solve problem.
+prob = cp.Problem(obj, constraints)
+prob.solve()  # Returns the optimal value.
+print("status:", prob.status)
+print("optimal value", prob.value)
+print("optimal var", x1.value, x2.value)
+
+
+optimal value -1.0
+
+optimal var -2.2104552787913398e-28 1.0
+
+
+#2)
+
+import cvxpy as cp
+
+x1 = cp.Variable()
+x2 = cp.Variable()
+
+# Create two constraints.
+constraints = [2*x1-x2 == 5]
+
+# Form objective.
+obj = cp.Minimize(1/2.0*(x1**2+x2**2))
+
+# Form and solve problem.
+prob = cp.Problem(obj, constraints)
+prob.solve()  # Returns the optimal value.
+print("status:", prob.status)
+print("optimal value", prob.value)
+print("optimal var", x1.value, x2.value)
+
+optimal value 2.5
+
+optimal var 2.0 -1.0
+
+
+#3)gamma_cte=10;
+
+import cvxpy as cp
+
+x1 = cp.Variable()
+x2 = cp.Variable()
+
+
+# Form objective.
+obj = cp.Minimize(1/2.0*(x1**2+10.0*x2**2))
+
+# Form and solve problem.
+prob = cp.Problem(obj, constraints)
+prob.solve()  # Returns the optimal value.
+print("status:", prob.status)
+print("optimal value", prob.value)
+print("optimal var", x1.value, x2.value)
+
+
+optimal value 0.0
+optimal var 0.0 0.0
+
+
+
+#4)
+
+import cvxpy as cp
+
+x1 = cp.Variable()
+x2 = cp.Variable()
+
+# Create two constraints.
+constraints = [x1+x2 == 1]
+
+# Form objective.
+obj = cp.Minimize(x1**2+x2**2)
+
+# Form and solve problem.
+prob = cp.Problem(obj, constraints)
+prob.solve()  # Returns the optimal value.
+print("status:", prob.status)
+print("optimal value", prob.value)
+print("optimal var", x1.value, x2.value)
+
+optimal value 0.5000000000000002
+optimal var 0.5000000000000001 0.5000000000000001
+
+
+#5)
+
+
+import cvxpy as cp
+
+x1 = cp.Variable()
+x2 = cp.Variable()
+
+# Create two constraints.
+constraints = [x1+3*x2 == 0]
+
+# Form objective.
+obj = cp.Minimize(cp.exp(x1+3*x2-0.1)+cp.exp(x1-3*x2-0.1)+cp.exp(-x1-0.1))
+
+# Form and solve problem.
+prob = cp.Problem(obj, constraints)
+prob.solve()  # Returns the optimal value.
+print("status:", prob.status)
+print("optimal value", prob.value)
+print("optimal var", x1.value, x2.value)
+
+optimal value 2.614872955645423
+optimal var -0.23104907880100917 0.0770163596518852
+
+
+
