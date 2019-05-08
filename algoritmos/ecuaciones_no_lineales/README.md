@@ -1,8 +1,6 @@
-Utilizamos el siguiente script para resolver la ecuación no lineal:
+Utilizamos el siguiente script y el archivo `Newton_ecuaciones_no_lineales.m` que contiene el método de Newton para resolver la ecuación no lineal:
 
 exp(-x)-x=0
-
-con el método de Newton el cual está disponible en el archivo `Newton_ecuaciones_no_lineales.m`
 
 ```
 tol1 = 1e-8; %Controla |xk+1-xk|
