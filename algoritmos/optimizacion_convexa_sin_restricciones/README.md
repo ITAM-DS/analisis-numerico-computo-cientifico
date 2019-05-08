@@ -1,4 +1,4 @@
-Utilizamos el siguiente script para resolver los siguientes problemas de optimización:
+Utilizamos el siguiente script y los archivos `Gradiente_f.m`, `Hessiana_f_dif_ad.m`, `Metodo_backtracking.m` `Newton_sin_restricciones.m` para resolver los siguientes problemas de optimización:
 
 ```
 %1) Convex Optimization, Boyd & Vandenbergue chap 9
