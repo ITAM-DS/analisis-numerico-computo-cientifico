@@ -150,10 +150,11 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 * [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
-## Implementaciones de algoritmos para ecuaciones no lineales y optimización
+## Implementaciones de algoritmos para ecuaciones no lineales y optimización convexa
 
 [Ecuaciones no lineales](algoritmos/ecuaciones_no_lineales/)
 
+[Algoritmos para optimización sin restricciones](algoritmos/optimizacion_convexa_sin_restricciones)
 
 ## V Cómputo en la nube
 
