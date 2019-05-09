@@ -184,7 +184,9 @@ Revisamos notas [4.2 Problemas de optimización convexa.](https://www.dropbox.co
 
 ## Clase 18
 
-[Nota resumen: optimización, dualidad, condiciones KKT](https://www.dropbox.com/s/2kjei9dzo0jhwq8/Nota-apoyo-opt-con-restricciones-y-condiciones-KKT-Teo-Farkas.pdf?dl=0)
+9 de mayo
+
+[Nota resumen: optimización, dualidad, condiciones KKT](https://www.dropbox.com/s/2kjei9dzo0jhwq8/Nota-apoyo-opt-con-restricciones-y-condiciones-KKT-Teo-Farkas.pdf?dl=0) y discusión de notas [4.5.2 Algoritmos de optimización sin restricciones](https://drive.google.com/file/d/16-_PvWNaO0Zc9x04-SRsxCRdn5fxebf2/view?usp=sharing), [4.5.3 Algoritmos de optimización con restricciones de igualdad](https://drive.google.com/file/d/12L7rOCgW7NEKl_xJbIGZz05XXVrOaPBz/view?usp=sharing) e implementaciones: [Algoritmos para optimización sin restricciones](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/algoritmos/optimizacion_convexa_sin_restricciones), [Algoritmos para optimización con restricciones de igualdad: ecuaciones lineales](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/algoritmos/optimizacion_convexa_con_restricciones_de_igualdad_ecuaciones_lineales)
 
 
 
