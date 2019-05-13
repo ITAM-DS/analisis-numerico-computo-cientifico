@@ -1,0 +1,159 @@
+---
+title: "DG_GC"
+output: html_document
+---
+###SP500
+```{r}
+library(BatchGetSymbols)
+SP500_data <- BatchGetSymbols(tickers = '^GSPC',
+                                first.date = as.Date("2016-01-01"),
+                                last.date = Sys.Date(),
+                                freq.data = 'daily'
+                                )
+
+# Extract the data into a tibble: 
+SP500_prices <- as_tibble(SP500_data$df.tickers) %>% 
+  select(ref.date, price.close, volume)
+
+#head(SP500_prices,3)
+```
+
+### OPCIONES 
+
+```{r}
+options_data <- as_tibble(read.csv("C:/Users/anamh/Desktop/segundo_semestre/optimizacion/proyecto_final/options.csv"))
+column_names <- c("contract_name","strike","last_price","volume",
+                  "open_interest","yearly_iv","type","maturity")
+
+colnames(options_data) <- column_names
+#head(options_data,3)
+```
+
+### Datos limpios 
+
+```{r}
+library(lubridate)
+SP500_0 <- 2933.68
+risk_free <-  0.00000682445401174167
+q_rate <- 0.00005696684931506850
+
+options_tidy_data <- options_data %>% 
+  filter(yearly_iv > 0.001) %>%
+  mutate(s_t = SP500_0) %>%
+  mutate(rf = risk_free) %>% 
+  mutate(q = q_rate) %>% 
+  mutate(daily_iv = yearly_iv/(365^(1/2))) %>% 
+  mutate(tidy_mat = dmy(maturity)) %>%
+  mutate(dtm = as.numeric(tidy_mat - ymd("2019-04-23"))) %>%
+  mutate(moneyness = SP500_0/strike) %>% 
+  select(type, s_t, rf, q, dtm, strike, last_price, tidy_mat,daily_iv, moneyness)
+  
+
+#head(options_tidy_data,3)
+```
+
+
+
+###CÁLCULO DEL PRECIO DE GC 
+
+```{r}
+precio_gc <- function(type,St,r,q,dtm,X,z){
+  
+  d <- round(((log(St/X) + dtm*(r-q+ (z[1]^2)/2))/(z[1] * (dtm)^(1/2))),16)
+ 
+   gc_call <- round((St*exp(-q*dtm)*pnorm(d)- X * exp(-r*dtm) * pnorm(d - z[1] * (dtm)^(1/2)) + St*exp(-q*dtm)*dnorm(d)* z[1] * ((z[2]/factorial(3))*(2*((dtm)^(1/2))*z[1]-d) - (z[3]/(factorial(4)*(dtm)^(1/2)))*(1-(d^2)+3*d*(dtm)^(1/2)*z[1]-3*dtm*z[1]^2))),16)
+  
+  if (type == "call") {
+    
+    return(gc_call)
+    
+  } else if (type == "put"){
+    
+    gc_put <-round(( gc_call + X * exp(-r*dtm) - St),16)
+    
+    return(gc_put)
+    
+  } else {
+    
+    return(paste("You've entered the wrong option type. Please enter either 'call' or 'put'."))
+  }
+}
+```
+
+###MSE GC 
+
+```{r}
+mse_gc <- function(z) {
+  mse_gc <- options_tidy_data %>%
+    #filter(type == option_type) %>% 
+    rowwise() %>% 
+    mutate(gc = precio_gc(type = type, 
+                           St = s_t,
+                           r = rf,
+                           X = strike,
+                           dtm = dtm,
+                           q = q,
+                           z=z)) %>% 
+    mutate(SE = round(((gc-last_price)^2),16)) %>% 
+    ungroup() %>% 
+    summarise(MSE = round(mean(SE),16)) %>% 
+    as.numeric()
+  return(mse_gc)
+}
+```
+
+
+###DERIVADAS PARCIALES MSE GC 
+
+```{r}
+h<-0.0000001
+h_grad <- function(z){
+  c(
+    round(((mse_gc(z=c(z[1]+h, z[2],z[3]))-mse_gc(z=c(z[1], z[2],z[3])))/h),16),
+    round(((mse_gc(z=c(z[1], z[2]+h,z[3]))-mse_gc(z=c(z[1], z[2],z[3])))/h),16),
+    round(((mse_gc(z=c(z[1], z[2],z[3]+h))-mse_gc(z=c(z[1], z[2],z[3])))/h),16)
+  )
+  
+}
+```
+
+
+###DESCENSO 
+
+```{r}
+descenso <- function(n, z_0, eta, h_deriv){
+  z <- matrix(0,n, length(z_0))
+  z[1, ] <- z_0
+  for(i in 1:(n-1)){
+    z[i+1, ] <- round((z[i, ] - eta[ ] * h_deriv(z[i, ])),16)
+  }
+  z
+}
+```
+
+
+```{r}
+inicial<-c(0.011968764535667, -4.57455342657578, 435.965534786874342)
+#iteraciones <- descenso(n=500, z_0 = inicial, eta=c(0.00000001,0.00001,0.001), h_deriv=h_grad) #+009
+iteraciones <- descenso(n=500, z_0 = inicial, eta=c(0.00000001,0.00001,0.1), h_deriv=h_grad) #+009
+```
+
+```{r}
+head(iteraciones,10)
+```
+
+```{r}
+tail(iteraciones,10)
+```
+
+```{r}
+#mse_gc(c(0.009596789,-4.51,429.38))
+mse_gc(c(0.009714819, -4.574389, 480.9437))
+```
+
+
+
+
+
+
+
