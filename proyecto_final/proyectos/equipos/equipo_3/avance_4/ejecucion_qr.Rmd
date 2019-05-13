@@ -1,0 +1,44 @@
+---
+title: "QR y SDV"
+author: "Equipo3"
+date: "6 de mayo de 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Ejecución de los comandos SVD y QR  para problema d e regresión.
+
+Utilizamos la base de datos obtenida en "Avance3"
+
+```{r cars}
+dtp=read.csv('./data.csv', header=T)
+```
+Recordamos los resultados obtenidos de lm
+```{r}
+
+reg <- lm(dtp$tiempo ~ dtp$masculino + dtp$esp + dtp$mat + dtp$cie + dtp$soc)
+summary(reg)
+
+```
+De la documentación de R, sabemos que la función lm, realiza por default la descomposición qr.
+
+
+lm(formula, data, subset, weights, na.action,
+   method = **"qr"**, model = TRUE, x = FALSE, y = FALSE, qr = TRUE,
+   singular.ok = TRUE, contrasts = NULL, offset, ...)
+
+
+En este ejercicio vamos a obtener los coefiientes con las funciones de "qr" ya establecidas en R
+
+##QR
+```{r}
+mf<-model.frame(dtp$tiempo ~ dtp$masculino + dtp$esp + dtp$mat + dtp$cie + dtp$soc)
+mdesign<-model.matrix(reg) #matriz de diseño
+response<-model.extract(mf,"response")#variable respuesta
+A<-qr(mdesign)
+qr.coef(A,response)
+```
+
