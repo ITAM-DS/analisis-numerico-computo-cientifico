@@ -73,9 +73,9 @@ Objetivo del proyecto: Implementar el algoritmo de Optimización de Enjambre de 
 
 ## [Equipo 5](equipos/equipo_5)
 
-Ttulo del proyecto: `Recocido simulado y Descenso en gradiente en paralelo para el problema de localizar óptimos globales.`
+Ttulo del proyecto: `Solución al Problema del Agente Viajero mediante el método de Simulated Annealing.`
 
-Objetivo del proyecto: Comparación de métodos que utilizan derivadas (p.ej. descenso en gradiente) vs los que no utilizan derivadas (gradient free) para funciones objetivo shekel, H1, Himmelblau que son utilizadas en física (endurecimiento de acero por ejemplo) hill climbing paralelo vs recocido
+Objetivo del proyecto: Solución Óptima al Problema del Agente Viajero de planificación de rutas utilizando el método de optimización gradient free de Simulated Annealing. Este método está inspirado en principios de física utilizados para procedimientos como el endurecimiento del acero. Se evaluará hacer una comparación de soluciones con un método especializado de optimización para este problema de ruteo, el algoritmo Dijkstra.
 
 [Avances del proyecto]
 
