@@ -1,0 +1,200 @@
+---
+title: "Proyecto MNO - Ejecución"
+author: "Equipo 3"
+output: html_document
+---
+
+```{r}
+df=read.csv('./control.csv', header=T)
+```
+
+## Ejecución 
+
+Para hecer más sencilla la ejecución del modelo transformaremos los datos manteniendo las siguientes variables:
+
+- n_registro: Número de registro
+- masculino: Si el alumno es niño está varible será 1, si es niña el valor será 0
+- g1: El grado con el que inicio en el la ventana de estudio, el mínimo será 9 bajo la hipótesis que todos los alumnos que en el primer ciclo cursan un grado distinto al primero de primaria habrán cursado anteriormente los niveles inferiores de una manera normal
+- tiempo: El tiempo en años que el alumno tardó en concluir sus estudios de educación básica
+- no_censura: Si la varible es 1 señala que el dato NO está censurado, si es 0 es un dato con censura
+- exito: Si el alumno concluyó sus estudios en 9 años su valor será 1, de lo contrario 0
+- esp1: La calificación del grado 1 en español
+- mat1: La calificación de matemáticas en matemáticas
+- cie1: Para primaria indicará la calificación de Ciencia Naturales y para secundaria la calificación de Ciencias
+- soc1: Para primaria indicará la calificación de Cívica y Ética, para secundaria indicará la calificación de Sociales
+
+```{r}
+library(sqldf)
+
+dft <- sqldf("
+  select 
+    n_registro, masculino, g1, 
+    t1 + t2 + t3 + t4 + t5 + t6 + t7 + t_aux as tiempo, no_censura, censura,
+    case when ((t1 + t2 + t3 + t4 + t5 + t6 + t7 + t_aux) = 9 
+      and (g1=9 or g2=9 or g3=9 or g4=9 or g5=9 or g6=9 or g7=9)) then(1) else 0 end as exito,
+    esp1, mat1, cie1, soc1,
+    esp2, mat2, cie2, soc2,
+    esp3, mat3, cie3, soc3,
+    esp4, mat4, cie4, soc4,
+    esp5, mat5, cie5, soc5,
+    esp6, mat6, cie6, soc6,
+    esp7, mat7, cie7, soc7
+  from
+    (select *, 1 as t1,
+      case when grado_c2 is null and (g3 is not null or g4 is not null or g5 is not null or g6 is not null or g7 is not null) then(1) 
+        when grado_c2 is not null then(1) else 0 end as t2,
+      case when grado_c3 is null and (g4 is not null or g5 is not null or g6 is not null or g7 is not null) then(1) 
+        when grado_c3 is not null then(1) else 0 end as t3,
+      case when grado_c4 is null and (g5 is not null or g6 is not null or g7 is not null) then(1) 
+        when grado_c4 is not null then(1) else 0 end as t4,
+      case when grado_c5 is null and (g6 is not null or g7 is not null) then(1) 
+        when grado_c5 is not null then(1) else 0 end as t5,
+      case when grado_c6 is null and (g7 is not null) then(1) 
+        when grado_c6 is not null then(1) else 0 end as t6,
+      case when grado_c7 is null and (g1!=9 and g2!=9 and g3!=9 and g4!=9 and g5!=9 and g6!=9) then(1) 
+        when grado_c7 is not null then(1) else 0 end as t7,
+      g1-1 as t_aux,
+      case when g1!=9 and (g2!=9 or g2 is null) and (g3!=9 or g3 is null) and (g4!=9 or g4 is null) 
+        and (g5!=9 or g5 is null) and (g6!=9 or g6 is null) and (g7!=9 or g7 is null) then (0) else 1 end as no_censura,
+      case when g1!=9 and (g2!=9 or g2 is null) and (g3!=9 or g3 is null) and (g4!=9 or g4 is null) 
+        and (g5!=9 or g5 is null) and (g6!=9 or g6 is null) and (g7!=9 or g7 is null) then (1) else 0 end as censura
+    from
+      (select *,
+      case when sexo='H' then (1) else 0 end as masculino, 
+      grado_c1 as g1, grado_c2 as g2, grado_c3 as g3, grado_c4 as g4, grado_c5 as g5, grado_c6 as g6, grado_c7 as g7,
+      cesp_c1 as esp1, cesp_c2 as esp2, cesp_c3 as esp3, cesp_c4 as esp4, cesp_c5 as esp5, cesp_c6 as esp6, cesp_c7 as esp7,
+      cMAT_c1 as mat1, cMAT_c2 as mat2, cMAT_c3 as mat3, cMAT_c4 as mat4, cMAT_c5 as mat5, cMAT_c6 as mat6, cMAT_c7 as mat7,
+      case when nciclo1='SECUNDARIA' then(cCIE_c1) else cCNAT_c1 end as cie1,
+      case when nciclo1='SECUNDARIA' then(cCIE_c2) else cCNAT_c1 end as cie2,
+      case when nciclo1='SECUNDARIA' then(cCIE_c3) else cCNAT_c1 end as cie3,
+      case when nciclo1='SECUNDARIA' then(cCIE_c4) else cCNAT_c1 end as cie4,
+      case when nciclo1='SECUNDARIA' then(cCIE_c5) else cCNAT_c1 end as cie5,
+      case when nciclo1='SECUNDARIA' then(cCIE_c6) else cCNAT_c1 end as cie6,
+      case when nciclo1='SECUNDARIA' then(cCIE_c7) else cCNAT_c1 end as cie7,
+      case when nciclo1='SECUNDARIA' then(cSOC_c1) else cFCYE_c1 end as soc1,
+      case when nciclo1='SECUNDARIA' then(cSOC_c2) else cFCYE_c1 end as soc2,
+      case when nciclo1='SECUNDARIA' then(cSOC_c3) else cFCYE_c1 end as soc3,
+      case when nciclo1='SECUNDARIA' then(cSOC_c4) else cFCYE_c1 end as soc4,
+      case when nciclo1='SECUNDARIA' then(cSOC_c5) else cFCYE_c1 end as soc5,
+      case when nciclo1='SECUNDARIA' then(cSOC_c6) else cFCYE_c1 end as soc6,
+      case when nciclo1='SECUNDARIA' then(cSOC_c7) else cFCYE_c1 end as soc7
+      from df))
+  ")
+```
+
+```{r}
+library(dplyr)
+
+
+```
+
+
+
+
+Nuestra base cuenta con 39% de los datos con censura
+
+```{r}
+sqldf("select distinct no_censura, count(*)
+      from dft
+      group by no_censura")
+```
+
+Veamos que como es esperado la mayor cantidad de los alumnos tardan 9 años en concluir educación básica
+
+```{r}
+library(ggplot2)
+
+dft %>% 
+  count(tiempo) %>% 
+  group_by(tiempo) %>%  
+  ggplot(aes(as.factor(tiempo))) + 
+      geom_bar(aes(weight=n),  fill="#003f5c") +
+    xlab("Tiempo en concluir la educación básica (años)") + ylab("Frecuencia")
+
+```
+
+En general el 61% de los alumnos concluyeron su educación básica.
+
+Cuando no hay censura el 97% de los alumnos concluyeron en 9 años su educación básica.
+
+```{r}
+sqldf("select distinct exito, count(*)
+      from dft
+      where censura=1
+      group by exito")
+
+View(sqldf("select n_registro,g1, esp1, esp2, esp3, esp4, esp5, esp6, esp7
+      from dft
+      where censura=1"))
+
+sqldf("select grado_c1,grado_c2,grado_c3,grado_c4,grado_c5,grado_c6,grado_c7
+      from df
+      where n_registro=848195")
+
+```
+  
+
+
+```{r}
+dtp <- dft %>% 
+  mutate( esp=rowMeans(dft %>% select(esp1, esp2, esp3, esp4, esp5, esp6, esp7), na.rm = TRUE)) %>%
+  mutate( mat=rowMeans(dft %>% select(mat1, mat2, mat3, mat4, mat5, mat6, mat7), na.rm = TRUE)) %>%
+  mutate( cie=rowMeans(dft %>% select(cie1, cie2, cie3, cie4, cie5, cie6, cie7), na.rm = TRUE)) %>%
+  mutate( soc=rowMeans(dft %>% select(soc1, soc2, soc3, soc4, soc5, soc6, soc7), na.rm = TRUE)) %>%
+  mutate( log_tiempo=log(tiempo)) %>%
+  select(n_registro, tiempo, exito, log_tiempo, masculino, no_censura, censura, esp, mat, cie, soc) %>%
+  arrange(log_tiempo)
+
+```
+
+
+```{r}
+# https://github.com/Homebrew/legacy-homebrew/issues/43290
+install.packages("imputeYn")
+
+library(remotes)
+install_version("quadprog", "1.5-5")
+
+library(imputeYn)
+library(quadprog)
+
+dfpr <- dtp[sample(nrow(dtp), 499), ] %>% arrange(log_tiempo)
+new_c <- c(1105964, 11, 0, 2.397895, 0, 0,1, 7.000000, 6.750000, 7.000000, 7.000000)
+dfpr <- rbind(dfpr, new_c) %>% arrange(log_tiempo)
+
+imputeYn(as.matrix(dfpr %>% select(esp, mat, cie, soc)), dfpr$log_tiempo, dfpr$no_censura, method = "condMean", beta=NULL)
+
+```
+
+
+```{r}
+dtp$tiempo[dtp$censura==1]<-11
+
+dtp %>% 
+  count(tiempo) %>% 
+  group_by(tiempo) %>%  
+  ggplot(aes(as.factor(tiempo))) + 
+      geom_bar(aes(weight=n),  fill="#003f5c") +
+    xlab("Tiempo en concluir la educación básica (años)") + ylab("Frecuencia")
+
+```
+
+
+```{r}
+
+
+ reg <- lm(dtp$tiempo ~ dtp$masculino + dtp$esp + dtp$mat + dtp$cie + dtp$soc)
+
+summary(reg)
+
+```
+
+
+
+
+
+
+
+
+
+
