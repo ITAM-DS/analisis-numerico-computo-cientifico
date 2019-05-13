@@ -19,7 +19,7 @@ Tiene un porcentaje de 40% y la calificación es por equipo. El código de la im
 
 El trabajo escrito consiste en el reporte de la investigación realizada y los resultados obtenidos. Se dan referencias utilizadas. No se sube al repo del curso, pero se proporciona una liga al mismo, más información sobre esta liga [aquí](indicaciones).
 
-Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega en la fecha del examen final determinada por control escolar.
+Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega una semana antes de la fecha del examen final en un 95% completo.
 
 
 ## Presentación
