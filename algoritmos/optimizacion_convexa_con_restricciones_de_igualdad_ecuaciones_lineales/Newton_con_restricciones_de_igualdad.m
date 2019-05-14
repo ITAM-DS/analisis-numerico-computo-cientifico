@@ -47,13 +47,13 @@ if(valor_restriccion<tol)
     %Modificar siguientes líneas para evitar crear matriz_sistema
     if(all(all(A<realmin*eps)) == 1) %matriz A de ceros
       matriz_sistema = Hfeval;
-		    lado_derecho = -gfeval;
-	   else
-		    matriz_ceros = zeros(m,m);
-		    matriz_sistema = [Hfeval A';A matriz_ceros];
-		    vector_ceros = zeros(m,1);
-		    lado_derecho = - [gfeval; vector_ceros];
-	   end
+      lado_derecho = -gfeval;
+     else
+      matriz_ceros = zeros(m,m);
+      matriz_sistema = [Hfeval A';A matriz_ceros];
+      vector_ceros = zeros(m,1);
+      lado_derecho = - [gfeval; vector_ceros];
+     end
     
     dir_desc = matriz_sistema\lado_derecho;
     dir_Newton = dir_desc(1:n);
@@ -86,13 +86,13 @@ if(valor_restriccion<tol)
     %Modificar siguientes líneas para evitar crear matriz_sistema
     if(all(all(A<realmin*eps)) == 1) %matriz A de ceros
       matriz_sistema = Hfeval;
-		    lado_derecho = -gfeval;
-	   else
-		    matriz_ceros = zeros(m,m);
-		    matriz_sistema = [Hfeval A';A matriz_ceros];
-		    vector_ceros = zeros(m,1);
-		    lado_derecho = - [gfeval; vector_ceros];
-	   end
+      lado_derecho = -gfeval;
+     else
+      matriz_ceros = zeros(m,m);
+      matriz_sistema = [Hfeval A';A matriz_ceros];
+      vector_ceros = zeros(m,1);
+      lado_derecho = - [gfeval; vector_ceros];
+     end
     
     dir_desc = matriz_sistema\lado_derecho;
     dir_Newton = dir_desc(1:n);
