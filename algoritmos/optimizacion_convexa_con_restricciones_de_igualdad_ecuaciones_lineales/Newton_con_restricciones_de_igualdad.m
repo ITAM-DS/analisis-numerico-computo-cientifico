@@ -45,10 +45,16 @@ if(valor_restriccion<tol)
     beta=.5;%parámetro para el backtracking
      
     %Modificar siguientes líneas para evitar crear matriz_sistema
-    matriz_ceros = zeros(m,m);
-    matriz_sistema = [Hfeval A';A matriz_ceros];
-    vector_ceros = zeros(m,1);
-    lado_derecho = - [gfeval; vector_ceros];
+    if(all(all(A<realmin*eps)) == 1) %matriz A de ceros
+      matriz_sistema = Hfeval;
+		    lado_derecho = -gfeval;
+	   else
+		    matriz_ceros = zeros(m,m);
+		    matriz_sistema = [Hfeval A';A matriz_ceros];
+		    vector_ceros = zeros(m,1);
+		    lado_derecho = - [gfeval; vector_ceros];
+	   end
+    
     dir_desc = matriz_sistema\lado_derecho;
     dir_Newton = dir_desc(1:n);
     w_estimacion_variable_dual = dir_desc(n+1:end);
@@ -78,8 +84,16 @@ if(valor_restriccion<tol)
     normagf = norm(gfeval);
      
     %Modificar siguientes líneas para evitar crear matriz_sistema
-    matriz_sistema = [Hfeval A';A matriz_ceros];
-    lado_derecho = - [gfeval; vector_ceros];
+    if(all(all(A<realmin*eps)) == 1) %matriz A de ceros
+      matriz_sistema = Hfeval;
+		    lado_derecho = -gfeval;
+	   else
+		    matriz_ceros = zeros(m,m);
+		    matriz_sistema = [Hfeval A';A matriz_ceros];
+		    vector_ceros = zeros(m,1);
+		    lado_derecho = - [gfeval; vector_ceros];
+	   end
+    
     dir_desc = matriz_sistema\lado_derecho;
     dir_Newton = dir_desc(1:n);
     w_estimacion_variable_dual = dir_desc(n+1:end);
