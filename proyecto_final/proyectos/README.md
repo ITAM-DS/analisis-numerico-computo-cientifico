@@ -37,11 +37,9 @@ Objetivo del proyecto: Implementación y evaluación de los algoritmos  CUR Desc
 
 ## [Equipo 3](equipos/equipo_3)
 
-Ttulo del proyecto: `Benchmark de Distintos Servicios en la Nube`
+Ttulo del proyecto: `Ajuste y optimización del método de mínimos cuadrados para la resolución de problemas de supervivencia`
 
-Objetivo del proyecto: Comparar los Servicios en la nube más conocidos y definir cuál tiene mejor performance sobre un algoritmo de mínimos cuadrados.
-
-Construiremos un algoritmo básico de Mínimos Cuadrados para solucionar problemas de regresión lineal en los lenguajes de programación Python y R los cuales estará contenidos en una imagen de docker y esta será desplegada en instancias de Amazon Web Services (AWS) y Google Cloud Platform (GCP). Se buscará comparar las ventajas y desventajas, tales como performance y facilidad de usar las herramienta, entendiendo la arquitectura que corre debajo de ellas para finalmente hacer una recomendación de uso.
+Objetivo del proyecto: Ajuste y optimización del algoritmo de mínimos cuadrados para solucionar un problema de supervivencia escolar con datos truncados y censurados. Se buscará predecir la probabilidad de que un alumno del sistema educativo nacional concluya su educación básica con base en sus calificaciones y asistencia a largo de los distintos grados escolares. Se compararán en R los métodos de SVD y eliminación Gaussiana.
 
 [Avances del proyecto]
 
