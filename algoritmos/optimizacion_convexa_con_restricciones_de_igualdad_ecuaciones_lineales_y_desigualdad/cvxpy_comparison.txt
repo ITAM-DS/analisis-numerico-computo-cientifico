@@ -1,0 +1,147 @@
+
+%1)
+
+import cvxpy as cp
+
+x1 = cp.Variable()
+x2 = cp.Variable()
+
+
+# Create two constraints.
+constraints = [6-x1-x2 <= 0,-18+x1+2*x2<=0,x1>=0,x2>=0]
+
+# Form objective.
+
+obj = cp.Minimize(2*x1+5*x2)
+
+# Form and solve problem.
+prob = cp.Problem(obj, constraints)
+prob.solve()  # Returns the optimal value.
+print("status:", prob.status)
+print("optimal value", prob.value)
+print("optimal var", x1.value, x2.value)
+
+
+status: optimal
+
+optimal value 12.0
+
+optimal var 6.0 3.5543975030304212e-31
+
+
+%2)
+import cvxpy as cp
+
+x1 = cp.Variable()
+x2 = cp.Variable()
+x3 = cp.Variable()
+x4 = cp.Variable()
+
+# Create two constraints.
+constraints = [2*x1+x2+x3+4*x4-7 == 0,x1+x2+2*x3+x4-6 == 0,x1>=0,x2>=0,x3>=0,x4>=0]
+
+# Form objective.
+
+obj = cp.Minimize(x1**2+x2**2+x3**2+x4**2-2*x1-3*x4)
+
+# Form and solve problem.
+prob = cp.Problem(obj, constraints)
+prob.solve()  # Returns the optimal value.
+print("status:", prob.status)
+print("optimal value", prob.value)
+print("optimal var", x1.value, x2.value, x3.value,x4.value)
+
+status: optimal
+optimal value 1.4006849315068508
+
+optimal var 1.1232876712328763 0.6506849315068493 1.8287671232876714 0.5684931506849317
+
+
+#3)
+
+import cvxpy as cp
+
+x1 = cp.Variable()
+x2 = cp.Variable()
+
+
+constraints = [x1>=0,x2>=0]
+
+# Form objective.
+
+obj = cp.Minimize(x1**2+(x2+1)**2)
+
+# Form and solve problem.
+prob = cp.Problem(obj, constraints)
+prob.solve()  # Returns the optimal value.
+print("status:", prob.status)
+print("optimal value", prob.value)
+print("optimal var", x1.value, x2.value)
+
+optimal value 1.0
+
+optimal var 0.0 -1.399919957976194e-29
+
+
+#4)
+import cvxpy as cp
+
+x1 = cp.Variable()
+x2 = cp.Variable()
+
+
+constraints = [(x1-1)**2 + (x2-.25)**2-1<=0]
+
+# Form objective.
+
+obj = cp.Minimize(cp.exp(x1+3*x2-0.1)+cp.exp(x1-3*x2-0.1)+cp.exp(-x1-0.1))
+
+
+# Form and solve problem.
+prob = cp.Problem(obj, constraints)
+prob.solve()  # Returns the optimal value.
+print("status:", prob.status)
+print("optimal value", prob.value)
+print("optimal var", x1.value, x2.value)
+
+status: optimal
+optimal value 2.742799135636767
+optimal var 0.02818941589727335 0.014237029951590515
+
+
+
+%5) Mínimos cuadrados no negativos
+
+X=[0.91177  -1.15847   0.54351
+   2.27585  -0.31595  -0.10009
+  -0.13817  -0.43913  -0.99416
+   0.20257   0.55622  -0.28660
+   0.56596   0.54013   1.45889];
+
+y =[1.4339
+   5.4793
+  -5.7085
+   1.1300
+   9.1538]
+
+
+import cvxpy as cp
+import numpy as np
+
+n=3;
+X=np.array([[0.91177,-1.15847,0.54351],[2.27585,-0.31595,-0.10009], [-0.13817,-0.43913,-0.99416], [0.20257,0.55622,-0.28660], [0.56596,0.54013,1.45889]])
+y=np.array([1.4339,5.4793,-5.7085,1.1300,9.1538])
+
+beta=cp.Variable(n)
+objective = cp.Minimize(cp.sum_squares(X*beta-y))
+constraints = [0<=beta]
+
+prob = cp.Problem(objective,constraints)
+
+print("Optimal value", prob.solve())
+print("Optimal var")
+print(beta.value) # A numpy ndarray.
+
+[2.9999862  3.00001679 3.99997103]
+
+
