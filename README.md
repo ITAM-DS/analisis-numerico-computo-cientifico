@@ -157,7 +157,7 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 [Algoritmos para optimización sin restricciones](algoritmos/optimizacion_convexa_sin_restricciones)
 
 [Algoritmos para optimización con restricciones de igualdad: ecuaciones lineales](algoritmos/optimizacion_convexa_con_restricciones_de_igualdad_ecuaciones_lineales)
-
+[Algoritmos para optimización con restricciones de igualdad: ecuaciones lineales y desigualdad](algoritmos/optimizacion_convexa_con_restricciones_de_igualdad_ecuaciones_lineales_y_desigualdad/)
 
 
 
