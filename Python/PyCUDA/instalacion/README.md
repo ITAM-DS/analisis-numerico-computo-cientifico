@@ -46,7 +46,7 @@ passwd('millave')
 ```
 
 ```
-sed -i "s/c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:1f925h17t3p1:....'/" /home/$user/.jupyter/jupyter_notebook_config.py
+sed -i "s/#c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:1f925h17t3p1:....'/" /home/$user/.jupyter/jupyter_notebook_config.py
 ```
 
 
