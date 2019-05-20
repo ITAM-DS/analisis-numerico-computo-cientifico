@@ -32,6 +32,9 @@ Implementación (en el repo): [liga_a_código](src)
 
 
 En la carpeta [avance_1](avance_1) se encuentra el reporte del primer avance en nuestro proyecto. 
+En la carpeta [avance_2](avance_2) se encuentra el reporte del primer avance en nuestro proyecto. 
+En la carpeta [avance_3](avance_3) se encuentra el reporte del primer avance en nuestro proyecto. 
+En la carpeta [avance_4](avance_4) se encuentra el reporte del primer avance en nuestro proyecto. 
 
 Referencias del proyecto:
 
