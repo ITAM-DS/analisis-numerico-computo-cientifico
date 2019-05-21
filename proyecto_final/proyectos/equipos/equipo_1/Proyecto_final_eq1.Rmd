@@ -1,0 +1,66 @@
+---
+title: "Proyecto Final Métodos Numéricos y Optimización"
+subtitle: 'Equipo 1'
+author:
+  - Paulina Gómez-Mont
+  - Rodrigo Floriano
+  - Carlos Alberto García
+output: html_notebook
+---
+
+
+# Objetivo y descripción del Proyecto
+\
+El problema abordado en este proyecto tiene base en el concurso de kaggle ["Reducing Commercial Aviation Fatalities"](https://www.kaggle.com/c/reducing-commercial-aviation-fatalities/overview), dónde el objetivo es identificar si los pilotos de aviones presentan algún estado cognitivo que pueda ser peligroso como sueño, distracción, etc. 
+
+Los datos disponibles son datos psicológicos de 18 pilotos que fueron sujetos a distracciones, el conjunto de entrenamiento consiste en experimentos controlados obtenidos en un ambiente de simuladores fuera de vuelo, mientras que el conjunto de prueba consiste en datos en vuelos completos dentro de un simulador de vuelo.
+
+Los pilotos fueron expuestos a distracciones con la intención de llevarlos a alguno de los siguientes estados cognitivos:
+
++ **Atención Canalizada (CDA)** - implica la concentración en una tarea excluyendo todas las demás. Se induce obligando a los pilotos a jugar videojuegos  
+
++ **Atención Desviada (DA)** - consiste en la desviación de la atención debido a acciones o procesos  de pensamiento asociados a la toma de decisiones. Se induce resolviendo periodicamente problemas matemáticos antes de regresar a la tarea monitoreada.
+
++ **Sorpresa (SS)** - Es inducido al presentar al sujeto de estudio cortes de plículas en dónde el observador pueda asustarse/sorprenderse.
+
+
+Cada experimento consistió en monitorear en el tiempo a un par de pilotos expuestos a los estados cognitivos *CDA, DA , SS*. El set de entrenamiento contiene tres experimentos (uno por cada estado cognitivo) en el que los pilotos experimentan sólo uno de los estados. Por ejemplo, en el experimento CA, los pilotos estaban en un estado base (sin eventos) o en el estado CA. El conjunto de prueba contiene una simulación de vuelo completa durante la cual los pilotos podrían experimentar cualquiera de los estados (pero nunca más de uno a la vez).
+
+El objetivo de proyecto desde el enfoque de la materia, es aplicar un raegresión logística multinomial y comparar diferentes métodos de optimización para llegar a soluciones óptimas de la función objetivo (devianza) para predecir en cuál de los estados cognitivos (*CDA, DA , SS*) caen los sujetos en el experimento, para este problema la función objetivo esta dada por:
+
+
+
+$$
+D(\beta)=-2 \sum_{i=1}^{N} \log p_{g^{(i)}}\left(x^{(i)}\right)
+$$
+
+
+
+**Propuesta:**
+
+1. **Utilizar el método de descenso en gradiente.**
+  + Para calcular las derivadas se utilizaran diferencias centradas.
+
+2. **Utilizar el método de descenso con dirección de Newton.**
+  + Para calcular las derivadas se utilizarn diferencias centradas.
+  + Se utilizara la matriz hessiana para calcular la matriz de segundas derivadas.
+  + Para resolver cada iteración se utilizará el método de factorización QR de la matriz de segundas derivadas.
+
+
+```{r, message=FALSE, echo=FALSE}
+library(tidyverse)
+```
+
+
+```{r}
+datos <- read_csv('~/Desktop/GitHub/MO_Proyecto/train.csv')
+
+head(datos)
+```
+
+
+Registros por tipo de experimento
+```{r}
+datos %>% group_by(experiment) %>%  summarise(N = n())
+```
+
