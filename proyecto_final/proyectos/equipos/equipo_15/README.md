@@ -1,4 +1,4 @@
-## Equipo 15
+﻿## Equipo 15
 
 Integrantes:
 
@@ -18,7 +18,7 @@ tiempo de llegada, es decir, $c_j-a_j$ . Buscamos minimizar:
 
 $$\sum_{j=1}^N (c_j-a_j).$$
 
-[Trabajo escrito]()
+[Trabajo escrito](https://www.dropbox.com/s/b3jvcihgqc23j8e/Proyecto%20final.pdf?dl=0)
 
 [Presentación]()
 
