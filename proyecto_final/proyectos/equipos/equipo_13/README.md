@@ -1,4 +1,4 @@
-# Título del proyecto: Implementación del método de mínimos cuadrados alternados con regularización para un sistema de recomendación de Netflix.
+# Implementación del método de mínimos cuadrados alternados con regularización para un sistema de recomendación de Netflix.
 
 ## Integrantes:
 
