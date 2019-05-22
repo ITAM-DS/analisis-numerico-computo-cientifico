@@ -1,3 +1,23 @@
+# Título del proyecto: Implementación del método de mínimos cuadrados alternados con regularización para un sistema de recomendación de Netflix.
+
+## Integrantes:
+
+* Laura López 144089
+* Dante Ruiz 183340
+
+## Objetivo del proyecto: 
+
+Programar en de manera local en R el algorítmo de mínimos cuadarados alternados que se ha utilizado para ajustar sistemas de recomendción, utilizando los datos de la competencia de Netflix. 
+
+## Trabajo escrito (fuera del repo): 
+liga_trabajo_escrito
+
+## Presentación (fuera del repo): 
+liga_presentación
+
+## Implementación (en el repo): 
+liga_a_código
+
 ## Referencias
 
 **Prototyping a Recommender System Step by Step Part 2: Alternating Least Square (ALS) Matrix Factorization in Collaborative Filtering**
