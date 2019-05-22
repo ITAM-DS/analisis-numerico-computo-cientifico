@@ -10,7 +10,7 @@ Título del proyecto: `Ajuste y optimización del método de mínimos cuadrados 
 
 Objetivo del proyecto: `Ajuste y optimización del algoritmo de mínimos cuadrados para solucionar un problema de supervivencia escolar con datos truncados y censurados. Se buscará predecir la probabilidad de que un alumno del sistema educativo nacional concluya su educación básica con base en sus calificaciones y asistencia a largo de los distintos grados escolares. Se compararán en R los métodos de SVD y eliminación Gaussiana.`
 
-Trabajo escrito (fuera del repo) (En progreso): [liga_trabajo_escrito](https://docs.google.com/document/d/1ltDga0nTKfnSHbG9Psxn96QJ8DmFhZunIpUM0V0NBgw/edit#)
+Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://drive.google.com/file/d/1qeRAYRzoDHarRXodP48ArNK3MpwGM6Ll/view?usp=sharing)
 
 Presentación (fuera del repo) TBD: [liga_presentación]()
 
