@@ -2,7 +2,7 @@ function f_barrera = Barrera_logaritmica(f,f_rest,t,x)
 %Evaluación de la función de barrera
 %In:
 %f: función objetivo definida como una function handle
-%f_rest: vector de functions handle que contiene cada una de las funciones de desigualdad
+%f_rest: vector de functions handle que contiene cada una de las funciones de restricción desigualdad
 %t: parámetro de barrera
 %x: punto a evaluar la función de barrera logarítmica
 %Out:
