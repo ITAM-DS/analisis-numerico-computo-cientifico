@@ -144,6 +144,13 @@ $nvcc dgemv_mult_mat_vec_cublas.c funciones.c -o dgemv_mult_mat_vec_cublas.out -
 
 Ejecutamos:
 
+
+```
+./dgemv_mult_mat_vec_cublas.out <columnas de A> <número de entradas de v>
+```
+
+
+
 ```
 ./dgemv_mult_mat_vec_cublas.out 8 5
 ```
