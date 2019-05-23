@@ -58,8 +58,8 @@ int main(int argc, char *argv[]){
 	double time_spent;
 	int incx=1;
 	double ALPHA, BETA;
-    ALPHA = 1.0;
-    BETA = 0.0;
+	ALPHA = 1.0;
+	BETA = 0.0;
 
 	//dimensiones
 	int M=atoi(argv[1]);
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]){
 
 	A=malloc(sizeof(*A));
 	v=malloc(sizeof(*v));
-    v_resultado=malloc(sizeof(*v_resultado));
+	v_resultado=malloc(sizeof(*v_resultado));
 
 	renglones(A)=M;
 	columnas(A)=N;
@@ -92,8 +92,8 @@ int main(int argc, char *argv[]){
 
 	cudastat = cudaMalloc((void **)&d_v,renglones_vector(v) * sizeof(*d_v));
 	stat = cublasSetVector(renglones_vector(v), sizeof(double),entradas_vector(v),1,d_v,1);
-
-    cudastat = cudaMalloc((void **)&d_v_resultado,renglones_vector(v_resultado) * sizeof(*d_v_resultado));
+	
+	cudastat = cudaMalloc((void **)&d_v_resultado,renglones_vector(v_resultado) * sizeof(*d_v_resultado));
 	stat = cublasSetVector(renglones_vector(v_resultado), sizeof(double),entradas_vector(v_resultado),1,d_v_resultado,1);
 
 	//CUBLAS_OP_N no transpose
@@ -115,7 +115,7 @@ int main(int argc, char *argv[]){
 
 	//tiempo de cálculo:
 	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("Tiempo de cálculo en la gpu %.5f\n", time_spent);
+	printf("Tiempo de cálculo en la gpu %.5f\n", time_spent);
 
 	// Liberamos la memoria utilizada
 	cudaFree(d_A);
