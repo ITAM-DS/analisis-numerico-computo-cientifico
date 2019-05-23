@@ -401,3 +401,9 @@ Y se puede utilizar [nvprof](https://docs.nvidia.com/cuda/profiler-users-guide/i
 ```
 $nvprof ./suma_vectorial.out
 ```
+
+
+
+```
+$nvprof ./suma_vectorial_2.out
+```
