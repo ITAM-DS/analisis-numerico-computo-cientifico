@@ -370,7 +370,7 @@ int main(void){
 Compilamos:
 
 ```
-$nvcc suma_vectorial_2.cu -o suma_vectorial.out
+$nvcc suma_vectorial_2.cu -o suma_vectorial_2.out
 
 ```
 
