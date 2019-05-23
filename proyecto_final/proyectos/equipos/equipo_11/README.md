@@ -7,4 +7,4 @@ Título del proyecto: Esquema de compresión de audio por medio de PCA
 
 Objetivo del proyecto: Compresión de audio utilizando pca
 
-Trabajo escrito (fuera del repo): https://drive.google.com/drive/folders/1TUT6VjVyeU1hBSTnP4PeFVT_UrAlIDWP
+Trabajo escrito (avance fuera del repo): https://drive.google.com/drive/folders/1TUT6VjVyeU1hBSTnP4PeFVT_UrAlIDWP
