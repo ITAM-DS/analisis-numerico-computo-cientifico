@@ -326,7 +326,7 @@ Salida:
 
 Suma con 1 bloque con `N` threads:
 
-``suma_vectorial_2.cu`:
+`suma_vectorial_2.cu`:
 
 ```
 #define N 10
