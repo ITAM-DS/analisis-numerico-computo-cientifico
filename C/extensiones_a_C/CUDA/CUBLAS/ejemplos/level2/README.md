@@ -3,6 +3,7 @@ Para los siguientes ejemplos es necesario tener en la carpeta en la que se compi
 
 Información sobre operaciones [level2](http://www.netlib.org/blas/#_level_2).
 
+Lo siguiente se basa en el trabajo con el [equipo 1 del 2018](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2018-1/proyecto_final/proyectos/equipos/equipo_01).
 
 # Multiplicación matriz-vector:
 
