@@ -110,8 +110,8 @@ int main(int argc, char *argv[]){
 	//imprimir resultado:
 	printf("matriz resultado:\n");
 	imprime_matriz(C);
-
-  //tiempo de cálculo:
+	
+	//tiempo de cálculo:
 	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 	printf("Tiempo de cálculo en la gpu %.5f\n", time_spent);
 
