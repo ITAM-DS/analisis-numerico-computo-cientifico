@@ -219,7 +219,9 @@ int main(void){
 	int c;
 	int *device_c;
 	cudaMalloc((void **)&device_c,sizeof(int));
+        cudaSetDeviceFlags(cudaDeviceScheduleBlockingSync);
 	suma<<<1,1>>>(2,7,device_c);
+        cudaDeviceSynchronize();
 	cudaMemcpy(&c, device_c, sizeof(int), cudaMemcpyDeviceToHost);
 	printf("2+7 = %d\n", c);
 	cudaFree(device_c);
@@ -278,7 +280,9 @@ int main(void){
 	cudaMemcpy(device_a,a,N*sizeof(int), cudaMemcpyHostToDevice);
 	cudaMemcpy(device_b,b,N*sizeof(int), cudaMemcpyHostToDevice);
 	//mandamos a llamar a suma_vect:
+        cudaSetDeviceFlags(cudaDeviceScheduleBlockingSync);
 	suma_vect<<<N,1>>>(device_a,device_b,device_c);
+        cudaDeviceSynchronize();
 	//copia del resultado al arreglo c:
 	cudaMemcpy(c,device_c,N*sizeof(int),cudaMemcpyDeviceToHost);
 	for(i=0;i<N;i++)
@@ -288,7 +292,6 @@ int main(void){
 	cudaFree(device_c);
 	return 0;
 }
-
 ```
 
 Compilamos:
@@ -321,5 +324,80 @@ Salida:
 9+81 = 90
 ```
 
+Suma con 1 bloque con `N` threads:
+
+``suma_vectorial_2.cu`:
+
+```
+#define N 10
+__global__ void suma_vect(int *a, int *b, int *c){
+	int tid = threadIdx.x;
+	if(tid<N)
+		c[tid] = a[tid]+b[tid];
+}
+int main(void){
+	int a[N], b[N],c[N];
+	int *device_a, *device_b, *device_c;
+	int i;
+	//alojando en device
+	cudaMalloc((void **)&device_a, sizeof(int)*N);
+	cudaMalloc((void **)&device_b, sizeof(int)*N);
+	cudaMalloc((void **)&device_c, sizeof(int)*N);
+	//llenando los arreglos:
+	for(i=0;i<N;i++){
+		a[i]=i;
+		b[i]=i*i;
+	}
+	//copiamos arreglos a, b a la GPU
+	cudaMemcpy(device_a,a,N*sizeof(int), cudaMemcpyHostToDevice);
+	cudaMemcpy(device_b,b,N*sizeof(int), cudaMemcpyHostToDevice);
+	//mandamos a llamar a suma_vect:
+        cudaSetDeviceFlags(cudaDeviceScheduleBlockingSync);
+	suma_vect<<<1,N>>>(device_a,device_b,device_c);
+	cudaDeviceSynchronize();
+	//copia del resultado al arreglo c:
+	cudaMemcpy(c,device_c,N*sizeof(int),cudaMemcpyDeviceToHost);
+	for(i=0;i<N;i++)
+		printf("%d+%d = %d\n",a[i],b[i],c[i]);
+	cudaFree(device_a);
+	cudaFree(device_b);
+	cudaFree(device_c);
+	return 0;
+}
+
+```
+
+Compilamos:
+
+```
+$nvcc suma_vectorial_2.cu -o suma_vectorial.out
+
+```
 
 
+Ejecutamos:
+
+
+```
+$./suma_vectorial_2.out
+```
+
+Salida:
+
+```
+0+0 = 0
+1+1 = 2
+2+4 = 6
+3+9 = 12
+4+16 = 20
+5+25 = 30
+6+36 = 42
+7+49 = 56
+8+64 = 72
+```
+
+Y se puede utilizar [nvprof](https://docs.nvidia.com/cuda/profiler-users-guide/index.html#nvprof-overview) para perfilamiento del programa:
+
+```
+$nvprof ./suma_vectorial.out
+```
