@@ -6,7 +6,7 @@
 
 [Equipos de MNO](https://www.dropbox.com/s/cyjyv75ddylimjr/equipos_mno_2019.txt?dl=0)
 
-[Lista alumn@s con calificaciones](https://www.dropbox.com/s/9t03f6drg23oru3/salon_pf_102.xlsx?dl=0)
+## [Lista alumn@s con calificaciones](https://www.dropbox.com/s/9t03f6drg23oru3/salon_pf_102.xlsx?dl=0)
 
 [Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
 
