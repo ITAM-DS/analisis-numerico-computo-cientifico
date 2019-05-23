@@ -42,7 +42,7 @@ if(sum(f_rest_eval>=realmin*eps) < 1 ) %todas las restricciones son menores o ig
 		disp('------------------------------------')
 		iter_barrera = 0;
 		while(criterio_de_paro>tol_outer_iter && outer_iter < maxiter_path)
-			[x,iter,Err_plot,x_plot]=Newton_con_restricciones_de_igualdad(f,t,f_rest,A,b,x_ast,p_ast,x,tol_inner_iter,tol_backtracking,maxiter_Newton);
+			[x,iter,Err_plot,x_plot]=Newton_con_restricciones_de_igualdad_y_desigualdad(f,t,f_rest,A,b,x_ast,p_ast,x,tol_inner_iter,tol_backtracking,maxiter_Newton);
 			disp('Inner iterations:')
 			x_plot
 
