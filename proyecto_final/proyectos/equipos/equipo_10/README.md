@@ -12,7 +12,7 @@ Objetivo del proyecto:
 Desarrollar un programa que te permita seleccionar un portafolio de acciones, descargue información en tiempo real de los valores y del desempeño de estas acciones y utilice el método de Adomian para solucionar un modelo de Black-Scholes no lineal que estime el valor futuro de esas acciones.
 
 Trabajo escrito:
-[Liga a trabajo escrito](https://github.com/facosta8/MNO-Black-Scholes/)
+[Liga a trabajo escrito](https://github.com/facosta8/MNO-Black-Scholes/blob/master/reporte/reporte.pdf)
 
 Presentación:
 [Liga a presentación](https://github.com/facosta8/MNO-Black-Scholes/)
