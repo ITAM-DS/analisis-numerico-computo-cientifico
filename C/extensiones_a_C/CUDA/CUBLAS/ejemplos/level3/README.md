@@ -60,8 +60,8 @@ int main(int argc, char *argv[]){
 	int M=atoi(argv[1]);
 	int K=atoi(argv[2]);
 	int N=atoi(argv[4]);
-  ALPHA = 1.0;
-  BETA = 0.0;
+	ALPHA = 1.0;
+	BETA = 0.0;
 	A=malloc(sizeof(*A));
 	B=malloc(sizeof(*B));
 	C=malloc(sizeof(*C));
@@ -108,18 +108,18 @@ int main(int argc, char *argv[]){
 	stat = cublasGetMatrix(renglones(C),columnas(C),sizeof(double), d_C, renglones(C),entradas(C),renglones(C));
 
 	//imprimir resultado:
-  printf("matriz resultado:\n");
+	printf("matriz resultado:\n");
 	imprime_matriz(C);
 
   //tiempo de cálculo:
 	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-  printf("Tiempo de cálculo en la gpu %.5f\n", time_spent);
+	printf("Tiempo de cálculo en la gpu %.5f\n", time_spent);
 
 	// Liberamos la memoria utilizada 
 	cudaFree(d_A);
 	cudaFree(d_B);
 	cudaFree(d_C);
-  cublasDestroy(handle);
+	cublasDestroy(handle);
 
 	free(entradas(A));
 	free(A);
@@ -130,7 +130,6 @@ int main(int argc, char *argv[]){
 
 	return 0;
 }
-
 ```
 
 Compilamos:
