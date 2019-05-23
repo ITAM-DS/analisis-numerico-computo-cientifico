@@ -49,6 +49,5 @@ El proyecto final se presenta en la segunda semana de finales.
 
 	04-may	1,4,5,6,8               305 RH           media hora cada equipo iniciando 8:00 am con equipo 1
 	15-may	3,6                     PF102      media hora cada equipo iniciando 9:00 pm con equipo 3
-	25-may	….                      101 santa Teresa media hora cada equipo iniciando 8:00 am con equipo ? 
 
 
