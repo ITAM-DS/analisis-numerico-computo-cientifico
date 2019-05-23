@@ -281,7 +281,7 @@ int main(void){
 	cudaMemcpy(device_b,b,N*sizeof(int), cudaMemcpyHostToDevice);
 	//mandamos a llamar a suma_vect:
         cudaSetDeviceFlags(cudaDeviceScheduleBlockingSync);
-	suma_vect<<<N,1>>>(device_a,device_b,device_c);
+	suma_vect<<<N,1>>>(device_a,device_b,device_c); //N bloques de 1 thread
         cudaDeviceSynchronize();
 	//copia del resultado al arreglo c:
 	cudaMemcpy(c,device_c,N*sizeof(int),cudaMemcpyDeviceToHost);
@@ -353,7 +353,7 @@ int main(void){
 	cudaMemcpy(device_b,b,N*sizeof(int), cudaMemcpyHostToDevice);
 	//mandamos a llamar a suma_vect:
         cudaSetDeviceFlags(cudaDeviceScheduleBlockingSync);
-	suma_vect<<<1,N>>>(device_a,device_b,device_c);
+	suma_vect<<<1,N>>>(device_a,device_b,device_c); //1 bloque con N threads
 	cudaDeviceSynchronize();
 	//copia del resultado al arreglo c:
 	cudaMemcpy(c,device_c,N*sizeof(int),cudaMemcpyDeviceToHost);
