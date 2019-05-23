@@ -12,7 +12,7 @@ Objetivo del proyecto:
 Usaremos el método de Black-Scholes para hacer el planteamiento de las ecuaciones de derivadas parciales en el cálculo de valuación de opciones. Como estas ecuaciones no siempre tienen solución exacta, se utilizará el método de Crank-Nicolson y el método de Líneas para aproximar su valor. Una vez planteado el sistema de ecuaciones, buscaremos resolverlo con factorización LU con pivoteo parcial y el algoritmo de Thomas para encontrar la combinación de métodos más adecuada.
 
 Trabajo escrito:
-[Liga a trabajo escrito](https://www.dropbox.com/s/0z3plpz1lz3ur7w/M_todos_num_ricos.pdf?dl=0)
+[Liga a trabajo escrito](https://www.dropbox.com/s/f1gj3ekekmwtr8m/M_todos_num_ricos.pdf?dl=0)
 
 Presentación:
 [Liga a presentación]()
