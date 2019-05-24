@@ -147,7 +147,7 @@ Ejecutamos:
 
 
 ```
-./dgemv_mult_mat_vec_cublas.out <columnas de A> <número de entradas de v>
+./dgemv_mult_mat_vec_cublas.out <numero de renglones de A> <número de entradas de v>
 ```
 
 
