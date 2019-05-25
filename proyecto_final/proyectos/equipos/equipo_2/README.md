@@ -12,7 +12,7 @@ Objetivo del proyecto:
 Implementación y evaluación de los algoritmos  CUR Descomposition  y SVD, utilizando las librerías de BLAS y CUDA GPUs. La evaluación del desempeño de estos algoritmos se realizará en un  problema de sistemas de recomendación (aún no elegimos nuestro data set, lo cual es un punto importante pues podría modificar nuestra selección de la aplicación)  tanto en tiempo de procesamiento como en la precisión de sus resultados (de acuerdo a alguna métrica adecuada al problema de aplicación seleccionado como por ejemplo RECM o MAD).  La premisa es que CUR Descomposition al ser las matrices C y R ralas si la matriz original M es rala, debe ser más rápido que SVD pero desconocemos si esto tiene un trade-off  con la calidad de los resultados obtenidos.
 
 Trabajo escrito:
-[Liga a trabajo escrito](https://github.com/luis58/recommendation_algorithms/tree/master/documentaci%C3%B3n)
+[Liga a trabajo escrito](https://www.dropbox.com/s/l04fenmhv4rt03p/Proyecto_final_CUR_SVD_aplicados_a_sistemas_recomendacion.html?dl=1)
 
 Presentación:
 [Liga a presentación]
