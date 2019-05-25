@@ -1,0 +1,96 @@
+---
+title: "MNO - Trabajo final"
+author: "Equipo 9"
+date: "`r format(Sys.time(), '%d %b, %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+library(quantmod)
+library(parallel) #librería para paralelizar
+```
+
+### Descarga datos de acciones y toma lo corresponediente a los últimos 180 días:
+
+```{r}
+datos <- getSymbols(Symbols = "GOOG", auto.assign = FALSE)
+prec <- datos$GOOG.Close
+S <- tail(prec, n=180)
+```
+
+```{r}
+x1 <- S %>% log() %>% diff() %>% as.numeric()
+```
+
+```{r}
+vencimiento <- 1/2  # medio anio
+longitud_simulacion <- 180 + 1 # contratos de 180 dias
+dt <- vencimiento / (longitud_simulacion - 1)
+tiempo <- seq(0, vencimiento, dt) # vector de tiempos
+```
+
+```{r}
+S0 <- mean(S, na.rm = TRUE)# precio inicial
+
+r <- 0.06 # tasa de interés libre de riesgo
+mu1 <- mean(x1, na.rm = TRUE)/dt #parametro de drift modelo
+sigma1 <- sqrt(var(x1, na.rm = TRUE)/dt) #parametro de difusión modelo
+```
+
+
+### Simula trayectorias:
+
+```{r}
+sims <- 10000 #número de simulaciones
+brow_geom <- numeric()
+brow_estandar <- rep(0, times = longitud_simulacion)
+brow_geom_1 <- rep(0, times = longitud_simulacion)
+brow_geom_1[1] <- S0
+
+start_time <- Sys.time()
+for (l in 1:sims){
+  for(i in 2:longitud_simulacion){
+    brow_estandar[i] <- brow_estandar[i-1] + sqrt(dt)*rnorm(1)
+    brow_geom_1[i] <- brow_geom_1[1]*exp((mu1-(sigma1^2)/2)*(i-1)*dt + sigma1*brow_estandar[i])
+  }
+  brow_geom <- rbind(brow_geom, brow_geom_1) 
+}
+print(paste("Time elapsed:", (Sys.time() - start_time), "seconds"))
+print(paste("For", sims, "simulations."))
+brow_geom <- brow_geom[,-1]
+```
+
+```{r}
+hist(brow_geom)
+```
+
+
+```{r}
+sims <- 100000 #número de simulaciones
+brow_estandar <- rep(0, times = longitud_simulacion)
+brow_geom_1 <- rep(0, times = longitud_simulacion)
+brow_geom_1[1] <- S0
+
+cpus <- detectCores()
+start_time <- Sys.time()
+brow_geom <- mclapply(1:sims, mc.cores=(cpus-1), function(x){ 
+  for(i in 2:longitud_simulacion){
+    brow_estandar[i] <<- brow_estandar[i-1] + sqrt(dt)*rnorm(1)
+    brow_geom_1[i] <<- brow_geom_1[1]*exp((mu1-(sigma1^2)/2)*(i-1)*dt + sigma1*brow_estandar[i])
+  }
+  brow_geom_1
+})  %>% unlist %>% matrix(nrow = sims)
+print(paste("Time elapsed:", (Sys.time() - start_time), "seconds"))
+print(paste("For", sims, "simulations."))
+brow_geom <- brow_geom[,-1]
+```
+
+```{r}
+hist(brow_geom)
+```
+
+s
+

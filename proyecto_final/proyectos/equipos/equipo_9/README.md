@@ -24,16 +24,26 @@ Objetivos del proyecto:
 
 * Se puede paralelizar algunas etapas tanto de la simulación de trayectorias, resolución del problema de optimización y construcción de la estrategia de ejercicio.
 
-Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://www.dropbox.com/s/8q1sqav4omftimo/proyecto-final.pdf?dl=0)
+### Entregables
 
-Presentación (fuera del repo): [liga_presentación](https://www.dropbox.com/s/lqb1b5ryh5q33gp/presentacion.pdf?dl=0)
+* Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://www.dropbox.com/s/8q1sqav4omftimo/proyecto-final.pdf?dl=0)
 
-Implementación (en el repo): [liga_a_código](src) 
+* Presentación (fuera del repo): [liga_presentación](https://www.dropbox.com/s/lqb1b5ryh5q33gp/presentacion.pdf?dl=0)
 
+* Implementación (en el repo): [liga_a_código](src) 
 
-En la carpeta [avance_1](avance_1) se encuentra el reporte del primer avance en nuestro proyecto. 
+### Avances
 
-Referencias del proyecto:
+* En la carpeta [avance_1](avance_1) se encuentra el reporte del primer avance en nuestro proyecto. 
+
+* En la carpeta [avance_2](avance_2) se encuentra el reporte del primer avance en nuestro proyecto. 
+
+* En la carpeta [avance_3](avance_3) se encuentra el reporte del primer avance en nuestro proyecto. 
+
+* En la carpeta [avance_4](avance_4) se encuentra el reporte del primer avance en nuestro proyecto. 
+
+### Referencias 
+
 
 Los siguientes se encuentran [aquí](https://www.dropbox.com/sh/vsak8w3gols8mjo/AABaZTxvpzWnIwSlOZvfYUcAa?dl=0)
 

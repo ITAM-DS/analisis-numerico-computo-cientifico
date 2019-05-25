@@ -1,0 +1,488 @@
+% !TeX spellcheck = es_MX
+\documentclass[12pt,reqno,letter]{article}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx} %allows you to use jpg or png images. PDF is still recommended
+\usepackage[colorlinks=False]{hyperref} % add links inside PDF files
+\usepackage{amsmath}  % Math fonts
+\usepackage{amsfonts} %
+\usepackage{amssymb}  %
+\usepackage{multicol}
+\usepackage{hyperref} % agrega links
+%% Sets page size and margins. You can edit this to your liking
+\usepackage[top=1.3cm, bottom=2.0cm, outer=2.5cm, inner=2.5cm, heightrounded,
+marginparwidth=1.5cm, marginparsep=0.4cm, margin=2.5cm]{geometry}
+%% \usepackage[authoryear]{natbib}
+\usepackage[affil-it]{authblk}
+\bibliographystyle{abbrvnat}
+\usepackage{enumitem}
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+%\PrerenderUnicode{ü}
+
+\begin{document}
+	\title{ Implementación del Método de Longstaff \& Schwartz para valuación de opciones americanas }
+	\author{Jorge III Altamirano Astorga (175904), Eduardo Selim Martínez Mayorga (175921), Ariel Ernesto Vallarino Maritorena (175875)}
+	\affil{Instituto Tecnológico Autónomo de México}
+	\date{22 de Mayo, 2019}
+	\maketitle
+	
+	\begin{abstract}
+		Proyecto donde utilizamos la técnica aplicada en la investigación de Longstaff-Schwartz (2001, UCLA) denominada  “Aproximación por mínimos cuadrados Monte Carlo” (LSM, por sus siglas en inglés) para evaluar opciones americanas con múltiples factores con el fin de estimar el “payoff” donde tradicionalmente no se podían utilizar diferencias finitas con el fin obtener rendimientos
+	\end{abstract}
+
+	\tableofcontents
+
+	
+	%%\begin{multicols}{2}
+
+	\section{Introducción}
+	Utilizaremos el técnica detallada en la investigación de Longstaff-Schwartz (2001, UCLA) denominada  “Aproximación por mínimos cuadrados Monte Carlo” (LSM, por sus siglas en inglés) para evaluar opciones americanas con múltiples factores con el fin de estimar el “payoff” donde tradicionalmente no se podían utilizar diferencias finitas.
+	
+	\subsection{Características}
+	\begin{itemize}
+		\item Es difícil estimar el “payoff” en situaciones donde la opción es afectada por más de 1 factor; esto es debido a que el método de diferencia finita y binomial son imprácticos con múltiples factores. Es de notarse que Wall Street utiliza diferencia finita sobre simplificando a 1 factor, aún cuando es demostrable que la opción es afectada por más de un factor.
+		\item La simulación es una alternativa prometedora a diferencias finitas. 
+		\item Esta técnica es útil para distintas opciones, entre las cuales se incluyen: hipotecas, forex, commodities, seguros, energía, swap, mercados emergentes, deuda soberana, convertibles.
+		\item La simulación permite que las variables de estado sigan un proceso estocástico general, como “jump diffusions”.
+		\item Funciona con semi martingalas
+		\item Las simulaciones tienen las siguientes características: simples, paralelizables, transparentes y flexibles.
+			\subitem Paralelizable: trabajan bien en ambientes computacionales paralelos: esto ayuda al tipo de escalabilidad que buscamos tener en el presente trabajo.
+			\subitem Simpleza: el único método a implementar es el simple método de Mínimos Cuadrados.
+		
+		\item Este enfoque es intuitivo al ser determinado por la función de la esperanza condicional del payoff inmediato versus continuar ejerciendo la opción. Dicha condicional se puede estimar con el cruce seccional de información en la simulación utilizando mínimos cuadrados.
+		Obteniendo la función de la esperanza condicional para cada fecha del ejercicio se podrá obtener la especificación óptima para ejercer cada trayectoria (“path”).
+		
+		En contraste investigaciones previas, desde Tilley (1993) hasta García (1999); no se utiliza Longstaff-Schwartz proponen no utilizar varias estratificaciones o técnicas de parametrización para aproximar la función de densidad de transición o acotar el ejercicio.
+		\item Longstaff-Schwartz utiliza la estrategia de enfocarse directamente en la función de Esperanza Condicional. Otros artículos de investigación también han adoptado este enfoque. Sin embargo, Longstaff-Schwartz nos gustó por ser un enfoque más pragmático, y más eficiente computacionalmente. Esto es debido a que solo realiza regresiones sobre los paths que pueden ser monetizados en la opción. 
+		\item Longstaff-Schwartz proponen un enfoque con buenos resultados de rendimiento y desempeño comparándolo con otras técnicas
+		\item Nuestra principal referencia menciona cuatro artículos con distintos niveles de complejidad que muestran ilustrativamente diferentes escenarios de opciones que demuestran el método y su efectividad.
+	\end{itemize}
+
+	\subsection{Definiciones preliminares}\label{definiciones-preliminares}
+	
+	\textbf{Definición:} Un contrato forward es un contrato entre dos partes
+	en el que una de ellas se compromete a comprar y la otra a vender un
+	activo dado, en una fecha futura establecida y a un precio establecido.
+	
+	\begin{itemize}
+		\tightlist
+		\item
+		Definición de call
+	\end{itemize}
+	
+	\textbf{Definición:} Una opción call (larga) es un contrato que le da al
+	poseedor de la opción, el derecho más no la obligación de comprar un
+	activo dado, en una fecha futura establecida y a un precio establecido.
+	
+	Si \(K\) es el precio preestablecio (que se conoce como precio
+	\emph{strike}), \(S_t\) es el precio del activo al tiempo \(t\) y \(T\)
+	es la fecha futura establecida en el contrato (que se conoce como fecha
+	de vencimiento del contrato), entonces el poseedor de la call ejercera
+	su derecho a comprar sólo si \(K < S_T\), i.e.~si en el mercado es
+	costoso el activo con respecto al precio \emph{strike}.
+	
+	A diferencia del contrato forward, bajo un contrato call una de las
+	partes nunca pierde (el comprador del contrato) pero la otra tiene una
+	pérdida tentativa, es por esto que este tipo de contratos tiene un
+	precio (que se le conoce como prima de la call). Uno de los objetivos de
+	la teoría de valuacion de opciones es determinar un precio razonable
+	para éstas.
+	
+	Al vendededor de un contrato call se le conoce como parte corta de la
+	call y éste tiene la obligación de vender el activo en caso de que la
+	parte larga de la call quiere ejercer su derecho a comprarla.
+	
+	\textbf{Definición:} Una opción put larga es un contrato que le da al
+	poseedor de la opción, el derecho más no la obligación de vender un
+	activo dado, en una fecha futura establecida y a un precio establecido.
+	
+	Si \(K\) es el precio preestablecio (que se conoce como precio
+	\emph{strike}), \(S_t\) es el precio del activo al tiempo \(t\) y \(T\)
+	es la fecha futura establecida en el contrato (que se conoce como fecha
+	de vencimiento del contrato), entonces el poseedor de la put ejercera su
+	derecho a vender sólo si \(K > S_T\), i.e.~si en el mercado es barato el
+	activo con respecto al precio \emph{strike}.
+	
+	A diferencia del contrato forward, bajo un contrato put una de las
+	partes nunca pierde (el comprador del contrato) pero la otra tiene una
+	pérdida tentativa, es por esto que este tipo de contratos tiene un
+	precio (que se le conoce como prima de la put). Uno de los objetivos de
+	la teoría de valuacion de opciones es determinar un precio razonable
+	para éstas.
+	
+	Al vendededor de un contrato put se le conoce como parte corta de la put
+	y éste tiene la obligación de comprar el activo en caso de que la parte
+	larga de la put quiere ejercer su derecho a venderla.
+	
+	\subsubsection{Estilo de opciones: Europeo, Americano ó
+		Bermuda}\label{estilo-de-opciones-europeo-americano-o-bermuda}
+	
+	\begin{itemize}
+		\item
+		Se dice que una opción tiene estilo Europeo si sólo se puede ejercer
+		en la fecha de vencimiento.
+		\item
+		Se dice que una opción tiene estilo Americano si se puede ejercer en
+		cualquier momento previo a la fecha de vencimiento (incluyéndola).
+		\item
+		Se dice que una opción tiene estilo Bermunda si sólo se puede ejercer
+		determinadas fechas previas a la fecha de vencimiento (incluyéndola).
+	\end{itemize}
+
+	\section{Desarrollo}
+	
+	\subsection{Estimación de Parámetros}
+	Sea $(S_t)_{\geq 0}$ un proceso estocástico que representa el precio de un activo, i.e. $S_t$ es el precio de la acción al tiempo $t$.
+	
+	Se dice que el proceso $(S_t)_{\geq 0}$ es un movimiento Browniano geométrico con parámetros $\mu,\sigma>0$ si es la solución de la ecuación diferencial estocástica
+	$$dS_t = \mu S_t dt + \sigma S_t dW_t$$
+	
+	para algún valor inicial $S_0$.
+	Esta expresión se puede reescribir como
+	$$\frac{dS_t}{S_t} = \mu dt + \sigma dW_t$$
+	
+	Se puede dar una interpretación de la ecuación anterior de la siguiente manera
+	$$\frac{S_{t+dt}-S_t}{S_t}=\frac{dS_t}{S_t} = \mu dt + \sigma dW_t = \mbox{contribución determinista + constribución estocástica}$$
+	
+	donde se supone que la contribución determinista es proporcional y la parte estocástica tiene ley Gaussiana.
+	
+	A la constante $\mu$ se le conoce como drift del proceso y $\sigma$ se conoce  como parámetro volatilidad o de difusión.
+	
+	Se puede demostrar que una solución explícita para la ecuación diferencial estocástica anterior es
+	$$S_t =  S_0 \exp\left\{\alpha t + \sigma W_t\right\} =  S_0 \exp\left\{\mu t -\frac{1}{2}\sigma^2t + \sigma W_t\right\},$$
+	donde $\alpha = \mu-\frac{1}{2}\sigma^2$.
+	
+	Observación:
+	Si $\sigma = 0$, i.e. no hay ruido estocástico, entonces la ecuación se convierte en
+	$$\frac{dS_t}{S_t} = \mu dt,$$
+	equivalentemente
+	$$\frac{d}{dt}\log(S_t) = \mu$$
+	y por lo tanto
+	$$S_t = S_0 e^{\mu t}$$
+	
+	Nótese que la diferencia entre la solución determinista y no determinista es el término $\sigma W_t-\frac{1}{2}\sigma^2t$.
+	
+	A partir de la solución $$S_t = S_0 \exp\left\{\mu t -\frac{1}{2}\sigma^2t + \sigma W_t\right\}$$
+	se puede ver que $S_t$ es la exponencial de un movimiento Browniano, i.e. es la exponencial de una variable aleatoria con distribución normal. Equivalentemente $S_t$ tiene distribución log-normal. Esta es una de las razones por las que el movimiento Browniano es adecuado para aplicaciones financieras.
+	
+	Considérese $t_0=0 < t_1 < t_2 <\ldots<t_n=T$ puntos en el horizonte de tiempo $[0,T]$. Defínase $Y_1,\ldots,Y_n$ como
+	
+	$$Y_i = \frac{S_{t_i}-S_{t_{i-1}}}{S_{t_{i-1}}}=\frac{S_{t_i}}{S_{t_{i-1}}}-1$$
+	
+	Si se considera la expansión de Taylor de la función $\log(1+z)$, se tiene que que para $z$ suficientemente pequeña
+	$$\log(1+z) = z-\frac{1}{2}z^2 + o(z) \approx z$$
+	Entonces si $X_i = 1+ Y_i$, entonces
+	$$\log(X_i) = \log(1+Y_i) \approx Y_i = \log(S_{t_i})-\log(S_{t_{i-1}})$$
+	Esto significa que los rendimientos exactos son casi idénticos a los log-rendimientos
+	$$X_i = \log(S_{t_i})-\log(S_{t_{i-1}}),\ i\in\{1,\ldots,n\}$$
+	
+	Sea $\Delta t = t_i - t_{i-1}$ para $i\in\{1,\ldots,n\}$. Generalmente $\Delta t = \frac{1}{252}$ si se consideran periodos anuales.
+	
+	$$X_i + \ldots + X_{i+n-1}=\sum_{k=i}^{i+n-1}[\log(S_{t_i})-\log(S_{t_{i-1}})]=\log(S_{i+n-1})-\log(S_{i-1})$$
+	
+	Finalmente
+	$$X_i = \log(S_{t_i})-\log(S_{t_{i-1}}) = \log\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)$$
+	$$=\alpha \Delta t + \sigma[W_{t_i}-W_{t_{i-1}}]\sim N(\alpha t , \sigma^2 t)$$
+	Es decir,
+	$$X_i = \log\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right) = \alpha \Delta t + \sigma\sqrt{\Delta t}Z,$$
+	donde $Z\sim N(0,1)$
+	
+	además, para $i\neq j$ $X_{t_i}$ es independiente de $X_{t_j}$ pues cada una depende de incrementos disjuntos del movimiento Browniano estándar.
+	
+	Estimación de parámetros
+	
+	Gracias al análisis anterior se puede considerar a $X_1,\ldots,X_n$ como variables aleatorias independientes, idénticamente distribuidas $N(\alpha\Delta t,\sigma^2t \Delta t)$. Los estimadores máximo verosímiles para $\alpha$ y $\sigma^2$ son
+	$$\widehat{\alpha}=\frac{1}{\Delta t}\frac{1}{n}\sum_{i=1}^n X_i$$
+	$$\widehat{\sigma}^2 = \frac{1}{\Delta t}\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2=\frac{\widehat{S}^2}{\Delta t}$$
+	
+	De aquí que un estimador para $\mu$ es
+	$$\widehat{\mu} = \widehat{\alpha} + \frac{1}{2}\widehat{\sigma}^2$$
+	
+	Observación:
+	Nótese que 
+	$$\sum_{i=1}^n X_i = \sum_{i=1}^n [\log(S_{t_i})-\log(S_{t_{i-1}})]=\log(S_{t_n})-\log(S_0)$$
+	
+	De aquí que
+	
+	$$\widehat{\alpha}=\frac{1}{n\Delta t}[\log(S_{t_n})-\log(S_0)]$$
+	
+	y entonces
+	
+	$$\widehat{\mu} =\frac{\log(S_{t_n})-\log(S_0)}{n\Delta t}+ \frac{1}{\Delta t}\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2=\frac{\widehat{S}^2}{\Delta t}$$
+	$$\widehat{\sigma}^2 = \frac{1}{\Delta t}\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2=\frac{\widehat{S}^2}{\Delta t}$$
+	
+	\section{Valuaciones de opciones
+		Europeas}\label{valuaciones-de-opciones-europeas}
+	
+	Principio de valuación
+	
+	\subsection{Paridad put-call}\label{paridad-put-call}
+	
+	Sean \(C(S,K,T)\) y \(P(S,K,T)\) los precios de una call y put Europeas,
+	sobre el mismo activo, con el mismo strike y la misma fecha de
+	vencimiento. Entonces se satisface una relación entre dichos precios que
+	se conoce como la paridad put-call, que se puede plantear en términos
+	matemáticos como \[e^{-rT}F_{0,T} + P(S,K,T) = Ke^{rT} + C(S,K,T),\]
+	donde
+	
+	\begin{itemize}
+		\tightlist
+		\item
+		\(F_{0,T} = e^{rT}S_0\) si el activo no paga dividendos.
+		\item
+		\(F_{0,T} = e^{rT}\left(S_0 - \sum_{j=1}^m Div_j e^{-r t_j}\right)\)
+		si el activo paga dividendos discretos.
+		\item
+		\(F_{0,T} = e^{(r-\delta)T}S_0\) si el activo no paga dividendos
+		continuos.
+	\end{itemize}
+	
+	Por ejemplo, para una acción que no paga dividendos, la paridad put-call
+	se escribe como
+	
+	\[S_0 + P(S,K,T) = Ke^{rT} + C(S,K,T),\]
+	
+	que se puede interpretar fácilmente: si se adquiere una put, se está
+	comprando el derecho a vender, por lo tanto se debe contar con el activo
+	(\(S_0\)) para poder venderlo en caso de que así se quiera. Por otro
+	lado, si se adquiere una call, se está comprando el derecho a comprar,
+	por lo tanto eventualmente se podría requerir efectivo \(K\) (por tanto
+	se invierten sin riesgo \(Ke^{rT}\)).
+	
+	\subsection{Fórmula de Black \& Scholes para opciones
+		Europeras}\label{formula-de-black-scholes-para-opciones-europeras}
+	
+	Para acciones que pagan dividendos continuos, las fórmulas de valuación
+	para opciones Europeas de Black \& Scholes establecen que el precio de
+	una call Europea es
+	\[C(S,K,T,\sigma,r,\delta) = S_0e^{-\delta T}\Phi(d_1) - Ke^{-rT}\Phi(d_2)\]
+	y el precio de una put Europea es
+	\[P(S,K,T,\sigma,r,\delta) = Ke^{-rT}\Phi(-d_2) - S_0e^{-\delta T}\Phi(d_1),\]
+	
+	con
+	\[d_1 = \frac{\log(S_0/K) + (r-\delta+\frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}},\]
+	y \[d_2 = d_1 - \sigma\sqrt{T},\] donde \(r\) es la tasa libre de riesgo
+	con composición continua, \(\sigma\) es la volatilidad del precio del
+	activo subyacente, y \(\delta\) es la tasa de dividendos continuos.
+	
+	\section{Valuación de opciones
+		Americanas}\label{valuacion-de-opciones-americanas}
+	
+	\subsection{Valuación de opciones Americanas vía la implementación de
+		Longstaff \&
+		Schwarz}\label{valuacion-de-opciones-americanas-via-la-implementacion-de-longstaff-schwarz}
+	
+	Se supondrá un espacio de probabilidad filtrado completo
+	\((\Omega, \mathcal{F}, \{\mathcal{F}_t\},\mathbb{P})\) y un horizonte
+	de tiempo \([0,T]\), donde \(\Omega\) es el conjunto de todas las
+	posibles realizaciones de la economía estocástica en \([0,T]\),
+	\(\mathcal{F}\) una \(\sigma\)-álgebra de subconjunto de \(\Omega\),
+	\(\{\mathcal{F}_t\}\) una filtración generada por el proceso de precios
+	relevante para los activos en la economía.
+	
+	Según la hipótesis de no-arbitraje, existe una medida martingala
+	equivalente \(\mathbb{Q}\) a \(\mathbb{P}\).
+	
+	Uno de los objetivos es valuar opciones estilo Americano con cash-flows
+	aleatorios que pueden ocurrir en \([0,T]\). Se supondrá que los payoffs
+	de dichas opciones está en el espacio de variables aleatorias con
+	varianza finita.
+	
+	Se puede demostrar que el valor de una opción Americana se puede
+	representar como una cobertura de Snell; el valor de una opción
+	Americana es igual al valor máximo del valor presente de los cash-flows
+	de dicha opción, donde el máximo se toma sobre todos los tiempos de paro
+	con respecto a la filtración.
+	
+	\textbf{Notación:} Se denotará por \(C(\omega, s; t,T)\) la trayectoria
+	de cash-flows generados por la opción, condicional a que la opción no se
+	ejerce antes (o hasta) del tiempo \(t\).
+	
+	Uno de los objetivos del algoritmo LSM es obtener una aproximación por
+	trayectorias a la regla de paro óptimo que maximiza el valor de la
+	opción Americana. Se supondrá que la opción Americana sólo se puede
+	ejercer el \(m\) tiempos discretos
+	\(0<t_1\leq t_2\leq \ldots \leq t_m=T\) y se considerará la política de
+	paro óptimo en cada fecha de ejercicio. Por supuesto las opciones
+	Americana pueden ejercerse en cualquier punto en el tiempo, el algortimo
+	LSM se puede aproximar el valor de dichas opciones con \(m\)
+	suficientemente grande.
+	
+	En la fecha de vencimineto el poseedor de la opción decide ejercerla
+	sólo si ésta tiene un payoff positivo. Sin embargo, en la fecha de
+	ejercicio \(t_j\) previa a la fecha de vencimiento, el poseedor de la
+	opción debe decidir si ejercer la opción o continuar con ella y
+	replantearse la disyuntiva en la ``siguiente'' fecha de ejercicio.
+	
+	El valor de la opción se maximiza por trayectorias si el inversionista
+	ejerce cuando el valor de ejercicio inmediato es mayor ó igual que el
+	valor de continuación.
+	
+	Al tiempo \(t_j\), el cash-flow de ejercer inmediatamente se conoce (es
+	simplemente el ``payoff'' en ese momento). Sin embargo, el cash-flow de
+	continuación no se conoce al tiempo \(t_j\). Además, la teoría de
+	valuación de no-arbitraje considera al valor de continuación como la
+	esperanza del valor presente esperado de los cash-flows restantes
+	\(C(\omega,s;t:j,T)\), donde el valor esperado es con respecto a la
+	medida riesgo neutro \(\mathcal{Q}\) Es decir, el valor de continuación
+	al tiempo \(t_j\), \(V_c(\omega,t_j)\), se puede escribir como
+	
+	\[V_c(\omega,t_j) = \mathbb{E}_{\mathbb{Q}}\left[\sum_{i=j+1}^m \exp\left\{-\int_{t_j}^{t_i}r(\omega,s)ds\right\}C(\omega,t_i;t_j,T)|\mathcal{F}_{t_j}\right],\]
+	
+	donde \(r(\omega,t)\) es la tasa libre de riesgo (posiblemente
+	estocástica) y la esperanza que se considera es condicional a la
+	información \(\mathcal{F}_{t_j}\) al tiempo \(t_j\). Con esta
+	representación, el problema de ejercicio óptimo se reduce a comparar el
+	ejercicio inmediato con esta esperanza condicional; y entonces ejercer
+	cuando el valor de ejercicio sea positivo y mayor ó igual que la
+	esperanza condicional.
+	
+	\subsubsection{El algoritmo LSM}\label{el-algoritmo-lsm}
+	
+	La metodología LSM utiliza mínimos cuadrados para aproximar la función
+	esperanza condicional en \(t_m, t_{m-1},\ldots,t_1\). Se trabaja hacia
+	atrás ya que las trayectorias de los cash-flows \(C(\omega,s:t,T)\)
+	generadas por la opción se definen de manera recursiva. Puede ocurrir
+	que \(C(\omega,s;t_j,T)\) sea diferente de \(C(\omega,s;t_{j+1},T)\) ya
+	que puede ser óptimo parar al tiempo \(j_{j+1}\) y por ende cambiar
+	todos los cash-flows subsecuentes en toda la trayectoria observada
+	\(\omega\). En particular, la tiempo \(t_{m-1}\) se supone que la forma
+	funcional desconocida de \(V_c(\omega;t_{m-1})\) se puede representar
+	como una combinación lineal de un conjunto numerable de funciones base
+	\(\mathcal{F}_{t_{m-1}}\)-medibles, i.e.~variables aleatorias con
+	respecto a la \(\sigma\)-álgebra \(\mathcal{F}_{t_{m-1}}\)
+	
+	Esta suposición se puede justificar de manera formal, con alguna
+	hipótesis. Por ejemplo, si la esperanza condicional es una variable
+	aleatoria con varianza finita (con respecto a alguna medida), i.e.~está
+	en \(L^2\). como \(L^2\) es un espacio de Hilbert, entonces tiene una
+	base ortonormal numerable y dicha esperanza condicional se puede
+	representar como una función lineal de los elementos de dicha base. Una
+	posible elección de las funciones base es el conjunto de polinomios de
+	Laguerre ponderados: \(L_0(x) = \exp\{-x/2\}\),
+	\(L_1(x)=\exp\{-x/2\}(1-x)\),
+	\(L_2(x)=\exp\{-x/2\}(1-2x+\frac{1}{2}x^2)\),\ldots{},
+	\(L_n(x)=\exp\{-x/2\}\frac{e^x}{n!}\frac{\partial^2}{\partial x^n}(x^ne^{-x})\).
+	
+	Con esta especificación \(V_c(\omega,t_{m-1})\) se puede expresar como
+	
+	\[V_c(\omega,t_{m-1})=\sum_{i=0}^{\infty}a_iL_i(X),\]
+	
+	donde \(X\) es el valor del activo subyacente de la opción y los
+	coeficientes \(a_i\)'s son constantes. Otros tipos de funciones base son
+	los polinomios de Hermite, Legendre, Chebyshev, Gegenbauer y Jacobi.
+	Algunas pruebas numéricas han probado que series de Fourier y potencias
+	simples también dan resultados adecuados.
+	
+	Para implementar la metodología LSM se aproxima \(V_0(\omega,t_{m-1})\)
+	utilizando las primeras \(M\) funciones base. Se denotará por
+	\(V_{c,M}(\omega;t_{m-1})\) a esta aproximación.
+	\(V_{c,M}(\omega;t_{m-1})\) se estima a partir de hacer regresión de
+	\(C(\omega,s;t_{m-1},T)\) con las funciones base como regresores en
+	aquellas trayectorias en las que la opción tiene un payoff positivo al
+	tiempo \(t_{m-1}\). Sólo se consideran las trayectorias en las que el
+	payoff es positivo .
+	
+	Al sólo considerar las trayectorias con payoff positivo, se restringe la
+	región en la que se debe estimar la esperanza condicional y se necesitan
+	menor regresores para obtener una aproximación adecuada de la función
+	esperanza condicional.
+	
+	Como los valores de las funciones base son independientes e
+	idénticamente distribuidas a lo largo de las trayectorias, no se
+	requieren suposiciones mayores para la existencia de los momomentos y
+	pot lo tanto, el valor ajustado de esta regresión,
+	\(\widehat{V}_{c,M}(\omega,t_{m-1})\) converje en media cuadrática y en
+	probabilidad a \(V_{c,M}(\omega,t_{m-1})\) conforme el número de
+	trayectorias con payoff positivo en la simulación tiende a infinito.
+	Además, \(\widehat{V}_{c,M}(\omega,t_{m-1})\) es el mejor estimador
+	lineal insesgado de \(V_{c,M}(\omega,t_{m-1})\) en términos de métrica
+	de media cuadrática.
+	
+	\subsection{Resultados de
+		convergencia}\label{resultados-de-convergencia}
+	
+	Mediante el algoritmo LSM, se tiene un mecanismo sencillo de aproximar
+	la estrategia de ejercicio óptimo para una opción estilo Americano (y
+	Bermuda también).
+	
+	Hay algunos resultados de convergencia que garantizas que dicha
+	aproximación efectivamente es posible
+	
+	\textbf{Proposición:} Para cualesquiera \(m,M\in \mathbb{N}_+\) y
+	\(\beta\in\mathbb{R}^{m\times(m-1)}\) que representa el vector de
+	coeficientes para las \(M\) funciones base en cada uno de las \(m-1\)
+	fechas de ejercicio (anticipado), sea \(LSM(\omega;M,m)\) el valor
+	presente que se obtiene de la regla LSM en caso de que el valor de
+	ejercicio sea positivo y mayor ó igual que
+	\(\widehat{V}_{c,M}(\omega_i,t_j)\) (que se define a partir de
+	\(\beta\)). Entonces, se satisface
+	
+	\[V(X)\geq \frac{1}{n}\sum_{i=1}^n LSM(\omega_i;M,m),\ \mbox{casi seguramente},\]
+	
+	donde \(V(X)\) es el verdadero valor de la opción Americana.
+	
+	Esta proposición establece que el algoritmo LSM imploca una regla de
+	paro para opciones Americanas. Sin embargo el valor de dicha opción
+	depende de la regla de paro que maximiza su valor. Otras reglas de paro,
+	incluyendo la que se obtiene con el algortimo LSM, llevan a valores
+	menores o iguales que la que induce la regla de paro óptimo.
+	
+	Este resultafo es muy útil pues mediante éste se determina un criterio
+	objetivo para establecer algún tipo de convergencia. Con este criterio
+	se puede obtener algún parámetro o métrica que permita determinar el
+	número de funciones base que se necesitan para obtener una aproximación
+	más exacta: incrementar el valor de \(m\) hasta que el precio que se
+	obtiene con el algoritmo LSM no presente cambios significativos. Este es
+	una mejora algorítmica pues otros algoritmos que simplemente llevan a
+	valor presente el valor de continuación a posteriori no permiten este
+	monitoreo de la convergencia.
+	
+	Aunque se quisiera algún resultado de convergencia más fuerte para el
+	algorimo LSM, desde su construcción esto es difícil pues se necesita
+	considerar límites con respecto al número de discretizaciones \(m\), el
+	número de funciones base \(M\) (los regresores) y el número de
+	trayectorias simuladas (\(n\rightarrow \infty\)). Además, se debe
+	considerar los efectos de la estimación en las reglas de paro desde el
+	tiempo \(t_{m-1}\) a \(t_1\).
+	
+	\textbf{Proposición:} Supóngase que el precio de una opción Americana
+	sólo depende de la variable de precio del activo subyacente \(X\) (que
+	puede tomar valores en \((0,\infty)\)) cuya dinámica estocástica sigue
+	un proceso de Markov. Además, supóngase que sólo se puede ejercer la
+	opción en los tiempos \(t_1\) y \(t_2\) y que la función esperanza
+	condicional \(V_c(\omega;t_1)\) es absolutamente continua y que las dos
+	siguientes integrales existen en \(\mathbb{R}\)
+	\[\int_0^{\infty}e^{-x}V^2_c(\omega;t_1)dx, \int_0^{\infty}e^{-x}V^2_X(\omega;t_1)dx\]
+	Entonces, para cualquier \(\epsilon>0\), existe \(M\in\mathbb{R}\) tal
+	que
+	
+	\[\lim_{n\rightarrow \infty} \mathbb{P}\left(\left|V(X)-\frac{1}{n}\sum_{i=1}^n LSM(\omega_i;M,m)\right|>\epsilon\right)=0\]
+	
+	Este resultado garantiza que si se escoge una valor de \(M\)
+	suficientemente grande y se hace \(n\rightarrow \infty\), con el
+	algoritmo LSM se obtiene un valor para la opción Americana cercano en
+	menos de una distancia de \(\epsilon\) del verdadero valor.
+	
+	\subsection{Implementación de Paro}
+	
+	\textit{\href{https://www.dropbox.com/s/pfarddbjlv2tc5z/implementacion_paro.pdf?dl=0}{Ver cuaderno de R}}
+	
+	\subsection{Estimación de Parámetros}
+	
+	\textit{\href{https://www.dropbox.com/s/njszo4jprkzxhz6/estimacion_parametros_edp.pdf?dl=0}{Ver cuaderno de R}}
+	
+	\section{Conclusiones}\label{conclusiones}
+	
+
+	\begin{thebibliography}{9}
+			\bibitem{longstaff} Longstaff, F. \& Schwartz, E. (2001). Valuing American Options by Simulation: A Simple Least-Squares Approach. The Review of Financial Studies Spring 2001 Vol. IS. No. I, pp. 113-147 The Society for Financial Studies
+			\bibitem{chou} Choudhury A., King A., Kumar S., \& Sabharwal, Y. (2008). Optimizations in Financial Engineering: The Least-Squares Monte Carlo method of Longstaff and Schwartz
+	\end{thebibliography}
+	
+	%%\end{multicols}
+	
+	
+\end{document}
