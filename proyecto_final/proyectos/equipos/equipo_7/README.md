@@ -10,7 +10,7 @@ Título del proyecto: **Estudio del problema de optimización en redes: minimiza
 
 Objetivo del proyecto: Estudiar el problema de minimización de costos de flujo en una red, analizando el marco conceptual en el cual está definido. Asimismo, describir algunos de los algoritmos teóricos desarrollados para resolver este problema, y sus implementaciones en el lenguaje de programación de Python, además de explorar distintas paqueterías disponibles en el mercado, con el fin de analizar su funcionalidad, eficiencia, así como sus ventajas y desventajas. Todo lo anterior aplicándolo a algún problema práctico de la vida real, como lo es el de la red de la industria eléctrica nacional.
 
-Trabajo escrito: [Liga a trabajo escrito](https://www.dropbox.com/s/7atq1j9n7gu2dyk/Avance_1_equipo7_mno.pdf?dl=0)
+Trabajo escrito: [Liga a trabajo escrito](https://www.dropbox.com/s/qen9e0zi4j816b3/ProyectoFinal_MNO.pdf?dl=0)
 
 Presentación: [Liga a presentación]
 
