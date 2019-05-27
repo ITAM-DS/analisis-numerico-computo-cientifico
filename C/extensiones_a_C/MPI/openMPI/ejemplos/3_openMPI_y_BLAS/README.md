@@ -1,6 +1,6 @@
 Suponemos un sistema ubuntu y que está instalado libblas-dev y liblapack-dev.
 
-En las carpetas para los diferentes niveles de BLAS: [level1](level1), [level2](level2), level3 se tienen códigos que utilizan los archivos `definiciones.h` y `funciones.c` siguiente:
+En las carpetas para los diferentes niveles de BLAS: [level1](level1), [level2](level2), level3 se tienen códigos que utilizan los archivos `definiciones.h` y `funciones.c` siguiente y se basan en [P.Pacheco. Parallel Programming with MPI](http://www.cs.usfca.edu/~peter/ppmpi/):
 
 `definiciones.h`:
 
