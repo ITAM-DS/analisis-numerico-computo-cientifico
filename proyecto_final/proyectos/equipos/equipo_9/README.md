@@ -26,7 +26,7 @@ Objetivos del proyecto:
 
 ### Entregables
 
-* Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://www.dropbox.com/s/8q1sqav4omftimo/proyecto-final.pdf?dl=0)
+* Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://www.dropbox.com/s/g3lkrbgdhd65od6/proyecto-final.pdf?dl=0)
 
 * Presentación (fuera del repo): [liga_presentación](https://www.dropbox.com/s/lqb1b5ryh5q33gp/presentacion.pdf?dl=0)
 
