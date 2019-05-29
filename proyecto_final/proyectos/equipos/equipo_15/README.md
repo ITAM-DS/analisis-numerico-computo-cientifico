@@ -22,8 +22,7 @@ $$\sum_{j=1}^N (c_j-a_j).$$
 
 [Presentación](https://www.dropbox.com/sh/y7eh2wsoc3r65he/AAC85Lzne_1EszKShKQZVT7Ya?dl=0)
 
-[Implementación](https://www.dropbox.com/sh/62eb1ja3kpw849l/AABLbtxRyFcW_NX6UVW0wdK_a?dl=0) 
-
+La implementación está en [esta liga](https://www.dropbox.com/sh/62eb1ja3kpw849l/AABLbtxRyFcW_NX6UVW0wdK_a?dl=0) o en [esta otra](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2019-1/proyecto_final/proyectos/equipos/equipo_15/scripts)
 
 En la carpeta [avance_1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2019-1/proyecto_final/proyectos/equipos/equipo_15/avance%201) se encuentra el reporte del primer avance
 en nuestro proyecto. 
