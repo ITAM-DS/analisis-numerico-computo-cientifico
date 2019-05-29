@@ -18,6 +18,8 @@ output:
   html_document: 
     toc: true
     highlight: "tango"
+  urlcolor: "blue"
+  
 ---
 
 \newpage
@@ -31,9 +33,9 @@ en el que no hay una expresión cerrada para el precio de la opción.
 	
 	
 # Introducción
-Uno de los objetivos de este proyecto es revisar algunos detalles e implementa 
+Uno de los objetivos de este proyecto es revisar algunos detalles e implementar 
 la metodología de "aproximación por mínimos cuadrados Monte-Carlo" de Longstaff 
-& Schuarz (2001) para la valuación de opciones Americanas. El objetivo de ésta 
+& Schwartz (2001) para la valuación de opciones Americanas. El objetivo de ésta 
 es describir la evolución del valor de la opción de tal forma que se obtenga 
 la mayor ganancia. Este método es una alternativa al de valuación por simulación 
 simple o el de diferencias finitas.
@@ -68,7 +70,7 @@ Al vendededor de un contrato call se le conoce como parte *corta* de la call y
 la call quiere ejercer su derecho a comprarla.
 	
 **Definición:**  
-Una opción *put* larga es un contrato que le da al poseedor de la opción, el 
+Una opción *put* (larga) es un contrato que le da al poseedor de la opción, el 
 derecho más no la obligación de vender un activo dado, en una fecha futura 
 establecida y a un precio establecido.
 	
@@ -98,7 +100,7 @@ de vencimiento.
 + Se dice que una opción tiene estilo **Americano** si se puede ejercer en cualquier 
 momento previo a la fecha de vencimiento (incluyéndola).
 	
-+ Se dice que una opción tiene estilo **Bermunda** si sólo se puede ejercer 
++ Se dice que una opción tiene estilo **Bermuda** si sólo se puede ejercer 
 determinadas fechas previas a la fecha de vencimiento (incluyéndola).
 	
 # Valuaciones de opciones	Europeas
@@ -115,10 +117,11 @@ Según la hipótesis de no-arbitraje, existe una medida martingala equivalente $
 ## Paridad put-call
 	
 Sean $C(S,K,T)$ y $P(S,K,T)$ los precios de una call y put Europeas, sobre el 
-mismo activo, con el mismo strike y la misma fecha de vencimiento. Entonces se 
-satisface una relación entre dichos precios que se conoce como la *paridad 
-put-call*, que se puede plantear en términos matemáticos como:
-$$e^{-rT}F_{0,T} + P(S,K,T) = Ke^{rT} + C(S,K,T),$$ 
+mismo activo, con el mismo strike, la misma fecha de vencimiento y $r$ la 
+tasa libre de riesgo. Entonces se  satisface una relación entre dichos precios 
+que se conoce como la *paridad  put-call*, que se puede plantear en términos 
+matemáticos como:
+$$e^{-rT}F_{0,T} + P(S,K,T) = Ke^{-rT} + C(S,K,T),$$ 
 donde:  
 
 + $F_{0,T} = e^{rT}S_0$ si el activo no paga dividendos.
@@ -131,14 +134,14 @@ paga dividendos discretos.
 	
 Por ejemplo, para una acción que no paga dividendos, la paridad put-call 
 se escribe como
-$$S_0 + P(S,K,T) = Ke^{rT} + C(S,K,T)$$
+$$S_0 + P(S,K,T) = Ke^{-rT} + C(S,K,T)$$
 que se puede interpretar fácilmente: si se adquiere una put, se está comprando 
 el derecho a vender, por lo tanto se debe contar con el activo ($S_0$) para 
 poder venderlo en caso de que así se quiera. Por otro lado, si se adquiere una 
 call, se está comprando el derecho a comprar, por lo tanto eventualmente se 
 podría requerir efectivo $K$ (por tanto se invierten sin riesgo $Ke^{-rT}$).
 	
-## Fórmula de Black & Scholes para opciones Europeras
+## Fórmula de Black & Scholes para opciones Europeas
 	
 Para acciones que pagan dividendos continuos, las fórmulas de valuación para 
 opciones Europeas de Black & Scholes establecen que el precio de una call 
@@ -156,13 +159,14 @@ con
 
 donde $r$ es la tasa libre de riesgo con 
 composición continua, $\sigma$ es la volatilidad del precio del
-activo subyacente, y $\delta$ es la tasa de dividendos continuos.
+activo subyacente, $\delta$ es la tasa de dividendos continuos y $\Phi$ es la 
+función de distribución de una variable aleatoria normal estándar.
 	
 	
 # Valuación de opciones Americanas
 
-Es difícil estimar el “payoff” en situaciones donde la opción es afectada por 
-más de 1 factor; esto es debido a que el método de diferencia finita y binomial 
+Es difícil estimar el valor en situaciones donde la opción es afectada por 
+más de un factor; es por esto que el método de diferencias finitas y binomial 
 son imprácticos con múltiples factores. Es de notarse que Wall Street utiliza 
 diferencia finita sobre-simplificando a 1 factor, aún cuando es demostrable que 
 la opción es afectada por más de un factor.
@@ -172,30 +176,27 @@ Esta técnica es útil para distintas opciones, entre las cuales se incluyen:
 hipotecas, forex, commodities, seguros, energía, swap, mercados emergentes, 
 deuda soberana, convertibles.
 La simulación permite que las variables de estado sigan un proceso estocástico 
-general, como “jump diffusions”.
+general, como “jump diffusions”; aunque la hipótesis más común es la de movimiento 
+Browniano geométrico.
 
-Funciona con semi martingalas
-Las simulaciones tienen las siguientes características: simples, paralelizables, 
-transparentes y flexibles.
-Paralelizable: trabajan bien en ambientes computacionales paralelos: 
-esto ayuda al tipo de escalabilidad que buscamos tener en el presente trabajo.
-Simpleza: el único método a implementar es el simple método de Mínimos Cuadrados.
-		
+Funciona con semi martingalas. Las simulaciones tienen las siguientes características: 
+simples, paralelizables,  transparentes y flexibles.  
+
 Este enfoque es intuitivo al ser determinado por la función de la esperanza 
 condicional del payoff inmediato versus continuar ejerciendo la opción. 
 Dicha condicional se puede estimar con el cruce seccional de información en la 
 simulación utilizando mínimos cuadrados.
 
 Obteniendo la función de la esperanza condicional para cada fecha del ejercicio 
-se podrá obtener la especificación óptima para ejercer cada trayectoria (“path”).
+se podrá obtener la especificación óptima para ejercer cada trayectoria.
 		
 En contraste investigaciones previas, desde Tilley (1993) hasta García (1999); 
-no se utiliza Longstaff-Schwartz proponen no utilizar varias estratificaciones o 
-técnicas de parametrización para aproximar la función de densidad de transición 
-o acotar el ejercicio.
+no se utiliza Longstaff-Schwartz ya que proponen no utilizar varias estratificaciones 
+o técnicas de parametrización para aproximar la función de continuación o acotar 
+el ejercicio.
 
 Longstaff-Schwartz utiliza la estrategia de enfocarse directamente en la función 
-de Esperanza Condicional. Otros artículos de investigación también han adoptado 
+de esperanza condicional. Otros artículos de investigación también han adoptado 
 este enfoque. Sin embargo, Longstaff-Schwartz nos gustó por ser un enfoque más 
 pragmático, y más eficiente computacionalmente. Esto es debido a que solo 
 realiza regresiones 
@@ -205,7 +206,7 @@ Longstaff-Schwartz proponen un enfoque con buenos resultados de rendimiento y
 desempeño comparándolo con otras técnicas
 
 
-# Valuación de opciones Americanas vía la implementación de Longstaff & Schwarz
+# Valuación de opciones Americanas vía la implementación de Longstaff & Schwartz
 	
 Uno de los objetivos es valuar opciones estilo Americano con cash-flows 
 aleatorios que pueden ocurrir en $[0,T]$. Se supondrá que los payoffs de dichas 
@@ -214,9 +215,10 @@ opciones está en el espacio de variables aleatorias con varianza finita.
 Se puede demostrar que el valor de una opción Americana se puede representar 
 como una cobertura de Snell; el valor de una opción Americana es igual al valor 
 máximo del valor presente de los cash-flows de dicha opción, donde el máximo 
-se toma sobre todos los tiempos de paro con respecto a la filtración.
+se toma sobre todos los tiempos de paro con respecto a la filtración, que se 
+considera en el marco de valuación.
 	
-Notación: Se denotará por $C(\omega, s; t,T)$ la trayectoria de cash-flows 
+**Notación:** Se denotará por $C(\omega, s; t,T)$ la trayectoria de cash-flows 
 generados por la opción, condicional a que la opción no se ejerce antes 
 (o hasta) del tiempo $t$.
 	
@@ -224,8 +226,8 @@ Uno de los objetivos del algoritmo LSM es obtener una aproximación por
 trayectorias a la regla de paro óptimo que maximiza el valor de la opción 
 Americana. Se supondrá que la opción Americana sólo se puede ejercer el $m$ 
 tiempos discretos $0<t_1\leq t_2\leq \ldots \leq t_m=T$ y se considerará la 
-política de paro óptimo en cada fecha de ejercicio. Por supuesto las opciones 
-Americana pueden ejercerse en cualquier punto en el tiempo, el algortimo
+política de paro óptimo en cada fecha de ejercicio. Por supuesto, las opciones 
+Americanas pueden ejercerse en cualquier punto en el tiempo, el algortimo
 LSM se puede aproximar el valor de dichas opciones con $m$ suficientemente grande.
 	
 En la fecha de vencimineto el poseedor de la opción decide ejercerla sólo si 
@@ -234,7 +236,7 @@ previa a la fecha de vencimiento, el poseedor de la opción debe decidir si
 ejercer la opción o continuar con ella y replantearse la disyuntiva en la 
 ``siguiente'' fecha de ejercicio.
 	
-El valor de la opción se maximiza por trayectorias si el inversionista ejerce 
+El valor de la opción se maximiza por escenarios si el inversionista ejerce 
 cuando el valor de ejercicio inmediato es mayor ó igual que el valor de continuación.
 	
 Al tiempo $t_j$, el cash-flow de ejercer inmediatamente se conoce 
@@ -243,10 +245,10 @@ continuación no se conoce al tiempo $t_j$. Además, la teoría de valuación de
 no-arbitraje considera al valor de continuación como la esperanza del valor 
 presente esperado de los cash-flows restantes $C(\omega,s;t:j,T)$, 
 donde el valor esperado es con respecto a la medida riesgo neutro 
-$\mathcal{Q}$ Es decir, el valor de continuación al tiempo 
+$\mathbb{Q}$. Es decir, el valor de continuación al tiempo 
 $t_j$, $V_c(\omega,t_j)$, se puede escribir como
 	
-$$V_c(\omega,t_j) = \mathbb{E}_{\mathbb{Q}}\left[\sum_{i=j+1}^m \exp\left\{-\int_{t_j}^{t_i}r(\omega,s)ds\right\}C(\omega,t_i;t_j,T)|\mathcal{F}_{t_j}\right]$$ 
+$$V_c(\omega,t_j) = \mathbb{E}_{\mathbb{Q}}\left[\sum_{i=j+1}^m \exp\left\{-\int_{t_j}^{t_i}r(\omega,s)ds\right\}C(\omega,t_i;t_j,T)|\mathcal{F}_{t_j}\right],$$ 
 
 donde $r(\omega,t)$ es la tasa libre de riesgo (posiblemente estocástica) 
 y la esperanza que se considera es condicional a la información 
@@ -259,19 +261,19 @@ sea positivo y mayor ó igual que la esperanza condicional.
 	
 La metodología LSM utiliza mínimos cuadrados para aproximar la función esperanza 
 condicional en $t_m, t_{m-1},\ldots,t_1$. Se trabaja hacia atrás ya que las 
-trayectorias de los cash-flows $C(\omega,s:t,T)$ generadas por la opción se 
-definen de manera recursiva. Puede ocurrir que $C(\omega,s;t_j,T)$ sea diferente 
-de $C(\omega,s;t_{j+1},T)$ ya que puede ser óptimo parar al tiempo $j_{j+1}$ y 
+trayectorias de los cash-flows $E(\omega,s:t,T)$ generadas por la opción se 
+definen de manera recursiva. Puede ocurrir que $E(\omega,s;t_j,T)$ sea diferente 
+de $E(\omega,s;t_{j+1},T)$ ya que puede ser óptimo parar al tiempo $j_{j+1}$ y 
 por ende cambiar todos los cash-flows subsecuentes en toda la trayectoria 
 observada $\omega$. En particular, la tiempo $t_{m-1}$ se supone que la forma 
 funcional desconocida de $V_c(\omega;t_{m-1})$ se puede representar como una 
 combinación lineal de un conjunto numerable de funciones base 
-$\mathcal{F}_{t_{m-1}}$-medibles, i.e.~variables aleatorias con respecto a la 
+$\mathcal{F}_{t_{m-1}}$-medibles, i.e. variables aleatorias con respecto a la 
 $\sigma$-álgebra $\mathcal{F}_{t_{m-1}}$
 	
 Esta suposición se puede justificar de manera formal, con alguna hipótesis. 
 Por ejemplo, si la esperanza condicional es una variable aleatoria con varianza 
-finita (con respecto a alguna medida), i.e.~está en $L^2$. como $L^2$ 
+finita (con respecto a alguna medida), i.e. está en $L^2$. como $L^2$ 
 es un espacio de Hilbert, entonces tiene una base ortonormal numerable y dicha 
 esperanza condicional se puede representar como una función lineal de los 
 elementos de dicha base. Una posible elección de las funciones base es el 
@@ -283,8 +285,8 @@ conjunto de polinomios de Laguerre ponderados:
 + $L_n(x)=\exp\{-x/2\}\frac{e^x}{n!}\frac{\partial^2}{\partial x^n}(x^ne^{-x})$
 	
 Con esta especificación $V_c(\omega,t_{m-1})$ se puede expresar como
-$V_c(\omega,t_{m-1})=\sum_{i=0}^{\infty}\beta_iL_i(X),$ donde $X$ es el valor del 
-activo subyacente de la opción y los coeficientes $a_i$'s son constantes. 
+$V_c(\omega,t_{m-1})=\sum_{i=0}^{\infty}\beta_iL_i(S),$ donde $S$ es el valor del 
+activo subyacente de la opción y los coeficientes $\beta_i$'s son constantes. 
 Otros tipos de funciones base son los polinomios de Hermite, Legendre, Chebyshev, 
 Gegenbauer y Jacobi. Algunas pruebas numéricas han probado que series de Fourier 
 y potencias simples también dan resultados adecuados.
@@ -293,7 +295,7 @@ Para implementar la metodología LSM se aproxima $V_0(\omega,t_{m-1})$
 utilizando las primeras $M$ funciones base. Se denotará por
 $V_{c,M}(\omega;t_{m-1})$ a esta aproximación.
 $V_{c,M}(\omega;t_{m-1})$ se estima a partir de hacer regresión de
-$C(\omega,s;t_{m-1},T)$ con las funciones base como regresores en
+$E(\omega,s;t_{m-1},T)$ con las funciones base como regresores en
 aquellas trayectorias en las que la opción tiene un payoff positivo al
 tiempo $t_{m-1}$. Sólo se consideran las trayectorias en las que el
 payoff es positivo .
@@ -304,9 +306,9 @@ menor regresores para obtener una aproximación adecuada de la función
 esperanza condicional.
 
 Como los valores de las funciones base son independientes e
-idénticamente distribuidas a lo largo de las trayectorias, no se
-requieren suposiciones mayores para la existencia de los momomentos y
-pot lo tanto, el valor ajustado de esta regresión,
+idénticamente distribuidas a lo largo de los escenarios, no se
+requieren suposiciones mayores para la existencia de los momentos y
+por lo tanto, el valor ajustado de esta regresión,
 $\widehat{V}_{c,M}(\omega,t_{m-1})$ converge en media cuadrática y en
 probabilidad a $V_{c,M}(\omega,t_{m-1})$ conforme el número de
 trayectorias con payoff positivo en la simulación tiende a infinito.
@@ -346,6 +348,9 @@ Sea $A_j$ la matriz de diseño para el $j$-ésimo tiempo de simulación, donde $
 Se compara el valor de continuación estimado $\hat{V}_c(\omega_i,t_j)$ con valor de ejercio en $S(t_j,\omega_i)$, i.e. el valor intrínseco de la opción en $(t_j,\omega_i)$. Si el valor de ejercicio es mayor que el valor intrínseco, entonces se usa el valor de continuación estimado como la actualización del precio en el escenario $i$; en otro caso se usa el valor presente al tiempo $t_{j+1}$ (traido a valor presente con la tasa $r$).
 
 Sea $U\Sigma V^{\top}$ la descomposición en valores singulares de $A_j$, donde $U\in\mathbb{R}^{n\times n}$, $V\in\mathbb{R}^{m\times m}$ son matrices ortogonales y $\Sigma\in\mathbb{R}^{n\times m}$ es una matriz diagonal. Entonces, $||A_jX_j - Y_j||_2$ se minimiza en $X_j = (A_j^{\top}A_j)^{-1}A_j^{\top}Y_j = (V\Sigma^{-1}U^{\top})Y_j$.
+
+**Observación:** esta descomposición existe en el caso de polinomios simples ya
+que $A_j^{\top}A_j$ es una matriz de Vandermonde.
 
 Con este mecanismo de regresión se obtiene una estimación directa de los coeficientes $\beta_k$ para la función esperanza condicional $\hat{V}_c(\omega,t_k)$, que se expresa como una combinación lineal ya sea de las funciones polinomiales base ó simplemente de polinomios simples.
 
@@ -503,7 +508,7 @@ Bermuda también).
 Hay algunos resultados de convergencia que garantizas que dicha
 aproximación efectivamente es posible
 
-Proposición: 
+**Proposición:**  
 Para cualesquiera $m,M\in \mathbb{N}_+$ y $\beta\in\mathbb{R}^{m\times(m-1)}$ 
 que representa el vector de coeficientes para las $M$ funciones base en cada 
 uno de las $m-1$ fechas de ejercicio (anticipado), sea $LSM(\omega;M,m)$ 
@@ -511,7 +516,7 @@ el valor presente que se obtiene de la regla LSM en caso de que el valor de
 ejercicio sea positivo y mayor ó igual que $\widehat{V}_{c,M}(\omega_i,t_j)$ 
 (que se define a partir de $\beta$). Entonces, se satisface
 
-$V(X)\geq \frac{1}{n}\sum_{i=1}^n LSM(\omega_i;M,m),\ \mbox{casi seguramente},$
+$$V(X)\geq \frac{1}{n}\sum_{i=1}^n LSM(\omega_i;M,m),\ \mbox{casi seguramente},$$
 
 donde $V(X)$ es el verdadero valor de la opción Americana.
 
@@ -539,7 +544,7 @@ trayectorias simuladas ($n\rightarrow \infty$). Además, se debe
 considerar los efectos de la estimación en las reglas de paro desde el
 tiempo $t_{m-1}$ a $t_1$.
 
-Proposición:   
+**Proposición:**  
 Supóngase que el precio de una opción Americana
 sólo depende de la variable de precio del activo subyacente $X$ (que
 puede tomar valores en $(0,\infty)$) cuya dinámica estocástica sigue
@@ -551,33 +556,58 @@ $\int_0^{\infty}e^{-x}V^2_c(\omega;t_1)dx, \int_0^{\infty}e^{-x}V^2_X(\omega;t_1
 Entonces, para cualquier $\epsilon>0$, existe $M\in\mathbb{R}$ tal
 que
 
-$\lim_{n\rightarrow \infty} \mathbb{P}\left(\left|V(X)-\frac{1}{n}\sum_{i=1}^n LSM(\omega_i;M,m)\right|>\epsilon\right)=0$
+$$\lim_{n\rightarrow \infty} \mathbb{P}\left(\left|V(X)-\frac{1}{n}\sum_{i=1}^n LSM(\omega_i;M,m)\right|>\epsilon\right)=0$$
 
 Este resultado garantiza que si se escoge una valor de $M$
 suficientemente grande y se hace $n\rightarrow \infty$, con el
 algoritmo LSM se obtiene un valor para la opción Americana cercano en
 menos de una distancia de $\epsilon$ del verdadero valor.
 
-## Sobre paralelización del algoritmo de Longstaff & Schwarz
+## Sobre la paralelización del algoritmo de Longstaff & Schwartz
 
 ### Paralelización del problema de optimización
 
-Una mejora de optimización importante que hacen Longstaff \& Schwuartz (20XX) es que sólo se consideran en la regresión aquellos escenarios en los que el valor intrínseco (valor de la opción) es estrictamente positivo (i.e. la opción está in-the-money). Esto incrementa significativamente la eficiencia del algoritmo y disminuye el tiempo computacional.
+Una mejora de optimización importante que hacen Longstaff & Schwartz (2001) es 
+que sólo se considera en la regresión aquellos escenarios en los que el valor 
+intrínseco (valor de la opción) es estrictamente positivo 
+(i.e. la opción está *in-the-money*). Esto incrementa significativamente la 
+eficiencia del algoritmo y disminuye el tiempo computacional.
 
 La fase de calibración se puede dividir en dos sub-fases:
 
 1. La descomposición SVD de la matriz de diseño.
 2. Cálculo de las actualizaciones del valor de la opción.
 
-La descomposición SVD suele ser computacionalmente costosa, mientras que  la sub-fase de evaluación del vector de valores de la opción al tiempo $t_j$ se hace utilizando los coeficientes que se calcularon en el tiempo $t_{j+1}$, por lo tanto esta parte es (por construcción) serial.
+La descomposición SVD suele ser computacionalmente costosa, mientras que  la 
+sub-fase de evaluación del vector de valores de la opción al tiempo $t_j$ se 
+hace utilizando los coeficientes que se calcularon en el tiempo $t_{j+1}$, 
+por lo tanto esta parte es (por construcción) serial.
 
-Sin embargo, una descomposición SVD hace algunas de las operaciones de manera independiente, hecho que hace que se puede llevar a cabo una paralelización efectiva. Por lo tanto la descomposición en valores singulares de cada una de las matrices de diseño, $A_j$, se puede llevar a cabo mediante una rutina en paralelo seguida de una actualización en serie de los vectores de valores de la opción $Y_j$.
+Sin embargo, una descomposición SVD hace algunas de las operaciones de manera 
+independiente, hecho que hace que se puede llevar a cabo una paralelización 
+efectiva. Por lo tanto la descomposición en valores singulares de cada una de 
+las matrices de diseño, $A_j$, se puede llevar a cabo mediante una rutina en 
+paralelo seguida de una actualización en serie de los vectores de valores de 
+la opción $Y_j$.
 
-Si $T$ es la longitud de cada una de las trayectorias y $c$ es el número de procesadores con los que se dispone, entonces cada una de las $T$ descomposiciones se hace de manera paralelizada con estos procesadores. 
+Si $T$ es la longitud de cada una de las trayectorias y $c$ es el número de 
+procesadores con los que se dispone, entonces cada una de las $T$ descomposiciones 
+se hace de manera paralelizada con estos procesadores. 
 
-Si $c$ no tal que $T = c\cdot p$, i.e. $q$ no divide a $T$, se asignan más calculos a ciertos procesadores. La idea es sincronizar algunos de los cálculos SVD con las actualizaciones del vector de valores de la opción. Como los resultados de la actualización del valor de continuación se obtienen de orden de los mejores procesadores (los poco ocupados) a los peores procesadores (los muy ocupados), y el algoritmo completo es intrinsecamente serial, los peores procesadores pasarán ocupados con cálculos para la SVD durantes este tiempo.
+Si $c$ no es tal que $T = c\cdot p$, i.e. $q$ no divide a $T$, se asignan más 
+calculos a ciertos procesadores. La idea es sincronizar algunos de los cálculos 
+SVD con las actualizaciones del vector de valores de la opción. Como los 
+resultados de la actualización del valor de continuación se obtienen de orden 
+de los mejores procesadores (los poco ocupados) a los peores procesadores 
+(los muy ocupados), y el algoritmo completo es intrinsecamente serial, los 
+peores procesadores pasarán ocupados con cálculos para la SVD durante este tiempo.
 
-En la fase de calibración, despuésde que se llevó a cabo la descomposición en valores singulares, el mejor procesador calculará las actualizaciones para los tiempos de simulación correspondienes, i.e. $T-2, T-3,\ldots,T-\lfloor T/q\rfloor$. Esto envía el vector de valores de la opción para $T-\lfloor T/q\rfloor$ al siguiente mejor procesador. Usando este vector de valores, el siguiente procesador calcula los de los tiempos $T-\lfloor T/q\rfloor-1,\ldots,T-2\lfloor T/q\rfloor$.
+En la fase de calibración, después de que se llevó a cabo la descomposición en 
+valores singulares, el mejor procesador calculará las actualizaciones para los 
+tiempos de simulación correspondienes, i.e. $T-2, T-3,\ldots,T-\lfloor T/q\rfloor$. 
+Esto envía el vector de valores de la opción para $T-\lfloor T/q\rfloor$ al 
+siguiente mejor procesador. Usando este vector de valores, el siguiente procesador 
+calcula los de los tiempos $T-\lfloor T/q\rfloor-1,\ldots,T-2\lfloor T/q\rfloor$.
 
 ---
 header-includes:
@@ -611,7 +641,7 @@ En la generación de trayectorias, si se quieren generar $n$ trayectorias, enton
 
 ### Paralelización de la valuación final
 
-La fase de valuación se podría realizar en paralelo con un nodo maestro que orqueste dicha fase. Este nodo maestro determina el número de trayectorias que se generar, dirige a los otros nodos y recolecta las cantidades estadísticas. Este nodo maestro tambien combina los resultados, calcula la media global (el precio final estimado del derivado) y el error de estimación.
+La fase de valuación se podría realizar en paralelo con un nodo maestro que orqueste dicha fase. Este nodo maestro determina el número de trayectorias a generar, dirige a los otros nodos y recolecta las cantidades estadísticas. Este nodo maestro también combina los resultados, calcula la media global (el precio final estimado del derivado) y el error de estimación.
 
 
 # Implementación numérica
@@ -632,15 +662,20 @@ que se guardarán en archivos `.csv` en las siguientes ligas:
 + Simulaciones de HPE
 + Simulaciones de IBM
 
-Dicha descarga y simulaciones se implementan en la rutina del archivo `rutina_1.R`.
+Dicha descarga y simulaciones se implementan en la rutina del archivo:  *[rutina_1.R](https://github.com/philwebsurfer/analisis-numerico-computo-cientifico/blob/mno-2019-1/proyecto_final/proyectos/equipos/equipo_9/src/mno_regresiones_simul.Rmd)*
 
 ## Estimación de parámetros e implementación de paro
 
-[Rutinas de Optimización](https://www.dropbox.com/s/njszo4jprkzxhz6/estimacion_parametros_edp.pdf?dl=0 ) 
+La implementación numérica se lleva a cabo en el script de R el cual se encuentra en la siguiente liga:  
+*[- Rutinas de Optimización](https://www.dropbox.com/s/ymo1dh75h3k3f15/mno_regresiones.R?dl=0)*
 
 
 
 ## Algunos resultados de la implementación
+
+Se tomó un histórico de 180 días para estimar los parámetros que se utilizaron 
+en la generación de las 100,00 trayectorias de los precios de cada activo. A 
+continuación se muestran dichos históricos de precios:
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 source("mno_regresiones.R")
 library(gridExtra)
@@ -692,6 +727,9 @@ grid.arrange(p1, p2, p3, nrow=3, ncol=1)
 
 ### Intel
 #### Put
+
+A continución se muestran algunos resultados de la implementación para una *put* 
+con activo subyacente una acción de Intel con precio strike $K = 49$
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 result_put01 <- valida_opcion(filename="data/sims.INTC.1e5.csv", K=0, r = 0.06, tipo_opcion = 'PUT')
 ```
@@ -736,7 +774,17 @@ p4 <- ggplot(result_put01$df_params, aes(ceros_reg)) +
 grid.arrange(p1, p2, p3, p4, ncol = 2)
 ```
 
+Se puede observar que la mayoría de las estrategias de ejercicio establecen 
+una salida anticipada durante los primeros 5 días del contrato.  
+
+También se puede observar que la dependencia significactiva más grande se obtuvo 
+con covariables de hasta la potencia cúbica de los precios.
+
 #### Call
+
+A continución se muestran algunos resultados de la implementación para una *call* 
+con activo subyacente una acción de Intel con precio strike $K = 49$
+
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 result_call01 <- valida_opcion(filename="data/sims.INTC.1e5.csv", K=result_put01$K, r = 0.06, tipo_opcion = 'CALL')
 ```
@@ -778,8 +826,18 @@ p4 <- ggplot(result_call01$df_params, aes(ceros_reg)) +
 grid.arrange(p1, p2, p3, p4, ncol = 2)
 ```
 
+Se puede observar que la mayoría de las estrategias de ejercicio establecen 
+una salida anticipada durante los primeros 10 días del contrato.  
+
+También se puede observar que la dependencia significactiva más grande se obtuvo 
+con covariables de hasta la potencia cúbica de los precios.
+
 ### Hewlett Packard Enterprise
 #### Put
+
+A continución se muestran algunos resultados de la implementación para una *put* 
+con activo subyacente una acción de HP con precio strike $K = 14$
+
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 result_put02 <- valida_opcion(filename="data/sims.HPE.1e5.csv", K=0, r = 0.06, tipo_opcion = 'PUT')
 ```
@@ -823,8 +881,16 @@ p4 <- ggplot(result_put02$df_params, aes(ceros_reg)) +
 grid.arrange(p1, p2, p3, p4, ncol = 2)
 ```
 
+Se puede observar que la mayoría de las estrategias de ejercicio establecen 
+una salida anticipada durante los primeros 12 días del contrato.  
+
+También se puede observar qeu la dependencia significactiva más grande se obtuvo 
+con covariables de hasta la potencia cuarta de los precios.
 
 #### Call
+
+A continución se muestran algunos resultados de la implementación para una *call* 
+con activo subyacente una acción de HP con precio strike $K = 14$
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 result_call02 <- valida_opcion(filename="data/sims.HPE.1e5.csv", K=result_put02$K, r = 0.06, tipo_opcion = 'CALL')
 ```
@@ -866,8 +932,18 @@ p4 <- ggplot(result_call02$df_params, aes(ceros_reg)) +
 grid.arrange(p1, p2, p3, p4, ncol = 2)
 ```
 
+Se puede observar que la mayoría de las estrategias de ejercicio establecen 
+una salida anticipada durante los primeros 10 días del contrato.  
+
+También se puede observar que la dependencia significactiva más grande se obtuvo 
+con covariables de hasta la potencia cúbica de los precios.
+
 ### IBM
 #### Put
+
+A continución se muestran algunos resultados de la implementación para una *put* 
+con activo subyacente una acción de IBM con precio strike $K = 124$
+
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 result_put03 <- valida_opcion(filename="data/sims.IBM.1e5.csv", K=0, r = 0.06, tipo_opcion = 'PUT')
 ```
@@ -910,8 +986,18 @@ p4 <- ggplot(result_put03$df_params, aes(ceros_reg)) +
 grid.arrange(p1, p2, p3, p4, ncol = 2)
 ```
 
+Se puede observar que la mayoría de las estrategias de ejercicio establecen 
+una salida anticipada durante los primeros 12 días del contrato.
+
+También se puede observar que la dependencia significactiva más grande se obtuvo 
+con covariables de hasta la potencia cuadrada de los precios pero hay casos con 
+dependencia de hasta grado 8.
 
 #### Call
+
+A continución se muestran algunos resultados de la implementación para una *call* 
+con activo subyacente una acción de IBM con precio strike $K = 124$
+
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
 result_call03 <- valida_opcion(filename="data/sims.IBM.1e5.csv", K=result_put03$K, r = 0.06, tipo_opcion = 'CALL')
 ```
@@ -953,6 +1039,12 @@ p4 <- ggplot(result_call03$df_params, aes(ceros_reg)) +
 grid.arrange(p1, p2, p3, p4, ncol = 2)
 ```
 
+
+Se puede observar que la mayoría de las estrategias de ejercicio establecen 
+una salida anticipada durante los primeros 14 días del contrato.  
+
+También se puede observar que la dependencia significactiva más grande se obtuvo 
+con covariables de hasta la potencia cuadrada de los precios.
 
 ### Strike para cada acción
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
@@ -1095,6 +1187,8 @@ Americano.
 Longstaff, F. \& Schwartz, E. (2001). Valuing American Options by Simulation: A Simple Least-Squares Approach. The Review of Financial Studies Spring 2001 Vol. IS. No. I, pp. 113-147 The Society for Financial Studies
 
 Choudhury A., King A., Kumar S., \& Sabharwal, Y. (2008). Optimizations in Financial Engineering: The Least-Squares Monte Carlo method of Longstaff and Schwartz
+
+Ryan, J., Ulrich, J., Thielen, W. Teetor, P. & Bronder, S. (2007). Package *quantmod*. Quantitative Financial Modelling Framework 
 
 
 
