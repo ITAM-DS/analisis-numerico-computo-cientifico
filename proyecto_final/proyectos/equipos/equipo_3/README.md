@@ -10,11 +10,11 @@ Título del proyecto: `Ajuste y optimización del método de mínimos cuadrados 
 
 Objetivo del proyecto: `Ajuste y optimización del algoritmo de mínimos cuadrados para solucionar un problema de supervivencia escolar con datos truncados y censurados. Se buscará predecir la probabilidad de que un alumno del sistema educativo nacional concluya su educación básica con base en sus calificaciones y asistencia a largo de los distintos grados escolares. Se compararán en R los métodos de SVD y eliminación Gaussiana.`
 
-Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://drive.google.com/file/d/1qeRAYRzoDHarRXodP48ArNK3MpwGM6Ll/view?usp=sharing)
+Trabajo escrito: [liga_trabajo_escrito](https://drive.google.com/file/d/1qeRAYRzoDHarRXodP48ArNK3MpwGM6Ll/view?usp=sharing)
 
-Presentación (fuera del repo) TBD: [liga_presentación]()
+Presentación: [liga_presentación](https://docs.google.com/presentation/d/13RXpJMcv3YGHZZD7raEXY7tK4IIhiTtI0cCsYrcp7GQ/edit#slide=id.p)
 
-Implementación (en el repo) (En progreso): [liga_presentación](https://github.com/DeliaDelAguila/analisis-numerico-computo-cientifico-delia/tree/master/Proyecto%20Final)
+Implementación: [liga_implementación](https://github.com/DeliaDelAguila/analisis-numerico-computo-cientifico/blob/mno-2019-1/proyecto_final/proyectos/equipos/equipo_3/avance_6/Implementación%20Proyecto%20-%20Equipo%203.Rmd)
 
 
 Carpeta 
@@ -23,6 +23,7 @@ Carpeta
 - [avance_3](avance_3): Ejecución de mínimos cuadrados usando lm
 - [avance_4](avance_4): Ejecución de mínimos cuadrados usando QR
 - [avance_5](avance_5): Versión final de [Trabajo Escrito](https://drive.google.com/file/d/1qeRAYRzoDHarRXodP48ArNK3MpwGM6Ll/view?usp=sharing)
+- [avance_5](avance_6): Versión final Implementación y Presentación
 
 
 Referencias del proyecto:
