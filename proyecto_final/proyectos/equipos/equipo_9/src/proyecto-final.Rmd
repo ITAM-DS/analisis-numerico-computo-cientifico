@@ -11,7 +11,7 @@ lang: "es"
 output:
   pdf_document: 
     toc: true
-    toc_depth: 4
+    toc_depth: 3
     number_sections: true
     fig_caption: true
     highlight: "tango"
@@ -23,26 +23,148 @@ output:
 \newpage
 
 # Resumen
-Proyecto donde utilizamos la técnica aplicada en la investigación de 
-Longstaff-Schwartz (2001, UCLA) denominada  “Aproximación por mínimos cuadrados 
-Monte Carlo” (LSM, por sus siglas en inglés) para evaluar opciones americanas 
-con múltiples factores con el fin de estimar el “payoff” donde tradicionalmente 
-no se podían utilizar diferencias finitas con el fin obtener rendimientos
+Uno de los objetivos de este proyecto es implementar la técnica de valuación 
+propuesta por Longstaff, F. & Schwartz, E. (2001), que se conoce como 
+"Aproximación por mínimos cuadrados Monte Carlo" (LSM por sus siglas en inglés)
+para estimar una estrategia de ejercicio de opciones Americanas, 
+en el que no hay una expresión cerrada para el precio de la opción.
 	
 	
 # Introducción
-Utilizaremos el técnica detallada en la investigación de Longstaff-Schwartz 
-(2001, UCLA) denominada  “Aproximación por mínimos cuadrados Monte Carlo” 
-(LSM, por sus siglas en inglés) para evaluar opciones americanas con múltiples 
-factores con el fin de estimar el “payoff” donde tradicionalmente no se podían 
-utilizar diferencias finitas.
+Uno de los objetivos de este proyecto es revisar algunos detalles e implementa 
+la metodología de "aproximación por mínimos cuadrados Monte-Carlo" de Longstaff 
+& Schuarz (2001) para la valuación de opciones Americanas. El objetivo de ésta 
+es describir la evolución del valor de la opción de tal forma que se obtenga 
+la mayor ganancia. Este método es una alternativa al de valuación por simulación 
+simple o el de diferencias finitas.
 	
-## Características
+
+## Definiciones preliminares
 	
+**Definición:**  
+Un contrato *forward* es un contrato entre dos partes en el que una 
+de ellas se compromete a comprar y la otra a vender un activo dado, en una fecha 
+futura establecida y a un precio establecido.
+	
+**Definición:**  
+Una opción *call* (larga) es un contrato que le da al poseedor de la 
+opción, el derecho más no la obligación de comprar un activo dado, en una fecha 
+futura establecida y a un precio establecido.
+	
+Si $K$ es el precio preestablecido (que se conoce como precio *strike*), 
+$S_t$ es el precio del activo al tiempo $t$ y $T$ es la fecha futura establecida 
+en el contrato (que se conoce como fecha de  vencimiento del contrato), 
+entonces el poseedor de la call ejercerá su derecho a comprar sólo si 
+$K < S_T$, i.e. si en el mercado es costoso el activo con respecto al precio *strike*.
+	
+A diferencia del contrato forward, bajo un contrato call una de las partes 
+nunca pierde (el comprador del contrato) pero la otra tiene una pérdida 
+tentativa, es por esto que este tipo de contratos tiene un precio (que se le 
+conoce como prima de la call). Uno de los objetivos de la teoría de valuacion 
+de opciones es determinar un precio razonable para éstas.
+	
+Al vendededor de un contrato call se le conoce como parte *corta* de la call y 
+éste tiene la obligación de vender el activo en caso de que la parte *larga* de 
+la call quiere ejercer su derecho a comprarla.
+	
+**Definición:**  
+Una opción *put* larga es un contrato que le da al poseedor de la opción, el 
+derecho más no la obligación de vender un activo dado, en una fecha futura 
+establecida y a un precio establecido.
+	
+Si $K$ es el precio preestablecido (que se conoce como precio *strike*), 
+$S_t$ es el precio del activo al tiempo $t$ y $T$ es la fecha futura establecida 
+en el contrato (que se conoce como fecha de vencimiento del contrato), entonces 
+el poseedor de la put ejercerá su derecho a vender sólo si $K > S_T$, 
+i.e. si en el mercado es barato el activo con respecto al precio *strike*.
+	
+A diferencia del contrato forward, bajo un contrato put una de las partes nunca 
+pierde (el comprador del contrato) pero la otra tiene una pérdida tentativa, 
+es por esto que este tipo de contratos tiene un precio (que se le conoce como 
+prima de la put). Uno de los objetivos de la teoría de valuacion de opciones 
+es determinar un precio razonable para éstas.
+	
+Al vendededor de un contrato put se le conoce como parte *corta* de la put y éste 
+tiene la obligación de comprar el activo en caso de que la parte *larga* de la put 
+quiere ejercer su derecho a venderla.
+	
+
+### Estilo de opciones: Europeo, Americano ó Bermuda
+**Definición:**  
+
++ Se dice que una opción tiene estilo **Europeo** si sólo se puede ejercer en la fecha 
+de vencimiento.
+	
++ Se dice que una opción tiene estilo **Americano** si se puede ejercer en cualquier 
+momento previo a la fecha de vencimiento (incluyéndola).
+	
++ Se dice que una opción tiene estilo **Bermunda** si sólo se puede ejercer 
+determinadas fechas previas a la fecha de vencimiento (incluyéndola).
+	
+# Valuaciones de opciones	Europeas
+
+Se supondrá un espacio de probabilidad filtrado completo 
+$(\Omega, \mathcal{F}, \{\mathcal{F}_t\},\mathbb{P})$ y un horizonte de tiempo 
+$[0,T]$, donde $\Omega$ es el conjunto de todas las posibles realizaciones de 
+la economía estocástica en $[0,T]$, $\mathcal{F}$ una $\sigma$-álgebra de 
+subconjunto de $\Omega$, $\{\mathcal{F}_t\}$ una filtración generada por el 
+proceso de precios relevante para los activos en la economía.
+	
+Según la hipótesis de no-arbitraje, existe una medida martingala equivalente $\mathbb{Q}$ a $\mathbb{P}$.
+
+## Paridad put-call
+	
+Sean $C(S,K,T)$ y $P(S,K,T)$ los precios de una call y put Europeas, sobre el 
+mismo activo, con el mismo strike y la misma fecha de vencimiento. Entonces se 
+satisface una relación entre dichos precios que se conoce como la *paridad 
+put-call*, que se puede plantear en términos matemáticos como:
+$$e^{-rT}F_{0,T} + P(S,K,T) = Ke^{rT} + C(S,K,T),$$ 
+donde:  
+
++ $F_{0,T} = e^{rT}S_0$ si el activo no paga dividendos.
+	
++ $F_{0,T} = e^{rT}\left(S_0 - \sum_{j=1}^m Div_j e^{-r t_j}\right)$ si el activo 
+paga dividendos discretos.
+	
++ $F_{0,T} = e^{(r-\delta)T}S_0$ si el activo no paga dividendos continuos.
+
+	
+Por ejemplo, para una acción que no paga dividendos, la paridad put-call 
+se escribe como
+$$S_0 + P(S,K,T) = Ke^{rT} + C(S,K,T)$$
+que se puede interpretar fácilmente: si se adquiere una put, se está comprando 
+el derecho a vender, por lo tanto se debe contar con el activo ($S_0$) para 
+poder venderlo en caso de que así se quiera. Por otro lado, si se adquiere una 
+call, se está comprando el derecho a comprar, por lo tanto eventualmente se 
+podría requerir efectivo $K$ (por tanto se invierten sin riesgo $Ke^{-rT}$).
+	
+## Fórmula de Black & Scholes para opciones Europeras
+	
+Para acciones que pagan dividendos continuos, las fórmulas de valuación para 
+opciones Europeas de Black & Scholes establecen que el precio de una call 
+Europea es 
+$$C(S,K,T,\sigma,r,\delta) = S_0e^{-\delta T}\Phi(d_1) - Ke^{-rT}\Phi(d_2)$$
+
+y el precio de una put Europea es
+$$P(S,K,T,\sigma,r,\delta) = Ke^{-rT}\Phi(-d_2) - S_0e^{-\delta T}\Phi(d_1)$$
+	
+con  
+
++ $d_1 = \frac{\log(S_0/K) + (r-\delta+\frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$  
+
++ $d_2 = d_1 - \sigma\sqrt{T}$  
+
+donde $r$ es la tasa libre de riesgo con 
+composición continua, $\sigma$ es la volatilidad del precio del
+activo subyacente, y $\delta$ es la tasa de dividendos continuos.
+	
+	
+# Valuación de opciones Americanas
+
 Es difícil estimar el “payoff” en situaciones donde la opción es afectada por 
 más de 1 factor; esto es debido a que el método de diferencia finita y binomial 
 son imprácticos con múltiples factores. Es de notarse que Wall Street utiliza 
-diferencia finita sobre simplificando a 1 factor, aún cuando es demostrable que 
+diferencia finita sobre-simplificando a 1 factor, aún cuando es demostrable que 
 la opción es afectada por más de un factor.
 
 La simulación es una alternativa prometedora a diferencias finitas. 
@@ -82,223 +204,8 @@ sobre los paths que pueden ser monetizados en la opción.
 Longstaff-Schwartz proponen un enfoque con buenos resultados de rendimiento y 
 desempeño comparándolo con otras técnicas
 
-Nuestra principal referencia menciona cuatro artículos con distintos niveles de 
-complejidad que muestran ilustrativamente diferentes escenarios de opciones que 
-demuestran el método y su efectividad.
-	
-
-## Definiciones preliminares
-	
-Definición: Un contrato forward es un contrato entre dos partes en el que una 
-de ellas se compromete a comprar y la otra a vender un activo dado, en una fecha 
-futura establecida y a un precio establecido.
-	
-Definición: Una opción call (larga) es un contrato que le da al poseedor de la 
-opción, el derecho más no la obligación de comprar un activo dado, en una fecha 
-futura establecida y a un precio establecido.
-	
-Si $K$ es el precio preestablecio (que se conoce como precio \emph{strike}), 
-$S_t$ es el precio del activo al tiempo $t$ y $T$
-es la fecha futura establecida en el contrato (que se conoce como fecha de 
-vencimiento del contrato), entonces el poseedor de la call ejercera su derecho 
-a comprar sólo si $K < S_T$, i.e.~si en el mercado es costoso el activo con 
-respecto al precio \emph{strike}.
-	
-A diferencia del contrato forward, bajo un contrato call una de las partes 
-nunca pierde (el comprador del contrato) pero la otra tiene una pérdida 
-tentativa, es por esto que este tipo de contratos tiene un precio (que se le 
-conoce como prima de la call). Uno de los objetivos de la teoría de valuacion 
-de opciones es determinar un precio razonable para éstas.
-	
-Al vendededor de un contrato call se le conoce como parte corta de la call y 
-éste tiene la obligación de vender el activo en caso de que la parte larga de 
-la call quiere ejercer su derecho a comprarla.
-	
-Definición:
-Una opción put larga es un contrato que le da al poseedor de la opción, el 
-derecho más no la obligación de vender un activo dado, en una fecha futura 
-establecida y a un precio establecido.
-	
-Si $K$ es el precio preestablecio (que se conoce como precio \emph{strike}), 
-$S_t$ es el precio del activo al tiempo $t$ y $T$ es la fecha futura establecida 
-en el contrato (que se conoce como fecha de vencimiento del contrato), entonces 
-el poseedor de la put ejercera su derecho a vender sólo si $K > S_T$, 
-i.e.~si en el mercado es barato el activo con respecto al precio \emph{strike}.
-	
-A diferencia del contrato forward, bajo un contrato put una de las partes nunca 
-pierde (el comprador del contrato) pero la otra tiene una pérdida tentativa, 
-es por esto que este tipo de contratos tiene un precio (que se le conoce como 
-prima de la put). Uno de los objetivos de la teoría de valuacion de opciones 
-es determinar un precio razonable para éstas.
-	
-Al vendededor de un contrato put se le conoce como parte corta de la put y éste 
-tiene la obligación de comprar el activo en caso de que la parte larga de la put 
-quiere ejercer su derecho a venderla.
-	
-### Estilo de opciones: Europeo, Americano ó Bermuda
-	
-Se dice que una opción tiene estilo Europeo si sólo se puede ejercer en la fecha 
-de vencimiento.
-	
-Se dice que una opción tiene estilo Americano si se puede ejercer en cualquier 
-momento previo a la fecha de vencimiento (incluyéndola).
-	
-Se dice que una opción tiene estilo Bermunda si sólo se puede ejercer 
-determinadas fechas previas a la fecha de vencimiento (incluyéndola).
-	
-	
-# Desarrollo
-	
-## Estimación de Parámetros
-Sea $(S_t)_{\geq 0}$ un proceso estocástico que representa el precio de un 
-activo, i.e. $S_t$ es el precio de la acción al tiempo $t$.
-	
-Se dice que el proceso $(S_t)_{\geq 0}$ es un movimiento Browniano geométrico 
-con parámetros $\mu,\sigma>0$ si es la solución de la ecuación diferencial 
-estocástica $$dS_t = \mu S_t dt + \sigma S_t dW_t$$ para algún valor inicial $S_0$.
-	
-Esta expresión se puede reescribir como $$\frac{dS_t}{S_t} = \mu dt + \sigma dW_t$$
-	
-Se puede dar una interpretación de la ecuación anterior de la siguiente manera 
-$$\frac{S_{t+dt}-S_t}{S_t}=\frac{dS_t}{S_t} = \mu dt + \sigma dW_t = 
-\mbox{contribución determinista + constribución estocástica}$$
-	
-donde se supone que la contribución determinista es proporcional y la parte 
-estocástica tiene ley Gaussiana.
-	
-A la constante $\mu$ se le conoce como drift del proceso y $\sigma$ se conoce  
-como parámetro volatilidad o de difusión.
-	
-Se puede demostrar que una solución explícita para la ecuación diferencial 
-estocástica anterior es 
-$$S_t =  S_0 \exp\left\{\alpha t + \sigma W_t\right\} = S_0 \exp\left\{\mu t -\frac{1}{2}\sigma^2t + \sigma W_t\right\},$$ donde $\alpha = \mu-\frac{1}{2}\sigma^2$.
-	
-Observación:
-Si $\sigma = 0$, i.e. no hay ruido estocástico, entonces la ecuación se 
-convierte en 
-$$\frac{dS_t}{S_t} = \mu dt,$$ 
-equivalentemente 
-$$\frac{d}{dt}\log(S_t) = \mu$$
-y por lo tanto
-$$S_t = S_0 e^{\mu t}$$
-	
-Nótese que la diferencia entre la solución determinista y no determinista es el 
-término $\sigma W_t-\frac{1}{2}\sigma^2t$.
-	
-A partir de la solución 
-$$S_t = S_0 \exp\left\{\mu t -\frac{1}{2}\sigma^2t + \sigma W_t\right\}$$ 
-se puede ver que $S_t$ es la exponencial de un movimiento Browniano, 
-i.e. es la exponencial de una variable aleatoria con distribución normal. 
-Equivalentemente $S_t$ tiene distribución log-normal. 
-Esta es una de las razones por las que el movimiento Browniano es adecuado 
-para aplicaciones financieras.
-	
-Considérese $t_0=0 < t_1 < t_2 <\ldots<t_n=T$ puntos en el horizonte de tiempo 
-$[0,T]$. Defínase $Y_1,\ldots,Y_n$ como
-	
-$$Y_i = \frac{S_{t_i}-S_{t_{i-1}}}{S_{t_{i-1}}}=\frac{S_{t_i}}{S_{t_{i-1}}}-1$$
-	
-Si se considera la expansión de Taylor de la función $\log(1+z)$, se tiene que 
-para $z$ suficientemente pequeña
-$$\log(1+z) = z-\frac{1}{2}z^2 + o(z) \approx z$$
-Entonces si $X_i = 1+ Y_i$, entonces 
-$$\log(X_i) = \log(1+Y_i) \approx Y_i = \log(S_{t_i})-\log(S_{t_{i-1}})$$
-Esto significa que los rendimientos exactos son casi idénticos a los log-rendimientos
-$$X_i = \log(S_{t_i})-\log(S_{t_{i-1}}),\ i\in\{1,\ldots,n\}$$
-	
-Sea $\Delta t = t_i - t_{i-1}$ para $i\in\{1,\ldots,n\}$. 
-Generalmente $\Delta t = \frac{1}{252}$ si se consideran periodos anuales.
-
-$$X_i + \ldots + X_{i+n-1}=\sum_{k=i}^{i+n-1}[\log(S_{t_i})-\log(S_{t_{i-1}})]=\log(S_{i+n-1})-\log(S_{i-1})$$
-	
-Finalmente
-$$X_i = \log(S_{t_i})-\log(S_{t_{i-1}}) = \log\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)$$
-$$=\alpha \Delta t + \sigma[W_{t_i}-W_{t_{i-1}}]\sim N(\alpha t , \sigma^2 t)$$
-Es decir,
-$$X_i = \log\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right) = \alpha \Delta t + \sigma\sqrt{\Delta t}Z,$$
-donde $Z\sim N(0,1)$
-además, para $i\neq j$ $X_{t_i}$ es independiente de $X_{t_j}$ pues cada una 
-depende de incrementos disjuntos del movimiento 
-
-Browniano estándar.
-	
-Estimación de parámetros
-	
-Gracias al análisis anterior se puede considerar a $X_1,\ldots,X_n$ 
-como variables aleatorias independientes, idénticamente distribuidas 
-$N(\alpha\Delta t,\sigma^2t \Delta t)$. Los estimadores máximo verosímiles para 
-$\alpha$ y $\sigma^2$ son
-$$\widehat{\alpha}=\frac{1}{\Delta t}\frac{1}{n}\sum_{i=1}^n X_i$$
-$$\widehat{\sigma}^2 = \frac{1}{\Delta t}\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2=\frac{\widehat{S}^2}{\Delta t}$$
-	
-De aquí que un estimador para $\mu$ es
-$$\widehat{\mu} = \widehat{\alpha} + \frac{1}{2}\widehat{\sigma}^2$$
-	
-Observación:
-Nótese que 
-$$\sum_{i=1}^n X_i = \sum_{i=1}^n [\log(S_{t_i})-\log(S_{t_{i-1}})]=\log(S_{t_n})-\log(S_0)$$
-	
-De aquí que
-$$\widehat{\alpha}=\frac{1}{n\Delta t}[\log(S_{t_n})-\log(S_0)]$$
-y entonces
-	
-$$\widehat{\mu} =\frac{\log(S_{t_n})-\log(S_0)}{n\Delta t}+ \frac{1}{\Delta t}\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2=\frac{\widehat{S}^2}{\Delta t}$$
-$$\widehat{\sigma}^2 = \frac{1}{\Delta t}\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2=\frac{\widehat{S}^2}{\Delta t}$$
-	
-# Valuaciones de opciones	Europeas
-
-## Paridad put-call
-	
-Sean $C(S,K,T)$ y $P(S,K,T)$ los precios de una call y put Europeas, sobre el 
-mismo activo, con el mismo strike y la misma fecha de vencimiento. 
-Entonces se satisface una relación entre dichos precios que se conoce como la 
-paridad put-call, que se puede plantear en términos matemáticos como 
-$e^{-rT}F_{0,T} + P(S,K,T) = Ke^{rT} + C(S,K,T),$ donde
-$F_{0,T} = e^{rT}S_0$ si el activo no paga dividendos.
-	
-$F_{0,T} = e^{rT}\left(S_0 - \sum_{j=1}^m Div_j e^{-r t_j}\right)$
-si el activo paga dividendos discretos.
-	
-$F_{0,T} = e^{(r-\delta)T}S_0$ si el activo no paga dividendos continuos.
-
-	
-Por ejemplo, para una acción que no paga dividendos, la paridad put-call 
-se escribe como
-$S_0 + P(S,K,T) = Ke^{rT} + C(S,K,T)$
-que se puede interpretar fácilmente: si se adquiere una put, se está comprando 
-el derecho a vender, por lo tanto se debe contar con el activo ($S_0$) para 
-poder venderlo en caso de que así se quiera. Por otro lado, si se adquiere una 
-call, se está comprando el derecho a comprar, por lo tanto eventualmente se 
-podría requerir efectivo $K$ (por tanto se invierten sin riesgo $Ke^{rT}$).
-	
-## Fórmula de Black & Scholes para opciones Europeras
-	
-Para acciones que pagan dividendos continuos, las fórmulas de valuación para 
-opciones Europeas de Black \& Scholes establecen que el precio de una call 
-Europea es $C(S,K,T,\sigma,r,\delta) = S_0e^{-\delta T}\Phi(d_1) - Ke^{-rT}\Phi(d_2)$ 
-y el precio de una put Europea es
-$P(S,K,T,\sigma,r,\delta) = Ke^{-rT}\Phi(-d_2) - S_0e^{-\delta T}\Phi(d_1)$
-	
-con $d_1 = \frac{\log(S_0/K) + (r-\delta+\frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$ 
-y $d_2 = d_1 - \sigma\sqrt{T}$ donde $r$ es la tasa libre de riesgo con 
-composición continua, $\sigma$ es la volatilidad del precio del
-activo subyacente, y $\delta$ es la tasa de dividendos continuos.
-	
-# Valuación de opciones Americanas
-
-Por completar!!!
-
 
 # Valuación de opciones Americanas vía la implementación de Longstaff & Schwarz
-	
-Se supondrá un espacio de probabilidad filtrado completo 
-$(\Omega, \mathcal{F}, \{\mathcal{F}_t\},\mathbb{P})$ y un horizonte de tiempo 
-$[0,T]$, donde $\Omega$ es el conjunto de todas las posibles realizaciones de 
-la economía estocástica en $[0,T]$, $\mathcal{F}$ una $\sigma$-álgebra de 
-subconjunto de $\Omega$, $\{\mathcal{F}_t\}$ una filtración generada por el 
-proceso de precios relevante para los activos en la economía.
-	
-Según la hipótesis de no-arbitraje, existe una medida martingala equivalente $\mathbb{Q}$ a $\mathbb{P}$.
 	
 Uno de los objetivos es valuar opciones estilo Americano con cash-flows 
 aleatorios que pueden ocurrir en $[0,T]$. Se supondrá que los payoffs de dichas 
@@ -339,7 +246,8 @@ donde el valor esperado es con respecto a la medida riesgo neutro
 $\mathcal{Q}$ Es decir, el valor de continuación al tiempo 
 $t_j$, $V_c(\omega,t_j)$, se puede escribir como
 	
-$V_c(\omega,t_j) = \mathbb{E}_{\mathbb{Q}}\left[\sum_{i=j+1}^m \exp\left\{-\int_{t_j}^{t_i}r(\omega,s)ds\right\}C(\omega,t_i;t_j,T)|\mathcal{F}_{t_j}\right]$
+$$V_c(\omega,t_j) = \mathbb{E}_{\mathbb{Q}}\left[\sum_{i=j+1}^m \exp\left\{-\int_{t_j}^{t_i}r(\omega,s)ds\right\}C(\omega,t_i;t_j,T)|\mathcal{F}_{t_j}\right]$$ 
+
 donde $r(\omega,t)$ es la tasa libre de riesgo (posiblemente estocástica) 
 y la esperanza que se considera es condicional a la información 
 $\mathcal{F}_{t_j}$ al tiempo $t_j$. Con esta representación, 
@@ -367,12 +275,15 @@ finita (con respecto a alguna medida), i.e.~está en $L^2$. como $L^2$
 es un espacio de Hilbert, entonces tiene una base ortonormal numerable y dicha 
 esperanza condicional se puede representar como una función lineal de los 
 elementos de dicha base. Una posible elección de las funciones base es el 
-conjunto de polinomios de Laguerre ponderados: $L_0(x) = \exp\{-x/2\}$, 
-$L_1(x)=\exp\{-x/2\}(1-x)$, $L_2(x)=\exp\{-x/2\}(1-2x+\frac{1}{2}x^2)$,
-$L_n(x)=\exp\{-x/2\}\frac{e^x}{n!}\frac{\partial^2}{\partial x^n}(x^ne^{-x})$.
+conjunto de polinomios de Laguerre ponderados:  
+
++ $L_0(x) = \exp\{-x/2\}$  
++ $L_1(x)=\exp\{-x/2\}(1-x)$  
++ $L_2(x)=\exp\{-x/2\}(1-2x+\frac{1}{2}x^2)$  
++ $L_n(x)=\exp\{-x/2\}\frac{e^x}{n!}\frac{\partial^2}{\partial x^n}(x^ne^{-x})$
 	
 Con esta especificación $V_c(\omega,t_{m-1})$ se puede expresar como
-$V_c(\omega,t_{m-1})=\sum_{i=0}^{\infty}a_iL_i(X),$ donde $X$ es el valor del 
+$V_c(\omega,t_{m-1})=\sum_{i=0}^{\infty}\beta_iL_i(X),$ donde $X$ es el valor del 
 activo subyacente de la opción y los coeficientes $a_i$'s son constantes. 
 Otros tipos de funciones base son los polinomios de Hermite, Legendre, Chebyshev, 
 Gegenbauer y Jacobi. Algunas pruebas numéricas han probado que series de Fourier 
@@ -396,106 +307,49 @@ Como los valores de las funciones base son independientes e
 idénticamente distribuidas a lo largo de las trayectorias, no se
 requieren suposiciones mayores para la existencia de los momomentos y
 pot lo tanto, el valor ajustado de esta regresión,
-$\widehat{V}_{c,M}(\omega,t_{m-1})$ converje en media cuadrática y en
+$\widehat{V}_{c,M}(\omega,t_{m-1})$ converge en media cuadrática y en
 probabilidad a $V_{c,M}(\omega,t_{m-1})$ conforme el número de
 trayectorias con payoff positivo en la simulación tiende a infinito.
 Además, $\widehat{V}_{c,M}(\omega,t_{m-1})$ es el mejor estimador
 lineal insesgado de $V_{c,M}(\omega,t_{m-1})$ en términos de métrica
 de media cuadrática.
 
-## Resultados de convergencia
+---
+header-includes:
+  - \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+---
+\begin{algorithm}
+\DontPrintSemicolon
+\SetAlgoLined
+\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+\Input{Precio strike, $K$; tasa libre de riesgo, $r$; número de pasos $T$; numero de trayectorias, $n$}
+\Output{Precio de una opción Americana}
+\BlankLine
+Generar $n$ trayectorias, cada una de longitud $T$\\
+\For{j $\leftarrow$ $T-1$ \textbf{to} 1}{
+    \For{cada escenario $\omega$}{
+	Encontrar un estimado del valor de continuación en $t_j$ para $\omega$, $V_c(\omega,t_j)$\;
+	Calcular el valor de ejercicio en $t_j$ para el escenario $\omega$ es $E(\omega,t_j)$, con $E(\omega,t_j)=\max\{S_{t_j}(\omega)-K,0\}$ para las opciones call y $E(\omega,t_j)=\max\{K-S_{t_j}(\omega),0\}$ para las opciones put, donde $S_{t_j}(\omega)$ es el precio simulado del subyacente al tiempo $t_j$ (en el escenario $\omega$)\;
+	\eIf{$V_c(\omega,t_j)\leq E(\omega,t_j)$}{
+        La estrategia óptima al tiempo $t_j$ es ejercer\;
+    }{
+        La estrategia es continuar\;
+    }
+	}
+}
+\caption{Algoritmo LSM para valuación de opciones Americanas}
+\end{algorithm}
 
-Mediante el algoritmo LSM, se tiene un mecanismo sencillo de aproximar
-la estrategia de ejercicio óptimo para una opción estilo Americano (y
-Bermuda también).
 
-Hay algunos resultados de convergencia que garantizas que dicha
-aproximación efectivamente es posible
+Sea $A_j$ la matriz de diseño para el $j$-ésimo tiempo de simulación, donde $A_j(i,k) = L_k(S(t_j,\omega_i))$ para el caso de que los regresores sean bases polinomiales (polinomios de Legendre, Laguerre, Chebyshev, etc.) ó bien $A_j(i,k) = S^k(t_j,\omega_i)$ para el caso de que los regresores sean las primeras potencias de polinomios simples y $\omega_i$ es el $i$-ésmo escenario, $i\in\{1,\ldots,n\}$. Sea $X_j = [\beta_k]_j$ el vector de coeficientes ajustado para las funciones regresoras del $j$-ésimo tiempo de simulación. El objetivo es encontrar un vector de coeficientes $X_j$ que minimice $||A_jX_j - Y_j||^2_2$. El vector con valores $[Y_j]_i$ se obtiene al traer a valor presente el valor de la opción en el escenario $i$ del tiempo $t_{j+1}$ al tiempo $t_j$. Una vez que se determinan los coeficientes de regresión $\hat{\beta}_k$, entonces el $i$-ésimo escenario de los valores de la opción se actualizan de la siguiente manera:
 
-Proposición: 
-Para cualesquiera $m,M\in \mathbb{N}_+$ y $\beta\in\mathbb{R}^{m\times(m-1)}$ 
-que representa el vector de coeficientes para las $M$ funciones base en cada 
-uno de las $m-1$ fechas de ejercicio (anticipado), sea $LSM(\omega;M,m)$ 
-el valor presente que se obtiene de la regla LSM en caso de que el valor de
-ejercicio sea positivo y mayor ó igual que $\widehat{V}_{c,M}(\omega_i,t_j)$ 
-(que se define a partir de $\beta$). Entonces, se satisface
+Se compara el valor de continuación estimado $\hat{V}_c(\omega_i,t_j)$ con valor de ejercio en $S(t_j,\omega_i)$, i.e. el valor intrínseco de la opción en $(t_j,\omega_i)$. Si el valor de ejercicio es mayor que el valor intrínseco, entonces se usa el valor de continuación estimado como la actualización del precio en el escenario $i$; en otro caso se usa el valor presente al tiempo $t_{j+1}$ (traido a valor presente con la tasa $r$).
 
-$V(X)\geq \frac{1}{n}\sum_{i=1}^n LSM(\omega_i;M,m),\ \mbox{casi seguramente},$
+Sea $U\Sigma V^{\top}$ la descomposición en valores singulares de $A_j$, donde $U\in\mathbb{R}^{n\times n}$, $V\in\mathbb{R}^{m\times m}$ son matrices ortogonales y $\Sigma\in\mathbb{R}^{n\times m}$ es una matriz diagonal. Entonces, $||A_jX_j - Y_j||_2$ se minimiza en $X_j = (A_j^{\top}A_j)^{-1}A_j^{\top}Y_j = (V\Sigma^{-1}U^{\top})Y_j$.
 
-donde $V(X)$ es el verdadero valor de la opción Americana.
+Con este mecanismo de regresión se obtiene una estimación directa de los coeficientes $\beta_k$ para la función esperanza condicional $\hat{V}_c(\omega,t_k)$, que se expresa como una combinación lineal ya sea de las funciones polinomiales base ó simplemente de polinomios simples.
 
-Esta proposición establece que el algoritmo LSM imploca una regla de
-paro para opciones Americanas. Sin embargo el valor de dicha opción
-depende de la regla de paro que maximiza su valor. Otras reglas de paro,
-incluyendo la que se obtiene con el algortimo LSM, llevan a valores
-menores o iguales que la que induce la regla de paro óptimo.
 
-Este resultafo es muy útil pues mediante éste se determina un criterio
-objetivo para establecer algún tipo de convergencia. Con este criterio
-se puede obtener algún parámetro o métrica que permita determinar el
-número de funciones base que se necesitan para obtener una aproximación
-más exacta: incrementar el valor de $m$ hasta que el precio que se
-obtiene con el algoritmo LSM no presente cambios significativos. Este es
-una mejora algorítmica pues otros algoritmos que simplemente llevan a
-valor presente el valor de continuación a posteriori no permiten este
-monitoreo de la convergencia.
-
-Aunque se quisiera algún resultado de convergencia más fuerte para el
-algorimo LSM, desde su construcción esto es difícil pues se necesita
-considerar límites con respecto al número de discretizaciones $m$, el
-número de funciones base $M$ (los regresores) y el número de
-trayectorias simuladas ($n\rightarrow \infty$). Además, se debe
-considerar los efectos de la estimación en las reglas de paro desde el
-tiempo $t_{m-1}$ a $t_1$.
-
-Proposición:   
-Supóngase que el precio de una opción Americana
-sólo depende de la variable de precio del activo subyacente $X$ (que
-puede tomar valores en $(0,\infty)$) cuya dinámica estocástica sigue
-un proceso de Markov. Además, supóngase que sólo se puede ejercer la
-opción en los tiempos $t_1$ y $t_2$ y que la función esperanza
-condicional $V_c(\omega;t_1)$ es absolutamente continua y que las dos
-siguientes integrales existen en $\mathbb{R}$
-$\int_0^{\infty}e^{-x}V^2_c(\omega;t_1)dx, \int_0^{\infty}e^{-x}V^2_X(\omega;t_1)dx$
-Entonces, para cualquier $\epsilon>0$, existe $M\in\mathbb{R}$ tal
-que
-
-$\lim_{n\rightarrow \infty} \mathbb{P}\left(\left|V(X)-\frac{1}{n}\sum_{i=1}^n LSM(\omega_i;M,m)\right|>\epsilon\right)=0$
-
-Este resultado garantiza que si se escoge una valor de $M$
-suficientemente grande y se hace $n\rightarrow \infty$, con el
-algoritmo LSM se obtiene un valor para la opción Americana cercano en
-menos de una distancia de $\epsilon$ del verdadero valor.
-
-## Implementación de Paro
-
-https://www.dropbox.com/s/pfarddbjlv2tc5z/implementacion_paro.pdf?dl=0} 
-Ver cuaderno de R
-
-## Estimación de Parámetros
-
-https://www.dropbox.com/s/njszo4jprkzxhz6/estimacion_parametros_edp.pdf?dl=0 
-Ver cuaderno de R
-
-### Simulación de históricos de precios
-
-Se utilizará la paquetería de R, `quantmod` de Ryan, J., Ulrich, J., Thielen, W. Teetor, P. & Bronder, S. (2007) para descargar información histórica de los precios de:
-
-+ Acciones de Intel
-+ Acciones de HPE
-+ Acciones de IBM
-
-Para cada una de estas acciones se simularán 100,000 trayectorias, cada una de 180 días, utilizando el marco teórico de estimación de la sección XXXX.
-
-que se guardarán en archivos `.csv` en las siguientes ligas:
-
-+ Simulaciones de Intel
-+ Simulaciones de HPE
-+ Simulaciones de IBM
-
-Dicha descarga y simulaciones se implementan en la rutina del archivo `rutina_1.R`.
-
-### Ajuste de parámetros LSM
 
 ---
 header-includes:
@@ -545,49 +399,697 @@ Calcular $\hat{\beta}_1,\ldots,\hat{\beta}_{g^*}$ como $[\hat{\beta}_k]_j = (V\S
 \end{algorithm}
 
 
+
+## Estimación de parámetros para las simulaciones {#estimacion_params_sim}
+
+Sea $(S_t)_{\geq 0}$ un proceso estocástico que representa el precio de un 
+activo, i.e. $S_t$ es el precio de la acción al tiempo $t$.
+	
+Se dice que el proceso $(S_t)_{\geq 0}$ es un movimiento Browniano geométrico 
+con parámetros $\mu,\sigma>0$ si es la solución de la ecuación diferencial 
+estocástica $$dS_t = \mu S_t dt + \sigma S_t dW_t$$ para algún valor inicial $S_0$.
+	
+Esta expresión se puede reescribir como $$\frac{dS_t}{S_t} = \mu dt + \sigma dW_t$$
+	
+Se puede dar una interpretación de la ecuación anterior de la siguiente manera 
+$$\frac{S_{t+dt}-S_t}{S_t}=\frac{dS_t}{S_t} = \mu dt + \sigma dW_t = 
+\mbox{contribución determinista + constribución estocástica}$$
+	
+donde se supone que la contribución determinista es proporcional y la parte 
+estocástica tiene ley Gaussiana.
+	
+A la constante $\mu$ se le conoce como drift del proceso y $\sigma$ se conoce  
+como parámetro volatilidad o de difusión.
+	
+Se puede demostrar que una solución explícita para la ecuación diferencial 
+estocástica anterior es 
+$$S_t =  S_0 \exp\left\{\alpha t + \sigma W_t\right\} = S_0 \exp\left\{\mu t -\frac{1}{2}\sigma^2t + \sigma W_t\right\},$$ donde $\alpha = \mu-\frac{1}{2}\sigma^2$.
+	
+**Observación:**
+Si $\sigma = 0$, i.e. no hay ruido estocástico, entonces la ecuación se 
+convierte en 
+$$\frac{dS_t}{S_t} = \mu dt,$$ 
+equivalentemente 
+$$\frac{d}{dt}\log(S_t) = \mu$$
+y por lo tanto
+$$S_t = S_0 e^{\mu t}$$
+	
+Nótese que la diferencia entre la solución determinista y no determinista es el 
+término $\sigma W_t-\frac{1}{2}\sigma^2t$.
+	
+A partir de la solución 
+$$S_t = S_0 \exp\left\{\mu t -\frac{1}{2}\sigma^2t + \sigma W_t\right\}$$ 
+se puede ver que $S_t$ es la exponencial de un movimiento Browniano, 
+i.e. es la exponencial de una variable aleatoria con distribución normal. 
+Equivalentemente $S_t$ tiene distribución log-normal. 
+Esta es una de las razones por las que el movimiento Browniano es adecuado 
+para aplicaciones financieras.
+	
+Considérese $t_0=0 < t_1 < t_2 <\ldots<t_n=T$ puntos en el horizonte de tiempo 
+$[0,T]$. Defínase $Y_1,\ldots,Y_n$ como
+	
+$$Y_i = \frac{S_{t_i}-S_{t_{i-1}}}{S_{t_{i-1}}}=\frac{S_{t_i}}{S_{t_{i-1}}}-1$$
+	
+Si se considera la expansión de Taylor de la función $\log(1+z)$, se tiene que 
+para $z$ suficientemente pequeña
+$$\log(1+z) = z-\frac{1}{2}z^2 + o(z) \approx z$$
+Entonces si $X_i = 1+ Y_i$, entonces 
+$$\log(X_i) = \log(1+Y_i) \approx Y_i = \log(S_{t_i})-\log(S_{t_{i-1}})$$
+Esto significa que los rendimientos exactos son casi idénticos a los log-rendimientos
+$$X_i = \log(S_{t_i})-\log(S_{t_{i-1}}),\ i\in\{1,\ldots,n\}$$
+	
+Sea $\Delta t = t_i - t_{i-1}$ para $i\in\{1,\ldots,n\}$. 
+Generalmente $\Delta t = \frac{1}{252}$ si se consideran periodos anuales.
+
+$$X_i + \ldots + X_{i+n-1}=\sum_{k=i}^{i+n-1}[\log(S_{t_i})-\log(S_{t_{i-1}})]=\log(S_{i+n-1})-\log(S_{i-1})$$
+	
+Finalmente
+$$X_i = \log(S_{t_i})-\log(S_{t_{i-1}}) = \log\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right)$$
+$$=\alpha \Delta t + \sigma[W_{t_i}-W_{t_{i-1}}]\sim N(\alpha t , \sigma^2 t)$$
+Es decir,
+$$X_i = \log\left(\frac{S_{t_i}}{S_{t_{i-1}}}\right) = \alpha \Delta t + \sigma\sqrt{\Delta t}Z,$$
+donde $Z\sim N(0,1)$
+además, para $i\neq j$ $X_{t_i}$ es independiente de $X_{t_j}$ pues cada una 
+depende de incrementos disjuntos del movimiento.  
+
+
+Gracias al análisis anterior se puede considerar a $X_1,\ldots,X_n$ 
+como variables aleatorias independientes, idénticamente distribuidas 
+$N(\alpha\Delta t,\sigma^2t \Delta t)$. Los estimadores máximo verosímiles para 
+$\alpha$ y $\sigma^2$ son
+$$\widehat{\alpha}=\frac{1}{\Delta t}\frac{1}{n}\sum_{i=1}^n X_i$$
+$$\widehat{\sigma}^2 = \frac{1}{\Delta t}\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2=\frac{\widehat{S}^2}{\Delta t}$$
+	
+De aquí que un estimador para $\mu$ es
+$$\widehat{\mu} = \widehat{\alpha} + \frac{1}{2}\widehat{\sigma}^2$$
+	
+**Observación:**
+Nótese que 
+$$\sum_{i=1}^n X_i = \sum_{i=1}^n [\log(S_{t_i})-\log(S_{t_{i-1}})]=\log(S_{t_n})-\log(S_0)$$
+	
+De aquí que
+$$\widehat{\alpha}=\frac{1}{n\Delta t}[\log(S_{t_n})-\log(S_0)]$$
+y entonces
+	
+$$\widehat{\mu} =\frac{\log(S_{t_n})-\log(S_0)}{n\Delta t}+ \frac{1}{\Delta t}\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2$$
+$$\widehat{\sigma}^2 = \frac{1}{\Delta t}\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2=\frac{\widehat{S}^2}{\Delta t}$$
+	
+## Resultados de convergencia
+
+Mediante el algoritmo LSM, se tiene un mecanismo sencillo de aproximar
+la estrategia de ejercicio óptimo para una opción estilo Americano (y
+Bermuda también).
+
+Hay algunos resultados de convergencia que garantizas que dicha
+aproximación efectivamente es posible
+
+Proposición: 
+Para cualesquiera $m,M\in \mathbb{N}_+$ y $\beta\in\mathbb{R}^{m\times(m-1)}$ 
+que representa el vector de coeficientes para las $M$ funciones base en cada 
+uno de las $m-1$ fechas de ejercicio (anticipado), sea $LSM(\omega;M,m)$ 
+el valor presente que se obtiene de la regla LSM en caso de que el valor de
+ejercicio sea positivo y mayor ó igual que $\widehat{V}_{c,M}(\omega_i,t_j)$ 
+(que se define a partir de $\beta$). Entonces, se satisface
+
+$V(X)\geq \frac{1}{n}\sum_{i=1}^n LSM(\omega_i;M,m),\ \mbox{casi seguramente},$
+
+donde $V(X)$ es el verdadero valor de la opción Americana.
+
+Esta proposición establece que el algoritmo LSM imploca una regla de
+paro para opciones Americanas. Sin embargo el valor de dicha opción
+depende de la regla de paro que maximiza su valor. Otras reglas de paro,
+incluyendo la que se obtiene con el algortimo LSM, llevan a valores
+menores o iguales que la que induce la regla de paro óptimo.
+
+Este resultado es muy útil pues mediante éste se determina un criterio
+objetivo para establecer algún tipo de convergencia. Con este criterio
+se puede obtener algún parámetro o métrica que permita determinar el
+número de funciones base que se necesitan para obtener una aproximación
+más exacta: incrementar el valor de $m$ hasta que el precio que se
+obtiene con el algoritmo LSM no presente cambios significativos. Este es
+una mejora algorítmica pues otros algoritmos que simplemente llevan a
+valor presente el valor de continuación a posteriori no permiten este
+monitoreo de la convergencia.
+
+Aunque se quisiera algún resultado de convergencia más fuerte para el
+algorimo LSM, desde su construcción esto es difícil pues se necesita
+considerar límites con respecto al número de discretizaciones $m$, el
+número de funciones base $M$ (los regresores) y el número de
+trayectorias simuladas ($n\rightarrow \infty$). Además, se debe
+considerar los efectos de la estimación en las reglas de paro desde el
+tiempo $t_{m-1}$ a $t_1$.
+
+Proposición:   
+Supóngase que el precio de una opción Americana
+sólo depende de la variable de precio del activo subyacente $X$ (que
+puede tomar valores en $(0,\infty)$) cuya dinámica estocástica sigue
+un proceso de Markov. Además, supóngase que sólo se puede ejercer la
+opción en los tiempos $t_1$ y $t_2$ y que la función esperanza
+condicional $V_c(\omega;t_1)$ es absolutamente continua y que las dos
+siguientes integrales existen en $\mathbb{R}$
+$\int_0^{\infty}e^{-x}V^2_c(\omega;t_1)dx, \int_0^{\infty}e^{-x}V^2_X(\omega;t_1)dx$
+Entonces, para cualquier $\epsilon>0$, existe $M\in\mathbb{R}$ tal
+que
+
+$\lim_{n\rightarrow \infty} \mathbb{P}\left(\left|V(X)-\frac{1}{n}\sum_{i=1}^n LSM(\omega_i;M,m)\right|>\epsilon\right)=0$
+
+Este resultado garantiza que si se escoge una valor de $M$
+suficientemente grande y se hace $n\rightarrow \infty$, con el
+algoritmo LSM se obtiene un valor para la opción Americana cercano en
+menos de una distancia de $\epsilon$ del verdadero valor.
+
+## Sobre paralelización del algoritmo de Longstaff & Schwarz
+
+### Paralelización del problema de optimización
+
+Una mejora de optimización importante que hacen Longstaff \& Schwuartz (20XX) es que sólo se consideran en la regresión aquellos escenarios en los que el valor intrínseco (valor de la opción) es estrictamente positivo (i.e. la opción está in-the-money). Esto incrementa significativamente la eficiencia del algoritmo y disminuye el tiempo computacional.
+
+La fase de calibración se puede dividir en dos sub-fases:
+
+1. La descomposición SVD de la matriz de diseño.
+2. Cálculo de las actualizaciones del valor de la opción.
+
+La descomposición SVD suele ser computacionalmente costosa, mientras que  la sub-fase de evaluación del vector de valores de la opción al tiempo $t_j$ se hace utilizando los coeficientes que se calcularon en el tiempo $t_{j+1}$, por lo tanto esta parte es (por construcción) serial.
+
+Sin embargo, una descomposición SVD hace algunas de las operaciones de manera independiente, hecho que hace que se puede llevar a cabo una paralelización efectiva. Por lo tanto la descomposición en valores singulares de cada una de las matrices de diseño, $A_j$, se puede llevar a cabo mediante una rutina en paralelo seguida de una actualización en serie de los vectores de valores de la opción $Y_j$.
+
+Si $T$ es la longitud de cada una de las trayectorias y $c$ es el número de procesadores con los que se dispone, entonces cada una de las $T$ descomposiciones se hace de manera paralelizada con estos procesadores. 
+
+Si $c$ no tal que $T = c\cdot p$, i.e. $q$ no divide a $T$, se asignan más calculos a ciertos procesadores. La idea es sincronizar algunos de los cálculos SVD con las actualizaciones del vector de valores de la opción. Como los resultados de la actualización del valor de continuación se obtienen de orden de los mejores procesadores (los poco ocupados) a los peores procesadores (los muy ocupados), y el algoritmo completo es intrinsecamente serial, los peores procesadores pasarán ocupados con cálculos para la SVD durantes este tiempo.
+
+En la fase de calibración, despuésde que se llevó a cabo la descomposición en valores singulares, el mejor procesador calculará las actualizaciones para los tiempos de simulación correspondienes, i.e. $T-2, T-3,\ldots,T-\lfloor T/q\rfloor$. Esto envía el vector de valores de la opción para $T-\lfloor T/q\rfloor$ al siguiente mejor procesador. Usando este vector de valores, el siguiente procesador calcula los de los tiempos $T-\lfloor T/q\rfloor-1,\ldots,T-2\lfloor T/q\rfloor$.
+
 ---
 header-includes:
   - \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 ---
-\begin{algorithm}
+\begin{algorithm}[H]
 \DontPrintSemicolon
 \SetAlgoLined
 \SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
-\Input{Precio strike, $K$; tasa libre de riesgo, $r$; número de pasos $T$; numero de trayectorias, $n$}
-\Output{Precio de una opción Americana}
-\BlankLine
-Generar $n$ trayectorias, cada una de longitud $T$\\
-\For{j $\leftarrow$ $T-1$ \textbf{to} 1}{
-    \For{cada escenario $\omega$}{
-	Encontrar un estimado del valor de continuación en $t_j$ para $\omega$, $V_c(\omega,t_j)$\;
-	Calcular el valor de ejercicio en $t_j$ para el escenario $\omega$ es $E(\omega,t_j)$, con $E(\omega,t_j)=\max\{S_{t_j}(\omega)-K,0\}$ para las opciones call y $E(\omega,t_j)=\max\{K-S_{t_j}(\omega),0\}$ para las opciones put, donde $S_{t_j}(\omega)$ es el precio simulado del subyacente al tiempo $t_j$ (en el escenario $\omega$)\;
-	\eIf{$V_c(\omega,t_j)\leq E(\omega,t_j)$}{
-        La estrategia óptima al tiempo $t_j$ es ejercer\;
+\Input{Matrices de diseño asignadas a este procesador, valores de los escenarios generados para los tiempos de simulación asignados, tasa libre de riesgo.}
+\Output{Coeficientes de las funciones regresoras para los tiempos de simulación asignados.}
+\BlankLine\;
+Realizar las descomposición en valores singulares de las matrices de diseño asignadas.\;
+\eIf{Rango = $p-1$}{
+Generar los coeficientes de las funciones regresoras y los vectores de los valores de la opción para los tiempos de simulación asignados en orden decreciente.\;
+Enviar el vector de valores de la opción del tiempo de simulación más pequeño asignado al siguiente peor procesador.\;
     }{
-        La estrategia es continuar\;
+Recibir el vector de valor de la opción que se recibió del procesador anterior\;
+Utilizando estos datos, calcular los coeficientes de las funciones regresoras y el vector de valores de los tiempos de simulación asignados en orden decreciente.\;
+\If{Rango $\neq 0$}{Enviar el vector de valores del tiempo de simulación más pequeño asignado al siguiente peor procesador.}
     }
-	}
-}
-\caption{Algoritmo LSM para valuación de opciones Americanas}
+\Return Coeficientes de las funciones regresoras para los tiempos de simulación asignados.
+\caption{Subrutina - Algoritmo en paralelo para la fase de calibración}
 \end{algorithm}
 
+### Paralelización de la generación de las trayectorias
+
+Considérese una matriz $S$ cuyos renglones corresponden a una trayectoria completa de longitud $T$. Es decir $S(i,j)$ es el $j$-ésimo punto (escenario) de la $i$-ésima trayectoria.
+
+En la generación de trayectorias, si se quieren generar $n$ trayectorias, entonces cada procesador genera $\lfloor n/q \rfloor$ ó $\lceil n/q \rceil$ trayectorias.
+
+### Paralelización de la valuación final
+
+La fase de valuación se podría realizar en paralelo con un nodo maestro que orqueste dicha fase. Este nodo maestro determina el número de trayectorias que se generar, dirige a los otros nodos y recolecta las cantidades estadísticas. Este nodo maestro tambien combina los resultados, calcula la media global (el precio final estimado del derivado) y el error de estimación.
+
+
+# Implementación numérica
+
+## Simulación de históricos de precios
+
+Se utilizará la paquetería de R, `quantmod` de Ryan, J., Ulrich, J., Thielen, W. Teetor, P. & Bronder, S. (2007) para descargar información histórica de los precios de:
+
++ Acciones de Intel
++ Acciones de HPE
++ Acciones de IBM
+
+Para cada una de estas acciones se simularán 100,000 trayectorias, cada una de 180 días, utilizando el marco teórico de estimación de la sección [**Estimación de parámetros para las simulaciones**](#estimacion_params_sim)
+
+que se guardarán en archivos `.csv` en las siguientes ligas:
+
++ Simulaciones de Intel
++ Simulaciones de HPE
++ Simulaciones de IBM
+
+Dicha descarga y simulaciones se implementan en la rutina del archivo `rutina_1.R`.
+
+## Estimación de parámetros e implementación de paro
+
+[Rutinas de Optimización](https://www.dropbox.com/s/njszo4jprkzxhz6/estimacion_parametros_edp.pdf?dl=0 ) 
+
+
+
 ## Algunos resultados de la implementación
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+source("mno_regresiones.R")
+library(gridExtra)
+library(quantmod)
+library(scales)
+```
+
+### Precios de acciones:
+```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+datos <- getSymbols(Symbols = "INTC", auto.assign = FALSE)
+prec_intel <- as.matrix(tail(datos$INTC.Close, n=180))
+
+datos <- getSymbols(Symbols = "HPE", auto.assign = FALSE)
+prec_hp <- tail(datos$HPE.Close, n=180)
+
+datos <- getSymbols(Symbols = "IBM", auto.assign = FALSE)
+prec_ibm <- tail(datos$IBM.Close, n=180)
+
+df_acciones <- data_frame(date=as.POSIXct(rownames(prec_intel)), 
+                          intel=as.numeric(prec_intel), 
+                          hp=as.numeric(prec_hp), 
+                          ibm=as.numeric(prec_ibm))
+```
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p1 <- ggplot(df_acciones, aes(x=date)) +
+  geom_line(aes(y=intel), color = "blue1",  alpha=0.7) +
+  xlab("") + ylab("Intel") +
+  scale_x_datetime(labels = date_format("%Y-%m"), breaks = date_breaks("45 days")) +
+  scale_y_continuous(breaks=c(45,50,55)) +
+  theme_light() 
+  
+p2 <- ggplot(df_acciones, aes(x=date)) +
+  geom_line(aes(y=hp), color = "red2",  alpha=0.7) +
+  xlab("") + ylab("HP") +
+  scale_x_datetime(labels = date_format("%Y-%m"), breaks = date_breaks("45 days")) +
+  scale_y_continuous(breaks=c(13,15,17)) +
+  theme_light() 
+
+p3 <- ggplot(df_acciones, aes(x=date)) +
+  geom_line(aes(y=ibm), color = "green4",  alpha=0.7) +
+  xlab("Período - 180 días") + ylab("IBM") +
+  scale_x_datetime(labels = date_format("%Y-%m"), breaks = date_breaks("45 days")) +
+  scale_y_continuous(breaks=c(110,130,150)) +
+  theme_light() 
+
+grid.arrange(p1, p2, p3, nrow=3, ncol=1)
+```
 
 ### Intel
 #### Put
-#### Call
+```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+result_put01 <- valida_opcion(filename="data/sims.INTC.1e5.csv", K=0, r = 0.06, tipo_opcion = 'PUT')
+```
 
-### HPE
-#### Put
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p1 <- ggplot(result_put01$df_params, aes(as.factor(grados))) +
+  geom_bar(fill = "blue1",  alpha=0.7) +
+  ggtitle("Grados de polinomios utilizados") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+p2 <- ggplot(result_put01$tiempo_paro, aes(ids)) +
+  geom_histogram(fill = "coral3",  alpha=0.7) +
+  ggtitle("Tiempos de paro") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+# grid.arrange(p1, p2, ncol = 2)
+```
+
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p3 <- ggplot(result_put01$df_params, aes(terminos)) +
+  geom_histogram(fill = "coral3", alpha=0.7) +
+  geom_vline(xintercept=mean(result_put01$df_params$terminos), linetype="dashed", color = "blue1") +
+  ggtitle("Terminos eliminados por Payoff") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+p4 <- ggplot(result_put01$df_params, aes(ceros_reg)) +
+  geom_histogram(fill = "blue1",  alpha=0.7) +
+  geom_vline(xintercept=mean(result_put01$df_params$ceros_reg), linetype="dashed", color = "coral3") +
+  ggtitle("Terminos convertidos en 0 por Regresión") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
+
 #### Call
+```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+result_call01 <- valida_opcion(filename="data/sims.INTC.1e5.csv", K=result_put01$K, r = 0.06, tipo_opcion = 'CALL')
+```
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p1 <- ggplot(result_call01$df_params, aes(as.factor(grados))) +
+  geom_bar(fill = "blue1",  alpha=0.7) +
+  ggtitle("Grados de polinomios utilizados") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+p2 <- ggplot(result_call01$tiempo_paro, aes(ids)) +
+  geom_histogram(fill = "coral3",  alpha=0.7) +
+  ggtitle("Tiempos de paro") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+```
+
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p3 <- ggplot(result_call01$df_params, aes(terminos)) +
+  geom_histogram(fill = "coral3", alpha=0.7) +
+  geom_vline(xintercept=mean(result_call01$df_params$terminos), linetype="dashed", color = "blue1") +
+  ggtitle("Terminos eliminados por Payoff") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+p4 <- ggplot(result_call01$df_params, aes(ceros_reg)) +
+  geom_histogram(fill = "blue1",  alpha=0.7) +
+  geom_vline(xintercept=mean(result_call01$df_params$ceros_reg), linetype="dashed", color = "coral3") +
+  ggtitle("Terminos convertidos en 0 por Regresión") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
+
+### Hewlett Packard Enterprise
+#### Put
+```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+result_put02 <- valida_opcion(filename="data/sims.HPE.1e5.csv", K=0, r = 0.06, tipo_opcion = 'PUT')
+```
+
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p1 <- ggplot(result_put02$df_params, aes(as.factor(grados))) +
+  geom_bar(fill = "blue1",  alpha=0.7) +
+  ggtitle("Grados de polinomios utilizados") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+p2 <- ggplot(result_put02$tiempo_paro, aes(ids)) +
+  geom_histogram(fill = "coral3",  alpha=0.7) +
+  ggtitle("Tiempos de paro") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+```
+
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p3 <- ggplot(result_put02$df_params, aes(terminos)) +
+  geom_histogram(fill = "coral3", alpha=0.7) +
+  geom_vline(xintercept=mean(result_put02$df_params$terminos), linetype="dashed", color = "blue1") +
+  ggtitle("Terminos eliminados por Payoff") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+p4 <- ggplot(result_put02$df_params, aes(ceros_reg)) +
+  geom_histogram(fill = "blue1",  alpha=0.7) +
+  geom_vline(xintercept=mean(result_put02$df_params$ceros_reg), linetype="dashed", color = "coral3") +
+  ggtitle("Terminos convertidos en 0 por Regresión") +
+  xlab("") + ylab("") +
+  theme_light() + 
+  theme(plot.title = element_text(size = 10))
+
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
+
+
+#### Call
+```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+result_call02 <- valida_opcion(filename="data/sims.HPE.1e5.csv", K=result_put02$K, r = 0.06, tipo_opcion = 'CALL')
+```
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p1 <- ggplot(result_call02$df_params, aes(as.factor(grados))) +
+  geom_bar(fill = "blue1",  alpha=0.7) +
+  ggtitle("Grados de polinomios utilizados") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+p2 <- ggplot(result_call02$tiempo_paro, aes(ids)) +
+  geom_histogram(fill = "coral3",  alpha=0.7) +
+  ggtitle("Tiempos de paro") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+```
+
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p3 <- ggplot(result_call02$df_params, aes(terminos)) +
+  geom_histogram(fill = "coral3", alpha=0.7) +
+  geom_vline(xintercept=mean(result_call02$df_params$terminos), linetype="dashed", color = "blue1") +
+  ggtitle("Terminos eliminados por Payoff") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+p4 <- ggplot(result_call02$df_params, aes(ceros_reg)) +
+  geom_histogram(fill = "blue1",  alpha=0.7) +
+  geom_vline(xintercept=mean(result_call02$df_params$ceros_reg), linetype="dashed", color = "coral3") +
+  ggtitle("Terminos convertidos en 0 por Regresión") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
 
 ### IBM
 #### Put
-#### Call
+```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+result_put03 <- valida_opcion(filename="data/sims.IBM.1e5.csv", K=0, r = 0.06, tipo_opcion = 'PUT')
+```
 
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p1 <- ggplot(result_put03$df_params, aes(as.factor(grados))) +
+  geom_bar(fill = "blue1",  alpha=0.7) +
+  ggtitle("Grados de polinomios utilizados") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+p2 <- ggplot(result_put03$tiempo_paro, aes(ids)) +
+  geom_histogram(fill = "coral3",  alpha=0.7) +
+  ggtitle("Tiempos de paro") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+```
+
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p3 <- ggplot(result_put03$df_params, aes(terminos)) +
+  geom_histogram(fill = "coral3", alpha=0.7) +
+  geom_vline(xintercept=mean(result_put03$df_params$terminos), linetype="dashed", color = "blue1") +
+  ggtitle("Terminos eliminados por Payoff") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+p4 <- ggplot(result_put03$df_params, aes(ceros_reg)) +
+  geom_histogram(fill = "blue1",  alpha=0.7) +
+  geom_vline(xintercept=mean(result_put03$df_params$ceros_reg), linetype="dashed", color = "coral3") +
+  ggtitle("Terminos convertidos en 0 por Regresión") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
+
+
+#### Call
+```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+result_call03 <- valida_opcion(filename="data/sims.IBM.1e5.csv", K=result_put03$K, r = 0.06, tipo_opcion = 'CALL')
+```
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p1 <- ggplot(result_call03$df_params, aes(as.factor(grados))) +
+  geom_bar(fill = "blue1",  alpha=0.7) +
+  ggtitle("Grados de polinomios utilizados") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+p2 <- ggplot(result_call03$tiempo_paro, aes(ids)) +
+  geom_histogram(fill = "coral3",  alpha=0.7) +
+  ggtitle("Tiempos de paro") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+```
+
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+p3 <- ggplot(result_call03$df_params, aes(terminos)) +
+  geom_histogram(fill = "coral3", alpha=0.7) +
+  geom_vline(xintercept=mean(result_call03$df_params$terminos), linetype="dashed", color = "blue1") +
+  ggtitle("Terminos eliminados por Payoff") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+p4 <- ggplot(result_call03$df_params, aes(ceros_reg)) +
+  geom_histogram(fill = "blue1",  alpha=0.7) +
+  geom_vline(xintercept=mean(result_call03$df_params$ceros_reg), linetype="dashed", color = "coral3") +
+  ggtitle("Terminos convertidos en 0 por Regresión") +
+  xlab("") + ylab("") +
+  theme_light() +
+  theme(plot.title = element_text(size = 10))
+
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
+
+
+### Strike para cada acción
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+df_strike <- data.frame(Accion=c("Intel", "HP", "IBM"),
+                        Strike=c(round(result_put01$K,0), round(result_put02$K,0), round(result_put03$K,0)))
+knitr::kable(df_strike)
+```
+
+### Precios de las opciones
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+# Armo DF con precio e intervalo para cada opción calculada:
+df_precios <- data.frame(opcion=c("Intel_Put","Intel_Call","HP_Put","HP_Call","IBM_Put","IBM_Call"),
+                         mean_amer=c(result_put01$precio_amer, 
+                                     result_call01$precio_amer,
+                                     result_put02$precio_amer, 
+                                     result_call02$precio_amer,
+                                     result_put03$precio_amer, 
+                                     result_call03$precio_amer),
+                          var_amer=c(result_put01$var_amer,
+                                     result_call01$var_amer,
+                                     result_put02$var_amer, 
+                                     result_call02$var_amer,
+                                     result_put03$var_amer, 
+                                     result_call03$var_amer),
+                          mean_eur=c(result_put01$precio_eur, 
+                                     result_call01$precio_eur,
+                                     result_put02$precio_eur, 
+                                     result_call02$precio_eur,
+                                     result_put03$precio_eur, 
+                                     result_call03$precio_eur),
+                           var_eur=c(result_put01$var_eur,
+                                     result_call01$var_eur,
+                                     result_put02$var_eur, 
+                                     result_call02$var_eur,
+                                     result_put03$var_eur, 
+                                     result_call03$var_eur),
+                           mean_vt=c(result_put01$val_tradic, 
+                                     result_call01$val_tradic,
+                                     result_put02$val_tradic, 
+                                     result_call02$val_tradic,
+                                     result_put03$val_tradic, 
+                                     result_call03$val_tradic),
+                            var_vt=c(result_put01$var_val_tradic,
+                                     result_call01$var_val_tradic,
+                                     result_put02$var_val_tradic, 
+                                     result_call02$var_val_tradic,
+                                     result_put03$var_val_tradic, 
+                                     result_call03$var_val_tradic))
+
+
+df_precios <- df_precios %>% 
+  # Intervalo de confianza para opción Americana
+  mutate(lower_amer = mean_amer - (1.96*sqrt(var_amer)/sqrt(179)),
+         upper_amer = mean_amer + (1.96*sqrt(var_amer)/sqrt(179))) %>% 
+  # Intervalo de confianza para opción Europea
+  mutate(lower_eur  = mean_eur  - (1.96*sqrt(var_eur)/sqrt(179)),
+         upper_eur  = mean_eur  + (1.96*sqrt(var_eur)/sqrt(179))) %>% 
+  # Intervalo de confianza para Valuacion tradicional
+  mutate(lower_vt   = mean_vt  - (1.96*sqrt(var_vt)/sqrt(179)),
+         upper_vt   = mean_vt  + (1.96*sqrt(var_vt)/sqrt(179)))
+
+
+ggplot() + 
+  # Opción Americana
+  geom_errorbar(data=df_precios, 
+                mapping=aes(x=opcion, ymin=lower_amer, ymax=upper_amer), 
+                width=0.1, size=.5, color="blue1") + 
+  geom_point(data=df_precios, mapping=aes(x=opcion, y=mean_amer), color="blue1") +
+  # Opción Europea
+  geom_errorbar(data=df_precios, 
+                mapping=aes(x=opcion, ymin=lower_eur , ymax=upper_eur), 
+                width=0.1, size=.5, color="green4") + 
+  geom_point(data=df_precios, mapping=aes(x=opcion, y=mean_eur), color="green4") +
+  # Valuacion tradicional
+  geom_errorbar(data=df_precios, 
+                mapping=aes(x=opcion, ymin=lower_vt , ymax=upper_vt), 
+                width=0.1, size=.5, color="coral3") + 
+  geom_point(data=df_precios, mapping=aes(x=opcion, y=mean_vt), color="coral3") +
+
+  xlab("Opción") + ylab("Precio") +
+  theme_light() +
+  theme(axis.text.y = element_text(size=7)) +
+  geom_label(aes(label=". Opción Americana"), size=3 , x=5.59, y=72, color = "blue1") +
+  geom_label(aes(label=". Opción Europea"), size=3, x=5.52, y=67, color = "green4") +
+  geom_label(aes(label=". Valuacion tradicional"), size=3, x=5.65, y=62, color = "coral3")
+```
+
+```{r,  warning=FALSE, message=FALSE, echo=FALSE}
+df_precios_out <- df_precios %>% 
+  select(opcion, mean_amer, mean_eur, mean_vt) %>% 
+  arrange(opcion)
+
+colnames(df_precios_out) <- c("Acción", "Opcion Amer", "Opcion Europea", "Val.Tradicional") 
+
+knitr::kable(df_precios_out)
+```
 
 # Conclusiones
 
+A diferencia de los métodos que sólo ocupan simulación Monte-Carlo simples, el 
+método LSM permite obtener una prima para opciones call y put Americanas más 
+razonable, en términos de que es un precio más económico con una varianza de 
+estimación menor.
+
+Lo propuesta original de Longstaff & Schwartz (2001) involucra expresar a los 
+valores de continuación como combinaciones lineales arbitrarias de funciones 
+polinomiales base sin detallar mucho en el número de funciones base necesarias 
+ni si efectivamente cada una de las bases tiene un efecto significativo en el 
+proceso de estimación. En este proyecto se simplificó el problema de funciones 
+polinomiales base a polinomios simples $1,x,x^2,\ldots,x^M$, según la propia 
+recomendación empírica de Longstaff & Schwartz (2001), considerando también 
+que el grado del polinomio también es importante al minimizar la suma de 
+cuadrados de los residuales al variar los grados de los polinomios regresores.
+
+Es importante notar que si bien la teoría garantiza la invertibilidad de las 
+matrices de diseño para encontrar los vectores de parámetros para estimar la 
+función de continuación, numéricamente hay algunos desafíos pues en algunos 
+casos, los redondeos y truncaciones llevan a matrices numéricamente singulares. 
+Es por esto que propuestas de los cálculos de la inversa a partir de 
+descomposición en valores singulares y la pseudo-inversa de Moore-Penrose.
+
+En virtud de que la descomposición en valores singulares naturalmente realiza 
+algunas operaciones de manera independiene, también se analizó de manera teórica 
+una propuesta de paralelización del algoritmo LSM. Sugiriendo que aunque la 
+naturaleza del algoritmo global es serial, algunos de los pasos se pueden llevar 
+a cabo de manera paralelizada, desde la generación de simulaciones, hasta la 
+agregación de la información, pasando por la fase de calibración en donde la 
+descomposición SVM surge de manera natural. Por supuesto que esto requiere de 
+una fase de orquestación que en teoría es fácil de describir, pero no así 
+implemantarse en lenguaje computacional.
+
+Las implementaciones finales con precios de acciones de Intel, HP e IBM 
+confirman los resultados teóricos en los que las primas obtenidas mediante LSM 
+en los que presentan un nivel inferior que el de simulación de trayectorias 
+simples y una menor varianza también. Por supuesto, también confirman que una 
+prima tipo Europeo no puede ser mayor que la de la correspondiente de tipo
+Americano.
 
 # Bibliografía
 Longstaff, F. \& Schwartz, E. (2001). Valuing American Options by Simulation: A Simple Least-Squares Approach. The Review of Financial Studies Spring 2001 Vol. IS. No. I, pp. 113-147 The Society for Financial Studies
