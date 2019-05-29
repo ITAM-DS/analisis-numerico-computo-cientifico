@@ -40,13 +40,13 @@ Objetivos del proyecto:
 
 * En la carpeta [avance_1](avance_1) se encuentra el reporte del primer avance en nuestro proyecto. 
 
-* En la carpeta [avance_2](avance_2) se encuentra el reporte del primer avance en nuestro proyecto. 
+* En la carpeta [avance_2](avance_2) se encuentra el reporte del segundo avance en nuestro proyecto. 
 
-* En la carpeta [avance_3](avance_3) se encuentra el reporte del primer avance en nuestro proyecto. 
+* En la carpeta [avance_3](avance_3) se encuentra el reporte del tercer avance en nuestro proyecto. 
 
-* En la carpeta [avance_4](avance_4) se encuentra el reporte del primer avance en nuestro proyecto. 
+* En la carpeta [avance_4](avance_4) se encuentra el reporte del cuarto avance en nuestro proyecto. 
 
-* En la carpeta [avance_5](avance_5) se encuentra el reporte del primer avance en nuestro proyecto. 
+* En la carpeta [avance_5](avance_5) se encuentra el reporte del quinto avance en nuestro proyecto. 
 
 ### Referencias 
 
