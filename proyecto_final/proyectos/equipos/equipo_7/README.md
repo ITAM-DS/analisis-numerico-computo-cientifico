@@ -12,9 +12,9 @@ Objetivo del proyecto: Estudiar el problema de minimización de costos de flujo 
 
 Trabajo escrito: [Liga a trabajo escrito](https://www.dropbox.com/s/qen9e0zi4j816b3/ProyectoFinal_MNO.pdf?dl=0)
 
-Presentación: [Liga a presentación]
+Presentación: [Liga a presentación] (https://github.com/sonialr/Proyecto_MNO/blob/master/ProyectoFinal_Presentacion.html)
 
-Implementación: [Liga a código]
+Implementación: [Liga a código] (https://github.com/sonialr/Proyecto_MNO/blob/master/Proyecto_final_codigo.py)
 
 Referencias del proyecto:
 
