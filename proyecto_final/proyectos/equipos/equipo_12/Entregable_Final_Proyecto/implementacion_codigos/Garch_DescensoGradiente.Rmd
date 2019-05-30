@@ -1,0 +1,218 @@
+---
+title: "ANEXO5"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Template Package
+library(tint)
+
+# Package Management
+library(pacman)
+
+# Core Tidyverse
+library(tidyverse)
+library(lubridate)
+
+# Time Series Manipulation
+library(tidyquant)
+library(BatchGetSymbols)
+library(tibbletime)
+
+# Visualization
+library(highcharter)
+library(ggthemes)
+library(scales)
+library(ghibli)
+library(cowplot)
+
+# Table Formatting
+library(formattable)
+
+# Options
+options(digits = 5)
+
+# theme_set(theme_classic(base_size = 13))
+# options(
+#   ggplot2.continuous.colour = "viridis",
+#   ggplot2.continuous.fill = "viridis"
+# )
+# invalidate cache when the package version changes
+# knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tint'))
+```
+
+```{r setup_python, include = FALSE, eval = FALSE}
+# library(reticulate)
+# reticulate::use_condaenv("anaconda3")
+```
+
+
+## Optimización del Modelo GARCH
+
+```{r sp500_data_aid, echo=FALSE}
+SP500_data <- BatchGetSymbols(tickers = '^GSPC',
+                                first.date = as.Date("2016-01-01"),
+                                last.date = Sys.Date(),
+                                freq.data = 'daily'
+                                )
+
+# Extract the data into a tibble: 
+SP500_prices <- as_tibble(SP500_data$df.tickers) %>% 
+  select(ref.date, price.close, volume)
+```
+
+```{r log-rendimientos}
+column_names_SP <- c("ref_date", "closing_price", "volume")
+colnames(SP500_prices) <- column_names_SP
+
+SP500_returns <- SP500_prices %>% 
+  mutate(tidy_date = ymd(ref_date)) %>% 
+  mutate(log_ret = log(closing_price) - lag(log(closing_price))) %>% 
+  filter(!is.na(log_ret)) %>%
+  select(tidy_date, log_ret) %>%
+  as_tbl_time(index = tidy_date)
+```
+
+
+Para iniciar el proceso GARCH(1,1), utilizamos como $\sigma^2_0$ la varianza incondicional (muestral) de los log-rendimientos:
+```{r}
+sigma_0 <- SP500_returns %>% 
+  summarise(sigma_0 = stats::var(log_ret)) %>% 
+  as.numeric()
+```
+
+
+Luego procedemos a darle valores iniciales a nuestros parámetros y calcular la función de log-verosimilitud descrita en la sección anterior.
+```{r}
+alpha_star <- 0.1
+beta_star <- 0.85
+omega_star <- 5*10^-4
+```
+
+```{r}
+sp500_garch <- SP500_returns %>% 
+  mutate(var_garch = sigma_0)
+```
+
+Ahora, agregamos a nuestro `data.frame` las varianzas estimadas por el modelo GARCH(1,1):
+```{r}
+varianzas_garch <- numeric(length = nrow(sp500_garch)-1)
+
+for (i in 1:nrow(sp500_garch)-1) {
+  varianzas_garch[i] <-  omega_star + alpha_star * (sp500_garch[i,2])^2 + beta_star * sp500_garch[i,3]
+}
+
+varianzas_garch <- tibble(var_garch = c(sigma_0, varianzas_garch) %>% unlist())
+```
+
+```{r}
+sp500_garch <- SP500_returns %>%
+  cbind(varianzas_garch) %>% 
+  rowwise() %>% 
+  mutate(log_like = ifelse(
+    test = var_garch > 0 & alpha_star+beta_star<1, 
+    yes = -1/2*(log(var_garch) + log_ret^2/var_garch),
+    no = -1000)) 
+```
+
+Y por último, podemos calcular la log-verosimilitud de todas las observaciones:
+```{r}
+log_likelihood <- sum(sp500_garch$log_like)
+log_likelihood
+```
+
+Ahora bien, hacemos una función que calcule la log-verosimilitud, dados nuestros log-rendimientos y dados los parámetros iniciales:
+```{r}
+garch_loglikelihood <- function(omega_star = 5*10^-4, alpha_star = 0.1, beta_star = 0.85) {
+  
+  sp500_garch <- SP500_returns %>% 
+  mutate(var_garch = sigma_0)
+  
+  varianzas_garch <- numeric(length = nrow(sp500_garch)-1)
+  
+  for (i in 1:nrow(sp500_garch)-1) {
+    varianzas_garch[i] <-  omega_star + alpha_star * (sp500_garch[i,2])^2 + beta_star * sp500_garch[i,3]
+  }
+  varianzas_garch <- tibble(var_garch = c(sigma_0, varianzas_garch) %>% unlist())
+  
+  sp500_garch <- SP500_returns %>%
+  cbind(varianzas_garch) %>% 
+  rowwise() %>% 
+  mutate(log_like = ifelse(
+    test = var_garch > 0 & alpha_star+beta_star<1, 
+    yes = -1/2*(log(var_garch) + log_ret^2/var_garch),
+    no = -1000))
+  
+  log_likelihood <- sum(sp500_garch$log_like)
+  return(log_likelihood)
+}
+```
+
+Y ahora hacemos un `wrapper`:
+```{r}
+garch_loglikelihood <- function(z) {
+  
+  varianzas_garch <- numeric(length = nrow(sp500_garch)-1)
+  
+  for (i in 1:nrow(sp500_garch)-1) {
+    varianzas_garch[i] <-  z[1] + z[2] * (sp500_garch[i,2])^2 + z[3] * sp500_garch[i,3]
+  }
+  varianzas_garch <- tibble(var_garch = c(sigma_0, varianzas_garch) %>% unlist())
+  
+  sp500_garch <- SP500_returns %>%
+  cbind(varianzas_garch) %>% 
+  rowwise() %>% 
+  mutate(log_like = ifelse(
+    test = var_garch > 0 & z[2]+z[3]<1, 
+    yes = -1/2*(log(var_garch) + log_ret^2/var_garch),
+    no = -1000))
+  
+  log_likelihood <- sum(sp500_garch$log_like)
+  return(log_likelihood)
+}
+```
+
+Como realizaremos descenso en gradiente, necesitamos calcular las derivadas parciales. Estas derivadas las aproximamos:
+```{r}
+h<-0.00000001
+h_grad <- function(z){
+  c(
+    (garch_loglikelihood(z=c(z[1]+h, z[2],z[3]))-garch_loglikelihood(z=c(z[1], z[2],z[3])))/h,
+    (garch_loglikelihood(z=c(z[1], z[2]+h,z[3]))-garch_loglikelihood(z=c(z[1], z[2],z[3])))/h,
+    (garch_loglikelihood(z=c(z[1], z[2],z[3]+h))-garch_loglikelihood(z=c(z[1], z[2],z[3])))/h
+  )
+  
+}
+```
+
+```{r}
+descenso <- function(n, z_0, eta, h_deriv){
+  z <- matrix(0,n, length(z_0))
+  z[1, ] <- z_0
+  for(i in 1:(n-1)){
+    z[i+1, ] <- round((z[i, ] + eta[ ] * h_deriv(z[i, ])),16)
+  }
+  z
+}
+```
+
+Y por último, realizamos el descenso:
+```{r}
+inicial<-c(.00001, .001, 0.8) 
+iteraciones <- descenso(n=433, z_0 = inicial, eta=c(0.0000000001,0.000009,0.0000009), h_deriv=h_grad) #_ 0 _ quite 
+```
+
+```{r}
+head(iteraciones,10)
+```
+
+
+```{r}
+tail(iteraciones,20)
+```
+
+```{r}
+garch_loglikelihood(z=c(6.0356e-05, 0.070370,0.80014))
+```
+
+
