@@ -39,7 +39,7 @@ Link a la presentación final:
 https://docs.google.com/presentation/d/1w6FHBova72snJpAflVfCCzffHOtu_GmYlhOxZrjLL-o/edit#slide=id.g5acae0e010_6_71
 
 Link al documento final:
-https://github.com/manguart/optimizacion/blob/master/Optimizacion_de_portafolios_pf_MNO.pdf
+https://drive.google.com/file/d/1QTnCKjwT068LesEi5BBapsQ5RDuT3WLY/view?usp=sharing
 
 
 # Referencias
