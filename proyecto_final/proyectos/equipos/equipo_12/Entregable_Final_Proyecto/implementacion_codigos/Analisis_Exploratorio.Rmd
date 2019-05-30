@@ -1,0 +1,254 @@
+---
+title: "ANEXO1"
+output: html_document
+---
+
+# 2. Análisis Exploratorio de Datos (EDA - Exploratory Data Analysis)
+
+En esta sección del proyecto se realiza el análisis exploratorio de las dos bases de datos a utilizar.
+
+## 2.1 S$P500
+
+La primera base de datos a considerar es la que contiene información del índice S&P500 (Standard & Poor's 500). S&P500 es uno de los índices bursátiles más importantes de Estados Unidos, al ser un índice ponderado por capitalización del mercado de las 500 empresas más grandes que cotizan en la bolsa de este país. Además, también es conocido como un índice ponderado flotante por lo que las capitalizaciones de mercado de las compañias se ajuntan por el número de acciones disponibles para la negociación pública. 
+
+Es importante mencionar que las empresas que forman parte de este índice son seleccionadas por un comité que analiza los siguientes criterios: capitalización bursátil, liquidez, domicilio, capital flotante, clasificación del sector, viabilidad financiera, periodo de tiempo durante el cual ha cotizado en bolsa y ser negociada en la bolsa de valores; esto con el fin de tener la información de las compañias más representativas de las industrias que operan en el país. 
+
+En palabras más simples, S&P500 es el índice más representativo de la situación real del mercado de Estados Unidos, ya que captura aproximadamente el 80% de toda la capitalización del mercado. 
+
+A continuación se muestran los datos del índice S$P500 extraidos de: https://finance.yahoo.com/quote/%5EGSPC/history/
+
+```{r, message=FALSE, warning=FALSE}
+#Librerías necesarias para esta sección 
+library(tidyverse) #carga ggplot2
+library(BatchGetSymbols)
+library(stats)
+library(lubridate)
+```
+
+```{r, warning=FALSE, message=FALSE}
+#Exportar datos 
+SP500_data <- BatchGetSymbols(tickers = '^GSPC',
+                                first.date = as.Date("2016-01-01"),
+                                last.date = Sys.Date(),
+                                freq.data = 'daily'
+                                )
+```
+
+Esta función extrae los datos y los guarda en una lista con 2 elementos. El primero da una idea del estado de los datos, como: la fuente de recopilación, el estado de la descarga, el número total de observaciones, el porcentahe de fechas referidas y si se conservan los datos o no.  
+
+```{r, warning=FALSE}
+#Primer elemento de la lista
+SP500_data[[1]]
+```
+
+El segundo, contiene el dataframe con todos los datos que fueron extraidos. 
+
+```{r, warning=FALSE}
+#Segundo elemento de la lista 
+head(SP500_data[[2]])
+```
+
+Una vez que se tienen los datos cargados en esa lista, es necesario extraerlos, por lo tanto, se corre el siguiente código: 
+
+```{r, warning=FALSE}
+# Extraer Datos (el segundo elemento de la lista SP500 se llama df.tickers)
+SP500_prices <- as_tibble(SP500_data$df.tickers) %>% 
+  select(ref.date, price.close, volume)
+```
+
+Cabe mencionar que de todas las variables que se recopilan de la base datos, el proyecto sólo va a considerar 3: fecha de referencia, precio al cierre y volumen, por lo tanto, los datos se ven de la siguiente manera: 
+
+```{r}
+head(SP500_prices)
+```
+
+```{r, warning=FALSE, fig.width=12, fig.height=4}
+#Grafica de precio de cierre 
+ggplot(SP500_prices)+geom_line(aes(x=ref.date, y=price.close), color="royalblue3", size=1)+xlab("Fecha")+ylab("Precio de cierre")
+```
+
+
+Finalmente, los datos requieren de una última transformación, por lo tanto, se procede a calcular el log rendimiento: 
+
+```{r, warning=FALSE}
+#Función para calcular el log rendimiento de los precios y añadirlos al dataframe 
+SP500_prices <- SP500_prices %>% mutate("lag.rendimientos" = lag(price.close,k=1), 
+                                        "log.rendimientos" = log(price.close)-log(lag.rendimientos))
+```
+
+Es importante saber que esta transformación ofrece algunas ventajas, entre ellas, permite asumir log-normalidad que es que los precios se distribuyen log-normalmente, lo cual es muy útil ya que muchos teoremas presuponen normalidad. Tema en el cuál se va a indagar más adelante.
+
+```{r, warning=FALSE}
+head(SP500_prices)
+```
+
+```{r, warning=FALSE, fig.width=12, fig.height=4}
+#Gráfica de los log-rendimientos
+ggplot(SP500_prices[2:834,])+geom_line(aes(x=ref.date, y=log.rendimientos), color="dodgerblue2", size=.6)+xlab("Fecha")+ylab("Precio de cierre")
+```
+
+Como punto adicional, se puede hacer un resumen de los datos y se obtiene: 
+
+```{r, warning=FALSE}
+str(SP500_prices)
+```
+
+
+```{r, warning=FALSE}
+summary(SP500_prices)
+```
+
+Con esto se puede decir que los registros van desde el día 4 de Enero de 2016 a el 26 de Abril de  2019; que el precio mínimo de corte en este periodo fue de 1829, mientras que el mázimo fue de 2722 y el promedio fue de 2462; también el volumen tuvo un mínimo de 1.35e+09, un máximo de 7.61e+09 y una media igual a 3.64e+09; lag rendimientos corresponde a la columna que mieve un renglón a delante los datos, por lo tanto, los valores que desglosa el resumen son muy similares; por último, se tiene la información de los log-rendimientos donde hay un NA y los valores del mínimo, máximo y media son: -0.04184 , 0.04840 y 0.00045, respectivamente. 
+
+
+Ya que se tienen los datos necesarios, se procede con el EDA: 
+
+En primer lugar, se hace un histograma de los log-rendimientos, donde aparentemente, se tiene una distribución normal. 
+
+```{r, warning=FALSE, message=FALSE, fig.width=10}
+#Extraer la columna de log.rendimientos y quitar la primera celda que contiene NA
+x <- SP500_prices[2:834,]$log.rendimientos
+
+#Valores necesarios para construir una distribución normal 
+#Valores en x
+xfit<-seq(min(x),max(x),length=833)
+
+#Valores en y 
+yfit<-dnorm(xfit,mean=mean(x),sd=sd(x)) 
+
+#Guardar valores necesarios en un dataframe
+c<-as.data.frame(cbind(xfit,yfit))
+
+#Gràficar histograma de log rendimientos vs. función de densidad vs. función normal 
+p1<-ggplot(SP500_prices[2:834,], aes(x = log.rendimientos)) + 
+  geom_histogram(aes(y = ..density..)) + 
+  geom_density(colour="springgreen3", size=1.5)
+p1+geom_line(aes(x=c$xfit, y=c$yfit), colour="goldenrod2", size=1.5)+labs(title="Log-rendimientos vs. Distribución de densidad vs. Distribución normal")
+```
+
+Lo que se puede observar de la gráfica anterior es: 
+-Los log-rendimientos no son normales 
+-Tienen sesgo negativo 
+-Colas pesadas (Curtosis en exceso positiva)  
+
+```{r, warning=FALSE}
+summary(x)
+```
+
+A continuación, se calcula el cuadrado de la variable log.rendimientos y se obtiene su correlación: 
+
+```{r, warning=FALSE, fig.height=7, fig.width=20}
+x_2 <- x^2 #aproximado de la varianza 
+acf(x_2, type = "correlation", plot=TRUE)
+```
+
+probar dependencia para tiempos cortos
+varianza de lo slog rendimientos cambia c/el tiempo y periodos cercanos tienen alta correlación
+mucha varianza en un día - mucha volatilidad en los siguientes días 
+
+## 2.2 Opciones de S&P500
+
+Considerar el índice S&P500 no es suficiente para llevar acabo el proyecto, se necesita contar con el precio de las opciones de estas. Sin embargo, obtener esta información histórica al respecto no es sencillo, es por eso que se tienen datos a partir del `23 de abril del 2019` (fecha inicial de análisis). A esta fecha, el nivel del ídice S&P500 fue `2,933.68`.
+
+El siguiente código muestra cómo se cargaron los datos de opciones del índice S&P500 y una pequeña visualización de estos. 
+
+```{r read_options_data, warning=FALSE}
+#Los datos se descargaron de yahoo finance 
+options_data <- as_tibble(read.csv("options.csv"))
+
+#Se ajustan los nombres de las columnas 
+column_names <- c("contract_name","strike","last_price","volume",
+                  "open_interest","yearly_iv","type","maturity")
+
+colnames(options_data) <- column_names
+
+#Visualización de los primeros datos
+head(options_data)
+```
+
+Como parte del análisis exploratorio de los datos, es importante saber si existen valores faltantes en los datos.
+
+```{r na_seeker, warning=FALSE}
+options_data %>% 
+  map_dbl(~sum(is.na(.)))
+```
+
+Con el resultado anterior se puede observar que no hay valores faltantes. 
+
+
+A continuación, se cambia el formato de la fecha de vencimiento, se calculan los días que quedan a vencimiento y, se quitan los renglones que no tienen valor de volatilidad implícita (i.e. que es igual a cero).
+
+```{r, warning=FALSE}
+#Para calcular el precio de las opciones es necesario contar con la siguiente información y su forma más fácil de manipular es en el mismo dataframe de los datos
+
+SP500_0 <- 2933.68
+risk_free <-  0.00000682445401174167
+q_rate <- 0.00005696684931506850
+```
+
+
+```{r data_wrangling}
+#Función para limpiar los datos 
+
+options_tidy_data <- options_data %>% 
+  filter(yearly_iv > 0.001) %>% #por qué? 
+  mutate(s_t = SP500_0) %>% #crear columna con valor inicial del índice S$P500
+  mutate(rf = risk_free) %>% #crear columna con valor fuera de riesgo
+  mutate(q = q_rate) %>% 
+  mutate(daily_iv = yearly_iv/(365^(1/2))) %>% 
+  mutate(tidy_mat = dmy(maturity)) %>%
+  mutate(dtm = as.numeric(tidy_mat - ymd("2019-04-23"))) %>%
+  mutate(moneyness = SP500_0/strike) %>% 
+  select(s_t, rf, q, type, dtm, strike, last_price, tidy_mat,daily_iv, moneyness)
+  
+
+options_tidy_data
+```
+
+Con estos datos podemos calcular lo siguiente: 
+
+¿Cuántas diferentes fechas de madurez se tienen?
+
+```{r}
+options_tidy_data %>% 
+  select(dtm) %>% 
+  unique()
+```
+
+En el desarrollo teórico de este documento se explica porque es importante tomar en cuenta estos valores, por el momento, se puede decir que las opciones tienen diferentes periodos de expiración, algunas tienen 24 días, otras 59 y así sucesivamente. En otras palabras, estos son los días restantes para poder ejercer las opciones. 
+
+También se puede contestar ¿Cuántas opciones, por tipo, se tienen?
+```{r}
+options_tidy_data %>% 
+  group_by(type) %>% 
+  summarise(n = n()) 
+```
+
+La diferencia entre estos dos tipos de opciones se desarrollan en la parte teórica del documento, por lo pronto es importante saber que existen dos tipos de opciones de tipo Europea y que la determinación del precio de estas varia una de la otra. 
+
+
+Finalmente, conglomerar las dos tablas anteriores en una y así determinar ¿Cuántas opciones, por tipo, se tienenpara cada fecha de vencimiento?
+
+```{r}
+options_tidy_data %>% 
+  group_by(type, dtm) %>% 
+  summarise(n = n()) 
+```
+
+Para una mejor intepretación de los datos se tienen las siguientes visualizaciones: 
+
+La primera visualización consiste en observar el comportamiento de los precios de las opciones dependiendo de su tipo. 
+
+```{r, fig.width=12, fig.height=4, message=FALSE}
+ggplot(options_tidy_data,aes(x=last_price,group=type,fill=type))+
+  geom_histogram()+facet_wrap(~type)
+```
+
+Lo que se puede observar con las gráficas anteriores que la mayoria de las opciones de tipo put tienen un precio muy bajo, al igual que la sopciones de tipo call, con la diferencia de que su distribución en los precios aunque se concentra en valores cercanos a 100, se distribuyen hasta un valor de casi 1000.
+
+La siguiente visualización busca analizar el comportamiento de la volatilidad diaria de las opciones de ambos tipos: 
+
+```{r, fig.width=12, fig.height=4, message=FALSE}
+ggplot(options_tidy_data,aes(x=daily_iv,group=type,fill=type))+
+  geom_histogram()+facet_wrap(~type)
+```

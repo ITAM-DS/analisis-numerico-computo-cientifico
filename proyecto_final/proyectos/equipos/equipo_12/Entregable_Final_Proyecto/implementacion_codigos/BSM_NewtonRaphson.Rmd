@@ -1,0 +1,217 @@
+---
+title: "ANEXO3"
+output: html_document
+---
+
+###SP500
+```{r}
+library(BatchGetSymbols)
+SP500_data <- BatchGetSymbols(tickers = '^GSPC',
+                                first.date = as.Date("2016-01-01"),
+                                last.date = Sys.Date(),
+                                freq.data = 'daily'
+                                )
+
+# Extract the data into a tibble: 
+SP500_prices <- as_tibble(SP500_data$df.tickers) %>% 
+  select(ref.date, price.close, volume)
+
+head(SP500_prices)
+```
+
+### OPCIONES 
+
+```{r}
+options_data <- as_tibble(read.csv("C:/Users/anamh/Desktop/segundo_semestre/optimizacion/proyecto_final/options.csv"))
+column_names <- c("contract_name","strike","last_price","volume",
+                  "open_interest","yearly_iv","type","maturity")
+
+colnames(options_data) <- column_names
+options_data
+```
+
+DATOS LIMPIOS
+
+```{r}
+library(lubridate)
+SP500_0 <- 2933.68
+risk_free <-  0.00000682445401174167
+q_rate <- 0.00005696684931506850
+
+options_tidy_data <- options_data %>% 
+  filter(yearly_iv > 0.001) %>%
+  mutate(s_t = SP500_0) %>%
+  mutate(rf = risk_free) %>% 
+  mutate(q = q_rate) %>% 
+  mutate(daily_iv = yearly_iv/(365^(1/2))) %>% 
+  mutate(tidy_mat = dmy(maturity)) %>%
+  mutate(dtm = as.numeric(tidy_mat - ymd("2019-04-23"))) %>%
+  mutate(moneyness = SP500_0/strike) %>% 
+  select(s_t, rf, q, type, dtm, strike, last_price, tidy_mat,daily_iv, moneyness)
+  
+
+options_tidy_data
+```
+
+
+BSM PRECIO
+
+```{r BSM_formula}
+option_price_bsm <- function(type, St, rf, X, dtm, q, sigma){
+  d <- (log(St/X) + dtm * (rf - q + sigma^2/2))/(sigma * dtm^(1/2))
+  
+  if (type == "call"){
+    
+    call_price <- St * exp(-q*dtm) * pnorm(d) - exp(-rf * dtm) * X * pnorm(d - sigma * dtm^(1/2))
+    
+    return(call_price)
+    
+  } else if (type == "put"){
+    
+    put_price <- exp(-rf * dtm) * X * pnorm(sigma * dtm^(1/2)) - St * exp(-q*dtm) * pnorm(-d)
+    
+    return(put_price)
+    
+  } else {
+    
+    return(paste("You've entered the wrong option type. Please enter either 'call' or 'put'."))   
+  }
+}  
+```
+
+
+PRIMERA DERIVADA DE BSM FORMULA 
+```{r vega}
+option_greek_vega_bsm <- function(St, X, dtm, rf, q, sigma) {
+  d <- (log(St/X) + dtm * (rf - q + sigma^2/2))/(sigma * dtm^(1/2))
+  vega_0 <- St*exp(-q*dtm)*pnorm(d)*dtm^(1/2)
+  return(vega_0)
+}
+```
+
+SEGUNDA DERIVADA DE BSM FORMULA 
+```{r volga}
+option_greek_volga_bsm <- function(St, X, dtm, rf, q, sigma) {
+  d <- (log(St/X) + dtm * (rf - q + sigma^2/2))/(sigma * (dtm^(1/2)))
+  volga_0 <- St*exp(-q*dtm)*pnorm(d)*d*(d-sigma*(dtm^(1/2)))/sigma * (dtm^(1/2))
+    return(volga_0)
+}
+```
+
+COCIENTE NECESARIO PARA NR 
+```{r nr_delta}
+delta_newton <- function(options_data, option_type, initial_daily_vol = 0.0001) {
+  
+  if (option_type %in% c("call","put")) {
+    options_data %>%
+      filter(type == option_type) %>% 
+      rowwise() %>%
+      mutate(bsm = option_price_bsm(type = type, 
+                                    St = s_t,
+                                    rf = rf,
+                                    X = strike,
+                                    dtm = dtm,
+                                    q = q,
+                                    sigma = initial_daily_vol)) %>%
+      mutate(vega = option_greek_vega_bsm(St = s_t,
+                                      X = strike, 
+                                      dtm = dtm, 
+                                      rf = rf, 
+                                      q = q, 
+                                      sigma = initial_daily_vol)) %>% 
+      mutate(volga = option_greek_volga_bsm(St = s_t,
+                                        X = strike, 
+                                        dtm = dtm, 
+                                        rf = rf, 
+                                        q = q, 
+                                        sigma = initial_daily_vol)) %>% 
+      #mutate(up = (last_price - bsm)* volga - vega^2) %>% 
+      #mutate(down = (last_price - bsm) * vega) %>%
+      mutate(down = (last_price - bsm)* volga - vega^2) %>% 
+      mutate(up = (last_price - bsm) * vega) %>% 
+      ungroup() %>% 
+      group_by(type) %>% 
+      summarise(delta_nr = -sum(up)/sum(down)) %>%
+      select(delta_nr) %>% 
+      as.numeric() %>% 
+      return()
+  } else {
+    
+    return(paste("You've entered the wrong option type. Please enter either 'call' or 'put'.")) 
+  
+  }
+}
+```
+
+
+ERROR CUADRÁTICO MEDIO 
+
+```{r}
+mse_bsm <- function(options_data, option_type, initial_daily_vol) {
+  mse_bsm <- options_data %>%
+    filter(type == option_type) %>% 
+    rowwise() %>% 
+    mutate(bsm = option_price_bsm(type = type, 
+                                  St = s_t,
+                                  rf = rf,
+                                  X = strike,
+                                  dtm = dtm,
+                                  q = q,
+                                  sigma = initial_daily_vol)) %>% 
+    mutate(SE = (bsm-last_price)^2) %>% 
+    ungroup() %>% 
+    summarise(MSE = mean(SE)) %>% 
+    as.numeric()
+  return(mse_bsm)
+}
+```
+
+
+ALGORITMO DE NEWTON RAPHSON
+```{r}
+newt <- function(x) {
+  xnew <- x + delta_newton(options_data = options_tidy_data, option_type = "call", initial_daily_vol = x)
+}
+
+x <- 0.005
+xold <- 0.05
+while (round(xold,8) != round(x,8)){
+  xold <- x
+  cat("f(", x, ")=", mse_bsm(options_data = options_tidy_data, option_type = "call", initial_daily_vol=x), "\n")
+  x <- newt(xold)
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
