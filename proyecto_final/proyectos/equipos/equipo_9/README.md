@@ -26,7 +26,11 @@ Objetivos del proyecto:
 
 ### Entregables
 
-* Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://www.dropbox.com/s/8q1sqav4omftimo/proyecto-final.pdf?dl=0)
+* Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://www.dropbox.com/s/g3lkrbgdhd65od6/proyecto-final.pdf?dl=0)
+
+	* [Implementación de Paro](https://www.dropbox.com/s/pfarddbjlv2tc5z/implementacion_paro.pdf?dl=0)
+
+	* [Estimación de Parámetros](https://www.dropbox.com/s/njszo4jprkzxhz6/estimacion_parametros_edp.pdf?dl=0)
 
 * Presentación (fuera del repo): [liga_presentación](https://www.dropbox.com/s/lqb1b5ryh5q33gp/presentacion.pdf?dl=0)
 
@@ -36,11 +40,13 @@ Objetivos del proyecto:
 
 * En la carpeta [avance_1](avance_1) se encuentra el reporte del primer avance en nuestro proyecto. 
 
-* En la carpeta [avance_2](avance_2) se encuentra el reporte del primer avance en nuestro proyecto. 
+* En la carpeta [avance_2](avance_2) se encuentra el reporte del segundo avance en nuestro proyecto. 
 
-* En la carpeta [avance_3](avance_3) se encuentra el reporte del primer avance en nuestro proyecto. 
+* En la carpeta [avance_3](avance_3) se encuentra el reporte del tercer avance en nuestro proyecto. 
 
-* En la carpeta [avance_4](avance_4) se encuentra el reporte del primer avance en nuestro proyecto. 
+* En la carpeta [avance_4](avance_4) se encuentra el reporte del cuarto avance en nuestro proyecto. 
+
+* En la carpeta [avance_5](avance_5) se encuentra el reporte del quinto avance en nuestro proyecto. 
 
 ### Referencias 
 
