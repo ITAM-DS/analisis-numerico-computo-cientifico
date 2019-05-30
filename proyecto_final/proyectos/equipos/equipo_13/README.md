@@ -10,13 +10,13 @@
 Programar en de manera local en R el algorítmo de mínimos cuadarados alternados que se ha utilizado para ajustar sistemas de recomendción, utilizando los datos de la competencia de Netflix. 
 
 ## Trabajo escrito (fuera del repo): 
-liga_trabajo_escrito
+https://github.com/Druizm128/proyecto_final_mno/blob/master/trabajo_final/20190528_entregable_final_MNO.pdf
 
 ## Presentación (fuera del repo): 
-liga_presentación
+https://github.com/Druizm128/proyecto_final_mno/blob/master/trabajo_final/Presentaci%C3%B3n_final_MNO.pdf
 
 ## Implementación (en el repo): 
-liga_a_código
+https://github.com/Druizm128/proyecto_final_mno/blob/master/trabajo_final/codigo_algoritmo.R
 
 ## Referencias
 
