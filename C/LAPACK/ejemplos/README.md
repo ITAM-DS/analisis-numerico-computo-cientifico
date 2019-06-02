@@ -1,6 +1,6 @@
 Suponemos un sistema ubuntu y que está instalado libblas-dev y liblapack-dev.
 
-En la carpeta [solve_linear_equations](solve_linear_equations/) se tienen códigos que utilizan los archivos `definiciones.h` y `funciones.c` siguiente:
+En la carpeta [solve_linear_equations](solve_linear_equations/) se tienen códigos que utilizan los archivos `definiciones.h` y `funciones.c` siguiente y se basan en [C/extensiones_a_C/MPI/openMPI/ejemplos/3_openMPI_y_BLAS/README.md](/C/extensiones_a_C/MPI/openMPI/ejemplos/3_openMPI_y_BLAS/README.md):
 
 * `definiciones.h`:
 
