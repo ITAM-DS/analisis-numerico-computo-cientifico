@@ -50,8 +50,8 @@ int main(int argc, char *argv[]){
 	arreglo_1d_T v, v_resultado, pivotes;
 	double *d_A, *d_v;
 	int *d_pivot , *d_info , Lwork;   // pivots , info , worksp. size
-  double *d_work; //workspace
-  int info_gpu=0;
+	double *d_work; //workspace
+	int info_gpu=0;
 	int M=atoi(argv[1]);
 	int N=atoi(argv[2]);
 
@@ -82,10 +82,8 @@ int main(int argc, char *argv[]){
 	cudaStatus = cudaMalloc((void **)&d_A , renglones(A) * columnas(A) * sizeof (*d_A));
 	cudaStatus = cudaMemcpy(d_A , entradas(A), renglones(A)*columnas(A)*sizeof(double),cudaMemcpyHostToDevice);
 
-
 	cudaStatus = cudaMalloc((void **)&d_v,renglones_vector(v) * sizeof(*d_v));
 	cudaStatus = cudaMemcpy(d_v , entradas_vector(v), renglones_vector(v)*sizeof(double),cudaMemcpyHostToDevice);
-
 
 	cudaStatus = cudaMalloc ((void **)& d_pivot , renglones_vector(pivotes)*sizeof(int));
 	cudaStatus = cudaMalloc ((void **)& d_info , sizeof(int));
@@ -93,7 +91,6 @@ int main(int argc, char *argv[]){
 	//compute  buffer  size  and  prep.memory
 	cusolverStatus = cusolverDnDgetrf_bufferSize(handle, renglones(A), columnas(A), d_A ,renglones(A), &Lwork);
 	cudaStatus=cudaMalloc ((void **)& d_work ,Lwork*sizeof(double));
-
 
 	printf("matriz 1:\n");
 	imprime_matriz(A);
@@ -110,31 +107,25 @@ int main(int argc, char *argv[]){
 
 	// use  the LU  factorization  to  solve  the  system  d_A*x=d_v;
 	// the  solution  overwrites  d_v
-
-
+	
 	cusolverStatus = cusolverDnDgetrs(handle, CUBLAS_OP_N, renglones(A), 1,d_A, renglones_vector(pivotes), d_pivot, d_v, renglones_vector(v), d_info);
 
 	cudaStatus = cudaDeviceSynchronize();
 
-
 	// d_info  -> info_gpu
-
 	cudaStatus = cudaMemcpy (&info_gpu , d_info , sizeof(int),cudaMemcpyDeviceToHost );
-
-	printf("after  getrf+getrs: info_gpu = %d\n", info_gpu );
-
 	
+	printf("después de getrf+getrs: info_gpu = %d\n", info_gpu );
 
-	// copy d_v -> v_resultado, d_A -> A
+	// copiar d_v -> v_resultado, d_A -> A, d_pivot -> pivotes
 	cudaStatus = cudaMemcpy(entradas_vector(v_resultado), d_v , renglones_vector(v_resultado)*sizeof(double),cudaMemcpyDeviceToHost );
 
 	cudaStatus = cudaMemcpy(entradas(A), d_A , renglones(A)*columnas(A)*sizeof(double),cudaMemcpyDeviceToHost);
 
 	cudaStatus = cudaMemcpy(entradas_vector_entero(pivotes), d_pivot , renglones_vector(pivotes)*sizeof(int),cudaMemcpyDeviceToHost);
 
-	
-
 	//imprimir resultado:
+	printf("----------------\n");
 	printf("vector resultado:\n");
 	imprime_vector(v_resultado);
 	printf("----------------\n");
@@ -143,15 +134,13 @@ int main(int argc, char *argv[]){
 	printf("matriz 1 con factores L,U:\n");
 	imprime_matriz(A);
 
-
 	// free memory
-  cudaStatus = cudaFree(d_A);
+	cudaStatus = cudaFree(d_A);
 	cudaStatus = cudaFree(d_v);
 	cudaStatus = cudaFree(d_pivot );
 	cudaStatus = cudaFree(d_info );
 	cudaStatus = cudaFree(d_work );
 	
-
 	free(entradas(A));
 	free(A);
 	free(entradas_vector(v));
@@ -198,7 +187,8 @@ vector[1]=-2.00000
 vector[2]=2.00000
 vector[3]=1.00000
 ------------
-after  getrf+getrs: info_gpu = 0
+después de getrf+getrs: info_gpu = 0
+------------
 vector resultado:
 vector[0]=-0.42424
 vector[1]=-0.12121
