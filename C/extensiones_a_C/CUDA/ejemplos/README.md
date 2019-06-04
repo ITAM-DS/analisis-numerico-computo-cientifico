@@ -394,6 +394,7 @@ Salida:
 6+36 = 42
 7+49 = 56
 8+64 = 72
+9+81 = 90
 ```
 
 Y se puede utilizar [nvprof](https://docs.nvidia.com/cuda/profiler-users-guide/index.html#nvprof-overview) para perfilamiento del programa:
@@ -402,8 +403,234 @@ Y se puede utilizar [nvprof](https://docs.nvidia.com/cuda/profiler-users-guide/i
 $nvprof ./suma_vectorial.out
 ```
 
+Salida:
+
+```
+==68883== NVPROF is profiling process 68883, command: ./suma_vectorial.out
+0+0 = 0
+1+1 = 2
+2+4 = 6
+3+9 = 12
+4+16 = 20
+5+25 = 30
+6+36 = 42
+7+49 = 56
+8+64 = 72
+9+81 = 90
+==68883== Profiling application: ./suma_vectorial.out
+==68883== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 45.82%  8.0640us         1  8.0640us  8.0640us  8.0640us  suma_vect(int*, int*, int*)
+ 32.18%  5.6640us         1  5.6640us  5.6640us  5.6640us  [CUDA memcpy DtoH]
+ 22.00%  3.8720us         2  1.9360us  1.6320us  2.2400us  [CUDA memcpy HtoD]
+
+==68883== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 98.80%  70.344ms         3  23.448ms  6.0790us  70.332ms  cudaMalloc
+  0.69%  490.76us         3  163.59us  31.111us  424.27us  cudaMemcpy
+  0.19%  134.89us         3  44.963us  5.0180us  116.31us  cudaFree
+  0.14%  101.43us        83  1.2220us      89ns  51.713us  cuDeviceGetAttribute
+  0.07%  49.787us         1  49.787us  49.787us  49.787us  cudaLaunch
+  0.04%  26.117us         1  26.117us  26.117us  26.117us  cudaDeviceSynchronize
+  0.03%  23.240us         1  23.240us  23.240us  23.240us  cuDeviceGetName
+  0.01%  8.4970us         3  2.8320us     180ns  7.2470us  cudaSetupArgument
+  0.01%  7.0830us         1  7.0830us  7.0830us  7.0830us  cudaSetDeviceFlags
+  0.01%  6.3870us         1  6.3870us  6.3870us  6.3870us  cuDeviceTotalMem
+  0.00%  3.5340us         1  3.5340us  3.5340us  3.5340us  cudaConfigureCall
+  0.00%  2.1690us         2  1.0840us     182ns  1.9870us  cuDeviceGetCount
+  0.00%     295ns         2     147ns     108ns     187ns  cuDeviceGet
+```
 
 
 ```
 $nvprof ./suma_vectorial_2.out
 ```
+
+Salida:
+
+```
+==68885== NVPROF is profiling process 68885, command: ./suma_vectorial_2.out
+0+0 = 0
+1+1 = 2
+2+4 = 6
+3+9 = 12
+4+16 = 20
+5+25 = 30
+6+36 = 42
+7+49 = 56
+8+64 = 72
+9+81 = 90
+==68885== Profiling application: ./suma_vectorial_2.out
+==68885== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 51.81%  10.080us         1  10.080us  10.080us  10.080us  suma_vect(int*, int*, int*)
+ 29.11%  5.6640us         1  5.6640us  5.6640us  5.6640us  [CUDA memcpy DtoH]
+ 19.08%  3.7120us         2  1.8560us  1.4720us  2.2400us  [CUDA memcpy HtoD]
+
+==68885== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 99.08%  61.896ms         3  20.632ms  4.1740us  61.886ms  cudaMalloc
+  0.46%  286.10us         3  95.367us  20.794us  237.86us  cudaMemcpy
+  0.14%  87.430us         3  29.143us  4.6150us  75.873us  cudaFree
+  0.13%  83.587us        83  1.0070us      88ns  34.076us  cuDeviceGetAttribute
+  0.06%  37.604us         1  37.604us  37.604us  37.604us  cudaLaunch
+  0.05%  29.602us         1  29.602us  29.602us  29.602us  cudaDeviceSynchronize
+  0.03%  20.714us         1  20.714us  20.714us  20.714us  cuDeviceGetName
+  0.02%  13.022us         3  4.3400us     213ns  12.326us  cudaSetupArgument
+  0.01%  6.2560us         1  6.2560us  6.2560us  6.2560us  cuDeviceTotalMem
+  0.01%  5.0080us         1  5.0080us  5.0080us  5.0080us  cudaSetDeviceFlags
+  0.00%  2.3130us         1  2.3130us  2.3130us  2.3130us  cudaConfigureCall
+  0.00%  2.1790us         2  1.0890us     183ns  1.9960us  cuDeviceGetCount
+  0.00%     307ns         2     153ns      94ns     213ns  cuDeviceGet
+```
+
+## Unified memory
+
+Suma con `N` bloques con 1 thread:
+
+`suma_vectorial_unified_memory.cu`:
+
+```
+#include<stdio.h>
+#define N 10
+__global__ void suma_vect(int *a, int *b, int *c){
+	int tid = blockIdx.x;
+	if(tid<N)
+		c[tid] = a[tid]+b[tid];
+}
+int main(void){
+	int *device_a, *device_b, *device_c;
+	int i;
+	cudaMallocManaged(&device_a, N*sizeof(double));
+	cudaMallocManaged(&device_b, N*sizeof(double));
+	cudaMallocManaged(&device_c, N*sizeof(double));
+
+	//inicializando los arreglos en el host:
+	for(i=0;i<N;i++){
+		device_a[i]=i;
+		device_b[i]=i*i;
+	}
+
+	//mandamos a llamar a suma_vect:
+    cudaSetDeviceFlags(cudaDeviceScheduleBlockingSync);
+	suma_vect<<<N,1>>>(device_a,device_b,device_c); //N bloques de 1 thread
+
+	//esperar a que la GPU finalice los cálculos
+    cudaDeviceSynchronize();
+
+	for(i=0;i<N;i++)
+		printf("%d+%d = %d\n",device_a[i],device_b[i],device_c[i]);
+	cudaFree(device_a);
+	cudaFree(device_b);
+	cudaFree(device_c);
+	return 0;
+}
+
+```
+
+Compilamos:
+
+```
+$nvcc suma_vectorial_unified_memory.cu -o suma_vectorial_unified_memory.out
+
+```
+
+
+Ejecutamos:
+
+
+```
+$./suma_vectorial_unified_memory.out
+```
+
+Salida:
+
+```
+0+0 = 0
+1+1 = 2
+2+4 = 6
+3+9 = 12
+4+16 = 20
+5+25 = 30
+6+36 = 42
+7+49 = 56
+8+64 = 72
+9+81 = 90
+```
+
+
+
+Suma con 1 bloques con `N` threads:
+
+`suma_vectorial_unified_memory_2.cu`:
+
+```
+#include<stdio.h>
+#define N 10
+__global__ void suma_vect(int *a, int *b, int *c){
+	int tid = threadIdx.x;
+	if(tid<N)
+		c[tid] = a[tid]+b[tid];
+}
+int main(void){
+	int *device_a, *device_b, *device_c;
+	int i;
+	cudaMallocManaged(&device_a, N*sizeof(double));
+	cudaMallocManaged(&device_b, N*sizeof(double));
+	cudaMallocManaged(&device_c, N*sizeof(double));
+
+	//inicializando los arreglos en el host:
+	for(i=0;i<N;i++){
+		device_a[i]=i;
+		device_b[i]=i*i;
+	}
+
+	//mandamos a llamar a suma_vect:
+    cudaSetDeviceFlags(cudaDeviceScheduleBlockingSync);
+	suma_vect<<<1,N>>>(device_a,device_b,device_c); //1 bloque de N threads
+
+	//esperar a que la GPU finalice los cálculos
+    cudaDeviceSynchronize();
+
+	for(i=0;i<N;i++)
+		printf("%d+%d = %d\n",device_a[i],device_b[i],device_c[i]);
+	cudaFree(device_a);
+	cudaFree(device_b);
+	cudaFree(device_c);
+	return 0;
+}
+
+```
+
+Compilamos:
+
+```
+$nvcc suma_vectorial_unified_memory_2.cu -o suma_vectorial_unified_memory_2.out
+
+```
+
+
+Ejecutamos:
+
+
+```
+$./suma_vectorial_unified_memory_2.out
+```
+
+Salida:
+
+```
+0+0 = 0
+1+1 = 2
+2+4 = 6
+3+9 = 12
+4+16 = 20
+5+25 = 30
+6+36 = 42
+7+49 = 56
+8+64 = 72
+9+81 = 90
+```
+
+
+
