@@ -6,7 +6,7 @@ Información sobre resolver sistemas de ecuaciones lineales con LAPACK: [driver 
 
 Código que resuelve un sistema de ecuaciones lineales con una matriz y un vector almacenados en los archivos:
 
-`b.txt`:
+`v.txt`:
 
 ```
 0
@@ -32,7 +32,7 @@ Código que resuelve un sistema de ecuaciones lineales con una matriz y un vecto
 #include<stdlib.h>
 #include"definiciones.h"
 #define A_matriz "A.txt" //de tamaño NxN
-#define v_vector "b.txt" //de tamaño Nx1
+#define v_vector "v.txt" //de tamaño Nx1
 extern void dgesv_(int *n, int *nrhs, double *a, int *lda, int *pivotes, double *b, int *ldb, int *info);
 int main(int argc, char *argv[]){
 	arreglo_2d_T A;
