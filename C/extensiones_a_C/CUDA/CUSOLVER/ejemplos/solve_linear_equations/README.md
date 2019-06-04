@@ -51,6 +51,7 @@ int main(int argc, char *argv[]){
 	double *d_A, *d_v;
 	int *d_pivot , *d_info , Lwork;   // pivots , info , worksp. size
 	double *d_work; //workspace
+	double time_spent;
 	int info_gpu=0;
 	int M=atoi(argv[1]);
 	int N=atoi(argv[2]);
@@ -99,7 +100,7 @@ int main(int argc, char *argv[]){
 	imprime_vector(v);
 	printf("------------\n");
 
-
+	clock_t begin = clock();
 	//LU  factorization  of d_A , with  partial  pivoting  and  row
 	//interchanges; row i is  interchanged  with  row  d_pivot(i);
 
@@ -111,6 +112,8 @@ int main(int argc, char *argv[]){
 	cusolverStatus = cusolverDnDgetrs(handle, CUBLAS_OP_N, renglones(A), 1,d_A, renglones_vector(pivotes), d_pivot, d_v, renglones_vector(v), d_info);
 
 	cudaStatus = cudaDeviceSynchronize();
+
+	clock_t end = clock();
 
 	// d_info  -> info_gpu
 	cudaStatus = cudaMemcpy (&info_gpu , d_info , sizeof(int),cudaMemcpyDeviceToHost );
@@ -131,8 +134,14 @@ int main(int argc, char *argv[]){
 	printf("----------------\n");
 	printf("pivotes:\n");
 	imprime_vector_entero(pivotes);
+	printf("----------------\n");
 	printf("matriz 1 con factores L,U:\n");
 	imprime_matriz(A);
+
+    printf("----------------\n");
+	//tiempo de cálculo:
+	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	printf("Tiempo de cálculo en la gpu %.5f\n", time_spent);
 
 	// free memory
 	cudaStatus = cudaFree(d_A);
@@ -188,7 +197,7 @@ vector[2]=2.00000
 vector[3]=1.00000
 ------------
 después de getrf+getrs: info_gpu = 0
-------------
+----------------
 vector resultado:
 vector[0]=-0.42424
 vector[1]=-0.12121
@@ -200,10 +209,13 @@ vector[0]=1
 vector[1]=3
 vector[2]=3
 vector[3]=4
+----------------
 matriz 1 con factores L,U:
 matriz[0][0]=2.00000	matriz[0][1]=3.00000	matriz[0][2]=-2.00000	matriz[0][3]=1.00000
 matriz[1][0]=1.00000	matriz[1][1]=-5.00000	matriz[1][2]=2.00000	matriz[1][3]=0.00000
 matriz[2][0]=0.50000	matriz[2][1]=-0.30000	matriz[2][2]=3.60000	matriz[2][3]=-1.50000
 matriz[3][0]=-0.50000	matriz[3][1]=-0.50000	matriz[3][2]=0.27778	matriz[3][3]=0.91667
+----------------
+Tiempo de cálculo en la gpu 0.00075
 
 ```
