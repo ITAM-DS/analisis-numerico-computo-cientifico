@@ -12,14 +12,12 @@ Para obtener información del device seguimos las instrucciones de la sección [
 
 ```
 cd /usr/local/cuda/samples/1_Utilities/deviceQuery && sudo make all Makefile && cd
-
 ```
 
 Ejecutamos:
 
 ```
 /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery
-
 ```
 
 Resultado:
