@@ -482,6 +482,17 @@ Time(%)      Time     Calls       Avg       Min       Max  Name
 
 ## Unified memory
 
+-> disponible para tarjetas GPU con arquitectura de SM 3.0 or más (clase Kepler o nuevas) 
+ver:
+
+* [Unified Memory in CUDA 6](https://devblogs.nvidia.com/unified-memory-in-cuda-6/)
+
+* [Unified Memory Programming](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#um-unified-memory-programming-hd)
+
+* [Unified Memory for CUDA Beginners](https://devblogs.nvidia.com/unified-memory-cuda-beginners/)
+
+* [Everything you need to know about unified memory](http://on-demand.gputechconf.com/gtc/2018/presentation/s8430-everything-you-need-to-know-about-unified-memory.pdf)
+
 Suma con `N` bloques con 1 thread:
 
 `suma_vectorial_unified_memory.cu`:
