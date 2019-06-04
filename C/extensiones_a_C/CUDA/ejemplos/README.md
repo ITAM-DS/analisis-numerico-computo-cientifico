@@ -296,7 +296,6 @@ Compilamos:
 
 ```
 $nvcc suma_vectorial.cu -o suma_vectorial.out
-
 ```
 
 
@@ -369,7 +368,6 @@ Compilamos:
 
 ```
 $nvcc suma_vectorial_2.cu -o suma_vectorial_2.out
-
 ```
 
 
@@ -530,7 +528,6 @@ Compilamos:
 
 ```
 $nvcc suma_vectorial_unified_memory.cu -o suma_vectorial_unified_memory.out
-
 ```
 
 
@@ -597,14 +594,12 @@ int main(void){
 	cudaFree(device_c);
 	return 0;
 }
-
 ```
 
 Compilamos:
 
 ```
 $nvcc suma_vectorial_unified_memory_2.cu -o suma_vectorial_unified_memory_2.out
-
 ```
 
 
@@ -629,6 +624,3 @@ Salida:
 8+64 = 72
 9+81 = 90
 ```
-
-
-
