@@ -14,9 +14,8 @@ usamos [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) 
 
 ```
 user=ubuntu
-echo 'source /usr/local/bin/virtualenvwrapper.sh' >> /home/$user/.bash_aliases
+echo 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3 && source /usr/local/bin/virtualenvwrapper.sh' >> /home/$user/.bash_aliases
 echo "alias python=python3" >> /home/$user/.bash_aliases
-echo 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3' >>/home/$user/.profile
 sudo pip3 install virtualenvwrapper
 ```
 
@@ -26,7 +25,7 @@ Salir y entrar de la instancia.
 Creamos el ambiente virtual `pycuda_ve` e instalamos numpy, [jupyterlab](https://jupyterlab.readthedocs.io/en/stable/) en tal ambiente:
 
 ```
-/bin/bash -c "source /usr/local/bin/virtualenvwrapper.sh && alias python=python3 && mkvirtualenv pycuda_ve"
+mkvirtualenv pycuda_ve
 sudo apt-get install -y nodejs
 workon pycuda_ve
 pip install numpy scipy nose mako setuptools
