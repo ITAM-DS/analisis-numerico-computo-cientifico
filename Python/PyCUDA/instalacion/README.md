@@ -15,7 +15,7 @@ usamos [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) 
 ```
 user=ubuntu
 echo 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3 && source /usr/local/bin/virtualenvwrapper.sh' >> /home/$user/.bash_aliases
-echo "alias python=python3" >> /home/$user/.bash_aliases
+#echo "alias python=python3" >> /home/$user/.bash_aliases #<--- check this one
 sudo pip3 install virtualenvwrapper
 ```
 
@@ -28,8 +28,8 @@ Creamos el ambiente virtual `pycuda_ve` e instalamos numpy, [jupyterlab](https:/
 mkvirtualenv pycuda_ve
 sudo apt-get install -y nodejs
 workon pycuda_ve
-pip install numpy scipy nose mako setuptools
-pip install jupyter jupyterlab --upgrade
+pip3 install numpy scipy nose mako setuptools
+pip3 install jupyter jupyterlab --upgrade
 jupyter notebook --generate-config
 ```
 
@@ -64,14 +64,14 @@ Y habilitamos los grupos de seguridad en AWS para que nuestra IP pueda acceder e
 Instalamos [Pycuda](https://documen.tician.de/pycuda/) en el ambiente virtual `py_ve`:
 
 ```
-pip install pycuda
+pip3 install pycuda
 ```
 
 Si se desea utilizar las librerías `CUSOLVER`, `CUBLAS` se recomienda instalar [scikit-cuda](https://scikit-cuda.readthedocs.io/en/latest/)
 
 
 ```
-pip install scikit-cuda	
+pip3 install scikit-cuda	
 ```
 
 
