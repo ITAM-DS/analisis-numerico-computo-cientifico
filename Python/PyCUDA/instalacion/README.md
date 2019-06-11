@@ -25,6 +25,7 @@ Salir y entrar de la instancia.
 Creamos el ambiente virtual `pycuda_ve` e instalamos numpy, [jupyterlab](https://jupyterlab.readthedocs.io/en/stable/) en tal ambiente:
 
 ```
+alias python=python3
 mkvirtualenv pycuda_ve
 sudo apt-get install -y nodejs
 workon pycuda_ve
