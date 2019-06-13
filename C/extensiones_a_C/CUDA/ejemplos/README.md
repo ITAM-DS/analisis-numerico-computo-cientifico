@@ -485,7 +485,7 @@ Time(%)      Time     Calls       Avg       Min       Max  Name
   0.00%     307ns         2     153ns      94ns     213ns  cuDeviceGet
 ```
 
-**Obsérvese** que con la modificación siguiente se puede quitar la suposición `N` menor al número máximo de threads en un bloque: 
+**Obsérvese** que con la modificación siguiente se puede quitar la suposición `N` menor al número máximo de threads en un bloque: (ver (An Even Easier Introduction to CUDA)[https://devblogs.nvidia.com/even-easier-introduction-cuda/])
 
 
 ```
