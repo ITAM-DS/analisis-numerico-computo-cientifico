@@ -493,7 +493,7 @@ __global__ void suma_vect(int *a, int *b, int *c){
 	int tid = threadIdx.x;
 	int stride = blockDim.x;
 	for(i=tid;i<N;i=i+stride)
-		c[tid] = a[tid]+b[tid];
+		c[i] = a[i]+b[i];
 }
 ```
 
