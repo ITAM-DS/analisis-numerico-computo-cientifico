@@ -84,7 +84,10 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 * [CUBLAS](C/extensiones_a_C/CUDA/CUBLAS/)
 
+* [CUSOLVER](C/extensiones_a_C/CUDA/CUSOLVER/)
+
 * [PyCUDA](Python/PyCUDA/)
+
 
 ## III [Cómputo matricial](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
