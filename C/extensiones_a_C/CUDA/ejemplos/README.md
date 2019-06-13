@@ -326,7 +326,7 @@ Suma con 1 bloque con `N` threads:
 
 `suma_vectorial_2.cu`:
 
-Obsérvese que en el siguiente programa se asume que `N` es menor al número máximo de threads que se pueden lanzar en la GPU y que en caso que se eligiera `N` un valor mayor a este número máximo no se realizaría la suma de los elementos del arreglo desde la posición `N` en adelante.
+Obsérvese que en el siguiente programa se asume que `N` es menor al número máximo de threads que se pueden lanzar en un bloque y que en caso que se eligiera `N` un valor mayor a este número máximo no se realizaría la suma de los elementos del arreglo desde la posición `N` en adelante.
 
 
 ```
