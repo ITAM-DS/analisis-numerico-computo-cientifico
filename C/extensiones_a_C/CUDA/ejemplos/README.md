@@ -248,8 +248,9 @@ Salida:
 
 ## Programa de suma vectorial:
 
-Lanzamos `N` bloques de 1 thread que ejecuten el kernel.
+Lanzamos `N` bloques de 1 thread que ejecuten el kernel. 
 
+Obsérvese que en el siguiente programa se asume que `N` es menor al número máximo de bloques que se pueden lanzar en la GPU y que en caso que se eligiera `N` un valor mayor a este número máximo no se realizaría la suma de los elementos del arreglo desde la posición `N` en adelante. **Pregunta: ¿cómo se arregla esto utilizando un else?** (tip: usar un *stride* que involucre las variables `blockDim.x` y `gridDim.x` para calcular el número total de threads y modificar la variable `tid`, ver [CUDA Pro Tip: Write Flexible Kernels with Grid-Stride Loops](https://devblogs.nvidia.com/cuda-pro-tip-write-flexible-kernels-grid-stride-loops/)).
 
 `suma_vectorial.cu`:
 
@@ -258,7 +259,7 @@ Lanzamos `N` bloques de 1 thread que ejecuten el kernel.
 #define N 10
 __global__ void suma_vect(int *a, int *b, int *c){
 	int tid = blockIdx.x;
-	if(tid<N)
+	if(tid<N) #suposición N menor al número máximo de bloques que se pueden lanzar
 		c[tid] = a[tid]+b[tid];
 }
 int main(void){
@@ -325,11 +326,14 @@ Suma con 1 bloque con `N` threads:
 
 `suma_vectorial_2.cu`:
 
+Obsérvese que en el siguiente programa se asume que `N` es menor al número máximo de threads que se pueden lanzar en la GPU y que en caso que se eligiera `N` un valor mayor a este número máximo no se realizaría la suma de los elementos del arreglo desde la posición `N` en adelante.
+
+
 ```
 #define N 10
 __global__ void suma_vect(int *a, int *b, int *c){
 	int tid = threadIdx.x;
-	if(tid<N)
+	if(tid<N) #suposición N menor al número máximo de threads en un bloque
 		c[tid] = a[tid]+b[tid];
 }
 int main(void){
@@ -392,6 +396,7 @@ Salida:
 8+64 = 72
 9+81 = 90
 ```
+
 
 Y se puede utilizar [nvprof](https://docs.nvidia.com/cuda/profiler-users-guide/index.html#nvprof-overview) para perfilamiento del programa:
 
@@ -480,6 +485,19 @@ Time(%)      Time     Calls       Avg       Min       Max  Name
   0.00%     307ns         2     153ns      94ns     213ns  cuDeviceGet
 ```
 
+**Obsérvese** que con la modificación siguiente se puede quitar la suposición `N` menor al número máximo de threads en un bloque: 
+
+
+```
+__global__ void suma_vect(int *a, int *b, int *c){
+	int tid = threadIdx.x;
+	int stride = blockDim.x;
+	for(i=tid;i<N;i=i+stride)
+		c[tid] = a[tid]+b[tid];
+}
+```
+
+
 ## Unified memory
 
 -> disponible para tarjetas GPU con arquitectura de SM 3.0 or más (clase Kepler o nuevas) 
@@ -502,7 +520,7 @@ Suma con `N` bloques con 1 thread:
 #define N 10
 __global__ void suma_vect(int *a, int *b, int *c){
 	int tid = blockIdx.x;
-	if(tid<N)
+	if(tid<N) #suposición N menor al número máximo de bloques que se pueden lanzar
 		c[tid] = a[tid]+b[tid];
 }
 int main(void){
@@ -574,7 +592,7 @@ Suma con 1 bloques con `N` threads:
 #include<stdio.h>
 #define N 10
 __global__ void suma_vect(int *a, int *b, int *c){
-	int tid = threadIdx.x;
+	int tid = threadIdx.x; #suposición N menor al número máximo de threads en un bloque
 	if(tid<N)
 		c[tid] = a[tid]+b[tid];
 }
