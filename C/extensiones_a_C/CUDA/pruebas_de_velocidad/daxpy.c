@@ -11,6 +11,7 @@ int main(int argc, char *argv[]){
 	int incx=1;
 	double alpha=3.5;
 	int N=atoi(argv[1]);
+	double time_spent;
 
 	v1=malloc(sizeof(*v1));
 	v2=malloc(sizeof(*v2));
@@ -33,8 +34,12 @@ int main(int argc, char *argv[]){
 	printf("vector :\n");
 	imprime_vector(v2);
 	printf("------------\n");
-
+	clock_t begin = clock();
 	daxpy_(&N, &alpha, entradas_vector(v1), &incx, entradas_vector(v2), &incx);
+	clock_t end = clock();
+	//tiempo de cálculo:
+	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	printf("Tiempo de cálculo en la gpu %.5f\n", time_spent);
 	printf("resultado\n");
 	imprime_vector(v2);
 	free(entradas_vector(v1));
