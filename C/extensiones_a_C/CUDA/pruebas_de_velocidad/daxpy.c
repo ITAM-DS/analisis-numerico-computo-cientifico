@@ -4,11 +4,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"definiciones.h"
-
-extern double daxpy_(int *n, double *x, int *incx, double *y, int *incy);
+#include<time.h>
+extern double daxpy_(int *n, double *alpha, double *x,int *incx, double *y, int *incy);
 int main(int argc, char *argv[]){
 	arreglo_1d_T v1, v2;
 	int incx=1;
+	int i;
 	double alpha=3.5;
 	int N=atoi(argv[1]);
 	double time_spent;
@@ -27,21 +28,14 @@ int main(int argc, char *argv[]){
 		entrada_vector(v2,i) = i*i;
 	}
 
-	printf("------------\n");
-	printf("vector :\n");
-	imprime_vector(v1);
-	printf("------------\n");
-	printf("vector :\n");
-	imprime_vector(v2);
-	printf("------------\n");
+	
 	clock_t begin = clock();
 	daxpy_(&N, &alpha, entradas_vector(v1), &incx, entradas_vector(v2), &incx);
 	clock_t end = clock();
 	//tiempo de cálculo:
 	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
 	printf("Tiempo de cálculo en la gpu %.5f\n", time_spent);
-	printf("resultado\n");
-	imprime_vector(v2);
+
 	free(entradas_vector(v1));
 	free(v1);
 	free(entradas_vector(v2));
