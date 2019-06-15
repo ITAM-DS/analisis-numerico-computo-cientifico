@@ -26,7 +26,7 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 * [Ejemplo de análisis del error en los métodos de diferenciación e integración numérica](https://www.dropbox.com/s/jfrxanjls8kndjp/Diferenciacion_e_Integracion.pdf?dl=0).
 
-* [Ejercicios Taylor y diferenciación numérica](https://www.dropbox.com/s/n5srgxh2xdisaec/Taylor_y_dif_numerica.pdf?dl=0)
+* [Ejercicios Taylor y diferenciación numérica](https://drive.google.com/file/d/1z-pp9T_Htv2gNcOur-SnpLAmGKX8vOgT/view?usp=sharing)
 
 * [Ejercicios Integración numérica](https://www.dropbox.com/s/vk28jsrh2gwqzo3/Int_numerica.pdf?dl=0)
 
