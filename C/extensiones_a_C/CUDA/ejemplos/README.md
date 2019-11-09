@@ -259,7 +259,7 @@ Obsérvese que en el siguiente programa se asume que `N` es menor al número má
 #define N 10
 __global__ void suma_vect(int *a, int *b, int *c){
 	int tid = blockIdx.x;
-	if(tid<N) #suposición N menor al número máximo de bloques que se pueden lanzar
+	if(tid<N) //suposición N menor al número máximo de bloques que se pueden lanzar
 		c[tid] = a[tid]+b[tid];
 }
 int main(void){
@@ -330,10 +330,11 @@ Obsérvese que en el siguiente programa se asume que `N` es menor al número má
 
 
 ```
+#include<stdio.h>
 #define N 10
 __global__ void suma_vect(int *a, int *b, int *c){
 	int tid = threadIdx.x;
-	if(tid<N) #suposición N menor al número máximo de threads en un bloque
+	if(tid<N) //suposición N menor al número máximo de threads en un bloque
 		c[tid] = a[tid]+b[tid];
 }
 int main(void){
