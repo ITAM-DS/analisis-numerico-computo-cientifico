@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
 	//mandamos a llamar a daxpy:
     cudaSetDeviceFlags(cudaDeviceScheduleBlockingSync);
 	clock_t begin = clock();
-	daxpy<<<1,N>>>(device_a,device_b,d_al,d_N); //N bloques de 1 thread
+	daxpy<<<1,N>>>(device_a,device_b,d_al,d_N); //1 bloque de N threads
     cudaDeviceSynchronize();
     clock_t end = clock();
     //tiempo de cálculo:
