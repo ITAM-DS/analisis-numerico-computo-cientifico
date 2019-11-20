@@ -198,6 +198,14 @@ Se obtiene por ejemplo:
 +-----------------------------------------------------------------------------+
 ```
 
+Algunas imágenes útiles son:
+
+```
+nvidia/cuda:10.1-devel-ubuntu18.04
+nvidia/cuda:9.0-devel-ubuntu16.04
+```
+
+ver: https://hub.docker.com/r/nvidia/cuda
 
 ## Mandatory, recomended y optional actions:
 
