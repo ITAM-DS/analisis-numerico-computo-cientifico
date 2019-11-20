@@ -111,11 +111,55 @@ echo "export PATH=/usr/local/$cuda_version/bin${PATH:+:${PATH}}" >> /home/$user/
 echo "export LD_LIBRARY_PATH=/usr/local/$cuda_version/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" >>/home/$user/.profile
 ```
 
+
+### Nota para sólo instalar NVIDIA driver y nvidia-docker
+
+Seleccionar una AMI AWS ubuntu 18.04.
+
+El siguiente bash script identifica una instancia con el nombre de la variable name_instance, en la region us-west-2. Cambiar variables region, user, ubuntu_version, name_instance de acuerdo a su configuración. Utilizarlo en la sección de User data de la configuración de una instancia:
+
+
+
+```
+#!/bin/bash
+region=us-west-2
+user=ubuntu
+name_instance=gpu-node
+apt-get update
+apt-get install linux-headers-$(uname -r) #to have kernel headers and development
+#packages accordingly to the current kernel
+apt-get install -y awscli build-essential
+#To tag instances of type node
+INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
+aws ec2 create-tags --resources $INSTANCE_ID --tag Key=Name,Value=$name_instance-$PUBLIC_IP --region=$region
+##install docker for ubuntu:
+apt-get install -y apt-transport-https ca-certificates software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt-get update
+apt-get install -y docker-ce
+service docker start
+#nvidia driver:
+sudo apt-get install -y ubuntu-drivers-common
+sudo ubuntu-drivers autoinstall
+#for nvidia docker:
+# Add the package repositories
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+
+```
+
+
+
 Recomendable revisar [optimizing GPU](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/optimize_gpu.html) de la documentación de AWS.
 
 ## Docker en Ubuntu 18.04:
 
-De acuerdo a la página  e [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) primero se debe instalar el NVIDIA driver. Para esto, realizar la instalación descrita en Ubuntu en la parte de arriba.
+De acuerdo a la página  de [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) primero se debe instalar el NVIDIA driver. Para esto, realizar la instalación descrita en Ubuntu en la parte de arriba.
 
 Para `nvidia-docker`:
 
