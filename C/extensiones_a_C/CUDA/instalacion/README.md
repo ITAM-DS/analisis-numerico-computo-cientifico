@@ -2,11 +2,11 @@
 
 Para usar CUDA es necesario que sus máquinas tengan una GPU de NVIDIA que sea CUDA capable.
 
-Se debe descargar el toolkit NVIDIA CUDA de [aquí](https://developer.nvidia.com/cuda-downloads) dependiendo de su sistema operativo.
+Se debe descargar el toolkit NVIDIA CUDA de [aquí](https://developer.nvidia.com/cuda-downloads) dependiendo de su sistema operativo (o bien ir a la sección de docker)
 
 El toolkit NVIDIA CUDA de acuerdo a las guías de instalación contiene:
 
-* CUDA driver y Nvidia driver. (CUDA driver es una API de acuerdo a [liga](http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#driver-api), se utiliza por el CUDA Runtime de acuerdo a [liga](http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#versioning-and-compatibility) y el Nvidia driver incluye al CUDA driver y funcionalidad de bajo nivel por ejemplo interacción con el kernel del sistema operativo).
+* CUDA driver y NVIDIA driver. (CUDA driver es una API de acuerdo a [liga](http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#driver-api), se utiliza por el CUDA Runtime de acuerdo a [liga](http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#versioning-and-compatibility) y el Nvidia driver incluye al CUDA driver y funcionalidad de bajo nivel por ejemplo interacción con el kernel del sistema operativo).
 
 * tools para crear, construir y correr una aplicación de CUDA. (por ejemplo el compilador nvcc)
 
@@ -20,7 +20,7 @@ En esta [página](http://docs.nvidia.com/cuda/cuda-getting-started-guide-for-mac
 
 Una vez instalado:
 
-* El device driver de NVIDIA.
+* Los drivers de NVIDIA (CUDA y NVIDIA driver).
 
 * Toolkit para desarrollo.
 
@@ -51,7 +51,29 @@ Para usar CUDA es necesario que sus máquinas tengan una GPU de NVIDIA. Pueden r
 $lspci | grep -i nvidia
 ```
 
-En esta [página](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html) encuentran documentación para instalación de  CUDA en GNU/Linux.
+En esta [página](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html) encuentran documentación para instalación de  CUDA toolkit en GNU/Linux.
+
+### Nota para Ubuntu 18.04:
+
+Si sólo se desea instalar el NVIDIA driver se realiza:
+
+```
+sudo apt-get install -y ubuntu-drivers-common
+sudo ubuntu-drivers autoinstall
+```
+
+y se recomienda que no se actualice el driver de NVIDIA pues hay escritorios de de ubuntu (por ejemplo lightdm) que utilizan la tarjeta gráfica y podría con la actualización romperse... Para esto:
+
+```
+sudo apt-mark hold nvidia-driver-<colocar versión del nvidia driver aquí>
+```
+
+Para actualizar el nvidia driver primero remover lo instalado con:
+
+```
+sudo apt-get purge nvidia*
+sudo apt-get autoremove
+```
 
 
 ## Amazon Web Services:
@@ -91,7 +113,48 @@ echo "export LD_LIBRARY_PATH=/usr/local/$cuda_version/lib64${LD_LIBRARY_PATH:+:$
 
 Recomendable revisar [optimizing GPU](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/optimize_gpu.html) de la documentación de AWS.
 
-## Docker:
+## Docker en Ubuntu 18.04:
+
+De acuerdo a la página  e [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) primero se debe instalar el NVIDIA driver. Para esto, realizar la instalación descrita en Ubuntu en la parte de arriba.
+
+Para `nvidia-docker`:
+
+```
+# Add the package repositories
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+```
+
+Probar con:
+
+```
+sudo docker run --gpus all nvidia/cuda:10.1-base nvidia-smi
+```
+
+Se obtiene por ejemplo:
+
+```
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 418.87.01    Driver Version: 418.87.01    CUDA Version: 10.1     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla K80           Off  | 00000000:00:1E.0 Off |                    0 |
+| N/A   59C    P0    68W / 149W |      0MiB / 11441MiB |     75%      Default |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+```
 
 
 ## Mandatory, recomended y optional actions:
