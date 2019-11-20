@@ -116,14 +116,12 @@ echo "export LD_LIBRARY_PATH=/usr/local/$cuda_version/lib64${LD_LIBRARY_PATH:+:$
 
 Seleccionar una AMI AWS ubuntu 18.04.
 
-El siguiente bash script identifica una instancia con el nombre de la variable name_instance, en la region us-west-2. Cambiar variables region, user, ubuntu_version, name_instance de acuerdo a su configuración. Utilizarlo en la sección de User data de la configuración de una instancia:
 
-
+El siguiente bash script identifica una instancia con el nombre de la variable `name_instance`, en la region `us-west-2`. Cambiar variables `region` y  `name_instance` de acuerdo a su configuración. Utilizarlo en la sección de **User data** de la configuración de una instancia:
 
 ```
 #!/bin/bash
 region=us-west-2
-user=ubuntu
 name_instance=gpu-node
 apt-get update
 apt-get install linux-headers-$(uname -r) #to have kernel headers and development
