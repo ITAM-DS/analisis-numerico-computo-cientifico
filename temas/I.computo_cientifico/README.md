@@ -1,1 +1,1 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ITAM-DS/analisis-numerico-computo-cientifico/master?urlpath=https%3A%2F%2Fgithub.com%2FITAM-DS%2Fanalisis-numerico-computo-cientifico%2Fblob%2Fmaster%2Ftemas%2FI.computo_cientifico%2F1.2.Sistema_de_punto_flotante.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ITAM-DS/analisis-numerico-computo-cientifico/master?filepath=temas%2FI.computo_cientifico%2F1.2.Sistema_de_punto_flotante.ipynb)
