@@ -12,4 +12,4 @@ USER root
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 
-echo "alias python=python3" >> /home/${NB_USER}/.bash_aliases
+RUN pip install --user git+https://github.com/brendan-rius/jupyter-c-kernel.git && python3.7 /home/jovyan/.local/lib/python3.7/site-packages/jupyter_c_kernel/install_c_kernel --prefix=/srv/conda/envs/notebook/
