@@ -11,3 +11,5 @@ COPY . ${HOME}
 USER root
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
+
+echo "alias python=python3" >> /home/${NB_USER}/.bash_aliases
