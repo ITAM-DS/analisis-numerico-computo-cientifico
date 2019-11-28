@@ -1,4 +1,4 @@
-FROM palmoreck/jupyterlab-c-kernel:1.1.0
+FROM palmoreck/jupyterlab-c-kernel:26d9320238a7
 
 ARG NB_USER=miuser
 ARG NB_UID=1000
