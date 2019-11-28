@@ -1,6 +1,5 @@
 FROM palmoreck/jupyterlab_c_kernel:1.1.0
 
-
 ARG NB_USER=miuser
 ARG NB_UID=1000
 
