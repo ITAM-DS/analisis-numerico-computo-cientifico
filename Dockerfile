@@ -1,5 +1,5 @@
 FROM palmoreck/jupyterlab-c-kernel-binder:v1
-ARG NB_USER=jovyan
+ARG NB_USER=miuser
 ARG NB_UID=1000
 ENV USER ${NB_USER}
 ENV NB_UID ${NB_UID}
