@@ -9,5 +9,7 @@ USER root
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 
-
-RUN sudo pip install git+https://github.com/brendan-rius/jupyter-c-kernel.git && sudo python3 /usr/local/lib/python3.6/dist-packages/jupyter_c_kernel/install_c_kernel
+RUN adduser --disabled-password \
+    --gecos "Default user" \
+    --uid ${NB_UID} \
+    ${NB_USER}
