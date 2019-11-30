@@ -1,5 +1,5 @@
-FROM palmoreck/jupyterlab-c-kernel-binder:v1
-ARG NB_USER=miuser
+FROM palmoreck/jupyterlab-c-kernel-binder:v2
+ARG NB_USER=jovyan
 ARG NB_UID=1000
 ENV USER ${NB_USER}
 ENV NB_UID ${NB_UID}
@@ -10,4 +10,3 @@ RUN chown -R ${NB_UID} ${HOME}
 
 USER ${NB_USER}
 
-ENV KERNEL_PYTHON_PREFIX /home/miuser/.local/share/jupyter/kernels/
