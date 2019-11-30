@@ -1,6 +1,6 @@
 # analisis-numerico-computo-cientifico
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ITAM-DS/analisis-numerico-computo-cientifico/master)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ITAM-DS/analisis-numerico-computo-cientifico/master?urlpath=lab)
 
 En la carpeta [C](C) encuentran:
 
