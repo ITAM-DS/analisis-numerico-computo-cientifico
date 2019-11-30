@@ -10,4 +10,4 @@ RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
 
 
-RUN pip install --user=miuser git+https://github.com/brendan-rius/jupyter-c-kernel.git && sudo python3.7 /home/miuser/.local/lib/python3.7/site-packages/jupyter_c_kernel/install_c_kernel
+RUN sudo pip install git+https://github.com/brendan-rius/jupyter-c-kernel.git && sudo python3 /usr/local/lib/python3.6/dist-packages/jupyter_c_kernel/install_c_kernel
