@@ -1,4 +1,4 @@
-FROM palmoreck/jupyterlab-c-kernel-binder:be048fe7a61e
+FROM palmoreck/jupyterlab_c_kernel_binder:1.1.0
 ARG NB_USER=jovyan
 ARG NB_UID=1000
 ENV USER ${NB_USER}
