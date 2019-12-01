@@ -36,7 +36,7 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 
 1.3 [Condición, estabilidad y normas.](https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad_y_normas.pdf?dl=0)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb$
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb)
 
 * [Preguntas 1.3](https://www.dropbox.com/s/zbf78u0uxr31ei0/preguntas_condicion_estabilidad_normas.txt?dl=0)
 
