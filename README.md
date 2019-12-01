@@ -1,6 +1,5 @@
 # analisis-numerico-computo-cientifico
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ITAM-DS/analisis-numerico-computo-cientifico/master?urlpath=lab)
 
 En la carpeta [C](C) encuentran:
 
@@ -21,6 +20,8 @@ Para información sobre el curso de Métodos Numéricos y Optimización impartid
 * [Preguntas 1.1](https://www.dropbox.com/s/geg0wji899tuf89/preguntas_analisis_numerico_computo_cientifico.txt?dl=0)
 
 1.2 [Sistema de punto flotante.](https://www.dropbox.com/s/9fsupm3bhwmv7cb/1.2.Sistema_de_punto_flotante.pdf?dl=0)
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_c_kernel_binder?urlpath=lab)
 
 * [Preguntas 1.2](https://www.dropbox.com/s/rfqs34rpav2hjs3/preguntas_sistema_de_punto_flotante.txt?dl=0)
 
