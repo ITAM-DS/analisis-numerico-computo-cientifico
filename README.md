@@ -11,7 +11,7 @@ En la carpeta [C](C) encuentran:
 
 Para información sobre el curso de Métodos Numéricos y Optimización impartido en ITAM, ir a la rama correspondiente de este repositorio y seleccionar la fecha de interés. Dar click [aquí](https://www.dropbox.com/s/krs3d8xec09dkqv/TEMARIO_MNO.pdf?dl=0) para el temario.
 
-Índice de notas. Cada número contiene información del tema respectivo.
+Índice de notas. Cada número contiene información del tema respectivo. Cada tema tiene un botón de [binder](https://mybinder.org/) para ejecutar de forma interactiva el contenido. Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder) para documentación de las imágenes de [docker](https://www.docker.com/) usadas.
 
 ## I [Cómputo científico](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0):
 
