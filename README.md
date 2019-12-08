@@ -25,9 +25,6 @@ Cada tema tiene un botón de [binder](https://mybinder.org/) para ejecutar de fo
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_c_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb)
 
-
-* [Preguntas 1.2](https://www.dropbox.com/s/rfqs34rpav2hjs3/preguntas_sistema_de_punto_flotante.txt?dl=0)
-
 * [Ejercicios punto flotante](https://www.dropbox.com/s/09o9aasjyzya4ff/Punto_flotante.pdf?dl=0)
 
 * [Ejemplo de análisis del error en los métodos de diferenciación e integración numérica](https://www.dropbox.com/s/jfrxanjls8kndjp/Diferenciacion_e_Integracion.pdf?dl=0).
