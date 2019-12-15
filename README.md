@@ -11,7 +11,7 @@ En la carpeta [C](C) encuentran:
 
 Para información sobre el curso de Métodos Numéricos y Optimización impartido en ITAM, ir a la rama correspondiente de este repositorio y seleccionar la fecha de interés. Dar click [aquí](https://drive.google.com/file/d/19TA_wSrX-uYIotaQ4CINsU7mZyo5h45w/view?usp=sharing) para el temario.
 
-Índice de notas. Cada número contiene información del tema respectivo, dar click en el tema de interés. Adicionalmente, cada tema tiene un botón de [binder](https://mybinder.org/) para ejecutar de forma interactiva el contenido. Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder) para documentación de las imágenes de [docker](https://www.docker.com/) usadas y en la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder.
+Índice de notas: cada número contiene información del tema respectivo, dar click en el tema de interés. Adicionalmente, cada tema tiene un botón de [binder](https://mybinder.org/) para ejecutar de forma interactiva el contenido. Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder) para documentación de las imágenes de [docker](https://www.docker.com/) usadas y en la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder.
 
 ## I [Cómputo científico](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0):
 
