@@ -22,7 +22,7 @@ Cada tema tiene un botón de [binder](https://mybinder.org/) para ejecutar de fo
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.1.Analisis_numerico_y_computo_cientifico.ipynb)
 
 
-1.2 [Sistema de punto flotante.](https://www.dropbox.com/s/9fsupm3bhwmv7cb/1.2.Sistema_de_punto_flotante.pdf?dl=0)
+1.2 [Sistema de punto flotante.](temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb)
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_c_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb)
 
