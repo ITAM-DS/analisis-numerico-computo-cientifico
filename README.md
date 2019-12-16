@@ -22,7 +22,7 @@ En la carpeta [C](C) encuentran:
 
 * Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [MPI](http://mpi-forum.org/), [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [openMP](http://www.openmp.org/), [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/).  
 
-* A continuación se presentan notas y material de cada tema.
+* A continuación se presentan links a las notas y material de cada tema. Adicionalmente se encuentran en el directorio [temas](temas).
 
 ## Índice de notas.
 
