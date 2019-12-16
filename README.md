@@ -12,7 +12,7 @@ En este repositorio se han creado diferentes ramas que pueden ser accesadas como
 
 Seleccionar por ejemplo la rama **mno-2018-1** (u otra) para información del curso de MNO de 2018.
 
-## Breve explicación del repositorio.
+## Breve explicación del repositorio en la rama master.
 
 En la carpeta [C](C) encuentran:
 
