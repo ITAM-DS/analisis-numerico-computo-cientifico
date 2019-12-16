@@ -1,5 +1,18 @@
-# analisis-numerico-computo-cientifico
+# analisis-numerico-computo-cientifico.
 
+Este es el repositorio para la materia de "Métodos Numéricos y Optimización (MNO)" impartida en la maestría de ciencia de datos del ITAM por el **Prof. Erick Palacios Moreno.**
+
+### Liga al temario [aquí](https://drive.google.com/file/d/19TA_wSrX-uYIotaQ4CINsU7mZyo5h45w/view?usp=sharing).
+
+## Ramas del repositorio.
+
+En este repositorio se han creado diferentes ramas que pueden ser accesadas como se aprecia en esta imagen:
+
+<img width="320" alt="imagen" src="https://user-images.githubusercontent.com/3290689/70867013-1e950880-1f36-11ea-8fce-ed37a275d874.png">
+
+Seleccionar por ejemplo la rama **mno-2018-1** (u otra) para información del curso de MNO de 2018.
+
+## Breve explicación del repositorio.
 
 En la carpeta [C](C) encuentran:
 
@@ -7,11 +20,15 @@ En la carpeta [C](C) encuentran:
 
 * Dentro de [C/BLAS](C/BLAS) y [C/LAPACK](C/LAPACK) se tienen funciones para ejecución de algunas rutinas de [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/) en un sistema ubuntu.
 
-* Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [MPI](http://mpi-forum.org/), [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [openMP](http://www.openmp.org/), [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/). 
+* Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [MPI](http://mpi-forum.org/), [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [openMP](http://www.openmp.org/), [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/).  
 
-Para información sobre el curso de Métodos Numéricos y Optimización impartido en ITAM, ir a la rama correspondiente de este repositorio y seleccionar la fecha de interés. Dar click [aquí](https://drive.google.com/file/d/19TA_wSrX-uYIotaQ4CINsU7mZyo5h45w/view?usp=sharing) para el temario.
+## Índice de notas.
 
-Índice de notas: cada número contiene información del tema respectivo, dar click en el tema de interés. Adicionalmente, cada tema tiene un botón de [binder](https://mybinder.org/) ![Binder](https://mybinder.org/badge_logo.svg) para ejecutar de forma interactiva el contenido (**ojo: cada botón tiene ambientes de docker distintos por lo que un mismo botón puede no funcionar para notas de capítulos distintos, e.g. el botón de la sección 1.1 no funciona para la 1.3**). Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder) para documentación de las imágenes de [docker](https://www.docker.com/) usadas y en la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder.
+Cada número contiene información del tema respectivo, dar click en el tema de interés. 
+
+Adicionalmente, cada tema tiene un botón de [binder](https://mybinder.org/) [Binder](https://mybinder.org/badge_logo.svg) para ejecutar de forma interactiva el contenido (**ojo: cada botón tiene ambientes de docker distintos por lo que un mismo botón puede no funcionar para notas de capítulos distintos, e.g. el botón de la sección 1.1 no funciona para la 1.3**). 
+
+Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder) para documentación de las imágenes de [docker](https://www.docker.com/) usadas y en la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder.
 
 ## I [Cómputo científico](https://www.dropbox.com/sh/2o888m9v7i3ngsf/AACRxfa8bIl-LMBl7Jtb-y72a?dl=0):
 
