@@ -49,8 +49,6 @@ Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb)
 
-* [Preguntas 1.3](https://www.dropbox.com/s/zbf78u0uxr31ei0/preguntas_condicion_estabilidad_normas.txt?dl=0)
-
 * [Ejercicios de normas y condición](https://www.dropbox.com/s/78rryxn3i58bg6c/Normas_condicion.pdf?dl=0)
 
 Métodos de diferenciación en integración numérica:
