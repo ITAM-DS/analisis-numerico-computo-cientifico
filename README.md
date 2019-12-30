@@ -28,7 +28,7 @@ En la carpeta [C](C) encuentran:
 
 Cada número contiene información del tema respectivo, dar click en el tema de interés. 
 
-Adicionalmente, cada tema tiene un botón de [binder](https://mybinder.org/) ![Binder](https://mybinder.org/badge_logo.svg) para ejecutar de forma interactiva el contenido (**ojo: cada botón tiene ambientes de docker distintos por lo que un mismo botón puede no funcionar para notas de capítulos distintos, p.ej. el botón del tema 1.1 no funciona para la 1.3**). 
+Adicionalmente, cada tema tiene un botón de [binder](https://mybinder.org/) ![Binder](https://mybinder.org/badge_logo.svg) para ejecutar de forma interactiva el contenido (**ojo: cada botón tiene ambientes de docker distintos por lo que un mismo botón puede no funcionar para notas de capítulos distintos, p.ej. el botón de la nota 1.2 no funciona para la 1.3**). 
 
 Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder) para documentación de las imágenes de [docker](https://www.docker.com/) usadas y en la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder.
 
