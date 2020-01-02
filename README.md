@@ -53,11 +53,16 @@ Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder
 
 Métodos de diferenciación en integración numérica:
 
-* [Ejemplo de análisis del error en los métodos de diferenciación e integración numérica](https://www.dropbox.com/s/jfrxanjls8kndjp/Diferenciacion_e_Integracion.pdf?dl=0).
+1.4 [Polinomios de Taylor y diferenciacion_numerica](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.4.Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb)
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.4.Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb)
+
 
 * [Ejercicios Taylor y diferenciación numérica](https://drive.google.com/file/d/1z-pp9T_Htv2gNcOur-SnpLAmGKX8vOgT/view?usp=sharing)
 
 * [Ejercicios Integración numérica](https://www.dropbox.com/s/vk28jsrh2gwqzo3/Int_numerica.pdf?dl=0)
+
+
 
 
 ## II [Cómputo en paralelo](https://www.dropbox.com/sh/vrdgj7bugi1flyp/AAAMP6R2n5GZY71KXkWT4ZEja?dl=0):
