@@ -51,7 +51,7 @@ Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder
 
 * [Ejercicios de normas y condición](https://www.dropbox.com/s/78rryxn3i58bg6c/Normas_condicion.pdf?dl=0)
 
-Métodos de diferenciación en integración numérica:
+Métodos de diferenciación e integración numérica:
 
 1.4 [Polinomios de Taylor y diferenciacion_numerica](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.4.Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb)
 
