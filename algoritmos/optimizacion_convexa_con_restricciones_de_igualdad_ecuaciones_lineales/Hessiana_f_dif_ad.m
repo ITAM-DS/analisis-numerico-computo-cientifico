@@ -4,7 +4,7 @@ function Hf=Hessiana_f_dif_ad(f,x)
 %x punto en el que se aproximará la Hessiana de f
 %Out:
 %Hf: aproximación a la Hessiana de f por diferencias hacia delante
-h=1e-5; %mismo valor de h para segundas derivadas parciales
+h=1e-6; %mismo valor de h para segundas derivadas parciales
 n=length(x);
 Hf=zeros(n,n);
  
