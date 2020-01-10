@@ -32,6 +32,8 @@ Adicionalmente, cada tema tiene un botón de [binder](https://mybinder.org/) ![B
 
 Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder) para documentación de las imágenes de [docker](https://www.docker.com/) usadas y en la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder.
 
+## Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad
+
 ## I [Cómputo científico](temas/I.computo_cientifico/):
 
 1.1 [Analisis numérico y cómputo científico.](temas/I.computo_cientifico/1.1.Analisis_numerico_y_computo_cientifico.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.1.Analisis_numerico_y_computo_cientifico.ipynb)
