@@ -4,6 +4,15 @@
 
 [El curso, calificación y entregas, correo al cual escribir](https://www.dropbox.com/s/j4duvz17oxm70ts/Curso_MNO.pdf?dl=0)
 
+
+## Organización del curso:
+
+| Semanas   | Tema                                                              |
+| :--------:|:-----------------------------------------------------------------:|
+| semana 1 | introducción al curso y sistema de punto flotante                                            | 
+| clase sábado| introducción a AWS y configuración de servicios básicos                       |
+
+
 [Equipos de MNO]()
 
 [Lista alumn@s con calificaciones]()
@@ -19,6 +28,9 @@
 [Liga hacia índice del branch master](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master)
 
 [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.Activar-creditos-de-AWS)
+
+
+
 
 ## Clase 1
 
