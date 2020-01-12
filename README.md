@@ -32,7 +32,7 @@ Adicionalmente, cada tema tiene un botón de [binder](https://mybinder.org/) ![B
 
 Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder) para documentación de las imágenes de [docker](https://www.docker.com/) usadas y en la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder.
 
-## Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad
+## Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad. Aquí la [liga](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1) para la rama del curso del semestre enero-mayo 2020.
 
 ## I [Cómputo científico](temas/I.computo_cientifico/):
 
