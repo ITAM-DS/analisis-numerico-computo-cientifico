@@ -17,11 +17,11 @@ Presentación (fuera del repo): [liga_presentación]()
 Implementación (en el repo): [liga_a_código]() 
 
 
-En la carpeta [avance_07_04_2017](avance_07_04_2017) se encuentra el reporte del primer avance en nuestro proyecto. Hemos platicado con Erick y determinamos leer las referencias que aparecen en [avance_07_04_2017](avance_07_04_2017).
+En la carpeta [avance_1](avance_1) se encuentra el reporte del primer avance en nuestro proyecto. 
 
-Determinamos reducir la cantidad de trabajo que queríamos hacer en el proyecto original por tiempos de entrega. En la carpeta [avance_17_04_2017](avance_17_04_2017) mostramos los avances para este propósito.
+Determinamos reducir la cantidad de trabajo que queríamos hacer en el proyecto original por tiempos de entrega. En la carpeta [avance_2](avance_2) mostramos los avances para este propósito.
 
 Referencias del proyecto:
 
-* http://docs.nvidia.com/cuda/cuda-c-programming-guide/#axzz4cvQxAHMZ
+* [Liga a documentación de NVIDIA: cuda-c-programming-guide](http://docs.nvidia.com/cuda/cuda-c-programming-guide/#axzz4cvQxAHMZ)
 * (referencia)
