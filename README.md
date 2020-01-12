@@ -7,10 +7,10 @@
 
 ## Organización del curso:
 
-| Semanas   | Tema                                                              |
-| :--------:|:-----------------------------------------------------------------:|
-| semana 1 | introducción al curso y sistema de punto flotante                                            | 
-| clase sábado| introducción a AWS y configuración de servicios básicos                       |
+|Mes| Semanas   | Tema                                                              |
+|:---:| :--------:|:-----------------------------------------------------------------:|
+|Enero| semana 1 | introducción al curso y sistema de punto flotante                                            | 
+|Enero| clase sábado| introducción a AWS y configuración de servicios básicos                       |
 
 
 [Equipos de MNO]()
