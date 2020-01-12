@@ -28,7 +28,7 @@ En la carpeta [C](C) encuentran:
 
 * A continuación se presentan links a las notas y material de cada tema. Adicionalmente se encuentran en el directorio [temas](temas).
 
-## Índice de notas.
+## Índice de notas. Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad. 
 
 Cada número contiene información del tema respectivo, dar click en el tema de interés. 
 
@@ -36,7 +36,6 @@ Adicionalmente, cada tema tiene un botón de [binder](https://mybinder.org/) ![B
 
 Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder) para documentación de las imágenes de [docker](https://www.docker.com/) usadas y en la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder.
 
-## Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad. 
 
 ## I [Cómputo científico](temas/I.computo_cientifico/):
 
