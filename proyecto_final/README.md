@@ -11,7 +11,7 @@ Cada equipo realiza una investigación del método numérico elegido para su est
 
 ## Implementación
 
-La implementación de los métodos numéricos es fundamental para el proyecto. Esta implementación utiliza código escrito en R, Python, C o algún otro lenguaje para resolver los objetivos de cada equipo. El código debe crearse dentro de un repositorio en github, utilizar docker y cómputo en paralelo.
+La implementación de los métodos numéricos es fundamental para el proyecto. Esta implementación utiliza código escrito en R, Python, C o algún otro lenguaje para resolver los objetivos de cada equipo. El código debe crearse dentro de un repositorio en `github`, utilizar `docker`, `aws` y cómputo en paralelo.
 
 Tiene un porcentaje de 40% y la calificación es por equipo. Se entrega el código de la implementación en una liga a ella, más información sobre esta liga [aquí](indicaciones).
 
