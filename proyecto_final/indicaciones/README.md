@@ -24,19 +24,12 @@ es un archivo de control para la lista de proyectos y **únicamente lo actualiza
 
  ## Fechas de los sábados de abril y mayo en los que los equipos tendrán que presentar avances  del proyecto:
 
-* x1 de abril.
+* 25 de abril.
 
-* x2 de abril.
+* 9 de mayo.
 
-* x3 de abril.
+* 16 de mayo. 
 
-* x4 de mayo.
-
-* x5 de mayo.
-
-* x6 de mayo. 
-
-* 1a semana de finales.
 
 El proyecto final se presenta en la segunda semana de finales.
 
