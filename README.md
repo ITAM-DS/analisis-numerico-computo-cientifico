@@ -2,7 +2,7 @@
 
 [Temario](https://drive.google.com/file/d/19TA_wSrX-uYIotaQ4CINsU7mZyo5h45w/view?usp=sharing)
 
-[El curso, calificación y entregas, correo al cual escribir](https://www.dropbox.com/s/j4duvz17oxm70ts/Curso_MNO.pdf?dl=0)
+[El curso, calificación y entregas, correo al cual escribir](el_curso_de_MNO.md)
 
 
 ## Organización del curso:
