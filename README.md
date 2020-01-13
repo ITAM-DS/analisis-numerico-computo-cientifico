@@ -26,13 +26,16 @@ Las clases son los días miércoles y sábados.
 |sábado 28 de marzo|Uso de instancias de AWS con GPU's. Ejemplos con C, Python o R|
 |1 de abril|Uso de métodos numéricos en la solución de ecuaciones no lineales: método de Newton en una y más dimensiones|
 |15 de abril|Problemas de optimización convexa. Algoritmos de optimización sin restricciones|
+|sábado 18 de abril|**1a entrega de avances de proyecto**|
 |22 de abril|Implementación de algoritmos de optimización sin restricciones|
 |sábado 25 de abril|Uso de kubernetes en AWS|
 |29 de abril|Optimización, dualidad y condiciones de Karush-Kuhn-Tucker. Algoritmos de optimización con restricciones de igualdad|
 |6 de mayo|Implementación de algoritmos de optimización con restricciones de igualdad|
 |13 de mayo|Algoritmo de barrera logarítmica. Implementación de barrera logarítmica|
+|sábado 16 de mayo|**2a entrega de avances de proyecto**|
 |20 de mayo|Máquina de soporte vectorial con algoritmo de barrera logarítmica. Implementación distribuida|
 
+Total de clases: 23. Total de número de horas: 69 hrs.
 
 
 
