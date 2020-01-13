@@ -26,9 +26,9 @@ Las clases son los días miércoles y sábados.
 |sábado 28 de marzo|Uso de instancias de AWS con GPU's. Ejemplos con C, Python o R|
 |1 de abril|Uso de métodos numéricos en la solución de ecuaciones no lineales: método de Newton en una y más dimensiones|
 |15 de abril|Problemas de optimización convexa. Algoritmos de optimización sin restricciones|
-|sábado 18 de abril|**1er grupo de equipos para entrega de avances de proyecto**|
+|sábado 18 de abril|Uso de kubernetes en AWS |
 |22 de abril|Implementación de algoritmos de optimización sin restricciones|
-|sábado 25 de abril|Uso de kubernetes en AWS|
+|sábado 25 de abril|**1er grupo de equipos para entrega de avances de proyecto**|
 |29 de abril|Optimización, dualidad y condiciones de Karush-Kuhn-Tucker. Algoritmos de optimización con restricciones de igualdad|
 |6 de mayo|Implementación de algoritmos de optimización con restricciones de igualdad|
 |sábado 9 de mayo|**2o grupo de equipos para entrega de avances de proyecto**|
