@@ -7,10 +7,13 @@
 
 ## Organización del curso:
 
-|Mes| Semanas   | Tema                                                              |
-|:---:| :--------:|:-----------------------------------------------------------------:|
-|Enero| semana 1 | introducción al curso y sistema de punto flotante                                            | 
-|Enero| clase sábado| introducción a AWS y configuración de servicios básicos                       |
+| Días   | Tema                                                              |
+| :--------:|:-----------------------------------------------------------------:|
+| Miércoles 22 de enero| Introducción al curso: Análisis numérico y cómputo científico. Inicio de nota de sistema de punto flotante| 
+| clase sábado 25 de enero| introducción a AWS y configuración de servicios básicos|
+| Miércoles 29 de enero|Continuación de nota sistema de punto flotante e inicio de nota de condición de un problema y estabilidad de algoritmos|
+| Miércoles 5 de febrero|continuación condición de un problema y estabilidad de algoritmos e inicio de nota de polinomios de Taylor y diferenciación numérica|
+
 
 
 [Equipos de MNO]()
