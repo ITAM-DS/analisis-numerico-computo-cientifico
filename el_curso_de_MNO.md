@@ -2,8 +2,7 @@
 
 **Prof. Erick Palacios Moreno**
 
-correo: erick89.itam@gmail.com
-        erick.palacios@itam.mx
+correo: erick89.itam@gmail.com, erick.palacios@itam.mx
         
 repositorio con el material del curso: [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico)
 
@@ -47,13 +46,13 @@ Se realiza de forma individual y puede obtenerse de las siguientes formas:
 
 ### Proyecto final
 
-El proyecto se realiza en equipos de mínimo $2$ o máximo $3$ personas y sustituye lo que en el ITAM se considera examen final por lo que **debe aprobarse para pasar el curso**.
+El proyecto se realiza en equipos de mínimo 2 o máximo 3 personas y sustituye lo que en el ITAM se considera examen final por lo que **debe aprobarse para pasar el curso**.
 
 En cada módulo se estudian métodos numéricos y se mencionan referencias a temas que se ven de manera superficial o no se ven en el curso. Cada equipo elige un método numérico o un tema de **optimización** para su investigación, implementación  y presentación en forma escrita y oral.
 
 Se aceptan propuestas de métodos o temas de optimización por parte de los equipos (en este caso lo discuten conmigo antes de realizar la investigación).
 
-Deben utilizar `git`, `docker`, `AWS` y cómputo en paralelo. El proyecto se entrega y presenta el día del examen final (asignado por control escolar) Más información se encuentra en la carpeta [proyecto_final](proyecto_final).
+Deben utilizar `git`, `docker`, `AWS` y cómputo en paralelo. El proyecto se entrega y presenta el día del examen final (asignado por control escolar). Más información se encuentra en la carpeta [proyecto_final](proyecto_final).
 
 Todas las personas de un equipo deben participar en la realización del proyecto final pues reciben una calificación individual.
 
