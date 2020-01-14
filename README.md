@@ -12,7 +12,7 @@ En este repositorio se han creado diferentes ramas que pueden ser accesadas como
 
 Seleccionar por ejemplo la rama **mno-2018-1** (u otra) para información del curso de MNO de 2018.
 
-**Aquí la [liga](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1) para la rama del curso del semestre enero-mayo 2020.**
+**Aquí la [liga](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1#m%C3%A9todos-num%C3%A9ricos-y-optimizaci%C3%B3n) para la rama del curso del semestre enero-mayo 2020.**
 
 ## Breve explicación del repositorio en la rama master.
 
