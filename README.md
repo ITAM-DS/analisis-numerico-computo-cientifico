@@ -28,7 +28,9 @@ En la carpeta [C](C) encuentran:
 
 * A continuación se presentan links a las notas y material de cada tema. Adicionalmente se encuentran en el directorio [temas](temas).
 
-## Índice de notas. Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad. 
+## Índice de notas. 
+
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 Cada número contiene información del tema respectivo, dar click en el tema de interés. 
 
