@@ -1,4 +1,4 @@
-# Métodos Numéricos y Optimización
+# Métodos Numéricos y Optimización 2020
 
 **Prof. Erick Palacios Moreno**
 

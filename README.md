@@ -1,4 +1,4 @@
-# Métodos Numéricos y Optimización
+# Métodos Numéricos y Optimización 2020
 
 [Temario](https://drive.google.com/file/d/19TA_wSrX-uYIotaQ4CINsU7mZyo5h45w/view?usp=sharing)
 
