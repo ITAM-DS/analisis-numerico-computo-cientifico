@@ -71,7 +71,7 @@ Métodos de diferenciación e integración numérica:
 
 * [R]
 
-* [C]
+* [C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.6.Perfilamiento_C.ipynb)
 
 ## II [Cómputo en paralelo](https://www.dropbox.com/sh/vrdgj7bugi1flyp/AAAMP6R2n5GZY71KXkWT4ZEja?dl=0):
 
