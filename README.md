@@ -79,7 +79,9 @@ Métodos de diferenciación e integración numérica:
 
 * [Reescribir funciones a C++: Rcpp]
 
-* Cómputo en paralelo (capítulo siguiente).
+* Cómputo en paralelo (capítulo II).
+
+* Mejor uso de caché y operaciones BLAS (capítulo III).
 
 ## II [Cómputo en paralelo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/II.computo_paralelo):
 
