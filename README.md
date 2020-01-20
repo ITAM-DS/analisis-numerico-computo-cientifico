@@ -81,7 +81,7 @@ Métodos de diferenciación e integración numérica:
 
 * Cómputo en paralelo (capítulo II).
 
-* Mejor uso de caché y operaciones BLAS (capítulo III).
+* Uso del caché y operaciones BLAS (capítulo III).
 
 ## II [Cómputo en paralelo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/II.computo_paralelo):
 
