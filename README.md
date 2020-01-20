@@ -75,7 +75,7 @@ Métodos de diferenciación e integración numérica:
 
 1.7 [Opciones para resolver bottlenecks:]
 
-* [Compilar a C: Python + C: Cython]
+* [Compilar a C, Python + C: Cython]
 
 * [Reescribir funciones a C++: Rcpp]
 
