@@ -79,7 +79,7 @@ Métodos de diferenciación e integración numérica:
 
 * [Reescribir funciones a C++: Rcpp]
 
-* [Cómputo en paralelo]
+* Cómputo en paralelo (capítulo siguiente).
 
 ## II [Cómputo en paralelo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/II.computo_paralelo):
 
