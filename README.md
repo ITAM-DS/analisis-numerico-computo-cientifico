@@ -85,9 +85,8 @@ Métodos de diferenciación e integración numérica:
 
 ## II [Cómputo en paralelo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/II.computo_paralelo):
 
-2.1 [Un poco de historia y generalidades](https://www.dropbox.com/s/z465znq3wwao9ad/2.1.Un_poco_de_historia_y_generalidades.pdf?dl=0).
+2.1 [Un poco de historia y generalidades](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.1.Un_poco_de_historia_y_generalidades.ipynb).
 
-* [Preguntas 2.1](https://www.dropbox.com/s/lm0z67b7q5a7qqi/preguntas_generalidades_computo_paralelo.txt?dl=0)
 
 2.2 Sistemas de memoria distribuida: [MPI](C/extensiones_a_C/MPI).
 
