@@ -1,6 +1,6 @@
 # analisis-numerico-computo-cientifico.
 
-Este es el repositorio para la materia de "Métodos Numéricos y Optimización (MNO)" impartida en la maestría de ciencia de datos del ITAM por el **Prof. Erick Palacios Moreno.**, github: [palmoreck](https://github.com/palmoreck).
+Este es el repositorio para la materia de "Métodos Numéricos y Optimización (MNO)" impartida en la maestría de ciencia de datos del ITAM por el **Prof. Erick Palacios Moreno**, github: [palmoreck](https://github.com/palmoreck).
 
 ### Dar click en [liga](https://drive.google.com/file/d/19TA_wSrX-uYIotaQ4CINsU7mZyo5h45w/view?usp=sharing) para el temario.
 
