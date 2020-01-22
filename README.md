@@ -18,7 +18,7 @@ Las clases son los días miércoles y sábados.
 |12 de febrero|Nota de polinomios de Taylor y diferenciación numérica|
 |19 de febrero|Nota de integración numérica|
 |sábado 22 de febrero|Instalación de herramientas útiles en AWS: docker, Rstudio, jupyterlab. Uso de imágenes de docker creadas para la clase|
-|26 de febrero|Nota de perfilamiento|
+|26 de febrero|Nota de perfilamiento y compilación a C: Cython|
 |4 de marzo|Discusión de uso de cómputo en paralelo. Historia y generalidades. Procesos e hilos. Arquitecturas de computadora: memoria distribuida y memoria compartida. La CPU y la GPU|
 |11 de marzo|Uso de software para cómputo en paralelo: C, Python o R. Ejemplos de diferenciación e integración en paralelo|
 |18 de marzo|Uso de software para cómputo matricial: C, Python o R. Niveles de BLAS. Bottlenecks a considerar para cómputo matricial: uso del caché eficientemente|
