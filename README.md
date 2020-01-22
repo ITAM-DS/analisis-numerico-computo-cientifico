@@ -40,8 +40,7 @@ Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder
 
 ## I [Cómputo científico](temas/I.computo_cientifico/):
 
-1.1 [Analisis numérico y cómputo científico.](temas/I.computo_cientifico/1.1.Analisis_numerico_y_computo_cientifico.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)]
-
+1.1 [Analisis numérico y cómputo científico.](temas/I.computo_cientifico/1.1.Analisis_numerico_y_computo_cientifico.ipynb) 
 
 1.2 [Sistema de punto flotante.](temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_c_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb) (nota escrita en jupyterlab + kernel de C)
 
