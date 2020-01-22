@@ -18,7 +18,7 @@ Seleccionar por ejemplo la rama **mno-2018-1** (u otra) para información del cu
 
 En la carpeta [C](C) encuentran:
 
-* Clases para introducción al lenguaje C de programación.
+* [C/Clases] para introducción al lenguaje C de programación.
 
 * Dentro de [C/BLAS](C/BLAS) y [C/LAPACK](C/LAPACK) se tienen funciones para ejecución de algunas rutinas de [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/) en un sistema ubuntu.
 
@@ -238,38 +238,7 @@ AWS.3 [AWS y Sun Grid Engine](https://github.com/ITAM-DS/analisis-numerico-compu
 
 AWS.4 [AWS y Kubernetes](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/4.AWS-y-Kubernetes)
 
-
-
 AWS.adicional1 [AWS: Relational Database System]
 
 
 
-## [C](C/)
-
-[clase1](C/clases/clase1.md)
-
-[clase2](C/clases/clase2.md)
-
-[clase3](C/clases/clase3.md)
-
-[clase4](C/clases/clase4.md)
-
-[clase5](C/clases/clase5.md)
-
-[clase6](C/clases/clase6.md)
-
-## [BLAS](C/BLAS)
-
-[Ejemplos](C/BLAS/ejemplos/):
-
-* [level1](C/BLAS/ejemplos/level1/)
-
-* [level2](C/BLAS/ejemplos/level2/)
-
-* [level3](C/BLAS/ejemplos/level3/)
-
-## [LAPACK](C/LAPACK)
-
-[Ejemplos](C/LAPACK/ejemplos/):
-
-* [solve_linear_equations](C/LAPACK/ejemplos/solve_linear_equations/)
