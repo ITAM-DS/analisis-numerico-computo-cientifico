@@ -18,15 +18,15 @@ Seleccionar por ejemplo la rama **mno-2018-1** (u otra) para información del cu
 
 En la carpeta [C](C) encuentran:
 
-* [C/Clases] para introducción al lenguaje C de programación.
+* [C/Clases](C/Clases) para introducción al lenguaje C de programación.
 
 * Dentro de [C/BLAS](C/BLAS) y [C/LAPACK](C/LAPACK) se tienen funciones para ejecución de algunas rutinas de [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/) en un sistema ubuntu.
 
 * Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [MPI](http://mpi-forum.org/), [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [openMP](http://www.openmp.org/), [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/).  
 
-* Los directorios de [Python](Python) y [algoritmos](algoritmos) serán incorporados a las notas. Este trabajo será realizado durante el semestre enero-mayo 2020.
+Los directorios de [Python](Python) y [algoritmos](algoritmos) serán incorporados a las notas. Este trabajo será realizado durante el semestre enero-mayo 2020.
 
-* A continuación se presentan links a las notas y material de cada tema. Adicionalmente se encuentran en el directorio [temas](temas).
+A continuación se presentan links a las notas y material de cada tema. Adicionalmente se encuentran en el directorio [temas](temas).
 
 ## Índice de notas. 
 
