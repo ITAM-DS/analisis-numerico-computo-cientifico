@@ -30,7 +30,6 @@ En la carpeta [C](C) encuentran:
 
 ## Índice de notas. 
 
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 Cada número contiene información del tema respectivo, dar click en el tema de interés. 
 
@@ -72,6 +71,8 @@ Métodos de diferenciación e integración numérica:
 * [R]
 
 * [C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.6.Perfilamiento_C.ipynb)
+
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 1.7 [Opciones para resolver bottlenecks:]
 
