@@ -75,7 +75,7 @@ Métodos de diferenciación e integración numérica:
 
 1.7 [Opciones para resolver bottlenecks:]
 
-* [Compilar a C, Python + C: Cython]
+* [Compilar a C, Python + C: Cython](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.7.Compilar_a_C_Cython.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.6.Perfilamiento_Python.ipynb)
 
 * [Reescribir funciones a C++: Rcpp]
 
