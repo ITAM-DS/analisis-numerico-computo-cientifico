@@ -18,7 +18,7 @@ Seleccionar por ejemplo la rama **mno-2018-1** (u otra) para información del cu
 
 En la carpeta [C](C) encuentran:
 
-* Clases para introducción al lenguaje C de programación.
+* [C/Clases] para introducción al lenguaje C de programación.
 
 * Dentro de [C/BLAS](C/BLAS) y [C/LAPACK](C/LAPACK) se tienen funciones para ejecución de algunas rutinas de [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/) en un sistema ubuntu.
 
@@ -30,7 +30,6 @@ En la carpeta [C](C) encuentran:
 
 ## Índice de notas. 
 
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 Cada número contiene información del tema respectivo, dar click en el tema de interés. 
 
@@ -44,23 +43,23 @@ Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder
 1.1 [Analisis numérico y cómputo científico.](temas/I.computo_cientifico/1.1.Analisis_numerico_y_computo_cientifico.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.1.Analisis_numerico_y_computo_cientifico.ipynb)
 
 
-1.2 [Sistema de punto flotante.](temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_c_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb)
+1.2 [Sistema de punto flotante.](temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_c_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb) (nota escrita en jupyterlab + kernel de C)
 
 
 * [Ejercicios punto flotante](https://www.dropbox.com/s/09o9aasjyzya4ff/Punto_flotante.pdf?dl=0)
 
-1.3 [Condición, estabilidad y normas.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb)
+1.3 [Condición, estabilidad y normas.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb) (nota escrita en jupyterlab)
 
 * [Ejercicios de normas y condición](https://www.dropbox.com/s/78rryxn3i58bg6c/Normas_condicion.pdf?dl=0)
 
 Métodos de diferenciación e integración numérica:
 
-1.4 [Polinomios de Taylor y diferenciacion_numerica.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.4.Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.4.Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb)
+1.4 [Polinomios de Taylor y diferenciacion_numerica.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.4.Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.4.Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb) (nota escrita en jupyterlab + kernel de R)
 
 
 * [Ejercicios Taylor y diferenciación numérica](https://www.dropbox.com/s/n5srgxh2xdisaec/Taylor_y_dif_numerica.pdf?dl=0)
 
-1.5 [Integración numérica](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.5.Integracion_numerica.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.5.Integracion_numerica.ipynb)
+1.5 [Integración numérica](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.5.Integracion_numerica.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.5.Integracion_numerica.ipynb) (nota escrita en jupyterlab)
 
 * [Ejercicios Integración numérica](https://www.dropbox.com/s/vk28jsrh2gwqzo3/Int_numerica.pdf?dl=0)
 
@@ -72,6 +71,8 @@ Métodos de diferenciación e integración numérica:
 * [R]
 
 * [C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.6.Perfilamiento_C.ipynb)
+
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 1.7 [Opciones para resolver bottlenecks:]
 
@@ -238,38 +239,7 @@ AWS.3 [AWS y Sun Grid Engine](https://github.com/ITAM-DS/analisis-numerico-compu
 
 AWS.4 [AWS y Kubernetes](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/4.AWS-y-Kubernetes)
 
-
-
 AWS.adicional1 [AWS: Relational Database System]
 
 
 
-## [C](C/)
-
-[clase1](C/clases/clase1.md)
-
-[clase2](C/clases/clase2.md)
-
-[clase3](C/clases/clase3.md)
-
-[clase4](C/clases/clase4.md)
-
-[clase5](C/clases/clase5.md)
-
-[clase6](C/clases/clase6.md)
-
-## [BLAS](C/BLAS)
-
-[Ejemplos](C/BLAS/ejemplos/):
-
-* [level1](C/BLAS/ejemplos/level1/)
-
-* [level2](C/BLAS/ejemplos/level2/)
-
-* [level3](C/BLAS/ejemplos/level3/)
-
-## [LAPACK](C/LAPACK)
-
-[Ejemplos](C/LAPACK/ejemplos/):
-
-* [solve_linear_equations](C/LAPACK/ejemplos/solve_linear_equations/)
