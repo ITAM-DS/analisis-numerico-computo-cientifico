@@ -63,7 +63,7 @@ Total de clases: 24. Total de número de horas: 72 hrs.
 
 ## Clase 1
 
-23 de enero
+22 de enero
 
 Vimos generalidades del curso, forma de calificar, dinámica de clase.
 
