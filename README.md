@@ -63,4 +63,24 @@ Total de clases: 24. Total de número de horas: 72 hrs.
 
 ## Clase 1
 
+23 de enero
 
+Vimos generalidades del curso, forma de calificar, dinámica de clase.
+
+Revisamos notas:
+
+* [1.1.Analisis_numerico_y_computo_cientifico.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.1.Analisis_numerico_y_computo_cientifico.ipynb)
+
+* [1.2.Sistema_de_punto_flotante.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb)
+
+De tareas quedaron:
+
+1) Enviar correo a erick89.itam@gmail.com
+
+2) Crear cuentas (si no tienen) en:
+
+  * AWS y activar créditos de acuerdo a [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.Activar-creditos-de-AWS). Verificar que se pueden lanzar instancias en el servicio de EC2.
+  
+  * Github
+  
+  * Dockerhub
