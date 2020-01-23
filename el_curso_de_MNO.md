@@ -29,7 +29,7 @@ Los exámenes de teoría evalúan las definiciones y conceptos de los temas vist
 
 ### Participación
 
-Se realiza de forma individual y puede obtenerse de las siguientes formas:
+Se realiza de forma individual o puede ser también en una asignación por equipo de trabajo. Para el caso de entrega individual puede obtenerse de las siguientes formas:
 
 * Resolviendo ejercicios de la clase y realizando discusión de los temas en la misma. Aquellas personas que opten por esta opción tendrán que realizar la participación en clase de forma continua y constante.
 
@@ -43,6 +43,9 @@ Se realiza de forma individual y puede obtenerse de las siguientes formas:
 
 * Completando algún ejercicio que pida en clase, por ejemplo: comparación de códigos en la GPU.
 
+Para el caso de entrega por equipo:
+
+* Usar githubclassroom para las asignaciones dadas por mí.
 
 ### Proyecto final
 
