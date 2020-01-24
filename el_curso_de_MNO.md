@@ -45,7 +45,9 @@ Se realiza de forma individual o puede ser también en una asignación por equip
 
 Para el caso de entrega por equipo:
 
-* Usar githubclassroom para las asignaciones dadas por mí.
+* Usar githubclassroom para las asignaciones creadas ahí.
+
+* Entregando los ejercicios númericos de las notas que se dejan en clase para hacer en equipo. Por ejemplo los que aparecen en [1.2.Sistema_de_punto_flotante](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb).
 
 ### Proyecto final
 
