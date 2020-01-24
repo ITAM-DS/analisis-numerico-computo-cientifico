@@ -71,7 +71,7 @@ Revisamos notas:
 
 * [1.1.Analisis_numerico_y_computo_cientifico.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.1.Analisis_numerico_y_computo_cientifico.ipynb)
 
-* [1.2.Sistema_de_punto_flotante.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb)
+* [1.2.Sistema_de_punto_flotante.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb) hasta números de máquina binarios.
 
 De tareas quedaron:
 
@@ -84,3 +84,5 @@ De tareas quedaron:
   * Github
   
   * Dockerhub
+  
+3) Enviar correo con l@s integrantes de su equipo.
