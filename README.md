@@ -26,6 +26,8 @@ En la carpeta [C](C) encuentran:
 
 Los directorios de [Python](Python) y [algoritmos](algoritmos) serán incorporados a las notas. Este trabajo será realizado durante el semestre enero-mayo 2020.
 
+En el [Wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki) encuentran información sobre [Amazon Web Services](https://aws.amazon.com/es/)
+
 **Normalmente los pull requests no se hacen a la rama `master` salvo haya una modificación a realizar en tal rama (modificación para algún código por ejemplo).**
 
 A continuación se presentan links a las notas y material de cada tema. Adicionalmente se encuentran en el directorio [temas](temas).
