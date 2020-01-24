@@ -41,6 +41,8 @@ Adicionalmente, algunos temas tienen un botón de [binder](https://mybinder.org/
 
 Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder) para documentación de las imágenes de [docker](https://www.docker.com/) usadas y en la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder.
 
+Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [kernel](https://jupyter.readthedocs.io/en/latest/install-kernel.html) disponibles en jupyter.
+
 
 ## I [Cómputo científico](temas/I.computo_cientifico/):
 
