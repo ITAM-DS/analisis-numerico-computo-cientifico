@@ -86,3 +86,25 @@ De tareas quedaron:
   * Dockerhub
   
 3) Enviar correo con l@s integrantes de su equipo.
+
+
+## Clase 2
+
+sábado 25 de enero
+
+[Agenda](https://drive.google.com/file/d/1bDLx7IvpnN6syhkmiv_n9hj0jAx00M1K/view?usp=sharing)
+
+Videos divididos por hora:
+
+1) [Primera hora](https://www.youtube.com/watch?v=ZWrQ2vhlfvs&t=128s) 
+
+[Notas primera hora](https://drive.google.com/file/d/1hEPPZmoCcbsaUVZhcM_9Bwn4kENrWUxn/view?usp=sharing)
+
+2) [Segunda hora](https://www.youtube.com/watch?v=UXP0bp4ocLE)
+
+[Notas segunda hora](https://drive.google.com/file/d/1ELy-Jsk47X5hIYplhFrbPjQC6PV7FvlW/view?usp=sharing)
+
+3) [Tercera hora](https://www.youtube.com/watch?v=imL_GgZoREs)
+
+[Notas tercera hora](https://drive.google.com/file/d/1xbzCrPZRoXgmsH4d5-NeRGnotLQSEhX2/view?usp=sharing)
+
