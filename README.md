@@ -12,12 +12,12 @@ Las clases son los días miércoles y sábados.
 | Días   | Tema                                                              |
 | :--------:|:-----------------------------------------------------------------:|
 | 22 de enero| Introducción al curso: Análisis numérico y cómputo científico. Inicio de nota de sistema de punto flotante| 
-| sábado 25 de enero| Introducción a AWS, configuración de servicios básicos. Activar créditos de AWS. Uso de git-github y docker|
+| sábado 25 de enero| Introducción a AWS, configuración de servicios básicos. Activar créditos de AWS. Uso de git-github y docker. Uso de imágenes de docker creadas para las notas de clase|
 | 29 de enero|Continuación de nota sistema de punto flotante e inicio de nota de condición de un problema y estabilidad de algoritmos|
 | 5 de febrero|Continuación de nota de condición de un problema y estabilidad de algoritmos|
 |12 de febrero|Nota de polinomios de Taylor y diferenciación numérica|
 |19 de febrero|Nota de integración numérica|
-|sábado 22 de febrero|Instalación de herramientas útiles en AWS: docker, Rstudio, jupyterlab. Uso de imágenes de docker creadas para la clase|
+|sábado 22 de febrero|Creación de roles, uso de S3 e imágenes de docker creadas para las notas de clase|
 |26 de febrero|Nota de perfilamiento y compilación a C: Cython|
 |4 de marzo|Discusión de uso de cómputo en paralelo. Historia y generalidades. Procesos e hilos. Arquitecturas de computadora: memoria distribuida y memoria compartida. La CPU y la GPU|
 |11 de marzo|Uso de software para cómputo en paralelo: C, Python o R. Ejemplos de diferenciación e integración en paralelo|
