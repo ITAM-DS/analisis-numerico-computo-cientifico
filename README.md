@@ -17,7 +17,7 @@ Las clases son los días miércoles y sábados.
 | 5 de febrero|Continuación de nota de condición de un problema y estabilidad de algoritmos|
 |12 de febrero|Nota de polinomios de Taylor y diferenciación numérica|
 |19 de febrero|Nota de integración numérica|
-|sábado 22 de febrero|Creación de roles, uso de S3 e imágenes de docker creadas para las notas de clase|
+|sábado 22 de febrero|Creación de roles y uso de S3 en AWS. Uso imágenes de docker creadas para las notas de clase|
 |26 de febrero|Nota de perfilamiento y compilación a C: Cython|
 |4 de marzo|Discusión de uso de cómputo en paralelo. Historia y generalidades. Procesos e hilos. Arquitecturas de computadora: memoria distribuida y memoria compartida. La CPU y la GPU|
 |11 de marzo|Uso de software para cómputo en paralelo: C, Python o R. Ejemplos de diferenciación e integración en paralelo|
