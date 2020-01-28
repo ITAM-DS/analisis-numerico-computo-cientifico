@@ -1,10 +1,5 @@
 # Tarea 4
 
-Se entrega. De forma individual crear una carpeta con nombre igual a su clave única, debajo del nivel: 
-
-```
-analisis-numerico-computo-cientifico/MNO/entrega_tareas_de_C/tarea4
-```
 
 ## Ejercicio 1
 

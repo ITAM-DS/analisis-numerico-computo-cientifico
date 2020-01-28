@@ -1,10 +1,5 @@
 # Tarea 5
 
-Se entrega el de marzo. De forma individual crear una carpeta con nombre igual a su clave única, debajo del nivel: 
-
-```
-analisis-numerico-computo-cientifico/MNO/entrega_tareas_de_C/tarea5
-```
 
 Dirígite a la rama de master a la ruta [analisis-numerico-computo-cientifico/C/BLAS/ejemplos/](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C/BLAS/ejemplos).
 
