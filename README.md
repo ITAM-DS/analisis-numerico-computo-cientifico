@@ -84,7 +84,7 @@ Métodos de diferenciación e integración numérica:
 
 **Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
-* [Reescribir funciones a C++: Rcpp]
+* [Reescribir funciones a C++: Rcpp](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.7.Reescribir_funciones_a_C%2B%2B_Rcpp.ipynb)
 
 * Cómputo en paralelo (capítulo II).
 
