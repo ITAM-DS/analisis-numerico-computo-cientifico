@@ -108,5 +108,5 @@ Videos divididos por hora:
 
 [Notas tercera hora](https://drive.google.com/file/d/1xbzCrPZRoXgmsH4d5-NeRGnotLQSEhX2/view?usp=sharing)
 
-**De tarea crear user con el servicio de IAM para hacer login no con `root`, dar un alias a su cuenta para hacer login no con los números de la cuenta**
+**De tarea crear user con el servicio de IAM para hacer login no con `root`, dar un alias a su cuenta para hacer login, no con los números de la cuenta y activar créditos con [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.Activar-creditos-de-AWS)**
 
