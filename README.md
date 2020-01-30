@@ -73,7 +73,7 @@ Revisamos notas:
 
 * [1.2.Sistema_de_punto_flotante.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb) hasta números de máquina binarios.
 
-De tareas quedaron:
+**De tareas quedaron:**
 
 1) Enviar correo a erick89.itam@gmail.com
 
@@ -110,3 +110,13 @@ Videos divididos por hora:
 
 **De tarea crear user con el servicio de IAM para hacer login no con `root`, dar un alias a su cuenta para hacer login, no con los números de la cuenta y activar créditos con [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.Activar-creditos-de-AWS)**
 
+
+## Clase 3
+
+29 de enero
+
+Finalizamos nota: [1.2.Sistema_de_punto_flotante.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb)
+
+Iniciamos nota: [1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb)
+
+Dejé primera tarea para obtener el \% de participación por equipo usando github classroom (ver [github education](https://education.github.com/)) basada en [1-ej-SPF-mno-enero-2020](https://github.com/mno-2020-gh-classroom/1-ej-SPF-mno-enero-2020)
