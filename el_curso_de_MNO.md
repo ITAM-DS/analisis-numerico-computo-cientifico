@@ -51,7 +51,7 @@ Para el caso de **entrega por equipo**:
 
 	* Entregando los ejercicios númericos de las notas que se dejan en clase para hacer en equipo. Por ejemplo los que aparecen en [1.2.Sistema_de_punto_flotante](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb).
 
-**Para la modalidad de entrega por equipo usando github classroom tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga `commit`'s, `pull`'s, `push`'s, ...**.
+**Para la modalidad de entrega por equipo usando github classroom tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga `commit`'s, `pull`'s, `push`'s, ...)**.
 
 ### Proyecto final
 
