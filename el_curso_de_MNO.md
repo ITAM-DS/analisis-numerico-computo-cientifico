@@ -29,7 +29,9 @@ Los exámenes de teoría evalúan las definiciones y conceptos de los temas vist
 
 ### Participación
 
-Se realiza de forma individual o puede ser también en una asignación por equipo de trabajo. Para el caso de entrega individual puede obtenerse de las siguientes formas:
+Se realiza de forma **individual o puede ser también en una asignación por equipo** de trabajo. 
+
+Para el caso de **entrega individual** puede obtenerse de las siguientes formas:
 
 * Resolviendo ejercicios de la clase y realizando discusión de los temas en la misma. Aquellas personas que opten por esta opción tendrán que realizar la participación en clase de forma continua y constante.
 
@@ -43,11 +45,13 @@ Se realiza de forma individual o puede ser también en una asignación por equip
 
 * Completando algún ejercicio que pida en clase, por ejemplo: comparación de códigos en la GPU.
 
-Para el caso de entrega por equipo:
+Para el caso de **entrega por equipo**:
 
-* Usar githubclassroom para las asignaciones creadas ahí.
+* Usar githubclassroom para las asignaciones creadas ahí. Por ejemplo:
 
-* Entregando los ejercicios númericos de las notas que se dejan en clase para hacer en equipo. Por ejemplo los que aparecen en [1.2.Sistema_de_punto_flotante](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb).
+	* Entregando los ejercicios númericos de las notas que se dejan en clase para hacer en equipo. Por ejemplo los que aparecen en [1.2.Sistema_de_punto_flotante](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb).
+
+**Para la modalidad de entrega por equipo usando github classroom tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga `commit`'s, `pull`'s, `push`'s, ...**.
 
 ### Proyecto final
 
