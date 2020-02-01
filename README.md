@@ -75,14 +75,12 @@ Métodos de diferenciación e integración numérica:
 
 * [R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.6.Perfilamiento_R.ipynb)
 
-* [C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.6.Perfilamiento_C.ipynb)
+* [C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.6.Perfilamiento_C.ipynb) (pendiente)
 
 
 1.7 Opciones para resolver bottlenecks:
 
 * [Compilar a C, Python + C: Cython](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.7.Compilar_a_C_Cython.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.7.Compilar_a_C_Cython.ipynb) (nota escrita en jupyterlab)
-
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 * [Reescribir funciones a C++: Rcpp](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.7.Reescribir_funciones_a_C%2B%2B_Rcpp.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.7.Reescribir_funciones_a_C%2B%2B_Rcpp.ipynb) (nota escrita en jupyterlab + kernel de R)
 
@@ -91,6 +89,9 @@ Métodos de diferenciación e integración numérica:
 * Uso del caché y operaciones BLAS (capítulo III).
 
 ## II [Cómputo en paralelo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/II.computo_paralelo):
+
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
+
 
 2.1 [Un poco de historia y generalidades](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.1.Un_poco_de_historia_y_generalidades.ipynb).
 
