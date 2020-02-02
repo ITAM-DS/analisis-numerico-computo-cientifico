@@ -100,7 +100,7 @@ Métodos de diferenciación e integración numérica:
 
 * Python
 
-	* Multiprocessing
+	* [Multiprocessing](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Python_multiprocessing.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.6.Perfilamiento_Python.ipynb) (nota escrita en jupyterlab)
 
 	* Dask
 
