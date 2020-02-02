@@ -93,9 +93,10 @@ Métodos de diferenciación e integración numérica:
 2.1 [Un poco de historia y generalidades](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.1.Un_poco_de_historia_y_generalidades.ipynb).
 
 
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
+2.2 [Sistemas de memoria compartida](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Sistemas_de_memoria_compartida.ipynb)
 
-2.2 [Sistemas de memoria compartida]
+
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 * Python
 
