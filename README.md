@@ -22,7 +22,7 @@ En la carpeta [C](C) encuentran:
 
 * Dentro de [C/BLAS](C/BLAS) y [C/LAPACK](C/LAPACK) se tienen funciones para ejecución de algunas rutinas de [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/) en un sistema ubuntu.
 
-* Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [MPI](http://mpi-forum.org/), [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [openMP](http://www.openmp.org/), [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/).  
+* Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [C/extensiones_a_C/MPI](C/extensiones_a_C/MPI) para [MPI](http://mpi-forum.org/), [C/extensiones_a_C/Phtreads](C/extensiones_a_C/Pthreads) para [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [C/extensiones_a_C/openMP](C/extensiones_a_C/openMP) para [openMP](http://www.openmp.org/) y [C/extensiones_a_C/CUDA](C/extensiones_a_C/CUDA) para [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/).  
 
 Los directorios de [Python](Python) y [algoritmos](algoritmos) serán incorporados a las notas. Este trabajo será realizado durante el semestre enero-mayo 2020.
 
@@ -90,10 +90,40 @@ Métodos de diferenciación e integración numérica:
 
 ## II [Cómputo en paralelo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/II.computo_paralelo):
 
+2.1 [Un poco de historia y generalidades](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.1.Un_poco_de_historia_y_generalidades.ipynb).
+
+
 **Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
+2.2 [Sistemas de memoria compartida]
 
-2.1 [Un poco de historia y generalidades](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.1.Un_poco_de_historia_y_generalidades.ipynb).
+* Python
+
+	* Multiprocessing
+
+	* Dask
+
+* R
+
+	* Parallel
+
+* C
+
+	* OpenMP
+
+
+2.3 [CUDA]
+
+* Python
+
+	* PyCUDA
+
+	* CuPy
+
+* C
+
+	* CUDA C
+
 
 
 2.2 Sistemas de memoria distribuida: [MPI](C/extensiones_a_C/MPI).
