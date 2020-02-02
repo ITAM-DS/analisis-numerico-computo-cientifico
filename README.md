@@ -95,7 +95,7 @@ Métodos de diferenciación e integración numérica:
 
 2.2 [Sistemas de memoria compartida](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Sistemas_de_memoria_compartida.ipynb)
 
-**La descripción de las siguientes librerías/módulos/paquetes/API's no tiene el propósito de ser extensa ni completa pues en un futuro pueden existir herramientas con mejor desempeño, documentación o comunidad.** 
+**La descripción y uso de las siguientes librerías/módulos/paquetes/API's no tiene el propósito de ser extensa ni completa pues en un futuro pueden existir herramientas con mejor desempeño, documentación o comunidad. En las referencias de cada nota aparecen ligas y libros con documentación para extender su aprendizaje.** 
 
 **Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
