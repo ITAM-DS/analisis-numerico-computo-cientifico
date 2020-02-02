@@ -97,10 +97,10 @@ Métodos de diferenciación e integración numérica:
 
 **La descripción de las siguientes librerías/módulos/paquetes/API's no tiene el propósito de ser extensa ni completa pues en un futuro pueden existir herramientas con mejor desempeño, documentación o comunidad.** 
 
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
+
 
 * Python
-
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 	* [Multiprocessing](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Python_multiprocessing.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/II.computo_paralelo/2.2.Python_multiprocessing.ipynb) (nota escrita en jupyterlab)
 
