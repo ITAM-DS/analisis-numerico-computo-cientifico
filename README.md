@@ -58,6 +58,8 @@ Total de clases: 24. Total de número de horas: 72 hrs.
 
 [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.Activar-creditos-de-AWS)
 
+[Tutorial para activar créditos de Amazon Web Services actualizado desde año 2020](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.1Activar-creditos-de-AWS-(update))
+
 
 
 
@@ -119,4 +121,15 @@ Finalizamos nota: [1.2.Sistema_de_punto_flotante.ipynb](https://github.com/ITAM-
 
 Iniciamos nota: [1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb)
 
-Dejé primera tarea para obtener el \% de participación por equipo usando github classroom (ver [github education](https://education.github.com/)) basada en [1-ej-SPF-mno-enero-2020](https://github.com/mno-2020-gh-classroom/1-ej-SPF-mno-enero-2020)
+Dejé primera tarea para obtener el \% de participación por equipo usando github classroom (ver [github education](https://education.github.com/)).
+## Clase 4
+
+5 de febrero
+
+Finalizamos la nota [1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb)
+
+Iniciamos la nota [1.4.Polinomios_de_Taylor_y_diferenciacion_numerica](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.4.Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb)
+
+
+Dejé segunda tarea para obtener el \% de participación por equipo usando github classroom. 
+
