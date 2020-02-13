@@ -121,7 +121,8 @@ Finalizamos nota: [1.2.Sistema_de_punto_flotante.ipynb](https://github.com/ITAM-
 
 Iniciamos nota: [1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb)
 
-Dejé primera tarea para obtener el \% de participación por equipo usando github classroom (ver [github education](https://education.github.com/)).
+Dejé primera tarea para obtener el \% de participación por equipo usando github classroom (ver [github education](https://education.github.com/)). Se entrega en una semana
+
 ## Clase 4
 
 5 de febrero
@@ -131,5 +132,17 @@ Finalizamos la nota [1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo]
 Iniciamos la nota [1.4.Polinomios_de_Taylor_y_diferenciacion_numerica](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.4.Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb)
 
 
-Dejé segunda tarea para obtener el \% de participación por equipo usando github classroom. 
+Dejé segunda tarea para obtener el \% de participación por equipo usando github classroom. Se entrega en una semana
 
+
+## Clase 5
+
+12 de febrero
+
+
+Finalizamos la nota [1.4.Polinomios_de_Taylor_y_diferenciacion_numerica](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.4.Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb)
+
+
+Finalizamos regla compuesta del Trapecio de la nota [1.5.Integracion_numerica.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.5.Integracion_numerica.ipynb)
+
+Dejé tercera tarea para obtener el \% de participación por equipo usando github classroom. Se entrega en dos semanas.
