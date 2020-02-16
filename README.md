@@ -109,7 +109,7 @@ Métodos de diferenciación e integración numérica:
 
 * R
 
-	* Parallel
+	* [Parallel](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.R_parallel.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/II.computo_paralelo/2.2.R_parallel.ipynb) (nota escrita en jupyterlab + kernel de R)
 
 * C
 
