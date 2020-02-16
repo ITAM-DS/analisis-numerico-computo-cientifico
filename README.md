@@ -97,7 +97,6 @@ Métodos de diferenciación e integración numérica:
 
 **La descripción y uso de las siguientes librerías/módulos/paquetes/API's no tiene el propósito de ser extensa ni completa pues en un futuro pueden existir herramientas con mejor desempeño, documentación o comunidad. En las referencias de cada nota aparecen ligas y libros con documentación para extender su aprendizaje.** 
 
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 
 * Python
@@ -106,6 +105,9 @@ Métodos de diferenciación e integración numérica:
 
 
 	* [Dask](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Python_dask.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/II.computo_paralelo/2.2.Python_dask.ipynb) (nota escrita en jupyterlab)
+
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
+
 
 * R
 
