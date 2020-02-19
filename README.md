@@ -106,16 +106,18 @@ Métodos de diferenciación e integración numérica:
 
 	* [Dask](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Python_dask.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/II.computo_paralelo/2.2.Python_dask.ipynb) (nota escrita en jupyterlab)
 
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 
 * R
 
 	* [Parallel](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.R_parallel.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/II.computo_paralelo/2.2.R_parallel.ipynb) (nota escrita en jupyterlab + kernel de R)
 
+
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
+
 * C
 
-	* OpenMP
+	* [OpenMP](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.C_OpenMP.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_c_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/II.computo_paralelo/2.2.C_OpenMP.ipynb) (nota escrita en jupyterlab + kernel de C)
 
 
 2.3 [CUDA]
