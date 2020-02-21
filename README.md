@@ -146,3 +146,18 @@ Finalizamos la nota [1.4.Polinomios_de_Taylor_y_diferenciacion_numerica](https:/
 Finalizamos regla compuesta del Trapecio de la nota [1.5.Integracion_numerica.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.5.Integracion_numerica.ipynb)
 
 Dejé tercera tarea para obtener el \% de participación por equipo usando github classroom. Se entrega en dos semanas.
+
+
+## Clase 6
+
+19 de febrero
+
+Finalizamos la nota [1.5.Integracion_numerica.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.5.Integracion_numerica.ipynb)
+
+Finalizamos [1.6.Perfilamiento.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.6.Perfilamiento.ipynb), [1.6.Perfilamiento_Python.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.6.Perfilamiento_Python.ipynb).
+
+Llegamos a la introducción de [1.7.Compilar_a_C_Cython.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.7.Compilar_a_C_Cython.ipynb).
+
+
+
+
