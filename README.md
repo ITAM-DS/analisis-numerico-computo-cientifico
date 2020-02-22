@@ -16,9 +16,9 @@ Las clases son los días miércoles y sábados.
 | 29 de enero|Continuación de nota sistema de punto flotante e inicio de nota de condición de un problema y estabilidad de algoritmos|
 | 5 de febrero|Continuación de nota de condición de un problema y estabilidad de algoritmos|
 |12 de febrero|Nota de polinomios de Taylor y diferenciación numérica|
-|19 de febrero|Nota de integración numérica|
-|sábado 22 de febrero|Creación de roles y uso de S3 en AWS. Uso imágenes de docker creadas para las notas de clase|
-|26 de febrero|Nota de perfilamiento y compilación a C: Cython|
+|19 de febrero|Nota de integración numérica y nota de perfilamiento|
+|sábado 22 de febrero|Creación de roles y uso de S3 en AWS. Uso imágenes de docker creadas para las notas de clase. Levantamiento de clúster de máquinas con dask|
+|26 de febrero|Compilación a C: Cython y Rcpp|
 |4 de marzo|Discusión de uso de cómputo en paralelo. Historia y generalidades. Procesos e hilos. Arquitecturas de computadora: memoria distribuida y memoria compartida. La CPU y la GPU|
 |11 de marzo|Uso de software para cómputo en paralelo: C, Python o R. Ejemplos de diferenciación e integración en paralelo|
 |18 de marzo|Uso de software para cómputo matricial: C, Python o R. Niveles de BLAS. Bottlenecks a considerar para cómputo matricial: uso del caché eficientemente|
@@ -158,6 +158,23 @@ Finalizamos [1.6.Perfilamiento.ipynb](https://github.com/ITAM-DS/analisis-numeri
 
 Llegamos a la introducción de [1.7.Compilar_a_C_Cython.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.7.Compilar_a_C_Cython.ipynb).
 
+## Clase 7
 
+sábado 22 de febrero
 
+Videos divididos por hora:
+
+1) [Primera hora](https://youtu.be/1mEzfMYC9uo) 
+
+[Notas primera hora](https://drive.google.com/file/d/1BhkLNUh0KXgVlYNC49XfExArFoEQ75hl/view?usp=sharing)
+
+2) [Segunda hora](https://youtu.be/VdLcaz1rIos)
+
+[Notas segunda hora](https://drive.google.com/file/d/1Kn875y9lKDZUIqvLxmfJzbGCDBm34kiv/view?usp=sharing)
+
+3) [Tercera hora](https://youtu.be/KGusfdWzP5Q)
+
+[Notas tercera hora](https://drive.google.com/file/d/1TVCbwdnt6LW4yBCV708L4CPzZ3gTxrpi/view?usp=sharing)
+
+**De tarea hay que instalar jupyterlab y el ejemplo al final de [5.AWS y Dask](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/5.AWS-y-Dask) en un clúster de máquinas en AWS.**
 
