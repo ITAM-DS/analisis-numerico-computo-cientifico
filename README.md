@@ -120,15 +120,17 @@ Métodos de diferenciación e integración numérica:
 
 2.3 [CUDA](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA.ipynb)
 
+
+* C
+
+	* CUDA C
+
+
 * Python
 
 	* PyCUDA
 
 	* CuPy
-
-* C
-
-	* CUDA C
 
 
 
