@@ -116,6 +116,8 @@ Métodos de diferenciación e integración numérica:
 
 	* [OpenMP](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.C_OpenMP.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_c_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/II.computo_paralelo/2.2.C_OpenMP.ipynb) (nota escrita en jupyterlab + kernel de C)
 
+		* Ver: [ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/), [parallel_and_critical_directives](C/extensiones_a_C/openMP/ejemplos/1_parallel_and_critical_directives/), [reduction_clause](C/extensiones_a_C/openMP/ejemplos/2_reduction_clause/), [parallel_for_directive](C/extensiones_a_C/openMP/ejemplos/3_parallel_for_directive/)
+
 **Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 2.3 [CUDA](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA.ipynb)
@@ -254,7 +256,7 @@ AWS.adicional1 [AWS: Relational Database System]
 
 
 
-### Antiguas diseño de README:
+### Antiguo diseño de README:
 
 2.2 Sistemas de memoria distribuida: [MPI](C/extensiones_a_C/MPI).
 
@@ -280,10 +282,4 @@ AWS.adicional1 [AWS: Relational Database System]
 
 * [Preguntas 2.4](https://www.dropbox.com/s/oytugjz8s3znvrl/preguntas_openmp.txt?dl=0)
 
-[Ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/)
 
-* [parallel_and_critical_directives](C/extensiones_a_C/openMP/ejemplos/1_parallel_and_critical_directives/)
-
-* [reduction_clause](C/extensiones_a_C/openMP/ejemplos/2_reduction_clause/)
-
-* [parallel_for_directive](C/extensiones_a_C/openMP/ejemplos/3_parallel_for_directive/)
