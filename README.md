@@ -125,60 +125,24 @@ Métodos de diferenciación e integración numérica:
 
 	* CUDA C
 
+		* Ver: [instalación de CUDA](C/extensiones_a_C/CUDA/instalacion), [ejemplos en CUDA C](C/extensiones_a_C/CUDA/ejemplos/), [CUBLAS](C/extensiones_a_C/CUDA/CUBLAS/), [CUSOLVER](C/extensiones_a_C/CUDA/CUSOLVER/)
+
+
 
 * Python
 
 	* PyCUDA
 
+		* Ver: [PyCUDA](Python/PyCUDA/)
+
 	* CuPy
 
 
-
-2.2 Sistemas de memoria distribuida: [MPI](C/extensiones_a_C/MPI).
-
-* [Preguntas 2.2](https://www.dropbox.com/s/l5x3tjaocj949e8/preguntas_mpi.txt?dl=0)
-
-* [Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
-
-[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/):
-
-* [send_receive_broadcast_reduce](C/extensiones_a_C/MPI/openMPI/ejemplos/1_send_receive_broadcast_reduce)
-
-* [io_scatter_gather](C/extensiones_a_C/MPI/openMPI/ejemplos/2_io_scatter_gather)
-
-* [openMPI y BLAS](C/extensiones_a_C/MPI/openMPI/ejemplos/3_openMPI_y_BLAS/)
-
-2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
-
-* [Preguntas 2.3](https://www.dropbox.com/s/kfazlrd7crdlch4/preguntas_pthreads.txt?dl=0)
-
-[Ejemplos con Pthreads](C/extensiones_a_C/Pthreads/ejemplos/)
-
-2.4 Sistemas de memoria compartida: [openMP](C/extensiones_a_C/openMP)
-
-* [Preguntas 2.4](https://www.dropbox.com/s/oytugjz8s3znvrl/preguntas_openmp.txt?dl=0)
-
-[Ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/)
-
-* [parallel_and_critical_directives](C/extensiones_a_C/openMP/ejemplos/1_parallel_and_critical_directives/)
-
-* [reduction_clause](C/extensiones_a_C/openMP/ejemplos/2_reduction_clause/)
-
-* [parallel_for_directive](C/extensiones_a_C/openMP/ejemplos/3_parallel_for_directive/)
 
 2.5 Compute Unified Device Architecture ([CUDA](C/extensiones_a_C/CUDA/)).
 
 * [Preguntas 2.5](https://www.dropbox.com/s/gu9knsc4qgyu95b/preguntas_cuda.txt?dl=0)
 
-* [Instalación](C/extensiones_a_C/CUDA/instalacion)
-
-* [Ejemplos](C/extensiones_a_C/CUDA/ejemplos/)
-
-* [CUBLAS](C/extensiones_a_C/CUDA/CUBLAS/)
-
-* [CUSOLVER](C/extensiones_a_C/CUDA/CUSOLVER/)
-
-* [PyCUDA](Python/PyCUDA/)
 
 
 ## III [Cómputo matricial](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
@@ -284,7 +248,42 @@ AWS.3 [AWS y Sun Grid Engine](https://github.com/ITAM-DS/analisis-numerico-compu
 
 AWS.4 [AWS y Kubernetes](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/4.AWS-y-Kubernetes)
 
+AWS.5 [AWS y Dask](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/5.AWS-y-Dask)
+
 AWS.adicional1 [AWS: Relational Database System]
 
 
 
+### Antiguas diseño de README:
+
+2.2 Sistemas de memoria distribuida: [MPI](C/extensiones_a_C/MPI).
+
+* [Preguntas 2.2](https://www.dropbox.com/s/l5x3tjaocj949e8/preguntas_mpi.txt?dl=0)
+
+* [Levantar un cluster de forma pseudo distribuida con openmpi y docker](C/extensiones_a_C/MPI/openMPI/)
+
+[Ejemplos con openmpi](C/extensiones_a_C/MPI/openMPI/ejemplos/):
+
+* [send_receive_broadcast_reduce](C/extensiones_a_C/MPI/openMPI/ejemplos/1_send_receive_broadcast_reduce)
+
+* [io_scatter_gather](C/extensiones_a_C/MPI/openMPI/ejemplos/2_io_scatter_gather)
+
+* [openMPI y BLAS](C/extensiones_a_C/MPI/openMPI/ejemplos/3_openMPI_y_BLAS/)
+
+2.3 Sistemas de memoria compartida: [Pthreads](C/extensiones_a_C/Pthreads)
+
+* [Preguntas 2.3](https://www.dropbox.com/s/kfazlrd7crdlch4/preguntas_pthreads.txt?dl=0)
+
+[Ejemplos con Pthreads](C/extensiones_a_C/Pthreads/ejemplos/)
+
+2.4 Sistemas de memoria compartida: [openMP](C/extensiones_a_C/openMP)
+
+* [Preguntas 2.4](https://www.dropbox.com/s/oytugjz8s3znvrl/preguntas_openmp.txt?dl=0)
+
+[Ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/)
+
+* [parallel_and_critical_directives](C/extensiones_a_C/openMP/ejemplos/1_parallel_and_critical_directives/)
+
+* [reduction_clause](C/extensiones_a_C/openMP/ejemplos/2_reduction_clause/)
+
+* [parallel_for_directive](C/extensiones_a_C/openMP/ejemplos/3_parallel_for_directive/)
