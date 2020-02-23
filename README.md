@@ -93,10 +93,9 @@ Métodos de diferenciación e integración numérica:
 2.1 [Un poco de historia y generalidades](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.1.Un_poco_de_historia_y_generalidades.ipynb).
 
 
-2.2 [Sistemas de memoria compartida](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Sistemas_de_memoria_compartida.ipynb)
-
 **La descripción y uso de las siguientes librerías/módulos/paquetes/API's no tiene el propósito de ser extensa ni completa pues en un futuro pueden existir herramientas con mejor desempeño, documentación o comunidad. En las referencias de cada nota aparecen ligas y libros con documentación para extender su aprendizaje.** 
 
+2.2 [Sistemas de memoria compartida](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Sistemas_de_memoria_compartida.ipynb)
 
 
 * Python
@@ -113,14 +112,13 @@ Métodos de diferenciación e integración numérica:
 	* [Parallel](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.R_parallel.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/II.computo_paralelo/2.2.R_parallel.ipynb) (nota escrita en jupyterlab + kernel de R)
 
 
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
-
 * C
 
 	* [OpenMP](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.C_OpenMP.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_c_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/II.computo_paralelo/2.2.C_OpenMP.ipynb) (nota escrita en jupyterlab + kernel de C)
 
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
-2.3 [CUDA]
+2.3 [CUDA](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA.ipynb)
 
 * Python
 
