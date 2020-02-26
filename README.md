@@ -176,5 +176,5 @@ Videos divididos por hora:
 
 [Notas tercera hora](https://drive.google.com/file/d/1TVCbwdnt6LW4yBCV708L4CPzZ3gTxrpi/view?usp=sharing)
 
-**De tarea hay que instalar jupyterlab y el ejemplo al final de [5.AWS y Dask](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/5.AWS-y-Dask) en un clúster de máquinas en AWS.**
+**De tarea hay que instalar jupyterlab y el ejemplo al final de [5.AWS y Dask](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/5.AWS-y-Dask) en un clúster de máquinas en AWS. Sólo hay que modificar la configuración para master**
 
