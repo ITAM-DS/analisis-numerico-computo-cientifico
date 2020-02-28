@@ -178,3 +178,28 @@ Videos divididos por hora:
 
 **De tarea hay que instalar jupyterlab y el ejemplo al final de [5.AWS y Dask](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/5.AWS-y-Dask) en un clúster de máquinas en AWS. Sólo hay que modificar la configuración para master**
 
+
+## Clase 8
+
+26 de febrero
+
+Finalizamos [1.7.Compilar_a_C_Cython.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.7.Compilar_a_C_Cython.ipynb) y [1.7.Reescribir_funciones_a_C++_Rcpp.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.7.Reescribir_funciones_a_C%2B%2B_Rcpp.ipynb)
+
+Llegamos hasta Unidades de memoria en [2.1.Un_poco_de_historia_y_generalidades.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.1.Un_poco_de_historia_y_generalidades.ipynb)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
