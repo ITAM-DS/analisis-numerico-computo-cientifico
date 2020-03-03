@@ -89,7 +89,7 @@ user=ubuntu
 ubuntu_version=ubuntu1804
 name_instance=gpu-node
 apt-get update
-apt-get install linux-headers-$(uname -r) #to have kernel headers and development
+apt-get install -y linux-headers-$(uname -r) #to have kernel headers and development
 #packages accordingly to the current kernel
 apt-get install -y awscli build-essential
 #To tag instances of type node
@@ -103,7 +103,7 @@ wget http://developer.download.nvidia.com/compute/cuda/repos/$ubuntu_version/x86
 dpkg -i /home/$user/cuda_toolkit/$toolkit_inst_network #install toolkit
 apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/$ubuntu_version/x86_64/7fa2af80.pub
 apt-get update
-apt-get install linux-headers-$(uname -r) #to have kernel headers and development
+apt-get install -y linux-headers-$(uname -r) #to have kernel headers and development
 #packages accordingly to the current kernel
 apt-get install -y cuda #this will install nvidia driver, cuda driver and all libraries required
 cuda_version=$(ls /usr/local/|grep cuda-)
@@ -124,7 +124,7 @@ El siguiente bash script identifica una instancia con el nombre de la variable `
 region=us-west-2
 name_instance=gpu-node
 apt-get update
-apt-get install linux-headers-$(uname -r) #to have kernel headers and development
+apt-get install -y linux-headers-$(uname -r) #to have kernel headers and development
 #packages accordingly to the current kernel
 apt-get install -y awscli build-essential
 #To tag instances of type node
