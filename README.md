@@ -187,7 +187,15 @@ Finalizamos [1.7.Compilar_a_C_Cython.ipynb](https://github.com/ITAM-DS/analisis-
 
 Llegamos hasta Unidades de memoria en [2.1.Un_poco_de_historia_y_generalidades.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.1.Un_poco_de_historia_y_generalidades.ipynb)
 
+## Clase 9
 
+4 de marzo
+
+Finalizamos:
+
+[2.1.Un_poco_de_historia_y_generalidades.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.1.Un_poco_de_historia_y_generalidades.ipynb)
+
+[2.2.Python_multiprocessing.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Python_multiprocessing.ipynb)
 
 
 
