@@ -140,9 +140,6 @@ Métodos de diferenciación e integración numérica:
 	* CuPy
 
 
-
-2.5 Compute Unified Device Architecture ([CUDA](C/extensiones_a_C/CUDA/)).
-
 * [Preguntas 2.5](https://www.dropbox.com/s/gu9knsc4qgyu95b/preguntas_cuda.txt?dl=0)
 
 
