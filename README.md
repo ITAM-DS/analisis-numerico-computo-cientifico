@@ -118,7 +118,6 @@ Métodos de diferenciación e integración numérica:
 
 		* Ver: [ejemplos con openMP](C/extensiones_a_C/openMP/ejemplos/), [parallel_and_critical_directives](C/extensiones_a_C/openMP/ejemplos/1_parallel_and_critical_directives/), [reduction_clause](C/extensiones_a_C/openMP/ejemplos/2_reduction_clause/), [parallel_for_directive](C/extensiones_a_C/openMP/ejemplos/3_parallel_for_directive/)
 
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 2.3 [CUDA](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA.ipynb)
 
@@ -129,6 +128,7 @@ Métodos de diferenciación e integración numérica:
 
 		* Ver: [instalación de CUDA](C/extensiones_a_C/CUDA/instalacion), [ejemplos en CUDA C](C/extensiones_a_C/CUDA/ejemplos/), [CUBLAS](C/extensiones_a_C/CUDA/CUBLAS/), [CUSOLVER](C/extensiones_a_C/CUDA/CUSOLVER/)
 
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
 
 
 * Python
@@ -139,8 +139,6 @@ Métodos de diferenciación e integración numérica:
 
 	* CuPy
 
-
-* [Preguntas 2.5](https://www.dropbox.com/s/gu9knsc4qgyu95b/preguntas_cuda.txt?dl=0)
 
 
 
