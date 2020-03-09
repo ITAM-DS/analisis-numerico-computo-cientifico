@@ -128,51 +128,37 @@ Métodos de diferenciación e integración numérica:
 
 		* Ver: [instalación de CUDA](C/extensiones_a_C/CUDA/instalacion), [ejemplos en CUDA C](C/extensiones_a_C/CUDA/ejemplos/), [CUBLAS](C/extensiones_a_C/CUDA/CUBLAS/), [CUSOLVER](C/extensiones_a_C/CUDA/CUSOLVER/)
 
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
-
-
 * Python
 
-	* PyCUDA
+	* PyCUDA (pendiente)
 
 		* Ver: [PyCUDA](Python/PyCUDA/)
 
-	* CuPy
+	* CuPy (pendiente)
 
+* R
 
+	* Rth (pendiente)
 
 
 ## III [Cómputo matricial](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
 
-3.1.1 [Multiplicación de matrices y estructura de datos.](https://www.dropbox.com/s/fyqwiqasqaa3wlt/3.1.1.Multiplicacion_de_matrices_y_estructura_de_datos.pdf?dl=0)
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**
+
+3.1 [Vectorizacion, BLAS y el uso del caché eficientemente](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.1.Vectorizacion_BLAS_y_el_uso_del_cache_eficientemente.ipynb)
+
+3.2 [Solucion de sistemas de ecuaciones lineales y factorizaciones matriciales con OpenBLAS](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.2.Solucion_de_sistemas_de_EL_y_FM_con_OpenBLAS.ipynb)
+
 
 * [Preguntas 3.1.1](https://www.dropbox.com/s/s72yem79ef10k9h/preguntas_multiplicacion_matrices_y_estructura_de_datos.txt?dl=0)
 
-3.1.2 [Localidad y vectorización. Análisis del error en cómputos matriciales básicos.](https://www.dropbox.com/s/l4hq45rj860ql9f/3.1.2.Localidad_y_vectorizacion.Analisis_del_error_en_computos_matriciales_basicos.pdf?dl=0)
-
 * [Preguntas 3.1.2](https://www.dropbox.com/s/zbjd153jhhhc8os/preguntas_localidad_y_vectorizacion_analisis_del_error.txt?dl=0)
 
-3.2.1 [Sistemas de ecuaciones lineales: eliminación Gaussiana y factorización LU.](https://www.dropbox.com/s/jwu8lu4r14pb7ut/3.2.1.Sistemas_de_ecuaciones_lineales_eliminacion_Gaussiana_y_factorizacion_LU.pdf?dl=0)
 
 * [Preguntas 3.2.1](https://www.dropbox.com/s/g3w9sfa09nkn94p/preguntas_eliminacion_Gaussiana_factorizacion_LU.txt?dl=0)
 
-3.2.2 [Factorizaciones matriciales: SVD, Cholesky, QR. (Vista rápida).](https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0)
-
 * [Preguntas 3.2.2](https://www.dropbox.com/s/iwpn6a8nr7w6h5d/preguntas_SVD_QR_Cholesky.txt?dl=0)
 
-3.3 [Sistemas de ecuaciones lineales: métodos iterativos.](https://www.dropbox.com/sh/uikk6wfh1aqoc6m/AACddaJWDlHa6hMxgdy5DCVza?dl=0)
-
-3.4 [Tensores. Una introducción.](https://www.dropbox.com/s/udwrro2f11j2a0q/3.4.Tensores.pdf?dl=0)
-
-* [Preguntas 3.4](https://www.dropbox.com/s/6p2xzftozyca3uk/preguntas_tensores.txt?dl=0)
-
-3.5 [Aplicaciones del álgebra lineal numérica.](https://www.dropbox.com/s/dfwk0y04ksgfilv/3.3.Aplicaciones_del_algebra_lineal_numerica.pdf?dl=0)
-
-* [Preguntas 3.5](https://www.dropbox.com/s/h3j2acb39twln7o/preguntas_aplicaciones_algebra_lineal_numerica.txt?dl=0)
-
-3.6.1 [Multiplicación de matrices con cómputo en paralelo.](https://www.dropbox.com/s/bgoua82py00h22o/3.4.1.Multiplicacion_de_matrices_con_computo_en_paralelo.pdf?dl=0)
-
-3.6.2 [SVD con cómputo en paralelo.](https://www.dropbox.com/s/p8p905v34uth28w/3.4.2.SVD_con_computo_en_paralelo.pdf?dl=0)
 
 ## IV [Optimización convexa](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
 
@@ -250,6 +236,7 @@ AWS.5 [AWS y Dask](https://github.com/ITAM-DS/analisis-numerico-computo-cientifi
 AWS.adicional1 [AWS: Relational Database System]
 
 
+---
 
 ### Antiguo diseño de README:
 
@@ -278,3 +265,17 @@ AWS.adicional1 [AWS: Relational Database System]
 * [Preguntas 2.4](https://www.dropbox.com/s/oytugjz8s3znvrl/preguntas_openmp.txt?dl=0)
 
 
+
+3.3 [Sistemas de ecuaciones lineales: métodos iterativos.](https://www.dropbox.com/sh/uikk6wfh1aqoc6m/AACddaJWDlHa6hMxgdy5DCVza?dl=0)
+
+3.4 [Tensores. Una introducción.](https://www.dropbox.com/s/udwrro2f11j2a0q/3.4.Tensores.pdf?dl=0)
+
+* [Preguntas 3.4](https://www.dropbox.com/s/6p2xzftozyca3uk/preguntas_tensores.txt?dl=0)
+
+3.5 [Aplicaciones del álgebra lineal numérica.](https://www.dropbox.com/s/dfwk0y04ksgfilv/3.3.Aplicaciones_del_algebra_lineal_numerica.pdf?dl=0)
+
+* [Preguntas 3.5](https://www.dropbox.com/s/h3j2acb39twln7o/preguntas_aplicaciones_algebra_lineal_numerica.txt?dl=0)
+
+3.6.1 [Multiplicación de matrices con cómputo en paralelo.](https://www.dropbox.com/s/bgoua82py00h22o/3.4.1.Multiplicacion_de_matrices_con_computo_en_paralelo.pdf?dl=0)
+
+3.6.2 [SVD con cómputo en paralelo.](https://www.dropbox.com/s/p8p905v34uth28w/3.4.2.SVD_con_computo_en_paralelo.pdf?dl=0)
