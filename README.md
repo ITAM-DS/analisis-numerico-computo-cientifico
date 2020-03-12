@@ -197,6 +197,28 @@ Finalizamos:
 
 [2.2.Python_multiprocessing.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Python_multiprocessing.ipynb)
 
+## Clase 10
+
+11 de marzo
+
+Repasamos:
+
+[2.2.Python_multiprocessing.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Python_multiprocessing.ipynb)
+
+Finalizamos:
+
+[2.2.Python_dask.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Python_dask.ipynb)
+
+[2.2.R_parallel.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.R_parallel.ipynb)
+
+[2.2.C_OpenMP.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.C_OpenMP.ipynb)
+
+Iniciamos:
+
+[2.3.CUDA.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA.ipynb)
+
+
+
 
 
 
