@@ -130,15 +130,17 @@ Métodos de diferenciación e integración numérica:
 
 * Python
 
-	* PyCUDA (pendiente)
+    * PyCUDA (pendiente)
 
 		* Ver: [PyCUDA](Python/PyCUDA/)
-
-	* CuPy (pendiente)
+    
+    * CuPy (pendiente)
 
 * R
 
 	* Rth (pendiente)
+    * [gputools](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.R_gputools.ipynb)
+    * gpuR (pendiente) ver [gpuR](https://github.com/cdeterman/gpuR)
 
 
 ## III [Cómputo matricial](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
