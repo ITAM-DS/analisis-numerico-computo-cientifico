@@ -44,7 +44,7 @@ Total de clases: 24. Total de número de horas: 72 hrs.
 
 [Equipos de MNO](https://drive.google.com/file/d/1_kez3wqmc7jYZgLeNrP9wYouWImWaI4M/view?usp=sharing)
 
-[Lista alumn@s con calificaciones](https://drive.google.com/file/d/1XPPBFq2X1Rzc5R5tWIvsYpm0_7_CfskF/view?usp=sharing)
+[Lista estudiantes con calificaciones](https://drive.google.com/file/d/1XPPBFq2X1Rzc5R5tWIvsYpm0_7_CfskF/view?usp=sharing)
 
 [Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
 
