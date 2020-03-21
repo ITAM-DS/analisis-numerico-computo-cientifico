@@ -129,11 +129,11 @@ Métodos de diferenciación e integración numérica:
 
 * Python
 
+    * [CuPy](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.Python_CuPy.ipynb)
+    
     * PyCUDA (pendiente)
     
         * Ver: [PyCUDA](Python/PyCUDA/)
-    
-    * [CuPy](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.Python_CuPy.ipynb)
 
 * R
     
