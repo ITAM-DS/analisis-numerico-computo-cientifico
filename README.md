@@ -136,9 +136,9 @@ Métodos de diferenciación e integración numérica:
         * Ver: [PyCUDA](Python/PyCUDA/)
 
 * R
-    
+
+    * [gputools](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.R_gputools.ipynb)    
     * Rth (pendiente)
-    * [gputools](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.R_gputools.ipynb)
     * gpuR (pendiente) ver [gpuR](https://github.com/cdeterman/gpuR)
 
 
