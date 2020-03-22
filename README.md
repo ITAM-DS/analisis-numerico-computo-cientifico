@@ -145,10 +145,11 @@ Métodos de diferenciación e integración numérica:
 ## III [Cómputo matricial](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/III.computo_matricial)
 
 
-
 3.1 [Vectorizacion, BLAS y el uso del caché eficientemente](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.1.Vectorizacion_BLAS_y_el_uso_del_cache_eficientemente.ipynb)
 
 3.2 OpenBLAS
+
+* Ejemplos:
 
     * [Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.2.Python_OpenBLAS.ipynb)
     
