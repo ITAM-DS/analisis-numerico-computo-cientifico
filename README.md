@@ -44,7 +44,7 @@ Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder
 Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [kernels](https://jupyter.readthedocs.io/en/latest/install-kernel.html) disponibles en jupyter.
 
 
-## I [Cómputo científico](temas/I.computo_cientifico/):
+## I [Cómputo científico](temas/I.computo_cientifico/)
 
 1.1 [Analisis numérico y cómputo científico.](temas/I.computo_cientifico/1.1.Analisis_numerico_y_computo_cientifico.ipynb) 
 
@@ -88,7 +88,7 @@ Métodos de diferenciación e integración numérica:
 
 * Uso del caché y operaciones BLAS (capítulo III).
 
-## II [Cómputo en paralelo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/II.computo_paralelo):
+## II [Cómputo en paralelo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/II.computo_paralelo)
 
 2.1 [Un poco de historia y generalidades](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.1.Un_poco_de_historia_y_generalidades.ipynb).
 
@@ -142,7 +142,7 @@ Métodos de diferenciación e integración numérica:
     * gpuR (pendiente) ver [gpuR](https://github.com/cdeterman/gpuR)
 
 
-## III [Cómputo matricial](https://www.dropbox.com/sh/azwz5p69bnbamtw/AAB5t2SafFK_1XvthNT9Tflda?dl=0)
+## III [Cómputo matricial](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/III.computo_matricial)
 
 
 
