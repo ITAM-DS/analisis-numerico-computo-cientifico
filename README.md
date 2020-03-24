@@ -137,7 +137,7 @@ Métodos de diferenciación e integración numérica:
 
 * R
 
-    * [gputools](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.R_gputools.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/notebook#create=true&language=r/github/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.R_gputools.ipynb) 
+    * [gputools](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.R_gputools.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/palmoreck/dockerfiles-for-google-colab/blob/master/prueba_jupyterlab_python_R.ipynb) 
     * Rth (pendiente) ver [Rth-org/Rth](https://github.com/Rth-org/Rth) y más reciente [matloff/Rth](https://github.com/matloff/Rth)
     * gpuR (pendiente) ver [gpuR](https://github.com/cdeterman/gpuR)
 
