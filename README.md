@@ -123,7 +123,9 @@ Métodos de diferenciación e integración numérica:
 
 * C
 
-    * [CUDA C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA_C.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA_C.ipynb)
+    https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb
+
+    * [CUDA C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA_C.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/temas/II.computo_paralelo/2.3.CUDA_C.ipynb)
     
         * Ver: [instalación de CUDA](C/extensiones_a_C/CUDA/instalacion), [ejemplos en CUDA C](C/extensiones_a_C/CUDA/ejemplos/), [CUBLAS](C/extensiones_a_C/CUDA/CUBLAS/), [CUSOLVER](C/extensiones_a_C/CUDA/CUSOLVER/)
 
