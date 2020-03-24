@@ -217,19 +217,11 @@ Iniciamos:
 
 [2.3.CUDA.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA.ipynb)
 
+## Clase 11
 
+18 de marzo
 
-
-
-
-
-
-
-
-
-
-
-
+No hubo clase por COVID-19
 
 
 
