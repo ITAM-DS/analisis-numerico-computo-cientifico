@@ -127,13 +127,13 @@ Métodos de diferenciación e integración numérica:
 
 * C
 
-    * [CUDA C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA_C.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA_C.ipynb)
+    * [CUDA C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA_C.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA_C.ipynb) (nota escrita en jupyterlab + kernel de C)
     
         * Ver: [instalación de CUDA](C/extensiones_a_C/CUDA/instalacion), [ejemplos en CUDA C](C/extensiones_a_C/CUDA/ejemplos/), [CUBLAS](C/extensiones_a_C/CUDA/CUBLAS/), [CUSOLVER](C/extensiones_a_C/CUDA/CUSOLVER/)
 
 * Python
 
-    * [CuPy](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.Python_CuPy.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.Python_CuPy.ipynb)
+    * [CuPy](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.Python_CuPy.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.Python_CuPy.ipynb) (nota escrita en jupyterlab)
     
     * PyCUDA (pendiente)
     
@@ -141,7 +141,7 @@ Métodos de diferenciación e integración numérica:
 
 * R
 
-    * [gputools](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.R_gputools.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.R_gputools.ipynb) 
+    * [gputools](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.R_gputools.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.R_gputools.ipynb) (nota escrita en jupyterlab + kernel de R)
     * Rth (pendiente) ver [Rth-org/Rth](https://github.com/Rth-org/Rth) y más reciente [matloff/Rth](https://github.com/matloff/Rth)
     * gpuR (pendiente) ver [gpuR](https://github.com/cdeterman/gpuR)
 
