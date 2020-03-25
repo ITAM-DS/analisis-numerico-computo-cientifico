@@ -37,7 +37,7 @@ A continuación se presentan links a las notas y material de cada tema. Adiciona
 ## Índice de notas. 
 
 
-Cada número contiene información del tema respectivo, dar click en el tema de interés. 
+Cada número contiene información del tema respectivo, dar click en el tema de interés. Las notas están escritas en [Jupyter notebooks](https://jupyter.org/). Ver [I python, You R, We Julia](https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6) para algunas características de tales notebooks.
 
 Adicionalmente, algunos temas tienen un botón de [binder](https://mybinder.org/) ![Binder](https://mybinder.org/badge_logo.svg) para ejecutar de forma interactiva el contenido (**ojo: cada botón tiene ambientes de docker distintos por lo que un mismo botón puede no funcionar para notas de capítulos distintos, p.ej. el botón de la nota 1.2 no funciona para la 1.4**). 
 
