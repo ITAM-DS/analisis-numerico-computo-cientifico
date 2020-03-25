@@ -159,19 +159,17 @@ Métodos de diferenciación e integración numérica:
     
     * [R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.2.R_OpenBLAS.ipynb)
     
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
 
 3.3 [Solucion de sistemas de ecuaciones lineales y factorizaciones matriciales](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.Solucion_de_SEL_y_FM.ipynb)
 
+3.4 [Mínimos cuadrados lineales con regularización](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.4.Minimos_cuadrados_lineales_con_regularizacion.ipynb)
 
-* [Preguntas 3.1.1](https://www.dropbox.com/s/s72yem79ef10k9h/preguntas_multiplicacion_matrices_y_estructura_de_datos.txt?dl=0)
-
-* [Preguntas 3.1.2](https://www.dropbox.com/s/zbjd153jhhhc8os/preguntas_localidad_y_vectorizacion_analisis_del_error.txt?dl=0)
+3.5 [SVD con el método de Jacobi](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.5.SVD_con_el_metodo_de_Jacobi.ipynb)
 
 
-* [Preguntas 3.2.1](https://www.dropbox.com/s/g3w9sfa09nkn94p/preguntas_eliminacion_Gaussiana_factorizacion_LU.txt?dl=0)
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
 
-* [Preguntas 3.2.2](https://www.dropbox.com/s/iwpn6a8nr7w6h5d/preguntas_SVD_QR_Cholesky.txt?dl=0)
+
 
 
 ## IV [Optimización convexa](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
@@ -293,3 +291,13 @@ AWS.adicional1 [AWS: Relational Database System]
 3.6.1 [Multiplicación de matrices con cómputo en paralelo.](https://www.dropbox.com/s/bgoua82py00h22o/3.4.1.Multiplicacion_de_matrices_con_computo_en_paralelo.pdf?dl=0)
 
 3.6.2 [SVD con cómputo en paralelo.](https://www.dropbox.com/s/p8p905v34uth28w/3.4.2.SVD_con_computo_en_paralelo.pdf?dl=0)
+
+
+* [Preguntas 3.1.1](https://www.dropbox.com/s/s72yem79ef10k9h/preguntas_multiplicacion_matrices_y_estructura_de_datos.txt?dl=0)
+
+* [Preguntas 3.1.2](https://www.dropbox.com/s/zbjd153jhhhc8os/preguntas_localidad_y_vectorizacion_analisis_del_error.txt?dl=0)
+
+
+* [Preguntas 3.2.1](https://www.dropbox.com/s/g3w9sfa09nkn94p/preguntas_eliminacion_Gaussiana_factorizacion_LU.txt?dl=0)
+
+* [Preguntas 3.2.2](https://www.dropbox.com/s/iwpn6a8nr7w6h5d/preguntas_SVD_QR_Cholesky.txt?dl=0)
