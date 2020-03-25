@@ -167,6 +167,8 @@ Métodos de diferenciación e integración numérica:
 
 3.3 [Solucion de sistemas de ecuaciones lineales y factorizaciones matriciales](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.Solucion_de_SEL_y_FM.ipynb)
 
+* Métodos o algoritmos básicos del álgebra lineal para resolver sistemas de ecuaciones lineales y factorizaciones matriciales:
+
     * [3.3.a Factorización LU](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.a.Factorizacion_LU.ipynb)
     * [3.3.b Factorización de Cholesky](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.b.Factorizacion_de_Cholesky.ipynb)
     * [3.3.c Factorización QR](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.c.Factorizacion_QR.ipynb)
