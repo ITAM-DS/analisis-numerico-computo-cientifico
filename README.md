@@ -160,14 +160,14 @@ Métodos de diferenciación e integración numérica:
     * [R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.2.R_OpenBLAS.ipynb)
     
 
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
+
+
 3.3 [Solucion de sistemas de ecuaciones lineales y factorizaciones matriciales](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.Solucion_de_SEL_y_FM.ipynb)
 
 3.4 [Mínimos cuadrados lineales con regularización](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.4.Minimos_cuadrados_lineales_con_regularizacion.ipynb)
 
 3.5 [SVD con el método de Jacobi](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.5.SVD_con_el_metodo_de_Jacobi.ipynb)
-
-
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
 
 
 
