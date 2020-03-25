@@ -22,10 +22,10 @@ Las clases son los días miércoles y sábados.
 |26 de febrero|Compilación a C: Cython y Rcpp|
 |4 de marzo|Discusión de uso de cómputo en paralelo. Historia y generalidades. Procesos e hilos. Arquitecturas de computadora: memoria distribuida y memoria compartida. La CPU y la GPU|
 |11 de marzo|Uso de software para cómputo en paralelo: C, Python o R. Ejemplos de diferenciación e integración en paralelo|
-|18 de marzo|Uso de software para cómputo matricial: C, Python o R. Niveles de BLAS. Bottlenecks a considerar para cómputo matricial: uso del caché eficientemente|
-|25 de marzo|Aplicaciones del álgebra lineal numérica: mínimos cuadrados y su relación con problemas convexos.| 
-|sábado 28 de marzo|Uso de instancias de AWS con GPU's. Ejemplos con C, Python o R|
-|1 de abril|Uso de métodos numéricos en la solución de ecuaciones no lineales: método de Newton en una y más dimensiones|
+|18 de marzo|No hubo clase por COVID-19|
+|25 de marzo|CUDA, CUDA-C, CuPy y gputools. Uso de software para cómputo matricial: C, Python o R. Niveles de BLAS. Bottlenecks a considerar para cómputo matricial: uso del caché eficientemente| 
+|sábado 28 de marzo|Uso de instancias en google colab y en AWS con GPU's. CUDA-C, CuPy y gputools|
+|1 de abril|Aplicaciones del álgebra lineal numérica: componentes principales, mínimos cuadrados y su relación con problemas convexos. Uso de métodos numéricos en la solución de ecuaciones no lineales: método de Newton en una y más dimensiones|
 |15 de abril|Problemas de optimización convexa. Algoritmos de optimización sin restricciones|
 |sábado 18 de abril|Uso de kubernetes en AWS |
 |22 de abril|Implementación de algoritmos de optimización sin restricciones|
