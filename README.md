@@ -159,7 +159,7 @@ Métodos de diferenciación e integración numérica:
 
     * [Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.2.Python_OpenBLAS.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_openblas?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/III.computo_matricial/3.2.Python_OpenBLAS.ipynb) (nota escrita en jupyterlab)
     
-    * [R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.2.R_OpenBLAS.ipynb)
+    * [R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.2.R_OpenBLAS.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel_openblas?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/III.computo_matricial/3.2.Python_OpenBLAS.ipynb) (nota escrita en jupyterlab)
     
 
 **Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
