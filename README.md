@@ -167,14 +167,20 @@ Métodos de diferenciación e integración numérica:
 
 3.3 [Solucion de sistemas de ecuaciones lineales y factorizaciones matriciales](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.Solucion_de_SEL_y_FM.ipynb)
 
-3.4 [Mínimos cuadrados lineales con regularización](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.4.Minimos_cuadrados_lineales_con_regularizacion.ipynb)
-
-3.5 [SVD con el método de Jacobi](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.5.SVD_con_el_metodo_de_Jacobi.ipynb)
+    * [3.3.a Factorización LU](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.a.Factorizacion_LU.ipynb)
+    * [3.3.b Factorización de Cholesky](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.b.Factorizacion_de_Cholesky.ipynb)
+    * [3.3.c Factorización QR](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.c.Factorizacion_QR.ipynb)
+    * [3.3.d Descomposición en Valores Singulares: SVD](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.d.SVD.ipynb)
+    * [3.3.e Jacobi y Gauss Seidel](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.e.Jacobi_Gauss-Seidel.ipynb)
 
 
 
 
 ## IV [Optimización convexa](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
+
+4.1 [Mínimos cuadrados lineales con regularización](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_numerica_convexidad/4.1.Minimos_cuadrados_lineales_con_regularizacion.ipynb)
+
+
 
 4.1 [Introducción.](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
 
