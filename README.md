@@ -4,6 +4,7 @@
 
 [El curso, calificación y entregas, correo al cual escribir](el_curso_de_MNO.md)
 
+## Dar click en el siguiente botón para unirse al chat para el semestre enero-mayo 2020: [![Gitter](https://badges.gitter.im/mno-2020-1/community.svg)](https://gitter.im/mno-2020-1/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Organización del curso:
 
@@ -44,7 +45,7 @@ Total de clases: 24. Total de número de horas: 72 hrs.
 
 [Equipos de MNO](https://drive.google.com/file/d/1_kez3wqmc7jYZgLeNrP9wYouWImWaI4M/view?usp=sharing)
 
-[Lista estudiantes con calificaciones](https://drive.google.com/file/d/1XPPBFq2X1Rzc5R5tWIvsYpm0_7_CfskF/view?usp=sharing)
+[Lista de estudiantes con calificaciones](https://drive.google.com/file/d/1XPPBFq2X1Rzc5R5tWIvsYpm0_7_CfskF/view?usp=sharing)
 
 [Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
 
