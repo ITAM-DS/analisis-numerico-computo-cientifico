@@ -4,7 +4,7 @@ Este es el repositorio para la materia de "Métodos Numéricos y Optimización (
 
 ### Dar click en [liga](https://drive.google.com/file/d/19TA_wSrX-uYIotaQ4CINsU7mZyo5h45w/view?usp=sharing) para el temario.
 
-Aquí el botón para unirse al chat para el semestre enero-mayo 2020: [![Gitter](https://badges.gitter.im/mno-2020-1/community.svg)](https://gitter.im/mno-2020-1/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+### Dar click en el siguiente botón para unirse al chat del semestre enero-mayo 2020 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/mno-2020-1/community.svg)](https://gitter.im/mno-2020-1/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) Se puede hacer el registro con su cuenta de [github](https://github.com/).
 
 ## Ramas del repositorio.
 
