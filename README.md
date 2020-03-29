@@ -27,7 +27,7 @@ Las clases son los días miércoles y sábados.
 |sábado 28 de marzo|Uso de instancias en google colab y en AWS con GPU's. CUDA-C, CuPy y gputools|
 |1 de abril|Aplicaciones del álgebra lineal numérica: componentes principales, mínimos cuadrados y su relación con problemas convexos. Uso de métodos numéricos en la solución de ecuaciones no lineales: método de Newton en una y más dimensiones|
 |15 de abril|Problemas de optimización convexa. Algoritmos de optimización sin restricciones|
-|sábado 18 de abril|Uso de kubernetes en AWS |
+|sábado 18 de abril|Uso de kubernetes en AWS/ Ejercicio de uso de CuPY y gputools en google colab y/o AWS |
 |22 de abril|Implementación de algoritmos de optimización sin restricciones|
 |sábado 25 de abril|**1er grupo de equipos para entrega de avances de proyecto**|
 |29 de abril|Optimización, dualidad y condiciones de Karush-Kuhn-Tucker. Algoritmos de optimización con restricciones de igualdad|
@@ -223,6 +223,27 @@ Iniciamos:
 18 de marzo
 
 No hubo clase por COVID-19
+
+## Clase 12
+
+25 de marzo
+
+Finalizamos [2.3.CUDA.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA.ipynb)
+
+Finalizamos [3.1.Vectorizacion_BLAS_y_el_uso_del_cache_eficientemente.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.1.Vectorizacion_BLAS_y_el_uso_del_cache_eficientemente.ipynb)
+
+## Clase 13
+
+28 de marzo
+
+Finalizamos:
+
+[2.3.CUDA_C.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA_C.ipynb)
+
+[2.3.Python_CuPy.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.Python_CuPy.ipynb)
+
+[2.3.R_gputools.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.R_gputools.ipynb)
+
 
 
 
