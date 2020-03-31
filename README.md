@@ -227,6 +227,8 @@ Métodos de diferenciación e integración numérica:
 [Algoritmos para optimización con restricciones de igualdad: ecuaciones lineales y desigualdad](algoritmos/optimizacion_convexa_con_restricciones_de_igualdad_ecuaciones_lineales_y_desigualdad/)
 
 
+Ver [RAPIDS](https://rapids.ai/)
+
 
 
 ## V Cómputo en la nube
