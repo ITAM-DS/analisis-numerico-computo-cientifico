@@ -4,6 +4,12 @@ Este es el repositorio para la materia de "Métodos Numéricos y Optimización (
 
 ### Dar click en [liga](https://drive.google.com/file/d/19TA_wSrX-uYIotaQ4CINsU7mZyo5h45w/view?usp=sharing) para el temario.
 
+En esencia el curso sigue un desarrollo de acuerdo al siguiente dibujo:
+
+<img src="https://dl.dropboxusercontent.com/s/0hqal8ni3d5rbso/curso_MNO.png?dl=0" heigth="700" width="700">
+
+Los módulos del 1 al 3 constituyen *building blocks* para el módulo 4.
+
 ### Dar click en el siguiente botón para unirse al chat del semestre enero-mayo 2020 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/mno-2020-1/community.svg)](https://gitter.im/mno-2020-1/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) Se puede hacer el registro con su cuenta de [github](https://github.com/).
 
 ## Ramas del repositorio.
