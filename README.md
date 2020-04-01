@@ -168,19 +168,18 @@ Métodos de diferenciación e integración numérica:
     * [R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.2.R_OpenBLAS.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel_openblas?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/III.computo_matricial/3.2.R_OpenBLAS.ipynb) (nota escrita en jupyterlab + kernel de R) <- Si utilizan binder hay que ir al home del user jovyan y ejecutar `bash run_installations.sh`
     
 
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
-
 
 3.3 [Solucion de sistemas de ecuaciones lineales y factorizaciones matriciales](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.Solucion_de_SEL_y_FM.ipynb)
 
 * Métodos o algoritmos básicos del álgebra lineal para resolver sistemas de ecuaciones lineales y factorizaciones matriciales:
 
-    * [3.3.a Factorización LU](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.a.Factorizacion_LU.ipynb)
-    * [3.3.b Factorización de Cholesky](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.b.Factorizacion_de_Cholesky.ipynb)
-    * [3.3.c Factorización QR](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.c.Factorizacion_QR.ipynb)
-    * [3.3.d Descomposición en Valores Singulares: SVD](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.d.SVD.ipynb)
-    * [3.3.e Jacobi y Gauss Seidel](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.e.Jacobi_Gauss-Seidel.ipynb)
+    * [3.3.a Factorización LU](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.a.Factorizacion_LU.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/III.computo_matricial/3.3.a.Factorizacion_LU.ipynb) (nota escrita en jupyterlab)
+    * [3.3.b Factorización de Cholesky](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.b.Factorizacion_de_Cholesky.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/III.computo_matricial/3.3.b.Factorizacion_de_Cholesky.ipynb) (nota escrita en jupyterlab)
+    * [3.3.c Factorización QR](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.c.Factorizacion_QR.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/III.computo_matricial/3.3.c.Factorizacion_QR.ipynb) (nota escrita en jupyterlab)
+    * [3.3.d Descomposición en Valores Singulares: SVD](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.d.SVD.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/III.computo_matricial/3.3.d.SVD.ipynb) (nota escrita en jupyterlab)
+    * [3.3.e Jacobi y Gauss Seidel](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.e.Jacobi_Gauss-Seidel.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/III.computo_matricial/3.3.e.Jacobi_Gauss-Seidel.ipynb) (nota escrita en jupyterlab)
 
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
 
 
 
