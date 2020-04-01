@@ -45,7 +45,7 @@ A continuación se presentan links a las notas y material de cada tema. Adiciona
 
 Cada número contiene información del tema respectivo, dar click en el tema de interés. Las notas están escritas en [Jupyter notebooks](https://jupyter.org/). Ver [I python, You R, We Julia](https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6) para algunas características de tales notebooks.
 
-Adicionalmente, algunos temas tienen un botón de [binder](https://mybinder.org/) ![Binder](https://mybinder.org/badge_logo.svg) para ejecutar de forma interactiva el contenido (**ojo: cada botón tiene ambientes de docker distintos por lo que un mismo botón puede no funcionar para notas de capítulos distintos, p.ej. el botón de la nota 1.2 no funciona para la 1.4**). 
+Adicionalmente, algunos temas tienen un botón de [binder](https://mybinder.org/) ![Binder](https://mybinder.org/badge_logo.svg) para ejecutar de forma interactiva el contenido (**ojo: cada botón tiene ambientes de docker distintos por lo que un mismo botón puede no funcionar para notas de temas distintos, p.ej. el botón de la nota 1.2 no funciona para la 1.4**). 
 
 Tenemos otro botón :) Este es de [google colab](https://colab.research.google.com/github/shranith/Colab-intro/blob/master/Colab_intro.ipynb) ![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg) para ejecución de forma interactiva de los notebooks de jupyter en los que se utilizan GPU's para procesamiento. 
 
@@ -96,9 +96,9 @@ Métodos de diferenciación e integración numérica:
 
 * [Reescribir funciones a C++: Rcpp](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.7.Reescribir_funciones_a_C%2B%2B_Rcpp.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/I.computo_cientifico/1.7.Reescribir_funciones_a_C%2B%2B_Rcpp.ipynb) (nota escrita en jupyterlab + kernel de R)
 
-* Cómputo en paralelo (capítulo II).
+* Cómputo en paralelo (módulo II).
 
-* Uso del caché y operaciones BLAS (capítulo III).
+* Uso del caché y operaciones BLAS (módulo III).
 
 ## II [Cómputo en paralelo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/II.computo_paralelo)
 
