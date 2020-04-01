@@ -237,7 +237,7 @@ Finalizamos [3.1.Vectorizacion_BLAS_y_el_uso_del_cache_eficientemente.ipynb](htt
 
 Liga al video de la sesión: [microsoft teams](https://web.microsoftstream.com/video/59f883d4-832d-49f8-870d-b115956cd3a8). Tienen que hacer login con su cuenta del itam y luego les pedirá que ingresen nuevamente pero con su cuenta de comunidad itam y luego vuelvan a copiar la liga de arriba en la misma pestaña de su browser o en otra.
 
-Dejé quinta tarea (cómputo en paralelo con las cpus) para obtener el \% de participación por equipo usando github classroom. Se entrega en dos semanas.
+Dejé quinta tarea (cómputo en paralelo con las cpus) para obtener el \% de participación por equipo usando github classroom. Se entrega en una semana.
 
 
 ## Clase 13
