@@ -6,7 +6,7 @@ Este es el repositorio para la materia de "Métodos Numéricos y Optimización (
 
 En esencia el curso sigue un desarrollo de acuerdo al siguiente dibujo:
 
-<img src="https://dl.dropboxusercontent.com/s/0hqal8ni3d5rbso/curso_MNO.png?dl=0" heigth="700" width="700">
+<img src="https://dl.dropboxusercontent.com/s/0hqal8ni3d5rbso/curso_MNO.png?dl=0" heigth="400" width="400">
 
 Los módulos del 1 al 3 constituyen *building blocks* para el módulo 4.
 
