@@ -122,7 +122,7 @@ Finalizamos nota: [1.2.Sistema_de_punto_flotante.ipynb](https://github.com/ITAM-
 
 Iniciamos nota: [1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb)
 
-Dejé primera tarea para obtener el \% de participación por equipo usando github classroom (ver [github education](https://education.github.com/)). Se entrega en una semana
+Dejé primera tarea (sistema de punto flotante) para obtener el \% de participación por equipo usando github classroom (ver [github education](https://education.github.com/)). Se entrega en una semana
 
 ## Clase 4
 
@@ -133,7 +133,7 @@ Finalizamos la nota [1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo]
 Iniciamos la nota [1.4.Polinomios_de_Taylor_y_diferenciacion_numerica](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.4.Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb)
 
 
-Dejé segunda tarea para obtener el \% de participación por equipo usando github classroom. Se entrega en una semana
+Dejé segunda tarea (diferenciación numérica y número de condición) para obtener el \% de participación por equipo usando github classroom. Se entrega en una semana
 
 
 ## Clase 5
@@ -146,7 +146,7 @@ Finalizamos la nota [1.4.Polinomios_de_Taylor_y_diferenciacion_numerica](https:/
 
 Finalizamos regla compuesta del Trapecio de la nota [1.5.Integracion_numerica.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.5.Integracion_numerica.ipynb)
 
-Dejé tercera tarea para obtener el \% de participación por equipo usando github classroom. Se entrega en dos semanas.
+Dejé tercera tarea (integración numérica) para obtener el \% de participación por equipo usando github classroom. Se entrega en dos semanas.
 
 
 ## Clase 6
@@ -198,6 +198,9 @@ Finalizamos:
 
 [2.2.Python_multiprocessing.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.2.Python_multiprocessing.ipynb)
 
+Dejé cuarta tarea (perfilamiento y compilación) para obtener el \% de participación por equipo usando github classroom. Se entrega en dos semanas.
+
+
 ## Clase 10
 
 11 de marzo
@@ -232,6 +235,11 @@ Finalizamos [2.3.CUDA.ipynb](https://github.com/ITAM-DS/analisis-numerico-comput
 
 Finalizamos [3.1.Vectorizacion_BLAS_y_el_uso_del_cache_eficientemente.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.1.Vectorizacion_BLAS_y_el_uso_del_cache_eficientemente.ipynb)
 
+Liga al video de la sesión: [microsoft teams](https://web.microsoftstream.com/video/59f883d4-832d-49f8-870d-b115956cd3a8). Tienen que hacer login con su cuenta del itam y luego les pedirá que ingresen nuevamente pero con su cuenta de comunidad itam y luego vuelvan a copiar la liga de arriba en la misma pestaña de su browser o en otra.
+
+Dejé quinta tarea (cómputo en paralelo con las cpus) para obtener el \% de participación por equipo usando github classroom. Se entrega en dos semanas.
+
+
 ## Clase 13
 
 28 de marzo
@@ -243,6 +251,14 @@ Finalizamos:
 [2.3.Python_CuPy.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.Python_CuPy.ipynb)
 
 [2.3.R_gputools.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.R_gputools.ipynb)
+
+Video de la sesión:
+
+* liga a la 1ra hora de clase [liga google drive](https://drive.google.com/file/d/1PRLDbi4BN6kivI2nHfIhB-XjOAyebHAq/view?usp=sharing)
+
+* liga a la 2a hora de clase [liga google drive](https://drive.google.com/file/d/143VNYysfP5WYiX43T7G2UiI4lI96Qp8-/view?usp=sharing)
+
+* liga a la 3er hora de clase [liga zoom](https://zoom.us/rec/share/3JEpAJPXpkJIS5WV9hqGAfM6Ibvmeaa80ycZ_aVemn5iK1VdN-dMmziCfJIMyT4)
 
 
 
