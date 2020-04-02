@@ -261,5 +261,31 @@ Video de la sesión:
 * liga a la 3er hora de clase [liga zoom](https://zoom.us/rec/share/3JEpAJPXpkJIS5WV9hqGAfM6Ibvmeaa80ycZ_aVemn5iK1VdN-dMmziCfJIMyT4)
 
 
+## Clase 14
+
+1 de abril
+
+
+Finalizamos:
+
+* [3.3.Solucion_de_SEL_y_FM.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.Solucion_de_SEL_y_FM.ipynb)
+
+
+Revisión rápida de:
+
+* [3.3.a.Factorizacion_LU.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.a.Factorizacion_LU.ipynb)
+
+* [3.3.c.Factorizacion_QR.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.c.Factorizacion_QR.ipynb)
+
+* [3.3.d.SVD.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.d.SVD.ipynb)
+
+* [3.3.e.Jacobi_Gauss-Seidel.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.e.Jacobi_Gauss-Seidel.ipynb)
+
+Video de la sesión:
+
+* [liga zoom](https://zoom.us/rec/share/3-BKP-3QrkxJc43iz0HfBJYhAZ7iT6a813NNr_IMnU2XYbjatVL0ErYZ-42DLwAh)
+
+Envié por gitter las ligas de gh-classroom para el examen de módulo matricial
+
 
 
