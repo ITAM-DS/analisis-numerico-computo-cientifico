@@ -285,6 +285,3 @@ Video de la sesión:
 * [liga zoom](https://zoom.us/rec/share/3-BKP-3QrkxJc43iz0HfBJYhAZ7iT6a813NNr_IMnU2XYbjatVL0ErYZ-42DLwAh)
 
 Envié por gitter las ligas de gh-classroom para el examen de módulo matricial
-
-
-
