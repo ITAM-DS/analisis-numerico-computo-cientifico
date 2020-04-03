@@ -265,7 +265,6 @@ Video de la sesión:
 
 1 de abril
 
-
 Finalizamos:
 
 * [3.3.Solucion_de_SEL_y_FM.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.Solucion_de_SEL_y_FM.ipynb)
