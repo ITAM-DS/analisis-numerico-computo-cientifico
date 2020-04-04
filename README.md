@@ -183,19 +183,13 @@ Métodos de diferenciación e integración numérica:
 
 
 
-## IV [Optimización convexa](https://www.dropbox.com/sh/en1tmz93b1lfvnq/AADZIcACu2T3k7sqHp-dS06Ma?dl=0)
+## IV [Optimización convexa](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/IV.optimizacion_convexa_y_machine_learning)
+
+
+4.1 [Introducción.](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Introduccion.ipynb)
 
 4.1 [Mínimos cuadrados lineales con regularización](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_numerica_convexidad/4.1.Minimos_cuadrados_lineales_con_regularizacion.ipynb)
 
-
-
-4.1 [Introducción.](https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0)
-
-* [Preguntas 4.1](https://www.dropbox.com/s/kg57u7dulqnuou9/preguntas_intro_optimizacion.txt?dl=0)
-
-4.2 [Problemas de optimización convexa.](https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0)
-
-* [Preguntas 4.2](https://www.dropbox.com/s/vroclj9r3peg0dh/preguntas_problemas_optimizacion.txt?dl=0)
 
 4.3.1 [Teoría de convexidad: conjuntos convexos.](https://www.dropbox.com/s/ko86cce1olbtsbk/4.3.1.Teoria_de_convexidad_Conjuntos_convexos.pdf?dl=0)
 
@@ -318,3 +312,9 @@ AWS.adicional1 [AWS: Relational Database System]
 * [Preguntas 3.2.1](https://www.dropbox.com/s/g3w9sfa09nkn94p/preguntas_eliminacion_Gaussiana_factorizacion_LU.txt?dl=0)
 
 * [Preguntas 3.2.2](https://www.dropbox.com/s/iwpn6a8nr7w6h5d/preguntas_SVD_QR_Cholesky.txt?dl=0)
+
+
+
+* [Preguntas 4.1](https://www.dropbox.com/s/kg57u7dulqnuou9/preguntas_intro_optimizacion.txt?dl=0)
+
+* [Preguntas 4.2](https://www.dropbox.com/s/vroclj9r3peg0dh/preguntas_problemas_optimizacion.txt?dl=0)
