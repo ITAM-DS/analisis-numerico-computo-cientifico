@@ -179,14 +179,18 @@ Métodos de diferenciación e integración numérica:
     * [3.3.d Descomposición en Valores Singulares: SVD](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.d.SVD.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/III.computo_matricial/3.3.d.SVD.ipynb) (nota escrita en jupyterlab)
     * [3.3.e Jacobi y Gauss Seidel](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.e.Jacobi_Gauss-Seidel.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/III.computo_matricial/3.3.e.Jacobi_Gauss-Seidel.ipynb) (nota escrita en jupyterlab)
 
+
+
+
+## IV [Optimización convexa y machine learning](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/IV.optimizacion_convexa_y_machine_learning)
+
+
+4.1 [Optimización numérica y machine learning](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb) (nota escrita en jupyterlab)
+
 **Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
 
 
 
-## IV [Optimización convexa](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/IV.optimizacion_convexa_y_machine_learning)
-
-
-4.1 [Optimización numérica y machine learning](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb)
 
 4.1 [Mínimos cuadrados lineales con regularización](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_numerica_convexidad/4.1.Minimos_cuadrados_lineales_con_regularizacion.ipynb)
 
