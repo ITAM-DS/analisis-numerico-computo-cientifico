@@ -192,12 +192,9 @@ Métodos de diferenciación e integración numérica:
 4.2 [Algoritmos para optimización sin restricciones](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_optimizacion_sin_restricciones.ipynb)
 
 
-4.1 [Mínimos cuadrados lineales con regularización](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_numerica_convexidad/4.1.Minimos_cuadrados_lineales_con_regularizacion.ipynb)
-
-
 * Ejemplos
 
-    * [Mínimos cuadrados](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.a.Minimos_cuadrados.ipynb)
+    * [4.2.a.Mínimos cuadrados](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.a.Minimos_cuadrados.ipynb)
 
 
 
