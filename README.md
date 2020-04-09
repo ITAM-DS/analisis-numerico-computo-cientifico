@@ -189,35 +189,19 @@ Métodos de diferenciación e integración numérica:
 
 **Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
 
-
+4.2 [Algoritmos para optimización sin restricciones](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_optimizacion_sin_restricciones.ipynb)
 
 
 4.1 [Mínimos cuadrados lineales con regularización](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_numerica_convexidad/4.1.Minimos_cuadrados_lineales_con_regularizacion.ipynb)
 
 
-4.3.1 [Teoría de convexidad: conjuntos convexos.](https://www.dropbox.com/s/ko86cce1olbtsbk/4.3.1.Teoria_de_convexidad_Conjuntos_convexos.pdf?dl=0)
+* Ejemplos
 
-* [Preguntas 4.3.1](https://www.dropbox.com/s/h1fwqnah55f1qu7/preguntas_conjuntos_convexos.pdf?dl=0)
+    * [Mínimos cuadrados](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.a.Minimos_cuadrados.ipynb)
 
-4.3.2 [Teoría de convexidad: funciones convexas.](https://www.dropbox.com/s/mmd1uzvwhdwsyiu/4.3.2.Teoria_de_convexidad_Funciones_convexas.pdf?dl=0)
 
-* [Preguntas 4.3.2](https://www.dropbox.com/s/bdhmmito6aa4zpc/preguntas_funciones_convexas.pdf?dl=0)
 
-4.4 [Dualidad.](https://drive.google.com/file/d/1zCIHNAxe5Shc36Qo0XjehHgwrafKSJ_t/view?usp=sharing)
 
-* [Preguntas 4.4](https://www.dropbox.com/s/w64oxxcdoc3lucn/preguntas_dualidad.pdf?dl=0)
-
-4.5.1 [Problemas de optimización convexa: definiciones](https://drive.google.com/file/d/1xtkxPCx05Xg4Dj7JZoQ-LusBDrtYUqOF/view?usp=sharing)
-
-[Ejemplo de métodos de bisección, punto fijo y Newton para resolver ecuaciones no lineales](https://www.dropbox.com/s/6zree47e1u3p5wx/Ecuaciones_no_lineales.pdf?dl=0)
-
-4.5.2 [Algoritmos de optimización sin restricciones](https://drive.google.com/file/d/16-_PvWNaO0Zc9x04-SRsxCRdn5fxebf2/view?usp=sharing)
-
-4.5.3 [Algoritmos de optimización con restricciones de igualdad](https://drive.google.com/file/d/12L7rOCgW7NEKl_xJbIGZz05XXVrOaPBz/view?usp=sharing)
-
-4.5.4 [Algoritmos de optimización con restricciones de igualdad y desigualdad](https://drive.google.com/file/d/1RMwUXEN_SOHKue-J9Cx3Ldvj9bejLjiM/view?usp=sharing)
-
-* [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
 ## Implementaciones de algoritmos para ecuaciones no lineales y optimización convexa
 
@@ -322,3 +306,30 @@ AWS.adicional1 [AWS: Relational Database System]
 * [Preguntas 4.1](https://www.dropbox.com/s/kg57u7dulqnuou9/preguntas_intro_optimizacion.txt?dl=0)
 
 * [Preguntas 4.2](https://www.dropbox.com/s/vroclj9r3peg0dh/preguntas_problemas_optimizacion.txt?dl=0)
+
+
+4.3.1 [Teoría de convexidad: conjuntos convexos.](https://www.dropbox.com/s/ko86cce1olbtsbk/4.3.1.Teoria_de_convexidad_Conjuntos_convexos.pdf?dl=0)
+
+* [Preguntas 4.3.1](https://www.dropbox.com/s/h1fwqnah55f1qu7/preguntas_conjuntos_convexos.pdf?dl=0)
+
+4.3.2 [Teoría de convexidad: funciones convexas.](https://www.dropbox.com/s/mmd1uzvwhdwsyiu/4.3.2.Teoria_de_convexidad_Funciones_convexas.pdf?dl=0)
+
+* [Preguntas 4.3.2](https://www.dropbox.com/s/bdhmmito6aa4zpc/preguntas_funciones_convexas.pdf?dl=0)
+
+
+4.4 [Dualidad.](https://drive.google.com/file/d/1zCIHNAxe5Shc36Qo0XjehHgwrafKSJ_t/view?usp=sharing)
+
+* [Preguntas 4.4](https://www.dropbox.com/s/w64oxxcdoc3lucn/preguntas_dualidad.pdf?dl=0)
+
+4.5.1 [Problemas de optimización convexa: definiciones](https://drive.google.com/file/d/1xtkxPCx05Xg4Dj7JZoQ-LusBDrtYUqOF/view?usp=sharing)
+
+[Ejemplo de métodos de bisección, punto fijo y Newton para resolver ecuaciones no lineales](https://www.dropbox.com/s/6zree47e1u3p5wx/Ecuaciones_no_lineales.pdf?dl=0)
+
+4.5.2 [Algoritmos de optimización sin restricciones](https://drive.google.com/file/d/16-_PvWNaO0Zc9x04-SRsxCRdn5fxebf2/view?usp=sharing)
+
+
+4.5.3 [Algoritmos de optimización con restricciones de igualdad](https://drive.google.com/file/d/12L7rOCgW7NEKl_xJbIGZz05XXVrOaPBz/view?usp=sharing)
+
+4.5.4 [Algoritmos de optimización con restricciones de igualdad y desigualdad](https://drive.google.com/file/d/1RMwUXEN_SOHKue-J9Cx3Ldvj9bejLjiM/view?usp=sharing)
+
+* [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
