@@ -154,6 +154,12 @@ Métodos de diferenciación e integración numérica:
     * gpuR (pendiente) ver [gpuR](https://github.com/cdeterman/gpuR)
 
 
+* Herramientas adicionales a revisar:
+
+    * [numba](http://numba.pydata.org/), [numba github](https://github.com/numba/numba), [A ~5 minute guide to Numba](https://numba.pydata.org/numba-doc/dev/user/5minguide.html).
+
+
+
 ## III [Cómputo matricial](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/III.computo_matricial)
 
 
