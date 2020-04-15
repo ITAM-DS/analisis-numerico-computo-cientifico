@@ -27,7 +27,7 @@ Se tendrán 2 exámenes de teoría y un examen práctico que evalúan los siguie
 
 Los exámenes de teoría de los módulos 1 y 2 evalúan las definiciones y conceptos de los temas vistos en cada uno de los módulos. Se realizan en clase y de forma individual. El examen práctico se realiza por equipos definidos por el prof y de forma colaborativa en github, se darán más detalles en cuanto se llegue al módulo 3.
 
-El módulo IV de optimización se evalúa con el proyecto final.
+El módulo 4 de optimización se evalúa con el proyecto final.
 
 
 
