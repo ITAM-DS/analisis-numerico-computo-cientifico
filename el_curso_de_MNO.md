@@ -13,7 +13,7 @@ repositorio con el material del curso: [analisis-numerico-computo-cientifico](ht
 |10 o 20|20|40
 
 
-### Exámenes de teoría
+### Exámenes
 
 Se tendrán 2 exámenes de teoría y un examen práctico que evalúan los siguientes módulos:
 
