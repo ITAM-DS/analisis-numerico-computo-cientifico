@@ -8,24 +8,28 @@ repositorio con el material del curso: [analisis-numerico-computo-cientifico](ht
 
 ## Calificación
 
-|Exámenes de teoría| Participación|Proyecto final|
+|Exámenes| Participación|Proyecto final|
 |:---:|:---:|:---:|
-|10|20|40
+|10 o 20|20|40
 
 
 ### Exámenes de teoría
 
-Se tendrán 4 exámenes de teoría con valor de 10 puntos que evalúan cada módulo descritos como sigue:
+Se tendrán 2 exámenes de teoría y un examen práctico que evalúan los siguientes módulos:
 
-|Módulo|Descripción|
-|:---:|:---:|
-|1|Cómputo científico|
-|2|Cómputo en paralelo|
-|3|Cómputo matricial|
-|4|Optimización|
+|Módulo|Descripción| Puntos| Tipo|
+|:---:|:---:|:---:|:---:|
+|1|Cómputo científico|10|Teórico|
+|2|Cómputo en paralelo|10|Teórico|
+|3|Cómputo matricial|20|Práctico|
 
 
-Los exámenes de teoría evalúan las definiciones y conceptos de los temas vistos en cada uno de los módulos. Se realizan en clase y de forma individual.
+
+Los exámenes de teoría de los módulos 1 y 2 evalúan las definiciones y conceptos de los temas vistos en cada uno de los módulos. Se realizan en clase y de forma individual. El examen práctico se realiza por equipos definidos por el prof y de forma colaborativa en github, se darán más detalles en cuanto se llegue al módulo 3.
+
+El módulo IV de optimización se evalúa con el proyecto final.
+
+
 
 ### Participación
 
@@ -74,8 +78,4 @@ En cada hora haremos un break.
 # Sobre lo que no deben realizar nunca
 
 **Copiar en un examen/tarea/trabajo/entrega pues implica cero en el mismo y se da el aviso al director de la maestría para la sanción correspondiente.**
-
-
-
-
 
