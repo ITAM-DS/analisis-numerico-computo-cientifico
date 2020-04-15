@@ -37,15 +37,14 @@ Se realiza de forma **individual o puede ser también en una asignación por equ
 
 Para el caso de **entrega individual** puede obtenerse de las siguientes formas:
 
-* Resolviendo ejercicios de la clase y realizando discusión de los temas en la misma. Aquellas personas que opten por esta opción tendrán que realizar la participación en clase de forma continua y constante.
+* Resolviendo ejercicios de la clase y realizando discusión de los temas en la misma. Aquellas personas que opten por esta opción deben realizar la participación en clase de forma continua y constante.
 
 * Entregando reporte de investigación de un tema con ejemplos numéricos de la misma. Los temas serán dados en clase o serán propuestos por ustedes (en este caso lo discuten conmigo antes de realizar la investigación). Únicamente se tomará como válido el trabajo de investigación por tema que se entregue de forma correcta y completa. Sólo se acepta un tema por persona. Los ejemplos numéricos pueden hacerse de forma escrita o bien realizando una implementación computacional.
 
-* Entregando todas las tareas de C que las encuentran [aquí](tareas_de_C). Sólo se acepta una entrega que cubra todas las tareas. Primeras personas en entregar todas las tareas obtienen la participación.
+* Entregando todas las tareas de C que las encuentran [aquí](tareas_de_C). Sólo se acepta una entrega que cubra todas las tareas. Una vez entregada se revisará y se dará *feedback* para su corrección, esto lo realizaremos hasta tener correcta la entrega. Primeras personas en entregar todas las tareas obtienen la participación.
 
-* Entregando alguna de las tareas de los temas que se encuentran en el repositorio de la materia en el índice de notas por ejemplo dar click [Ejercicios punto flotante](https://www.dropbox.com/s/09o9aasjyzya4ff/Punto_flotante.pdf?dl=0) para ejemplo de una tarea que está en el tema [I Cómputo científico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico#i-c%C3%B3mputo-cient%C3%ADfico). Sólo se aceptan entregas completas y correctas. Primeras personas en entregar la tarea obtienen la participación.
+* Entregando alguna de las tareas de los temas que se encuentran en el repositorio de la materia en el índice de notas por ejemplo dar click [Ejercicios punto flotante](https://www.dropbox.com/s/09o9aasjyzya4ff/Punto_flotante.pdf?dl=0) para ejemplo de una tarea que está en el tema [I Cómputo científico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico#i-c%C3%B3mputo-cient%C3%ADfico). Sólo se aceptan entregas completas y correctas. Una vez entregada se revisará y se dará *feedback* para su corrección, esto lo realizaremos hasta tener correcta la entrega. Primeras personas en entregar la tarea obtienen la participación. 
 
-* Entregando los ejercicios de las notas, por ejemplo los que aparecen en [1.2.Sistema_de_punto_flotante](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb).
 
 * Completando algún ejercicio que pida en clase, por ejemplo: comparación de códigos en la GPU.
 
@@ -53,9 +52,9 @@ Para el caso de **entrega por equipo**:
 
 * Usar githubclassroom para las asignaciones creadas ahí. Por ejemplo:
 
-	* Entregando los ejercicios númericos de las notas que se dejan en clase para hacer en equipo. Por ejemplo los que aparecen en [1.2.Sistema_de_punto_flotante](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb).
+    * Entregando los ejercicios númericos que se dejan en clase para hacer en equipo. Por ejemplo los que aparecen en [1.2.Sistema_de_punto_flotante](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb).
 
-**Para la modalidad de entrega por equipo usando github classroom tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga `commit`'s, `pull`'s, `push`'s, ...)**.
+**Para la modalidad de entrega por equipo usando github classroom tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, ...)**.
 
 ### Proyecto final
 
