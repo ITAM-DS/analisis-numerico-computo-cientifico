@@ -184,9 +184,13 @@ Métodos de diferenciación e integración numérica:
 
 ## IV [Optimización convexa y machine learning](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/IV.optimizacion_convexa_y_machine_learning)
 
-Los resultados de los problemas de optimización revisados en este módulo pueden obtenerse con la herramienta:
+Los resultados de los problemas de optimización revisados en este módulo pueden obtenerse con las herramientas:
 
-* [cvxpy](https://www.cvxpy.org/) y [cvxpy github](https://github.com/cvxgrp/cvxpy). Esta herramienta obtiene resultados de acuerdo a [disciplined convex programming ruleset](http://cvxr.com/cvx/doc/dcp.html).
+* [cvxpy](https://www.cvxpy.org/) y [cvxpy github](https://github.com/cvxgrp/cvxpy). 
+
+* [cvxr](https://cvxr.rbind.io/) y [cvxr github](https://github.com/cvxgrp/CVXR/).
+
+Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programming](https://dcp.stanford.edu/).
 
 4.1 [Optimización numérica y machine learning](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb) (nota escrita en jupyterlab)
 
