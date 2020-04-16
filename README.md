@@ -285,3 +285,16 @@ Video de la sesión:
 * [liga zoom](https://zoom.us/rec/share/3-BKP-3QrkxJc43iz0HfBJYhAZ7iT6a813NNr_IMnU2XYbjatVL0ErYZ-42DLwAh)
 
 Envié por gitter las ligas de gh-classroom para el examen de módulo matricial
+
+
+## Clase 15
+
+13 de abril
+
+Llegamos al ejemplo del método de descenso en gradiente en [4.1.Optimizacion_numerica_y_machine_learning.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb)
+
+Videos de la sesión:
+
+* [parte 1](https://drive.google.com/open?id=1f9AR5qw-NTWg_bM4HWaZaD6Uds9_AkAp)
+* [parte 2](https://drive.google.com/open?id=1zgGqZNRoyYoFLIq69Q_LtHdTnN6xYt2H)
+* [parte 3](https://drive.google.com/open?id=1jsbn5fT95hJEUKfpFponcvKLFdwvByYA)
