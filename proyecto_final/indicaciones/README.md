@@ -36,7 +36,19 @@ El proyecto final se presenta en la segunda semana de finales.
 
 ### Asignación de equipos en las fechas anteriores:
 
- 	Fechas	Equipos			Salón		 Horario
+El prof les envía la liga de la reunión por Jitsi.
+
+||||
+|:---:|:---:|:---:|
+|Fechas|Equipos|Horario|
+|25 de abril|8|8 a 8:45 am|
+|25 de abril|9|9 a 9:45 am|
+|9 de mayo|1 y 4|8 a 8:45 am|
+|9 de mayo|5 y 6|9 a 9:45 am|
+|16 de mayo|2 y 3|8 a 8:45 am|
+|16 de mayo|7|9 a 9:45 am|
+
+
 
 
 
