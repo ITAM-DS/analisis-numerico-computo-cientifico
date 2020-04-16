@@ -1,6 +1,6 @@
 # Indicaciones
 
-El proyecto se construye semanalmente con el trabajo de cada integrante del equipo. Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo individual. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante los sábados de los meses de abril y mayo en los que se deberá exponer lo que han realizado.
+Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo individual. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante los sábados de los meses de abril y mayo en los que se deberá exponer lo que han realizado.
 
 En el nivel:  
 
