@@ -38,8 +38,8 @@ El proyecto final se presenta en la segunda semana de finales.
 
 La reunión será por Jitsi
 
-|||||
-|:---:|:---:|:---:|:---:|
+||||
+|:---:|:---:|:---:|
 |Fechas|Equipos|Horario|
 |25 de abril|8|8 a 8:45 am|
 |25 de abril|9|9 a 9:45 am|
