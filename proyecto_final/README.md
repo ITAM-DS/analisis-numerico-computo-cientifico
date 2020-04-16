@@ -76,6 +76,6 @@ La siguiente lista no pretende ser exhaustiva.
 
 * Algoritmos basados en árboles o grafos.
 
-* Métodos numéricos para optimización: métodos de descenso, métodos Quasi-Newton, métodos de rango reducido.
+* Métodos numéricos para optimización: métodos de descenso, métodos Quasi-Newton, métodos de aproximación de rango reducido o rango bajo.
 
  **Los métodos numéricos deben ser utilizados en problemas de optimización numérica y en aplicaciones detalladas al inicio.**
