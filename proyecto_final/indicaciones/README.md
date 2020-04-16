@@ -36,7 +36,7 @@ El proyecto final se presenta en la segunda semana de finales.
 
 ### Asignación de equipos en las fechas anteriores:
 
-La reunión será por Jitsi
+El prof les envía la liga de la reunión por Jitsi.
 
 ||||
 |:---:|:---:|:---:|
