@@ -204,12 +204,17 @@ Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programm
 
 **Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
 
-4.2 [Algoritmos para optimización sin restricciones](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_optimizacion_sin_restricciones.ipynb)
+4.2 [Algoritmos para optimización sin restricciones](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_optimizacion_sin_restricciones.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_optimizacion_sin_restricciones.ipynb) (nota escrita en jupyterlab)
 
 
-* Ejemplos
+* [Descenso por coordenadas](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Descenso_por_coordenadas.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel_openblas?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Descenso_por_coordenadas.ipynb) (nota escrita en jupyterlab + kernel de R)
 
-    * [4.2.a.Mínimos cuadrados](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.a.Minimos_cuadrados.ipynb)
+* [Método de Newton]
+
+
+4.3 Ejemplos
+
+    * [Mínimos cuadrados](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Ejemplos_minimos_cuadrados.ipynb)
 
 
 
