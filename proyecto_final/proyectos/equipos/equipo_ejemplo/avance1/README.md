@@ -6,7 +6,9 @@
 
 * Erica
 
-## Trabajo:
+## Trabajo: 
+
+Ejemplo si no fusionaron su equipo:
 
 ### Individual
 
@@ -17,6 +19,21 @@ Leí la siguiente [referencia](http://docs.nvidia.com/cuda/cuda-c-programming-gu
 Erica:
 
 Implementé la siguiente [función](codigo/funcion_imprime_hello_world_cuda.cu) en CUDA-C para realizar un hello world.
+
+
+Ejemplo si fusionaron su equipo:
+
+Grupo de programación
+
+...
+
+Grupo de revisión
+
+...
+
+Project manager
+
+...
 
 ### Equipo
 
