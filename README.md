@@ -201,9 +201,6 @@ Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programm
 4.1 [Optimización numérica y machine learning](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb) (nota escrita en jupyterlab)
 
 
-
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
-
 4.2 [Algoritmos para optimización sin restricciones](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_optimizacion_sin_restricciones.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_optimizacion_sin_restricciones.ipynb) (nota escrita en jupyterlab)
 
 * Algoritmos:
@@ -217,24 +214,13 @@ Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programm
     * [Método de Newton](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Metodo_de_Newton.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Metodo_de_Newton.ipynb) (nota escrita en jupyterlab)
     
 
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
+
 
 * Ejemplos
 
     * [Mínimos cuadrados](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Ejemplos_minimos_cuadrados.ipynb)
 
-
-
-
-
-## Implementaciones de algoritmos para ecuaciones no lineales y optimización convexa
-
-[Ecuaciones no lineales](algoritmos/ecuaciones_no_lineales/)
-
-[Algoritmos para optimización sin restricciones](algoritmos/optimizacion_convexa_sin_restricciones)
-
-[Algoritmos para optimización con restricciones de igualdad: ecuaciones lineales](algoritmos/optimizacion_convexa_con_restricciones_de_igualdad_ecuaciones_lineales)
-
-[Algoritmos para optimización con restricciones de igualdad: ecuaciones lineales y desigualdad](algoritmos/optimizacion_convexa_con_restricciones_de_igualdad_ecuaciones_lineales_y_desigualdad/)
 
 
 Ver [RAPIDS](https://rapids.ai/)
@@ -356,3 +342,14 @@ AWS.adicional1 [AWS: Relational Database System]
 4.5.4 [Algoritmos de optimización con restricciones de igualdad y desigualdad](https://drive.google.com/file/d/1RMwUXEN_SOHKue-J9Cx3Ldvj9bejLjiM/view?usp=sharing)
 
 * [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
+
+
+## Implementaciones de algoritmos para ecuaciones no lineales y optimización convexa
+
+[Ecuaciones no lineales](algoritmos/ecuaciones_no_lineales/)
+
+[Algoritmos para optimización sin restricciones](algoritmos/optimizacion_convexa_sin_restricciones)
+
+[Algoritmos para optimización con restricciones de igualdad: ecuaciones lineales](algoritmos/optimizacion_convexa_con_restricciones_de_igualdad_ecuaciones_lineales)
+
+[Algoritmos para optimización con restricciones de igualdad: ecuaciones lineales y desigualdad](algoritmos/optimizacion_convexa_con_restricciones_de_igualdad_ecuaciones_lineales_y_desigualdad/)
