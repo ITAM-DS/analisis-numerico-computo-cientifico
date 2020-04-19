@@ -298,3 +298,16 @@ Videos de la sesión:
 * [parte 1](https://drive.google.com/open?id=1f9AR5qw-NTWg_bM4HWaZaD6Uds9_AkAp)
 * [parte 2](https://drive.google.com/open?id=1zgGqZNRoyYoFLIq69Q_LtHdTnN6xYt2H)
 * [parte 3](https://drive.google.com/open?id=1jsbn5fT95hJEUKfpFponcvKLFdwvByYA)
+
+
+## Clase 16
+
+18 de abril 
+
+Discusión de ex de cómputo matricial por equipos.
+
+Plática general sobre kubernetes. Ver [4.AWS y Kubernetes](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/4.AWS-y-Kubernetes).
+
+Comentarios generales de github classrooms y del proyecto final.
+
+Repaso de [4.1.Optimizacion_numerica_y_machine_learning.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb). Revisión de definiciones de problemas de optimización, dominio del problema de optimización, conjunto factible, conjunto factible y óptimo global, local hasta problemas de optimización convexa.
