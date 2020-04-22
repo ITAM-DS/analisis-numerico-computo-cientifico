@@ -8,7 +8,7 @@
 
 ## Trabajo: 
 
-Ejemplo si no fusionaron su equipo:
+**Ejemplo si no fusionaron su equipo:**
 
 ### Individual
 
@@ -21,19 +21,22 @@ Erica:
 Implementé la siguiente [función](codigo/funcion_imprime_hello_world_cuda.cu) en CUDA-C para realizar un hello world.
 
 
-Ejemplo si fusionaron su equipo:
+**Ejemplo si fusionaron su equipo:**
 
-Grupo de programación
-
-...
-
-Grupo de revisión
-
-...
 
 Project manager
 
-...
+Resolvimos el *milestone* (...) relacionado con los *issues* (...) para la tarea (...)
+
+Grupo de programación
+
+Programamos (...) que puede consultarse (...).
+
+Grupo de revisión
+
+Revisamos (...) con diferentes parámetros y generamos el reporte (...)
+
+
 
 ### Equipo
 
