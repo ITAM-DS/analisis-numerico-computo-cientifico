@@ -10,6 +10,13 @@
 
 **Ejemplo si no fusionaron su equipo:**
 
+### Resúmen
+
+Resolvimos el *milestone* (...) relacionado con los *issues* (...) para la tarea (...)
+
+Revisamos (...) con diferentes parámetros y generamos el reporte (...)
+
+
 ### Individual
 
 Erick: 
@@ -19,6 +26,8 @@ Leí la siguiente [referencia](http://docs.nvidia.com/cuda/cuda-c-programming-gu
 Erica:
 
 Implementé la siguiente [función](codigo/funcion_imprime_hello_world_cuda.cu) en CUDA-C para realizar un hello world.
+
+
 
 
 **Ejemplo si fusionaron su equipo:**
@@ -38,7 +47,7 @@ Revisamos (...) con diferentes parámetros y generamos el reporte (...)
 
 
 
-### Equipo
+### Tarea (o *milestone* o trabajo) que continúa
 
 Determinamos que nos tomará dos días revisar los índices de las referencias que mencionó Erick y revisaremos la implementación de Erica para que la [función](codigo/funcion_imprime_hello_world_cuda.cu) imprima un `hello_world` por cada bloque de threads.
 
