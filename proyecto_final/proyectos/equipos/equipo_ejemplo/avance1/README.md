@@ -24,15 +24,15 @@ Implementé la siguiente [función](codigo/funcion_imprime_hello_world_cuda.cu) 
 **Ejemplo si fusionaron su equipo:**
 
 
-Project manager
+### Project manager
 
 Resolvimos el *milestone* (...) relacionado con los *issues* (...) para la tarea (...)
 
-Grupo de programación
+### Grupo de programación
 
 Programamos (...) que puede consultarse (...).
 
-Grupo de revisión
+### Grupo de revisión
 
 Revisamos (...) con diferentes parámetros y generamos el reporte (...)
 
