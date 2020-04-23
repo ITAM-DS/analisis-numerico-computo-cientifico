@@ -311,3 +311,11 @@ Plática general sobre kubernetes. Ver [4.AWS y Kubernetes](https://github.com/I
 Comentarios generales de github classrooms y del proyecto final.
 
 Repaso de [4.1.Optimizacion_numerica_y_machine_learning.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb). Revisión de definiciones de problemas de optimización, dominio del problema de optimización, conjunto factible, conjunto factible y óptimo global, local hasta problemas de optimización convexa.
+
+## Clase 17
+
+22 de abril
+
+Finalizamos nota [4.1.Optimizacion_numerica_y_machine_learning.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb).
+
+Iniciamos [4.2.Algoritmos_para_optimizacion_sin_restricciones](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_optimizacion_sin_restricciones.ipynb).
