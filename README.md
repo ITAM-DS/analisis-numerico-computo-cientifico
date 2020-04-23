@@ -318,4 +318,8 @@ Repaso de [4.1.Optimizacion_numerica_y_machine_learning.ipynb](https://github.co
 
 Finalizamos nota [4.1.Optimizacion_numerica_y_machine_learning.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb).
 
-Iniciamos [4.2.Algoritmos_para_optimizacion_sin_restricciones](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_optimizacion_sin_restricciones.ipynb).
+Iniciamos [4.2.Algoritmos_para_optimizacion_sin_restricciones](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_optimizacion_sin_restricciones.ipynb) sólo mencionando las suposiciones de la nota.
+
+Discutimos organización de carpetas y forma de trabajo para proyecto final.
+
+Se vio uso de [github-pages](https://pages.github.com/) con un ejemplo de estudiante.
