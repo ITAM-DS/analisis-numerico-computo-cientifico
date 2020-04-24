@@ -186,6 +186,7 @@ Métodos de diferenciación e integración numérica:
     * [3.3.e Jacobi y Gauss Seidel](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.e.Jacobi_Gauss-Seidel.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/III.computo_matricial/3.3.e.Jacobi_Gauss-Seidel.ipynb) (nota escrita en jupyterlab)
 
 
+* [Ejercicios cómputo matricial](https://www.dropbox.com/s/kns8on2z8f0gva3/Computo-matricial.pdf?dl=0)
 
 
 ## IV [Optimización convexa y machine learning](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/IV.optimizacion_convexa_y_machine_learning)
