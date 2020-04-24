@@ -6,7 +6,7 @@ Que l@s estudiantes refuercen la teoría vista en el curso con la investigación
 
 ## Generalidades
 
-Cada equipo realiza una investigación del método numérico elegido para su estudio, reporte en un trabajo escrito, presentación e implementación para resolver el problema definido por el equipo en el marco del objetivo anterior. La definición del problema se discute entre los integrantes del equipo y con el profesor. Juntos determinan el tiempo que requieren para la entrega del proyecto, para ello, semanalmente se solicitan avances del proyecto, siendo parte fundamental para el éxito del mismo. Más indicaciones respecto a esto último se encuentran en [indicaciones](indicaciones).
+Cada equipo realiza una investigación del método numérico elegido para su estudio, reporte en un trabajo escrito, presentación e implementación para resolver el problema definido por el equipo en el marco del objetivo anterior. La definición del problema se discute entre los integrantes del equipo y con el profesor. Juntos determinan el tiempo que requieren para la entrega del proyecto, para ello, el equipo debe establecer las fechas que realizarán trabajo, siendo parte fundamental para el éxito del mismo. Más indicaciones respecto a esto último se encuentran en [indicaciones](indicaciones).
 
 ## Implementación
 
