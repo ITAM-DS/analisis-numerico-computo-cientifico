@@ -10,9 +10,9 @@ Objetivo del proyecto: objetivo
 
 [Avances del proyecto](equipos/equipo_ejemplo):
 
-* [avance_1](equipos/equipo_ejemplo/avance_1)
+* [avance1](equipos/equipo_ejemplo/avance1)
 
-* [avance_2](equipos/equipo_ejemplo/avance_2)
+* [avance2](equipos/equipo_ejemplo/avance2)
 
 [Trabajo escrito](liga hacia trabajo escrito)
 
