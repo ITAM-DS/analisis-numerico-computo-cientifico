@@ -135,7 +135,7 @@ coordinate_descent<-function(f, x_0, tol,
     cat(sprintf("Approximate solution:"))
     print(x)
     cond <- Err_plot_aux > .Machine$double.eps*10**(-2)
-    Err_plot = Err_plot_aux[cond]
+    Err_plot <- Err_plot_aux[cond]
     cond<- apply(x_plot,2,function(x) all(x==0))
     x_plot <- x_plot[,1:(iteration-1)]
     if (iteration == maxiter && t < tol_backtracking){
@@ -189,8 +189,9 @@ Newtons_method<-function(f, x_0, tol,
     dec_Newton <- sum(dir_Newton*(Hfeval%*%dir_Newton))
     dir_Newton <- -dir_Newton
     
-    cat(sprintf("I    Normagf   Error x_ast   Error p_ast   line search    condHf\n"))
-    cat(sprintf("%d    %.2e   %0.2e      %0.2e      %s\n",iteration,normgf,Err,Err_plot_aux[iteration],"---", condHf))
+    cat(sprintf("I    Normgf   Newton Decrement   Error x_ast   Error p_ast   line search    condHf\n"))
+    cat(sprintf("%d    %.2e   %0.2e           %0.2e      %0.2e      %s         %0.2e\n",iteration,normgf,dec_Newton,
+                                                                      Err,Err_plot_aux[iteration],"---", condHf))
     
     stopping_criteria <- dec_Newton/2
     iteration<-iteration + 1
@@ -204,14 +205,15 @@ Newtons_method<-function(f, x_0, tol,
         normgf <- Euclidian_norm(gfeval)
         condHf <- kappa(Hfeval, exact=TRUE)
         #Newton's direction and Newton's decrement
-        dir_Newton = solve(Hfeval, gfeval)
-        dec_Newton = sum(dir_Newton*(Hfeval%*%dir_Newton))
+        dir_Newton <- solve(Hfeval, gfeval)
+        dec_Newton <- sum(dir_Newton*(Hfeval%*%dir_Newton))
         dir_Newton <- -dir_Newton
         Err_plot_aux[iteration] <- abs(feval-p_ast);
         x_plot[,iteration] <- x
         Err <- compute_error(x_ast,x)
-        cat(sprintf("%d    %.2e   %0.2e      %0.2e      %0.2e    %0.2e\n",iteration,normgf,Err,Err_plot_aux[iteration],t,condHf))
-        stopping_criteria = dec_Newton/2
+        cat(sprintf("%d    %.2e   %0.2e           %0.2e      %0.2e      %0.2e    %0.2e\n",iteration,normgf,dec_Newton,
+                                                                                        Err,Err_plot_aux[iteration],t, condHf))
+        stopping_criteria <- dec_Newton/2
         if (t<tol_backtracking){ #if t is less than tol_backtracking then we need to check the reason
             iter_salida <- iteration
             iteration <- maxiter
@@ -222,7 +224,7 @@ Newtons_method<-function(f, x_0, tol,
     cat(sprintf("Approximate solution:"))
     print(x)
     cond <- Err_plot_aux > .Machine$double.eps*10**(-2)
-    Err_plot = Err_plot_aux[cond]
+    Err_plot <- Err_plot_aux[cond]
     cond<- apply(x_plot,2,function(x) all(x==0))
     x_plot <- x_plot[,1:(iteration-1)]
     if (iteration == maxiter && t < tol_backtracking){
