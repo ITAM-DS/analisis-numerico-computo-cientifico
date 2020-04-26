@@ -15,19 +15,19 @@ def gradient_descent(f, x_0, tol,
     Method of gradient descent to numerically approximate solution of min f.
     Args:
         f (lambda expression): definition of function f.
-        x_0 (array): initial point for gradient descent method.
+        x_0 (numpy ndarray): initial point for gradient descent method.
         tol (float): tolerance that will halt method. Controls norm of gradient of f.
         tol_backtracking (float): tolerance that will halt method. Controls value of line search by backtracking.
-        x_ast (array): solution of min f, now it's required that user knows the solution...
+        x_ast (numpy ndarray): solution of min f, now it's required that user knows the solution...
         p_ast (float): value of f(x_ast), now it's required that user knows the solution...
         maxiter (int): maximum number of iterations
     Returns:
-        x (array): numpy array, approximation of x_ast.
+        x (numpy ndarray): numpy array, approximation of x_ast.
         iteration (int): number of iterations.
-        Err_plot (array): numpy array of absolute error between p_ast and f(x) with x approximation.
-                          of x_ast. Useful for plotting.
-        x_plot (array): numpy array that containts in columns vector of approximations. Last column
-                        contains x, approximation of solution. Useful for plotting.
+        Err_plot (numpy ndarray): numpy array of absolute error between p_ast and f(x) with x approximation
+                                  of x_ast. Useful for plotting.
+        x_plot (numpy ndarray): numpy array that containts in columns vector of approximations. Last column
+                                contains x, approximation of solution. Useful for plotting.
     '''
     iteration = 0
     x = x_0
@@ -63,16 +63,18 @@ def gradient_descent(f, x_0, tol,
                                                                       Err_plot_aux[iteration],t))
         if t<tol_backtracking: #if t is less than tol_backtracking then we need to check the reason
             iter_salida=iteration
-            iteration = maxiter
+            iteration = maxiter - 1
         iteration+=1
     print('{} {:0.2e}'.format("Error of x with respect to x_ast:",Err))
     print('{} {}'.format("Approximate solution:", x))
     cond = Err_plot_aux > np.finfo(float).eps*10**(-2)
     Err_plot = Err_plot_aux[cond]
-    cond = ~np.all(x_plot[:,1:] == 0,axis=0)
     if iteration == maxiter and t < tol_backtracking:
         print("Backtracking value less than tol_backtracking, check approximation")
         iteration=iter_salida
+        x_plot = x_plot[:,:iteration]
+    else:
+        x_plot = x_plot[:,:iteration]
     return [x,iteration,Err_plot,x_plot[:,np.concatenate([np.array([True]),cond])]]
 
 def Newtons_method(f, x_0, tol, 
@@ -81,18 +83,18 @@ def Newtons_method(f, x_0, tol,
     Newton's method to numerically approximate solution of min f.
     Args:
         f (lambda expression): definition of function f.
-        x_0 (array): initial point for Newton's method.
+        x_0 (numpy ndarray): initial point for Newton's method.
         tol (float): tolerance that will halt method. Controls stopping criteria.
         tol_backtracking (float): tolerance that will halt method. Controls value of line search by backtracking.
-        x_ast (array): solution of min f, now it's required that user knows the solution...
+        x_ast (numpy ndarray): solution of min f, now it's required that user knows the solution...
         p_ast (float): value of f(x_ast), now it's required that user knows the solution...
         maxiter (int): maximum number of iterations
     Returns:
-        x (array): numpy array, approximation of x_ast.
+        x (numpy ndarray): numpy array, approximation of x_ast.
         iteration (int): number of iterations.
-        Err_plot (array): numpy array of absolute error between p_ast and f(x) with x approximation.
+        Err_plot (numpy ndarray): numpy array of absolute error between p_ast and f(x) with x approximation
                           of x_ast. Useful for plotting.
-        x_plot (array): numpy array that containts in columns vector of approximations. Last column
+        x_plot (numpy ndarray): numpy array that containts in columns vector of approximations. Last column
                         contains x, approximation of solution. Useful for plotting.
     '''
     iteration = 0
@@ -149,14 +151,16 @@ def Newtons_method(f, x_0, tol,
         stopping_criteria = dec_Newton/2
         if t<tol_backtracking: #if t is less than tol_backtracking then we need to check the reason
             iter_salida=iteration
-            iteration = maxiter
+            iteration = maxiter - 1
         iteration+=1
     print('{} {:0.2e}'.format("Error of x with respect to x_ast:",Err))
     print('{} {}'.format("Approximate solution:", x))
     cond = Err_plot_aux > np.finfo(float).eps*10**(-2)
     Err_plot = Err_plot_aux[cond]
-    x_plot = x_plot[:,:iteration]
     if iteration == maxiter and t < tol_backtracking:
         print("Backtracking value less than tol_backtracking, check approximation")
         iteration=iter_salida
+        x_plot = x_plot[:,:iteration]
+    else:
+        x_plot = x_plot[:,:iteration]
     return [x,iteration,Err_plot,x_plot]

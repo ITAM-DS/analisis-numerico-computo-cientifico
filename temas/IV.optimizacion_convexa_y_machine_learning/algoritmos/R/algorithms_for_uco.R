@@ -51,7 +51,7 @@ gradient_descent<-function(f, x_0, tol,
         cat(sprintf("%d    %.2e   %0.2e      %0.2e      %s\n",iteration,normgf,Err,Err_plot_aux[iteration],t))
         if (t<tol_backtracking){ #if t is less than tol_backtracking then we need to check the reason
             iter_salida <- iteration
-            iteration <- maxiter
+            iteration <- maxiter - 1
         }
         iteration <- iteration + 1
     } #while
@@ -127,7 +127,7 @@ coordinate_descent<-function(f, x_0, tol,
         cat(sprintf("%d    %.2e   %0.2e      %0.2e      %s\n",iteration,normgf,Err,Err_plot_aux[iteration],t))
         if (t<tol_backtracking){ #if t is less than tol_backtracking then we need to check the reason
             iter_salida <- iteration
-            iteration <- maxiter
+            iteration <- maxiter - 1
         }
         iteration <- iteration + 1
     } #while
@@ -216,7 +216,7 @@ Newtons_method<-function(f, x_0, tol,
         stopping_criteria <- dec_Newton/2
         if (t<tol_backtracking){ #if t is less than tol_backtracking then we need to check the reason
             iter_salida <- iteration
-            iteration <- maxiter
+            iteration <- maxiter - 1
         }
         iteration <- iteration + 1
     } #while
@@ -225,11 +225,13 @@ Newtons_method<-function(f, x_0, tol,
     print(x)
     cond <- Err_plot_aux > .Machine$double.eps*10**(-2)
     Err_plot <- Err_plot_aux[cond]
-    cond<- apply(x_plot,2,function(x) all(x==0))
-    x_plot <- x_plot[,1:(iteration-1)]
     if (iteration == maxiter && t < tol_backtracking){
         print("Backtracking value less than tol_backtracking, check approximation")
         iteration<-iter_salida
+        x_plot <- x_plot[,1:(iteration-1)]
+    }
+    else{
+        x_plot <- x_plot[,1:(iteration-1)]
     }
    list(x,iteration-1,Err_plot,x_plot)
     
