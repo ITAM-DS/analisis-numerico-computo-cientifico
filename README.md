@@ -218,11 +218,11 @@ Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programm
 **Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**    
 
 
-* Ejemplos
+Ejemplos de uso de algoritmos para UCO:
 
-    * [Mínimos cuadrados](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Minimos_cuadrados_R.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel_openblas?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Minimos_cuadrados_R.ipynb) (nota escrita en jupyterlab + kernel de R)
+* [4.3.Mínimos cuadrados](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Minimos_cuadrados_R.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel_openblas?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Minimos_cuadrados_R.ipynb) (nota escrita en jupyterlab + kernel de R)
 
-    * [Regresión logística](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Regresion_logistica_R.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel_openblas?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Regresion_logistica_R.ipynb) (nota escrita en jupyterlab + kernel de R)
+* [4.3.Regresión logística](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Regresion_logistica_R.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_r_kernel_openblas?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Regresion_logistica_R.ipynb) (nota escrita en jupyterlab + kernel de R)
 
 
 
