@@ -60,11 +60,14 @@ gradient_descent<-function(f, x_0, tol,
     print(x)
     cond <- Err_plot_aux > .Machine$double.eps*10**(-2)
     Err_plot <- Err_plot_aux[cond]
-    x_plot <- x_plot[,1:(iteration-1)]
     if (iteration == maxiter && t < tol_backtracking){
         print("Backtracking value less than tol_backtracking, check approximation")
         iteration<-iter_salida
+        x_plot <- x_plot[,1:(iteration-1)]
     }
+    else{
+        x_plot <- x_plot[,1:(iteration-1)]
+        }
    list(x,iteration-1,Err_plot,x_plot)
     
 }    
@@ -136,12 +139,14 @@ coordinate_descent<-function(f, x_0, tol,
     print(x)
     cond <- Err_plot_aux > .Machine$double.eps*10**(-2)
     Err_plot <- Err_plot_aux[cond]
-    cond<- apply(x_plot,2,function(x) all(x==0))
-    x_plot <- x_plot[,1:(iteration-1)]
     if (iteration == maxiter && t < tol_backtracking){
         print("Backtracking value less than tol_backtracking, check approximation")
         iteration<-iter_salida
+        x_plot <- x_plot[,1:(iteration-1)]
     }
+    else{
+        x_plot <- x_plot[,1:(iteration-1)]
+        }
    list(x,iteration-1,Err_plot,x_plot)
     
 }
@@ -185,9 +190,9 @@ Newtons_method<-function(f, x_0, tol,
     x_plot[,iteration] <- x
     
     #Newton's direction and Newton's decrement
-    dir_Newton <- solve(Hfeval, gfeval)
-    dec_Newton <- sum(dir_Newton*(Hfeval%*%dir_Newton))
-    dir_Newton <- -dir_Newton
+    
+    dir_Newton <- solve(Hfeval, -gfeval)
+    dec_Newton <- -sum(gfeval*dir_Newton)
     
     cat(sprintf("I    Normgf   Newton Decrement   Error x_ast   Error p_ast   line search    condHf\n"))
     cat(sprintf("%d    %.2e   %0.2e           %0.2e      %0.2e      %s         %0.2e\n",iteration,normgf,dec_Newton,
@@ -205,9 +210,9 @@ Newtons_method<-function(f, x_0, tol,
         normgf <- Euclidian_norm(gfeval)
         condHf <- kappa(Hfeval, exact=TRUE)
         #Newton's direction and Newton's decrement
-        dir_Newton <- solve(Hfeval, gfeval)
-        dec_Newton <- sum(dir_Newton*(Hfeval%*%dir_Newton))
-        dir_Newton <- -dir_Newton
+            
+        dir_Newton <- solve(Hfeval, -gfeval)
+        dec_Newton <- -sum(gfeval*dir_Newton)
         Err_plot_aux[iteration] <- abs(feval-p_ast);
         x_plot[,iteration] <- x
         Err <- compute_error(x_ast,x)
@@ -232,7 +237,7 @@ Newtons_method<-function(f, x_0, tol,
     }
     else{
         x_plot <- x_plot[,1:(iteration-1)]
-    }
+        }
    list(x,iteration-1,Err_plot,x_plot)
     
 }    
