@@ -75,7 +75,7 @@ def gradient_descent(f, x_0, tol,
         x_plot = x_plot[:,:iteration]
     else:
         x_plot = x_plot[:,:iteration]
-    return [x,iteration,Err_plot,x_plot[:,np.concatenate([np.array([True]),cond])]]
+    return [x,iteration,Err_plot,x_plot]
 
 def Newtons_method(f, x_0, tol, 
                    tol_backtracking, x_ast=None, p_ast=None, maxiter=30):
@@ -117,9 +117,9 @@ def Newtons_method(f, x_0, tol,
     x_plot[:,iteration] = x
     
     #Newton's direction and Newton's decrement
-    dir_Newton = np.linalg.solve(Hfeval, gfeval)
-    dec_Newton = dir_Newton.dot(Hfeval@dir_Newton)
-    dir_Newton = -dir_Newton
+    
+    dir_Newton = np.linalg.solve(Hfeval, -gfeval)
+    dec_Newton = -gfeval.dot(dir_Newton)
     
     print('I    Normgf   Newton Decrement  Error x_ast   Error p_ast   line search   Condition of Hessian')
     print('{}    {:0.2e}    {:0.2e}        {:0.2e}      {:0.2e}       {}           {:0.2e}'.format(iteration,normgf,
@@ -138,13 +138,13 @@ def Newtons_method(f, x_0, tol,
         normgf = np.linalg.norm(gfeval)
         condHf= np.linalg.cond(Hfeval)
         #Newton's direction and Newton's decrement
-        dir_Newton = np.linalg.solve(Hfeval, gfeval)
-        dec_Newton = dir_Newton.dot(Hfeval@dir_Newton)
-        dir_Newton = -dir_Newton
+
+        dir_Newton = np.linalg.solve(Hfeval, -gfeval)
+        dec_Newton = -gfeval.dot(dir_Newton)
         Err_plot_aux[iteration] = math.fabs(feval-p_ast);
         x_plot[:,iteration] = x
         Err = compute_error(x_ast,x)
-        print('{}    {:0.2e}    {:0.2e}        {:0.2e}      {:0.2e}       {}             {:0.2e}'.format(iteration,normgf,
+        print('{}    {:0.2e}    {:0.2e}        {:0.2e}      {:0.2e}       {:0.2e}      {:0.2e}'.format(iteration,normgf,
                                                                                                          dec_Newton,Err,
                                                                                                          Err_plot_aux[iteration],t,
                                                                                                          condHf))
