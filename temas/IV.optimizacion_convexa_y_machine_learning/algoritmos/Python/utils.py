@@ -27,7 +27,7 @@ def dec_index(vec,index,h=1):
     return vec
 def compute_error(x_obj,x_approx):
     '''
-    Relative error between x_obj and x_approx.
+    Relative or absolute error between x_obj and x_approx.
     '''
     if np.linalg.norm(x_obj) > np.nextafter(0,1):
         Err=np.linalg.norm(x_obj-x_approx)/np.linalg.norm(x_obj)
