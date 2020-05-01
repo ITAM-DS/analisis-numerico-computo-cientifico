@@ -32,7 +32,9 @@ En la carpeta [C](C) encuentran:
 
 * Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [C/extensiones_a_C/MPI](C/extensiones_a_C/MPI) para [MPI](http://mpi-forum.org/), [C/extensiones_a_C/Phtreads](C/extensiones_a_C/Pthreads) para [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [C/extensiones_a_C/openMP](C/extensiones_a_C/openMP) para [openMP](http://www.openmp.org/) y [C/extensiones_a_C/CUDA](C/extensiones_a_C/CUDA) para [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/).  
 
-Los directorios de [Python](Python) y [algoritmos](algoritmos) serán incorporados a las notas. Este trabajo será realizado durante el semestre enero-mayo 2020.
+* Dentro de [C/extensiones_a_C/CUDA/PyCUDA](C/extensiones_a_C/CUDA/PyCUDA) hay información y ejemplos de uso de [PyCUDA](https://documen.tician.de/pycuda/). También se recomienda revisar el tema de CUDA en [módulo 2 cómputo en paralelo de este repo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico#ii-c%C3%B3mputo-en-paralelo)
+
+El directorio de algoritmos](algoritmos) será incorporado a las notas. Este trabajo será realizado durante el semestre enero-mayo 2020.
 
 En el [Wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki) encuentran información sobre [Amazon Web Services](https://aws.amazon.com/es/).
 
