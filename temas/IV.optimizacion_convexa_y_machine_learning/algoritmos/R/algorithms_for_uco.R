@@ -27,7 +27,7 @@ gradient_descent<-function(f, x_0, tol,
     normgf <- Euclidian_norm(gfeval)
     
     Err_plot_aux <- vector("double",maxiter)
-    Err_plot_aux[iteration] <- abs(feval-p_ast)
+    Err_plot_aux[iteration] <- compute_error(p_ast,feval)
     
     Err <- compute_error(x_ast,x)
     n <- length(x)
@@ -45,7 +45,7 @@ gradient_descent<-function(f, x_0, tol,
         feval <- f(x)
         gfeval <- gradient_approximation(f,x)
         normgf <- Euclidian_norm(gfeval)
-        Err_plot_aux[iteration] <- abs(feval-p_ast);
+        Err_plot_aux[iteration] <- compute_error(p_ast,feval)
         x_plot[,iteration] <- x
         Err <- compute_error(x_ast,x)
         cat(sprintf("%d    %.2e   %0.2e      %0.2e      %s\n",iteration,normgf,Err,Err_plot_aux[iteration],t))
@@ -103,7 +103,7 @@ coordinate_descent<-function(f, x_0, tol,
     normgf <- Euclidian_norm(gfeval)
     
     Err_plot_aux <- vector("double",maxiter)
-    Err_plot_aux[iteration] <- abs(feval-p_ast)
+    Err_plot_aux[iteration] <- compute_error(p_ast,feval)
     
     Err <- compute_error(x_ast,x)
     n <- length(x)
@@ -124,7 +124,7 @@ coordinate_descent<-function(f, x_0, tol,
         feval <- f(x)
         gfeval <- gradient_approximation(f,x)
         normgf <- Euclidian_norm(gfeval)
-        Err_plot_aux[iteration] <- abs(feval-p_ast);
+        Err_plot_aux[iteration] <- compute_error(p_ast,feval)
         x_plot[,iteration] <- x
         Err <- compute_error(x_ast,x)
         cat(sprintf("%d    %.2e   %0.2e      %0.2e      %s\n",iteration,normgf,Err,Err_plot_aux[iteration],t))
@@ -182,7 +182,7 @@ Newtons_method<-function(f, x_0, tol,
     normgf <- Euclidian_norm(gfeval)
     
     Err_plot_aux <- vector("double",maxiter)
-    Err_plot_aux[iteration] <- abs(feval-p_ast)
+    Err_plot_aux[iteration] <- compute_error(p_ast,feval)
     
     Err <- compute_error(x_ast,x)
     n <- length(x)
@@ -213,7 +213,7 @@ Newtons_method<-function(f, x_0, tol,
             
         dir_Newton <- solve(Hfeval, -gfeval)
         dec_Newton <- -sum(gfeval*dir_Newton)
-        Err_plot_aux[iteration] <- abs(feval-p_ast);
+        Err_plot_aux[iteration] <- compute_error(p_ast,feval)
         x_plot[,iteration] <- x
         Err <- compute_error(x_ast,x)
         cat(sprintf("%d    %.2e   %0.2e           %0.2e      %0.2e      %0.2e    %0.2e\n",iteration,normgf,dec_Newton,
