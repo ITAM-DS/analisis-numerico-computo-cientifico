@@ -1,17 +1,3 @@
-inc_index<-function(vec,index,h){
-    '
-    Auxiliary function for gradient and Hessian computation.
-    Args:
-        vec (double): vector
-        index (int): index.
-        h (float):   quantity that vec[index] will be increased.
-    Returns:
-        vec (double): vector with vec[index] increased by h.
-    '
-    vec[index]<-vec[index]+h
-    vec
-}
-
 gradient_approximation<-function(f,x,h=1e-8){
     '
     Numerical approximation of gradient for function f using forward differences.
