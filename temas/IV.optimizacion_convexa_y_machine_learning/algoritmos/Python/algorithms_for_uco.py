@@ -38,7 +38,7 @@ def gradient_descent(f, x_0, tol,
     normgf = np.linalg.norm(gfeval)
     
     Err_plot_aux = np.zeros(maxiter)
-    Err_plot_aux[iteration]=math.fabs(feval-p_ast)
+    Err_plot_aux[iteration]=compute_error(p_ast,feval)
     
     Err = compute_error(x_ast,x)
     n = x.size
@@ -56,7 +56,7 @@ def gradient_descent(f, x_0, tol,
         feval = f(x)
         gfeval = gradient_approximation(f,x)
         normgf = np.linalg.norm(gfeval)
-        Err_plot_aux[iteration] = math.fabs(feval-p_ast);
+        Err_plot_aux[iteration]=compute_error(p_ast,feval)
         x_plot[:,iteration] = x
         Err = compute_error(x_ast,x)
         print('{}    {:0.2e}    {:0.2e}    {:0.2e}     {:0.2e}'.format(iteration,normgf,Err,
@@ -109,7 +109,7 @@ def Newtons_method(f, x_0, tol,
     condHf= np.linalg.cond(Hfeval)
     
     Err_plot_aux = np.zeros(maxiter)
-    Err_plot_aux[iteration]=math.fabs(feval-p_ast)
+    Err_plot_aux[iteration]=compute_error(p_ast,feval)
     
     Err = compute_error(x_ast,x)
     n = x.size
@@ -141,7 +141,7 @@ def Newtons_method(f, x_0, tol,
 
         dir_Newton = np.linalg.solve(Hfeval, -gfeval)
         dec_Newton = -gfeval.dot(dir_Newton)
-        Err_plot_aux[iteration] = math.fabs(feval-p_ast);
+        Err_plot_aux[iteration]=compute_error(p_ast,feval)
         x_plot[:,iteration] = x
         Err = compute_error(x_ast,x)
         print('{}    {:0.2e}    {:0.2e}        {:0.2e}      {:0.2e}       {:0.2e}      {:0.2e}'.format(iteration,normgf,
