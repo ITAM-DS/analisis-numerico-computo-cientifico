@@ -1,3 +1,0 @@
-Uso de :
-
-[PyCUDA](PyCUDA/)
