@@ -53,10 +53,6 @@ Total de clases: 24. Total de número de horas: 72 hrs.
 
 [Lista de proyectos finales MNO](proyecto_final/proyectos)
 
-[Liga hacia clases de C](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/C)
-
-[Liga hacia índice del branch master](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master)
-
 [Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.Activar-creditos-de-AWS)
 
 [Tutorial para activar créditos de Amazon Web Services actualizado desde año 2020](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.1Activar-creditos-de-AWS-(update))
@@ -318,8 +314,17 @@ Repaso de [4.1.Optimizacion_numerica_y_machine_learning.ipynb](https://github.co
 
 Finalizamos nota [4.1.Optimizacion_numerica_y_machine_learning.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb).
 
-Iniciamos [4.2.Algoritmos_para_optimizacion_sin_restricciones](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_optimizacion_sin_restricciones.ipynb) sólo mencionando las suposiciones de la nota.
+Iniciamos [4.2.Algoritmos_para_UCO](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_UCO.ipynb) sólo mencionando las suposiciones de la nota.
 
 Discutimos organización de carpetas y forma de trabajo para proyecto final.
 
 Se vio uso de [github-pages](https://pages.github.com/) con un ejemplo de estudiante.
+
+
+## Clase 18
+
+29 de abril
+
+Finalizamos la nota [4.2.Algoritmos_para_UCO](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_UCO.ipynb).
+
+Llegamos hasta sección de **Método de descenso en gradiente visto como caso particular del método steepest descent bajo la norma cuadrática** en [4.2.Descenso_en_gradiente_Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Descenso_en_gradiente_Python.ipynb).
