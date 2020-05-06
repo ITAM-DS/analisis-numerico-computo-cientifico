@@ -121,7 +121,7 @@ def Newtons_method(f, x_0, tol,
     dir_Newton = np.linalg.solve(Hfeval, -gfeval)
     dec_Newton = -gfeval.dot(dir_Newton)
     
-    print('I\tNormgf \tNewton Decrement\tError x_ast\tError p_ast\tline search\tCondition of Hessian')
+    print('I\tNormgf \tNewton Decrement\tError x_ast\tError p_ast\tline search\tCondHf')
     print('{}\t{:0.2e}\t{:0.2e}\t{:0.2e}\t{:0.2e}\t{}\t\t{:0.2e}'.format(iteration,normgf,
                                                                          dec_Newton,Err,
                                                                          Err_plot_aux[iteration],"---",
