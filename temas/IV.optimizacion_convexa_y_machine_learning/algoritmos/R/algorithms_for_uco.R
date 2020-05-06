@@ -34,8 +34,8 @@ gradient_descent<-function(f, x_0, tol,
     x_plot <- matrix(0,nrow=n,ncol=maxiter)
     x_plot[,iteration] <- x
     
-    cat(sprintf("I    Normagf   Error x_ast   Error p_ast   line search\n"))
-    cat(sprintf("%d    %.2e   %0.2e      %0.2e      %s\n",iteration,normgf,Err,Err_plot_aux[iteration],"---"))
+    cat(sprintf("I\tNormagf\t\tError x_ast\tError p_ast\tline search\n"))
+    cat(sprintf("%d\t%.2e\t%0.2e\t%0.2e\t%s\n",iteration,normgf,Err,Err_plot_aux[iteration],"---"))
     iteration<-iteration + 1
     while(normgf>tol && iteration <= maxiter){
         dir_desc <- -gfeval
@@ -48,7 +48,7 @@ gradient_descent<-function(f, x_0, tol,
         Err_plot_aux[iteration] <- compute_error(p_ast,feval)
         x_plot[,iteration] <- x
         Err <- compute_error(x_ast,x)
-        cat(sprintf("%d    %.2e   %0.2e      %0.2e      %s\n",iteration,normgf,Err,Err_plot_aux[iteration],t))
+        cat(sprintf("%d\t%.2e\t%0.2e\t%0.2e\t%0.2e\n",iteration,normgf,Err,Err_plot_aux[iteration],t))
         if (t<tol_backtracking){ #if t is less than tol_backtracking then we need to check the reason
             iter_salida <- iteration
             iteration <- maxiter - 1
@@ -110,8 +110,8 @@ coordinate_descent<-function(f, x_0, tol,
     x_plot <- matrix(0,nrow=n,ncol=maxiter)
     x_plot[,iteration] <- x
     
-    cat(sprintf("I    Normagf   Error x_ast   Error p_ast   line search\n"))
-    cat(sprintf("%d    %.2e   %0.2e      %0.2e      %s\n",iteration,normgf,Err,Err_plot_aux[iteration],"---"))
+    cat(sprintf("I\tNormagf\t\tError x_ast\tError p_ast\tline search\n"))
+    cat(sprintf("%d\t%.2e\t%0.2e\t%0.2e\t%s\n",iteration,normgf,Err,Err_plot_aux[iteration],"---"))
     iteration<-iteration + 1
     while(normgf>tol && iteration <= maxiter){
         ind_maximo <- which.max(abs(gfeval))
@@ -127,7 +127,7 @@ coordinate_descent<-function(f, x_0, tol,
         Err_plot_aux[iteration] <- compute_error(p_ast,feval)
         x_plot[,iteration] <- x
         Err <- compute_error(x_ast,x)
-        cat(sprintf("%d    %.2e   %0.2e      %0.2e      %s\n",iteration,normgf,Err,Err_plot_aux[iteration],t))
+        cat(sprintf("%d\t%.2e\t%0.2e\t%0.2e\t%0.2e\n",iteration,normgf,Err,Err_plot_aux[iteration],t))
         if (t<tol_backtracking){ #if t is less than tol_backtracking then we need to check the reason
             iter_salida <- iteration
             iteration <- maxiter - 1
@@ -194,9 +194,9 @@ Newtons_method<-function(f, x_0, tol,
     dir_Newton <- solve(Hfeval, -gfeval)
     dec_Newton <- -sum(gfeval*dir_Newton)
     
-    cat(sprintf("I    Normgf   Newton Decrement   Error x_ast   Error p_ast   line search    condHf\n"))
-    cat(sprintf("%d    %.2e   %0.2e           %0.2e      %0.2e      %s         %0.2e\n",iteration,normgf,dec_Newton,
-                                                                      Err,Err_plot_aux[iteration],"---", condHf))
+    cat(sprintf("I\tNormgf\tNewton Decrement\tError x_ast\tError p_ast\tline search\tcondHf\n"))
+    cat(sprintf("%d\t%.2e\t%0.2e\t%0.2e\t%0.2e\t%s\t\t%0.2e\n",iteration,normgf,dec_Newton,
+                                                             Err,Err_plot_aux[iteration],"---", condHf))
     
     stopping_criteria <- dec_Newton/2
     iteration<-iteration + 1
@@ -216,8 +216,8 @@ Newtons_method<-function(f, x_0, tol,
         Err_plot_aux[iteration] <- compute_error(p_ast,feval)
         x_plot[,iteration] <- x
         Err <- compute_error(x_ast,x)
-        cat(sprintf("%d    %.2e   %0.2e           %0.2e      %0.2e      %0.2e    %0.2e\n",iteration,normgf,dec_Newton,
-                                                                                        Err,Err_plot_aux[iteration],t, condHf))
+        cat(sprintf("%d\t%.2e\t%0.2e\t%0.2e\t%0.2e\t%0.2e\t%0.2e\n",iteration,normgf,dec_Newton,
+                                                                    Err,Err_plot_aux[iteration],t, condHf))
         stopping_criteria <- dec_Newton/2
         if (t<tol_backtracking){ #if t is less than tol_backtracking then we need to check the reason
             iter_salida <- iteration
