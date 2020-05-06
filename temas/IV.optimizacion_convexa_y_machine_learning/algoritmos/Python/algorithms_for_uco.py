@@ -45,8 +45,8 @@ def gradient_descent(f, x_0, tol,
     x_plot = np.zeros((n,maxiter))
     x_plot[:,iteration] = x
     
-    print('I    Normagf   Error x_ast   Error p_ast   line search')
-    print('{}    {:0.2e}    {:0.2e}    {:0.2e}     {}'.format(iteration,normgf,Err,Err_plot_aux[iteration],"---"))
+    print('I\tNormagf\t\tError x_ast\tError p_ast\tline search')
+    print('{}\t{:0.2e}\t{:0.2e}\t{:0.2e}\t{}'.format(iteration,normgf,Err,Err_plot_aux[iteration],"---"))
     iteration+=1
     while(normgf>tol and iteration < maxiter):
         dir_desc = -gfeval
@@ -59,7 +59,7 @@ def gradient_descent(f, x_0, tol,
         Err_plot_aux[iteration]=compute_error(p_ast,feval)
         x_plot[:,iteration] = x
         Err = compute_error(x_ast,x)
-        print('{}    {:0.2e}    {:0.2e}    {:0.2e}     {:0.2e}'.format(iteration,normgf,Err,
+        print('{}\t{:0.2e}\t{:0.2e}\t{:0.2e}\t{:0.2e}'.format(iteration,normgf,Err,
                                                                       Err_plot_aux[iteration],t))
         if t<tol_backtracking: #if t is less than tol_backtracking then we need to check the reason
             iter_salida=iteration
