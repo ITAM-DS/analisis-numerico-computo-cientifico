@@ -121,11 +121,11 @@ def Newtons_method(f, x_0, tol,
     dir_Newton = np.linalg.solve(Hfeval, -gfeval)
     dec_Newton = -gfeval.dot(dir_Newton)
     
-    print('I    Normgf   Newton Decrement  Error x_ast   Error p_ast   line search   Condition of Hessian')
-    print('{}    {:0.2e}    {:0.2e}        {:0.2e}      {:0.2e}       {}           {:0.2e}'.format(iteration,normgf,
-                                                                                                   dec_Newton,Err,
-                                                                                                   Err_plot_aux[iteration],"---",
-                                                                                                   condHf))
+    print('I\tNormgf \tNewton Decrement\tError x_ast\tError p_ast\tline search\tCondition of Hessian')
+    print('{}\t{:0.2e}\t{:0.2e}\t{:0.2e}\t{:0.2e}\t{}\t\t{:0.2e}'.format(iteration,normgf,
+                                                                         dec_Newton,Err,
+                                                                         Err_plot_aux[iteration],"---",
+                                                                         condHf))
     stopping_criteria = dec_Newton/2
     iteration+=1
     while(stopping_criteria>tol and iteration < maxiter):
@@ -144,10 +144,10 @@ def Newtons_method(f, x_0, tol,
         Err_plot_aux[iteration]=compute_error(p_ast,feval)
         x_plot[:,iteration] = x
         Err = compute_error(x_ast,x)
-        print('{}    {:0.2e}    {:0.2e}        {:0.2e}      {:0.2e}       {:0.2e}      {:0.2e}'.format(iteration,normgf,
-                                                                                                         dec_Newton,Err,
-                                                                                                         Err_plot_aux[iteration],t,
-                                                                                                         condHf))
+        print('{}\t{:0.2e}\t{:0.2e}\t{:0.2e}\t{:0.2e}\t{:0.2e}\t{:0.2e}'.format(iteration,normgf,
+                                                                                dec_Newton,Err,
+                                                                                Err_plot_aux[iteration],t,
+                                                                                condHf))
         stopping_criteria = dec_Newton/2
         if t<tol_backtracking: #if t is less than tol_backtracking then we need to check the reason
             iter_salida=iteration
