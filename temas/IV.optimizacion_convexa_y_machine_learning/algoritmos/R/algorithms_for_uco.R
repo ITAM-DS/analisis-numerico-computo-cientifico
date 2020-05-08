@@ -115,9 +115,9 @@ coordinate_descent<-function(f, x_0, tol,
     iteration<-iteration + 1
     while(normgf>tol && iteration <= maxiter){
         ind_maximo <- which.max(abs(gfeval))
-        e_canonico <- vector("integer",n)
-        e_canonico[ind_maximo] <- 1
-        dir_desc <- -gfeval[ind_maximo]*e_canonico
+        e_canonical <- vector("integer",n)
+        e_canonical[ind_maximo] <- gfeval[ind_maximo]
+        dir_desc <- -e_canonical
         der_direct <- sum(gfeval*dir_desc)
         t <- line_search_by_backtracking(f,dir_desc,x,der_direct)
         x <- x + t*dir_desc
