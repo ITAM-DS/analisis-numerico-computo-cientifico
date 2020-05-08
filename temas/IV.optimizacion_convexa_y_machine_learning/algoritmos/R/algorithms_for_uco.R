@@ -1,15 +1,18 @@
 gradient_descent<-function(f, x_0, tol, 
-                        tol_backtracking, x_ast, p_ast, maxiter){
+                           tol_backtracking, x_ast, p_ast, maxiter=30,
+                           gf_symbolic=NULL){
     '
     Method of gradient descent to numerically approximate solution of min f.
     Args:
-        f (expression): definition of function f.
+        f (fun): definition of function f.
         x_0 (double): vector of initial point for gradient descent method.
         tol (float): tolerance that will halt method. Controls norm of gradient of f.
         tol_backtracking (float): tolerance that will halt method. Controls value of line search by backtracking.
         x_ast (double): vector solution of min f, now its required that user knows the solution...
         p_ast (double): vector value of f(x_ast), now its required that user knows the solution...
-        maxiter (int): maximum number of iterations
+        maxiter (int): maximum number of iterations.
+        gf_symbolic (fun): definition of gradient of f. If given, no approximation is
+                                     performed via finite differences.
     Returns:
         x (double): vector approximation of x_ast.
         iteration (int): number of iterations.
@@ -22,7 +25,12 @@ gradient_descent<-function(f, x_0, tol,
     x <- x_0
     
     feval <- f(x)
-    gfeval <- gradient_approximation(f,x)
+    
+    if (!is.null(gf_symbolic)){
+        gfeval <- gf_symbolic(x)
+    }else{
+        gfeval <- gradient_approximation(f,x)
+    }
 
     normgf <- Euclidian_norm(gfeval)
     
@@ -37,12 +45,17 @@ gradient_descent<-function(f, x_0, tol,
     cat(sprintf("I\tNormagf\t\tError x_ast\tError p_ast\tline search\n"))
     cat(sprintf("%d\t%.2e\t%0.2e\t%0.2e\t%s\n",iteration,normgf,Err,Err_plot_aux[iteration],"---"))
     iteration<-iteration + 1
-    while(normgf>tol && iteration <= maxiter){
+    while(normgf>tol && iteration < maxiter){
         dir_desc <- -gfeval
         der_direct <- sum(gfeval*dir_desc)
         t <- line_search_by_backtracking(f,dir_desc,x,der_direct)
         x <- x + t*dir_desc
         feval <- f(x)
+        if (!is.null(gf_symbolic)){
+            gfeval <- gf_symbolic(x)
+        }else{
+            gfeval <- gradient_approximation(f,x)
+        }
         gfeval <- gradient_approximation(f,x)
         normgf <- Euclidian_norm(gfeval)
         Err_plot_aux[iteration] <- compute_error(p_ast,feval)
@@ -63,29 +76,34 @@ gradient_descent<-function(f, x_0, tol,
     if (iteration == maxiter && t < tol_backtracking){
         print("Backtracking value less than tol_backtracking, check approximation")
         iteration<-iter_salida
-        x_plot <- x_plot[,1:(iteration-1)]
+        x_plot <- x_plot[,1:iteration]
+        iteration <- iteration -1
     }
     else{
-        x_plot <- x_plot[,1:(iteration-1)]
+        iteration <- iteration - 1
+        x_plot <- x_plot[,1:iteration]
         }
-   list(x,iteration-1,Err_plot,x_plot)
+   list(x,iteration,Err_plot,x_plot)
     
 }    
 
 
 coordinate_descent<-function(f, x_0, tol, 
                              tol_backtracking, 
-                             x_ast, p_ast, maxiter){
+                             x_ast, p_ast, maxiter=30,
+                             gf_symbolic=NULL){
     '
     Method of coordinate descent to numerically approximate solution of min f.
     Args:
-        f (expression): definition of function f.
+        f (fun): definition of function f.
         x_0 (double): vector of initial point for coordinate descent method.
         tol (float): tolerance that will halt method. Controls norm of gradient of f.
         tol_backtracking (float): tolerance that will halt method. Controls value of line search by backtracking.
         x_ast (double): vector solution of min f, now its required that user knows the solution...
         p_ast (double): vector value of f(x_ast), now its required that user knows the solution...
-        maxiter (int): maximum number of iterations
+        maxiter (int): maximum number of iterations.
+        gf_symbolic (fun): definition of gradient of f. If given, no approximation is
+                                     performed via finite differences.
     Returns:
         x (double): vector approximation of x_ast.
         iteration (int): number of iterations.
@@ -98,7 +116,12 @@ coordinate_descent<-function(f, x_0, tol,
     x <- x_0
     
     feval <- f(x)
-    gfeval <- gradient_approximation(f,x)
+
+    if (!is.null(gf_symbolic)){
+        gfeval <- gf_symbolic(x)
+    }else{
+        gfeval <- gradient_approximation(f,x)
+    }
 
     normgf <- Euclidian_norm(gfeval)
     
@@ -113,7 +136,7 @@ coordinate_descent<-function(f, x_0, tol,
     cat(sprintf("I\tNormagf\t\tError x_ast\tError p_ast\tline search\n"))
     cat(sprintf("%d\t%.2e\t%0.2e\t%0.2e\t%s\n",iteration,normgf,Err,Err_plot_aux[iteration],"---"))
     iteration<-iteration + 1
-    while(normgf>tol && iteration <= maxiter){
+    while(normgf>tol && iteration < maxiter){
         ind_maximo <- which.max(abs(gfeval))
         e_canonical <- vector("integer",n)
         e_canonical[ind_maximo] <- gfeval[ind_maximo]
@@ -122,7 +145,11 @@ coordinate_descent<-function(f, x_0, tol,
         t <- line_search_by_backtracking(f,dir_desc,x,der_direct)
         x <- x + t*dir_desc
         feval <- f(x)
-        gfeval <- gradient_approximation(f,x)
+        if (!is.null(gf_symbolic)){
+            gfeval <- gf_symbolic(x)
+        }else{
+            gfeval <- gradient_approximation(f,x)
+        }   
         normgf <- Euclidian_norm(gfeval)
         Err_plot_aux[iteration] <- compute_error(p_ast,feval)
         x_plot[,iteration] <- x
@@ -142,17 +169,20 @@ coordinate_descent<-function(f, x_0, tol,
     if (iteration == maxiter && t < tol_backtracking){
         print("Backtracking value less than tol_backtracking, check approximation")
         iteration<-iter_salida
-        x_plot <- x_plot[,1:(iteration-1)]
+        x_plot <- x_plot[,1:iteration]
+        iteration <- iteration -1
     }
     else{
-        x_plot <- x_plot[,1:(iteration-1)]
+        iteration <- iteration - 1
+        x_plot <- x_plot[,1:iteration]
         }
-   list(x,iteration-1,Err_plot,x_plot)
+   list(x,iteration,Err_plot,x_plot)
     
 }
                  
 Newtons_method<-function(f, x_0, tol, 
-                        tol_backtracking, x_ast, p_ast, maxiter){
+                        tol_backtracking, x_ast, p_ast, maxiter=30,
+                        gf_symbolic=NULL, Hf_symbolic=NULL){
     '
     Method of gradient descent to numerically approximate solution of min f.
     Args:
@@ -162,7 +192,11 @@ Newtons_method<-function(f, x_0, tol,
         tol_backtracking (float): tolerance that will halt method. Controls value of line search by backtracking.
         x_ast (double): vector solution of min f, now its required that user knows the solution...
         p_ast (double): vector value of f(x_ast), now its required that user knows the solution...
-        maxiter (int): maximum number of iterations
+        maxiter (int): maximum number of iterations.
+        gf_symbolic (fun): definition of gradient of f. If given, no approximation is
+                                     performed via finite differences.
+        Hf_symbolic (fun): definition of Hessian of f. If given, no approximation is
+                                     performed via finite differences.
     Returns:
         x (double): vector approximation of x_ast.
         iteration (int): number of iterations.
@@ -175,8 +209,18 @@ Newtons_method<-function(f, x_0, tol,
     x <- x_0
     
     feval <- f(x)
-    gfeval <- gradient_approximation(f,x)
-    Hfeval <- Hessian_approximation(f,x)
+    if (!is.null(gf_symbolic)){
+        gfeval <- gf_symbolic(x)
+    }else{
+        gfeval <- gradient_approximation(f,x)
+    }
+
+    if (!is.null(Hf_symbolic)){
+        Hfeval <- Hf_symbolic(x)
+    }else{
+        Hfeval <- Hessian_approximation(f,x)
+    }
+    
     condHf <- kappa(Hfeval, exact=TRUE)
     
     normgf <- Euclidian_norm(gfeval)
@@ -200,13 +244,21 @@ Newtons_method<-function(f, x_0, tol,
     
     stopping_criteria <- dec_Newton/2
     iteration<-iteration + 1
-    while(stopping_criteria>tol && iteration <= maxiter){
+    while(stopping_criteria>tol && iteration < maxiter){
         der_direct <- -dec_Newton
         t <- line_search_by_backtracking(f,dir_Newton,x,der_direct)
         x <- x + t*dir_Newton
         feval <- f(x)
-        gfeval <- gradient_approximation(f,x)
-        Hfeval <- Hessian_approximation(f,x)
+        if (!is.null(gf_symbolic)){
+            gfeval <- gf_symbolic(x)
+        }else{
+            gfeval <- gradient_approximation(f,x)
+        } 
+        if (!is.null(Hf_symbolic)){
+            Hfeval <- Hf_symbolic(x)
+        }else{
+            Hfeval <- Hessian_approximation(f,x)
+        }
         normgf <- Euclidian_norm(gfeval)
         condHf <- kappa(Hfeval, exact=TRUE)
         #Newton's direction and Newton's decrement
@@ -233,12 +285,14 @@ Newtons_method<-function(f, x_0, tol,
     if (iteration == maxiter && t < tol_backtracking){
         print("Backtracking value less than tol_backtracking, check approximation")
         iteration<-iter_salida
-        x_plot <- x_plot[,1:(iteration-1)]
+        x_plot <- x_plot[,1:iteration]
+        iteration <- iteration -1
     }
     else{
-        x_plot <- x_plot[,1:(iteration-1)]
+        iteration <- iteration - 1
+        x_plot <- x_plot[,1:iteration]
         }
-   list(x,iteration-1,Err_plot,x_plot)
+   list(x,iteration,Err_plot,x_plot)
     
 }    
 
