@@ -10,17 +10,20 @@ from utils import compute_error
 
 
 def gradient_descent(f, x_0, tol, 
-                     tol_backtracking, x_ast=None, p_ast=None, maxiter=30):
+                     tol_backtracking, x_ast=None, p_ast=None, maxiter=30,
+                     gf_symbolic=None):
     '''
     Method of gradient descent to numerically approximate solution of min f.
     Args:
-        f (lambda expression): definition of function f.
+        f (fun): definition of function f as lambda expression or function definition.
         x_0 (numpy ndarray): initial point for gradient descent method.
         tol (float): tolerance that will halt method. Controls norm of gradient of f.
         tol_backtracking (float): tolerance that will halt method. Controls value of line search by backtracking.
         x_ast (numpy ndarray): solution of min f, now it's required that user knows the solution...
         p_ast (float): value of f(x_ast), now it's required that user knows the solution...
-        maxiter (int): maximum number of iterations
+        maxiter (int): maximum number of iterations.
+        gf_symbolic (numpy ndarray): symbolic expression of gradient of f. If given, no approximation is
+                                     performed via finite differences.
     Returns:
         x (numpy ndarray): numpy array, approximation of x_ast.
         iteration (int): number of iterations.
@@ -33,7 +36,10 @@ def gradient_descent(f, x_0, tol,
     x = x_0
     
     feval = f(x)
-    gfeval = gradient_approximation(f,x)
+    if gf_symbolic:
+        gfeval = gf_symbolic(x)
+    else:
+        gfeval = gradient_approximation(f,x)
 
     normgf = np.linalg.norm(gfeval)
     
@@ -54,7 +60,10 @@ def gradient_descent(f, x_0, tol,
         t = line_search_by_backtracking(f,dir_desc,x,der_direct)
         x = x + t*dir_desc
         feval = f(x)
-        gfeval = gradient_approximation(f,x)
+        if gf_symbolic:
+            gfeval = gf_symbolic(x)
+        else:
+            gfeval = gradient_approximation(f,x)
         normgf = np.linalg.norm(gfeval)
         Err_plot_aux[iteration]=compute_error(p_ast,feval)
         x_plot[:,iteration] = x
@@ -78,17 +87,23 @@ def gradient_descent(f, x_0, tol,
     return [x,iteration,Err_plot,x_plot]
 
 def Newtons_method(f, x_0, tol, 
-                   tol_backtracking, x_ast=None, p_ast=None, maxiter=30):
+                   tol_backtracking, x_ast=None, p_ast=None, maxiter=30,
+                   gf_symbolic=None,
+                   Hf_symbolic=None):
     '''
     Newton's method to numerically approximate solution of min f.
     Args:
-        f (lambda expression): definition of function f.
+        f (fun): definition of function f as lambda expression or function definition.
         x_0 (numpy ndarray): initial point for Newton's method.
         tol (float): tolerance that will halt method. Controls stopping criteria.
         tol_backtracking (float): tolerance that will halt method. Controls value of line search by backtracking.
         x_ast (numpy ndarray): solution of min f, now it's required that user knows the solution...
         p_ast (float): value of f(x_ast), now it's required that user knows the solution...
         maxiter (int): maximum number of iterations
+        gf_symbolic (fun): definition of gradient of f. If given, no approximation is
+                                     performed via finite differences.
+        Hf_symbolic (fun): definition of Hessian of f. If given, no approximation is
+                                     performed via finite differences.
     Returns:
         x (numpy ndarray): numpy array, approximation of x_ast.
         iteration (int): number of iterations.
@@ -102,8 +117,16 @@ def Newtons_method(f, x_0, tol,
     x = x_0
     
     feval = f(x)
-    gfeval = gradient_approximation(f,x)
-    Hfeval = Hessian_approximation(f,x)
+    if gf_symbolic:
+        gfeval = gf_symbolic(x)
+    else:
+        gfeval = gradient_approximation(f,x)
+
+    if Hf_symbolic:
+        Hfeval = Hf_symbolic(x)
+    else:
+        Hfeval = Hessian_approximation(f,x)
+        
     
     normgf = np.linalg.norm(gfeval)
     condHf= np.linalg.cond(Hfeval)
@@ -133,8 +156,17 @@ def Newtons_method(f, x_0, tol,
         t = line_search_by_backtracking(f,dir_Newton,x,der_direct)
         x = x + t*dir_Newton
         feval = f(x)
-        gfeval = gradient_approximation(f,x)
-        Hfeval = Hessian_approximation(f,x)
+        
+        if gf_symbolic:
+            gfeval = gf_symbolic(x)
+        else:
+            gfeval = gradient_approximation(f,x)
+        
+        if Hf_symbolic:
+            Hfeval = Hf_symbolic(x)
+        else:
+            Hfeval = Hessian_approximation(f,x)
+        
         normgf = np.linalg.norm(gfeval)
         condHf= np.linalg.cond(Hfeval)
         #Newton's direction and Newton's decrement
