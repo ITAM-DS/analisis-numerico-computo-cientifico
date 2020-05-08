@@ -22,7 +22,7 @@ def gradient_descent(f, x_0, tol,
         x_ast (numpy ndarray): solution of min f, now it's required that user knows the solution...
         p_ast (float): value of f(x_ast), now it's required that user knows the solution...
         maxiter (int): maximum number of iterations.
-        gf_symbolic (numpy ndarray): symbolic expression of gradient of f. If given, no approximation is
+        gf_symbolic (fun): definition of gradient of f. If given, no approximation is
                                      performed via finite differences.
     Returns:
         x (numpy ndarray): numpy array, approximation of x_ast.
