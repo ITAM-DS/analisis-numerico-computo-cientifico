@@ -8,10 +8,10 @@ from line_search import line_search_by_backtracking
 from utils import compute_error
 
 
-def Newtons_method(f, A, x_0, tol, 
-                   tol_backtracking, x_ast=None, p_ast=None, maxiter=30,
-                   gf_symbolic = None,
-                   Hf_symbolic = None):
+def Newtons_method_feasible_init_point(f, A, x_0, tol, 
+                                       tol_backtracking, x_ast=None, p_ast=None, maxiter=30,
+                                       gf_symbolic = None,
+                                       Hf_symbolic = None):
     '''
     Newton's method to numerically approximate solution of min f subject to Ax = b.
     IMPORTANT: this implementation requires that initial point x_0, satisfies: Ax_0 = b
