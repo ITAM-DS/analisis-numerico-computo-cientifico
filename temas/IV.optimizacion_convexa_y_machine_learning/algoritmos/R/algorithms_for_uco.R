@@ -184,7 +184,7 @@ Newtons_method<-function(f, x_0, tol,
                         tol_backtracking, x_ast, p_ast, maxiter=30,
                         gf_symbolic=NULL, Hf_symbolic=NULL){
     '
-    Method of gradient descent to numerically approximate solution of min f.
+    Newtons Method of gradient descent to numerically approximate solution of min f.
     Args:
         f (expression): definition of function f.
         x_0 (double): vector of initial point for gradient descent method.
