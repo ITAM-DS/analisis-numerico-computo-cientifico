@@ -34,3 +34,10 @@ def compute_error(x_obj,x_approx):
     else:
         Err=np.linalg.norm(x_obj-x_approx)
     return Err
+def norm_residual(feas_primal, feas_dual):
+    '''
+    Computes norm of residual for Newtons infeasible initial point method
+    '''
+    return np.sqrt(np.linalg.norm(feas_primal)**2 +\
+                   np.linalg.norm(feas_dual)**2
+                   )
