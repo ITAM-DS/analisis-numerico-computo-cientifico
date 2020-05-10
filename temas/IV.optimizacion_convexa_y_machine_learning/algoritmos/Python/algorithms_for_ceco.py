@@ -112,16 +112,9 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
         else:
             Hfeval = Hessian_approximation(f,x)
         if(A.ndim == 1):
-            p = 1
-            n = x.size
-            zero_matrix = np.zeros(p)
             first_stack = np.column_stack((Hfeval, A.T))
-            second_stack = np.row_stack((A.reshape(1,n).T,zero_matrix)).reshape(1,n+1)[0]
         else:
-            p,n = A.shape
-            zero_matrix = np.zeros((p,p))
             first_stack = np.column_stack((Hfeval, A.T))
-            second_stack = np.column_stack((A,zero_matrix))
 
         system_matrix = np.row_stack((first_stack,second_stack))
         rhs = np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
