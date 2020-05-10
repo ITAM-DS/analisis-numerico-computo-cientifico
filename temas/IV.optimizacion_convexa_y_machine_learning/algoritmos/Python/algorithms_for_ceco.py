@@ -62,14 +62,14 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
     
         
     if(A.ndim == 1):
-        m = 1
+        p = 1
         n = x.size
-        zero_matrix = np.zeros(1)
+        zero_matrix = np.zeros(p)
         first_stack = np.column_stack((Hfeval, A.T))
         second_stack = np.row_stack((A.reshape(1,n).T,zero_matrix)).reshape(1,n+1)[0]
     else:
-        m,n = A.shape
-        zero_matrix = np.zeros((m,m))
+        p,n = A.shape
+        zero_matrix = np.zeros((p,p))
         first_stack = np.column_stack((Hfeval, A.T))
         second_stack = np.column_stack((A,zero_matrix))
         
@@ -77,14 +77,14 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
     x_plot[:,iteration] = x
     
     system_matrix = np.row_stack((first_stack,second_stack))
-    zero_vector = np.zeros(m)
-    rhs = np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(m,1))).T[0]
+    zero_vector = np.zeros(p)
+    rhs = np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
 
     #Newton's direction and Newton's decrement
     dir_desc = np.linalg.solve(system_matrix, -rhs)
     dir_Newton = dir_desc[0:n]
     dec_Newton = -gfeval.dot(dir_Newton)
-    w_dual_variable_estimation = dir_desc[n:(n+m)]
+    w_dual_variable_estimation = dir_desc[n:(n+p)]
 
 
     print('I\tNormgf \tNewton Decrement\tError x_ast\tError p_ast\tline search\tCondHf')
@@ -112,24 +112,24 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
         else:
             Hfeval = Hessian_approximation(f,x)
         if(A.ndim == 1):
-            m = 1
+            p = 1
             n = x.size
-            zero_matrix = np.zeros(1)
+            zero_matrix = np.zeros(p)
             first_stack = np.column_stack((Hfeval, A.T))
             second_stack = np.row_stack((A.reshape(1,n).T,zero_matrix)).reshape(1,n+1)[0]
         else:
-            m,n = A.shape
-            zero_matrix = np.zeros((m,m))
+            p,n = A.shape
+            zero_matrix = np.zeros((p,p))
             first_stack = np.column_stack((Hfeval, A.T))
             second_stack = np.column_stack((A,zero_matrix))
 
         system_matrix = np.row_stack((first_stack,second_stack))
-        rhs = np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(m,1))).T[0]
+        rhs = np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
         #Newton's direction and Newton's decrement
         dir_desc = np.linalg.solve(system_matrix, -rhs)
         dir_Newton = dir_desc[0:n]
         dec_Newton = -gfeval.dot(dir_Newton)
-        w_dual_variable_estimation = dir_desc[n:(n+m)]
+        w_dual_variable_estimation = dir_desc[n:(n+p)]
         
         Err_plot_aux[iteration]=compute_error(p_ast,feval)
         x_plot[:,iteration] = x
