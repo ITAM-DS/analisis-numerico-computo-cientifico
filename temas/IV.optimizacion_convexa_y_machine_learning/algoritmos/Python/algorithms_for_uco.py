@@ -81,9 +81,10 @@ def gradient_descent(f, x_0, tol,
     if iteration == maxiter and t < tol_backtracking:
         print("Backtracking value less than tol_backtracking, check approximation")
         iteration=iter_salida
-        x_plot = x_plot[:,:iteration]
     else:
-        x_plot = x_plot[:,:iteration]
+        if iteration == maxiter:
+            print("Reached maximum of iterations, check approximation")    
+    x_plot = x_plot[:,:iteration]
     return [x,iteration,Err_plot,x_plot]
 
 def Newtons_method(f, x_0, tol, 
@@ -192,7 +193,8 @@ def Newtons_method(f, x_0, tol,
     if iteration == maxiter and t < tol_backtracking:
         print("Backtracking value less than tol_backtracking, check approximation")
         iteration=iter_salida
-        x_plot = x_plot[:,:iteration]
     else:
-        x_plot = x_plot[:,:iteration]
+        if iteration == maxiter:
+            print("Reached maximum of iterations, check approximation")    
+    x_plot = x_plot[:,:iteration]
     return [x,iteration,Err_plot,x_plot]
