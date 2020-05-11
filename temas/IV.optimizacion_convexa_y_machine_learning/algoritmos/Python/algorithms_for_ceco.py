@@ -145,9 +145,10 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
     if iteration == maxiter and t < tol_backtracking:
         print("Backtracking value less than tol_backtracking, check approximation")
         iteration=iter_salida
-        x_plot = x_plot[:,:iteration]
     else:
-        x_plot = x_plot[:,:iteration]
+        if iteration == maxiter:
+            print("Reached maximum of iterations, check approximation")
+    x_plot = x_plot[:,:iteration]
     return [x,iteration,Err_plot,x_plot]
 
 def Newtons_method_infeasible_init_point(f, A, b, x_0, nu_0, tol, 
