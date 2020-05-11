@@ -29,7 +29,6 @@ line_search_by_backtracking<-function(f,dir_desc,x,
             eval1 <- f(x+t*dir_desc)
             eval2 <- f(x)+alpha*t*der_direct
         }
-    }else
-        t <- -1
+    }
     t
 }
