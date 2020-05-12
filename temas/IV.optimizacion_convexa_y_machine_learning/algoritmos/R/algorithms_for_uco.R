@@ -80,6 +80,7 @@ gradient_descent<-function(f, x_0, tol,
         iteration <- iteration -1
     }
     else{
+        if (iteration == maxiter) print("Reached maximum number of iterations, check approximation")
         iteration <- iteration - 1
         x_plot <- x_plot[,1:iteration]
         }
@@ -173,6 +174,7 @@ coordinate_descent<-function(f, x_0, tol,
         iteration <- iteration -1
     }
     else{
+        if (iteration == maxiter) print("Reached maximum number of iterations, check approximation")
         iteration <- iteration - 1
         x_plot <- x_plot[,1:iteration]
         }
@@ -289,6 +291,7 @@ Newtons_method<-function(f, x_0, tol,
         iteration <- iteration -1
     }
     else{
+        if (iteration == maxiter) print("Reached maximum number of iterations, check approximation")
         iteration <- iteration - 1
         x_plot <- x_plot[,1:iteration]
         }
