@@ -25,7 +25,7 @@ Las clases son los días miércoles y sábados.
 |18 de marzo|No hubo clase por COVID-19|
 |25 de marzo|CUDA, CUDA-C, CuPy y gputools. Uso de software para cómputo matricial: C, Python o R. Niveles de BLAS. Bottlenecks a considerar para cómputo matricial: uso del caché eficientemente| 
 |sábado 28 de marzo|Uso de instancias en google colab y en AWS con GPU's. CUDA-C, CuPy y gputools|
-|1 de abril|Métodos para resolver sistemas de ecuaciones lineales y factorizaciones matriciales. Aplicaciones del álgebra lineal numérica: componentes principales, mínimos cuadrados y su relación con problemas convexos.|
+|1 de abril|Métodos para resolver sistemas de ecuaciones lineales y factorizaciones matriciales.|
 |15 de abril| Problemas de optimización y *machine learning*|
 |sábado 18 de abril|Uso de kubernetes en AWS/ Definiciones importantes en problemas de optimización.|
 |22 de abril|Algoritmos de optimización sin restricciones. *Backtracking line search*, algoritmo general de descenso.|
