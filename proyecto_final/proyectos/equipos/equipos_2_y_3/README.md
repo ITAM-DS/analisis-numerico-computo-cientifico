@@ -14,8 +14,7 @@
 Optimización de un portafolio de inversión para inversionistas adversos al riesgo con el método de *Marcowitz*.
 
 #### Objetivo del proyecto
-Se busca estimar el portafolio de mínima varianza con el método numérico de multiplicadores de lagrange con restricciones. La solución a este problema de optimización se aborda
-con restricciones através de las ecuaciones inducidas al considerar el lagrangiano de este problema. El cual redunda en la solución de diversos sistemas lineales donde se involucra la matriz de covarianzas de los rendimientos de las acciones, el rendimiento medio y el retorno esperado del portafolio, como se discutirá a detalle posterirormente.
+Se busca estimar el portafolio de mínima varianza con el método numérico de multiplicadores de lagrange con restricciones. La solución a este problema de optimización se aborda con restricciones através de las ecuaciones inducidas al considerar el lagrangiano de este problema. El cual redunda en la solución de diversos sistemas lineales donde se involucra la matriz de covarianzas de los rendimientos de las acciones, el rendimiento medio y el retorno esperado del portafolio, como se discutirá a detalle en el reporte final.
 
 ##### Liga del Repositorio del Proyecto<br>
 [Repositorio Optimización de Marcowitz](https://github.com/czammar/MNO_finalproject)
@@ -27,6 +26,7 @@ con restricciones através de las ecuaciones inducidas al considerar el lagrangi
 
 
 ###### Implementación<br>
+[Código avance 1](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Programacion/4_Solver.ipynb)
 **(Código) Poner liga del repo**
 
 En la carpeta [avance 1]***PONER LIGA de Carpeta** se puede encontrar el primer avance de nuestro proyecto.
@@ -34,6 +34,8 @@ En la carpeta [avance 1]***PONER LIGA de Carpeta** se puede encontrar el primer 
 ##### Referencias:
 Bodie, Z., Kane, A., & Marcus, A. J. (2011). Investments. New York: McGraw-Hill/Irwin.<br />
 [Theory portafolio optimum](https://www.niceideas.ch/airxcell_doc/doc/userGuide/portfolio_optimTheory.html)<br />
+18.S096 Topics in Mathematics with Applications in Finance/Dr. Kempthorne <br/>
+
 
 
 
