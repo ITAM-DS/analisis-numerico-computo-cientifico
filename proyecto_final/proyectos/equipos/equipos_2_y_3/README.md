@@ -25,9 +25,9 @@ Se busca estimar el portafolio de mínima varianza con el método numérico de m
 ##### Presentación<br>
 
 
-###### Implementación<br>
+##### Implementación<br>
 [Código avance 1](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Programacion/4_Solver.ipynb)
-**(Código) Poner liga del repo**
+
 
 En la carpeta [avance 1]***PONER LIGA de Carpeta** se puede encontrar el primer avance de nuestro proyecto.
 
