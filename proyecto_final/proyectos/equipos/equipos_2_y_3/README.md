@@ -29,7 +29,7 @@ Se busca estimar el portafolio de mínima varianza con el método numérico de m
 [Código avance 1](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Programacion/4_Solver.ipynb)
 
 
-En la carpeta [avance 1]***PONER LIGA de Carpeta** se puede encontrar el primer avance de nuestro proyecto.
+En la carpeta [avance 1](https://github.com/Yalidt/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_2_y_3/avance1)
 
 ##### Referencias:
 Bodie, Z., Kane, A., & Marcus, A. J. (2011). Investments. New York: McGraw-Hill/Irwin.<br />
