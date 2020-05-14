@@ -11,13 +11,13 @@
 | 6    | Project Manager                       | Yalidt       |
 
 #### Título del Proyecto
-Optimización de un portafolio de inversión para inversionistas adversos al riesgo con el método de *Marcowitz*.
+Optimización de un portafolio de inversión para inversionistas adversos al riesgo con el método de *Markowitz*.
 
 #### Objetivo del proyecto
-Se busca estimar el portafolio de mínima varianza con el método numérico de multiplicadores de lagrange con restricciones. La solución a este problema de optimización se aborda con restricciones através de las ecuaciones inducidas al considerar el lagrangiano de este problema. El cual redunda en la solución de diversos sistemas lineales donde se involucra la matriz de covarianzas de los rendimientos de las acciones, el rendimiento medio y el retorno esperado del portafolio, como se discutirá a detalle en el reporte final.
+Se busca estimar el portafolio de mínima varianza con el método numérico de multiplicadores de lagrange con restricciones. La solución a este problema de optimización se aborda con restricciones a través de las ecuaciones inducidas al considerar el lagrangiano de este problema. El cual redunda en la solución de diversos sistemas lineales donde se involucra la matriz de covarianzas de los rendimientos de las acciones, el rendimiento medio y el retorno esperado del portafolio, como se discutirá a detalle en el reporte final.
 
 ##### Liga del Repositorio del Proyecto<br>
-[Repositorio Optimización de Marcowitz](https://github.com/czammar/MNO_finalproject)
+[Repositorio Optimización de Markowitz](https://github.com/czammar/MNO_finalproject)
 
 ##### Trabajo escrito<br>
 
