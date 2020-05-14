@@ -1,4 +1,4 @@
-## Equipo 3 y 4
+## Equipo 2 y 3
 
 #### Integrantes:
 | #    | Rol                                   | Persona      |
