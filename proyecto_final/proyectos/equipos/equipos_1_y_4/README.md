@@ -1,4 +1,4 @@
-## Equipo ejemplo
+## Equipo TSP
 
 Integrantes:
 
