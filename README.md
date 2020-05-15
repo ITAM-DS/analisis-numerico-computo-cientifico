@@ -337,3 +337,12 @@ Llegamos hasta sección de **Método de descenso en gradiente visto como caso pa
 Repaso de la nota [4.2.Descenso_en_gradiente_Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Descenso_en_gradiente_Python.ipynb) y la finalizamos.
 
 Finalizamos [4.2.Descenso_en_gradiente_R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Descenso_en_gradiente_R.ipynb), [4.2.Descenso_por_coordenadas_R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Descenso_por_coordenadas_R.ipynb), [4.2.Metodo_de_Newton_Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Metodo_de_Newton_Python.ipynb).
+
+
+## Clase 20
+
+13 de mayo
+
+Repaso de [4.2.Metodo_de_Newton_Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Metodo_de_Newton_Python.ipynb).
+
+Finalizamos [4.3.Componentes_principales_Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Componentes_principales_Python.ipynb)
