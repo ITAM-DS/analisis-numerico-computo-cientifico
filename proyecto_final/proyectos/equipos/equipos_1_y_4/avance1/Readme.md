@@ -12,7 +12,7 @@ el objetivo del proyecto:
 |fza_ventas| no_cliente|lat_destino |lon_destino |id_origen | estado |lat_origen|lon_origen|
 |-|-|-|-|-|-|-|-|
 
-+ Los algoritmos a revisar son: Particule Swarm Optimizacion (PS) y Simulated Annealing (SA).
++ Los algoritmos a revisar son: Particule Swarm Optimization (PS) y Simulated Annealing (SA).
 
 + Equipo de trabajo
 
@@ -42,10 +42,10 @@ El objetivo principal de este milestone fue tener el desarrollo de los algoritmo
 
 3. Prueba de los algoritmos
 
-El detalle de las activades realizadas por cada integrante del equipo se muestran a continuación: 
+El detalle de las actividades realizadas por cada integrante del equipo se muestran a continuación: 
 
-+ **Diego:** entendimiento de particle swarm y replicación de un algoritmo para entendimiento de cómo se puede 
-adaptar el algoritmo al problema de travellers salesman person. En el repositorio del equipo se puede consultar el notebook 
++ **Diego:** entendimiento de Particle Swarm y replicación de un algoritmo para entendimiento de cómo se puede 
+adaptar el algoritmo al problema de Travelling Salesman Person. En el repositorio del equipo se puede consultar el [notebook](https://github.com/lauragmz/proyecto-final-mno2020/blob/master/notebooks/Particle_Swarm_Optimization.ipynb)
 
 + **Lau:** creó el repositorio del equipo. Trabajó en el entendimiento y explicación de la parte matemática del algoritmo de Particle Swarm y validación de parámetros del algoritmo 
 
@@ -57,10 +57,9 @@ Simulated Annealing. Bajo este contexto, Pao y Miguel trabajaron en lo siguiente
 + **Pao:** revisó el paper de Coupled Simulated Annealing y construyó la primera iteración del docker. Construyó un código de grid search y realizó un código para la carga de datos.
 
 + **Miguel:** construyó una función para la transformación de los datos de Simulated Annealing y revisó 
-la documentación sobre los parámetros que tiene la función. Complementó el código de grid search y estandarizó la base de datos
+la documentación sobre los parámetros que tiene la función. Complementó el código de grid search y estandarizó la base de datos.
 
-+ **Ana:** construyó una función para la transformación de los datos de Particle Swarm y ejecutó pruebas con 
-ambos algoritimos para evaluar su desempeño y comparar las mejores rutas
++ **Ana:** construyó el archivo plano con los datos, una función para la transformación de los datos de Particle Swarm y ejecutó pruebas con ambos algoritimos para evaluar su desempeño y comparar las mejores rutas.
 
 	
 El 9 de mayo se tuvo la reunión con Erick y se llegan a los siguientes acuerdos: 
