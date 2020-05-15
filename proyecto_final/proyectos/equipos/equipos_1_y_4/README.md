@@ -33,7 +33,9 @@ Determinamos reducir la cantidad de trabajo que queríamos hacer en el proyecto 
 
 Referencias del proyecto:
 
+* [Paper: An effective simulated annealing Algorithm for Solving the Traveling Salesman Problem](https://www.researchgate.net/publication/233584468_An_Effective_Simulated_Annealing_Algorithm_for_Solving_the_Traveling_Salesman_Problem)
+* [Paper: Solve Traveling Salesman Problem Using Particle Swarm Optimization Algorithm](http://ijcsi.org/papers/IJCSI-9-6-2-264-271.pdf)
 * [Paper: Solving City Routing Issue with Particle Swarm
 Optimization ](https://research.ijcaonline.org/volume47/number15/pxc3880348.pdf)
-* [Paper: Solve Traveling Salesman Problem Using Particle Swarm Optimization Algorithm](http://ijcsi.org/papers/IJCSI-9-6-2-264-271.pdf)
+* [Repositorio: Coupled simulated annealing ](https://github.com/structurely/csa)
 * [Repositorio: Travelling salesman problem (TSP) - Particle Swarm Optimization (PSO) ](https://github.com/marcoscastro/tsp_pso)
