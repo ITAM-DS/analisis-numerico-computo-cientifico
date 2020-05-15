@@ -18,23 +18,23 @@ Título del proyecto: **Ruta óptima para los colaboradores de la fuerza de vent
 
 Objetivo del proyecto: **Encontar la ruta para los colaboradores de la fuerza de ventas que minimice la distancia recorrida en las visitas que realizan a sus clientes**
 
-Ligas Importantes:
+**Ligas Importantes:**
 
-[Liga a repo en el que se trabaja](https://github.com/lauragmz/proyecto-final-mno2020)
++ [Liga a repo en el que se trabaja](https://github.com/lauragmz/proyecto-final-mno2020)
 
-Trabajo escrito (fuera del repo): [liga_trabajo_escrito]()
++ Trabajo escrito (fuera del repo): [liga_trabajo_escrito]()
 
-Presentación (fuera del repo): [liga_presentación]()
++ Presentación (fuera del repo): [liga_presentación]()
 
-Implementación (en el repo): [liga_a_código]() 
++ Implementación (en el repo): [liga_a_código]() 
 
 
-Descripción de Carpetas:
+**Descripción de Carpetas:**
 
 + En la carpeta [avance1](https://github.com/lauragmz/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/avance1) se encuentra el reporte del primer avance del proyecto. 
 
 
-Referencias del proyecto:
+**Referencias del proyecto:**
 
 * [Paper: An effective simulated annealing Algorithm for Solving the Traveling Salesman Problem](https://www.researchgate.net/publication/233584468_An_Effective_Simulated_Annealing_Algorithm_for_Solving_the_Traveling_Salesman_Problem)
 * [Paper: Solve Traveling Salesman Problem Using Particle Swarm Optimization Algorithm](http://ijcsi.org/papers/IJCSI-9-6-2-264-271.pdf)
