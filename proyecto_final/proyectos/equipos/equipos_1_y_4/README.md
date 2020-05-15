@@ -14,11 +14,13 @@ Integrantes:
 
 * Ana Bertha Coronel
 
-Título del proyecto: **TSP aplicado**
+Título del proyecto: **Ruta óptima para los colaboradores de la fuerza de ventas**
 
-Objetivo del proyecto: **encontar la ruta para los colaboradores de la fuerza de ventas que minimice la distancia recorrida en las visitas que realizan a sus clientes**
+Objetivo del proyecto: **Encontar la ruta para los colaboradores de la fuerza de ventas que minimice la distancia recorrida en las visitas que realizan a sus clientes**
 
-[Liga a repo de user admin en el que se trabaja](https://github.com/lauragmz/proyecto-final-mno2020)
+Ligas Importantes:
+
+[Liga a repo en el que se trabaja](https://github.com/lauragmz/proyecto-final-mno2020)
 
 Trabajo escrito (fuera del repo): [liga_trabajo_escrito]()
 
@@ -27,9 +29,10 @@ Presentación (fuera del repo): [liga_presentación]()
 Implementación (en el repo): [liga_a_código]() 
 
 
-En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en nuestro proyecto. 
+Descripción de Carpetas:
 
-Determinamos reducir la cantidad de trabajo que queríamos hacer en el proyecto original por tiempos de entrega. En la carpeta [avance2](avance2) mostramos los avances para este propósito.
++ En la carpeta [avance1](https://github.com/lauragmz/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/avance1) se encuentra el reporte del primer avance del proyecto. 
+
 
 Referencias del proyecto:
 
