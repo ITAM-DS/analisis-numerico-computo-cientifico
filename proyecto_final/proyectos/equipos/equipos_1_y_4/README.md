@@ -16,7 +16,7 @@ Integrantes:
 
 Título del proyecto: **TSP aplicado**
 
-Objetivo del proyecto: **objetivo**
+Objetivo del proyecto: **encontar la ruta para los colaboradores de la fuerza de ventas que minimice la distancia recorrida en las visitas que realizan a sus clientes**
 
 [Liga a repo de user admin en el que se trabaja](https://github.com/lauragmz/proyecto-final-mno2020)
 
