@@ -37,7 +37,7 @@ Los avances logrados sobre los equipos se describen a continuación:
 
 Se acordó que además de los trabajos usuales del project manager, apoya al equipo de programación en la investigación del uso de libmf y apoyo sobre el planteamiento del problema para el trabajo escrito.
 
-Resolvimos el *milestone* de **Definición de Tema de Proyecto Final** relacionado con el issue #4 para la tarea del planteamiento inicial del proyecto. Seleccionando como lenguaje de Programación Python y seleccionamos la imagen de Docker basada en Python del curso MNO 2020 (palmoreck/jupyterlab_numerical:1.1.0).
+Resolvimos el *milestone* de **Definición de Tema de Proyecto Final** relacionado con el issue #4 para la tarea del planteamiento inicial del proyecto. Seleccionando como lenguaje de Programación Python y escogimos la imagen de Docker basada en Python (palmoreck/jupyterlab:1.1.0)[https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/1.2.Instalaci%C3%B3n-de-herramientas-%C3%BAtiles-en-AWS#jupyterlab].
 
 ### Equipo de programación
 
