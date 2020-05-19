@@ -28,8 +28,6 @@ def line_search_by_backtracking(f,dir_desc,x,
             t=beta*t
             eval1=f(x+t*dir_desc)
             eval2=f(x)+alpha*t*der_direct
-    else:
-        t=-1
     return t
 
 def line_search_for_residual_by_backtracking(r_primal, r_dual,dir_desc_primal,dir_desc_dual,x, nu,
