@@ -238,7 +238,10 @@ Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programm
 
 * [Algoritmos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/IV.optimizacion_convexa_y_machine_learning/algoritmos):
 
-    * [Metodo de Newton para puntos_iniciales_no_factibles](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Metodo_de_Newton_para_puntos_iniciales_no_factibles_Python.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Metodo_de_Newton_para_puntos_iniciales_no_factibles_Python.ipynb) (nota escrita en jupyterlab)
+
+    * [Metodo de Newton para puntos iniciales factibles](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Metodo_de_Newton_para_puntos_iniciales_factibles_Python.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Metodo_de_Newton_para_puntos_iniciales_factibles_Python.ipynb) (nota escrita en jupyterlab)
+
+    * [Metodo de Newton para puntos iniciales no factibles](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Metodo_de_Newton_para_puntos_iniciales_no_factibles_Python.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Metodo_de_Newton_para_puntos_iniciales_no_factibles_Python.ipynb) (nota escrita en jupyterlab)
 
 
 
