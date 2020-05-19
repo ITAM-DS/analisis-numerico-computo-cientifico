@@ -233,7 +233,7 @@ Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programm
 **Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**  
 
 
-4.4 [Algoritmos para Constrained Equality Convex Optimization](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Algoritmos_para_CECO.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Algoritmos_para_CECO.ipynb) (nota escrita en jupyterlab)
+4.4 [Algoritmos para Constrained Equality Convex Optimization](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Algoritmos_para_CECO.ipynb)
 
 
 * [Algoritmos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/IV.optimizacion_convexa_y_machine_learning/algoritmos):
