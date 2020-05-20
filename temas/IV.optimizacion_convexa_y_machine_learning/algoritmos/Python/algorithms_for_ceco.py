@@ -79,10 +79,10 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
     
     system_matrix = np.row_stack((first_stack,second_stack))
     zero_vector = np.zeros(p)
-    rhs = np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
+    rhs = -np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
 
     #Newton's direction and Newton's decrement
-    dir_desc = np.linalg.solve(system_matrix, -rhs)
+    dir_desc = np.linalg.solve(system_matrix, rhs)
     dir_Newton = dir_desc[0:n]
     dec_Newton = -gfeval.dot(dir_Newton)
     w_dual_variable_estimation = dir_desc[n:(n+p)]
@@ -118,9 +118,9 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
             first_stack = np.column_stack((Hfeval, A.T))
 
         system_matrix = np.row_stack((first_stack,second_stack))
-        rhs = np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
+        rhs = -np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
         #Newton's direction and Newton's decrement
-        dir_desc = np.linalg.solve(system_matrix, -rhs)
+        dir_desc = np.linalg.solve(system_matrix, rhs)
         dir_Newton = dir_desc[0:n]
         dec_Newton = -gfeval.dot(dir_Newton)
         w_dual_variable_estimation = dir_desc[n:(n+p)]
@@ -229,10 +229,10 @@ def Newtons_method_infeasible_init_point(f, A, b, x_0, nu_0, tol,
     feasibility_primal = residual_primal(x)
     feasibility_dual = residual_dual(nu)
     
-    rhs = np.row_stack((feasibility_dual.reshape(n,1), feasibility_primal.reshape(p,1))).T[0]
+    rhs = -np.row_stack((feasibility_dual.reshape(n,1), feasibility_primal.reshape(p,1))).T[0]
 
     #Newton's direction and Newton's decrement
-    dir_desc = np.linalg.solve(system_matrix, -rhs)
+    dir_desc = np.linalg.solve(system_matrix, rhs)
     dir_Newton_primal = dir_desc[0:n]
     dec_Newton = -gfeval.dot(dir_Newton_primal)
     dir_Newton_dual = dir_desc[n:(n+p)]
@@ -281,10 +281,10 @@ def Newtons_method_infeasible_init_point(f, A, b, x_0, nu_0, tol,
         
         feasibility_primal = residual_primal(x)
         feasibility_dual = residual_dual(nu)
-        rhs = np.row_stack((feasibility_dual.reshape(n,1), feasibility_primal.reshape(p,1))).T[0]
+        rhs = -np.row_stack((feasibility_dual.reshape(n,1), feasibility_primal.reshape(p,1))).T[0]
             
         #Newton's direction and Newton's decrement
-        dir_desc = np.linalg.solve(system_matrix, -rhs)
+        dir_desc = np.linalg.solve(system_matrix, rhs)
         dir_Newton_primal = dir_desc[0:n]
         dec_Newton = -gfeval.dot(dir_Newton_primal)
         dir_Newton_dual = dir_desc[n:(n+p)]
@@ -412,10 +412,10 @@ def Newtons_method_infeasible_init_point_2nd_version(f, A, b, x_0, nu_0, tol,
     feasibility_primal = residual_primal(x)
     feasibility_dual = residual_dual(nu)
     
-    rhs = np.row_stack((feasibility_dual.reshape(n,1), feasibility_primal.reshape(p,1))).T[0]
+    rhs = -np.row_stack((feasibility_dual.reshape(n,1), feasibility_primal.reshape(p,1))).T[0]
 
     #Newton's direction and Newton's decrement
-    dir_desc = np.linalg.solve(system_matrix, -rhs)
+    dir_desc = np.linalg.solve(system_matrix, rhs)
     dir_Newton_primal = dir_desc[0:n]
     dec_Newton = -gfeval.dot(dir_Newton_primal)
     dir_Newton_dual = dir_desc[n:(n+p)]
@@ -464,10 +464,10 @@ def Newtons_method_infeasible_init_point_2nd_version(f, A, b, x_0, nu_0, tol,
         
         feasibility_primal = residual_primal(x)
         feasibility_dual = residual_dual(nu)
-        rhs = np.row_stack((feasibility_dual.reshape(n,1), feasibility_primal.reshape(p,1))).T[0]
+        rhs = -np.row_stack((feasibility_dual.reshape(n,1), feasibility_primal.reshape(p,1))).T[0]
             
         #Newton's direction and Newton's decrement
-        dir_desc = np.linalg.solve(system_matrix, -rhs)
+        dir_desc = np.linalg.solve(system_matrix, rhs)
         dir_Newton_primal = dir_desc[0:n]
         dec_Newton = -gfeval.dot(dir_Newton_primal)
         dir_Newton_dual = dir_desc[n:(n+p)]
