@@ -121,11 +121,15 @@ Tomando como referencia el trabajo de investigación realizado por Colubri et al
 
 ## [Equipo ejemplo](equipos/equipo_ejemplo)
 
-Ttulo del proyecto: **Ejemplo**
+**Título del proyecto** 
 
-Objetivo del proyecto: objetivo
+Ejemplo
 
-[Avances del proyecto](equipos/equipo_ejemplo):
+**Objetivo del proyecto**
+
+Objetivo
+
+**Avances del proyecto:**
 
 * [avance1](equipos/equipo_ejemplo/avance1)
 
