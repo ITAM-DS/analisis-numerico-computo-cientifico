@@ -6,13 +6,14 @@ from utils import compute_error, logarithmic_barrier, constraint_inequalities_fu
 from line_search import line_search_for_log_barrier_by_backtracking 
 from numerical_differentiation import numerical_differentiation_of_logarithmic_barrier
 
-def path_following_method(f, A, constraints_ineq,
-                          x_0, tol,
-                          tol_backtracking, x_ast=None, p_ast=None, maxiter=30,
-                          mu=None,
-                          gf_symbolic=None, Hf_symbolic=None,
-                          tol_outer_iter=1e-6,maxiter_path=30
-                          ):
+def path_following_method_feasible_init_point(f, A, constraints_ineq,
+                                              x_0, tol,
+                                              tol_backtracking, x_ast=None, p_ast=None, 
+                                              maxiter=30,
+                                              mu=None,
+                                              gf_symbolic=None, Hf_symbolic=None,
+                                              tol_outer_iter=1e-6,maxiter_path=30
+                                              ):
     m = len(constraints_ineq.keys())
     if p_ast:
         t_0 = m/math.fabs(f(x_0)-p_ast) #other option: t_0 = mu*m/(f(x_0)-p_ast)
