@@ -1,6 +1,7 @@
 import numpy as np
 
-from utils import inc_index, dec_index
+from utils import inc_index, dec_index, \
+                  constraint_inequalities_funcs_generator
 
 def gradient_approximation(f,x,h=1e-8):
     '''
@@ -49,3 +50,21 @@ def Hessian_approximation(f,x,h=1e-6):
             inc_index(x,i,h)
         dec_index(x,i,h)
     return Hf/h**2
+def numerical_differentiation_of_logarithmic_barrier(f, x, t_path, constraint_inequalities):
+    '''
+    First and second derivative of logarithmic barrier function approximation
+    via finite differences
+    '''
+    sum_gf_const = 0
+    sum_Hf_const = 0
+    for const in constraint_inequalities_funcs_generator(constraint_inequalities):
+        const_eval = const(x)
+        gf_const_eval = gradient_approximation(const, x)
+        Hf_const_eval = Hessian_approximation(const, x)
+        sum_gf_const += gf_const_eval/const_eval  
+        sum_Hf_const += np.outer(gf_const_eval,gf_const_eval)/const_eval**2 - Hf_const_eval/const_eval
+    gf_eval = gradient_approximation(f,x)
+    Hf_eval = Hessian_approximation(f,x)
+    return {'gradient': t_path*gf_eval-sum_gf_const,
+            'Hessian': t_path*Hf_eval + sum_Hf_const
+           }
