@@ -253,6 +253,12 @@ Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programm
 
 * [Algoritmos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/IV.optimizacion_convexa_y_machine_learning/algoritmos)
 
+    * [Metodo de barrera logarítmica para puntos iniciales factibles](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.6.Metodo_de_barrera_logaritmica_para_puntos_iniciales_factibles_Python.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.6.Metodo_de_barrera_logaritmica_para_puntos_iniciales_factibles_Python.ipynb) (nota escrita en jupyterlab)
+
+    * [Metodo de barrera logarítmica para puntos iniciales no factibles]
+
+
+
 4.7 Ejemplos de uso de algoritmos para CIECO:
 
 * [Máquina de soporte vectorial para datos linealmente no separables] Ver: [MSV paralelo](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0) para una explicación de la implementación con cómputo en paralelo.
