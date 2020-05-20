@@ -10,10 +10,9 @@ El objetivo principal del milestone fue construir la solución end to end para e
 
 2. Diseño y primera iteración del pipeline
 
-3. Diseño y primera iteración del dashboard
+3. Diseño y primera iteración del dashboard. Se llega al acuerdo de que se utilizará herokuapp para su despliegue y evitar dependencias con los créditos de AWS para la EC2.
 
 En un inicio se había planeado realizar la paralización de las rutas en ambos algoritmos. Sin embargo, por la forma en la que está implementada la función de Simulated Annelaning de Python esto no fue posible. 
-
 
 El detalle de las actividades realizadas por cada integrante del equipo se muestran a continuación:
 
@@ -27,7 +26,7 @@ El detalle de las actividades realizadas por cada integrante del equipo se muest
 
 +**Miguel:** homologación de scripts para base de datos y construcción de la clase [Simulated Annealing](https://github.com/lauragmz/analisis-numerico-computo-cientifico/blob/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/avance2/codigo/simulated_annealing.py)
 
-+**Ana:** creación de archivos plano con nodos, latitud y longitud y construcción de funciones para la transformación de los datos de salida y visualización de las rutas en un mapa. 
++**Ana:** creación de archivo plano con nodos, latitud y longitud y construcción de funciones para la transformación de los datos de salida y visualización de las rutas en un mapa. 
 
 Siguientes pasos:  
 
