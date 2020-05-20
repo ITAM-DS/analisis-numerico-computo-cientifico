@@ -253,6 +253,10 @@ Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programm
 
 * [Algoritmos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/IV.optimizacion_convexa_y_machine_learning/algoritmos)
 
+4.7 Ejemplos de uso de algoritmos para CIECO:
+
+* [Máquina de soporte vectorial para datos linealmente no separables] Ver: [MSV paralelo](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0) para una explicación de la implementación con cómputo en paralelo.
+
 
 Ver [RAPIDS](https://rapids.ai/)
 
