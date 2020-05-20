@@ -16,17 +16,17 @@ En un inicio se había planeado realizar la paralización de las rutas en ambos 
 
 El detalle de las actividades realizadas por cada integrante del equipo se muestran a continuación:
 
-+**Diego:** integración y documentación de diversas funciones en el archivo [Utilería](https://github.com/lauragmz/analisis-numerico-computo-cientifico/blob/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/avance2/codigo/Utileria.py). En este avance, se integra la versión actualizada
++ **Diego:** integración y documentación de diversas funciones en el archivo [Utilería](https://github.com/lauragmz/analisis-numerico-computo-cientifico/blob/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/avance2/codigo/Utileria.py). En este avance, se integra la versión actualizada
 
-+**Lau:** construcción de la clase [Particle Swarm](https://github.com/lauragmz/analisis-numerico-computo-cientifico/blob/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/avance2/codigo/particle_swarm.py). Trabaja en la paralelización del algoritmo de Particle Swarm y en la segunda iteración del gridsearch. 
++ **Lau:** construcción de la clase [Particle Swarm](https://github.com/lauragmz/analisis-numerico-computo-cientifico/blob/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/avance2/codigo/particle_swarm.py). Trabaja en la paralelización del algoritmo de Particle Swarm y en la segunda iteración del gridsearch. 
 
-+**Marco:** diseño y primera iteración del pipeline de la solución. Creación de tablas finales para el algoritmo. Trabaja en la paralelización del algoritmo de Particle Swarm y en la segunda iteración del gridsearch.
++ **Marco:** diseño y primera iteración del pipeline de la solución. Creación de tablas finales para el algoritmo. Trabaja en la paralelización del algoritmo de Particle Swarm y en la segunda iteración del gridsearch.
 
-+**Pao:** Corrección de estilos de Utileria.py, separación de la función de visualización para integración con el dashboard. Diseño y primera iteración del dashboard. 
++ **Pao:** Corrección de estilos de Utileria.py, separación de la función de visualización para integración con el dashboard. Diseño y primera iteración del dashboard. 
 
-+**Miguel:** homologación de scripts para base de datos y construcción de la clase [Simulated Annealing](https://github.com/lauragmz/analisis-numerico-computo-cientifico/blob/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/avance2/codigo/simulated_annealing.py)
++ **Miguel:** homologación de scripts para base de datos y construcción de la clase [Simulated Annealing](https://github.com/lauragmz/analisis-numerico-computo-cientifico/blob/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/avance2/codigo/simulated_annealing.py)
 
-+**Ana:** creación de archivo plano con nodos, latitud y longitud y construcción de funciones para la transformación de los datos de salida y visualización de las rutas en un mapa. 
++ **Ana:** creación de archivo plano con nodos, latitud y longitud y construcción de funciones para la transformación de los datos de salida y visualización de las rutas en un mapa. 
 
 Siguientes pasos:  
 
