@@ -244,6 +244,10 @@ Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programm
     * [Metodo de Newton para puntos iniciales no factibles](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Metodo_de_Newton_para_puntos_iniciales_no_factibles_Python.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Metodo_de_Newton_para_puntos_iniciales_no_factibles_Python.ipynb) (nota escrita en jupyterlab)
 
 
+4.5 [Algoritmos para Constrained Inequality and Equality Convex Optimization](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.5.Algoritmos_para_CIECO.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.5.Algoritmos_para_CIECO.ipynb) (nota escrita en jupyterlab)
+
+* [Algoritmos](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/temas/IV.optimizacion_convexa_y_machine_learning/algoritmos)
+
 
 Ver [RAPIDS](https://rapids.ai/)
 
