@@ -246,7 +246,7 @@ Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programm
 
 4.5 Ejemplos de uso de algoritmos para CECO:
 
-* [Modelo de Markowitz](https://github.com/czammar/MNO_finalproject)
+* [Modelo de Markowitz](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_2_y_3)
 
 
 4.6 [Algoritmos para Constrained Inequality and Equality Convex Optimization](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.6.Algoritmos_para_CIECO.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.6.Algoritmos_para_CIECO.ipynb) (nota escrita en jupyterlab)
