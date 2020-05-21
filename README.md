@@ -346,3 +346,12 @@ Finalizamos [4.2.Descenso_en_gradiente_R](https://github.com/ITAM-DS/analisis-nu
 Repaso de [4.2.Metodo_de_Newton_Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Metodo_de_Newton_Python.ipynb).
 
 Finalizamos [4.3.Componentes_principales_Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Componentes_principales_Python.ipynb)
+
+
+## Clase 21
+
+20 de mayo
+
+Finalizamos [4.3.Minimos_cuadrados_R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Minimos_cuadrados_R.ipynb), [4.3.Regresion_logistica_R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Regresion_logistica_R.ipynb)
+
+Introducción breve a [4.4.Algoritmos_para_CECO](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Algoritmos_para_CECO.ipynb)
