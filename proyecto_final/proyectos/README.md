@@ -50,7 +50,7 @@ Se busca estimar el portafolio de mínima varianza con el método numérico de m
 [Implementacion](liga hacia implementacion)
 
 
-## [Equipos 5 y 9 o Sistemas De Recomendación: SR](equipos/equipo_5_y_9)
+## [Equipos 5 y 9 o Sistemas de Recomendación: SR](equipos/equipo_5_y_9)
 
 **Título del proyecto**
 
