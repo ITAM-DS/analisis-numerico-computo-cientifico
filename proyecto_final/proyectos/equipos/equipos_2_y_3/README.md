@@ -25,10 +25,10 @@ Bruno, Itzel, César, León, Danahi, Yalidt
 | 6    | Project Manager                            | Danahi       |
 
 #### Título del Proyecto
-Optimización de un portafolio de inversión para inversionistas adversos al riesgo con el método de *Markowitz*.
+Solución al modelo de Markowitz del portafolio de mínima varianza dado un rendimiento esperado.
 
 #### Objetivo del proyecto
-Se busca estimar el portafolio de mínima varianza con dos métodos numéricos, el método de multiplicadores de Lagrange con restricciones y el método de Newton con reestricciones de igualdad a partir de un punto factible. Ambos métodos incluyen la solución de diversos sistemas lineales donde se involucran la matriz de covarianzas de los rendimientos de las acciones, el rendimiento medio y el retorno esperado del portafolio, como se discutirá a detalle en el reporte final. 
+Se busca estimar el portafolio de mínima varianza con dos métodos numéricos, el método de multiplicadores de Lagrange con restricciones y el método de Newton con restricciones de igualdad a partir de un punto factible. Ambos métodos incluyen la solución de diversos sistemas lineales donde se involucran la matriz de covarianzas de los rendimientos de las acciones, el rendimiento medio y el retorno esperado del portafolio, como se discutirá a detalle en el reporte final. 
 
 ##### Liga del Repositorio del Proyecto<br>
 [Repositorio Optimización de Markowitz](https://github.com/czammar/MNO_finalproject)
