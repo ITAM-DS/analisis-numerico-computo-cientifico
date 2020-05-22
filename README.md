@@ -25,17 +25,17 @@ Las clases son los días miércoles y sábados.
 |18 de marzo|No hubo clase por COVID-19|
 |25 de marzo|CUDA, CUDA-C, CuPy y gputools. Uso de software para cómputo matricial: C, Python o R. Niveles de BLAS. Bottlenecks a considerar para cómputo matricial: uso del caché eficientemente| 
 |sábado 28 de marzo|Uso de instancias en google colab y en AWS con GPU's. CUDA-C, CuPy y gputools|
-|1 de abril|Métodos para resolver sistemas de ecuaciones lineales y factorizaciones matriciales. Aplicaciones del álgebra lineal numérica: componentes principales, mínimos cuadrados y su relación con problemas convexos.|
-|15 de abril| Uso de métodos numéricos en la solución de ecuaciones no lineales: método de Newton en una y más dimensiones. Problemas de optimización convexa. Algoritmos de optimización sin restricciones|
-|sábado 18 de abril|Uso de kubernetes en AWS/ Ejercicio de uso de CuPY y gputools en google colab y/o AWS |
-|22 de abril|Implementación de algoritmos de optimización sin restricciones|
+|1 de abril|Métodos para resolver sistemas de ecuaciones lineales y factorizaciones matriciales.|
+|15 de abril| Problemas de optimización y *machine learning*|
+|sábado 18 de abril|Uso de kubernetes en AWS/ Definiciones importantes en problemas de optimización.|
+|22 de abril|Algoritmos de optimización sin restricciones. *Backtracking line search*, algoritmo general de descenso.|
 |sábado 25 de abril|**1er grupo de equipos para entrega de avances de proyecto**|
-|29 de abril|Optimización, dualidad y condiciones de Karush-Kuhn-Tucker. Algoritmos de optimización con restricciones de igualdad|
-|6 de mayo|Implementación de algoritmos de optimización con restricciones de igualdad|
+|29 de abril|Revisión de algoritmos de optimización sin restricciones: método de descenso más pronunciado y descenso en gradiente.|
+|6 de mayo|Implementación de algoritmos de optimización sin restricciones: descenso en gradiente, por coordenadas y Newton.|
 |sábado 9 de mayo|**2o grupo de equipos para entrega de avances de proyecto**|
-|13 de mayo|Algoritmo de barrera logarítmica. Implementación de barrera logarítmica|
+|13 de mayo|Ejemplos de uso de métodos de descenso para problemas sin restricciones: mínimos cuadrados lineales, regresión logística y componentes principales.|
 |sábado 16 de mayo|**3er grupo de equipos para entrega de avances de proyecto**|
-|20 de mayo|Máquina de soporte vectorial con algoritmo de barrera logarítmica. Implementación distribuida|
+|20 de mayo|Algoritmos de optimización con restricciones de igualdad.|
 
 Total de clases: 24. Total de número de horas: 72 hrs.
 
@@ -285,7 +285,7 @@ Envié por gitter las ligas de gh-classroom para el examen de módulo matricial
 
 ## Clase 15
 
-13 de abril
+15 de abril
 
 Llegamos al ejemplo del método de descenso en gradiente en [4.1.Optimizacion_numerica_y_machine_learning.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb)
 
@@ -306,7 +306,7 @@ Plática general sobre kubernetes. Ver [4.AWS y Kubernetes](https://github.com/I
 
 Comentarios generales de github classrooms y del proyecto final.
 
-Repaso de [4.1.Optimizacion_numerica_y_machine_learning.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb). Revisión de definiciones de problemas de optimización, dominio del problema de optimización, conjunto factible, conjunto factible y óptimo global, local hasta problemas de optimización convexa.
+Repaso de [4.1.Optimizacion_numerica_y_machine_learning.ipynb](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.1.Optimizacion_numerica_y_machine_learning.ipynb). Revisión de definiciones de problemas de optimización, dominio del problema de optimización, conjunto factible, conjunto no factible y óptimo global, local hasta problemas de optimización convexa.
 
 ## Clase 17
 
@@ -328,3 +328,30 @@ Se vio uso de [github-pages](https://pages.github.com/) con un ejemplo de estudi
 Finalizamos la nota [4.2.Algoritmos_para_UCO](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Algoritmos_para_UCO.ipynb).
 
 Llegamos hasta sección de **Método de descenso en gradiente visto como caso particular del método steepest descent bajo la norma cuadrática** en [4.2.Descenso_en_gradiente_Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Descenso_en_gradiente_Python.ipynb).
+
+
+## Clase 19
+
+6 de mayo
+
+Repaso de la nota [4.2.Descenso_en_gradiente_Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Descenso_en_gradiente_Python.ipynb) y la finalizamos.
+
+Finalizamos [4.2.Descenso_en_gradiente_R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Descenso_en_gradiente_R.ipynb), [4.2.Descenso_por_coordenadas_R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Descenso_por_coordenadas_R.ipynb), [4.2.Metodo_de_Newton_Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Metodo_de_Newton_Python.ipynb).
+
+
+## Clase 20
+
+13 de mayo
+
+Repaso de [4.2.Metodo_de_Newton_Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.2.Metodo_de_Newton_Python.ipynb).
+
+Finalizamos [4.3.Componentes_principales_Python](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Componentes_principales_Python.ipynb)
+
+
+## Clase 21
+
+20 de mayo
+
+Finalizamos [4.3.Minimos_cuadrados_R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Minimos_cuadrados_R.ipynb), [4.3.Regresion_logistica_R](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Regresion_logistica_R.ipynb)
+
+Introducción breve a [4.4.Algoritmos_para_CECO](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Algoritmos_para_CECO.ipynb)

@@ -6,9 +6,9 @@ Integrantes:
 
 * Erick
 
-Título del proyecto: `Ejemplo`
+Título del proyecto: **Ejemplo**
 
-Objetivo del proyecto: `objetivo`
+Objetivo del proyecto: **objetivo**
 
 [Liga a repo de user admin en el que se trabaja]()
 
