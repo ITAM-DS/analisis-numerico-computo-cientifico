@@ -37,12 +37,12 @@ Objetivo del proyecto: El objetivo de este proyecto es implementar un método nu
 
 ## Fechas
 
-| # | Milestone/avance                                           | Fecha       | Entregable                          |
-|---|------------------------------------------------------------|-------------|-------------------------------------|
-| 1 | Avance 1:Selección de BD, lenguaje, tema, roles            | 25/Abril    | README.md en Avance_1               |
-| 2 | Avance 2: EDA & Feature Engineering y código simple        | 16/Mayo     | Notebooks de EDA & FE               |
-| 3 | Avance 3: Revisión y Perfilamiento y paralelización        | 21/Mayo     | Notebooks del funcionamiento, PDF Reporte final & Notebooks       |
-| 5 | Presentación del proyecto                                  | Examen Final| Notebook Reporte Final y explicación|
+| # | Milestone/avance                                           | Fecha       | Entregable                                                 |
+|---|------------------------------------------------------------|-------------|------------------------------------------------------------|
+| 1 | Avance 1:Selección de BD, lenguaje, tema, roles            | 25/Abril    | README.md en Avance_1                                      |
+| 2 | Avance 2: EDA & Feature Engineering y código simple        | 16/Mayo     | Notebooks de EDA & FE                                      |
+| 3 | Avance 3: Revisión y reporte final                         | 21/Mayo     | Notebooks del funcionamiento, notebook del Reporte final   |
+| 4 | Presentación del proyecto                                  | Examen Final| Notebook Reporte Final y explicación                       |
 
 ## Estructura del repositorio
 
