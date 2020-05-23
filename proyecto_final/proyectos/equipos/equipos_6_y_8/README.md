@@ -1,0 +1,60 @@
+# Proyecto Final de la materia de Métodos Numéricos y Optimización de la Maestría en Ciencia de Datos
+
+**Profesor:** Erick Palacios Moreno
+
+**Integrantes del equipo**
+
+| # | Alumno                            | Clave única | usuario de Github                                              |Roles|
+|---|-----------------------------------|-------------|----------------------------------------------------------------|---|
+| 1 | Angel Rafael Ortega Ramírez       | 123972      | [123972](https://github.com/123972)                            |Project Manager|
+| 2 | Elizabeth Rodriguez               | 191430      | [erodriguezul](https://github.com/erodriguezul)                |Revisión de código|
+| 3 | Karla Alfaro Pizaña               | 137314      | [alpika19186](https://github.com/alpika19186)                  |Revisión de código |
+| 4 | Leonardo Marín                    | 175903      | [leonardomarintellez](https://github.com/leonardomarintellez)  |Programador|
+| 5 | Mario Rodríguez                   | 164471      |[shimanteko](https://github.com/shimanteko)   |Programador|
+| 6 | Elizabeth Viveros                 | 161224      |[ElyVV](https://github.com/ElyVV)   |Programadora|
+
+# Rutas a los avances:
+* [Avance 1](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_1)
+* [Avance 2](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_2)
+* [Avance 3](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_3)
+
+
+# Estructura del repositorio
+
+La estructura del repositorio está basado en [este](https://drivendata.github.io/cookiecutter-data-science/) template y
+ está organizado de la siguiente forma:
+
+- Carpeta [avances](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances): contiene
+ los avances de cada una de las etapas del proyecto.
+
+-Carpeta [data](https://github.com/123972/Final-Project-MNO-2020/tree/master/data): contiene la base de datos a utilizar,
+así como información sobre el procedimiento de feature engineering a seguir para unir ambas bases de datos y la limpieza
+de las variables.
+
+- Carpeta [docker](https://github.com/123972/Final-Project-MNO-2020/tree/master/docker): Contiene la información 
+pertienete para poder correr los scripts y notebooks en un contenedor de docker.
+
+- Carpeta [docs](https://github.com/123972/Final-Project-MNO-2020/tree/master/docs): Contiene el cuestionario utlilizado
+durante la encuesta en la que se obtuvieron los datos utilizados en este proyecto, así como las 
+[imágenes](https://github.com/123972/Final-Project-MNO-2020/tree/master/docs/images) empleadas en el README.md y las 
+[referencias](https://github.com/123972/Final-Project-MNO-2020/tree/master/docs/References) utilizadas durante el 
+proyecto.
+
+- Carpeta [environment](https://github.com/123972/Final-Project-MNO-2020/tree/master/environment/mno_env): Contiene el 
+ambiente con las instalaciones de python empleadas en este proyecto. Dichas instalaciones también se pueden instalar vía
+el archivo de requirements.txt
+
+- Carpeta [notebooks](https://github.com/123972/Final-Project-MNO-2020/tree/master/notebooks): Contiene cinco carpetas 
+con los notebooks y scripts de la sección del 
+[EDA](https://github.com/123972/Final-Project-MNO-2020/tree/master/notebooks/EDA), 
+[Feature Engineering](https://github.com/123972/Final-Project-MNO-2020/tree/master/notebooks/feature_engineering), 
+[Feature Selection](https://github.com/123972/Final-Project-MNO-2020/tree/master/notebooks/feature_selection)
+ y de los equipos de [Programación](https://github.com/123972/Final-Project-MNO-2020/tree/master/notebooks/Programacion)
+  y [Revisión](https://github.com/123972/Final-Project-MNO-2020/tree/master/notebooks/Revision).   
+
+- Carpeta [results](https://github.com/123972/Final-Project-MNO-2020/tree/master/results):Esta carpeta contiene los resultados obtenidos por el proyecto, así como la presentación y el reporte final.
+
+- Carpeta [src](https://github.com/123972/Final-Project-MNO-2020/tree/master/src): Incluye todos los scripts separados en tres secciones: [feature engineering](https://github.com/123972/Final-Project-MNO-2020/tree/master/src/feature_engineering), [feature selection](https://github.com/123972/Final-Project-MNO-2020/tree/master/src/feature_selection), [PCA](https://github.com/123972/Final-Project-MNO-2020/tree/master/src/pca) y [test algorithms](https://github.com/123972/Final-Project-MNO-2020/tree/master/src/test_algorithms) 
+
+- Carpeta [tests](https://github.com/123972/Final-Project-MNO-2020/tree/master/tests):[Incluye algunas pruebas y el perfilamiento](https://github.com/123972/Final-Project-MNO-2020/tree/master/tests)
+
