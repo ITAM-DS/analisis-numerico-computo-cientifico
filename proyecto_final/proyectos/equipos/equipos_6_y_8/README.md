@@ -15,15 +15,9 @@
 | 5 | Mario Rodríguez                   | 164471      |[shimanteko](https://github.com/shimanteko)   |Programador|
 | 6 | Elizabeth Viveros                 | 161224      |[ElyVV](https://github.com/ElyVV)   |Programadora|
 
-Ttulo del proyecto: `Análisis de Componentes Principales y Regresión: PCA-R`
+Ttulo del proyecto: `Análisis de Componentes Principales para resolver problemas de multicolinealidad y dimensión alta: Un estudio nacional sobre el desempeño académico en matemáticas a nivel bachillerato`
 
-Objetivo del proyecto: implementar un método numérico aplicado a un  
-problema real. En este caso el método numérico que se analiza es el de A
-nálisis de Componentes Principales (PCA) con el método de SVD y de Jacobi  
-one-sided. El problema de aplicación es intentar explicar los puntajes en
- Matemáticas y Lenguaje y Comunicación en la prueba PLANEA ELCE MS 2016  
- usando, principalmente, las respuestas a un cuestionario de contexto que  
- se aplicó a los alumnos.equipo_ejemplo
+Objetivo del proyecto: El objetivo de este proyecto es implementar un método numérico aplicado a un problema real. En este caso el método numérico que se analiza es el de Análisis de Componentes Principales (PCA) con el método de SVD y de Jacobi one-sided. El problema de aplicación es intentar explicar los puntajes en Matemáticas y Lenguaje y Comunicación en la prueba PLANEA ELCE MS 2016 usando, principalmente, las respuestas a un cuestionario de contexto que se aplicó a los alumnos.
 
 ## Ligas importantes
 
@@ -40,6 +34,15 @@ one-sided. El problema de aplicación es intentar explicar los puntajes en
 * [Avance 1](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_1)
 * [Avance 2](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_2)
 * [Avance 3](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_3)
+
+## Fechas
+
+| # | Milestone/avance                                           | Fecha       | Entregable                          |
+|---|------------------------------------------------------------|-------------|-------------------------------------|
+| 1 | Avance 1:Selección de BD, lenguaje, tema, roles            | 25/Abril    | README.md en Avance_1               |
+| 2 | Avance 2: EDA & Feature Engineering y código simple        | 16/Mayo     | Notebooks de EDA & FE               |
+| 3 | Avance 3: Revisión y Perfilamiento y paralelización        | 21/Mayo     | Notebooks del funcionamiento, PDF Reporte final & Notebooks       |
+| 5 | Presentación del proyecto                                  | Examen Final| Notebook Reporte Final y explicación|
 
 ## Estructura del repositorio
 
