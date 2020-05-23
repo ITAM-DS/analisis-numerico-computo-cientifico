@@ -1,4 +1,15 @@
 # Proyecto Final de la materia de Métodos Numéricos y Optimización de la Maestría en Ciencia de Datos
+## [Equipo ejemplo](equipos/equipo_ejemplo)
+
+Ttulo del proyecto: `Análisis de Componentes Principales y Regresión: PCA-R`
+
+Objetivo del proyecto: implementar un método numérico aplicado a un 
+problema real. En este caso el método numérico que se analiza es el de A
+nálisis de Componentes Principales (PCA) con el método de SVD y de Jacobi 
+one-sided. El problema de aplicación es intentar explicar los puntajes en
+ Matemáticas y Lenguaje y Comunicación en la prueba PLANEA ELCE MS 2016 
+ usando, principalmente, las respuestas a un cuestionario de contexto que 
+ se aplicó a los alumnos.
 
 **Profesor:** Erick Palacios Moreno
 
@@ -14,6 +25,7 @@
 | 6 | Elizabeth Viveros                 | 161224      |[ElyVV](https://github.com/ElyVV)   |Programadora|
 
 # Rutas a los avances:
+[Avances del proyecto](equipos/equipo_ejemplo):
 * [Avance 1](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_1)
 * [Avance 2](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_2)
 * [Avance 3](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_3)
