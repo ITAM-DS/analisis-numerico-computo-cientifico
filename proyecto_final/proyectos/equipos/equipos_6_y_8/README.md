@@ -1,16 +1,6 @@
 # Proyecto Final de la materia de Métodos Numéricos y Optimización de la Maestría en Ciencia de Datos
 
-## [Equipo ejemplo](equipos/equipo_ejemplo)
-
-Ttulo del proyecto: `Análisis de Componentes Principales y Regresión: PCA-R`
-
-Objetivo del proyecto: implementar un método numérico aplicado a un  
-problema real. En este caso el método numérico que se analiza es el de A
-nálisis de Componentes Principales (PCA) con el método de SVD y de Jacobi  
-one-sided. El problema de aplicación es intentar explicar los puntajes en
- Matemáticas y Lenguaje y Comunicación en la prueba PLANEA ELCE MS 2016  
- usando, principalmente, las respuestas a un cuestionario de contexto que  
- se aplicó a los alumnos.
+## [Equipos 6 y 8](equipos/equipos_6_y_8)
 
 **Profesor:** Erick Palacios Moreno
 
@@ -25,19 +15,31 @@ one-sided. El problema de aplicación es intentar explicar los puntajes en
 | 5 | Mario Rodríguez                   | 164471      |[shimanteko](https://github.com/shimanteko)   |Programador|
 | 6 | Elizabeth Viveros                 | 161224      |[ElyVV](https://github.com/ElyVV)   |Programadora|
 
+Ttulo del proyecto: `Análisis de Componentes Principales y Regresión: PCA-R`
+
+Objetivo del proyecto: implementar un método numérico aplicado a un  
+problema real. En este caso el método numérico que se analiza es el de A
+nálisis de Componentes Principales (PCA) con el método de SVD y de Jacobi  
+one-sided. El problema de aplicación es intentar explicar los puntajes en
+ Matemáticas y Lenguaje y Comunicación en la prueba PLANEA ELCE MS 2016  
+ usando, principalmente, las respuestas a un cuestionario de contexto que  
+ se aplicó a los alumnos.equipo_ejemplo
+
+## Ligas importantes
+
+[Repositorio del equipo:](https://github.com/123972/Final-Project-MNO-2020)
+
+* [Trabajo escrito](https://github.com/123972/Final-Project-MNO-2020/blob/master/results/reporte_final.ipynb)
+* [Presentacion](https://github.com/123972/Final-Project-MNO-2020/tree/master/results)
+* [Implementacion](https://github.com/123972/Final-Project-MNO-2020/blob/master/results/reporte_final.ipynb)
+
 ## Rutas a los avances  
 
-[Avances del proyecto](equipos/equipo_ejemplo):
+[Avances del proyecto](equipos/equipos_6_y_8):
 
 * [Avance 1](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_1)
 * [Avance 2](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_2)
 * [Avance 3](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_3)
-
-[Trabajo escrito](https://github.com/123972/Final-Project-MNO-2020/blob/master/results/reporte_final.ipynb)
-
-[Presentacion](https://github.com/123972/Final-Project-MNO-2020/tree/master/results)
-
-[Implementacion](https://github.com/123972/Final-Project-MNO-2020/blob/master/results/reporte_final.ipynb)
 
 ## Estructura del repositorio
 
@@ -77,3 +79,19 @@ con los notebooks y scripts de la sección del
 * Carpeta [src](https://github.com/123972/Final-Project-MNO-2020/tree/master/src): Incluye todos los scripts separados en tres secciones: [feature engineering](https://github.com/123972/Final-Project-MNO-2020/tree/master/src/feature_engineering), [feature selection](https://github.com/123972/Final-Project-MNO-2020/tree/master/src/feature_selection), [PCA](https://github.com/123972/Final-Project-MNO-2020/tree/master/src/pca) y [test algorithms](https://github.com/123972/Final-Project-MNO-2020/tree/master/src/test_algorithms)  
 
 * Carpeta [tests](https://github.com/123972/Final-Project-MNO-2020/tree/master/tests):[Incluye algunas pruebas y el perfilamiento](https://github.com/123972/Final-Project-MNO-2020/tree/master/tests)
+
+## Referencias del proyecto
+
+El algoritmo de PCA
+
+Podemos encontrar la documentación de este repositorio en las siguientes ligas:
+
+* Implementación mediante método de la potencia:
+  * [The power method for aproximating eigenvalues](https://ergodic.ugr.es/cphys/LECCIONES/FORTRAN/power_method.pdf)
+  * [Power Method with Inverse & Rayleigh](https://www.youtube.com/watch?v=LHlg_lfihiA)
+  * [Lecture #8: PCA and the Power Iteration Method](http://theory.stanford.edu/~tim/s15/l/l8.pdf)
+  * [Principal Components](https://researcher.watson.ibm.com/researcher/files/ie-jakub.marecek/ch08_eigenvalues_handout.pdf)
+  
+La referencia del método de Halko al que hace alusión el paquete de scikit-learn, lo podemos encontrar en la siguiente liga:
+
+* [Finding Structure with Randomness: Probabilistic Algorithms for Constructing Approximate Matrix Decompositions∗](http://users.cms.caltech.edu/~jtropp/papers/HMT11-Finding-Structure-SIREV.pdf)
