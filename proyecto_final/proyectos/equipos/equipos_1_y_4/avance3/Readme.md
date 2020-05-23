@@ -8,18 +8,18 @@ Dado que para esta fecha se tiene que entregar un avance al 85% del [reporte](ht
 
 Para lograrlo, se llevaron a cabo las siguientes actividades: 
 
-1. Ejecución de pruebas para ambos algortimos: búsqueda de mejores hiperparámetros y análisis de frecuencia de rutas. Para las pruebas se consideraron dos fuerzas de ventas específicas y se generó un notebook con el análisis para cada de ellas. 
-
-+ [Particle swarm 10 nodos](https://github.com/lauragmz/proyecto-final-mno2020/blob/master/notebooks/entrega/Analisis_ParticleSwarm_10nodos.ipynb)
+1. Ejecución de pruebas para ambos algoritmos: búsqueda de mejores hiperparámetros y análisis de frecuencia de rutas. Para las pruebas se consideraron dos fuerzas de ventas específicas y se generó un notebook con el análisis para cada de ellas. 
 
 + [Particle swarm 6 nodos](https://github.com/lauragmz/proyecto-final-mno2020/blob/master/notebooks/entrega/Analisis_ParticleSwarm_6nodos.ipynb)
+
++ [Particle swarm 10 nodos](https://github.com/lauragmz/proyecto-final-mno2020/blob/master/notebooks/entrega/Analisis_ParticleSwarm_10nodos.ipynb)
 
 + [Simulated Annealing 6 nodos](https://github.com/lauragmz/proyecto-final-mno2020/blob/master/notebooks/entrega/Analisis_Simulated_Annealing%20_6nodos-100_iter.ipynb)
 
 + [Simulated Annealing 10 nodos](https://github.com/lauragmz/proyecto-final-mno2020/blob/master/notebooks/entrega/Analisis_Simulated_Annealing%20_10nodos-100_iter.ipynb)
 
 
-2. Realizar pruebas del algoritmo de Particle Swarm en paralelo. El [notebook](https://github.com/lauragmz/proyecto-final-mno2020/blob/master/notebooks/entrega/Analisis_ParticleSwarm_Paralelo.ipynb) está disponbile para su consulta en el repositorio del equipo.
+2. Realizar pruebas del algoritmo de Particle Swarm en paralelo. El [notebook](https://github.com/lauragmz/proyecto-final-mno2020/blob/master/notebooks/entrega/Analisis_ParticleSwarm_Paralelo.ipynb) está disponible para su consulta en el repositorio del equipo.
 
 El detalle de las actividades realizadas por cada integrante del equipo se muestran a continuación:
 
