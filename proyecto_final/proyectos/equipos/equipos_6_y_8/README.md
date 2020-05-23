@@ -18,6 +18,11 @@
 * [Avance 2](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_2)
 * [Avance 3](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_3)
 
+[Trabajo escrito](https://github.com/123972/Final-Project-MNO-2020/blob/master/results/reporte_final.ipynb)
+
+[Presentacion](https://github.com/123972/Final-Project-MNO-2020/tree/master/results)
+
+[Implementacion](https://github.com/123972/Final-Project-MNO-2020/blob/master/results/reporte_final.ipynb)
 
 # Estructura del repositorio
 
