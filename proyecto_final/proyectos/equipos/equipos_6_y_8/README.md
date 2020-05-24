@@ -31,18 +31,18 @@ Objetivo del proyecto: El objetivo de este proyecto es implementar un método nu
 
 [Avances del proyecto](equipos/equipos_6_y_8):
 
-* [Avance 1](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_1)
-* [Avance 2](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_2)
-* [Avance 3](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances/Avance_3)
+* [Avance 1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_6_y_8/avance1)
+* [Avance 2](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_6_y_8/avance2)
+* [Avance 3](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_6_y_8/avance3)
 
 ## Fechas
 
-| # | Milestone/avance                                           | Fecha       | Entregable                          |
-|---|------------------------------------------------------------|-------------|-------------------------------------|
-| 1 | Avance 1:Selección de BD, lenguaje, tema, roles            | 25/Abril    | README.md en Avance_1               |
-| 2 | Avance 2: EDA & Feature Engineering y código simple        | 16/Mayo     | Notebooks de EDA & FE               |
-| 3 | Avance 3: Revisión y Perfilamiento y paralelización        | 21/Mayo     | Notebooks del funcionamiento, PDF Reporte final & Notebooks       |
-| 5 | Presentación del proyecto                                  | Examen Final| Notebook Reporte Final y explicación|
+| # | Milestone/avance                                           | Fecha       | Entregable                                                 |
+|---|------------------------------------------------------------|-------------|------------------------------------------------------------|
+| 1 | Avance 1:Selección de BD, lenguaje, tema, roles            | 25/Abril    | README.md en Avance_1                                      |
+| 2 | Avance 2: EDA & Feature Engineering y código simple        | 16/Mayo     | Notebooks de EDA & FE                                      |
+| 3 | Avance 3: Revisión y reporte final                         | 21/Mayo     | Notebooks del funcionamiento, notebook del Reporte final   |
+| 4 | Presentación del proyecto                                  | Examen Final| Notebook Reporte Final y explicación                       |
 
 ## Estructura del repositorio
 
@@ -98,3 +98,9 @@ Podemos encontrar la documentación de este repositorio en las siguientes ligas:
 La referencia del método de Halko al que hace alusión el paquete de scikit-learn, lo podemos encontrar en la siguiente liga:
 
 * [Finding Structure with Randomness: Probabilistic Algorithms for Constructing Approximate Matrix Decompositions∗](http://users.cms.caltech.edu/~jtropp/papers/HMT11-Finding-Structure-SIREV.pdf)
+
+* Palacios M. Erick, Notas de MNO 2020, [SVD](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/III.computo_matricial/3.3.d.SVD.ipynb)
+* Palacios M. Erick, Notas de MNO 2020, [Componentes principales](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Componentes_principales_Python.ipynb)
+* Rencher, Alvin C & William F. Christensen. (2012). Methods of Multivariate Analysis. Department of Statistics, Brigham Young University, Provo, UT.- Third Edition. Ch 12.
+* Sharma Subhash. (1996). Applied Multivariate Techniques. University of South Carolina. Ch4.
+* Equipo SVD, [Examen de cómputo matricial equipo SVD](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-svd-czammar)

@@ -21,17 +21,21 @@ Busqueda de bases de datos:
 
 Se realizó una primer junta para la división de tareas del equipo, así como la asignación de roles que se encuentra en la tabla anterior.
 
-**Project Manager:** Programación de juntas para hablar sobre los algoritmos y la selección de bases. Creación de la estructura de carpetas del repositorio y subir los avances al repositorio de Erick.
+* Rafael Ortega: Preparación del repositorio y búsqueda de bases de datos posibles para la implementación de un algoritmo que pueda ser utilizado en el proyecto, así como la planeación de la junta para hablar sobre el algoritmo.  
 
-**Equipo de programación:** Comentarios sobre posibles complicaciones en los algorimos y en las bases de datos.
+* Karla Alfaro: Búsqueda de bases de datos posibles para la implementación de un algoritmo que pueda ser utilizado en el proyecto, así como documentación sobre los algoritmos. Ya que se tenía la base de datos obtenida por Karla Alfaro, ella puso la propuesta del tratamiento de los datos, así como definir el tipo de variable que cada una de ellas tenía. Se inició el análisis de la base y el tratamiento de las variables. 
 
-* Se verificaron posibles aplicaciones y se revisaron posibles bases de datos para su uso durante el proyecto.   
+* Elizabeth Rodríguez: Búsqueda de bases de datos posibles para la implementación de un algoritmo que pueda ser utilizado en el proyecto, así como documentación sobre los algoritmos.
 
-**Equipo de revisión:**  Apoyo con la selección de la base de datos y aportación de la base a utilizar.
+* Elizabeth Viveros:Búsqueda de bases de datos posibles para la implementación de un algoritmo que pueda ser utilizado en el proyecto, así como búsqueda de documentación y papers sobre la implementación de PCA.
 
-* Se subió documentación sobre el algoritmo por parte de Elizabeth Rodríguez y de Karla Alfaro para conocer más sobre PCA. 
+* Leonardo Marín:Búsqueda de bases de datos posibles para la implementación de un algoritmo que pueda ser utilizado en el proyecto, así como búsqueda de documentación y papers sobre la implementación de PCA.
+
+* Mario Rodríguez: Búsqueda de bases de datos posibles para la implementación de un algoritmo que pueda ser utilizado en el proyecto, así como búsqueda de documentación y papers sobre la implementación de PCA.
 
 Todo el equipo se enfocó en la revisión de algoritmos y documentación útil para el proyecto.
+
+Se decidió utilizar la base de datos propuesta por Karla, buscando una reducción de la dimensionalidad en el cuestionario PLANEA 2016.
 
 ## Propuestas de bases de datos
 
