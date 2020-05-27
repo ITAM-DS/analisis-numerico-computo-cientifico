@@ -18,6 +18,8 @@ Encontar la ruta para los colaboradores de la fuerza de ventas que minimice la d
 
 * [avance2](equipos/equipos_1_y_4/avance2)
 
+* [avance3](equipos/equipos_1_y_4/avance3)
+
 
 [Trabajo escrito](liga hacia trabajo escrito)
 
@@ -79,13 +81,20 @@ Investigación sobre el uso y explotación de la librería LIBMF empleando el le
 
 **Título del proyecto**
 
+Análisis de Componentes Principales para resolver problemas de multicolinealidad y dimensión alta: Un estudio nacional sobre el desempeño académico en matemáticas a nivel bachillerato.
+
 **Objetivo del proyecto**
+
+El objetivo de este proyecto es implementar un método numérico aplicado a un problema real. En este caso el método numérico que se analiza es el de Análisis de Componentes Principales (PCA). El problema de aplicación es intentar explicar los puntajes en Matemáticas y Lenguaje y Comunicación en la prueba PLANEA ELCE MS 2016 usando, principalmente, las respuestas a un cuestionario de contexto que se aplicó a los alumnos.
 
 **Avances del proyecto:**
 
-* [avance1](equipos/equipos_6_y_8/avance_1)
+* [avance1](equipos/equipos_6_y_8/avance1)
 
-* [avance2](equipos/equipos_6_y_8/avance_2)
+* [avance2](equipos/equipos_6_y_8/avance2)
+
+* [avance3](equipos/equipos_6_y_8/avance3)
+
 
 
 [Trabajo escrito](liga hacia trabajo escrito)
@@ -100,6 +109,7 @@ Investigación sobre el uso y explotación de la librería LIBMF empleando el le
 
 **Título del proyecto**
 
+Implementación de métodos de optimización numérica en un modelo de aprendizaje.
 
 **Objetivo del proyecto**
 
