@@ -109,7 +109,7 @@ El objetivo de este proyecto es implementar un método numérico aplicado a un p
 
 **Título del proyecto**
 
-Implementación de métodos de optimización numérica en un modelo de aprendizaje.
+Estimación de un modelo de aprendizaje con regresión logística utilizando métodos de optimización numérica.
 
 **Objetivo del proyecto**
 
