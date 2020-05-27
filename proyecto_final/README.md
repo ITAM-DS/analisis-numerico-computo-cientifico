@@ -26,7 +26,17 @@ Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega **una se
 Se realiza una presentación entre 20 y 30 min por cada equipo para reporte sobre el trabajo realizado y resultados. En esta presentación no se entra en detalles sobre los métodos, sólo cuestiones generales. No se sube al repo del curso, pero se proporciona una liga al mismo, más información sobre esta liga en [indicaciones](indicaciones).
 
 
-Tiene dos calificaciones 10% de forma individual y 5% para el equipo. Se realiza en la fecha del examen final determinada por control escolar.
+Tiene dos calificaciones 10% de forma individual y 5% para el equipo. Se realiza en la fecha del examen final determinada por control escolar. 
+
+
+Una propuesta para organización de la presentación (en un equipo de 6 personas) es:
+
+* 2 personas presentan el trabajo realizado.
+* 2 personas responden las dudas que existan de la presentación realizada (distintas a las que presentaron).
+* 2 personas preguntan a otro equipo dudas que tengan (distintas a las que presentaron y a las que respondieron).
+
+La presentación puede ser en formato de un notebook, pdf, [reveal.js](https://github.com/hakimel/reveal.js/) o algún otro formato.
+
 
 ## Avances
 
