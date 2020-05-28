@@ -22,11 +22,11 @@ Objetivo del proyecto: **Encontar la ruta para los colaboradores de la fuerza de
 
 + [Liga a repo en el que se trabaja](https://github.com/lauragmz/proyecto-final-mno2020)
 
-+ Trabajo escrito: [liga_trabajo_escrito](https://github.com/lauragmz/proyecto-final-mno2020/tree/Marco/reports)
++ Trabajo escrito: [liga_trabajo_escrito](https://github.com/lauragmz/proyecto-final-mno2020/tree/master/reports)
 
-+ Presentación: [liga_presentación]()
++ Presentación: [liga_presentación](https://docs.google.com/presentation/d/1_wA2TwgdNgZssk-L-A6Dgn3VBsJozrtOS7uFdLox1vA/edit#slide=id.g85d15c079c_0_38)
 
-+ Implementación: [liga_a_código](https://github.com/lauragmz/proyecto-final-mno2020/tree/Marco/src) 
++ Implementación: [liga_a_código](https://github.com/lauragmz/proyecto-final-mno2020/tree/master/src) 
 
 
 **Descripción de Carpetas:**
