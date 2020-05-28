@@ -12,7 +12,7 @@ Integrantes:
 
 * Paola Mejía Domenzain
 
-* Ana Bertha Coronel
+* Ana Bertha Coronel Silva
 
 Título del proyecto: **Ruta óptima para los colaboradores de la fuerza de ventas**
 
@@ -39,8 +39,11 @@ Objetivo del proyecto: **Encontar la ruta para los colaboradores de la fuerza de
 **Referencias del proyecto:**
 
 * [Paper: An effective simulated annealing Algorithm for Solving the Traveling Salesman Problem](https://www.researchgate.net/publication/233584468_An_Effective_Simulated_Annealing_Algorithm_for_Solving_the_Traveling_Salesman_Problem)
+* [Paper: Optimization by Simulated Annealing](https://www.researchgate.net/publication/6026283_Optimization_by_Simulated_Annealing)
 * [Paper: Solve Traveling Salesman Problem Using Particle Swarm Optimization Algorithm](http://ijcsi.org/papers/IJCSI-9-6-2-264-271.pdf)
 * [Paper: Solving City Routing Issue with Particle Swarm
 Optimization ](https://research.ijcaonline.org/volume47/number15/pxc3880348.pdf)
 * [Repositorio: Coupled simulated annealing ](https://github.com/structurely/csa)
+* [Repositorio: Python module for Simulated Annealing optimization](https://github.com/perrygeo/simanneal)
 * [Repositorio: Travelling salesman problem (TSP) - Particle Swarm Optimization (PSO) ](https://github.com/marcoscastro/tsp_pso)
+
