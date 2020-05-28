@@ -34,6 +34,8 @@ Objetivo del proyecto: **Encontar la ruta para los colaboradores de la fuerza de
 + En la carpeta [avance1](https://github.com/lauragmz/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/avance1) se encuentra el reporte del primer Milestone del proyecto. Además se incluyen las primeras versiones de código. 
 + En la carpeta [avance2](https://github.com/lauragmz/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/avance2) se muestra la descripción del segundo Milestone, así como el código implementado en esta etapa.
 + En la carpeta [avance3](https://github.com/lauragmz/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/avance3) se presenta la descripción del tercer Milestone y se incluye el código implementado.
++ En la carpeta [codigo](https://github.com/lauragmz/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/codigo) se incluyen los algoritmos implementados así como el pipeline completo para la solución del problema.
++ En la carpeta [notebooks](https://github.com/lauragmz/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_1_y_4/notebooks) se encuentran los análisis realizados a lo largo del proyecto.
 
 
 **Referencias del proyecto:**
