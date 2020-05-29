@@ -28,6 +28,8 @@ Adicionalmente, se levantó una instancia en AWS con GPUs, configurando un Docke
 **Etapa II** - Sólo se encontraron los hallazgo de que para el cálculo del rendimiento anual la conversión era incorrecta, por lo que se levantó un issue para realizar la modificación correspondiente.<br>
 **Etapa III** - Se revisó la etapa III del *solver* de Markowitz y no se realizaron hallazgos negativos<br>
 
+[Código Avance 1](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Programacion/4_Solver.ipynb)
+
 #### Siguiente milestone a resolver<br>
 
 Hemos terminado la solución cerrada del sistema de minimización del portafolio para obtener mínima varianza de Markowitz y el siguiente proyecto a resolver se concentra en desarrollar el método de newton con cupy para resolver nuestro problema de optimización con restricciones de igualdad.
