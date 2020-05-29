@@ -26,13 +26,15 @@ Investigación sobre el uso y explotación de la librería LIBMF empleando el le
 
 Trabajo escrito: [liga_trabajo_escrito](https://www.overleaf.com/read/ffbjdrrxtmdm)
 
-Presentación: [liga_presentación](https://github.com/DorelyMS/proyecto-final-equipo5-mno-2020-1/blob/master/Resultados/Reporte_Resultados.ipynb)
+Presentación: [liga_presentación](https://github.com/DorelyMS/proyecto-final-equipo5-mno-2020-1/tree/master/Resultados)
 
-Implementación (en el repo): [liga_a_código](https://github.com/DorelyMS/proyecto-final-equipo5-mno-2020-1/tree/master/Implementation) 
+Implementación (en el repo): [liga_código](https://github.com/DorelyMS/proyecto-final-equipo5-mno-2020-1/tree/master/Implementation) 
 
 En la carpeta [avance1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipo_5_y_9/avance1) se encuentra el reporte del primer avance en nuestro proyecto.
 
 En la carpeta [avance2](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipo_5_y_9/avance2) se encuentra el reporte del segundo avance en nuestro proyecto.
+
+En la carpeta [notebooks](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipo_5_y_9/notebooks) se encuentra material para comprensión del código realizado para generar un sistemas de recomendación para usuarios de Netflix.
 
 Referencias del proyecto:
 
