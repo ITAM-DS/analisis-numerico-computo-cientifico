@@ -32,23 +32,25 @@ Solución al modelo de Markowitz del portafolio de mínima varianza dado un rend
 
 Se busca estimar el portafolio de mínima varianza con dos métodos numéricos, el método de multiplicadores de Lagrange con restricciones y el método de Newton con restricciones de igualdad a partir de un punto factible. Ambos métodos incluyen la solución de diversos sistemas lineales donde se involucran la matriz de covarianzas de los rendimientos de las acciones, el rendimiento medio y el retorno esperado del portafolio, como se discutirá a detalle en el reporte final. 
 
-##### Liga del Repositorio del Proyecto<br>
-[Repositorio Optimización de Markowitz](https://github.com/czammar/MNO_finalproject)
+##### Ligas del proyecto:<br>
+* [Repositorio del proyecto](https://github.com/czammar/MNO_finalproject)
 
-##### Trabajo escrito<br>
-[Reporte](https://github.com/czammar/MNO_finalproject/blob/master/results/ReporteResultados_v3.pdf)
+* [Trabajo escrito](https://github.com/czammar/MNO_finalproject/blob/master/results/ReporteResultados_v3.pdf)
 
-##### Presentación<br>
+* [Presentación](https://github.com/czammar/MNO_finalproject/blob/master/results/PPT_Modelo_Markowitz.pdf)
+
+* [Código](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Programacion)
 
 
-##### Implementación<br>
-[Código avance 1](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Programacion/4_Solver.ipynb)
+##### Organización de carpetas<br>
 
-En la carpeta [avance 1](https://github.com/Yalidt/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_2_y_3/avance1)
+* En la carpeta [avance 1](https://github.com/Yalidt/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_2_y_3/avance1) se encuentra el reporte del primer avance de nuestro proyecto relacionado con la implementación del solver bajo el método de Lagrange.
 
-[Código avance 2](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Programacion/5_Solver_sistema_iterativo.ipynb)
+* En la carpeta [avance 2](https://github.com/Yalidt/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_2_y_3/avance2) se encuentra el reporte del segundo avance relacionado con la implementación del solver bajo el método de Newton.
 
-En la carpeta [avance 2](https://github.com/Yalidt/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_2_y_3/avance2)
+* En la carpeta [codigo/solver](https://github.com/Yalidt/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_2_y_3/codigo/solver) se encuentran los archivos .py que dan solución al objetivo del problema.
+
+* En la carpeta [notebooks](https://github.com/Yalidt/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_2_y_3/notebooks) se encuentra la implementación del solver.
 
 ##### Referencias:
 

@@ -21,7 +21,7 @@ Lo anterior con el objetivo de implementar del método de Newton para la soluci�
 Se realizaron [Funciones auxiliares](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Programacion/line_search.py) y [Funciones simbólicas](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Programacion/symbolic_gradient_Hessian.ipynb) para el solver con método de Newton, se realizó una función para encontrar [Puntos Factibles](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Programacion/Feasible_Markowitz.ipynb) y con las funciones anteriores como auxiliares se desarrollo el [Sistema iterativo de Newton](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Programacion/5_Solver_sistema_iterativo.ipynb).
 
 #### Grupo de Revisión<br>
-Se realizó la revisión de código del grupo de programación [Revisión Funciones Simbólicas](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Revision/2Revision_Symbolic_GH.ipynb), [Revisión Punto Factible](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Revision/2Revision_PuntoFact.ipynb) y Revisión Sistema iterativo de Newton.
+Se realizó la revisión de código del grupo de programación [Revisión Funciones Simbólicas](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Revision/2Revision_Symbolic_GH.ipynb), [Revisión Punto Factible](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Revision/2Revision_PuntoFact.ipynb) y [Revisión Sistema iterativo de Newton](https://github.com/czammar/MNO_finalproject/blob/master/notebooks/Revision/5_Solver_sistema_iterativo.ipynb).
 
 
 
