@@ -72,7 +72,9 @@ Tomando como referencia el trabajo de investigación realizado por Colubri et al
 
 <a href="https://github.com/C1587S/MNO_numericalOptimization">Implementacion</a>: Misma que se encuentra dispuesta en un repositorio que tiene la siguiente estructura de carpetas:
 
-<code>├── aws                    &lt;- Contiene los scripts e indicaciones necesarias
+```
+
+├── aws                    &lt;- Contiene los scripts e indicaciones necesarias
 ├                             para la configuración de una instancia EC2 en
 ├                             donde se llevará acabo el procesamiento.
 ├── data
@@ -101,7 +103,7 @@ Tomando como referencia el trabajo de investigación realizado por Colubri et al
 ├── README.md              &lt;- Descripción breve del proyecto, estructura de carpetas del repositorio y datos de contacto.
 │
 └── requirements.txt       &lt;- Las paqueterías y librerías empleadas</code>
-
+```
 
 <strong>Integrantes del equipo:</strong>
 
