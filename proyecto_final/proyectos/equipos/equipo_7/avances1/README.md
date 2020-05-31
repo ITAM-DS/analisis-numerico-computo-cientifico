@@ -42,7 +42,7 @@ Tomando como referencia el trabajo de investigación realizado por Colubri et al
   + Ajuste del reporte final, completado al 85 por ciento.
 
 
-+ Avance 2 (pendiente)
++ Avance 2 Se culminó con la paralelización de SGD con Dask, con el reporte final y la presentación final.
 
 **Ligadas asociadas:**
 
