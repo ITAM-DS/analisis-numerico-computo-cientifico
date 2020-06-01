@@ -15,12 +15,20 @@
 | 5 | Mario Rodríguez                   | 164471      |[shimanteko](https://github.com/shimanteko)   |Programador|
 | 6 | Elizabeth Viveros                 | 161224      |[ElyVV](https://github.com/ElyVV)   |Programadora|
 
-Ttulo del proyecto: `Análisis de Componentes Principales para resolver problemas de multicolinealidad y dimensión alta: Un estudio nacional sobre el desempeño académico en matemáticas a nivel bachillerato`
+Ttulo del proyecto: `Análisis de Componentes Principales para Clasificación de Grupos de Comida con Base en su Información Nutrimental`
 
-Objetivo del proyecto: El objetivo de este proyecto es implementar un método numérico aplicado a un problema real. En este caso el método numérico que se analiza es el de Análisis de Componentes Principales (PCA) con el método de SVD y de Jacobi one-sided. El problema de aplicación es intentar explicar los puntajes en Matemáticas y Lenguaje y Comunicación en la prueba PLANEA ELCE MS 2016 usando, principalmente, las respuestas a un cuestionario de contexto que se aplicó a los alumnos.
+Objetivo del proyecto: El objetivo de este proyecto es implementar un método numérico aplicado a un problema real. En este caso el método numérico que se analiza es el de Análisis de Componentes Principales (PCA) con el método de SVD, algoritmo QR y método de la potencia. El problema de aplicación es un análisis no supervisado de clasificación para agrupar distintos alimentos con base en su información nutrimental habiendo eliminado, primeramente, la multicolinealidad existente en la base.
 
 ## Ligas importantes
 
+**Sobre el repositorio actual:**
+[Repositorio del equipo:](https://github.com/123972/PCA-nutricion)
+
+* [Trabajo escrito](https://github.com/123972/PCA-nutricion/blob/master/results/reporte_final.ipynb)
+* [Presentacion](https://github.com/123972/PCA-nutricion/blob/master/results/PCA_presentacion.pptx)
+* [Implementacion](https://github.com/123972/PCA-nutricion/blob/master/results/reporte_final.ipynb)
+
+**Repositorio anterior**
 [Repositorio del equipo:](https://github.com/123972/Final-Project-MNO-2020)
 
 * [Trabajo escrito](https://github.com/123972/Final-Project-MNO-2020/blob/master/results/reporte_final.ipynb)
@@ -34,6 +42,7 @@ Objetivo del proyecto: El objetivo de este proyecto es implementar un método nu
 * [Avance 1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_6_y_8/avance1)
 * [Avance 2](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_6_y_8/avance2)
 * [Avance 3](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_6_y_8/avance3)
+* [Avance 4](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_6_y_8/avance4)
 
 ## Fechas
 
@@ -46,42 +55,40 @@ Objetivo del proyecto: El objetivo de este proyecto es implementar un método nu
 
 ## Estructura del repositorio
 
+## Estructura del nuevo repositorio
+
 La estructura del repositorio está basado en [este](https://drivendata.github.io/cookiecutter-data-science/) template y
  está organizado de la siguiente forma:
 
-* Carpeta [avances](https://github.com/123972/Final-Project-MNO-2020/tree/master/avances): contiene
+* Carpeta [avances](https://github.com/123972/PCA-nutricion/tree/master/avances): contiene
  los avances de cada una de las etapas del proyecto.
 
-* Carpeta [data](https://github.com/123972/Final-Project-MNO-2020/tree/master/data): contiene la base de datos a utilizar,
+* Carpeta [data](https://github.com/123972/PCA-nutricion/tree/master/data): contiene la base de datos a utilizar,
 así como información sobre el procedimiento de feature engineering a seguir para unir ambas bases de datos y la limpieza
 de las variables.
 
-* Carpeta [docker](https://github.com/123972/Final-Project-MNO-2020/tree/master/docker): Contiene la información  
+* Carpeta [docker](https://github.com/123972/PCA-nutricion/tree/master/docker): Contiene la información  
 pertienete para poder correr los scripts y notebooks en un contenedor de docker.
 
-* Carpeta [docs](https://github.com/123972/Final-Project-MNO-2020/tree/master/docs): Contiene el cuestionario utlilizado
+* Carpeta [docs](https://github.com/123972/PCA-nutricion/tree/master/docs): Contiene el cuestionario utlilizado
 durante la encuesta en la que se obtuvieron los datos utilizados en este proyecto, así como las  
-[imágenes](https://github.com/123972/Final-Project-MNO-2020/tree/master/docs/images) empleadas en el README.md y las  
-[referencias](https://github.com/123972/Final-Project-MNO-2020/tree/master/docs/References) utilizadas durante el  
+[imágenes](https://github.com/123972/PCA-nutricion/tree/master/docs/images) empleadas en el README.md y las  
+[referencias](https://github.com/123972/PCA-nutricion/tree/master/docs/References) utilizadas durante el  
 proyecto.
 
-* Carpeta [environment](https://github.com/123972/Final-Project-MNO-2020/tree/master/environment/mno_env): Contiene el  
+* Carpeta [environment](https://github.com/123972/PCA-nutricion/tree/master/environment): Contiene el  
 ambiente con las instalaciones de python empleadas en este proyecto. Dichas instalaciones también se pueden instalar vía
 el archivo de requirements.txt
 
-* Carpeta [notebooks](https://github.com/123972/Final-Project-MNO-2020/tree/master/notebooks): Contiene cinco carpetas  
+* Carpeta [notebooks](https://github.com/123972/PCA-nutricion/tree/master/notebooks): Contiene cinco carpetas  
 con los notebooks y scripts de la sección del  
-[EDA](https://github.com/123972/Final-Project-MNO-2020/tree/master/notebooks/EDA),  
-[Feature Engineering](https://github.com/123972/Final-Project-MNO-2020/tree/master/notebooks/feature_engineering),  
-[Feature Selection](https://github.com/123972/Final-Project-MNO-2020/tree/master/notebooks/feature_selection)
- y de los equipos de [Programación](https://github.com/123972/Final-Project-MNO-2020/tree/master/notebooks/Programacion)
-  y [Revisión](https://github.com/123972/Final-Project-MNO-2020/tree/master/notebooks/Revision).  
+[EDA](https://github.com/123972/PCA-nutricion/tree/master/notebooks/EDA),  
+[Programación](https://github.com/123972/PCA-nutricion/tree/master/notebooks/Programacion)
+  y [Revisión](https://github.com/123972/PCA-nutricion/tree/master/notebooks/Revision).  
 
-* Carpeta [results](https://github.com/123972/Final-Project-MNO-2020/tree/master/results):Esta carpeta contiene los resultados obtenidos por el proyecto, así como la presentación y el reporte final.
+* Carpeta [results](https://github.com/123972/PCA-nutricion/tree/master/results):Esta carpeta contiene los resultados obtenidos por el proyecto, así como la presentación y el reporte final.
 
-* Carpeta [src](https://github.com/123972/Final-Project-MNO-2020/tree/master/src): Incluye todos los scripts separados en tres secciones: [feature engineering](https://github.com/123972/Final-Project-MNO-2020/tree/master/src/feature_engineering), [feature selection](https://github.com/123972/Final-Project-MNO-2020/tree/master/src/feature_selection), [PCA](https://github.com/123972/Final-Project-MNO-2020/tree/master/src/pca) y [test algorithms](https://github.com/123972/Final-Project-MNO-2020/tree/master/src/test_algorithms)  
-
-* Carpeta [tests](https://github.com/123972/Final-Project-MNO-2020/tree/master/tests):[Incluye algunas pruebas y el perfilamiento](https://github.com/123972/Final-Project-MNO-2020/tree/master/tests)
+* Carpeta [src](https://github.com/123972/PCA-nutricion/tree/master/src): Incluye todos los scripts separados en dos secciones:[PCA](https://github.com/123972/PCA-nutricion/tree/master/src/pca) y [test algorithms](https://github.com/123972/PCA-nutricion/tree/master/src/test_algorithms)
 
 ## Referencias del proyecto
 
@@ -103,4 +110,4 @@ La referencia del método de Halko al que hace alusión el paquete de scikit-lea
 * Palacios M. Erick, Notas de MNO 2020, [Componentes principales](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Componentes_principales_Python.ipynb)
 * Rencher, Alvin C & William F. Christensen. (2012). Methods of Multivariate Analysis. Department of Statistics, Brigham Young University, Provo, UT.- Third Edition. Ch 12.
 * Sharma Subhash. (1996). Applied Multivariate Techniques. University of South Carolina. Ch4.
-* Equipo SVD, [Examen de cómputo matricial equipo SVD](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-svd-czammar)
+* Equipo SVD, [Examen de cómputo matricial equipo SVD](https://github.com/mno-2020-gh-classroom/ex-modulo-3-comp-matricial-svd-czammar).  
