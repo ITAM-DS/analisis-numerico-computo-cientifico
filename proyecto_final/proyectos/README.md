@@ -21,11 +21,11 @@ Encontar la ruta para los colaboradores de la fuerza de ventas que minimice la d
 * [avance3](equipos/equipos_1_y_4/avance3)
 
 
-[Trabajo escrito](liga hacia trabajo escrito)
+[Trabajo escrito](https://github.com/lauragmz/proyecto-final-mno2020/tree/master/reports)
 
-[Presentacion](liga hacia presentacion)
+[Presentacion](https://docs.google.com/presentation/d/1_wA2TwgdNgZssk-L-A6Dgn3VBsJozrtOS7uFdLox1vA/edit#slide=id.g85d15c079c_0_38)
 
-[Implementacion](liga hacia implementacion)
+[Implementacion](https://github.com/lauragmz/proyecto-final-mno2020/tree/master/src)
 
 
 ## [Equipos 2 y 3 o Portafolio Mínima Varianza: PMV](equipos/equipos_2_y_3)
@@ -45,11 +45,11 @@ Se busca estimar el portafolio de mínima varianza con el método numérico de m
 * [avance2](equipos/equipos_2_y_3/avance2)
 
 
-[Trabajo escrito](liga hacia trabajo escrito)
+[Trabajo escrito](https://github.com/czammar/MNO_finalproject/blob/master/results/ReporteResultados_v3.pdf)
 
-[Presentacion](liga hacia presentacion)
+[Presentacion](https://github.com/czammar/MNO_finalproject/blob/master/results/PPT_Modelo_Markowitz.pdf)
 
-[Implementacion](liga hacia implementacion)
+[Implementacion](https://github.com/czammar/MNO_finalproject/tree/master/notebooks/Programacion)
 
 
 ## [Equipos 5 y 9 o Sistemas de Recomendación: SR](equipos/equipo_5_y_9)
@@ -70,22 +70,22 @@ Investigación sobre el uso y explotación de la librería LIBMF empleando el le
 * [avance2](equipos/equipo_5_y_9/avance2)
 
 
-[Trabajo escrito](liga hacia trabajo escrito)
+[Trabajo escrito](https://www.overleaf.com/read/ffbjdrrxtmdm)
 
-[Presentacion](liga hacia presentacion)
+[Presentacion](https://github.com/DorelyMS/proyecto-final-equipo5-mno-2020-1/tree/master/Resultados)
 
-[Implementacion](liga hacia implementacion)
+[Implementacion](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipo_5_y_9/codigo)
 
 
 ## [Equipos 6 y 8 o Análisis de Componentes Principales y Regresión: PCA-R](equipos/equipos_6_y_8)
 
 **Título del proyecto**
 
-Análisis de Componentes Principales para resolver problemas de multicolinealidad y dimensión alta: Un estudio nacional sobre el desempeño académico en matemáticas a nivel bachillerato.
+Análisis de Componentes Principales para Clasificación de Grupos de Comida con Base en su Información Nutrimental.
 
 **Objetivo del proyecto**
 
-El objetivo de este proyecto es implementar un método numérico aplicado a un problema real. En este caso el método numérico que se analiza es el de Análisis de Componentes Principales (PCA). El problema de aplicación es intentar explicar los puntajes en Matemáticas y Lenguaje y Comunicación en la prueba PLANEA ELCE MS 2016 usando, principalmente, las respuestas a un cuestionario de contexto que se aplicó a los alumnos.
+El objetivo de este proyecto es implementar un método numérico aplicado a un problema real. En este caso el método numérico que se analiza es el de Análisis de Componentes Principales (PCA) con el método de SVD, algoritmo QR y método de la potencia. El problema de aplicación es un análisis no supervisado de clasificación para agrupar distintos alimentos con base en su información nutrimental habiendo eliminado, primeramente, la multicolinealidad existente en la base.
 
 **Avances del proyecto:**
 
@@ -97,11 +97,11 @@ El objetivo de este proyecto es implementar un método numérico aplicado a un p
 
 
 
-[Trabajo escrito](liga hacia trabajo escrito)
+[Trabajo escrito](https://github.com/123972/PCA-nutricion/blob/master/results/reporte_final.ipynb)
 
-[Presentacion](liga hacia presentacion)
+[Presentacion](https://github.com/123972/PCA-nutricion/blob/master/results/PCA_presentacion.pdf)
 
-[Implementacion](liga hacia implementacion)
+[Implementacion](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1/proyecto_final/proyectos/equipos/equipos_6_y_8/codigo)
 
 
 ## [Equipo 7 o Regresión Logística: RL](equipos/equipo_7)
@@ -119,13 +119,15 @@ Tomando como referencia el trabajo de investigación realizado por Colubri et al
 
 * [avance1](equipos/equipo_7/avance1)
 
+* [avance2](equipos/equipo_7/avance2)
 
 
-[Trabajo escrito](liga hacia trabajo escrito)
 
-[Presentacion](liga hacia presentacion)
+[Trabajo escrito](https://github.com/C1587S/MNO_numericalOptimization/blob/master/reporte/reporte_final.pdf)
 
-[Implementacion](liga hacia implementacion)
+[Presentacion](https://github.com/C1587S/MNO_numericalOptimization/blob/master/notebooks/implementacionPresentacionMNO.ipynb)
+
+[Implementacion](https://github.com/C1587S/MNO_numericalOptimization)
 
 ---
 
