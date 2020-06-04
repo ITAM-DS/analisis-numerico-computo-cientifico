@@ -131,16 +131,15 @@ def Newtons_method_log_barrier_feasible_init_point(f, A, constraint_inequalities
         p = 0
         
     else:
+        first_stack = np.column_stack((Hfeval, A.T))
         if(A.ndim == 1):
             p = 1
             n = x.size
             zero_matrix = np.zeros(p)
-            first_stack = np.column_stack((Hfeval, A.T))
             second_stack = np.row_stack((A.reshape(1,n).T,zero_matrix)).reshape(1,n+1)[0]
         else:
             p,n = A.shape
             zero_matrix = np.zeros((p,p))
-            first_stack = np.column_stack((Hfeval, A.T))
             second_stack = np.column_stack((A,zero_matrix))
             
         system_matrix = np.row_stack((first_stack,second_stack))
@@ -189,10 +188,7 @@ def Newtons_method_log_barrier_feasible_init_point(f, A, constraint_inequalities
             n = x.size
             p = 0
         else:
-            if(A.ndim == 1):
-                first_stack = np.column_stack((Hfeval, A.T))
-            else:
-                first_stack = np.column_stack((Hfeval, A.T))
+            first_stack = np.column_stack((Hfeval, A.T))
             system_matrix = np.row_stack((first_stack,second_stack))
             rhs = -np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
 
@@ -360,16 +356,15 @@ def Newtons_method_log_barrier_infeasible_init_point(f, A, b,
         p = 0
         feasibility_primal = 0
     else:
+        first_stack = np.column_stack((Hfeval, A.T))
         if(A.ndim == 1):
             p = 1
             n = x.size
             zero_matrix = np.zeros(p)
-            first_stack = np.column_stack((Hfeval, A.T))
             second_stack = np.row_stack((A.reshape(1,n).T,zero_matrix)).reshape(1,n+1)[0]
         else:
             p,n = A.shape
             zero_matrix = np.zeros((p,p))
-            first_stack = np.column_stack((Hfeval, A.T))
             second_stack = np.column_stack((A,zero_matrix))
 
         system_matrix = np.row_stack((first_stack,second_stack))
@@ -398,7 +393,7 @@ def Newtons_method_log_barrier_infeasible_init_point(f, A, b,
                                                                                   Err_p_ast,"---",
                                                                                   condHf))
     
-    stopping_criteria = norm_residual_primal > tol
+    stopping_criteria = norm_residual_primal # or norm_residual_eval?
     iteration+=1
     while(stopping_criteria>tol and iteration < maxiter):
         der_direct = -dec_Newton
@@ -421,10 +416,8 @@ def Newtons_method_log_barrier_infeasible_init_point(f, A, b,
             Hfeval = Hf_symbolic(x)
         else:
             Hfeval = Hessian_approximation(f,x)
-        if(A.ndim == 1):
-            first_stack = np.column_stack((Hfeval, A.T))
-        else:
-            first_stack = np.column_stack((Hfeval, A.T))
+        
+        first_stack = np.column_stack((Hfeval, A.T))
 
         system_matrix = np.row_stack((first_stack,second_stack))
         
@@ -450,7 +443,7 @@ def Newtons_method_log_barrier_infeasible_init_point(f, A, b,
                                                                                          Err_p_ast,t,
                                                                                          condHf))
 
-        stopping_criteria = norm_residual_primal > tol
+        stopping_criteria = norm_residual_primal # or norm_residual_eval?
         if t<tol_backtracking: #if t is less than tol_backtracking then we need to check the reason
             iteration = maxiter - 1
         iteration+=1
