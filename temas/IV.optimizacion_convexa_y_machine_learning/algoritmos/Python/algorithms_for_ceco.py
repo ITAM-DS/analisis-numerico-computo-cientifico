@@ -61,17 +61,15 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
     
     Err = compute_error(x_ast,x)
     
-        
+    first_stack = np.column_stack((Hfeval, A.T))
     if(A.ndim == 1):
         p = 1
         n = x.size
         zero_matrix = np.zeros(p)
-        first_stack = np.column_stack((Hfeval, A.T))
         second_stack = np.row_stack((A.reshape(1,n).T,zero_matrix)).reshape(1,n+1)[0]
     else:
         p,n = A.shape
         zero_matrix = np.zeros((p,p))
-        first_stack = np.column_stack((Hfeval, A.T))
         second_stack = np.column_stack((A,zero_matrix))
         
     x_plot = np.zeros((n,maxiter))
@@ -112,10 +110,8 @@ def Newtons_method_feasible_init_point(f, A, x_0, tol,
             Hfeval = Hf_symbolic(x)
         else:
             Hfeval = Hessian_approximation(f,x)
-        if(A.ndim == 1):
-            first_stack = np.column_stack((Hfeval, A.T))
-        else:
-            first_stack = np.column_stack((Hfeval, A.T))
+
+        first_stack = np.column_stack((Hfeval, A.T))
 
         system_matrix = np.row_stack((first_stack,second_stack))
         rhs = -np.row_stack((gfeval.reshape(n,1), zero_vector.reshape(p,1))).T[0]
@@ -203,17 +199,16 @@ def Newtons_method_infeasible_init_point(f, A, b, x_0, nu_0, tol,
     
     Err_x_ast = compute_error(x_ast,x)
     Err_p_ast = compute_error(p_ast,feval)
-        
+    
+    first_stack = np.column_stack((Hfeval, A.T))
     if(A.ndim == 1):
         p = 1
         n = x.size
         zero_matrix = np.zeros(p)
-        first_stack = np.column_stack((Hfeval, A.T))
         second_stack = np.row_stack((A.reshape(1,n).T,zero_matrix)).reshape(1,n+1)[0]
     else:
         p,n = A.shape
         zero_matrix = np.zeros((p,p))
-        first_stack = np.column_stack((Hfeval, A.T))
         second_stack = np.column_stack((A,zero_matrix))
 
     system_matrix = np.row_stack((first_stack,second_stack))
@@ -249,7 +244,7 @@ def Newtons_method_infeasible_init_point(f, A, b, x_0, nu_0, tol,
                                                                                   Err_p_ast,"---",
                                                                                   condHf))
     
-    stopping_criteria = norm_residual_primal > tol
+    stopping_criteria = norm_residual_primal #or norm_residual_eval ?
     iteration+=1
     while(stopping_criteria>tol and iteration < maxiter):
         der_direct = -dec_Newton
@@ -272,10 +267,8 @@ def Newtons_method_infeasible_init_point(f, A, b, x_0, nu_0, tol,
             Hfeval = Hf_symbolic(x)
         else:
             Hfeval = Hessian_approximation(f,x)
-        if(A.ndim == 1):
-            first_stack = np.column_stack((Hfeval, A.T))
-        else:
-            first_stack = np.column_stack((Hfeval, A.T))
+
+        first_stack = np.column_stack((Hfeval, A.T))
 
         system_matrix = np.row_stack((first_stack,second_stack))
         
@@ -301,7 +294,8 @@ def Newtons_method_infeasible_init_point(f, A, b, x_0, nu_0, tol,
                                                                                          Err_p_ast,t,
                                                                                          condHf))
 
-        stopping_criteria = norm_residual_primal > tol
+        stopping_criteria = norm_residual_primal #or norm_residual_eval ?
+        
         if t<tol_backtracking: #if t is less than tol_backtracking then we need to check the reason
             iteration = maxiter - 1
         iteration+=1
@@ -383,17 +377,15 @@ def Newtons_method_infeasible_init_point_2nd_version(f, A, b, x_0, nu_0, tol,
     
     Err = compute_error(x_ast,x)
     
-        
+    first_stack = np.column_stack((Hfeval, A.T))
     if(A.ndim == 1):
         p = 1
         n = x.size
         zero_matrix = np.zeros(p)
-        first_stack = np.column_stack((Hfeval, A.T))
         second_stack = np.row_stack((A.reshape(1,n).T,zero_matrix)).reshape(1,n+1)[0]
     else:
         p,n = A.shape
         zero_matrix = np.zeros((p,p))
-        first_stack = np.column_stack((Hfeval, A.T))
         second_stack = np.column_stack((A,zero_matrix))
         
     x_plot = np.zeros((n,maxiter))
@@ -432,7 +424,7 @@ def Newtons_method_infeasible_init_point_2nd_version(f, A, b, x_0, nu_0, tol,
                                                                                   Err_plot_aux[iteration],"---",
                                                                                   condHf))
     
-    stopping_criteria = norm_residual_eval > tol
+    stopping_criteria = norm_residual_eval #or norm_residual_eval ?
     iteration+=1
     while(stopping_criteria>tol and iteration < maxiter):
         der_direct = -dec_Newton
@@ -455,10 +447,8 @@ def Newtons_method_infeasible_init_point_2nd_version(f, A, b, x_0, nu_0, tol,
             Hfeval = Hf_symbolic(x)
         else:
             Hfeval = Hessian_approximation(f,x)
-        if(A.ndim == 1):
-            first_stack = np.column_stack((Hfeval, A.T))
-        else:
-            first_stack = np.column_stack((Hfeval, A.T))
+
+        first_stack = np.column_stack((Hfeval, A.T))
 
         system_matrix = np.row_stack((first_stack,second_stack))
         
@@ -484,7 +474,8 @@ def Newtons_method_infeasible_init_point_2nd_version(f, A, b, x_0, nu_0, tol,
                                                                                          dec_Newton,Err,
                                                                                          Err_plot_aux[iteration],t,
                                                                                          condHf))
-        stopping_criteria = norm_residual_eval > tol
+        stopping_criteria = norm_residual_eval #or norm_residual_eval ?
+        
         if t<tol_backtracking: #if t is less than tol_backtracking then we need to check the reason
             iter_salida=iteration
             iteration = maxiter - 1
