@@ -10,7 +10,6 @@ En esencia el curso sigue un desarrollo de acuerdo al siguiente dibujo:
 
 Los módulos del 1 al 3 constituyen *building blocks* para el módulo 4.
 
-### Dar click en el siguiente botón para unirse al chat del semestre enero-mayo 2020 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/mno-2020-1/community.svg)](https://gitter.im/mno-2020-1/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) Se puede hacer el registro con su cuenta de [github](https://github.com/).
 
 ## Ramas del repositorio.
 
@@ -230,7 +229,7 @@ Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programm
 
 * [Componentes principales](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Componentes_principales_Python.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.3.Componentes_principales_Python.ipynb) (nota escrita en jupyterlab)
 
-**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**  
+
 
 
 4.4 [Algoritmos para Constrained Equality Convex Optimization](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Algoritmos_para_CECO.ipynb)
@@ -243,6 +242,7 @@ Estas herramientas obtienen resultados de acuerdo a [Disciplined Convex Programm
 
     * [Metodo de Newton para puntos iniciales no factibles](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Metodo_de_Newton_para_puntos_iniciales_no_factibles_Python.ipynb) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_numerical?urlpath=lab/tree/analisis-numerico-computo-cientifico/temas/IV.optimizacion_convexa_y_machine_learning/4.4.Metodo_de_Newton_para_puntos_iniciales_no_factibles_Python.ipynb) (nota escrita en jupyterlab)
 
+**Nota del prof: estoy reescribendo las notas y añadiendo botones para interactividad.**  
 
 4.5 Ejemplos de uso de algoritmos para CECO:
 
