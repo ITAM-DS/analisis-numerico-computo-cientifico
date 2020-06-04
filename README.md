@@ -33,8 +33,6 @@ En la carpeta [C](C) encuentran:
 
 * Dentro de [C/extensiones_a_C/CUDA/PyCUDA](C/extensiones_a_C/CUDA/PyCUDA) hay información y ejemplos de uso de [PyCUDA](https://documen.tician.de/pycuda/). También se recomienda revisar el tema de CUDA en [módulo 2 cómputo en paralelo de este repo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico#ii-c%C3%B3mputo-en-paralelo)
 
-El directorio de [algoritmos](algoritmos) será incorporado a las notas. Este trabajo será realizado durante el semestre enero-mayo 2020.
-
 En el [Wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki) encuentran información sobre [Amazon Web Services](https://aws.amazon.com/es/).
 
 **Normalmente los pull requests no se hacen a la rama `master` salvo haya una modificación a realizar en tal rama (modificación para algún código o contenido por ejemplo).**
