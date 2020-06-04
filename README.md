@@ -384,13 +384,3 @@ AWS.adicional1 [AWS: Relational Database System]
 
 * [Ejemplo de optimización, aprendizaje automático y cómputo en paralelo.](https://www.dropbox.com/s/qf416dacvh0nvq6/MSV_RL_tesis_maestria_Erick.pdf?dl=0)
 
-
-## Implementaciones de algoritmos para ecuaciones no lineales y optimización convexa
-
-[Ecuaciones no lineales](algoritmos/ecuaciones_no_lineales/)
-
-[Algoritmos para optimización sin restricciones](algoritmos/optimizacion_convexa_sin_restricciones)
-
-[Algoritmos para optimización con restricciones de igualdad: ecuaciones lineales](algoritmos/optimizacion_convexa_con_restricciones_de_igualdad_ecuaciones_lineales)
-
-[Algoritmos para optimización con restricciones de igualdad: ecuaciones lineales y desigualdad](algoritmos/optimizacion_convexa_con_restricciones_de_igualdad_ecuaciones_lineales_y_desigualdad/)
