@@ -424,7 +424,7 @@ def Newtons_method_infeasible_init_point_2nd_version(f, A, b, x_0, nu_0, tol,
                                                                                   Err_plot_aux[iteration],"---",
                                                                                   condHf))
     
-    stopping_criteria = norm_residual_eval #or norm_residual_eval ?
+    stopping_criteria = norm_residual_eval #or norm_residual_primal ?
     iteration+=1
     while(stopping_criteria>tol and iteration < maxiter):
         der_direct = -dec_Newton
@@ -474,7 +474,7 @@ def Newtons_method_infeasible_init_point_2nd_version(f, A, b, x_0, nu_0, tol,
                                                                                          dec_Newton,Err,
                                                                                          Err_plot_aux[iteration],t,
                                                                                          condHf))
-        stopping_criteria = norm_residual_eval #or norm_residual_eval ?
+        stopping_criteria = norm_residual_eval #or norm_residual_primal ?
         
         if t<tol_backtracking: #if t is less than tol_backtracking then we need to check the reason
             iter_salida=iteration
