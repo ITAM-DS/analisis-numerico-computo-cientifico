@@ -1,1 +1,1 @@
-# Métodos numéricos y optimización
+# Optimización
