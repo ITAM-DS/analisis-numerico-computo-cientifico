@@ -48,9 +48,9 @@ En el [Wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wik
 
 **Normalmente los pull requests no se hacen a la rama `master` salvo haya una modificación a realizar en tal rama (modificación para algún código o contenido por ejemplo).**
 
-A continuación se presentan links a las notas y material de cada tema. Adicionalmente se encuentran en el directorio [libro_optimizacion/temas/I.computo_cientifico](libro_optimizacion/temas/I.computo_cientifico).
+Las notas y material de cada tema se encuentran en el directorio [libro_optimizacion/temas/I.computo_cientifico](libro_optimizacion/temas/I.computo_cientifico).
 
-## Notas. 
+## Sobre las notas. 
 
 \* Las notas de cada tema están escritas en [Jupyter notebooks](https://jupyter.org/). Ver [I python, You R, We Julia](https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6) para algunas características de tales notebooks. Ver [notebook](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html) para funcionalidad de los notebooks. Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [kernels](https://jupyter.readthedocs.io/en/latest/install-kernel.html) disponibles en jupyter (que hacen posible ejecutar instrucciones en el lenguaje R, por ejemplo, en tales notebooks).
 
