@@ -48,7 +48,7 @@ En el [Wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wik
 
 **Normalmente los pull requests no se hacen a la rama `master` salvo haya una modificación a realizar en tal rama (modificación para algún código o contenido por ejemplo).**
 
-Las notas y material de cada tema se encuentran en el directorio [libro_optimizacion/temas/I.computo_cientifico](libro_optimizacion/temas/I.computo_cientifico).
+Las notas y material de cada tema se encuentran en el directorio [libro_optimizacion/temas/](libro_optimizacion/temas/).
 
 ## Sobre las notas. 
 
