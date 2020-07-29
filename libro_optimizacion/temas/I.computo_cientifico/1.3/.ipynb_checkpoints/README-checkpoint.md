@@ -1,1 +1,0 @@
-# Condicion_de_un_problema_y_estabilidad_de_un_algoritmo

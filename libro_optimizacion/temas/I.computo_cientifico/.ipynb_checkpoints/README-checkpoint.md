@@ -1,1 +1,0 @@
-# Cómputo científico
