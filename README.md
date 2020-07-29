@@ -2,9 +2,9 @@
 
 Este es el repositorio para la materia de "Métodos Numéricos y Optimización (MNO)"  (aka optimización) impartida en la maestría de ciencia de datos del ITAM por el **Prof. Erick Palacios Moreno**, github: [palmoreck](https://github.com/palmoreck).
 
-### Libro con el contenido de los temas en [libro optimización github pages](https://itam-ds.github.io/analisis-numerico-computo-cientifico/)
+### Libro con el contenido de los temas en [libro optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/)
 
-### Dar click en [liga](https://drive.google.com/file/d/19TA_wSrX-uYIotaQ4CINsU7mZyo5h45w/view?usp=sharing) para el temario.
+### Dar click en [liga](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) para el temario.
 
 En esencia el curso sigue un desarrollo de acuerdo al siguiente dibujo:
 
@@ -13,7 +13,7 @@ En esencia el curso sigue un desarrollo de acuerdo al siguiente dibujo:
 Los módulos del 1 al 3 constituyen *building blocks* para el módulo 4.
 
 
-### Dar click en el siguiente botón para unirse\* al chat del curso de optimización del segundo semestre 2020 en [gitter](https://gitter.im/): 
+### Dar click en el siguiente botón para unirse\* al chat del curso de optimización del segundo semestre 2020 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2020-2/community.svg)](https://gitter.im/optimizacion-2020-2/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 \***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
 
