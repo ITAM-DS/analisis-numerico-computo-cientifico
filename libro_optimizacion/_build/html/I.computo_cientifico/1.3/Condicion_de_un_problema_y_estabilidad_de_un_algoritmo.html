@@ -1,0 +1,2103 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>1.3 Condición de un problema y estabilidad de un algoritmo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="1.2 Sistema de punto flotante" href="../1.2/Sistema_de_punto_flotante.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../README.html">
+   Métodos numéricos y optimización
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Cómputo científico
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.1/Analisis_numerico_y_computo_cientifico.html">
+   1.1 Análisis numérico y cómputo científico
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.2/Sistema_de_punto_flotante.html">
+   1.2 Sistema de punto flotante
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1.3 Condición de un problema y estabilidad de un algoritmo
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/I.computo_cientifico/1.3/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#perturbaciones">
+   Perturbaciones
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#condicion-de-un-problema">
+   Condición de un problema
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estabilidad-de-un-algoritmo">
+   Estabilidad de un algoritmo
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estabilidad-hacia-atras">
+     Estabilidad hacia atrás
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numero-de-condicion-de-una-matriz">
+   Número de condición de una matriz
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#por-que-se-utiliza-la-expresion-a-a-1-para-definir-el-numero-de-condicion-de-una-matriz">
+   ¿Por qué se utiliza la expresión
+   <span class="math notranslate nohighlight">
+    \(||A|| ||A^{-1}||\)
+   </span>
+   para definir el número de condición de una matriz?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#que-esta-midiendo-el-numero-de-condicion-de-una-matriz-respecto-a-un-sistema-de-ecuaciones-lineales">
+   ¿Qué está midiendo el número de condición de una matriz respecto a un sistema de ecuaciones lineales?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algunas-propiedades-del-numero-de-condicion-de-una-matriz">
+   Algunas propiedades del número de condición de una matriz
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numero-de-condicion-de-una-matriz-a-in-mathbb-r-m-times-n">
+   Número de condición de una matriz
+   <span class="math notranslate nohighlight">
+    \(A \in \mathbb{R}^{m\times n}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#norma">
+   Norma
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normas-vectoriales">
+     Normas vectoriales
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normas-matriciales">
+   Normas matriciales
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nota-sobre-sup">
+   Nota sobre
+   <span class="math notranslate nohighlight">
+    \(\sup\)
+   </span>
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><strong>Notas para contenedor de docker:</strong></p>
+<p>Comando de docker para ejecución de la nota de forma local:</p>
+<p>nota: cambiar <code class="docutils literal notranslate"><span class="pre">&lt;ruta</span> <span class="pre">a</span> <span class="pre">mi</span> <span class="pre">directorio&gt;</span></code> por la ruta de directorio que se desea mapear a <code class="docutils literal notranslate"><span class="pre">/datos</span></code> dentro del contenedor de docker.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">&lt;</span><span class="n">ruta</span> <span class="n">a</span> <span class="n">mi</span> <span class="n">directorio</span><span class="o">&gt;</span><span class="p">:</span><span class="o">/</span><span class="n">datos</span> <span class="o">--</span><span class="n">name</span> <span class="n">jupyterlab_local</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8888</span><span class="p">:</span><span class="mi">8888</span> <span class="o">-</span><span class="n">d</span> <span class="n">palmoreck</span><span class="o">/</span><span class="n">jupyterlab</span><span class="p">:</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>password para jupyterlab: <code class="docutils literal notranslate"><span class="pre">qwerty</span></code></p>
+<p>Detener el contenedor de docker:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">stop</span> <span class="n">jupyterlab_local</span>
+</pre></div>
+</div>
+<p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab:1.1.0</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab">liga</a>.</p>
+<hr class="docutils" />
+<p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/5bc6tn39o0qqg35/1.3.Condicion_estabilidad_y_normas.pdf?dl=0">liga</a></p>
+<p>Dos temas fundamentales en el análisis numérico son: la <strong>condición de un problema</strong> y <strong>estabilidad de un algoritmo</strong>. El condicionamiento tiene que ver con el comportamiento de un problema ante perturbaciones y la estabilidad con el comportamiento de un algoritmo (usado para resolver un problema) ante perturbaciones.</p>
+<p>La exactitud de un cálculo dependerá finalmente de una combinación de estos términos:</p>
+<p style="text-align: center;">Exactitud = Condición + Estabilidad</p>
+<p>La falta de exactitud en un problema se presenta entonces por problemas mal condicionados (no importando si los algoritmos son estables o inestables) y algoritmos inestables (no importando si los problemas son mal o bien condicionados).</p>
+<div class="section" id="condicion-de-un-problema-y-estabilidad-de-un-algoritmo">
+<h1>1.3 Condición de un problema y estabilidad de un algoritmo<a class="headerlink" href="#condicion-de-un-problema-y-estabilidad-de-un-algoritmo" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="perturbaciones">
+<h2>Perturbaciones<a class="headerlink" href="#perturbaciones" title="Permalink to this headline">¶</a></h2>
+<p>La condición de un problema y estabilidad de un algoritmo hacen referencia al término <strong>perturbación</strong>. Tal término conduce a pensar en perturbaciones “chicas” o “grandes”. Para dar una medida de lo anterior se utiliza el concepto de <strong>norma</strong>. Ver final de esta nota para definición de norma y propiedades.</p>
+</div>
+<div class="section" id="condicion-de-un-problema">
+<h2>Condición de un problema<a class="headerlink" href="#condicion-de-un-problema" title="Permalink to this headline">¶</a></h2>
+<p>Pensemos a un problema como una función <span class="math notranslate nohighlight">\(f: \mathbb{X} \rightarrow \mathbb{Y}\)</span> donde <span class="math notranslate nohighlight">\(\mathbb{X}\)</span> es un espacio vectorial con norma definida y <span class="math notranslate nohighlight">\(\mathbb{Y}\)</span> es otro espacio vectorial de soluciones con una norma definida. Llamemos instancia de un problema a la combinación entre <span class="math notranslate nohighlight">\(x,f\)</span> y nos interesa el comportamiento de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span>. Usamos el nombre de “problema” para referirnos al de instancia del problema.</p>
+<p>Un problema (instancia) bien condicionado tiene la propiedad de que todas las perturbaciones pequeñas en <span class="math notranslate nohighlight">\(x\)</span> conducen a pequeños cambios en <span class="math notranslate nohighlight">\(f(x)\)</span>. Y es mal condicionado si perturbaciones pequeñas en <span class="math notranslate nohighlight">\(x\)</span> conducen a grandes cambios en <span class="math notranslate nohighlight">\(f(x)\)</span>. El uso de los términos “pequeño” o “grande” dependen del problema mismo.</p>
+<p>Sea <span class="math notranslate nohighlight">\(\hat{x} = x + \Delta x\)</span> con <span class="math notranslate nohighlight">\(\Delta x\)</span> una perturbación pequeña de <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>El <strong>número de condición relativo del problema <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span></strong> es:</p>
+<div class="math notranslate nohighlight">
+\[\text{Cond}_f^R = \frac{\text{ErrRel}(f(\hat{x}))}{\text{ErrRel}(\hat{x})}  = \frac{\frac{||f(\hat{x})-f(x)||}{||f(x)||}}{\frac{||x-\hat{x}||}{||x||}}\]</div>
+<p>considerando <span class="math notranslate nohighlight">\(x,f(x) \neq 0\)</span>.</p>
+<p><strong>Obs:</strong> si <span class="math notranslate nohighlight">\(f\)</span> es una función diferenciable, podemos evaluar <span class="math notranslate nohighlight">\(\text{Cond}_f^R\)</span> con la derivada de <span class="math notranslate nohighlight">\(f\)</span>, pues a primer orden (usando teorema de Taylor): <span class="math notranslate nohighlight">\(f(\hat{x})-f(x) \approx \mathcal{J}_f(x)\Delta x\)</span> con igualdad para <span class="math notranslate nohighlight">\(\Delta x \rightarrow 0\)</span> y <span class="math notranslate nohighlight">\(\mathcal{J}_f\)</span> la Jacobiana de <span class="math notranslate nohighlight">\(f\)</span> definida como una matriz con entradas: <span class="math notranslate nohighlight">\((\mathcal{J}_f(x))_{ij} = \frac{\partial f_i(x)}{\partial x_j}\)</span>. Por tanto, se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\text{Cond}_{f}^R = \frac{||\mathcal{J}_f(x)||||x||}{||f(x)||}\]</div>
+<p>y <span class="math notranslate nohighlight">\(||\mathcal{J}_f(x)||\)</span> es una norma matricial inducida por las normas en <span class="math notranslate nohighlight">\(\mathbb{X}, \mathbb{Y}\)</span>. Ver final de esta nota para definición de norma y propiedades.</p>
+<p><strong>Comentario:</strong> en la práctica se considera a un problema <strong>bien condicionado</strong> si <span class="math notranslate nohighlight">\(\text{Cond}_f^R\)</span> es “pequeño”: menor a <span class="math notranslate nohighlight">\(10\)</span>, <strong>medianamente condicionado</strong> si es de orden entre <span class="math notranslate nohighlight">\(10^1\)</span> y <span class="math notranslate nohighlight">\(10^2\)</span> y <strong>mal condicionado</strong> si es “grande”: mayor a <span class="math notranslate nohighlight">\(10^3\)</span>.</p>
+<p><strong>Ejercicio:</strong></p>
+<p>Calcular <span class="math notranslate nohighlight">\(\text{Cond}_f^R\)</span> de los siguientes problemas. Para <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> usa el valor absoluto y para <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span> usa <span class="math notranslate nohighlight">\(||x||_\infty\)</span>.</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(x \in \mathbb{R} - \{0\}\)</span>. Problema: realizar la operación <span class="math notranslate nohighlight">\(\frac{x}{2}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x \geq 0\)</span>. Problema: calcular <span class="math notranslate nohighlight">\(\sqrt{x}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x \approx \frac{\pi}{2}\)</span>. Problema: calcular <span class="math notranslate nohighlight">\(\cos(x)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x \in \mathbb{R}^2\)</span>. Problema: calcular <span class="math notranslate nohighlight">\(x_1-x_2\)</span>.</p></li>
+</ol>
+<p><strong>Comentario:</strong> las dificultades que pueden surgir al resolver un problema <strong>no</strong> siempre están relacionadas con una fórmula o un algoritmo mal diseñado sino con el problema en cuestión. En el ejercicio anterior, observamos que áun utilizando <strong>aritmética exacta</strong>, la solución del problema puede ser altamente sensible a perturbaciones a los datos de entrada. Por esto el número de condición relativo se define de acuerdo a perturbaciones en los datos de entrada y mide la perturbación en los datos de salida que uno espera:</p>
+<div class="math notranslate nohighlight">
+\[\text{Cond}_f^R = \frac{||\text{Cambios relativos en la solución}||}{||\text{Cambios relativos en los datos de entrada}||}.\]</div>
+</div>
+<div class="section" id="estabilidad-de-un-algoritmo">
+<h2>Estabilidad de un algoritmo<a class="headerlink" href="#estabilidad-de-un-algoritmo" title="Permalink to this headline">¶</a></h2>
+<p>Pensemos a un algoritmo <span class="math notranslate nohighlight">\(\hat{f}\)</span> como una función <span class="math notranslate nohighlight">\(\hat{f}:\mathbb{X}\rightarrow \mathbb{Y}\)</span> para resolver el problema <span class="math notranslate nohighlight">\(f\)</span> con datos <span class="math notranslate nohighlight">\(x \in \mathbb{X}\)</span>, donde <span class="math notranslate nohighlight">\(\mathbb{X}\)</span> es un espacio vectorial con norma definida y <span class="math notranslate nohighlight">\(\mathbb{Y}\)</span> es otro espacio vectorial con una norma definida.</p>
+<p>La implementación del algoritmo <span class="math notranslate nohighlight">\(\hat{f}\)</span> en una máquina conduce a considerar:</p>
+<ul class="simple">
+<li><p>Errores por redondeo:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[fl(u) = u(1+\epsilon), |\epsilon| \leq \epsilon_{maq}, \forall u \in \mathbb{R}.\]</div>
+<ul class="simple">
+<li><p>Operaciones en un SPFN, <span class="math notranslate nohighlight">\(\mathcal{Fl}\)</span>. Por ejemplo para la suma:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[u \oplus v  = fl(u+v) = (u + v)(1+\epsilon), |\epsilon|\leq \epsilon_{maq} \forall u,v \in \mathcal{Fl}.\]</div>
+<p>Esto es, <span class="math notranslate nohighlight">\(\hat{f}\)</span> depende de <span class="math notranslate nohighlight">\(x \in \mathbb{X}\)</span> y <span class="math notranslate nohighlight">\(\epsilon_{maq}\)</span>: representación de los números reales en una máquina y operaciones entre ellos o aritmética de máquina. Ver nota: <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb">1.2.Sistema_de_punto_flotante</a>.</p>
+<p>Al ejecutar <span class="math notranslate nohighlight">\(\hat{f}\)</span> obtenemos una colección de números en el SPFN que pertenecen a <span class="math notranslate nohighlight">\(\mathbb{Y}\)</span>: <span class="math notranslate nohighlight">\(\hat{f}(x)\)</span>.</p>
+<p>Debido a las diferencias entre un problema con cantidades continuas y una máquina que trabaja con cantidades discretas, los algoritmos numéricos <strong>no</strong> son exactos para <strong>cualquier</strong> elección de datos <span class="math notranslate nohighlight">\(x \in \mathbb{X}\)</span>. Esto es, los algoritmos <strong>no</strong> cumplen que la cantidad:</p>
+<div class="math notranslate nohighlight">
+\[\frac{||\hat{f}(x)-f(x)||}{||f(x)||}\]</div>
+<p>dependa únicamente de errores por redondeo al evaluar <span class="math notranslate nohighlight">\(f\)</span> <span class="math notranslate nohighlight">\(\forall x \in \mathbb{X}\)</span>. En notación matemática:</p>
+<div class="math notranslate nohighlight">
+\[\frac{||\hat{f}(x)-f(x)||}{||f(x)||} \leq K \epsilon_{maq} \forall x \in \mathbb{X}\]</div>
+<p>con <span class="math notranslate nohighlight">\(K &gt; 0\)</span> no se cumple en general.</p>
+<p>La razón de lo anterior tiene que ver con cuestiones en la implementación de <span class="math notranslate nohighlight">\(\hat{f}\)</span> como el número de iteraciones, la representación de <span class="math notranslate nohighlight">\(x\)</span> en un SPFN o el mal condicionamiento de <span class="math notranslate nohighlight">\(f\)</span>. Así, a los algoritmos en el análisis numérico, se les pide una condición menos estricta que la anterior y más bien satisfagan lo que se conoce como <strong>estabilidad</strong>. Se dice que un algoritmo <span class="math notranslate nohighlight">\(\hat{f}\)</span> para un problema <span class="math notranslate nohighlight">\(f\)</span> es <strong>estable</strong> si:</p>
+<div class="math notranslate nohighlight">
+\[\forall x \in \mathbb{X}, \frac{||\hat{f}(x)-f(\hat{x})||}{||f(\hat{x})||} \leq K_1\epsilon_{maq}, K_1&gt;0\]</div>
+<p>para <span class="math notranslate nohighlight">\(\hat{x} \in \mathbb{X}\)</span> tal que <span class="math notranslate nohighlight">\(\frac{||x-\hat{x}||}{||x||} \leq K_2\epsilon_{maq}, K_2&gt;0\)</span>.</p>
+<p>Esto es, <span class="math notranslate nohighlight">\(\hat{f}\)</span> resuelve un problema cercano para datos cercanos (cercano en el sentido del <span class="math notranslate nohighlight">\(\epsilon_{maq}\)</span>) independientemente de la elección de <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p><strong>Obs:</strong> obsérvese que esta condición es más flexible y en general <span class="math notranslate nohighlight">\(K_1, K_2\)</span> dependen de las dimensiones de <span class="math notranslate nohighlight">\(\mathbb{X},\mathbb{Y}\)</span>.</p>
+<p><strong>Comentarios:</strong></p>
+<ul class="simple">
+<li><p>Esta definición resulta apropiada para la mayoría de los problemas en el ánalisis numérico. Para otras áreas, por ejemplo en ecuaciones diferenciales, donde se tienen definiciones de sistemas dinámicos estables e inestables (cuyas definiciones no se deben confundir con las descritas para algoritmos), esta condición es muy estricta.</p></li>
+<li><p>Tenemos algoritmos que satisfacen una condición más estricta y simple que la estabilidad: <strong>estabilidad hacia atrás</strong>:</p></li>
+</ul>
+<div class="section" id="estabilidad-hacia-atras">
+<h3>Estabilidad hacia atrás<a class="headerlink" href="#estabilidad-hacia-atras" title="Permalink to this headline">¶</a></h3>
+<p>Decimos que un algoritmo <span class="math notranslate nohighlight">\(\hat{f}\)</span> para el problema <span class="math notranslate nohighlight">\(f\)</span> es <strong>estable hacia atrás</strong> si:</p>
+<div class="math notranslate nohighlight">
+\[\forall x \in \mathbb{X}, \hat{f}(x) = f(\hat{x})\]</div>
+<p>con <span class="math notranslate nohighlight">\(\hat{x} \in \mathbb{X}\)</span> tal que <span class="math notranslate nohighlight">\(\frac{||x-\hat{x}||}{||x||} \leq K\epsilon_{maq}, K&gt;0\)</span>.</p>
+<p>Esto es, el algoritmo <span class="math notranslate nohighlight">\(\hat{f}\)</span> da la solución <strong>exacta</strong> para datos cercanos (cercano en el sentido de <span class="math notranslate nohighlight">\(\epsilon_{maq}\)</span>), independientemente de la elección de <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p><strong>Ejemplo:</strong> Para entender la estabilidad hacia atrás de un algoritmo, considérese el ejemplo siguiente.</p>
+<p><strong>Problema:</strong> evaluar <span class="math notranslate nohighlight">\(f(x) = e^x\)</span> en <span class="math notranslate nohighlight">\(x=1\)</span>.</p>
+<p><strong>Resultado:</strong> <span class="math notranslate nohighlight">\(f(1) = e^1 = 2.718281...\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="n">x</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.718281828459045
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Algoritmo:</strong> truncar la serie $1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \dots $ a cuatro términos: <span class="math notranslate nohighlight">\(\hat{f}(x) = 1 + x + \frac{x^2}{2} + \frac{x^3}{6}\)</span>.</p>
+<p><strong>Resultado del algoritmo:</strong> <span class="math notranslate nohighlight">\(\hat{f}(1) = 2.\bar{6}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">algoritmo</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mf">6.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">algoritmo</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.6666666666666665
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Pregunta:</strong> ¿Qué valor <span class="math notranslate nohighlight">\(\hat{x} \in \mathbb{R}\)</span> hace que el valor calculado por el algoritmo <span class="math notranslate nohighlight">\(\hat{f}(1)\)</span> sea igual a <span class="math notranslate nohighlight">\(f(\hat{x})\)</span>?</p>
+<p>-&gt; <strong>Solución:</strong></p>
+<p>Resolver la ecuación: <span class="math notranslate nohighlight">\(e^{\hat{x}} = 2.\bar{6}\)</span>, esto es: <span class="math notranslate nohighlight">\(\hat{x} = log(2.\bar{6}) = 0.980829...\)</span>. Entonces <span class="math notranslate nohighlight">\(f(\hat{x}) = 2.\bar{6} = \hat{f}(x)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_hat</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">algoritmo</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">x_hat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.9808292530117262
+</pre></div>
+</div>
+</div>
+</div>
+<p>Entonces, el algoritmo es estable hacia atrás sólo si la diferencia entre <span class="math notranslate nohighlight">\(x\)</span> y <span class="math notranslate nohighlight">\(\hat{x}\)</span> en términos relativos es menor a <span class="math notranslate nohighlight">\(K \epsilon_{maq}\)</span> con <span class="math notranslate nohighlight">\(K &gt;0\)</span>. Además, podemos calcular <strong>errores hacia delante</strong> y <strong>errores hacia atrás</strong>:</p>
+<p>error hacia delante: <span class="math notranslate nohighlight">\(\hat{f}(x) - f(x) = -0.05161...\)</span>, error hacia atrás: <span class="math notranslate nohighlight">\(\hat{x}-x = -0.01917...\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_delante</span> <span class="o">=</span> <span class="n">algoritmo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">err_delante</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>-0.05161516179237857
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_atras</span> <span class="o">=</span> <span class="n">x_hat</span><span class="o">-</span><span class="n">x</span>
+<span class="n">err_atras</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>-0.019170746988273812
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dependiendo del problema, estos errores son pequeños o grandes, por ejemplo si consideramos tener una cifra correcta como suficiente para determinar que es una buena aproximación entonces podemos concluir: <span class="math notranslate nohighlight">\(\hat{f}\)</span> obtiene una respuesta correcta y cercana al valor de <span class="math notranslate nohighlight">\(f\)</span> (error hacia delante) y la respuesta que obtuvimos con <span class="math notranslate nohighlight">\(\hat{f}\)</span> es correcta para datos ligeramente perturbados (error hacia atrás).</p>
+<p><strong>Obs:</strong></p>
+<ul class="simple">
+<li><p>Obsérvese que el error hacia delante requiere resolver el problema <span class="math notranslate nohighlight">\(f\)</span> (para calcular <span class="math notranslate nohighlight">\(f(x)\)</span>) y también información sobre <span class="math notranslate nohighlight">\(f\)</span>.</p></li>
+<li><p>En el ejemplo anterior se calcularon <span class="math notranslate nohighlight">\(\hat{f}(x)\)</span> y también qué tan larga debe ser la modificación en los datos <span class="math notranslate nohighlight">\(x\)</span>, esto es: <span class="math notranslate nohighlight">\(\hat{x}\)</span>, para que <span class="math notranslate nohighlight">\(\hat{f}(x) = f(\hat{x})\)</span> (error hacia atrás).</p></li>
+</ul>
+<ul class="simple">
+<li><p>Dibujo que ayuda a ver errores hacia atrás y hacia delante:</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/b30awajxvl3u8qe/error_hacia_delante_hacia_atras.png?dl=0" heigth="500" width="500"><p>En resumen, algunas características de un método <strong>estable</strong> numéricamente respecto al redondeo son:</p>
+<ul class="simple">
+<li><p>Variaciones “pequeñas” en los datos de entrada del método generan variaciones “pequeñas” en la solución del problema.</p></li>
+<li><p>No amplifican errores de redondeo en los cálculos involucrados.</p></li>
+<li><p>Resuelven problemas “cercanos” para datos ligeramente modificados.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="numero-de-condicion-de-una-matriz">
+<h2>Número de condición de una matriz<a class="headerlink" href="#numero-de-condicion-de-una-matriz" title="Permalink to this headline">¶</a></h2>
+<p>En el curso trabajaremos con algoritmos matriciales que son numéricamente estables (o estables hacia atrás) ante errores por redondeo, sin embargo la exactitud que obtengamos con tales algoritmos dependerán de qué tan bien (o mal) condicionado esté el problema. En el caso de matrices la condición de un problema puede ser cuantificada con el <strong>número de condición</strong> de la matriz del problema. Aunque haciendo uso de definiciones como la pseudoinversa de una matriz es posible definir el número de condición para una matriz en general rectangular <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span>, en esta primera definición consideramos matrices cuadradas no singulares <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n\times n}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\text{cond}(A) = ||A|| ||A^{-1}||.\]</div>
+<p><strong>Obs:</strong> obsérvese que la norma anterior es una <strong>norma matricial</strong> y cond<span class="math notranslate nohighlight">\((\cdot)\)</span> puede calcularse para diferentes normas matriciales. Ver final de esta nota para definición de norma y propiedades.</p>
+</div>
+<div class="section" id="por-que-se-utiliza-la-expresion-a-a-1-para-definir-el-numero-de-condicion-de-una-matriz">
+<h2>¿Por qué se utiliza la expresión <span class="math notranslate nohighlight">\(||A|| ||A^{-1}||\)</span> para definir el número de condición de una matriz?<a class="headerlink" href="#por-que-se-utiliza-la-expresion-a-a-1-para-definir-el-numero-de-condicion-de-una-matriz" title="Permalink to this headline">¶</a></h2>
+<p>Esta pregunta tiene que ver con el hecho que tal expresión aparece frecuentemente en problemas típicos de matrices. Para lo anterior considérese los siguientes problemas <span class="math notranslate nohighlight">\(f\)</span>:</p>
+<p>1.Sean <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n\times n}\)</span> no singular, <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span> y <span class="math notranslate nohighlight">\(f\)</span> el problema de realizar la multiplicación <span class="math notranslate nohighlight">\(Ax\)</span> para <span class="math notranslate nohighlight">\(x\)</span> fijo, esto es: <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span> dada por <span class="math notranslate nohighlight">\(f(x) = Ax\)</span>. Considérese una perturbación en <span class="math notranslate nohighlight">\(x: \hat{x} = x + \Delta x\)</span>, entonces:</p>
+<div class="math notranslate nohighlight">
+\[\text{Cond}_f^R = \frac{\text{ErrRel}(f(\hat{x}))}{\text{ErrRel}(\hat{x})} = \frac{\frac{||f(\hat{x})-f(x)||}{||f(x)||}}{\frac{||x-\hat{x}||}{||x||}} \approx \frac{||\mathcal{J}_f(x)||||x||}{||f(x)||}.\]</div>
+<p>Para este problema tenemos:</p>
+<div class="math notranslate nohighlight">
+\[\frac{||\mathcal{J}_f(x)||||x||}{||f(x)||} = \frac{||A|| ||x||}{||Ax||}.\]</div>
+<p>Si las normas matriciales utilizadas en el número de condición son consistentes (ver final de esta nota para definición de norma y propiedades) entonces:</p>
+<div class="math notranslate nohighlight">
+\[||x|| = ||A^{-1}Ax|| \leq ||A^{-1}||||Ax|| \therefore \frac{||x||}{||Ax||} \leq ||A^{-1}||\]</div>
+<p>y se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\text{Cond}_f^R \leq ||A|| ||A^{-1}||.\]</div>
+<p>2.Sean <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}, A \in \mathbb{R}^{n\times n}\)</span> no singular. Considérese el problema de calcular <span class="math notranslate nohighlight">\(f(b) = A^{-1}b\)</span> para <span class="math notranslate nohighlight">\(b \in \mathbb{R}^n\)</span> fijo y la perturbación <span class="math notranslate nohighlight">\(\hat{b} = b + \Delta b\)</span> entonces bajo las suposiciones del ejemplo anterior:</p>
+<div class="math notranslate nohighlight">
+\[\text{Cond}_f^R \approx \frac{||A^{-1}|| ||b||}{||A^{-1}b||}.\]</div>
+<p>Si las normas matriciales utilizadas en el número de condición son consistentes (ver final de esta nota para definición de norma y propiedades) entonces:</p>
+<div class="math notranslate nohighlight">
+\[||b|| = ||AA^{-1}b|| \leq ||A|| ||A^{-1}b|| \therefore \text{Cond}_f^R \leq ||A^{-1}|| ||A||.\]</div>
+<p>3.Sean <span class="math notranslate nohighlight">\(f: \mathbb{R}^{n\times n} \rightarrow \mathbb{R}^n, A \in \mathbb{R}^{n\times n}\)</span> no singular <span class="math notranslate nohighlight">\(b \in \mathbb{R}^n\)</span> fijo. Considérese el problema de calcular la solución <span class="math notranslate nohighlight">\(x\)</span> del sistema <span class="math notranslate nohighlight">\(Az=b\)</span>, esto es, calcular: <span class="math notranslate nohighlight">\(x = f(A) = A^{-1}b.\)</span> Además, considérese la perturbación <span class="math notranslate nohighlight">\(\hat{A} = A + \Delta A\)</span> en el sistema <span class="math notranslate nohighlight">\(Az = b\)</span>. Se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\hat{x} = \hat{A}^{-1}b,\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(\hat{x} = x + \Delta x\)</span> (si se perturba <span class="math notranslate nohighlight">\(A\)</span> entonces se perturba también <span class="math notranslate nohighlight">\(x\)</span>).</p>
+<p>De la ecuación anterior como <span class="math notranslate nohighlight">\(\hat{x} = \hat{A}^{-1}b\)</span> se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\hat{A}\hat{x} = b\]</div>
+<div class="math notranslate nohighlight">
+\[(A+\Delta A)(x+\Delta x) = b\]</div>
+<div class="math notranslate nohighlight">
+\[Ax + A \Delta x + \Delta Ax + \Delta A \Delta x = b\]</div>
+<div class="math notranslate nohighlight">
+\[b + A \Delta x + \Delta A x = b\]</div>
+<p>Donde en esta última ecuación se supuso que <span class="math notranslate nohighlight">\(\Delta A \Delta x \approx 0\)</span> y de aquí:</p>
+<div class="math notranslate nohighlight">
+\[A \Delta x + \Delta A x  \approx 0 \therefore \Delta x \approx - A^{-1} \Delta A x.\]</div>
+<p>Entonces se tiene que la condición del problema <span class="math notranslate nohighlight">\(f\)</span>: calcular la solución de sistema de ecuaciones lineales <span class="math notranslate nohighlight">\(Az=b\)</span> con <span class="math notranslate nohighlight">\(A\)</span> no singular ante perturbaciones en <span class="math notranslate nohighlight">\(A\)</span> es:</p>
+<div class="math notranslate nohighlight">
+\[\text{Cond}_f^R = \frac{\frac{||x-\hat{x}||}{||x||}}{\frac{||A-\hat{A}||}{||A||}}=\frac{\frac{||\Delta x||}{||x||}}{\frac{||\Delta A||}{||A||}} \leq \frac{\frac{||A^{-1}||||\Delta Ax||}{||x||}}{\frac{||\Delta A||}{||A||}} \leq ||A^{-1}||||A||.\]</div>
+</div>
+<div class="section" id="que-esta-midiendo-el-numero-de-condicion-de-una-matriz-respecto-a-un-sistema-de-ecuaciones-lineales">
+<h2>¿Qué está midiendo el número de condición de una matriz respecto a un sistema de ecuaciones lineales?<a class="headerlink" href="#que-esta-midiendo-el-numero-de-condicion-de-una-matriz-respecto-a-un-sistema-de-ecuaciones-lineales" title="Permalink to this headline">¶</a></h2>
+<p>El número de condición de una matriz mide la <strong>sensibilidad</strong> de la solución de un sistema de ecuaciones lineales ante perturbaciones en los datos de entrada (en la matriz del sistema <span class="math notranslate nohighlight">\(A\)</span> o en el lado derecho <span class="math notranslate nohighlight">\(b\)</span>). Si pequeños cambios en los datos de entrada generan grandes cambios en la solución tenemos un <strong>sistema mal condicionado</strong>. Si pequeños cambios en los datos de entrada generan pequeños cambios en la solución tenemos un sistema <strong>bien condicionado</strong>. Lo anterior puede apreciarse con los siguientes ejemplos y gráficas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>1.Resolver los siguientes sistemas:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}a) \begin{array}{ccc} x_1 +2x_2   &amp;= &amp; 10 \\ 1.1x_1 + 2x_2 &amp;= &amp; 10.4 \end{array} \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}b)\begin{array}{ccc} 1.05x_1 +2x_2  &amp;= &amp; 10 \\ 1.1x_1 + 2x_2 &amp;= &amp; 10.4\end{array} \end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso a&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mf">10.4</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso a
+matriz A:
+array([[1. , 2. ],
+       [1.1, 2. ]])
+lado derecho b:
+array([10. , 10.4])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x:
+array([4., 3.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">recta1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">recta2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="mf">10.4</span><span class="o">-</span><span class="mf">1.1</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">recta1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;o-&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">recta2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;^-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sistema mal condicionado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;x1+2x2=10&#39;</span><span class="p">,</span><span class="s1">&#39;1.1x1+2x2=10.4&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_67_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_67_0.png" />
+</div>
+</div>
+<p><strong>Obs:</strong> obsérvese que las dos rectas anteriores tienen una inclinación (pendiente) similar por lo que no se ve claramente el punto en el que intersectan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso b&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mf">10.4</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A ligeramente modificada:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso b
+matriz A ligeramente modificada:
+array([[1.05, 2.  ],
+       [1.1 , 2.  ]])
+lado derecho b:
+array([10. , 10.4])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x:
+array([8. , 0.8])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">recta1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="o">-</span><span class="mf">1.05</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">recta2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="mf">10.4</span><span class="o">-</span><span class="mf">1.1</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">recta1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;o-&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">recta2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;^-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sistema mal condicionado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;1.05x1+2x2=10&#39;</span><span class="p">,</span><span class="s1">&#39;1.1x1+2x2=10.4&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_71_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_71_0.png" />
+</div>
+</div>
+<p><strong>Obs:</strong> al modificar un poco las entradas de la matriz <span class="math notranslate nohighlight">\(A\)</span> la solución del sistema cambia drásticamente.</p>
+<p><strong>Comentario:</strong> otra forma de describir a un sistema mal condicionado es que un amplio rango de valores en un SPFN satisfacen tal sistema de forma aproximada.</p>
+<p>2.Resolver los siguientes sistemas:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}a) \begin{array}{ccc} .03x_1 + 58.9x_2   &amp;= &amp; 59.2 \\ 5.31x_1 -6.1x_2 &amp;= &amp; 47 \end{array} \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}a) \begin{array}{ccc} .03x_1 + 58.9x_2   &amp;= &amp; 59.2 \\ 5.31x_1 -6.05x_2 &amp;= &amp; 47 \end{array} \end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso a&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">.</span><span class="mi">03</span><span class="p">,</span> <span class="mf">58.9</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.31</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.1</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">59.2</span><span class="p">,</span><span class="mi">47</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso a
+matriz A:
+array([[ 3.00e-02,  5.89e+01],
+       [ 5.31e+00, -6.10e+00]])
+lado derecho b:
+array([59.2, 47. ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x:
+array([10.,  1.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">recta1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mf">58.9</span><span class="o">*</span><span class="p">(</span><span class="mf">59.2</span><span class="o">-.</span><span class="mi">03</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">recta2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mf">6.1</span><span class="o">*</span><span class="p">(</span><span class="mf">5.31</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="mi">47</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">recta1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;o-&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">recta2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;^-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sistema bien condicionado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;.03x1+58.9x2=59.2&#39;</span><span class="p">,</span><span class="s1">&#39;5.31x1-6.1x2=47&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_78_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_78_0.png" />
+</div>
+</div>
+<p><strong>Obs:</strong> obsérvese que la solución del sistema de ecuaciones (intersección entre las dos rectas) está claramente definido.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso b&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">.</span><span class="mi">03</span><span class="p">,</span> <span class="mf">58.9</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.31</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.05</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">59.2</span><span class="p">,</span><span class="mi">47</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A ligeramente modificada:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso b
+matriz A ligeramente modificada:
+array([[ 3.00e-02,  5.89e+01],
+       [ 5.31e+00, -6.05e+00]])
+lado derecho b:
+array([59.2, 47. ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x:
+array([9.99058927, 1.00000479])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">recta1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mf">58.9</span><span class="o">*</span><span class="p">(</span><span class="mf">59.2</span><span class="o">-.</span><span class="mi">03</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">recta2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mf">6.05</span><span class="o">*</span><span class="p">(</span><span class="mf">5.31</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="mi">47</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">recta1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;o-&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">recta2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="s1">&#39;^-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Sistema bien condicionado&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="s1">&#39;.03x1+58.9x2=59.2&#39;</span><span class="p">,</span><span class="s1">&#39;5.31x1-6.05x2=47&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_82_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_82_0.png" />
+</div>
+</div>
+<p><strong>Obs:</strong> al modificar un poco las entradas de la matriz <span class="math notranslate nohighlight">\(A\)</span> la solución <strong>no</strong> cambia mucho.</p>
+<p><strong>Comentarios:</strong></p>
+<p>1.¿Por qué nos interesa considerar perturbaciones en los datos de entrada? -&gt; recuérdese que los números reales se representan en la máquina mediante el sistema de punto flotante (SPF), entonces al ingresar datos a la máquina tenemos perturbaciones y por tanto errores de redondeo. Ver nota: <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb">1.2.Sistema_de_punto_flotante</a></p>
+<p>2.Las matrices anteriores tienen número de condición distinto:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz del ejemplo 1&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>matriz del ejemplo 1
+array([[1. , 2. ],
+       [1.1, 2. ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>su número de condición es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>51.030403839186725
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz del ejemplo 2&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">.</span><span class="mi">03</span><span class="p">,</span> <span class="mf">58.9</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.31</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.1</span><span class="p">]])</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>matriz del ejemplo 2
+array([[ 3.00e-02,  5.89e+01],
+       [ 5.31e+00, -6.10e+00]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>su número de condición es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>11.205557604869346
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las matrices del ejemplo <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(2\)</span> son <strong>medianamente</strong> condicionadas. Una matriz se dice <strong>bien condicionada</strong> si cond<span class="math notranslate nohighlight">\((A)\)</span> es cercano a <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</div>
+<div class="section" id="algunas-propiedades-del-numero-de-condicion-de-una-matriz">
+<h2>Algunas propiedades del número de condición de una matriz<a class="headerlink" href="#algunas-propiedades-del-numero-de-condicion-de-una-matriz" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n\times n}\)</span> es no singular entonces:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\frac{1}{\text{cond}(A)} = \min \left\{ \frac{||A-B||}{||A||} \text{tal que} B \text{ es singular}, ||\cdot|| \text{ es una norma inducida} \right\}.\]</div>
+<p>esto es, una matriz mal condicionada (número de condición grande) se le puede aproximar muy bien por una matriz singular. Sin embargo, el mal condicionamiento no necesariamente se relaciona con singularidad. Una matriz singular es mal condicionada pero una matriz mal condicionada no necesariamente es singular. Considérese por ejemplo la matriz de <strong>Hilbert</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">hilbert</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hilbert</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[1.        , 0.5       , 0.33333333, 0.25      ],
+       [0.5       , 0.33333333, 0.25      , 0.2       ],
+       [0.33333333, 0.25      , 0.2       , 0.16666667],
+       [0.25      , 0.2       , 0.16666667, 0.14285714]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">hilbert</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>15513.738738928929
+</pre></div>
+</div>
+</div>
+</div>
+<p>la cual es una matriz mal condicionada pero es no singular:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">hilbert</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="nd">@hilbert</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 1.00000000e+00, -7.46069873e-14, -5.68434189e-14,
+        -4.61852778e-14],
+       [ 5.68434189e-13,  1.00000000e+00,  2.84217094e-13,
+         2.84217094e-13],
+       [-4.54747351e-13, -3.41060513e-13,  1.00000000e+00,
+        -3.41060513e-13],
+       [ 2.27373675e-13,  0.00000000e+00,  5.68434189e-14,
+         1.00000000e+00]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>y otro ejemplo de una matriz singular:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz singular&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>matriz singular
+array([[1, 2],
+       [1, 2]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#np.linalg.inv(A)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>inf
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Para las normas matriciales inducidas se tiene:</p>
+<ul>
+<li><p>cond<span class="math notranslate nohighlight">\((A)\geq 1, \forall A \in \mathbb{R}^{n\times n}\)</span>.</p></li>
+<li><p>cond<span class="math notranslate nohighlight">\((\gamma A) = \text{cond}(A), \forall \gamma \in \mathbb{R}-\{0\}, \forall A \in \mathbb{R}^{n\times n}\)</span>.</p></li>
+<li><p>cond<span class="math notranslate nohighlight">\(_2(A) = ||A||_2||A^{-1}||_2 = \frac{\sigma_{\max}}{\sigma_{\min}}, \sigma_{\min} \neq 0\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>En el problema: resolver <span class="math notranslate nohighlight">\(Ax = b\)</span> se cumple:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{ErrRel}(\hat{x}) = \frac{||x^*-\hat{x}||}{||x^*||} \leq \text{cond}(A) \left ( \frac{||\Delta A||}{||A||} + \frac{||\Delta b||}{||b||} \right ), b \neq 0.\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(x^*\)</span> es solución de <span class="math notranslate nohighlight">\(Ax=b\)</span> y <span class="math notranslate nohighlight">\(\hat{x}\)</span> es solución aproximada que se obtiene por algún método numérico (por ejemplo factorización LU). <span class="math notranslate nohighlight">\(\frac{||\Delta A||}{||A||}, \frac{||\Delta b||}{||b||}\)</span> son los errores relativos en las entradas de <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(b\)</span> respectivamente.</p>
+<p><strong>Comentario:</strong> la desigualdad anterior se puede interpretar como sigue: si sólo tenemos perturbaciones en <span class="math notranslate nohighlight">\(A\)</span> de modo que se tienen errores por redondeo del orden de <span class="math notranslate nohighlight">\(10^{-k}\)</span> y por lo tanto <span class="math notranslate nohighlight">\(k\)</span> dígitos de precisión en <span class="math notranslate nohighlight">\(A\)</span> y cond<span class="math notranslate nohighlight">\((A)\)</span> es del orden de <span class="math notranslate nohighlight">\(10^c\)</span> entonces <span class="math notranslate nohighlight">\(\text{ErrRel}(\hat{x})\)</span> puede llegar a tener errores de redondeo de a lo más del orden de <span class="math notranslate nohighlight">\(10^{c-k}\)</span> y por tanto <span class="math notranslate nohighlight">\(k-c\)</span> dígitos de precisión:</p>
+<div class="math notranslate nohighlight">
+\[\text{ErrRel}(\hat{x}) \leq \text{cond}(A) \frac{||\Delta A||}{||A||}.\]</div>
+<ul class="simple">
+<li><p>Supongamos que <span class="math notranslate nohighlight">\(x^*\)</span> es solución del sistema <span class="math notranslate nohighlight">\(Ax=b\)</span> y obtenemos <span class="math notranslate nohighlight">\(\hat{x}\)</span> por algún método numérico (por ejemplo factorización LU) entonces ¿qué condiciones garantizan que <span class="math notranslate nohighlight">\(||x^*-\hat{x}||\)</span> sea cercano a cero (del orden de $ \epsilon_{maq}= 10^{-16}$), ¿de qué depende esto?</p></li>
+</ul>
+<p>Para responder las preguntas anteriores definimos el residual de <span class="math notranslate nohighlight">\(Ax=b\)</span> como <span class="math notranslate nohighlight">\($r=A\hat{x}-b\)</span>$ con <span class="math notranslate nohighlight">\(\hat{x}\)</span> aproximación a <span class="math notranslate nohighlight">\(x^*\)</span> obtenida por algún método numérico. Asimismo, el residual relativo a la norma de <span class="math notranslate nohighlight">\(b\)</span> como:</p>
+<div class="math notranslate nohighlight">
+\[\frac{||r||}{||b||}.\]</div>
+<p><strong>Obs:</strong> típicamente <span class="math notranslate nohighlight">\(x^*\)</span> (solución exacta) es desconocida y por ello no podríamos calcular <span class="math notranslate nohighlight">\(||x^*-\hat{x}||\)</span>, sin embargo sí podemos calcular el residual relativo a la norma de <span class="math notranslate nohighlight">\(b\)</span>: <span class="math notranslate nohighlight">\(\frac{||r||}{||b||}\)</span>. ¿Se cumple que <span class="math notranslate nohighlight">\(\frac{||r||}{||b||}\)</span> pequeño implica <span class="math notranslate nohighlight">\(\text{ErrRel}(\hat{x})\)</span> pequeño? El siguiente resultado nos ayuda a responder esta y las preguntas anteriores:</p>
+<p>Sea <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n\times n}\)</span> no singular, <span class="math notranslate nohighlight">\(x^*\)</span> solución de <span class="math notranslate nohighlight">\(Ax=b\)</span>, <span class="math notranslate nohighlight">\(\hat{x}\)</span> aproximación a <span class="math notranslate nohighlight">\(x^*\)</span>, entonces para las normas matriciales inducidas se cumple:</p>
+<div class="math notranslate nohighlight">
+\[\frac{||r||}{||b||} \frac{1}{\text{cond}(A)} \leq \frac{||x^*-\hat{x}||}{||x^*||}\leq \text{cond}(A)\frac{||r||}{||b||}.\]</div>
+<p>Por la desigualdad anterior, si <span class="math notranslate nohighlight">\(\text{cond}(A) \approx 1\)</span> entonces <span class="math notranslate nohighlight">\(\frac{||r||}{||b||}\)</span> es una buena estimación de <span class="math notranslate nohighlight">\(\text{ErrRel}(\hat{x}) = \frac{||x^*-\hat{x}||}{||x^*||}\)</span> por lo que <span class="math notranslate nohighlight">\(\hat{x}\)</span> es una buena estimación de <span class="math notranslate nohighlight">\(x^*\)</span>. Si <span class="math notranslate nohighlight">\(\text{cond}(A)\)</span> es grande no podemos decir <strong>nada</strong> acerca de <span class="math notranslate nohighlight">\(\text{ErrRel}(\hat{x})\)</span> ni de <span class="math notranslate nohighlight">\(\hat{x}\)</span>.</p>
+<p><strong>Ejemplos:</strong></p>
+<ol class="simple">
+<li></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}a) \begin{array}{ccc} x_1 + x_2   &amp;= &amp; 2 \\ 10.05x_1 + 10x_2 &amp;= &amp; 21 \end{array} \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}b) \begin{array}{ccc} x_1 + x_2   &amp;= &amp; 2 \\ 10.1x_1 + 10x_2 &amp;= &amp; 21 \end{array} \end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso a&#39;</span><span class="p">)</span>
+<span class="n">A_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">10.05</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
+<span class="n">b_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">21</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A_1:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b_1:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso a
+matriz A_1:
+array([[ 1.  ,  1.  ],
+       [10.05, 10.  ]])
+lado derecho b_1:
+array([ 2, 21])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_est</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_1</span><span class="p">,</span><span class="n">b_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x_est:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x_est</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x_est:
+array([ 20., -18.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso b&#39;</span><span class="p">)</span>
+<span class="n">A_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">10.1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
+<span class="n">b_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">21</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A_2:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b_2:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso b
+matriz A_2:
+array([[ 1. ,  1. ],
+       [10.1, 10. ]])
+lado derecho b_2:
+array([ 2, 21])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_hat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_2</span><span class="p">,</span><span class="n">b_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x_hat:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x_hat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x_hat:
+array([10., -8.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;residual relativo:&#39;</span><span class="p">)</span>
+<span class="n">r_rel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A_1</span><span class="nd">@x_hat</span><span class="o">-</span><span class="n">b_1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">b_1</span><span class="p">)</span>
+<span class="n">r_rel</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>residual relativo:
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.02370227315699886
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;error relativo:&#39;</span><span class="p">)</span>
+<span class="n">err_rel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_hat</span><span class="o">-</span><span class="n">x_est</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_est</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">err_rel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo:
+0.5255883312276278
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>no tenemos una buena estimación del error relativo a partir del residual relativo pues:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4060.0497536998155
+</pre></div>
+</div>
+</div>
+</div>
+<p>De acuerdo a la cota del resultado el error relativo se encuentra en el intervalo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">r_rel</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">),</span> <span class="n">r_rel</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(5.837926773040061e-06, 96.23240829319897)
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}a) \begin{array}{ccc} 4.1x_1 + 2.8x_2   &amp;= &amp; 4.1 \\ 9.7x_1 + 6.6x_2 &amp;= &amp; 9.7 \end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}b) \begin{array}{ccc} 4.1x_1 + 2.8x_2   &amp;= &amp; 4.11 \\ 9.7x_1 + 6.6x_2 &amp;= &amp; 9.7 \end{array}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso a&#39;</span><span class="p">)</span>
+<span class="n">A_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">4.1</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">9.7</span><span class="p">,</span> <span class="mf">6.6</span><span class="p">]])</span>
+<span class="n">b_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.1</span><span class="p">,</span><span class="mf">9.7</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A_1:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b_1:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso a
+matriz A_1:
+array([[4.1, 2.8],
+       [9.7, 6.6]])
+lado derecho b_1:
+array([4.1, 9.7])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_est</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_1</span><span class="p">,</span><span class="n">b_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x_est:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x_est</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x_est:
+array([1., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso b&#39;</span><span class="p">)</span>
+<span class="n">A_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">4.1</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">9.7</span><span class="p">,</span> <span class="mf">6.6</span><span class="p">]])</span>
+<span class="n">b_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">4.11</span><span class="p">,</span><span class="mf">9.7</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A_2:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b_2:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso b
+matriz A_2:
+array([[4.1, 2.8],
+       [9.7, 6.6]])
+lado derecho b_2:
+array([4.11, 9.7 ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_hat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_2</span><span class="p">,</span><span class="n">b_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x_hat:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x_hat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x_hat:
+array([0.34, 0.97])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;residual relativo:&#39;</span><span class="p">)</span>
+<span class="n">r_rel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A_1</span><span class="nd">@x_hat</span><span class="o">-</span><span class="n">b_1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">b_1</span><span class="p">)</span>
+<span class="n">r_rel</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>residual relativo:
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.0009495858335005704
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;error relativo:&#39;</span><span class="p">)</span>
+<span class="n">err_rel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_hat</span><span class="o">-</span><span class="n">x_est</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_est</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">err_rel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo:
+1.1732433677631406
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>no tenemos una buena estimación del error relativo a partir del residual relativo pues:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1622.9993838565106
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">r_rel</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">),</span> <span class="n">r_rel</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(5.850808342540463e-07, 1.5411772226902969)
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}a) \begin{array}{ccc} 3.9x_1 + 11.6x_2   &amp;= &amp; 5.5 \\ 12.8x_1 + 2.9x_2 &amp;= &amp; 9.7 \end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}b) \begin{array}{ccc} 3.95x_1 + 11.6x_2   &amp;= &amp; 5.5 \\ 12.8x_1 + 2.9x_2 &amp;= &amp; 9.7 \end{array}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso a&#39;</span><span class="p">)</span>
+<span class="n">A_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">3.9</span><span class="p">,</span> <span class="mf">11.6</span><span class="p">],</span> <span class="p">[</span><span class="mf">12.8</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">]])</span>
+<span class="n">b_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.5</span><span class="p">,</span><span class="mf">9.7</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A_1:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b_1:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso a
+matriz A_1:
+array([[ 3.9, 11.6],
+       [12.8,  2.9]])
+lado derecho b_1:
+array([5.5, 9.7])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_est</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_1</span><span class="p">,</span><span class="n">b_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x_est:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x_est</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x_est:
+array([0.70401691, 0.23744259])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso b&#39;</span><span class="p">)</span>
+<span class="n">A_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">3.95</span><span class="p">,</span> <span class="mf">11.6</span><span class="p">],</span> <span class="p">[</span><span class="mf">12.8</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">]])</span>
+<span class="n">b_2</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.5</span><span class="p">,</span><span class="mf">9.7</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A_2:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b_2:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso b
+matriz A_2:
+array([[ 3.95, 11.6 ],
+       [12.8 ,  2.9 ]])
+lado derecho b_2:
+array([5.5, 9.7])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_hat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_2</span><span class="p">,</span><span class="n">b_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x_hat:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x_hat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x_hat:
+array([0.7047619 , 0.23415435])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;residual relativo:&#39;</span><span class="p">)</span>
+<span class="n">r_rel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A_1</span><span class="nd">@x_hat</span><span class="o">-</span><span class="n">b_1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">b_1</span><span class="p">)</span>
+<span class="n">r_rel</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>residual relativo:
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.0031601448781200417
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;error relativo:&#39;</span><span class="p">)</span>
+<span class="n">err_rel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_hat</span><span class="o">-</span><span class="n">x_est</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_est</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">err_rel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo:
+0.004537910940159858
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>sí tenemos una buena estimación del error relativo a partir del residual relativo pues:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.7884565161384884
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">r_rel</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">),</span> <span class="n">r_rel</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(0.0017669676895154308, 0.005651781699215458)
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(\theta=\frac{\pi}{3}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">theta_1</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_1</span><span class="p">),</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(0.5000000000000001, 0.8660254037844386)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">theta_2</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span> <span class="o">+</span> <span class="o">.</span><span class="mi">00005</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">theta_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0472475511965977
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_2</span><span class="p">),</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta_2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(0.49995669810482884, 0.8660504027018965)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}a) \begin{array}{ccc} \cos(\theta_1)x_1 - \sin(\theta_1)x_2   &amp;= &amp; -1.5 \\ \sin(\theta_1)x_1 + \cos(\theta_1)x_2 &amp;= &amp; 2.4 \end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}b) \begin{array}{ccc} \cos(\theta_2)x_1 - \sin(\theta_2)x_2   &amp;= &amp; -1.5 \\ \sin(\theta_2)x_1 + \cos(\theta_2)x_2 &amp;= &amp; 2.4 \end{array}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}c) \begin{array}{ccc} \cos(\theta_2)x_1 - \sin(\theta_2)x_2   &amp;= &amp; -1.7 \\ \sin(\theta_2)x_1 + \cos(\theta_2)x_2 &amp;= &amp; 2.4 \end{array}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso a&#39;</span><span class="p">)</span>
+<span class="n">A_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_1</span><span class="p">),</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta_1</span><span class="p">)],</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta_1</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_1</span><span class="p">)]])</span>
+<span class="n">b_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">2.4</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A_1:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b_1:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso a
+matriz A_1:
+array([[ 0.5      , -0.8660254],
+       [ 0.8660254,  0.5      ]])
+lado derecho b_1:
+array([-1.5,  2.4])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_est</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_1</span><span class="p">,</span><span class="n">b_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x_est:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x_est</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x_est:
+array([1.32846097, 2.49903811])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso b&#39;</span><span class="p">)</span>
+<span class="n">A_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_2</span><span class="p">),</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta_2</span><span class="p">)],</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta_2</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_2</span><span class="p">)]])</span>
+<span class="n">b_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">2.4</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A_2:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b_2:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso b
+matriz A_2:
+array([[ 0.4999567, -0.8660504],
+       [ 0.8660504,  0.4999567]])
+lado derecho b_2:
+array([-1.5,  2.4])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_hat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_2</span><span class="p">,</span><span class="n">b_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x_hat:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x_hat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x_hat:
+array([1.32858592, 2.49897168])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;residual relativo:&#39;</span><span class="p">)</span>
+<span class="n">r_rel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A_1</span><span class="nd">@x_hat</span><span class="o">-</span><span class="n">b_1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">b_1</span><span class="p">)</span>
+<span class="s1">&#39;</span><span class="si">{:0.10e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_rel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>residual relativo:
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;4.9999999995e-05&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;error relativo:&#39;</span><span class="p">)</span>
+<span class="n">err_rel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_hat</span><span class="o">-</span><span class="n">x_est</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_est</span><span class="p">)</span>
+<span class="s1">&#39;</span><span class="si">{:0.10e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo:
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;4.9999999995e-05&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>sí tenemos una buena estimación del error relativo a partir del residual relativo pues:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:0.10e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_rel</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">)),</span> <span class="s1">&#39;</span><span class="si">{:0.10e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_rel</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;4.9999999995e-05&#39;, &#39;4.9999999995e-05&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso c&#39;</span><span class="p">)</span>
+<span class="n">A_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_2</span><span class="p">),</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta_2</span><span class="p">)],</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta_2</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_2</span><span class="p">)]])</span>
+<span class="n">b_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.7</span><span class="p">,</span><span class="mf">2.4</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz A_2:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">A_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lado derecho b_2:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">b_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso c
+matriz A_2:
+array([[ 0.4999567, -0.8660504],
+       [ 0.8660504,  0.4999567]])
+lado derecho b_2:
+array([-1.7,  2.4])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_hat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_2</span><span class="p">,</span><span class="n">b_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;solución x_hat:&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x_hat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x_hat:
+array([1.22859458, 2.67218176])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;residual relativo:&#39;</span><span class="p">)</span>
+<span class="n">r_rel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A_1</span><span class="nd">@x_hat</span><span class="o">-</span><span class="n">b_1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">b_1</span><span class="p">)</span>
+<span class="s1">&#39;</span><span class="si">{:0.14e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_rel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>residual relativo:
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;7.06241310531940e-02&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;error relativo:&#39;</span><span class="p">)</span>
+<span class="n">err_rel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_hat</span><span class="o">-</span><span class="n">x_est</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x_est</span><span class="p">)</span>
+<span class="s1">&#39;</span><span class="si">{:0.14e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo:
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;7.06241310531940e-02&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>sí tenemos una buena estimación del error relativo a partir del residual relativo pues:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:0.14e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_rel</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">)),</span> <span class="s1">&#39;</span><span class="si">{:0.14e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r_rel</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A_1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(&#39;7.06241310531940e-02&#39;, &#39;7.06241310531940e-02&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Así, <span class="math notranslate nohighlight">\(\text{cond}(A)\)</span> nos da una calidad (mediante <span class="math notranslate nohighlight">\(\frac{||r||}{||b||}\)</span>) de la solución <span class="math notranslate nohighlight">\(\hat{x}\)</span> en el problema inicial (resolver <span class="math notranslate nohighlight">\(Ax=b\)</span>) obtenida por algún método numérico respecto a la solución <span class="math notranslate nohighlight">\(x^*\)</span> de <span class="math notranslate nohighlight">\(Ax=b\)</span>.</p>
+<p><strong>Obs:</strong> Por último obsérvese que la condición del problema inicial (resolver <span class="math notranslate nohighlight">\(Ax=b\)</span>) <strong>no depende del método númerico</strong> que se elige para resolverlo.</p>
+<p><strong>Ejercicio:</strong> proponer sistemas de ecuaciones lineales con distinto número de condición, perturbar matriz del sistema o lado derecho (o ambos) y revisar números de condición y residuales relativos de acuerdo a la cota:</p>
+<div class="math notranslate nohighlight">
+\[\frac{||r||}{||b||} \frac{1}{\text{cond}(A)} \leq \frac{||x^*-\hat{x}||}{||x^*||}\leq \text{cond}(A)\frac{||r||}{||b||}.\]</div>
+<p>Verificar que si el número de condición del sistema es pequeño entonces el residual relativo estima bien al error relativo.</p>
+</div>
+<div class="section" id="numero-de-condicion-de-una-matriz-a-in-mathbb-r-m-times-n">
+<h2>Número de condición de una matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span><a class="headerlink" href="#numero-de-condicion-de-una-matriz-a-in-mathbb-r-m-times-n" title="Permalink to this headline">¶</a></h2>
+<p>Para este caso se utiliza la <strong>pseudoinversa</strong> de <span class="math notranslate nohighlight">\(A\)</span> definida a partir de la descomposición en valores singulares compacta (compact SVD, ver <a class="reference external" href="https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0">3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR</a>) y denotada como <span class="math notranslate nohighlight">\(A^{\dagger}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[A^{\dagger} = V \Sigma^{\dagger} U^T\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(\Sigma ^{\dagger}\)</span> es la matriz transpuesta de <span class="math notranslate nohighlight">\(\Sigma\)</span> y tiene entradas <span class="math notranslate nohighlight">\(\sigma_i^{+}:\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_i^+ = \begin{cases}
+\frac{1}{\sigma_i} &amp;\text{ si } \sigma_i \neq 0,\\
+0 &amp;\text{ en otro caso}
+\end{cases}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\forall i=1,\dots, r\)</span> con <span class="math notranslate nohighlight">\(r=rank(A)\)</span>.</p>
+<p><strong>Comentarios y propiedades:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A^{\dagger}\)</span> se le conoce como pseudoinversa de <span class="math notranslate nohighlight">\(Moore-Penrose\)</span>.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(rank(A)=n\)</span> entonces <span class="math notranslate nohighlight">\(A^{\dagger} = (A^TA)^{-1}A^T\)</span>, si <span class="math notranslate nohighlight">\(rank(A)=m\)</span>, <span class="math notranslate nohighlight">\(A^\dagger = A^T(AA^T)^{-1}\)</span>, si <span class="math notranslate nohighlight">\(A\in \mathbb{R}^{n\times n}\)</span> no singular, entonces <span class="math notranslate nohighlight">\(A^\dagger=A^{-1}\)</span>.</p></li>
+<li><p>Con <span class="math notranslate nohighlight">\(A^\dagger\)</span> se define <span class="math notranslate nohighlight">\(\text{cond}(A)\)</span> para <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{cond}(A) = ||A||||A^\dagger||\]</div>
+<p>de hecho, se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\text{cond}_2(A) = \frac{\sigma_{max}}{\sigma_{min}}=\frac{\sigma_1}{\sigma_r}.\]</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="norma">
+<h2>Norma<a class="headerlink" href="#norma" title="Permalink to this headline">¶</a></h2>
+<p>Una norma define una medida de distancia en un conjunto y da nociones de tamaño, vecindad, convergencia y continuidad.</p>
+<div class="section" id="normas-vectoriales">
+<h3>Normas vectoriales<a class="headerlink" href="#normas-vectoriales" title="Permalink to this headline">¶</a></h3>
+<p>Sea <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> el conjunto de <span class="math notranslate nohighlight">\(n\)</span>-tuplas o vectores columna o <span class="math notranslate nohighlight">\(1\)</span>-arreglo de orden <span class="math notranslate nohighlight">\(1\)</span>, esto es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x \in \mathbb{R}^n \iff x = \left[\begin{array}{c}
+    x_1\\
+    x_2\\
+    \vdots\\
+    x_n
+    \end{array} \right] \text{ con } x_i \in \mathbb{R}\end{split}\]</div>
+<p>Una norma vectorial en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> es una función <span class="math notranslate nohighlight">\(g: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> que satisface las siguientes propiedades:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(g\)</span> es no negativa: <span class="math notranslate nohighlight">\(g(x) \geq 0 \forall x \in \mathbb{R}^n\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(g\)</span> es definida: <span class="math notranslate nohighlight">\(g(x) = 0 \iff x = 0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(g\)</span> satisface la desigualdad del triángulo: <span class="math notranslate nohighlight">\($g(x+y) \leq g(x) + g(y) \forall x,y \in \mathbb{R}^n.\)</span>$</p></li>
+</ul>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(g\)</span> es homogénea: <span class="math notranslate nohighlight">\(g(\alpha x)=|\alpha|g(x), \forall \alpha \in \mathbb{R}, \forall x \in \mathbb{R}^n\)</span>.</p></li>
+</ul>
+<p>Notación: <span class="math notranslate nohighlight">\(g(x) = ||x||\)</span>.</p>
+<p><strong>Comentarios y propiedades:</strong></p>
+<ul class="simple">
+<li><p>Una norma es una generalización del valor absoluto de <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>: <span class="math notranslate nohighlight">\(|x|, x \in \mathbb{R}.\)</span></p></li>
+<li><p>Un espacio vectorial con una norma definida en éste se le llama <strong>espacio vectorial normado</strong>.</p></li>
+<li><p>Una norma es una medida de la longitud de un vector.</p></li>
+<li><p>Con una norma es posible definir conceptos como distancia entre vectores: <span class="math notranslate nohighlight">\(x,y \in \mathbb{R}^n: \text{dist}(x,y) = ||x-y||\)</span>.</p></li>
+<li><p>Existen varias normas en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> siendo las más comunes:</p></li>
+<li><p>La norma <span class="math notranslate nohighlight">\(\mathcal{l}_2\)</span>, Euclidiana o norma <span class="math notranslate nohighlight">\(2\)</span>: <span class="math notranslate nohighlight">\(||x||_2\)</span>.</p></li>
+<li><p>La norma <span class="math notranslate nohighlight">\(\mathcal{l}_1\)</span> o norma <span class="math notranslate nohighlight">\(1\)</span>: <span class="math notranslate nohighlight">\(||x||_1\)</span>.</p></li>
+<li><p>La norma <span class="math notranslate nohighlight">\(\infty\)</span> o de Chebyshev o norma infinito: <span class="math notranslate nohighlight">\(||x||_\infty\)</span>.</p></li>
+</ul>
+<p>Las normas anteriores pertenecen a una familia parametrizada por una constante <span class="math notranslate nohighlight">\(p, p \geq 1\)</span> cuyo nombre es norma <span class="math notranslate nohighlight">\(\mathcal{l}_p\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ ||x||_p = \left(\displaystyle \sum_{i=1}^n|x_i|^p \right )^{1/p}.\]</div>
+<ul class="simple">
+<li><p>Un resultado para <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span> es la <strong>equivalencia</strong> entre normas:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\exists \alpha, \beta &gt; 0  \text{ tales que }: \alpha||x||_a \leq ||x||_b \leq \beta ||x||_a \forall x \in \mathbb{R}^n\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(||\cdot||_a, ||\cdot||_b\)</span> son normas cualesquiera en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. Por la propiedad anterior decimos que si se cumple convergencia en la norma <span class="math notranslate nohighlight">\(||\cdot||_a\)</span> entonces también se cumple convergencia en la norma <span class="math notranslate nohighlight">\(||\cdot||_b\)</span>.</p>
+<p><strong>Ejemplos de gráficas en el plano:</strong></p>
+<p>Norma <span class="math notranslate nohighlight">\(2\)</span>: <span class="math notranslate nohighlight">\(\{ x \in \mathbb{R}^2  \text{ tales que } ||x||_2 \leq 1\}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#definición de norma2</span>
+<span class="n">density</span><span class="o">=</span><span class="mf">1e-5</span>
+<span class="n">density_p</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">2.5</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">density</span><span class="p">)</span>
+<span class="n">y1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">y2</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">density_p</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">ind</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">1</span>
+<span class="n">x_p_subset</span><span class="o">=</span><span class="n">x_p</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x_p_subset</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Puntos en el plano que cumplen ||x||_2 &lt;= 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_193_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_193_0.png" />
+</div>
+</div>
+<p>Norma <span class="math notranslate nohighlight">\(1\)</span>:  <span class="math notranslate nohighlight">\(\{ x \in \mathbb{R}^2  \text{ tales que } ||x||_1 \leq 1\}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#definición de norma1</span>
+<span class="n">density</span><span class="o">=</span><span class="mf">1e-5</span>
+<span class="n">density_p</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">2.5</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">x1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">density</span><span class="p">)</span>
+<span class="n">x2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">density</span><span class="p">)</span>
+<span class="n">y1</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="n">x1</span>
+<span class="n">y2</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="n">x2</span>
+<span class="n">y3</span><span class="o">=</span><span class="n">x1</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">y4</span><span class="o">=-</span><span class="mi">1</span><span class="o">-</span><span class="n">x2</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">density_p</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">ind</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">1</span>
+<span class="n">x_p_subset</span><span class="o">=</span><span class="n">x_p</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">y3</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">y4</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x_p_subset</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Puntos en el plano que cumplen ||x||_1 &lt;= 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_195_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_195_0.png" />
+</div>
+</div>
+<p>Norma <span class="math notranslate nohighlight">\(\infty\)</span>:  <span class="math notranslate nohighlight">\(\{ x \in \mathbb{R}^2  \text{ tales que } ||x||_\infty \leq 1\}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#definición de norma infinito</span>
+<span class="n">density_p</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">2.5</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">density_p</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">ind</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">1</span>
+<span class="n">x_p_subset</span><span class="o">=</span><span class="n">x_p</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x_p_subset</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Puntos en el plano que cumplen ||x||_inf &lt;= 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_197_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_197_0.png" />
+</div>
+</div>
+<p>-&gt;La norma <span class="math notranslate nohighlight">\(\infty\)</span> se encuentra en esta familia como límite:</p>
+<div class="math notranslate nohighlight">
+\[||x||_\infty = \displaystyle \lim_{p \rightarrow \infty} ||x||_p.\]</div>
+<p>-&gt;En la norma <span class="math notranslate nohighlight">\(\mathcal{l}_2\)</span> o Euclidiana <span class="math notranslate nohighlight">\(||x||_2\)</span> tenemos una desigualdad muy importante, la desigualdad de <strong>Cauchy-Schwartz</strong>:</p>
+<div class="math notranslate nohighlight">
+\[|x^Ty| \leq ||x||_2||y||_2 \forall x,y \in \mathbb{R}^n\]</div>
+<p>la cual relaciona el producto interno estándar para <span class="math notranslate nohighlight">\(x,y \in \mathbb{R}^n\)</span>: <span class="math notranslate nohighlight">\(&lt;x,y&gt; = x^Ty = \displaystyle \sum_{i=1}^nx_iy_i\)</span> con la norma <span class="math notranslate nohighlight">\(\mathcal{l}_2\)</span> de <span class="math notranslate nohighlight">\(x\)</span> y la norma <span class="math notranslate nohighlight">\(\mathcal{l}_2\)</span> de <span class="math notranslate nohighlight">\(y\)</span>. Además se utiliza lo anterior para definir el ángulo (sin signo) entre <span class="math notranslate nohighlight">\(x,y\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\measuredangle x,y = \cos ^{-1}\left(\frac{x^Ty}{||x||_2||y||_2} \right )\]</div>
+<p>para <span class="math notranslate nohighlight">\(\cos^{-1}(u) \in [0,\pi]\)</span> y se nombra a <span class="math notranslate nohighlight">\(x,y\)</span> ortogonales si <span class="math notranslate nohighlight">\(x^Ty=0\)</span>. Obsérvese que <span class="math notranslate nohighlight">\(||x||_2 = \sqrt{x^Tx}\)</span>.</p>
+<ul class="simple">
+<li><p>También se utilizan matrices* para definir normas</p></li>
+</ul>
+<p>*Matriz: arreglo <span class="math notranslate nohighlight">\(2\)</span>-dimensional de datos o <span class="math notranslate nohighlight">\(2\)</span> arreglo de orden <span class="math notranslate nohighlight">\(2\)</span>. Se utiliza la notación <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span> para denotar:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \left[\begin{array}{cccc}
+a_{11} &amp;a_{12}&amp;\dots&amp;a_{1n}\\
+a_{21} &amp;a_{22}&amp;\dots&amp;a_{2n}\\
+\vdots &amp;\vdots&amp; \vdots&amp;\vdots\\
+a_{n1} &amp;a_{n2}&amp;\dots&amp;a_{nn}\\
+\vdots &amp;\vdots&amp; \vdots&amp;\vdots\\
+a_{m-11} &amp;a_{m-12}&amp;\dots&amp;a_{m-1n}\\
+a_{m1} &amp;a_{m2}&amp;\dots&amp;a_{mm}
+\end{array}
+\right] 
+\end{split}\]</div>
+<p>*<span class="math notranslate nohighlight">\(a_{ij} \mathbb{R} \forall i=1,\dots,m, j=1,\dots,n\)</span>.</p>
+<p>*<span class="math notranslate nohighlight">\(A=(a_1,\dots a_n), a_j \in \mathbb{R}^m (=\mathbb{R}^{m\times1}) \forall j=1,\dots,n\)</span>.</p>
+<p>*<span class="math notranslate nohighlight">\(A=\left ( \begin{array}{c}
+a_1^T\\
+\vdots\\
+a_m^T
+\end{array} \right ), a_i \in \mathbb{R}^n (=\mathbb{R}^{n\times1}) \forall i=1,\dots,m\)</span>.</p>
+<p>Entonces un ejemplo de norma-<span class="math notranslate nohighlight">\(2\)</span> ponderada es: <span class="math notranslate nohighlight">\(\{x \in \mathbb{R}^2 \text{ tales que } ||x||_D \leq 1, ||x||_D = ||Dx||_2, \text{con matriz diagonal } D\}\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">d1</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">5</span>
+<span class="n">d2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">d1</span><span class="o">*</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">d2</span><span class="o">*</span><span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#definición de norma2</span>
+<span class="n">density</span><span class="o">=</span><span class="mf">1e-5</span>
+<span class="n">density_p</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">2.5</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">d1</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="n">d1</span><span class="p">,</span><span class="n">density</span><span class="p">)</span>
+<span class="n">y1</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">d2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">d1</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">y2</span><span class="o">=-</span><span class="mf">1.0</span><span class="o">/</span><span class="n">d2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">d1</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">d1</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="n">d1</span><span class="p">,(</span><span class="n">density_p</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">ind</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">1</span>
+<span class="n">x_p_subset</span><span class="o">=</span><span class="n">x_p</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x_p_subset</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Puntos en el plano que cumplen ||x||_D &lt;= 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_204_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_204_0.png" />
+</div>
+</div>
+<p>en este caso <span class="math notranslate nohighlight">\(D=\left[\begin{array}{cc}
+\frac{1}{5} &amp;0\\
+0 &amp;\frac{1}{3}
+\end{array}\right ]\)</span></p>
+</div>
+</div>
+<div class="section" id="normas-matriciales">
+<h2>Normas matriciales<a class="headerlink" href="#normas-matriciales" title="Permalink to this headline">¶</a></h2>
+<p>La multiplicación de una matriz de tamaño <span class="math notranslate nohighlight">\(m\times n\)</span> por un vector se define como:</p>
+<div class="math notranslate nohighlight">
+\[y=Ax=\displaystyle \sum_{j=1}^n \alpha_jx_j\]</div>
+<p>con <span class="math notranslate nohighlight">\(a_j \in \mathbb{R}^m, x \in \mathbb{R}^n\)</span>. Obsérvese que <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n, Ax \in \mathbb{R}^m\)</span>.</p>
+<p><strong>Inducidas</strong></p>
+<p>De las normas matriciales más importantes se encuentran las <strong>inducidas</strong> por normas vectoriales. Estas normas matriciales se definen en términos de los vectores en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> a los que se les aplica la multiplicación <span class="math notranslate nohighlight">\(Ax\)</span>:</p>
+<p>Dadas las normas vectoriales <span class="math notranslate nohighlight">\(||\cdot||_{(n)}, ||\cdot||_{(m)}\)</span> en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> y <span class="math notranslate nohighlight">\(\mathbb{R}^m\)</span> respectivamente, la norma matricial inducida <span class="math notranslate nohighlight">\(||A||_{(m,n)}\)</span> para <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> es el <strong>menor número</strong> <span class="math notranslate nohighlight">\(C\)</span> para el cual la desigualdad:</p>
+<div class="math notranslate nohighlight">
+\[||Ax||_{(m)} \leq C||x||_{(n)}\]</div>
+<p>se cumple <span class="math notranslate nohighlight">\(\forall x \in \mathbb{R}^n\)</span>. Esto es:</p>
+<div class="math notranslate nohighlight">
+\[||A||_{(m,n)} = \displaystyle \sup_{x \in \mathbb{R}^n} \frac{||Ax||_{(m)}}{||x||_{(n)}}\]</div>
+<p><strong>Comentarios:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(||A||_{(m,n)}\)</span> representa el <strong>máximo</strong> factor por el cual <span class="math notranslate nohighlight">\(A\)</span> puede modificar el tamaño de <span class="math notranslate nohighlight">\(x\)</span> sobre todos los vectores <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>, es una medida de un tipo de <strong>worst case stretch factor</strong>.</p></li>
+<li><p>Así definidas, la norma <span class="math notranslate nohighlight">\(||\cdot||_{(m,n)}\)</span> es la norma matricial inducida por las normas vectoriales <span class="math notranslate nohighlight">\(||\cdot||_{(m)}, ||\cdot||_{(n)}\)</span>.</p></li>
+<li><p>Son definiciones equivalentes:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[||A||_{(m,n)} = \displaystyle \sup_{x \in \mathbb{R}^n} \frac{||Ax||_{(m)}}{||x||_{(n)}} = \displaystyle \sup_{||x||_{(n)} \leq 1} \frac{||Ax||_{(m)}}{||x||_{(n)}} = \displaystyle \sup_{||x||_{(n)}=1} ||Ax||_{(m)}\]</div>
+<p><strong>Ejemplo:</strong></p>
+<p>La matriz <span class="math notranslate nohighlight">\(A=\left[\begin{array}{cc}
+1 &amp;2\\
+0 &amp;2
+\end{array}\right ]\)</span> mapea <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> a <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span>, en particular se tiene:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\)</span> mapea <span class="math notranslate nohighlight">\(e_1 = \left[\begin{array}{c}
+1 \\
+0
+\end{array}\right ]\)</span> a la columna <span class="math notranslate nohighlight">\(a_1 = \left[\begin{array}{c}
+1 \\
+0
+\end{array}\right ]\)</span> de <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> mapea <span class="math notranslate nohighlight">\(e_2 = \left[\begin{array}{c}
+0 \\
+1
+\end{array}\right ]\)</span> a la columna <span class="math notranslate nohighlight">\(a_2 = \left[\begin{array}{c}
+2 \\
+2
+\end{array}\right ]\)</span> de <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ul>
+<p>Considerando <span class="math notranslate nohighlight">\(||A||_p := ||A||_{(p,p)}\)</span> con <span class="math notranslate nohighlight">\(p=1, p=2, p=\infty\)</span> se tiene:</p>
+<img src="https://dl.dropboxusercontent.com/s/3fqz9uspfwdurjf/normas_matriciales.png?dl=0" heigth="500" width="500">
+<p><strong>Comentario:</strong> al observar la segunda gráfica se tiene la siguiente afirmación: la acción de una matriz sobre una circunferencia es una elipse con longitudes de semiejes iguales a <span class="math notranslate nohighlight">\(|d_i|\)</span>. En general la acción de una matriz sobre una hiper esfera es una hiperelipse. Por lo que los vectores unitarios en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> que son más amplificados por la acción de una matriz diagonal <span class="math notranslate nohighlight">\(D \in \mathbb{R}^{m\times n}\)</span> con entradas iguales a <span class="math notranslate nohighlight">\(d_i\)</span> son aquellos que se mapean a los semiejes de una hiperelipse en <span class="math notranslate nohighlight">\(\mathbb{R}^m\)</span> de longitud  igual a <span class="math notranslate nohighlight">\(\max\{|d_i|\}\)</span> y así tenemos: si <span class="math notranslate nohighlight">\(D\)</span> es una matriz diagonal con entradas <span class="math notranslate nohighlight">\(|d_i|\)</span> entonces <span class="math notranslate nohighlight">\(||D||_2 = \displaystyle \max_{i=1,\dots,m}\{|d_i|\}\)</span>.</p>
+<p><strong>Ejemplo con Python para la norma <span class="math notranslate nohighlight">\(1\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">density</span><span class="o">=</span><span class="mf">1e-5</span>
+<span class="n">x1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">density</span><span class="p">)</span>
+<span class="n">x2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">density</span><span class="p">)</span>
+<span class="n">x1_y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">x1</span><span class="p">))</span>
+<span class="n">x2_y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">x2</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="n">x2</span><span class="p">))</span>
+<span class="n">x1_y3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span><span class="n">x1</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">x2_y4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">x2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">x2</span><span class="p">))</span>
+<span class="n">apply_A</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">vec</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">A</span><span class="nd">@np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">vec</span><span class="p">))</span>
+<span class="n">A_to_vector_1</span> <span class="o">=</span> <span class="n">apply_A</span><span class="p">(</span><span class="n">x1_y1</span><span class="p">)</span>
+<span class="n">A_to_vector_2</span> <span class="o">=</span> <span class="n">apply_A</span><span class="p">(</span><span class="n">x2_y2</span><span class="p">)</span>
+<span class="n">A_to_vector_3</span> <span class="o">=</span> <span class="n">apply_A</span><span class="p">(</span><span class="n">x1_y3</span><span class="p">)</span>
+<span class="n">A_to_vector_4</span> <span class="o">=</span> <span class="n">apply_A</span><span class="p">(</span><span class="n">x2_y4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1_y1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x1_y1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">x2_y2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x2_y2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">x1_y3</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x1_y3</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">x2_y4</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x2_y4</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">e1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">x1</span><span class="p">)),</span><span class="n">x1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">e1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">e1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Vectores con norma 1 menor o igual a 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">A_to_vector_1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">A_to_vector_1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">A_to_vector_2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">A_to_vector_2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">A_to_vector_3</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">A_to_vector_3</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">A_to_vector_4</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">A_to_vector_4</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">A_to_vector_e1</span> <span class="o">=</span> <span class="n">apply_A</span><span class="p">(</span><span class="n">e1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">A_to_vector_e1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">A_to_vector_e1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Efecto de la matriz A sobre los vectores con norma 1 menor o igual a 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_217_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_217_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.0
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Ejercicio:</strong> obtener las otras dos gráficas con Python usando norma <span class="math notranslate nohighlight">\(2\)</span> y norma <span class="math notranslate nohighlight">\(\infty\)</span>.</p>
+<p><strong>Resultados computacionales que es posible probar:</strong></p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(||A||_1 = \displaystyle \max_{j=1,\dots,n}\sum_{i=1}^n|a_{ij}|\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(||A||_\infty = \displaystyle \max_{i=1,\dots,n}\sum_{j=1}^n|a_{ij}|\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(||A||_2 = \sqrt{\lambda_{max}(A^TA)} = \max \left \{\sqrt{\lambda}\in \mathbb{R} | \lambda \text{ es eigenvalor de } A^TA \right \} = max \left \{ \sigma \in \mathbb{R} | \sigma \text{ es valor singular de A } \right \} = \sigma_{max}(A)\)</span>.</p></li>
+</ol>
+<p>por ejemplo para la matriz anterior se tiene:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.9208096264818897
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>2.9208096264818897
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Otras normas matriciales:</strong></p>
+<ul class="simple">
+<li><p>Norma de Frobenius: <span class="math notranslate nohighlight">\(||A||_F = \text{tr}(A^TA)^{1/2} = \left ( \displaystyle \sum_{i=1}^m \sum_{j=1}^n a_{ij}^2 \right ) ^{1/2}\)</span>.</p></li>
+<li><p>Norma “sum-absolute-value”: <span class="math notranslate nohighlight">\(||A||_{sav} = \displaystyle \sum_{i=1}^m \sum_{j=1}^n |a_{ij}|\)</span>.</p></li>
+<li><p>Norma “max-absolute-value”: <span class="math notranslate nohighlight">\(||A||_{mav} = \displaystyle \max \left\{|a_{ij}| \text{ para } i=1,\dots,m , j=1,\dots,n \right \}\)</span>.</p></li>
+</ul>
+<p><strong>Comentarios:</strong></p>
+<ul class="simple">
+<li><p>El producto interno estándar en <span class="math notranslate nohighlight">\(\mathbb{R}^{m\times n}\)</span> es: <span class="math notranslate nohighlight">\(&lt;A,B&gt; = tr(A^TB) = \displaystyle \sum_{i=1}^m \sum_{j=1}^n a_{ij}b_{ij}\)</span>.</p></li>
+<li><p>La norma <span class="math notranslate nohighlight">\(2\)</span> (también llamada norma espectral o <span class="math notranslate nohighlight">\(\mathcal{l}_2\)</span>) y la norma de Frobenius cumplen la propiedad de <strong>consistencia</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[||Ax|| \leq ||A|| ||x|| \forall x \in \mathbb{R}^n, \forall A \in \mathbb{R}^{m\times n}.\]</div>
+<div class="math notranslate nohighlight">
+\[||AB|| \leq ||A|| ||B|| \forall A,B \text{ matrices con dimensiones correspondientes para su multiplicación}.\]</div>
+<p><strong>Obs:</strong> de hecho esta propiedad de consistencia también es cumplida por las normas-<span class="math notranslate nohighlight">\(p\)</span> matriciales.</p>
+</div>
+<div class="section" id="nota-sobre-sup">
+<h2>Nota sobre <span class="math notranslate nohighlight">\(\sup\)</span><a class="headerlink" href="#nota-sobre-sup" title="Permalink to this headline">¶</a></h2>
+<p>Si <span class="math notranslate nohighlight">\(C \subseteq \mathbb{R}\)</span> entonces <span class="math notranslate nohighlight">\(a \subseteq \mathbb{R}\)</span> es una <strong>cota superior</strong> en <span class="math notranslate nohighlight">\(C\)</span> si</p>
+<div class="math notranslate nohighlight">
+\[ x \leq a, \forall x \in C.\]</div>
+<p>En <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> el conjunto de cotas superiores es <span class="math notranslate nohighlight">\(\emptyset, \mathbb{R}\)</span> ó un intervalo de la forma <span class="math notranslate nohighlight">\([b,\infty]\)</span>. En el último caso, <span class="math notranslate nohighlight">\(b\)</span> se llama <strong>mínima cota superior o supremo del conjunto</strong> <span class="math notranslate nohighlight">\(C\)</span> y se denota <span class="math notranslate nohighlight">\(\sup C\)</span>. Por convención <span class="math notranslate nohighlight">\(\sup\emptyset = -\infty\)</span> y <span class="math notranslate nohighlight">\(\sup C=\infty\)</span> si <span class="math notranslate nohighlight">\(C\)</span> no es acotado por arriba.</p>
+<p><strong>Obs:</strong> si <span class="math notranslate nohighlight">\(C\)</span> es finito, <span class="math notranslate nohighlight">\(\sup C\)</span> es el máximo de los elementos de <span class="math notranslate nohighlight">\(C\)</span> y típicamente se denota como <span class="math notranslate nohighlight">\(\max C\)</span>.</p>
+<p>Análogamente, <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span> es una <strong>cota inferior</strong> en <span class="math notranslate nohighlight">\(C \subseteq \mathbb{R}\)</span> si
+<span class="math notranslate nohighlight">\($a \leq x, \forall x \in C.\)</span>$</p>
+<p>El <strong>ínfimo o máxima cota inferior</strong> de <span class="math notranslate nohighlight">\(C\)</span> es <span class="math notranslate nohighlight">\(\inf C = -\sup (-C)\)</span>. Por convención <span class="math notranslate nohighlight">\(\inf \emptyset = \infty\)</span> y si <span class="math notranslate nohighlight">\(C\)</span> no es acotado por debajo entonces <span class="math notranslate nohighlight">\(\inf C = -\infty\)</span>.</p>
+<p><strong>Obs:</strong> si <span class="math notranslate nohighlight">\(C\)</span> es finito, <span class="math notranslate nohighlight">\(\inf C\)</span> es el mínimo de sus elementos y se denota como <span class="math notranslate nohighlight">\(\min C\)</span>.</p>
+<p><strong>Ejercicios</strong></p>
+<ol class="simple">
+<li><p>Resuelve los ejercicios y preguntas de la nota.</p></li>
+</ol>
+<p><strong>Preguntas de comprehensión</strong></p>
+<p>1)¿Qué factores influyen en la falta de exactitud de un cálculo?</p>
+<p>2)Menciona <span class="math notranslate nohighlight">\(5\)</span> propiedades que un conjunto debe cumplir para que sea considerado un espacio vectorial.</p>
+<p>3)Menciona las propiedades que debe cumplir una función para que se considere una norma.</p>
+<p>4)¿Qué es una norma matricial inducida?, ¿qué mide una norma matricial inducida?</p>
+<p>5)¿La norma de Frobenius, es una norma matricial inducida?</p>
+<p>6)¿A qué son iguales <span class="math notranslate nohighlight">\(\text{sup}(\emptyset)\)</span>, <span class="math notranslate nohighlight">\(\text{inf}(\emptyset)\)</span> ? (el conjunto <span class="math notranslate nohighlight">\(\emptyset\)</span> es el conjunto vacío)</p>
+<p>7)Si f es un problema mal condicionado, ¿a qué nos referimos? Da ejemplos de problemas bien y mal condicionados.</p>
+<p>8)Si f es un problema que resolvemos con un algoritmo g, ¿qué significa:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>a. que g sea estable?
+
+b. que g sea estable hacia atrás?
+
+c. que g sea inestable?
+</pre></div>
+</div>
+<p>9)¿Qué ventaja(s) se tiene(n) al calcular un error hacia atrás vs calcular un error hacia delante?</p>
+<p><strong>Referencias</strong></p>
+<ol class="simple">
+<li><p>Nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.2.Sistema_de_punto_flotante.ipynb">1.2.Sistema_de_punto_flotante</a></p></li>
+<li><p>L. Trefethen, D. Bau, Numerical linear algebra, SIAM, 1997.</p></li>
+<li><p>G. H. Golub, C. F. Van Loan,Matrix Computations. John Hopkins University Press, 2013</p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./I.computo_cientifico/1.3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../1.2/Sistema_de_punto_flotante.html" title="previous page">1.2 Sistema de punto flotante</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Erick Palacios Moreno<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>
