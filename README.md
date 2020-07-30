@@ -17,7 +17,7 @@ Los módulos del 1 al 3 constituyen *building blocks* para el módulo 4.
 
 \***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
 
-### En el curso de optimización utilizaremos la imagen de [docker](https://www.docker.com/) `palmoreck/` cuya documentación la encuentran \*. 
+### En el curso de optimización utilizaremos la imagen de [docker](https://www.docker.com/) `palmoreck/jupyterlab_opt_c_r_kernel_tidyverse:2.1.4` cuya documentación la encuentran en [aquí](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/opt_c_r_kernel_tidyverse)\*. 
 
 \* Tal imagen de docker se descarga con un `docker pull palmoreck/` desde la terminal una vez hayan instalado docker en sus computadoras. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
 
