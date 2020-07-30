@@ -2,9 +2,9 @@
 
 Este es el repositorio para la materia de "Métodos Numéricos y Optimización (MNO)"  (aka optimización) impartida en la maestría de ciencia de datos del ITAM por el **Prof. Erick Palacios Moreno**, github: [palmoreck](https://github.com/palmoreck).
 
-### Libro con el contenido de los temas en [libro optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/)
-
 ### Dar click en [liga](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) para el temario.
+
+### Libro con el contenido de los temas en [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/)
 
 En esencia el curso sigue un desarrollo de acuerdo al siguiente dibujo:
 
