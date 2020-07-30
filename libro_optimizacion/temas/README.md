@@ -1,3 +1,3 @@
 # Optimización
 
-La
+L
