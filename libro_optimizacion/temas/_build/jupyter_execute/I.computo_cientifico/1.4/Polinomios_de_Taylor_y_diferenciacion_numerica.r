@@ -23,7 +23,9 @@ Documentación de la imagen de docker `palmoreck/jupyterlab_r_kernel:1.1.0` en [
 
 Nota generada a partir de la [liga1](https://www.dropbox.com/s/jfrxanjls8kndjp/Diferenciacion_e_Integracion.pdf?dl=0), [liga2](https://www.dropbox.com/s/mmd1uzvwhdwsyiu/4.3.2.Teoria_de_convexidad_Funciones_convexas.pdf?dl=0) e inicio de [liga3](https://www.dropbox.com/s/ko86cce1olbtsbk/4.3.1.Teoria_de_convexidad_Conjuntos_convexos.pdf?dl=0).
 
-# Problema: ¿Cómo aproximar una función $f$ en un punto $x_1$?
+# 1.4 Polinomios de Taylor y diferenciación numérica
+
+## Problema: ¿Cómo aproximar una función $f$ en un punto $x_1$?
 
 Si $f$ es continuamente diferenciable en $x_0$ y $f^{(1)}, f^{(2)}$ existen y están acotadas en $x_0$ entonces:
 
@@ -53,7 +55,7 @@ Otras aproximaciones a una función se pueden realizar con:
 
 * Interpoladores polinomiales (representación por Vandermonde, Newton, Lagrange).
 
-# Aproximación a una función por el teorema de Taylor
+## Aproximación a una función por el teorema de Taylor
 
 En esta sección se presenta el teorema de Taylor, el cual, bajo ciertas hipótesis nos proporciona una expansión de una función alrededor de un punto. Este teorema será utilizado en **diferenciación e integración numérica**. El teorema es el siguiente:
 
@@ -140,7 +142,7 @@ err_relativo(Aprox_Taylor(x_obj,x0,2),f_x_obj)
 
 **Ejercicio:** Aproximar $f(1)$ con polinomios de Taylor de orden $0,1,2,3,4$ si $f(x)=-0.1x^4-0.15x^3-0.5x^2-0.25x+1.2$ con centro en $x0=0$. Calcula errores relativos de tus aproximaciones. Realiza las gráficas de cada polinomio en el intervalo $[0,1]$ con `ggplot2`. Observa que $R_5(x)$ es cero.
 
-## Teorema de Taylor para una función $f: \mathbb{R}^n \rightarrow \mathbb{R}$
+### Teorema de Taylor para una función $f: \mathbb{R}^n \rightarrow \mathbb{R}$
 
 Sea $f: \mathbb{R}^n \rightarrow \mathbb{R}$ diferenciable en $\text{dom}f$. Si $x_0, x \in \text{dom}f$ y $x_0+t(x-x_0) \in \text{dom}f, \forall t \in (0,1),$  entonces $\forall x \in \text{dom}f$ se tiene $f(x) = P_0(x) + R_0(x)$ donde:
 
@@ -176,7 +178,7 @@ $$f(x) = f(x_0 + h) = \underbrace{f(x_0) + \nabla f(x_0)^Th}_{\textstyle P_1(h)}
 
 Si $f^{(2)}$ es acotada en $\text{dom}f$, escribimos: $R_1(h)=\mathcal{O}(||h||^2)$.
 
-# Diferenciación numérica por diferencias finitas
+## Diferenciación numérica por diferencias finitas
 
 Las fórmulas de aproximación a las derivadas por diferencias finitas pueden obtenerse con los polinomios de Taylor, presentes en el teorema del mismo autor, por ejemplo:
 
@@ -266,7 +268,7 @@ $$\frac{d^2f(x)}{dx} \approx \frac{f(x)-2f(x-h)+f(x-2h)}{h^2} + \mathcal{O}(h)$$
 
 $$\frac{d^2f(x)}{dx} \approx \frac{f(x+h)-2f(x)+f(x-h)}{h^2} + \mathcal{O}(h^2)$$
 
-## Análisis del error por redondeo y truncamiento en aproximación por diferencias finitas hacia delante
+### Análisis del error por redondeo y truncamiento en aproximación por diferencias finitas hacia delante
 
 El ejemplo anterior muestra (vía una gráfica) que el método numérico de diferenciación numérica no es estable numéricamente respecto al redondeo (ver nota [1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb) para definición de estabilidad de un algoritmo) y también se puede corroborar realizando un análisis del error. En esta sección consideramos la aproximación a la primer derivada por diferencias finitas hacia delante:
 
@@ -318,7 +320,7 @@ Con esto se tiene que la diferenciación numérica es un método **inestable num
 
 * Un análisis de error similar se utiliza para el método de diferencias finitas por diferencias centradas para aproximar la primera derivada. En este caso el valor de $h$ que minimiza a los errores es del orden $h^* = 10^{-6}$.
 
-## Diferenciación numérica para una función $f: \mathbb{R}^n \rightarrow \mathbb{R}$
+### Diferenciación numérica para una función $f: \mathbb{R}^n \rightarrow \mathbb{R}$
 
 Supongamos $f$ es dos veces diferenciable en $\text{dom}f$. Si $f: \mathbb{R}^n \rightarrow \mathbb{R}$ entonces su derivada se llama **gradiente**, el cual es una función $\nabla f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ y su segunda derivada se llama **Hessiana**, la cual es una función $f: \mathbb{R}^n \rightarrow \mathbb{R}^{n\times n}$ (ver final de esta nota para definición de derivadas en funciones $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$). Ambas funciones al evaluarse resultan en un vector en $\mathbb{R}^n$ y en una matriz en $\mathbb{R}^{n\times n}$ respectivamente. 
 
@@ -533,7 +535,7 @@ print(c(h[which.min(err_relativo_gf2_res)],h[which.min(err_absoluto_gf2_res)]))
 
 ---
 
-# Definiciones utilizadas en el curso (algunas de ellas...)
+## Definiciones utilizadas en el curso (algunas de ellas...)
 
 Notación: $f: A \rightarrow B$ es una función de un conjunto $\text{dom}f \subseteq A$ en un conjunto $B$.
 
@@ -569,7 +571,7 @@ $$y \in \text{dom}f, ||y-x||_2 \leq \delta \implies ||f(y)-f(x)||_2 \leq \epsilo
 
 **Notación:** $\mathcal{C}([a,b])=\{\text{funciones } f:\mathbb{R} \rightarrow \mathbb{R} \text{ continuas en el intervalo [a,b]}\}$ y $\mathcal{C}(\text{dom}f) = \{\text{funciones } f:\mathbb{R}^n \rightarrow \mathbb{R}^m \text{ continuas en su dominio}\}$.
 
-## Función Diferenciable
+### Función Diferenciable
 
 ### Caso $f: \mathbb{R} \rightarrow \mathbb{R}$
 
@@ -639,7 +641,7 @@ $$\nabla f(x) = Df(x)^T =
 
 * $\mathcal{C}^n(\text{dom}f) = \{\text{funciones } f:\mathbb{R}^n \rightarrow \mathbb{R}^m \text{ con } n \text{ derivadas continuas en su dominio}\}$.
 
-## Regla de la cadena
+### Regla de la cadena
 
 Si $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ es diferenciable en $x\in \text{intdom}f$ y $g:\mathbb{R}^m \rightarrow \mathbb{R}^p$ es diferenciable en $f(x)\in \text{intdom}g$, se define la composición $h:\mathbb{R}^n \rightarrow \mathbb{R}^p$ por $h(z) = g(f(z))$, la cual es diferenciable en $x$, con derivada:
 
@@ -682,7 +684,7 @@ donde: $z=\left[ \begin{array}{c}
     \exp(a_m^Tx+b_m)
     \end{array}\right]$. Por lo tanto $\nabla h(x) = (1^Tz)^{-1}A^Tz$.
 
-## Segunda derivada de una función $f: \mathbb{R}^n \rightarrow \mathbb{R}$.
+### Segunda derivada de una función $f: \mathbb{R}^n \rightarrow \mathbb{R}$.
 
 Sea $f:\mathbb{R}^n \rightarrow \mathbb{R}$. La segunda derivada o matriz **Hessiana** de $f$ en $x \in \text{intdom}f$ existe si $f$ es dos veces diferenciable en $x$, se denota $\nabla^2f(x)$ y sus componentes son segundas derivadas parciales:
 
@@ -717,7 +719,7 @@ $$\displaystyle \lim_{z \rightarrow x, z \neq x} \frac{|f(z)-[f(x)+(\nabla f(x))
     
     * **Importante:** si $f \in \mathcal{C}^2(\text{dom}f)$ entonces la Hessiana es una matriz simétrica.
 
-## Regla de la cadena para la segunda derivada
+### Regla de la cadena para la segunda derivada
 
 **Caso 1:** Sean $f:\mathbb{R}^n \rightarrow \mathbb{R}, g:\mathbb{R} \rightarrow \mathbb{R}, h:\mathbb{R}^n \rightarrow \mathbb{R}$ con  $h(x) = g(f(x))$, entonces: $\nabla^2h(x) = D\nabla h(x)$ y $\nabla h(x)=(Dh(x))^T = (Dg(f(x))Df(x))^T=\frac{dg(x)}{dx}\nabla f(x)$ por lo que:
 
