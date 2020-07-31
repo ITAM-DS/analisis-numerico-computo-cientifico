@@ -17,7 +17,7 @@ Los módulos del 1 al 3 constituyen *building blocks* para el módulo 4.
 
 \***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
 
-### En el curso de optimización utilizaremos la imagen de [docker](https://www.docker.com/) `palmoreck/jupyterlab_opt_c_r_kernel_tidyverse:2.1.4` cuya documentación la encuentran en [aquí](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/opt_c_r_kernel_tidyverse)\*. 
+### En el curso de optimización utilizaremos la imagen de [docker](https://www.docker.com/) `palmoreck/jupyterlab_optimizacion:2.1.4` cuya documentación la encuentran en [aquí](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion)\*. 
 
 \* Tal imagen de docker se descarga con un `docker pull palmoreck/` desde la terminal una vez hayan instalado docker en sus computadoras. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
 
@@ -30,7 +30,7 @@ En este repositorio se han creado diferentes ramas que pueden ser accesadas como
 
 Seleccionar por ejemplo la rama **mno-2018-1** (u otra) para información del curso de MNO de 2018.
 
-**Dar click en [liga](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/mno-2020-1#m%C3%A9todos-num%C3%A9ricos-y-optimizaci%C3%B3n) para la rama del curso del semestre enero-mayo 2020.**
+**Dar click en [liga]() para la rama del curso del semestre agosto-diciembre 2020.**
 
 ## Breve explicación del repositorio en la rama master.
 
@@ -61,8 +61,6 @@ Tenemos otro botón :) Este es de [google colab](https://colab.research.google.c
 Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder) para documentación de las imágenes de [docker](https://www.docker.com/) usadas y en la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder.
 
 Ver [research.google...faq](https://research.google.com/colaboratory/faq.html) y [colab-github-demo](https://github.com/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb) para más información de google colab.
-
-Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [kernels](https://jupyter.readthedocs.io/en/latest/install-kernel.html) disponibles en jupyter.
 
 
 ## Organización de github classroom
