@@ -31,7 +31,7 @@ Los exámenes de teoría se realizan de forma individual y las preguntas de los 
 Se realizarán dos prácticas que evalúan los siguientes temas:
 
 |Tema| Puntos|
-|:---:|:---:|:---:|
+|:---:|:---:|
 |Temas del cómputo científico y del álgebra lineal numérica|15|
 |Temas de optimización|15|
 
