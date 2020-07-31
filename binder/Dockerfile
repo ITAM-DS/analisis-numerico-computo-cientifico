@@ -1,4 +1,5 @@
-FROM palmoreck/jupyterlab_opt_c_r_kernel_tidyverse_binder:2.1.4
+#based in: https://github.com/palmoreck/dockerfiles-for-binder/tree/jupyterlab_optimizacion
+FROM palmoreck/jupyterlab_optimizacion_binder_test:2.1.4
 ARG NB_USER=jovyan
 ARG NB_UID=1000
 ENV USER ${NB_USER}
