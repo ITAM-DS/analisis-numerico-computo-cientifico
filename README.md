@@ -1,17 +1,12 @@
-# analisis-numerico-computo-cientifico.
+# Métodos Numéricos y Optimización.
 
-Este es el repositorio para la materia de "Métodos Numéricos y Optimización (MNO)"  (aka optimización) impartida en la maestría de ciencia de datos del ITAM por el **Prof. Erick Palacios Moreno**, github: [palmoreck](https://github.com/palmoreck).
+Este es el repositorio para la materia de "Métodos Numéricos y Optimización (MNO)"  (aka **Optimización**) impartida en la maestría de ciencia de datos del ITAM por el **Prof. Erick Palacios Moreno**, github: [palmoreck](https://github.com/palmoreck).
 
 ### Dar click en [liga](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) para el temario.
 
-### Libro con el contenido de los temas en [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/)
+### Se ha creado el siguiente libro\* con el contenido de los temas en [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) para su consulta. Este libro seguiremos a lo largo del curso.
 
-En esencia el curso sigue un desarrollo de acuerdo al siguiente dibujo:
-
-<img src="https://dl.dropboxusercontent.com/s/0hqal8ni3d5rbso/curso_MNO.png?dl=0" heigth="300" width="300">
-
-Los módulos del 1 al 3 constituyen *building blocks* para el módulo 4.
-
+\*El libro fue creado con [jupyter book](https://jupyterbook.org/intro.html).
 
 ### Dar click en el siguiente botón para unirse\* al chat del curso de optimización del segundo semestre 2020 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2020-2/community.svg)](https://gitter.im/optimizacion-2020-2/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
@@ -19,7 +14,7 @@ Los módulos del 1 al 3 constituyen *building blocks* para el módulo 4.
 
 ### En el curso de optimización utilizaremos la imagen de [docker](https://www.docker.com/) `palmoreck/jupyterlab_optimizacion:2.1.4` cuya documentación la encuentran en [aquí](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion)\*. 
 
-\* Tal imagen de docker se descarga con un `docker pull palmoreck/` desde la terminal una vez hayan instalado docker en sus computadoras. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
+\* Tal imagen de docker se descarga con un `docker pull palmoreck/jupyterlab_optimizacion:2.1.4` desde la terminal una vez hayan instalado docker en sus computadoras. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
 
 
 ## Ramas del repositorio.
@@ -42,25 +37,23 @@ En la carpeta [C](C) encuentran:
 
 * Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [C/extensiones_a_C/MPI](C/extensiones_a_C/MPI) para [MPI](http://mpi-forum.org/), [C/extensiones_a_C/Phtreads](C/extensiones_a_C/Pthreads) para [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [C/extensiones_a_C/openMP](C/extensiones_a_C/openMP) para [openMP](http://www.openmp.org/) y [C/extensiones_a_C/CUDA](C/extensiones_a_C/CUDA) para [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/).  
 
-* Dentro de [C/extensiones_a_C/CUDA/PyCUDA](C/extensiones_a_C/CUDA/PyCUDA) hay información y ejemplos de uso de [PyCUDA](https://documen.tician.de/pycuda/). También se recomienda revisar el tema de CUDA en [módulo 2 cómputo en paralelo de este repo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico#ii-c%C3%B3mputo-en-paralelo)
+* Dentro de [C/extensiones_a_C/CUDA/PyCUDA](C/extensiones_a_C/CUDA/PyCUDA) hay información y ejemplos de uso de [PyCUDA](https://documen.tician.de/pycuda/). También se recomienda revisar el tema de CUDA en el contenido de cómputo en paralelo.
 
 En el [Wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki) encuentran información sobre [Amazon Web Services](https://aws.amazon.com/es/).
 
-**Normalmente los pull requests no se hacen a la rama `master` salvo haya una modificación a realizar en tal rama (modificación para algún código o contenido por ejemplo).**
+## Sobre las notas. 
 
 Las notas y material de cada tema se encuentran en el directorio [libro_optimizacion/temas/](libro_optimizacion/temas/).
 
-## Sobre las notas. 
-
 Las notas de cada tema están escritas en [Jupyter notebooks](https://jupyter.org/). Ver [I python, You R, We Julia](https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6) para algunas características de tales notebooks. Ver [notebook](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html) para funcionalidad de los notebooks. Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [kernels](https://jupyter.readthedocs.io/en/latest/install-kernel.html) disponibles en jupyter (que hacen posible ejecutar instrucciones en el lenguaje R, por ejemplo, en tales notebooks).
 
-Adicionalmente, algunos temas tienen un botón de [binder](https://mybinder.org/) ![Binder](https://mybinder.org/badge_logo.svg) para ejecutar de forma interactiva el contenido (**ojo: cada botón tiene ambientes de docker distintos por lo que un mismo botón puede no funcionar para notas de temas distintos, p.ej. el botón de la nota 1.2 no funciona para la 1.4**). 
+Durante el primer semestre 2020 se tenían botones\* de [binder](https://mybinder.org/) ![Binder](https://mybinder.org/badge_logo.svg) o de [google colab](https://colab.research.google.com/github/shranith/Colab-intro/blob/master/Colab_intro.ipynb) ![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg) para ejecutar de forma interactiva el contenido (el de Colab ayudó al cómputo en la GPU). Ahora se tiene el botón:
 
-Tenemos otro botón :) Este es de [google colab](https://colab.research.google.com/github/shranith/Colab-intro/blob/master/Colab_intro.ipynb) ![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg) para ejecución de forma interactiva de los notebooks de jupyter en los que se utilizan GPU's para procesamiento. 
+![binder_thebe_screenshot_jupyter_book](https://user-images.githubusercontent.com/3290689/89106057-42855b80-d3ec-11ea-8519-97f32b66570d.png)
 
-Ver [dockerfiles-for-binder](https://github.com/palmoreck/dockerfiles-for-binder) para documentación de las imágenes de [docker](https://www.docker.com/) usadas y en la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder.
+dentro del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) que permite ejecución interactiva de los notebooks vía *binder* y [*thebe*](https://github.com/executablebooks/thebe).
 
-Ver [research.google...faq](https://research.google.com/colaboratory/faq.html) y [colab-github-demo](https://github.com/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb) para más información de google colab.
+\*En la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder y en [research.google...faq](https://research.google.com/colaboratory/faq.html), [colab-github-demo](https://github.com/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb) para más información de google colab.
 
 
 ## Organización de github classroom
