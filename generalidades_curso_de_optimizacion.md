@@ -37,7 +37,7 @@ Se realizarán dos prácticas que evalúan los siguientes temas:
 
 Se utilizarán:
 
-* *github classroom* y tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, *issues*, *milestones*, *projects*).
+* La organización [optimizacion-2020-2-gh-classroom](https://github.com/optimizacion-2020-2-gh-classroom) de *github classroom* y tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, *issues*, *milestones*, *projects*).
 
 * AWS.
 
