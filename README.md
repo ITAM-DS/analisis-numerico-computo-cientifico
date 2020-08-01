@@ -41,9 +41,9 @@ En la carpeta [C](C) encuentran:
 
 En el [Wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki) encuentran información sobre [Amazon Web Services](https://aws.amazon.com/es/).
 
-## Sobre las notas. 
+En el directorio [libro_optimizacion/temas/](libro_optimizacion/temas/) están las notas escritas. 
 
-Las notas y material de cada tema se encuentran en el directorio [libro_optimizacion/temas/](libro_optimizacion/temas/).
+## Sobre las notas. 
 
 Las notas de cada tema están escritas en [Jupyter notebooks](https://jupyter.org/). Ver [I python, You R, We Julia](https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6) para algunas características de tales notebooks. Ver [notebook](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html) para funcionalidad de los notebooks. Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [kernels](https://jupyter.readthedocs.io/en/latest/install-kernel.html) disponibles en jupyter (que hacen posible ejecutar instrucciones en el lenguaje R, por ejemplo, en tales notebooks).
 
