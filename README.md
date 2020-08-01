@@ -47,7 +47,7 @@ Las notas y material de cada tema se encuentran en el directorio [libro_optimiza
 
 Las notas de cada tema están escritas en [Jupyter notebooks](https://jupyter.org/). Ver [I python, You R, We Julia](https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6) para algunas características de tales notebooks. Ver [notebook](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html) para funcionalidad de los notebooks. Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [kernels](https://jupyter.readthedocs.io/en/latest/install-kernel.html) disponibles en jupyter (que hacen posible ejecutar instrucciones en el lenguaje R, por ejemplo, en tales notebooks).
 
-Durante el primer semestre 2020 se tenían botones\* de [binder](https://mybinder.org/) ![Binder](https://mybinder.org/badge_logo.svg) o de [google colab](https://colab.research.google.com/github/shranith/Colab-intro/blob/master/Colab_intro.ipynb) ![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg) para ejecutar de forma interactiva el contenido (el de Colab ayudó al cómputo en la GPU). Ahora se tiene el botón:
+En el primer semestre 2020 se tenían botones\* de [binder](https://mybinder.org/) ![Binder](https://mybinder.org/badge_logo.svg) y de [google colab](https://colab.research.google.com/github/shranith/Colab-intro/blob/master/Colab_intro.ipynb) ![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg) para ejecutar de forma interactiva el contenido (el de Colab ayudó al cómputo en la GPU). Ahora se tiene el botón :rocket: :
 
 ![binder_thebe_screenshot_jupyter_book](https://user-images.githubusercontent.com/3290689/89106057-42855b80-d3ec-11ea-8519-97f32b66570d.png)
 
