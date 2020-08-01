@@ -1,1 +1,0 @@
-Los notebooks contenidos en esta sección representan el análisis realizado a los algoritmos Particle Swarm y Simulated Annealing. En ambos casos se consideraron 6 y 10 nodos. Adicionalmente se muestran los resultados de haber corrido en paralelo Particle Swarm.
