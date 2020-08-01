@@ -8,6 +8,7 @@
     
 * Parte 2: ecuaciones no lineales y optimización:
 
+Dar click en [liga](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) para el temario.
 
 Url del repositorio: https://github.com/ITAM-DS/analisis-numerico-computo-cientifico
 
