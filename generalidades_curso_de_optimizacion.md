@@ -32,8 +32,8 @@ Se realizarán dos prácticas que evalúan los siguientes temas:
 
 |Tema| Puntos|
 |:---:|:---:|
-|Temas del cómputo científico y del álgebra lineal numérica|15|
-|Temas de optimización|15|
+|Temas del Cómputo Científico y del Álgebra Lineal Numérica|15|
+|Temas de Ecuaciones no Lineales y Optimización|15|
 
 Se utilizarán:
 
