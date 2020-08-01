@@ -10,7 +10,7 @@ Repositorio con el material del curso: [analisis-numerico-computo-cientifico](ht
 
 |Exámenes(2)| Prácticas(2)|Proyecto final|
 |:---:|:---:|:---:|
-|15|15|40
+|15|15|40|
 
 
 ### Exámenes
@@ -19,8 +19,8 @@ Se tendrán 2 exámenes de teoría que evalúan los siguientes temas:
 
 |Tema| Puntos| Tipo|
 |:---:|:---:|:---:|
-|Temas del cómputo científico y del álgebra lineal numérica|15|Teórico|
-|Temas de optimización|15|Teórico|
+|Temas del Cómputo Científico y del Álgebra Lineal Numérica|15|Teórico|
+|Temas de Ecuaciones no Lineales y Optimización|15|Teórico|
 
 
 Los exámenes de teoría se realizan de forma individual y las preguntas de los mismos se basan en las preguntas de comprehensión de los temas indicados. 
@@ -39,11 +39,11 @@ Se utilizarán:
 
 * *github classroom* y tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, *issues*, *milestones*, *projects*).
 
-* AWS
+* AWS.
 
-* docker
+* docker.
 
-* Python/R
+* Python/R.
 
 **Las prácticas son a computadora y se espera que no se busque la solución inmediatamente en internet...**
 
