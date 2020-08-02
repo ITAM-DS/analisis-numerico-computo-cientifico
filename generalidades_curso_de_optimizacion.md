@@ -1,5 +1,13 @@
 # Optimización
 
+El curso se apoya de herramientas de software como:
+
+* git/github. Ver [herramientas/git](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/git) para ligas con información.
+
+* docker. Ver [herramientas/docker](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para ligas con información.
+
+Ambas herramientas se utilizan en [bash](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/bash).
+
 **Prof. Erick Palacios Moreno**
 
 correo: erick89.itam@gmail.com, erick.palacios@itam.mx
