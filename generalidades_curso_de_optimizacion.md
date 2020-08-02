@@ -14,6 +14,8 @@ El curso se apoya de herramientas de software como:
 
 * docker. Ver [herramientas/docker](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para ligas con información.
 
+* Lenguajes de programación de Python y R. Ver [curso de verano](https://github.com/ITAM-DS/Propedeutico#%C3%ADndice-de-notas) para información sobre estos lenguajes.
+
 Ambas herramientas se utilizan en [bash](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/bash).
 
 
