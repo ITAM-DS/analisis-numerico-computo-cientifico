@@ -39,6 +39,8 @@ En la carpeta [C](C) encuentran:
 
 * Dentro de [C/extensiones_a_C/CUDA/PyCUDA](C/extensiones_a_C/CUDA/PyCUDA) hay información y ejemplos de uso de [PyCUDA](https://documen.tician.de/pycuda/). También se recomienda revisar el tema de CUDA en el contenido de cómputo en paralelo.
 
+* Dentro de [C/ejercicios_de_C](C/ejercicios_de_C) se tienen ejercicios para practicar en el lenguaje C y están basados en las [C/Clases](C/Clases).
+
 En el [Wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki) encuentran información sobre [Amazon Web Services](https://aws.amazon.com/es/).
 
 En el directorio [libro_optimizacion/temas/](libro_optimizacion/temas/) están las notas escritas. 
@@ -47,16 +49,17 @@ En el directorio [libro_optimizacion/temas/](libro_optimizacion/temas/) están l
 
 Las notas de cada tema están escritas en [Jupyter notebooks](https://jupyter.org/). Ver [I python, You R, We Julia](https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6) para algunas características de tales notebooks. Ver [notebook](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html) para funcionalidad de los notebooks. Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [kernels](https://jupyter.readthedocs.io/en/latest/install-kernel.html) disponibles en jupyter (que hacen posible ejecutar instrucciones en el lenguaje R, por ejemplo, en tales notebooks).
 
-En el primer semestre 2020 se tenían botones\* de [binder](https://mybinder.org/) ![Binder](https://mybinder.org/badge_logo.svg) y de [google colab](https://colab.research.google.com/github/shranith/Colab-intro/blob/master/Colab_intro.ipynb) ![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg) para ejecutar de forma interactiva el contenido (el de Colab ayudó al cómputo en la GPU). Ahora se tiene el botón :rocket: :
+**Interactividad**
+
+Para ejecutar las notas de forma interactiva dar click en el botón de [binder](https://mybinder.org/) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion?urlpath=lab/tree/analisis-numerico-computo-cientifico/) o bien dentro del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) colocarse sobre el ícono :rocket: 
 
 ![binder_thebe_screenshot_jupyter_book](https://user-images.githubusercontent.com/3290689/89106057-42855b80-d3ec-11ea-8519-97f32b66570d.png)
 
-dentro del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) que permite ejecución interactiva de los notebooks vía *binder* y [*thebe*](https://github.com/executablebooks/thebe).
+y elegir una ejecución interactiva de los notebooks vía *binder* o [thebe](https://github.com/executablebooks/thebe).
 
-\*En la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran información de binder y en [research.google...faq](https://research.google.com/colaboratory/faq.html), [colab-github-demo](https://github.com/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb) para más información de google colab.
+\*En la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran más información sobre binder.
 
 
 ## Organización de github classroom
 
-La organización [optimizacion-2020-2-gh-classroom](https://github.com/optimizacion-2020-2-gh-classroom) fue creada para alojar repositorios de [github classroom](https://classroom.github.com/) (ver [github education](https://github.com/education)). Esta organización será nuestro *playground* para el curso de optimización :)
-
+La organización [optimizacion-2020-2-gh-classroom](https://github.com/optimizacion-2020-2-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas. Ver [github education](https://github.com/education) como una referencia.
