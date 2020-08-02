@@ -27,19 +27,9 @@ Seleccionar por ejemplo la rama **mno-2018-1** (u otra) para información del cu
 
 **Dar click en [liga]() para la rama del curso del semestre agosto-diciembre 2020.**
 
+En la rama [lenguajes-de-programacion](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/lenguajes-de-programacion) encuentran contenido en formato de "clases" para aprender lenguajes de programación que me han interesado estudiar.
+
 ## Breve explicación del repositorio en la rama master.
-
-En la carpeta [C](C) encuentran:
-
-* [C/Clases](C/Clases) para introducción al lenguaje C de programación.
-
-* Dentro de [C/BLAS](C/BLAS) y [C/LAPACK](C/LAPACK) se tienen funciones para ejecución de algunas rutinas de [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/) en un sistema ubuntu.
-
-* Dentro de [C/extensiones_a_C/](C/extensiones_a_C) se encuentran las siguientes extensiones al lenguaje de programación C: [C/extensiones_a_C/MPI](C/extensiones_a_C/MPI) para [MPI](http://mpi-forum.org/), [C/extensiones_a_C/Phtreads](C/extensiones_a_C/Pthreads) para [Pthreads](https://computing.llnl.gov/tutorials/pthreads/), [C/extensiones_a_C/openMP](C/extensiones_a_C/openMP) para [openMP](http://www.openmp.org/) y [C/extensiones_a_C/CUDA](C/extensiones_a_C/CUDA) para [CUDA](https://docs.nvidia.com/cuda/cuda-c-programming-guide/).  
-
-* Dentro de [C/extensiones_a_C/CUDA/PyCUDA](C/extensiones_a_C/CUDA/PyCUDA) hay información y ejemplos de uso de [PyCUDA](https://documen.tician.de/pycuda/). También se recomienda revisar el tema de CUDA en el contenido de cómputo en paralelo.
-
-* Dentro de [C/ejercicios_de_C](C/ejercicios_de_C) se tienen ejercicios para practicar en el lenguaje C y están basados en las [C/Clases](C/Clases).
 
 En el [Wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki) encuentran información sobre [Amazon Web Services](https://aws.amazon.com/es/).
 
