@@ -48,7 +48,7 @@ Para las prácticas se utilizarán:
 
 * La organización [optimizacion-2020-2-gh-classroom](https://github.com/optimizacion-2020-2-gh-classroom) de *github classroom* y tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, *issues*, *milestones*, *projects*).
 
-* git/github para la organización de proyectos. Ver por ejemplo [video para crear proyectos en github](https://www.youtube.com/watch?v=AvDiY9YcCdE&list=PLc_ATubXG-SSBl1JtXZHGvKLfyqUs6ETl)
+* git/github para la organización de proyectos. Ver por ejemplo [video para crear proyectos en github](https://youtu.be/z4Xpif7HI04)
 
 * AWS.
 
