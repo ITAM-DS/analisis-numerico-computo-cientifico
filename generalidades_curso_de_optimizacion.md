@@ -1,5 +1,13 @@
 # Optimización
 
+## Prof. Erick Palacios Moreno
+
+correo: erick89.itam@gmail.com, erick.palacios@itam.mx
+
+## Material
+
+Repositorio con el material del curso: [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico)
+
 El curso se apoya de herramientas de software como:
 
 * git/github. Ver [herramientas/git](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/git) para ligas con información.
@@ -8,11 +16,6 @@ El curso se apoya de herramientas de software como:
 
 Ambas herramientas se utilizan en [bash](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/bash).
 
-**Prof. Erick Palacios Moreno**
-
-correo: erick89.itam@gmail.com, erick.palacios@itam.mx
-        
-Repositorio con el material del curso: [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico)
 
 ## Calificación
 
