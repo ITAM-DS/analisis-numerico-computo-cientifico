@@ -10,7 +10,20 @@ Cada equipo realiza una investigación del método numérico elegido para su est
 
 ## Implementación
 
-La implementación de los métodos numéricos es fundamental para el proyecto. Esta implementación utiliza código escrito en R, Python, C o algún otro lenguaje para resolver los objetivos de cada equipo. El código debe crearse dentro de un repositorio en `github`, utilizar `docker` y `AWS`.
+La implementación de los métodos numéricos es fundamental para el proyecto. 
+
+Para el proyecto final se utilizará:
+
+* git/github para la organización de proyectos. Ver por ejemplo [video para crear proyectos en github](https://www.youtube.com/watch?v=AvDiY9YcCdE&list=PLc_ATubXG-SSBl1JtXZHGvKLfyqUs6ETl)
+
+* AWS.
+
+* docker.
+
+* Python/R o algún otro lenguaje de programación.
+
+* Organización del equipo en una forma simplificada del framework [scrum](https://www.youtube.com/watch?v=b02ZkndLk1Y&feature=emb_logo) en tres grupos: grupo de programación, grupo de revisión y una persona *project manager*.
+
 
 Tiene un porcentaje de 40% y la calificación es por equipo. Se entrega el código de la implementación en una liga a ella, más información sobre esta liga en [indicaciones](indicaciones).
 
