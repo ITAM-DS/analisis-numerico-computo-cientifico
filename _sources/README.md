@@ -1,12 +1,8 @@
 # Optimización
 
-* Parte 1: Cómputo Científico y temas del Álgebra Lineal Numérica:
-
-    * Aritmética en el Sistema de Punto Flotante.
-    * Métodos de diferenciación e integración numérica.
-    * Temas del Álgebra Lineal Numérica.
+* Parte 1: Cómputo Científico y temas del Álgebra Lineal Numérica.
     
-* Parte 2: ecuaciones no lineales y Optimización:
+* Parte 2: ecuaciones no lineales y Optimización.
 
 Dar click en [liga](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) para el temario.
 
