@@ -1,6 +1,6 @@
 # Optimización
 
-[Temario](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing)
+### [Temario](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing)
 
 ### El curso, calificación y entregas, correo al cual escribir en el documento [generalidades_curso_de_optimizacion.md](generalidades_curso_de_optimizacion.md)
 
