@@ -16,7 +16,7 @@ Este es el repositorio para la materia de "Métodos Numéricos y Optimización (
 
 ### En el curso de optimización utilizaremos la imagen de [docker](https://www.docker.com/) `palmoreck/jupyterlab_optimizacion:2.1.4` cuya documentación la encuentran en [aquí](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion)\*. 
 
-\* Tal imagen de docker se descarga con un `docker pull palmoreck/jupyterlab_optimizacion:2.1.4` desde la terminal una vez hayan instalado docker en sus computadoras. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
+\* Tal imagen de docker se descarga con un `docker pull palmoreck/jupyterlab_optimizacion:2.1.4` desde la terminal una vez hayan instalado docker en sus computadoras y posteriormente hacer un `docker run` de acuerdo a la documentación de la imagen. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
 
 
 ## Ramas del repositorio.
@@ -28,6 +28,13 @@ En este repositorio se han creado diferentes ramas que pueden ser accesadas como
 Seleccionar por ejemplo la rama **mno-2019-1** (u otra) para información del curso de MNO de 2019.
 
 **Dar click en [liga]() para la rama del curso del semestre agosto-diciembre 2020.**
+
+**Si se desea tener una copia local de los archivos `html` del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) ir a la rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/gh-pages) y descargar en zip o hacer un `git clone --single-branch -b gh-pages https://github.com/ITAM-DS/analisis-numerico-computo-cientifico.git`**:
+
+<img width="320" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89133863-49dc6000-d4e5-11ea-97ed-2ca782820e5c.png">
+
+**Nota: durante este semestre agosto - diciembre 2020 se estarán haciendo cambios continuamente por lo que tendrán que actualizar su descarga o clon**.
+
 
 
 ## Breve explicación del repositorio en la rama master.
@@ -46,7 +53,7 @@ Para ejecutar las notas de forma interactiva dar click en el botón de [binder](
 
 ![binder_thebe_screenshot_jupyter_book](https://user-images.githubusercontent.com/3290689/89106057-42855b80-d3ec-11ea-8519-97f32b66570d.png)
 
-y elegir una ejecución interactiva de los notebooks vía *binder* o [thebe](https://github.com/executablebooks/thebe).
+y elegir una ejecución interactiva de los notebooks vía *binder* o [thebe](https://github.com/executablebooks/thebe) (la ejecución con `thebe` se puede hacer directamente en la liga del libro o si se descargan los archivos a su máquina local también es posible la ejecución (pero requieren conexión a internet en cualquier opción).
 
 \*En la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran más información sobre binder.
 
