@@ -21,7 +21,7 @@ Este es el repositorio para la materia de "Métodos Numéricos y Optimización (
 
 En este repositorio se han creado diferentes ramas que pueden ser accesadas como se aprecia en esta imagen:
 
-![ramas-repo-master-2-08-2020](https://user-images.githubusercontent.com/3290689/89128008-f69fe880-d4b7-11ea-8657-e37eeda089eb.png)
+<img width="320" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89128008-f69fe880-d4b7-11ea-8657-e37eeda089eb.png">
 
 Seleccionar por ejemplo la rama **mno-2018-1** (u otra) para información del curso de MNO de 2018.
 
