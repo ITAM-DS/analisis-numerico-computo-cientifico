@@ -14,7 +14,7 @@ Las clases son los días miércoles.
 
 | Días   | Tema                                                              |
 | :--------:|:-----------------------------------------------------------------:|
-| 22 de enero| Introducción al curso: Análisis numérico y cómputo científico. Inicio de nota de sistema de punto flotante| 
+| "" de ""|""| 
 
 Total de clases: "". Total de número de horas: "" hrs.
 
