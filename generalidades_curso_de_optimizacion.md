@@ -35,7 +35,7 @@ Se tendrán 2 exámenes de teoría que evaluarán los siguientes temas:
 |Tema| Puntos| Tipo|
 |:---:|:---:|:---:|
 |Temas del Cómputo Científico y del Álgebra Lineal Numérica|15|Teórico|
-|Temas de ccuaciones no lineales y Optimización|15|Teórico|
+|Temas de ecuaciones no lineales y Optimización|15|Teórico|
 
 
 Los exámenes de teoría se realizan de forma individual y las preguntas de los mismos se basan en las preguntas de comprehensión de los temas indicados. 
@@ -48,7 +48,7 @@ Se realizarán dos prácticas por equipos (quiénes y cuántos integrantes se de
 |Tema| Puntos|
 |:---:|:---:|
 |Temas del Cómputo Científico y del Álgebra Lineal Numérica|15|
-|Temas de Ecuaciones no Lineales y Optimización|15|
+|Temas de ecuaciones no lineales y Optimización|15|
 
 **La fecha de entrega de las prácticas se determinará conforme avancemos en el curso pero un buen indicador es que vayamos terminando los temas.**
 
