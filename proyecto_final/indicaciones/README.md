@@ -1,6 +1,6 @@
 # Indicaciones
 
-Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo individual. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante los sábados de los meses de abril y mayo en los que se deberá exponer lo que han realizado.
+Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante los "" de los meses de "" y "" en los que se deberá exponer lo que han realizado.
 
 En el nivel:  
 
@@ -16,37 +16,36 @@ El archivo [README.md](../proyectos) debajo del nivel:
 
 es un archivo de control para la lista de proyectos y **únicamente lo actualiza/modifica el prof.** con comentarios para sus avances, títulos y objetivos de su proyectos y ligas hacia sus avances, trabajo escrito, presentación e implementación de su proyecto.
 
-*Las ligas hacia el trabajo escrito y presentación son hacia otro lado (p.ej. una liga de dropbox/gdrive en donde tienen `pdfs` o hacia repos del equipo) y no hacia directorios dentro del repositorio de la materia. Así evitamos tener archivos grandes en este repo :) y la liga hacia la implementación **sí** es al repo.
+**Las ligas hacia el trabajo escrito y presentación son hacia otro lado (p.ej. una liga de dropbox/gdrive en donde tienen `pdfs` o hacia repos del equipo) y no hacia directorios dentro del repositorio de la materia. Así evitamos tener archivos grandes en este repo :) y la liga hacia la implementación sí es al repo**.
 
 * **Ojo:** deben entregarse los 4 rubros: implementación, trabajo escrito, presentación y avances para que se considere válido el proyecto final. Si alguno de estos rubros no es entregado en tiempo y forma se tendrá 0 en el proyecto final.
 
-* **Ojo:** Si un equipo no presenta avance alguno en las fechas de los sábados de abril y mayo que se les pide asistan, tendrán 0 en el rubro de avances y por tanto 0 en el proyecto final. 
+* **Ojo:** Si un equipo no presenta avance alguno en las fechas de los "" de "" y "" que se les pide asistan, tendrán 0 en el rubro de avances y por tanto 0 en el proyecto final. 
 
- ## Fechas de los sábados de abril y mayo en los que los equipos tendrán que presentar avances  del proyecto:
+ ## Fechas de los "" de "" y "" en los que los equipos tendrán que presentar avances  del proyecto:
 
-* 25 de abril.
+* "" de "".
 
-* 9 de mayo.
+* "" de "".
 
-* 16 de mayo. 
+* "" de "". 
 
 
 El proyecto final se presenta en la segunda semana de finales.
 
 
-### Asignación de equipos en las fechas anteriores:
+### Asignación de fechas para presentar avances:
 
-El prof les envía la liga de la reunión por Jitsi o Teams.
+La presentación ser realiza por Teams 
 
 ||||
 |:---:|:---:|:---:|
 |Fechas|Equipos|Horario|
-|25 de abril|6 y 8|8 a 8:45 am|
-|25 de abril|9|9 a 9:45 am|
-|9 de mayo|1 y 4|8 a 8:45 am|
-|9 de mayo|5|9 a 9:45 am|
-|16 de mayo|2 y 3|8 a 8:45 am|
-|16 de mayo|7|9 a 9:45 am|
+|"" de ""|""|"" a "" am|
+|"" de ""|""|"" a "" am|
+|"" de ""|""|"" a "" am|
+|"" de ""|""|"" a "" am|
+
 
 
 

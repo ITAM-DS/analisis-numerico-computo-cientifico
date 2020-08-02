@@ -1,6 +1,6 @@
 # Objetivo
 
-Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de un método numérico en su forma en paralelo para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como análisis numérico y cómputo científico, inteligencia artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
+Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de un método numérico para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
 
 # Descripción
 
@@ -23,7 +23,7 @@ Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega **una se
 
 ## Presentación
 
-Se realiza una presentación entre 20 y 30 min por cada equipo para reporte sobre el trabajo realizado y resultados. En esta presentación no se entra en detalles sobre los métodos, sólo cuestiones generales. No se sube al repo del curso, pero se proporciona una liga al mismo, más información sobre esta liga en [indicaciones](indicaciones).
+Se realiza una presentación por cada equipo para reporte sobre el trabajo realizado y resultados. En esta presentación no se entra en detalles sobre los métodos, sólo cuestiones generales. No se sube al repo del curso, pero se proporciona una liga al mismo, más información sobre esta liga en [indicaciones](indicaciones).
 
 
 Tiene dos calificaciones 10% de forma individual y 5% para el equipo. Se realiza en la fecha del examen final determinada por control escolar. 
@@ -76,4 +76,4 @@ La siguiente lista no pretende ser exhaustiva.
 
 * Algoritmos basados en árboles o grafos.
 
- **Los métodos numéricos deben ser utilizados en problemas de optimización numérica y en aplicaciones detalladas al inicio.**
+ **Los métodos numéricos deben ser utilizados en problemas de optimización numérica y en aplicaciones de áreas detalladas al inicio.**
