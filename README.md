@@ -29,9 +29,9 @@ Seleccionar por ejemplo la rama **mno-2019-1** (u otra) para información del cu
 
 **Dar click en [liga]() para la rama del curso del semestre agosto-diciembre 2020.**
 
-**Si se desea tener una copia local de los archivos `html` del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) ir a la rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/gh-pages) y descargar en zip o hacer un `git clone --single-branch -b gh-pages https://github.com/ITAM-DS/analisis-numerico-computo-cientifico.git`**:
+**Si se desea tener una copia local de los archivos `html` del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) ir a la rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/gh-pages) y descargar en zip o hacer un `git clone --single-branch -b gh-pages https://github.com/ITAM-DS/analisis-numerico-computo-cientifico.git` como se aprecia en la siguiente imagen**:
 
-<img width="320" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89133863-49dc6000-d4e5-11ea-97ed-2ca782820e5c.png">
+<img width="500" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89133863-49dc6000-d4e5-11ea-97ed-2ca782820e5c.png">
 
 **Nota: durante este semestre agosto - diciembre 2020 se estarán haciendo cambios continuamente por lo que tendrán que actualizar su descarga o clon**.
 
