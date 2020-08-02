@@ -27,7 +27,6 @@ Seleccionar por ejemplo la rama **mno-2019-1** (u otra) para información del cu
 
 **Dar click en [liga]() para la rama del curso del semestre agosto-diciembre 2020.**
 
-En la rama [lenguajes-de-programacion](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/lenguajes-de-programacion) encuentran contenido en formato de "clases" para aprender lenguajes de programación que me han interesado estudiar.
 
 ## Breve explicación del repositorio en la rama master.
 
