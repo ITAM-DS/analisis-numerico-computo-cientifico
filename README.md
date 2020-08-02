@@ -23,7 +23,7 @@ En este repositorio se han creado diferentes ramas que pueden ser accesadas como
 
 <img width="320" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89128008-f69fe880-d4b7-11ea-8657-e37eeda089eb.png">
 
-Seleccionar por ejemplo la rama **mno-2018-1** (u otra) para información del curso de MNO de 2018.
+Seleccionar por ejemplo la rama **mno-2019-1** (u otra) para información del curso de MNO de 2019.
 
 **Dar click en [liga]() para la rama del curso del semestre agosto-diciembre 2020.**
 
