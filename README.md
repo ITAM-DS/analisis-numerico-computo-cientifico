@@ -4,6 +4,8 @@ Este es el repositorio para la materia de "Métodos Numéricos y Optimización (
 
 ### Dar click en [liga](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) para el temario.
 
+### Dar click en [liga2](https://hackmd.io/@palmoreck/Hkr5rVQ-v) para una presentación de introducción al curso de optimización 2020.
+
 ### Se ha creado el siguiente libro\* con el contenido de los temas en [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) para su consulta. Este libro seguiremos a lo largo del curso.
 
 \*El libro fue creado con [jupyter book](https://jupyterbook.org/intro.html).
