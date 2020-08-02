@@ -43,6 +43,7 @@ Se realizarán dos prácticas por equipos (quiénes y cuántos integrantes se de
 |Temas del Cómputo Científico y del Álgebra Lineal Numérica|15|
 |Temas de Ecuaciones no Lineales y Optimización|15|
 
+**La fecha de entrega de las prácticas se determinará conforme avancemos en el curso pero un buen indicador es que vayamos terminando los temas.**
 
 Para las prácticas se utilizarán:
 
@@ -81,7 +82,9 @@ Para el proyecto final se utilizará:
 
 * Organización del equipo en una forma simplificada del framework [scrum](https://www.youtube.com/watch?v=b02ZkndLk1Y&feature=emb_logo) en tres grupos: grupo de programación, grupo de revisión y una persona *project manager*.
 
-El proyecto se entrega y presenta el día del examen final (asignado por control escolar). Más información se encuentra en la carpeta [proyecto_final](proyecto_final).
+**El proyecto se entrega y presenta el día del examen final (asignado por control escolar).**
+
+Más información se encuentra en la carpeta [proyecto_final](proyecto_final).
 
 Todas las personas de un equipo deben participar en la realización del proyecto final pues reciben una calificación individual.
 
