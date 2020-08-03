@@ -95,8 +95,11 @@ Más información se encuentra en la carpeta [proyecto_final](proyecto_final).
 
 Todas las personas de un equipo deben participar en la realización del proyecto final pues reciben una calificación individual.
 
-
-# Sobre lo que no deben realizar nunca
+# Sobre lo que nunca deben realizar
 
 **Copiar en un examen/tarea/trabajo/entrega pues se pondrá cero en el mismo. Si vuelve a repetirse la situación se le notificará a dirección escolar para realizar la anotación correspondiente en su expediente.**
+
+# Sobre lo que siempre deben realizar
+
+**Documentar sus referencias, fuentes, colaboraciones y material que utilizan para resolver sus exámenes, prácticas o proyectos.**
 
