@@ -1,6 +1,6 @@
 # Optimización
 
-* Parte 1: Cómputo Científico y temas del Álgebra Lineal Numérica.
+* Parte 1: temas del cómputo Científico y del Álgebra Lineal Numérica.
     
 * Parte 2: ecuaciones no lineales y Optimización.
 
