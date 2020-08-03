@@ -79,7 +79,7 @@ Se aceptan propuestas de métodos o temas de optimización por parte de los equi
 
 Para el proyecto final se utilizará:
 
-* git/github para la organización de proyectos. Ver por ejemplo [video para crear proyectos en github](https://www.youtube.com/watch?v=AvDiY9YcCdE&list=PLc_ATubXG-SSBl1JtXZHGvKLfyqUs6ETl)
+* git/github para la organización de proyectos. Ver por ejemplo [video para crear proyectos en github](https://youtu.be/z4Xpif7HI04)
 
 * AWS.
 
