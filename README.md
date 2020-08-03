@@ -17,11 +17,11 @@ Las clases son los días miércoles.
 | Semana 1 (5 - 7 de agosto)| Introducción a generalidades del curso. Análisis Numérico y Cómputo Científico. Sistema de punto flotante.| 
 | Semana 2 (10 - 14 de agosto) | Continuación de sistema de punto flotante. Normas vectoriales y matriciales.|
 | Semana 3 (17 - 21 de agosto) | Condición de un problema y estabilidad de un algoritmo.|
-| Semana 4 (24 - 28 de agosto) | Revisión de creación de cuentas en AWS, dudas generales y compartir video para configuraciones básicas.|
+| Semana 4 (24 - 28 de agosto) | Revisión de creación de cuentas en AWS, dudas generales y discusión video para configuraciones básicas.|
 | Semana 5 (31 de agosto a 4 septiembre) | Continuación de condición de un problema y estabilidad de un algoritmo.|
 | Semana 6 (7 - 11 de septiembre) | Definiciones de funciones, derivadas. Métodos de diferenciación numérica.|
 | Semana 7 (14 - 18 de septiembre) | (Asueto) |
-| Semana 8 (21 - 25 de septiembre) | Revisión de dudas en AWS, compartir segundo video para configuraciones básicas.|
+| Semana 8 (21 - 25 de septiembre) | Revisión de dudas en AWS, discusión segundo video para configuraciones básicas.|
 | Semana 9 (28 de septiembre - 2 de octubre) | Métodos de integración numérica.|
 | Semana 10 (5 - 9 de octubre) | Transformaciones en el Álgebra lineal numérica y factorización QR.|
 | Semana 11 (12 - 16 de octubre) | Métodos para aproximación de eigenvalores y eigenvectores.|
