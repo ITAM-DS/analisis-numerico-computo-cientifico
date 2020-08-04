@@ -1,0 +1,1150 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Integración Numérica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="1.6 Polinomios de Taylor y diferenciación numérica" href="../1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../README.html">
+   Optimización
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  I. Cómputo científico
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.1/Analisis_numerico_y_computo_cientifico.html">
+   1.1 Análisis numérico y cómputo científico
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.2/Sistema_de_punto_flotante.html">
+   1.2 Sistema de punto flotante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.3/Normas_vectoriales_y_matriciales.html">
+   1.3 Normas vectoriales y matriciales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html">
+   1.4 Condición de un problema y estabilidad de un algoritmo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.5/Definicion_de_funcion_derivada_de_una_funcion_y_otros.html">
+   1.5 Definición de función, derivada de una función y otros
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html">
+   1.6 Polinomios de Taylor y diferenciación numérica
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Integración Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#integracion-por-el-metodo-de-monte-carlo">
+   Integración por el método de Monte Carlo
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/I.computo_cientifico/1.7/Integracion_numerica.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/I.computo_cientifico/1.7/Integracion_numerica.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#newton-cotes">
+   Newton-Cotes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regla-simple-del-rectangulo">
+     Regla simple del rectángulo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regla-compuesta-del-rectangulo">
+     Regla compuesta del rectángulo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regla-compuesta-del-trapecio">
+     Regla compuesta del trapecio
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regla-compuesta-de-simpson">
+     Regla compuesta de Simpson
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><strong>Notas para contenedor de docker:</strong></p>
+<p>Comando de docker para ejecución de la nota de forma local:</p>
+<p>nota: cambiar <code class="docutils literal notranslate"><span class="pre">&lt;ruta</span> <span class="pre">a</span> <span class="pre">mi</span> <span class="pre">directorio&gt;</span></code> por la ruta de directorio que se desea mapear a <code class="docutils literal notranslate"><span class="pre">/datos</span></code> dentro del contenedor de docker.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">&lt;</span><span class="n">ruta</span> <span class="n">a</span> <span class="n">mi</span> <span class="n">directorio</span><span class="o">&gt;</span><span class="p">:</span><span class="o">/</span><span class="n">datos</span> <span class="o">--</span><span class="n">name</span> <span class="n">jupyterlab_optimizacion</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8888</span><span class="p">:</span><span class="mi">8888</span> <span class="o">-</span><span class="n">d</span> <span class="n">palmoreck</span><span class="o">/</span><span class="n">jupyterlab_optimizacion</span><span class="p">:</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">4</span>
+</pre></div>
+</div>
+<p>password para jupyterlab: <code class="docutils literal notranslate"><span class="pre">qwerty</span></code></p>
+<p>Detener el contenedor de docker:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">stop</span> <span class="n">jupyterlab_optimizacion</span>
+</pre></div>
+</div>
+<p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab_optimizacion:2.1.4</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion">liga</a>.</p>
+<hr class="docutils" />
+<p>Nota generada a partir de la <a class="reference external" href="https://www.dropbox.com/s/jfrxanjls8kndjp/Diferenciacion_e_Integracion.pdf?dl=0">liga1</a> y <a class="reference external" href="https://www.dropbox.com/s/k3y7h9yn5d3yf3t/Integracion_por_Monte_Carlo.pdf?dl=0">liga2</a>.</p>
+<p>Los métodos revisados en esta nota de integración numérica serán utilizados más adelante para revisión de herramientas en Python para <strong>perfilamiento de código: uso de cpu y memoria</strong>. También serán referidos en el capítulo de <strong>cómputo en paralelo</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="integracion-numerica">
+<h1>Integración Numérica<a class="headerlink" href="#integracion-numerica" title="Permalink to this headline">¶</a></h1>
+<p>En lo siguiente consideramos que las funciones del integrando están en <span class="math notranslate nohighlight">\(\mathcal{C}^2\)</span> en el conjunto de integración (ver final de nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb">Polinomios de Taylor y diferenciacion numerica</a> para definición de <span class="math notranslate nohighlight">\(\mathcal{C}^2\)</span>).</p>
+<p>Las reglas o métodos por cuadratura nos ayudan a aproximar integrales con sumas de la forma:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \int_a^bf(x)dx \approx \displaystyle \sum_{i=0}^nw_if(x_i)\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(w_i\)</span> es el peso para el nodo <span class="math notranslate nohighlight">\(x_i\)</span>, <span class="math notranslate nohighlight">\(f\)</span> se llama integrando y <span class="math notranslate nohighlight">\([a,b]\)</span> intervalo de integración. Los valores <span class="math notranslate nohighlight">\(f(x_i)\)</span> se asumen conocidos.</p>
+<p>Todas las reglas o métodos por cuadratura se obtienen con interpoladores polinomiales del integrando (por ejemplo usando la representación de Lagrange) o también con el teorema Taylor (ver nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb">Polinomios de Taylor y diferenciacion numerica</a> para éste teorema).</p>
+<p>Se realizan aproximaciones numéricas por:</p>
+<ul class="simple">
+<li><p>Desconocimiento de la función en todo el intervalo <span class="math notranslate nohighlight">\([a,b]\)</span> y sólo se conoce en los nodos su valor.</p></li>
+<li><p>Inexistencia de antiderivada o primitiva del integrando. Por ejemplo:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\displaystyle \int_a^be^{-\frac{x^2}{2}}dx\]</div>
+<p>Dependiendo de la ubicación de los nodos y pesos es el método de cuadratura que resulta:</p>
+<ul class="simple">
+<li><p>Newton-Cotes si los nodos y pesos son equidistantes como la regla del rectángulo, trapecio y Simpson (con el teorema de Taylor o interpolación es posible obtener tales fórmulas).</p></li>
+<li><p>Cuadratura Gaussiana si se desea obtener reglas o fórmulas que tengan la mayor exactitud posible. Ejemplos de este tipo de cuadratura se tiene la regla por cuadratura Gauss-Legendre en [-1,1] o Gauss-Hermite para el caso de integrales en <span class="math notranslate nohighlight">\([-\infty, \infty]\)</span> con integrando <span class="math notranslate nohighlight">\(e^{-x^2}f(x)\)</span>.</p></li>
+</ul>
+<p><strong>Comentario:</strong></p>
+<p>Los métodos de integración numérica por Newton-Cotes o cuadratura Gaussiana pueden extenderse a más dimensiones, sin embargo incurren en lo que se conoce como la <strong>maldición de la dimensionalidad</strong> que para el caso de integración numérica consiste en la gran cantidad de evaluaciones que deben realizarse de la función del integrando para tener una exactitud pequeña, por ejemplo con un número de nodos igual a <span class="math notranslate nohighlight">\(10^4\)</span>, una distancia entre ellos de <span class="math notranslate nohighlight">\(.1\)</span> y una integral en <span class="math notranslate nohighlight">\(4\)</span> dimensiones para la regla por Newton Cotes del rectángulo, se obtiene una exactitud de <span class="math notranslate nohighlight">\(2\)</span> dígitos. Como alternativa a los métodos por cuadratura anteriores para las integrales de más dimensiones se tienen los <strong>métodos de integración por el método Monte Carlo</strong> que generan aproximaciones con una exactitud moderada (del orden de <span class="math notranslate nohighlight">\(\mathcal{O}(n^{-1/2})\)</span> con <span class="math notranslate nohighlight">\(n\)</span> número de nodos) para un número de puntos moderado independiente de la dimensión.</p>
+<div class="section" id="newton-cotes">
+<h2>Newton-Cotes<a class="headerlink" href="#newton-cotes" title="Permalink to this headline">¶</a></h2>
+<p>Si el conjunto de nodos <span class="math notranslate nohighlight">\(x_i, i=0,1,\dots,n\)</span> cumple <span class="math notranslate nohighlight">\(x_{i+1}-x_i=h, \forall i=0,1,\dots,n-1\)</span> con <span class="math notranslate nohighlight">\(h\)</span> (espaciado) constante y se aproxima la función del integrando <span class="math notranslate nohighlight">\(f\)</span> con un polinomio en <span class="math notranslate nohighlight">\((x_i,f(x_i)) \forall i=0,1,\dots,n\)</span> entonces se tiene un método de integración numérica por Newton-Cotes (o reglas o fórmulas por Newton-Cotes).</p>
+<img src="https://dl.dropboxusercontent.com/s/baf7eauuwm347zk/integracion_numerica.png?dl=0" heigth="500" width="500"><p>En el dibujo: a),b) y c) se integra numéricamente por Newton-Cotes. d) es por cuadratura Gaussiana.</p>
+<p><strong>Comentario:</strong> si la fórmula por Newton-Cotes involucra el valor de la función en los extremos se llama cerrada, si no los involucra se les llama abiertas. En el dibujo d) es abierta.</p>
+<p>El dibujo anterior muestra que puede subdivirse el intervalo de integración en una mayor cantidad de subintervalos, lo cual para la función <span class="math notranslate nohighlight">\(f\)</span> mostrada es benéfico pues se tiene mejor aproximación (en la práctica esto será bueno? recuérdese los errores de redondeo de la nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.2/Sistema_de_punto_flotante.ipynb">Sistema de punto flotante</a>). Los métodos que utilizan la idea anterior de dividir en subintervalos se les conoce como <strong>métodos de integración numérica compuestos</strong> en contraste con los simples.</p>
+<p><strong>Comentario:</strong> Para las reglas compuestas se divide el intervalo <span class="math notranslate nohighlight">\([a,b]\)</span> en <span class="math notranslate nohighlight">\(n\)</span> subinteralos <span class="math notranslate nohighlight">\([x_{i-1},x_i], i=1,\dots,n\)</span> con <span class="math notranslate nohighlight">\(x_0=a&lt;x_1&lt;\dots&lt;x_{n-1}&lt;x_n=b\)</span> y se considera una partición regular, esto es: <span class="math notranslate nohighlight">\(x_i-x_{i-1}=\hat{h}\)</span> con <span class="math notranslate nohighlight">\(\hat{h}=\frac{h}{n}\)</span> y <span class="math notranslate nohighlight">\(h=b-a\)</span>. En este contexto se realiza la aproximación:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \int_a^bf(x)dx = \sum_{i=1}^n\int_{x_{i-1}}^{x_i}f(x)dx.\]</div>
+<p>Para las siguientes reglas se considerará la función <span class="math notranslate nohighlight">\(f(x)=e^{-x^2}\)</span> la cual tiene una forma:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">.</span><span class="mi">01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;f(x)=exp(-x^2)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Integracion_numerica_25_0.png" src="../../_images/Integracion_numerica_25_0.png" />
+</div>
+</div>
+<p>El valor de la integral <span class="math notranslate nohighlight">\(\int_0^1e^{-x^2}dx\)</span> es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(0.7468241328124271, 8.291413475940725e-15)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Obs:</strong> el segundo valor regresado <code class="docutils literal notranslate"><span class="pre">err</span></code>, es una cota superior del error.</p>
+<div class="section" id="regla-simple-del-rectangulo">
+<h3>Regla simple del rectángulo<a class="headerlink" href="#regla-simple-del-rectangulo" title="Permalink to this headline">¶</a></h3>
+<p>Denotaremos a esta regla como <span class="math notranslate nohighlight">\(Rf\)</span>. En este caso se aproxima el integrando <span class="math notranslate nohighlight">\(f\)</span> por un polinomio de grado <strong>cero</strong> con nodo en <span class="math notranslate nohighlight">\(x_1 = \frac{a+b}{2}\)</span>. Entonces:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \int_a^bf(x)dx \approx \int_a^bf(x_1)dx = (b-a)f(x_1)=(b-a)f\left( \frac{a+b}{2} \right ) = hf(x_1)\]</div>
+<p>con <span class="math notranslate nohighlight">\(h=b-a, x_1=\frac{a+b}{2}\)</span>.</p>
+<img src="https://dl.dropboxusercontent.com/s/mzlmnvgnltqamz3/rectangulo_simple.png?dl=0" heigth="200" width="200">
+<p><strong>Ejemplo de implementación de regla simple de rectángulo: usando math</strong></p>
+<p>Utilizar la regla simple del rectángulo para aproximar la integral <span class="math notranslate nohighlight">\(\displaystyle \int_0^1e^{-x^2}dx\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#using math library</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Rf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">nodo</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span> <span class="c1">#mid point formula to minimize rounding errors</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">nodo</span><span class="p">)</span> <span class="c1">#polinomio de grado cero</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7788007830714049
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="regla-compuesta-del-rectangulo">
+<h3>Regla compuesta del rectángulo<a class="headerlink" href="#regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h3>
+<p>En cada subintervalo construído como <span class="math notranslate nohighlight">\([a_{i-1},a_i]\)</span> con <span class="math notranslate nohighlight">\(i=1,\dots,n\)</span> se aplica la regla simple <span class="math notranslate nohighlight">\(Rf\)</span>, esto es:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \int_{a_{i-1}}^{a_i}f(x)dx \approx R_i(f) \forall i=1,\dots,n.\]</div>
+<p>De forma sencilla se puede ver que la regla compuesta del rectángulo <span class="math notranslate nohighlight">\(R_c(f)\)</span> se escribe:</p>
+<div class="math notranslate nohighlight">
+\[R_c(f) = \displaystyle \sum_{i=1}^n(a_i-a_{i-1})f\left( \frac{a_i+a_{i-1}}{2}\right) = \frac{h}{n}\sum_{i=1}^nf\left( \frac{a_i+a_{i-1}}{2}\right)\]</div>
+<p>con <span class="math notranslate nohighlight">\(h=b-a\)</span> y <span class="math notranslate nohighlight">\(n\)</span> número de subintervalos.</p>
+<img src="https://dl.dropboxusercontent.com/s/j2wmiyoms7gxrzp/rectangulo_compuesto.png?dl=0" heigth="200" width="200">
+<p><strong>Nota:</strong> Los nodos para el caso del rectángulo se obtienen con la fórmula: <span class="math notranslate nohighlight">\(x_i = a +(i+\frac{1}{2})\hat{h}, \forall i=0,\dots,n-1, \hat{h}=\frac{h}{n}\)</span>.</p>
+<p><strong>Ejemplo de implementación de regla compuesta de rectángulo: usando math</strong></p>
+<p>Utilizar la regla compuesta del rectángulo para aproximar la integral <span class="math notranslate nohighlight">\(\int_0^1e^{-x^2}dx\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#using math library</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span> <span class="c1">#Rcf: rectángulo compuesto para f</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute numerical approximation using rectangle or mid-point method in </span>
+<span class="sd">    an interval.</span>
+<span class="sd">    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for i=0,1,...,n-1 and h_hat=(b-a)/n</span>
+<span class="sd">    Args:</span>
+<span class="sd">        f (lambda expression): lambda expression of integrand</span>
+<span class="sd">        a (int): left point of interval</span>
+<span class="sd">        b (int): right point of interval</span>
+<span class="sd">        n (int): number of subintervals</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Rcf (float) </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">nodes</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+        <span class="n">sum_res</span><span class="o">=</span><span class="n">sum_res</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_1</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">aprox_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7788007830714049
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_2</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">aprox_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7545979437721995
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_2</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">aprox_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7545979437721995
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_3</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">aprox_3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.746824163469049
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y se puede evaluar el error de aproximación con el error relativo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">err_relativo</span><span class="p">(</span><span class="n">aprox</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">aprox</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="c1">#obsérvese el uso de la librería math</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">(</span><span class="n">err_relativo</span><span class="p">(</span><span class="n">aprox_1</span><span class="p">,</span><span class="n">obj</span><span class="p">),</span> <span class="n">err_relativo</span><span class="p">(</span><span class="n">aprox_2</span><span class="p">,</span><span class="n">obj</span><span class="p">),</span> <span class="n">err_relativo</span><span class="p">(</span><span class="n">aprox_3</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(0.04281684114646715, 0.010409158754012628, 4.1049318789768585e-08)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Pregunta: será el método del rectángulo un método estable numéricamente bajo el redondeo?</strong> Ver nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb">Condicion de un problema y estabilidad de un algoritmo</a> para definición de estabilidad numérica de un algoritmo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_4</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">aprox_4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7468241328154887
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_relativo</span><span class="p">(</span><span class="n">aprox_4</span><span class="p">,</span><span class="n">obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.099426997862257e-12
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al menos para este ejemplo con <span class="math notranslate nohighlight">\(10^5\)</span> nodos parece ser numéricamente estable…</p>
+</div>
+<div class="section" id="regla-compuesta-del-trapecio">
+<h3>Regla compuesta del trapecio<a class="headerlink" href="#regla-compuesta-del-trapecio" title="Permalink to this headline">¶</a></h3>
+<img src="https://dl.dropboxusercontent.com/s/4dl2btndrftdorp/trapecio_compuesto.png?dl=0" heigth="200" width="200">
+<p>En cada subintervalo se aplica la regla simple <span class="math notranslate nohighlight">\(Tf\)</span>, esto es:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \int_{x_{i-1}}^{x_i}f(x)dx \approx T_i(f) \forall i=1,\dots,n.\]</div>
+<p>Con <span class="math notranslate nohighlight">\(T_i(f) = \frac{(x_i-x_{i-1})}{2}(f(x_i)+f(x_{i-1}))\)</span> para <span class="math notranslate nohighlight">\(i=1,\dots,n\)</span>.</p>
+<p>De forma sencilla se puede ver que la regla compuesta del trapecio <span class="math notranslate nohighlight">\(T_c(f)\)</span> se escribe como:</p>
+<div class="math notranslate nohighlight">
+\[T_c(f) = \displaystyle \frac{h}{2n}\left[f(x_0)+f(x_n)+2\displaystyle\sum_{i=1}^{n-1}f(x_i)\right]\]</div>
+<p>con <span class="math notranslate nohighlight">\(h=b-a\)</span> y <span class="math notranslate nohighlight">\(n\)</span> número de subintervalos.</p>
+<p><strong>Nota:</strong> Los nodos para el caso del trapecio se obtienen con la fórmula: <span class="math notranslate nohighlight">\(x_i = a +i\hat{h}, \forall i=0,\dots,n, \hat{h}=\frac{h}{n}\)</span>.</p>
+<p><strong>Ejemplo de implementación de regla compuesta del trapecio: usando numpy</strong></p>
+<p>Con la regla compuesta del trapecio se aproximará la integral <span class="math notranslate nohighlight">\(\int_0^1e^{-x^2}dx\)</span>. Se calculará el error relativo y  graficará <span class="math notranslate nohighlight">\(n\)</span> vs Error relativo para <span class="math notranslate nohighlight">\(n=1,10,100,1000,10000\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#using numpy library</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Tcf</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span> <span class="c1">#Tcf: trapecio compuesto para f</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute numerical approximation using trapezoidal rule in </span>
+<span class="sd">    an interval.</span>
+<span class="sd">    Nodes are generated via numpy</span>
+<span class="sd">    Args:</span>
+<span class="sd">        f (lambda expression): lambda expression of integrand</span>
+<span class="sd">        a (int): left point of interval</span>
+<span class="sd">        b (int): right point of interval</span>
+<span class="sd">        n (int): number of subintervals</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Tcf (float) </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">h</span><span class="o">=</span><span class="n">b</span><span class="o">-</span><span class="n">a</span>
+    <span class="n">nodes</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">h</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">sum_res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Graficamos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numb_of_subintervals</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">approx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Tcf</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">numb_of_subintervals</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">err_relativo</span><span class="p">(</span><span class="n">aprox</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">aprox</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="c1">#obsérvese el uso de la librería numpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_relativo_res</span> <span class="o">=</span> <span class="n">err_relativo</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_relativo_res</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([8.42024373e-02, 8.21259857e-04, 8.20989064e-06, 8.20986364e-08,
+       8.20987410e-10])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numb_of_subintervals</span><span class="p">,</span><span class="n">err_relativo_res</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;number of subintervals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Error relativo en la regla del Trapecio&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Integracion_numerica_74_0.png" src="../../_images/Integracion_numerica_74_0.png" />
+</div>
+</div>
+<p>Si no nos interesa el valor de los errores relativos y sólo la gráfica podemos utilizar la siguiente opción:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ver <a class="reference external" href="https://docs.python.org/2/library/functools.html#functools.partial">functools.partial</a> para documentación, <a class="reference external" href="https://stackoverflow.com/questions/15331726/how-does-functools-partial-do-what-it-does">liga</a> para una explicación de <code class="docutils literal notranslate"><span class="pre">partial</span></code> y <a class="reference external" href="https://stackoverflow.com/questions/10834960/how-to-do-multiple-arguments-to-map-function-where-one-remains-the-same-in-pytho">liga2</a>, <a class="reference external" href="https://stackoverflow.com/questions/47859209/how-to-map-over-a-function-with-multiple-arguments-in-python">liga3</a> para ejemplos de uso.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">approx</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">Tcf</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">numb_of_subintervals</span><span class="p">)</span> <span class="c1">#map regresa un iterator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">err_relativo</span><span class="p">(</span><span class="n">aprox_map</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ap</span> <span class="ow">in</span> <span class="n">aprox_map</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">ap</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="c1">#obsérvese el uso de la librería math</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Obs:</strong> la función <code class="docutils literal notranslate"><span class="pre">err_relativo</span></code> anterior es un <a class="reference external" href="https://wiki.python.org/moin/Generators">generator</a>, ver <a class="reference external" href="https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do">liga</a> para conocer el uso de <code class="docutils literal notranslate"><span class="pre">yield</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_relativo_res</span> <span class="o">=</span> <span class="n">err_relativo</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numb_of_subintervals</span><span class="p">,</span><span class="nb">list</span><span class="p">(</span><span class="n">err_relativo_res</span><span class="p">),</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;number of subintervals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Error relativo en la regla del Trapecio&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Integracion_numerica_82_0.png" src="../../_images/Integracion_numerica_82_0.png" />
+</div>
+</div>
+<p><strong>usando scatter:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">approx</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">Tcf</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">numb_of_subintervals</span><span class="p">)</span> <span class="c1">#map regresa un iterator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_relativo_res</span> <span class="o">=</span> <span class="n">err_relativo</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">err_rel</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">err_rel</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">numb_of_subintervals</span><span class="p">,</span><span class="n">err_relativo_res</span><span class="p">)]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;number of subintervals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Error relativo en la regla del Trapecio&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Integracion_numerica_86_0.png" src="../../_images/Integracion_numerica_86_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="regla-compuesta-de-simpson">
+<h3>Regla compuesta de Simpson<a class="headerlink" href="#regla-compuesta-de-simpson" title="Permalink to this headline">¶</a></h3>
+<img src="https://dl.dropboxusercontent.com/s/8rx32vdtulpdflm/Simpson_compuesto.png?dl=0" heigth="200" width="200">
+<p>En cada subintervalo se aplica la regla simple <span class="math notranslate nohighlight">\(Sf\)</span>, esto es:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \int_{a_{i-1}}^{a_i}f(x)dx \approx S_i(f) \forall i=1,\dots,n\]</div>
+<p>con <span class="math notranslate nohighlight">\(S_i(f) = \frac{h}{6}\left[f(x_{2i}+f(x_{2i-2})+4f(x_{2i-1})\right]\)</span> para el subintervalo <span class="math notranslate nohighlight">\([a_{i-1},a_i]\)</span> con <span class="math notranslate nohighlight">\(i=1,\dots,n\)</span>.</p>
+<p>De forma sencilla se puede ver que la regla compuesta de Simpson compuesta <span class="math notranslate nohighlight">\(S_c(f)\)</span> se escribe como:</p>
+<div class="math notranslate nohighlight">
+\[S_c(f) = \displaystyle \frac{h}{3(2n)} \left [ f(x_0) + f(x_{2n}) + 2 \sum_{i=1}^{n-1}f(x_{2i}) + 4 \sum_{i=1}^{n}f(x_{2i-1})\right ] \]</div>
+<p>con <span class="math notranslate nohighlight">\(h=b-a\)</span> y <span class="math notranslate nohighlight">\(n\)</span> número de subintervalos.</p>
+<p><strong>Nota:</strong> Los nodos para el caso de Simpson se obtienen con la fórmula: <span class="math notranslate nohighlight">\(x_i = a +\frac{i}{2}\hat{h}, \forall i=0,\dots,2n, \hat{h}=\frac{h}{n}\)</span>.</p>
+<p><strong>En esta <a class="reference external" href="https://www.dropbox.com/s/qrbcs5n57kp5150/Simpson-6-subintervalos.pdf?dl=0">liga</a> está un apoyo visual para la regla Scf.</strong></p>
+<p><strong>Ejercicio: implementar la regla compuesta de Simpson para aproximar la integral <span class="math notranslate nohighlight">\(\int_0^1e^{-x^2}dx\)</span>. Calcular error relativo y realizar una gráfica de <span class="math notranslate nohighlight">\(n\)</span> vs Error relativo para <span class="math notranslate nohighlight">\(n=1,10,100,1000,10000\)</span> utilizando numpy e iterators.</strong></p>
+<p>La forma de los errores de las reglas del rectángulo, trapecio y Simpson se pueden obtener con interpolación o con el teorema de Taylor. Ver <a class="reference external" href="https://www.dropbox.com/s/jfrxanjls8kndjp/Diferenciacion_e_Integracion.pdf?dl=0">liga</a> para detalles y <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb">Polinomios de Taylor y diferenciacion numerica</a> para el teorema. Suponiendo que <span class="math notranslate nohighlight">\(f\)</span> cumple con condiciones sobre sus derivadas, tales errores son:</p>
+<div class="math notranslate nohighlight">
+\[\text{Err}Rc(f) = \frac{b-a}{6}f^{(2)}(\xi_r)\hat{h}^2, \xi_r \in [a,b]\]</div>
+<div class="math notranslate nohighlight">
+\[\text{Err}Tc(f)=-\frac{b-a}{12}f^{(2)}(\xi_t)\hat{h}^2, \xi_t \in [a,b]\]</div>
+<div class="math notranslate nohighlight">
+\[\text{Err}Sc(f)=-\frac{b-a}{180}f^{(4)}(\xi_S)\hat{h}^4, \xi_S \in [a,b].\]</div>
+</div>
+</div>
+</div>
+<div class="section" id="integracion-por-el-metodo-de-monte-carlo">
+<h1>Integración por el método de Monte Carlo<a class="headerlink" href="#integracion-por-el-metodo-de-monte-carlo" title="Permalink to this headline">¶</a></h1>
+<p>Los métodos de integración numérica por Monte Carlo son similares a los métodos por cuadratura en el sentido que se eligen puntos en los que se evaluará el integrando para sumar sus valores. La diferencia esencial con los métodos por cuadratura es que en el método de integración por Monte Carlo los puntos son seleccionados de una forma <em>aleatoria</em> (de hecho es pseudo-aleatoria pues se generan con un programa de computadora) en lugar de generarse con una fórmula.</p>
+<p><strong>Problema:</strong> Aproximar numéricamente la integral <span class="math notranslate nohighlight">\(\displaystyle \int_{\Omega}f(x)dx\)</span> para <span class="math notranslate nohighlight">\(x \in \mathbb{R}^N, \Omega \subseteq \mathbb{R}^N, f: \mathbb{R}^N \rightarrow \mathbb{R}\)</span> función tal que la integral esté bien definida en <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
+<p>Por ejemplo para <span class="math notranslate nohighlight">\(N=2:\)</span></p>
+<img src="https://dl.dropboxusercontent.com/s/xktwjmgbf8aiekw/integral_2_dimensiones.png?dl=0" heigth="500" width="500">
+<p>Para resolver el problema anterior con <span class="math notranslate nohighlight">\(\Omega\)</span> un rectángulo, podemos utilizar las reglas por cuadratura por Newton-Cotes o cuadratura Gaussiana en una dimensión manteniendo fija la otra dimensión. Sin embargo considérese la siguiente situación:</p>
+<p>La regla del rectángulo (o del punto medio) y del trapecio tienen un error de orden <span class="math notranslate nohighlight">\(\mathcal{O}(h^2)\)</span> independientemente de si se está aproximando integrales de una o más dimensiones. Supóngase que se utilizan <span class="math notranslate nohighlight">\(n\)</span> nodos para tener un valor de espaciado igual a <span class="math notranslate nohighlight">\(h\)</span>, entonces para <span class="math notranslate nohighlight">\(N\)</span> dimensiones se requerirían <span class="math notranslate nohighlight">\(P=n^N\)</span> evaluaciones del integrando, o bien, si se tiene un valor de <span class="math notranslate nohighlight">\(P\)</span> igual a <span class="math notranslate nohighlight">\(10, 000\)</span> y <span class="math notranslate nohighlight">\(N=4\)</span> dimensiones el error sería del orden <span class="math notranslate nohighlight">\(\mathcal{O}(P^{-2/N})\)</span> lo que implicaría un valor de <span class="math notranslate nohighlight">\(h=.1\)</span> para aproximadamente sólo <strong>dos dígitos</strong> correctos en la aproximación (para el enunciado anterior recuérdese que <span class="math notranslate nohighlight">\(h\)</span> es proporcional a <span class="math notranslate nohighlight">\(n^{-1}\)</span> y <span class="math notranslate nohighlight">\(n\)</span> = <span class="math notranslate nohighlight">\(P^{1/N}\)</span>). Este esfuerzo enorme de evaluar <span class="math notranslate nohighlight">\(P\)</span> veces el integrando para una exactitud pequeña se debe al problema de generar puntos para <em>llenar</em> un espacio <span class="math notranslate nohighlight">\(N\)</span>-dimensional y se conoce con el nombre de la maldición de la dimensionalidad, <strong>the curse of dimensionality</strong>.</p>
+<p>Una opción para resolver la situación anterior si no se desea una exactitud grande (por ejemplo con una precisión de <span class="math notranslate nohighlight">\(10^{-4}\)</span> o <span class="math notranslate nohighlight">\(4\)</span> dígitos es suficiente) es con el método de integración por Monte Carlo (tal nombre por el uso de números aleatorios). La integración por el método de Monte Carlo está basada en la interpretación geométrica de las integrales: calcular la integral del problema inicial implica calcular el <strong>hipervolumen</strong> de <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
+<p><strong>Ejemplo:</strong></p>
+<p>Supóngase que se desea aproximar el área de un círculo centrado en el origen de radio igual a <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<img src="https://dl.dropboxusercontent.com/s/xmtcxw3wntfxuau/monte_carlo_1.png?dl=0" heigth="300" width="300">
+<p>entonces el área de este círculo es <span class="math notranslate nohighlight">\(\pi r^2 = \pi\)</span>.</p>
+<p>Para lo anterior <strong>encerramos</strong> al círculo con un cuadrado de lado <span class="math notranslate nohighlight">\(2\)</span>:</p>
+<img src="https://dl.dropboxusercontent.com/s/igsn57vuahem0il/monte_carlo_2.png?dl=0" heigth="200" width="200"><p>Si tenemos <span class="math notranslate nohighlight">\(n\)</span> puntos en el cuadrado:</p>
+<img src="https://dl.dropboxusercontent.com/s/a4krdneo0jaerqz/monte_carlo_3.png?dl=0" heigth="200" width="200">
+<p>y consideramos los <span class="math notranslate nohighlight">\(m\)</span> puntos que están dentro del círculo:</p>
+<img src="https://dl.dropboxusercontent.com/s/pr4c5e57r4fawdt/monte_carlo_4.png?dl=0" heigth="200" width="200"><p>Entonces: <span class="math notranslate nohighlight">\(\frac{\text{Área del círculo}}{\text{Área del cuadrado}} \approx \frac{m}{n}\)</span> y se tiene: Área del círculo <span class="math notranslate nohighlight">\(\approx\)</span>Área del cuadrado<span class="math notranslate nohighlight">\(\frac{m}{n}\)</span> y si <span class="math notranslate nohighlight">\(n\)</span> crece entonces la aproximación es mejor.</p>
+<p>prueba numérica:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">density_p</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">2.5</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">density_p</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_p</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x_p</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">density</span><span class="o">=</span><span class="mf">1e-5</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">density</span><span class="p">)</span>
+<span class="n">y1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">y2</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Integración por Monte Carlo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Integracion_numerica_114_0.png" src="../../_images/Integracion_numerica_114_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#definición de norma2</span>
+<span class="n">ind</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">1</span>
+<span class="n">x_p_subset</span><span class="o">=</span><span class="n">x_p</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x_p_subset</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Integración por Monte Carlo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Integracion_numerica_115_0.png" src="../../_images/Integracion_numerica_115_0.png" />
+</div>
+</div>
+<p>Área del círculo es aproximadamente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Area_cuadrado</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">Area_cuadrado</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.0848
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si aumentamos el número de puntos…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">density_p</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">density_p</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">ind</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">1</span>
+<span class="n">x_p_subset</span><span class="o">=</span><span class="n">x_p</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">Area_cuadrado</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1432
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">density_p</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">density_p</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">ind</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">1</span>
+<span class="n">x_p_subset</span><span class="o">=</span><span class="n">x_p</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+<span class="n">Area_cuadrado</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.14096
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Comentarios:</strong></p>
+<ul class="simple">
+<li><p>El método de Monte Carlo revisado en el ejemplo anterior nos indica que debemos encerrar a la región de integración <span class="math notranslate nohighlight">\(\Omega\)</span>. Por ejemplo para una región <span class="math notranslate nohighlight">\(\Omega\)</span> más general:</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/ke6hngwue3ovpaz/monte_carlo_5.png?dl=0" heigth="300" width="300">
+<p>entonces la integración por el método de Monte Carlo será:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \int_\Omega f d\Omega \approx V \overline{f}\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(V\)</span> es el hipervolumen de <span class="math notranslate nohighlight">\(\Omega_E\)</span> que encierra a <span class="math notranslate nohighlight">\(\Omega\)</span>, esto es <span class="math notranslate nohighlight">\(\Omega \subseteq \Omega_E\)</span>, <span class="math notranslate nohighlight">\(\{x_1,\dots,x_n\}\)</span> es un conjunto de puntos distribuidos uniformemente en <span class="math notranslate nohighlight">\(\Omega_E\)</span> y <span class="math notranslate nohighlight">\(\overline{f}=\frac{1}{n}\displaystyle \sum_{i=1}^nf(x_i)\)</span></p>
+<ul class="simple">
+<li><p>Consideramos <span class="math notranslate nohighlight">\(\overline{f}\)</span> pues <span class="math notranslate nohighlight">\(\displaystyle \sum_{i=1}^nf(x_i)\)</span> representa el valor de <span class="math notranslate nohighlight">\(m\)</span> si pensamos a <span class="math notranslate nohighlight">\(f\)</span> como una restricción que deben cumplir los <span class="math notranslate nohighlight">\(n\)</span> puntos en el ejemplo de aproximación al área del círculo: Área del círculo <span class="math notranslate nohighlight">\(\approx\)</span>Área del cuadrado<span class="math notranslate nohighlight">\(\frac{m}{n}\)</span> (en este caso Área del cuadrado es el hipervolumen <span class="math notranslate nohighlight">\(V\)</span>).</p></li>
+</ul>
+<ul class="simple">
+<li><p>Algunas características para regiones que encierren a <span class="math notranslate nohighlight">\(\Omega\)</span> es que:</p>
+<ul>
+<li><p>Sea sencillo generar números aleatorios uniformes.</p></li>
+<li><p>Sea sencillo obtener su hipervolumen.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Ejemplos:</strong> aproximar las siguientes integrales:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">density_p</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\displaystyle \int_0^1\frac{4}{1+x^2}dx = \pi\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">obj</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">a</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">vol</span><span class="o">=</span><span class="n">b</span><span class="o">-</span><span class="n">a</span>
+<span class="n">approx</span><span class="o">=</span><span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">))</span>
+<span class="n">err_rel</span><span class="o">=</span><span class="k">lambda</span> <span class="n">ap</span><span class="p">,</span><span class="n">ob</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">ap</span><span class="o">-</span><span class="n">ob</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">ob</span><span class="p">)</span>
+<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 5.1365e-03&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\displaystyle \int_1^2 \frac{1}{x}dx = \log{2}\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="n">x</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">obj</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">a</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">vol</span><span class="o">=</span><span class="n">b</span><span class="o">-</span><span class="n">a</span>
+<span class="n">approx</span><span class="o">=</span><span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">))</span>
+<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 2.0875e-03&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\displaystyle \int_{-1}^1 \int_0^1x^2+y^2dxdy = \frac{4}{3}\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">a1</span><span class="o">=-</span><span class="mi">1</span>
+<span class="n">b1</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">a2</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">b2</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">y_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">obj</span><span class="o">=</span><span class="mi">4</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">vol</span><span class="o">=</span><span class="p">(</span><span class="n">b1</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b2</span><span class="o">-</span><span class="n">a2</span><span class="p">)</span>
+<span class="n">approx</span><span class="o">=</span><span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">))</span>
+<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 4.0986e-03&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\displaystyle \int_0^{\frac{\pi}{2}} \int_0^{\frac{\pi}{2}}\cos(x)\sin(y)dxdy=1\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">a1</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">b1</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">a2</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">b2</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">y_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">obj</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">vol</span><span class="o">=</span><span class="p">(</span><span class="n">b1</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b2</span><span class="o">-</span><span class="n">a2</span><span class="p">)</span>
+<span class="n">approx</span><span class="o">=</span><span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">))</span>
+<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 4.3845e-03&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\displaystyle \int_0^1\int_{\frac{-1}{2}}^0\int_0^{\frac{1}{3}}(x+2y+3z)^2dxdydz =\frac{1}{12}\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">:(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">a1</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">b1</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">a2</span><span class="o">=-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">b2</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">a3</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">b3</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">y_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">z_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a3</span><span class="p">,</span><span class="n">b3</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">obj</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">12</span>
+<span class="n">vol</span><span class="o">=</span><span class="p">(</span><span class="n">b1</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b2</span><span class="o">-</span><span class="n">a2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b3</span><span class="o">-</span><span class="n">a3</span><span class="p">)</span>
+<span class="n">approx</span><span class="o">=</span><span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">,</span><span class="n">z_p</span><span class="p">))</span>
+<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 5.3267e-03&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="cual-es-el-error-en-la-aproximacion-por-el-metodo-de-integracion-por-monte-carlo">
+<h2>Cuál es el error en la aproximación por el método de integración por Monte Carlo?<a class="headerlink" href="#cual-es-el-error-en-la-aproximacion-por-el-metodo-de-integracion-por-monte-carlo" title="Permalink to this headline">¶</a></h2>
+<p>Para obtener la expresión del error en esta aproximación supóngase que <span class="math notranslate nohighlight">\(x_1, x_2,\dots x_n\)</span> son variables aleatorias independientes uniformemente distribuidas. Entonces:</p>
+<div class="math notranslate nohighlight">
+\[\text{Err}(\overline{f})=\sqrt{\text{Var}(\overline{f})}=\sqrt{\text{Var}\left( \frac{1}{n} \displaystyle \sum_{i=1}^nf(x_i)\right)}=\dots=\sqrt{\frac{\text{Var}(f(x))}{n}}\]</div>
+<p>con <span class="math notranslate nohighlight">\(x\)</span> variable aleatoria uniformemente distribuida.</p>
+<p>Un estimador de <span class="math notranslate nohighlight">\(\text{Var}(f(x))\)</span> es: <span class="math notranslate nohighlight">\(\frac{1}{n}\displaystyle \sum_{i=1}^n(f(x_i)-\overline{f})^2=\overline{f^2}-\overline{f}^2\)</span> por lo que <span class="math notranslate nohighlight">\(\hat{\text{Err}}(\overline{f}) = \sqrt{\frac{\overline{f^2}-\overline{f}^2}{n}}\)</span>.</p>
+<p>Se tiene entonces:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \int_\Omega f d\Omega \approx V(\overline{f} \pm \text{Err}(\overline{f})) \approx V(\overline{f} \pm \hat{\text{Err}}(\overline{f}))=V\overline{f} \pm V\sqrt{\frac{\overline{f^2}-\overline{f}^2}{n}}\]</div>
+<p><strong>Ejemplo:</strong></p>
+<p>Para el ejemplo anterior <span class="math notranslate nohighlight">\(\displaystyle \int_0^1\frac{4}{1+x^2}dx = \pi\)</span> se tiene:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">obj</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">a</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">vol</span><span class="o">=</span><span class="n">b</span><span class="o">-</span><span class="n">a</span>
+<span class="n">f_barra</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">))</span>
+<span class="n">approx</span><span class="o">=</span><span class="n">vol</span><span class="o">*</span><span class="n">f_barra</span>
+<span class="n">err_rel</span><span class="o">=</span><span class="k">lambda</span> <span class="n">ap</span><span class="p">,</span><span class="n">ob</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">ap</span><span class="o">-</span><span class="n">ob</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">ob</span><span class="p">)</span>
+<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 2.9912e-03&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">error_est</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">((</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">-</span><span class="n">f_barra</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">density_p</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">error_est</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.006414775576270589
+</pre></div>
+</div>
+</div>
+</div>
+<p>intervalo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">approx</span><span class="o">-</span><span class="n">vol</span><span class="o">*</span><span class="n">error_est</span><span class="p">,</span> <span class="n">approx</span><span class="o">+</span><span class="n">vol</span><span class="o">*</span><span class="n">error_est</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(3.1257807080990827, 3.138610259251624)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Ejercicios:</strong> Aproximar, reportar errores relativos e intervalo de estimación en una tabla:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\displaystyle \int_0^1\int_0^1\sqrt{x+y}dydx=\frac{2}{3}\left(\frac{2}{5}2^{5/2}-\frac{4}{5}\right)\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\displaystyle \int_D \int \sqrt{x+y}dydx=8\frac{\sqrt{2}}{15}\)</span> donde: <span class="math notranslate nohighlight">\(D=\{(x,y) \in \mathbb{R}^2 | 0 \leq x \leq 1, -x \leq y \leq x\}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\displaystyle \int_D \int \exp{(x^2+y^2)}dydx = \pi(e^9-1)\)</span> donde <span class="math notranslate nohighlight">\(D=\{(x,y) \in \mathbb{R}^2 | x^2+y^2 \leq 9\}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\displaystyle \int_0^2 \int_{-1}^1 \int_0^1 (2x+3y+z)dzdydx = 10\)</span>.</p></li>
+</ul>
+<p><strong>Comentarios:</strong></p>
+<ul class="simple">
+<li><p>Los signos <span class="math notranslate nohighlight">\(\pm\)</span> en el error de aproximación <strong>no</strong> representan una cota rigurosa, es una desviación estándar.</p></li>
+<li><p>A diferencia de la aproximación por las reglas por cuadratura tenemos una precisión con <span class="math notranslate nohighlight">\(n\)</span> puntos independientemente de la dimensión <span class="math notranslate nohighlight">\(N\)</span>.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(N \rightarrow \infty\)</span> entonces <span class="math notranslate nohighlight">\(\hat{\text{Err}}(\overline{f}) = \mathcal{O}\left(\frac{1}{\sqrt{n}} \right)\)</span> por lo que para ganar un decimal extra de precisión en la integración por el método de Monte Carlo se requiere incrementar el número de puntos por un factor de <span class="math notranslate nohighlight">\(10^2\)</span>.</p></li>
+</ul>
+<p><strong>Obs:</strong> obsérvese que si <span class="math notranslate nohighlight">\(f\)</span> es constante entonces <span class="math notranslate nohighlight">\(\hat{\text{Err}}(\overline{f})=0\)</span>. Esto implica que si <span class="math notranslate nohighlight">\(f\)</span> es casi constante y <span class="math notranslate nohighlight">\(\Omega_E\)</span> encierra muy bien a <span class="math notranslate nohighlight">\(\Omega\)</span> entonces se tendrá una estimación muy precisa de <span class="math notranslate nohighlight">\(\displaystyle \int_\Omega f d\Omega\)</span>, por esto en la integración por el método de Monte Carlo se realizan cambios de variable de modo que transformen a <span class="math notranslate nohighlight">\(f\)</span> en aproximadamente constante y que esto resulte además en regiones <span class="math notranslate nohighlight">\(\Omega_E\)</span> que encierren a <span class="math notranslate nohighlight">\(\Omega\)</span> casi de manera exacta (y que además sea sencillo generar números pseudo aleatorios en ellas!).</p>
+<p><strong>Comentario:</strong></p>
+<p>La integración por el método de Monte Carlo se utiliza para aproximar características de variables aleatorias continuas. Por ejemplo, si <span class="math notranslate nohighlight">\(x\)</span> es variable aleatoria continua, entonces su media está dada por:</p>
+<div class="math notranslate nohighlight">
+\[E_f[h(X)] = \displaystyle \int_{S_X}h(x)f(x)dx\]</div>
+<p>donde <span class="math notranslate nohighlight">\(f\)</span> es función de densidad de <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(S_X\)</span> es el soporte de <span class="math notranslate nohighlight">\(X\)</span> y <span class="math notranslate nohighlight">\(h\)</span> es una transformación. Entonces:</p>
+<div class="math notranslate nohighlight">
+\[E_f[h(X)] \approx \frac{1}{n} \displaystyle \sum_{i=1}^nh(x_i)=\overline{h}_n\]</div>
+<p>con <span class="math notranslate nohighlight">\(\{x_1,x_2,\dots,x_n\}\)</span> muestra de <span class="math notranslate nohighlight">\(f\)</span>. Y por la ley de los grandes números se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\overline{h}_n \xrightarrow{n \rightarrow \infty} E_f[h(X)]\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{\overline{h}_n-E_f[h(X)]}{\hat{\text{Err}}(\overline{h})} \xrightarrow{n \rightarrow \infty} N(0,1)\]</div>
+<p>con <span class="math notranslate nohighlight">\(N(0,1)\)</span> una distribución Normal con <span class="math notranslate nohighlight">\(\mu=0,\sigma=1\)</span> <span class="math notranslate nohighlight">\(\therefore\)</span> si <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span> un intervalo de confianza al <span class="math notranslate nohighlight">\(95\%\)</span> para <span class="math notranslate nohighlight">\(E_f[h(X)]\)</span> es: <span class="math notranslate nohighlight">\((\overline{h}_n \pm z_{.975} \hat{\text{Err}}(\overline{h}))\)</span>.</p>
+<p><strong>Obs:</strong> uno de los pasos complicados en el desarrollo anterior es obtener una muestra de <span class="math notranslate nohighlight">\(f\)</span> que para el caso de variables continuas se puede utilizar el teorema de transformación inversa o integral de probabilidad.</p>
+<p><strong>Ejercicios</strong></p>
+<ol class="simple">
+<li><p>Resuelve los ejercicios y preguntas de la nota.</p></li>
+</ol>
+<p><strong>Referencias</strong></p>
+<ol class="simple">
+<li><p>R. L. Burden, J. D. Faires, Numerical Analysis, Brooks/Cole Cengage Learning, 2005.</p></li>
+<li><p>M. T. Heath, Scientific Computing. An Introductory Survey, McGraw-Hill, 2002.</p></li>
+<li><p>Nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.2/Sistema_de_punto_flotante.ipynb">Sistema de punto flotante</a></p></li>
+<li><p>Nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb">Condicion de un problema y estabilidad de un algoritmo</a></p></li>
+<li><p>Nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb">Polinomios de Taylor y diferenciacion numerica</a></p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "palmoreck/dockerfiles-for-binder",
+            ref: "jupyterlab_optimizacion",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./I.computo_cientifico/1.7"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html" title="previous page">1.6 Polinomios de Taylor y diferenciación numérica</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Erick Palacios Moreno<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

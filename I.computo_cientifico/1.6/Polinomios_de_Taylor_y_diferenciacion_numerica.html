@@ -39,6 +39,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Integración Numérica" href="../1.7/Integracion_numerica.html" />
     <link rel="prev" title="1.5 Definición de función, derivada de una función y otros" href="../1.5/Definicion_de_funcion_derivada_de_una_funcion_y_otros.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -111,6 +112,16 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    1.6 Polinomios de Taylor y diferenciación numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.7/Integracion_numerica.html">
+   Integración Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../1.7/Integracion_numerica.html#integracion-por-el-metodo-de-monte-carlo">
+   Integración por el método de Monte Carlo
   </a>
  </li>
 </ul>
@@ -479,7 +490,7 @@
 \[f^{(1)}(x) = \frac{f(x+h)-f(x-h)}{2h} + \mathcal{O}(h^2), h &gt;0.\]</div>
 <p>y el cociente <span class="math notranslate nohighlight">\(\frac{f(x+h)-f(x-h)}{2h}\)</span> es la aproximación por diferencias centradas con error de orden <span class="math notranslate nohighlight">\(2\)</span>. Gráficamente:</p>
 <img src="https://dl.dropboxusercontent.com/s/jwi0y1t5z58pydz/dif_centradas.png?dl=0" heigth="500" width="500"><p><strong>Obs:</strong> la aproximación por diferencias finitas a la primer derivada de la función tiene un error de orden <span class="math notranslate nohighlight">\(\mathcal{O}(h)\)</span> por lo que una elección de <span class="math notranslate nohighlight">\(h\)</span> igual a <span class="math notranslate nohighlight">\(.1 = 10^{-1}\)</span> generará aproximaciones con alrededor de un dígito correcto.</p>
-<p><strong>Obs:</strong> la diferenciación numérica por diferencias finitas no es un proceso con una alta exactitud pues los problemas del redondeo de la aritmética en la máquina se hacen presentes en el mismo (ver nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.2/Sistema_de_punto_flotante.ipynb">Sistema_de_punto_flotante</a>). Como ejemplo de esta situación realicemos el siguiente ejemplo.</p>
+<p><strong>Obs:</strong> la diferenciación numérica por diferencias finitas no es un proceso con una alta exactitud pues los problemas del redondeo de la aritmética en la máquina se hacen presentes en el mismo (ver nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.2/Sistema_de_punto_flotante.ipynb">Sistema de punto flotante</a>). Como ejemplo de esta situación realicemos el siguiente ejemplo.</p>
 <p><strong>Ejemplo: realizar una gráfica de log(error relativo) vs log(h) (h en el eje horizontal) con <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code> para aproximar la primera derivada de <span class="math notranslate nohighlight">\(f(x)=e^{-x}\)</span> en <span class="math notranslate nohighlight">\(x=1\)</span> con <span class="math notranslate nohighlight">\(h \in \{10^{-16}, 10^{-14}, \dots , 10^{-1}\}\)</span> y diferencias hacia delante. Valor a aproximar: <span class="math notranslate nohighlight">\(f^{(1)}(1) = -e^{-1}\)</span></strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -550,10 +561,10 @@
 \[\frac{d^2f(x)}{dx} \approx \frac{f(x+h)-2f(x)+f(x-h)}{h^2} + \mathcal{O}(h^2)\]</div>
 <div class="section" id="analisis-del-error-por-redondeo-y-truncamiento-en-aproximacion-por-diferencias-finitas-hacia-delante">
 <h3>Análisis del error por redondeo y truncamiento en aproximación por diferencias finitas hacia delante<a class="headerlink" href="#analisis-del-error-por-redondeo-y-truncamiento-en-aproximacion-por-diferencias-finitas-hacia-delante" title="Permalink to this headline">¶</a></h3>
-<p>El ejemplo anterior muestra (vía una gráfica) que el método numérico de diferenciación numérica no es estable numéricamente respecto al redondeo (ver nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb">Condicion_de_un_problema_y_estabilidad_de_un_algoritmo</a> para definición de estabilidad de un algoritmo) y también se puede corroborar realizando un análisis del error. En esta sección consideramos la aproximación a la primer derivada por diferencias finitas hacia delante:</p>
+<p>El ejemplo anterior muestra (vía una gráfica) que el método numérico de diferenciación numérica no es estable numéricamente respecto al redondeo (ver nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb">Condicion de un problema y estabilidad de un algoritmo</a> para definición de estabilidad de un algoritmo) y también se puede corroborar realizando un análisis del error. En esta sección consideramos la aproximación a la primer derivada por diferencias finitas hacia delante:</p>
 <div class="math notranslate nohighlight">
 \[\frac{f(x+h)-f(x)}{h}\]</div>
-<p>Suponemos que <span class="math notranslate nohighlight">\(\hat{f}(x)\)</span> aproxima a <span class="math notranslate nohighlight">\(f(x)\)</span> y por errores de redondeo <span class="math notranslate nohighlight">\(\hat{f}(x) = f(x)(1 + \epsilon_{f(x)})\)</span> con <span class="math notranslate nohighlight">\(|\epsilon_{f(x)}| \leq \epsilon_{maq}\)</span> error de redondeo al evaluar <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span>. <span class="math notranslate nohighlight">\(\hat{f}(x)\)</span> es la aproximación en un SPFN (ver nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.2/Sistema_de_punto_flotante.ipynb">Sistema_de_punto_flotante</a>). Además supóngase que <span class="math notranslate nohighlight">\(x,x+h,h \in \mathcal{Fl}\)</span> . Entonces en la aproximación a la primer derivada por diferencias  hacia delante:</p>
+<p>Suponemos que <span class="math notranslate nohighlight">\(\hat{f}(x)\)</span> aproxima a <span class="math notranslate nohighlight">\(f(x)\)</span> y por errores de redondeo <span class="math notranslate nohighlight">\(\hat{f}(x) = f(x)(1 + \epsilon_{f(x)})\)</span> con <span class="math notranslate nohighlight">\(|\epsilon_{f(x)}| \leq \epsilon_{maq}\)</span> error de redondeo al evaluar <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span>. <span class="math notranslate nohighlight">\(\hat{f}(x)\)</span> es la aproximación en un SPFN (ver nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.2/Sistema_de_punto_flotante.ipynb">Sistema de punto flotante</a>). Además supóngase que <span class="math notranslate nohighlight">\(x,x+h,h \in \mathcal{Fl}\)</span> . Entonces en la aproximación a la primer derivada por diferencias  hacia delante:</p>
 <p><span class="math notranslate nohighlight">\(f^{(1)}(x) = \frac{f(x+h)-f(x)}{h} + \mathcal{O}(h)\)</span> y calculando el error absoluto:</p>
 <div class="math notranslate nohighlight">
 \[\text{ErrAbs}\left ( \frac{\hat{f}(x+h)-\hat{f}(x)}{h} \right ) = \left |f^{(1)}(x) - \frac{\hat{f}(x+h)-\hat{f}(x)}{h} \right | = \left | \frac{f(x+h)-f(x)}{h} + \mathcal{O}(h) - \left ( \frac{f(x+h)(1+\epsilon_{f(x+h)})-f(x)(1+\epsilon_{f(x)})}{h} \right ) \right | =  \left |\mathcal{O}(h) - \frac{f(x+h)\epsilon_{f(x+h)}-f(x)\epsilon_{f(x)}}{h} \right | \leq \mathcal{O}(h) + \frac{C\epsilon_{maq}}{h}\]</div>
@@ -606,7 +617,7 @@
 <div class="output text_html">1e-16</div></div>
 </div>
 <p><strong>pregunta:</strong> ¿por qué se alcanza el máximo error relativo en el valor de <span class="math notranslate nohighlight">\(h=10^{-16}\)</span>?.</p>
-<p>Con esto se tiene que la diferenciación numérica es un método <strong>inestable numéricamente respecto al redondeo</strong>. Ver nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb">Condicion_de_un_problema_y_estabilidad_de_un_algoritmo</a>.</p>
+<p>Con esto se tiene que la diferenciación numérica es un método <strong>inestable numéricamente respecto al redondeo</strong>. Ver nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb">Condicion de un problema y estabilidad de un algoritmo</a>.</p>
 <ul class="simple">
 <li><p>Un análisis de error similar se utiliza para el método de diferencias finitas por diferencias centradas para aproximar la primera derivada. En este caso el valor de <span class="math notranslate nohighlight">\(h\)</span> que minimiza a los errores es del orden <span class="math notranslate nohighlight">\(h^* = 10^{-6}\)</span>.</p></li>
 </ul>
@@ -922,7 +933,7 @@
 <li><p>M. T. Heath, Scientific Computing. An Introductory Survey, McGraw-Hill, 2002.</p></li>
 <li><p>S. P. Boyd, L. Vandenberghe, Convex Optimization. Cambridge University Press, 2004.</p></li>
 <li><p>Nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.2/Sistema_de_punto_flotante.ipynb">Sistema de punto flotante</a>.</p></li>
-<li><p>Nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb">Condicion_de_un_problema_y_estabilidad_de_un_algoritmo</a>.</p></li>
+<li><p>Nota <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb">Condicion de un problema y estabilidad de un algoritmo</a>.</p></li>
 </ol>
 </div>
 </div>
@@ -957,6 +968,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="../1.5/Definicion_de_funcion_derivada_de_una_funcion_y_otros.html" title="previous page">1.5 Definición de función, derivada de una función y otros</a>
+    <a class='right-next' id="next-link" href="../1.7/Integracion_numerica.html" title="next page">Integración Numérica</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
