@@ -55,5 +55,4 @@ Total de clases: 17. Total de número de horas: 48 hrs.
 
 ## Clase 1
 
-"" de ""
 
