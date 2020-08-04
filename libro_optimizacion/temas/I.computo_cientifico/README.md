@@ -9,3 +9,5 @@
 1.5 Definición de función, derivada de una función y otros.
 
 1.6 Polinomios de Taylor y diferenciación numérica.
+
+1.7 Integración numérica.
