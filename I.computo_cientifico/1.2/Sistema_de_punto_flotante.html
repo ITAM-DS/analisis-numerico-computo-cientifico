@@ -452,7 +452,7 @@ En 1985 la IEEE publicó un estándar de nombre <a class="reference external" hr
 <h2>Números de máquina binarios<a class="headerlink" href="#numeros-de-maquina-binarios" title="Permalink to this headline">¶</a></h2>
 <p>Un SPF de doble precisión utiliza:</p>
 <ul class="simple">
-<li><p>64 bits para representar un número real. El primero es un indicador de signo denotado por <span class="math notranslate nohighlight">\(s\)</span>. Le siguen <span class="math notranslate nohighlight">\(11\)</span> bits para construir al exponente <span class="math notranslate nohighlight">\(c\)</span> llamado también <strong>característica</strong> y <span class="math notranslate nohighlight">\(52\)</span> bits que construyen a la parte fraccionaria <span class="math notranslate nohighlight">\(f\)</span> de la mantisa. La base es <span class="math notranslate nohighlight">\(\beta=2\)</span>.</p></li>
+<li><p>64 bits para representar un número real. El primero es un indicador de signo denotado por <span class="math notranslate nohighlight">\(s\)</span>. Le siguen <span class="math notranslate nohighlight">\(11\)</span> bits para construir al exponente <span class="math notranslate nohighlight">\(n\)</span> y <span class="math notranslate nohighlight">\(52\)</span> bits que construyen a la parte fraccionaria <span class="math notranslate nohighlight">\(f\)</span> de la mantisa. La base es <span class="math notranslate nohighlight">\(\beta=2\)</span>.</p></li>
 </ul>
 <p><strong>Nota 1: si es SPFN entonces aunque se tienen 52 bits, éstos se utilizan para almacenar un dígito más del número (ver Obs3 anterior). Así, en un SPF en general maneja 52 (o 53) dígitos binarios, que corresponden a aproximadamente 15 (o 16) dígitos decimales</strong>. Ver: <a class="reference external" href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format#Implementations">Double-precision floating-point format</a>.</p>
 <div class="cell docutils container">
@@ -499,20 +499,20 @@ En 1985 la IEEE publicó un estándar de nombre <a class="reference external" hr
 </div>
 </div>
 </div>
-<p><strong>pero esto construye un exponente con signo positivo, por lo que se resta (<em>offset</em>) la cantidad de <span class="math notranslate nohighlight">\(-1023\)</span> de la característica y se tiene el rango del exponente en <span class="math notranslate nohighlight">\([-1023,1024] \cap \mathbb{Z}\)</span>:</strong></p>
+<p><strong>pero esto construye un exponente con signo positivo, por lo que se resta (<em>offset</em>) la cantidad de <span class="math notranslate nohighlight">\(-1023\)</span> y se tiene el rango del exponente en <span class="math notranslate nohighlight">\([-1023,1024] \cap \mathbb{Z}\)</span>:</strong></p>
 <div class="math notranslate nohighlight">
-\[2^{c-1023}.\]</div>
-<p>Y un valor de <span class="math notranslate nohighlight">\(c=1023\)</span> representa un exponente de <span class="math notranslate nohighlight">\(0\)</span>.</p>
-<p><strong>Nota3: los valores <span class="math notranslate nohighlight">\(-1023\)</span> (todos los bits iguales a <span class="math notranslate nohighlight">\(0\)</span>) y <span class="math notranslate nohighlight">\(1024\)</span> (todos los bits iguales a <span class="math notranslate nohighlight">\(1\)</span>) para la característica se reservan para números especiales. Por esto, el exponente corre en el rango de <span class="math notranslate nohighlight">\([-1022, 1023] \cap \mathbb{Z}\)</span>.</strong></p>
-<p><em><em>Nota4: todos los bits iguales a 0 para la característica se utiliza para representar al número 0 con signo (si su fracción <span class="math notranslate nohighlight">\(f\)</span> es <span class="math notranslate nohighlight">\(0\)</span>) y a los números subnormales</em> (si su fracción <span class="math notranslate nohighlight">\(f\)</span> es <span class="math notranslate nohighlight">\(\neq0\)</span>). Todos los bits iguales a 1 se utiliza para representar <span class="math notranslate nohighlight">\(\infty\)</span> (si su fracción <span class="math notranslate nohighlight">\(f\)</span> es <span class="math notranslate nohighlight">\(0\)</span>) y NaNs (si su fracción <span class="math notranslate nohighlight">\(f\)</span> <span class="math notranslate nohighlight">\(\neq 0\)</span>).</em>*</p>
+\[2^{n-1023}.\]</div>
+<p>Y un valor de <span class="math notranslate nohighlight">\(n=1023\)</span> representa un exponente de <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p><strong>Nota3: los valores <span class="math notranslate nohighlight">\(-1023\)</span> (todos los bits iguales a <span class="math notranslate nohighlight">\(0\)</span>) y <span class="math notranslate nohighlight">\(1024\)</span> (todos los bits iguales a <span class="math notranslate nohighlight">\(1\)</span>) para el exponente se reservan para números especiales. Por esto, el exponente corre en el rango de <span class="math notranslate nohighlight">\([-1022, 1023] \cap \mathbb{Z}\)</span>.</strong></p>
+<p><em><em>Nota4: todos los bits iguales a 0 para el exponente se utiliza para representar al número 0 con signo (si su fracción <span class="math notranslate nohighlight">\(f\)</span> es <span class="math notranslate nohighlight">\(0\)</span>) y a los números subnormales</em> (si su fracción <span class="math notranslate nohighlight">\(f\)</span> es <span class="math notranslate nohighlight">\(\neq0\)</span>). Todos los bits iguales a 1 se utiliza para representar <span class="math notranslate nohighlight">\(\infty\)</span> (si su fracción <span class="math notranslate nohighlight">\(f\)</span> es <span class="math notranslate nohighlight">\(0\)</span>) y NaNs (si su fracción <span class="math notranslate nohighlight">\(f\)</span> <span class="math notranslate nohighlight">\(\neq 0\)</span>).</em>*</p>
 <p>Entonces un número de máquina binario en un SPFN se representa por:</p>
 <div class="math notranslate nohighlight">
-\[(-1)^s2^{c-1023}(1+f)\]</div>
+\[(-1)^s2^{n-1023}(1+f)\]</div>
 <p>Y los subnormales como:</p>
 <div class="math notranslate nohighlight">
 \[(-1)^s2^{1-1023}(0+f)=(-1)^s2^{-1022}f.\]</div>
 <p>*Los números subnormales son todos aquellos números con magnitud menor al número más chico positivo normalizado. Con estos números se sacrifica precisión por representatividad alrededor del <span class="math notranslate nohighlight">\(0\)</span>. Para representar a estos números <span class="math notranslate nohighlight">\(d_1\)</span> no es igual a <span class="math notranslate nohighlight">\(1\)</span>.</p>
-<p><strong>Obs: hay dos representaciones para el <span class="math notranslate nohighlight">\(0\)</span>, una con signo positivo (<span class="math notranslate nohighlight">\(s=0, c=0, f=0\)</span>) y otra con signo negativo (<span class="math notranslate nohighlight">\(s=1,c=0,f=0\)</span>).</strong></p>
+<p><strong>Obs: hay dos representaciones para el <span class="math notranslate nohighlight">\(0\)</span>, una con signo positivo (<span class="math notranslate nohighlight">\(s=0, n=0, f=0\)</span>) y otra con signo negativo (<span class="math notranslate nohighlight">\(s=1,n=0,f=0\)</span>).</strong></p>
 <p><strong>Ejemplos:</strong></p>
 <ol class="simple">
 <li><p>El valor del exponente más chico para los números normales es: <span class="math notranslate nohighlight">\(2^{1-1023} = 2^{-1022}\)</span>.</p></li>
@@ -522,12 +522,12 @@ En 1985 la IEEE publicó un estándar de nombre <a class="reference external" hr
 <li><p>Considérese el número formado por:</p></li>
 </ol>
 <p>primer bit: <span class="math notranslate nohighlight">\(0\)</span>.</p>
-<p>bits de la característica: <span class="math notranslate nohighlight">\(10000000011\)</span>.</p>
+<p>bits del exponente: <span class="math notranslate nohighlight">\(10000000011\)</span>.</p>
 <p>bits de la mantisa: <span class="math notranslate nohighlight">\(1011100100010\dots0\)</span>.</p>
 <p>Entonces:</p>
 <ol class="simple">
 <li><p>El número es positivo pues <span class="math notranslate nohighlight">\(s=0\)</span>: <span class="math notranslate nohighlight">\((-1)^s = 1\)</span>.</p></li>
-<li><p>Los bits de la característica generan al número decimal:</p></li>
+<li><p>Los bits del exponente generan al número decimal:</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[c = 1*2^{10} + 0*2^9+\dots+0*2^2+1*2^1+1*2^0=1024+2+1=1027\]</div>
@@ -557,7 +557,7 @@ En 1985 la IEEE publicó un estándar de nombre <a class="reference external" hr
 </div>
 <p>Entonces el número de máquina binario <span class="math notranslate nohighlight">\(0\)</span> <span class="math notranslate nohighlight">\(10000000011\)</span> <span class="math notranslate nohighlight">\(1011100100010\dots0\)</span> es el número decimal:</p>
 <div class="math notranslate nohighlight">
-\[(-1)^s2^{c-1023}(1+f)=(-1)^{0}2^{4}(1+0.7229) =27.5664 \]</div>
+\[(-1)^s2^{n-1023}(1+f)=(-1)^{0}2^{4}(1+0.7229) =27.5664 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//%</span><span class="n">cflags</span><span class="p">:</span><span class="o">-</span><span class="n">lm</span>
@@ -717,7 +717,7 @@ En 1985 la IEEE publicó un estándar de nombre <a class="reference external" hr
 </ul>
 <p>Por lo que el intervalo <span class="math notranslate nohighlight">\([2^j, 2^{j+1}]\)</span> se obtiene multiplicando <span class="math notranslate nohighlight">\(2^j\)</span> veces la secuencia en <span class="math notranslate nohighlight">\([1,2]\)</span> y los huecos entre un número de máquina y otro número de máquina no son en términos relativos más grandes que <span class="math notranslate nohighlight">\(2^{-52} \approx 2.22 \times 10^{-16}\)</span>.</p>
 <p>Asimismo, el intervalo <span class="math notranslate nohighlight">\([\frac{1}{2}, 1]\)</span> en tal sistema está formado por: <span class="math notranslate nohighlight">\(\frac{1}{2}, \frac{1}{2}+2^{-53},\frac{1}{2}+2\times2^{-53},\frac{1}{2}+3\times2^{-53},\dots , 1\)</span>.</p>
-<p>Entonces el espaciado entre cada número de máquina en el intervalo <span class="math notranslate nohighlight">\([2^j, 2^{j+1}]\)</span> siempre es menor o igual a <span class="math notranslate nohighlight">\(2^{-53} = \epsilon_{maq}\)</span>. Para lo anterior, obsérvese que el espaciado en el intervalo <span class="math notranslate nohighlight">\([2^j, 2^{j+1}]\)</span> para los números de máquina es <span class="math notranslate nohighlight">\(2^{j-52}\)</span> y por tanto: <span class="math notranslate nohighlight">\(\frac{\text{número de máquina}_{j+1} - \text{número de máquina}_{j}}{\text{número de máquina}_{j+1}}=\frac{2^{j-52}}{2^{j+1}} = 2^{-53}\)</span>.</p>
+<p>Entonces el espaciado entre cada número de máquina en el intervalo <span class="math notranslate nohighlight">\([2^j, 2^{j+1}]\)</span> siempre es menor o igual a <span class="math notranslate nohighlight">\(2^{-53} = \epsilon_{maq}\)</span>.</p>
 <p><strong>Obs2: una forma computacional de obtener al <span class="math notranslate nohighlight">\(\epsilon_{maq}\)</span> de forma sencilla es con el cálculo:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
