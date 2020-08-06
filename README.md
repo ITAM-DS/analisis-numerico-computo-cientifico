@@ -55,5 +55,16 @@ Total de clases: 17. Total de número de horas: 48 hrs.
 
 ## Clase 1
 
-"" de ""
+5 de agosto
+
+Introducción al curso, para esto se revisó la presentación en [liga](https://hackmd.io/@palmoreck/Hkr5rVQ-v). Revisar las tareas a realizar para primer clase de esta presentación.
+
+Finalizamos la nota [1.1 Análisis numérico y cómputo científico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.1/Analisis_numerico_y_computo_cientifico.ipynb).
+
+Liga al video de la sesión: [liga microsoft teams](https://web.microsoftstream.com/video/18d6d06f-32e4-4e6a-b56f-847f84de86dc). Tienen que hacer login con su cuenta del itam y luego les pedirá que ingresen nuevamente pero con su cuenta de comunidad itam y luego vuelvan a copiar la liga anterior en la misma pestaña de su browser o en otra.
+
+
+
+
+
 
