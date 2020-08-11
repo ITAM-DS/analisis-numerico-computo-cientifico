@@ -59,7 +59,9 @@ y elegir una ejecución interactiva de los notebooks vía *binder* o [thebe](htt
 
 ### Para convertir notas a pdf
 
-Usar botón de [binder](https://mybinder.org/) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion?urlpath=lab/tree/analisis-numerico-computo-cientifico/). Abrir una nueva terminal y hacer:
+Usar botón de [binder](https://mybinder.org/) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion?urlpath=lab/tree/analisis-numerico-computo-cientifico/)
+
+Abrir una nueva terminal y hacer:
 
 ```
 bash
