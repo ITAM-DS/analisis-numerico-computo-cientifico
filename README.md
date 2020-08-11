@@ -47,7 +47,7 @@ En el directorio [libro_optimizacion/temas/](libro_optimizacion/temas/) están l
 
 Las notas de cada tema están escritas en [Jupyter notebooks](https://jupyter.org/). Ver [I python, You R, We Julia](https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6) para algunas características de tales notebooks. Ver [notebook](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html) para funcionalidad de los notebooks. Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [kernels](https://jupyter.readthedocs.io/en/latest/install-kernel.html) disponibles en jupyter (que hacen posible ejecutar instrucciones en el lenguaje R, por ejemplo, en tales notebooks).
 
-**Interactividad**
+### Interactividad
 
 Para ejecutar las notas de forma interactiva dar click en el botón de [binder](https://mybinder.org/) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion?urlpath=lab/tree/analisis-numerico-computo-cientifico/) o bien dentro del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) colocarse sobre el ícono :rocket: 
 
@@ -56,6 +56,22 @@ Para ejecutar las notas de forma interactiva dar click en el botón de [binder](
 y elegir una ejecución interactiva de los notebooks vía *binder* o [thebe](https://github.com/executablebooks/thebe). La ejecución con `thebe` se puede hacer directamente en la liga del libro o si se descargan los archivos a su máquina local también es posible la ejecución (pero requieren conexión a internet en cualquier opción).
 
 \*En la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran más información sobre binder.
+
+### Para convertir notas a pdf
+
+Usar botón de [binder](https://mybinder.org/) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion?urlpath=lab/tree/analisis-numerico-computo-cientifico/). Abrir una nueva terminal y hacer:
+
+```
+bash
+cd analisis-numerico-computo-cientifico/libro_optimizacion/temas/
+jb build . --builder pdfhtml
+```
+
+El pdf estará dentro del directorio `analisis-numerico-computo-cientifico/libro_optimizacion/temas/_build/pdf`. Y se puede descargar:
+
+![libro_opt_pdf_1](https://user-images.githubusercontent.com/3290689/89846762-c60b1f00-db47-11ea-8d2e-1d21b92ae8b5.png)
+
+![libro_opt_pdf_2](https://user-images.githubusercontent.com/3290689/89846768-c9060f80-db47-11ea-8ab0-131e925732ec.png)
 
 
 ## Organización de github classroom
