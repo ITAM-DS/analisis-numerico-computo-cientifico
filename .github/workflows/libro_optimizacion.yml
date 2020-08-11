@@ -27,7 +27,7 @@ jobs:
 
     # Build the book
     - name: Build the book
-      run: cd libro_optimizacion/temas && mkdir _build && chmod gou+wrx -R _build && docker run -v $(pwd):/datos --entrypoint "/home/miuser/.local/bin/jb" --rm palmoreck/jupyterlab_optimizacion_for_pdf:2.1.4 build /datos/ --builder pdfhtml && sudo mv _build/pdf/book.pdf _build/html/libro_optimizacion.pdf
+      run: cd libro_optimizacion/temas && mkdir _build && chmod gou+wrx -R _build && docker run -v $(pwd):/datos --entrypoint "/home/miuser/.local/bin/jb" --rm palmoreck/jupyterlab_optimizacion_for_pdf:2.1.4 build /datos/ && sudo cp -r _build/ _build_html && docker run -v $(pwd):/datos --entrypoint "/home/miuser/.local/bin/jb" --rm palmoreck/jupyterlab_optimizacion_for_pdf:2.1.4 build /datos/ --builder pdfhtml && sudo mv _build/pdf/book.pdf _build_html/html/libro_optimizacion.pdf && sudo rm -r _build && sudo mv _build_html _build
 
     # Push the book's HTML to github-pages
     - name: GitHub Pages action
