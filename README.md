@@ -71,10 +71,10 @@ jb build . --builder pdfhtml
 
 El pdf estará dentro del directorio `analisis-numerico-computo-cientifico/libro_optimizacion/temas/_build/pdf`. Y se puede descargar:
 
-<img width="320" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89846762-c60b1f00-db47-11ea-8d2e-1d21b92ae8b5.png">
+<img width="350" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89846762-c60b1f00-db47-11ea-8d2e-1d21b92ae8b5.png">
 
 
-<img width="320" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89846768-c9060f80-db47-11ea-8ab0-131e925732ec.png">
+<img width="350" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89846768-c9060f80-db47-11ea-8ab0-131e925732ec.png">
 
 ## Organización de github classroom
 
