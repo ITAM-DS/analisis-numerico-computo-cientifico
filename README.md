@@ -77,7 +77,7 @@ Ir a la rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cie
 
 <img width="700" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89133863-49dc6000-d4e5-11ea-97ed-2ca782820e5c.png">
 
-### Nota: durante este semestre agosto - diciembre 2020 se estarán haciendo cambios continuamente por lo que tendrán que actualizar su descarga o clon**.
+### Nota: durante este semestre agosto - diciembre 2020 se estarán haciendo cambios continuamente por lo que tendrán que actualizar su descarga o clon.
 
 ## Organización de github classroom
 
