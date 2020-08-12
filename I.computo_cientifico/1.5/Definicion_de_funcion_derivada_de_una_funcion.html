@@ -1153,15 +1153,15 @@ x_2 &amp; x_1+2x_2\\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_values_for_g_function</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">new_arg_f_function</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
-                           <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">new_arg_f_function</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapping_for_g_function</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">new_arg_f_function</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                          <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">new_arg_f_function</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x_values_for_g_function</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">mapping_for_g_function</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1258,6 +1258,60 @@ x_2 &amp; x_1+2x_2\\
 <div class="cell_output docutils container">
 <div class="output text_latex math notranslate nohighlight">
 \[\displaystyle 2 v_{1} \left(t v_{1} + x_{1}\right) + 2 v_{2} \left(t v_{2} + x_{2}\right)\]</div>
+</div>
+</div>
+<p><strong>Otra opción utilizando <a class="reference external" href="https://stackoverflow.com/questions/39558515/how-to-get-the-gradient-and-hessian-sympy">how-to-get-the-gradient-and-hessian-sympy</a></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">derive_by_array</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}2 x_{1}\\2 x_{2}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">derive_by_array</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">new_arg_f_function</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                            <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">new_arg_f_function</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}2 t v_{1} + 2 x_{1}\\2 t v_{2} + 2 x_{2}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f_new_arg_grad</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">new_arg_f_function</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                                             <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">new_arg_f_function</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}v_{1}\\v_{2}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f_new_arg_grad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle v_{1} \left(2 t v_{1} + 2 x_{1}\right) + v_{2} \left(2 t v_{2} + 2 x_{2}\right)\]</div>
 </div>
 </div>
 </div>
