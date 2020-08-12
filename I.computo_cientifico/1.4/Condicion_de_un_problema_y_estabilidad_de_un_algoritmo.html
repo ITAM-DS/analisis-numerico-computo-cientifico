@@ -266,6 +266,13 @@
   <a class="reference internal nav-link" href="#algunas-propiedades-del-numero-de-condicion-de-una-matriz">
    Algunas propiedades del número de condición de una matriz
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplos">
+     Ejemplos
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#numero-de-condicion-de-una-matriz-a-in-mathbb-r-m-times-n">
@@ -324,7 +331,7 @@
 <p>y <span class="math notranslate nohighlight">\(||\mathcal{J}_f(x)||\)</span> es una norma matricial inducida por las normas en <span class="math notranslate nohighlight">\(\mathbb{X}, \mathbb{Y}\)</span>. Ver <a class="reference internal" href="../1.3/Normas_vectoriales_y_matriciales.html#nvm"><span class="std std-ref">Normas vectoriales y matriciales</span></a>.</p>
 </div>
 <div class="admonition-comentario admonition">
-<p class="admonition-title">Comentario:</p>
+<p class="admonition-title">Comentario</p>
 <p>En la práctica se considera a un problema <strong>bien condicionado</strong> si <span class="math notranslate nohighlight">\(\text{Cond}_f^R\)</span> es “pequeño”: menor a <span class="math notranslate nohighlight">\(10\)</span>, <strong>medianamente condicionado</strong> si es de orden entre <span class="math notranslate nohighlight">\(10^1\)</span> y <span class="math notranslate nohighlight">\(10^2\)</span> y <strong>mal condicionado</strong> si es “grande”: mayor a <span class="math notranslate nohighlight">\(10^3\)</span>.</p>
 </div>
 <div class="admonition-ejercicio admonition">
@@ -376,11 +383,13 @@
 <p class="admonition-title">Observación</p>
 <p>Obsérvese que esta condición es más flexible y en general <span class="math notranslate nohighlight">\(K_1, K_2\)</span> dependen de las dimensiones de <span class="math notranslate nohighlight">\(\mathbb{X}, \mathbb{Y}\)</span>.</p>
 </div>
-<p><strong>Comentarios:</strong></p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>Esta definición resulta apropiada para la mayoría de los problemas en el ánalisis numérico. Para otras áreas, por ejemplo en ecuaciones diferenciales, donde se tienen definiciones de sistemas dinámicos estables e inestables (cuyas definiciones no se deben confundir con las descritas para algoritmos), esta condición es muy estricta.</p></li>
 <li><p>Tenemos algoritmos que satisfacen una condición más estricta y simple que la estabilidad: <strong>estabilidad hacia atrás</strong>:</p></li>
 </ul>
+</div>
 <div class="section" id="estabilidad-hacia-atras">
 <h3>Estabilidad hacia atrás<a class="headerlink" href="#estabilidad-hacia-atras" title="Permalink to this headline">¶</a></h3>
 <p>Decimos que un algoritmo <span class="math notranslate nohighlight">\(\hat{f}\)</span> para el problema <span class="math notranslate nohighlight">\(f\)</span> es <strong>estable hacia atrás</strong> si:</p>
@@ -388,9 +397,12 @@
 \[\forall x \in \mathbb{X}, \hat{f}(x) = f(\hat{x})\]</div>
 <p>con <span class="math notranslate nohighlight">\(\hat{x} \in \mathbb{X}\)</span> tal que <span class="math notranslate nohighlight">\(\frac{||x-\hat{x}||}{||x||} \leq K\epsilon_{maq}, K&gt;0\)</span>.</p>
 <p>Esto es, el algoritmo <span class="math notranslate nohighlight">\(\hat{f}\)</span> da la solución <strong>exacta</strong> para datos cercanos (cercano en el sentido de <span class="math notranslate nohighlight">\(\epsilon_{maq}\)</span>), independientemente de la elección de <span class="math notranslate nohighlight">\(x\)</span>.</p>
-<p><strong>Ejemplo:</strong> Para entender la estabilidad hacia atrás de un algoritmo, considérese el ejemplo siguiente.</p>
+<div class="admonition-ejemplo admonition">
+<p class="admonition-title">Ejemplo</p>
+<p>Para entender la estabilidad hacia atrás de un algoritmo, considérese el ejemplo siguiente.</p>
 <p><strong>Problema:</strong> evaluar <span class="math notranslate nohighlight">\(f(x) = e^x\)</span> en <span class="math notranslate nohighlight">\(x=1\)</span>.</p>
 <p><strong>Resultado:</strong> <span class="math notranslate nohighlight">\(f(1) = e^1 = 2.718281...\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -405,8 +417,11 @@
 </div>
 </div>
 </div>
+<div class="admonition-continuacion-ejemplo admonition">
+<p class="admonition-title">Continuación ejemplo</p>
 <p><strong>Algoritmo:</strong> truncar la serie $1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \dots $ a cuatro términos: <span class="math notranslate nohighlight">\(\hat{f}(x) = 1 + x + \frac{x^2}{2} + \frac{x^3}{6}\)</span>.</p>
 <p><strong>Resultado del algoritmo:</strong> <span class="math notranslate nohighlight">\(\hat{f}(1) = 2.\bar{6}\)</span></p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">algoritmo</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mf">6.0</span>
@@ -426,9 +441,12 @@
 </div>
 </div>
 </div>
+<div class="admonition-continuacion-ejemplo admonition">
+<p class="admonition-title">Continuación ejemplo</p>
 <p><strong>Pregunta:</strong> ¿Qué valor <span class="math notranslate nohighlight">\(\hat{x} \in \mathbb{R}\)</span> hace que el valor calculado por el algoritmo <span class="math notranslate nohighlight">\(\hat{f}(1)\)</span> sea igual a <span class="math notranslate nohighlight">\(f(\hat{x})\)</span>?</p>
 <p>-&gt; <strong>Solución:</strong></p>
 <p>Resolver la ecuación: <span class="math notranslate nohighlight">\(e^{\hat{x}} = 2.\bar{6}\)</span>, esto es: <span class="math notranslate nohighlight">\(\hat{x} = log(2.\bar{6}) = 0.980829...\)</span>. Entonces <span class="math notranslate nohighlight">\(f(\hat{x}) = 2.\bar{6} = \hat{f}(x)\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_hat</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">algoritmo</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
@@ -442,12 +460,15 @@
 </div>
 </div>
 </div>
+<div class="admonition-continuacion-ejemplo admonition">
+<p class="admonition-title">Continuación ejemplo</p>
 <p>Entonces, el algoritmo es estable hacia atrás sólo si la diferencia entre <span class="math notranslate nohighlight">\(x\)</span> y <span class="math notranslate nohighlight">\(\hat{x}\)</span> en términos relativos es menor a <span class="math notranslate nohighlight">\(K \epsilon_{maq}\)</span> con <span class="math notranslate nohighlight">\(K &gt;0\)</span>. Además, podemos calcular <strong>errores hacia delante</strong> y <strong>errores hacia atrás</strong>:</p>
 <p>error hacia delante: <span class="math notranslate nohighlight">\(\hat{f}(x) - f(x) = -0.05161...\)</span>, error hacia atrás: <span class="math notranslate nohighlight">\(\hat{x}-x = -0.01917...\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_delante</span> <span class="o">=</span> <span class="n">algoritmo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">err_delante</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">forward_error</span> <span class="o">=</span> <span class="n">algoritmo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">forward_error</span>
 </pre></div>
 </div>
 </div>
@@ -459,8 +480,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_atras</span> <span class="o">=</span> <span class="n">x_hat</span><span class="o">-</span><span class="n">x</span>
-<span class="n">err_atras</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">backward_error</span> <span class="o">=</span> <span class="n">x_hat</span><span class="o">-</span><span class="n">x</span>
+<span class="n">backward_error</span>
 </pre></div>
 </div>
 </div>
@@ -471,15 +492,16 @@
 </div>
 </div>
 <p>Dependiendo del problema, estos errores son pequeños o grandes, por ejemplo si consideramos tener una cifra correcta como suficiente para determinar que es una buena aproximación entonces podemos concluir: <span class="math notranslate nohighlight">\(\hat{f}\)</span> obtiene una respuesta correcta y cercana al valor de <span class="math notranslate nohighlight">\(f\)</span> (error hacia delante) y la respuesta que obtuvimos con <span class="math notranslate nohighlight">\(\hat{f}\)</span> es correcta para datos ligeramente perturbados (error hacia atrás).</p>
-<p><strong>Obs:</strong></p>
+<div class="tip admonition">
+<p class="admonition-title">Observaciones</p>
 <ul class="simple">
 <li><p>Obsérvese que el error hacia delante requiere resolver el problema <span class="math notranslate nohighlight">\(f\)</span> (para calcular <span class="math notranslate nohighlight">\(f(x)\)</span>) y también información sobre <span class="math notranslate nohighlight">\(f\)</span>.</p></li>
 <li><p>En el ejemplo anterior se calcularon <span class="math notranslate nohighlight">\(\hat{f}(x)\)</span> y también qué tan larga debe ser la modificación en los datos <span class="math notranslate nohighlight">\(x\)</span>, esto es: <span class="math notranslate nohighlight">\(\hat{x}\)</span>, para que <span class="math notranslate nohighlight">\(\hat{f}(x) = f(\hat{x})\)</span> (error hacia atrás).</p></li>
-</ul>
-<ul class="simple">
 <li><p>Dibujo que ayuda a ver errores hacia atrás y hacia delante:</p></li>
 </ul>
-<img src="https://dl.dropboxusercontent.com/s/b30awajxvl3u8qe/error_hacia_delante_hacia_atras.png?dl=0" heigth="500" width="500"><p>En resumen, algunas características de un método <strong>estable</strong> numéricamente respecto al redondeo son:</p>
+<img src="https://dl.dropboxusercontent.com/s/b30awajxvl3u8qe/error_hacia_delante_hacia_atras.png?dl=0" heigth="500" width="500">
+</div>
+<p>En resumen, algunas características de un método <strong>estable</strong> numéricamente respecto al redondeo son:</p>
 <ul class="simple">
 <li><p>Variaciones “pequeñas” en los datos de entrada del método generan variaciones “pequeñas” en la solución del problema.</p></li>
 <li><p>No amplifican errores de redondeo en los cálculos involucrados.</p></li>
@@ -492,7 +514,10 @@
 <p>En el curso trabajaremos con algoritmos matriciales que son numéricamente estables (o estables hacia atrás) ante errores por redondeo, sin embargo la exactitud que obtengamos con tales algoritmos dependerán de qué tan bien (o mal) condicionado esté el problema. En el caso de matrices la condición de un problema puede ser cuantificada con el <strong>número de condición</strong> de la matriz del problema. Aunque haciendo uso de definiciones como la pseudoinversa de una matriz es posible definir el número de condición para una matriz en general rectangular <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span>, en esta primera definición consideramos matrices cuadradas no singulares <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n\times n}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\text{cond}(A) = ||A|| ||A^{-1}||.\]</div>
-<p><strong>Obs:</strong> obsérvese que la norma anterior es una <strong>norma matricial</strong> y cond<span class="math notranslate nohighlight">\((\cdot)\)</span> puede calcularse para diferentes normas matriciales. Ver final de esta nota para definición de norma y propiedades.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que la norma anterior es una <strong>norma matricial</strong> y cond<span class="math notranslate nohighlight">\((\cdot)\)</span> puede calcularse para diferentes normas matriciales. Ver final de esta nota para definición de norma y propiedades.</p>
+</div>
 </div>
 <div class="section" id="por-que-se-utiliza-la-expresion-a-a-1-para-definir-el-numero-de-condicion-de-una-matriz">
 <h2>¿Por qué se utiliza la expresión <span class="math notranslate nohighlight">\(||A|| ||A^{-1}||\)</span> para definir el número de condición de una matriz?<a class="headerlink" href="#por-que-se-utiliza-la-expresion-a-a-1-para-definir-el-numero-de-condicion-de-una-matriz" title="Permalink to this headline">¶</a></h2>
@@ -605,10 +630,13 @@ array([4., 3.])
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_66_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_66_0.png" />
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_65_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_65_0.png" />
 </div>
 </div>
-<p><strong>Obs:</strong> obsérvese que las dos rectas anteriores tienen una inclinación (pendiente) similar por lo que no se ve claramente el punto en el que intersectan.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que las dos rectas anteriores tienen una inclinación (pendiente) similar por lo que no se ve claramente el punto en el que intersectan.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso b&#39;</span><span class="p">)</span>
@@ -661,11 +689,18 @@ array([8. , 0.8])
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_70_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_70_0.png" />
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_69_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_69_0.png" />
 </div>
 </div>
-<p><strong>Obs:</strong> al modificar un poco las entradas de la matriz <span class="math notranslate nohighlight">\(A\)</span> la solución del sistema cambia drásticamente.</p>
-<p><strong>Comentario:</strong> otra forma de describir a un sistema mal condicionado es que un amplio rango de valores en un SPFN satisfacen tal sistema de forma aproximada.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Al modificar un poco las entradas de la matriz <span class="math notranslate nohighlight">\(A\)</span> la solución del sistema cambia drásticamente.</p>
+</div>
+<div class="highlight-{admonition}Comentario notranslate"><div class="highlight"><pre><span></span>
+Otra forma de describir a un sistema mal condicionado es que un amplio rango de valores en un SPFN satisfacen tal sistema de forma aproximada.
+
+</pre></div>
+</div>
 <p>2.Resolver los siguientes sistemas:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}a) \begin{array}{ccc} .03x_1 + 58.9x_2   &amp;= &amp; 59.2 \\ 5.31x_1 -6.1x_2 &amp;= &amp; 47 \end{array} \end{split}\]</div>
@@ -685,6 +720,9 @@ array([8. , 0.8])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso a
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
 matriz A:
 array([[ 3.00e-02,  5.89e+01],
        [ 5.31e+00, -6.10e+00]])
@@ -723,10 +761,13 @@ array([10.,  1.])
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_77_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_77_0.png" />
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_76_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_76_0.png" />
 </div>
 </div>
-<p><strong>Obs:</strong> obsérvese que la solución del sistema de ecuaciones (intersección entre las dos rectas) está claramente definido.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que la solución del sistema de ecuaciones (intersección entre las dos rectas) está claramente definido.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inciso b&#39;</span><span class="p">)</span>
@@ -779,13 +820,18 @@ array([9.99058927, 1.00000479])
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_81_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_81_0.png" />
+<img alt="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_80_0.png" src="../../_images/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo_80_0.png" />
 </div>
 </div>
-<p><strong>Obs:</strong> al modificar un poco las entradas de la matriz <span class="math notranslate nohighlight">\(A\)</span> la solución <strong>no</strong> cambia mucho.</p>
-<p><strong>Comentarios:</strong></p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Al modificar un poco las entradas de la matriz <span class="math notranslate nohighlight">\(A\)</span> la solución <strong>no</strong> cambia mucho.</p>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
 <p>1.¿Por qué nos interesa considerar perturbaciones en los datos de entrada? -&gt; recuérdese que los números reales se representan en la máquina mediante el sistema de punto flotante (SPF), entonces al ingresar datos a la máquina tenemos perturbaciones y por tanto errores de redondeo. Ver nota: <a class="reference internal" href="../1.2/Sistema_de_punto_flotante.html#spf"><span class="std std-ref">Sistema de punto flotante</span></a>.</p>
 <p>2.Las matrices anteriores tienen número de condición distinto:</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;matriz del ejemplo 1&#39;</span><span class="p">)</span>
@@ -796,13 +842,15 @@ array([9.99058927, 1.00000479])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>matriz del ejemplo 1
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
 array([[1. , 2. ],
        [1.1, 2. ]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>su número de condición es:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
@@ -810,7 +858,7 @@ array([[1. , 2. ],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>51.03040383918669
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>51.030403839186725
 </pre></div>
 </div>
 </div>
@@ -831,7 +879,6 @@ array([[ 3.00e-02,  5.89e+01],
 </div>
 </div>
 </div>
-<p>su número de condición es:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
@@ -844,7 +891,10 @@ array([[ 3.00e-02,  5.89e+01],
 </div>
 </div>
 </div>
+<div class="admonition-continuacion-comentarios admonition">
+<p class="admonition-title">Continuación comentarios</p>
 <p>Las matrices del ejemplo <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(2\)</span> son <strong>medianamente</strong> condicionadas. Una matriz se dice <strong>bien condicionada</strong> si cond<span class="math notranslate nohighlight">\((A)\)</span> es cercano a <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</div>
 </div>
 <div class="section" id="algunas-propiedades-del-numero-de-condicion-de-una-matriz">
 <h2>Algunas propiedades del número de condición de una matriz<a class="headerlink" href="#algunas-propiedades-del-numero-de-condicion-de-una-matriz" title="Permalink to this headline">¶</a></h2>
@@ -883,7 +933,7 @@ array([[ 3.00e-02,  5.89e+01],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>15513.738738929662
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>15513.73873892924
 </pre></div>
 </div>
 </div>
@@ -896,13 +946,13 @@ array([[ 3.00e-02,  5.89e+01],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 1.00000000e+00, -6.19504448e-14, -4.96269692e-14,
-        -4.50750548e-14],
-       [ 5.68434189e-14,  1.00000000e+00,  3.40468394e-15,
-         4.35207426e-14],
-       [ 2.27373675e-13,  2.26219043e-13,  1.00000000e+00,
-         4.95476676e-14],
-       [-2.27373675e-13, -1.50812696e-13, -1.58539848e-13,
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 1.00000000e+00, -1.00808251e-14, -5.81016716e-15,
+        -1.36081622e-14],
+       [ 2.84217094e-13,  1.00000000e+00,  1.17091522e-13,
+         1.89689534e-13],
+       [-2.27373675e-13, -2.05790940e-13,  1.00000000e+00,
+        -2.42789915e-13],
+       [ 2.27373675e-13,  3.10862447e-14,  1.19904087e-14,
          1.00000000e+00]])
 </pre></div>
 </div>
@@ -965,7 +1015,7 @@ array([[1, 2],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>7.452221309548728e+16
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>inf
 </pre></div>
 </div>
 </div>
@@ -985,21 +1035,28 @@ array([[1, 2],
 <div class="math notranslate nohighlight">
 \[\text{ErrRel}(\hat{x}) = \frac{||x^*-\hat{x}||}{||x^*||} \leq \text{cond}(A) \left ( \frac{||\Delta A||}{||A||} + \frac{||\Delta b||}{||b||} \right ), b \neq 0.\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(x^*\)</span> es solución de <span class="math notranslate nohighlight">\(Ax=b\)</span> y <span class="math notranslate nohighlight">\(\hat{x}\)</span> es solución aproximada que se obtiene por algún método numérico (por ejemplo factorización LU). <span class="math notranslate nohighlight">\(\frac{||\Delta A||}{||A||}, \frac{||\Delta b||}{||b||}\)</span> son los errores relativos en las entradas de <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(b\)</span> respectivamente.</p>
-<p><strong>Comentario:</strong> la desigualdad anterior se puede interpretar como sigue: si sólo tenemos perturbaciones en <span class="math notranslate nohighlight">\(A\)</span> de modo que se tienen errores por redondeo del orden de <span class="math notranslate nohighlight">\(10^{-k}\)</span> y por lo tanto <span class="math notranslate nohighlight">\(k\)</span> dígitos de precisión en <span class="math notranslate nohighlight">\(A\)</span> y cond<span class="math notranslate nohighlight">\((A)\)</span> es del orden de <span class="math notranslate nohighlight">\(10^c\)</span> entonces <span class="math notranslate nohighlight">\(\text{ErrRel}(\hat{x})\)</span> puede llegar a tener errores de redondeo de a lo más del orden de <span class="math notranslate nohighlight">\(10^{c-k}\)</span> y por tanto <span class="math notranslate nohighlight">\(k-c\)</span> dígitos de precisión:</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>La desigualdad anterior se puede interpretar como sigue: si sólo tenemos perturbaciones en <span class="math notranslate nohighlight">\(A\)</span> de modo que se tienen errores por redondeo del orden de <span class="math notranslate nohighlight">\(10^{-k}\)</span> y por lo tanto <span class="math notranslate nohighlight">\(k\)</span> dígitos de precisión en <span class="math notranslate nohighlight">\(A\)</span> y cond<span class="math notranslate nohighlight">\((A)\)</span> es del orden de <span class="math notranslate nohighlight">\(10^c\)</span> entonces <span class="math notranslate nohighlight">\(\text{ErrRel}(\hat{x})\)</span> puede llegar a tener errores de redondeo de a lo más del orden de <span class="math notranslate nohighlight">\(10^{c-k}\)</span> y por tanto <span class="math notranslate nohighlight">\(k-c\)</span> dígitos de precisión:</p>
 <div class="math notranslate nohighlight">
 \[\text{ErrRel}(\hat{x}) \leq \text{cond}(A) \frac{||\Delta A||}{||A||}.\]</div>
+</div>
 <ul class="simple">
 <li><p>Supongamos que <span class="math notranslate nohighlight">\(x^*\)</span> es solución del sistema <span class="math notranslate nohighlight">\(Ax=b\)</span> y obtenemos <span class="math notranslate nohighlight">\(\hat{x}\)</span> por algún método numérico (por ejemplo factorización LU) entonces ¿qué condiciones garantizan que <span class="math notranslate nohighlight">\(||x^*-\hat{x}||\)</span> sea cercano a cero (del orden de $ \epsilon_{maq}= 10^{-16}$), ¿de qué depende esto?</p></li>
 </ul>
 <p>Para responder las preguntas anteriores definimos el residual de <span class="math notranslate nohighlight">\(Ax=b\)</span> como <span class="math notranslate nohighlight">\($r=A\hat{x}-b\)</span>$ con <span class="math notranslate nohighlight">\(\hat{x}\)</span> aproximación a <span class="math notranslate nohighlight">\(x^*\)</span> obtenida por algún método numérico. Asimismo, el residual relativo a la norma de <span class="math notranslate nohighlight">\(b\)</span> como:</p>
 <div class="math notranslate nohighlight">
 \[\frac{||r||}{||b||}.\]</div>
-<p><strong>Obs:</strong> típicamente <span class="math notranslate nohighlight">\(x^*\)</span> (solución exacta) es desconocida y por ello no podríamos calcular <span class="math notranslate nohighlight">\(||x^*-\hat{x}||\)</span>, sin embargo sí podemos calcular el residual relativo a la norma de <span class="math notranslate nohighlight">\(b\)</span>: <span class="math notranslate nohighlight">\(\frac{||r||}{||b||}\)</span>. ¿Se cumple que <span class="math notranslate nohighlight">\(\frac{||r||}{||b||}\)</span> pequeño implica <span class="math notranslate nohighlight">\(\text{ErrRel}(\hat{x})\)</span> pequeño? El siguiente resultado nos ayuda a responder esta y las preguntas anteriores:</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Típicamente <span class="math notranslate nohighlight">\(x^*\)</span> (solución exacta) es desconocida y por ello no podríamos calcular <span class="math notranslate nohighlight">\(||x^*-\hat{x}||\)</span>, sin embargo sí podemos calcular el residual relativo a la norma de <span class="math notranslate nohighlight">\(b\)</span>: <span class="math notranslate nohighlight">\(\frac{||r||}{||b||}\)</span>. ¿Se cumple que <span class="math notranslate nohighlight">\(\frac{||r||}{||b||}\)</span> pequeño implica <span class="math notranslate nohighlight">\(\text{ErrRel}(\hat{x})\)</span> pequeño? El siguiente resultado nos ayuda a responder esta y las preguntas anteriores.</p>
+</div>
 <p>Sea <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n\times n}\)</span> no singular, <span class="math notranslate nohighlight">\(x^*\)</span> solución de <span class="math notranslate nohighlight">\(Ax=b\)</span>, <span class="math notranslate nohighlight">\(\hat{x}\)</span> aproximación a <span class="math notranslate nohighlight">\(x^*\)</span>, entonces para las normas matriciales inducidas se cumple:</p>
 <div class="math notranslate nohighlight">
 \[\frac{||r||}{||b||} \frac{1}{\text{cond}(A)} \leq \frac{||x^*-\hat{x}||}{||x^*||}\leq \text{cond}(A)\frac{||r||}{||b||}.\]</div>
 <p>Por la desigualdad anterior, si <span class="math notranslate nohighlight">\(\text{cond}(A) \approx 1\)</span> entonces <span class="math notranslate nohighlight">\(\frac{||r||}{||b||}\)</span> es una buena estimación de <span class="math notranslate nohighlight">\(\text{ErrRel}(\hat{x}) = \frac{||x^*-\hat{x}||}{||x^*||}\)</span> por lo que <span class="math notranslate nohighlight">\(\hat{x}\)</span> es una buena estimación de <span class="math notranslate nohighlight">\(x^*\)</span>. Si <span class="math notranslate nohighlight">\(\text{cond}(A)\)</span> es grande no podemos decir <strong>nada</strong> acerca de <span class="math notranslate nohighlight">\(\text{ErrRel}(\hat{x})\)</span> ni de <span class="math notranslate nohighlight">\(\hat{x}\)</span>.</p>
-<p><strong>Ejemplos:</strong></p>
+<div class="section" id="ejemplos">
+<h3>Ejemplos<a class="headerlink" href="#ejemplos" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li></li>
 </ol>
@@ -1095,7 +1152,7 @@ array([10., -8.])
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>residual relativo:
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.023702273156998185
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.02370227315699886
 </pre></div>
 </div>
 </div>
@@ -1110,7 +1167,7 @@ array([10., -8.])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo:
-0.5255883312276276
+0.5255883312276278
 </pre></div>
 </div>
 </div>
@@ -1123,7 +1180,7 @@ array([10., -8.])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4060.04975369993
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4060.0497536998155
 </pre></div>
 </div>
 </div>
@@ -1136,7 +1193,7 @@ array([10., -8.])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(5.83792677303973e-06, 96.23240829319894)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(5.837926773040061e-06, 96.23240829319897)
 </pre></div>
 </div>
 </div>
@@ -1181,7 +1238,7 @@ array([4.1, 9.7])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x_est:
-array([ 1.00000000e+00, -2.63677968e-15])
+array([1., 0.])
 </pre></div>
 </div>
 </div>
@@ -1251,7 +1308,7 @@ array([0.34, 0.97])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo:
-1.1732433677631384
+1.1732433677631406
 </pre></div>
 </div>
 </div>
@@ -1264,7 +1321,7 @@ array([0.34, 0.97])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1622.9993838564628
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1622.9993838565106
 </pre></div>
 </div>
 </div>
@@ -1276,7 +1333,7 @@ array([0.34, 0.97])
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(5.850808342540636e-07, 1.5411772226902514)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(5.850808342540463e-07, 1.5411772226902969)
 </pre></div>
 </div>
 </div>
@@ -1533,6 +1590,9 @@ array([1.32846097, 2.49903811])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso b
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
 matriz A_2:
 array([[ 0.4999567, -0.8660504],
        [ 0.8660504,  0.4999567]])
@@ -1630,6 +1690,9 @@ array([1.32858592, 2.49897168])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>inciso c
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
 matriz A_2:
 array([[ 0.4999567, -0.8660504],
        [ 0.8660504,  0.4999567]])
@@ -1649,9 +1712,6 @@ array([-1.7,  2.4])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>solución x_hat:
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
 array([1.22859458, 2.67218176])
 </pre></div>
 </div>
@@ -1667,6 +1727,9 @@ array([1.22859458, 2.67218176])
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>residual relativo:
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;7.06241310531940e-02&#39;
@@ -1717,11 +1780,18 @@ array([1.22859458, 2.67218176])
 </div>
 </div>
 <p>Así, <span class="math notranslate nohighlight">\(\text{cond}(A)\)</span> nos da una calidad (mediante <span class="math notranslate nohighlight">\(\frac{||r||}{||b||}\)</span>) de la solución <span class="math notranslate nohighlight">\(\hat{x}\)</span> en el problema inicial (resolver <span class="math notranslate nohighlight">\(Ax=b\)</span>) obtenida por algún método numérico respecto a la solución <span class="math notranslate nohighlight">\(x^*\)</span> de <span class="math notranslate nohighlight">\(Ax=b\)</span>.</p>
-<p><strong>Obs:</strong> Por último obsérvese que la condición del problema inicial (resolver <span class="math notranslate nohighlight">\(Ax=b\)</span>) <strong>no depende del método númerico</strong> que se elige para resolverlo.</p>
-<p><strong>Ejercicio:</strong> proponer sistemas de ecuaciones lineales con distinto número de condición, perturbar matriz del sistema o lado derecho (o ambos) y revisar números de condición y residuales relativos de acuerdo a la cota:</p>
+<div class="admonition-observacion admonition">
+<p class="admonition-title">Observación</p>
+<p>Por último obsérvese que la condición del problema inicial (resolver <span class="math notranslate nohighlight">\(Ax=b\)</span>) <strong>no depende del método númerico</strong> que se elige para resolverlo.</p>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio:</p>
+<p>Proponer sistemas de ecuaciones lineales con distinto número de condición, perturbar matriz del sistema o lado derecho (o ambos) y revisar números de condición y residuales relativos de acuerdo a la cota:</p>
 <div class="math notranslate nohighlight">
 \[\frac{||r||}{||b||} \frac{1}{\text{cond}(A)} \leq \frac{||x^*-\hat{x}||}{||x^*||}\leq \text{cond}(A)\frac{||r||}{||b||}.\]</div>
 <p>Verificar que si el número de condición del sistema es pequeño entonces el residual relativo estima bien al error relativo.</p>
+</div>
+</div>
 </div>
 <div class="section" id="numero-de-condicion-de-una-matriz-a-in-mathbb-r-m-times-n">
 <h2>Número de condición de una matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m\times n}\)</span><a class="headerlink" href="#numero-de-condicion-de-una-matriz-a-in-mathbb-r-m-times-n" title="Permalink to this headline">¶</a></h2>
@@ -1736,7 +1806,8 @@ array([1.22859458, 2.67218176])
 \end{cases}
 \end{split}\]</div>
 <p><span class="math notranslate nohighlight">\(\forall i=1,\dots, r\)</span> con <span class="math notranslate nohighlight">\(r=rank(A)\)</span>.</p>
-<p><strong>Comentarios y propiedades:</strong></p>
+<div class="admonition-comentarios-y-propiedades admonition">
+<p class="admonition-title">Comentarios y propiedades</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(A^{\dagger}\)</span> se le conoce como pseudoinversa de <span class="math notranslate nohighlight">\(Moore-Penrose\)</span>.</p></li>
 <li><p>Si <span class="math notranslate nohighlight">\(rank(A)=n\)</span> entonces <span class="math notranslate nohighlight">\(A^{\dagger} = (A^TA)^{-1}A^T\)</span>, si <span class="math notranslate nohighlight">\(rank(A)=m\)</span>, <span class="math notranslate nohighlight">\(A^\dagger = A^T(AA^T)^{-1}\)</span>, si <span class="math notranslate nohighlight">\(A\in \mathbb{R}^{n\times n}\)</span> no singular, entonces <span class="math notranslate nohighlight">\(A^\dagger=A^{-1}\)</span>.</p></li>
@@ -1747,10 +1818,13 @@ array([1.22859458, 2.67218176])
 <p>de hecho, se tiene:</p>
 <div class="math notranslate nohighlight">
 \[\text{cond}_2(A) = \frac{\sigma_{max}}{\sigma_{min}}=\frac{\sigma_1}{\sigma_r}.\]</div>
-<p><strong>Ejercicios</strong></p>
+</div>
+<div class="admonition-ejercicios admonition">
+<p class="admonition-title">Ejercicios</p>
 <ol class="simple">
 <li><p>Resuelve los ejercicios y preguntas de la nota.</p></li>
 </ol>
+</div>
 <p><strong>Preguntas de comprehensión</strong></p>
 <p>1)¿Qué factores influyen en la falta de exactitud de un cálculo?</p>
 <p>2)Si f es un problema mal condicionado, ¿a qué nos referimos? Da ejemplos de problemas bien y mal condicionados.</p>
