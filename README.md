@@ -33,7 +33,7 @@ Las clases son los días miércoles.
 | Semana 17 (23 - 27 de noviembre) | Continuación métodos para programación lineal. Programación entera y optimización de redes.|
 | Semana 18 (30 de noviembre - 4 de diciembre) | Continuación programación entera y optimización de redes.|
 
-Total de clases: 17. Total de número de horas: 48 hrs.
+Total de clases: 18. Total de número de horas: 48 hrs.
 
 
 [Equipos de optimización]()
@@ -59,9 +59,28 @@ Total de clases: 17. Total de número de horas: 48 hrs.
 
 Introducción al curso, para esto se revisó la presentación en [liga](https://hackmd.io/@palmoreck/Hkr5rVQ-v). Revisar las tareas a realizar para primer clase de esta presentación.
 
-Finalizamos la nota [1.1 Análisis numérico y cómputo científico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/I.computo_cientifico/1.1/Analisis_numerico_y_computo_cientifico.ipynb).
+Finalizamos la nota [1.1 Análisis numérico y cómputo científico](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.1/Analisis_numerico_y_computo_cientifico.html).
 
 Liga al video de la sesión: [liga microsoft teams](https://web.microsoftstream.com/video/18d6d06f-32e4-4e6a-b56f-847f84de86dc). Tienen que hacer login con su cuenta del itam y luego les pedirá que ingresen nuevamente pero con su cuenta de comunidad itam y luego vuelvan a copiar la liga anterior en la misma pestaña de su browser o en otra.
+
+## Clase 2
+
+12 de agosto
+
+Llegamos hasta reglas de corte y redondeo de la nota: [1.2 Sistema de punto flotante](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.2/Sistema_de_punto_flotante.html)
+
+Liga al video de la sesión: [liga microsoft teams](https://web.microsoftstream.com/video/f8df432e-af2d-4aba-9d9b-68d7f639251d). Tienen que hacer login con su cuenta del itam y luego les pedirá que ingresen nuevamente pero con su cuenta de comunidad itam y luego vuelvan a copiar la liga anterior en la misma pestaña de su browser o en otra.
+
+### De tarea quedó
+
+Ver la **parte 1** de configuraciones de servicios básicos en AWS que encuentran [aquí](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki#para-videos-de-configuraciones-de-servicios-b%C3%A1sicos-e-instalaci%C3%B3n-de-herramientas-%C3%BAtiles) y podamos discutir en la Semana 4 (24 - 28 de agosto) creación de cuentas en AWS y dudas generales de éstas configuraciones. Para las personas que tienen un sistema operativo Windows y quieran conectarse a las instancias de AWS consultar: [UserGuide/putty](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html)
+
+
+
+
+
+
+
 
 
 
