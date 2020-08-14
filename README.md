@@ -73,7 +73,7 @@ Liga al video de la sesión: [liga microsoft teams](https://web.microsoftstream.
 
 ### De tarea quedó
 
-Ver la **parte 1** de configuraciones de servicios básicos en AWS que encuentran [aquí](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki#para-videos-de-configuraciones-de-servicios-b%C3%A1sicos-e-instalaci%C3%B3n-de-herramientas-%C3%BAtiles) y podamos discutir en la Semana 4 (24 - 28 de agosto) creación de cuentas en AWS y dudas generales de éstas configuraciones. Para las personas que tienen un sistema operativo Windows y quieran conectarse a las instancias de AWS consultar: [UserGuide/putty](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html)
+Realizar la **parte 1** de configuraciones de servicios básicos en AWS que encuentran [aquí](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki#para-videos-de-configuraciones-de-servicios-b%C3%A1sicos-e-instalaci%C3%B3n-de-herramientas-%C3%BAtiles) y podamos discutir en la Semana 4 (24 - 28 de agosto) creación de cuentas en AWS y dudas generales de éstas configuraciones. Para las personas que tienen un sistema operativo Windows y quieran conectarse a las instancias de AWS consultar: [UserGuide/putty](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html)
 
 
 
