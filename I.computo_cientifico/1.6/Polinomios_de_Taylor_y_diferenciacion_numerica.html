@@ -285,6 +285,13 @@
     \(f: \mathbb{R}^n \rightarrow \mathbb{R}\)
    </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Ejemplo
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -474,7 +481,7 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>compute_error&lt;-function(approx, obj){
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>compute_error_point_wise&lt;-function(obj, approx){
     &#39;
     Relative or absolute error between approx and obj in a point wise fashion.
     
@@ -500,15 +507,15 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 <span class="n">p4_approx</span> <span class="o">&lt;-</span> <span class="n">Taylor_approx</span><span class="p">(</span><span class="n">x_test_point</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;error relativo polinomio constante&#39;</span><span class="p">)</span>
-<span class="n">compute_error</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">x0</span><span class="p">,</span><span class="n">objective</span><span class="p">)</span>
+<span class="n">compute_error_point_wise</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">x0</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;error relativo polinomio lineal&#39;</span><span class="p">)</span>
-<span class="n">compute_error</span><span class="p">(</span><span class="n">p1_approx</span><span class="p">,</span><span class="n">objective</span><span class="p">)</span>
+<span class="n">compute_error_point_wise</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">p1_approx</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;error relativo polinomio grado 2&#39;</span><span class="p">)</span>
-<span class="n">compute_error</span><span class="p">(</span><span class="n">p2_approx</span><span class="p">,</span><span class="n">objective</span><span class="p">)</span>
+<span class="n">compute_error_point_wise</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">p2_approx</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;error relativo polinomio grado 3&#39;</span><span class="p">)</span>
-<span class="n">compute_error</span><span class="p">(</span><span class="n">p3_approx</span><span class="p">,</span><span class="n">objective</span><span class="p">)</span>
+<span class="n">compute_error_point_wise</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">p3_approx</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;error relativo polinomio grado 4&#39;</span><span class="p">)</span>
-<span class="n">compute_error</span><span class="p">(</span><span class="n">p4_approx</span><span class="p">,</span><span class="n">objective</span><span class="p">)</span>
+<span class="n">compute_error_point_wise</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="n">p4_approx</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -678,7 +685,7 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 <p><strong>Cálculo de errores:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res_relative_error</span> <span class="o">&lt;-</span> <span class="n">compute_error</span><span class="p">(</span><span class="n">approx_df</span><span class="p">,</span><span class="n">obj_df</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res_relative_error</span> <span class="o">&lt;-</span> <span class="n">compute_error_point_wise</span><span class="p">(</span><span class="n">obj_df</span><span class="p">,</span> <span class="n">approx_df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -846,7 +853,8 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 \right]
 \end{split}\]</div>
 <p>Se cumple: <span class="math notranslate nohighlight">\(||\nabla^2f(x)-\nabla\hat{f}^2(x)||=\mathcal{O}(h)\)</span>.</p>
-<p><strong>Ejemplo:</strong></p>
+<div class="section" id="id2">
+<h3>Ejemplo<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Aproximar <span class="math notranslate nohighlight">\(\nabla f(x), \nabla^2f(x)\)</span> con diferencias hacia delante y <span class="math notranslate nohighlight">\(h \in \{10^{-16}, 10^{-14}, \dots , 10^{-1}\}\)</span> para <span class="math notranslate nohighlight">\(f: \mathbb{R}^4 \rightarrow \mathbb{R}\)</span>, dada por <span class="math notranslate nohighlight">\(f(x) = (x_1^2-x_2^2)^2+x_1^2+(x_3^2-x_4^2)^2+x_3^2\)</span> en el punto <span class="math notranslate nohighlight">\(x_0=(1.5,1.5,1.5,1.5)^T\)</span>. Realizar una gráfica de <span class="math notranslate nohighlight">\(\log(\)</span>Err_rel) vs <span class="math notranslate nohighlight">\(\log(\)</span>h)</p>
 <p>Para esta función se tiene:</p>
 <div class="math notranslate nohighlight">
@@ -869,11 +877,10 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 \end{array}
 \right]
 \end{split}\]</div>
-<p>Y evaluando en <span class="math notranslate nohighlight">\(x_0\)</span>:</p>
+<p><strong>Gradiente de f calculado de forma simbólica</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#gradiente de f calculado de forma simbólica</span>
-<span class="n">gf</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
     <span class="n">c</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
       <span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="p">),</span>
       <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
@@ -883,6 +890,7 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 </div>
 </div>
 </div>
+<p><strong>Punto en el que se evaluará</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span><span class="o">&lt;-</span><span class="n">c</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
@@ -912,11 +920,10 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 \end{array}
 \right],
 \end{split}\]</div>
-<p>para la Hessiana:</p>
+<p><strong>Hessiana de f calculada de forma simbólica</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Hessiana de f calculada de forma simbólica</span>
-<span class="n">gf2</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf2</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
     <span class="n">matrix</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>
              <span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">12</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>
              <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
@@ -926,6 +933,7 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 </div>
 </div>
 </div>
+<p><strong>Evaluación de la Hessiana</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gf2</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
@@ -952,39 +960,51 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 \end{array}
 \right]
 \end{split}\]</div>
-<p>Calculando el gradiente y la Hessiana de forma numérica con la aproximación por diferencias hacia delante:</p>
+<p><strong>Definición de función y punto en el que se calculan las aproximaciones</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#definición de función y punto en el que se calculan las aproximaciones</span>
-<span class="n">f_ej</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">&lt;-</span> <span class="n">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
     <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span>
-<span class="p">}</span>
-<span class="n">x0</span><span class="o">&lt;-</span><span class="n">rep</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="n">x0</span> <span class="o">&lt;-</span> <span class="n">rep</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p><strong>Lo siguiente calcula el gradiente y la Hessiana de forma numérica con la aproximación por diferencias hacia delante</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Función auxiliar para incrementar una entrada de un vector</span>
-<span class="c1">#por una cantidad h</span>
-<span class="n">inc_index</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">h</span><span class="p">){</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inc_index</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">h</span><span class="p">){</span>
+    <span class="s1">&#39;</span>
+    <span class="n">Auxiliary</span> <span class="n">function</span> <span class="k">for</span> <span class="n">gradient</span> <span class="ow">and</span> <span class="n">Hessian</span> <span class="n">computation</span><span class="o">.</span>
+    <span class="n">Args</span><span class="p">:</span>
+        <span class="n">vec</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">vector</span>
+        <span class="n">index</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">index</span><span class="o">.</span>
+        <span class="n">h</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span>   <span class="n">quantity</span> <span class="n">that</span> <span class="n">vec</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="n">will</span> <span class="n">be</span> <span class="n">increased</span><span class="o">.</span>
+    <span class="n">Returns</span><span class="p">:</span>
+        <span class="n">vec</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">vector</span> <span class="k">with</span> <span class="n">vec</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="n">increased</span> <span class="n">by</span> <span class="n">h</span><span class="o">.</span>
+    <span class="s1">&#39;</span>
     <span class="n">vec</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">&lt;-</span><span class="n">vec</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">+</span><span class="n">h</span>
-    <span class="n">vec</span><span class="p">}</span>
+    <span class="n">vec</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Función para aproximar el gradiente de f</span>
-<span class="c1">#f: función a la que se le aproximará su gradiente</span>
-<span class="c1">#x: punto en el que se aproximará el gradiente de f</span>
-<span class="c1">#h: valor de h para diferencias hacia delante</span>
-<span class="c1">#gf: aproximación al gradiente de f por diferencias hacia delante</span>
-<span class="n">gf_numeric</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="p">){</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gradient_approximation</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">){</span>
+    <span class="s1">&#39;</span>
+    <span class="n">Numerical</span> <span class="n">approximation</span> <span class="n">of</span> <span class="n">gradient</span> <span class="k">for</span> <span class="n">function</span> <span class="n">f</span> <span class="n">using</span> <span class="n">forward</span> <span class="n">differences</span><span class="o">.</span>
+    <span class="n">Args</span><span class="p">:</span>
+        <span class="n">f</span> <span class="p">(</span><span class="n">expression</span><span class="p">):</span> <span class="n">definition</span> <span class="n">of</span> <span class="n">function</span> <span class="n">f</span><span class="o">.</span>
+        <span class="n">x</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">vector</span> <span class="n">that</span> <span class="n">holds</span> <span class="n">values</span> <span class="n">where</span> <span class="n">gradient</span> <span class="n">will</span> <span class="n">be</span> <span class="n">computed</span><span class="o">.</span>
+        <span class="n">h</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">step</span> <span class="n">size</span> <span class="k">for</span> <span class="n">forward</span> <span class="n">differences</span><span class="p">,</span> <span class="n">tipically</span> <span class="n">h</span><span class="o">=</span><span class="mf">1e-8</span>
+    <span class="n">Returns</span><span class="p">:</span>
+        <span class="n">gf</span> <span class="p">(</span><span class="n">array</span><span class="p">):</span> <span class="n">numerical</span> <span class="n">approximation</span> <span class="n">to</span> <span class="n">gradient</span> <span class="n">of</span> <span class="n">f</span><span class="o">.</span>
+    <span class="s1">&#39;</span>
     <span class="n">n</span><span class="o">&lt;-</span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">gf</span><span class="o">&lt;-</span><span class="n">rep</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">gf</span><span class="o">&lt;-</span><span class="n">vector</span><span class="p">(</span><span class="s2">&quot;double&quot;</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
     <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="ow">in</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">){</span>
         <span class="n">gf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">inc_index</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">h</span><span class="p">))</span><span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
     <span class="p">}</span>
@@ -996,12 +1016,16 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Función para aproximar la Hessiana de f</span>
-<span class="c1">#f: función a la que se le aproximará su Hessiana</span>
-<span class="c1">#x: punto en el que se aproximará la Hessiana de f</span>
-<span class="c1">#h: valor de h para diferencias hacia delante</span>
-<span class="c1">#Hf: aproximación a la Hessiana de f por diferencias hacia delante</span>
-<span class="n">gf2_numeric</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="p">){</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hessian_approximation</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">){</span>
+    <span class="s1">&#39;</span>
+    <span class="n">Numerical</span> <span class="n">approximation</span> <span class="n">of</span> <span class="n">Hessian</span> <span class="k">for</span> <span class="n">function</span> <span class="n">f</span> <span class="n">using</span> <span class="n">forward</span> <span class="n">differences</span><span class="o">.</span>
+    <span class="n">Args</span><span class="p">:</span>
+        <span class="n">f</span> <span class="p">(</span><span class="n">expression</span><span class="p">):</span> <span class="n">definition</span> <span class="n">of</span> <span class="n">function</span> <span class="n">f</span><span class="o">.</span>
+        <span class="n">x</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">vector</span> <span class="n">that</span> <span class="n">holds</span> <span class="n">values</span> <span class="n">where</span> <span class="n">Hessian</span> <span class="n">will</span> <span class="n">be</span> <span class="n">computed</span><span class="o">.</span>
+        <span class="n">h</span> <span class="p">(</span><span class="nb">float</span><span class="p">):</span> <span class="n">step</span> <span class="n">size</span> <span class="k">for</span> <span class="n">forward</span> <span class="n">differences</span><span class="p">,</span> <span class="n">tipically</span> <span class="n">h</span><span class="o">=</span><span class="mf">1e-6</span>
+    <span class="n">Returns</span><span class="p">:</span>
+        <span class="n">Hf</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">numerical</span> <span class="n">approximation</span> <span class="n">to</span> <span class="n">Hessian</span> <span class="n">of</span> <span class="n">f</span><span class="o">.</span>
+    <span class="s1">&#39;</span>
     <span class="n">n</span><span class="o">&lt;-</span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">Hf</span><span class="o">&lt;-</span><span class="n">matrix</span><span class="p">(</span><span class="n">rep</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">^</span><span class="mi">2</span><span class="p">),</span><span class="n">nrow</span><span class="o">=</span><span class="n">n</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
     <span class="n">f_x</span><span class="o">&lt;-</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -1009,8 +1033,6 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
         <span class="n">x_inc_in_i</span><span class="o">&lt;-</span><span class="n">inc_index</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
         <span class="n">f_x_inc_in_i</span><span class="o">&lt;-</span><span class="n">f</span><span class="p">(</span><span class="n">x_inc_in_i</span><span class="p">)</span>
         <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span><span class="n">n</span><span class="p">){</span>
-            <span class="c1">#otra forma para dif:</span>
-            <span class="c1">#dif&lt;-f(inc_index(inc_index(x,j,h),i,h))-f_x_inc_in_i-f(inc_index(x,j,h))+f_x</span>
             <span class="n">dif</span><span class="o">&lt;-</span><span class="n">f</span><span class="p">(</span><span class="n">inc_index</span><span class="p">(</span><span class="n">x_inc_in_i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">h</span><span class="p">))</span><span class="o">-</span><span class="n">f_x_inc_in_i</span><span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="n">inc_index</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">h</span><span class="p">))</span><span class="o">+</span><span class="n">f_x</span>
             <span class="n">Hf</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;-</span><span class="n">dif</span>
             <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">!=</span><span class="n">i</span><span class="p">)</span>
@@ -1023,28 +1045,48 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 </div>
 </div>
 </div>
+<p><strong>Conjunto de valores de h para diferencias hacia delante</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">^</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">16</span><span class="p">))</span><span class="c1">#un conjunto de valores de h para diferencias hacia delante</span>
-<span class="n">err_absoluto</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">aprox</span><span class="p">,</span><span class="n">obj</span><span class="p">){</span>
-    <span class="n">norm</span><span class="p">(</span><span class="n">aprox</span><span class="o">-</span><span class="n">obj</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="c1">#cálculo de norma vectorial o matricial, depende de lo que recibe</span>
-                        <span class="c1">#la función en sus parámetros aprox y obj</span>
-<span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">^</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">16</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Funciones para cálculo del error:</strong></p>
+<div class="math notranslate nohighlight">
+\[\text{ErrRel(approx)} = \frac{||\text{approx}-\text{obj}||}{||\text{obj}||}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Euclidian_norm&lt;-function(vec){
+    &#39;Compute Euclidian norm of vector&#39;
+    sqrt(sum(vec*vec))
+}
 
-<span class="n">err_relativo</span><span class="o">&lt;-</span><span class="n">function</span><span class="p">(</span><span class="n">aprox</span><span class="p">,</span><span class="n">obj</span><span class="p">){</span>
-    <span class="n">norm</span><span class="p">(</span><span class="n">aprox</span><span class="o">-</span><span class="n">obj</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">)</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">)</span><span class="c1">#cálculo de norma vectorial o matricial, depende de lo que recibe</span>
-                                     <span class="c1">#la función en sus parámetros aprox y obj</span>
-<span class="p">}</span>
+compute_error&lt;-function(obj,approx){
+    &#39;
+    Relative or absolute error between obj and approx based in Euclidian norm. 
+    Approx is a numeric vector.
+    &#39;
+    if (Euclidian_norm(obj) &gt; .Machine$double.eps){
+        Err&lt;-Euclidian_norm(obj-approx)/Euclidian_norm(obj)
+    }else
+        Err&lt;-Euclidian_norm(obj-approx)
+    Err
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf_numeric_approximations</span> <span class="o">&lt;-</span> <span class="n">lapply</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">gradient_approximation</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
+<span class="n">gf2_numeric_approximations</span> <span class="o">&lt;-</span> <span class="n">lapply</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">Hessian_approximation</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
 
-<span class="n">gf_numeric_list</span><span class="o">&lt;-</span><span class="n">lapply</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">gf_numeric</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">f_ej</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
-<span class="n">gf2_numeric_list</span><span class="o">&lt;-</span><span class="n">lapply</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">gf2_numeric</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">f_ej</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">x0</span><span class="p">)</span>
 
+<span class="n">rel_err_gf</span> <span class="o">&lt;-</span> <span class="n">sapply</span><span class="p">(</span><span class="n">gf_numeric_approximations</span><span class="p">,</span><span class="n">compute_error</span><span class="p">,</span><span class="n">obj</span><span class="o">=</span><span class="n">gf</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
 
-<span class="n">err_absoluto_gf_res</span><span class="o">&lt;-</span><span class="n">sapply</span><span class="p">(</span><span class="n">gf_numeric_list</span><span class="p">,</span><span class="n">err_absoluto</span><span class="p">,</span><span class="n">obj</span><span class="o">=</span><span class="n">gf</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
-<span class="n">err_relativo_gf_res</span><span class="o">&lt;-</span><span class="n">sapply</span><span class="p">(</span><span class="n">gf_numeric_list</span><span class="p">,</span><span class="n">err_relativo</span><span class="p">,</span><span class="n">obj</span><span class="o">=</span><span class="n">gf</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
-
-<span class="n">err_absoluto_gf2_res</span><span class="o">&lt;-</span><span class="n">sapply</span><span class="p">(</span><span class="n">gf2_numeric_list</span><span class="p">,</span><span class="n">err_absoluto</span><span class="p">,</span><span class="n">obj</span><span class="o">=</span><span class="n">gf2</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
-<span class="n">err_relativo_gf2_res</span><span class="o">&lt;-</span><span class="n">sapply</span><span class="p">(</span><span class="n">gf2_numeric_list</span><span class="p">,</span><span class="n">err_relativo</span><span class="p">,</span><span class="n">obj</span><span class="o">=</span><span class="n">gf2</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
+<span class="n">rel_err_gf2</span> <span class="o">&lt;-</span> <span class="n">sapply</span><span class="p">(</span><span class="n">gf2_numeric_approximations</span><span class="p">,</span><span class="n">compute_error</span><span class="p">,</span><span class="n">obj</span><span class="o">=</span><span class="n">gf2</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1059,23 +1101,23 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gg</span><span class="o">+</span>
-<span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">log</span><span class="p">(</span><span class="n">h</span><span class="p">),</span><span class="n">y</span><span class="o">=</span><span class="n">log</span><span class="p">(</span><span class="n">err_relativo_gf_res</span><span class="p">)))</span><span class="o">+</span>
+<span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">log</span><span class="p">(</span><span class="n">h</span><span class="p">),</span><span class="n">y</span><span class="o">=</span><span class="n">log</span><span class="p">(</span><span class="n">rel_err_gf</span><span class="p">)))</span><span class="o">+</span>
 <span class="n">ggtitle</span><span class="p">(</span><span class="s1">&#39;Aproximación al gradiente por diferencias finitas&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Polinomios_de_Taylor_y_diferenciacion_numerica_117_0.png" src="../../_images/Polinomios_de_Taylor_y_diferenciacion_numerica_117_0.png" />
+<img alt="../../_images/Polinomios_de_Taylor_y_diferenciacion_numerica_124_0.png" src="../../_images/Polinomios_de_Taylor_y_diferenciacion_numerica_124_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">which</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">err_relativo_gf_res</span><span class="p">)],</span><span class="n">h</span><span class="p">[</span><span class="n">which</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">err_absoluto_gf_res</span><span class="p">)]))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">which</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">rel_err_gf</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[1] 1e-08 1e-08
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[1] 1e-08
 </pre></div>
 </div>
 </div>
@@ -1083,32 +1125,37 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gg</span><span class="o">+</span>
-<span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">log</span><span class="p">(</span><span class="n">h</span><span class="p">),</span><span class="n">y</span><span class="o">=</span><span class="n">log</span><span class="p">(</span><span class="n">err_relativo_gf2_res</span><span class="p">)))</span><span class="o">+</span>
+<span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">log</span><span class="p">(</span><span class="n">h</span><span class="p">),</span><span class="n">y</span><span class="o">=</span><span class="n">log</span><span class="p">(</span><span class="n">rel_err_gf2</span><span class="p">)))</span><span class="o">+</span>
 <span class="n">ggtitle</span><span class="p">(</span><span class="s1">&#39;Aproximación a la Hessiana por diferencias finitas&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Polinomios_de_Taylor_y_diferenciacion_numerica_119_0.png" src="../../_images/Polinomios_de_Taylor_y_diferenciacion_numerica_119_0.png" />
+<img alt="../../_images/Polinomios_de_Taylor_y_diferenciacion_numerica_126_0.png" src="../../_images/Polinomios_de_Taylor_y_diferenciacion_numerica_126_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">which</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">err_relativo_gf2_res</span><span class="p">)],</span><span class="n">h</span><span class="p">[</span><span class="n">which</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">err_absoluto_gf2_res</span><span class="p">)]))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">which</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">rel_err_gf2</span><span class="p">)])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[1] 1e-06 1e-06
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[1] 1e-06
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Ejercicio: aproximar <span class="math notranslate nohighlight">\(\nabla f(x), \nabla^2f(x)\)</span> con diferencias hacia delante y <span class="math notranslate nohighlight">\(h \in \{10^{-16}, 10^{-14}, \dots , 10^{-1}\}\)</span> para <span class="math notranslate nohighlight">\(f: \mathbb{R}^3 \rightarrow \mathbb{R}\)</span>, dada por <span class="math notranslate nohighlight">\(f(x) = x_1x_2\exp(x_1^2+x_3^2-5)\)</span> en el punto <span class="math notranslate nohighlight">\(x_0=(1,3,-2)^T\)</span> Realizar una gráfica de <span class="math notranslate nohighlight">\(\log(\)</span>Err_rel) vs <span class="math notranslate nohighlight">\(\log(\)</span>h).</strong></p>
-<p><strong>Ejercicios</strong></p>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Aproximar <span class="math notranslate nohighlight">\(\nabla f(x), \nabla^2f(x)\)</span> con diferencias hacia delante y <span class="math notranslate nohighlight">\(h \in \{10^{-16}, 10^{-14}, \dots , 10^{-1}\}\)</span> para <span class="math notranslate nohighlight">\(f: \mathbb{R}^3 \rightarrow \mathbb{R}\)</span>, dada por <span class="math notranslate nohighlight">\(f(x) = x_1x_2\exp(x_1^2+x_3^2-5)\)</span> en el punto <span class="math notranslate nohighlight">\(x_0=(1,3,-2)^T\)</span> Realizar una gráfica de <span class="math notranslate nohighlight">\(\log(\)</span>Err_rel) vs <span class="math notranslate nohighlight">\(\log(\)</span>h).</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicios</p>
 <ol class="simple">
 <li><p>Resuelve los ejercicios y preguntas de la nota.</p></li>
 </ol>
+</div>
 <p><strong>Referencias</strong></p>
 <ol class="simple">
 <li><p>R. L. Burden, J. D. Faires, Numerical Analysis, Brooks/Cole Cengage Learning, 2005.</p></li>
@@ -1118,6 +1165,7 @@ P_2(x) &amp;=&amp; f(x_0) + f^{(1)}(x_0)(x-x_0) + \frac{f^{(2)}(x_0)(x-x_0)^2}{2
 <li><p>Nota <a class="reference internal" href="../1.5/Definicion_de_funcion_continuidad_derivada.html#fcd"><span class="std std-ref">Definición de función, continuidad y derivada</span></a>.</p></li>
 <li><p>Nota <a class="reference internal" href="../1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html#cpea"><span class="std std-ref">Condición de un problema y estabilidad de un algoritmo</span></a>.</p></li>
 </ol>
+</div>
 </div>
 </div>
 
