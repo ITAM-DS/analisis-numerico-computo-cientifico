@@ -283,10 +283,20 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#expresiones-de-los-errores-para-las-reglas-compuestas-del-rectangulo-trapecio-y-simpson">
+   Expresiones de los errores para las reglas compuestas del rectángulo, trapecio y Simpson
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#integracion-por-el-metodo-de-monte-carlo">
    Integración por el método de Monte Carlo
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problema">
+     Problema
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ejemplo">
      Ejemplo
@@ -1040,6 +1050,9 @@
 <p class="admonition-title">Ejercicio</p>
 <p>Implementar la regla compuesta de Simpson para aproximar la integral <span class="math notranslate nohighlight">\(\int_0^1e^{-x^2}dx\)</span>. Calcular error relativo y realizar una gráfica de <span class="math notranslate nohighlight">\(n\)</span> vs Error relativo para <span class="math notranslate nohighlight">\(n=1,10,100,1000,10000\)</span> utilizando numpy e iterators.</p>
 </div>
+</div>
+<div class="section" id="expresiones-de-los-errores-para-las-reglas-compuestas-del-rectangulo-trapecio-y-simpson">
+<h2>Expresiones de los errores para las reglas compuestas del rectángulo, trapecio y Simpson<a class="headerlink" href="#expresiones-de-los-errores-para-las-reglas-compuestas-del-rectangulo-trapecio-y-simpson" title="Permalink to this headline">¶</a></h2>
 <p>La forma de los errores de las reglas del rectángulo, trapecio y Simpson se pueden obtener con interpolación o con el teorema de Taylor. Ver <a class="reference external" href="https://www.dropbox.com/s/jfrxanjls8kndjp/Diferenciacion_e_Integracion.pdf?dl=0">Diferenciación e Integración</a> para detalles y <a class="reference internal" href="../1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html#ptdn"><span class="std std-ref">Polinomios de Taylor y diferenciación numérica</span></a> para el teorema. Suponiendo que <span class="math notranslate nohighlight">\(f\)</span> cumple con condiciones sobre sus derivadas, tales errores son:</p>
 <div class="math notranslate nohighlight">
 \[\text{Err}Rc(f) = \frac{b-a}{6}f^{(2)}(\xi_r)\hat{h}^2, \xi_r \in [a,b]\]</div>
@@ -1050,13 +1063,16 @@
 </div>
 <div class="section" id="integracion-por-el-metodo-de-monte-carlo">
 <span id="imc"></span><h2>Integración por el método de Monte Carlo<a class="headerlink" href="#integracion-por-el-metodo-de-monte-carlo" title="Permalink to this headline">¶</a></h2>
-<p>Los métodos de integración numérica por Monte Carlo son similares a los métodos por cuadratura en el sentido que se eligen puntos en los que se evaluará el integrando para sumar sus valores. La diferencia esencial con los métodos por cuadratura es que en el método de integración por Monte Carlo los puntos son seleccionados de una forma <em>aleatoria</em> (de hecho es pseudo-aleatoria pues se generan con un programa de computadora) en lugar de generarse con una fórmula.</p>
-<p><strong>Problema:</strong> Aproximar numéricamente la integral <span class="math notranslate nohighlight">\(\displaystyle \int_{\Omega}f(x)dx\)</span> para <span class="math notranslate nohighlight">\(x \in \mathbb{R}^N, \Omega \subseteq \mathbb{R}^N, f: \mathbb{R}^N \rightarrow \mathbb{R}\)</span> función tal que la integral esté bien definida en <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
+<p>Los métodos de integración numérica por Monte Carlo son similares a los métodos por cuadratura en el sentido que se eligen puntos en los que se evaluará el integrando para sumar sus valores. La diferencia esencial con los métodos por cuadratura es que en el método de integración por Monte Carlo los puntos son <strong>seleccionados de una forma <em>aleatoria</em></strong> (de hecho es pseudo-aleatoria pues se generan con un programa de computadora) en lugar de generarse con una fórmula.</p>
+<div class="section" id="problema">
+<h3>Problema<a class="headerlink" href="#problema" title="Permalink to this headline">¶</a></h3>
+<p>Aproximar numéricamente la integral <span class="math notranslate nohighlight">\(\displaystyle \int_{\Omega}f(x)dx\)</span> para <span class="math notranslate nohighlight">\(x \in \mathbb{R}^N, \Omega \subseteq \mathbb{R}^N, f: \mathbb{R}^N \rightarrow \mathbb{R}\)</span> función tal que la integral esté bien definida en <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
 <p>Por ejemplo para <span class="math notranslate nohighlight">\(N=2:\)</span></p>
 <img src="https://dl.dropboxusercontent.com/s/xktwjmgbf8aiekw/integral_2_dimensiones.png?dl=0" heigth="500" width="500">
 <p>Para resolver el problema anterior con <span class="math notranslate nohighlight">\(\Omega\)</span> un rectángulo, podemos utilizar las reglas por cuadratura por Newton-Cotes o cuadratura Gaussiana en una dimensión manteniendo fija la otra dimensión. Sin embargo considérese la siguiente situación:</p>
-<p>La regla del rectángulo (o del punto medio) y del trapecio tienen un error de orden <span class="math notranslate nohighlight">\(\mathcal{O}(h^2)\)</span> independientemente de si se está aproximando integrales de una o más dimensiones. Supóngase que se utilizan <span class="math notranslate nohighlight">\(n\)</span> nodos para tener un valor de espaciado igual a <span class="math notranslate nohighlight">\(h\)</span>, entonces para <span class="math notranslate nohighlight">\(N\)</span> dimensiones se requerirían <span class="math notranslate nohighlight">\(P=n^N\)</span> evaluaciones del integrando, o bien, si se tiene un valor de <span class="math notranslate nohighlight">\(P\)</span> igual a <span class="math notranslate nohighlight">\(10, 000\)</span> y <span class="math notranslate nohighlight">\(N=4\)</span> dimensiones el error sería del orden <span class="math notranslate nohighlight">\(\mathcal{O}(P^{-2/N})\)</span> lo que implicaría un valor de <span class="math notranslate nohighlight">\(h=.1\)</span> para aproximadamente sólo <strong>dos dígitos</strong> correctos en la aproximación (para el enunciado anterior recuérdese que <span class="math notranslate nohighlight">\(h\)</span> es proporcional a <span class="math notranslate nohighlight">\(n^{-1}\)</span> y <span class="math notranslate nohighlight">\(n\)</span> = <span class="math notranslate nohighlight">\(P^{1/N}\)</span>). Este esfuerzo enorme de evaluar <span class="math notranslate nohighlight">\(P\)</span> veces el integrando para una exactitud pequeña se debe al problema de generar puntos para <em>llenar</em> un espacio <span class="math notranslate nohighlight">\(N\)</span>-dimensional y se conoce con el nombre de la maldición de la dimensionalidad, <strong>the curse of dimensionality</strong>.</p>
+<p>La regla del rectángulo (o del punto medio) y del trapecio tienen un error de orden <span class="math notranslate nohighlight">\(\mathcal{O}(h^2)\)</span> independientemente de si se está aproximando integrales de una o más dimensiones. Supóngase que se utilizan <span class="math notranslate nohighlight">\(n\)</span> nodos para tener un valor de espaciado igual a <span class="math notranslate nohighlight">\(h\)</span>, entonces para <span class="math notranslate nohighlight">\(d\)</span> dimensiones se requerirían <span class="math notranslate nohighlight">\(N=n^d\)</span> evaluaciones del integrando, o bien, si se tiene un valor de <span class="math notranslate nohighlight">\(N\)</span> igual a <span class="math notranslate nohighlight">\(10, 000\)</span> y <span class="math notranslate nohighlight">\(N=4\)</span> dimensiones el error sería del orden <span class="math notranslate nohighlight">\(\mathcal{O}(N^{-2/d})\)</span> lo que implicaría un valor de <span class="math notranslate nohighlight">\(h=.1\)</span> para aproximadamente sólo <strong>dos dígitos</strong> correctos en la aproximación (para el enunciado anterior recuérdese que <span class="math notranslate nohighlight">\(h\)</span> es proporcional a <span class="math notranslate nohighlight">\(n^{-1}\)</span> y <span class="math notranslate nohighlight">\(n\)</span> = <span class="math notranslate nohighlight">\(N^{1/d}\)</span>). Este esfuerzo enorme de evaluar <span class="math notranslate nohighlight">\(N\)</span> veces el integrando para una exactitud pequeña se debe al problema de generar puntos para <em>llenar</em> un espacio <span class="math notranslate nohighlight">\(d\)</span>-dimensional y se conoce con el nombre de la maldición de la dimensionalidad, <strong>the curse of dimensionality</strong>.</p>
 <p>Una opción para resolver la situación anterior si no se desea una exactitud grande (por ejemplo con una precisión de <span class="math notranslate nohighlight">\(10^{-4}\)</span> o <span class="math notranslate nohighlight">\(4\)</span> dígitos es suficiente) es con el método de integración por Monte Carlo (tal nombre por el uso de números aleatorios). La integración por el método de Monte Carlo está basada en la interpretación geométrica de las integrales: calcular la integral del problema inicial implica calcular el <strong>hipervolumen</strong> de <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
+</div>
 <div class="section" id="ejemplo">
 <h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
 <p>Supóngase que se desea aproximar el área de un círculo centrado en el origen de radio igual a <span class="math notranslate nohighlight">\(1\)</span>:</p>
@@ -1085,12 +1101,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Integracion_numerica_134_0.png" src="../../_images/Integracion_numerica_134_0.png" />
+<img alt="../../_images/Integracion_numerica_135_0.png" src="../../_images/Integracion_numerica_135_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#definición de norma2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#norm2 definition</span>
 <span class="n">ind</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">1</span>
 <span class="n">x_p_subset</span><span class="o">=</span><span class="n">x_p</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x_p_subset</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
@@ -1101,19 +1117,19 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Integracion_numerica_135_0.png" src="../../_images/Integracion_numerica_135_0.png" />
+<img alt="../../_images/Integracion_numerica_136_0.png" src="../../_images/Integracion_numerica_136_0.png" />
 </div>
 </div>
 <p>Área del círculo es aproximadamente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Area_cuadrado</span><span class="o">=</span><span class="mi">4</span>
-<span class="n">Area_cuadrado</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">square_area</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">square_area</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1712
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1776
 </pre></div>
 </div>
 </div>
@@ -1125,12 +1141,12 @@
 <span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">density_p</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">ind</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">1</span>
 <span class="n">x_p_subset</span><span class="o">=</span><span class="n">x_p</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
-<span class="n">Area_cuadrado</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span>
+<span class="n">square_area</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1472
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1304
 </pre></div>
 </div>
 </div>
@@ -1141,12 +1157,12 @@
 <span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="n">density_p</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">ind</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">1</span>
 <span class="n">x_p_subset</span><span class="o">=</span><span class="n">x_p</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
-<span class="n">Area_cuadrado</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span>
+<span class="n">square_area</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p_subset</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1468
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.13828
 </pre></div>
 </div>
 </div>
@@ -1187,20 +1203,19 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
-<span class="n">obj</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
-<span class="n">a</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">b</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">vol</span><span class="o">=</span><span class="n">b</span><span class="o">-</span><span class="n">a</span>
-<span class="n">approx</span><span class="o">=</span><span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">))</span>
-<span class="n">err_rel</span><span class="o">=</span><span class="k">lambda</span> <span class="n">ap</span><span class="p">,</span><span class="n">ob</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">ap</span><span class="o">-</span><span class="n">ob</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">ob</span><span class="p">)</span>
-<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">vol</span> <span class="o">=</span> <span class="n">b</span><span class="o">-</span><span class="n">a</span>
+<span class="n">ex_1</span> <span class="o">=</span> <span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">))</span>
+<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">compute_error</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">ex_1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.1366e-03&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.4099e-03&#39;
 </pre></div>
 </div>
 </div>
@@ -1210,19 +1225,19 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="n">x</span>
-<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
-<span class="n">obj</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">a</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">b</span><span class="o">=</span><span class="mi">2</span>
-<span class="n">vol</span><span class="o">=</span><span class="n">b</span><span class="o">-</span><span class="n">a</span>
-<span class="n">approx</span><span class="o">=</span><span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">))</span>
-<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="n">x</span>
+<span class="n">x_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">vol</span> <span class="o">=</span> <span class="n">b</span><span class="o">-</span><span class="n">a</span>
+<span class="n">ex_2</span> <span class="o">=</span> <span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">))</span>
+<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">compute_error</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">ex_2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 4.3774e-04&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 2.5058e-04&#39;
 </pre></div>
 </div>
 </div>
@@ -1232,22 +1247,22 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">a1</span><span class="o">=-</span><span class="mi">1</span>
-<span class="n">b1</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">a2</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">b2</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
-<span class="n">y_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
-<span class="n">obj</span><span class="o">=</span><span class="mi">4</span><span class="o">/</span><span class="mi">3</span>
-<span class="n">vol</span><span class="o">=</span><span class="p">(</span><span class="n">b1</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b2</span><span class="o">-</span><span class="n">a2</span><span class="p">)</span>
-<span class="n">approx</span><span class="o">=</span><span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">))</span>
-<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">x_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">y_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">vol</span> <span class="o">=</span> <span class="p">(</span><span class="n">b1</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b2</span><span class="o">-</span><span class="n">a2</span><span class="p">)</span>
+<span class="n">ex_3</span> <span class="o">=</span> <span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">))</span>
+<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">compute_error</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">ex_3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 2.2716e-03&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.0601e-02&#39;
 </pre></div>
 </div>
 </div>
@@ -1257,22 +1272,22 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="n">a1</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">b1</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
-<span class="n">a2</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">b2</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
-<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
-<span class="n">y_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
-<span class="n">obj</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">vol</span><span class="o">=</span><span class="p">(</span><span class="n">b1</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b2</span><span class="o">-</span><span class="n">a2</span><span class="p">)</span>
-<span class="n">approx</span><span class="o">=</span><span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">))</span>
-<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">x_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">y_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">vol</span> <span class="o">=</span> <span class="p">(</span><span class="n">b1</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b2</span><span class="o">-</span><span class="n">a2</span><span class="p">)</span>
+<span class="n">ex_4</span> <span class="o">=</span> <span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">))</span>
+<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">compute_error</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">ex_4</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.3892e-02&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 3.4688e-03&#39;
 </pre></div>
 </div>
 </div>
@@ -1282,25 +1297,25 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">:(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">a1</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">b1</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">a2</span><span class="o">=-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
-<span class="n">b2</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">a3</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">b3</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
-<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
-<span class="n">y_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
-<span class="n">z_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a3</span><span class="p">,</span><span class="n">b3</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
-<span class="n">obj</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">12</span>
-<span class="n">vol</span><span class="o">=</span><span class="p">(</span><span class="n">b1</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b2</span><span class="o">-</span><span class="n">a2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b3</span><span class="o">-</span><span class="n">a3</span><span class="p">)</span>
-<span class="n">approx</span><span class="o">=</span><span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">,</span><span class="n">z_p</span><span class="p">))</span>
-<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">:(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">a1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">a2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">a3</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b3</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">x_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">y_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">z_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">a3</span><span class="p">,</span><span class="n">b3</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">12</span>
+<span class="n">vol</span> <span class="o">=</span> <span class="p">(</span><span class="n">b1</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b2</span><span class="o">-</span><span class="n">a2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b3</span><span class="o">-</span><span class="n">a3</span><span class="p">)</span>
+<span class="n">ex_5</span> <span class="o">=</span> <span class="n">vol</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span><span class="n">y_p</span><span class="p">,</span><span class="n">z_p</span><span class="p">))</span>
+<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">compute_error</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">ex_5</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 9.5573e-03&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.4279e-02&#39;
 </pre></div>
 </div>
 </div>
@@ -1334,40 +1349,39 @@
 <p>Para el ejemplo anterior <span class="math notranslate nohighlight">\(\displaystyle \int_0^1\frac{4}{1+x^2}dx = \pi\)</span> se tiene:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">x_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
-<span class="n">obj</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
-<span class="n">a</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">b</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">vol</span><span class="o">=</span><span class="n">b</span><span class="o">-</span><span class="n">a</span>
-<span class="n">f_barra</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">))</span>
-<span class="n">approx</span><span class="o">=</span><span class="n">vol</span><span class="o">*</span><span class="n">f_barra</span>
-<span class="n">err_rel</span><span class="o">=</span><span class="k">lambda</span> <span class="n">ap</span><span class="p">,</span><span class="n">ob</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">ap</span><span class="o">-</span><span class="n">ob</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">ob</span><span class="p">)</span>
-<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err_rel</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">density_p</span><span class="p">)</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">vol</span> <span class="o">=</span> <span class="n">b</span><span class="o">-</span><span class="n">a</span>
+<span class="n">f_bar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">))</span>
+<span class="n">ex_6</span> <span class="o">=</span> <span class="n">vol</span><span class="o">*</span><span class="n">f_bar</span>
+<span class="s2">&quot;error relativo: </span><span class="si">{:0.4e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">compute_error</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">ex_6</span> <span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 4.1522e-03&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.2832e-03&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">error_est</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">((</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">-</span><span class="n">f_barra</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">density_p</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">est_error</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">((</span><span class="n">f</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span><span class="o">-</span><span class="n">f_bar</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">density_p</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">error_est</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">est_error</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.006467406925586997
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.006411008934513806
 </pre></div>
 </div>
 </div>
@@ -1375,12 +1389,12 @@
 <p>intervalo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">approx</span><span class="o">-</span><span class="n">vol</span><span class="o">*</span><span class="n">error_est</span><span class="p">,</span> <span class="n">approx</span><span class="o">+</span><span class="n">vol</span><span class="o">*</span><span class="n">error_est</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ex_6</span><span class="o">-</span><span class="n">vol</span><span class="o">*</span><span class="n">est_error</span><span class="p">,</span> <span class="n">ex_6</span><span class="o">+</span><span class="n">vol</span><span class="o">*</span><span class="n">est_error</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(3.1220807947441522, 3.135015608595326)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(3.1311504591653074, 3.1439724770343354)
 </pre></div>
 </div>
 </div>
