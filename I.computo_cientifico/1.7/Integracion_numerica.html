@@ -326,7 +326,6 @@
                 
   <div class="section" id="integracion-numerica">
 <span id="in"></span><h1>1.7 Integración Numérica<a class="headerlink" href="#integracion-numerica" title="Permalink to this headline">¶</a></h1>
-<p>Los métodos revisados en esta nota de integración numérica serán utilizados más adelante para revisión de herramientas en Python para <strong>perfilamiento de código: uso de cpu y memoria</strong>. También serán referidos en el capítulo de <strong>cómputo en paralelo</strong>.</p>
 <div class="admonition-notas-para-contenedor-de-docker admonition">
 <p class="admonition-title">Notas para contenedor de docker:</p>
 <p>Comando de docker para ejecución de la nota de forma local:</p>
@@ -339,11 +338,15 @@
 </div>
 <hr class="docutils" />
 <p>Nota generada a partir de la <a class="reference external" href="https://www.dropbox.com/s/jfrxanjls8kndjp/Diferenciacion_e_Integracion.pdf?dl=0">liga1</a> y <a class="reference external" href="https://www.dropbox.com/s/k3y7h9yn5d3yf3t/Integracion_por_Monte_Carlo.pdf?dl=0">liga2</a>.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Los métodos revisados en esta nota de integración numérica serán utilizados más adelante para revisión de herramientas en Python para <strong>perfilamiento de código: uso de cpu y memoria</strong>. También serán referidos en el capítulo de <strong>cómputo en paralelo</strong>.</p>
+</div>
 <p>En lo siguiente consideramos que las funciones del integrando están en <span class="math notranslate nohighlight">\(\mathcal{C}^2\)</span> en el conjunto de integración (ver <a class="reference internal" href="../1.5/Definicion_de_funcion_continuidad_derivada.html#fcd"><span class="std std-ref">Definición de función, continuidad y derivada</span></a> para definición de <span class="math notranslate nohighlight">\(\mathcal{C}^2\)</span>).</p>
 <p>Las reglas o métodos por cuadratura nos ayudan a aproximar integrales con sumas de la forma:</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \int_a^bf(x)dx \approx \displaystyle \sum_{i=0}^nw_if(x_i)\]</div>
-<p>donde: <span class="math notranslate nohighlight">\(w_i\)</span> es el peso para el nodo <span class="math notranslate nohighlight">\(x_i\)</span>, <span class="math notranslate nohighlight">\(f\)</span> se llama integrando y <span class="math notranslate nohighlight">\([a,b]\)</span> intervalo de integración. Los valores <span class="math notranslate nohighlight">\(f(x_i)\)</span> se asumen conocidos.</p>
+<p>donde: <span class="math notranslate nohighlight">\(w_i\)</span> es el <strong>peso</strong> para el <strong>nodo</strong> <span class="math notranslate nohighlight">\(x_i\)</span>, <span class="math notranslate nohighlight">\(f\)</span> se llama integrando y <span class="math notranslate nohighlight">\([a,b]\)</span> intervalo de integración. Los valores <span class="math notranslate nohighlight">\(f(x_i)\)</span> se asumen conocidos.</p>
 <p>Todas las reglas o métodos por cuadratura se obtienen con interpoladores polinomiales del integrando (por ejemplo usando la representación de Lagrange) o también con el teorema Taylor (ver nota <a class="reference internal" href="../1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html#ptdn"><span class="std std-ref">Polinomios de Taylor y diferenciación numérica</span></a> para éste teorema).</p>
 <p>Se realizan aproximaciones numéricas por:</p>
 <ul class="simple">
@@ -354,7 +357,7 @@
 \[\displaystyle \int_a^be^{-\frac{x^2}{2}}dx\]</div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Si existe antiderivada o primitiva del integrando puede usarse el cómputo simbólico o algebraico para obtener el resultado de la integral. Un paquete de Python que nos ayuda a lo anterior es <a class="reference external" href="https://www.sympy.org/en/index.html">SymPy</a>.</p>
+<p>Si existe antiderivada o primitiva del integrando puede usarse el cómputo simbólico o algebraico para obtener el resultado de la integral y evaluarse. Un paquete de Python que nos ayuda a lo anterior es <a class="reference external" href="https://www.sympy.org/en/index.html">SymPy</a>.</p>
 </div>
 <p>Dependiendo de la ubicación de los nodos y pesos es el método de cuadratura que resulta:</p>
 <ul class="simple">
@@ -363,7 +366,7 @@
 </ul>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>Los métodos de integración numérica por Newton-Cotes o cuadratura Gaussiana pueden extenderse a más dimensiones, sin embargo incurren en lo que se conoce como la <strong>maldición de la dimensionalidad</strong> que para el caso de integración numérica consiste en la gran cantidad de evaluaciones que deben realizarse de la función del integrando para tener una exactitud pequeña, por ejemplo con un número de nodos igual a <span class="math notranslate nohighlight">\(10^4\)</span>, una distancia entre ellos de <span class="math notranslate nohighlight">\(.1\)</span> y una integral en <span class="math notranslate nohighlight">\(4\)</span> dimensiones para la regla por Newton Cotes del rectángulo, se obtiene una exactitud de <span class="math notranslate nohighlight">\(2\)</span> dígitos. Como alternativa a los métodos por cuadratura anteriores para las integrales de más dimensiones se tienen los <a class="reference internal" href="#imc"><span class="std std-ref">métodos de integración por el método Monte Carlo</span></a> que generan aproximaciones con una exactitud moderada (del orden de <span class="math notranslate nohighlight">\(\mathcal{O}(n^{-1/2})\)</span> con <span class="math notranslate nohighlight">\(n\)</span> número de nodos) para un número de puntos moderado independiente de la dimensión.</p>
+<p>Los métodos de integración numérica por Newton-Cotes o cuadratura Gaussiana pueden extenderse a más dimensiones, sin embargo incurren en lo que se conoce como la <strong>maldición de la dimensionalidad</strong> que para el caso de integración numérica consiste en la gran cantidad de evaluaciones que deben realizarse de la función del integrando para tener una exactitud pequeña. Por ejemplo con un número de nodos igual a <span class="math notranslate nohighlight">\(10^4\)</span>, una distancia entre ellos de <span class="math notranslate nohighlight">\(.1\)</span> y una integral en <span class="math notranslate nohighlight">\(4\)</span> dimensiones para la regla por Newton Cotes del rectángulo, se obtiene una exactitud de <span class="math notranslate nohighlight">\(2\)</span> dígitos. Como alternativa a los métodos por cuadratura anteriores para las integrales de más dimensiones se tienen los <a class="reference internal" href="#imc"><span class="std std-ref">métodos de integración por el método Monte Carlo</span></a> que generan aproximaciones con una exactitud moderada (del orden de <span class="math notranslate nohighlight">\(\mathcal{O}(n^{-1/2})\)</span> con <span class="math notranslate nohighlight">\(n\)</span> número de nodos) para un número de puntos moderado <strong>independiente</strong> de la dimensión.</p>
 </div>
 <div class="section" id="newton-cotes">
 <h2>Newton-Cotes<a class="headerlink" href="#newton-cotes" title="Permalink to this headline">¶</a></h2>
@@ -380,9 +383,9 @@
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
 <p>Los métodos que utilizan la idea anterior de dividir en subintervalos se les conoce como <strong>métodos de integración numérica compuestos</strong> en contraste con los simples:</p>
-<p>Para las reglas compuestas se divide el intervalo <span class="math notranslate nohighlight">\([a,b]\)</span> en <span class="math notranslate nohighlight">\(n\)</span> subinteralos <span class="math notranslate nohighlight">\([x_{i-1},x_i], i=1,\dots,n\)</span> con <span class="math notranslate nohighlight">\(x_0=a&lt;x_1&lt;\dots&lt;x_{n-1}&lt;x_n=b\)</span> y se considera una partición regular, esto es: <span class="math notranslate nohighlight">\(x_i-x_{i-1}=\hat{h}\)</span> con <span class="math notranslate nohighlight">\(\hat{h}=\frac{h}{n}\)</span> y <span class="math notranslate nohighlight">\(h=b-a\)</span>. En este contexto se realiza la aproximación:</p>
+<p>Para las reglas compuestas se divide el intervalo <span class="math notranslate nohighlight">\([a,b]\)</span> en <span class="math notranslate nohighlight">\(n\)</span> subinteralos <span class="math notranslate nohighlight">\([a_{i-1},a_i], i=1,\dots,n\)</span> con <span class="math notranslate nohighlight">\(a_0=a&lt;a_1&lt;\dots&lt;a_{n-1}&lt;a_n=b\)</span> y se considera una partición regular, esto es: <span class="math notranslate nohighlight">\(a_i-a_{i-1}=\hat{h}\)</span> con <span class="math notranslate nohighlight">\(\hat{h}=\frac{h}{n}\)</span> y <span class="math notranslate nohighlight">\(h=b-a\)</span>. En este contexto se realiza la aproximación:</p>
 <div class="math notranslate nohighlight">
-\[\displaystyle \int_a^bf(x)dx = \sum_{i=1}^n\int_{x_{i-1}}^{x_i}f(x)dx.\]</div>
+\[\displaystyle \int_a^bf(x)dx = \sum_{i=1}^n\int_{a_{i-1}}^{a_i}f(x)dx.\]</div>
 </div>
 </div>
 <div class="section" id="ejemplo-de-una-integral-que-no-tiene-antiderivada">
@@ -990,7 +993,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1536
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1376
 </pre></div>
 </div>
 </div>
@@ -1007,7 +1010,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1276
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1248
 </pre></div>
 </div>
 </div>
@@ -1023,7 +1026,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.14092
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1446
 </pre></div>
 </div>
 </div>
@@ -1077,7 +1080,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 7.3826e-04&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 6.9005e-04&#39;
 </pre></div>
 </div>
 </div>
@@ -1099,7 +1102,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 5.8017e-04&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 2.1450e-03&#39;
 </pre></div>
 </div>
 </div>
@@ -1124,7 +1127,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 3.2592e-03&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 9.6158e-03&#39;
 </pre></div>
 </div>
 </div>
@@ -1149,7 +1152,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.3899e-02&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.4104e-02&#39;
 </pre></div>
 </div>
 </div>
@@ -1177,7 +1180,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.8674e-03&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.3067e-02&#39;
 </pre></div>
 </div>
 </div>
@@ -1225,7 +1228,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.8442e-03&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 8.4242e-04&#39;
 </pre></div>
 </div>
 </div>
@@ -1244,7 +1247,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.006394919749126135
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.006439113856012181
 </pre></div>
 </div>
 </div>
@@ -1257,7 +1260,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(3.140991331331576, 3.153781170829828)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(3.13250698926105, 3.1453852169730743)
 </pre></div>
 </div>
 </div>
