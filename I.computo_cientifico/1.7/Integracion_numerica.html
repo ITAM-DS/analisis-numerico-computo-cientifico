@@ -394,8 +394,9 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
@@ -479,7 +480,14 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rf_simple</span> <span class="o">=</span> <span class="n">Rf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rf_simple</span>
 </pre></div>
 </div>
 </div>
@@ -489,6 +497,38 @@
 </div>
 </div>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Para cualquier aproximación calculada siempre es una muy buena idea reportar el error relativo de la aproximación si tenemos el valor del objetivo. No olvidar esto :)</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_error</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">approx</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Relative or absolute error between obj and approx.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">Err</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="o">-</span><span class="n">approx</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Err</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="o">-</span><span class="n">approx</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Err</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">compute_error</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">rf_simple</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.04281684114646715
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>El error relativo es de <span class="math notranslate nohighlight">\(4.2\%\)</span> aproximadamente.</strong></p>
 </div>
 </div>
 <div class="section" id="regla-compuesta-del-rectangulo">
@@ -552,8 +592,17 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_1</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">aprox_1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>1 nodo</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">rcf_1</span> <span class="o">=</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">rcf_1</span>
 </pre></div>
 </div>
 </div>
@@ -563,10 +612,12 @@
 </div>
 </div>
 </div>
+<p><strong>2 nodos</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_2</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">aprox_2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">rcf_2</span> <span class="o">=</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">rcf_2</span>
 </pre></div>
 </div>
 </div>
@@ -576,23 +627,12 @@
 </div>
 </div>
 </div>
+<p><strong><span class="math notranslate nohighlight">\(10^3\)</span> nodos</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_2</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">aprox_2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.7545979437721995
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_3</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">aprox_3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">rcf_3</span> <span class="o">=</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">rcf_3</span>
 </pre></div>
 </div>
 </div>
@@ -602,32 +642,96 @@
 </div>
 </div>
 </div>
-<p>Y se puede evaluar el error de aproximación con el error relativo:</p>
+<p><strong>Errores relativos:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">err_relativo</span><span class="p">(</span><span class="n">aprox</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">aprox</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="c1">#obsérvese el uso de la librería math</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rel_err_rcf_1</span> <span class="o">=</span> <span class="n">compute_error</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">rcf_1</span><span class="p">)</span>
+<span class="n">rel_err_rcf_2</span> <span class="o">=</span> <span class="n">compute_error</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">rcf_2</span><span class="p">)</span>
+<span class="n">rel_err_rcf_3</span> <span class="o">=</span> <span class="n">compute_error</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">rcf_3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="p">(</span><span class="n">err_relativo</span><span class="p">(</span><span class="n">aprox_1</span><span class="p">,</span><span class="n">obj</span><span class="p">),</span> <span class="n">err_relativo</span><span class="p">(</span><span class="n">aprox_2</span><span class="p">,</span><span class="n">obj</span><span class="p">),</span> <span class="n">err_relativo</span><span class="p">(</span><span class="n">aprox_3</span><span class="p">,</span><span class="n">obj</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Aproximaciones Rcf&quot;</span><span class="p">:</span> <span class="p">[</span>
+                              <span class="s2">&quot;Rcf_1&quot;</span><span class="p">,</span>
+                              <span class="s2">&quot;Rcf_2&quot;</span><span class="p">,</span>
+                              <span class="s2">&quot;Rcf_3&quot;</span>
+                              <span class="p">],</span>
+       <span class="s2">&quot;Número de nodos&quot;</span> <span class="p">:</span> <span class="p">[</span>
+                            <span class="mi">1</span><span class="p">,</span>
+                            <span class="mi">2</span><span class="p">,</span>
+                            <span class="mf">1e3</span>
+                            <span class="p">],</span>
+       <span class="s2">&quot;Errores relativos&quot;</span><span class="p">:</span> <span class="p">[</span>
+                             <span class="n">rel_err_rcf_1</span><span class="p">,</span>
+                             <span class="n">rel_err_rcf_2</span><span class="p">,</span>
+                             <span class="n">rel_err_rcf_3</span>
+                            <span class="p">]</span>
+      <span class="p">}</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(0.04281684114646715, 0.010409158754012628, 4.1049318789768585e-08)
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Aproximaciones Rcf</th>
+      <th>Número de nodos</th>
+      <th>Errores relativos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Rcf_1</td>
+      <td>1.0</td>
+      <td>4.281684e-02</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Rcf_2</td>
+      <td>2.0</td>
+      <td>1.040916e-02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Rcf_3</td>
+      <td>1000.0</td>
+      <td>4.104932e-08</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="comentario-pytest">
 <h3>Comentario: <a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a><a class="headerlink" href="#comentario-pytest" title="Permalink to this headline">¶</a></h3>
-<p>otra forma de evaluar las aproximaciones realizadas es con módulos o paquetes de Python creados para este propósito en lugar de crear nuestras funciones como la de <code class="docutils literal notranslate"><span class="pre">relative_absolute_error</span></code>. Uno de estos es el paquete <code class="docutils literal notranslate"><span class="pre">pytest</span></code> y la función <a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#pytest-approx">approx</a> de este paquete:</p>
+<p>Otra forma de evaluar las aproximaciones realizadas es con módulos o paquetes de Python creados para este propósito en lugar de crear nuestras funciones como la de <code class="docutils literal notranslate"><span class="pre">compute_error</span></code>. Uno de estos es el paquete <code class="docutils literal notranslate"><span class="pre">pytest</span></code> y la función <a class="reference external" href="https://docs.pytest.org/en/latest/reference.html#pytest-approx">approx</a> de este paquete:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
@@ -637,7 +741,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_1</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rcf_1</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -649,7 +753,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_2</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rcf_2</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -661,7 +765,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_3</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rcf_3</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -674,7 +778,7 @@
 <p>Y podemos usar un valor definido de tolerancia definido para hacer la prueba (por default se tiene una tolerancia de <span class="math notranslate nohighlight">\(10^{-6}\)</span>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_1</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">abs</span><span class="o">=</span><span class="mf">1e-1</span><span class="p">,</span> <span class="n">rel</span><span class="o">=</span><span class="mf">1e-1</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rcf_1</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">abs</span><span class="o">=</span><span class="mf">1e-1</span><span class="p">,</span> <span class="n">rel</span><span class="o">=</span><span class="mf">1e-1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -688,11 +792,12 @@
 <div class="section" id="pregunta">
 <h3>Pregunta<a class="headerlink" href="#pregunta" title="Permalink to this headline">¶</a></h3>
 <p><strong>Será el método del rectángulo un método estable numéricamente bajo el redondeo?</strong> Ver nota <a class="reference internal" href="../1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html#cpea"><span class="std std-ref">Condición de un problema y estabilidad de un algoritmo</span></a> para definición de estabilidad numérica de un algoritmo.</p>
-<p>Para responder la pregunta anterior aproximamos la integral con más nodos:</p>
+<p>Para responder la pregunta anterior aproximamos la integral con más nodos: <span class="math notranslate nohighlight">\(10^5\)</span> nodos</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aprox_4</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">aprox_4</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">5</span>
+<span class="n">rcf_4</span> <span class="o">=</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">rcf_4</span>
 </pre></div>
 </div>
 </div>
@@ -704,7 +809,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_relativo</span><span class="p">(</span><span class="n">aprox_4</span><span class="p">,</span><span class="n">obj</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">compute_error</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">rcf_4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -714,12 +819,11 @@
 </div>
 </div>
 </div>
-<p>Al menos para este ejemplo con <span class="math notranslate nohighlight">\(10^5\)</span> nodos parece ser numéricamente estable…</p>
+<p>Al menos para este ejemplo con <span class="math notranslate nohighlight">\(10^5\)</span> nodos parece ser <strong>numéricamente estable…</strong></p>
 </div>
 </div>
 <div class="section" id="regla-compuesta-del-trapecio">
 <h2>Regla compuesta del trapecio<a class="headerlink" href="#regla-compuesta-del-trapecio" title="Permalink to this headline">¶</a></h2>
-<img src="https://dl.dropboxusercontent.com/s/4dl2btndrftdorp/trapecio_compuesto.png?dl=0" heigth="200" width="200">
 <p>En cada subintervalo se aplica la regla simple <span class="math notranslate nohighlight">\(Tf\)</span>, esto es:</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \int_{x_{i-1}}^{x_i}f(x)dx \approx T_i(f) \forall i=1,\dots,n.\]</div>
@@ -728,6 +832,7 @@
 <div class="math notranslate nohighlight">
 \[T_c(f) = \displaystyle \frac{h}{2n}\left[f(x_0)+f(x_n)+2\displaystyle\sum_{i=1}^{n-1}f(x_i)\right]\]</div>
 <p>con <span class="math notranslate nohighlight">\(h=b-a\)</span> y <span class="math notranslate nohighlight">\(n\)</span> número de subintervalos.</p>
+<img src="https://dl.dropboxusercontent.com/s/4dl2btndrftdorp/trapecio_compuesto.png?dl=0" heigth="200" width="200">
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Los nodos para el caso del trapecio se obtienen con la fórmula: <span class="math notranslate nohighlight">\(x_i = a +i\hat{h}, \forall i=0,\dots,n, \hat{h}=\frac{h}{n}\)</span>.</p>
@@ -775,29 +880,36 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">approx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Tcf</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">numb_of_subintervals</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tcf_approx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Tcf</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">numb_of_subintervals</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">err_relativo</span><span class="p">(</span><span class="n">aprox</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">aprox</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="c1">#obsérvese el uso de la librería numpy</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_error_point_wise</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">approx</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Relative or absolute error between obj and approx.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">Err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">obj</span><span class="o">-</span><span class="n">approx</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">obj</span><span class="o">-</span><span class="n">approx</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Err</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_relativo_res</span> <span class="o">=</span> <span class="n">err_relativo</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">relative_errors</span> <span class="o">=</span> <span class="n">compute_error_point_wise</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">tcf_approx</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_relativo_res</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">relative_errors</span>
 </pre></div>
 </div>
 </div>
@@ -810,7 +922,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numb_of_subintervals</span><span class="p">,</span><span class="n">err_relativo_res</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numb_of_subintervals</span><span class="p">,</span> <span class="n">relative_errors</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;number of subintervals&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative error&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Error relativo en la regla del Trapecio&#39;</span><span class="p">)</span>
@@ -819,7 +931,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Integracion_numerica_83_0.png" src="../../_images/Integracion_numerica_83_0.png" />
+<img alt="../../_images/Integracion_numerica_92_0.png" src="../../_images/Integracion_numerica_92_0.png" />
 </div>
 </div>
 <p>Si no nos interesa el valor de los errores relativos y sólo la gráfica podemos utilizar la siguiente opción:</p>
@@ -833,31 +945,35 @@
 <p>Ver <a class="reference external" href="https://docs.python.org/2/library/functools.html#functools.partial">functools.partial</a> para documentación, <a class="reference external" href="https://stackoverflow.com/questions/15331726/how-does-functools-partial-do-what-it-does">liga</a> para una explicación de <code class="docutils literal notranslate"><span class="pre">partial</span></code> y <a class="reference external" href="https://stackoverflow.com/questions/10834960/how-to-do-multiple-arguments-to-map-function-where-one-remains-the-same-in-pytho">liga2</a>, <a class="reference external" href="https://stackoverflow.com/questions/47859209/how-to-map-over-a-function-with-multiple-arguments-in-python">liga3</a> para ejemplos de uso.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">approx</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">Tcf</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">numb_of_subintervals</span><span class="p">)</span> <span class="c1">#map regresa un iterator</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tcf_approx_2</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">Tcf</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">),</span>
+                   <span class="n">numb_of_subintervals</span><span class="p">)</span> <span class="c1">#map returns an iterator</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">err_relativo</span><span class="p">(</span><span class="n">aprox_map</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">ap</span> <span class="ow">in</span> <span class="n">aprox_map</span><span class="p">:</span>
-        <span class="k">yield</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">ap</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="c1">#obsérvese el uso de la librería math</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_error_point_wise_2</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">approx</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ap</span> <span class="ow">in</span> <span class="n">approx</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">ap</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="c1">#using math library</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Obs:</strong> la función <code class="docutils literal notranslate"><span class="pre">err_relativo</span></code> anterior es un <a class="reference external" href="https://wiki.python.org/moin/Generators">generator</a>, ver <a class="reference external" href="https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do">liga</a> para conocer el uso de <code class="docutils literal notranslate"><span class="pre">yield</span></code>.</p>
+<div class="admonition-observacion admonition">
+<p class="admonition-title">Observación</p>
+<p>La función <code class="docutils literal notranslate"><span class="pre">compute_error_point_wise_2</span></code> anterior es un <a class="reference external" href="https://wiki.python.org/moin/Generators">generator</a>, ver <a class="reference external" href="https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do">liga</a> para conocer el uso de <code class="docutils literal notranslate"><span class="pre">yield</span></code>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_relativo_res</span> <span class="o">=</span> <span class="n">err_relativo</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">relative_errors_2</span> <span class="o">=</span> <span class="n">compute_error_point_wise_2</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">tcf_approx_2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numb_of_subintervals</span><span class="p">,</span><span class="nb">list</span><span class="p">(</span><span class="n">err_relativo_res</span><span class="p">),</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">numb_of_subintervals</span><span class="p">,</span><span class="nb">list</span><span class="p">(</span><span class="n">relative_errors_2</span><span class="p">),</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;number of subintervals&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative error&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Error relativo en la regla del Trapecio&#39;</span><span class="p">)</span>
@@ -866,27 +982,28 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Integracion_numerica_91_0.png" src="../../_images/Integracion_numerica_91_0.png" />
+<img alt="../../_images/Integracion_numerica_100_0.png" src="../../_images/Integracion_numerica_100_0.png" />
 </div>
 </div>
-<p><strong>usando scatter:</strong></p>
+<p><strong>Otra forma con <a class="reference external" href="https://matplotlib.org/3.3.0/api/_as_gen/matplotlib.pyplot.scatter.html">scatter</a>:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">approx</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">Tcf</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">numb_of_subintervals</span><span class="p">)</span> <span class="c1">#map regresa un iterator</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tcf_approx_2</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">Tcf</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">),</span>
+                   <span class="n">numb_of_subintervals</span><span class="p">)</span> <span class="c1">#map returns an iterator</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">err_relativo_res</span> <span class="o">=</span> <span class="n">err_relativo</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span><span class="n">obj</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">relative_errors_2</span> <span class="o">=</span> <span class="n">compute_error_point_wise_2</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">tcf_approx_2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">err_rel</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">err_rel</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">numb_of_subintervals</span><span class="p">,</span><span class="n">err_relativo_res</span><span class="p">)]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">rel_err</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">rel_err</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">numb_of_subintervals</span><span class="p">,</span><span class="n">relative_errors_2</span><span class="p">)]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;number of subintervals&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Relative error&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Error relativo en la regla del Trapecio&#39;</span><span class="p">)</span>
@@ -895,14 +1012,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Integracion_numerica_95_0.png" src="../../_images/Integracion_numerica_95_0.png" />
+<img alt="../../_images/Integracion_numerica_104_0.png" src="../../_images/Integracion_numerica_104_0.png" />
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="regla-compuesta-de-simpson">
 <h2>Regla compuesta de Simpson<a class="headerlink" href="#regla-compuesta-de-simpson" title="Permalink to this headline">¶</a></h2>
-<img src="https://dl.dropboxusercontent.com/s/8rx32vdtulpdflm/Simpson_compuesto.png?dl=0" heigth="200" width="200">
 <p>En cada subintervalo se aplica la regla simple <span class="math notranslate nohighlight">\(Sf\)</span>, esto es:</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \int_{a_{i-1}}^{a_i}f(x)dx \approx S_i(f) \forall i=1,\dots,n\]</div>
@@ -911,11 +1027,15 @@
 <div class="math notranslate nohighlight">
 \[S_c(f) = \displaystyle \frac{h}{3(2n)} \left [ f(x_0) + f(x_{2n}) + 2 \sum_{i=1}^{n-1}f(x_{2i}) + 4 \sum_{i=1}^{n}f(x_{2i-1})\right ] \]</div>
 <p>con <span class="math notranslate nohighlight">\(h=b-a\)</span> y <span class="math notranslate nohighlight">\(n\)</span> número de subintervalos.</p>
+<img src="https://dl.dropboxusercontent.com/s/8rx32vdtulpdflm/Simpson_compuesto.png?dl=0" heigth="200" width="200">
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Los nodos para el caso de Simpson se obtienen con la fórmula: <span class="math notranslate nohighlight">\(x_i = a +\frac{i}{2}\hat{h}, \forall i=0,\dots,2n, \hat{h}=\frac{h}{n}\)</span>.</p>
 </div>
-<p><strong>En esta <a class="reference external" href="https://www.dropbox.com/s/qrbcs5n57kp5150/Simpson-6-subintervalos.pdf?dl=0">liga</a> está un apoyo visual para la regla Scf.</strong></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>En esta <a class="reference external" href="https://www.dropbox.com/s/qrbcs5n57kp5150/Simpson-6-subintervalos.pdf?dl=0">liga</a> está un apoyo visual para la regla Scf.</p>
+</div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicio</p>
 <p>Implementar la regla compuesta de Simpson para aproximar la integral <span class="math notranslate nohighlight">\(\int_0^1e^{-x^2}dx\)</span>. Calcular error relativo y realizar una gráfica de <span class="math notranslate nohighlight">\(n\)</span> vs Error relativo para <span class="math notranslate nohighlight">\(n=1,10,100,1000,10000\)</span> utilizando numpy e iterators.</p>
@@ -965,7 +1085,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Integracion_numerica_125_0.png" src="../../_images/Integracion_numerica_125_0.png" />
+<img alt="../../_images/Integracion_numerica_134_0.png" src="../../_images/Integracion_numerica_134_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -981,7 +1101,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Integracion_numerica_126_0.png" src="../../_images/Integracion_numerica_126_0.png" />
+<img alt="../../_images/Integracion_numerica_135_0.png" src="../../_images/Integracion_numerica_135_0.png" />
 </div>
 </div>
 <p>Área del círculo es aproximadamente:</p>
@@ -993,7 +1113,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1376
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1712
 </pre></div>
 </div>
 </div>
@@ -1010,7 +1130,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1248
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1472
 </pre></div>
 </div>
 </div>
@@ -1026,7 +1146,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1446
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>3.1468
 </pre></div>
 </div>
 </div>
@@ -1080,7 +1200,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 6.9005e-04&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.1366e-03&#39;
 </pre></div>
 </div>
 </div>
@@ -1102,7 +1222,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 2.1450e-03&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 4.3774e-04&#39;
 </pre></div>
 </div>
 </div>
@@ -1127,7 +1247,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 9.6158e-03&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 2.2716e-03&#39;
 </pre></div>
 </div>
 </div>
@@ -1152,7 +1272,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.4104e-02&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.3892e-02&#39;
 </pre></div>
 </div>
 </div>
@@ -1180,7 +1300,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 1.3067e-02&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 9.5573e-03&#39;
 </pre></div>
 </div>
 </div>
@@ -1228,7 +1348,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 8.4242e-04&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>&#39;error relativo: 4.1522e-03&#39;
 </pre></div>
 </div>
 </div>
@@ -1247,7 +1367,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.006439113856012181
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.006467406925586997
 </pre></div>
 </div>
 </div>
@@ -1260,7 +1380,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(3.13250698926105, 3.1453852169730743)
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(3.1220807947441522, 3.135015608595326)
 </pre></div>
 </div>
 </div>
