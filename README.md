@@ -19,6 +19,10 @@ Este es el repositorio para la materia de "Métodos Numéricos y Optimización (
 \* Tal imagen de docker se descarga con un `docker pull palmoreck/jupyterlab_optimizacion:2.1.4` desde la terminal una vez hayan instalado docker en sus computadoras y posteriormente hacer un `docker run` de acuerdo a la documentación de la imagen. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
 
 
+### Organización de github classroom para el semestre agosto-diciembre 2020
+
+La organización [optimizacion-2020-2-gh-classroom](https://github.com/optimizacion-2020-2-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas del semestre agosto-diciembre 2020. Ver [github education](https://github.com/education) como una referencia.
+
 ## Ramas del repositorio.
 
 En este repositorio se han creado diferentes ramas que pueden ser accesadas como se aprecia en esta imagen:
@@ -40,7 +44,7 @@ En el directorio [libro_optimizacion/temas/](libro_optimizacion/temas/) están l
 
 ## Sobre las notas. 
 
-Las notas de cada tema están escritas en [Jupyter notebooks](https://jupyter.org/). Ver [I python, You R, We Julia](https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6) para algunas características de tales notebooks. Ver [notebook](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html) para funcionalidad de los notebooks. Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [kernels](https://jupyter.readthedocs.io/en/latest/install-kernel.html) disponibles en jupyter (que hacen posible ejecutar instrucciones en el lenguaje R, por ejemplo, en tales notebooks).
+Las notas de cada tema están escritas en [Jupyter](https://jupyter.org/) notebooks. Ver [I python, You R, We Julia](https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6) para algunas características de tales notebooks. Ver [notebook](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html) para funcionalidad de los notebooks. Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [jupyter-kernels](https://jupyter.readthedocs.io/en/latest/install.html?highlight=install%20kernel#jupyter-kernels) disponibles en jupyter (que hacen posible ejecutar instrucciones en el lenguaje R, por ejemplo, en tales notebooks).
 
 ### Interactividad
 
@@ -79,6 +83,3 @@ Ir a la rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cie
 
 ### Nota: durante este semestre agosto - diciembre 2020 se estarán haciendo cambios continuamente por lo que tendrán que actualizar su descarga o clon.
 
-## Organización de github classroom
-
-La organización [optimizacion-2020-2-gh-classroom](https://github.com/optimizacion-2020-2-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas. Ver [github education](https://github.com/education) como una referencia.
