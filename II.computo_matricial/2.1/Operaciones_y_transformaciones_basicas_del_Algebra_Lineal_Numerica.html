@@ -898,7 +898,7 @@ x_n
 <p>Y finalmente la aplicación de <span class="math notranslate nohighlight">\(L_1\)</span> al segundo renglón y segunda columna en adelante de <span class="math notranslate nohighlight">\(A\)</span> queda:</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Observa que por la definición de la transformación de Gauss, <strong>no necesitamos construir a la matriz <span class="math notranslate nohighlight">\(L_1\)</span>, directamente se tiene <span class="math notranslate nohighlight">\(L_1 A = A - \ell_1 e_1^T A\)</span>.</strong></p>
+<p>Observa que por la definición de la transformación de Gauss, <strong>no necesitamos construir a la matriz <span class="math notranslate nohighlight">\(L_1\)</span>, directamente se tiene <span class="math notranslate nohighlight">\(L_1 A = A - \ell_1 e_1^T A\)</span> y podemos aprovechar lo anterior para sólo operar de la segunda columna y segundo renglón en adelante.</strong></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -913,7 +913,22 @@ x_n
 </div>
 </div>
 </div>
-<p>Practicando combinar columnas y renglones en <em>numpy</em> con <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.vstack.html">column_stack</a> y <em>row_stack</em>:</p>
+<p>Compárese con:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">L1</span> <span class="o">@</span> <span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[-1.,  2.,  5.],
+       [ 0., 13., 13.],
+       [ 0.,  6., 23.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Entonces sólo falta colocar el primer renglón y la segunda columna al producto. Para esto combinamos columnas y renglones en <em>numpy</em> con <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.vstack.html">column_stack</a> y <em>row_stack</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A_aux</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">l1</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">:])</span>
