@@ -78,7 +78,7 @@ Realizar la **parte 1** de configuraciones de servicios básicos en AWS que encu
 
 ## Clase 3
 
-20 de agosto
+19 de agosto
 
 Finalizamos [1.2 Sistema de punto flotante](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.2/Sistema_de_punto_flotante.html)
 
