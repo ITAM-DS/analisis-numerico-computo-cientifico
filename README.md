@@ -76,6 +76,17 @@ Liga al video de la sesión: [liga microsoft teams](https://web.microsoftstream.
 Realizar la **parte 1** de configuraciones de servicios básicos en AWS que encuentran [aquí](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki#para-videos-de-configuraciones-de-servicios-b%C3%A1sicos-e-instalaci%C3%B3n-de-herramientas-%C3%BAtiles) y podamos discutir en la Semana 4 (24 - 28 de agosto) creación de cuentas en AWS y dudas generales de éstas configuraciones. Para las personas que tienen un sistema operativo Windows y quieran conectarse a las instancias de AWS consultar: [UserGuide/putty](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html)
 
 
+## Clase 3
+
+19 de agosto
+
+Finalizamos [1.2 Sistema de punto flotante](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.2/Sistema_de_punto_flotante.html)
+
+Llegamos hasta [resultados-computacionales-que-son-posibles-probar](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#resultados-computacionales-que-son-posibles-probar) de la nota 1.3 Normas vectoriales y matriciales.
+
+Liga al video de la sesión: [liga microsoft teams](https://web.microsoftstream.com/video/6c9df898-1320-4f5e-ac70-a220ad4dc961). Tienen que hacer login con su cuenta del itam y luego les pedirá que ingresen nuevamente pero con su cuenta de comunidad itam y luego vuelvan a copiar la liga anterior en la misma pestaña de su browser o en otra.
+
+
 
 
 
