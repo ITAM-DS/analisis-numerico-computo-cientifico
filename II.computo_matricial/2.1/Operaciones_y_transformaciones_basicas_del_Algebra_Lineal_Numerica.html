@@ -1114,7 +1114,7 @@ A = \left [
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Recuerda la definición de <span class="math notranslate nohighlight">\(\beta\)</span>, <span class="math notranslate nohighlight">\(\beta = \frac{2}{v^Tv}\)</span> para <span class="math notranslate nohighlight">\(v\)</span> no unitario.</p>
+<p>Recuerda la definición de <span class="math notranslate nohighlight">\(\beta = \frac{2}{v^Tv}\)</span> para <span class="math notranslate nohighlight">\(v\)</span> no unitario.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1218,6 +1218,11 @@ A = \left [
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Observa que por la definición de la reflexión de Householder, <strong>no necesitamos construir a la matriz <span class="math notranslate nohighlight">\(R\)</span>, directamente se tiene <span class="math notranslate nohighlight">\(R x = x - \beta vv^Tx\)</span>.</strong></p>
+</div>
+<p>Hacemos ceros por debajo de la primera entrada de <span class="math notranslate nohighlight">\(x\)</span> haciendo la multiplicación matriz-vector <span class="math notranslate nohighlight">\(Rx\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
@@ -1233,12 +1238,15 @@ A = \left [
 </div>
 <div class="section" id="cual-definicion-del-vector-de-householder-usar">
 <h3>¿Cuál definición del vector de Householder usar?<a class="headerlink" href="#cual-definicion-del-vector-de-householder-usar" title="Permalink to this headline">¶</a></h3>
-<p>La respuesta a la pregunta tiene que ver con que en cualquiera de las dos definiciones del vector de Householder <span class="math notranslate nohighlight">\(v=x \pm ||x||_2 e_1\)</span>, la multiplicación <span class="math notranslate nohighlight">\(Rx\)</span> refleja <span class="math notranslate nohighlight">\(x\)</span> en el primer eje coordenado:</p>
+<p>En cualquiera de las dos definiciones del vector de Householder <span class="math notranslate nohighlight">\(v=x \pm ||x||_2 e_1\)</span>, la multiplicación <span class="math notranslate nohighlight">\(Rx\)</span> refleja <span class="math notranslate nohighlight">\(x\)</span> en el primer eje coordenado:</p>
 <img src="https://dl.dropboxusercontent.com/s/bfk7gojxm93ah5s/householder_2_posibilites.png?dl=0" heigth="400" width="400">
-<p>El vector <span class="math notranslate nohighlight">\(v^+ = - u_0^+ = x-||x||_2e_1\)</span> refleja <span class="math notranslate nohighlight">\(x\)</span> respecto al subespacio <span class="math notranslate nohighlight">\(H^+\)</span>. El vector <span class="math notranslate nohighlight">\(v^- = -u_0^- = x+||x||_2e_1\)</span> refleja <span class="math notranslate nohighlight">\(x\)</span> respecto al subespacio <span class="math notranslate nohighlight">\(H^-\)</span>. Para disminuir los errores por redondeo y evitar el problema de cancelación en la aritmética de punto flotante (ver <a class="reference external" href="https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.2/Sistema_de_punto_flotante.html">Sistema de punto flotante</a>) se utiliza <span class="math notranslate nohighlight">\(v = x+signo(x_1)||x||_2e_1\)</span> donde <span class="math notranslate nohighlight">\(signo(x_1) = \begin{cases}
+<p>El vector <span class="math notranslate nohighlight">\(v^+ = - u_0^+ = x-||x||_2e_1\)</span> refleja <span class="math notranslate nohighlight">\(x\)</span> respecto al subespacio <span class="math notranslate nohighlight">\(H^+\)</span>. El vector <span class="math notranslate nohighlight">\(v^- = -u_0^- = x+||x||_2e_1\)</span> refleja <span class="math notranslate nohighlight">\(x\)</span> respecto al subespacio <span class="math notranslate nohighlight">\(H^-\)</span>.</p>
+<p>Para reducir los errores por redondeo y evitar el problema de cancelación en la aritmética de punto flotante (ver <a class="reference external" href="https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.2/Sistema_de_punto_flotante.html">Sistema de punto flotante</a>) se utiliza:</p>
+<p><span class="math notranslate nohighlight">\($v = x+signo(x_1)||x||_2e_1\)</span> donde <span class="math notranslate nohighlight">\(signo(x_1) = \begin{cases}
 1 &amp;\text{ si } x_1 \geq 0 ,\\
 -1 &amp;\text{ si } x_1 &lt; 0
-\end{cases}\)</span>. La idea de la definción anterior con la función <span class="math notranslate nohighlight">\(signo(\cdot)\)</span> es que la reflexión (en el dibujo anterior <span class="math notranslate nohighlight">\(-||x||_2e_1\)</span> o <span class="math notranslate nohighlight">\(||x||_2e_1\)</span>) sea lo más alejada posible de <span class="math notranslate nohighlight">\(x\)</span>. En el dibujo anterior como <span class="math notranslate nohighlight">\(x_1, x_2&gt;0\)</span> entonces se refleja respecto al subespacio <span class="math notranslate nohighlight">\(H^-\)</span> quedando su reflexión igual a <span class="math notranslate nohighlight">\(-||x||_2e_1\)</span>.</p>
+\end{cases}.\)</span>$</p>
+<p>La idea de la definción anterior con la función <span class="math notranslate nohighlight">\(signo(\cdot)\)</span> es que la reflexión (en el dibujo anterior <span class="math notranslate nohighlight">\(-||x||_2e_1\)</span> o <span class="math notranslate nohighlight">\(||x||_2e_1\)</span>) sea lo más alejada posible de <span class="math notranslate nohighlight">\(x\)</span>. En el dibujo anterior como <span class="math notranslate nohighlight">\(x_1, x_2&gt;0\)</span> entonces se refleja respecto al subespacio <span class="math notranslate nohighlight">\(H^-\)</span> quedando su reflexión igual a <span class="math notranslate nohighlight">\(-||x||_2e_1\)</span>.</p>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
