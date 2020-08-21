@@ -366,7 +366,7 @@ x_n
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
 <p>Una transformación de Gauss está definida de forma general como <span class="math notranslate nohighlight">\(L_k = I_n - \ell_ke_k^T\)</span> con <span class="math notranslate nohighlight">\(\ell_k = (0,0,\dots,\ell_{k+1,k},\dots,\ell_{n,k})^T\)</span> y <span class="math notranslate nohighlight">\(\ell_{i,k}=\frac{a_{ik}}{a_{kk}} \forall i=k+1,\dots,n\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(a_{kk}\)</span> se le nombra <strong>pivote</strong>.</p>
+<p><span class="math notranslate nohighlight">\(a_{kk}\)</span> se le nombra <strong>pivote</strong> y <strong>debe ser diferente de cero</strong>.</p>
 </div>
 <p>Las transformaciones de Gauss se utilizan para hacer ceros por debajo del <strong>pivote</strong>.</p>
 <div class="section" id="ejemplo-aplicando-transformaciones-de-gauss-a-un-vector">
@@ -571,10 +571,21 @@ x_n
 </div>
 <div class="section" id="ejemplo-aplicando-transformaciones-de-gauss-a-una-matriz">
 <h3>Ejemplo aplicando transformaciones de Gauss a una matriz<a class="headerlink" href="#ejemplo-aplicando-transformaciones-de-gauss-a-una-matriz" title="Permalink to this headline">¶</a></h3>
-<p>Si tenemos una matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{3 \times 3}\)</span> y queremos hacer ceros por debajo de su diagonal, realizamos los productos matriciales:</p>
+<p>Si tenemos una matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{3 \times 3}\)</span> y queremos hacer ceros por debajo de su <strong>diagonal</strong>, realizamos los productos matriciales:</p>
 <div class="math notranslate nohighlight">
 \[L_2 L_1 A\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(L_1, L_2\)</span> son transformaciones de Gauss.</p>
+<p>Posterior a realizar el producto <span class="math notranslate nohighlight">\(L_2 L_1 A\)</span> se obtiene una <strong>matriz triangular superior:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+L_2L_1A = \left [
+\begin{array}{ccc}
+* &amp; * &amp; *\\
+0 &amp; * &amp; * \\
+0 &amp; 0 &amp; * 
+\end{array}
+\right ]
+\end{split}\]</div>
 <p><strong>Ejemplo:</strong></p>
 <p>a) Utilizando <span class="math notranslate nohighlight">\(L_1\)</span></p>
 <div class="cell docutils container">
@@ -790,7 +801,7 @@ x_n
 <p><strong>por lo que la multiplicación <span class="math notranslate nohighlight">\(L_1A\)</span> entonces modifica del segundo renglón de <span class="math notranslate nohighlight">\(A\)</span> en adelante y de la segunda columna de <span class="math notranslate nohighlight">\(A\)</span> en adelante.</strong></p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Dada la forma de <span class="math notranslate nohighlight">\(L_1 = I_n - \ell_1e_1^T\)</span>, al hacer la multiplicación por la segunda y tercer columna de <span class="math notranslate nohighlight">\(A\)</span> se tiene:</p>
+<p>Dada la forma de <span class="math notranslate nohighlight">\(L_1 = I_3 - \ell_1e_1^T\)</span>, al hacer la multiplicación por la segunda y tercer columna de <span class="math notranslate nohighlight">\(A\)</span> se tiene:</p>
 <div class="math notranslate nohighlight">
 \[e_1^T A[:,2] = A[0,2]\]</div>
 <div class="math notranslate nohighlight">
@@ -1015,6 +1026,7 @@ x_n
 </div>
 </div>
 </div>
+<p><strong>Lo que falta es hacer la multiplicación <span class="math notranslate nohighlight">\(L_2L_1A\)</span>.</strong> Para este caso la matriz <span class="math notranslate nohighlight">\(L_2=I_3 - \ell_2e_2^T\)</span> considera <span class="math notranslate nohighlight">\(\ell_2 = \left( 0, 0, \frac{a^{(1)}_{32}}{a^{(1)}_{22}} \right )^T\)</span> donde: <span class="math notranslate nohighlight">\(a^{(1)}_{ij}\)</span> son las entradas de <span class="math notranslate nohighlight">\(A^{(1)} = L_1A^{(0)}\)</span> y <span class="math notranslate nohighlight">\(A^{(0)}=A\)</span>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicio</p>
 <p>Calcular el producto <span class="math notranslate nohighlight">\(L_2 L_1 A\)</span> para la matriz anterior y para la matriz:</p>
@@ -1028,6 +1040,8 @@ A = \left [
 \end{array}
 \right]
 \end{split}\]</div>
+<p>tomando en cuenta que en este caso <span class="math notranslate nohighlight">\(L_2\)</span> sólo opera del segundo renglón y segunda columna en adelante:</p>
+<img src="https://dl.dropboxusercontent.com/s/su4z0obupk95vql/transf_Gauss_outer_product.png?dl=0" heigth="550" width="550">
 </div>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
@@ -1273,6 +1287,10 @@ A = \left [
 </div>
 <div class="section" id="ejemplo-aplicando-reflectores-de-householder-a-una-matriz">
 <h3>Ejemplo aplicando reflectores de Householder a una matriz<a class="headerlink" href="#ejemplo-aplicando-reflectores-de-householder-a-una-matriz" title="Permalink to this headline">¶</a></h3>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realizar este caso para una matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{4 \times 3}\)</span>.</p>
+</div>
 </div>
 </div>
 <div class="section" id="transformaciones-de-rotacion">
