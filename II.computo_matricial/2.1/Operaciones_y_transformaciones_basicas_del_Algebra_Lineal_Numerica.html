@@ -288,6 +288,13 @@
   <a class="reference internal nav-link" href="#transformaciones-de-rotacion">
    Transformaciones de rotación
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-aplicando-rotaciones-givens-a-un-vector">
+     Ejemplo aplicando rotaciones Givens a un vector
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -376,6 +383,7 @@ x_n
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
 </pre></div>
 </div>
 </div>
@@ -1073,6 +1081,7 @@ A = \left [
 \end{cases}\)</span>, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_delta">Kronecker_delta</a> se le nombra conjunto <strong>ortonormal</strong>, esto es, constituye un conjunto ortogonal y cada elemento del conjunto tiene norma Euclidiana igual a <span class="math notranslate nohighlight">\(1\)</span>: <span class="math notranslate nohighlight">\(||x_i||_2 = 1, \forall i=1,\dots,n\)</span>.</p></li>
 <li><p>Si definimos a la matriz <span class="math notranslate nohighlight">\(X\)</span> con columnas dadas por cada uno de los vectores del conjunto <span class="math notranslate nohighlight">\(\{x_1,\dots, x_n\}\)</span>: <span class="math notranslate nohighlight">\(X=(x_1, \dots , x_n) \in \mathbb{R}^{m \times n}\)</span> entonces la propiedad de que cada par de columnas satisfaga <span class="math notranslate nohighlight">\(x_i^Tx_j=\delta_{ij}\)</span> se puede escribir en notación matricial como <span class="math notranslate nohighlight">\(X^TX = I_n\)</span> con <span class="math notranslate nohighlight">\(I_n\)</span> la matriz identidad de tamaño <span class="math notranslate nohighlight">\(n\)</span> o bien <span class="math notranslate nohighlight">\(XX^T=I_m\)</span>. A la matriz <span class="math notranslate nohighlight">\(X\)</span> se le nombra <strong>matriz con columnas ortonormales</strong>.</p></li>
 <li><p>Si cada <span class="math notranslate nohighlight">\(x_i\)</span> está en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> (en lugar de <span class="math notranslate nohighlight">\(\mathbb{R}^m\)</span>) entonces construímos a la matriz <span class="math notranslate nohighlight">\(X\)</span> como el punto anterior con la diferencia que <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{n \times n}\)</span>. En este caso <span class="math notranslate nohighlight">\(X\)</span> se le nombra <strong>matriz ortogonal</strong>.</p></li>
+<li><p>Entre las propiedades más importantes de las matrices ortogonales o con columnas ortonormales es que son isometrías y multiplicar por tales matrices es estable numéricamente bajo el redondeo, ver <a class="reference internal" href="../../I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html#cpea"><span class="std std-ref">Condición de un problema y estabilidad de un algoritmo</span></a>.</p></li>
 </ul>
 </div>
 <p>En esta sección suponemos que <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> y <span class="math notranslate nohighlight">\(A\)</span> es una matriz con entradas <span class="math notranslate nohighlight">\(a_{ij} \in \mathbb{R}^{m \times n} \forall i=1,2,\dots,m, j=1, 2, \dots, n\)</span>.</p>
@@ -1183,7 +1192,7 @@ A = \left [
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <ul class="simple">
-<li><p>Observa que se preserva la norma del vector, las matrices de reflexión de Householder son isometrías.</p></li>
+<li><p>Observa que se preserva la norma del vector, las matrices de reflexión de Householder son matrices ortogonales y por tanto isometrías: <span class="math notranslate nohighlight">\(||Rv||_2=||v||_2\)</span>.</p></li>
 <li><p>Observa que a diferencia de las transformaciones de Gauss con las reflexiones de Householder en general se modifica la primera entrada, ver <a class="reference internal" href="#eg1"><span class="std std-ref">Ejemplo aplicando transformaciones de Gauss a un vector</span></a>.</p></li>
 </ul>
 </div>
@@ -1803,7 +1812,7 @@ R_2A^{(1)} = R_2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(array([[-7.07106781e-01,  1.18454328e-16,  4.71404521e-01],
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(array([[-7.07106781e-01,  9.47634627e-17,  4.71404521e-01],
         [-4.71404521e-01, -5.27046277e-01,  7.85674201e-02],
         [ 2.35702260e-01, -8.43274043e-01, -1.57134840e-01],
         [-4.71404521e-01,  1.05409255e-01, -8.64241621e-01]]),
@@ -1834,10 +1843,181 @@ R_2A^{(1)} = R_2
 </div>
 <div class="section" id="transformaciones-de-rotacion">
 <h2>Transformaciones de rotación<a class="headerlink" href="#transformaciones-de-rotacion" title="Permalink to this headline">¶</a></h2>
+<p>Si <span class="math notranslate nohighlight">\(u, v \in \mathbb{R}^2-\{0\}\)</span> con <span class="math notranslate nohighlight">\(\ell = ||u||_2 = ||v||_2\)</span> y se desea rotar al vector <span class="math notranslate nohighlight">\(u\)</span> en sentido contrario a las manecillas del reloj por un ángulo <span class="math notranslate nohighlight">\(\theta\)</span> para llevarlo a la dirección de <span class="math notranslate nohighlight">\(v\)</span>:</p>
+<img src="https://dl.dropboxusercontent.com/s/vq8eu0yga2x7cb2/rotation_1.png?dl=0" heigth="500" width="500">
+<p>A partir de las relaciones anteriores como <span class="math notranslate nohighlight">\(cos(\phi)=\frac{u_1}{\ell}, sen(\phi)=\frac{u_2}{\ell}\)</span> se tiene: <span class="math notranslate nohighlight">\(v_1 = (cos\theta)u_1-(sen\theta)u_2\)</span>, <span class="math notranslate nohighlight">\(v_2=(sen\theta)u_1+(cos\theta)u_2\)</span> equivalentemente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+\left[\begin{array}{c}
+v_1\\
+v_2
+\end{array}
+\right]
+=
+\left[ \begin{array}{cc}
+cos\theta &amp; -sen\theta\\
+sen\theta &amp; cos\theta
+\end{array}
+\right] \cdot 
+\left[\begin{array}{c}
+u_1\\
+u_2
+\end{array}
+\right]
+\end{array}
+\end{split}\]</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>La matriz <span class="math notranslate nohighlight">\(R_O\)</span> se llama matriz de <strong>rotación</strong> o <strong>rotaciones Givens</strong>, es una matriz ortogonal pues <span class="math notranslate nohighlight">\(R_O^TR_O=I_2\)</span>.</p></li>
+<li><p>La multiplicación <span class="math notranslate nohighlight">\(v=R_Ou\)</span> es una rotación en sentido contrario a las manecillas del reloj. La multiplicación <span class="math notranslate nohighlight">\(u=R_O^Tv\)</span> es una rotación en sentido de las manecillas del reloj y el ángulo asociado es <span class="math notranslate nohighlight">\(-\theta\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(det(R_O)=1\)</span>.</p></li>
+</ul>
+</div>
+<div class="section" id="ejemplo-aplicando-rotaciones-givens-a-un-vector">
+<h3>Ejemplo aplicando rotaciones Givens a un vector<a class="headerlink" href="#ejemplo-aplicando-rotaciones-givens-a-un-vector" title="Permalink to this headline">¶</a></h3>
+<p>Rotar al vector <span class="math notranslate nohighlight">\(v=(1,1)^T\)</span> un ángulo de <span class="math notranslate nohighlight">\(45^o\)</span> en sentido contrario a las manecillas del reloj.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La matriz <span class="math notranslate nohighlight">\(R_O\)</span> es: $R_O = \left[ \begin{array}{cc}
+cos(\frac{\pi}{4}) &amp; -sen(\frac{\pi}{4})\
+sen(\frac{\pi}{4}) &amp; cos(\frac{\pi}{4})
+\end{array}
+\right ]
+$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span>
+<span class="n">RO</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)],</span>
+              <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RO</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 0.70710678, -0.70710678],
+       [ 0.70710678,  0.70710678]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RO</span><span class="nd">@v</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([1.11022302e-16, 1.41421356e+00])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obsérvese en el ejemplo anterior que se preservó su la longitud de <span class="math notranslate nohighlight">\(v\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.4142135623730951
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-observacion admonition">
+<p class="admonition-title">Observación</p>
+<p>Observa que se preserva la norma del vector, las matrices de rotación Givens son matrices ortogonales y por tanto isometrías: <span class="math notranslate nohighlight">\(||R_0v||_2=||v||_2\)</span>.</p>
+</div>
+<p>Obsérvese en el ejemplo anterior que se hizo cero la entrada <span class="math notranslate nohighlight">\(v_1\)</span> de <span class="math notranslate nohighlight">\(v\)</span>. Las matrices de rotación se utilizan para hacer ceros en entradas de un vector. Por ejemplo si <span class="math notranslate nohighlight">\(v=(v_1,v_2)^T\)</span> y se desea hacer cero la entrada <span class="math notranslate nohighlight">\(v_2\)</span> se puede utilizar la matriz de rotación:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}R_O = \left[ \begin{array}{cc}
+\frac{v_1}{\sqrt{v_1^2+v_2^2}} &amp; \frac{v_2}{\sqrt{v_1^2+v_2^2}}\\
+-\frac{v_2}{\sqrt{v_1^2+v_2^2}} &amp; \frac{v_1}{\sqrt{v_1^2+v_2^2}}
+\end{array}
+\right ]
+\end{split}\]</div>
+<p>pues:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+ \left[ \begin{array}{cc}
+\frac{v_1}{\sqrt{v_1^2+v_2^2}} &amp; \frac{v_2}{\sqrt{v_1^2+v_2^2}}\\
+-\frac{v_2}{\sqrt{v_1^2+v_2^2}} &amp; \frac{v_1}{\sqrt{v_1^2+v_2^2}}
+\end{array}
+\right ] \cdot 
+\left[\begin{array}{c}
+v_1\\
+v_2
+\end{array}
+\right]=
+\left[ \begin{array}{c}
+\frac{v_1^2+v_2^2}{\sqrt{v_1^2+v_2^2}}\\
+\frac{-v_1v_2+v_1v_2}{\sqrt{v_1^2+v_2^2}}
+\end{array}
+\right ]
+=
+\left[ \begin{array}{c}
+\frac{v_1^2+v_2^2}{\sqrt{v_1^2+v_2^2}}\\
+0
+\end{array}
+\right ]=
+\left[ \begin{array}{c}
+||v||_2\\
+0
+\end{array}
+\right ]
+\end{array}
+\end{split}\]</div>
+<p>Y definiendo <span class="math notranslate nohighlight">\(cos(\theta)=\frac{v_1}{\sqrt{v_1^2+v_2^2}}, sen(\theta)=\frac{v_2}{\sqrt{v_1^2+v_2^2}}\)</span> se tiene :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+R_O=\left[ \begin{array}{cc}
+cos\theta &amp; sen\theta\\
+-sen\theta &amp; cos\theta
+\end{array}
+\right]
+\end{split}\]</div>
+<p>que en el ejemplo anterior como <span class="math notranslate nohighlight">\(v=(1,1)^T\)</span> entonces: <span class="math notranslate nohighlight">\(cos(\theta)=\frac{1}{\sqrt{2}}, sen(\theta)=\frac{1}{\sqrt{2}}\)</span> por lo que <span class="math notranslate nohighlight">\(\theta=\frac{\pi}{4}\)</span> y:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+R_O=\left[ \begin{array}{cc}
+\frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}}\\
+-\frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}}
+\end{array}
+\right]
+\end{split}\]</div>
+<p>Para hacer cero la entrada <span class="math notranslate nohighlight">\(v_1\)</span> de <span class="math notranslate nohighlight">\(v\)</span> hay que usar:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+R_O=\left[ \begin{array}{cc}
+cos\theta &amp; -sen\theta\\
+sen\theta &amp; cos\theta
+\end{array}
+\right]
+=\left[ \begin{array}{cc}
+\frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}}\\
+\frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}}
+\end{array}
+\right]
+\end{array}
+\end{split}\]</div>
 <p><strong>Referencias:</strong></p>
 <ul class="simple">
 <li><p>G. H. Golub, C. F. Van Loan, Matrix Computations, John Hopkins University Press, 2013.</p></li>
 </ul>
+</div>
 </div>
 </div>
 
