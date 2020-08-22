@@ -373,6 +373,10 @@
 <p>A continuación se muestran construcciones que se han hecho para representar los números en una computadora.</p>
 <div class="section" id="enteros">
 <h3>Enteros<a class="headerlink" href="#enteros" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Otro método para representar a los números enteros es el <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">complemento de dos</a> que incorpora en forma directa el signo dentro de la magnitud del número, en lugar de emplear un bit adicional para representar el signo.</p>
+</div>
 <p>Tenemos distintos métodos para la representación de los enteros en una computadora, pero uno que es más utilizado es el de “magnitud con signo” en el que se utiliza un bit para el signo del número y los bits restantes para almacenar al número. El primer bit se le da el valor de <span class="math notranslate nohighlight">\(0\)</span> para  codificar al signo <code class="docutils literal notranslate"><span class="pre">+</span></code> y el valor <span class="math notranslate nohighlight">\(1\)</span> codifica al bit <code class="docutils literal notranslate"><span class="pre">-</span></code>. Entonces el número <span class="math notranslate nohighlight">\(-173\)</span> se almacena con la cadena de <span class="math notranslate nohighlight">\(16\)</span> bits:</p>
 <table class="colwidths-auto table">
 <thead>
@@ -556,7 +560,7 @@
 <div class="section" id="numeros-de-maquina-binarios">
 <h2>Números de máquina binarios<a class="headerlink" href="#numeros-de-maquina-binarios" title="Permalink to this headline">¶</a></h2>
 <p>Un SPF de doble precisión utiliza 64 bits para representar un número real. El primero es un indicador de signo denotado por <span class="math notranslate nohighlight">\(s\)</span>. Le siguen <span class="math notranslate nohighlight">\(11\)</span> bits para construir al exponente <span class="math notranslate nohighlight">\(n\)</span> y <span class="math notranslate nohighlight">\(52\)</span> bits que construyen a la parte fraccionaria <span class="math notranslate nohighlight">\(f\)</span> de la mantisa. La base es <span class="math notranslate nohighlight">\(\beta=2\)</span>.</p>
-<p>Si es SPFN entonces aunque se tienen 52 bits, éstos se utilizan para almacenar un dígito más del número (ver <strong>Observación</strong> anterior). Así, en un SPF en general maneja 52 (o 53) dígitos binarios, que corresponden a aproximadamente 15 (o 16) dígitos decimales. Ver: <a class="reference external" href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format#Implementations">Double-precision floating-point format</a>.</p>
+<p>Si es SPFN entonces aunque se tienen 52 bits, éstos se utilizan para almacenar un dígito más del número (ver <strong>Observación</strong> anterior). Así, en un SPF en general maneja 52 (o 53 si se usa la <strong>Observación</strong> anterior) dígitos binarios, que corresponden a aproximadamente 15 (o 16) dígitos decimales. Ver: <a class="reference external" href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">Double-precision floating-point format</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//%</span><span class="n">cflags</span><span class="p">:</span><span class="o">-</span><span class="n">lm</span>
@@ -617,6 +621,15 @@
 <p>Y los subnormales como:</p>
 <div class="math notranslate nohighlight">
 \[(-1)^s2^{1-1023}(0+f)=(-1)^s2^{-1022}f.\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que aunque el exponente para los números subnormales se describió que tiene bits iguales a <span class="math notranslate nohighlight">\(0\)</span> se toma una <span class="math notranslate nohighlight">\(n=1\)</span> para finalmente tener el exponente <span class="math notranslate nohighlight">\(n-1023 = 1-1023 = -1022\)</span>. Esto se realiza para tener un <em>gradual underflow</em>, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Denormal_number">Denormal_number</a>. Si se tomara de forma estricta <span class="math notranslate nohighlight">\(n=0\)</span> (bits iguales a <span class="math notranslate nohighlight">\(0\)</span>) y por tanto un exponente <span class="math notranslate nohighlight">\(n-1023=-1023\)</span> habría un hueco entre el número positivo más pequeño normalizado y el más grande positivo subnormal:</p>
+<div class="math notranslate nohighlight">
+\[0 00000000001 0000000000000000000000000000000000000000000000000000\]</div>
+<div class="math notranslate nohighlight">
+\[0 00000000000 1111111111111111111111111111111111111111111111111111\]</div>
+<p>respectivamente. Lo anterior extraído de <a class="reference external" href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format#Double-precision_examples">Double precision examples</a>.</p>
+</div>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>Hay dos representaciones para el <span class="math notranslate nohighlight">\(0\)</span>, una con signo positivo (<span class="math notranslate nohighlight">\(s=0, n=0, f=0\)</span>) y otra con signo negativo (<span class="math notranslate nohighlight">\(s=1,n=0,f=0\)</span>).</p>
@@ -944,8 +957,10 @@ f_c(x) &amp; \text{en otro caso}
 <p class="admonition-title">Pregunta</p>
 <p>Para el caso en el que <span class="math notranslate nohighlight">\(k=3\)</span> teniendo el punto <span class="math notranslate nohighlight">\(x = 0.16550\)</span> que está a la mitad del intervalo <span class="math notranslate nohighlight">\([0.165,0.166]\)</span> (hay empate) ¿cuál es el resultado de <span class="math notranslate nohighlight">\(fl_r(x)\)</span> con <em>round half to even</em>?</p>
 </div>
-<p>Por los ejemplos anteriores se puede comprobar que la regla de redondeo tiene más exactitud que la de corte:</p>
-<img src="https://dl.dropboxusercontent.com/s/e8iqxqelkxj1y8r/regla_corte_redondeo.png?dl=0" heigth="500" width="500"><div class="admonition-definicion admonition">
+<p>Por los ejemplos anteriores se puede comprobar que la regla de redondeo tiene menor error que la de corte:</p>
+<img src="https://dl.dropboxusercontent.com/s/e8iqxqelkxj1y8r/regla_corte_redondeo.png?dl=0" heigth="500" width="500">
+<p>En el dibujo anterior considérese como números de máquina <span class="math notranslate nohighlight">\(x, x-\Delta x, x - \frac{\Delta x}{2}, x+ \frac{\Delta x}{2}, x + \Delta x\)</span>.</p>
+<div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
 <p>Otra expresión utilizada para la regla <span class="math notranslate nohighlight">\(fl(\cdot)\)</span> es a partir de la definición de error relativo: <span class="math notranslate nohighlight">\(aprox = obj(1+ErrRel(aprox))\)</span> (si <span class="math notranslate nohighlight">\(aprox \geq obj\)</span> y <span class="math notranslate nohighlight">\(obj &gt; 0\)</span>):</p>
 <div class="math notranslate nohighlight">
@@ -962,6 +977,7 @@ f_c(x) &amp; \text{en otro caso}
 \beta^{1-k} &amp;\text{ si se utiliza regla de corte},\\
 \frac{1}{2}\beta^{1-k} &amp;\text{ si se utiliza la regla de redondeo}
 \end{cases}\end{split}\]</div>
+<p>Para el caso de un sistema de punto flotante de doble precisión se tiene <span class="math notranslate nohighlight">\(1-k = -52\)</span> esto es: <span class="math notranslate nohighlight">\(k=53\)</span>.</p>
 </div>
 </div>
 <div class="section" id="id7">
