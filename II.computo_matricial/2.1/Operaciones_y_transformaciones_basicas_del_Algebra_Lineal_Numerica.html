@@ -1822,7 +1822,7 @@ R_2A^{(1)} = R_2
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(array([[-7.07106781e-01,  1.18454328e-16,  4.71404521e-01],
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(array([[-7.07106781e-01,  9.47634627e-17,  4.71404521e-01],
         [-4.71404521e-01, -5.27046277e-01,  7.85674201e-02],
         [ 2.35702260e-01, -8.43274043e-01, -1.57134840e-01],
         [-4.71404521e-01,  1.05409255e-01, -8.64241621e-01]]),
@@ -2181,6 +2181,10 @@ x_4
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Extraemos sólo los renglones a los que se les aplicará la matriz de rotación.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A_subset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">A</span><span class="p">[</span><span class="n">idx_1</span><span class="p">,:],</span> <span class="n">A</span><span class="p">[</span><span class="n">idx_2</span><span class="p">,:]))</span>
@@ -2190,17 +2194,17 @@ x_4
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R12</span><span class="nd">@A_subset</span><span class="p">[:,</span><span class="n">idx_column</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A_subset</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([4.12310563, 0.        ])
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 4.,  1., -2.,  2.],
+       [ 1.,  2.,  0.,  1.]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>Y se aplica a todas las columnas:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R12</span><span class="nd">@A_subset</span>
@@ -2235,10 +2239,6 @@ x_4
 </div>
 </div>
 <p>Hacemos copia para un fácil manejo de los índices y matrices modificadas. Podríamos también usar <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.view.html">numpy.view</a>.</p>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p><span class="math notranslate nohighlight">\(A^{(1)} = R_{12}A^{(0)}\)</span>.</p>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A1</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -2253,6 +2253,10 @@ x_4
 </pre></div>
 </div>
 </div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(A^{(1)} = R_{12}^\thetaA^{(0)}\)</span>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2284,9 +2288,13 @@ x_4
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se preserva la norma 2 o Euclidiana de <span class="math notranslate nohighlight">\(A[1:4,1]\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A1</span><span class="p">[:,</span> <span class="n">idx_column</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2298,7 +2306,7 @@ x_4
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span> <span class="n">idx_column</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2350,6 +2358,10 @@ x_4
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Extraemos sólo los renglones a los que se les aplicará la matriz de rotación.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A1_subset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">A1</span><span class="p">[</span><span class="n">idx_1</span><span class="p">,:],</span> <span class="n">A1</span><span class="p">[</span><span class="n">idx_2</span><span class="p">,:]))</span>
@@ -2370,19 +2382,6 @@ x_4
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R13</span><span class="nd">@A1_subset</span><span class="p">[:,</span><span class="n">idx_column</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([4.58257569, 0.        ])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Y se aplica a todas las columnas:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R13</span><span class="nd">@A1_subset</span>
@@ -2431,6 +2430,10 @@ x_4
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(A^{(2)} = R_{13}^\thetaA^{(1)}\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A2</span>
@@ -2476,9 +2479,13 @@ x_4
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se preserva la norma 2 o Euclidiana de <span class="math notranslate nohighlight">\(A[1:4,1]\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A2</span><span class="p">[:,</span> <span class="n">idx_column</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2490,7 +2497,7 @@ x_4
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span> <span class="n">idx_column</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2542,6 +2549,10 @@ x_4
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Extraemos sólo los renglones a los que se les aplicará la matriz de rotación.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A2_subset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">A2</span><span class="p">[</span><span class="n">idx_1</span><span class="p">,:],</span> <span class="n">A2</span><span class="p">[</span><span class="n">idx_2</span><span class="p">,:]))</span>
@@ -2564,19 +2575,6 @@ x_4
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R14</span><span class="nd">@A2_subset</span><span class="p">[:,</span><span class="n">idx_column</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([5., 0.])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Y se aplica a todas las columnas:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R14</span><span class="nd">@A2_subset</span>
 </pre></div>
 </div>
@@ -2597,13 +2595,13 @@ x_4
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A3_aux</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A3_aux</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[ 5.          1.6        -3.6         2.2       ]
- [ 0.          0.3927922  -0.61101009 -2.05124817]]
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 5.        ,  1.6       , -3.6       ,  2.2       ],
+       [ 0.        ,  0.3927922 , -0.61101009, -2.05124817]])
 </pre></div>
 </div>
 </div>
@@ -2623,20 +2621,9 @@ x_4
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[ 5.          1.6        -3.6         2.2       ]
- [ 0.          1.69774938  0.48507125  0.48507125]
- [ 0.          0.63510735  1.85239643 -0.8468098 ]
- [ 0.          0.3927922  -0.61101009 -2.05124817]]
-</pre></div>
-</div>
-</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(A^{(3)} = R_{14}^\thetaA^{(2)}\)</span>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2668,9 +2655,13 @@ x_4
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se preserva la norma 2 o Euclidiana de <span class="math notranslate nohighlight">\(A[1:4,1]\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A3</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A3</span><span class="p">[:,</span> <span class="n">idx_column</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2682,7 +2673,7 @@ x_4
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span> <span class="n">idx_column</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2734,6 +2725,10 @@ x_4
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Extraemos sólo los renglones a los que se les aplicará la matriz de rotación.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A3_subset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">A3</span><span class="p">[</span><span class="n">idx_1</span><span class="p">,:],</span> <span class="n">A3</span><span class="p">[</span><span class="n">idx_2</span><span class="p">,:]))</span>
@@ -2754,19 +2749,6 @@ x_4
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R23</span><span class="nd">@A3_subset</span><span class="p">[:,</span><span class="n">idx_column</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([1.81265393, 0.        ])
-</pre></div>
-</div>
-</div>
-</div>
-<p>Y se aplica a todas las columnas:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R23</span><span class="nd">@A3_subset</span>
@@ -2819,6 +2801,10 @@ x_4
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(A^{(4)} = R_{23}^\thetaA^{(3)}\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A4</span>
@@ -2868,9 +2854,13 @@ x_4
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se preserva la norma 2 o Euclidiana de <span class="math notranslate nohighlight">\(A[1:4,2]\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A4</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A4</span><span class="p">[:,</span> <span class="n">idx_column</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2882,7 +2872,7 @@ x_4
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span> <span class="n">idx_column</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
