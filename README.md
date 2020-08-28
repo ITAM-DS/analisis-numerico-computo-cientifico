@@ -87,6 +87,16 @@ Llegamos hasta [resultados-computacionales-que-son-posibles-probar](https://itam
 Liga al video de la sesión: [liga microsoft teams](https://web.microsoftstream.com/video/6c9df898-1320-4f5e-ac70-a220ad4dc961). Tienen que hacer login con su cuenta del itam y luego les pedirá que ingresen nuevamente pero con su cuenta de comunidad itam y luego vuelvan a copiar la liga anterior en la misma pestaña de su browser o en otra.
 
 
+## Clase 4
+
+26 de agosto
+
+Finalizamos [1.3 Normas vectoriales y matriciales](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html).
+
+Llegamos a [algunas-propiedades-del-numero-de-condicion-de-una-matriz](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html#algunas-propiedades-del-numero-de-condicion-de-una-matriz) de la nota 1.4 Condición de un problema y estabilidad de un algoritmo.
+
+Liga al video de la sesión: [liga google drive](https://drive.google.com/file/d/1uxNFLcXRt_OPquHgh7dpV6GTBvnaVnFF/view?usp=sharing) (estará sólo unos días la liga disponible para su descarga). También pueden descargarlo desde Teams pero sólo estará disponible unos días.
+
 
 
 
