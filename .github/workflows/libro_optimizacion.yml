@@ -1,3 +1,4 @@
+#see: https://jupyterbook.org/publish/gh-pages.html
 name: deploy-book
 
 # Only run this when the master branch changes
@@ -8,8 +9,6 @@ on:
     # If your git repository has the Jupyter Book within some-subfolder next to
     # unrelated files, you can make this run only if a file within that specific
     # folder has been modified.
-    #
-    # 
     paths:
     - libro_optimizacion/temas/**
 
@@ -19,12 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.7
-
     # Build the book
     - name: Build the book
       run: cd libro_optimizacion/temas && mkdir _build && chmod gou+wrx -R _build && docker run -v $(pwd):/datos --entrypoint "/home/miuser/.local/bin/jb" --rm palmoreck/jupyterlab_optimizacion:2.1.4 build /datos/

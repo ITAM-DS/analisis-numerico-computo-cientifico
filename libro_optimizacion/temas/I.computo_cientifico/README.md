@@ -6,7 +6,7 @@
 
 1.4 Condición de un problema y estabilidad de un algoritmo.
 
-1.5 Definición de función, derivada de una función y otros.
+1.5 Definición de función y derivada de una función.
 
 1.6 Polinomios de Taylor y diferenciación numérica.
 
