@@ -39,6 +39,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="2.1 Operaciones y transformaciones básicas del Álgebra Lineal Numérica" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -123,10 +124,15 @@
   II. Cómputo matricial
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html">
    2.1 Operaciones y transformaciones básicas del Álgebra Lineal Numérica
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2.2 Eigenvalores y eigenvectores
   </a>
  </li>
 </ul>
@@ -260,6 +266,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodos-para-calcular-eigenvalores-y-eigenvectores">
+   Métodos para calcular eigenvalores y eigenvectores
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -284,6 +295,7 @@
 </div>
 <hr class="docutils" />
 <p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0">liga</a>.</p>
+<p><strong>En lo que sigue se asume que <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>.</strong></p>
 <div class="section" id="definiciones-y-resultados-generales">
 <h2>Definiciones y resultados generales<a class="headerlink" href="#definiciones-y-resultados-generales" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -294,13 +306,36 @@
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>Una matriz con componentes reales puede tener eigenvalores y eigenvectores con valores en <span class="math notranslate nohighlight">\(\mathbb{C}\)</span> o <span class="math notranslate nohighlight">\(\mathbb{C}^n\)</span> respectivamente.</p></li>
-<li><p>El conjunto de eigenvalores se le llama <strong>espectro de una matriz</strong>.</p></li>
+<li><p>El conjunto de eigenvalores se le llama <strong>espectro de una matriz</strong> y se denota como:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\lambda(A) = { \lambda | p(\lambda) = \det(A-\lambda I_n) = 0 }\]</div>
+<ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(A\)</span> siempre tiene al menos un eigenvalor con eigenvector asociado.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> tiene <span class="math notranslate nohighlight">\(n\)</span> eigenvalores.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\det(A) = \displaystyle \prod_{i=1}^n \lambda_i\)</span>, <span class="math notranslate nohighlight">\(tr(A) = \displaystyle \sum_{i=1}^n \lambda_i\)</span>.</p></li>
 </ul>
 </div>
 <div class="section" id="resultado-a-simetrica">
 <h3>Resultado: <span class="math notranslate nohighlight">\(A\)</span> simétrica<a class="headerlink" href="#resultado-a-simetrica" title="Permalink to this headline">¶</a></h3>
 <p>Si A es simétrica entonces tiene eigenvalores reales. Aún más: <span class="math notranslate nohighlight">\(A\)</span> tiene eigenvectores reales linealmente independientes y forman un conjunto ortonormal, entonces <span class="math notranslate nohighlight">\(A\)</span> se escribe como un producto de tres matrices nombrado descomposición espectral: <span class="math notranslate nohighlight">\($A = Q \Lambda Q^T\)</span>$ donde: <span class="math notranslate nohighlight">\(Q\)</span> es una matriz ortogonal cuyas columnas son eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(\Lambda\)</span> es una matriz diagonal con eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observaciones</p>
+<ul class="simple">
+<li><p>Los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span> simétrica se pueden ordenar:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\lambda_n(A) \leq \lambda_{n-1}(A) \leq \dots \leq \lambda_1(A)\]</div>
+<p>con:</p>
+<p><span class="math notranslate nohighlight">\(\lambda_{max}(A) = \lambda_n(A)\)</span>, <span class="math notranslate nohighlight">\(\lambda_{min}(A) = \lambda_1(A)\)</span>.</p>
+<ul class="simple">
+<li><p>Se prueba para <span class="math notranslate nohighlight">\(A\)</span> simétrica:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\lambda_{max}(A) = \displaystle \max_{x \neq 0} \frac{x^TAx}{x^Tx}\]</div>
+<div class="math notranslate nohighlight">
+\[\lambda_{min}(A) = \displaystyle \min_{x \neq 0} \frac{x^TAx}{x^Tx}.\]</div>
+</div>
 <p><strong>En numpy con el módulo <code class="docutils literal notranslate"><span class="pre">eig</span></code> podemos obtener eigenvalores y eigenvectores</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -563,6 +598,12 @@ array([[5, 4, 2],
 <p>ver <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.eig.html">numpy.linalg.eig</a> y <a class="reference external" href="https://docs.scipy.org/doc/numpy-1.14.0/reference/generated/numpy.linalg.eigh.html">numpy.linalg.eigh</a></p>
 </div>
 </div>
+<div class="section" id="metodos-para-calcular-eigenvalores-y-eigenvectores">
+<h2>Métodos para calcular eigenvalores y eigenvectores<a class="headerlink" href="#metodos-para-calcular-eigenvalores-y-eigenvectores" title="Permalink to this headline">¶</a></h2>
+<p>Los eigenvalores de <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> son las raíces o ceros del <strong>polinomio característico</strong> definido por:</p>
+<div class="math notranslate nohighlight">
+\[p(z) = \det(A-zI_n) = (-1)^nz^n + a_{n-1}z^{n-1}+ \dots + a_1z + a_0.\]</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -593,6 +634,7 @@ array([[5, 4, 2],
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html" title="previous page">2.1 Operaciones y transformaciones básicas del Álgebra Lineal Numérica</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
