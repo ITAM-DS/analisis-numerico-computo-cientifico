@@ -93,7 +93,9 @@ Liga al video de la sesión: [liga microsoft teams](https://web.microsoftstream.
 
 Finalizamos [1.3 Normas vectoriales y matriciales](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html).
 
-Llegamos a [algunas-propiedades-del-numero-de-condicion-de-una-matriz](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html#algunas-propiedades-del-numero-de-condicion-de-una-matriz) de la nota 1.4 Condición de un problema y estabilidad de un algoritmo.
+En la primera parte llegamos a [algunas-propiedades-del-numero-de-condicion-de-una-matriz](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html#algunas-propiedades-del-numero-de-condicion-de-una-matriz) de la nota 1.4 Condición de un problema y estabilidad de un algoritmo.
+
+En la segunda parte revisamos el contenido del video que quedó de tarea revisar: [configuraciones de servicios básicos e instalación de herramientas útiles](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki#para-videos-de-configuraciones-de-servicios-b%C3%A1sicos-e-instalaci%C3%B3n-de-herramientas-%C3%BAtiles) únicamente la **primera parte**.
 
 Liga al video de la sesión: [liga google drive](https://drive.google.com/file/d/1uxNFLcXRt_OPquHgh7dpV6GTBvnaVnFF/view?usp=sharing) (estará sólo unos días la liga disponible para su descarga). También pueden descargarlo desde Teams pero sólo estará disponible unos días.
 
