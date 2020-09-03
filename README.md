@@ -109,6 +109,5 @@ Finalizamos [1.4 Condición de un problema y estabilidad de un algoritmo](https:
 Llegamos hasta el [Ejemplo](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#ejrestriccionalinea) de una función restringida a una línea de la nota 1.5 Definición de función, continuidad y derivada.
 
 
-El video lo pueden descargarlo desde Teams pero sólo estará disponible unos días.
-
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
 
