@@ -100,13 +100,14 @@ En la segunda parte revisamos el contenido del video que quedó de tarea revisar
 Liga al video de la sesión: [liga google drive](https://drive.google.com/file/d/1uxNFLcXRt_OPquHgh7dpV6GTBvnaVnFF/view?usp=sharing) (estará sólo unos días la liga disponible para su descarga). También pueden descargarlo desde Teams pero sólo estará disponible unos días.
 
 
+## Clase 5
+
+2 de septiembre
+
+Finalizamos [1.4 Condición de un problema y estabilidad de un algoritmo](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html).
+
+Llegamos hasta el [Ejemplo](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#ejrestriccionalinea) de una función restringida a una línea de la nota 1.5 Definición de función, continuidad y derivada.
 
 
-
-
-
-
-
-
-
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
 
