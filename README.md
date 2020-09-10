@@ -111,3 +111,12 @@ Llegamos hasta el [Ejemplo](https://itam-ds.github.io/analisis-numerico-computo-
 
 El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
 
+## Clase 6
+
+9 de septiembre
+
+Finalizamos [1.5 Definición de función, continuidad y derivada](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html).
+
+Llegamos hasta [Diferenciación numérica por diferencias finitas](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html#diferenciacion-numerica-por-diferencias-finitas)
+
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
