@@ -304,6 +304,54 @@
 <li><p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> es una transformación de rotación, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>, para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>. Esto ayuda a preservar la simetría de la matriz original.</p></li>
 </ul>
 </div>
+<p>Para encontrar la forma que debe tener <span class="math notranslate nohighlight">\(J_k\)</span> es suficiente considerar el caso <span class="math notranslate nohighlight">\(2 \times 2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+J^TAJ &amp;=&amp;  
+\left [
+\begin{array}{cc}
+c &amp; -s\\
+s &amp; c
+\end{array}
+\right ]
+\left [
+\begin{array}{cc}
+a_{11} &amp; a_{12}\\
+a_{12} &amp; a_{22}
+\end{array}
+\right ]
+\left [
+\begin{array}{cc}
+c &amp; -s\\
+s &amp; c
+\end{array}
+\right ]
+\nonumber \\
+&amp;=&amp;
+\left [
+\begin{array}{cc}
+c^2a_{11} -2 csa_{12} + s^2a_{22} &amp; c^2a_{12}+ cs(a_{11}-a_{22})-s^2a_{12}\nonumber \\
+c^2a_{12}+ cs(a_{11}-a_{22})-s^2a_{12} &amp; c^2a_{22}+2csa_{12}+s^2a_{11} \nonumber
+\end{array}
+\right ]
+\nonumber 
+\end{eqnarray}
+\end{split}\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(c\)</span> y <span class="math notranslate nohighlight">\(s\)</span> representan a <span class="math notranslate nohighlight">\(\cos(\theta), \sin(\theta)\)</span> y <span class="math notranslate nohighlight">\(\theta\)</span> ángulo para rotar.</p>
+<p>En este caso se <strong>asume</strong> que <span class="math notranslate nohighlight">\(a_{12} \neq 0\)</span> pues si no es así entonces no hay que realizar rotación.</p>
+<p>Entonces si se desea que la entrada <span class="math notranslate nohighlight">\((1,2)\)</span> (equivalentemente <span class="math notranslate nohighlight">\((2,1)\)</span>) sea cero se debe satisfacer:</p>
+<div class="math notranslate nohighlight">
+\[c^2a_{12}+ cs(a_{11}-a_{22})-s^2a_{12}=0.\]</div>
+<p>Asignando la variable <span class="math notranslate nohighlight">\(t = \frac{s}{c}\)</span> (tangente de <span class="math notranslate nohighlight">\(\theta\)</span>) se obtiene la ecuación cuadrática:</p>
+<div class="math notranslate nohighlight">
+\[1 + t\frac{(a-d)}{b} - t^2 = 0.\]</div>
+<p>Las relaciones entre coseno, seno y tangente permiten obtener sus valores correspondientes:</p>
+<div class="math notranslate nohighlight">
+\[c = \frac{1}{\sqrt{1+t^2}},\]</div>
+<div class="math notranslate nohighlight">
+\[s = ct.\]</div>
+<p>Se <strong>sugiere</strong> utilizar la raíz de la ecuación en <span class="math notranslate nohighlight">\(t\)</span> anterior de menor magnitud para disminuir errores por redondeo.</p>
 <div class="section" id="ejemplo">
 <h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
 <p>Considera:</p>
@@ -317,6 +365,7 @@ A =
 \end{array}
 \right ]
 \end{split}\]</div>
+<p>y se desea eliminar las entradas <span class="math notranslate nohighlight">\((1,2)\)</span> y <span class="math notranslate nohighlight">\((2,1)\)</span> con una matriz <span class="math notranslate nohighlight">\(J\)</span> de rotación.</p>
 </div>
 </div>
 <div class="section" id="algoritmo-qr">
