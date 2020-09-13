@@ -229,7 +229,36 @@
             <i class="fas fa-list"></i> On this page
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rotaciones-de-jacobi-para-matrices-simetricas">
+   Rotaciones de Jacobi para matrices simétricas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo">
+     Ejemplo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algoritmo-qr">
+   Algoritmo QR
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-de-la-potencia">
+   Método de la potencia
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aplicaciones-y-usos">
+   Aplicaciones y usos
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -252,6 +281,184 @@
 </div>
 <hr class="docutils" />
 <p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0">liga</a>.</p>
+<div class="section" id="rotaciones-de-jacobi-para-matrices-simetricas">
+<h2>Rotaciones de Jacobi para matrices simétricas<a class="headerlink" href="#rotaciones-de-jacobi-para-matrices-simetricas" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><strong>Algoritmo de rotaciones de Jacobi para matrices simétricas</strong></p>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><p>Defínase <span class="math notranslate nohighlight">\(A_0 = A\)</span> con <span class="math notranslate nohighlight">\(A\)</span> simétrica</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p><span class="math notranslate nohighlight">\(A_{k+1} = J_k^T A_k J_k\)</span></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p><strong>hasta</strong> convergencia (satisfacer criterio de paro).</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Los pasos en el algoritmo anterior representan una guía para la implementación. Al describirse los pasos de un algoritmo no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo método, entonces pueden seguirse los pasos de una forma distinta.</p>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> es una transformación de rotación, ver {ref}`` para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>. Esto ayuda a preservar la simetría de la matriz original.</p></li>
+</ul>
+</div>
+<div class="section" id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
+<p>Considera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = 
+\left [
+\begin{array}{cc}
+1&amp;2\\
+2&amp;1\\
+\end{array}
+\right ]
+\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="algoritmo-qr">
+<h2>Algoritmo QR<a class="headerlink" href="#algoritmo-qr" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="metodo-de-la-potencia">
+<h2>Método de la potencia<a class="headerlink" href="#metodo-de-la-potencia" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="aplicaciones-y-usos">
+<h2>Aplicaciones y usos<a class="headerlink" href="#aplicaciones-y-usos" title="Permalink to this headline">¶</a></h2>
+<p>Ver comentario sobre Schur en https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html</p>
+<p>https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.schur.html#scipy.linalg.schur</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">schur</span><span class="p">,</span> <span class="n">eigvals</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="p">,</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">schur</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[ 2.65896708,  1.42440458, -1.92933439],
+       [ 0.        , -0.32948354, -0.49063704],
+       [ 0.        ,  1.31178921, -0.32948354]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">evalue</span><span class="p">,</span> <span class="n">evector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.   +0.j    0.497-0.081j 0.497+0.081j]
+ [0.   +0.j    0.   +0.451j 0.   -0.451j]
+ [0.   +0.j    0.737+0.j    0.737-0.j   ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">evalue</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[ 2.65896708+0.j         -0.32948354+0.80225456j -0.32948354-0.80225456j]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A2</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[-0.32948354, -0.49063704],
+       [ 1.31178921, -0.32948354]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">evalue</span><span class="p">,</span> <span class="n">evector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">evalue</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-0.32948354+0.80225456j, -0.32948354-0.80225456j])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
