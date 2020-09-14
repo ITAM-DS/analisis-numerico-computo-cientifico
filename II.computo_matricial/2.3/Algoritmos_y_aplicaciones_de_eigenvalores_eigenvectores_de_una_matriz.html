@@ -281,8 +281,14 @@
 </div>
 <hr class="docutils" />
 <p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0">liga</a>.</p>
+<p>Los siguientes métodos asumen que la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> a la que se les desea calcular sus eigenvalores y eigenvectores es <strong>simétrica</strong>.</p>
 <div class="section" id="rotaciones-de-jacobi-para-matrices-simetricas">
 <h2>Rotaciones de Jacobi para matrices simétricas<a class="headerlink" href="#rotaciones-de-jacobi-para-matrices-simetricas" title="Permalink to this headline">¶</a></h2>
+<p>Este método produce una secuencia de transformaciones ortogonales de la forma <span class="math notranslate nohighlight">\(J_k^TAJ_k\)</span> con el objetivo de hacer “más diagonal” a la matriz <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Los pasos de este algoritmo representan una guía para la implementación. Al describirse los pasos de un algoritmo no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo método, entonces pueden seguirse los pasos de una forma distinta.</p>
+</div>
 <blockquote>
 <div><p><strong>Algoritmo de rotaciones de Jacobi para matrices simétricas</strong></p>
 <blockquote>
@@ -297,7 +303,7 @@
 <p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> es una transformación de rotación, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>, para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>. Esto ayuda a preservar la simetría de la matriz original.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Los pasos en el algoritmo anterior representan una guía para la implementación. Al describirse los pasos de un algoritmo no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo método, entonces pueden seguirse los pasos de una forma distinta.</p>
+<p>Obsérvese que <span class="math notranslate nohighlight">\(A_{k+1}\)</span> y <span class="math notranslate nohighlight">\(A_{k}\)</span> son matrices similares, ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#similitud"><span class="std std-ref">similitud</span></a>.</p>
 </div>
 <p>Para encontrar la forma que debe tener <span class="math notranslate nohighlight">\(J_k\)</span> es suficiente considerar el caso <span class="math notranslate nohighlight">\(2 \times 2\)</span> y se <strong>asume</strong> que <span class="math notranslate nohighlight">\(a_{12} \neq 0\)</span> pues si <span class="math notranslate nohighlight">\(a_{12} =0\)</span> entonces no hay que realizar rotación.:</p>
 <div class="math notranslate nohighlight">
@@ -342,22 +348,30 @@ c^2a_{12} - cs(a_{22}-a_{11})-s^2a_{12} &amp; c^2a_{22}+2csa_{12}+s^2a_{11} \non
 \[1 - t\frac{(a_{22}-a_{11})}{a_{12}} - t^2 = 0.\]</div>
 <p>Equivalentemente:</p>
 <div class="math notranslate nohighlight">
-\[t^2 + t\frac{(a_{22}-a_{11})}{a_{12}} - 1 = t^2 + 2\xi t -1 = 0\]</div>
+\[t^2 + t\frac{(a_{22}-a_{11})}{a_{12}} - 1 = t^2 + 2\tau t -1 = 0\]</div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Las funciones <span class="math notranslate nohighlight">\(\frac{1}{\xi+\sqrt{\xi^2+1}}\)</span>, <span class="math notranslate nohighlight">\(\frac{1}{\xi-\sqrt{\xi^2+1}}\)</span> son estrictamente decrecientes para <span class="math notranslate nohighlight">\(\xi \geq 0\)</span> y <span class="math notranslate nohighlight">\(\xi &lt; 0\)</span> respectivamente lo que corresponde a un único ángulo <span class="math notranslate nohighlight">\(\theta \in \left (-\frac{\pi}{4}, \frac{\pi}{4} \right )\)</span>.</p>
+<p>Las funciones <span class="math notranslate nohighlight">\(\frac{1}{\tau+\sqrt{\tau^2+1}}\)</span>, <span class="math notranslate nohighlight">\(\frac{1}{\tau-\sqrt{\tau^2+1}}\)</span> son estrictamente decrecientes para <span class="math notranslate nohighlight">\(\tau \geq 0\)</span> y <span class="math notranslate nohighlight">\(\tau &lt; 0\)</span> respectivamente lo que corresponde a un único ángulo <span class="math notranslate nohighlight">\(\theta \in \left (-\frac{\pi}{4}, \frac{\pi}{4} \right )\)</span>.</p>
 </div>
-<p>donde: <span class="math notranslate nohighlight">\(\xi = \frac{a_{22}-a_{11}}{2a_{12}}\)</span>. Las raíces de la ecuación anterior están dadas por:</p>
+<p>donde: <span class="math notranslate nohighlight">\(\tau = \frac{a_{22}-a_{11}}{2a_{12}}\)</span>. Las raíces de la ecuación anterior están dadas por:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-t_1^* &amp;=&amp; -\xi + \sqrt{\xi^2+1}&amp;=&amp;\frac{1}{\xi+\sqrt{\xi^2+1}} \nonumber \\
-t_2^* &amp;=&amp; -\xi - \sqrt{\xi^2+1}&amp;=&amp;\frac{1}{\xi-\sqrt{\xi^2+1}} \nonumber
+t_1^* &amp;=&amp; -\tau + \sqrt{\tau^2+1}&amp;=&amp;\frac{1}{\tau+\sqrt{\tau^2+1}} \nonumber \\
+t_2^* &amp;=&amp; -\tau - \sqrt{\tau^2+1}&amp;=&amp;\frac{1}{\tau-\sqrt{\tau^2+1}} \nonumber
 \end{eqnarray}
 \end{split}\]</div>
 <p>Se <strong>sugiere</strong> utilizar la raíz de menor magnitud para disminuir errores por redondeo por lo tanto:</p>
 <div class="math notranslate nohighlight">
-\[t^* = \frac{\text{signo}(\xi)}{|\xi| + \sqrt{1+\xi^2}}.\]</div>
+\[t^* = \frac{\text{signo}(\tau)}{|\tau| + \sqrt{1+\tau^2}}\]</div>
+<p>donde:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\text{signo}(x) = \begin{cases}
+1 \text{ si } x&gt;=0\\
+-1 \text{ en otro caso}
+\end{cases}
+\end{split}\]</div>
 <p>Las relaciones entre coseno, seno y tangente permiten obtener sus valores correspondientes:</p>
 <div class="math notranslate nohighlight">
 \[c = \frac{1}{\sqrt{1+t^{*2}}},\]</div>
@@ -377,7 +391,70 @@ A =
 \end{array}
 \right ]
 \end{split}\]</div>
-<p>y se desea eliminar las entradas <span class="math notranslate nohighlight">\((1,2)\)</span> y <span class="math notranslate nohighlight">\((2,1)\)</span> con una matriz <span class="math notranslate nohighlight">\(J\)</span> de rotación.</p>
+<p>y se desea eliminar las entradas <span class="math notranslate nohighlight">\((1,2)\)</span> y <span class="math notranslate nohighlight">\((2,1)\)</span> con una matriz <span class="math notranslate nohighlight">\(J\)</span> de rotación. Entonces:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tau</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">t_star</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">t_star</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">t_star</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A@J</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[-1.00000000e+00,  2.23711432e-17],
+       [ 4.39088730e-17,  3.00000000e+00]])
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="algoritmo-qr">
