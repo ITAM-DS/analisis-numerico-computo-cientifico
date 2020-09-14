@@ -294,21 +294,16 @@
 <p><strong>hasta</strong> convergencia (satisfacer criterio de paro).</p>
 </div></blockquote>
 </div></blockquote>
+<p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> es una transformación de rotación, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>, para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>. Esto ayuda a preservar la simetría de la matriz original.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Los pasos en el algoritmo anterior representan una guía para la implementación. Al describirse los pasos de un algoritmo no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo método, entonces pueden seguirse los pasos de una forma distinta.</p>
 </div>
-<div class="admonition-comentarios admonition">
-<p class="admonition-title">Comentarios</p>
-<ul class="simple">
-<li><p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> es una transformación de rotación, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>, para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>. Esto ayuda a preservar la simetría de la matriz original.</p></li>
-</ul>
-</div>
-<p>Para encontrar la forma que debe tener <span class="math notranslate nohighlight">\(J_k\)</span> es suficiente considerar el caso <span class="math notranslate nohighlight">\(2 \times 2\)</span>:</p>
+<p>Para encontrar la forma que debe tener <span class="math notranslate nohighlight">\(J_k\)</span> es suficiente considerar el caso <span class="math notranslate nohighlight">\(2 \times 2\)</span> y se <strong>asume</strong> que <span class="math notranslate nohighlight">\(a_{12} \neq 0\)</span> pues si <span class="math notranslate nohighlight">\(a_{12} =0\)</span> entonces no hay que realizar rotación.:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-J^TAJ &amp;=&amp;  
+J_k^TAJ_k &amp;=&amp;  
 \left [
 \begin{array}{cc}
 c &amp; s\\
@@ -338,9 +333,8 @@ c^2a_{12} - cs(a_{22}-a_{11})-s^2a_{12} &amp; c^2a_{22}+2csa_{12}+s^2a_{11} \non
 \nonumber 
 \end{eqnarray}
 \end{split}\]</div>
-<p>donde: <span class="math notranslate nohighlight">\(c\)</span> y <span class="math notranslate nohighlight">\(s\)</span> representan a <span class="math notranslate nohighlight">\(\cos(\theta), \sin(\theta)\)</span> y <span class="math notranslate nohighlight">\(\theta\)</span> ángulo para rotar.</p>
-<p>En este caso se <strong>asume</strong> que <span class="math notranslate nohighlight">\(a_{12} \neq 0\)</span> pues si <span class="math notranslate nohighlight">\(a_{12} =0\)</span> entonces no hay que realizar rotación.</p>
-<p>Si se desea que la entrada <span class="math notranslate nohighlight">\((1,2)\)</span> (equivalentemente <span class="math notranslate nohighlight">\((2,1)\)</span>) sea cero se debe satisfacer:</p>
+<p>donde: <span class="math notranslate nohighlight">\(c\)</span> y <span class="math notranslate nohighlight">\(s\)</span> representan a <span class="math notranslate nohighlight">\(\cos(\theta), \sin(\theta)\)</span> respectivamente y <span class="math notranslate nohighlight">\(\theta\)</span> ángulo para rotar.</p>
+<p>Si se desea que la entrada <span class="math notranslate nohighlight">\((1,2)\)</span> (equivalentemente por simetría la <span class="math notranslate nohighlight">\((2,1)\)</span>) sea cero se debe cumplir:</p>
 <div class="math notranslate nohighlight">
 \[c^2a_{12} - cs(a_{22}-a_{11})-s^2a_{12}=0.\]</div>
 <p>Asignando la variable <span class="math notranslate nohighlight">\(t = \frac{s}{c}\)</span> (tangente de <span class="math notranslate nohighlight">\(\theta\)</span>) se obtiene la ecuación cuadrática:</p>
@@ -349,6 +343,10 @@ c^2a_{12} - cs(a_{22}-a_{11})-s^2a_{12} &amp; c^2a_{22}+2csa_{12}+s^2a_{11} \non
 <p>Equivalentemente:</p>
 <div class="math notranslate nohighlight">
 \[t^2 + t\frac{(a_{22}-a_{11})}{a_{12}} - 1 = t^2 + 2\xi t -1 = 0\]</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Las funciones <span class="math notranslate nohighlight">\(\frac{1}{\xi+\sqrt{\xi^2+1}}\)</span>, <span class="math notranslate nohighlight">\(\frac{1}{\xi-\sqrt{\xi^2+1}}\)</span> son estrictamente decrecientes para <span class="math notranslate nohighlight">\(\xi \geq 0\)</span> y <span class="math notranslate nohighlight">\(\xi &lt; 0\)</span> respectivamente lo que corresponde a un único ángulo <span class="math notranslate nohighlight">\(\theta \in \left (-\frac{\pi}{4}, \frac{\pi}{4} \right )\)</span>.</p>
+</div>
 <p>donde: <span class="math notranslate nohighlight">\(\xi = \frac{a_{22}-a_{11}}{2a_{12}}\)</span>. Las raíces de la ecuación anterior están dadas por:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -360,12 +358,12 @@ t_2^* &amp;=&amp; -\xi - \sqrt{\xi^2+1}&amp;=&amp;\frac{1}{\xi-\sqrt{\xi^2+1}} \
 <p>Se <strong>sugiere</strong> utilizar la raíz de menor magnitud para disminuir errores por redondeo por lo tanto:</p>
 <div class="math notranslate nohighlight">
 \[t^* = \frac{\text{signo}(\xi)}{|\xi| + \sqrt{1+\xi^2}}.\]</div>
-<p>Las funciones <span class="math notranslate nohighlight">\(\frac{1}{\xi+\sqrt{\xi^2+1}}\)</span>, <span class="math notranslate nohighlight">\(\frac{1}{\xi-\sqrt{\xi^2+1}}\)</span> son estrictamente decrecientes para <span class="math notranslate nohighlight">\(\xi \geq 0\)</span> y <span class="math notranslate nohighlight">\(\xi &lt; 0\)</span> respectivamente lo que corresponde a un único ángulo <span class="math notranslate nohighlight">\(\theta \in \left (-\frac{\pi}{4}, \frac{\pi}{4} \right )\)</span>.</p>
 <p>Las relaciones entre coseno, seno y tangente permiten obtener sus valores correspondientes:</p>
 <div class="math notranslate nohighlight">
 \[c = \frac{1}{\sqrt{1+t^{*2}}},\]</div>
 <div class="math notranslate nohighlight">
-\[s = ct^*.\]</div>
+\[s = ct^*\]</div>
+<p>y así tener completamente definida a la matriz <span class="math notranslate nohighlight">\(J_k\)</span>.</p>
 <div class="section" id="ejemplo">
 <h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
 <p>Considera:</p>
