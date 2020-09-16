@@ -286,16 +286,10 @@
 </div>
 <hr class="docutils" />
 <p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0">liga</a>.</p>
-<p>Los siguientes métodos asumen que la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> a la que se les desea calcular sus eigenvalores y eigenvectores es <strong>simétrica</strong>.</p>
 <div class="section" id="rotaciones-de-jacobi-para-matrices-simetricas">
 <h2>Rotaciones de Jacobi para matrices simétricas<a class="headerlink" href="#rotaciones-de-jacobi-para-matrices-simetricas" title="Permalink to this headline">¶</a></h2>
-<p>Este método produce una secuencia de transformaciones ortogonales de la forma <span class="math notranslate nohighlight">\(J_k^TAJ_k\)</span> con el objetivo de hacer “más diagonal” a la matriz <span class="math notranslate nohighlight">\(A\)</span>.</p>
-<p>Para describir al algoritmo se utiliza la siguiente definición:</p>
-<div class="math notranslate nohighlight">
-\[
-\text{off}(A) = \sqrt{\displaystyle \sum_{i=1}^n \sum_{j=1, j\neq i}^n a_{ij}^2}
-\]</div>
-<p>Y se utilizan las siguientes <strong>metodologías</strong> para elegir los índices del renglón y columna de <span class="math notranslate nohighlight">\(A\)</span> que serán eliminadas:</p>
+<p>Este método produce una secuencia de transformaciones ortogonales de la forma <span class="math notranslate nohighlight">\(J_k^TAJ_k\)</span> con el objetivo de hacer “más diagonal” a la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>.</p>
+<p>En el algoritmo se hace mención sobre <strong>metodologías</strong> que ayudan a elegir los índices del renglón y columna de <span class="math notranslate nohighlight">\(A\)</span> que serán eliminadas. Algunas de éstas son:</p>
 <p>1.Elegir <span class="math notranslate nohighlight">\((idx1,idx2)\)</span> tales que <span class="math notranslate nohighlight">\(|a_{idx1,idx2}| = \displaystyle \max_{i \neq j}|a_{ij}|\)</span>.</p>
 <p>2.<strong>Ordenamiento cíclico por renglones:</strong> elegir <span class="math notranslate nohighlight">\((idx1, idx2)\)</span> en el conjunto <span class="math notranslate nohighlight">\((1,2),(1,3),\dots,(1,n),(2,3),(2,4)\dots,(n-1,n)\)</span>.</p>
 <div class="margin sidebar">
@@ -309,14 +303,14 @@
 <p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span></p>
 <blockquote>
 <div><p>Elegir un par de índices <span class="math notranslate nohighlight">\((idx1,idx2)\)</span> con alguna de las metodologías descritas anteriormente.</p>
-<p>Calcular las entradas <span class="math notranslate nohighlight">\(\cos(\theta),\sin(\theta)\)</span> de <span class="math notranslate nohighlight">\(J_k\)</span>.</p>
+<p>Calcular las entradas <span class="math notranslate nohighlight">\(\cos(\theta),\sin(\theta)\)</span> de la matriz de rotación <span class="math notranslate nohighlight">\(J_k\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(A_{k+1} = J_k^T A_k J_k\)</span></p>
 <p><span class="math notranslate nohighlight">\(V_{k+1} = V_{k}J_k\)</span>.</p>
 </div></blockquote>
 <p><strong>hasta</strong> convergencia (satisfacer criterio de paro).</p>
 </div></blockquote>
 </div></blockquote>
-<p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> es una transformación de rotación que se utiliza para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>, esto  preserva la simetría de la matriz original, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>. La matriz <span class="math notranslate nohighlight">\(V_{k}\)</span> tiene aproximaciones a los eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> y la diagonal de <span class="math notranslate nohighlight">\(A_{k}\)</span> tiene aproximaciones a los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> es una transformación de rotación que se utiliza para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>, esto  preserva la simetría de la matriz original, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>. En las columnas de la matriz <span class="math notranslate nohighlight">\(V_{k}\)</span> se encuentran aproximaciones a los eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> y en la diagonal de <span class="math notranslate nohighlight">\(A_{k}\)</span> se tienen aproximaciones a los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Obsérvese que <span class="math notranslate nohighlight">\(A_{k+1}\)</span> y <span class="math notranslate nohighlight">\(A_{k}\)</span> son matrices similares, ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#similitud"><span class="std std-ref">similitud</span></a>.</p>
@@ -405,9 +399,9 @@ A =
 1&amp;2\\
 2&amp;1\\
 \end{array}
-\right ]
+\right ].
 \end{split}\]</div>
-<p>y se desea eliminar las entradas <span class="math notranslate nohighlight">\((1,2)\)</span> y <span class="math notranslate nohighlight">\((2,1)\)</span> con una matriz <span class="math notranslate nohighlight">\(J\)</span> de rotación. Entonces:</p>
+<p>Eliminar las entradas <span class="math notranslate nohighlight">\((1,2)\)</span> y <span class="math notranslate nohighlight">\((2,1)\)</span> con una matriz <span class="math notranslate nohighlight">\(J\)</span> de rotación de Jacobi:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -470,6 +464,10 @@ A =
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Estos son los índices que corresponden a la entrada <span class="math notranslate nohighlight">\(a_{12}\)</span> de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">0</span>
@@ -484,6 +482,10 @@ A =
 </pre></div>
 </div>
 </div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>La matriz de rotación de Jacobi es en este caso de tamaño <span class="math notranslate nohighlight">\(2 \times 2\)</span>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -506,7 +508,7 @@ A =
 </div>
 </div>
 </div>
-<p>Y por construcción <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(J^TAJ\)</span> son similares y por tanto tienen el mismo espectro:</p>
+<p>Por construcción <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(J^TAJ\)</span> son similares y por tanto tienen el mismo espectro:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
@@ -532,10 +534,32 @@ A =
 </div>
 </div>
 <p>Ver <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigvals.html">eigvals</a> y <a class="reference external" href="https://jiffyclub.github.io/numpy/reference/generated/numpy.linalg.eigvalsh.html">eigvalsh</a>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<p>El algoritmo de rotaciones de Jacobi utiliza como criterios de paro:</p>
+<ul class="simple">
+<li><p>La cantidad <span class="math notranslate nohighlight">\(\text{off}(A) = \sqrt{\displaystyle \sum_{i=1}^n \sum_{j=1, j\neq i}^n a_{ij}^2}\)</span> que es la norma de Frobenius sin la diagonal.</p></li>
+<li><p>Número máximo de <em>sweeps</em>. Un <em>sweep</em> es igual a <span class="math notranslate nohighlight">\(\frac{n(n-1)}{2}\)</span> y corresponde al número máximo de entradas de la matriz que forman la parte triangular superior de <span class="math notranslate nohighlight">\(A\)</span> (sin contar a la diagonal) y que se asumen diferentes de cero. No existe teoría rigurosa para el número de <em>sweeps</em> pero una heurística encontrada por <a class="reference external" href="https://ecommons.cornell.edu/handle/1813/6402">Brent y Luk, p. 13, 1985</a> mencionan que el número máximo es proporcional a <span class="math notranslate nohighlight">\(\mathcal{O}(\log(n))\)</span> y en la práctica se utilizan entre <span class="math notranslate nohighlight">\(6\)</span> y <span class="math notranslate nohighlight">\(10\)</span>, ver <a class="reference external" href="https://link.springer.com/article/10.1007/BF02165223">The Jacobi method for real symmetric matrices, H. Rutishauser, 1966</a>.</p></li>
+</ul>
+</div>
 </div>
 </div>
 <div class="section" id="id1">
 <h2>Ejemplo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Considera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = 
+\left [
+\begin{array}{cccc}
+1 &amp; 2 &amp; 3 &amp; 4\\
+2 &amp; -2 &amp; 4 &amp; 5\\
+3 &amp; 4 &amp; 6 &amp; 7\\
+4 &amp; 5 &amp; 7 &amp; -8
+\end{array}
+\right ].
+\end{split}\]</div>
+<p>Utilizando la metodología de ordenamiento cíclico por renglones realizar dos <em>sweeps</em> del método de rotaciones de Jacobi.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">Ak</span><span class="p">,</span> <span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">):</span>
