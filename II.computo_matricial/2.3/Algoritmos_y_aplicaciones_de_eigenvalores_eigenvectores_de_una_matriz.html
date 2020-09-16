@@ -290,6 +290,14 @@
 <div class="section" id="rotaciones-de-jacobi-para-matrices-simetricas">
 <h2>Rotaciones de Jacobi para matrices simétricas<a class="headerlink" href="#rotaciones-de-jacobi-para-matrices-simetricas" title="Permalink to this headline">¶</a></h2>
 <p>Este método produce una secuencia de transformaciones ortogonales de la forma <span class="math notranslate nohighlight">\(J_k^TAJ_k\)</span> con el objetivo de hacer “más diagonal” a la matriz <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>Para describir al algoritmo se utiliza la siguiente definición:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{off}(A) = \sqrt{\displaystyle \sum_{i=1}^n \sum_{j=1, j\neq i}^n a_{ij}^2}
+\]</div>
+<p>Y se utilizan las siguientes <strong>metodologías</strong> para elegir los índices del renglón y columna de <span class="math notranslate nohighlight">\(A\)</span> que serán eliminadas:</p>
+<p>1.Elegir <span class="math notranslate nohighlight">\((idx1,idx2)\)</span> tales que <span class="math notranslate nohighlight">\(|a_{idx1,idx2}| = \displaystyle \max_{i \neq j}|a_{ij}|\)</span>.</p>
+<p>2.<strong>Ordenamiento cíclico por renglones:</strong> elegir <span class="math notranslate nohighlight">\((idx1, idx2)\)</span> en el conjunto <span class="math notranslate nohighlight">\((1,2),(1,3),\dots,(1,n),(2,3),(2,4)\dots,(n-1,n)\)</span>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Los pasos de este algoritmo representan una guía para la implementación. Al describirse los pasos de un algoritmo no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo método, entonces pueden seguirse los pasos de una forma distinta.</p>
@@ -297,20 +305,23 @@
 <blockquote>
 <div><p><strong>Algoritmo de rotaciones de Jacobi para matrices simétricas</strong></p>
 <blockquote>
-<div><p><strong>Dada</strong> <span class="math notranslate nohighlight">\(A\)</span> simétrica, <strong>definir</strong> <span class="math notranslate nohighlight">\(A_0 = A\)</span></p>
+<div><p><strong>Dada</strong> <span class="math notranslate nohighlight">\(A\)</span> simétrica y <span class="math notranslate nohighlight">\(tol\)</span> <strong>definir</strong> <span class="math notranslate nohighlight">\(A_0 = A\)</span>, <span class="math notranslate nohighlight">\(V = I_n\)</span>.</p>
 <p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span></p>
 <blockquote>
-<div><p><span class="math notranslate nohighlight">\(A_{k+1} = J_k^T A_k J_k\)</span></p>
+<div><p>Elegir un par de índices <span class="math notranslate nohighlight">\((idx1,idx2)\)</span> con alguna de las metodologías descritas anteriormente.</p>
+<p>Calcular las entradas <span class="math notranslate nohighlight">\(\cos(\theta),\sin(\theta)\)</span> de <span class="math notranslate nohighlight">\(J_k\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(A_{k+1} = J_k^T A_k J_k\)</span></p>
+<p><span class="math notranslate nohighlight">\(V_{k+1} = V_{k}J_k\)</span>.</p>
 </div></blockquote>
 <p><strong>hasta</strong> convergencia (satisfacer criterio de paro).</p>
 </div></blockquote>
 </div></blockquote>
-<p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> es una transformación de rotación que se utiliza para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>, esto  preserva la simetría de la matriz original, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>.</p>
+<p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> es una transformación de rotación que se utiliza para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>, esto  preserva la simetría de la matriz original, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>. La matriz <span class="math notranslate nohighlight">\(V_{k}\)</span> tiene aproximaciones a los eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> y la diagonal de <span class="math notranslate nohighlight">\(A_{k}\)</span> tiene aproximaciones a los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Obsérvese que <span class="math notranslate nohighlight">\(A_{k+1}\)</span> y <span class="math notranslate nohighlight">\(A_{k}\)</span> son matrices similares, ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#similitud"><span class="std std-ref">similitud</span></a>.</p>
 </div>
-<p>Para encontrar la forma que debe tener <span class="math notranslate nohighlight">\(J_k\)</span> es suficiente considerar el caso <span class="math notranslate nohighlight">\(2 \times 2\)</span> y se <strong>asume</strong> que <span class="math notranslate nohighlight">\(a_{12} \neq 0\)</span> pues si <span class="math notranslate nohighlight">\(a_{12} =0\)</span> entonces no hay que realizar rotación:</p>
+<p>Para encontrar la forma que debe tener <span class="math notranslate nohighlight">\(J_k\)</span> es suficiente considerar el caso <span class="math notranslate nohighlight">\(2 \times 2\)</span> y se <strong>asume</strong> que <span class="math notranslate nohighlight">\(a_{12} \neq 0\)</span> pues <strong>si <span class="math notranslate nohighlight">\(a_{12} =0\)</span> entonces no hay que realizar rotación</strong>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
@@ -435,20 +446,25 @@ A =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_cos_sin_Jacobi_rotation</span><span class="p">(</span><span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_cos_sin_Jacobi_rotation</span><span class="p">(</span><span class="n">Ak</span><span class="p">,</span> <span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Help function for computing entries of Jacobi rotation.</span>
 <span class="sd">    Args:</span>
+<span class="sd">        Ak (numpy ndarray): Matrix of k iteration in Jacobi rotation method.</span>
 <span class="sd">        idx1 (int): index for rows in Jacobi rotation matrix.</span>
 <span class="sd">        idx2 (int): index for columns in Jacobi rotation matrix.</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        c (float): value of cos of theta for Jacobi rotation matrix.</span>
 <span class="sd">        s (float): value of sin of theta for Jacobi rotation matrix.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">tau</span> <span class="o">=</span> <span class="p">(</span><span class="n">A_k</span><span class="p">[</span><span class="n">idx2</span><span class="p">,</span> <span class="n">idx2</span><span class="p">]</span> <span class="o">-</span> <span class="n">A_k</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span> <span class="n">idx1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">A_k</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">])</span>
-    <span class="n">t_star</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">t_star</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">t_star</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Ak</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span><span class="n">idx2</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">:</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ak</span><span class="p">[</span><span class="n">idx2</span><span class="p">,</span> <span class="n">idx2</span><span class="p">]</span> <span class="o">-</span> <span class="n">Ak</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span> <span class="n">idx1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Ak</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">])</span>
+        <span class="n">t_star</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">t_star</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">t_star</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -464,7 +480,7 @@ A =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">compute_cos_sin_Jacobi_rotation</span><span class="p">(</span><span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">compute_cos_sin_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -532,10 +548,7 @@ A =
 <span class="sd">    Returns:</span>
 <span class="sd">        J (numpy ndarray): Jacobi rotation matrix.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">tau</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ak</span><span class="p">[</span><span class="n">idx2</span><span class="p">,</span> <span class="n">idx2</span><span class="p">]</span> <span class="o">-</span> <span class="n">Ak</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span> <span class="n">idx1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Ak</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">])</span>
-    <span class="n">t_star</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">t_star</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">t_star</span>
+    <span class="n">c</span><span class="p">,</span><span class="n">s</span> <span class="o">=</span> <span class="n">compute_cos_sin_Jacobi_rotation</span><span class="p">(</span><span class="n">Ak</span><span class="p">,</span> <span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">)</span>
     <span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">Ak</span><span class="o">.</span><span class="n">shape</span>
     <span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
     <span class="n">J</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span> <span class="n">idx1</span><span class="p">]</span> <span class="o">=</span> <span class="n">J</span><span class="p">[</span><span class="n">idx2</span><span class="p">,</span> <span class="n">idx2</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
@@ -1116,6 +1129,13 @@ A =
 </div>
 </div>
 </div>
+<p><strong>Referencias:</strong></p>
+<ol class="simple">
+<li><p>M. T. Heath, Scientific Computing. An Introductory Survey, McGraw-Hill, 2002.</p></li>
+<li><p>G. H. Golub, C. F. Van Loan, Matrix Computations, John Hopkins University Press, 2013.</p></li>
+<li><p>L. Trefethen, D. Bau, Numerical linear algebra, SIAM, 1997.</p></li>
+<li><p>C. Meyer, Matrix Analysis and Applied Linear Algebra, SIAM, 2000.</p></li>
+</ol>
 </div>
 </div>
 
