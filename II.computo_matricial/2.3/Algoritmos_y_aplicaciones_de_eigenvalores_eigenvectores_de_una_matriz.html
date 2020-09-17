@@ -563,7 +563,7 @@ A =
 <p>Ver <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigvals.html">eigvals</a> y <a class="reference external" href="https://jiffyclub.github.io/numpy/reference/generated/numpy.linalg.eigvalsh.html">eigvalsh</a>.</p>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
-<p>El algoritmo de rotaciones de Jacobi utiliza como criterios de paro:</p>
+<p>El algoritmo de rotaciones de Jacobi para matrices simétricas utiliza como criterios de paro:</p>
 <ul class="simple">
 <li><p>La cantidad <span class="math notranslate nohighlight">\(\text{off}(A) = \sqrt{\displaystyle \sum_{i=1}^n \sum_{j=1, j\neq i}^n a_{ij}^2}\)</span> que es la norma de Frobenius de <span class="math notranslate nohighlight">\(A\)</span> sin la diagonal, ver <a class="reference internal" href="../../I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nmat"><span class="std std-ref">Normas matriciales</span></a>.</p></li>
 <li><p>Número máximo de <em>sweeps</em>. Un <em>sweep</em> es igual a <span class="math notranslate nohighlight">\(\frac{n(n-1)}{2}\)</span> y corresponde al número máximo de entradas de la matriz que forman la parte triangular superior de <span class="math notranslate nohighlight">\(A\)</span> sin contar a la diagonal que se asumen diferentes de cero. No existe teoría rigurosa para el número de <em>sweeps</em> pero una heurística encontrada por <a class="reference external" href="https://ecommons.cornell.edu/handle/1813/6402">Brent y Luk, p. 13, 1985</a> menciona que el número máximo es proporcional a <span class="math notranslate nohighlight">\(\mathcal{O}(\log(n))\)</span> y en la práctica se utilizan entre <span class="math notranslate nohighlight">\(6\)</span> y <span class="math notranslate nohighlight">\(10\)</span>, ver <a class="reference external" href="https://link.springer.com/article/10.1007/BF02165223">H. Rutishauser, The Jacobi method for real symmetric matrices, 1966</a>.</p></li>
@@ -572,7 +572,7 @@ A =
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">off</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="o">||</span><span class="n">A</span><span class="o">||</span><span class="n">_F</span> <span class="o">&amp;&amp;</span> <span class="n">sweeps</span> <span class="o">&lt;</span> <span class="n">max_sweeps</span>
 </pre></div>
 </div>
-<p>con <code class="docutils literal notranslate"><span class="pre">||A||_F</span></code> norma de Frobenius de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>con <code class="docutils literal notranslate"><span class="pre">||A||_F</span></code> norma de Frobenius de <span class="math notranslate nohighlight">\(A\)</span> y <code class="docutils literal notranslate"><span class="pre">sweeps</span></code> contador de los <em>sweeps</em>.</p>
 </div>
 </div>
 <div class="section" id="id1">
@@ -590,7 +590,7 @@ A =
 \end{array}
 \right ].
 \end{split}\]</div>
-<p>Utilizando la metodología de ordenamiento cíclico por renglones realizar dos <em>sweeps</em> del método de rotaciones de Jacobi.</p>
+<p>Utilizando la metodología de ordenamiento cíclico por renglones realizar dos <em>sweeps</em> del método de rotaciones de Jacobi para matrices simétricas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">Ak</span><span class="p">,</span> <span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">):</span>
@@ -646,7 +646,8 @@ A =
 </div>
 </div>
 </div>
-<p>El <strong>primer <em>sweep</em></strong> considera las entradas: <span class="math notranslate nohighlight">\((1,2), (1,3), (1,4), (2,3), (2,4), (3,4)\)</span> y se toman a continuación en el orden <span class="math notranslate nohighlight">\((1,4), (1,3), (1,2), (2,4), (2,3)\)</span> y finalmente <span class="math notranslate nohighlight">\((3,4)\)</span> para mostrar que el orden de selección de las entradas no importa.</p>
+<p>El <strong>primer <em>sweep</em></strong> considera las entradas: <span class="math notranslate nohighlight">\((1,2), (1,3), (1,4), (2,3), (2,4), (3,4)\)</span>.</p>
+<p>A continuación se toman en el orden <span class="math notranslate nohighlight">\((1,4), (1,3), (1,2), (2,4), (2,3)\)</span> y finalmente <span class="math notranslate nohighlight">\((3,4)\)</span> para mostrar que el orden de selección de las entradas no importa.</p>
 <p><strong>Entrada <span class="math notranslate nohighlight">\(a_{41}\)</span> plano <span class="math notranslate nohighlight">\((1,4)\)</span>:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1053,7 +1054,7 @@ A =
 </div>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
-<p>Algunas características del algoritmo de rotaciones de Jacobi:</p>
+<p>Algunas características del algoritmo de rotaciones de Jacobi para matrices simétricas:</p>
 <ul class="simple">
 <li><p>Tiene una convergencia cuadrática, esto es, la matriz <span class="math notranslate nohighlight">\(A_k\)</span> al ir aproximándose hacia una diagonal, el número de dígitos de precisión en cada iteración se duplica. Sin embargo el algoritmo QR es más eficiente en cuanto al número de iteraciones.</p></li>
 <li><p>La precisión que tiene en el cálculo de eigenvalores es alta (error relativo pequeño).</p></li>
@@ -1126,6 +1127,9 @@ A =
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.   +0.j    0.497-0.081j 0.497+0.081j]
  [0.   +0.j    0.   +0.451j 0.   -0.451j]
  [0.   +0.j    0.737+0.j    0.737-0.j   ]]
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
