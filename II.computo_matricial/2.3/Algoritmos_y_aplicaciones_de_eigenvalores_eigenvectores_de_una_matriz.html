@@ -262,6 +262,11 @@
      Factorización QR
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algoritmo-qr-para-matrices-simetricas">
+     Algoritmo QR para matrices simétricas
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -302,9 +307,6 @@
 <div class="section" id="rotaciones-de-jacobi-para-matrices-simetricas">
 <h2>Rotaciones de Jacobi para matrices simétricas<a class="headerlink" href="#rotaciones-de-jacobi-para-matrices-simetricas" title="Permalink to this headline">¶</a></h2>
 <p>Este método produce una secuencia de transformaciones ortogonales de la forma <span class="math notranslate nohighlight">\(J^TAJ\)</span> con el objetivo de hacer “más diagonal” a la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>.</p>
-<p>En el algoritmo se hace mención sobre <strong>metodologías</strong> que ayudan a elegir los índices del renglón y columna del par de entradas de <span class="math notranslate nohighlight">\(A\)</span> que serán eliminadas (hacer cercanas a cero). Algunas de éstas son:</p>
-<p>1.Elegir <span class="math notranslate nohighlight">\((idx1,idx2)\)</span> tales que <span class="math notranslate nohighlight">\(|a_{idx1,idx2}| = \displaystyle \max_{i \neq j}|a_{ij}|\)</span>.</p>
-<p>2.<strong>Ordenamiento cíclico por renglones:</strong> elegir <span class="math notranslate nohighlight">\((idx1, idx2)\)</span> en el conjunto <span class="math notranslate nohighlight">\((1,2),(1,3),\dots,(1,n),(2,3),(2,4)\dots,(n-1,n)\)</span>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Los pasos de este algoritmo representan una guía para la implementación. Al describirse los pasos de un algoritmo no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo método, entonces pueden seguirse los pasos de una forma distinta.</p>
@@ -312,11 +314,11 @@
 <div class="section" id="algoritmo-de-rotaciones-de-jacobi-para-matrices-simetricas">
 <h3>Algoritmo de rotaciones de Jacobi para matrices simétricas<a class="headerlink" href="#algoritmo-de-rotaciones-de-jacobi-para-matrices-simetricas" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><p><strong>Dada</strong> <span class="math notranslate nohighlight">\(A\)</span> simétrica y <span class="math notranslate nohighlight">\(tol\)</span> <strong>definir</strong> <span class="math notranslate nohighlight">\(A_0 = A\)</span>, <span class="math notranslate nohighlight">\(Q_0 = I_n\)</span>.</p>
+<div><p><strong>Dada</strong> <span class="math notranslate nohighlight">\(A\)</span> simétrica y <span class="math notranslate nohighlight">\(tol &gt;0\)</span> <strong>definir</strong> <span class="math notranslate nohighlight">\(A_0 = A\)</span>, <span class="math notranslate nohighlight">\(Q_0 = I_n\)</span>.</p>
 <p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span></p>
 <blockquote>
 <div><ol class="simple">
-<li><p>Elegir un par de índices <span class="math notranslate nohighlight">\((idx1,idx2)\)</span> con alguna de las metodologías descritas anteriormente.</p></li>
+<li><p>Elegir un par de índices <span class="math notranslate nohighlight">\((idx1,idx2)\)</span> con alguna de las metodologías descritas en el bloque siguiente de comentarios.</p></li>
 <li><p>Calcular las entradas <span class="math notranslate nohighlight">\(\cos(\theta),\sin(\theta)\)</span> de la matriz de rotación <span class="math notranslate nohighlight">\(J_k\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(A_{k+1} = J_k^T A_k J_k\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(Q_{k+1} = Q_{k}J_k\)</span>.</p></li>
@@ -325,6 +327,12 @@
 <p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
 </div></blockquote>
 <p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> es una transformación de rotación que se utiliza para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>, esto  preserva la simetría de la matriz original, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>. En las columnas de la matriz <span class="math notranslate nohighlight">\(Q_{k}\)</span> se encuentran aproximaciones a los eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> y en la diagonal de <span class="math notranslate nohighlight">\(A_{k}\)</span> se tienen aproximaciones a los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<p>En el algoritmo se hace mención sobre <strong>metodologías</strong> que ayudan a elegir los índices del renglón y columna del par de entradas de <span class="math notranslate nohighlight">\(A\)</span> que serán eliminadas (hacer cercanas a cero). Algunas de éstas son:</p>
+<p>1.Elegir <span class="math notranslate nohighlight">\((idx1,idx2)\)</span> tales que <span class="math notranslate nohighlight">\(|a_{idx1,idx2}| = \displaystyle \max_{i \neq j}|a_{ij}|\)</span>.</p>
+<p>2.<strong>Ordenamiento cíclico por renglones:</strong> elegir <span class="math notranslate nohighlight">\((idx1, idx2)\)</span> en el conjunto <span class="math notranslate nohighlight">\((1,2),(1,3),\dots,(1,n),(2,3),(2,4)\dots,(n-1,n)\)</span>.</p>
+</div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Obsérvese que <span class="math notranslate nohighlight">\(A_{k+1}\)</span> y <span class="math notranslate nohighlight">\(A_{k}\)</span> son matrices ortogonalmente similares, ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#similitud"><span class="std std-ref">similitud</span></a>.</p>
@@ -1102,7 +1110,8 @@ A =
 <h2>Algoritmo QR<a class="headerlink" href="#algoritmo-qr" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="factorizacion-qr">
 <h3>Factorización QR<a class="headerlink" href="#factorizacion-qr" title="Permalink to this headline">¶</a></h3>
-<p>Si <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> con <span class="math notranslate nohighlight">\(m &gt;= n\)</span> entonces existen <span class="math notranslate nohighlight">\(Q \in \mathbb{R}^{m \times m}\)</span> <strong>ortogonal</strong> y <span class="math notranslate nohighlight">\(R \in \mathbb{R}^{m \times n}\)</span> triangular superior tales que <span class="math notranslate nohighlight">\(A=QR\)</span>:</p>
+<p><strong>Sólo</strong> en esta subsección <strong>asumimos</strong> <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> con <span class="math notranslate nohighlight">\(m &gt;= n\)</span>.</p>
+<p>Existen <span class="math notranslate nohighlight">\(Q \in \mathbb{R}^{m \times m}\)</span> <strong>ortogonal</strong> y <span class="math notranslate nohighlight">\(R \in \mathbb{R}^{m \times n}\)</span> triangular superior tales que <span class="math notranslate nohighlight">\(A=QR\)</span>:</p>
 <img src="https://dl.dropboxusercontent.com/s/hhd15p8r1wh6ac9/A_QR.png?dl=0" heigth="350" width="350">
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
@@ -1117,9 +1126,65 @@ A =
 </ul>
 </div>
 </div>
+<div class="section" id="algoritmo-qr-para-matrices-simetricas">
+<h3>Algoritmo QR para matrices simétricas<a class="headerlink" href="#algoritmo-qr-para-matrices-simetricas" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Los pasos de este algoritmo representan una guía para la implementación. Al describirse los pasos de un algoritmo no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo método, entonces pueden seguirse los pasos de una forma distinta.</p>
+</div>
+<blockquote>
+<div><p><strong>Dada</strong> <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> simétrica, <span class="math notranslate nohighlight">\(tol &gt; 0\)</span>, <span class="math notranslate nohighlight">\(Q_0 \in \mathbb{R}^{n \times n}\)</span> ortogonal <strong>definir</strong> <span class="math notranslate nohighlight">\(T_0 = Q_0^TAQ_0\)</span>.</p>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_{k-1} = Q_kR_k\)</span> (factorización <span class="math notranslate nohighlight">\(QR\)</span> de <span class="math notranslate nohighlight">\(T_{k-1}\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_k = R_k Q_k\)</span></p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
+</div></blockquote>
+<div class="tip admonition">
+<p class="admonition-title">Observaciones</p>
+<ul class="simple">
+<li><p>Obsérvese que <span class="math notranslate nohighlight">\(T_k = R_kQ_k = Q_k^T(Q_k R_k)Q_k = Q_k ^TT_{k-1}Q^k\)</span> por lo que <span class="math notranslate nohighlight">\(T_k\)</span> y <span class="math notranslate nohighlight">\(T_{k-1}\)</span> son ortogonalmente similares, ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#similitud"><span class="std std-ref">similitud</span></a>.</p></li>
+<li><p>Es fácil verificar que <span class="math notranslate nohighlight">\(T_k = (Q_0 Q_1 \cdots Q_k)^T A(Q_0 Q_1 \cdots Q_k)\)</span> por lo que <span class="math notranslate nohighlight">\(T_k\)</span> es ortogonalmente similar a <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ul>
+</div>
+</div>
 </div>
 <div class="section" id="metodo-de-la-potencia">
 <h2>Método de la potencia<a class="headerlink" href="#metodo-de-la-potencia" title="Permalink to this headline">¶</a></h2>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Los pasos de este algoritmo representan una guía para la implementación. Al describirse los pasos de un algoritmo no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo método, entonces pueden seguirse los pasos de una forma distinta.</p>
+</div>
+<blockquote>
+<div><p><strong>Dado</strong> <span class="math notranslate nohighlight">\(q^{(0)} \in \mathbb{R}^n\)</span> de norma Euclidiana unitaria y <span class="math notranslate nohighlight">\(tol &gt; 0\)</span></p>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(z^{(k)} = Aq^{(k-1)}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(q^{(k)} = \frac{z^{(k)}}{||z^{(k)}||_2}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda ^{(k)} = q^{(k)T} Aq^{(k)}\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
+</div></blockquote>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<p>El método anterior converge al eigenvalor de máximo módulo <span class="math notranslate nohighlight">\(\lambda_1\)</span> y a un eigenvector asociado a tal eigenvalor, <span class="math notranslate nohighlight">\(q_1\)</span>, si se satisfacen las siguientes condiciones:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda_1\)</span> cumple:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+|\lambda_1| &gt; |\lambda_2| \geq \cdots \geq |\lambda_n|
+\]</div>
+<p>esto es, <span class="math notranslate nohighlight">\(\lambda_1\)</span> es el único eigenvalor de máximo módulo.</p>
+<ul class="simple">
+<li><p>El coseno del ángulo entre <span class="math notranslate nohighlight">\(q^{(0)}\)</span> y <span class="math notranslate nohighlight">\(q_1\)</span> es diferente de cero (no ortogonales).</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="aplicaciones-y-usos">
 <h2>Aplicaciones y usos<a class="headerlink" href="#aplicaciones-y-usos" title="Permalink to this headline">¶</a></h2>
