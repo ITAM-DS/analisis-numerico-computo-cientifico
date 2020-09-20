@@ -275,6 +275,16 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iteracion-inversa-o-metodo-de-la-potencia-inversa">
+   Iteración inversa o método de la potencia inversa
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iteracion-por-el-cociente-de-rayleigh">
+   Iteración por el cociente de Rayleigh
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#aplicaciones-y-usos">
    Aplicaciones y usos
   </a>
@@ -583,7 +593,7 @@ A =
 <li><p>En matrices mayores a dos dimensiones el método de rotaciones de Jacobi para matrices simétricas requiere <strong>eliminación repetida</strong> (volver a hacer cercanas a cero) del par de entradas de <span class="math notranslate nohighlight">\(A\)</span> seleccionadas de iteraciones previas pues en cada iteración se destruyen (vuelven a ser diferentes de cero) en general.</p></li>
 <li><p>El método de rotaciones de Jacobi para matrices simétricas utiliza como criterios de paro:</p>
 <ul>
-<li><p>La cantidad <span class="math notranslate nohighlight">\(\text{off}(A) = \sqrt{\displaystyle \sum_{i=1}^n \sum_{j=1, j\neq i}^n a_{ij}^2}\)</span> que es la norma de Frobenius de <span class="math notranslate nohighlight">\(A\)</span> sin la diagonal, ver <a class="reference internal" href="../../I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nmat"><span class="std std-ref">Normas matriciales</span></a>.</p></li>
+<li><p>La cantidad <span class="math notranslate nohighlight">\(\text{off}(A) = \sqrt{\displaystyle \sum_{i=1}^n \sum_{j=1, j\neq i}^n a_{ij}^2}\)</span> (norma de Frobenius de <span class="math notranslate nohighlight">\(A\)</span> sin la diagonal, ver <a class="reference internal" href="../../I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nmat"><span class="std std-ref">Normas matriciales</span></a>).</p></li>
 <li><p>Número máximo de <em>sweeps</em>. Un <em>sweep</em> es igual a <span class="math notranslate nohighlight">\(\frac{n(n-1)}{2}\)</span> y corresponde al número máximo de entradas de la matriz que forman la parte triangular superior de <span class="math notranslate nohighlight">\(A\)</span> sin contar a la diagonal que se asumen diferentes de cero. No existe teoría rigurosa para el número de <em>sweeps</em> pero una heurística encontrada por <a class="reference external" href="https://ecommons.cornell.edu/handle/1813/6402">Brent y Luk, p. 13, 1985</a> menciona que el número máximo es proporcional a <span class="math notranslate nohighlight">\(\mathcal{O}(\log(n))\)</span> y en la práctica se utilizan entre <span class="math notranslate nohighlight">\(6\)</span> y <span class="math notranslate nohighlight">\(10\)</span>, ver <a class="reference external" href="https://link.springer.com/article/10.1007/BF02165223">H. Rutishauser, The Jacobi method for real symmetric matrices, 1966</a>.</p></li>
 </ul>
 </li>
@@ -1159,7 +1169,7 @@ A =
 <p>Los pasos de este algoritmo representan una guía para la implementación. Al describirse los pasos de un algoritmo no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo método, entonces pueden seguirse los pasos de una forma distinta.</p>
 </div>
 <blockquote>
-<div><p><strong>Dado</strong> <span class="math notranslate nohighlight">\(q^{(0)} \in \mathbb{R}^n\)</span> de norma Euclidiana unitaria y <span class="math notranslate nohighlight">\(tol &gt; 0\)</span></p>
+<div><p><strong>Dado</strong> <span class="math notranslate nohighlight">\(q^{(0)} \in \mathbb{R}^n\)</span> de norma Euclidiana unitaria y <span class="math notranslate nohighlight">\(tol &gt; 0\)</span>.</p>
 <p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
 <blockquote>
 <div><ol class="simple">
@@ -1182,9 +1192,51 @@ A =
 \]</div>
 <p>esto es, <span class="math notranslate nohighlight">\(\lambda_1\)</span> es el único eigenvalor de máximo módulo.</p>
 <ul class="simple">
-<li><p>El coseno del ángulo entre <span class="math notranslate nohighlight">\(q^{(0)}\)</span> y <span class="math notranslate nohighlight">\(q_1\)</span> es diferente de cero (no ortogonales).</p></li>
+<li><p>El coseno del ángulo entre <span class="math notranslate nohighlight">\(q^{(0)}\)</span> y <span class="math notranslate nohighlight">\(q_1\)</span> es diferente de cero (no ortogonales), ver <a class="reference internal" href="../../I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nvm"><span class="std std-ref">normas vectoriales y matriciales</span></a>.</p></li>
 </ul>
 </div>
+</div>
+<div class="section" id="iteracion-inversa-o-metodo-de-la-potencia-inversa">
+<h2>Iteración inversa o método de la potencia inversa<a class="headerlink" href="#iteracion-inversa-o-metodo-de-la-potencia-inversa" title="Permalink to this headline">¶</a></h2>
+<p>Si se utiliza en el método de la potencia a la matriz <span class="math notranslate nohighlight">\((A-\lambda I)^{-1}\)</span> en lugar de la matriz <span class="math notranslate nohighlight">\(A\)</span> entonces se obtiene el método de la iteración inversa o de la potencia inversa:</p>
+<blockquote>
+<div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(q^{(0)} \in \mathbb{R}^n\)</span> de norma Euclidiana unitaria, <span class="math notranslate nohighlight">\(\lambda^{(0)}\)</span> y <span class="math notranslate nohighlight">\(tol &gt; 0\)</span>.</p>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p>Calcular la factorización <span class="math notranslate nohighlight">\(LU\)</span> de <span class="math notranslate nohighlight">\(A-\lambda^{(k-1)}I\)</span>.</p></li>
+<li><p>Resolver el sistema de ecuaciones lineales <span class="math notranslate nohighlight">\((A-\lambda^{(k-1)})z^{(k)} = q^{(k-1)}\)</span> para <span class="math notranslate nohighlight">\(z^{(k)}\)</span> utilizando los factores <span class="math notranslate nohighlight">\(LU\)</span> del paso 1.</p></li>
+<li><p><span class="math notranslate nohighlight">\(q^{(k)} = \frac{z^{(k)}}{||z^{(k)}||_2}\)</span>.</p></li>
+<li><p>Resolver el sistema de ecuaciones lineales <span class="math notranslate nohighlight">\((A-\lambda^{(k-1)})q^{(k)} = \tilde{q}^{(k)}\)</span> para <span class="math notranslate nohighlight">\(q^{(k)}\)</span> utilizando los factores <span class="math notranslate nohighlight">\(LU\)</span> del paso 1.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda ^{(k)} = q^{(k)T} \tilde{q}^{(k)}\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
+</div></blockquote>
+</div>
+<div class="section" id="iteracion-por-el-cociente-de-rayleigh">
+<h2>Iteración por el cociente de Rayleigh<a class="headerlink" href="#iteracion-por-el-cociente-de-rayleigh" title="Permalink to this headline">¶</a></h2>
+<p>El cociente de Rayleigh de <span class="math notranslate nohighlight">\(x\)</span> se define como:</p>
+<div class="math notranslate nohighlight">
+\[
+r(x) = \frac{x^TAx}{x^Tx}
+\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Verificar que el cociente de Rayleigh de <span class="math notranslate nohighlight">\(x\)</span> minimiza <span class="math notranslate nohighlight">\(f(\lambda) = ||(A - \lambda I)x||_2\)</span>.</p>
+</div>
+<blockquote>
+<div><p><strong>Dado</strong> <span class="math notranslate nohighlight">\(x^{(0)} \in \mathbb{R}^n - \{0\}\)</span> y <span class="math notranslate nohighlight">\(tol &gt; 0\)</span>.</p>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p>Calcular <span class="math notranslate nohighlight">\(\mu^{(k)} = r(x^{(k)})\)</span>.</p></li>
+<li><p>Resolver el sistema de ecuaciones lineales <span class="math notranslate nohighlight">\((A-\mu_kI)z^{(k+1)} = x^{(k)}\)</span> para <span class="math notranslate nohighlight">\(z^{(k+1)}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x^{(k+1)} = \frac{z^{(k+1)}}{||z^{(k+1)}||_2}\)</span></p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
+</div></blockquote>
 </div>
 <div class="section" id="aplicaciones-y-usos">
 <h2>Aplicaciones y usos<a class="headerlink" href="#aplicaciones-y-usos" title="Permalink to this headline">¶</a></h2>
@@ -1244,9 +1296,6 @@ A =
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[1.   +0.j    0.497-0.081j 0.497+0.081j]
  [0.   +0.j    0.   +0.451j 0.   -0.451j]
  [0.   +0.j    0.737+0.j    0.737-0.j   ]]
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
