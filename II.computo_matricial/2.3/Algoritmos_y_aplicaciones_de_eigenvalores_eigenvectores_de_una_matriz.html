@@ -289,6 +289,11 @@
      Algoritmo: método de la potencia
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Ejemplo
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -469,6 +474,7 @@ A =
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -1518,7 +1524,7 @@ A =
 </div>
 </div>
 <p>Y es más cercano al eigenvector <span class="math notranslate nohighlight">\(\left [\begin{array}{c} 1\\ 1 \end{array} \right ]\)</span></p>
-<p>Lo anterior funciona pues si <span class="math notranslate nohighlight">\(q_1, \dots, q_n\)</span> son eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(x_0 = \displaystyle \sum_{i=1}^n \alpha_i q_i\)</span> (combinación lineal) entonces:</p>
+<p>Lo anterior funciona pues si <span class="math notranslate nohighlight">\(q_1, \dots, q_n\)</span> son eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(z^{(0)} = \displaystyle \sum_{i=1}^n \alpha_i q_i\)</span> (combinación lineal) entonces:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
@@ -1561,6 +1567,79 @@ z^{(k)} &amp;=&amp; A z^{(k-1)} = A^2 z^{(k-2)} = \cdots = A^k z^{(0)} \nonumber
 <ul class="simple">
 <li><p>El coseno del ángulo entre <span class="math notranslate nohighlight">\(q^{(0)}\)</span> y <span class="math notranslate nohighlight">\(q_1\)</span> es diferente de cero (no ortogonales), ver <a class="reference internal" href="../../I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nvm"><span class="std std-ref">normas vectoriales y matriciales</span></a>.</p></li>
 </ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Ejemplo<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">eigval</span><span class="p">,</span> <span class="n">eigvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;eigenvalor:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eigval</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;eigenvectores:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eigvec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>eigenvalor:
+[2. 1.]
+eigenvectores:
+[[ 0.707 -0.707]
+ [ 0.707  0.707]]
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">q_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">q_k_iter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">))</span>
+<span class="n">lambda_k_iter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_iter</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+    <span class="n">z_k</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@q_k</span>
+    <span class="n">q_k</span> <span class="o">=</span> <span class="n">z_k</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">z_k</span><span class="p">)</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;$q^{(</span><span class="si">%s</span><span class="s2">)}$&quot;</span><span class="o">%</span><span class="n">k</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">string</span><span class="p">,(</span><span class="n">q_k</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">q_k</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">q_k_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">q_k</span><span class="p">))</span>
+    <span class="n">q_k_iter</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">q_k</span>
+    <span class="n">lambda_k</span> <span class="o">=</span> <span class="n">q_k</span><span class="o">.</span><span class="n">T</span><span class="nd">@A@q_k</span>
+    <span class="n">lambda_k_iter</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">lambda_k</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_k_plot</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">q_k_plot</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz_172_0.png" src="../../_images/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz_172_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lambda_k_iter</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([1.8  , 1.941, 1.985, 1.996, 1.999, 2.   , 2.   ])
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
