@@ -129,4 +129,4 @@ El video lo pueden descargar desde Teams pero sólo estará disponible unos día
 
 Finalizamos [Diferenciación numérica por diferencias finitas](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html#diferenciacion-numerica-por-diferencias-finitas)
 
-En la segunda parte revisamos el contenido del video que quedó de tarea revisar [configuración de s3, efs, aws y dask](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki#para-videos-de-configuraciones-de-servicios-b%C3%A1sicos-e-instalaci%C3%B3n-de-herramientas-%C3%BAtiles).
+En la segunda parte revisamos el contenido del video que quedó de tarea revisar [configuración de s3, efs, aws y dask](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki#para-videos-de-configuraciones-de-servicios-b%C3%A1sicos-e-instalaci%C3%B3n-de-herramientas-%C3%BAtiles) (se levantó dask-scheduler y dask-workers en una sola máquina).
