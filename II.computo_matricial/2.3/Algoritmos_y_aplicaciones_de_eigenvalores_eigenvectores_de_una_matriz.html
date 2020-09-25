@@ -231,8 +231,11 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rotaciones-de-jacobi-para-matrices-simetricas">
+  <a class="reference internal nav-link" href="#rotaciones-de-jacobi-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
    Rotaciones de Jacobi para matrices simétricas
+   <span class="math notranslate nohighlight">
+    \(A \in \mathbb{R}^{n \times n}\)
+   </span>
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -360,9 +363,13 @@
 <hr class="docutils" />
 <p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0">liga</a>.</p>
 <p>En esta nota <strong>asumimos</strong> que la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> es simétrica. Esto tiene como consecuencia que sus eigenvalores son reales y existe una base de eigenvectores ortonormal ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#descesp"><span class="std std-ref">descomposición espectral de una matriz simétrica</span></a>.</p>
-<div class="section" id="rotaciones-de-jacobi-para-matrices-simetricas">
-<h2>Rotaciones de Jacobi para matrices simétricas<a class="headerlink" href="#rotaciones-de-jacobi-para-matrices-simetricas" title="Permalink to this headline">¶</a></h2>
-<p>Este método produce una secuencia de transformaciones ortogonales de la forma <span class="math notranslate nohighlight">\(J^TAJ\)</span> con el objetivo de hacer “más diagonal” a la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>.</p>
+<div class="section" id="rotaciones-de-jacobi-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+<h2>Rotaciones de Jacobi para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#rotaciones-de-jacobi-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
+<p>Este método produce una secuencia de transformaciones ortogonales de la forma <span class="math notranslate nohighlight">\(J_k^TAJ_k\)</span> con el objetivo de hacer “más diagonal” a la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>.</p>
+<p>Si la matriz <span class="math notranslate nohighlight">\(A\)</span> es simétrica y <span class="math notranslate nohighlight">\(J_0\)</span> es una transformación de rotación de Jacobi, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>, entonces el esquema iterativo:</p>
+<div class="math notranslate nohighlight">
+\[T_k = (J_0 J_1 \cdots J_k)^T A(J_0 J_1 \cdots J_k)\]</div>
+<p><strong>converge</strong> a una matriz diagonal en la que se encuentran los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Los pasos de un algoritmo representan una guía para la implementación, no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo algoritmo, entonces pueden seguirse los pasos de una forma distinta.</p>
@@ -382,7 +389,7 @@
 </div></blockquote>
 <p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
 </div></blockquote>
-<p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> es una transformación de rotación que se utiliza para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>, esto  preserva la simetría de la matriz original, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>. En las columnas de la matriz <span class="math notranslate nohighlight">\(Q_{k}\)</span> se encuentran aproximaciones a los eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> y en la diagonal de <span class="math notranslate nohighlight">\(A_{k}\)</span> se tienen aproximaciones a los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> se utiliza para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>, esto  preserva la simetría de la matriz original. En las columnas de la matriz <span class="math notranslate nohighlight">\(Q_{k}\)</span> se encuentran aproximaciones a los eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> y en la diagonal de <span class="math notranslate nohighlight">\(A_{k}\)</span> se tienen aproximaciones a los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <p>En el método se hace mención de <strong>metodologías</strong> que ayudan a elegir los índices del renglón y columna del par de entradas de <span class="math notranslate nohighlight">\(A\)</span> que serán eliminadas (hacer cercanas a cero). Algunas de éstas son:</p>
@@ -1166,10 +1173,11 @@ A =
 </div>
 <div class="section" id="algoritmo-qr-o-qr-iteration-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
 <h2>Algoritmo QR o <em>QR iteration</em> para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#algoritmo-qr-o-qr-iteration-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
+<p>Este método produce una secuencia de transformaciones ortogonales de la forma <span class="math notranslate nohighlight">\(Q_k^TAQ_k\)</span> con el objetivo de hacer “más diagonal” a la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>.</p>
 <p>Si la matriz <span class="math notranslate nohighlight">\(A\)</span> es simétrica y <span class="math notranslate nohighlight">\(Q_0\)</span> es una matriz con columnas linealmente independientes entonces el esquema iterativo:</p>
 <div class="math notranslate nohighlight">
 \[T_k = (Q_0 Q_1 \cdots Q_k)^T A(Q_0 Q_1 \cdots Q_k)\]</div>
-<p>casi siempre converge a una matriz diagonal en la que se encuentran los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>, ver <a class="reference internal" href="#comentariosalgqr"><span class="std std-ref">comentarios algoritmo QR</span></a> para suposiciones que garantizan la convergencia.</p>
+<p><strong>casi siempre</strong> converge a una matriz diagonal en la que se encuentran los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>, ver <a class="reference internal" href="#comentariosalgqr"><span class="std std-ref">comentarios algoritmo QR</span></a> para suposiciones que garantizan la convergencia.</p>
 <div class="section" id="factorizacion-qr">
 <h3>Factorización QR<a class="headerlink" href="#factorizacion-qr" title="Permalink to this headline">¶</a></h3>
 <p><strong>Sólo</strong> en esta subsección <strong>asumimos</strong> <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> con <span class="math notranslate nohighlight">\(m &gt;= n\)</span>.</p>
@@ -1436,11 +1444,11 @@ A =
 </div>
 <div class="admonition-comentarios admonition" id="comentariosalgqr">
 <p class="admonition-title">Comentarios</p>
-<p>Si <span class="math notranslate nohighlight">\(A = Q\LambdaQ^T\)</span> ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#descesp"><span class="std std-ref">descomposición espectral de una matriz simétrica</span></a>, el método anterior converge a una matriz diagonal <span class="math notranslate nohighlight">\(\Lambda\)</span> en la que se encuentran los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span> si se satisfacen las siguientes condiciones:</p>
+<p>Si <span class="math notranslate nohighlight">\(A = Q\Lambda Q^T\)</span>, ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#descesp"><span class="std std-ref">descomposición espectral de una matriz simétrica</span></a>, el método anterior converge a una matriz diagonal <span class="math notranslate nohighlight">\(\Lambda\)</span> en la que se encuentran los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span> si se satisfacen las siguientes condiciones:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n\)</span> es simétrica.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> es simétrica.</p></li>
 <li><p><span class="math notranslate nohighlight">\(|\lambda_1| &gt; |\lambda_2| &gt; \cdots &gt; |\lambda_n|.\)</span></p></li>
-<li><p>El coseno del ángulo entre las columnas de <span class="math notranslate nohighlight">\(Q_0\)</span> y las columnas de <span class="math notranslate nohighlight">\(Q\)</span> que contiene los eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> es diferente de cero (no ortogonales) ver <a class="reference internal" href="../../I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nvm"><span class="std std-ref">normas vectoriales y matriciales</span></a>.</p></li>
+<li><p>El coseno del ángulo entre las columnas de <span class="math notranslate nohighlight">\(Q_0\)</span> y las columnas de <span class="math notranslate nohighlight">\(Q\)</span> que contienen los eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> es diferente de cero (no ortogonales) ver <a class="reference internal" href="../../I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nvm"><span class="std std-ref">normas vectoriales y matriciales</span></a>.</p></li>
 </ul>
 </div>
 </div>
@@ -1450,7 +1458,7 @@ A =
 <p>Si la matriz <span class="math notranslate nohighlight">\(A\)</span> tiene un <strong>único</strong> eigenvalor <span class="math notranslate nohighlight">\(\lambda_1\)</span> que tiene máximo módulo y <span class="math notranslate nohighlight">\(z^{(0)}\)</span> es un vector distinto de cero entonces el esquema iterativo:</p>
 <div class="math notranslate nohighlight">
 \[z^{(k)} = A z^{(k-1)}\]</div>
-<p><strong>casi siempre</strong> converge a un múltiplo del eigenvector de <span class="math notranslate nohighlight">\(A\)</span> asociado a <span class="math notranslate nohighlight">\(\lambda_1\)</span>, ver <span class="xref std std-ref">comentarios del método de la potencia</span> para suposiciones que garantizan la convergencia.</p>
+<p><strong>casi siempre</strong> converge a un múltiplo del eigenvector de <span class="math notranslate nohighlight">\(A\)</span> asociado a <span class="math notranslate nohighlight">\(\lambda_1\)</span>, ver <a class="reference internal" href="#comentariosmetpotencia"><span class="std std-ref">comentarios del método de la potencia</span></a> para suposiciones que garantizan la convergencia.</p>
 <div class="section" id="id3">
 <h3>Ejemplo<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
@@ -1594,7 +1602,7 @@ z^{(k)} &amp;=&amp; A z^{(k-1)} = A^2 z^{(k-2)} = \cdots = A^k z^{(0)} \nonumber
 \]</div>
 <p>esto es, <span class="math notranslate nohighlight">\(\lambda_1\)</span> es el único eigenvalor de máximo módulo.</p>
 <ul class="simple">
-<li><p>El coseno del ángulo entre <span class="math notranslate nohighlight">\(q^{(0)}\)</span> y <span class="math notranslate nohighlight">\(q_1\)</span> es diferente de cero (no ortogonales), ver <a class="reference internal" href="../../I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nvm"><span class="std std-ref">normas vectoriales y matriciales</span></a>.</p></li>
+<li><p>El coseno del ángulo entre <span class="math notranslate nohighlight">\(q^{(0)}\)</span> y <span class="math notranslate nohighlight">\(q_1\)</span> es diferente de cero (no ortogonales), ver <a class="reference internal" href="../../I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nvm"><span class="std std-ref">normas vectoriales y matriciales</span></a>. Esto no es un requerimiento fuerte pues el sistema de punto flotante y errores por redondeo garantizan en la mayoría de los casos prácticos tal coseno es diferente de cero.</p></li>
 </ul>
 </div>
 </div>
@@ -1653,7 +1661,7 @@ eigenvectores:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz_176_0.png" src="../../_images/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz_176_0.png" />
+<img alt="../../_images/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz_178_0.png" src="../../_images/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz_178_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1678,6 +1686,9 @@ eigenvectores:
 <li><p>Puede haber más de un eigenvalor que tenga el mismo módulo y la convergencia podría darse para una combinación lineal de los eigenvectores asociados a tales eigenvalores.</p></li>
 </ul>
 </li>
+<li><p>La ventaja que tiene el método de la potencia es que sólo requiere una operación del tipo matriz-vector lo cual para matrices grandes y ralas (también nombradas <em>sparse</em>: que tienen muchas entradas iguales a cero) es ventajoso.</p></li>
+<li><p>Sólo obtiene al eigenvalor con máximo módulo y un eigenvector asociado por lo que si se desean otras parejas de eigenvalores-eigenvectores se debe recurrir a otras manipulaciones o métodos.</p></li>
+<li><p>La convergencia de este método depende mucho de la cercanía entre <span class="math notranslate nohighlight">\(|\lambda_1|\)</span> y <span class="math notranslate nohighlight">\(|\lambda_2|\)</span>.</p></li>
 </ul>
 </div>
 </div>
