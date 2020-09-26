@@ -325,13 +325,16 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#iteracion-por-el-cociente-de-rayleigh">
-   Iteración por el cociente de Rayleigh
+  <a class="reference internal nav-link" href="#iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+   Iteración por el cociente de Rayleigh para matrices simétricas
+   <span class="math notranslate nohighlight">
+    \(A \in \mathbb{R}^{n \times n}\)
+   </span>
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#algoritmo-iteracion-por-el-cociente-de-rayleigh">
-     Algoritmo: iteración por el cociente de Rayleigh
+    <a class="reference internal nav-link" href="#algoritmo-iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas">
+     Algoritmo: iteración por el cociente de Rayleigh para matrices simétricas
     </a>
    </li>
   </ul>
@@ -1755,23 +1758,27 @@ eigenvectores:
 <li><p>El método de la potencia aproxima al eigenvector asociado al eigenvalor con módulo máximo. Esto en contraste con el algoritmo QR y el método de rotaciones de Jacobi que aproximan todos los eigenvalores y eigenvectores. En la práctica es posible que sólo se requieran unos cuantos eigenvalores-eigenvectores.</p></li>
 <li><p>Típicamente funciona el método de la potencia pero puede fallar por razones como:</p>
 <ul>
-<li><p>No hay convergencia a un eigenvector con entradas en <span class="math notranslate nohighlight">\(\mathbb{C}\)</span> a partir de una matriz con entradas en <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>.</p></li>
+<li><p>No hay convergencia a un eigenvalor-eigenvector con entradas en <span class="math notranslate nohighlight">\(\mathbb{C}\)</span> a partir de una matriz con entradas en <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> (pero si se utiliza una matriz <span class="math notranslate nohighlight">\(A\)</span> y vectores con entradas en <span class="math notranslate nohighlight">\(\mathbb{C}\)</span> se recupera la convergencia).</p></li>
 <li><p>Puede haber más de un eigenvalor que tenga el mismo módulo y la convergencia podría darse para una combinación lineal de los eigenvectores asociados a tales eigenvalores.</p></li>
 </ul>
 </li>
 <li><p>La ventaja que tiene el método de la potencia es que sólo requiere una operación del tipo matriz-vector lo cual para matrices grandes y ralas (también nombradas <em>sparse</em>: que tienen muchas entradas iguales a cero) es ventajoso.</p></li>
-<li><p>Sólo obtiene al eigenvalor con máximo módulo y un eigenvector asociado, por lo que si se desean otras parejas de eigenvalores-eigenvectores se debe recurrir a métodos adicionales.</p></li>
-<li><p>La convergencia de este método depende mucho de la cercanía entre <span class="math notranslate nohighlight">\(|\lambda_1|\)</span> y <span class="math notranslate nohighlight">\(|\lambda_2|\)</span>: si son muy cercanos la convergencia es lenta.</p></li>
+<li><p>Sólo obtiene al eigenvalor con máximo módulo y un eigenvector asociado, por lo que si se desean otras parejas de eigenvalores-eigenvectores se debe recurrir a métodos adicionales por ejemplo <em>deflation</em>.</p></li>
+<li><p>La convergencia de este método depende mucho de la cercanía entre <span class="math notranslate nohighlight">\(|\lambda_1|\)</span> y <span class="math notranslate nohighlight">\(|\lambda_2|\)</span>: si son muy cercanos la convergencia es lenta. Esto es posible mejorar al utilizar <em>shifts</em>.</p></li>
 </ul>
 </div>
 </div>
 </div>
 <div class="section" id="iteracion-inversa-o-metodo-de-la-potencia-inversa-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
 <h2>Iteración inversa o método de la potencia inversa para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#iteracion-inversa-o-metodo-de-la-potencia-inversa-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
-<p>Si se utiliza en el método de la potencia la matriz <span class="math notranslate nohighlight">\((A-\mu I)^{-1}\)</span> en lugar de la matriz <span class="math notranslate nohighlight">\(A\)</span>, con <span class="math notranslate nohighlight">\(\mu \in \mathbb{R}\)</span> aproximación a un eigenvalor <span class="math notranslate nohighlight">\(\lambda\)</span> de <span class="math notranslate nohighlight">\(A\)</span>, entonces se obtiene el método de la iteración inversa o de la potencia inversa:</p>
+<p>Este método originalmente obtiene al eigenvalor con módulo mínimo con su eigenvector asociado, sin embargo en una forma más general si se utiliza en el método de la potencia la matriz <span class="math notranslate nohighlight">\((A-\mu I)^{-1}\)</span> en lugar de la matriz <span class="math notranslate nohighlight">\(A\)</span>, con <span class="math notranslate nohighlight">\(\mu \in \mathbb{R}\)</span> aproximación a un eigenvalor <span class="math notranslate nohighlight">\(\lambda\)</span> de <span class="math notranslate nohighlight">\(A\)</span>, entonces se obtiene el método de la iteración inversa o de la potencia inversa:</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Este mismo algoritmo puede utilizarse para matrices no simétricas. Y se utiliza la factorización <span class="math notranslate nohighlight">\(LU\)</span> de <span class="math notranslate nohighlight">\(A\)</span> que puede calcularse con <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu.html">scipy.linalg.lu</a></p>
+<p>Al igual que para el método de la potencia, este método funciona para matrices simétricas si la matriz <span class="math notranslate nohighlight">\(A\)</span> es diagonalizable.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>La factorización <span class="math notranslate nohighlight">\(LU\)</span> de <span class="math notranslate nohighlight">\(A\)</span> que puede calcularse con <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu.html">scipy.linalg.lu</a> y utiliza transformaciones de Gauss, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#tgauss"><span class="std std-ref">transformaciones de Gauss</span></a>.</p>
 </div>
 <div class="section" id="algoritmo-iteracion-inversa-o-metodo-de-la-potencia-inversa-para-matrices-simetricas">
 <h3>Algoritmo: iteración inversa o método de la potencia inversa para matrices simétricas<a class="headerlink" href="#algoritmo-iteracion-inversa-o-metodo-de-la-potencia-inversa-para-matrices-simetricas" title="Permalink to this headline">¶</a></h3>
@@ -1789,10 +1796,18 @@ eigenvectores:
 </div></blockquote>
 <p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
 </div></blockquote>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Una vez que se conoce una aproximación a un eigenvalor, este método es muy útil para calcular su eigenvector asociado.</p></li>
+<li><p>La convergencia del método anterior está asegurada si tal eigenvalor está bien separado de los demás.</p></li>
+<li><p>Al igual que en el método de la potencia si <span class="math notranslate nohighlight">\(A\)</span> tiene eigenvalores cercanos entonces la convergencia puede ser lenta.</p></li>
+</ul>
 </div>
 </div>
-<div class="section" id="iteracion-por-el-cociente-de-rayleigh">
-<h2>Iteración por el cociente de Rayleigh<a class="headerlink" href="#iteracion-por-el-cociente-de-rayleigh" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+<h2>Iteración por el cociente de Rayleigh para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
 <p>El cociente de Rayleigh de <span class="math notranslate nohighlight">\(x\)</span> se define como:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1802,8 +1817,9 @@ r(x) = \frac{x^TAx}{x^Tx}
 <p class="admonition-title">Ejercicio</p>
 <p>Verificar que el cociente de Rayleigh de <span class="math notranslate nohighlight">\(x\)</span> minimiza <span class="math notranslate nohighlight">\(f(\lambda) = ||(A - \lambda I)x||_2\)</span>.</p>
 </div>
-<div class="section" id="algoritmo-iteracion-por-el-cociente-de-rayleigh">
-<h3>Algoritmo: iteración por el cociente de Rayleigh<a class="headerlink" href="#algoritmo-iteracion-por-el-cociente-de-rayleigh" title="Permalink to this headline">¶</a></h3>
+<p>Este cociente se utiliza para acelerar la convergencia en el método de la potencia o el de iteración inversa. En el caso de la iteración inversa se tiene el siguiente algoritmo.</p>
+<div class="section" id="algoritmo-iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas">
+<h3>Algoritmo: iteración por el cociente de Rayleigh para matrices simétricas<a class="headerlink" href="#algoritmo-iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> simétrica, <span class="math notranslate nohighlight">\(x^{(0)} \in \mathbb{R}^n - \{0\}\)</span> y <span class="math notranslate nohighlight">\(tol &gt; 0\)</span>.</p>
 <p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span></p>
@@ -1816,9 +1832,12 @@ r(x) = \frac{x^TAx}{x^Tx}
 </div></blockquote>
 <p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
 </div></blockquote>
-<div class="admonition-comentario admonition">
-<p class="admonition-title">Comentario</p>
-<p>El algoritmo anterior tiene una tasa de convergencia cúbica si <span class="math notranslate nohighlight">\(x^{(0)}\)</span> aproxima a un eigenvector de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(x\)</span> es un vector que aproxima bien a un eigenvector de <span class="math notranslate nohighlight">\(A\)</span> el cociente <span class="math notranslate nohighlight">\(r(x)\)</span> es buena aproximación al eigenvalor asociado.</p></li>
+<li><p>El algoritmo anterior tiene una tasa de convergencia cúbica si <span class="math notranslate nohighlight">\(x^{(0)}\)</span> aproxima a un eigenvector de <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ul>
 </div>
 </div>
 </div>
