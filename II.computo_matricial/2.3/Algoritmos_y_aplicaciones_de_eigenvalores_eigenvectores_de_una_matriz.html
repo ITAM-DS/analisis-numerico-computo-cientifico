@@ -357,6 +357,11 @@
      </em>
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Ejemplo
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -1870,9 +1875,66 @@ r(x) = \frac{x^TAx}{x^Tx}
 </div>
 <div class="section" id="descripcion-del-algoritmo-pagerank">
 <h3>Descripción del algoritmo <em>PageRank</em><a class="headerlink" href="#descripcion-del-algoritmo-pagerank" title="Permalink to this headline">¶</a></h3>
-<p>El algoritmo resulta de la información del número de <em>links</em> que van hacia y desde una página Web. Por ejemplo</p>
+<p>El algoritmo resulta de la información del número de <em>links</em> que van hacia y desde una página Web. Se definen <span class="math notranslate nohighlight">\(O_i\)</span> como el conjunto de <em>outlinks</em> o las páginas que son referenciadas por <span class="math notranslate nohighlight">\(i\)</span>. El conjunto <span class="math notranslate nohighlight">\(I_i\)</span> es el conjunto de <em>inlinks</em> o las páginas que hacen referencia a la página <span class="math notranslate nohighlight">\(i\)</span>. Esto se puede representar como:</p>
 <img src="https://dl.dropboxusercontent.com/s/sezz4empv27dtd4/inlinks_outlinks_pagerank.png?dl=0" heigth="400" width="400">
+<p>El <em>pagerank</em> de una página <span class="math notranslate nohighlight">\(i\)</span> es una suma ponderada de aquellas páginas que hacen referencia a <span class="math notranslate nohighlight">\(i\)</span>. La ponderación se realiza por el número de <em>outlinks</em> que tienen tales páginas, esto es:</p>
+<div class="math notranslate nohighlight">
+\[r_i = \displaystyle \sum_{j \in I_i} \frac{r_j}{N_j}\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(r_i\)</span> es el <em>pagerank</em> de la página <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(N_i = |O_i|\)</span> es el el número de <em>outlinks</em> de la página <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>La ponderación anterior se realiza para hacer más “difícil” elevar el <em>pagerank</em> de una página <span class="math notranslate nohighlight">\(i\)</span> pues podrían crearse muchas páginas “artificiales” que apunten a <span class="math notranslate nohighlight">\(i\)</span>. Además la suma se realiza considerando los <em>pageranks</em> de las páginas <span class="math notranslate nohighlight">\(j\)</span> por lo que páginas con <em>pagerank</em> bajo no tendrán una contribución alta en la suma.</p>
+</div>
+<p>Se define <span class="math notranslate nohighlight">\(Q\)</span> la matriz de tamaño <span class="math notranslate nohighlight">\(n\)</span> con entradas dadas por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Q_{ij} = \begin{cases}
+\frac{1}{N_j} &amp; \text{ si existe un link de } j \text{ a } i \\
+0 &amp; \text{ en otro caso}
+\end{cases}
+\end{split}\]</div>
+</div>
+<div class="section" id="id5">
+<h3>Ejemplo<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Considérese el siguiente grafo de un conjunto de páginas <span class="math notranslate nohighlight">\(\{1, 2, 3, 4, 5, 6\}\)</span>:</p>
 <img src="https://dl.dropboxusercontent.com/s/850i1rw3optocbt/graph_example_1_pagerank.png?dl=0" heigth="400" width="400">
+<p>Entonces la matriz asociada a este grafo es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Q = \left [\begin{array}{cccccc}
+0 &amp; \frac{1}{3} &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+\frac{1}{3} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; \frac{1}{3} &amp; 0 &amp; 0 &amp; \frac{1}{3} &amp; \frac{1}{2} \\
+\frac{1}{3} &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{3} &amp; 0 \\
+\frac{1}{3} &amp; \frac{1}{3} &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{2} \\
+0 &amp; 0 &amp; 1&amp; 0 &amp; \frac{1}{3} &amp; 0
+\end{array}
+\right ]
+\end{split}\]</div>
+<p>La matriz anterior podemos leerla como sigue:</p>
+<ul class="simple">
+<li><p>(perspectiva de los renglones) La página <span class="math notranslate nohighlight">\(3\)</span> es referenciada o tiene <em>inlinks</em> de las páginas <span class="math notranslate nohighlight">\(\{2,5,6\}\)</span>.</p></li>
+<li><p>(perspectiva de las columnas) La página <span class="math notranslate nohighlight">\(3\)</span> hace referencia o tiene <em>outlink</em> hacia la página <span class="math notranslate nohighlight">\(\{6\}\)</span>.</p></li>
+</ul>
+<p>Si se define el vector <span class="math notranslate nohighlight">\(r\)</span> con los <em>pageranks</em> de cada página se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}r = \left [\begin{array}{c}
+r_1 \\
+r_2 \\
+\vdots \\
+r_n
+\end{array}
+\right ]
+= \left [ \begin{array}{c}
+\displaystyle \sum_{j \in I_1} \frac{r_j}{N_j} \\
+\displaystyle \sum_{j \in I_2} \frac{r_j}{N_j} \\
+\vdots \\
+\displaystyle \sum_{j \in I_n} \frac{r_j}{N_j} \\
+\end{array}
+\right ]
+\end{split}\]</div>
+<p>Por lo que la suma <span class="math notranslate nohighlight">\(r_i = \displaystyle \sum_{j \in I_i} \frac{r_j}{N_j}\)</span> se puede reescribir como:</p>
+<div class="math notranslate nohighlight">
+\[\lambda r = Qr, \quad \lambda = 1,\]</div>
+<p>esto es, <span class="math notranslate nohighlight">\(r\)</span> es un eigenvector de <span class="math notranslate nohighlight">\(Q\)</span> con eigenvalor <span class="math notranslate nohighlight">\(\lambda = 1\)</span>.</p>
 <p>Ver comentario sobre Schur en https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html</p>
 <p>https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.schur.html#scipy.linalg.schur</p>
 <div class="cell docutils container">
