@@ -369,6 +369,11 @@
      </em>
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Ejemplo
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -1883,7 +1888,7 @@ r(x) = \frac{x^TAx}{x^Tx}
 <p>El <span class="math notranslate nohighlight">\(29\)</span> de septiembre  de <span class="math notranslate nohighlight">\(2005\)</span> una búsqueda en <em>Google</em> con la palabra <em>university</em> resultó en más de <span class="math notranslate nohighlight">\(2 \times 10^9\)</span> de resultados.</p>
 </div>
 <p>En los inicios del internet muchos buscadores de páginas web eran deficientes para responder con resultados que fueran de interés a partir de una consulta que devolvía miles o millones de resultados. Hoy en día tenemos el buscador de páginas web <em>Google</em> que de forma exitosa filtra los resultados ordenando a las páginas web de acuerdo a una medida de importancia relativa <em>overall</em> para los millones de resultados que devuelve la consulta.</p>
-<p>Google utiliza el método de nombre <a class="reference external" href="https://en.wikipedia.org/wiki/PageRank"><em>PageRank</em></a> para <em>rankear</em> cada página basándose en el grafo de la web. Tal <em>ranking</em> provee una <em>quality measure</em> que le nombra <em>pagerank</em>. A grandes rasgos, tal algoritmo asigna a una página web un alto <em>rank</em> si es referenciada o tiene ligas que apuntan a ella, <em>aka inlinks</em>, por páginas que tienen un alto <em>rank</em>. La formulación matemática de lo anterior conduce a un problema de cálculo del eigenvalor con módulo máximo y su eigenvector asociado como se describirá a continuación.</p>
+<p>Google utiliza el método de nombre <a class="reference external" href="https://en.wikipedia.org/wiki/PageRank"><em>PageRank</em></a> para <em>rankear</em> cada página basándose en el <a class="reference external" href="https://en.wikipedia.org/wiki/Webgraph">grafo de la web</a>. Tal <em>ranking</em> provee una <em>quality measure</em> que le nombra <em>pagerank</em>. A grandes rasgos, tal algoritmo asigna a una página web un alto <em>rank</em> si es referenciada o tiene ligas que apuntan a ella, <em>aka inlinks</em>, por páginas que tienen un alto <em>rank</em>. La formulación matemática de lo anterior conduce a un problema de cálculo del eigenvalor con módulo máximo y su eigenvector asociado como se describirá a continuación.</p>
 <div class="section" id="descripcion-del-algoritmo-pagerank">
 <h3>Descripción del algoritmo <em>PageRank</em><a class="headerlink" href="#descripcion-del-algoritmo-pagerank" title="Permalink to this headline">¶</a></h3>
 <p>El algoritmo resulta de la información del número de <em>links</em> que van hacia y desde una página Web. Para esto, se definen <span class="math notranslate nohighlight">\(O_i\)</span> como el conjunto de <em>outlinks</em> o las páginas que son referenciadas por <span class="math notranslate nohighlight">\(i\)</span> y el conjunto <span class="math notranslate nohighlight">\(I_i\)</span> como el conjunto de <em>inlinks</em> o las páginas que hacen referencia a la página <span class="math notranslate nohighlight">\(i\)</span>. Esto se puede representar como:</p>
@@ -1960,21 +1965,105 @@ r_n
 <h3>Detalles en la construcción de la matriz <span class="math notranslate nohighlight">\(Q\)</span> y el modelo <em>random surfer</em><a class="headerlink" href="#detalles-en-la-construccion-de-la-matriz-q-y-el-modelo-random-surfer" title="Permalink to this headline">¶</a></h3>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Este supuesto es factible pues es poco probable que una persona no pueda salir de una página por carecer de <em>outlinks</em>.</p>
+<p>Este supuesto es factible pues es poco probable que la <em>surfer</em> no pueda salir de una página por carecer de <em>outlinks</em>.</p>
 </div>
-<p>El cálculo del <em>pagerank</em> de <span class="math notranslate nohighlight">\(i\)</span> se modifica <strong>asumiendo</strong> que siempre existe al menos un <em>outlink</em> de la página <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>El cálculo del <em>pagerank</em> de <span class="math notranslate nohighlight">\(i\)</span> se modifica <strong>asumiendo</strong> que siempre existe al menos un <em>outlink</em> de la página <span class="math notranslate nohighlight">\(i\)</span>. Esto ayuda en la situación en el que una página no apunte a ninguna otra y corrige la no distribución de su <em>pagerank</em>.</p>
 <p>En el ejemplo anterior este supuesto no se cumple pues la página <span class="math notranslate nohighlight">\(4\)</span> no tiene <em>outlinks</em> (tiene una columna de ceros). Para modificar la situación anterior de forma matemática se realiza:</p>
 <div class="math notranslate nohighlight">
 \[P = Q + \frac{1}{n}ed^T\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(e = (1, \dots, 1)^T\)</span> y <span class="math notranslate nohighlight">\(d\)</span> es un vector con entradas <span class="math notranslate nohighlight">\(d_j = \begin{cases} 1 &amp; \text{ si } N_j = 0 \\ 0 &amp; \text{ en otro caso } \end{cases}\)</span> para <span class="math notranslate nohighlight">\(j=1, \dots, n\)</span>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Una cadena de Markov es un proceso aleatorio en el que se describen posibles estados (eventos) y cada estado se encuentra completamente determinado (depende) del estado presente.</p>
+<p>Una cadena de Markov es un proceso aleatorio en el que se describen posibles estados (eventos) y cada estado se encuentra completamente determinado (depende) del estado presente. A tales cadenas se les asocian matrices de transición cuyas entradas representan probabilidades de pasar de un estado a otro. En el ejemplo <span class="math notranslate nohighlight">\(Q^T\)</span> es una matriz de transición.</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>La <strong>interpretación</strong> que tiene tal adición se realiza al considerarse un modelo de <a class="reference external" href="https://en.wikipedia.org/wiki/Random_walk">caminata aleatoria</a> en el grafo de la web y en el que una persona, <em>aka random surfer</em>, da clicks de forma sucesiva y aleatoria con igual probabilidad entre las páginas de los <em>outlinks</em> de cada página. Tal modelo induce una <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain">cadena de Markov</a>. Al llegar a una página que no tiene <em>outlinks</em> se interpreta como que la persona en un tiempo se aburrirá y elegirá una página de acuerdo a una distribución de probabilidad. Una de las distribuciones que se eligen para modelar tal elección es la <strong>uniforme</strong>, esto es, elige cualquiera de las páginas con la misma probabilidad. En este contexto la matriz de transición de la cadena de Markov es <span class="math notranslate nohighlight">\(Q^T\)</span>. La matriz <span class="math notranslate nohighlight">\(P\)</span> anterior es una matriz estocástica por columna (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic matrix</a>): tiene elementos <strong>no negativos</strong> y cada columna suma <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>La <strong>interpretación</strong> que tiene tal adición se realiza al considerarse un modelo de <a class="reference external" href="https://en.wikipedia.org/wiki/Random_walk">caminata aleatoria</a> en el grafo de la web y en el que una <em>random surfer</em> da clicks de forma sucesiva y aleatoria con igual probabilidad entre las páginas de los <em>outlinks</em> de cada página. Tal modelo induce una <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain">cadena de Markov</a>. Al llegar a una página que no tiene <em>outlinks</em> se interpreta como sigue: la <em>surfer</em> en un tiempo se aburrirá y elegirá una página de acuerdo a una distribución de probabilidad. Una de las distribuciones que se eligen para modelar tal elección es la <strong>uniforme</strong>, esto es, elige cualquiera de las páginas con la misma probabilidad. La matriz <span class="math notranslate nohighlight">\(P\)</span> anterior es una matriz estocástica por columna (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic matrix</a>): tiene elementos <strong>no negativos</strong> y cada columna suma <span class="math notranslate nohighlight">\(1\)</span> y en este contexto la <strong>matriz de transición</strong> de la cadena de Markov es <span class="math notranslate nohighlight">\(P^T\)</span>.</p>
 </div>
+</div>
+<div class="section" id="id6">
+<h3>Ejemplo<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>Para el ejemplo anterior se tiene:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+
+<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.    0.333 0.    0.    0.    0.   ]
+ [0.333 0.    0.    0.    0.    0.   ]
+ [0.    0.333 0.    0.    0.333 0.5  ]
+ [0.333 0.    0.    0.    0.333 0.   ]
+ [0.333 0.333 0.    0.    0.    0.5  ]
+ [0.    0.    1.    0.    0.333 0.   ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="c1">#definition of d</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.   , 0.   , 0.   , 0.167, 0.   , 0.   ],
+       [0.   , 0.   , 0.   , 0.167, 0.   , 0.   ],
+       [0.   , 0.   , 0.   , 0.167, 0.   , 0.   ],
+       [0.   , 0.   , 0.   , 0.167, 0.   , 0.   ],
+       [0.   , 0.   , 0.   , 0.167, 0.   , 0.   ],
+       [0.   , 0.   , 0.   , 0.167, 0.   , 0.   ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.   , 0.333, 0.   , 0.167, 0.   , 0.   ],
+       [0.333, 0.   , 0.   , 0.167, 0.   , 0.   ],
+       [0.   , 0.333, 0.   , 0.167, 0.333, 0.5  ],
+       [0.333, 0.   , 0.   , 0.167, 0.333, 0.   ],
+       [0.333, 0.333, 0.   , 0.167, 0.   , 0.5  ],
+       [0.   , 0.   , 1.   , 0.167, 0.333, 0.   ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>En cadenas de Markov el eigenvector <span class="math notranslate nohighlight">\(r\)</span> corresponde a la distribución de probabilidad estacionaria de la cadena. Los estados de la cadena son las páginas y las transiciones son los <em>links</em> entre las páginas.</p>
+</div>
+<p><strong>¿Qué interpretación tiene la posición <span class="math notranslate nohighlight">\(i\)</span> en el vector <span class="math notranslate nohighlight">\(r\)</span>?</strong></p>
+<p>El elemento en la posición <span class="math notranslate nohighlight">\(i\)</span> de <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(r_i\)</span>, es la probabilidad que después de un número grande de clicks a páginas Web de forma aleatoria, la <em>surfer</em> llegue a la página <span class="math notranslate nohighlight">\(i\)</span>. El modelo por tanto <strong>asume</strong> que la <em>surfer</em> da clicks a ligas de forma aleatoria hasta llegar a su sitio destino.</p>
 <p>Ver comentario sobre Schur en https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html</p>
 <p>https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.schur.html#scipy.linalg.schur</p>
 <div class="cell docutils container">
