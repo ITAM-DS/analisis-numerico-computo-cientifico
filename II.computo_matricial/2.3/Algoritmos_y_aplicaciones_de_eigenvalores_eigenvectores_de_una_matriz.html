@@ -2108,6 +2108,118 @@ r_n
 <div class="section" id="id7">
 <h3>Ejemplo<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>Considérese el grafo</p>
+<img src="https://dl.dropboxusercontent.com/s/u2m8af7hfi83wq9/graph_example_2_pagerank.png?dl=0" heigth="400" width="400"><p>Entonces una <em>surfer</em> que haya entrado a la parte izquierda o derecha del grafo nunca saldrá. La matriz <span class="math notranslate nohighlight">\(P\)</span> de transición es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.  0.5 0.5 0.5 0.  0. ]
+ [0.5 0.  0.5 0.  0.  0. ]
+ [0.5 0.5 0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.5 0.  1. ]
+ [0.  0.  0.  0.  1.  0. ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tomando un valor de <span class="math notranslate nohighlight">\(\alpha = 0.85\)</span> se tiene:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.85</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">P</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.025 0.45  0.45  0.45  0.025 0.025]
+ [0.45  0.025 0.45  0.025 0.025 0.025]
+ [0.45  0.45  0.025 0.025 0.025 0.025]
+ [0.025 0.025 0.025 0.025 0.025 0.025]
+ [0.025 0.025 0.025 0.45  0.025 0.875]
+ [0.025 0.025 0.025 0.025 0.875 0.025]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y sus eigenvalores son:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">eigvalue</span><span class="p">,</span> <span class="n">eigvector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">eigvalue</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[ 1.     0.85  -0.    -0.85  -0.425 -0.425]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compárese con los eigenvalores de <span class="math notranslate nohighlight">\(P\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-0.5  1.  -0.5  1.  -1.   0. ]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">eigvector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[ 0.447 -0.365 -0.354  0.     0.816  0.347]
+ [ 0.43  -0.365  0.354  0.    -0.408  0.466]
+ [ 0.43  -0.365  0.354 -0.    -0.408 -0.814]
+ [ 0.057 -0.    -0.707 -0.    -0.     0.   ]
+ [ 0.469  0.548 -0.     0.707  0.    -0.   ]
+ [ 0.456  0.548  0.354 -0.707 -0.    -0.   ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que el eigenvector asociado con el eigenvalor <span class="math notranslate nohighlight">\(\lambda_1 = 1\)</span> tiene entradas no negativas. Esto también es posible probar.</p>
+</div>
 <p>Ver comentario sobre Schur en https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html</p>
 <p>https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.schur.html#scipy.linalg.schur</p>
 <div class="cell docutils container">
