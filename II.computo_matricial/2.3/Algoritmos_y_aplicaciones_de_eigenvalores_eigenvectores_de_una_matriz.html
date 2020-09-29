@@ -345,8 +345,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#descripcion-del-algoritmo-pagerank">
-     Descripción del algoritmo
+    <a class="reference internal nav-link" href="#descripcion-del-metodo-pagerank">
+     Descripción del método
      <em>
       PageRank
      </em>
@@ -1889,9 +1889,9 @@ r(x) = \frac{x^TAx}{x^Tx}
 </div>
 <p>En los inicios del internet muchos buscadores de páginas web eran deficientes para responder con resultados que fueran de interés a partir de una consulta que devolvía miles o millones de resultados. Hoy en día tenemos el buscador de páginas web <em>Google</em> que de forma exitosa filtra los resultados ordenando a las páginas web de acuerdo a una medida de importancia relativa <em>overall</em> para los millones de resultados que devuelve la consulta.</p>
 <p>Google utiliza el método de nombre <a class="reference external" href="https://en.wikipedia.org/wiki/PageRank"><em>PageRank</em></a> para <em>rankear</em> cada página basándose en el <a class="reference external" href="https://en.wikipedia.org/wiki/Webgraph">grafo de la web</a>. Tal <em>ranking</em> provee una <em>quality measure</em> que le nombra <em>pagerank</em>. A grandes rasgos, tal algoritmo asigna a una página web un alto <em>rank</em> si es referenciada o tiene ligas que apuntan a ella, <em>aka inlinks</em>, por páginas que tienen un alto <em>rank</em>. La formulación matemática de lo anterior conduce a un problema de cálculo del eigenvalor con módulo máximo y su eigenvector asociado como se describirá a continuación.</p>
-<div class="section" id="descripcion-del-algoritmo-pagerank">
-<h3>Descripción del algoritmo <em>PageRank</em><a class="headerlink" href="#descripcion-del-algoritmo-pagerank" title="Permalink to this headline">¶</a></h3>
-<p>El algoritmo resulta de la información del número de <em>links</em> que van hacia y desde una página Web. Para esto, se definen <span class="math notranslate nohighlight">\(O_i\)</span> como el conjunto de <em>outlinks</em> o las páginas que son referenciadas por <span class="math notranslate nohighlight">\(i\)</span> y el conjunto <span class="math notranslate nohighlight">\(I_i\)</span> como el conjunto de <em>inlinks</em> o las páginas que hacen referencia a la página <span class="math notranslate nohighlight">\(i\)</span>. Esto se puede representar como:</p>
+<div class="section" id="descripcion-del-metodo-pagerank">
+<h3>Descripción del método <em>PageRank</em><a class="headerlink" href="#descripcion-del-metodo-pagerank" title="Permalink to this headline">¶</a></h3>
+<p>El método resulta de la información del número de <em>links</em> que van hacia y desde una página Web. Para esto, se definen <span class="math notranslate nohighlight">\(O_i\)</span> como el conjunto de <em>outlinks</em> o las páginas que son referenciadas por <span class="math notranslate nohighlight">\(i\)</span> y el conjunto <span class="math notranslate nohighlight">\(I_i\)</span> como el conjunto de <em>inlinks</em> o las páginas que hacen referencia a la página <span class="math notranslate nohighlight">\(i\)</span>. Esto se puede representar como:</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>En este grafo se tiene <span class="math notranslate nohighlight">\(|O_i| = 3\)</span>.</p>
@@ -1963,6 +1963,7 @@ r_n
 </div>
 <div class="section" id="detalles-en-la-construccion-de-la-matriz-q-y-el-modelo-random-surfer">
 <h3>Detalles en la construcción de la matriz <span class="math notranslate nohighlight">\(Q\)</span> y el modelo <em>random surfer</em><a class="headerlink" href="#detalles-en-la-construccion-de-la-matriz-q-y-el-modelo-random-surfer" title="Permalink to this headline">¶</a></h3>
+<p>En el método de <em>pagerank</em> se <strong>asume</strong> un modelo de <a class="reference external" href="https://en.wikipedia.org/wiki/Random_walk">caminata aleatoria</a> en el grafo de la web, en el que una <em>random surfer</em> da clicks de forma sucesiva y aleatoria con igual probabilidad entre las páginas de los <em>outlinks</em> de cada página. Tal modelo induce una <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain">cadena de Markov</a>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Este supuesto es factible pues es poco probable que la <em>surfer</em> no pueda salir de una página por carecer de <em>outlinks</em>.</p>
@@ -1978,7 +1979,11 @@ r_n
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>La <strong>interpretación</strong> que tiene tal adición se realiza al considerarse un modelo de <a class="reference external" href="https://en.wikipedia.org/wiki/Random_walk">caminata aleatoria</a> en el grafo de la web y en el que una <em>random surfer</em> da clicks de forma sucesiva y aleatoria con igual probabilidad entre las páginas de los <em>outlinks</em> de cada página. Tal modelo induce una <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain">cadena de Markov</a>. Al llegar a una página que no tiene <em>outlinks</em> se interpreta como sigue: la <em>surfer</em> en un tiempo se aburrirá y elegirá una página de acuerdo a una distribución de probabilidad. Una de las distribuciones que se eligen para modelar tal elección es la <strong>uniforme</strong>, esto es, elige cualquiera de las páginas con la misma probabilidad. La matriz <span class="math notranslate nohighlight">\(P\)</span> anterior es una matriz estocástica por columna (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic matrix</a>): tiene elementos <strong>no negativos</strong> y cada columna suma <span class="math notranslate nohighlight">\(1\)</span> y en este contexto la <strong>matriz de transición</strong> de la cadena de Markov es <span class="math notranslate nohighlight">\(P^T\)</span>.</p>
+<p>La <strong>interpretación</strong> que tiene tal adición del término <span class="math notranslate nohighlight">\(\frac{1}{n}ed^T\)</span> por llegar a una página que no tiene <em>outlinks</em> se interpreta como sigue: la <em>surfer</em> en un tiempo se aburrirá y elegirá una página de acuerdo a una distribución de probabilidad. Una de las distribuciones que se eligen para modelar tal elección es la <strong>uniforme</strong>, esto es, elige cualquiera de las páginas con la misma probabilidad.</p>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>La matriz <span class="math notranslate nohighlight">\(P\)</span> anterior es una matriz estocástica por columna (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic matrix</a>): tiene elementos <strong>no negativos</strong> y cada columna suma <span class="math notranslate nohighlight">\(1\)</span> y en este contexto la <strong>matriz de transición</strong> de la cadena de Markov es <span class="math notranslate nohighlight">\(P^T\)</span>.</p>
 </div>
 </div>
 <div class="section" id="id6">
