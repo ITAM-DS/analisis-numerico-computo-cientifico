@@ -1989,21 +1989,21 @@ r_n
 <p>Este supuesto es factible pues es poco probable que la <em>surfer</em> no pueda salir de una página por carecer de <em>outlinks</em>.</p>
 </div>
 <p>El cálculo del <em>pagerank</em> de <span class="math notranslate nohighlight">\(i\)</span> se modifica <strong>asumiendo</strong> que siempre existe al menos un <em>outlink</em> de la página <span class="math notranslate nohighlight">\(i\)</span> por un <a class="reference external" href="https://en.wikipedia.org/wiki/PageRank#Damping_factor"><em>damping factor</em></a>. Esto ayuda en la situación en el que una página no apunte a ninguna otra y corrige la no propagación de su <em>pagerank</em>.</p>
-<p>En el ejemplo anterior este supuesto no se cumple pues la página <span class="math notranslate nohighlight">\(4\)</span> no tiene <em>outlinks</em> (tiene una columna de ceros). Para modificar la situación anterior de forma matemática se realiza:</p>
-<div class="math notranslate nohighlight">
-\[P = Q + \frac{1}{n}ed^T\]</div>
-<p>donde: <span class="math notranslate nohighlight">\(e = (1, \dots, 1)^T\)</span> y <span class="math notranslate nohighlight">\(d\)</span> es un vector con entradas <span class="math notranslate nohighlight">\(d_j = \begin{cases} 1 &amp; \text{ si } N_j = 0 \\ 0 &amp; \text{ en otro caso } \end{cases}\)</span> para <span class="math notranslate nohighlight">\(j=1, \dots, n\)</span>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esta modificación en la literatura se conoce como <strong>teleportation</strong>.</p>
 </div>
+<p>En el ejemplo anterior este supuesto no se cumple pues la página <span class="math notranslate nohighlight">\(4\)</span> no tiene <em>outlinks</em> (tiene una columna de ceros). Para modificar la situación anterior de forma matemática se realiza:</p>
+<div class="math notranslate nohighlight">
+\[P = Q + \frac{1}{n}ed^T\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(e = (1, \dots, 1)^T\)</span> y <span class="math notranslate nohighlight">\(d\)</span> es un vector con entradas <span class="math notranslate nohighlight">\(d_j = \begin{cases} 1 &amp; \text{ si } N_j = 0 \\ 0 &amp; \text{ en otro caso } \end{cases}\)</span> para <span class="math notranslate nohighlight">\(j=1, \dots, n\)</span>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>La <strong>interpretación</strong> que tiene tal adición del término <span class="math notranslate nohighlight">\(\frac{1}{n}ed^T\)</span> por llegar a una página que no tiene <em>outlinks</em> se realiza como sigue: la <em>surfer</em> necesariamente elegirá una página de forma aleatoria de acuerdo a una distribución de probabilidad. Una de las distribuciones que se eligen para modelar tal elección es la <strong>uniforme</strong>, esto es, elige cualquiera de las páginas con la misma probabilidad.</p>
 </div>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>La matriz <span class="math notranslate nohighlight">\(P\)</span> anterior es una matriz estocástica por columna, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic matrix</a>,: tiene elementos <strong>no negativos</strong> y cada columna suma <span class="math notranslate nohighlight">\(1\)</span>. La <strong>matriz de transición</strong> de la cadena de Markov es <span class="math notranslate nohighlight">\(P^T\)</span>.</p>
+<p>La matriz <span class="math notranslate nohighlight">\(P\)</span> anterior es una matriz estocástica por columna, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic matrix</a>: tiene elementos <strong>no negativos</strong> y cada columna suma <span class="math notranslate nohighlight">\(1\)</span>. La <strong>matriz de transición</strong> de la cadena de Markov es <span class="math notranslate nohighlight">\(P^T\)</span>.</p>
 </div>
 </div>
 <div class="section" id="id6">
@@ -2049,6 +2049,10 @@ r_n
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Matriz que se le añadirá a <span class="math notranslate nohighlight">\(Q\)</span>, tiene en sus columnas el valor igual a <span class="math notranslate nohighlight">\(\frac{1}{6}\)</span> para el ejemplo dado.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">d</span><span class="p">))</span>
@@ -2065,6 +2069,10 @@ r_n
 </pre></div>
 </div>
 </div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se obtiene <span class="math notranslate nohighlight">\(P\)</span> a partir de <span class="math notranslate nohighlight">\(Q + \frac{1}{n}ed^T\)</span>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2087,27 +2095,29 @@ r_n
 </div>
 <div class="section" id="matriz-irreducible-y-estocastica-por-columnas">
 <h3>Matriz irreducible y estocástica por columnas<a class="headerlink" href="#matriz-irreducible-y-estocastica-por-columnas" title="Permalink to this headline">¶</a></h3>
-<p>Para asegurar que la matriz <span class="math notranslate nohighlight">\(P\)</span> anterior tiene un <strong>único</strong> eigenvalor <span class="math notranslate nohighlight">\(\lambda_1\)</span> igual a <span class="math notranslate nohighlight">\(1\)</span> se utiliza la idea de la modificación anterior con el objetivo que la matriz que se obtenga sea <strong>irreducible</strong>.</p>
-<div class="admonition-comentarios admonition">
-<p class="admonition-title">Comentarios</p>
-<ul class="simple">
-<li><p>En este contexto nombramos a una matriz irreducible como aquella que tiene un grafo asociado en el que dados dos nodos distintos, siempre existe un camino que los une. Esto se nombra <strong>grafo fuertemente conectado</strong>.</p></li>
-</ul>
+<p>Para asegurar que la matriz <span class="math notranslate nohighlight">\(P\)</span> anterior tiene un <strong>único</strong> eigenvalor <span class="math notranslate nohighlight">\(\lambda_1\)</span> igual a <span class="math notranslate nohighlight">\(1\)</span> se utiliza la modificación anterior y además se busca que la matriz sea <strong>irreducible</strong>.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Nombramos a una matriz irreducible como aquella para la que su grafo asociado siempre existe un camino que une dos nodos distintos. Esto se nombra <strong>grafo fuertemente conectado</strong>.</p>
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>En general la modificación es de la forma: <span class="math notranslate nohighlight">\(A = \alpha P + (1-\alpha)ve^T\)</span> con <span class="math notranslate nohighlight">\(v\)</span> vector no negativo y <span class="math notranslate nohighlight">\(||v||_1 = 1\)</span>.</p>
 </div>
-<p>En forma matemática una posible modificación es:</p>
+<p>Una posible modificación es:</p>
 <div class="math notranslate nohighlight">
 \[A = \alpha P + (1-\alpha) \frac{1}{n}ee^T\]</div>
 <p>para <span class="math notranslate nohighlight">\(\alpha \in [0,1]\)</span>. Se cumple que <span class="math notranslate nohighlight">\(A\)</span> es estocástica por columnas y es irreducible.</p>
-<div class="admonition-comentario admonition">
-<p class="admonition-title">Comentario</p>
-<p>La interpretación de la expresión anterior en la caminata aleatoria sobre el grafo de la web, es como sigue: en cada tiempo la <em>surfer</em> al visitar una página, si:</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
 <ul class="simple">
+<li><p>La interpretación de la expresión anterior en la caminata aleatoria sobre el grafo de la web, es como sigue: en cada tiempo la <em>surfer</em> al visitar una página, si:</p>
+<ul>
 <li><p>la página no tiene <em>outlinks</em>, elige una página aleatoria entre todas las páginas con probabilidad <span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>.</p></li>
 <li><p>la página tiene <em>outlinks</em>, elige un <em>outlink</em> con probabilidad <span class="math notranslate nohighlight">\(1 - \alpha\)</span> y con probabilidad <span class="math notranslate nohighlight">\(\alpha\)</span> elige <strong>cualquier</strong> página del grafo.</p></li>
+</ul>
+</li>
+<li><p>Típicamente <span class="math notranslate nohighlight">\(\alpha\)</span> es <span class="math notranslate nohighlight">\(0.1\)</span> o menor.</p></li>
 </ul>
 </div>
 </div>
@@ -2180,18 +2190,6 @@ r_n
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">eigvalue</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[ 1.     0.85  -0.    -0.85  -0.425 -0.425]
-</pre></div>
-</div>
-</div>
-</div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Compárese con los eigenvalores de <span class="math notranslate nohighlight">\(P\)</span>.</p>
@@ -2204,6 +2202,18 @@ r_n
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-0.5  1.  -0.5  1.  -1.   0. ]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">eigvalue</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[ 1.     0.85  -0.    -0.85  -0.425 -0.425]
 </pre></div>
 </div>
 </div>
