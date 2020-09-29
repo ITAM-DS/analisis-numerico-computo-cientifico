@@ -358,15 +358,16 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#detalles-en-la-construccion-de-la-matriz-q-y-el-modelo-random-surfer">
-     Detalles en la construcción de la matriz
-     <span class="math notranslate nohighlight">
-      \(Q\)
-     </span>
-     y el modelo
+    <a class="reference internal nav-link" href="#el-modelo-random-surfer">
+     El modelo
      <em>
       random surfer
      </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adicion-de-un-factor-para-obtener-matrices-estocasticas-por-columnas">
+     Adición de un factor para obtener matrices estocásticas por columnas
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -1961,29 +1962,34 @@ r_n
 \[\lambda r = Qr, \quad \lambda = 1.\]</div>
 <p>Esto es, <span class="math notranslate nohighlight">\(r\)</span> es un eigenvector de <span class="math notranslate nohighlight">\(Q\)</span> con eigenvalor <span class="math notranslate nohighlight">\(\lambda = 1\)</span>. Para calcular tal eigenvector se utiliza el <a class="reference internal" href="#mpotmatsim"><span class="std std-ref">método de la potencia</span></a>.</p>
 </div>
-<div class="section" id="detalles-en-la-construccion-de-la-matriz-q-y-el-modelo-random-surfer">
-<h3>Detalles en la construcción de la matriz <span class="math notranslate nohighlight">\(Q\)</span> y el modelo <em>random surfer</em><a class="headerlink" href="#detalles-en-la-construccion-de-la-matriz-q-y-el-modelo-random-surfer" title="Permalink to this headline">¶</a></h3>
-<p>En el método de <em>pagerank</em> se <strong>asume</strong> un modelo de <a class="reference external" href="https://en.wikipedia.org/wiki/Random_walk">caminata aleatoria</a> en el grafo de la web, en el que una <em>random surfer</em> da clicks de forma sucesiva y aleatoria con igual probabilidad entre las páginas de los <em>outlinks</em> de cada página. Tal modelo induce una <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain">cadena de Markov</a>.</p>
+<div class="section" id="el-modelo-random-surfer">
+<h3>El modelo <em>random surfer</em><a class="headerlink" href="#el-modelo-random-surfer" title="Permalink to this headline">¶</a></h3>
+<p>En el método de <em>pagerank</em> se <strong>asume</strong> un modelo de <a class="reference external" href="https://en.wikipedia.org/wiki/Random_walk">caminata aleatoria</a> en el grafo de la web, en el que una <em>random surfer</em> da clicks de forma sucesiva y aleatoria con igual probabilidad entre las páginas de los <em>outlinks</em> de cada página. Tal modelo induce una <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain">cadena de Markov</a>. El eigenvector <span class="math notranslate nohighlight">\(r\)</span> corresponde a la distribución de probabilidad estacionaria de la cadena. Los estados de la cadena son las páginas y las transiciones son los <em>links</em> entre las páginas.</p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>Una cadena de Markov es un proceso aleatorio en el que se describen posibles estados (eventos) y cada estado se encuentra completamente determinado (depende) del estado presente. A tales cadenas se les asocian matrices de transición cuyas entradas representan probabilidades de pasar de un estado a otro. En el ejemplo <span class="math notranslate nohighlight">\(Q^T\)</span> es matriz de transición.</p>
 </div>
+<p><strong>¿Qué interpretación tiene la posición <span class="math notranslate nohighlight">\(i\)</span> en el vector <span class="math notranslate nohighlight">\(r\)</span>?</strong></p>
+<p>El elemento en la posición <span class="math notranslate nohighlight">\(i\)</span> de <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(r_i\)</span>, es la probabilidad que después de un número grande de clicks a páginas Web de forma aleatoria, la <em>surfer</em> llegue a la página <span class="math notranslate nohighlight">\(i\)</span>. El modelo por tanto <strong>asume</strong> que la <em>surfer</em> da clicks a ligas de forma aleatoria hasta llegar a su sitio destino.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Este supuesto es factible pues es poco probable que la <em>surfer</em> no pueda salir de una página por carecer de <em>outlinks</em>.</p>
 </div>
-<p>El cálculo del <em>pagerank</em> de <span class="math notranslate nohighlight">\(i\)</span> se modifica <strong>asumiendo</strong> que siempre existe al menos un <em>outlink</em> de la página <span class="math notranslate nohighlight">\(i\)</span>. Esto ayuda en la situación en el que una página no apunte a ninguna otra y corrige la no distribución de su <em>pagerank</em>.</p>
+</div>
+<div class="section" id="adicion-de-un-factor-para-obtener-matrices-estocasticas-por-columnas">
+<h3>Adición de un factor para obtener matrices estocásticas por columnas<a class="headerlink" href="#adicion-de-un-factor-para-obtener-matrices-estocasticas-por-columnas" title="Permalink to this headline">¶</a></h3>
+<p>El cálculo del <em>pagerank</em> de <span class="math notranslate nohighlight">\(i\)</span> se modifica <strong>asumiendo</strong> que siempre existe al menos un <em>outlink</em> de la página <span class="math notranslate nohighlight">\(i\)</span> por un <a class="reference external" href="https://en.wikipedia.org/wiki/PageRank#Damping_factor"><em>damping factor</em></a>. Esto ayuda en la situación en el que una página no apunte a ninguna otra y corrige la no propagación de su <em>pagerank</em>.</p>
 <p>En el ejemplo anterior este supuesto no se cumple pues la página <span class="math notranslate nohighlight">\(4\)</span> no tiene <em>outlinks</em> (tiene una columna de ceros). Para modificar la situación anterior de forma matemática se realiza:</p>
 <div class="math notranslate nohighlight">
 \[P = Q + \frac{1}{n}ed^T\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(e = (1, \dots, 1)^T\)</span> y <span class="math notranslate nohighlight">\(d\)</span> es un vector con entradas <span class="math notranslate nohighlight">\(d_j = \begin{cases} 1 &amp; \text{ si } N_j = 0 \\ 0 &amp; \text{ en otro caso } \end{cases}\)</span> para <span class="math notranslate nohighlight">\(j=1, \dots, n\)</span>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>La <strong>interpretación</strong> que tiene tal adición del término <span class="math notranslate nohighlight">\(\frac{1}{n}ed^T\)</span> por llegar a una página que no tiene <em>outlinks</em> se interpreta como sigue: la <em>surfer</em> en un tiempo se aburrirá y elegirá una página de acuerdo a una distribución de probabilidad. Una de las distribuciones que se eligen para modelar tal elección es la <strong>uniforme</strong>, esto es, elige cualquiera de las páginas con la misma probabilidad.</p>
+<p>La <strong>interpretación</strong> que tiene tal adición del término <span class="math notranslate nohighlight">\(\frac{1}{n}ed^T\)</span> por llegar a una página que no tiene <em>outlinks</em> se realiza como sigue: la <em>surfer</em> necesariamente elegirá una página de forma aleatoria de acuerdo a una distribución de probabilidad. Una de las distribuciones que se eligen para modelar tal elección es la <strong>uniforme</strong>, esto es, elige cualquiera de las páginas con la misma probabilidad.</p>
 </div>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>La matriz <span class="math notranslate nohighlight">\(P\)</span> anterior es una matriz estocástica por columna (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic matrix</a>): tiene elementos <strong>no negativos</strong> y cada columna suma <span class="math notranslate nohighlight">\(1\)</span>. La <strong>matriz de transición</strong> de la cadena de Markov es <span class="math notranslate nohighlight">\(P^T\)</span>.</p>
+<p>La matriz <span class="math notranslate nohighlight">\(P\)</span> anterior es una matriz estocástica por columna, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic matrix</a>,: tiene elementos <strong>no negativos</strong> y cada columna suma <span class="math notranslate nohighlight">\(1\)</span>. La <strong>matriz de transición</strong> de la cadena de Markov es <span class="math notranslate nohighlight">\(P^T\)</span>.</p>
 </div>
 </div>
 <div class="section" id="id6">
@@ -2048,27 +2054,22 @@ r_n
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">d</span><span class="p">)</span> <span class="c1">#definition of P matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[0.   , 0.333, 0.   , 0.167, 0.   , 0.   ],
-       [0.333, 0.   , 0.   , 0.167, 0.   , 0.   ],
-       [0.   , 0.333, 0.   , 0.167, 0.333, 0.5  ],
-       [0.333, 0.   , 0.   , 0.167, 0.333, 0.   ],
-       [0.333, 0.333, 0.   , 0.167, 0.   , 0.5  ],
-       [0.   , 0.   , 1.   , 0.167, 0.333, 0.   ]])
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[0.    0.333 0.    0.167 0.    0.   ]
+ [0.333 0.    0.    0.167 0.    0.   ]
+ [0.    0.333 0.    0.167 0.333 0.5  ]
+ [0.333 0.    0.    0.167 0.333 0.   ]
+ [0.333 0.333 0.    0.167 0.    0.5  ]
+ [0.    0.    1.    0.167 0.333 0.   ]]
 </pre></div>
 </div>
 </div>
 </div>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>En cadenas de Markov el eigenvector <span class="math notranslate nohighlight">\(r\)</span> corresponde a la distribución de probabilidad estacionaria de la cadena. Los estados de la cadena son las páginas y las transiciones son los <em>links</em> entre las páginas.</p>
-</div>
-<p><strong>¿Qué interpretación tiene la posición <span class="math notranslate nohighlight">\(i\)</span> en el vector <span class="math notranslate nohighlight">\(r\)</span>?</strong></p>
-<p>El elemento en la posición <span class="math notranslate nohighlight">\(i\)</span> de <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(r_i\)</span>, es la probabilidad que después de un número grande de clicks a páginas Web de forma aleatoria, la <em>surfer</em> llegue a la página <span class="math notranslate nohighlight">\(i\)</span>. El modelo por tanto <strong>asume</strong> que la <em>surfer</em> da clicks a ligas de forma aleatoria hasta llegar a su sitio destino.</p>
 <p>Ver comentario sobre Schur en https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html</p>
 <p>https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.schur.html#scipy.linalg.schur</p>
 <div class="cell docutils container">
