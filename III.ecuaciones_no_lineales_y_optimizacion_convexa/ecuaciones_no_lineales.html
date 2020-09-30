@@ -241,7 +241,52 @@
             <i class="fas fa-list"></i> On this page
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sistemas-de-ecuaciones-lineales">
+   Sistemas de ecuaciones lineales
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpretacion-geometrica">
+   Interpretación geométrica
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algoritmos">
+   Algoritmos
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sistemas-triangulares">
+     Sistemas triangulares
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sistemas-no-triangulares">
+     Sistemas no triangulares
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sistemas-de-ecuaciones-lineales-square-underdetermined-overdetermined">
+   Sistemas de ecuaciones lineales
+   <em>
+    square
+   </em>
+   ,
+   <em>
+    underdetermined
+   </em>
+   ,
+   <em>
+    overdetermined
+   </em>
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -263,12 +308,79 @@
 <p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab_optimizacion:2.1.4</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion">liga</a>.</p>
 </div>
 <hr class="docutils" />
-<p>Nota generada a partir de .</p>
+<p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/home/MNO/Notas_github/III?preview=3.5.Aplicaciones_del_algebra_lineal_numerica.pdf">liga1</a>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Al final de esta nota el y la lectora:</p>
 <ul class="simple">
 <li></li>
 </ul>
+</div>
+<div class="section" id="sistemas-de-ecuaciones-lineales">
+<h2>Sistemas de ecuaciones lineales<a class="headerlink" href="#sistemas-de-ecuaciones-lineales" title="Permalink to this headline">¶</a></h2>
+<p>Las ecuaciones lineales tienen importantes aplicaciones en todas las áreas de la ciencia. La teoría del álgebra lineal nos permite tener resultados universales de las mismas y son una herramienta importante para aproximaciones a ecuaciones no lineales. Por ejemplo, al considerar pequeñas perturbaciones en un punto, un sistema no lineal puede típicamente aproximarse por un sistema lineal en una vecindad local del punto. Sin embargo, la linearización sólo describe propiedades locales y para un análisis global de problemas no lineales otras técnicas se requieren. Tales métodos típicamente utilizan esquemas iterativos para gradualmente aproximar la solución.</p>
+<p>En general son de la forma: <span class="math notranslate nohighlight">\($\begin{array}{ccc} a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n  &amp;= &amp; b_1 \\ a_{21}x_1 + a_{22}x_2 +  \cdots + a_{2n}x_n &amp;= &amp; b_2 \\ \vdots &amp; &amp; \\ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &amp;=&amp; b_m \end{array}\)</span>$</p>
+<p>donde: las <span class="math notranslate nohighlight">\(x_i\)</span>’s son las incógnitas y las <span class="math notranslate nohighlight">\(a_i\)</span>’s y <span class="math notranslate nohighlight">\(b_i\)</span>’s son constantes conocidas.</p>
+<p>Las entradas <span class="math notranslate nohighlight">\(a_{ij}\)</span>’s son llamadas <strong>coeficientes del sistema</strong> y forman a la <strong>matriz del sistema</strong> <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span>. El conjunto de <span class="math notranslate nohighlight">\(b_i\)</span>’s se le llama <strong>lado derecho del sistema</strong> y forma al <strong>vector de lado derecho</strong> <span class="math notranslate nohighlight">\(b \in \mathbb{R}^{m}\)</span>. Si todas las <span class="math notranslate nohighlight">\(b_i\)</span>’s son iguales a <span class="math notranslate nohighlight">\(0\)</span> el sistema se le nombra <strong>homogéneo</strong>.</p>
+<p><strong>3 posibilidades para solución del sistema anterior:</strong></p>
+<ul class="simple">
+<li><p><strong>Una única solución:</strong> sólo existe uno y sólo un conjunto de valores de <span class="math notranslate nohighlight">\(x_i\)</span>’s que satisfacen todas las ecuaciones simultáneamente y el sistema se nombra <strong>consistente</strong> o <strong>no singular</strong>.</p></li>
+<li><p><strong>Ninguna solución:</strong> no existe ningún conjunto de valores de <span class="math notranslate nohighlight">\(x_i\)</span>’s que satisfacen todas las ecuaciones simultáneamente (el conjunto solución es vacío) y el sistema se nombra <strong>inconsistente</strong> o singular.</p></li>
+<li><p><strong>Infinitas soluciones:</strong> hay una infinidad de conjuntos (distintos) de valores de las <span class="math notranslate nohighlight">\(x_i\)</span>’s que satisfacen todas las ecuaciones simultáneamente. Si un sistema tiene más de una solución entonces tiene una infinidad de soluciones y el sistema se nombra <strong>consistente</strong> o <strong>no singular</strong>.</p></li>
+</ul>
+</div>
+<div class="section" id="interpretacion-geometrica">
+<h2>Interpretación geométrica<a class="headerlink" href="#interpretacion-geometrica" title="Permalink to this headline">¶</a></h2>
+<p>Resolver un sistema de ecuaciones lineales equivale a encontrar la intersección entre rectas, planos o hiperplanos (2,3 o n dimensiones respectivamente). Por ejemplo para un caso de dos dimensiones se tiene:</p>
+<img src="https://dl.dropboxusercontent.com/s/p92z7zlquo1adbm/algebra_lineal_1.jpg?dl=0" heigth="700" width="700">
+<p>El inciso a) representa un sistema de ecuaciones lineales sin solución, el inciso b) infinitas soluciones (en el dibujo ligeramente se desplazó hacia abajo una de las rectas para mostrar ambas) y el inciso c) una única solución.</p>
+</div>
+<div class="section" id="algoritmos">
+<h2>Algoritmos<a class="headerlink" href="#algoritmos" title="Permalink to this headline">¶</a></h2>
+<p>Existen una gran cantidad de algoritmos para resolver los sistemas de ecuaciones. Típicamente se elige el algoritmo de acuerdo a las características de los coeficientes de la matriz del sistema y sus dimensiones.</p>
+<div class="section" id="sistemas-triangulares">
+<h3>Sistemas triangulares<a class="headerlink" href="#sistemas-triangulares" title="Permalink to this headline">¶</a></h3>
+<p>Son sistemas cuya matriz es triangular inferior o superior. Un sistema triangular inferior se resuelve con el método de sustitución hacia delante. Si es triangular superior se resuelve con el <strong>método de sustitución hacia atrás</strong>.</p>
+</div>
+<div class="section" id="sistemas-no-triangulares">
+<h3>Sistemas no triangulares<a class="headerlink" href="#sistemas-no-triangulares" title="Permalink to this headline">¶</a></h3>
+<p>Para sistemas de ecuaciones lineales más generales (no tienen estructura identificable) se tienen los <strong>métodos iterativos</strong> y <strong>directos o basados en factorizaciones matriciales</strong>.</p>
+<p>Entre los directos o basados en factorizaciones matriciales se encuentran:</p>
+<ul class="simple">
+<li><p>Eliminación Gaussiana o factorización LU.</p></li>
+<li><p>Factorización de Cholesky (la matriz del sistema debe ser definida positiva).</p></li>
+<li><p>Factorización QR.</p></li>
+<li><p>Descomposición en valores singulares (DVS o SVD por sus siglas en inglés).</p></li>
+</ul>
+<p>y como ejemplo de los iterativos están:</p>
+<ul class="simple">
+<li><p>Jacobi.</p></li>
+<li><p>Gauss-Seidel.</p></li>
+<li><p>Gradiente conjugado.</p></li>
+</ul>
+<p>Ambos métodos: iterativos y directos o basados en factorizaciones matriciales encuentran sistemas de ecuaciones equivalentes a partir de operaciones básicas del álgebra lineal.</p>
+<div class="tip admonition">
+<p class="admonition-title">Comentario</p>
+<p>Dos sistemas de ecuaciones lineales son equivalentes si tienen el mismo conjunto solución.</p>
+</div>
+</div>
+</div>
+<div class="section" id="sistemas-de-ecuaciones-lineales-square-underdetermined-overdetermined">
+<h2>Sistemas de ecuaciones lineales <em>square</em>, <em>underdetermined</em>, <em>overdetermined</em><a class="headerlink" href="#sistemas-de-ecuaciones-lineales-square-underdetermined-overdetermined" title="Permalink to this headline">¶</a></h2>
+<p>Entre las características que definen el problema a resolver y el tipo de algoritmo a usar se encuentran las dimensiones de una matriz. Si la matriz del sistema tiene más renglones que columnas, <span class="math notranslate nohighlight">\(m &gt; n\)</span>, se tiene un sistema <em><strong>overdetermined</strong></em>, si tiene más columnas que renglones, <span class="math notranslate nohighlight">\(m &lt; n\)</span>, se nombra <em><strong>underdetermined</strong></em> y si tiene el mismo número de renglones y columnas, <span class="math notranslate nohighlight">\(m=n\)</span>, se nombra <em><strong>square</strong></em>.</p>
+<p>En sistemas <em>overdetermined</em> con matriz del sistema de <em>rank</em> completo se busca resolver un <strong>problema de mínimos cuadrados</strong> de la forma:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{x \in \mathbb{R}^n} ||Ax-b||_2\]</div>
+<p>En sistemas <em>underdetermined</em> con matriz del sistema de <em>rank</em> completo se busca resolver el problema de optimización:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{x \in \mathcal{K}} ||x||_2\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(\mathcal{K} = \{x \in \mathbb{R}^n | Ax = b\}\)</span> y este es un <strong>problema de mínima norma</strong>.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>El problema de optimización para el caso de sistemas <em>underdetermined</em> y matriz del sistema de <em>rank</em> completo también puede escribirse como:</p>
+<div class="math notranslate nohighlight">
+\[\min_{x \in \mathbb{R}^n} ||x||_2\]</div>
+<div class="math notranslate nohighlight">
+\[\text{sujeto a:} Ax = b\]</div>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
@@ -280,8 +392,10 @@
 </ol>
 <p><strong>Referencias:</strong></p>
 <ol class="simple">
-<li></li>
+<li><p>C. Meyer, Matrix Analysis and Applied Linear Algebra, SIAM, 2000.</p></li>
+<li><p>R. Johansson, Numerical Python, Scientific Computing and Data Science Applications with Numpy, SciPy and Matplotlib, Apress, 2015.</p></li>
 </ol>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
