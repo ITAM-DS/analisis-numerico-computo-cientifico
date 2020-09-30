@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>2.4 Valores, vectores singulares y algoritmos para calcular la SVD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="../../_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/mystnb.js"></script>
+    <script src="../../_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3.1 Definición de problemas de optimización, conjuntos y funciones convexas" href="../../III.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html" />
+    <link rel="prev" title="2.3 Algoritmos y aplicaciones de eigenvalores y eigenvectores de una matriz" href="../2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../README.html">
+   Optimización
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  I. Cómputo científico
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../I.computo_cientifico/1.1/Analisis_numerico_y_computo_cientifico.html">
+   1.1 Análisis numérico y cómputo científico
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../I.computo_cientifico/1.2/Sistema_de_punto_flotante.html">
+   1.2 Sistema de punto flotante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html">
+   1.3 Normas vectoriales y matriciales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html">
+   1.4 Condición de un problema y estabilidad de un algoritmo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../I.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html">
+   1.5 Definición de función, continuidad y derivada
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../I.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html">
+   1.6 Polinomios de Taylor y diferenciación numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../I.computo_cientifico/1.7/Integracion_numerica.html">
+   1.7 Integración Numérica
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  II. Cómputo matricial
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html">
+   2.1 Operaciones y transformaciones básicas del Álgebra Lineal Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html">
+   2.2 Eigenvalores y eigenvectores
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html">
+   2.3 Algoritmos y aplicaciones de eigenvalores y eigenvectores de una matriz
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2.4 Valores, vectores singulares y algoritmos para calcular la SVD
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  III. Optimización convexa
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../III.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html">
+   3.1 Definición de problemas de optimización, conjuntos y funciones convexas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../III.optimizacion_convexa/3.2/Optimizacion_numerica_y_aprendizaje_de_maquina.html">
+   3.2 Optimización numérica y aprendizaje de máquina.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../III.optimizacion_convexa/3.3/Ecuaciones_no_lineales.html">
+   3.3 Ecuaciones no lineales
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/II.computo_matricial/2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/II.computo_matricial/2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> On this page
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#valor-singular">
+   Valor singular
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-singular-izquierdo-vector-singular-derecho">
+   Vector singular izquierdo, vector singular derecho
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#descomposicion-en-valores-singulares-svd">
+   Descomposición en valores singulares (SVD)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algunas-propiedades">
+   Algunas propiedades
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algunas-aplicaciones">
+   Algunas aplicaciones
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodos-numericos-para-calcular-svd">
+   Métodos numéricos para calcular SVD
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-de-rotaciones-de-jacobi-one-sided">
+   Método de rotaciones de Jacobi
+   <em>
+    one sided
+   </em>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algoritmo-metodo-de-rotaciones-de-jacobi-one-sided">
+     Algoritmo: Método de rotaciones de Jacobi
+     <em>
+      one sided
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="valores-vectores-singulares-y-algoritmos-para-calcular-la-svd">
+<span id="valvecsingalgsvd"></span><h1>2.4 Valores, vectores singulares y algoritmos para calcular la SVD<a class="headerlink" href="#valores-vectores-singulares-y-algoritmos-para-calcular-la-svd" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-notas-para-contenedor-de-docker admonition">
+<p class="admonition-title">Notas para contenedor de docker:</p>
+<p>Comando de docker para ejecución de la nota de forma local:</p>
+<p>nota: cambiar <code class="docutils literal notranslate"><span class="pre">&lt;ruta</span> <span class="pre">a</span> <span class="pre">mi</span> <span class="pre">directorio&gt;</span></code> por la ruta de directorio que se desea mapear a <code class="docutils literal notranslate"><span class="pre">/datos</span></code> dentro del contenedor de docker.</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--rm</span> <span class="pre">-v</span> <span class="pre">&lt;ruta</span> <span class="pre">a</span> <span class="pre">mi</span> <span class="pre">directorio&gt;:/datos</span> <span class="pre">--name</span> <span class="pre">jupyterlab_optimizacion</span> <span class="pre">-p</span> <span class="pre">8888:8888</span> <span class="pre">-d</span> <span class="pre">palmoreck/jupyterlab_optimizacion:2.1.4</span></code></p>
+<p>password para jupyterlab: <code class="docutils literal notranslate"><span class="pre">qwerty</span></code></p>
+<p>Detener el contenedor de docker:</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">stop</span> <span class="pre">jupyterlab_optimizacion</span></code></p>
+<p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab_optimizacion:2.1.4</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion">liga</a>.</p>
+</div>
+<hr class="docutils" />
+<p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0">liga</a>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Al final de esta nota el y la lectora:</p>
+<ul class="simple">
+<li><p>Aprenderá algunas definiciones y resultados de los valores y vectores singulares.</p></li>
+<li><p>Se proporcionará una lista de algoritmos para calcular la descomposición en valores singulares.</p></li>
+</ul>
+</div>
+<p>En esta nota <strong>asumimos</strong> que <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span>.</p>
+<div class="section" id="valor-singular">
+<h2>Valor singular<a class="headerlink" href="#valor-singular" title="Permalink to this headline">¶</a></h2>
+<p>El número <span class="math notranslate nohighlight">\(\sigma\)</span> se denomina valor <em>singular</em> de <span class="math notranslate nohighlight">\(A\)</span> si <span class="math notranslate nohighlight">\(\sigma = \sqrt{\lambda_{A^TA}} = \sqrt{\lambda_{AA^T}}\)</span> donde: <span class="math notranslate nohighlight">\(\lambda_{A^TA}\)</span> y <span class="math notranslate nohighlight">\(\lambda_{AA^T}\)</span> es eigenvalor de <span class="math notranslate nohighlight">\(A^TA\)</span> y <span class="math notranslate nohighlight">\(AA^T\)</span> respectivamente .</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>La definición se realiza sobre <span class="math notranslate nohighlight">\(A^TA\)</span> o <span class="math notranslate nohighlight">\(AA^T\)</span> pues éstas matrices tienen el mismo espectro y además sus eigenvalores son reales y no negativos por lo que <span class="math notranslate nohighlight">\(\sigma \in \mathbb{R}\)</span> y de hecho <span class="math notranslate nohighlight">\(\sigma \geq 0\)</span> (la raíz cuadrada se calcula para un eigenvalor no negativo).</p>
+</div>
+</div>
+<div class="section" id="vector-singular-izquierdo-vector-singular-derecho">
+<h2>Vector singular izquierdo, vector singular derecho<a class="headerlink" href="#vector-singular-izquierdo-vector-singular-derecho" title="Permalink to this headline">¶</a></h2>
+<p>Asociado con cada valor singular <span class="math notranslate nohighlight">\(\sigma\)</span> existen vectores singulares <span class="math notranslate nohighlight">\(u,v\)</span> que cumplen con la igualdad: <span class="math notranslate nohighlight">\($Av = \sigma u .\)</span>$ Al vector <span class="math notranslate nohighlight">\(u\)</span> se le nombra <strong>vector singular izquierdo</strong> y al vector <span class="math notranslate nohighlight">\(v\)</span> se le nombra <strong>vector singular derecho</strong>.</p>
+</div>
+<div class="section" id="descomposicion-en-valores-singulares-svd">
+<h2>Descomposición en valores singulares (SVD)<a class="headerlink" href="#descomposicion-en-valores-singulares-svd" title="Permalink to this headline">¶</a></h2>
+<p>Si <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{mxn}\)</span> entonces existen <span class="math notranslate nohighlight">\(U \in \mathbb{R}^{mxm}, V \in \mathbb{R}^{nxn}\)</span> ortogonales tales que: <span class="math notranslate nohighlight">\(A = U\Sigma V^T\)</span> con <span class="math notranslate nohighlight">\(\Sigma = diag(\sigma_1, \sigma_2, \dots, \sigma_p) \in \mathbb{R}^{mxn}\)</span>, <span class="math notranslate nohighlight">\(p = \min\{m,n\}\)</span> y <span class="math notranslate nohighlight">\(\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_p \geq 0\)</span>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>La notación <span class="math notranslate nohighlight">\(\sigma_1\)</span> hace referencia al valor singular más grande de A, <span class="math notranslate nohighlight">\(\sigma_2\)</span> al segundo valor singular más grande de A y así sucesivamente.</p></li>
+<li><p>La SVD que se definió arriba es nombrada <em>SVD full</em>, hay una forma <strong>truncada</strong> en la que <span class="math notranslate nohighlight">\(U \in \mathbb{R}^{mxk}\)</span>, <span class="math notranslate nohighlight">\(V \in \mathbb{R}^{nxk}\)</span> y <span class="math notranslate nohighlight">\(\Sigma \in \mathbb{R}^{kxk}\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="algunas-propiedades">
+<h2>Algunas propiedades<a class="headerlink" href="#algunas-propiedades" title="Permalink to this headline">¶</a></h2>
+<p>Existen diferentes propiedades de los valores y vectores singulares, aquí se enlistan algunas:</p>
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(rank(A) = r\)</span> entonces <span class="math notranslate nohighlight">\(r \leq p\)</span> y <span class="math notranslate nohighlight">\(\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r &gt; \sigma_{r+1} = \sigma_{r+2} = \dots = \sigma_p =  0\)</span>.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(rank(A) = r\)</span> entonces <span class="math notranslate nohighlight">\(A = \displaystyle \sum_{i=0}^r \sigma_i u_i v_i^T\)</span> con <span class="math notranslate nohighlight">\(u_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima columna de U y <span class="math notranslate nohighlight">\(v_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima columna de V.</p></li>
+<li><p>Geométricamente los valores singulares de una matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{mxn}\)</span> son las longitudes de los semiejes del hiperelipsoide <span class="math notranslate nohighlight">\(E\)</span> definido por <span class="math notranslate nohighlight">\(E = \{Ax : ||x||_2 \leq 1\}\)</span> y los vectores <span class="math notranslate nohighlight">\(u_i\)</span> son direcciones de estos semiejes; los vectores <span class="math notranslate nohighlight">\(vi\)</span>’s tienen norma igual a <span class="math notranslate nohighlight">\(1\)</span> por lo que se encuentran en una circunferencia de radio igual a <span class="math notranslate nohighlight">\(1\)</span> y como <span class="math notranslate nohighlight">\(Av_i = \sigma u_i\)</span> entonces <span class="math notranslate nohighlight">\(A\)</span> mapea los vectores <span class="math notranslate nohighlight">\(v_i\)</span>’s a los semiejes <span class="math notranslate nohighlight">\(u_i\)</span>’s respectivamente:</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/1yqoe4qibyyej53/svd_2.jpg?dl=0" heigth="700" width="700"><ul class="simple">
+<li><p>La SVD da bases ortogonales para los <span class="math notranslate nohighlight">\(4\)</span> espacios fundamentales de una matriz: espacio columna, espacio nulo izquierdo, espacio nulo y espacio renglón:</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/uo9s9f0nqi43s6d/svd_four_spaces_of_matrix.png?dl=0" heigth="600" width="600">
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(t &lt; r\)</span> y <span class="math notranslate nohighlight">\(r=rank(A)\)</span> entonces <span class="math notranslate nohighlight">\(A_t =  \displaystyle \sum_{i=0}^t \sigma_i u_i v_i^T\)</span> es una matriz de entre todas las matrices con <span class="math notranslate nohighlight">\(rank\)</span> igual a t, que es más <em>cercana</em> a A (la cercanía se mide con una norma <strong>matricial</strong>).</p></li>
+</ul>
+</div>
+<div class="section" id="algunas-aplicaciones">
+<h2>Algunas aplicaciones<a class="headerlink" href="#algunas-aplicaciones" title="Permalink to this headline">¶</a></h2>
+<p>Algunas de las aplicaciones de la SVD se encuentran:</p>
+<ul class="simple">
+<li><p>Procesamiento de imágenes y señales.</p></li>
+<li><p>Sistemas de recomendación (Netflix).</p></li>
+<li><p>Mínimos cuadrados.</p></li>
+<li><p>Componentes principales.</p></li>
+<li><p>Reconstrucción de imágenes.</p></li>
+</ul>
+</div>
+<div class="section" id="metodos-numericos-para-calcular-svd">
+<h2>Métodos numéricos para calcular SVD<a class="headerlink" href="#metodos-numericos-para-calcular-svd" title="Permalink to this headline">¶</a></h2>
+<p>Algunos métodos para calcular la descomposición en valores singulares de una matriz son:</p>
+<ul class="simple">
+<li><p>Método de rotaciones de Jacobi <em><strong>one sided</strong></em>, ver <a class="reference internal" href="../2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html#rotjacmatsim"><span class="std std-ref">rotaciones de Jacobi para matrices simétricas</span></a> en el que se utiliza el <em><strong>two sided</strong></em>.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Bidiagonalization">Bidiagonalización</a>.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Power_iteration">Método de la potencia</a> en el que se utiliza el <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Rayleigh_quotient">cociente de Rayleigh</a></strong> para acelerar convergencia, ver <a class="reference internal" href="../2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html#mpotmatsim"><span class="std std-ref">método de la potencia para matrices simétricas</span></a> y la <a class="reference internal" href="../2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html#itercraymatsim"><span class="std std-ref">iteración por el cociente de Rayleigh para matrices simétricas</span></a>.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/QR_algorithm">Algoritmo QR</a> que se basa en la factorización QR, ver <a class="reference internal" href="../2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html#algqr"><span class="std std-ref">algoritmo QR o *QR iteration* (versión simple) para matrices simétricas</span></a>.</p></li>
+<li><p>Métodos de descenso aplicados a problemas de optimización.</p></li>
+<li><p>Para casos particulares como una matriz <span class="math notranslate nohighlight">\(X\)</span> <em>sparse</em> o rala (gran cantidad de ceros) se utilizan algoritmos como <a class="reference external" href="http://www.netlib.org/utk/people/JackDongarra/etemplates/node198.html"><strong>Lanczos Golub Kahan bidiagonalization</strong></a> que forma parte de una amplia clases de métodos nombrados <a class="reference external" href="https://en.wikipedia.org/wiki/Krylov_subspace"><strong>Krylov subspace methods</strong></a> y el algoritmo de <a class="reference external" href="https://en.wikipedia.org/wiki/Lanczos_algorithm"><strong>tridiagonalización Lanczos</strong></a>.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>En numpy con <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html">numpy.linalg.svd</a> podemos calcular la SVD de <span class="math notranslate nohighlight">\(A\)</span>, obsérvese en la ayuda  que se regresa <span class="math notranslate nohighlight">\(V^T\)</span> y no <span class="math notranslate nohighlight">\(V\)</span>.</p>
+</div>
+</div>
+<div class="section" id="metodo-de-rotaciones-de-jacobi-one-sided">
+<h2>Método de rotaciones de Jacobi <em>one sided</em><a class="headerlink" href="#metodo-de-rotaciones-de-jacobi-one-sided" title="Permalink to this headline">¶</a></h2>
+<p>En este método se utilizan rotaciones Givens, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>, para construir a la matriz ortogonal <span class="math notranslate nohighlight">\(V \in \mathbb{R}^{n \times n}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[AV \rightarrow W \in  \mathbb{R}^{m \times n}\]</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Las normas Euclidianas de las columnas de <span class="math notranslate nohighlight">\(W\)</span> construyen a los valores singulares <span class="math notranslate nohighlight">\(\sigma_i \forall i=1,\dots,r\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}W = [U_1 \quad 0]\left[ \begin{array}{cc}
+\Sigma &amp; 0\\
+0 &amp; 0
+\end{array}
+\right]\end{split}\]</div>
+<p>con <span class="math notranslate nohighlight">\(U_1 \in \mathbb{R}^{m \times r}\)</span> matriz con columnas ortonormales: <span class="math notranslate nohighlight">\(U_1^TU_1=I_r\)</span> y <span class="math notranslate nohighlight">\(\Sigma = diag(\sigma_1,\dots, \sigma_r)\)</span> matriz diagonal.</p>
+</div>
+<div class="section" id="algoritmo-metodo-de-rotaciones-de-jacobi-one-sided">
+<h3>Algoritmo: Método de rotaciones de Jacobi <em>one sided</em><a class="headerlink" href="#algoritmo-metodo-de-rotaciones-de-jacobi-one-sided" title="Permalink to this headline">¶</a></h3>
+<p>Se denota <span class="math notranslate nohighlight">\(A_k=[a_1^{(k)} a_2^{(k)} \cdots a_n^{(k)}]\)</span> con cada <span class="math notranslate nohighlight">\(a_i^{(k)}\)</span> como <span class="math notranslate nohighlight">\(i\)</span>-ésima columna de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<blockquote>
+<div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> y <span class="math notranslate nohighlight">\(tol &gt;0\)</span> <strong>definir</strong> <span class="math notranslate nohighlight">\(A_0 = A\)</span>, <span class="math notranslate nohighlight">\(Q_0 = I_n\)</span>.</p>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p>Elegir un par de índices <span class="math notranslate nohighlight">\((idx1,idx2)\)</span> con alguna de las metodologías descritas en el bloque siguiente de comentarios.</p></li>
+<li><p>Revisar si las columnas <span class="math notranslate nohighlight">\(a_i^{(k)}, a_j^{(k)}\)</span> de <span class="math notranslate nohighlight">\(A^{(k)}\)</span> son ortogonales (el chequeo se describe en los comentarios). Si son ortogonales se incrementa por uno la variable <span class="math notranslate nohighlight">\(num\text{_}columnas\text{_}ortogonales\)</span>. Si no son ortogonales: Calcular <span class="math notranslate nohighlight">\(\left[ \begin{array}{cc}
+a &amp; c\\
+c &amp; b
+\end{array}
+\right]\)</span> la submatriz <span class="math notranslate nohighlight">\((i,j)\)</span> de <span class="math notranslate nohighlight">\(A_k^{T}A_k\)</span> donde: <span class="math notranslate nohighlight">\(a = ||a_i^{(k)}||_2^2, b=||a_j^{(k)}||_2^2, c=a_i^{T(k)}a_j^{(k)}\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<blockquote>
+<div><ol class="simple">
+<li><p>Si no fueron ortogonales las columnas del paso 2, calcular las entradas <span class="math notranslate nohighlight">\(\cos(\theta),\sin(\theta)\)</span> de la matriz de rotación <span class="math notranslate nohighlight">\(J_k\)</span> que diagonaliza <span class="math notranslate nohighlight">\(\left[ \begin{array}{cc}
+a &amp; c\\
+c &amp; b
+\end{array}
+\right]\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<blockquote>
+<div><ol class="simple">
+<li><p>Si no fueron ortogonales las columnas del paso 2, actualizar las columnas <span class="math notranslate nohighlight">\(i,j\)</span> de <span class="math notranslate nohighlight">\(A_k\)</span>.</p></li>
+<li><p>Si no fueron ortogonales las columnas del paso 2, actualizar a la matriz <span class="math notranslate nohighlight">\(V_k\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(num\text{_}columnas\text{_}ortogonales\)</span> y <span class="math notranslate nohighlight">\(maxsweeps\)</span>.</p>
+</div></blockquote>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>En el método se hace mención de <strong>metodologías</strong> que ayudan a elegir los índices del renglón y columna del par de entradas de <span class="math notranslate nohighlight">\(A\)</span> que serán eliminadas (hacer cercanas a cero). Algunas de éstas son:</p>
+<ul>
+<li><p>Elegir <span class="math notranslate nohighlight">\((idx1,idx2)\)</span> tales que <span class="math notranslate nohighlight">\(|a_{idx1,idx2}| = \displaystyle \max_{i \neq j}|a_{ij}|\)</span>.</p></li>
+<li><p><strong>Ordenamiento cíclico por renglones:</strong> elegir <span class="math notranslate nohighlight">\((idx1, idx2)\)</span> en el conjunto <span class="math notranslate nohighlight">\((1,2),(1,3),\dots,(1,n),(2,3),(2,4)\dots,(n-1,n)\)</span>.</p></li>
+</ul>
+</li>
+<li><p>En matrices mayores a dos dimensiones el método de rotaciones de Jacobi <em>one sided</em> requiere <strong>ortogonalización repetida</strong> (volver a hacer columnas ortogonales) del par de columnas de <span class="math notranslate nohighlight">\(A\)</span> seleccionadas de iteraciones previas pues en cada iteración vuelven a ser no ortogonales en general.</p></li>
+<li><p>¿Cómo revisar si las columnas  <span class="math notranslate nohighlight">\(i,j\)</span> de <span class="math notranslate nohighlight">\(A_k\)</span> son ortogonales?  si se cumple que</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\frac{|a_i^{T (k)}a_j^{(k)}|}{||a_i^{(k)}||_2||a_j^{(k)}||_2} &lt; tol\]</div>
+<p>con <span class="math notranslate nohighlight">\(tol\)</span> un valor menor o igual a <span class="math notranslate nohighlight">\(10^{-8}\)</span> entonces son ortogonales las columnas <span class="math notranslate nohighlight">\(a_i^{(k)}, a_j^{(k)}\)</span> de <span class="math notranslate nohighlight">\(A_k\)</span>.</p>
+<ul class="simple">
+<li><p>Las entradas de la matriz <span class="math notranslate nohighlight">\(J_k\)</span> son: <span class="math notranslate nohighlight">\(\xi = \frac{b-a}{2c}, t=\frac{signo(\xi)}{|\xi| + \sqrt{1+\xi^2}}, cs = \frac{1}{\sqrt{1+t^2}}, sn = cs*t\)</span>.</p></li>
+<li><p>Para actualizar las columnas <span class="math notranslate nohighlight">\(i,j\)</span> de <span class="math notranslate nohighlight">\(A_k\)</span> utilizar: para <span class="math notranslate nohighlight">\(\ell\)</span> de <span class="math notranslate nohighlight">\(1\)</span> a <span class="math notranslate nohighlight">\(n\)</span>:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(temp = A^{(k)}_{\ell i}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{\ell i}^{(k)} = cs*temp - sn*A_{\ell j}^{(k)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{\ell j}^{(k)} = sn*temp + cs*A_{\ell j}^{(k)}\)</span></p></li>
+</ul>
+</li>
+<li><p>Para actualizar a la matriz <span class="math notranslate nohighlight">\(V^_k\)</span> utilizar: para <span class="math notranslate nohighlight">\(\ell\)</span> de <span class="math notranslate nohighlight">\(1\)</span> a <span class="math notranslate nohighlight">\(n\)</span>:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(temp = V_{\ell i}^{(k)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{\ell i}^{(k)} = cs*temp - sn*V_{\ell j}^{(k)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V_{\ell j}^{(k)} = sn*temp + cs*V_{\ell j}^{(k)}\)</span></p></li>
+</ul>
+</li>
+<li><p>El método de rotaciones de Jacobi para matrices simétricas utiliza como criterios de paro:</p>
+<ul>
+<li><p>La cantidad <span class="math notranslate nohighlight">\(num\text{_}columnas\text{_}ortogonales\)</span></p></li>
+<li><p>Número máximo de <em>sweeps</em>. Un <em>sweep</em> consiste de como máximo <span class="math notranslate nohighlight">\(\frac{n(n-1)}{2}\)</span> rotaciones (pues depende de cuántas columnas son o no ortogonales) y en cada <em>sweep</em> se ortogonalizan <span class="math notranslate nohighlight">\(2\)</span> columnas. El criterio de paro es de la forma:</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">num_columnas_ortogonales</span> <span class="o">!=</span> <span class="n">n</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="n">sweeps</span> <span class="o">&lt;</span> <span class="n">max_sweeps</span>
+</pre></div>
+</div>
+<p>con <code class="docutils literal notranslate"><span class="pre">sweeps</span></code> contador de los <em>sweeps</em>.</p>
+<ul class="simple">
+<li><p>Al finalizar el método, los valores singulares calculados son las normas Euclidianas de cada columna de <span class="math notranslate nohighlight">\(A_k_\)</span> y las columnas normalizadas de <span class="math notranslate nohighlight">\(A_k\)</span> son las columnas de <span class="math notranslate nohighlight">\(U\)</span>.</p></li>
+</ul>
+</div>
+<p><strong>Preguntas de comprehensión</strong></p>
+<ol class="simple">
+<li></li>
+</ol>
+<p><strong>Referencias</strong></p>
+<ol class="simple">
+<li><p>L. Trefethen, D. Bau, Numerical linear algebra, SIAM, 1997.</p></li>
+<li><p>G. H. Golub, C. F. Van Loan, Matrix Computations, John Hopkins University Press, 2013.</p></li>
+<li><p>C. Meyer, Matrix Analysis and Applied Linear Algebra, SIAM, 2000.</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "palmoreck/dockerfiles-for-binder",
+            ref: "jupyterlab_optimizacion",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./II.computo_matricial/2.4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html" title="previous page">2.3 Algoritmos y aplicaciones de eigenvalores y eigenvectores de una matriz</a>
+    <a class='right-next' id="next-link" href="../../III.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html" title="next page">3.1 Definición de problemas de optimización, conjuntos y funciones convexas</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Erick Palacios Moreno<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="../../_static/js/index.js"></script>
+    
+  </body>
+</html>

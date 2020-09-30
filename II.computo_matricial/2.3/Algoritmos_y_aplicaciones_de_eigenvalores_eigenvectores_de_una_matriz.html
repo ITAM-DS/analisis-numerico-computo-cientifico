@@ -39,7 +39,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="3.1 Definición de problemas de optimización, conjuntos y funciones convexas" href="../../III.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html" />
+    <link rel="next" title="2.4 Valores, vectores singulares y algoritmos para calcular la SVD" href="../2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.html" />
     <link rel="prev" title="2.2 Eigenvalores y eigenvectores" href="../2.2/Eigenvalores_y_eigenvectores.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -139,6 +139,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    2.3 Algoritmos y aplicaciones de eigenvalores y eigenvectores de una matriz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.html">
+   2.4 Valores, vectores singulares y algoritmos para calcular la SVD
   </a>
  </li>
 </ul>
@@ -453,7 +458,7 @@
 </div>
 <p>En esta nota <strong>asumimos</strong> que la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> es simétrica. Esto tiene como consecuencia que sus eigenvalores son reales y existe una base de eigenvectores ortonormal, ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#descesp"><span class="std std-ref">descomposición espectral de una matriz simétrica</span></a>.</p>
 <div class="section" id="rotaciones-de-jacobi-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
-<h2>Rotaciones de Jacobi para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#rotaciones-de-jacobi-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
+<span id="rotjacmatsim"></span><h2>Rotaciones de Jacobi para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#rotaciones-de-jacobi-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
 <p>Este método produce una secuencia de transformaciones ortogonales de la forma <span class="math notranslate nohighlight">\(J_k^TAJ_k\)</span> con el objetivo de hacer “más diagonal” a la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>.</p>
 <p>Si la matriz <span class="math notranslate nohighlight">\(A\)</span> es simétrica y <span class="math notranslate nohighlight">\(J_0\)</span> es una transformación de rotación de Jacobi, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>, entonces el esquema iterativo:</p>
 <div class="math notranslate nohighlight">
@@ -476,7 +481,7 @@
 <li><p><span class="math notranslate nohighlight">\(Q_{k+1} = Q_{k}J_k\)</span>.</p></li>
 </ol>
 </div></blockquote>
-<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
+<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span> y <span class="math notranslate nohighlight">\(maxsweeps\)</span>.</p>
 </div></blockquote>
 <p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> se utiliza para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>, esto  preserva la simetría de la matriz original. En las columnas de la matriz <span class="math notranslate nohighlight">\(Q_{k}\)</span> se encuentran aproximaciones a los eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> y en la diagonal de <span class="math notranslate nohighlight">\(A_{k}\)</span> se tienen aproximaciones a los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="admonition-comentarios admonition">
@@ -1261,7 +1266,7 @@ A =
 </div>
 </div>
 <div class="section" id="algoritmo-qr-o-qr-iteration-version-simple-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
-<h2>Algoritmo QR o <em>QR iteration</em> (versión simple) para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#algoritmo-qr-o-qr-iteration-version-simple-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
+<span id="algqr"></span><h2>Algoritmo QR o <em>QR iteration</em> (versión simple) para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#algoritmo-qr-o-qr-iteration-version-simple-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
 <p>Este método produce una secuencia de transformaciones ortogonales de la forma <span class="math notranslate nohighlight">\(Q_k^TAQ_k\)</span> con el objetivo de hacer “más diagonal” a la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>.</p>
 <p>Si la matriz <span class="math notranslate nohighlight">\(A\)</span> es simétrica y <span class="math notranslate nohighlight">\(Q_0\)</span> es una matriz con columnas linealmente independientes entonces el esquema iterativo:</p>
 <div class="math notranslate nohighlight">
@@ -1784,7 +1789,7 @@ z^{(k)} &amp;=&amp; A z^{(k-1)} = A^2 z^{(k-2)} = \cdots = A^k z^{(0)} \nonumber
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz_185_0.png" src="../../_images/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz_185_0.png" />
+<img alt="../../_images/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz_187_0.png" src="../../_images/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz_187_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -1890,7 +1895,7 @@ eigenvectores:
 </div>
 </div>
 <div class="section" id="iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
-<h2>Iteración por el cociente de Rayleigh para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
+<span id="itercraymatsim"></span><h2>Iteración por el cociente de Rayleigh para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
 <p>El cociente de Rayleigh de <span class="math notranslate nohighlight">\(x\)</span> se define como:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2354,7 +2359,7 @@ r_n
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="../2.2/Eigenvalores_y_eigenvectores.html" title="previous page">2.2 Eigenvalores y eigenvectores</a>
-    <a class='right-next' id="next-link" href="../../III.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html" title="next page">3.1 Definición de problemas de optimización, conjuntos y funciones convexas</a>
+    <a class='right-next' id="next-link" href="../2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.html" title="next page">2.4 Valores, vectores singulares y algoritmos para calcular la SVD</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
