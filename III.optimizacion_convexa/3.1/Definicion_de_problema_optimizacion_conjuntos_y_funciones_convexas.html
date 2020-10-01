@@ -159,6 +159,34 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="#funcion-convexa">
+   Función convexa
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#conjunto-convexo">
+   Conjunto convexo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#ejemplos-de-funciones-convexas-y-concavas">
+   Ejemplos de funciones convexas y cóncavas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#resultados-utiles-de-teoria-de-convexidad">
+   Resultados útiles de teoría de convexidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#tablita-util-para-formulas-de-diferenciacion-con-el-operador-nabla">
+   Tablita útil para fórmulas de diferenciación con el operador
+   <span class="math notranslate nohighlight">
+    \(\nabla\)
+   </span>
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../3.2/Optimizacion_numerica_y_aprendizaje_de_maquina.html">
    3.2 Optimización numérica y aprendizaje de máquina.
   </a>
@@ -257,7 +285,66 @@
             <i class="fas fa-list"></i> On this page
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problemas-de-optimizacion-numerica">
+   ¿Problemas de optimización numérica?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo">
+     Ejemplo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Ejemplo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimizacion-numerica-convexa">
+   ¿Optimización numérica convexa?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problema-estandar-de-optimizacion">
+   Problema estándar de optimización
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dominio-del-problema-de-optimizacion">
+   Dominio del problema de optimización
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimo-del-problema-de-optimizacion">
+   Óptimo del problema de optimización
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#punto-optimo-del-problema-de-optimizacion">
+   Punto óptimo del problema de optimización
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimo-local">
+   Óptimo local
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#restricciones-activas-no-activas-y-redundantes">
+   Restricciones activas, no activas y redundantes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problemas-de-optimizacion-convexa-en-su-forma-estandar-o-canonica">
+   Problemas de optimización convexa en su forma estándar o canónica
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -279,21 +366,360 @@
 <p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab_optimizacion:2.1.4</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion">liga</a>.</p>
 </div>
 <hr class="docutils" />
-<p>Nota generada a partir de .</p>
+<p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/qb3swgkpaps7yba/4.1.Introduccion_optimizacion_convexa.pdf?dl=0">liga1</a>, <a class="reference external" href="https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0">liga2</a>, <a class="reference external" href="https://www.dropbox.com/s/ko86cce1olbtsbk/4.3.1.Teoria_de_convexidad_Conjuntos_convexos.pdf?dl=0">liga3</a>, <a class="reference external" href="https://www.dropbox.com/s/mmd1uzvwhdwsyiu/4.3.2.Teoria_de_convexidad_Funciones_convexas.pdf?dl=0">liga4</a>, <a class="reference external" href="https://drive.google.com/file/d/1xtkxPCx05Xg4Dj7JZoQ-LusBDrtYUqOF/view">liga5</a>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Al final de esta nota el y la lectora:</p>
 <ul class="simple">
 <li></li>
 </ul>
 </div>
+<div class="section" id="problemas-de-optimizacion-numerica">
+<h2>¿Problemas de optimización numérica?<a class="headerlink" href="#problemas-de-optimizacion-numerica" title="Permalink to this headline">¶</a></h2>
+<p>Una gran cantidad de aplicaciones plantean problemas de optimización. Tenemos problemas básicos que se presentan en cursos iniciales de cálculo:</p>
+<p><em>Una caja con base y tapa cuadradas debe tener un volumen de <span class="math notranslate nohighlight">\(100 cm^3\)</span>. Encuentre las dimensiones de la caja que minimicen la cantidad de material.</em></p>
+<p>Y tenemos más especializados que encontramos en áreas como estadística, ingeniería, finanzas o <em>machine learning</em>:</p>
+<ul class="simple">
+<li><p>Ajustar un modelo de regresión lineal a un conjunto de datos.</p></li>
+<li><p>Buscar la mejor forma de invertir un capital en un conjunto de activos.</p></li>
+<li><p>Elección del ancho y largo de un dispositivo en un circuito electrónico.</p></li>
+<li><p>Ajustar un modelo que clasifique un conjunto de datos.</p></li>
+</ul>
+<p>En general un problema de optimización matemática o numérica tiene la forma:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min f_o(x)\]</div>
+<div class="math notranslate nohighlight">
+\[\text{sujeto a:} f_i(x) \leq b_i, i=1,\dots, m\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(x=(x_1,x_2,\dots, x_n)^T\)</span> es la <strong>variable de optimización del problema</strong>, la función <span class="math notranslate nohighlight">\(f_o: \mathbb{R}^{n} \rightarrow \mathbb{R}\)</span> es la <strong>función objetivo</strong>, las funciones <span class="math notranslate nohighlight">\(f_i: \mathbb{R}^n \rightarrow \mathbb{R}, i=1,\dots,m\)</span> son las <strong>funciones de restricción</strong> (aquí se colocan únicamente desigualdades pero pueden ser sólo igualdades o bien una combinación de ellas) y las constantes <span class="math notranslate nohighlight">\(b_1,b_2,\dots, b_m\)</span> son los <strong>límites o cotas de las restricciones</strong>.</p>
+<p>Un vector <span class="math notranslate nohighlight">\(x^* \in \mathbb{R}^n\)</span> es nombrado <strong>óptimo</strong> o solución del problema anterior si tiene el valor más pequeño de entre todos los vectores <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span> que satisfacen las restricciones. Por ejemplo, si <span class="math notranslate nohighlight">\(z \in \mathbb{R}^n\)</span> satisface <span class="math notranslate nohighlight">\(f_1(z) \leq b_1, f_2(z) \leq b_2, \dots, f_m(z) \leq b_m\)</span> y <span class="math notranslate nohighlight">\(x^*\)</span> es óptimo entonces <span class="math notranslate nohighlight">\(f_o(z) \geq f_o(x^*)\)</span>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Se consideran funciones objetivo <span class="math notranslate nohighlight">\(f_o: \mathbb{R}^n \rightarrow \mathbb{R}\)</span>, sin embargo, hay formulaciones que utilizan <span class="math notranslate nohighlight">\(f_o: \mathbb{R}^n \rightarrow \mathbb{R}^q\)</span>. Tales formulaciones pueden hallarlas en la optimización multicriterio, multiobjetivo, vectorial o también nombrada Pareto, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Multi-objective_optimization">Multi objective optimization</a>.</p></li>
+<li><p>El problema de optimización definido utiliza una forma de minimización y no de maximización. Típicamente en la literatura por convención se consideran problemas de este tipo. Además minimizar <span class="math notranslate nohighlight">\(f_o\)</span> y maximizar <span class="math notranslate nohighlight">\(-f_o\)</span> son <strong>problemas de optimización equivalentes</strong>: a grandes rasgos dos problemas de optimización son equivalentes si con la solución de uno de ellos se obtiene la solución del otro y viceversa.</p></li>
+</ul>
+</div>
+<div class="section" id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{x \in \mathbb{R}^n} ||x||_2\]</div>
+<div class="math notranslate nohighlight">
+\[\text{sujeto a:} Ax \leq b\]</div>
+<p>con <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m\)</span>. En este problema buscamos el vector <span class="math notranslate nohighlight">\(x\)</span> que es solución del problema <span class="math notranslate nohighlight">\(Ax \leq b\)</span> con <strong>mínima norma Euclidiana</strong>. La función objetivo es <span class="math notranslate nohighlight">\(f_o(x)=||x||_2\)</span>, las funciones de restricción son las desigualdades lineales <span class="math notranslate nohighlight">\(f_i(x) = a_i^Tx \leq b_i\)</span> con <span class="math notranslate nohighlight">\(a_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima componente de <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(\forall i=1,\dots,m\)</span>.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Un problema similar al anterior lo podemos encontrar en resolver el sistema de ecuaciones lineales <span class="math notranslate nohighlight">\(Ax=b\)</span> <em>underdetermined</em> en el que <span class="math notranslate nohighlight">\(m &lt; n\)</span> y se busca el vector <span class="math notranslate nohighlight">\(x\)</span> con mínima norma Euclidiana que satisfaga tal sistema. Tal sistema puede tener infinitas soluciones o ninguna solución.</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Ejemplo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Encuentra el punto en la gráfica de <span class="math notranslate nohighlight">\(y=x^2\)</span> que es más cercano al punto <span class="math notranslate nohighlight">\(P=(1,0)\)</span> bajo la norma Euclidiana.</p>
+<p>Deseamos minimizar la cantidad <span class="math notranslate nohighlight">\(||(1,0)-(x,y)||_2\)</span>. Además <span class="math notranslate nohighlight">\(y = y(x)\)</span> por lo que reescribiendo lo anterior se tiene <span class="math notranslate nohighlight">\(f_o(x) = ||(1,0)-(x,x^2)||_2=||(1-x,-x^2)||_2=\sqrt{(1-x)^2+x^4}\)</span>. Entonces el problema de optimización (sin restricciones) es:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{x \in \text{dom}f_o}\sqrt{(1-x)^2+x^4}\]</div>
+</div>
+</div>
+<div class="section" id="optimizacion-numerica-convexa">
+<h2>¿Optimización numérica convexa?<a class="headerlink" href="#optimizacion-numerica-convexa" title="Permalink to this headline">¶</a></h2>
+<p>Aplicaciones de <em>machine learning</em> conducen al planteamiento de problemas de optimización convexa y no convexa.</p>
+<p>Ejemplo de <strong>problemas convexos</strong> los encontramos en la aplicación de clasificación de textos en donde se desea asignar un texto a clases definidas de acuerdo a su contenido (p.ej. determinar si un docu de texto es sobre política). La aplicación anterior puede formularse utilizando <strong>funciones de pérdida convexas</strong>.</p>
+<p>Como ejemplos de aplicaciones en el ámbito de la <strong>optimización no convexa</strong> están el reconocimiento de voz y reconocimiento de imágenes. El uso de <a class="reference external" href="https://en.wikipedia.org/wiki/Artificial_neural_network">redes neuronales</a> <a class="reference external" href="https://en.wikipedia.org/wiki/Deep_learning">profundas</a>* ha tenido muy buen desempeño en tales aplicaciones haciendo uso de cómputo en la GPU, ver <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA.ipynb">2.3.CUDA</a>, <a class="reference external" href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">ImageNet Classification with Deep Convolutional Neural Networks</a>, <a class="reference external" href="https://medium.com/limitlessai/2012-a-breakthrough-year-for-deep-learning-2a31a6796e73">2012: A Breakthrough Year for Deep Learning</a>. En este caso se utilizan <strong>funciones objetivo no lineales y no convexas</strong>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Desde los <span class="math notranslate nohighlight">\(40\)</span>’s se han desarrollado algoritmos para resolver problemas de optimización, se han analizado sus propiedades y se han desarrollado buenas implementaciones de software.  Sin embargo, una clase de problemas de optimización en los que encontramos métodos <strong>efectivos</strong> son los convexos.</p></li>
+<li><p>Métodos para optimización no convexa utilizan parte de la teoría de convexidad desarrollada en optimización convexa. Además un buen número de problemas de aprendizaje utilizan funciones de pérdida convexas**.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="problema-estandar-de-optimizacion">
+<h2>Problema estándar de optimización<a class="headerlink" href="#problema-estandar-de-optimizacion" title="Permalink to this headline">¶</a></h2>
+<p>En lo que continúa se considera <span class="math notranslate nohighlight">\(f_0 = f_o\)</span> (el subíndice “0” y el subíndice “o” son iguales)</p>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>Un problema estándar de optimización es:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min f_o(x)\]</div>
+<div class="math notranslate nohighlight">
+\[\text{sujeto a:}\]</div>
+<div class="math notranslate nohighlight">
+\[f_i(x) \leq 0, \quad \forall i=1,\dots,m\]</div>
+<div class="math notranslate nohighlight">
+\[h_i(x) = 0, \quad \forall i=1,\dots,p\]</div>
+<p>con <span class="math notranslate nohighlight">\(f_i: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> <span class="math notranslate nohighlight">\(\forall i=0,\dots,m\)</span>, <span class="math notranslate nohighlight">\(h_i: \mathbb{R}^n \rightarrow \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(\forall i=1,\dots,p\)</span>. <span class="math notranslate nohighlight">\(f_i\)</span> son las <strong>restricciones de desigualdad</strong>, <span class="math notranslate nohighlight">\(h_i\)</span> son las <strong>restricciones de igualdad</strong>.</p>
+</div>
+</div>
+<div class="section" id="dominio-del-problema-de-optimizacion">
+<h2>Dominio del problema de optimización<a class="headerlink" href="#dominio-del-problema-de-optimizacion" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>El conjunto de puntos para los que la función objetivo y las funciones de restricción <span class="math notranslate nohighlight">\(f_i, h_i\)</span> están definidas se nombra <strong>dominio del problema de optimización</strong>, esto es:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{D} = \bigcap_{i=0}^m\text{dom}f_i \cap \bigcap_{i=1}^p\text{dom}h_i.\]</div>
+</div>
+<p>(en github aparecen los símbolos de intersección más abajo de lo que deberían aparecer…abriendo con jupyter el notebook esto no pasa…)</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Un punto <span class="math notranslate nohighlight">\(x \in \mathcal{D}\)</span> se nombra <strong>factible</strong> si satisface las restricciones de igualdad y desigualdad. El conjunto de puntos factibles se nombra <strong>conjunto de factibilidad</strong>.</p></li>
+<li><p>El problema anterior se nombra <strong>problema de optimización factible</strong> si existe <strong>al menos un punto factible</strong>, si no se cumple lo anterior entonces es infactible.</p></li>
+</ul>
+</div>
+<p><strong>En lo que continúa se asumen todos los puntos en el dominio <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>.</strong></p>
+</div>
+<div class="section" id="optimo-del-problema-de-optimizacion">
+<h2>Óptimo del problema de optimización<a class="headerlink" href="#optimo-del-problema-de-optimizacion" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>El valor óptimo del problema se denota como <span class="math notranslate nohighlight">\(p^*\)</span>. En notación matemática es:</p>
+<div class="math notranslate nohighlight">
+\[p^* = \inf\{f_o(x) | f_i(x) \leq 0, \forall i=1,\dots,m, h_i(x) = 0 \forall i=1,\dots,p\}\]</div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Si el problema es <strong>infactible</strong> entonces <span class="math notranslate nohighlight">\(p^* = \infty\)</span>.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(\exists x_k\)</span> factible tal que <span class="math notranslate nohighlight">\(f_o(x_k) \rightarrow -\infty\)</span> para <span class="math notranslate nohighlight">\(k \rightarrow \infty\)</span> entonces <span class="math notranslate nohighlight">\(p^*=-\infty\)</span> y se nombra <strong>problema de optimización no acotado por debajo</strong>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="punto-optimo-del-problema-de-optimizacion">
+<h2>Punto óptimo del problema de optimización<a class="headerlink" href="#punto-optimo-del-problema-de-optimizacion" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p><span class="math notranslate nohighlight">\(x^*\)</span> es <strong>punto óptimo</strong> si es factible y <span class="math notranslate nohighlight">\(f_o(x^*) = p^*\)</span>.</p>
+<p>El conjunto de óptimos se nombra <strong>conjunto óptimo</strong> y se denota:</p>
+<div class="math notranslate nohighlight">
+\[X_{\text{opt}} = \{x | f_i(x) \leq 0 \forall i=1,\dots,m, h_i(x) =0 \forall i=1,\dots,p, f_o(x) = p^*\}\]</div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>La propiedad de un punto óptimo <span class="math notranslate nohighlight">\(x^*\)</span> es que si <span class="math notranslate nohighlight">\(z\)</span> satisface las restricciones <span class="math notranslate nohighlight">\(f_i(z) \leq 0\)</span> <span class="math notranslate nohighlight">\(\forall i=1,...,m\)</span>, <span class="math notranslate nohighlight">\(h_i(z)=0\)</span> <span class="math notranslate nohighlight">\(\forall i=1,..,p\)</span> se tiene: <span class="math notranslate nohighlight">\(f(x^*) \leq f(z)\)</span>. Es <strong>óptimo estricto</strong> si <span class="math notranslate nohighlight">\(z\)</span> satisface las restricciones y <span class="math notranslate nohighlight">\(f_o(x^*) &lt; f_o(z)\)</span>.</p></li>
+<li><p>Si existe un punto óptimo se dice que el <strong>valor óptimo se alcanza</strong> y por tanto el problema de optimización tiene solución, es <em><strong>solvable</strong></em>.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(X_{\text{opt}} = \emptyset\)</span> se dice que el valor óptimo no se alcanza. Obsérvese que para problemas no acotados nunca se alcanza el valor óptimo.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(x\)</span> es factible y <span class="math notranslate nohighlight">\(f_o(x) \leq p^* + \epsilon\)</span> con <span class="math notranslate nohighlight">\(\epsilon &gt;0\)</span>, <span class="math notranslate nohighlight">\(x\)</span> se nombra <strong><span class="math notranslate nohighlight">\(\epsilon\)</span>-subóptimo</strong> y el conjunto de puntos <span class="math notranslate nohighlight">\(\epsilon\)</span>-subóptimos se nombra <strong>conjunto <span class="math notranslate nohighlight">\(\epsilon\)</span>-subóptimo</strong>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="optimo-local">
+<h2>Óptimo local<a class="headerlink" href="#optimo-local" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>Un punto factible <span class="math notranslate nohighlight">\(x^*\)</span> se nombra <strong>óptimo local</strong> si <span class="math notranslate nohighlight">\(\exists R &gt; 0\)</span> tal que:</p>
+<div class="math notranslate nohighlight">
+\[f_o(x^*) = \inf \{f_o(z) | f_i(z) \leq 0 \forall i=1,\dots,m, h_i(z) = 0 \forall i=1,\dots, p, ||z-x||_2 \leq R\}.\]</div>
+</div>
+<p>Así, <span class="math notranslate nohighlight">\(x^*\)</span> resuelve:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min f_o(z)\]</div>
+<div class="math notranslate nohighlight">
+\[\text{sujeto a:}\]</div>
+<div class="math notranslate nohighlight">
+\[f_i(z) \leq 0, \forall i =1,\dots,m\]</div>
+<div class="math notranslate nohighlight">
+\[h_i(z) =0, \forall i=1,\dots,p\]</div>
+<div class="math notranslate nohighlight">
+\[||z-x||_2 \leq R\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>La palabra <strong>óptimo</strong> se utiliza para <strong>óptimo global</strong>, esto es, no consideramos la última restricción <span class="math notranslate nohighlight">\(||z-x||_2 \leq R\)</span> en el problema de optimización y exploramos en todo el <span class="math notranslate nohighlight">\(\text{dom}f\)</span>.</p>
+</div>
+<img src="https://dl.dropboxusercontent.com/s/xyprhh7erbb6icb/min-max-points-example.png?dl=0" heigth="700" width="700">
+</div>
+<div class="section" id="restricciones-activas-no-activas-y-redundantes">
+<h2>Restricciones activas, no activas y redundantes<a class="headerlink" href="#restricciones-activas-no-activas-y-redundantes" title="Permalink to this headline">¶</a></h2>
+<p>Si <span class="math notranslate nohighlight">\(x\)</span> es factible y <span class="math notranslate nohighlight">\(f_i(x)=0\)</span> entonces la restricción de desigualdad <span class="math notranslate nohighlight">\(f_i(x) \leq 0\)</span> se nombra <strong>restricción activa en <span class="math notranslate nohighlight">\(x\)</span></strong>. Se nombra <strong>inactiva en <span class="math notranslate nohighlight">\(x\)</span></strong> si <span class="math notranslate nohighlight">\(f_i(x) &lt;0\)</span> para alguna <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p><strong>Comentario:</strong> Las restricciones de igualdad, <span class="math notranslate nohighlight">\(h_i(x)\)</span>, siempre son activas en el conjunto factible.</p>
+<p>Una restricción se nombra <strong>restricción redundante</strong> si al quitarla el conjunto factible no se modifica.</p>
+</div>
+<div class="section" id="problemas-de-optimizacion-convexa-en-su-forma-estandar-o-canonica">
+<h2>Problemas de optimización convexa en su forma estándar o canónica<a class="headerlink" href="#problemas-de-optimizacion-convexa-en-su-forma-estandar-o-canonica" title="Permalink to this headline">¶</a></h2>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min f_o(x)\]</div>
+<div class="math notranslate nohighlight">
+\[\text{sujeto a:}\]</div>
+<div class="math notranslate nohighlight">
+\[f_i(x) \leq 0 , i=1,\dots,m\]</div>
+<div class="math notranslate nohighlight">
+\[h_i(x)=0, i=1,\dots,p\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(f_i\)</span> son <strong>convexas</strong> <span class="math notranslate nohighlight">\(\forall i=0,2,\dots,m\)</span> y <span class="math notranslate nohighlight">\(h_i\)</span> <strong>es afín</strong>* <span class="math notranslate nohighlight">\(\forall i =1,\dots,p\)</span>.</p>
+<p>*Una función afín es de la forma <span class="math notranslate nohighlight">\(h(x) = Ax+b\)</span> con <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{p \times n}\)</span> y <span class="math notranslate nohighlight">\(b \in \mathbb{R}^p\)</span>. En la definición anterior <span class="math notranslate nohighlight">\(h_i(x) = a_i^Tx-b_i\)</span> con <span class="math notranslate nohighlight">\(a_i \in \mathbb{R}^n\)</span>, <span class="math notranslate nohighlight">\(b_i \in \mathbb{R}\)</span> <span class="math notranslate nohighlight">\(\forall i=1,\dots,p\)</span> y geométricamente <span class="math notranslate nohighlight">\(h_i(x)\)</span> es un <strong>hiperplano</strong> en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>.</p>
+<p><strong>Comentarios:</strong> Lo siguiente se puede verificar con propiedades teóricas:</p>
+<ul class="simple">
+<li><p>El conjunto de factibilidad de un problema de optimización convexa es un conjunto convexo. Esto se puede ver pues es una intersección finita de conjuntos convexos: intersección entre las <span class="math notranslate nohighlight">\(x\)</span>’s que satisfacen <span class="math notranslate nohighlight">\(f_i(x) \leq 0\)</span>, que se nombra <strong>conjunto subnivel</strong>*, y las <span class="math notranslate nohighlight">\(x\)</span>’s que están en un hiperplano.</p></li>
+</ul>
+<p>*Un conjunto <span class="math notranslate nohighlight">\(\alpha\)</span>-subnivel es de la forma <span class="math notranslate nohighlight">\(\{x \in \text{dom}f | f(x) \leq \alpha\}\)</span>. Un conjunto subnivel contiene las curvas de nivel de <span class="math notranslate nohighlight">\(f\)</span>, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Level_set">Level set</a>:</p>
+<img src="https://dl.dropboxusercontent.com/s/0woqoj8foo5eco9/level_set_of_func.png?dl=0" heigth="300" width="300">
+<p>Si <span class="math notranslate nohighlight">\(f\)</span> es convexa el conjunto subnivel es un conjunto convexo.</p>
+<ul class="simple">
+<li><p>El conjunto óptimo y los conjuntos <span class="math notranslate nohighlight">\(\epsilon\)</span>-subóptimos son convexos.</p></li>
+<li><p>Si la función objetivo <span class="math notranslate nohighlight">\(f_o\)</span> es <strong>fuertemente convexa</strong> entonces el conjunto óptimo contiene a lo más un punto.</p></li>
+<li><p>Si en el problema anterior se tiene que <strong>maximizar</strong> una <span class="math notranslate nohighlight">\(f_o\)</span> función objetivo <strong>cóncava</strong> y se tienen misma forma estándar del problema anterior y <span class="math notranslate nohighlight">\(f_i\)</span> convexa, <span class="math notranslate nohighlight">\(h_i\)</span> afín entonces también se nombra al problema como <strong>problema de optimización convexa</strong>. Todos los resultados, conclusiones y algoritmos desarrollados para los problemas de minimización son aplicables para maximización. En este caso se puede resolver un problema de maximización al minimizar la función objetivo  <span class="math notranslate nohighlight">\(-f_o\)</span> que es convexa.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="funcion-convexa">
+<h1>Función convexa<a class="headerlink" href="#funcion-convexa" title="Permalink to this headline">¶</a></h1>
+<p>Sea <span class="math notranslate nohighlight">\(f:\mathbb{R}^n \rightarrow \mathbb{R}\)</span> una función con el conjunto <span class="math notranslate nohighlight">\(\text{dom}f\)</span> convexo. <span class="math notranslate nohighlight">\(f\)</span> se nombra convexa  (en su <span class="math notranslate nohighlight">\(\text{dom}f\)</span>) si <span class="math notranslate nohighlight">\(\forall x,y \in \text{dom}f\)</span> y <span class="math notranslate nohighlight">\(\theta \in [0,1]\)</span> se cumple:</p>
+<div class="math notranslate nohighlight">
+\[f(\theta x + (1-\theta) y) \leq \theta f(x) + (1-\theta)f(y).\]</div>
+<p><strong>Comentarios:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\text{dom}f\)</span> es convexo <span class="math notranslate nohighlight">\(\therefore\)</span> <span class="math notranslate nohighlight">\(\theta x + (1-\theta)y \in \text{dom}f\)</span></p></li>
+<li><p>La convexidad de <span class="math notranslate nohighlight">\(f\)</span> se define para <span class="math notranslate nohighlight">\(\text{dom}f\)</span> aunque para casos en particular se detalla el conjunto en el que <span class="math notranslate nohighlight">\(f\)</span> es convexa.</p></li>
+<li><p>Si la desigualdad se cumple de forma estricta <span class="math notranslate nohighlight">\(\forall x \neq y\)</span> <span class="math notranslate nohighlight">\(f\)</span> se nombra <strong>estrictamente convexa</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f\)</span> es <strong>cóncava</strong> si <span class="math notranslate nohighlight">\(-f\)</span> es convexa y <strong>estrictamente cóncava</strong> si <span class="math notranslate nohighlight">\(-f\)</span> es estrictamente convexa. Otra forma de definir concavidad es con una desigualdad del tipo:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[f(\theta x + (1-\theta) y) \geq \theta f(x) + (1-\theta)f(y).\]</div>
+<p>y mismas definiciones para <span class="math notranslate nohighlight">\(x,y, \theta\)</span> que en la definición de convexidad.</p>
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(f\)</span> es convexa, geométricamente el segmento de línea que se forma con los puntos <span class="math notranslate nohighlight">\((x,f(x)), (y,f(y))\)</span> está por encima o es igual a <span class="math notranslate nohighlight">\(f(\theta x + (1-\theta)y) \forall \theta \in [0,1]\)</span> y <span class="math notranslate nohighlight">\(\forall x,y \in \text{dom}f\)</span>:</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/fdcx1k150nfwykv/draw_convexity_for_functions.png?dl=0" heigth="300" width="300"><ul class="simple">
+<li><p>La desigualdad que define a funciones convexas se nombra <a class="reference external" href="https://en.wikipedia.org/wiki/Jensen%27s_inequality"><strong>desigualdad de Jensen</strong></a>.</p></li>
+</ul>
+</div>
+<div class="section" id="conjunto-convexo">
+<h1>Conjunto convexo<a class="headerlink" href="#conjunto-convexo" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="linea-y-segmentos-de-linea">
+<h2>Línea y segmentos de línea<a class="headerlink" href="#linea-y-segmentos-de-linea" title="Permalink to this headline">¶</a></h2>
+<p>Sean <span class="math notranslate nohighlight">\(x_1, x_2 \in \mathbb{R}^n\)</span> con <span class="math notranslate nohighlight">\(x_1 \neq x_2\)</span>. Entonces el punto:</p>
+<div class="math notranslate nohighlight">
+\[y = \theta x_1 + (1-\theta)x_2\]</div>
+<p>con <span class="math notranslate nohighlight">\(\theta \in \mathbb{R}\)</span> se encuentra en la línea que pasa por <span class="math notranslate nohighlight">\(x_1\)</span> y <span class="math notranslate nohighlight">\(x_2\)</span>. <span class="math notranslate nohighlight">\(\theta\)</span> se le nombra parámetro y si <span class="math notranslate nohighlight">\(\theta \in [0,1]\)</span> tenemos un segmento de línea:</p>
+<img src="https://dl.dropboxusercontent.com/s/dldljf5igy8xt9d/segmento_linea.png?dl=0" heigth="200" width="200">
+<p><strong>Comentarios:</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y = \theta x_1 + (1-\theta)x_2 = x_2 + \theta(x_1 -x_2)\)</span> y esta última igualdad se interpreta como “<span class="math notranslate nohighlight">\(y\)</span> es la suma del punto base <span class="math notranslate nohighlight">\(x_2\)</span> y la dirección <span class="math notranslate nohighlight">\(x_1-x_2\)</span> escalada por <span class="math notranslate nohighlight">\(\theta\)</span>”.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(\theta=0\)</span> entonces <span class="math notranslate nohighlight">\(y=x_2\)</span>. Si <span class="math notranslate nohighlight">\(\theta \in [0,1]\)</span> entonces <span class="math notranslate nohighlight">\(y\)</span> se “mueve” en la dirección <span class="math notranslate nohighlight">\(x_1-x_2\)</span> hacia <span class="math notranslate nohighlight">\(x_1\)</span> y si <span class="math notranslate nohighlight">\(\theta&gt;1\)</span> entonces <span class="math notranslate nohighlight">\(y\)</span> se encuentra en la línea “más allá” de <span class="math notranslate nohighlight">\(x_1\)</span>:</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/nbahrio7p1mj4hs/segmento_linea_2.png?dl=0" heigth="350" width="350">
+<p>El punto enmedio entre <span class="math notranslate nohighlight">\(x_1\)</span> y <span class="math notranslate nohighlight">\(x_2\)</span> tiene <span class="math notranslate nohighlight">\(\theta=\frac{1}{2}\)</span>.</p>
+</div>
+<div class="section" id="id2">
+<h2>Conjunto convexo<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Un conjunto <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> es convexo si el segmento de línea entre cualquier par de puntos de <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> está completamente contenida en <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>. Esto se escribe matemáticamente como:</p>
+<div class="math notranslate nohighlight">
+\[\theta x_1 + (1-\theta) x_2 \in \mathcal{C} \forall \theta \in [0,1], \forall x_1, x_2 \in \mathcal{C}.\]</div>
+<p>Ejemplos gráficos de conjuntos convexos:</p>
+<img src="https://dl.dropboxusercontent.com/s/gj54ism1lqojot6/ej_conj_convexos.png?dl=0" heigth="400" width="400"><p>Ejemplos gráficos de conjuntos no convexos:</p>
+<img src="https://dl.dropboxusercontent.com/s/k37zh5v3iq3kx04/ej_conj_no_convexos.png?dl=0" heigth="350" width="350"><p><strong>Comentarios:</strong></p>
+<ul class="simple">
+<li><p>El punto <span class="math notranslate nohighlight">\(\displaystyle \sum_{i=1}^k \theta_i x_i\)</span> con <span class="math notranslate nohighlight">\(\displaystyle \sum_{i=1}^k \theta_i=1\)</span>, <span class="math notranslate nohighlight">\(\theta_i \geq 0 \forall i=1,\dots,k\)</span> se nombra <strong>combinación convexa</strong> de los puntos <span class="math notranslate nohighlight">\(x_1, x_2, \dots, x_k\)</span>. Una combinación convexa de los puntos <span class="math notranslate nohighlight">\(x_1, \dots, x_k\)</span> puede pensarse como una mezcla o promedio ponderado de los puntos, con <span class="math notranslate nohighlight">\(\theta_i\)</span> la fracción <span class="math notranslate nohighlight">\(\theta_i\)</span> de <span class="math notranslate nohighlight">\(x_i\)</span> en la mezcla.</p></li>
+<li><p>Un conjunto es convexo si y sólo si contiene cualquier combinación convexa de sus puntos.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="ejemplos-de-funciones-convexas-y-concavas">
+<h1>Ejemplos de funciones convexas y cóncavas<a class="headerlink" href="#ejemplos-de-funciones-convexas-y-concavas" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Una función afín es convexa y cóncava en todo su dominio: <span class="math notranslate nohighlight">\(f(x) = Ax+b\)</span> con <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^n\)</span>, <span class="math notranslate nohighlight">\(\text{dom}f = \mathbb{R}^n\)</span>.</p></li>
+</ul>
+<p><strong>Obs:</strong> por tanto las funciones lineales también son convexas y cóncavas.</p>
+<ul class="simple">
+<li><p>Funciones cuadráticas: <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(f(x) = \frac{1}{2} x^TPx + q^Tx + r\)</span> son convexas en su dominio: <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. <span class="math notranslate nohighlight">\(P \in \mathcal{S}_+^n, q \in \mathbb{R}^n, r \in \mathbb{R}\)</span> con <span class="math notranslate nohighlight">\(\mathbb{S}_+^n\)</span> conjunto de <strong>matrices simétricas positivas semidefinidas</strong>*.</p></li>
+</ul>
+<p>*Una matriz <span class="math notranslate nohighlight">\(A\)</span> es positiva semidefinida si <span class="math notranslate nohighlight">\(x^TAx \geq 0\)</span> <span class="math notranslate nohighlight">\(\forall x \in \mathbb{R}^n - \{0\}\)</span>. Si se cumple de forma estricta la desigualdad anterior entonces <span class="math notranslate nohighlight">\(A\)</span> es <strong>positiva definida</strong>. Con los eigenvalores podemos caracterizar a las matrices definidas y semidefinidas positivas: <span class="math notranslate nohighlight">\(A\)</span> es semidefinida positiva si y sólo si los eigenvalores de <span class="math notranslate nohighlight">\(T=\frac{A+A^T}{2}\)</span> son no negativos. Es definida positiva si y sólo si los eigenvalores de <span class="math notranslate nohighlight">\(T\)</span> son positivos. Los conjuntos de matrices que se utilizan para definir a matrices semidefinidas positivas y definidas positivas son <span class="math notranslate nohighlight">\(\mathbb{S}_{+}^n\)</span> y <span class="math notranslate nohighlight">\(\mathbb{S}_{++}^n\)</span> respectivamente.</p>
+<p><strong>Obs:</strong> <span class="math notranslate nohighlight">\(f\)</span> es estrictamente convexa si y sólo si <span class="math notranslate nohighlight">\(P \in \mathbb{S}_{++}^n\)</span>. <span class="math notranslate nohighlight">\(f\)</span> es cóncava si y sólo si <span class="math notranslate nohighlight">\(P \in -\mathbb{S}_+^n\)</span>.</p>
+<ul class="simple">
+<li><p>Exponenciales: <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(f(x) = e^{ax}\)</span> para cualquier <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span> es convexa en su dominio: <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>.</p></li>
+<li><p>Potencias: <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(f(x)=x^a\)</span>:</p>
+<ul>
+<li><p>Si <span class="math notranslate nohighlight">\(a \geq 1\)</span> o <span class="math notranslate nohighlight">\(a \leq 0\)</span> entonces <span class="math notranslate nohighlight">\(f\)</span> es convexa en <span class="math notranslate nohighlight">\(\mathbb{R}_{++}\)</span> (números reales positivos).</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(0 \leq a \leq 1\)</span> entonces <span class="math notranslate nohighlight">\(f\)</span> es cóncava en <span class="math notranslate nohighlight">\(\mathbb{R}_{++}\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Potencias del valor absoluto: <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(f(x)=|x|^p\)</span> con <span class="math notranslate nohighlight">\(p \geq 1\)</span> es convexa en <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>.</p></li>
+<li><p>Logaritmo: <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(f(x) = \log(x)\)</span> es cóncava en su dominio: <span class="math notranslate nohighlight">\(\mathbb{R}_{++}\)</span>.</p></li>
+<li><p>Entropía negativa: <span class="math notranslate nohighlight">\(f(x) = \begin{cases}
+x\log(x) &amp;\text{ si } x &gt; 0 ,\\
+0 &amp;\text{ si } x = 0
+\end{cases}\)</span> es estrictamente convexa en su dominio: <span class="math notranslate nohighlight">\(\mathbb{R}_+\)</span>.</p></li>
+<li><p>Normas: cualquier norma es convexa en su dominio.</p></li>
+<li><p>Función máximo: <span class="math notranslate nohighlight">\(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(f(x) = \max\{x_1,\dots,x_n\}\)</span> es convexa.</p></li>
+<li><p>Función log-sum-exp: <span class="math notranslate nohighlight">\(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(f(x)=\log\left(\displaystyle \sum_{i=1}^ne^{x_i}\right)\)</span> es convexa en su dominio: <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>.</p></li>
+<li><p>La media geométrica: <span class="math notranslate nohighlight">\(f: \mathbb{R}^{n} \rightarrow \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(f(x) = \left(\displaystyle \prod_{i=1}^n x_i \right)^\frac{1}{n}\)</span> es cóncava en su dominio: <span class="math notranslate nohighlight">\(\mathbb{R}_{++}^n\)</span>.</p></li>
+<li><p>Función log-determinante: <span class="math notranslate nohighlight">\(f: \mathbb{S}^{n} \rightarrow \mathbb{R}^n\)</span>, <span class="math notranslate nohighlight">\(f(x) = \log(\det(X))\)</span> es cóncava en su dominio: <span class="math notranslate nohighlight">\(\mathbb{S}_{++}^n\)</span>.</p></li>
+</ul>
+</div>
+<div class="section" id="resultados-utiles-de-teoria-de-convexidad">
+<h1>Resultados útiles de teoría de convexidad<a class="headerlink" href="#resultados-utiles-de-teoria-de-convexidad" title="Permalink to this headline">¶</a></h1>
+<p>Se sugiere revisar <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.4.Polinomios_de_Taylor_y_diferenciacion_numerica.ipynb">1.4.Polinomios_de_Taylor_y_diferenciacion_numerica</a> y <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/I.computo_cientifico/1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.ipynb">1.3.Condicion_de_un_problema_y_estabilidad_de_un_algoritmo</a> como recordatorio de definiciones. En particular las <strong>definiciones de primera y segunda derivada, gradiente y Hessiana</strong> para la primer nota y la <strong>definición de número de condición de una matriz</strong> para la segunda.</p>
+<p><strong>Sobre funciones convexas/cóncavas</strong></p>
+<ul class="simple">
+<li><p>Sea <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> diferenciable entonces <span class="math notranslate nohighlight">\(f\)</span> es convexa si y sólo si <span class="math notranslate nohighlight">\(\text{dom}f\)</span> es un conjunto convexo y se cumple:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[f(y) \geq f(x) + \nabla f(x)^T(y-x) \forall x,y \in \text{dom}f.\]</div>
+<p>Si se cumple de forma estricta la desigualdad <span class="math notranslate nohighlight">\(f\)</span> se nombra estrictamente convexa. También si su <span class="math notranslate nohighlight">\(\text{dom}f\)</span> es convexo y se tiene la desigualdad en la otra dirección “<span class="math notranslate nohighlight">\(\leq\)</span>” entonces <span class="math notranslate nohighlight">\(f\)</span> es cóncava.</p>
+<p>Geométricamente este resultado se ve como sigue para <span class="math notranslate nohighlight">\(\nabla f(x) \neq 0\)</span>:</p>
+<img src="https://dl.dropboxusercontent.com/s/e581e22xeejdwu0/convexidad_con_hiperplano_de_soporte.png?dl=0" heigth="350" width="350">
+<p>y el hiperplano <span class="math notranslate nohighlight">\(f(x) + \nabla f(x)^T(y-x)\)</span> se nombra <strong>hiperplano de soporte para la función <span class="math notranslate nohighlight">\(f\)</span> en el punto <span class="math notranslate nohighlight">\((x,f(x))\)</span></strong>. Obsérvese que si <span class="math notranslate nohighlight">\(\nabla f(x)=0\)</span> se tiene <span class="math notranslate nohighlight">\(f(y) \geq f(x) \forall y \in \text{dom}f\)</span> y por lo tanto <span class="math notranslate nohighlight">\(x\)</span> es un mínimo global de <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<ul class="simple">
+<li><p>Una función es convexa si y sólo si es convexa al restringirla a cualquier línea que intersecte su dominio, esto es, si <span class="math notranslate nohighlight">\(g(t) = f(x + tv)\)</span> es convexa <span class="math notranslate nohighlight">\(\forall x,v \in \mathbb{R}^n\)</span>, <span class="math notranslate nohighlight">\(\forall t \in \mathbb{R}\)</span> talque <span class="math notranslate nohighlight">\(x + tv \in \text{dom}f\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p>Sea <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> tal que <span class="math notranslate nohighlight">\(f \in \mathcal{C}^2(\text{dom}f)\)</span>. Entonces <span class="math notranslate nohighlight">\(f\)</span> es convexa en <span class="math notranslate nohighlight">\(\text{dom}f\)</span> si y sólo si <span class="math notranslate nohighlight">\(\text{dom}f\)</span> es convexo y <span class="math notranslate nohighlight">\(\nabla^2f(x)\)</span> es simétrica semidefinida positiva en <span class="math notranslate nohighlight">\(\text{dom}f\)</span>. Si <span class="math notranslate nohighlight">\(\nabla^2f(x)\)</span> es simétrica definida positiva en <span class="math notranslate nohighlight">\(\text{dom}f\)</span> y <span class="math notranslate nohighlight">\(\text{dom}f\)</span> es convexo entonces <span class="math notranslate nohighlight">\(f\)</span> es estrictamente convexa en <span class="math notranslate nohighlight">\(\text{dom}f\)</span>*.</p></li>
+</ul>
+<p>*Para una variable: <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span>, la hipótesis del enunciado anterior es que la segunda derivada sea positiva. El recíproco no es verdadero, para ver esto considérese <span class="math notranslate nohighlight">\(f(x)=x^4\)</span> la cual es estrictamente convexa en <span class="math notranslate nohighlight">\(\text{dom}f\)</span> pero su segunda derivada en <span class="math notranslate nohighlight">\(0\)</span> no es positiva.</p>
+<p><strong>Sobre problemas de optimización</strong></p>
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(f\)</span> es diferenciable y <span class="math notranslate nohighlight">\(x^*\)</span> es óptimo entonces <span class="math notranslate nohighlight">\(\nabla f(x^*) = 0\)</span>.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(f \in \mathcal{C}^2(\text{domf})\)</span> y <span class="math notranslate nohighlight">\(x^*\)</span> es mínimo local entonces <span class="math notranslate nohighlight">\(\nabla^2 f(x^*)\)</span> es una matriz simétrica semidefinida positiva.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(f \in \mathcal{C}^2(\text{domf})\)</span>, <span class="math notranslate nohighlight">\(\nabla f(x^*)=0\)</span> y <span class="math notranslate nohighlight">\(\nabla^2f(x^*)\)</span> es una matriz simétrica definida positiva entonces <span class="math notranslate nohighlight">\(x^*\)</span> es mínimo local estricto.</p></li>
+<li><p>Una propiedad fundamental de un óptimo local en un problema de optimización convexa es que también es un óptimo global.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(f_o\)</span> en un problema de optimización convexa es diferenciable y <span class="math notranslate nohighlight">\(X\)</span> es el conjunto de factibilidad entonces <span class="math notranslate nohighlight">\(x\)</span> es óptimo si y sólo si <span class="math notranslate nohighlight">\(x \in X\)</span> y <span class="math notranslate nohighlight">\(\nabla f_o(x)^T(y-x) \geq 0\)</span> <span class="math notranslate nohighlight">\(\forall y \in X\)</span>. Si en lo anterior se considera como conjunto de factibilidad <span class="math notranslate nohighlight">\(X = \text{dom}f_o\)</span> (que es un problema sin restricciones) la propiedad se reduce a la condición: <span class="math notranslate nohighlight">\(x\)</span> es óptimo si y sólo si <span class="math notranslate nohighlight">\(\nabla f_o(x) = 0\)</span>.</p></li>
+</ul>
+<p>Geométricamente el resultado anterior se visualiza para <span class="math notranslate nohighlight">\(\nabla f(x) \neq 0\)</span> y <span class="math notranslate nohighlight">\(-\nabla f(x)\)</span> apuntando hacia la dirección dibujada:</p>
+<img src="https://dl.dropboxusercontent.com/s/0tmpivvo5ob4oox/optimo_convexidad_con_hiperplano_de_soporte.png?dl=0" heigth="550" width="550">
+<p><strong>Comentario:</strong> Por los resultados anteriores los métodos de optimización que revisaremos en el módulo IV buscarán resolver la <strong>ecuación no lineal</strong> <span class="math notranslate nohighlight">\(\nabla f_o(x)=0\)</span>. Dependiendo del número de soluciones de la ecuación <span class="math notranslate nohighlight">\(\nabla f_o(x)=0\)</span> se tienen situaciones distintas. Por ejemplo, si no tiene solución entonces el/los óptimos no se alcanza(n) pues el problema puede no ser acotado por debajo o si existe el óptimo éste puede no alcanzarse. Por otro lado, si la ecuación tiene múltiples soluciones entonces cada solución es un mínimo de <span class="math notranslate nohighlight">\(f_o\)</span>.</p>
+<div class="section" id="funcion-fuertemente-convexa">
+<h2>Función fuertemente convexa<a class="headerlink" href="#funcion-fuertemente-convexa" title="Permalink to this headline">¶</a></h2>
+<p>Una función <span class="math notranslate nohighlight">\(f:\mathbb{R}^n \rightarrow \mathbb{R}\)</span> tal que <span class="math notranslate nohighlight">\(f \in \mathcal{C}^2(\text{dom}f)\)</span> se nombra <strong>fuertemente convexa</strong> en el conjunto convexo <span class="math notranslate nohighlight">\(\mathbb{S} \neq \emptyset\)</span> si existe <span class="math notranslate nohighlight">\(m&gt;0\)</span> tal que <span class="math notranslate nohighlight">\(\nabla^2 f(x) - mI\)</span> es simétrica semidefinida positiva <span class="math notranslate nohighlight">\(\forall x \in \mathbb{S}\)</span>.</p>
+<p><strong>Comentario:</strong> si una función es fuertemente convexa se puede probar que:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(y) \geq f(x) + \nabla f(x)^T(y-x) + \frac{m}{2}||y-x||_2^2 \forall x,y \in \mathbb{S}\)</span>. Por esto si <span class="math notranslate nohighlight">\(f\)</span> es fuertemente convexa en <span class="math notranslate nohighlight">\(\mathbb{S}\)</span> entonces es estrictamente convexa en <span class="math notranslate nohighlight">\(\mathbb{S}\)</span>. También esta desigualdad indica que la diferencia entre la función de <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(f(y)\)</span>, y la función lineal en <span class="math notranslate nohighlight">\(y\)</span> <span class="math notranslate nohighlight">\(f(x) + \nabla f(x)^T(y-x)\)</span> (Taylor a primer orden) está acotada por debajo por una cantidad cuadrática.</p></li>
+<li><p>El <strong>número de condición</strong> bajo la norma 2 de <span class="math notranslate nohighlight">\(\nabla ^2 f\)</span> está acotado por arriba por el cociente <span class="math notranslate nohighlight">\(\frac{\lambda_\text{max}(\nabla^2 f(x))}{\lambda_\text{min}(\nabla^2 f(x))} \forall x \in \mathbb{S}\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="tablita-util-para-formulas-de-diferenciacion-con-el-operador-nabla">
+<h1>Tablita útil para fórmulas de diferenciación con el operador <span class="math notranslate nohighlight">\(\nabla\)</span><a class="headerlink" href="#tablita-util-para-formulas-de-diferenciacion-con-el-operador-nabla" title="Permalink to this headline">¶</a></h1>
+<p>Si <span class="math notranslate nohighlight">\(f,g:\mathbb{R}^n \rightarrow \mathbb{R}\)</span> con <span class="math notranslate nohighlight">\(f,g \in \mathcal{C}^2\)</span> respectivamente en sus dominios y <span class="math notranslate nohighlight">\(\alpha_1, \alpha_2 \in \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>, <span class="math notranslate nohighlight">\(b \in \mathbb{R}^n\)</span> son fijas. Diferenciando con respecto a la variable <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span> se tiene:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p></p></th>
+<th class="text-align:center head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>linealidad</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\nabla(\alpha_1 f(x) + \alpha_2 g(x)) = \alpha_1 \nabla f(x) + \alpha_2 \nabla g(x)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>producto</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\nabla(f(x)g(x)) = \nabla f(x) g(x) + f(x) \nabla g(x)\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>producto punto</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\nabla(b^Tx) = b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>cuadrático</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\nabla(x^TAx) = (A+A^T)x\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>segunda derivada</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\nabla^2(Ax)=A\)</span></p></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Preguntas de comprehensión.</strong></p>
 <ol class="simple">
 <li></li>
 </ol>
 <p><strong>Referencias:</strong></p>
 <ol class="simple">
-<li></li>
-<li></li>
+<li><p>S. P. Boyd, L. Vandenberghe, Convex Optimization, Cambridge University Press, 2009.</p></li>
 </ol>
 </div>
 
