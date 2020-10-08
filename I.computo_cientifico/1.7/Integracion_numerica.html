@@ -1077,11 +1077,12 @@
 <p>Los métodos de integración numérica por Monte Carlo son similares a los métodos por cuadratura en el sentido que se eligen puntos en los que se evaluará el integrando para sumar sus valores. La diferencia esencial con los métodos por cuadratura es que en el método de integración por Monte Carlo los puntos son <strong>seleccionados de una forma <em>aleatoria</em></strong> (de hecho es pseudo-aleatoria pues se generan con un programa de computadora) en lugar de generarse con una fórmula.</p>
 <div class="section" id="problema">
 <h3>Problema<a class="headerlink" href="#problema" title="Permalink to this headline">¶</a></h3>
+<p>En esta sección consideramos <span class="math notranslate nohighlight">\(n\)</span> número de nodos.</p>
 <p>Aproximar numéricamente la integral <span class="math notranslate nohighlight">\(\displaystyle \int_{\Omega}f(x)dx\)</span> para <span class="math notranslate nohighlight">\(x \in \mathbb{R}^N, \Omega \subseteq \mathbb{R}^N, f: \mathbb{R}^N \rightarrow \mathbb{R}\)</span> función tal que la integral esté bien definida en <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
 <p>Por ejemplo para <span class="math notranslate nohighlight">\(N=2:\)</span></p>
 <img src="https://dl.dropboxusercontent.com/s/xktwjmgbf8aiekw/integral_2_dimensiones.png?dl=0" heigth="500" width="500">
 <p>Para resolver el problema anterior con <span class="math notranslate nohighlight">\(\Omega\)</span> un rectángulo, podemos utilizar las reglas por cuadratura por Newton-Cotes o cuadratura Gaussiana en una dimensión manteniendo fija la otra dimensión. Sin embargo considérese la siguiente situación:</p>
-<p>La regla del rectángulo (o del punto medio) y del trapecio tienen un error de orden <span class="math notranslate nohighlight">\(\mathcal{O}(h^2)\)</span> independientemente de si se está aproximando integrales de una o más dimensiones. Supóngase que se utilizan <span class="math notranslate nohighlight">\(n\)</span> nodos para tener un valor de espaciado igual a <span class="math notranslate nohighlight">\(h\)</span>, entonces para <span class="math notranslate nohighlight">\(d\)</span> dimensiones se requerirían <span class="math notranslate nohighlight">\(N=n^d\)</span> evaluaciones del integrando, o bien, si se tiene un valor de <span class="math notranslate nohighlight">\(N\)</span> igual a <span class="math notranslate nohighlight">\(10, 000\)</span> y <span class="math notranslate nohighlight">\(N=4\)</span> dimensiones el error sería del orden <span class="math notranslate nohighlight">\(\mathcal{O}(N^{-2/d})\)</span> lo que implicaría un valor de <span class="math notranslate nohighlight">\(h=.1\)</span> para aproximadamente sólo <strong>dos dígitos</strong> correctos en la aproximación (para el enunciado anterior recuérdese que <span class="math notranslate nohighlight">\(h\)</span> es proporcional a <span class="math notranslate nohighlight">\(n^{-1}\)</span> y <span class="math notranslate nohighlight">\(n\)</span> = <span class="math notranslate nohighlight">\(N^{1/d}\)</span>). Este esfuerzo enorme de evaluar <span class="math notranslate nohighlight">\(N\)</span> veces el integrando para una exactitud pequeña se debe al problema de generar puntos para <em>llenar</em> un espacio <span class="math notranslate nohighlight">\(d\)</span>-dimensional y se conoce con el nombre de la maldición de la dimensionalidad, <a class="reference external" href="https://en.wikipedia.org/wiki/Curse_of_dimensionality"><em><strong>the curse of dimensionality</strong></em></a>.</p>
+<p>La regla del rectángulo (o del punto medio) y del trapecio tienen un error de orden <span class="math notranslate nohighlight">\(\mathcal{O}(h^2)\)</span> independientemente de si se está aproximando integrales de una o más dimensiones. Supóngase que se utilizan <span class="math notranslate nohighlight">\(n\)</span> nodos para tener un valor de espaciado igual a <span class="math notranslate nohighlight">\(\hat{h}\)</span> en una dimensión, entonces para <span class="math notranslate nohighlight">\(d\)</span> dimensiones se requerirían <span class="math notranslate nohighlight">\(N=n^d\)</span> evaluaciones del integrando, o bien, si se tiene un valor de <span class="math notranslate nohighlight">\(N\)</span> igual a <span class="math notranslate nohighlight">\(10, 000\)</span> y <span class="math notranslate nohighlight">\(d=4\)</span> dimensiones el error sería del orden <span class="math notranslate nohighlight">\(\mathcal{O}(N^{-2/d})\)</span> lo que implicaría un valor de <span class="math notranslate nohighlight">\(\hat{h}=.1\)</span> para aproximadamente sólo <strong>dos dígitos</strong> correctos en la aproximación (para el enunciado anterior recuérdese que <span class="math notranslate nohighlight">\(\hat{h}\)</span> es proporcional a <span class="math notranslate nohighlight">\(n^{-1}\)</span> y <span class="math notranslate nohighlight">\(n\)</span> = <span class="math notranslate nohighlight">\(N^{1/d}\)</span>). Este esfuerzo enorme de evaluar <span class="math notranslate nohighlight">\(N\)</span> veces el integrando para una exactitud pequeña se debe al problema de generar puntos para <em>llenar</em> un espacio <span class="math notranslate nohighlight">\(d\)</span>-dimensional y se conoce con el nombre de la maldición de la dimensionalidad, <a class="reference external" href="https://en.wikipedia.org/wiki/Curse_of_dimensionality"><em><strong>the curse of dimensionality</strong></em></a>.</p>
 <p>Una opción para resolver la situación anterior si no se desea una exactitud grande (por ejemplo con una precisión de <span class="math notranslate nohighlight">\(10^{-4}\)</span> o <span class="math notranslate nohighlight">\(4\)</span> dígitos es suficiente) es con el método de integración por Monte Carlo (tal nombre por el uso de números aleatorios). La integración por el método de Monte Carlo está basada en la interpretación geométrica de las integrales: calcular la integral del problema inicial implica calcular el <strong>hipervolumen</strong> de <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
 </div>
 <div class="section" id="ejemplo">
@@ -1140,7 +1141,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.184
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.08
 </pre></div>
 </div>
 </div>
@@ -1157,7 +1158,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.1456
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.116
 </pre></div>
 </div>
 </div>
@@ -1173,7 +1174,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.14068
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>3.14708
 </pre></div>
 </div>
 </div>
@@ -1226,7 +1227,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo: 1.7292e-03
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo: 2.1045e-03
 </pre></div>
 </div>
 </div>
@@ -1248,7 +1249,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo: 5.2085e-04
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo: 2.2165e-03
 </pre></div>
 </div>
 </div>
@@ -1273,7 +1274,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo: 4.0420e-03
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo: 4.9302e-03
 </pre></div>
 </div>
 </div>
@@ -1298,7 +1299,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo: 2.4208e-02
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo: 2.0399e-02
 </pre></div>
 </div>
 </div>
@@ -1326,7 +1327,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo: 1.0344e-02
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo: 2.9061e-03
 </pre></div>
 </div>
 </div>
@@ -1373,7 +1374,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo: 2.1566e-03
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>error relativo: 1.3199e-03
 </pre></div>
 </div>
 </div>
@@ -1392,7 +1393,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0064271086061805606
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0064120002526827456
 </pre></div>
 </div>
 </div>
@@ -1405,7 +1406,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(3.1419408128884982, 3.154795030100859)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>(3.131034095537726, 3.1438580960430915)
 </pre></div>
 </div>
 </div>
