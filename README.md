@@ -141,3 +141,13 @@ El video lo pueden descargar desde Teams pero sólo estará disponible unos día
 Llegamos hasta [Aproximación de características de variables aleatorias en integración numérica](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.7/Integracion_numerica.html#aproximacion-de-caracteristicas-de-variables-aleatorias). Quedó de tarea revisar esta última sección para finalizar la nota.
 
 El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
+
+
+## Clase 9
+
+7 de octubre
+
+Llegamos hasta inicio de [transformaciones-de-rotacion](https://itam-ds.github.io/analisis-numerico-computo-cientifico/II.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#transformaciones-de-rotacion)
+
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
+
