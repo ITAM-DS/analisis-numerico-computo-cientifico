@@ -384,18 +384,6 @@
 <h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{x \in \mathbb{R}^2} x_1^4+2x_1^2x_2+x_2^2\]</div>
-<p>Los candidatos a ser mínimos los encontramos al plantear:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\nabla f_o(x) = 
-\left [
-\begin{array}{c}
-4x_1^3+4x_1x_2\\
-2x_1^2+2x_2
-\end{array}
-\right ]=0
-\end{split}\]</div>
-<p>la cual es una ecuación de dos variables y dos incógnitas <strong>no lineal</strong>. Resolviendo para <span class="math notranslate nohighlight">\(x_2\)</span> se obtiene la relación: <span class="math notranslate nohighlight">\(x_2 = -x_1^2\)</span>. Entonces todos los puntos con coordenadas <span class="math notranslate nohighlight">\(x = (x_1, x_2)\)</span> que satisfacen tal relación cumplen <span class="math notranslate nohighlight">\(\nabla f_o(x) = 0\)</span>. ¿Todos serán mínimos locales?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -409,6 +397,14 @@
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Los candidatos a ser mínimos los encontramos al calcular el gradiente de <span class="math notranslate nohighlight">\(f_o\)</span> que podemos calcular con <em>SymPy</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x1, x2&quot;</span><span class="p">)</span>
@@ -425,16 +421,19 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f_numpy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle x_{1}^{4} + 2 x_{1}^{2} x_{2} + x_{2}^{2}\]</div>
 </div>
 </div>
 <p><strong>Gradiente</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -452,7 +451,27 @@
 </div>
 </div>
 </div>
+<p>y plantear:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla f_o(x) = 
+\left [
+\begin{array}{c}
+4x_1^3+4x_1x_2\\
+2x_1^2+2x_2
+\end{array}
+\right ]=0
+\end{split}\]</div>
+<p>la cual es una ecuación de dos variables y dos incógnitas <strong>no lineal</strong>. Resolviendo para <span class="math notranslate nohighlight">\(x_2\)</span> se obtiene la relación: <span class="math notranslate nohighlight">\(x_2 = -x_1^2\)</span>. Entonces todos los puntos con coordenadas <span class="math notranslate nohighlight">\(x = (x_1, x_2)\)</span> que satisfacen tal relación cumplen <span class="math notranslate nohighlight">\(\nabla f_o(x) = 0\)</span>. ¿Todos serán mínimos locales?</p>
 <p><strong>Gráfica de la superficie <span class="math notranslate nohighlight">\(f_o\)</span></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f_numpy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x1_plot</span><span class="p">,</span><span class="n">x2_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
@@ -496,7 +515,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_37_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_37_0.png" />
+<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_40_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_40_0.png" />
 </div>
 </div>
 <p id="gcnivelnoconvexa"><strong>Gráfica de las curvas de nivel de <span class="math notranslate nohighlight">\(f_o\)</span></strong></p>
@@ -517,7 +536,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_41_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_41_0.png" />
+<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_44_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_44_0.png" />
 </div>
 </div>
 <p><strong>Resolvamos con <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html#scipy.optimize.fsolve">scipy.optimize.fsolve</a> la ecuación no lineal <span class="math notranslate nohighlight">\(\nabla f_o(x) = 0\)</span></strong></p>
@@ -665,7 +684,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[ 1.0000000e+01 -4.4408921e-16]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[10. -0.]
 </pre></div>
 </div>
 </div>
@@ -742,7 +761,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-0.06346131 -0.0040273 ]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-0.063 -0.004]
 </pre></div>
 </div>
 </div>
@@ -774,12 +793,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[1.39970484e-07 2.03221870e+00]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[0.    2.032]
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>La Hessiana es semidefinida positiva y por lo tanto el punto <span class="math notranslate nohighlight">\(x=\left [\begin{array}{c} -0.06346 \\ -0.00402 \end{array} \right]\)</span> no podemos concluir que es mínimo local estricto.</strong></p>
+<p><strong>La Hessiana es semidefinida positiva y por lo tanto el punto <span class="math notranslate nohighlight">\(x=\left [\begin{array}{c} -0.06346 \\ -0.00402 \end{array} \right]\)</span> no podemos concluir que es mínimo local estricto si consideramos que <span class="math notranslate nohighlight">\(10^{-7}\)</span> es un número cercano a <span class="math notranslate nohighlight">\(0\)</span>.</strong></p>
 <p><strong>Coloquemos los puntos que cumplen <span class="math notranslate nohighlight">\(x_2=-x_1^2\)</span> en la gráfica de la superficie</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -825,7 +844,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_85_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_85_0.png" />
+<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_88_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_88_0.png" />
 </div>
 </div>
 <p><strong>Por la forma de la gráfica</strong></p>
@@ -849,7 +868,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_88_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_88_0.png" />
+<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_91_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_91_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -912,17 +931,74 @@
 </div>
 </div>
 </div>
-<p><strong>también viendo algunas de sus curvas de nivel en <a class="reference internal" href="#gcnivelnoconvexa"><span class="std std-ref">gráfica de las curvas de nivel de fo</span></a> podemos ver que no es convexa.</strong></p>
+<p><strong>también viendo algunas de sus curvas de nivel en <a class="reference internal" href="#gcnivelnoconvexa"><span class="std std-ref">gráfica de las curvas de nivel de fo</span></a> podemos ver que no es convexa. Determinar extremos de funciones en general es una tarea a realizar con detalle.</strong></p>
 </div>
 <div class="section" id="ejemplo-importante">
 <h3>Ejemplo importante<a class="headerlink" href="#ejemplo-importante" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{x \in \mathbb{R}^2} \frac{1}{2}x^TPx+q^Tx+r\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(P=\left [\begin{array}{cc} 5 &amp; 4\\ 4 &amp; 5 \end{array} \right ]\)</span>, <span class="math notranslate nohighlight">\(q=\left [\begin{array}{c} -1\\ 1 \end{array} \right]\)</span>, <span class="math notranslate nohighlight">\(r=3\)</span>.</p>
-<p>Obsérvese que haciendo las multiplicaciones de matriz-vector y productos punto se reescribe el problema como:</p>
+<p>Obsérvese que haciendo las multiplicaciones de matriz-vector y productos punto</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x1, x2&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">P</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">q</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">expand</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>      2                          2         
+2.5⋅x₁  + 4.0⋅x₁⋅x₂ - x₁ + 2.5⋅x₂  + x₂ + 3
+</pre></div>
+</div>
+</div>
+</div>
+<p>se reescribe el problema como:</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{x \in \mathbb{R}^2} \frac{5}{2}x_1^2 + \frac{5}{2}x_2^2+4x_1x_2 -x_1 + x_2+3\]</div>
-<p>Entonces:</p>
+<p>Y su gradiente es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>⎡5.0⋅x₁ + 4.0⋅x₂ - 1⎤
+⎢                   ⎥
+⎣4.0⋅x₁ + 5.0⋅x₂ + 1⎦
+</pre></div>
+</div>
+</div>
+</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}\nabla f_o(x) = Px +q =\left [ \begin{array}{cc}
 5 &amp; 4\\
@@ -969,6 +1045,79 @@ x_2
 <p class="admonition-title">Definición</p>
 <p>Típicamente se utiliza un método iterativo: calcular una secuencia de puntos <span class="math notranslate nohighlight">\(x^{(0)}, x^{(1)}, \dots \in \text{dom}f_o\)</span> con <span class="math notranslate nohighlight">\(f_o(x^{(k)}) \rightarrow p^*\)</span> si <span class="math notranslate nohighlight">\(k \rightarrow \infty\)</span>. El conjunto de puntos <span class="math notranslate nohighlight">\(x^{(0)}, x^{(1)},\dots\)</span> se nombra <strong>secuencia de minimización</strong> para el problema de optimización. El algoritmo termina si <span class="math notranslate nohighlight">\(f_o(x^{(k)})-p^* \leq \epsilon\)</span> con <span class="math notranslate nohighlight">\(\epsilon &gt;0\)</span> una tolerancia dada. Tales métodos se conocen con el nombre de <strong>métodos de descenso</strong>.</p>
 </div>
+<p>El problema anterior lo podemos resolver con <a class="reference external" href="https://github.com/cvxgrp/cvxpy">cvxpy</a> pues es un problema convexo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">fo</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">quad_form</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span> <span class="o">+</span> <span class="n">q</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">fo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>-0.9999999999999993
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;status:&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal value&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal var&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>status: optimal
+optimal value -0.9999999999999993
+optimal var [ 1. -1.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lo siguiente no funciona:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">()</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">()</span>
+<span class="n">fo</span> <span class="o">=</span> <span class="mf">2.5</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x1</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span> <span class="o">+</span> <span class="mf">2.5</span><span class="o">*</span><span class="n">x2</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">+</span> <span class="mi">3</span>
+
+<span class="n">obj</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">fo</span><span class="p">)</span>
+
+<span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>pues Problem does not follow DCP rules. Specifically:
+The objective is not DCP.</p>
 </div>
 <div class="section" id="id1">
 <h3>Ejemplo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
@@ -1058,6 +1207,7 @@ x_2
 \right]
 \end{split}\]</div>
 <p><strong>¿Cómo encontramos numéricamente el óptimo?</strong></p>
+<p>Usando cvxpy….</p>
 <p><strong>Preguntas de comprehensión.</strong></p>
 <ol class="simple">
 <li></li>
