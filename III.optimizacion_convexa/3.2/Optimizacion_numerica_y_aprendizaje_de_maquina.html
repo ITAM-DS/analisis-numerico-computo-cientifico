@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>3.2 Optimización numérica, aprendizaje de máquina y ecuaciones no lineales.</title>
+    <title>3.2 Optimización y algoritmo de descenso</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="../../_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="../../_static/sphinx-book-theme.css" type="text/css" />
@@ -160,7 +160,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3.2 Optimización numérica, aprendizaje de máquina y ecuaciones no lineales.
+   3.2 Optimización y algoritmo de descenso
   </a>
  </li>
  <li class="toctree-l1">
@@ -259,18 +259,38 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#relacion-entre-optimizacion-numerica-y-aprendizaje-de-maquina">
-   Relación entre optimización numérica y aprendizaje de máquina
+  <a class="reference internal nav-link" href="#optimizacion-numerica-en-ciencia-de-datos">
+   Optimización numérica en ciencia de datos
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimizacion-numerica-y-machine-learning">
+     Optimización numérica y
+     <em>
+      machine learning
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#del-small-scale-al-large-scale-machine-learning">
+     Del
+     <em>
+      small scale
+     </em>
+     al
+     <em>
+      large scale machine learning
+     </em>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#large-scale-machine-learning">
-   Large scale machine learning
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problemas-de-optimizacion-y-su-relacion-con-ecuaciones-no-lineales">
-   Problemas de optimización y su relación con ecuaciones no lineales
+  <a class="reference internal nav-link" href="#ejemplos-de-problemas-de-optimizacion-small-scale">
+   Ejemplos de problemas de optimización
+   <em>
+    small scale
+   </em>
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -292,6 +312,33 @@
      Ejemplo importante
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodos-de-descenso-para-funciones-convexas">
+   Métodos de descenso para funciones convexas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#secuencia-de-minimizacion">
+     Secuencia de minimización
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#paso-o-direccion-de-busqueda-y-tamano-o-longitud-de-paso">
+     Paso o dirección de búsqueda y tamaño o longitud de paso
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso">
+     Condición para que un paso o dirección de búsqueda sea de descenso
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algoritmo-metodo-general-de-descenso-para-funciones-convexas">
+     Algoritmo: método general de descenso para funciones convexas
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
      Ejemplo
@@ -309,8 +356,8 @@
         
               <div>
                 
-  <div class="section" id="optimizacion-numerica-aprendizaje-de-maquina-y-ecuaciones-no-lineales">
-<span id="onam"></span><h1>3.2 Optimización numérica, aprendizaje de máquina y ecuaciones no lineales.<a class="headerlink" href="#optimizacion-numerica-aprendizaje-de-maquina-y-ecuaciones-no-lineales" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="optimizacion-y-algoritmo-de-descenso">
+<span id="onam"></span><h1>3.2 Optimización y algoritmo de descenso<a class="headerlink" href="#optimizacion-y-algoritmo-de-descenso" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-notas-para-contenedor-de-docker admonition">
 <p class="admonition-title">Notas para contenedor de docker:</p>
 <p>Comando de docker para ejecución de la nota de forma local:</p>
@@ -329,8 +376,8 @@
 <li></li>
 </ul>
 </div>
-<div class="section" id="relacion-entre-optimizacion-numerica-y-aprendizaje-de-maquina">
-<h2>Relación entre optimización numérica y aprendizaje de máquina<a class="headerlink" href="#relacion-entre-optimizacion-numerica-y-aprendizaje-de-maquina" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="optimizacion-numerica-en-ciencia-de-datos">
+<h2>Optimización numérica en ciencia de datos<a class="headerlink" href="#optimizacion-numerica-en-ciencia-de-datos" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
 <p class="sidebar-title">Optimización de código o software</p>
 <p>La implementación de los métodos o algoritmos en el contexto de grandes cantidades de datos o big data es crítica al ir a la práctica pues de esto depende que nuestra(s) máquina(s) tarde meses, semanas, días u horas para resolver problemas que se presentan en este contexto. En este contexto la <a class="reference external" href="https://en.wikipedia.org/wiki/Program_optimization">optimización de código o de software</a> nos ayuda a la eficiencia.</p>
@@ -354,6 +401,8 @@
 <li><p><em>Clustering</em>.</p></li>
 <li><p>Reducción de la dimensionalidad.</p></li>
 </ul>
+<div class="section" id="optimizacion-numerica-y-machine-learning">
+<h3>Optimización numérica y <em>machine learning</em><a class="headerlink" href="#optimizacion-numerica-y-machine-learning" title="Permalink to this headline">¶</a></h3>
 <p>En cada una de las aplicaciones o problemas anteriores se utilizan <strong>funciones de pérdida</strong> que guían el proceso de aprendizaje. Tal proceso involucra <strong>optimización parámetros</strong> de la función de pérdida. Por ejemplo, si la función de pérdida en un problema de regresión es una pérdida cuadrática <span class="math notranslate nohighlight">\(\mathcal{L}(y,\hat{y}) = (\hat{y}-y)^2\)</span> con <span class="math notranslate nohighlight">\(\hat{y} = \hat{\beta}_0 + \hat{\beta_1}x\)</span>, entonces el vector de parámetros a optimizar (aprender) es <span class="math notranslate nohighlight">\(\beta= \left[ \begin{array}{c} \beta_0\\ \beta_1 \end{array} \right]\)</span>.</p>
 <div class="sidebar">
 <p class="sidebar-title">Un poco de historia…</p>
@@ -364,12 +413,12 @@
 <p><em>Machine learning</em> o <em>statistical machine learning</em> se apoya de las formulaciones y algoritmos en optimización. Sin embargo, también ha contribuido a ésta área desarrollando nuevos enfoques en los métodos o algoritmos para el tratamiento de grandes cantidades de datos o <em>big data</em> y estableciendo retos significativos no presentes en problemas clásicos de optimización. De hecho, al revisar literatura que intersecta estas dos disciplinas encontramos comunidades científicas que desarrollan o utilizan métodos o algoritmos exactos (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Exact_algorithm">Exact algorithm</a>) y otras que utilizan métodos de optimización estocástica (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_optimization">Stochastic optimization</a> y <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_approximation">Stochastic approximation</a>) basados en métodos o algoritmos aproximados (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Approximation_algorithm">Approximation algorithm</a>). Hoy en día es común encontrar estudios que hacen referencia a <strong>modelos o métodos de aprendizaje</strong>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Como ejemplo de lo anterior considérese la técnica de <strong>regularización</strong> que en <em>machine learning</em> se utiliza para encontrar soluciones que generalicen y provean una explicación no compleja del fenómeno en estudio.</p>
+<p>Como ejemplo de lo anterior considérese la técnica de <a class="reference external" href="https://en.wikipedia.org/wiki/Regularization_(mathematics)"><strong>regularización</strong></a> que en <em>machine learning</em> se utiliza para encontrar soluciones que generalicen y provean una explicación no compleja del fenómeno en estudio.</p>
 <p>La regularización sigue el principio de la navaja de Occam, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Occam%27s_razor">Occam’s razor</a>: para cualquier conjunto de observaciones en general se prefieren explicaciones simples a explicaciones más complicadas. Aunque la técnica de regularización es conocida en optimización, han sido varias las aplicaciones de <em>machine learning</em> las que la han posicionado como clave.</p>
 </div>
 </div>
-<div class="section" id="large-scale-machine-learning">
-<h2>Large scale machine learning<a class="headerlink" href="#large-scale-machine-learning" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="del-small-scale-al-large-scale-machine-learning">
+<h3>Del <em>small scale</em> al <em>large scale machine learning</em><a class="headerlink" href="#del-small-scale-al-large-scale-machine-learning" title="Permalink to this headline">¶</a></h3>
 <div class="sidebar">
 <p class="sidebar-title">Un poco de historia…</p>
 <p>Un ejemplo de esto se observa en métodos de optimización desarrollados en la década de los <span class="math notranslate nohighlight">\(50\)</span>’s. Mientras que métodos tradicionales en optimización basados en el cálculo del gradiente y la Hessiana de una función son efectivos para problemas de aprendizaje <em>small-scale</em> (en los que  utilizamos un enfoque en <em><strong>batch</strong></em> o por lote), en el contexto del aprendizaje <em>large-scale</em>, el <strong>método de gradiente estocástico</strong> se posicionó en el centro de discusiones a inicios del siglo XXI.</p>
@@ -377,9 +426,10 @@
 </div>
 <p>El inicio del siglo XXI estuvo marcado, entre otros temas, por un incremento significativo en la generación de información. Esto puede contrastarse con el desarrollo de los procesadores de las máquinas, el cual tuvo un menor <em>performance</em> al del siglo XX. Asimismo, las mejoras en dispositivos de almacenamiento o <em>storage</em> y sistemas de <em>networking</em> abarató costos de almacenamiento y permitió tal incremento de información.  En este contexto, los modelos y métodos de <em>statistical machine learning</em> se vieron limitados por el tiempo de cómputo y no por el tamaño de muestra. La conclusión de esto fue una inclinación en la comunidad científica por el diseño o uso de métodos o modelos para procesar grandes cantidades de datos usando recursos computacionales comparativamente menores.</p>
 </div>
-<div class="section" id="problemas-de-optimizacion-y-su-relacion-con-ecuaciones-no-lineales">
-<h2>Problemas de optimización y su relación con ecuaciones no lineales<a class="headerlink" href="#problemas-de-optimizacion-y-su-relacion-con-ecuaciones-no-lineales" title="Permalink to this headline">¶</a></h2>
-<p>En optimización, la búsqueda del (o los) <strong>óptimo(s)</strong> involucran el cálculo de información de primer o segundo orden, ver <a class="reference internal" href="../../I.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#fcd"><span class="std std-ref">Definición de función, continuidad y derivada</span></a>, de la función <span class="math notranslate nohighlight">\(f_o\)</span> de acuerdo a lo revisado en los <a class="reference internal" href="../3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#resutteoconv"><span class="std std-ref">resultados útiles de teoría de convexidad</span></a>.</p>
+</div>
+<div class="section" id="ejemplos-de-problemas-de-optimizacion-small-scale">
+<h2>Ejemplos de problemas de optimización <em>small scale</em><a class="headerlink" href="#ejemplos-de-problemas-de-optimizacion-small-scale" title="Permalink to this headline">¶</a></h2>
+<p>En optimización la búsqueda del (o los) <strong>óptimo(s)</strong> involucran el cálculo de información de primer o segundo orden, ver <a class="reference internal" href="../../I.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#fcd"><span class="std std-ref">Definición de función, continuidad y derivada</span></a>, de la función <span class="math notranslate nohighlight">\(f_o\)</span> de acuerdo a lo revisado en los <a class="reference internal" href="../3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#resutteoconv"><span class="std std-ref">resultados útiles de teoría de convexidad</span></a>. Tal información para problemas <em>small scale</em> es calculada utilizando todos los datos en un enfoque por <em>batch</em> o lote.</p>
 <div class="section" id="ejemplo">
 <h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
@@ -516,7 +566,7 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_38_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_38_0.png" />
+<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_39_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_39_0.png" />
 </div>
 </div>
 <p id="gcnivelnoconvexa"><strong>Gráfica de las curvas de nivel de <span class="math notranslate nohighlight">\(f_o\)</span></strong></p>
@@ -537,7 +587,7 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_42_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_42_0.png" />
+<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_43_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_43_0.png" />
 </div>
 </div>
 <p>Resolvamos con <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html#scipy.optimize.fsolve">scipy.optimize.fsolve</a> la ecuación no lineal <span class="math notranslate nohighlight">\(\nabla f_o(x) = 0\)</span></p>
@@ -880,7 +930,7 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_91_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_91_0.png" />
+<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_92_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_92_0.png" />
 </div>
 </div>
 <p>Evaluemos en un rango más amplio la función objetivo <span class="math notranslate nohighlight">\(f_o\)</span> y realicemos una gráfica</p>
@@ -904,7 +954,7 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_94_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_94_0.png" />
+<img alt="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_95_0.png" src="../../_images/Optimizacion_numerica_y_aprendizaje_de_maquina_95_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1060,8 +1110,8 @@ x_2
 =0
 \end{split}\]</div>
 <p>con dos variables y dos ecuaciones.</p>
-<div class="admonition-comentarios admonition">
-<p class="admonition-title">Comentarios</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
 <p>En algunos casos especiales es posible resolver la ecuación no lineal <span class="math notranslate nohighlight">\(\nabla f_o(x) = 0\)</span> para <span class="math notranslate nohighlight">\(x\)</span> de forma analítica o cerrada. Este es el caso de este ejemplo cuya solución está dada por <span class="math notranslate nohighlight">\(x^* = -P^{-1}q\)</span>.</p>
 </div>
 <div class="cell docutils container">
@@ -1078,11 +1128,7 @@ x_2
 </div>
 </div>
 </div>
-<div class="admonition-definicion admonition">
-<p class="admonition-title">Definición</p>
-<p>Típicamente se utiliza un método iterativo: calcular una secuencia de puntos <span class="math notranslate nohighlight">\(x^{(0)}, x^{(1)}, \dots \in \text{dom}f_o\)</span> con <span class="math notranslate nohighlight">\(f_o(x^{(k)}) \rightarrow p^*\)</span> si <span class="math notranslate nohighlight">\(k \rightarrow \infty\)</span>. El conjunto de puntos <span class="math notranslate nohighlight">\(x^{(0)}, x^{(1)},\dots\)</span> se nombra <strong>secuencia de minimización</strong> para el problema de optimización. El algoritmo termina si <span class="math notranslate nohighlight">\(f_o(x^{(k)})-p^* \leq \epsilon\)</span> con <span class="math notranslate nohighlight">\(\epsilon &gt;0\)</span> una tolerancia dada. Tales métodos se conocen con el nombre de <strong>métodos de descenso</strong>.</p>
-</div>
-<p>El problema anterior lo podemos resolver con <a class="reference external" href="https://github.com/cvxgrp/cvxpy">cvxpy</a> pues es un problema convexo.</p>
+<p>El problema anterior también lo podemos resolver con <a class="reference external" href="https://github.com/cvxgrp/cvxpy">cvxpy</a> pues es un problema convexo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
@@ -1163,6 +1209,83 @@ optimal var [ 1. -1.]
 </div>
 <ul class="simple">
 <li><p>En la liga de <a class="reference external" href="https://www.cvxpy.org/examples/index.html">ejemplos</a> hay muchos problemas típicos en optimización convexa.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="metodos-de-descenso-para-funciones-convexas">
+<h2>Métodos de descenso para funciones convexas<a class="headerlink" href="#metodos-de-descenso-para-funciones-convexas" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="secuencia-de-minimizacion">
+<h3>Secuencia de minimización<a class="headerlink" href="#secuencia-de-minimizacion" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>Una gran cantidad de problemas de optimización utilizan métodos iterativos para calcular una secuencia de puntos <span class="math notranslate nohighlight">\(x^{(0)}, x^{(1)}, \dots \in \text{dom}f_o\)</span> nombrados <strong>secuencia de minimización</strong> con la característica <span class="math notranslate nohighlight">\(f_o(x^{(k)}) \rightarrow p^*\)</span> si <span class="math notranslate nohighlight">\(k \rightarrow \infty\)</span>. Tales métodos se conocen con el nombre de <strong>métodos de descenso</strong>.</p>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Se les nombra métodos de descenso pues para la secuencia de minimización se cumple la desigualdad: <span class="math notranslate nohighlight">\(f_o(x^{(k+1)}) &lt; f_o(x^{(k)})\)</span>, excepto para <span class="math notranslate nohighlight">\(x^{(k)}\)</span> óptimo.</p></li>
+<li><p>Para las secuencias de minimización se asume:</p>
+<ul>
+<li><p>Los puntos iniciales <span class="math notranslate nohighlight">\(x^{(0)}\)</span> de los métodos iterativos están en <span class="math notranslate nohighlight">\(\text{dom}f_o\)</span>.</p></li>
+<li><p>Que el conjunto <span class="math notranslate nohighlight">\(f_o(x^{(0)})\)</span>-subnivel sea cerrado pues así se garantiza que la secuencia de minimización está en el conjunto <span class="math notranslate nohighlight">\(f_o(x^{(0)})\)</span>-subnivel para todas las iteraciones. Ver <a class="reference internal" href="../../I.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#cacci"><span class="std std-ref">conjunto abierto, cerrado, cerradura e interior</span></a> para definición de conjunto cerrado.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="paso-o-direccion-de-busqueda-y-tamano-o-longitud-de-paso">
+<h3>Paso o dirección de búsqueda y tamaño o longitud de paso<a class="headerlink" href="#paso-o-direccion-de-busqueda-y-tamano-o-longitud-de-paso" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>La secuencia de minimización se obtiene con la fórmula: <span class="math notranslate nohighlight">\(x^{(k+1)} = x^{(k)} + t^{(k)}\Delta x^{(k)}\)</span>. Al vector <span class="math notranslate nohighlight">\(\Delta x \in \mathbb{R}^n\)</span> se le nombra <strong>paso o dirección de búsqueda</strong>. Al escalar <span class="math notranslate nohighlight">\(t^{(k)}\)</span> se le nombra <strong>tamaño o longitud de paso</strong> y siempre es positivo salvo en el caso en que <span class="math notranslate nohighlight">\(x^{(k)}\)</span> sea óptimo.</p>
+</div>
+</div>
+<div class="section" id="condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso">
+<h3>Condición para que un paso o dirección de búsqueda sea de descenso<a class="headerlink" href="#condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>Si el paso o dirección de búsqueda satisface la condición: <span class="math notranslate nohighlight">\(\nabla f_o^T(x^{(k)})\Delta x^{(k)} &lt; 0\)</span> se le nombra <strong>dirección de descenso</strong>.</p>
+</div>
+<p>Geométricamente las direcciones de descenso forman un <strong>ángulo agudo</strong> con <span class="math notranslate nohighlight">\(-\nabla f_o(x^{(k)})\)</span>:</p>
+<img src="https://dl.dropboxusercontent.com/s/o3hypqiociye9jv/zone-for-descent-directions.png?dl=0" heigth="350" width="350"><div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Los pasos de un algoritmo representan una guía para la implementación, no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo algoritmo, entonces pueden seguirse los pasos de una forma distinta.</p>
+</div>
+</div>
+<div class="section" id="algoritmo-metodo-general-de-descenso-para-funciones-convexas">
+<h3>Algoritmo: método general de descenso para funciones convexas<a class="headerlink" href="#algoritmo-metodo-general-de-descenso-para-funciones-convexas" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><strong>Dado</strong> un <strong>punto inicial</strong> <span class="math notranslate nohighlight">\(x\)</span> en <span class="math notranslate nohighlight">\(\text{dom}f_o\)</span></p>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2,...\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p>Determinar una dirección de descenso <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p></li>
+<li><p>Búsqueda de línea. Elegir un tamaño de paso <span class="math notranslate nohighlight">\(t &gt; 0\)</span>.</p></li>
+<li><p>Hacer la actualización: <span class="math notranslate nohighlight">\(x = x + t\Delta x\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia (satisfacer criterio de paro).</p>
+</div></blockquote>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>El algoritmo termina si <span class="math notranslate nohighlight">\(f_o(x^{(k)})-p^* \leq \epsilon\)</span> con <span class="math notranslate nohighlight">\(\epsilon &gt;0\)</span> una tolerancia dada, esto es, <span class="math notranslate nohighlight">\(x^{(k)}\)</span> es <span class="math notranslate nohighlight">\(\epsilon\)</span>-subóptimo.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Un rayo es el conjunto definido por <span class="math notranslate nohighlight">\(\{x + \theta v : \theta \geq 0 , v \neq 0, v \in \mathbb{R}^n\}\)</span> para <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>.</p>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios.</p>
+<ul class="simple">
+<li><p>Ejemplos de direcciones de descenso se tienen:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla f_o(x)\)</span> que da lugar al método de descenso en gradiente.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla^2 f_o \left (x \right )^{-1} \nabla f_o\left(x \right)\)</span> que da lugar al método de descenso por Newton.</p></li>
+</ul>
+</li>
+<li><p>El criterio de paro típicamente es de la forma <span class="math notranslate nohighlight">\(||\nabla f_o(x)|| \leq \text{TOL}\)</span> donde: <span class="math notranslate nohighlight">\(\text{TOL}\)</span> es una cantidad pequeña y positiva (menor o igual a <span class="math notranslate nohighlight">\(10^{-8}\)</span>). También se involucra el número máximo de iteraciones en el criterio de paro.</p></li>
+<li><p>El paso <span class="math notranslate nohighlight">\(2\)</span> busca reducir <span class="math notranslate nohighlight">\(f_o\)</span> lo <strong>suficiente</strong> o minimizarla aproximadamente a lo largo de un <strong>rayo</strong>*. Uno de los métodos que permite de forma sencilla lo anterior es la <strong>búsqueda de línea por <a class="reference external" href="https://en.wikipedia.org/wiki/Backtracking_line_search"><em>backtracking</em></a></strong>.</p></li>
 </ul>
 </div>
 </div>
