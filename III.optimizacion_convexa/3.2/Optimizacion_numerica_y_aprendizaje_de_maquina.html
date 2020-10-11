@@ -383,6 +383,7 @@
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fmin</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
 </pre></div>
 </div>
 </div>
@@ -1111,13 +1112,6 @@ x_2
 <p>El problema anterior también lo podemos resolver con <a class="reference external" href="https://github.com/cvxgrp/cvxpy">cvxpy</a> pues es un <strong>problema convexo</strong> sin restricciones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#number of variables</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1">#optimization variable</span>
 <span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">quad_form</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span> <span class="o">+</span> <span class="n">q</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">x</span> <span class="c1">#objective function</span>
@@ -1360,7 +1354,7 @@ optimal var [ 1. -1.]
 <p><strong>Opción descenso en gradiente</strong>: usando el algoritmo con dirección de descenso el gradiente de <span class="math notranslate nohighlight">\(f_o\)</span> sin búsqueda de línea se tiene:</p>
 <div class="math notranslate nohighlight">
 \[x^{(k+1)} = x^{(k)} - \nabla f(x^{(k)})\]</div>
-<p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = (5,5,1,0)^T\)</span> como punto inicial:</p>
+<p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 5 \\ 5 \\1 \\ 0 \\ \end{array} \right ]\)</span> como punto inicial:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
@@ -1388,12 +1382,12 @@ optimal var [ 1. -1.]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-1., -1., -1.,  0.])
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-1. -1. -1.  0.]
 </pre></div>
 </div>
 </div>
@@ -1407,12 +1401,12 @@ optimal var [ 1. -1.]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([5., 5., 1., 0.])
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[5. 5. 1. 0.]
 </pre></div>
 </div>
 </div>
@@ -1426,12 +1420,12 @@ optimal var [ 1. -1.]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_3</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-1., -1., -1.,  0.])
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-1. -1. -1.  0.]
 </pre></div>
 </div>
 </div>
@@ -1445,12 +1439,12 @@ optimal var [ 1. -1.]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_4</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([5., 5., 1., 0.])
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[5. 5. 1. 0.]
 </pre></div>
 </div>
 </div>
@@ -1459,7 +1453,7 @@ optimal var [ 1. -1.]
 <p><strong>Opción descenso por dirección de Newton:</strong> usando el algoritmo con dirección de descenso de Newton de <span class="math notranslate nohighlight">\(f_o\)</span> sin búsqueda de línea se tiene:</p>
 <div class="math notranslate nohighlight">
 \[x^{(k+1)} = x^{(k)} - \nabla^2 f \left (x^{(k)} \right )^{-1} \nabla f\left(x^{(k)} \right)\]</div>
-<p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = (5,5,1,0)^T\)</span> como punto inicial y <strong>no invirtiendo</strong> a la Hessiana pues en su lugar resolvemos un sistema de ecuaciones lineales:</p>
+<p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 5 \\ 5 \\1 \\ 0 \\ \end{array} \right ]\)</span> como punto inicial y <strong>no calculando la inversa</strong> de la Hessiana pues en su lugar resolvemos el sistema de ecuaciones lineales <span class="math notranslate nohighlight">\(\nabla ^2 f \left ( x^{(k)} \right ) \Delta x = - \nabla f \left(x^{(k)}\right )\)</span> resulta</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
@@ -1480,15 +1474,38 @@ optimal var [ 1. -1.]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
+<span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[2., 0., 0., 0.],
-       [0., 2., 0., 0.],
-       [0., 0., 2., 0.],
-       [0., 0., 0., 0.]])
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>⎡2.0  0.0  0.0  0.0⎤
+⎢                  ⎥
+⎢0.0  2.0  0.0  0.0⎥
+⎢                  ⎥
+⎢0.0  0.0  2.0  0.0⎥
+⎢                  ⎥
+⎣0.0  0.0  0.0  0.0⎦
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
+<span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">gf_sympy_eval</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>⎡6.0⎤
+⎢   ⎥
+⎢6.0⎥
+⎢   ⎥
+⎢2.0⎥
+⎢   ⎥
+⎣0.0⎦
 </pre></div>
 </div>
 </div>
@@ -1500,19 +1517,41 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<p>El sistema de <strong>ecuaciones lineales</strong> a resolver es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left [
+\begin{array}{cccc}
+2 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 2 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 2 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0
+\end{array}
+\right ]
+\Delta x = 
+-\left [
+\begin{array}{c}
+6 \\
+6 \\
+2 \\
+0
+\end{array}
+\right ]
+\end{split}\]</div>
+<p><strong>Obsérvese que la última ecuación es redundante</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)),</span> <span class="n">x</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">gf_sympy_eval</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{x3: -1.00000000000000, x2: -3.00000000000000, x1: -3.00000000000000}
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>{x₁: -3.0, x₂: -3.0, x₃: -1.0}
 </pre></div>
 </div>
 </div>
 </div>
-<p><span class="math notranslate nohighlight">\(4a\)</span> ecuación redundante y es <span class="math notranslate nohighlight">\(0\)</span></p>
+<p><span class="math notranslate nohighlight">\(4a\)</span> ecuación redundante y por tanto <span class="math notranslate nohighlight">\(x_4 = 0\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
@@ -1580,9 +1619,7 @@ optimal var [ 1. -1.]
 <p class="admonition-title">Observación</p>
 <p>El gradiente involucra menos almacenamiento en memoria que el almacenamiento de la Hessiana: <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> vs <span class="math notranslate nohighlight">\(\mathcal{O}(n^2)\)</span>.</p>
 </div>
-<p>Usando cvxpy….</p>
-<div class="math notranslate nohighlight">
-\[\displaystyle \min_{x \in \mathbb{R}^4} (x_1-2)^2+(2-x_2)^2+x_3^2+x_4^4\]</div>
+<p><strong>Opción usando cvxpy…</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">()</span>
@@ -1607,12 +1644,12 @@ optimal var [ 1. -1.]
 
 <span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 
-<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>7.031418247836792e-48
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>7.031418247836792e-48
 </pre></div>
 </div>
 </div>
