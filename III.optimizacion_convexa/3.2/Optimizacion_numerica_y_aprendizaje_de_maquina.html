@@ -313,8 +313,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Ejemplo
+    <a class="reference internal nav-link" href="#ejemplo-de-funcion-objetivo-convexa">
+     Ejemplo de función objetivo convexa
     </a>
    </li>
   </ul>
@@ -577,16 +577,18 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 <p>Al evaluar el gradiente en cada punto obtenemos cero (o cercano a cero):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">eval_root</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="p">[</span><span class="n">partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;x2&quot;</span><span class="p">:</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span> <span class="k">for</span> <span class="n">partial_derivative</span> <span class="ow">in</span> <span class="n">gf</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf_eval</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                                                       <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span> <span class="k">for</span> <span class="n">partial_derivative</span> <span class="ow">in</span> <span class="n">gf</span><span class="p">],</span>
+                             <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;root1&quot;</span><span class="p">:</span> <span class="n">eval_root</span><span class="p">(</span><span class="n">root1</span><span class="p">),</span>
-       <span class="s2">&quot;root2&quot;</span><span class="p">:</span> <span class="n">eval_root</span><span class="p">(</span><span class="n">root2</span><span class="p">),</span>
-       <span class="s2">&quot;root3&quot;</span><span class="p">:</span> <span class="n">eval_root</span><span class="p">(</span><span class="n">root3</span><span class="p">)}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;root1&quot;</span><span class="p">:</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">root1</span><span class="p">),</span>
+       <span class="s2">&quot;root2&quot;</span><span class="p">:</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">root2</span><span class="p">),</span>
+       <span class="s2">&quot;root3&quot;</span><span class="p">:</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">root3</span><span class="p">)}</span>
 </pre></div>
 </div>
 </div>
@@ -597,14 +599,14 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dic</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>                  root1                  root2 root3
-0  4.44089209850063e-16   4.44089209850063e-16     0
-1  2.22044604925031e-16  -2.22044604925031e-16     0
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>   root1  root2  root3
+0    0.0    0.0    0.0
+1    0.0   -0.0    0.0
 </pre></div>
 </div>
 </div>
@@ -635,16 +637,18 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 <p>y revisamos eigenvalores de la Hessiana evaluada en los puntos <code class="docutils literal notranslate"><span class="pre">root1</span></code>, <code class="docutils literal notranslate"><span class="pre">root2</span></code>, <code class="docutils literal notranslate"><span class="pre">root3</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">eval2_root</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="p">[</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;x2&quot;</span><span class="p">:</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hf</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_eval</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                                                              <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hf</span><span class="p">],</span>
+                             <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_root1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">eval2_root</span><span class="p">(</span><span class="n">root1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="n">Hf_root2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">eval2_root</span><span class="p">(</span><span class="n">root2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="n">Hf_root3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">eval2_root</span><span class="p">(</span><span class="n">root3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_root1</span> <span class="o">=</span> <span class="n">Hf_eval</span><span class="p">(</span><span class="n">root1</span><span class="p">)</span>
+<span class="n">Hf_root2</span> <span class="o">=</span> <span class="n">Hf_eval</span><span class="p">(</span><span class="n">root2</span><span class="p">)</span>
+<span class="n">Hf_root3</span> <span class="o">=</span> <span class="n">Hf_eval</span><span class="p">(</span><span class="n">root3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -774,19 +778,19 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_fmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">eval2_root</span><span class="p">(</span><span class="n">res_fmin</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">res_fmin</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-0.  0.]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">eval_root</span><span class="p">(</span><span class="n">res_fmin</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-9.02580453280601e-9, 7.11126587876060e-8]
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_fmin</span> <span class="o">=</span> <span class="n">Hf_eval</span><span class="p">(</span><span class="n">res_fmin</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1012,6 +1016,23 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 </div>
+<p>y la Hessiana de <span class="math notranslate nohighlight">\(f_o\)</span> es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">derive_by_array</span><span class="p">(</span><span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">)),</span>
+                             <span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">))</span>
+             <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>⎡5.0  4.0⎤
+⎢        ⎥
+⎣4.0  5.0⎦
+</pre></div>
+</div>
+</div>
+</div>
 <p>El gradiente de <span class="math notranslate nohighlight">\(f_o\)</span> es:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1156,14 +1177,14 @@ optimal var [ 1. -1.]
 </div>
 <div class="section" id="metodos-de-descenso-para-funciones-convexas">
 <h2>Métodos de descenso para funciones convexas<a class="headerlink" href="#metodos-de-descenso-para-funciones-convexas" title="Permalink to this headline">¶</a></h2>
+<p>En lo siguiente se asume que <span class="math notranslate nohighlight">\(f_o\)</span> cumple <span class="math notranslate nohighlight">\(f_o \in \mathcal{C}^2(\text{dom}f_o)\)</span> y es convexa en un conjunto convexo y cerrado que contiene a <span class="math notranslate nohighlight">\(x^*\)</span>.</p>
+<div class="section" id="secuencia-de-minimizacion">
+<h3>Secuencia de minimización<a class="headerlink" href="#secuencia-de-minimizacion" title="Permalink to this headline">¶</a></h3>
+<p>Una gran cantidad de problemas de optimización utilizan métodos iterativos para calcular una secuencia de puntos <span class="math notranslate nohighlight">\(x^{(0)}, x^{(1)}, \dots \in \text{dom}f_o\)</span> nombrados <strong>secuencia de minimización</strong> con la característica <span class="math notranslate nohighlight">\(f_o(x^{(k)}) \rightarrow p^*\)</span> si <span class="math notranslate nohighlight">\(k \rightarrow \infty\)</span>. Tales métodos se conocen con el nombre de <strong>métodos de descenso</strong>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Recuérdese que si <span class="math notranslate nohighlight">\(f_o\)</span> es fuertemente convexa en el conjunto <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> entonces <span class="math notranslate nohighlight">\(\nabla^2 f_o (x) \in \mathbb{S}_{++}\)</span> y <span class="math notranslate nohighlight">\(\text{cond}(\nabla ^2 f_o(x))\)</span> está acotado por arriba por una constante para <span class="math notranslate nohighlight">\(x \in \mathcal{S}\)</span>.</p>
 </div>
-<p>En lo siguiente se asume que <span class="math notranslate nohighlight">\(f_o\)</span> cumple <span class="math notranslate nohighlight">\(f_o \in \mathcal{C}^2(\text{dom}f_o)\)</span> y es fuertemente convexa en un conjunto convexo y cerrado que contiene a <span class="math notranslate nohighlight">\(x^*\)</span>.</p>
-<div class="section" id="secuencia-de-minimizacion">
-<h3>Secuencia de minimización<a class="headerlink" href="#secuencia-de-minimizacion" title="Permalink to this headline">¶</a></h3>
-<p>Una gran cantidad de problemas de optimización utilizan métodos iterativos para calcular una secuencia de puntos <span class="math notranslate nohighlight">\(x^{(0)}, x^{(1)}, \dots \in \text{dom}f_o\)</span> nombrados <strong>secuencia de minimización</strong> con la característica <span class="math notranslate nohighlight">\(f_o(x^{(k)}) \rightarrow p^*\)</span> si <span class="math notranslate nohighlight">\(k \rightarrow \infty\)</span>. Tales métodos se conocen con el nombre de <strong>métodos de descenso</strong>.</p>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
@@ -1221,8 +1242,8 @@ optimal var [ 1. -1.]
 <li><p>El algoritmo termina si <span class="math notranslate nohighlight">\(f_o(x^{(k)})-p^* \leq \epsilon\)</span> con <span class="math notranslate nohighlight">\(\epsilon &gt;0\)</span> una tolerancia dada, esto es, <span class="math notranslate nohighlight">\(x^{(k)}\)</span> es <span class="math notranslate nohighlight">\(\epsilon\)</span>-subóptimo.</p></li>
 <li><p>Ejemplos de direcciones de descenso se tienen:</p>
 <ul>
-<li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla f_o(x^{(k)})\)</span> que da lugar al método de descenso en gradiente.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla^2 f_o \left (x^{(k)} \right )^{-1} \nabla f_o\left(x^{(k)} \right)\)</span> que da lugar al método de descenso por Newton.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla f_o \left (x^{(k)} \rith )\)</span> que da lugar al método de descenso en gradiente para <span class="math notranslate nohighlight">\(x^{(k)}\)</span> no óptimo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla^2 f_o \left (x^{(k)} \right )^{-1} \nabla f_o\left(x^{(k)} \right)\)</span> que da lugar al método de descenso por Newton con <span class="math notranslate nohighlight">\(\nabla^2 f_o \left (x^{(k)} \right ) \in \mathbb{S}_{++}\)</span> y <span class="math notranslate nohighlight">\(x^{(k)}\)</span> no óptimo.</p></li>
 </ul>
 </li>
 <li><p>El criterio de paro típicamente es de la forma <span class="math notranslate nohighlight">\(||\nabla f_o(x)|| \leq \text{TOL}\)</span> donde: <span class="math notranslate nohighlight">\(\text{TOL}\)</span> es una cantidad pequeña y positiva (menor o igual a <span class="math notranslate nohighlight">\(10^{-8}\)</span>). También se involucra el número máximo de iteraciones en el criterio de paro.</p></li>
@@ -1230,8 +1251,8 @@ optimal var [ 1. -1.]
 </ul>
 </div>
 </div>
-<div class="section" id="id1">
-<h3>Ejemplo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="ejemplo-de-funcion-objetivo-convexa">
+<h3>Ejemplo de función objetivo convexa<a class="headerlink" href="#ejemplo-de-funcion-objetivo-convexa" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{x \in \mathbb{R}^4} (x_1-2)^2+(2-x_2)^2+x_3^2+x_4^4\]</div>
 <div class="cell docutils container">
@@ -1294,9 +1315,9 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<p>Como <span class="math notranslate nohighlight">\(f\)</span> es una función convexa, se tiene que su óptimo se obtiene igualando y resolviendo la <strong>ecuación no lineal</strong> <span class="math notranslate nohighlight">\(\nabla f(x) = 0\)</span> :</p>
+<p>Como <span class="math notranslate nohighlight">\(f_o\)</span> es una función convexa (de hecho <strong>estrictamente convexa</strong>) en su dominio, <span class="math notranslate nohighlight">\(\mathbb{R}^4\)</span>, se tiene que su óptimo se obtiene igualando y resolviendo la <strong>ecuación no lineal</strong> <span class="math notranslate nohighlight">\(\nabla f_o(x) = 0\)</span> :</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\nabla f(x) = 
+\[\begin{split}\nabla f_o(x) = 
 \left[ \begin{array}{c}
 2x_1-4 \\
 2x_2-4\\
@@ -1318,7 +1339,234 @@ optimal var [ 1. -1.]
 \right]
 \end{split}\]</div>
 <p><strong>¿Cómo encontramos numéricamente el óptimo?</strong></p>
+<p><strong>Opción descenso en gradiente</strong>: usando el algoritmo con dirección de descenso el gradiente de <span class="math notranslate nohighlight">\(f_o\)</span> sin búsqueda de línea se tiene:</p>
+<div class="math notranslate nohighlight">
+\[x^{(k+1)} = x^{(k)} - \nabla f(x^{(k)})\]</div>
+<p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = (5,5,1,0)^T\)</span> como punto inicial:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf_eval</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                                              <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                              <span class="s2">&quot;x3&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                              <span class="s2">&quot;x4&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]})</span> <span class="k">for</span> <span class="n">partial_derivative</span> <span class="ow">in</span> <span class="n">gf</span><span class="p">],</span>
+                              <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">-</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-1., -1., -1.,  0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_2</span> <span class="o">=</span> <span class="n">x_1</span> <span class="o">-</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([5., 5., 1., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_3</span> <span class="o">=</span> <span class="n">x_2</span> <span class="o">-</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([-1., -1., -1.,  0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_4</span> <span class="o">=</span> <span class="n">x_3</span> <span class="o">-</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([5., 5., 1., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>y aquí nos quedaremos ciclando hasta el infinito…</p>
+<p><strong>Opción descenso por dirección de Newton:</strong> usando el algoritmo con dirección de descenso de Newton de <span class="math notranslate nohighlight">\(f_o\)</span> sin búsqueda de línea se tiene:</p>
+<div class="math notranslate nohighlight">
+\[x^{(k+1)} = x^{(k)} - \nabla^2 f \left (x^{(k)} \right )^{-1} \nabla f\left(x^{(k)} \right)\]</div>
+<p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = (5,5,1,0)^T\)</span> como punto inicial y <strong>no invirtiendo</strong> a la Hessiana pues en su lugar resolvemos un sistema de ecuaciones lineales:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_eval</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                                                              <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                                              <span class="s2">&quot;x3&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                                              <span class="s2">&quot;x4&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hf</span><span class="p">],</span>
+                             <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[2., 0., 0., 0.],
+       [0., 2., 0., 0.],
+       [0., 0., 2., 0.],
+       [0., 0., 0., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)),</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>{x3: -1.00000000000000, x2: -3.00000000000000, x1: -3.00000000000000}
+</pre></div>
+</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(4a\)</span> ecuación redundante y es <span class="math notranslate nohighlight">\(0\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([2, 2, 0, 0])
+</pre></div>
+</div>
+</div>
+</div>
 <p>Usando cvxpy….</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{x \in \mathbb{R}^4} (x_1-2)^2+(2-x_2)^2+x_3^2+x_4^4\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">()</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">()</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">()</span>
+<span class="n">x4</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">x2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x3</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x4</span><span class="o">**</span><span class="mi">2</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">fo_cvxpy</span><span class="p">)</span>
+
+<span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+<span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>7.031418247836792e-48
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;status:&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal value&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;optimal var&quot;</span><span class="p">,</span> <span class="n">x1</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">x2</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">x3</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">x4</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>status: optimal
+optimal value 7.031418247836792e-48
+optimal var 2.0 2.0 0.0 0.0
+</pre></div>
+</div>
+</div>
+</div>
 <p><strong>Preguntas de comprehensión.</strong></p>
 <ol class="simple">
 <li></li>
