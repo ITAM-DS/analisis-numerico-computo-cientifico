@@ -337,6 +337,14 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#funcion-en-python-para-el-metodo-de-backtracking">
+   Función en Python para el método de
+   <em>
+    backtracking
+   </em>
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -1166,7 +1174,7 @@ optimal var [ 1. -1.]
 <ul class="simple">
 <li><p>El paquete cvxpy requiere que se especifique el problema de optimización a resolver siguiendo reglas establecidas en <a class="reference external" href="https://dcp.stanford.edu/">Disciplined Convex Programming</a>. En el ejemplo anterior resulta en un error si se ejecutan las líneas siguientes:</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">()</span>
 <span class="n">x2</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">()</span>
 <span class="n">fo</span> <span class="o">=</span> <span class="mf">2.5</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x1</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span> <span class="o">+</span> <span class="mf">2.5</span><span class="o">*</span><span class="n">x2</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">+</span> <span class="mi">3</span>
 
@@ -1225,7 +1233,8 @@ optimal var [ 1. -1.]
 <p>Si el paso o dirección de búsqueda satisface la condición: <span class="math notranslate nohighlight">\(\nabla f_o^T(x^{(k)})\Delta x^{(k)} &lt; 0\)</span> se le nombra <strong>dirección de descenso</strong>.</p>
 </div>
 <p>Geométricamente las direcciones de descenso forman un <strong>ángulo agudo</strong> con <span class="math notranslate nohighlight">\(-\nabla f_o(x^{(k)})\)</span>:</p>
-<img src="https://dl.dropboxusercontent.com/s/o3hypqiociye9jv/zone-for-descent-directions.png?dl=0" heigth="350" width="350"></div>
+<img src="https://dl.dropboxusercontent.com/s/o3hypqiociye9jv/zone-for-descent-directions.png?dl=0" heigth="350" width="350"><p>En el dibujo <span class="math notranslate nohighlight">\(f = f_o\)</span>.</p>
+</div>
 <div class="section" id="algoritmo-metodo-general-de-descenso-para-funciones-convexas">
 <h3>Algoritmo: método general de descenso para funciones convexas<a class="headerlink" href="#algoritmo-metodo-general-de-descenso-para-funciones-convexas" title="Permalink to this headline">¶</a></h3>
 <div class="margin sidebar">
@@ -1353,7 +1362,7 @@ optimal var [ 1. -1.]
 <p><strong>¿Cómo encontramos numéricamente el óptimo?</strong></p>
 <p><strong>Opción descenso en gradiente</strong>: usando el algoritmo con dirección de descenso el gradiente de <span class="math notranslate nohighlight">\(f_o\)</span> sin búsqueda de línea se tiene:</p>
 <div class="math notranslate nohighlight">
-\[x^{(k+1)} = x^{(k)} - \nabla f(x^{(k)})\]</div>
+\[x^{(k+1)} = x^{(k)} - \nabla f_o(x^{(k)})\]</div>
 <p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 5 \\ 5 \\1 \\ 0 \\ \end{array} \right ]\)</span> como punto inicial:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1452,8 +1461,8 @@ optimal var [ 1. -1.]
 <p>y aquí nos quedaremos ciclando hasta el infinito…</p>
 <p><strong>Opción descenso por dirección de Newton:</strong> usando el algoritmo con dirección de descenso de Newton de <span class="math notranslate nohighlight">\(f_o\)</span> sin búsqueda de línea se tiene:</p>
 <div class="math notranslate nohighlight">
-\[x^{(k+1)} = x^{(k)} - \nabla^2 f \left (x^{(k)} \right )^{-1} \nabla f\left(x^{(k)} \right)\]</div>
-<p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 5 \\ 5 \\1 \\ 0 \\ \end{array} \right ]\)</span> como punto inicial y <strong>no calculando la inversa</strong> de la Hessiana pues en su lugar resolvemos el sistema de ecuaciones lineales <span class="math notranslate nohighlight">\(\nabla ^2 f \left ( x^{(k)} \right ) \Delta x = - \nabla f \left(x^{(k)}\right )\)</span> resulta</p>
+\[x^{(k+1)} = x^{(k)} - \nabla^2 f_o \left (x^{(k)} \right )^{-1} \nabla f_o\left(x^{(k)} \right)\]</div>
+<p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 5 \\ 5 \\1 \\ 0 \\ \end{array} \right ]\)</span> como punto inicial y <strong>no calculando la inversa</strong> de la Hessiana pues en su lugar resolvemos el sistema de ecuaciones lineales <span class="math notranslate nohighlight">\(\nabla ^2 f_o \left ( x^{(k)} \right ) \Delta x = - \nabla f_o \left(x^{(k)}\right )\)</span> resulta</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
@@ -1561,12 +1570,12 @@ optimal var [ 1. -1.]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([2, 2, 0, 0])
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2 2 0 0]
 </pre></div>
 </div>
 </div>
@@ -1587,7 +1596,7 @@ optimal var [ 1. -1.]
 </div>
 <p><strong>Opción descenso en gradiente:</strong> usando el algoritmo con dirección de descenso el gradiente de <span class="math notranslate nohighlight">\(f_o\)</span> con búsqueda de línea se tiene:</p>
 <div class="math notranslate nohighlight">
-\[x^{(k+1)} = x^{(k)} - t_{k}\nabla f(x^{(k)})\]</div>
+\[x^{(k+1)} = x^{(k)} - t_{k}\nabla f_o(x^{(k)})\]</div>
 <p>para <span class="math notranslate nohighlight">\(t_{k} &gt; 0\)</span>. Con <span class="math notranslate nohighlight">\(t_0=0.5\)</span> llegamos al óptimo en una iteración:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1605,12 +1614,12 @@ optimal var [ 1. -1.]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([2., 2., 0., 0.])
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2. 2. 0. 0.]
 </pre></div>
 </div>
 </div>
@@ -1674,14 +1683,15 @@ optimal var 2.0 2.0 0.0 0.0
 </div>
 <div class="section" id="metodo-de-busqueda-de-linea-por-backtracking">
 <h2>Método de búsqueda de línea por <em>backtracking</em><a class="headerlink" href="#metodo-de-busqueda-de-linea-por-backtracking" title="Permalink to this headline">¶</a></h2>
-<p>Para entender el método de búsqueda de línea por <em>backtracking</em> supóngase que <span class="math notranslate nohighlight">\(f_o\)</span> tiene una forma siguiente:</p>
+<p>En esta sección consideramos <span class="math notranslate nohighlight">\(f = f_o\)</span>.</p>
+<p>Para entender el método de búsqueda de línea por <em>backtracking</em> supóngase que <span class="math notranslate nohighlight">\(f\)</span> tiene una forma siguiente:</p>
 <img src="https://dl.dropboxusercontent.com/s/0woqoj8foo5eco9/level_set_of_func.png?dl=0" heigth="300" width="300">
-<p>Y considérese una función <span class="math notranslate nohighlight">\(g: \mathbb{R} \rightarrow \mathbb{R}\)</span> igual a <span class="math notranslate nohighlight">\(f_o\)</span> pero restringida al rayo <span class="math notranslate nohighlight">\(x + t\Delta x\)</span>, esto es: <span class="math notranslate nohighlight">\(g(t) = f_o(x+t \Delta x)\)</span> con <span class="math notranslate nohighlight">\(t&gt;0\)</span>, <span class="math notranslate nohighlight">\(\Delta x\)</span> dirección de descenso. Lo anterior se visualiza como sigue:</p>
-<img src="https://dl.dropboxusercontent.com/s/18udjmzmmd7drrz/line_search_backtracking_1.png?dl=0" heigth="300" width="300"><p>Y como <span class="math notranslate nohighlight">\(f_o\)</span> es continua y diferenciable, <span class="math notranslate nohighlight">\(g\)</span> también lo es y <span class="math notranslate nohighlight">\(g(0)=f_o(x)\)</span>, <span class="math notranslate nohighlight">\(g'(t) = \nabla f_o(x+t\Delta x)^T \Delta x\)</span>. Si graficamos <span class="math notranslate nohighlight">\(g\)</span> se tendría:</p>
+<p>Y considérese una función <span class="math notranslate nohighlight">\(g: \mathbb{R} \rightarrow \mathbb{R}\)</span> igual a <span class="math notranslate nohighlight">\(f\)</span> pero restringida al rayo <span class="math notranslate nohighlight">\(x + t\Delta x\)</span>, esto es: <span class="math notranslate nohighlight">\(g(t) = f(x+t \Delta x)\)</span> con <span class="math notranslate nohighlight">\(t&gt;0\)</span>, <span class="math notranslate nohighlight">\(\Delta x\)</span> dirección de descenso. Lo anterior se visualiza como sigue:</p>
+<img src="https://dl.dropboxusercontent.com/s/18udjmzmmd7drrz/line_search_backtracking_1.png?dl=0" heigth="300" width="300"><p>Y como <span class="math notranslate nohighlight">\(f\)</span> es continua y diferenciable, <span class="math notranslate nohighlight">\(g\)</span> también lo es y <span class="math notranslate nohighlight">\(g(0)=f(x)\)</span>, <span class="math notranslate nohighlight">\(g'(t) = \nabla f_o(x+t\Delta x)^T \Delta x\)</span>. Si graficamos <span class="math notranslate nohighlight">\(g\)</span> se tendría:</p>
 <img src="https://dl.dropboxusercontent.com/s/sgj7eqr2qysi8hs/line_search_backtracking_2.png?dl=0" heigth="300" width="300">
 <p>En la búsqueda de línea se construyen dos rectas. Una recta es <span class="math notranslate nohighlight">\(g(0) + \alpha g'(0)(t-0)\)</span> con <span class="math notranslate nohighlight">\(\alpha \in (0,\frac{1}{2})\)</span>. La otra recta es <span class="math notranslate nohighlight">\(g(0)+g'(0)(t-0)\)</span>. Ambas rectas tienen pendiente negativa. Esto se visualiza como sigue:</p>
 <img src="https://dl.dropboxusercontent.com/s/11y008lq0fd6jl6/line_search_backtracking_3.png?dl=0" heigth="500" width="500">
-<p>En la búsqueda de línea por backtracking se busca <span class="math notranslate nohighlight">\(t_k\)</span> tal que <span class="math notranslate nohighlight">\(f_o\)</span> decrezca suficientemente. Lo anterior se establece con la desigualdad <span class="math notranslate nohighlight">\(f_o(x+t \Delta x) &lt; f_o(x) + \alpha t \nabla f_o(x)^T \Delta x\)</span>:</p>
+<p>En la búsqueda de línea por backtracking se busca <span class="math notranslate nohighlight">\(t_k\)</span> tal que <span class="math notranslate nohighlight">\(f\)</span> decrezca suficientemente. Lo anterior se establece con la desigualdad <span class="math notranslate nohighlight">\(f(x+t \Delta x) &lt; f(x) + \alpha t \nabla f(x)^T \Delta x\)</span>:</p>
 <img src="https://dl.dropboxusercontent.com/s/o4f341x1y5sqxt8/line_search_backtracking_4.png?dl=0" heigth="500" width="500">
 <p>obsérvese en el dibujo anterior que la región en la que se elegirá <span class="math notranslate nohighlight">\(t_k\)</span> está a la izquierda de la línea punteada vertical de color verde.</p>
 <p>Y visualmente en <span class="math notranslate nohighlight">\(R^3\)</span> se tiene:</p>
@@ -1690,9 +1700,9 @@ optimal var 2.0 2.0 0.0 0.0
 <div class="section" id="algoritmo-busqueda-de-linea-por-backtracking">
 <h3>Algoritmo: búsqueda de línea por <em>backtracking</em><a class="headerlink" href="#algoritmo-busqueda-de-linea-por-backtracking" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(\Delta x\)</span> dirección de descenso para <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x \in \text{dom}f_o\)</span>, <span class="math notranslate nohighlight">\(\alpha \in (0,\frac{1}{2})\)</span>, <span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span>.</p>
+<div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(\Delta x\)</span> dirección de descenso para <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x \in \text{dom}f\)</span>, <span class="math notranslate nohighlight">\(\alpha \in (0,\frac{1}{2})\)</span>, <span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span>.</p>
 <p><strong>Asignar</strong> t=1.</p>
-<p><strong>Mientras</strong> <span class="math notranslate nohighlight">\(f_o(x+t\Delta x) &gt; f_o(x) + \alpha t \nabla f_o(x) ^T\Delta x\)</span>.</p>
+<p><strong>Mientras</strong> <span class="math notranslate nohighlight">\(f(x+t\Delta x) &gt; f(x) + \alpha t \nabla f(x) ^T\Delta x\)</span>.</p>
 <blockquote>
 <div><ol class="simple">
 <li><p><strong>Reducir</strong> <span class="math notranslate nohighlight">\(t: t= \beta t\)</span>.</p></li>
@@ -1702,9 +1712,44 @@ optimal var 2.0 2.0 0.0 0.0
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>El valor <span class="math notranslate nohighlight">\(\alpha\)</span> típicamente se elige entre <span class="math notranslate nohighlight">\(.01\)</span> y <span class="math notranslate nohighlight">\(.03\)</span> que indica que se acepta un decrecimiento en el valor de <span class="math notranslate nohighlight">\(f_o\)</span> entre el <span class="math notranslate nohighlight">\(1 \%\)</span> y el <span class="math notranslate nohighlight">\(30 \%\)</span>. La constante <span class="math notranslate nohighlight">\(\beta\)</span> comúnmente se elige entre <span class="math notranslate nohighlight">\(.1\)</span> (que modifica fuertemente <span class="math notranslate nohighlight">\(t\)</span>) y <span class="math notranslate nohighlight">\(.8\)</span> (que realiza una modificación menos drástica de <span class="math notranslate nohighlight">\(t\)</span>).</p></li>
-<li><p>Obsérvese que la multiplicación <span class="math notranslate nohighlight">\(\nabla f_o(x)^T \Delta x\)</span> es una derivada direccional, ver <a class="reference internal" href="../../I.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#fcd"><span class="std std-ref">definición de función, continuidad y derivada</span></a>.</p></li>
+<li><p>El valor <span class="math notranslate nohighlight">\(\alpha\)</span> típicamente se elige entre <span class="math notranslate nohighlight">\(.01\)</span> y <span class="math notranslate nohighlight">\(.03\)</span> que indica que se acepta un decrecimiento en el valor de <span class="math notranslate nohighlight">\(f\)</span> entre el <span class="math notranslate nohighlight">\(1 \%\)</span> y el <span class="math notranslate nohighlight">\(30 \%\)</span>. La constante <span class="math notranslate nohighlight">\(\beta\)</span> comúnmente se elige entre <span class="math notranslate nohighlight">\(.1\)</span> (que modifica fuertemente <span class="math notranslate nohighlight">\(t\)</span>) y <span class="math notranslate nohighlight">\(.8\)</span> (que realiza una modificación menos drástica de <span class="math notranslate nohighlight">\(t\)</span>).</p></li>
+<li><p>Obsérvese que la multiplicación <span class="math notranslate nohighlight">\(\nabla f(x)^T \Delta x\)</span> es una derivada direccional, ver <a class="reference internal" href="../../I.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#fcd"><span class="std std-ref">definición de función, continuidad y derivada</span></a>.</p></li>
 </ul>
+</div>
+</div>
+</div>
+<div class="section" id="funcion-en-python-para-el-metodo-de-backtracking">
+<h2>Función en Python para el método de <em>backtracking</em><a class="headerlink" href="#funcion-en-python-para-el-metodo-de-backtracking" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">line_search_by_backtracking</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">dir_desc</span><span class="p">,</span><span class="n">x</span><span class="p">,</span>
+                                <span class="n">der_direct</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">15</span><span class="p">,</span> <span class="n">beta</span><span class="o">=.</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Line search that sufficiently decreases f restricted to a ray in the direction dir_desc.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        alpha (float): parameter in line search with backtracking, tipically .15</span>
+<span class="sd">        beta (float): parameter in line search with backtracking, tipically .5</span>
+<span class="sd">        f (lambda expression): definition of function f.</span>
+<span class="sd">        dir_desc (array): descent direction.</span>
+<span class="sd">        x (array): numpy array that holds values where line search will be performed.</span>
+<span class="sd">        der_direct (float): directional derivative of f.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        t (float): positive number for stepsize along dir_desc that sufficiently decreases f.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">t</span><span class="o">=</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">alpha</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;alpha must be less than or equal to 1/2&#39;</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">=-</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">beta</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;beta must be less than 1&#39;</span><span class="p">)</span>
+        <span class="n">t</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>   
+    <span class="k">if</span> <span class="n">t</span><span class="o">!=-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">eval1</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">t</span><span class="o">*</span><span class="n">dir_desc</span><span class="p">)</span>
+        <span class="n">eval2</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">der_direct</span>
+        <span class="k">while</span> <span class="n">eval1</span> <span class="o">&gt;</span> <span class="n">eval2</span><span class="p">:</span>
+            <span class="n">t</span><span class="o">=</span><span class="n">beta</span><span class="o">*</span><span class="n">t</span>
+            <span class="n">eval1</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">t</span><span class="o">*</span><span class="n">dir_desc</span><span class="p">)</span>
+            <span class="n">eval2</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">der_direct</span>
+    <span class="k">return</span> <span class="n">t</span>
+</pre></div>
 </div>
 <p><strong>Preguntas de comprehensión.</strong></p>
 <ol class="simple">
@@ -1715,7 +1760,6 @@ optimal var 2.0 2.0 0.0 0.0
 <li></li>
 <li></li>
 </ol>
-</div>
 </div>
 </div>
 
