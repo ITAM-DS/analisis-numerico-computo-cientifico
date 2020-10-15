@@ -151,3 +151,11 @@ Llegamos hasta inicio de [transformaciones-de-rotacion](https://itam-ds.github.i
 
 El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
 
+
+## Clase 10
+
+14 de octubre
+
+Finalizamos [Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/II.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html)
+
+Llegamos hasta ejemplo de similitud de [elipse](https://itam-ds.github.io/analisis-numerico-computo-cientifico/II.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html#id10)
