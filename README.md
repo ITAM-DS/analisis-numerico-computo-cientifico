@@ -159,3 +159,16 @@ El video lo pueden descargar desde Teams pero sólo estará disponible unos día
 Finalizamos [Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/II.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html)
 
 Llegamos hasta ejemplo de similitud de [elipse](https://itam-ds.github.io/analisis-numerico-computo-cientifico/II.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html#id10)
+
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
+
+
+## Clase 11
+
+21 de octubre
+
+Finalizamos [Eigenvalores_y_eigenvectores](https://itam-ds.github.io/analisis-numerico-computo-cientifico/II.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html)
+
+Revisamos rotaciones de Jacobi, método de la potencia e inicio del método de *page rank* en [Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz](https://itam-ds.github.io/analisis-numerico-computo-cientifico/II.computo_matricial/2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html)
+
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
