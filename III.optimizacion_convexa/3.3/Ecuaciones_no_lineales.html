@@ -309,6 +309,16 @@
   <a class="reference internal nav-link" href="#metodo-de-biseccion-para-problemas-de-una-dimension">
    Método de bisección para problemas de una dimensión
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algoritmo-metodo-de-biseccion-para-f-in-mathbb-r-rightarrow-mathbb-r">
+     Algoritmo: método de bisección para
+     <span class="math notranslate nohighlight">
+      \(f \in \mathbb{R} \rightarrow \mathbb{R}\)
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodo-de-newton-o-newton-raphson-para-problemas-de-una-dimension">
@@ -483,7 +493,7 @@ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &amp;=&amp; b_m
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>En el caso de una ecuación o un sistema de ecuaciones no lineales no tenemos resultados que determinen la existencia o unicidad de soluciones a diferencia de un sistema lineal. Sin embargo, en muchas situaciones en la práctica se resuelven ecuaciones no lineales que sí tienen solución y se desea aproximar una solución o varias soluciones en una región de interés.</p></li>
+<li><p>En el caso de una ecuación o un sistema de ecuaciones no lineales no tenemos resultados que determinen la existencia o unicidad de soluciones a diferencia de un sistema lineal. Sin embargo, en muchas situaciones en la práctica se resuelven ecuaciones no lineales que sí tienen solución y se desea aproximar una solución o varias soluciones en una región de interés por lo que determinar la existencia o unicidad de la solución no es primordial.</p></li>
 <li><p>La mayoría de los métodos para calcular raíces o ceros de <span class="math notranslate nohighlight">\(f\)</span> vía la ecuación no lineal <span class="math notranslate nohighlight">\(f(x) = 0\)</span> nos devuelven aproximaciones y no fórmulas cerradas. Son métodos <strong>iterativos</strong> que en el caso de <span class="math notranslate nohighlight">\(1\)</span> dimensión los podemos dividir en <span class="math notranslate nohighlight">\(2\)</span> tipos: <strong>cerrados</strong> y <strong>abiertos</strong>. Los cerrados inician sus iteraciones en un intervalo que encierra a la raíz y conforme avanzan las iteraciones hacen subdivisiones del intervalo inicial por lo que su longitud se reduce y <strong>siempre</strong> convergen. Los abiertos no requieren encerrar a la raíz, en general tienen mejor desempeño que los cerrados en cuanto al número de iteraciones pero <strong>no siempre convergen</strong>.</p></li>
 <li><p>Es conveniente comentar que si bien quisiéramos tener algoritmos que calculasen todas las raíces o ceros de <span class="math notranslate nohighlight">\(f\)</span> esto no es posible, es un hecho que los métodos nos darán una solución aproximada o un mensaje del tipo “no se encontró solución”.</p></li>
 </ul>
@@ -491,7 +501,35 @@ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &amp;=&amp; b_m
 </div>
 <div class="section" id="metodo-de-biseccion-para-problemas-de-una-dimension">
 <h2>Método de bisección para problemas de una dimensión<a class="headerlink" href="#metodo-de-biseccion-para-problemas-de-una-dimension" title="Permalink to this headline">¶</a></h2>
-<p>Método cerrado</p>
+<p>Es un método cerrado que requiere <span class="math notranslate nohighlight">\(f \in \mathbb{R} \rightarrow \mathbb{R}\)</span> con <span class="math notranslate nohighlight">\(f \in \mathcal{C}([a,b])\)</span> tal que <span class="math notranslate nohighlight">\(f(a) f(b) &lt;0\)</span>, esto es, que <span class="math notranslate nohighlight">\(f\)</span> tenga un cambio de signo. Por el teorema del valor intermedio se cumple que <span class="math notranslate nohighlight">\(f\)</span> tiene una raíz en <span class="math notranslate nohighlight">\([a,b]\)</span>.</p>
+<div class="section" id="algoritmo-metodo-de-biseccion-para-f-in-mathbb-r-rightarrow-mathbb-r">
+<h3>Algoritmo: método de bisección para <span class="math notranslate nohighlight">\(f \in \mathbb{R} \rightarrow \mathbb{R}\)</span><a class="headerlink" href="#algoritmo-metodo-de-biseccion-para-f-in-mathbb-r-rightarrow-mathbb-r" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(x_i, x_s\)</span> límite inferior y superior respectivamente tales que <span class="math notranslate nohighlight">\(x^* \in [x_i, x_s]\)</span> con <span class="math notranslate nohighlight">\(f(x_i)f(x_s)&lt;0\)</span> y <span class="math notranslate nohighlight">\(tol &gt;0\)</span></p>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(x^{(k)} = \frac{x_i + x_s}{2}\)</span></p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(f(x_i)f(x^{(k)}) &lt; 0\)</span> entonces <span class="math notranslate nohighlight">\(x^* \in [x_i, x^{(k)}]\)</span> por lo tanto <span class="math notranslate nohighlight">\(x_s = x^{(k)}\)</span>.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(f(x_i)f(x^{(k)}) &gt; 0\)</span> entonces <span class="math notranslate nohighlight">\(x^* \in [x^{(k)}, x_s]\)</span> por lo tanto <span class="math notranslate nohighlight">\(x_i = x^{(k)}\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span> y <span class="math notranslate nohighlight">\(maxiter\)</span>.</p>
+</div></blockquote>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Un criterio de paro que mide diferencia entre iteraciones, valor absoluto de <span class="math notranslate nohighlight">\(f\)</span> y máximo número de iteraciones es de la forma:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="o">|</span><span class="n">x_</span><span class="p">{</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">}</span> <span class="o">-</span> <span class="n">x_k</span><span class="o">|</span> <span class="o">&gt;</span> <span class="n">tol</span><span class="p">(</span><span class="o">|</span><span class="n">x_k</span><span class="o">|</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">|</span><span class="n">f</span><span class="p">(</span><span class="n">x_k</span><span class="p">)</span><span class="o">|</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="o">&amp;&amp;</span> <span class="nb">iter</span> <span class="o">&lt;</span> <span class="n">max_iter</span>
+</pre></div>
+</div>
+<p>con <code class="docutils literal notranslate"><span class="pre">iter</span></code> contador de las iteraciones.</p>
+<ul class="simple">
+<li><p>El método de bisección siempre converge.</p></li>
+</ul>
+</div>
+</div>
 </div>
 <div class="section" id="metodo-de-newton-o-newton-raphson-para-problemas-de-una-dimension">
 <h2>Método de Newton o Newton-Raphson para problemas de una dimensión<a class="headerlink" href="#metodo-de-newton-o-newton-raphson-para-problemas-de-una-dimension" title="Permalink to this headline">¶</a></h2>
