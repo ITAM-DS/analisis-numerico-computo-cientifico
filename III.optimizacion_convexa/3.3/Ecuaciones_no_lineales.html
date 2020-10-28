@@ -306,8 +306,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sistemas-de-ecuaciones-no-linales">
-   Sistemas de ecuaciones no linales
+  <a class="reference internal nav-link" href="#sistema-de-ecuaciones-no-linales">
+   Sistema de ecuaciones no linales
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -343,6 +343,11 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#metodo-de-newton-o-newton-raphson">
      Método de Newton o Newton-Raphson
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo">
+     Ejemplo
     </a>
    </li>
   </ul>
@@ -519,9 +524,9 @@ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &amp;=&amp; b_m
 </ul>
 </div>
 </div>
-<div class="section" id="sistemas-de-ecuaciones-no-linales">
-<h2>Sistemas de ecuaciones no linales<a class="headerlink" href="#sistemas-de-ecuaciones-no-linales" title="Permalink to this headline">¶</a></h2>
-<p>El caso de sistemas de ecuaciones no lineales es una generalización del caso de una dimensión en el que tenemos <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span> y debemos encontrar una raíz o cero de <span class="math notranslate nohighlight">\(f\)</span> que resuelva el sistema de ecuaciones no lineales <span class="math notranslate nohighlight">\(f(x) = 0\)</span>.</p>
+<div class="section" id="sistema-de-ecuaciones-no-linales">
+<h2>Sistema de ecuaciones no linales<a class="headerlink" href="#sistema-de-ecuaciones-no-linales" title="Permalink to this headline">¶</a></h2>
+<p>El caso de sistema de ecuaciones no lineales es una generalización del caso de una dimensión en el que tenemos <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span> y debemos encontrar una raíz o cero de <span class="math notranslate nohighlight">\(f\)</span> que resuelva el sistema de ecuaciones no lineales <span class="math notranslate nohighlight">\(f(x) = 0\)</span>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p><span class="math notranslate nohighlight">\(f\)</span> tiene <span class="math notranslate nohighlight">\(n\)</span> funciones componentes:</p>
@@ -664,21 +669,119 @@ x_2 + 3x_1x_2^2&amp;=&amp;57 \nonumber 
 </div>
 <div class="section" id="metodo-de-newton-o-newton-raphson">
 <h3>Método de Newton o Newton-Raphson<a class="headerlink" href="#metodo-de-newton-o-newton-raphson" title="Permalink to this headline">¶</a></h3>
-<p>Es un método abierto que inicia con un punto inicial y sigue un esquema iterativo de la forma:</p>
+<p>Es un método abierto que sigue un esquema iterativo de la forma:</p>
 <div class="math notranslate nohighlight">
 \[x^{(k+1)} = x^{(k)} - \frac{f(x^{(k)})}{f'(x^{(k)})}\]</div>
-<p>Existen varias formas de obtener tal esquema iterativo, la que se presenta a continuación <strong>define un modelo lineal local que aproxima a nuestra función <span class="math notranslate nohighlight">\(f\)</span> y encuentra la raíz de tal modelo</strong>, gráficamente:</p>
-<img src="https://dl.dropboxusercontent.com/s/hw6fluifowjnpdo/Newton-Raphson_method.png?dl=0" heigth="600" width="600"><p>El modelo lineal en el dibujo anterior es de la forma:</p>
+<p>requiere un punto inicial y converge si se cumplen condiciones descritas en <a class="reference internal" href="#comentmetnewtonrapshon"><span class="std std-ref">comentarios del método de Newton-Raphson</span></a>.</p>
+<p>Existen varias formas de obtener tal esquema iterativo, la que se presenta a continuación <strong>define un modelo afín local que aproxima a nuestra función <span class="math notranslate nohighlight">\(f\)</span> y encuentra la raíz de tal modelo</strong>, gráficamente:</p>
+<img src="https://dl.dropboxusercontent.com/s/hw6fluifowjnpdo/Newton-Raphson_method.png?dl=0" heigth="600" width="600"><p>El modelo afín en el dibujo anterior es de la forma:</p>
 <div class="math notranslate nohighlight">
-\[m(x) = f(x^{(k)}) + f'(x^{(k)})(x-x^{(k)})\]</div>
+\[M(x) = f(x^{(k)}) + f'(x^{(k)})(x-x^{(k)})\]</div>
 <p>E igualando a cero el modelo se tiene:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-0 &amp;=&amp; m(x) = f(x^{(k)}) + f'(x^{(k)})(x-x^{(k)}) \nonumber \\
+0 &amp;=&amp; M(x) = f(x^{(k)}) + f'(x^{(k)})(x-x^{(k)}) \nonumber \\
 &amp;\therefore&amp; x = x^{(k)} - \frac{f(x^{(k)})}{f'(x^{(k)})} \nonumber
 \end{eqnarray}
 \end{split}\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que el modelo afín anterior <span class="math notranslate nohighlight">\(M(x)\)</span> es la aproximación a primer orden dada por el teorema de Taylor.</p>
+</div>
+</div>
+<div class="section" id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Encontrar la raíz de <span class="math notranslate nohighlight">\(f(x) = 4x + 5\)</span> con el método de Newton.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Elección del punto inicial.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Definición de función.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Derivada de <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Actualización por el método de Newton: <span class="math notranslate nohighlight">\(x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_0</span><span class="p">)</span><span class="o">/</span><span class="n">df</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \frac{5}{4}\]</div>
+</div>
+</div>
+<div class="admonition-comentarios admonition" id="comentmetnewtonrapshon">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>El modelo afín anterior es también nombrada modelo lineal.</p></li>
+<li><p>Si la función <span class="math notranslate nohighlight">\(f\)</span> es lineal el método de Newton converge en una iteración.</p></li>
+<li><p>La convergencia del método</p></li>
+</ul>
+</div>
 </div>
 </div>
 <div class="section" id="metodo-de-newton-para-ecuaciones-no-lineales-de-funciones-f-mathbb-r-n-rightarrow-mathbb-r-n">
