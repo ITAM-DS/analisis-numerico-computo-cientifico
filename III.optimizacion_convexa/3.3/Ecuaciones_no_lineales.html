@@ -350,6 +350,11 @@
      Ejemplo
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Ejemplo
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -672,7 +677,7 @@ x_2 + 3x_1x_2^2&amp;=&amp;57 \nonumber 
 <p>Es un método abierto que sigue un esquema iterativo de la forma:</p>
 <div class="math notranslate nohighlight">
 \[x^{(k+1)} = x^{(k)} - \frac{f(x^{(k)})}{f'(x^{(k)})}\]</div>
-<p>requiere un punto inicial y converge si se cumplen condiciones descritas en <a class="reference internal" href="#comentmetnewtonrapshon"><span class="std std-ref">comentarios del método de Newton-Raphson</span></a>.</p>
+<p>requiere un punto inicial <span class="math notranslate nohighlight">\(x^{(0)}\)</span> y converge si se cumplen condiciones descritas en <a class="reference internal" href="#comentmetnewtonrapshon"><span class="std std-ref">comentarios del método de Newton-Raphson</span></a>.</p>
 <p>Existen varias formas de obtener tal esquema iterativo, la que se presenta a continuación <strong>define un modelo afín local que aproxima a nuestra función <span class="math notranslate nohighlight">\(f\)</span> y encuentra la raíz de tal modelo</strong>, gráficamente:</p>
 <img src="https://dl.dropboxusercontent.com/s/hw6fluifowjnpdo/Newton-Raphson_method.png?dl=0" heigth="600" width="600"><p>El modelo afín en el dibujo anterior es de la forma:</p>
 <div class="math notranslate nohighlight">
@@ -765,21 +770,234 @@ x_2 + 3x_1x_2^2&amp;=&amp;57 \nonumber 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle - \frac{5}{4}\]</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-5/4
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Ejemplo<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Aproximar el valor <span class="math notranslate nohighlight">\(\sqrt{3}\)</span> con el método de Newton</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Elección del punto inicial.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Definimos la función <span class="math notranslate nohighlight">\(f(x) = x^2 - 3\)</span></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_sym</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">x_sym</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Derivada de <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2⋅x
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Primera iteración</strong></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Actualización por el método de Newton: <span class="math notranslate nohighlight">\(x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x_sym</span><span class="p">,</span> <span class="n">x_0</span><span class="p">)</span><span class="o">/</span><span class="n">df</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x_sym</span><span class="p">,</span> <span class="n">x_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>103
+───
+ 20
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">evalf</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>5.15000000000000
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Segunda iteración</strong></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Actualización por el método de Newton: <span class="math notranslate nohighlight">\(x_2 = x_1 - \frac{f(x_1)}{f'(x_1)}\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x_sym</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">df</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x_sym</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>11809
+─────
+ 4120
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">evalf</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>2.86626213592233
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Tercera iteración</strong></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Actualización por el método de Newton: <span class="math notranslate nohighlight">\(x_3 = x_2 - \frac{f(x_2)}{f'(x_2)}\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">f</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x_sym</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">df</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x_sym</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>190375681
+─────────
+ 97306160
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">evalf</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.95646073177690
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>…</strong></p>
+<p><strong>Séptima iteración</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_7</span> <span class="o">=</span> <span class="mf">1.73205080756888</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
+<span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_7</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
 </div>
 </div>
 <div class="admonition-comentarios admonition" id="comentmetnewtonrapshon">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>El modelo afín anterior es también nombrada modelo lineal.</p></li>
+<li><p>El modelo afín anterior es también nombrado modelo lineal.</p></li>
 <li><p>Si la función <span class="math notranslate nohighlight">\(f\)</span> es lineal el método de Newton converge en una iteración.</p></li>
-<li><p>La convergencia del método</p></li>
+<li><p>La convergencia del método de Newton en una dimensión converge de forma cuadrática, esto es, el número de dígitos de precisión en cada iteración se duplica si se satisfacen las siguientes condiciones:</p>
+<ul>
+<li><p>El punto inicial <span class="math notranslate nohighlight">\(x^{(0)}\)</span> es cercano a la raíz <span class="math notranslate nohighlight">\(x^*\)</span> de <span class="math notranslate nohighlight">\(f\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f'(x^*) \neq 0\)</span> y existe un conjunto abierto <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> en el que <span class="math notranslate nohighlight">\(f'(x) \neq 0\)</span> <span class="math notranslate nohighlight">\(\forall x \in \mathcal{D}\)</span>, <span class="math notranslate nohighlight">\(x^* \in \mathcal{D}\)</span> y la segunda derivada de <span class="math notranslate nohighlight">\(f\)</span> es acotada*.</p></li>
+</ul>
+</li>
+</ul>
+<p>* La segunda condición referente a la segunda derivada puede ser sustituida por la condición que la primera derivada sea <em>Lipschitz</em> continua, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Lipschitz_continuity">Lipschitz_continuity</a> que ayuda a acotar la diferencia entre <span class="math notranslate nohighlight">\(f\)</span> y el modelo afín <span class="math notranslate nohighlight">\(M\)</span></p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observaciones</p>
+<ul class="simple">
+<li><p>Si la derivada de <span class="math notranslate nohighlight">\(f\)</span> es cero en la raíz no podemos concluir si el método de Newton converge o no y si converge podría o no hacerlo de forma cuadrática.</p></li>
+<li><p>Si elegimos un punto inicial lejos de <span class="math notranslate nohighlight">\(x^*\)</span> no podemos concluir, el método de Newton podría o no converger.</p></li>
 </ul>
 </div>
 </div>
