@@ -172,3 +172,10 @@ Finalizamos [Eigenvalores_y_eigenvectores](https://itam-ds.github.io/analisis-nu
 Revisamos rotaciones de Jacobi, método de la potencia e inicio del método de *page rank* en [Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz](https://itam-ds.github.io/analisis-numerico-computo-cientifico/II.computo_matricial/2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html)
 
 El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
+
+
+## Clase 12
+
+28 de octubre
+
+Finalizamos [Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz](https://itam-ds.github.io/analisis-numerico-computo-cientifico/II.computo_matricial/2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html) y [Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD](https://itam-ds.github.io/analisis-numerico-computo-cientifico/II.computo_matricial/2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.html)
