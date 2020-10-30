@@ -293,6 +293,11 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-de-funcion-objetivo-convexa">
+     Ejemplo de función objetivo convexa
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#metodos-de-descenso">
      Métodos de descenso
     </a>
@@ -313,8 +318,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo-de-funcion-objetivo-convexa">
-     Ejemplo de función objetivo convexa
+    <a class="reference internal nav-link" href="#continuando-con-el-ejemplo-anterior">
+     Continuando con el ejemplo anterior
     </a>
    </li>
   </ul>
@@ -1217,85 +1222,11 @@ optimal var [ 1. -1.]
 </div>
 <div class="section" id="metodos-de-descenso-para-funciones-convexas">
 <h2>Métodos de descenso para funciones convexas<a class="headerlink" href="#metodos-de-descenso-para-funciones-convexas" title="Permalink to this headline">¶</a></h2>
+<p>Los ejemplos anteriores mostraron la importancia de la información de primer y segundo orden de la función objetivo <span class="math notranslate nohighlight">\(f_o\)</span> y las ecuaciones no lineales para resolver el problema de optimización. El primer ejemplo utilizó las funciones <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html#scipy.optimize.fsolve">scipy.optimize.fsolve</a> y <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin.html">scipy.optimize.fmin</a> para este propósito. Tales funciones utilizan métodos iterativos para aproximar un mínimo local.</p>
 <p>En lo siguiente se asume que <span class="math notranslate nohighlight">\(f_o\)</span> cumple <span class="math notranslate nohighlight">\(f_o \in \mathcal{C}^2(\text{dom}f_o)\)</span> y es convexa en un conjunto convexo y cerrado que contiene a <span class="math notranslate nohighlight">\(x^*\)</span>. Ver <a class="reference internal" href="../../I.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#cacci"><span class="std std-ref">conjunto abierto, cerrado, cerradura e interior</span></a> para definición de conjunto cerrado.</p>
-<div class="section" id="metodos-de-descenso">
-<h3>Métodos de descenso<a class="headerlink" href="#metodos-de-descenso" title="Permalink to this headline">¶</a></h3>
-<p>Una gran cantidad de métodos para resolver problemas de optimización utilizan esquemas iterativos para calcular una <strong>secuencia de minimización</strong> de puntos <span class="math notranslate nohighlight">\(x^{(0)}, x^{(1)}, \dots \in \text{dom}f_o\)</span> con la característica <span class="math notranslate nohighlight">\(f_o(x^{(k)}) \rightarrow p^*\)</span> si <span class="math notranslate nohighlight">\(k \rightarrow \infty\)</span>. Tales métodos se conocen con el nombre de <strong>métodos de descenso</strong>.</p>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Recuérdese que si <span class="math notranslate nohighlight">\(f_o\)</span> es fuertemente convexa en el conjunto <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> entonces <span class="math notranslate nohighlight">\(\nabla^2 f_o (x) \in \mathbb{S}_{++}\)</span> y <span class="math notranslate nohighlight">\(\text{cond}(\nabla ^2 f_o(x))\)</span> está acotado por arriba por una constante para <span class="math notranslate nohighlight">\(x \in \mathcal{S}\)</span>.</p>
-</div>
-<div class="admonition-definicion admonition">
-<p class="admonition-title">Definición</p>
-<p>Un método de descenso es aquel que genera la secuencia de minimización <span class="math notranslate nohighlight">\(x^{(0)}, x^{(1)}, \dots \in \text{dom}f_o\)</span> la cual cumple con la desigualdad: <span class="math notranslate nohighlight">\(f_o(x^{(k+1)}) &lt; f_o(x^{(k)})\)</span> excepto para <span class="math notranslate nohighlight">\(x^{(k)}\)</span> óptimo y <span class="math notranslate nohighlight">\(f_o(x^{(k)}) \rightarrow p^*\)</span> si <span class="math notranslate nohighlight">\(k \rightarrow \infty\)</span>.</p>
-</div>
-<div class="admonition-comentario admonition">
-<p class="admonition-title">Comentario</p>
-<p>En un esquema iterativo que produce secuencias de minimización se asume:</p>
-<ul class="simple">
-<li><p>Los puntos iniciales <span class="math notranslate nohighlight">\(x^{(0)}\)</span> están en <span class="math notranslate nohighlight">\(\text{dom}f_o\)</span>.</p></li>
-<li><p>Que el conjunto <span class="math notranslate nohighlight">\(f_o(x^{(0)})\)</span>-subnivel sea cerrado pues así se garantiza que la secuencia de minimización está en el conjunto <span class="math notranslate nohighlight">\(f_o(x^{(0)})\)</span>-subnivel para todas las iteraciones.</p></li>
-<li><p><span class="math notranslate nohighlight">\(f_o\)</span> fuertemente convexa en el conjunto <span class="math notranslate nohighlight">\(f_o(x^{(0)})\)</span>-subnivel para tener propiedades dadas en los <a class="reference internal" href="../3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#resffuertcon"><span class="std std-ref">resultados que son posibles probar para funciones fuertemente convexas</span></a>.</p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="paso-o-direccion-de-busqueda-y-tamano-o-longitud-de-paso">
-<h3>Paso o dirección de búsqueda y tamaño o longitud de paso<a class="headerlink" href="#paso-o-direccion-de-busqueda-y-tamano-o-longitud-de-paso" title="Permalink to this headline">¶</a></h3>
-<p>La secuencia de minimización se obtiene con el esquema iterativo: <span class="math notranslate nohighlight">\(x^{(k+1)} = x^{(k)} + t^{(k)}\Delta x^{(k)}\)</span>.</p>
-<div class="admonition-definicion admonition">
-<p class="admonition-title">Definición</p>
-<p>Al vector <span class="math notranslate nohighlight">\(\Delta x \in \mathbb{R}^n\)</span> se le nombra <strong>paso o dirección de búsqueda</strong>. Al escalar <span class="math notranslate nohighlight">\(t^{(k)}\)</span> se le nombra <strong>tamaño o longitud de paso</strong> y siempre es positivo salvo en el caso en que <span class="math notranslate nohighlight">\(x^{(k)}\)</span> sea óptimo.</p>
-</div>
-</div>
-<div class="section" id="condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso">
-<h3>Condición para que un paso o dirección de búsqueda sea de descenso<a class="headerlink" href="#condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-definicion admonition">
-<p class="admonition-title">Definición</p>
-<p>Si el paso o dirección de búsqueda satisface la condición: <span class="math notranslate nohighlight">\(\nabla f_o^T(x^{(k)})\Delta x^{(k)} &lt; 0\)</span> se le nombra <strong>dirección de descenso</strong>.</p>
-</div>
-<p>Geométricamente las direcciones de descenso forman un <strong>ángulo agudo</strong> con <span class="math notranslate nohighlight">\(-\nabla f_o(x^{(k)})\)</span>:</p>
-<img src="https://dl.dropboxusercontent.com/s/o3hypqiociye9jv/zone-for-descent-directions.png?dl=0" heigth="350" width="350"><p>En el dibujo <span class="math notranslate nohighlight">\(f = f_o\)</span>.</p>
-</div>
-<div class="section" id="algoritmo-metodo-general-de-descenso-para-funciones-convexas">
-<h3>Algoritmo: método general de descenso para funciones convexas<a class="headerlink" href="#algoritmo-metodo-general-de-descenso-para-funciones-convexas" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Los pasos de un algoritmo representan una guía para la implementación, no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo algoritmo, entonces pueden seguirse los pasos de una forma distinta.</p>
-</div>
-<blockquote>
-<div><p><strong>Dado</strong> un <strong>punto inicial</strong> <span class="math notranslate nohighlight">\(x\)</span> en <span class="math notranslate nohighlight">\(\text{dom}f_o\)</span></p>
-<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2,...\)</span></p>
-<blockquote>
-<div><ol class="simple">
-<li><p>Determinar una dirección de descenso <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p></li>
-<li><p>Búsqueda de línea. Elegir un tamaño de paso <span class="math notranslate nohighlight">\(t &gt; 0\)</span>.</p></li>
-<li><p>Hacer la actualización: <span class="math notranslate nohighlight">\(x = x + t\Delta x\)</span>.</p></li>
-</ol>
-</div></blockquote>
-<p><strong>hasta</strong> convergencia (satisfacer criterio de paro).</p>
-</div></blockquote>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Un rayo es el conjunto definido por <span class="math notranslate nohighlight">\(\{x + \theta v : \theta \geq 0 , v \neq 0, v \in \mathbb{R}^n\}\)</span> para <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>.</p>
-<img src="https://dl.dropboxusercontent.com/s/l3z9j49ldzknmif/ej_rayo.png?dl=0" heigth="200" width="200">
-</div>
-<div class="admonition-comentarios admonition">
-<p class="admonition-title">Comentarios.</p>
-<ul class="simple">
-<li><p>El algoritmo termina si <span class="math notranslate nohighlight">\(f_o(x^{(k)})-p^* \leq \epsilon\)</span> con <span class="math notranslate nohighlight">\(\epsilon &gt;0\)</span>, esto es, <span class="math notranslate nohighlight">\(x^{(k)}\)</span> es <span class="math notranslate nohighlight">\(\epsilon\)</span>-subóptimo.</p></li>
-<li><p>Ejemplos de direcciones de descenso se tienen:</p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla f_o \left (x^{(k)} \right )\)</span> que da lugar al método de descenso en gradiente para <span class="math notranslate nohighlight">\(x^{(k)}\)</span> no óptimo.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla^2 f_o \left (x^{(k)} \right )^{-1} \nabla f_o\left(x^{(k)} \right)\)</span> que da lugar al método de descenso por Newton con <span class="math notranslate nohighlight">\(\nabla^2 f_o \left (x^{(k)} \right ) \in \mathbb{S}_{++}\)</span> y <span class="math notranslate nohighlight">\(x^{(k)}\)</span> no óptimo.</p></li>
-</ul>
-</li>
-<li><p>El criterio de paro típicamente es de la forma <span class="math notranslate nohighlight">\(||\nabla f_o(x)|| \leq tol\)</span> donde: <span class="math notranslate nohighlight">\(tol\)</span> es una cantidad pequeña y positiva (comúnmente menor o igual a <span class="math notranslate nohighlight">\(10^{-8}\)</span>). También se involucra el número máximo de iteraciones en el criterio de paro.</p></li>
-<li><p>El paso <span class="math notranslate nohighlight">\(2\)</span> busca reducir <span class="math notranslate nohighlight">\(f_o\)</span> lo <strong>suficiente</strong> o minimizarla aproximadamente a lo largo de un <strong>rayo</strong>. Uno de los métodos que permite de forma sencilla lo anterior es la <strong>búsqueda de línea por <a class="reference external" href="https://en.wikipedia.org/wiki/Backtracking_line_search"><em>backtracking</em></a></strong>.</p></li>
-</ul>
-</div>
-</div>
 <div class="section" id="ejemplo-de-funcion-objetivo-convexa">
 <h3>Ejemplo de función objetivo convexa<a class="headerlink" href="#ejemplo-de-funcion-objetivo-convexa" title="Permalink to this headline">¶</a></h3>
+<p>Encontrar el mínimo del siguiente problema.</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{x \in \mathbb{R}^4} (x_1-2)^2+(2-x_2)^2+x_3^2+x_4^4\]</div>
 <div class="cell docutils container">
@@ -1381,7 +1312,89 @@ optimal var [ 1. -1.]
 \end{array}
 \right]
 \end{split}\]</div>
-<p><strong>¿Cómo encontramos numéricamente el óptimo?</strong></p>
+<p><strong>¿Cómo encontramos numéricamente el óptimo con un método iterativo?</strong></p>
+</div>
+<div class="section" id="metodos-de-descenso">
+<h3>Métodos de descenso<a class="headerlink" href="#metodos-de-descenso" title="Permalink to this headline">¶</a></h3>
+<p>Una gran cantidad de métodos para resolver problemas de optimización utilizan esquemas iterativos para calcular una <strong>secuencia de minimización</strong> de puntos <span class="math notranslate nohighlight">\(x^{(0)}, x^{(1)}, \dots \in \text{dom}f_o\)</span> con la característica <span class="math notranslate nohighlight">\(f_o(x^{(k)}) \rightarrow p^*\)</span> si <span class="math notranslate nohighlight">\(k \rightarrow \infty\)</span>. Tales métodos se conocen con el nombre de <strong>métodos de descenso</strong>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Recuérdese que si <span class="math notranslate nohighlight">\(f_o\)</span> es fuertemente convexa en el conjunto <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> entonces <span class="math notranslate nohighlight">\(\nabla^2 f_o (x) \in \mathbb{S}_{++}\)</span> y <span class="math notranslate nohighlight">\(\text{cond}(\nabla ^2 f_o(x))\)</span> está acotado por arriba por una constante para <span class="math notranslate nohighlight">\(x \in \mathcal{S}\)</span>.</p>
+</div>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>Un método de descenso es aquel que genera la secuencia de minimización <span class="math notranslate nohighlight">\(x^{(0)}, x^{(1)}, \dots \in \text{dom}f_o\)</span> la cual cumple con la desigualdad: <span class="math notranslate nohighlight">\(f_o(x^{(k+1)}) &lt; f_o(x^{(k)})\)</span> excepto para <span class="math notranslate nohighlight">\(x^{(k)}\)</span> óptimo y <span class="math notranslate nohighlight">\(f_o(x^{(k)}) \rightarrow p^*\)</span> si <span class="math notranslate nohighlight">\(k \rightarrow \infty\)</span>.</p>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>En un esquema iterativo que produce secuencias de minimización se asume:</p>
+<ul class="simple">
+<li><p>Los puntos iniciales <span class="math notranslate nohighlight">\(x^{(0)}\)</span> están en <span class="math notranslate nohighlight">\(\text{dom}f_o\)</span>.</p></li>
+<li><p>Que el conjunto <span class="math notranslate nohighlight">\(f_o(x^{(0)})\)</span>-subnivel sea cerrado pues así se garantiza que la secuencia de minimización está en el conjunto <span class="math notranslate nohighlight">\(f_o(x^{(0)})\)</span>-subnivel para todas las iteraciones.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_o\)</span> fuertemente convexa en el conjunto <span class="math notranslate nohighlight">\(f_o(x^{(0)})\)</span>-subnivel para tener propiedades dadas en los <a class="reference internal" href="../3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#resffuertcon"><span class="std std-ref">resultados que son posibles probar para funciones fuertemente convexas</span></a>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="paso-o-direccion-de-busqueda-y-tamano-o-longitud-de-paso">
+<h3>Paso o dirección de búsqueda y tamaño o longitud de paso<a class="headerlink" href="#paso-o-direccion-de-busqueda-y-tamano-o-longitud-de-paso" title="Permalink to this headline">¶</a></h3>
+<p>La secuencia de minimización se obtiene con el esquema iterativo: <span class="math notranslate nohighlight">\(x^{(k+1)} = x^{(k)} + t^{(k)}\Delta x^{(k)}\)</span>.</p>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>Al vector <span class="math notranslate nohighlight">\(\Delta x \in \mathbb{R}^n\)</span> se le nombra <strong>paso o dirección de búsqueda</strong>. Al escalar <span class="math notranslate nohighlight">\(t^{(k)}\)</span> se le nombra <strong>tamaño o longitud de paso</strong> y siempre es positivo salvo en el caso en que <span class="math notranslate nohighlight">\(x^{(k)}\)</span> sea óptimo.</p>
+</div>
+</div>
+<div class="section" id="condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso">
+<h3>Condición para que un paso o dirección de búsqueda sea de descenso<a class="headerlink" href="#condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>Si el paso o dirección de búsqueda satisface la condición: <span class="math notranslate nohighlight">\(\nabla f_o^T(x^{(k)})\Delta x^{(k)} &lt; 0\)</span> se le nombra <strong>dirección de descenso</strong>.</p>
+</div>
+<p>Geométricamente las direcciones de descenso forman un <strong>ángulo agudo</strong> con <span class="math notranslate nohighlight">\(-\nabla f_o(x^{(k)})\)</span>:</p>
+<img src="https://dl.dropboxusercontent.com/s/o3hypqiociye9jv/zone-for-descent-directions.png?dl=0" heigth="350" width="350"><p>En el dibujo <span class="math notranslate nohighlight">\(f = f_o\)</span>.</p>
+</div>
+<div class="section" id="algoritmo-metodo-general-de-descenso-para-funciones-convexas">
+<h3>Algoritmo: método general de descenso para funciones convexas<a class="headerlink" href="#algoritmo-metodo-general-de-descenso-para-funciones-convexas" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Los pasos de un algoritmo representan una guía para la implementación, no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo algoritmo, entonces pueden seguirse los pasos de una forma distinta.</p>
+</div>
+<blockquote>
+<div><p><strong>Dado</strong> un <strong>punto inicial</strong> <span class="math notranslate nohighlight">\(x\)</span> en <span class="math notranslate nohighlight">\(\text{dom}f_o\)</span></p>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2,...\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p>Determinar una dirección de descenso <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p></li>
+<li><p>Búsqueda de línea. Elegir un tamaño de paso <span class="math notranslate nohighlight">\(t &gt; 0\)</span>.</p></li>
+<li><p>Hacer la actualización: <span class="math notranslate nohighlight">\(x = x + t\Delta x\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia (satisfacer criterio de paro).</p>
+</div></blockquote>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Un rayo es el conjunto definido por <span class="math notranslate nohighlight">\(\{x + \theta v : \theta \geq 0 , v \neq 0, v \in \mathbb{R}^n\}\)</span> para <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>.</p>
+<img src="https://dl.dropboxusercontent.com/s/l3z9j49ldzknmif/ej_rayo.png?dl=0" heigth="200" width="200">
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios.</p>
+<ul class="simple">
+<li><p>El algoritmo termina si <span class="math notranslate nohighlight">\(f_o(x^{(k)})-p^* \leq \epsilon\)</span> con <span class="math notranslate nohighlight">\(\epsilon &gt;0\)</span>, esto es, <span class="math notranslate nohighlight">\(x^{(k)}\)</span> es <span class="math notranslate nohighlight">\(\epsilon\)</span>-subóptimo.</p></li>
+<li><p>Ejemplos de direcciones de descenso se tienen:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla f_o \left (x^{(k)} \right )\)</span> que da lugar al método de descenso en gradiente para <span class="math notranslate nohighlight">\(x^{(k)}\)</span> no óptimo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla^2 f_o \left (x^{(k)} \right )^{-1} \nabla f_o\left(x^{(k)} \right)\)</span> que da lugar al método de descenso por Newton con <span class="math notranslate nohighlight">\(\nabla^2 f_o \left (x^{(k)} \right ) \in \mathbb{S}_{++}\)</span> y <span class="math notranslate nohighlight">\(x^{(k)}\)</span> no óptimo.</p></li>
+</ul>
+</li>
+<li><p>El criterio de paro típicamente es de la forma <span class="math notranslate nohighlight">\(||\nabla f_o(x)|| \leq tol\)</span> donde: <span class="math notranslate nohighlight">\(tol\)</span> es una cantidad pequeña y positiva (comúnmente menor o igual a <span class="math notranslate nohighlight">\(10^{-8}\)</span>). También se involucra el número máximo de iteraciones en el criterio de paro.</p></li>
+<li><p>El paso <span class="math notranslate nohighlight">\(2\)</span> busca reducir <span class="math notranslate nohighlight">\(f_o\)</span> lo <strong>suficiente</strong> o minimizarla aproximadamente a lo largo de un <strong>rayo</strong>. Uno de los métodos que permite de forma sencilla lo anterior es la <strong>búsqueda de línea por <a class="reference external" href="https://en.wikipedia.org/wiki/Backtracking_line_search"><em>backtracking</em></a></strong>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="continuando-con-el-ejemplo-anterior">
+<h3>Continuando con el ejemplo anterior<a class="headerlink" href="#continuando-con-el-ejemplo-anterior" title="Permalink to this headline">¶</a></h3>
+<p>Encontrar el mínimo del siguiente problema.</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{x \in \mathbb{R}^4} (x_1-2)^2+(2-x_2)^2+x_3^2+x_4^4\]</div>
 <p><strong>Opción descenso en gradiente</strong>: usando el algoritmo con dirección de descenso el gradiente de <span class="math notranslate nohighlight">\(f_o\)</span> sin búsqueda de línea se tiene:</p>
 <div class="math notranslate nohighlight">
 \[x^{(k+1)} = x^{(k)} - \nabla f_o(x^{(k)})\]</div>
