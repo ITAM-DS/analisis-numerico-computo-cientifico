@@ -1227,7 +1227,9 @@ optimal var [ 1. -1.]
 </div>
 <div class="section" id="metodos-de-descenso-para-funciones-convexas">
 <h2>Métodos de descenso para funciones convexas<a class="headerlink" href="#metodos-de-descenso-para-funciones-convexas" title="Permalink to this headline">¶</a></h2>
-<p>Los ejemplos anteriores mostraron la importancia de la información de primer y segundo orden de la función objetivo <span class="math notranslate nohighlight">\(f_o\)</span> y las ecuaciones no lineales para resolver el problema de optimización. El primer ejemplo utilizó las funciones <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html#scipy.optimize.fsolve">scipy.optimize.fsolve</a> y <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin.html">scipy.optimize.fmin</a> para este propósito. Tales funciones utilizan métodos iterativos para resolver ecuaciones no lineales y aproximar un mínimo local respectivamente.</p>
+<p>Los ejemplos anteriores mostraron la importancia de la información de primer y segundo orden de la función objetivo <span class="math notranslate nohighlight">\(f_o\)</span> y las ecuaciones no lineales para resolver el problema de optimización. El primer ejemplo utilizó las funciones <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html#scipy.optimize.fsolve">scipy.optimize.fsolve</a> y <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin.html">scipy.optimize.fmin</a> para este propósito. Tales funciones utilizan métodos iterativos para resolver ecuaciones no lineales y aproximar un mínimo local respectivamente en un esquema que satisface:</p>
+<div class="math notranslate nohighlight">
+\[f(x^{(0)}) &gt; f(x^{(1)}) &gt; f(x^{(2)}) &gt; \cdots &gt; f(x^{(k)}) &gt; \cdots\]</div>
 <p>En lo siguiente se asume que <span class="math notranslate nohighlight">\(f_o\)</span> cumple <span class="math notranslate nohighlight">\(f_o \in \mathcal{C}^2(\text{dom}f_o)\)</span> y es convexa en un conjunto convexo y cerrado que contiene a <span class="math notranslate nohighlight">\(x^*\)</span>. Ver <a class="reference internal" href="../../I.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#cacci"><span class="std std-ref">conjunto abierto, cerrado, cerradura e interior</span></a> para definición de conjunto cerrado.</p>
 <div class="section" id="ejemplo-de-funcion-objetivo-convexa">
 <h3>Ejemplo de función objetivo convexa<a class="headerlink" href="#ejemplo-de-funcion-objetivo-convexa" title="Permalink to this headline">¶</a></h3>
@@ -1342,18 +1344,29 @@ optimal var [ 1. -1.]
 </div>
 <div class="section" id="condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso">
 <h3>Condición para que un paso o dirección de búsqueda sea de descenso<a class="headerlink" href="#condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso" title="Permalink to this headline">¶</a></h3>
+<p>La idea de los métodos de optimización es calcular direcciones <span class="math notranslate nohighlight">\(\Delta x\)</span> que sean de descenso, esto es que al movernos de un punto a otro en tal dirección, el valor de <span class="math notranslate nohighlight">\(f_o\)</span> decrece:</p>
+<img src="https://dl.dropboxusercontent.com/s/25bmebx645howjw/direccion_de_descenso_de_Newton_1d.png?dl=0" heigth="600" width="600"><p>Tenemos muchas direcciones de descenso (de hecho infinitas) una que se muestra en el dibujo anterior, en el que <span class="math notranslate nohighlight">\(f = f_o\)</span>, <span class="math notranslate nohighlight">\(x^*\)</span> es el óptimo de <span class="math notranslate nohighlight">\(f\)</span> y <span class="math notranslate nohighlight">\(\hat{f}\)</span> es un <strong>modelo cuadrático</strong>, es la dirección de descenso de Newton <span class="math notranslate nohighlight">\(\Delta x_{nt}\)</span>. Del punto <span class="math notranslate nohighlight">\((x,f(x))\)</span> nos debemos mover al punto <span class="math notranslate nohighlight">\((x+\Delta x_{nt}, f(x + \Delta x_{nt}))\)</span> para llegar al óptimo. En tal dirección <span class="math notranslate nohighlight">\(f\)</span> decrece: <span class="math notranslate nohighlight">\(f(x+\Delta x_{nt}) &lt; f(x)\)</span>.</p>
+<p>Tenemos una condición para garantizar que una dirección sea de descenso. Geométricamente las direcciones de descenso forman un <strong>ángulo agudo</strong> con <span class="math notranslate nohighlight">\(-\nabla f_o(x^{(k)})\)</span>:</p>
+<img src="https://dl.dropboxusercontent.com/s/o3hypqiociye9jv/zone-for-descent-directions.png?dl=0" heigth="350" width="350"><p>En el dibujo <span class="math notranslate nohighlight">\(f = f_o\)</span>.</p>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
 <p>Si el paso o dirección de búsqueda satisface la condición: <span class="math notranslate nohighlight">\(\nabla f_o^T(x^{(k)})\Delta x^{(k)} &lt; 0\)</span> se le nombra <strong>dirección de descenso</strong>.</p>
 </div>
-<p>Geométricamente las direcciones de descenso forman un <strong>ángulo agudo</strong> con <span class="math notranslate nohighlight">\(-\nabla f_o(x^{(k)})\)</span>:</p>
-<img src="https://dl.dropboxusercontent.com/s/o3hypqiociye9jv/zone-for-descent-directions.png?dl=0" heigth="350" width="350"><p>En el dibujo <span class="math notranslate nohighlight">\(f = f_o\)</span>.</p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>Ejemplos de direcciones de descenso:</p>
 <ul class="simple">
+<li><p>La condición anterior funciona pues por el teorema de Taylor a primer order, ver <a class="reference internal" href="../../I.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html#teotaylornvariables"><span class="std std-ref">teorema de Taylor para una función $f: \mathbb{R}^n \rightarrow \mathbb{R}$</span></a>, se tiene:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[f(x + \Delta x) = f(x) + \nabla f(x) ^T \Delta x\]</div>
+<p>y si <span class="math notranslate nohighlight">\(\Delta x\)</span> es dirección de descenso entonces: <span class="math notranslate nohighlight">\(f(x) + \nabla f(x) ^T \Delta x &lt; f(x)\)</span>.</p>
+<ul class="simple">
+<li><p>Ejemplos de direcciones de descenso:</p>
+<ul>
 <li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla f_o \left (x^{(k)} \right )\)</span> que da lugar al método de descenso en gradiente para <span class="math notranslate nohighlight">\(x^{(k)}\)</span> no óptimo.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla^2 f_o \left (x^{(k)} \right )^{-1} \nabla f_o\left(x^{(k)} \right)\)</span> que da lugar al método de descenso por Newton con <span class="math notranslate nohighlight">\(\nabla^2 f_o \left (x^{(k)} \right ) \in \mathbb{S}_{++}\)</span> y <span class="math notranslate nohighlight">\(x^{(k)}\)</span> no óptimo.</p></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -1588,11 +1601,6 @@ optimal var [ 1. -1.]
 <ul class="simple">
 <li><p>Utilizar información de primer o segundo orden nos ayuda a encontrar óptimo(s) de funciones.</p></li>
 <li><p>Encontrar al óptimo involucró un método iterativo.</p></li>
-<li><p>En términos coloquiales y de forma simplificada, una <strong>dirección de descenso</strong> es aquella que al moverse de un punto a otro en tal dirección, el valor de <span class="math notranslate nohighlight">\(f_o\)</span> decrece (en lo que sigue <span class="math notranslate nohighlight">\(f = f_o\)</span>):</p></li>
-</ul>
-<img src="https://dl.dropboxusercontent.com/s/25bmebx645howjw/direccion_de_descenso_de_Newton_1d.png?dl=0" heigth="600" width="600">
-<p>En el dibujo anterior <span class="math notranslate nohighlight">\(\hat{f}\)</span> es un <strong>modelo cuadrático</strong>, <span class="math notranslate nohighlight">\(\Delta x_{nt}\)</span> es dirección de descenso de Newton y <span class="math notranslate nohighlight">\(x^*\)</span> es el óptimo de <span class="math notranslate nohighlight">\(f\)</span>. Del punto <span class="math notranslate nohighlight">\((x,f(x))\)</span> nos debemos mover al punto <span class="math notranslate nohighlight">\((x+\Delta x_{nt}, f(x + \Delta x_{nt}))\)</span> para llegar al óptimo y el valor de <span class="math notranslate nohighlight">\(f\)</span> decrece: <span class="math notranslate nohighlight">\(f(x+\Delta x_{nt}) &lt; f(x)\)</span>.</p>
-<ul class="simple">
 <li><p>Con la información de primer orden no alcanzamos al óptimo (de hecho se cicla el método iterativo propuesto) pero con la de segundo orden sí lo alcanzamos en una iteración y tuvimos que resolver un sistema de ecuaciones lineales.</p></li>
 </ul>
 </div>
@@ -1812,7 +1820,7 @@ optimal var 2.0 2.0 0.0 0.0
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicio</p>
-<p>Realizar <span class="math notranslate nohighlight">\(5\)</span> iteraciones para minimizar la función <span class="math notranslate nohighlight">\(log(e^{x_1^2} + e^{x_2^2})\)</span> del método de descenso en gradiente utilizando búsqueda de línea tomando como punto inicial <span class="math notranslate nohighlight">\((10,1)\)</span> y calcular el error relativo de cada iteración. Para calcular el <span class="math notranslate nohighlight">\(x^*\)</span> utilizar <a class="reference external" href="https://github.com/cvxgrp/cvxpy">cvxpy</a>.</p>
+<p>Realizar <span class="math notranslate nohighlight">\(5\)</span> iteraciones para minimizar la función <span class="math notranslate nohighlight">\(log(e^{x_1^2} + e^{x_2^2})\)</span> del método de descenso en gradiente utilizando búsqueda de línea tomando como punto inicial <span class="math notranslate nohighlight">\((10,1)\)</span> y calcular el error relativo de cada iteración. Para calcular <span class="math notranslate nohighlight">\(x^*\)</span> utilizar <a class="reference external" href="https://github.com/cvxgrp/cvxpy">cvxpy</a>.</p>
 </div>
 <p><strong>Preguntas de comprehensión.</strong></p>
 <p>1)¿Qué es un método de descenso?</p>
