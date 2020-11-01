@@ -1698,7 +1698,20 @@ optimal var [ 1. -1.]
 <p><strong>Opción descenso por dirección de Newton:</strong> usando la dirección de descenso de Newton de <span class="math notranslate nohighlight">\(f_o\)</span> se tiene:</p>
 <div class="math notranslate nohighlight">
 \[x^{(k+1)} = x^{(k)} - \nabla^2 f_o \left (x^{(k)} \right )^{-1} \nabla f_o\left(x^{(k)} \right)\]</div>
-<p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 5 \\ 5 \\1 \\ 0 \\ \end{array} \right ]\)</span> como punto inicial y <strong>no calculando la inversa</strong> de la Hessiana pues en su lugar resolvemos el sistema de ecuaciones lineales <span class="math notranslate nohighlight">\(\nabla ^2 f_o \left ( x^{(k)} \right ) \Delta x = - \nabla f_o \left(x^{(k)}\right )\)</span> resulta</p>
+<p>Con</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla ^2 f_o(x) = 
+\left [ 
+\begin{array}{cccc}
+2 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 2 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 2 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 12x_4^2
+\end{array}
+\right ]
+\end{split}\]</div>
+<p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 5 \\ 5 \\1 \\ 0.1 \\ \end{array} \right ]\)</span> como punto inicial y <strong>no calculando la inversa</strong> de la Hessiana pues en su lugar resolvemos el sistema de ecuaciones lineales <span class="math notranslate nohighlight">\(\nabla ^2 f_o \left ( x^{(k)} \right ) \Delta x = - \nabla f_o \left(x^{(k)}\right )\)</span> resulta</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">])</span>
@@ -1738,26 +1751,292 @@ optimal var [ 1. -1.]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf_sympy_eval</span> <span class="o">=</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span>
 <span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">gf_sympy_eval</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>⎡ 6.0 ⎤
-⎢     ⎥
-⎢ 6.0 ⎥
-⎢     ⎥
-⎢ 2.0 ⎥
-⎢     ⎥
-⎣0.004⎦
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[6.    6.    2.    0.004]
+</pre></div>
+</div>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El sistema de <strong>ecuaciones lineales</strong> a resolver es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left [
+\begin{array}{cccc}
+2 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 2 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 2 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0.12
+\end{array}
+\right ]
+\Delta x = 
+-\left [
+\begin{array}{c}
+6 \\
+6 \\
+2 \\
+0.004
+\end{array}
+\right ]
+\end{split}\]</div>
+<p>Resolviendo con <em>NumPy</em> el sistema de ecuaciones lineales:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_np_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">Hf_np_eval</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf_np_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gf_sympy_eval</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf_np_eval</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([6.   , 6.   , 2.   , 0.004])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dir_Newton</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">,</span> <span class="o">-</span><span class="n">gf_np_eval</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-3.    -3.    -1.    -0.033]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">+</span> <span class="n">dir_Newton</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2.    2.    0.    0.067]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Número de condición de la Hessiana</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>16.666666666666664
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_2 = x_1 + \Delta x = x_1 - \nabla ^2f_o(x^{(1)}) \nabla f_o(x^{(1)})\)</span></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">))</span>
+<span class="n">gf_sympy_eval</span> <span class="o">=</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span>
+<span class="n">Hf_np_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">gf_np_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gf_sympy_eval</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+<span class="n">dir_Newton</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">,</span> <span class="o">-</span><span class="n">gf_np_eval</span><span class="p">)</span>
+<span class="n">x_2</span> <span class="o">=</span> <span class="n">x_1</span> <span class="o">+</span> <span class="n">dir_Newton</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2.    2.    0.    0.044]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>37.499999999999986
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_3 = x_2 + \Delta x = x_2 - \nabla ^2f_o(x^{(2)}) \nabla f_o(x^{(2)})\)</span></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_2</span><span class="p">))</span>
+<span class="n">gf_sympy_eval</span> <span class="o">=</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_2</span><span class="p">)</span>
+<span class="n">Hf_np_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">gf_np_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gf_sympy_eval</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+<span class="n">dir_Newton</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">,</span> <span class="o">-</span><span class="n">gf_np_eval</span><span class="p">)</span>
+<span class="n">x_3</span> <span class="o">=</span> <span class="n">x_2</span> <span class="o">+</span> <span class="n">dir_Newton</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2.   2.   0.   0.03]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>84.37499999999997
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_4 = x_3 + \Delta x = x_3 - \nabla ^2f_o(x^{(3)}) \nabla f_o(x^{(3)})\)</span></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_3</span><span class="p">))</span>
+<span class="n">gf_sympy_eval</span> <span class="o">=</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_3</span><span class="p">)</span>
+<span class="n">Hf_np_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">gf_np_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gf_sympy_eval</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+<span class="n">dir_Newton</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">,</span> <span class="o">-</span><span class="n">gf_np_eval</span><span class="p">)</span>
+<span class="n">x_4</span> <span class="o">=</span> <span class="n">x_3</span> <span class="o">+</span> <span class="n">dir_Newton</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2.   2.   0.   0.02]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Obsérvese cómo va aumentando el número de condición de la Hessiana conforme nos aproximamos a la solución</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>189.84374999999991
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si hubiéramos elegido como punto inicial <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 5 \\ 5 \\1 \\ 0 \\ \end{array} \right ]\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
+<span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>⎡2.0  0.0  0.0  0.0⎤
+⎢                  ⎥
+⎢0.0  2.0  0.0  0.0⎥
+⎢                  ⎥
+⎢0.0  0.0  2.0  0.0⎥
+⎢                  ⎥
+⎣0.0  0.0  0.0  0.0⎦
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
+<span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">gf_sympy_eval</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>⎡6.0⎤
+⎢   ⎥
+⎢6.0⎥
+⎢   ⎥
+⎢2.0⎥
+⎢   ⎥
+⎣0.0⎦
 </pre></div>
 </div>
 </div>
@@ -1783,7 +2062,40 @@ optimal var [ 1. -1.]
 \end{array}
 \right ]
 \end{split}\]</div>
-<p><strong>Obsérvese que la última ecuación es redundante</strong></p>
+<p><strong>Obsérvese que la última ecuación es redundante por lo que el sistema es:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left [
+\begin{array}{ccc}
+2 &amp; 0 &amp; 0  \\
+0 &amp; 2 &amp; 0  \\
+0 &amp; 0 &amp; 2  \\
+\end{array}
+\right ]
+\Delta x = 
+-\left [
+\begin{array}{c}
+6 \\
+6 \\
+2 \\
+\end{array}
+\right ]
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval_simplified</span> <span class="o">=</span> <span class="n">Hf_sympy_eval</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">gf_sympy_eval_simplified</span> <span class="o">=</span> <span class="n">gf_sympy_eval</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">gf_sympy_eval</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
@@ -1791,7 +2103,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>{x₁: -3.0, x₂: -3.0, x₃: -1.0, x₄: -0.0333333333333333}
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>{x₁: -3.0, x₂: -3.0, x₃: -1.0}
 </pre></div>
 </div>
 </div>
@@ -1804,6 +2116,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(x_1\)</span> es el óptimo del problema.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span>
@@ -1811,54 +2127,19 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2.  2.  0.  0.1]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2. 2. 0. 0.]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span><span class="o">.</span><span class="n">evalf</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}2.0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 2.0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 2.0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0.12\end{matrix}\right]\end{split}\]</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span><span class="o">.</span><span class="n">condition_number</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Hf_sympy_eval_simplified</span><span class="o">.</span><span class="n">condition_number</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle 16.6666666666667\]</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}2.0 &amp; 0.0 &amp; 0.0 &amp; 0.0\\0.0 &amp; 2.0 &amp; 0.0 &amp; 0.0\\0.0 &amp; 0.0 &amp; 2.0 &amp; 0.0\\0.0 &amp; 0.0 &amp; 0.0 &amp; 0.12\end{matrix}\right]\end{split}\]</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_2</span> <span class="o">=</span> <span class="n">x_1</span> 
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.00000000000000
 </pre></div>
 </div>
 </div>
@@ -1941,7 +2222,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2.    2.    0.    0.098]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2. 2. 0. 0.]
 </pre></div>
 </div>
 </div>
