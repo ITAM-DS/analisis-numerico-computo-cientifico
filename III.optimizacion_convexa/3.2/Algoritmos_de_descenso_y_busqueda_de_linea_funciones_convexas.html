@@ -1381,8 +1381,8 @@ optimal var [ 1. -1.]
 <li><p>Recuérdese que por la aproximación del teorema de Taylor a primer orden se tiene:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[f_o(x + \Delta x) = f_o(x) + \nabla f_o(x) ^T \Delta x\]</div>
-<p>y si <span class="math notranslate nohighlight">\(\Delta x\)</span> es dirección de descenso entonces: <span class="math notranslate nohighlight">\(f_o(x) + \nabla f_o(x) ^T \Delta x &lt; f_o(x)\)</span>.</p>
+\[f_o(x + \Delta x) \approx f_o(x) + \nabla f_o(x) ^T \Delta x\]</div>
+<p>(y si <span class="math notranslate nohighlight">\(\Delta x\)</span> es dirección de descenso entonces: <span class="math notranslate nohighlight">\(f_o(x) + \nabla f_o(x) ^T \Delta x &lt; f_o(x)\)</span>.</p>
 <ul class="simple">
 <li><p>Ejemplos de direcciones de descenso:</p>
 <ul>
@@ -1409,16 +1409,18 @@ optimal var [ 1. -1.]
 <p><strong>Opción descenso en gradiente</strong>: usando la dirección del gradiente de <span class="math notranslate nohighlight">\(f_o\)</span> se tiene:</p>
 <div class="math notranslate nohighlight">
 \[x^{(k+1)} = x^{(k)} - \nabla f_o(x^{(k)})\]</div>
-<p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 5 \\ 5 \\1 \\ 0 \\ \end{array} \right ]\)</span> como punto inicial:</p>
+<p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 5 \\ 5 \\1 \\ 0.1 \\ \end{array} \right ]\)</span> como punto inicial:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="math notranslate nohighlight">
-\[\displaystyle \min_{x \in \mathbb{R}^4} (x_1-2)^2+(2-x_2)^2+x_3^2+x_4^4\]</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Definición de <span class="math notranslate nohighlight">\(f_o\)</span></p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f_o_np</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
@@ -1433,7 +1435,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>19
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>19.01
 </pre></div>
 </div>
 </div>
@@ -1441,9 +1443,9 @@ optimal var [ 1. -1.]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gf_eval</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
-                                              <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                                              <span class="s2">&quot;x3&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-                                              <span class="s2">&quot;x4&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]})</span> <span class="k">for</span> <span class="n">partial_derivative</span> <span class="ow">in</span> <span class="n">gf</span><span class="p">],</span>
+                                                       <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                                       <span class="s2">&quot;x3&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                                       <span class="s2">&quot;x4&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]})</span> <span class="k">for</span> <span class="n">partial_derivative</span> <span class="ow">in</span> <span class="n">gf</span><span class="p">],</span>
                               <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1460,14 +1462,14 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[6. 6. 2. 0.]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[6.    6.    2.    0.004]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Verificando que es dirección de descenso: <span class="math notranslate nohighlight">\(\nabla f_o \left (x^{(k)} \right )^T \Delta x\)</span> con <span class="math notranslate nohighlight">\(\Delta x = -\nabla f_o \left (x^{(k)} \right )\)</span>.</p>
+<p>Verificando que es dirección de descenso: <span class="math notranslate nohighlight">\(\nabla f_o \left (x^{(k)} \right )^T \Delta x &lt; 0\)</span> con <span class="math notranslate nohighlight">\(\Delta x = -\nabla f_o \left (x^{(k)} \right )\)</span>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1476,34 +1478,14 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-76.0
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-76.000016
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_0</span> <span class="o">-</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>19.0
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span> <span class="o">+</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>-57.0
-</pre></div>
-</div>
-</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_1 = x_0 + \Delta x = x_0 - \nabla f(x^{(0)})\)</span>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1519,7 +1501,19 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-1. -1. -1.  0.]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-1.    -1.    -1.     0.096]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>19.01
 </pre></div>
 </div>
 </div>
@@ -1531,10 +1525,30 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>19.0
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>19.009216
 </pre></div>
 </div>
 </div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Obsérvese que la aproximación a primer orden por Taylor no es correcta: <span class="math notranslate nohighlight">\(f(x_0 + \Delta x) \neq f(x_0) + \nabla f(x_0)^T \Delta x\)</span>.</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span> <span class="o">+</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-56.990016
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_2 = x_1 + \Delta x = x_1 - \nabla f(x^{(1)})\)</span>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1550,7 +1564,19 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[5. 5. 1. 0.]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[5.    5.    1.    0.092]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>19.009216
 </pre></div>
 </div>
 </div>
@@ -1562,14 +1588,50 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>19.0
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>19.008549046876634
 </pre></div>
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Obsérvese que la aproximación a primer orden por Taylor no es correcta: <span class="math notranslate nohighlight">\(f(x_1 + \Delta x) \neq f(x_1) + \nabla f(x_1)^T \Delta x\)</span>.</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span> <span class="o">+</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-56.99079652412463
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_3 = x_2 + \Delta x = x_2 - \nabla f(x^{(2)})\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_3</span> <span class="o">=</span> <span class="n">x_2</span> <span class="o">-</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Obsérvese que <span class="math notranslate nohighlight">\(x_3 \approx x_1\)</span>.</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-1.    -1.    -1.     0.096]
 </pre></div>
 </div>
 </div>
@@ -1581,14 +1643,34 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-1. -1. -1.  0.]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-1.    -1.    -1.     0.089]
 </pre></div>
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_4 = x_3 + \Delta x = x_3 - \nabla f(x^{(3)})\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_4</span> <span class="o">=</span> <span class="n">x_3</span> <span class="o">-</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Obsérvese que <span class="math notranslate nohighlight">\(x_4 \approx x_2\)</span>.</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[5.    5.    1.    0.092]
 </pre></div>
 </div>
 </div>
@@ -1600,7 +1682,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[5. 5. 1. 0.]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[5.    5.    1.    0.086]
 </pre></div>
 </div>
 </div>
@@ -1612,7 +1694,7 @@ optimal var [ 1. -1.]
 <p>Tomando <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 5 \\ 5 \\1 \\ 0 \\ \end{array} \right ]\)</span> como punto inicial y <strong>no calculando la inversa</strong> de la Hessiana pues en su lugar resolvemos el sistema de ecuaciones lineales <span class="math notranslate nohighlight">\(\nabla ^2 f_o \left ( x^{(k)} \right ) \Delta x = - \nabla f_o \left(x^{(k)}\right )\)</span> resulta</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1636,13 +1718,13 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>⎡2.0  0.0  0.0  0.0⎤
-⎢                  ⎥
-⎢0.0  2.0  0.0  0.0⎥
-⎢                  ⎥
-⎢0.0  0.0  2.0  0.0⎥
-⎢                  ⎥
-⎣0.0  0.0  0.0  0.0⎦
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>⎡2.0  0.0  0.0  0.0 ⎤
+⎢                   ⎥
+⎢0.0  2.0  0.0  0.0 ⎥
+⎢                   ⎥
+⎢0.0  0.0  2.0  0.0 ⎥
+⎢                   ⎥
+⎣0.0  0.0  0.0  0.12⎦
 </pre></div>
 </div>
 </div>
@@ -1655,16 +1737,13 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>⎡6.0⎤
-⎢   ⎥
-⎢6.0⎥
-⎢   ⎥
-⎢2.0⎥
-⎢   ⎥
-⎣0.0⎦
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>⎡ 6.0 ⎤
+⎢     ⎥
+⎢ 6.0 ⎥
+⎢     ⎥
+⎢ 2.0 ⎥
+⎢     ⎥
+⎣0.004⎦
 </pre></div>
 </div>
 </div>
@@ -1705,7 +1784,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>{x₁: -3.0, x₂: -3.0, x₃: -1.0}
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>{x₁: -3.0, x₂: -3.0, x₃: -1.0, x₄: -0.0333333333333333}
 </pre></div>
 </div>
 </div>
@@ -1725,7 +1804,54 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2 2 0 0]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2.  2.  0.  0.1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span><span class="o">.</span><span class="n">evalf</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}2.0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 2.0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 2.0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 0.12\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span><span class="o">.</span><span class="n">condition_number</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 16.6666666666667\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}2.0 &amp; 0.0 &amp; 0.0 &amp; 0.0\\0.0 &amp; 2.0 &amp; 0.0 &amp; 0.0\\0.0 &amp; 0.0 &amp; 2.0 &amp; 0.0\\0.0 &amp; 0.0 &amp; 0.0 &amp; 0.12\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_2</span> <span class="o">=</span> <span class="n">x_1</span> 
 </pre></div>
 </div>
 </div>
@@ -1808,7 +1934,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2. 2. 0. 0.]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2.    2.    0.    0.098]
 </pre></div>
 </div>
 </div>
@@ -1861,10 +1987,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>status: 
-</pre></div>
-</div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>optimal
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>status: optimal
 optimal value 7.031418247836792e-48
 optimal var 2.0 2.0 0.0 0.0
 </pre></div>
