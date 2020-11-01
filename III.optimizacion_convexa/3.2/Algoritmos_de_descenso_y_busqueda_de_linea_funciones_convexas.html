@@ -1738,7 +1738,7 @@ optimal var [ 1. -1.]
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicio</p>
-<p>¿Converge el método de descenso en gradiente al óptimo para un punto inicial <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 2.5 \\ 2.5 \\0.001 \\ 0.001 \\ \end{array} \right ]\)</span></p>
+<p>¿Converge el método de descenso en gradiente al óptimo para un punto inicial <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 2.5 \\ 2.5 \\0.001 \\ 0.001 \\ \end{array} \right ]\)</span>?</p>
 </div>
 <p><strong>Opción descenso por dirección de Newton:</strong> usando la dirección de descenso de Newton de <span class="math notranslate nohighlight">\(f_o\)</span> se tiene:</p>
 <div class="math notranslate nohighlight">
@@ -2408,7 +2408,7 @@ optimal var [ 1. -1.]
 \end{array}
 \right ]
 \end{split}\]</div>
-<p><strong>Obsérvese que la última ecuación es redundante por lo que el sistema es:</strong></p>
+<p><strong>Obsérvese que la última ecuación es redundante por lo que una solución al sistema anterior es considerar <span class="math notranslate nohighlight">\(x_4=0\)</span> y resolver:</strong></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \left [
@@ -2429,22 +2429,18 @@ optimal var [ 1. -1.]
 \end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval_simplified</span> <span class="o">=</span> <span class="n">Hf_sympy_eval</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">gf_sympy_eval_simplified</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">gf_sympy_eval</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><em>SymPy</em> nos permite obtener soluciones a sistemas de ecuaciones lineales que tienen infinitas soluciones.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_sympy_eval_simplified</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">gf_sympy_eval_simplified</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">gf_sympy_eval</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2454,7 +2450,6 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<p><span class="math notranslate nohighlight">\(4a\)</span> ecuación redundante y por tanto <span class="math notranslate nohighlight">\(x_4 = 0\)</span></p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_1 = x_0 + \Delta x = x_0 - \nabla ^2f_o(x^{(0)})^{-1} \nabla f_o(x^{(0)})\)</span></p>
@@ -2482,14 +2477,18 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>El número de condición es <span class="math notranslate nohighlight">\(\infty\)</span>, con el <code class="docutils literal notranslate"><span class="pre">print</span></code> de <em>SymPy</em> se ve así.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Hf_sympy_eval_simplified</span><span class="o">.</span><span class="n">condition_number</span><span class="p">())</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="o">.</span><span class="n">condition_number</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>1.00000000000000
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>zoo
 </pre></div>
 </div>
 </div>
