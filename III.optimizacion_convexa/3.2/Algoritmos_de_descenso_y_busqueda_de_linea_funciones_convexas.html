@@ -1269,9 +1269,6 @@ optimal var [ 1. -1.]
 ⎣2⋅x₁ - 4  2⋅x₂ - 4  2⋅x₃  4⋅x₄ ⎦
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1697,7 +1694,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<p>y aquí nos quedaremos ciclando hasta el infinito…</p>
+<p>y así nos quedaremos ciclando por muchas iteraciones…</p>
 <p><strong>Opción descenso por dirección de Newton:</strong> usando la dirección de descenso de Newton de <span class="math notranslate nohighlight">\(f_o\)</span> se tiene:</p>
 <div class="math notranslate nohighlight">
 \[x^{(k+1)} = x^{(k)} - \nabla^2 f_o \left (x^{(k)} \right )^{-1} \nabla f_o\left(x^{(k)} \right)\]</div>
@@ -1763,9 +1760,6 @@ optimal var [ 1. -1.]
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[6.    6.    2.    0.004]
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 <p>El sistema de <strong>ecuaciones lineales</strong> a resolver es:</p>
@@ -1790,6 +1784,10 @@ optimal var [ 1. -1.]
 \right ]
 \end{split}\]</div>
 <p>Resolviendo con <em>NumPy</em> el sistema de ecuaciones lineales:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Aquí convertimos de un objeto de <em>SymPy</em> a un <em>array</em> de <em>NumPy</em> pues si bien podríamos resolver el sistema con <em>SymPy</em> es menos costoso utilizar <em>arrays</em> de <em>NumPy</em>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_np_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -1803,6 +1801,10 @@ optimal var [ 1. -1.]
 </pre></div>
 </div>
 </div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Aquí convertimos de un objeto de <em>SymPy</em> a un <em>array</em> de <em>NumPy</em> pues si bien podríamos resolver el sistema con <em>SymPy</em> es menos costoso utilizar <em>arrays</em> de <em>NumPy</em>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1823,6 +1825,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Resolvemos <span class="math notranslate nohighlight">\(\nabla ^2 f_o \left ( x^{(0)} \right ) \Delta x = - \nabla f_o \left(x^{(0)}\right )\)</span> para obtener <span class="math notranslate nohighlight">\(\Delta x\)</span> dirección de Newton.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dir_Newton</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">,</span> <span class="o">-</span><span class="n">gf_np_eval</span><span class="p">)</span>
@@ -1841,6 +1847,10 @@ optimal var [ 1. -1.]
 </pre></div>
 </div>
 </div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_1 = x_0 + \Delta x = x_0 - \nabla ^2f_o(x^{(1)})^{-1} \nabla f_o(x^{(1)})\)</span></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1861,7 +1871,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<p>Recuérdese que <strong>siempre</strong> es útil monitorear el número de condición de la matriz del sistema de ecuaciones lineales que en este caso es la Hessiana:</p>
+<p>Recuérdese que <strong>siempre</strong> es útil monitorear el número de condición de la matriz del sistema de ecuaciones lineales que en este caso es la Hessiana de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(0)}\)</span> para confiabilidad de nuestros cálculos al resolver el sistema de ecuaciones lineales asociado, ver <a class="reference internal" href="../../I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html#ncm"><span class="std std-ref">Número de condición de una matriz</span></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">))</span>
@@ -1876,7 +1886,7 @@ optimal var [ 1. -1.]
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(1)}\)</span> se observa que <span class="math notranslate nohighlight">\(f_o\)</span> sí decrece <span class="math notranslate nohighlight">\(f_o(x^{(0)}) &lt; f_o(x^{(1)})\)</span>.</p>
+<p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(1)}\)</span> se observa que <span class="math notranslate nohighlight">\(f_o\)</span> sí decrece <span class="math notranslate nohighlight">\(f_o(x^{(1)}) &lt; f_o(x^{(0)})\)</span>.</p>
 </div>
 <div class="cell tag_margin docutils container">
 <div class="cell_input docutils container">
@@ -1917,7 +1927,7 @@ optimal var [ 1. -1.]
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_2 = x_1 + \Delta x = x_1 - \nabla ^2f_o(x^{(1)}) \nabla f_o(x^{(1)})\)</span></p>
+<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_2 =  x_1 + \Delta x = x_1 - \nabla ^2f_o(x^{(1)})^{-1} \nabla f_o(x^{(1)})\)</span></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1943,6 +1953,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Número de condición de la Hessiana de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(1)}\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">))</span>
@@ -1957,7 +1971,7 @@ optimal var [ 1. -1.]
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_3 = x_2 + \Delta x = x_2 - \nabla ^2f_o(x^{(2)}) \nabla f_o(x^{(2)})\)</span></p>
+<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_3 = x_2 + \Delta x = x_2 - \nabla ^2f_o(x^{(2)})^{(-1)} \nabla f_o(x^{(2)})\)</span></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1983,6 +1997,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Número de condición de la Hessiana de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(2)}\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">))</span>
@@ -1997,7 +2015,7 @@ optimal var [ 1. -1.]
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_4 = x_3 + \Delta x = x_3 - \nabla ^2f_o(x^{(3)}) \nabla f_o(x^{(3)})\)</span></p>
+<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_4 = x_3 + \Delta x = x_3 - \nabla ^2f_o(x^{(3)})^{(-1)} \nabla f_o(x^{(3)})\)</span></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2025,7 +2043,7 @@ optimal var [ 1. -1.]
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Obsérvese cómo va aumentando el número de condición de la Hessiana conforme nos aproximamos a la solución</p>
+<p>Obsérvese cómo va aumentando el número de condición de la Hessiana conforme nos aproximamos a la solución, en este paso se ha calculado la Hessiana de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(3)}\)</span>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
