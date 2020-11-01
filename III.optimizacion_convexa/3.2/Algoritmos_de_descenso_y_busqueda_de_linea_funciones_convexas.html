@@ -403,6 +403,7 @@
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fmin</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+<span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
 </pre></div>
 </div>
 </div>
@@ -1474,7 +1475,7 @@ optimal var [ 1. -1.]
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Verificando que es dirección de descenso: <span class="math notranslate nohighlight">\(\nabla f_o \left (x^{(k)} \right )^T \Delta x &lt; 0\)</span> con <span class="math notranslate nohighlight">\(\Delta x = -\nabla f_o \left (x^{(k)} \right )\)</span>.</p>
+<p>Verificando que es dirección de descenso: <span class="math notranslate nohighlight">\(\nabla f_o \left (x^{(0)} \right )^T \Delta x &lt; 0\)</span> con <span class="math notranslate nohighlight">\(\Delta x = -\nabla f_o \left (x^{(0)} \right )\)</span>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1488,6 +1489,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<p><strong>Primera iteración</strong></p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_1 = x_0 + \Delta x = x_0 - \nabla f(x^{(0)})\)</span>.</p>
@@ -1548,6 +1550,39 @@ optimal var [ 1. -1.]
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-56.990016
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Segunda iteración</strong></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Evaluando el gradiente en <span class="math notranslate nohighlight">\(x^{(1)}\)</span>: <span class="math notranslate nohighlight">\(\nabla f(x^{(1)})\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-6.    -6.    -2.     0.004]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Verificando que es dirección de descenso: <span class="math notranslate nohighlight">\(\nabla f_o \left (x^{(1)} \right )^T \Delta x &lt; 0\)</span> con <span class="math notranslate nohighlight">\(\Delta x = -\nabla f_o \left (x^{(1)} \right )\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>-76.00001252412463
 </pre></div>
 </div>
 </div>
@@ -1616,6 +1651,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<p><strong>Tercera iteración</strong></p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_3 = x_2 + \Delta x = x_2 - \nabla f(x^{(2)})\)</span>.</p>
@@ -1655,6 +1691,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<p><strong>Cuarta iteración</strong></p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_4 = x_3 + \Delta x = x_3 - \nabla f(x^{(3)})\)</span>.</p>
@@ -1695,6 +1732,14 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <p>y así nos quedaremos ciclando por muchas iteraciones…</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>El método de descenso en gradiente para el ejemplo anterior no convergerá al óptimo <span class="math notranslate nohighlight">\(x^* = \left [ \begin{array}{c} 2 \\ 2 \\0 \\ 0 \\ \end{array} \right ]\)</span></p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>¿Converge el método de descenso en gradiente al óptimo para un punto inicial <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 2.5 \\ 2.5 \\0.001 \\ 0.001 \\ \end{array} \right ]\)</span></p>
+</div>
 <p><strong>Opción descenso por dirección de Newton:</strong> usando la dirección de descenso de Newton de <span class="math notranslate nohighlight">\(f_o\)</span> se tiene:</p>
 <div class="math notranslate nohighlight">
 \[x^{(k+1)} = x^{(k)} - \nabla^2 f_o \left (x^{(k)} \right )^{-1} \nabla f_o\left(x^{(k)} \right)\]</div>
@@ -1872,6 +1917,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<p><strong>Primera iteración</strong></p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_1 = x_0 + \Delta x = x_0 - \nabla ^2f_o(x^{(0)})^{-1} \nabla f_o(x^{(0)})\)</span></p>
@@ -1949,6 +1995,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<p><strong>Segunda iteración</strong></p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando la Hessiana en <span class="math notranslate nohighlight">\(x^{(1)}\)</span>: <span class="math notranslate nohighlight">\(\nabla^2f(x^{(1)})\)</span>, evaluando el gradiente en <span class="math notranslate nohighlight">\(x^{(1)}\)</span>: <span class="math notranslate nohighlight">\(\nabla f(x^{(1)})\)</span> y resolviendo el sistema de ecuaciones <span class="math notranslate nohighlight">\(\nabla ^2 f_o \left ( x^{(1)} \right ) \Delta x = - \nabla f_o \left(x^{(1)}\right )\)</span>.</p>
@@ -1999,6 +2046,47 @@ optimal var [ 1. -1.]
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
+<p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(2)}\)</span> se observa que <span class="math notranslate nohighlight">\(f_o\)</span> sí decrece <span class="math notranslate nohighlight">\(f_o(x^{(2)}) &lt; f_o(x^{(1)})\)</span>.</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.004444444444444446
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0019753086419753096
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obsérvese que la aproximación a segundo orden por Taylor es cercana: <span class="math notranslate nohighlight">\(f(x_1 + \Delta x) \approx f(x_1) + \nabla f(x_1)^T \Delta x + \frac{1}{2}\Delta x ^T\nabla^2 f(x_1) \Delta x\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span> <span class="o">+</span> <span class="n">gf_np_eval</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dir_Newton</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="nd">@dir_Newton</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.004431275720164611
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
 <p>Número de condición de la Hessiana de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(1)}\)</span>.</p>
 </div>
 <div class="cell docutils container">
@@ -2013,6 +2101,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<p><strong>Tercera iteración</strong></p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando la Hessiana en <span class="math notranslate nohighlight">\(x^{(2)}\)</span>: <span class="math notranslate nohighlight">\(\nabla^2f(x^{(2)})\)</span>, evaluando el gradiente en <span class="math notranslate nohighlight">\(x^{(2)}\)</span>: <span class="math notranslate nohighlight">\(\nabla f(x^{(2)})\)</span>  y resolviendo el sistema de ecuaciones <span class="math notranslate nohighlight">\(\nabla ^2 f_o \left ( x^{(2)} \right ) \Delta x = - \nabla f_o \left(x^{(2)}\right )\)</span>.</p>
@@ -2063,6 +2152,47 @@ optimal var [ 1. -1.]
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
+<p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(3)}\)</span> se observa que <span class="math notranslate nohighlight">\(f_o\)</span> sí decrece <span class="math notranslate nohighlight">\(f_o(x^{(3)}) &lt; f_o(x^{(2)})\)</span>.</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0019753086419753096
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0008779149519890264
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obsérvese que la aproximación a segundo orden por Taylor es cercana: <span class="math notranslate nohighlight">\(f(x_2 + \Delta x) \approx f(x_2) + \nabla f(x_2)^T \Delta x + \frac{1}{2}\Delta x ^T\nabla^2 f(x_2) \Delta x\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_2</span><span class="p">)</span> <span class="o">+</span> <span class="n">gf_np_eval</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dir_Newton</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="nd">@dir_Newton</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0019727074124879346
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
 <p>Número de condición de la Hessiana de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(2)}\)</span>.</p>
 </div>
 <div class="cell docutils container">
@@ -2077,6 +2207,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<p><strong>Cuarta iteración</strong></p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando la Hessiana en <span class="math notranslate nohighlight">\(x^{(3)}\)</span>: <span class="math notranslate nohighlight">\(\nabla^2f(x^{(3)})\)</span>, evaluando el gradiente en <span class="math notranslate nohighlight">\(x^{(3)}\)</span>: <span class="math notranslate nohighlight">\(\nabla f(x^{(3)})\)</span>  y resolviendo el sistema de ecuaciones <span class="math notranslate nohighlight">\(\nabla ^2 f_o \left ( x^{(3)} \right ) \Delta x = - \nabla f_o \left(x^{(3)}\right )\)</span>.</p>
@@ -2131,6 +2262,47 @@ optimal var [ 1. -1.]
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
+<p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(4)}\)</span> se observa que <span class="math notranslate nohighlight">\(f_o\)</span> sí decrece <span class="math notranslate nohighlight">\(f_o(x^{(4)}) &lt; f_o(x^{(3)})\)</span>.</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.0008779149519890264
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.00039018442310623393
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obsérvese que la aproximación a segundo orden por Taylor es cercana: <span class="math notranslate nohighlight">\(f(x_3 + \Delta x) \approx f(x_3) + \nabla f(x_3)^T \Delta x + \frac{1}{2}\Delta x ^T\nabla^2 f(x_3) \Delta x\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_3</span><span class="p">)</span> <span class="o">+</span> <span class="n">gf_np_eval</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dir_Newton</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="nd">@dir_Newton</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.000877401128880409
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
 <p>Obsérvese cómo va aumentando el número de condición de la Hessiana conforme nos aproximamos a la solución, en este paso se ha calculado la Hessiana de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(3)}\)</span>.</p>
 </div>
 <div class="cell docutils container">
@@ -2145,35 +2317,26 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<p>Obsérvese que la aproximación a segundo orden por Taylor es cercana: <span class="math notranslate nohighlight">\(f(x_3 + \Delta x) \approx f(x_3) + \nabla f(x_3)^T \Delta x + \frac{1}{2}\Delta x ^T\nabla^2 f(x_3) \Delta x\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_4</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_4</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]),</span> <span class="nb">abs</span><span class="o">=</span><span class="mf">1e-1</span><span class="p">,</span> <span class="n">rel</span><span class="o">=</span><span class="mf">1e-1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.00039018442310623393
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_3</span><span class="p">)</span> <span class="o">+</span> <span class="n">gf_np_eval</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dir_Newton</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="nd">@dir_Newton</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.000877401128880409
-</pre></div>
-</div>
-</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>El método por dirección de Newton sí convergerá al óptimo <span class="math notranslate nohighlight">\(x^* = \left [ \begin{array}{c} 2 \\ 2 \\0 \\ 0 \\ \end{array} \right ]\)</span> pero la convergencia será lenta.</p>
 </div>
 <p>Si hubiéramos elegido como punto inicial <span class="math notranslate nohighlight">\(x^{(0)} = \left [ \begin{array}{c} 5 \\ 5 \\1 \\ 0 \\ \end{array} \right ]\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2200,6 +2363,10 @@ optimal var [ 1. -1.]
 </pre></div>
 </div>
 </div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Evaluando el gradiente en <span class="math notranslate nohighlight">\(x^{(0)}\)</span>: <span class="math notranslate nohighlight">\(\nabla f(x^{(0)})\)</span>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2263,21 +2430,21 @@ optimal var [ 1. -1.]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval_simplified</span> <span class="o">=</span> <span class="n">Hf_sympy_eval</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">gf_sympy_eval_simplified</span> <span class="o">=</span> <span class="n">gf_sympy_eval</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">gf_sympy_eval_simplified</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">gf_sympy_eval</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">gf_sympy_eval</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_sympy_eval_simplified</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">gf_sympy_eval_simplified</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2288,6 +2455,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(4a\)</span> ecuación redundante y por tanto <span class="math notranslate nohighlight">\(x_4 = 0\)</span></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_1 = x_0 + \Delta x = x_0 - \nabla ^2f_o(x^{(0)})^{-1} \nabla f_o(x^{(0)})\)</span></p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
@@ -2306,7 +2477,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2. 2. 0. 0.]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[2 2 0 0]
 </pre></div>
 </div>
 </div>
@@ -2323,13 +2494,24 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_1</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]),</span> <span class="nb">abs</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">rel</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <p>De acuerdo al ejemplo anterior:</p>
 <ul class="simple">
 <li><p>Utilizar información de primer o segundo orden nos ayuda a encontrar óptimo(s) de funciones.</p></li>
-<li><p>Encontrar al óptimo involucró un método iterativo.</p></li>
-<li><p>Con la información de primer orden no alcanzamos al óptimo (de hecho se cicla el método iterativo propuesto) pero con la de segundo orden sí lo alcanzamos en una iteración y tuvimos que resolver un sistema de ecuaciones lineales.</p></li>
+<li><p>El método de descenso en gradiente no converge para el punto inicial elegido. En el caso del método de Newton sí hay convergencia pero es lenta si el punto inicial tiene en la última entrada un número cercano a <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
 </ul>
 </div>
 </div>
