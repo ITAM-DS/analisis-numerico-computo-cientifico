@@ -1760,9 +1760,6 @@ optimal var [ 1. -1.]
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[6.    6.    2.    0.004]
 </pre></div>
 </div>
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 <p>El sistema de <strong>ecuaciones lineales</strong> a resolver es:</p>
@@ -1858,7 +1855,7 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<p>Número de condición de la Hessiana</p>
+<p>Recuérdese que <strong>siempre</strong> es útil monitorear el número de condición de la matriz del sistema de ecuaciones lineales que en este caso es la Hessiana:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">))</span>
@@ -1867,6 +1864,47 @@ optimal var [ 1. -1.]
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>16.666666666666664
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(1)}\)</span> se observa que <span class="math notranslate nohighlight">\(f_o\)</span> sí decrece <span class="math notranslate nohighlight">\(f_o(x^{(0)}) &lt; f_o(x^{(1)})\)</span>.</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>19.01
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.004444444444444446
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obsérvese que la aproximación a segundo orden por Taylor es cercana: <span class="math notranslate nohighlight">\(f(x_0 + \Delta x) \approx f(x_0) + \nabla f(x_0)^T \Delta x + \frac{1}{2}\Delta x ^T\nabla^2 f(x_0) \Delta x\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span> <span class="o">+</span> <span class="n">gf_np_eval</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dir_Newton</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="nd">@dir_Newton</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.009933333333336236
 </pre></div>
 </div>
 </div>
@@ -1991,6 +2029,31 @@ optimal var [ 1. -1.]
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>189.84374999999991
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obsérvese que la aproximación a segundo orden por Taylor es cercana: <span class="math notranslate nohighlight">\(f(x_3 + \Delta x) \approx f(x_3) + \nabla f(x_3)^T \Delta x + \frac{1}{2}\Delta x ^T\nabla^2 f(x_3) \Delta x\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.00039018442310623393
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_3</span><span class="p">)</span> <span class="o">+</span> <span class="n">gf_np_eval</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dir_Newton</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="nd">@dir_Newton</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.000877401128880409
 </pre></div>
 </div>
 </div>
