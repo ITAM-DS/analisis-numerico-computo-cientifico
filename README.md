@@ -38,7 +38,7 @@ Total de clases: 18. Total de número de horas: 48 hrs.
 
 [Equipos de optimización]()
 
-[Lista de estudiantes con calificaciones](https://drive.google.com/file/d/1xbRRkL5096TNRwExwUqmEJb3KjFYwxa5/view?usp=sharing)
+### [Lista de estudiantes con calificaciones](https://drive.google.com/file/d/1xbRRkL5096TNRwExwUqmEJb3KjFYwxa5/view?usp=sharing)
 
 [Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
 
