@@ -297,6 +297,18 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo">
+     Ejemplo
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#los-datos-ejemplo">
+       Los datos ejemplo
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regresion-logistica">
      Regresión Logística
     </a>
@@ -465,7 +477,7 @@ y_m
 <p>y usando que <span class="math notranslate nohighlight">\(Q\)</span> tiene columnas ortonormales:</p>
 <div class="math notranslate nohighlight">
 \[R^TR\beta = R^TQ^Ty\]</div>
-<p>Como <span class="math notranslate nohighlight">\(A\)</span> tiene <span class="math notranslate nohighlight">\(n+1\)</span> columnas linealmente independientes, la matriz <span class="math notranslate nohighlight">\(R\)</span> es invertible por lo que <span class="math notranslate nohighlight">\(R^T\)</span> también lo es y finalmente se tiene el sistema de ecuaciones por resolver:</p>
+<p>Como <span class="math notranslate nohighlight">\(A\)</span> tiene <span class="math notranslate nohighlight">\(n+1\)</span> columnas linealmente independientes, la matriz <span class="math notranslate nohighlight">\(R\)</span> es invertible por lo que <span class="math notranslate nohighlight">\(R^T\)</span> también lo es y finalmente se tiene el <strong>sistema de ecuaciones lineales</strong> por resolver:</p>
 <div class="math notranslate nohighlight">
 \[R\beta = Q^Ty\]</div>
 </div>
@@ -476,7 +488,7 @@ y_m
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-f_o(\beta)=\displaystyle \sum_{i=1}^{20} (y_i -f_o(x_i|\beta))^2 &amp;=&amp;  \displaystyle \sum_{i=1}^{20} (y_i - A[i,:]^T\beta)^2 \\
+f_o(\beta)=\displaystyle \sum_{i=1}^{m} (y_i -f_o(x_i|\beta))^2 &amp;=&amp;  \displaystyle \sum_{i=1}^{m} (y_i - A[i,:]^T\beta)^2 \\
 &amp;=&amp; ||y - A \beta||_2^2 \\
 &amp;=&amp; (y-A\beta)^T(y-A\beta) \\
 &amp;=&amp; y^Ty-2\beta^TA^Ty + \beta^TA^TA\beta
@@ -484,10 +496,160 @@ f_o(\beta)=\displaystyle \sum_{i=1}^{20} (y_i -f_o(x_i|\beta))^2 &amp;=&amp;  \d
 \end{split}\]</div>
 <p>con <span class="math notranslate nohighlight">\(A[i,:]\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A\)</span> visto como un vector en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. Es común dividir por <span class="math notranslate nohighlight">\(2\)</span> la función objetivo para finalmente tener el problema:</p>
 <div class="math notranslate nohighlight">
-\[\displaystyle \min_{\beta \in \mathbb{R}^n} \quad \frac{1}{2}y^Ty-\beta^TA^Ty + \frac{1}{2}\beta^TA^TA\beta.\]</div>
+\[\displaystyle \min_{\beta \in \mathbb{R}^n} \frac{1}{2}\beta^TA^TA\beta - \beta^TA^Ty + \frac{1}{2}y^Ty.\]</div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>En cualquier reescritura de la función <span class="math notranslate nohighlight">\(f_o\)</span>, el problema de aproximación con normas, o bien en su caso particular de mínimos cuadrados, es un problema de <strong>optimización convexa</strong>.</p>
+</div>
+</div>
+<div class="section" id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="kn">import</span> <span class="nn">pprint</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">#sólo dos decimales que se muestren</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1989</span><span class="p">)</span> <span class="c1">#para reproducibilidad</span>
+<span class="n">mpoints</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">mpoints</span><span class="p">)</span> 
+<span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">mpoints</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="los-datos-ejemplo">
+<h4>Los datos ejemplo<a class="headerlink" href="#los-datos-ejemplo" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="s1">&#39;r*&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Puntos ejemplo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIECO_y_PI_41_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIECO_y_PI_41_0.png" />
+</div>
+</div>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{\beta \in \mathbb{R}^n} \frac{1}{2}\beta^TA^TA\beta - \beta^TA^Ty + \frac{1}{2}y^Ty.\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">mpoints</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="c1">#step 1 to build matrix A</span>
+<span class="n">A</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span> <span class="c1">#step 2 to build matrix A</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># number of variables</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1">#optimization variable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">quad_form</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="nd">@A</span><span class="p">)</span> <span class="o">-</span> <span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="nd">@y</span><span class="p">,</span> <span class="n">beta</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c1">#objective function</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">fo_cvxpy</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>10.217738419387963
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The optimal value is&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The optimal beta is&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The norm of the residual is &quot;</span><span class="p">,</span> <span class="n">cp</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">beta</span> <span class="o">-</span> <span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="c1">#also works: cp.norm2(A @ beta - y).value</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+The optimal value is 10.217738419387963
+The optimal beta is
+[ 2.03 -2.65]
+The norm of the residual is  4.520561562325624
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ver <a class="reference external" href="https://www.cvxpy.org/examples/basic/least_squares.html">least_squares</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">sum_squares</span><span class="p">(</span><span class="n">A</span><span class="nd">@beta</span> <span class="o">-</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">fo_cvxpy</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>10.217738419387944
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The optimal value is&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The optimal beta is&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The norm of the residual is &quot;</span><span class="p">,</span> <span class="n">cp</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">beta</span> <span class="o">-</span> <span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="c1">#also works: cp.norm2(A @ beta - y).value</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+The optimal value is 10.217738419387944
+The optimal beta is
+[ 2.03 -2.65]
+The norm of the residual is  4.520561562325624
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="regresion-logistica">
