@@ -282,6 +282,21 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#minimos-cuadrados-lineales">
+     Mínimos cuadrados lineales
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modelo-en-minimos-cuadrados-lineales">
+     Modelo en mínimos cuadrados lineales
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#enfoque-de-optimizacion">
+     Enfoque de optimización
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#regresion-logistica">
      Regresión Logística
     </a>
@@ -333,7 +348,7 @@
 <p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab_optimizacion:2.1.4</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion">liga</a>.</p>
 </div>
 <hr class="docutils" />
-<p>Nota generada a partir de <a class="reference external" href="https://drive.google.com/file/d/1zCIHNAxe5Shc36Qo0XjehHgwrafKSJ_t/view">liga1</a>, <a class="reference external" href="https://drive.google.com/file/d/12L7rOCgW7NEKl_xJbIGZz05XXVrOaPBz/view">liga2</a>, <a class="reference external" href="https://drive.google.com/file/d/1RMwUXEN_SOHKue-J9Cx3Ldvj9bejLjiM/view">liga3</a>.</p>
+<p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/6isby5h1e5f2yzs/4.2.Problemas_de_optimizacion_convexa.pdf?dl=0">liga1</a>, <a class="reference external" href="https://drive.google.com/file/d/1zCIHNAxe5Shc36Qo0XjehHgwrafKSJ_t/view">liga2</a>, <a class="reference external" href="https://drive.google.com/file/d/12L7rOCgW7NEKl_xJbIGZz05XXVrOaPBz/view">liga3</a>, <a class="reference external" href="https://drive.google.com/file/d/1RMwUXEN_SOHKue-J9Cx3Ldvj9bejLjiM/view">liga4</a>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Al final de esta nota el y la lectora:</p>
 <ul class="simple">
@@ -345,6 +360,113 @@
 <h2>Ejemplos problemas UCO<a class="headerlink" href="#ejemplos-problemas-uco" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="minimos-cuadrados">
 <h3>Mínimos cuadrados<a class="headerlink" href="#minimos-cuadrados" title="Permalink to this headline">¶</a></h3>
+<p>Obsérvese que hay una gran cantidad de modelos por mínimos cuadrados, por ejemplo:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Linear_least_squares">Lineales</a> u <a class="reference external" href="https://en.wikipedia.org/wiki/Ordinary_least_squares">ordinarios</a> (nombre más usado en Estadística y Econometría).</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Generalized_least_squares">Generalizados</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Weighted_least_squares">ponderados</a>.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Non-linear_least_squares">No lineales</a>.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Total_least_squares">Totales</a> y <a class="reference external" href="https://en.wikipedia.org/wiki/Partial_least_squares_regression">parciales</a>.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Non-negative_least_squares">No negativos</a>.</p></li>
+<li><p><a class="reference external" href="https://epubs.siam.org/doi/abs/10.1137/1.9780898718867.ch7">Rango reducido</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="minimos-cuadrados-lineales">
+<h3>Mínimos cuadrados lineales<a class="headerlink" href="#minimos-cuadrados-lineales" title="Permalink to this headline">¶</a></h3>
+<p>Se <strong>asume</strong> en esta sección que <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> con $m \geq n $ (más renglones que columnas en <span class="math notranslate nohighlight">\(A\)</span>).</p>
+<p>Cada uno de los modelos anteriores tienen diversas aplicaciones y propósitos. Los lineales son un caso particular del problema más general de <strong>aproximación por normas</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{x \in \mathbb{R}^n} ||Ax-b||\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span>, <span class="math notranslate nohighlight">\(b \in \mathbb{R}^m\)</span> son datos del problema, <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span> es la variable de optimización y <span class="math notranslate nohighlight">\(|| \cdot||\)</span> es una norma en <span class="math notranslate nohighlight">\(\mathbb{R}^m\)</span>.</p>
+<div class="admonition-definiciones admonition">
+<p class="admonition-title">Definiciones</p>
+<p><span class="math notranslate nohighlight">\(x^* = \text{argmin}_{x \in \mathbb{R}^n} ||Ax-b||\)</span> se le nombra <strong>solución aproximada</strong> de <span class="math notranslate nohighlight">\(Ax \approx b\)</span> en la norma <span class="math notranslate nohighlight">\(|| \cdot ||\)</span>.</p>
+<p>El vector: <span class="math notranslate nohighlight">\(r(x) = Ax -b\)</span> se le nombra <strong>residual</strong> del problema.</p>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>El problema de aproximación por normas también se le nombra <strong>problema de regresión</strong>. En este contexto, las componentes de <span class="math notranslate nohighlight">\(x\)</span> son nombradas regresoras o vector de atributos y el vector <span class="math notranslate nohighlight">\(\displaystyle \sum_{j=1}^n x_j^*a_j\)</span> con <span class="math notranslate nohighlight">\(x^*\)</span> óptimo del problema es nombrado la <strong>regresión de <span class="math notranslate nohighlight">\(b\)</span> sobre las regresoras</strong>. <span class="math notranslate nohighlight">\(b\)</span> es la <strong>respuesta.</strong></p>
+</div>
+<p>Si en el problema de aproximación de normas anterior se utiliza la norma Euclidiana o norma <span class="math notranslate nohighlight">\(2\)</span>, <span class="math notranslate nohighlight">\(|| \cdot ||_2\)</span>, y se eleva al cuadrado la función objetivo se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{x \in \mathbb{R}^n} ||Ax-b||^2_2\]</div>
+<p>que es el modelo por mínimos cuadrados lineales cuyo objetivo es minimizar la suma de cuadrados de las componentes del residual <span class="math notranslate nohighlight">\(r(x)\)</span>.</p>
+<p><strong>A partir de aquí, la variable de optimización será <span class="math notranslate nohighlight">\(\beta\)</span> y no <span class="math notranslate nohighlight">\(x\)</span></strong>:</p>
+<p>Supóngase que se han realizado mediciones de un fenómeno de interés en diferentes puntos <span class="math notranslate nohighlight">\(x_i\)</span>’s resultando en cantidades <span class="math notranslate nohighlight">\(y_i\)</span>’s <span class="math notranslate nohighlight">\(\forall i=0,1,\dots, m\)</span> (se tienen <span class="math notranslate nohighlight">\(m+1\)</span> puntos) y además las <span class="math notranslate nohighlight">\(y_i\)</span>’s contienen un ruido aleatorio causado por errores de medición:</p>
+<img src="https://dl.dropboxusercontent.com/s/iydpi0m8ndqzb0s/mcuadrados_1.jpg?dl=0" heigth="350" width="350">
+<p>El objetivo de los mínimos cuadrados es construir una curva, <span class="math notranslate nohighlight">\(f(x|\beta)\)</span> que “mejor” se ajuste a los datos <span class="math notranslate nohighlight">\((x_i,y_i)\)</span>, <span class="math notranslate nohighlight">\(\forall i=0,1,\dots,m\)</span>. El término de “mejor” se refiere a que la suma: <span class="math notranslate nohighlight">\($\displaystyle \sum_{i=0}^m (y_i -f(x_i|\beta))^2\)</span>$ sea lo más pequeña posible, esto es, a que la suma de las distancias verticales entre <span class="math notranslate nohighlight">\(y_i\)</span> y <span class="math notranslate nohighlight">\(f(x_i|\beta)\)</span> <span class="math notranslate nohighlight">\(\forall i=0,1,\dots,m\)</span> al cuadrado sea mínima. Por ejemplo:</p>
+<img src="https://dl.dropboxusercontent.com/s/0dhzv336jj6ep4z/mcuadrados_2.jpg?dl=0" heigth="350" width="350">
+<div class="admonition-observacion admonition">
+<p class="admonition-title">Observación</p>
+<p>La notación <span class="math notranslate nohighlight">\(f(x|\beta)\)</span> se utiliza para denotar que <span class="math notranslate nohighlight">\(\beta\)</span> es un vector de parámetros a estimar, en específico <span class="math notranslate nohighlight">\(\beta_0, \beta_1, \dots \beta_n\)</span>, esto es: <span class="math notranslate nohighlight">\(n+1\)</span> parámetros a estimar.</p>
+</div>
+</div>
+<div class="section" id="modelo-en-minimos-cuadrados-lineales">
+<h3>Modelo en mínimos cuadrados lineales<a class="headerlink" href="#modelo-en-minimos-cuadrados-lineales" title="Permalink to this headline">¶</a></h3>
+<p>En los mínimos cuadrados lineales se asume un modelo:</p>
+<div class="math notranslate nohighlight">
+\[f(x|\beta) = \displaystyle \sum_{j=0}^n\beta_j\phi_j(x)\]</div>
+<p>con <span class="math notranslate nohighlight">\(\phi_j: \mathbb{R} \rightarrow \mathbb{R}\)</span> funciones conocidas por lo que se tiene una gran flexibilidad para el proceso de ajuste. Con las funciones <span class="math notranslate nohighlight">\(\phi_j (\cdot)\)</span> se construye a la matriz <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Si <span class="math notranslate nohighlight">\(n=m\)</span> entonces se tiene un problema de interpolación.</p>
+</div>
+<p>Si <span class="math notranslate nohighlight">\(m=3\)</span> y <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{3 \times 2}\)</span> geométricamente el problema de <strong>mínimos cuadrados lineales</strong> se puede visualizar con el siguiente dibujo:</p>
+<img src="https://dl.dropboxusercontent.com/s/a6pjx0pdqa3cp60/mc_beta.png?dl=0" heigth="400" width="400">
+<p>En el dibujo anterior <span class="math notranslate nohighlight">\(r(\beta) = y-A\beta\)</span>, el vector <span class="math notranslate nohighlight">\(y \in \mathbb{R}^m\)</span> contiene las entradas <span class="math notranslate nohighlight">\(y_i\)</span>’s y la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> contiene a las entradas <span class="math notranslate nohighlight">\(x_i\)</span>’s o funciones de éstas <span class="math notranslate nohighlight">\(\forall i=0,1,\dots,m\)</span>.. Por el dibujo se tiene que cumplir que <span class="math notranslate nohighlight">\(A^Tr(\beta)=0\)</span>, esto es: las columnas de <span class="math notranslate nohighlight">\(A\)</span> son ortogonales a <span class="math notranslate nohighlight">\(r(\beta)\)</span>. La condición anterior conduce a las <strong>ecuaciones normales</strong>:</p>
+<div class="math notranslate nohighlight">
+\[0=A^Tr(\beta)=A^T(y-A\beta)=A^Ty-A^TA\beta.\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(A\)</span> se construye con las <span class="math notranslate nohighlight">\(\phi_j\)</span>’s evaluadas en los puntos <span class="math notranslate nohighlight">\(x_i\)</span>’s, el vector <span class="math notranslate nohighlight">\(\beta\)</span> contiene a los parámetros <span class="math notranslate nohighlight">\(\beta_j\)</span>’s a estimar y el vector <span class="math notranslate nohighlight">\(y\)</span>, la variable <strong>respuesta</strong>, se construye con los puntos <span class="math notranslate nohighlight">\(y_i\)</span>’s:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \left[\begin{array}{cccc}
+\phi_0(x_0) &amp;\phi_1(x_0)&amp;\dots&amp;\phi_n(x_0)\\
+\phi_0(x_1) &amp;\phi_1(x_1)&amp;\dots&amp;\phi_n(x_1)\\
+\vdots &amp;\vdots&amp; \vdots&amp;\vdots\\
+\phi_0(x_n) &amp;\phi_1(x_n)&amp;\dots&amp;\phi_n(x_n)\\
+\vdots &amp;\vdots&amp; \vdots&amp;\vdots\\
+\phi_0(x_{m-1}) &amp;\phi_1(x_{m-1})&amp;\dots&amp;\phi_n(x_{m-1})\\
+\phi_0(x_m) &amp;\phi_1(x_m)&amp;\dots&amp;\phi_n(x_m)
+\end{array}
+\right] \in \mathbb{R}^{(m+1)x(n+1)},
+\beta=
+\left[\begin{array}{c}
+\beta_0\\
+\beta_1\\
+\vdots \\
+\beta_n
+\end{array}
+\right] \in \mathbb{R}^n,
+y=
+\left[\begin{array}{c}
+y_0\\
+y_1\\
+\vdots \\
+y_m
+\end{array}
+\right] \in \mathbb{R}^{m + 1}
+\end{split}\]</div>
+<p>Finalmente, considerando la variable de optimización <span class="math notranslate nohighlight">\(\beta\)</span> y al vector <span class="math notranslate nohighlight">\(y\)</span> tenemos: <span class="math notranslate nohighlight">\(A^TA \beta = A^Ty\)</span>.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Si <span class="math notranslate nohighlight">\(A\)</span> es de <span class="math notranslate nohighlight">\(rank\)</span> completo (tiene <span class="math notranslate nohighlight">\(n+1\)</span> columnas linealmente independientes) se calcula la factorización <span class="math notranslate nohighlight">\(QR\)</span> de <span class="math notranslate nohighlight">\(A\)</span> : <span class="math notranslate nohighlight">\(A = QR\)</span> y entonces: <span class="math notranslate nohighlight">\($A^TA\beta = A^Ty\)</span>$. Como <span class="math notranslate nohighlight">\(A=QR\)</span> se tiene: <span class="math notranslate nohighlight">\(A^TA = (R^TQ^T)(QR)\)</span> y <span class="math notranslate nohighlight">\(A^T = R^TQ^T\)</span> por lo que:</p>
+<div class="math notranslate nohighlight">
+\[(R^TQ^T)(QR) \beta =  R^TQ^T y\]</div>
+<p>y usando que <span class="math notranslate nohighlight">\(Q\)</span> tiene columnas ortonormales:</p>
+<div class="math notranslate nohighlight">
+\[R^TR\beta = R^TQ^Ty\]</div>
+<p>Como <span class="math notranslate nohighlight">\(A\)</span> tiene <span class="math notranslate nohighlight">\(n+1\)</span> columnas linealmente independientes, la matriz <span class="math notranslate nohighlight">\(R\)</span> es invertible por lo que <span class="math notranslate nohighlight">\(R^T\)</span> también lo es y finalmente se tiene el sistema de ecuaciones por resolver:</p>
+<div class="math notranslate nohighlight">
+\[R\beta = Q^Ty\]</div>
+</div>
+</div>
+<div class="section" id="enfoque-de-optimizacion">
+<h3>Enfoque de optimización<a class="headerlink" href="#enfoque-de-optimizacion" title="Permalink to this headline">¶</a></h3>
+<p>La función objetivo en los mínimos cuadrados lineales puede escribirse de las siguientes formas:</p>
+<div class="math notranslate nohighlight">
+\[f_o(\beta)=\displaystyle \sum_{i=1}^{20} (y_i -f_o(x_i|\beta))^2 = \displaystyle \sum_{i=1}^{20} (y_i - A[i,:]^T\beta)^2 = ||y - A \beta||_2^2= (y-A\beta)^T(y-A\beta) = y^Ty-2\beta^TA^Ty + \beta^TA^TA\beta\]</div>
+<p>con <span class="math notranslate nohighlight">\(A[i,:]\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A\)</span> visto como un vector en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. Es común dividir por <span class="math notranslate nohighlight">\(2\)</span> la función objetivo para finalmente tener el problema:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{\beta \in \mathbb{R}^n} \quad \frac{1}{2}y^Ty-\beta^TA^Ty + \frac{1}{2}\beta^TA^TA\beta.\]</div>
+<p>En cualquier reescritura de la función <span class="math notranslate nohighlight">\(f_o\)</span>, el problema de aproximación con normas, o bien en su caso particular de mínimos cuadrados, es un problema de <strong>optimización convexa</strong>.</p>
 </div>
 <div class="section" id="regresion-logistica">
 <h3>Regresión Logística<a class="headerlink" href="#regresion-logistica" title="Permalink to this headline">¶</a></h3>
