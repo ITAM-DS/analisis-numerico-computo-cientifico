@@ -515,14 +515,14 @@ f_o(\beta)=\displaystyle \sum_{i=1}^{m} (y_i -f_o(x_i|\beta))^2 &amp;=&amp;  \di
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">#sólo dos decimales que se muestren</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">#just two decimals</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1989</span><span class="p">)</span> <span class="c1">#para reproducibilidad</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1989</span><span class="p">)</span> <span class="c1">#for reproducibility</span>
 <span class="n">mpoints</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">mpoints</span><span class="p">)</span> 
 <span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">mpoints</span><span class="p">)</span>
@@ -546,14 +546,17 @@ f_o(\beta)=\displaystyle \sum_{i=1}^{m} (y_i -f_o(x_i|\beta))^2 &amp;=&amp;  \di
 <img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIECO_y_PI_41_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIECO_y_PI_41_0.png" />
 </div>
 </div>
-<div class="math notranslate nohighlight">
-\[\displaystyle \min_{\beta \in \mathbb{R}^n} \frac{1}{2}\beta^TA^TA\beta - \beta^TA^Ty + \frac{1}{2}y^Ty.\]</div>
+<p>Utilizamos el paquete <a class="reference external" href="https://github.com/cvxgrp/cvxpy">cvxpy</a> para resolver el problema de mínimos cuadrados:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Construímos a la matriz <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -563,17 +566,15 @@ f_o(\beta)=\displaystyle \sum_{i=1}^{m} (y_i -f_o(x_i|\beta))^2 &amp;=&amp;  \di
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Definición de variables y función objetivo: <span class="math notranslate nohighlight">\(\frac{1}{2}\beta^TA^TA\beta - \beta^TA^Ty + \frac{1}{2}y^Ty\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># number of variables</span>
 <span class="n">beta</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1">#optimization variable</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">quad_form</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="nd">@A</span><span class="p">)</span> <span class="o">-</span> <span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="nd">@y</span><span class="p">,</span> <span class="n">beta</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c1">#objective function</span>
+<span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">quad_form</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="nd">@A</span><span class="p">)</span> <span class="o">-</span> <span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="nd">@y</span><span class="p">,</span> <span class="n">beta</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="c1">#objective function</span>
 </pre></div>
 </div>
 </div>
@@ -610,7 +611,7 @@ The norm of the residual is  4.520561562325624
 </div>
 </div>
 </div>
-<p>Ver <a class="reference external" href="https://www.cvxpy.org/examples/basic/least_squares.html">least_squares</a></p>
+<p>El paquete <em>CVXPY</em> ya tiene una función para resolver el problema anterior, ver <a class="reference external" href="https://www.cvxpy.org/examples/basic/least_squares.html">least_squares</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">sum_squares</span><span class="p">(</span><span class="n">A</span><span class="nd">@beta</span> <span class="o">-</span><span class="n">y</span><span class="p">)</span>
