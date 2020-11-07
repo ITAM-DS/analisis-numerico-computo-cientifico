@@ -308,9 +308,19 @@
      </li>
     </ul>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#el-problema-de-clasificacion">
+   El problema de clasificación
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regresion-logistica">
-     Regresión Logística
+    <a class="reference internal nav-link" href="#regresion-logistica-clasificacion-en-mathcal-c-0-mathcal-c-1">
+     Regresión logística: clasificación en
+     <span class="math notranslate nohighlight">
+      \(\mathcal{C}_0, \mathcal{C}_1\)
+     </span>
     </a>
    </li>
   </ul>
@@ -653,8 +663,133 @@ The norm of the residual is  4.520561562325624
 </div>
 </div>
 </div>
-<div class="section" id="regresion-logistica">
-<h3>Regresión Logística<a class="headerlink" href="#regresion-logistica" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="el-problema-de-clasificacion">
+<h2>El problema de clasificación<a class="headerlink" href="#el-problema-de-clasificacion" title="Permalink to this headline">¶</a></h2>
+<p>Sean <span class="math notranslate nohighlight">\(\mathcal{C}_0 , \mathcal{C}_1\)</span> dos clases ajenas y <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>. El problema de clasificación consiste en clasificar al vector <span class="math notranslate nohighlight">\(x\)</span> en alguna de las dos clases anteriores de modo que se minimice el error de clasificación.</p>
+<p>Ejemplos de lo anterior los encontramos en medicina (persona enferma o no dada una serie de mediciones en sangre), finanzas (persona sujeta a un crédito bancario o no dado un historial crediticio) o clasificación de textos (<em>spam</em> o no <em>spam</em>).</p>
+<div class="section" id="regresion-logistica-clasificacion-en-mathcal-c-0-mathcal-c-1">
+<h3>Regresión logística: clasificación en <span class="math notranslate nohighlight">\(\mathcal{C}_0, \mathcal{C}_1\)</span><a class="headerlink" href="#regresion-logistica-clasificacion-en-mathcal-c-0-mathcal-c-1" title="Permalink to this headline">¶</a></h3>
+<p>El modelo por regresión logística tiene por objetivo <strong>modelar las probabilidades de pertenencia a cada una de las clases</strong> <span class="math notranslate nohighlight">\(\mathcal{C}_0, \mathcal{C}_1\)</span> dado el vector de atributos $ x \in \mathbb{R}^n$: <span class="math notranslate nohighlight">\(p(\mathcal{C}_0|x) , p(\mathcal{C}_1|x)\)</span>.</p>
+<p>En la regresión logística se utiliza la función <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Sigmoid_function">sigmoide</a></strong> <span class="math notranslate nohighlight">\(\sigma:\mathbb{R} \rightarrow \mathbb{R}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\sigma(t)=\frac{1}{1+\exp(-t)}\]</div>
+<p>para modelar ambas probabilidades ya que mapea todo el eje real al intervalo <span class="math notranslate nohighlight">\([0,1]\)</span>. Además resulta ser una aproximación continua y diferenciable a la función de <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Heaviside_step_function">Heaviside</a></strong> <span class="math notranslate nohighlight">\(H:\mathbb{R} \rightarrow \mathbb{R}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H(t) = 
+\begin{cases}
+1 &amp; \text{si } t \geq 0,\\
+0 &amp; \text{si } t &lt;0\\
+\end{cases}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpoints</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">mpoints</span><span class="p">)</span>
+<span class="n">Heaviside</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">Heaviside</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIECO_y_PI_61_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIECO_y_PI_61_0.png" />
+</div>
+</div>
+<p>A continuación graficamos a la sigmoide <span class="math notranslate nohighlight">\(\sigma(ht)\)</span> para distintos valores de <span class="math notranslate nohighlight">\(h \in \{-3, -1, -1/2, 1/2, 1, 3\}\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sigmoid</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t_value</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t_value</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="n">sigmoids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">mpoints</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)):</span>
+    <span class="n">sigmoids</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">sigmoids</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span>
+         <span class="n">t</span><span class="p">,</span> <span class="n">sigmoids</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">t</span><span class="p">,</span> <span class="n">sigmoids</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span>
+         <span class="n">t</span><span class="p">,</span> <span class="n">sigmoids</span><span class="p">[:,</span><span class="mi">3</span><span class="p">],</span>
+         <span class="n">t</span><span class="p">,</span> <span class="n">sigmoids</span><span class="p">[:,</span><span class="mi">4</span><span class="p">],</span>
+         <span class="n">t</span><span class="p">,</span> <span class="n">sigmoids</span><span class="p">[:,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;h=-3&quot;</span><span class="p">,</span> <span class="s2">&quot;h=-1&quot;</span><span class="p">,</span> <span class="s2">&quot;h=-1/2&quot;</span><span class="p">,</span> <span class="s2">&quot;h=1/2&quot;</span><span class="p">,</span> <span class="s2">&quot;h=1&quot;</span><span class="p">,</span> <span class="s2">&quot;h=3&quot;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Diferentes funciones sigmoides $\sigma(ht)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIECO_y_PI_65_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIECO_y_PI_65_0.png" />
+</div>
+</div>
+<p>Obsérvese la forma de cada curva al variar <span class="math notranslate nohighlight">\(h\)</span> en la función <span class="math notranslate nohighlight">\(\sigma(ht)\)</span>. Una regla de clasificación podría ser clasificar como perteneciente a <span class="math notranslate nohighlight">\(\mathcal{C}_0\)</span> si la probabilidad (modelada por la curva sigmoide) es menor a <span class="math notranslate nohighlight">\(0.25\)</span> (<strong>punto de corte</strong>) y perteneciente a <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span> si es mayor o igual a <span class="math notranslate nohighlight">\(0.25\)</span>. Para diferentes curvas sigmoides presentadas en la gráfica anterior obsérvese que al fijar el punto de corte y tomar un valor de <span class="math notranslate nohighlight">\(t\)</span> en el eje horizontal, la pertenencia a alguna de las clases es menos sensible al variar <span class="math notranslate nohighlight">\(t\)</span> que en otras curvas.</p>
+<p>Así, la función sigmoide permite modelar la probabilidad de pertenencia a la clase <span class="math notranslate nohighlight">\(\mathcal{C}_1:\)</span></p>
+<div class="math notranslate nohighlight">
+\[p(\mathcal{C}_1| x)=\sigma(a)\]</div>
+<p>para alguna <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>.</p>
+<p>Con el <a class="reference external" href="https://en.wikipedia.org/wiki/Bayes%27_theorem">teorema de Bayes</a> se obtiene el valor de <span class="math notranslate nohighlight">\(a\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+p(\mathcal{C}_1|x) &amp;=&amp; \frac{p(x|\mathcal{C}_1)p(\mathcal{C}_1)}{p(x|\mathcal{C}_0)p(\mathcal{C}_0)+p(x|\mathcal{C}_1)p(\mathcal{C}_1)} \nonumber \\
+&amp;=&amp; \left ( 1+ \frac{p(x|\mathcal{C}_0)p(\mathcal{C}_0)}{p(x|\mathcal{C}_1)p(\mathcal{C}_1)} \right )^{-1} \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>Por lo tanto:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{eqnarray}
+a(x)&amp;=&amp;\log\left( \frac{p(x|\mathcal{C}_1)p(\mathcal{C}_1)}{p(x|\mathcal{C}_0)p(\mathcal{C}_0)} \right ) \nonumber
+\end{eqnarray}
+\]</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Algunas propiedades que tiene la función <span class="math notranslate nohighlight">\(\sigma(\cdot)\)</span> se encuentran:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\sigma (-t)&amp;=&amp;1-\sigma (t) \nonumber \\
+\frac{d\sigma (t)}{dt}&amp;=&amp;\sigma (t)(1-\sigma (t)) \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>En Estadística a la función:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[a=\log\left(\frac{\sigma}{1-\sigma}\right)\]</div>
+<p>se le conoce como <a class="reference external" href="https://en.wikipedia.org/wiki/Logit"><strong>logit</strong></a> y modela el log momio:</p>
+<div class="math notranslate nohighlight">
+\[\log \left(\frac{p(\mathcal{C}_1|x)}{p(\mathcal{C}_0|x)}\right)=\log \left(\frac{p(\mathcal{C}_1|x)}{1-p(\mathcal{C}_1|x)}\right)\]</div>
+<p>que tiene una interpretación directa en términos de las probabilidades de pertenencia a cada clase <span class="math notranslate nohighlight">\(\mathcal{C}_0,\mathcal{C}_1\)</span>.</p>
+</div>
 </div>
 </div>
 <div class="section" id="introduccion-a-cieco">
