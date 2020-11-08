@@ -324,6 +324,36 @@
      ¿Cómo se ajustan los parámetros del modelo por regresión logística de dos clases?
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-iris-dataset">
+     Ejemplo Iris
+     <em>
+      dataset
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculo-de-probabilidades-de-pertenencia-a-las-clases-mathcal-c-0-setosa-mathcal-c-1-versicolor">
+     Cálculo de probabilidades de pertenencia a las clases
+     <span class="math notranslate nohighlight">
+      \(\mathcal{C}_0 :\)
+     </span>
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       setosa
+      </span>
+     </code>
+     ,
+     <span class="math notranslate nohighlight">
+      \(\mathcal{C}_1 :\)
+     </span>
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       versicolor
+      </span>
+     </code>
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -909,6 +939,12 @@ p(\mathcal{C}_1|x_m)
 \end{split}\]</div>
 <p>Así, la Hessiana de la devianza es simétrica semidefinida positiva y por tanto es una función convexa.</p>
 </div>
+</div>
+<div class="section" id="ejemplo-iris-dataset">
+<h3>Ejemplo <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html">Iris <em>dataset</em></a><a class="headerlink" href="#ejemplo-iris-dataset" title="Permalink to this headline">¶</a></h3>
+<p>Utilizamos el conocido <em>dataset</em> de <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_flower_data_set"><em>Iris</em></a> en el que se muestran <strong>tres especies del género <em>Iris</em></strong>. Las especies son: <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_setosa"><em>I. setosa</em></a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_virginica"><em>I. virginica</em></a> y <a class="reference external" href="https://en.wikipedia.org/wiki/Iris_versicolor"><em>I. versicolor</em></a>:</p>
+<img src="https://dl.dropboxusercontent.com/s/1bvsv79h0h64ijv/iris_dataset_flowers.png?dl=0" heigth="400" width="400">
+<p>Imagen obtenida de <a class="reference external" href="https://rpubs.com/AjinkyaUC/Iris_DataSet">Iris Dataset</a>.</p>
 <div class="cell tag_margin docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip3 install --quiet sklearn
@@ -938,12 +974,254 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_iris</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data_iris</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>sklearn.utils.Bunch
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[5.1 3.5 1.4 0.2]
+ [4.9 3.  1.4 0.2]
+ [4.7 3.2 1.3 0.2]
+ [4.6 3.1 1.5 0.2]
+ [5.  3.6 1.4 0.2]
+ [5.4 3.9 1.7 0.4]
+ [4.6 3.4 1.4 0.3]
+ [5.  3.4 1.5 0.2]
+ [4.4 2.9 1.4 0.2]
+ [4.9 3.1 1.5 0.1]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">data_iris</span><span class="o">.</span><span class="n">shape</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;número de observaciones:</span><span class="si">%d</span><span class="s2">, número de atributos: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>número de observaciones:150, número de atributos: 4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Columnas en este orden: <code class="docutils literal notranslate"><span class="pre">Sepal.Length</span></code>, <code class="docutils literal notranslate"><span class="pre">Sepal.Width</span></code>, <code class="docutils literal notranslate"><span class="pre">Petal.Length</span></code>, <code class="docutils literal notranslate"><span class="pre">Petal.Width</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="p">[</span><span class="s2">&quot;target_names&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[&#39;setosa&#39; &#39;versicolor&#39; &#39;virginica&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">iris</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[0 1 2]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_iris_setosa_versicolor</span> <span class="o">=</span> <span class="n">data_iris</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">data_iris_setosa_versicolor</span><span class="p">,</span> <span class="n">rowvar</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[ 1.   -0.21  0.81  0.79]
+ [-0.21  1.   -0.6  -0.57]
+ [ 0.81 -0.6   1.    0.98]
+ [ 0.79 -0.57  0.98  1.  ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">classes</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La clase <span class="math notranslate nohighlight">\(\mathcal{C}_0\)</span> es <code class="docutils literal notranslate"><span class="pre">setosa</span></code> y <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span> es <code class="docutils literal notranslate"><span class="pre">versicolor</span></code> codificadas como <span class="math notranslate nohighlight">\(0, 1\)</span> respectivamente.</p>
+<p>La función objetivo como se revisó en la sección anterior está dada por la expresión de la devianza:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{D}(\beta_0, \beta|x)=-2\ell(\beta_0, \beta|x) = 2\displaystyle \sum_{i=1}^m\log(1+\exp((\beta_0, \beta)^Tx_i))-\hat{y}_i(\beta_0, \beta)^Tx_i\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(\hat{y}_i \in \{0,1\}\)</span>, <span class="math notranslate nohighlight">\(x_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{100 \times 4}\)</span>.</p>
+<p><strong>Añadimos la columna que indica uso de intercepto y por tanto de un modelo con <span class="math notranslate nohighlight">\(\beta_0\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">data_iris_setosa_versicolor</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_iris_setosa_versicolor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span> <span class="n">data_iris_setosa_versicolor</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([[1. , 5.1, 3.5, 1.4, 0.2],
+       [1. , 4.9, 3. , 1.4, 0.2],
+       [1. , 4.7, 3.2, 1.3, 0.2],
+       [1. , 4.6, 3.1, 1.5, 0.2],
+       [1. , 5. , 3.6, 1.4, 0.2],
+       [1. , 5.4, 3.9, 1.7, 0.4],
+       [1. , 4.6, 3.4, 1.4, 0.3],
+       [1. , 5. , 3.4, 1.5, 0.2],
+       [1. , 4.4, 2.9, 1.4, 0.2],
+       [1. , 4.9, 3.1, 1.5, 0.1]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Función objetivo:</strong></p>
+<div class="math notranslate nohighlight">
+\[2\displaystyle \sum_{i=1}^m\log(1+\exp((\beta_0, \beta)^Tx_i))-\hat{y}_i(\beta_0, \beta)^Tx_i\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span> <span class="c1">#number of variables</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1">#optimization variable</span>
+<span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+             <span class="n">cp</span><span class="o">.</span><span class="n">logistic</span><span class="p">(</span><span class="n">data_iris_setosa_versicolor</span> <span class="o">@</span> <span class="n">beta</span><span class="p">)</span> <span class="o">-</span> <span class="n">cp</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">data_iris_setosa_versicolor</span> <span class="o">@</span> <span class="n">beta</span><span class="p">)</span>
+                   <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">fo_cvxpy</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>5.393472364509651e-06
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The optimal value is&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The optimal beta is&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
+The optimal value is 5.393472364509651e-06
+The optimal beta is
+[  9.71  -3.97 -13.53  11.16  25.52]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="calculo-de-probabilidades-de-pertenencia-a-las-clases-mathcal-c-0-setosa-mathcal-c-1-versicolor">
+<h3>Cálculo de probabilidades de pertenencia a las clases <span class="math notranslate nohighlight">\(\mathcal{C}_0 :\)</span> <code class="docutils literal notranslate"><span class="pre">setosa</span></code>, <span class="math notranslate nohighlight">\(\mathcal{C}_1 :\)</span> <code class="docutils literal notranslate"><span class="pre">versicolor</span></code><a class="headerlink" href="#calculo-de-probabilidades-de-pertenencia-a-las-clases-mathcal-c-0-setosa-mathcal-c-1-versicolor" title="Permalink to this headline">¶</a></h3>
+<p><strong>Para individuo <span class="math notranslate nohighlight">\(i\)</span> se tiene:</strong></p>
+<div class="math notranslate nohighlight">
+\[p(\mathcal{C}_1|x_i) = y_i(x_i|\beta_0,\beta)  = \frac{1}{1+ e^{-(\beta_0 + \beta^T x_i)}} \forall i=0,1,\dots,m.\]</div>
+<p>Por ejemplo, para el renglón <span class="math notranslate nohighlight">\(1\)</span> de <code class="docutils literal notranslate"><span class="pre">data_iris_setosa_versicolor</span></code>, que sabemos que pertenece a la clase <span class="math notranslate nohighlight">\(\mathcal{C}_0\)</span>: <code class="docutils literal notranslate"><span class="pre">setosa</span></code>:</p>
+<p><strong>Estimación de la probabilidad de pertenencia a la clase <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span>, <code class="docutils literal notranslate"><span class="pre">versicolor</span></code></strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">linear_value</span> <span class="o">=</span> <span class="o">-</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">linear_value</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>7.086267696762456e-17
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Estimación de la probabilidad de pertenencia a la clase <span class="math notranslate nohighlight">\(\mathcal{C}_0\)</span>, <code class="docutils literal notranslate"><span class="pre">setosa</span></code></strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">linear_value</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">linear_value</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Por ejemplo, para el último renglón de <code class="docutils literal notranslate"><span class="pre">data_iris_setosa_versicolor</span></code>, que sabemos que pertenece a la clase <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span>, <code class="docutils literal notranslate"><span class="pre">versicolor</span></code>:</p>
+<p><strong>Estimación de la probabilidad de pertenencia a la clase <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span>, <code class="docutils literal notranslate"><span class="pre">versicolor</span></code></strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">linear_value</span> <span class="o">=</span> <span class="o">-</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">linear_value</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.999999999999369
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Estimación de la probabilidad de pertenencia a la clase <span class="math notranslate nohighlight">\(\mathcal{C}_0\)</span>, <code class="docutils literal notranslate"><span class="pre">setosa</span></code></strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">linear_value</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">linear_value</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>6.31129004024284e-13
 </pre></div>
 </div>
 </div>
