@@ -36,7 +36,7 @@ Seleccionar por ejemplo la rama **mno-2019-1** (u otra) para información del cu
 La rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/gh-pages) contiene los `html`s para visualización del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/).
 
 
-## Breve explicación del repositorio en la rama master.
+## Breve explicación del repositorio en la rama master y su *wiki*.
 
 En el [Wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki) encuentran información sobre [Amazon Web Services](https://aws.amazon.com/es/).
 
