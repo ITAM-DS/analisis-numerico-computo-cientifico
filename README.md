@@ -181,8 +181,23 @@ El video lo pueden descargar desde Teams pero sólo estará disponible unos día
 Finalizamos [Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz](https://itam-ds.github.io/analisis-numerico-computo-cientifico/II.computo_matricial/2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html) y [Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD](https://itam-ds.github.io/analisis-numerico-computo-cientifico/II.computo_matricial/2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.html)
 
 
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
+
+
 ## Clase 13
 
 4 de noviembre
 
 Finalizamos [Definición de problemas de optimización, conjuntos y funciones convexas](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#problemas-de-optimizacion-numerica)
+
+
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
+
+
+## Clase 14
+
+11 de noviembre
+
+Llegamos hasta [resolviendo-el-problema-con-cvxpy](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#resolviendo-el-problema-con-cvxpy) en el ejemplo número 2 de la misma nota.
+
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
