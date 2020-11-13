@@ -388,13 +388,28 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ejemplos-cieco-maquina-de-soporte-vectorial">
-   Ejemplos CIECO: Máquina de Soporte Vectorial
+  <a class="reference internal nav-link" href="#ejemplos-cieco-maquina-de-soporte-vectorial-svm-para-datos-linealmente-separables">
+   Ejemplos CIECO: Máquina de Soporte Vectorial (SVM) para datos linealmente separables
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#clasificador-lineal">
      Clasificador lineal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modelo-de-svm">
+     Modelo de SVM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problema-de-optimizacion-en-svm">
+     Problema de optimización en SVM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vectores-de-soporte">
+     Vectores de soporte
     </a>
    </li>
   </ul>
@@ -1662,8 +1677,8 @@ The optimal beta is
 </div>
 </div>
 </div>
-<div class="section" id="ejemplos-cieco-maquina-de-soporte-vectorial">
-<h2>Ejemplos CIECO: Máquina de Soporte Vectorial<a class="headerlink" href="#ejemplos-cieco-maquina-de-soporte-vectorial" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ejemplos-cieco-maquina-de-soporte-vectorial-svm-para-datos-linealmente-separables">
+<h2>Ejemplos CIECO: Máquina de Soporte Vectorial (SVM) para datos linealmente separables<a class="headerlink" href="#ejemplos-cieco-maquina-de-soporte-vectorial-svm-para-datos-linealmente-separables" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="clasificador-lineal">
 <h3>Clasificador lineal<a class="headerlink" href="#clasificador-lineal" title="Permalink to this headline">¶</a></h3>
 <p>Considérese dos conjuntos de puntos en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> dados por <span class="math notranslate nohighlight">\(\{x_1, x_2, \dots, x_N\}\)</span>, <span class="math notranslate nohighlight">\(\{y_1, y_2, \dots, y_M\}\)</span> y el objetivo de encontrar una función <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> que sea positiva en el primer conjunto de puntos y negativa en el segundo conjunto de puntos:</p>
@@ -1675,6 +1690,90 @@ The optimal beta is
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>La clasificación puede ser débil que significa: <span class="math notranslate nohighlight">\(f(x_i) \geq 0\)</span>, <span class="math notranslate nohighlight">\(f(y_i) \leq 0\)</span>.</p>
+</div>
+<p>Para el caso lineal se busca una una función afín de la forma <span class="math notranslate nohighlight">\(f(x) = a^Tx - b\)</span> que clasifique los puntos, esto es:</p>
+<div class="math notranslate nohighlight">
+\[a^Tx_i - b &gt; 0, \quad \forall i=1, \dots, N\]</div>
+<div class="math notranslate nohighlight">
+\[a^Ty_i - b &lt; 0, \quad \forall i=1, \dots, M\]</div>
+<p>Geométricamente se busca un hiperplano de dimensión <span class="math notranslate nohighlight">\(n-1\)</span> que separe ambos conjuntos:</p>
+<img src="https://dl.dropboxusercontent.com/s/qvrqz6ciyutzdkf/CIECO_SVM_1.png?dl=0" heigth="350" width="350"><p>Si <span class="math notranslate nohighlight">\(x, y\)</span> son puntos en el hiperplano entonces <span class="math notranslate nohighlight">\(f(x) = f(y) = 0\)</span> y además <span class="math notranslate nohighlight">\(a^T(x-y) = b - b = 0\)</span> por lo que el vector <span class="math notranslate nohighlight">\($a\)</span>$ es ortogonal a todo punto en el hiperplano y determina la orientación de este:</p>
+<img src="https://dl.dropboxusercontent.com/s/rswe1hzpxxgt88n/CIECO_SVM_2.png?dl=0" heigth="350" width="350"><p>Si <span class="math notranslate nohighlight">\(x\)</span> es un punto en el hiperplano tenemos <span class="math notranslate nohighlight">\(f(x) = 0\)</span> por lo tanto la distancia perpendicular del origen al hiperplano está dada por: <span class="math notranslate nohighlight">\(\frac{|a^Tx|}{||a||_2} = \frac{|-b|}{||a||_2} = \frac{|b|}{||a||_2}\)</span>. or lo que el parámetro <span class="math notranslate nohighlight">\(b\)</span> determina la localización del hiperplano:</p>
+<img src="https://dl.dropboxusercontent.com/s/5uyp1d75ovl6sm9/CIECO_SVM_3.png?dl=0" heigth="450" width="450"><p>Sean <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span> y <span class="math notranslate nohighlight">\(x_{\perp} \in \mathbb{R}^n\)</span> la proyección ortogonal en el hiperplano:</p>
+<img src="https://dl.dropboxusercontent.com/s/u4pruk4ss53m8oz/CIECO_SVM_4.png?dl=0" heigth="550" width="550"><p>tenemos: <span class="math notranslate nohighlight">\(a^Tx = a^Tx_{\perp} + k||a||_2 = b + k ||a||_2\)</span> por lo que <span class="math notranslate nohighlight">\(a^Tx - b = k||a||_2\)</span> y:</p>
+<div class="math notranslate nohighlight">
+\[k = \frac{a^Tx-b}{||a||_2} = \frac{f(x)}{||a||_2},\]</div>
+<p>esto es, <span class="math notranslate nohighlight">\(|f(x)|\)</span> da una medida de distancia perpendicular de <span class="math notranslate nohighlight">\(x\)</span> al hiperplano.</p>
+</div>
+<div class="section" id="modelo-de-svm">
+<h3>Modelo de SVM<a class="headerlink" href="#modelo-de-svm" title="Permalink to this headline">¶</a></h3>
+<p>En este modelo se desea obtener:</p>
+<div class="math notranslate nohighlight">
+\[a^Tx_i - b \geq 1, \quad \forall i=1, \dots, N\]</div>
+<div class="math notranslate nohighlight">
+\[a^Ty_i - b \leq -1, \quad \forall i=1, \dots, M\]</div>
+<p>para clasificar a datos linealmente separables:</p>
+<img src="https://dl.dropboxusercontent.com/s/3rxwwrgsudjqv9j/CIECO_SVM_5.png?dl=0" heigth="350" width="350"><p>Obsérvese que existen una infinidad de hiperplanos que separan a los datos anteriores:</p>
+<img src="https://dl.dropboxusercontent.com/s/hetnb5objatjb8y/CIECO_SVM_6.png?dl=0" heigth="350" width="350"><p>En la SVM buscamos un hiperplano que tenga la máxima separación de cada una de las distancias de los datos al mismo:</p>
+<img src="https://dl.dropboxusercontent.com/s/arq3kx1rzozjtbv/CIECO_SVM_7.png?dl=0" heigth="350" width="350"><p>Una distancia al hiperplano para los datos <span class="math notranslate nohighlight">\(x_i, \forall i=1, \dots, N\)</span> y otra distancia para los datos <span class="math notranslate nohighlight">\(y_i \forall i=1, \dots, M\)</span>.</p>
+<p>Por la sección anterior, la distancia al hiperplano para cada conjunto de datos está dada por:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{i=1,\dots, N} \frac{|f(x_i)|}{||a||_2}\]</div>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{i=1,\dots, M} \frac{|f(y_i)|}{||a||_2}\]</div>
+<p>Entonces encontrar un hiperplano que tenga la máxima separación de cada una de las distancias de los datos al hiperplano se puede escribir como el problema:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \max_{a,b} \left \{  \min_{i=1,\dots, N} \frac{|f(x_i)|}{||a||_2}  + \min_{i=1,\dots, M} \frac{|f(y_i)|}{||a||_2} \right \}\]</div>
+<p>Obsérvese que el cociente <span class="math notranslate nohighlight">\(\frac{|f(x_i)|}{||a||_2}\)</span> es invariante ante reescalamientos por ejemplo:</p>
+<div class="math notranslate nohighlight">
+\[\frac{ka^Tx + kb}{||ka||_2} = \frac{a^Tx + b}{||a||_2} \forall k \neq 0\]</div>
+<p>por lo que si los índices <span class="math notranslate nohighlight">\(i_1, i_2\)</span> cumplen:</p>
+<div class="math notranslate nohighlight">
+\[i_1 = \text{argmin}_{i=1,\dots, N} \left \{\frac{|f(x_i)|}{||a||_2} \right \}\]</div>
+<div class="math notranslate nohighlight">
+\[i_2 = \text{argmin}_{i=1,\dots, M} \left \{\frac{|f(y_i)|}{||a||_2} \right \}\]</div>
+<p>se puede hacer un reescalamiento para obtener:</p>
+<div class="math notranslate nohighlight">
+\[|f(x_{i_1})| = 1, \quad |f(x_i)| &gt; 1 \quad \forall i=1, \dots, N, i \neq i_1\]</div>
+<div class="math notranslate nohighlight">
+\[|f(y_{i_2})| = 1, \quad |f(y_i)| &gt; 1 \quad \forall i=1, \dots, M, i \neq i_2\]</div>
+<p>Esto es, <span class="math notranslate nohighlight">\(|f(x_i)| \geq 1, \forall i=1, \dots, N\)</span>, <span class="math notranslate nohighlight">\(|f(y_i)| \geq 1, \forall i=1, \dots, M\)</span>.</p>
+</div>
+<div class="section" id="problema-de-optimizacion-en-svm">
+<h3>Problema de optimización en SVM<a class="headerlink" href="#problema-de-optimizacion-en-svm" title="Permalink to this headline">¶</a></h3>
+<p>El problema canónico o estándar de la máquina de soporte vectorial es:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \max_{a,b} \frac{2}{||a||_2}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{sujeto a:}\]</div>
+<div class="math notranslate nohighlight">
+\[f(x_i) \geq 1, \quad \forall i=1, \dots, N\]</div>
+<div class="math notranslate nohighlight">
+\[f(y_i) \leq -1, \quad \forall i=1, \dots, M\]</div>
+<p>El cual es equivalente a:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{a,b} \frac{||a||_2}{2}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{sujeto a:}\]</div>
+<div class="math notranslate nohighlight">
+\[a^Tx_i - b \geq 1, \quad \forall i=1, \dots, N\]</div>
+<div class="math notranslate nohighlight">
+\[a^Tx_i -b \leq -1, \quad \forall i=1, \dots, M\]</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Se ha quitado el valor absoluto <span class="math notranslate nohighlight">\(|f(x_i)|, |f(y_i)|\)</span> pues <span class="math notranslate nohighlight">\(x_i, y_i\)</span> se asumen cumplen <span class="math notranslate nohighlight">\(a^Tx_i-b \geq 1\)</span>, <span class="math notranslate nohighlight">\(a^Ty_i-b \leq -1\)</span>, esto es, <span class="math notranslate nohighlight">\(x_i, y_i\)</span> son clasificados correctamente.</p>
+</div>
+</div>
+<div class="section" id="vectores-de-soporte">
+<h3>Vectores de soporte<a class="headerlink" href="#vectores-de-soporte" title="Permalink to this headline">¶</a></h3>
+<p>Al encontrar este hiperplano tenemos otros dos hiperplanos paralelos ortogonales al vector <span class="math notranslate nohighlight">\(a\)</span> sin ningún dato entre ellos a una distancia de <span class="math notranslate nohighlight">\(\frac{1}{||a||_2}\)</span>:</p>
+<img src="https://dl.dropboxusercontent.com/s/xvgsf8nsl9oakw6/CIECO_SVM_8.png?dl=0" heigth="350" width="350"><div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>Aquellas restricciones que son activas son originadas por puntos con el nombre de vectores de soporte.</p>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Al resolver el problema de optimización siempre existirán al menos <span class="math notranslate nohighlight">\(2\)</span> restricciones activas pues siempre hay una distancia mínima para cada conjunto de puntos.</p>
 </div>
 </div>
 </div>
