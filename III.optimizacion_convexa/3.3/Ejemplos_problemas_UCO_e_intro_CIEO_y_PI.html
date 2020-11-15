@@ -436,11 +436,6 @@
      Ejemplo: problema de transporte
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo-problema-de-flujo-maximo">
-     Ejemplo: problema de flujo máximo
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1201,13 +1196,15 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 <span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
              <span class="n">cp</span><span class="o">.</span><span class="n">logistic</span><span class="p">(</span><span class="n">data_iris_setosa_versicolor</span> <span class="o">@</span> <span class="n">beta</span><span class="p">)</span> <span class="o">-</span> <span class="n">cp</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span> <span class="n">data_iris_setosa_versicolor</span> <span class="o">@</span> <span class="n">beta</span><span class="p">)</span>
                    <span class="p">)</span>
+
+<span class="n">obj</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">fo_cvxpy</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">fo_cvxpy</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1304,10 +1301,14 @@ The optimal beta is
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6.31129004024284e-13
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6.311290040242794e-13
 </pre></div>
 </div>
 </div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realiza la clasificación y cálculo de probabilidades anterior para las clases <code class="docutils literal notranslate"><span class="pre">virginica</span></code> y <code class="docutils literal notranslate"><span class="pre">versicolor</span></code>.</p>
 </div>
 </div>
 </div>
@@ -1766,7 +1767,7 @@ The optimal beta is
 \[\displaystyle \max_{a,b} \left \{  \min_{i=1,\dots, N} \frac{|f(x_i)|}{||a||_2}  + \min_{i=1,\dots, M} \frac{|f(y_i)|}{||a||_2} \right \}\]</div>
 <p>Obsérvese que el cociente <span class="math notranslate nohighlight">\(\frac{|f(x_i)|}{||a||_2}\)</span> es invariante ante reescalamientos por ejemplo:</p>
 <div class="math notranslate nohighlight">
-\[\frac{ka^Tx + kb}{||ka||_2} = \frac{a^Tx + b}{||a||_2} \forall k \neq 0\]</div>
+\[\frac{ka^Tx - kb}{||ka||_2} = \frac{a^Tx - b}{||a||_2} \forall k \neq 0\]</div>
 <p>Por tanto, si los índices <span class="math notranslate nohighlight">\(i_1, i_2\)</span> cumplen:</p>
 <div class="math notranslate nohighlight">
 \[i_1 = \text{argmin}_{i=1,\dots, N} \left \{\frac{|f(x_i)|}{||a||_2} \right \}\]</div>
@@ -1932,7 +1933,7 @@ The optimal beta is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_284_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_284_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_285_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_285_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -1951,9 +1952,17 @@ The optimal beta is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_286_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_286_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_287_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_287_0.png" />
 </div>
 </div>
+<p><strong>Función objetivo:</strong></p>
+<div class="math notranslate nohighlight">
+\[\frac{||a||^2_2}{2}\]</div>
+<p><strong>y restricciones:</strong></p>
+<div class="math notranslate nohighlight">
+\[a^Tx_i - b \geq 1, \quad \forall i=1, \dots, N\]</div>
+<div class="math notranslate nohighlight">
+\[a^Ty_i -b \leq -1, \quad \forall i=1, \dots, M\]</div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Ver <a class="reference external" href="https://www.cvxpy.org/examples/machine_learning/svm.html">cvxpy: svm</a></p>
@@ -2085,7 +2094,7 @@ The optimal beta is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_300_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_300_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_302_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_302_0.png" />
 </div>
 </div>
 <p>Visualización utilizando únicamente <code class="docutils literal notranslate"><span class="pre">Petal.Length</span></code> y <code class="docutils literal notranslate"><span class="pre">Petal.Width</span></code>:</p>
@@ -2125,8 +2134,12 @@ The optimal beta is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_304_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_304_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_306_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_306_0.png" />
 </div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realiza la clasificación anterior para las clases <code class="docutils literal notranslate"><span class="pre">virginica</span></code> y <code class="docutils literal notranslate"><span class="pre">versicolor</span></code>.</p>
 </div>
 </div>
 </div>
@@ -2148,11 +2161,19 @@ The optimal beta is
 </div>
 <div class="section" id="ejemplo-problema-de-transporte">
 <h3>Ejemplo: problema de transporte<a class="headerlink" href="#ejemplo-problema-de-transporte" title="Permalink to this headline">¶</a></h3>
-<p>Considérese que</p>
-<p>las cantidades <span class="math notranslate nohighlight">\(a_1, a_2, \dots, a_m\)</span> respectivamente de un cierto producto que serán transportadas de <span class="math notranslate nohighlight">\(m\)</span> locaciones a</p>
-</div>
-<div class="section" id="ejemplo-problema-de-flujo-maximo">
-<h3>Ejemplo: problema de flujo máximo<a class="headerlink" href="#ejemplo-problema-de-flujo-maximo" title="Permalink to this headline">¶</a></h3>
+<p>La compañía “Brazilian coffee” procesa granos de café en <span class="math notranslate nohighlight">\(m\)</span> plantas de café. El café posteriormente es enviado cada semana a <span class="math notranslate nohighlight">\(n\)</span> almacenes para su <em>retail</em>, distribución y exportación. Supóngase que el costo unitario de envío de la planta <span class="math notranslate nohighlight">\(i\)</span> al almacén <span class="math notranslate nohighlight">\(j\)</span> es <span class="math notranslate nohighlight">\(c_{ij}\)</span>. También supóngase que la capacidad de producción en la planta <span class="math notranslate nohighlight">\(i\)</span> es <span class="math notranslate nohighlight">\(a_i\)</span> y que la demanda en el almacén <span class="math notranslate nohighlight">\(j\)</span> es <span class="math notranslate nohighlight">\(b_j\)</span>.</p>
+<p>Se desea encontrar la cantidad de unidades <span class="math notranslate nohighlight">\(x_{ij}\)</span> de café que serán transportadas de la planta <span class="math notranslate nohighlight">\(i\)</span> al almacén <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(i=1,\dots, m\)</span>, <span class="math notranslate nohighlight">\(j=1, \dots, n\)</span> que minimice el costo total de envío.</p>
+<p>Este problema es de programación lineal modelado como:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min \sum_{i=1}^m \sum_{j=1}^n c_{ij}x_{ij}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{sujeto a:}\]</div>
+<div class="math notranslate nohighlight">
+\[\displaystyle \sum_{j=1}^n x_{ij} \leq a_i, \quad i=1,\dots, m\]</div>
+<div class="math notranslate nohighlight">
+\[\displaystyle \sum_{i=1}^m x_{ij} = b_j, \quad j=1, \dots, n\]</div>
+<div class="math notranslate nohighlight">
+\[x_{ij} \geq 0 \quad i=1, \dots, m, j= 1, \dots, n.\]</div>
 </div>
 </div>
 <div class="section" id="metodo-de-puntos-interiores">
