@@ -1721,11 +1721,11 @@ The optimal beta is
 <div class="section" id="clasificador-lineal">
 <h3>Clasificador lineal<a class="headerlink" href="#clasificador-lineal" title="Permalink to this headline">¶</a></h3>
 <p>Considérese dos conjuntos de puntos en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> cuyos atributos o <em>features</em> están dados por <span class="math notranslate nohighlight">\(\{x_1, x_2, \dots, x_N\}\)</span>, <span class="math notranslate nohighlight">\(\{y_1, y_2, \dots, y_M\}\)</span> y tales puntos tienen etiquetas <span class="math notranslate nohighlight">\(\{-1, 1\}\)</span> respectivamente.</p>
-<p>El objetivo es encontrar una función <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> que sea positiva en el primer conjunto de puntos y negativa en el segundo conjunto de puntos:</p>
+<p>El objetivo es encontrar una función <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> que sea negativa en el primer conjunto de puntos y positiva en el segundo conjunto de puntos:</p>
 <div class="math notranslate nohighlight">
-\[f(x_i) &gt; 0 \quad \forall i = 1, \dots, N\]</div>
+\[f(x_i) &lt; 0 \quad \forall i = 1, \dots, N\]</div>
 <div class="math notranslate nohighlight">
-\[f(y_i) &lt; 0 \quad \forall i = 1, \dots, M\]</div>
+\[f(y_i) &gt; 0 \quad \forall i = 1, \dots, M\]</div>
 <p>Si existe tal función entonces <span class="math notranslate nohighlight">\(f\)</span> o el conjunto <span class="math notranslate nohighlight">\(\{x : f(x) = 0\}\)</span> separa o clasifica los <span class="math notranslate nohighlight">\(2\)</span> conjuntos de puntos.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
@@ -1733,9 +1733,9 @@ The optimal beta is
 </div>
 <p>Para el caso en el que los datos son linealmente separables se busca una función afín de la forma <span class="math notranslate nohighlight">\(f(x) = a^Tx - b\)</span> que clasifique los puntos, esto es:</p>
 <div class="math notranslate nohighlight">
-\[a^Tx_i - b &gt; 0, \quad \forall i=1, \dots, N\]</div>
+\[a^Tx_i - b &lt; 0, \quad \forall i=1, \dots, N\]</div>
 <div class="math notranslate nohighlight">
-\[a^Ty_i - b &lt; 0, \quad \forall i=1, \dots, M\]</div>
+\[a^Ty_i - b &gt; 0, \quad \forall i=1, \dots, M\]</div>
 <p>Geométricamente se busca un hiperplano de dimensión <span class="math notranslate nohighlight">\(n-1\)</span> que separe ambos conjuntos:</p>
 <img src="https://dl.dropboxusercontent.com/s/qvrqz6ciyutzdkf/CIECO_SVM_1.png?dl=0" heigth="300" width="300"><p>En el dibujo tómese los puntos sin rellenar como los pertenecientes a una clase de <span class="math notranslate nohighlight">\(\{-1, 1\}\)</span>.</p>
 <p>Si <span class="math notranslate nohighlight">\(x, y\)</span> son puntos en el hiperplano entonces <span class="math notranslate nohighlight">\(f(x) = f(y) = 0\)</span> y además <span class="math notranslate nohighlight">\(a^T(x-y) = b - b = 0\)</span>, así <span class="math notranslate nohighlight">\(a\)</span> es ortogonal a todo punto en el hiperplano y determina la orientación de este:</p>
@@ -1750,9 +1750,9 @@ The optimal beta is
 <h3>Modelo de SVM<a class="headerlink" href="#modelo-de-svm" title="Permalink to this headline">¶</a></h3>
 <p>En este modelo se desea obtener:</p>
 <div class="math notranslate nohighlight">
-\[a^Tx_i - b \geq 1, \quad \forall i=1, \dots, N\]</div>
+\[a^Tx_i - b \leq -1, \quad \forall i=1, \dots, N\]</div>
 <div class="math notranslate nohighlight">
-\[a^Ty_i - b \leq -1, \quad \forall i=1, \dots, M\]</div>
+\[a^Ty_i - b \geq 1, \quad \forall i=1, \dots, M\]</div>
 <p>para clasificar a datos linealmente separables:</p>
 <img src="https://dl.dropboxusercontent.com/s/3rxwwrgsudjqv9j/CIECO_SVM_5.png?dl=0" heigth="350" width="350"><p>Obsérvese que existen una infinidad de hiperplanos que separan a los datos anteriores:</p>
 <img src="https://dl.dropboxusercontent.com/s/hetnb5objatjb8y/CIECO_SVM_6.png?dl=0" heigth="350" width="350"><p>En la SVM buscamos un hiperplano que tenga la máxima separación de cada una de las distancias de los datos al mismo:</p>
@@ -1788,18 +1788,18 @@ The optimal beta is
 <div class="math notranslate nohighlight">
 \[\text{sujeto a:}\]</div>
 <div class="math notranslate nohighlight">
-\[f(x_i) \geq 1, \quad \forall i=1, \dots, N\]</div>
+\[f(x_i) \leq -1, \quad \forall i=1, \dots, N\]</div>
 <div class="math notranslate nohighlight">
-\[f(y_i) \leq -1, \quad \forall i=1, \dots, M\]</div>
+\[f(y_i) \geq 1, \quad \forall i=1, \dots, M\]</div>
 <p>El cual es equivalente a:</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{a,b} \frac{||a||^2_2}{2}\]</div>
 <div class="math notranslate nohighlight">
 \[\text{sujeto a:}\]</div>
 <div class="math notranslate nohighlight">
-\[a^Tx_i - b \geq 1, \quad \forall i=1, \dots, N\]</div>
+\[a^Tx_i - b \leq -1, \quad \forall i=1, \dots, N\]</div>
 <div class="math notranslate nohighlight">
-\[a^Ty_i -b \leq -1, \quad \forall i=1, \dots, M\]</div>
+\[a^Ty_i -b \geq 1, \quad \forall i=1, \dots, M\]</div>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
@@ -1960,9 +1960,9 @@ The optimal beta is
 \[\frac{||a||^2_2}{2}\]</div>
 <p><strong>y restricciones:</strong></p>
 <div class="math notranslate nohighlight">
-\[a^Tx_i - b \geq 1, \quad \forall i=1, \dots, N\]</div>
+\[a^Tx_i - b \leq -1, \quad \forall i=1, \dots, N\]</div>
 <div class="math notranslate nohighlight">
-\[a^Ty_i -b \leq -1, \quad \forall i=1, \dots, M\]</div>
+\[a^Ty_i -b \geq 1, \quad \forall i=1, \dots, M\]</div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Ver <a class="reference external" href="https://www.cvxpy.org/examples/machine_learning/svm.html">cvxpy: svm</a></p>
