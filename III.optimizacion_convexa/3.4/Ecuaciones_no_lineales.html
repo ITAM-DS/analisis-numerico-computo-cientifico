@@ -376,6 +376,15 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#una-nota-sobre-problemas-unconstrained-optimization-uo">
+   Una nota sobre problemas
+   <em>
+    Unconstrained Optimization
+   </em>
+   (UO)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodo-de-newton-para-ecuaciones-no-lineales-de-funciones-f-mathbb-r-n-rightarrow-mathbb-r-n">
    Método de Newton para ecuaciones no lineales de funciones
    <span class="math notranslate nohighlight">
@@ -1215,7 +1224,7 @@ x_2 + 3x_1x_2^2&amp;=&amp;57 \nonumber 
 <p>El siguiente es un algoritmo en una forma general de algoritmos híbridos <a class="reference external" href="https://en.wikipedia.org/wiki/Quasi-Newton_method">quasi-Newton</a> para resolver una ecuación no lineal.</p>
 </div>
 <div class="section" id="algoritmo-metodo-general-cuasi-newton-hibrido-para-resolver-una-ecuacion-no-lineal">
-<h3>Algoritmo: método general cuasi-Newton híbrido para resolver una ecuación no lineal<a class="headerlink" href="#algoritmo-metodo-general-cuasi-newton-hibrido-para-resolver-una-ecuacion-no-lineal" title="Permalink to this headline">¶</a></h3>
+<span id="algmgcnhen"></span><h3>Algoritmo: método general cuasi-Newton híbrido para resolver una ecuación no lineal<a class="headerlink" href="#algoritmo-metodo-general-cuasi-newton-hibrido-para-resolver-una-ecuacion-no-lineal" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(x^{(0)}\)</span> punto inicial, <span class="math notranslate nohighlight">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span> y <span class="math notranslate nohighlight">\(tol &gt;0\)</span></p>
 <p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
@@ -1235,6 +1244,38 @@ x_2 + 3x_1x_2^2&amp;=&amp;57 \nonumber 
 <p class="admonition-title">Comentario</p>
 <p>Además de estrategias globales es común que no se tengan disponibles las derivadas de <span class="math notranslate nohighlight">\(f\)</span>, en este caso las metodologías de diferenciación finita son útiles, ver <a class="reference internal" href="../../I.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html#difnumdiffinitas"><span class="std std-ref">diferenciación numérica por diferencias finitas</span></a>.</p>
 </div>
+</div>
+</div>
+<div class="section" id="una-nota-sobre-problemas-unconstrained-optimization-uo">
+<h2>Una nota sobre problemas <em>Unconstrained Optimization</em> (UO)<a class="headerlink" href="#una-nota-sobre-problemas-unconstrained-optimization-uo" title="Permalink to this headline">¶</a></h2>
+<p>En esta sección utilizamos la notación para un problema de optimización sin restricciones de la forma:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min_{x^\in \mathbb{R}^n} f_o(x)\]</div>
+<p>y <span class="math notranslate nohighlight">\(f_o: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> es una función objetivo en general.</p>
+<p>Así como en ecuaciones no lineales no tenemos resultados que determinen la existencia o unicidad de soluciones, en problemas de optimización sin restricciones esto es similar al plantear la búsqueda de mínimos globales de las funciones objetivo. Lo mejor que podemos obtener son aproximaciones a minimos locales y es prácticamente imposible saber si se ha aproximado un mínimo global.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Por condición necesaria de primer orden recuérdese que si <span class="math notranslate nohighlight">\(x^*\)</span> es óptimo entonces <span class="math notranslate nohighlight">\(\nabla f_o(x^*) = 0\)</span> que establece un sistema de ecuaciones no lineales en general con <span class="math notranslate nohighlight">\(f_o\)</span> función objetivo.</p>
+</div>
+<p>Además, en la nota de <a class="reference internal" href="../3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#adbluco"><span class="std std-ref">algoritmos de descenso y búsqueda de línea en Unconstrained Convex Optimization (UCO)</span></a> se mostró la relación que existe entre resolver problemas tipo UO y ecuaciones no lineales. Es natural entonces aplicar el algoritmo de <a class="reference internal" href="#algmgcnhen"><span class="std std-ref">método general cuasi-Newton híbrido para resolver una ecuación no lineal</span></a> a la ecuación no lineal de una variable <span class="math notranslate nohighlight">\(f_o'(x) = 0\)</span>. El esquema iterativo entonces será de la forma:</p>
+<div class="math notranslate nohighlight">
+\[x^{(k+1)} = x^{(k)} - \frac{f_o'(x^{(k)})}{f_o''(x^{(k)})}\]</div>
+<p>Recuérdese que tal esquema iterativo se obtiene mediante un modelo afín de <span class="math notranslate nohighlight">\(f_o'(x)\)</span> alrededor de <span class="math notranslate nohighlight">\(x^{(k)}\)</span>, lo cual es equivalente en términos de la función <span class="math notranslate nohighlight">\(f_o\)</span> a definir un modelo cuadrático alrededor de <span class="math notranslate nohighlight">\(x^{(k)}\)</span> que aproxime a nuestra función <span class="math notranslate nohighlight">\(f_o\)</span> y que encuentre la raíz de tal modelo:</p>
+<div class="math notranslate nohighlight">
+\[m(x) = f(x^{(k)}) + f'(x^{(k)})(x-x^{(k)}) + \frac{1}{2} f''(x^{(k)})(x-x^{(k)})^2,\]</div>
+<p>con lo que obtendremos el esuema iterativo anterior.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Un modelo cuadrático es más apropiado que un modelo afín para <span class="math notranslate nohighlight">\(f_o\)</span> ya sea para maximización o minimización pues tiene a lo más un punto extremo.</p></li>
+<li><p>Si la función <span class="math notranslate nohighlight">\(f_o\)</span> es una función cuadrática el método de Newton converge en una iteración.</p></li>
+<li><p>Así como se revisaron las condiciones bajo las cuales el método de Newton converge de forma cuadrática, en el caso de un problema UO se requiere:</p>
+<ul>
+<li><p>El punto inicial <span class="math notranslate nohighlight">\(x^{(0)}\)</span> es cercano a la raíz <span class="math notranslate nohighlight">\(x^*\)</span> de <span class="math notranslate nohighlight">\(f'\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f''(x^*) \neq 0\)</span> y existe un conjunto abierto <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> en el que <span class="math notranslate nohighlight">\(f''(x) \neq 0\)</span> <span class="math notranslate nohighlight">\(\forall x \in \mathcal{D}\)</span>, <span class="math notranslate nohighlight">\(x^* \in \mathcal{D}\)</span> y la segunda derivada sea <em>Lipschitz</em> continua en <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Lipschitz_continuity">Lipschitz_continuity</a> que ayuda a acotar la diferencia entre <span class="math notranslate nohighlight">\(f\)</span> y el modelo cuadrático <span class="math notranslate nohighlight">\(m\)</span>. Nos ayuda a no calcular la tercera derivada (que en más dimensiones puede ser complicada de describir) para verificar convergencia.</p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 <div class="section" id="metodo-de-newton-para-ecuaciones-no-lineales-de-funciones-f-mathbb-r-n-rightarrow-mathbb-r-n">
