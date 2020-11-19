@@ -299,8 +299,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#enfoque-de-optimizacion">
-     Enfoque de optimización
+    <a class="reference internal nav-link" href="#enfoque-geometrico-y-algebraico-para-resolver-el-problema-de-minimos-cuadrados">
+     Enfoque geométrico y algebraico para resolver el problema de mínimos cuadrados
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#enfoque-utilizando-directamente-la-funcion-objetivo-del-problema-de-optimizacion">
+     Enfoque utilizando directamente la función objetivo del problema de optimización
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -533,7 +538,7 @@
 <p>que es el modelo por mínimos cuadrados lineales cuyo objetivo es minimizar la suma de cuadrados de las componentes del residual <span class="math notranslate nohighlight">\(r(x)\)</span>.</p>
 <p><strong>A partir de aquí, la variable de optimización será <span class="math notranslate nohighlight">\(\beta\)</span> y no <span class="math notranslate nohighlight">\(x\)</span></strong> de modo que el problema es:</p>
 <div class="math notranslate nohighlight">
-\[\displaystyle \min_{\beta \in \mathbb{R}^n} ||A\beta-y||\]</div>
+\[\displaystyle \min_{\beta \in \mathbb{R}^n} ||A\beta-y||_2^2\]</div>
 <p>Supóngase que se han realizado mediciones de un fenómeno de interés en diferentes puntos <span class="math notranslate nohighlight">\(x_i\)</span>’s resultando en cantidades <span class="math notranslate nohighlight">\(y_i\)</span>’s <span class="math notranslate nohighlight">\(\forall i=0,1,\dots, m\)</span> (se tienen <span class="math notranslate nohighlight">\(m+1\)</span> puntos) y además las <span class="math notranslate nohighlight">\(y_i\)</span>’s contienen un ruido aleatorio causado por errores de medición:</p>
 <img src="https://dl.dropboxusercontent.com/s/iydpi0m8ndqzb0s/mcuadrados_1.jpg?dl=0" heigth="350" width="350">
 <p>El objetivo de los mínimos cuadrados es construir una curva, <span class="math notranslate nohighlight">\(f(x|\beta)\)</span> que “mejor” se ajuste a los datos <span class="math notranslate nohighlight">\((x_i,y_i)\)</span>, <span class="math notranslate nohighlight">\(\forall i=0,1,\dots,m\)</span>. El término de “mejor” se refiere a que la suma:</p>
@@ -555,6 +560,9 @@
 <p class="admonition-title">Observación</p>
 <p>Si <span class="math notranslate nohighlight">\(n=m\)</span> entonces se tiene un problema de interpolación.</p>
 </div>
+</div>
+<div class="section" id="enfoque-geometrico-y-algebraico-para-resolver-el-problema-de-minimos-cuadrados">
+<h3>Enfoque geométrico y algebraico para resolver el problema de mínimos cuadrados<a class="headerlink" href="#enfoque-geometrico-y-algebraico-para-resolver-el-problema-de-minimos-cuadrados" title="Permalink to this headline">¶</a></h3>
 <p>Si <span class="math notranslate nohighlight">\(m=3\)</span> y <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{3 \times 2}\)</span> geométricamente el problema de <strong>mínimos cuadrados lineales</strong> se puede visualizar con el siguiente dibujo:</p>
 <img src="https://dl.dropboxusercontent.com/s/a6pjx0pdqa3cp60/mc_beta.png?dl=0" heigth="400" width="400">
 <p>En el dibujo anterior:</p>
@@ -585,7 +593,7 @@
 \vdots \\
 \beta_n
 \end{array}
-\right] \in \mathbb{R}^n,
+\right] \in \mathbb{R}^{n+1},
 y=
 \left[\begin{array}{c}
 y_0\\
@@ -612,13 +620,13 @@ y_m
 \[R\beta = Q^Ty\]</div>
 </div>
 </div>
-<div class="section" id="enfoque-de-optimizacion">
-<h3>Enfoque de optimización<a class="headerlink" href="#enfoque-de-optimizacion" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="enfoque-utilizando-directamente-la-funcion-objetivo-del-problema-de-optimizacion">
+<h3>Enfoque utilizando directamente la función objetivo del problema de optimización<a class="headerlink" href="#enfoque-utilizando-directamente-la-funcion-objetivo-del-problema-de-optimizacion" title="Permalink to this headline">¶</a></h3>
 <p>La función objetivo en los mínimos cuadrados lineales puede escribirse de las siguientes formas:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-f_o(\beta)=\displaystyle \sum_{i=1}^{m} (y_i -f_o(x_i|\beta))^2 &amp;=&amp;  \displaystyle \sum_{i=1}^{m} (y_i - A[i,:]^T\beta)^2 \\
+f_o(x_i|\beta)=\displaystyle \sum_{i=1}^{m} (y_i -f_o(x_i|\beta))^2 &amp;=&amp;  \displaystyle \sum_{i=1}^{m} (y_i - A[i,:]^T\beta)^2 \\
 &amp;=&amp; ||y - A \beta||_2^2 \\
 &amp;=&amp; (y-A\beta)^T(y-A\beta) \\
 &amp;=&amp; y^Ty-2\beta^TA^Ty + \beta^TA^TA\beta
@@ -634,6 +642,7 @@ f_o(\beta)=\displaystyle \sum_{i=1}^{m} (y_i -f_o(x_i|\beta))^2 &amp;=&amp;  \di
 </div>
 <div class="section" id="ejemplo">
 <h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
+<p>Planteamos un modelo del tipo: <span class="math notranslate nohighlight">\(f_o(x_i | \beta) = \beta_0\phi_0(x) + \beta_1 \phi_1(x) = \beta_0 + \beta_1 x\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -672,7 +681,7 @@ f_o(\beta)=\displaystyle \sum_{i=1}^{m} (y_i -f_o(x_i|\beta))^2 &amp;=&amp;  \di
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_41_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_41_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_43_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_43_0.png" />
 </div>
 </div>
 <p>Utilizamos el paquete <a class="reference external" href="https://github.com/cvxgrp/cvxpy">cvxpy</a> para resolver el problema de mínimos cuadrados:</p>
@@ -825,7 +834,7 @@ The norm of the residual is  4.520561562325624
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_61_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_61_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_63_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_63_0.png" />
 </div>
 </div>
 <p>A continuación graficamos a la sigmoide <span class="math notranslate nohighlight">\(\sigma(ht)\)</span> para distintos valores de <span class="math notranslate nohighlight">\(h \in \{-3, -1, -1/2, 1/2, 1, 3\}\)</span>:</p>
@@ -864,7 +873,7 @@ The norm of the residual is  4.520561562325624
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_65_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_65_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_67_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_67_0.png" />
 </div>
 </div>
 <p>Obsérvese la forma de cada curva al variar <span class="math notranslate nohighlight">\(h\)</span> en la función <span class="math notranslate nohighlight">\(\sigma(ht)\)</span>. Una regla de clasificación podría ser clasificar como perteneciente a <span class="math notranslate nohighlight">\(\mathcal{C}_0\)</span> si la probabilidad (modelada por la curva sigmoide) es menor a <span class="math notranslate nohighlight">\(0.25\)</span> (<strong>punto de corte</strong>) y perteneciente a <span class="math notranslate nohighlight">\(\mathcal{C}_1\)</span> si es mayor o igual a <span class="math notranslate nohighlight">\(0.25\)</span>. Para diferentes curvas sigmoides presentadas en la gráfica anterior obsérvese que al fijar el punto de corte y tomar un valor de <span class="math notranslate nohighlight">\(t\)</span> en el eje horizontal, la pertenencia a alguna de las clases es menos sensible al variar <span class="math notranslate nohighlight">\(t\)</span> que en otras curvas.</p>
@@ -1319,7 +1328,7 @@ The optimal beta is
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6.31129004024284e-13
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6.311290040242794e-13
 </pre></div>
 </div>
 </div>
@@ -1955,7 +1964,7 @@ The optimal beta is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_286_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_286_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_288_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_288_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -1974,7 +1983,7 @@ The optimal beta is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_288_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_288_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_290_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_290_0.png" />
 </div>
 </div>
 <p><strong>Función objetivo:</strong></p>
@@ -2115,7 +2124,7 @@ The optimal beta is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_303_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_303_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_305_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_305_0.png" />
 </div>
 </div>
 <p>Visualización utilizando únicamente <code class="docutils literal notranslate"><span class="pre">Petal.Length</span></code> y <code class="docutils literal notranslate"><span class="pre">Petal.Width</span></code>:</p>
@@ -2155,7 +2164,7 @@ The optimal beta is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_307_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_307_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_309_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_309_0.png" />
 </div>
 </div>
 <div class="tip admonition">
