@@ -1,6 +1,6 @@
 # Indicaciones
 
-Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante los "" de los meses de "" y "" en los que se deberá exponer lo que han realizado.
+Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante los meses de noviembre y diciembre en los que se deberá exponer lo que han realizado.
 
 En el nivel:  
 
@@ -20,31 +20,25 @@ es un archivo de control para la lista de proyectos y **únicamente lo actualiza
 
 * **Ojo:** deben entregarse los 4 rubros: implementación, trabajo escrito, presentación y avances para que se considere válido el proyecto final. Si alguno de estos rubros no es entregado en tiempo y forma se tendrá 0 en el proyecto final.
 
-* **Ojo:** Si un equipo no presenta avance alguno en las fechas de los "" de "" y "" que se les pide asistan, tendrán 0 en el rubro de avances y por tanto 0 en el proyecto final. 
+* **Ojo:** Si un equipo no presenta avance alguno en las fechas de noviembre y diciembre que se les pide asistan, tendrán 0 en el rubro de avances y por tanto 0 en el proyecto final. 
 
- ## Fechas de los "" de "" y "" en los que los equipos tendrán que presentar avances  del proyecto:
+## Fechas en los que los equipos tendrán que presentar avances  del proyecto:
 
-* "" de "".
-
-* "" de "".
-
-* "" de "". 
-
-
-El proyecto final se presenta en la segunda semana de finales.
+El proyecto final se presenta en la primera semana de finales.
 
 
 ### Asignación de fechas para presentar avances:
 
-La presentación ser realiza por Teams 
+La presentación se realiza por Teams 
 
 ||||
 |:---:|:---:|:---:|
 |Fechas|Equipos|Horario|
-|"" de ""|""|"" a "" am|
-|"" de ""|""|"" a "" am|
-|"" de ""|""|"" a "" am|
-|"" de ""|""|"" a "" am|
+|23 de noviembre|1|6 a 7 pm|
+|30 de noviembre|4|5 a 6 pm|
+|30 de noviembre|2|6 a 7 pm|
+|1 de diciembre|5|2 a 3 pm|
+|1 de diciembre|3|3 a 4 pm|
 
 
 
