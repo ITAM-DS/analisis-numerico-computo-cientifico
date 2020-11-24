@@ -906,7 +906,7 @@
 </div>
 </div>
 </div>
-<p>El valor anterior representa el máximo <strong>error relativo</strong> en la representación de un número real en su número de máquina. Como se observa en la ejecución anterior <span class="math notranslate nohighlight">\(\epsilon_{maq} \approx 2^{-53} \approx 1.11 \times 10 ^{-16}\)</span> por lo que tenemos alrededor de <span class="math notranslate nohighlight">\(15\)</span> o <span class="math notranslate nohighlight">\(16\)</span> dígitos de precisión para un número real en el SPFN de doble precisión.</p>
+<p>El valor anterior representa el máximo <strong>error relativo</strong> en la representación de un número real en su número de máquina. Como se observa en la ejecución anterior <span class="math notranslate nohighlight">\(\epsilon_{maq} = 2^{-53} \approx 1.11 \times 10 ^{-16}\)</span> por lo que tenemos alrededor de <span class="math notranslate nohighlight">\(15\)</span> o <span class="math notranslate nohighlight">\(16\)</span> dígitos de precisión para un número real en el SPFN de doble precisión.</p>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
 <p>Si <code class="docutils literal notranslate"><span class="pre">aprox</span></code> es mi cantidad con la que aproximo a mi objetivo <code class="docutils literal notranslate"><span class="pre">obj</span></code> entonces el error absoluto de <code class="docutils literal notranslate"><span class="pre">aprox</span></code> y el error relativo de <code class="docutils literal notranslate"><span class="pre">aprox</span></code> es:</p>
@@ -926,6 +926,7 @@
 </ul>
 <p>Aunque las tres definiciones pueden diferir ligeramente, las tres pretenden dar la medida de granularidad de un SPF. Una representación gráfica para números positivos de un SPF es la siguiente:</p>
 <img src="https://dl.dropboxusercontent.com/s/bkxfiqni0f8izhi/SPFN_graficamente.png?dl=0" heigth="500" width="500">
+<p>Para una discusión pequeña sobre las definiciones del <span class="math notranslate nohighlight">\(\epsilon_{maq}\)</span> ver <a class="reference external" href="https://en.wikipedia.org/wiki/Machine_epsilon#Variant_definitions">variant definitions</a></p>
 </div>
 <p>Se tienen las siguientes afirmaciones:</p>
 <ul class="simple">
@@ -941,14 +942,14 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include&lt;stdio.h&gt;</span>
 <span class="c1">#include&lt;float.h&gt;</span>
 <span class="nb">int</span> <span class="n">main</span><span class="p">(){</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Epsilon de la máquina: </span><span class="si">%e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="mf">3.0</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Epsilon de la máquina: </span><span class="si">%e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="mf">3.0</span><span class="o">-</span><span class="mi">1</span><span class="p">)));</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Epsilon de la máquina: 2.220446e-16
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Epsilon de la máquina: 1.110223e-16
 </pre></div>
 </div>
 </div>
@@ -966,7 +967,7 @@
 <p><strong>Regla de corte:</strong> sea <span class="math notranslate nohighlight">\(fl_c : \mathbb{R} \rightarrow \mathcal{F}\mathcal{l}\)</span> una función cuya regla de correspondencia es: <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> con <span class="math notranslate nohighlight">\(x\)</span> en el rango de valores del SPF, entonces: <span class="math notranslate nohighlight">\(x = \pm 0.d_1d_2 \dots d_kd_{k+1}\dots \times \beta^n\)</span> y la regla de corte a <span class="math notranslate nohighlight">\(k\)</span> dígitos es: <span class="math notranslate nohighlight">\(fl_c(x) = \pm 0.d_1d_2 \dots d_k\)</span>.</p>
 <p><strong>Regla de redondeo:</strong> sean <span class="math notranslate nohighlight">\(\beta=10\)</span> y <span class="math notranslate nohighlight">\(fl_r : \mathbb{R} \rightarrow \mathcal{F}\mathcal{l}\)</span> una función cuya regla de correspondencia es: <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> con <span class="math notranslate nohighlight">\(x\)</span> en el rango de valores del SPF, entonces: <span class="math notranslate nohighlight">\(x = \pm 0.d_1d_2 \dots d_kd_{k+1}\dots \times \beta^n\)</span> y la regla de redondeo es:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}f_r(x) = \begin{cases}
+\[\begin{split}fl_r(x) = \begin{cases}
 \text{sumar uno a } d_k &amp; \text{si } d_{k+1} \geq 5,\\
 f_c(x) &amp; \text{en otro caso}
 \end{cases}\end{split}\]</div>
