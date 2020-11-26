@@ -212,3 +212,12 @@ Finalizamos [Algoritmos_de_descenso_y_busqueda_de_linea_en_uco](https://itam-ds.
 Llegamos hasta [regresión logística](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#regresion-logistica-clasificacion-en-mathcal-c-0-mathcal-c-1)
 
 El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
+
+
+## Clase 16
+
+25 de noviembre
+
+Llegamos hasta [ejemplo 3 en nota 3.3 Ejemplos_problemas_UCO_e_intro_CIEO_y_PI](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#ejemplo-3)
+
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
