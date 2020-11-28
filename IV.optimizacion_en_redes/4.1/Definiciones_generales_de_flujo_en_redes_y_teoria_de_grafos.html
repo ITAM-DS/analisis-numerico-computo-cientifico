@@ -396,7 +396,73 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 <p class="sidebar-title"></p>
 <p>Para generar este grafo utilicé <a class="reference external" href="https://networkx.github.io/">networkx</a>.</p>
 </div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install --user --quiet networkx
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[33mWARNING: You are using pip version 20.2; however, version 20.2.4 is available.
+You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upgrade pip&#39; command.[0m
+</pre></div>
+</div>
+</div>
+</div>
 <img src="https://dl.dropboxusercontent.com/s/1aqzg6odghxmxx4/graph_example_1.png?dl=0" heigth="400" width="400">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nodes_pos</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.09090909090909091</span><span class="p">,</span> <span class="mf">0.4545454545454546</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.36363636363636365</span><span class="p">,</span> <span class="mf">0.18181818181818182</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.36363636363636365</span><span class="p">,</span> <span class="mf">0.7272727272727273</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.6363636363636364</span><span class="p">,</span>  <span class="mf">0.7272727272727273</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.9090909090909092</span><span class="p">,</span>  <span class="mf">0.4545454545454546</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.6363636363636364</span><span class="p">,</span>  <span class="mf">0.18181818181818182</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.6363636363636364</span><span class="p">,</span>  <span class="mf">0.4545454545454546</span><span class="p">]]</span>
+<span class="n">nodes</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes_pos</span><span class="p">))</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span> 
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+<span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+           <span class="mi">1</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+           <span class="mi">2</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+           <span class="mi">3</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+           <span class="mi">4</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+           <span class="mi">5</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+           <span class="mi">6</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span> 
+<span class="n">G_ex_1</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">relabel_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">mapping</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">pos</span><span class="p">[</span><span class="n">mapping</span><span class="p">[</span><span class="n">idx</span><span class="p">]]</span> <span class="o">=</span> <span class="n">nodes_pos</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+<span class="n">G_ex_1</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">G_ex_1</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">G_ex_1</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">G_ex_1</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">G_ex_1</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">G_ex_1</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">G_ex_1</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">G_ex_1</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">G_ex_1</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">G_ex_1</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">G_ex_1</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G_ex_1</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span><span class="p">,</span>
+        <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_y_teoria_de_grafos_24_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_y_teoria_de_grafos_24_0.png" />
+</div>
+</div>
 </div>
 <div class="section" id="grafos-o-redes-no-dirigidas">
 <h3>Grafos o redes no dirigidas<a class="headerlink" href="#grafos-o-redes-no-dirigidas" title="Permalink to this headline">¶</a></h3>
