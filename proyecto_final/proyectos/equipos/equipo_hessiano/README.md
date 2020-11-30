@@ -2,13 +2,17 @@
 
 Integrantes:
 
-* Erica
+* @Lobolc
 
-* Erick
+* @jreyesgar93
 
-Título del proyecto: **Ejemplo**
+* @jlrzarcor
 
-Objetivo del proyecto: **objetivo**
+* @Rodriguit
+
+Título del proyecto: **PCA**
+
+Objetivo del proyecto: **Reconstruir imágenes a partir de PCA**
 
 [Liga a repo de user admin en el que se trabaja]()
 
