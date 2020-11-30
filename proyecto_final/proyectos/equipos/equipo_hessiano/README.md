@@ -31,5 +31,10 @@ En la carpeta [notebooks](notebooks) se encuentra material para comprensión del
 
 Referencias del proyecto:
 
-* [Liga a documentación de NVIDIA: cuda-c-programming-guide](http://docs.nvidia.com/cuda/cuda-c-programming-guide/#axzz4cvQxAHMZ)
-* (referencia)
+* [Liga a documentación de Compression PCA: Compression Face dataset using PCA](https://towardsdatascience.com/face-dataset-compression-using-pca-cddf13c63583)
+
+* [Liga a documentación de PCA: PCA](https://towardsdatascience.com/principal-component-analysis-visualized-17701e18f2fa)
+
+* [Liga a documentación de PCA applied images: PCA applied images](http://people.ciirc.cvut.cz/~hlavac/TeachPresEn/11ImageProc/15PCA.pdf)
+
+
