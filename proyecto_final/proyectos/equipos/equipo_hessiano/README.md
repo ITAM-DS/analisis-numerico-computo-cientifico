@@ -1,4 +1,4 @@
-## Equipo ejemplo
+## Equipo 5 Optimización
 
 Integrantes:
 
