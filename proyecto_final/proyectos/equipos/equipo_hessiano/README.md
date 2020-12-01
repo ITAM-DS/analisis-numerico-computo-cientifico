@@ -14,11 +14,12 @@ Título del proyecto: **PCA: Aplicación en Compresión de Imágenes**
 
 Objetivo del proyecto: 
 
-**Investigación sobre el uso de PCA para la compresión y reconstrucción de imágenes de rostros de personas empleando el lenguaje de programación Python. El enfoque del proyecto se orienta al estudio de métodos basados en reducción de dimensionalidad como PCA así como su comparación y evaluación de resultados a través de una muestra de imágenes de rostros de personas.**
+**Uso de PCA para la compresión y reconstrucción de imágenes de rostros de personas empleando el lenguaje de programación Python. El alcance del proyecto se orienta al estudio de la reducción de dimensionalidad a través de PCA, entendimiento de los algoritmos y aplicación en reconstrucción de imágenes.**
+
 
 [Liga a repo de user admin en el que se trabaja]()
 
-Trabajo escrito (fuera del repo): [liga_trabajo_escrito]()
+Trabajo escrito (fuera del repo): [Documento PCA](https://es.overleaf.com/project/5fc535eb8fa71982ee3a3c48)
 
 Presentación (fuera del repo): [liga_presentación]()
 
