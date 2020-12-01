@@ -2,17 +2,19 @@
 
 Integrantes:
 
-* @Lobolc
+* José Reyes Garza - 142207
 
-* @jreyesgar93
+* Miguel López Cruz - 197967
 
-* @jlrzarcor
+* José Luis Zárate Cortés - 183347
 
-* @Rodriguit
+* Rodrigo Suárez Segovia - 191351
 
-Título del proyecto: **PCA**
+Título del proyecto: **PCA: Aplicación en Compresión de Imágenes**
 
-Objetivo del proyecto: **Reconstruir imágenes a partir de PCA**
+Objetivo del proyecto: 
+
+**Investigación sobre el uso de PCA para la compresión y reconstrucción de imágenes de rostros de personas empleando el lenguaje de programación Python. El enfoque del proyecto se orienta al estudio de métodos basados en reducción de dimensionalidad como PCA así como su comparación y evaluación de resultados a través de una muestra de imágenes de rostros de personas.**
 
 [Liga a repo de user admin en el que se trabaja]()
 
