@@ -1,4 +1,4 @@
-## Equipo 5 Optimización
+## Equipo 5 Optimización: Avance 1: Reporte al 1 de diciembre 2020
 
 Integrantes:
 
@@ -16,27 +16,23 @@ Objetivo del proyecto:
 
 **Uso de PCA para la compresión y reconstrucción de imágenes de rostros de personas empleando el lenguaje de programación Python. El alcance del proyecto se orienta al estudio de la reducción de dimensionalidad a través de PCA, entendimiento de los algoritmos y aplicación en reconstrucción de imágenes.**
 
+Resumen:
 
-[Liga a repo de user admin en el que se trabaja]()
+**Resumen
 
-Trabajo escrito (fuera del repo): [Documento PCA](https://es.overleaf.com/project/5fc535eb8fa71982ee3a3c48)
+El 21 de noviembre tuvimos una reunión para la definición de nuestro proyecto final. En ella discutimos los alcances del proyecto, el lenguaje y herramientas a utilizar para la implementación del mismo.
 
-Presentación (fuera del repo): [liga_presentación]()
+El 28 de noviembre nos reunimos para discutir la investigación que cada integrante llevaba y documentar las referencias que tengamos sobre temas y aplicaciones interesantes de PCA.
 
-Implementación (en el repo): [codigo](codigo) 
+El 29 de noviembre nos reunimos nuevamente para definir la dinámica de trabajo. Se determinó Python como el lenguaje a utilizar. Decidimos usar la paquetería de numpy para el desarrollo del proyecto y cálculos de operaciones de matrices para obtener eigenvalores y eigenvectores.
 
+El 30 de noviembre se aterrizo una idea basada en el uso de PCA para realizar una compresión de dimensionalidad y hacer una reconstrucción de imágenes de rostros de personas.
 
-En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en nuestro proyecto. 
+Los avances logrados sobre los equipos se describen a continuación:**
 
-Determinamos reducir la cantidad de trabajo que queríamos hacer en el proyecto original por tiempos de entrega. En la carpeta [avance2](avance2) mostramos los avances para este propósito.
+*
 
-En la carpeta [notebooks](notebooks) se encuentra material para comprensión del código realizado.
-
-Referencias del proyecto:
-
-* [Liga a documentación de Compression PCA: Compression Face dataset using PCA](https://towardsdatascience.com/face-dataset-compression-using-pca-cddf13c63583)
-
-* [Liga a documentación de PCA: PCA](https://towardsdatascience.com/principal-component-analysis-visualized-17701e18f2fa)
+* 
 
 * [Liga a documentación de PCA applied images: PCA applied images](http://people.ciirc.cvut.cz/~hlavac/TeachPresEn/11ImageProc/15PCA.pdf)
 
