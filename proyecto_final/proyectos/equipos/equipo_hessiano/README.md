@@ -2,28 +2,28 @@
 
 Integrantes:
 
-* José Reyes Garza - 142207
+| Github_User  | Alumno    |
+|:------------:|:---------:|
+| @lobolc      | Miguel    |
+| @jreyesgar93 | José      |
+| @Rodriguit   | Rodrigo   |
+| @ZarCorvus   | José Luis |
 
-* Miguel López Cruz - 197967
 
-* José Luis Zárate Cortés - 183347
-
-* Rodrigo Suárez Segovia - 191351
-
-Título del proyecto: **PCA: Aplicación en Compresión de Imágenes**
+Título del proyecto: **Método de Máxima Verosimilitud como problema de Optimización**
 
 Objetivo del proyecto: 
 
-**Uso de PCA para la compresión y reconstrucción de imágenes de rostros de personas empleando el lenguaje de programación Python. El alcance del proyecto se orienta al estudio de la reducción de dimensionalidad a través de PCA, entendimiento de los algoritmos y aplicación en reconstrucción de imágenes.**
+**.**
 
 
-[Liga a repo de user admin en el que se trabaja]()
+[Liga a repo](https://github.com/Rodriguit/Proyecto-final-equipo5-opt-2020)
 
-Trabajo escrito (fuera del repo): [Documento PCA](https://es.overleaf.com/project/5fc535eb8fa71982ee3a3c48)
+[Trabajo escrito:](https://es.overleaf.com/project/5fc535eb8fa71982ee3a3c48)
 
 Presentación (fuera del repo): [liga_presentación]()
 
-Implementación (en el repo): [codigo](codigo) 
+Implementación (en el repo): [codigo](https://github.com/Rodriguit/Proyecto-final-equipo5-opt-2020/tree/develop/codigo) 
 
 
 En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en nuestro proyecto. 
@@ -34,10 +34,15 @@ En la carpeta [notebooks](notebooks) se encuentra material para comprensión del
 
 Referencias del proyecto:
 
-* [Liga a documentación de Compression PCA: Compression Face dataset using PCA](https://towardsdatascience.com/face-dataset-compression-using-pca-cddf13c63583)
+Bibliografías:
+  * [Liga amazon Introduction to Probability, Statistics, and Random Processes](https://www.amazon.com/-/es/Hossein-Pishro-Nik/dp/0990637204/ref=sr_1_3?__mk_es_US=ÅMÅŽÕÑ&dchild=1&keywords=probability+Hossein&qid=1607146984&sr=8-3)
 
-* [Liga a documentación de PCA: PCA](https://towardsdatascience.com/principal-component-analysis-visualized-17701e18f2fa)
+  * [Estimación de máxima verosimilitud](https://economipedia.com/definiciones/estimacion-de-maxima-verosimilitud.html)
 
-* [Liga a documentación de PCA applied images: PCA applied images](http://people.ciirc.cvut.cz/~hlavac/TeachPresEn/11ImageProc/15PCA.pdf)
+  * [Fundamentos de Estadística con Remuestreo (ITAM)](https://fundamentos-est.netlify.app/s-max-verosimilitud)
+
+  * [Quantitative Economics with Python](https://python.quantecon.org/_downloads/pdf/quantitative_economics_with_python.pdf)    
+  
+  
 
 
