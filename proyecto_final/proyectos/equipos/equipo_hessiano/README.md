@@ -26,7 +26,9 @@ Presentación (pendiente): [liga_presentación]()
 
 Implementación (en el repo): [codigo](https://github.com/Rodriguit/Proyecto-final-equipo5-opt-2020) 
 
-En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en nuestro proyecto. 
+En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en el proyecto inicial con el que se estuvo trabajando (PCA) y ha sido cambiado.
+En la carpeta [avance2](avance2) se encuentra el reporte del segundo avance y primer avance en el proyecto nuevo con el que se trabaja (Optimización MLE).
+En la carpeta [avance3](avance3) se encuentra el reporte del avance en el proyecto.
 
 Determinamos reducir la cantidad de trabajo que queríamos hacer en el proyecto original por tiempos de entrega. En la carpeta [avance2](avance2) mostramos los avances para este propósito.
 
