@@ -18,18 +18,18 @@ Objetivo del proyecto:
 
 [Liga a repo](https://github.com/Rodriguit/Proyecto-final-equipo5-opt-2020)
 
-[Trabajo escrito:](https://es.overleaf.com/project/5fc535eb8fa71982ee3a3c48)
+[Trabajo escrito:](https://es.overleaf.com/project/5fc535eb8fa71982ee3a3c48) 
+Correo dado de alta: erick89.itam@gmail.com 
 
-Presentación (fuera del repo): [liga_presentación]()
 
-Implementación (en el repo): [codigo](https://github.com/Rodriguit/Proyecto-final-equipo5-opt-2020/tree/develop/codigo) 
+Presentación (pendiente): [liga_presentación]()
 
+Implementación (en el repo): [codigo](https://github.com/Rodriguit/Proyecto-final-equipo5-opt-2020) 
 
 En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en nuestro proyecto. 
 
 Determinamos reducir la cantidad de trabajo que queríamos hacer en el proyecto original por tiempos de entrega. En la carpeta [avance2](avance2) mostramos los avances para este propósito.
 
-En la carpeta [notebooks](notebooks) se encuentra material para comprensión del código realizado.
 
 Referencias del proyecto:
 
