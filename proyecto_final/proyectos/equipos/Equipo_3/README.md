@@ -58,10 +58,45 @@
         - [X] Agregar ligas hacia el trabajo escrito y presentación
 
 
-## Docker
+# Objetivo
 
-- [X] Con Jupyter
-- [ ] Sin Jupyter
+Se usará análisis de componentes principales para reducir la dimensión de los $9$ indicadores socioeconómicos que forman al índice de marginación, una vez se tenga la reducción de dimensiones se recreará el índice de marginación del Consejo Nacional de la Población. Además se realizaran agrupaciones por el método de k-medias con las variables originales y las obtenidas por el método de componentes principales. 
+
+# Índice de marginación CONAPO
+
+Desde 1990 el CONAPO emprendió esfuerzos sistemáticos para construir indicadores con el objetivo de analizar las desventajas sociales de la población e identificar con precisión espacios mayormente marginados, diferenciándolos según su intensidad de carencias, el resultado fue el índice de marginación.
+
+El indice de marginación es un parámetro estadístico que contribuye a la identificación de sectores del país que carecen de oportunidades para su desarrollo y de la capacidad para encontrarlas o generarlas.
+
+## Indicadores socioeconómicos del índice de marginación
+
+- Educación:
+
+    - Porcentaje de población analfabeta
+    
+    - Porcentaje de población sin primaria completa
+    
+- Vivienda:
+
+    - Porcentaje de ocupantes en viviendas sin agua entubada
+    
+    - Porcentaje de ocupantes en viviendas sin drenaje ni servicio sanitario exclusivo
+    
+    - Porcentaje de ocupantes en viviendas sin drenaje ni excusado
+
+    - Porcentaje de ocupantes en viviendas con algún nivel de hacinamiento
+    
+    - Porcentaje de ocupantes en viviendas sin energía eléctrica
+    
+    - Porcentaje de ocupantes en viviendas con piso de tierra
+    
+- Distribución de la población:
+
+    - Porcentaje de población en localidades con menos de 5,000 habitantes
+    
+- Ingresos:
+
+    - Porcentaje de población ocupada con ingresos de hasta dos salarios mínimos
 
 
 
