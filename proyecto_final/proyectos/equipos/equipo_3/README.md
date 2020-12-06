@@ -19,7 +19,6 @@
 
 ## Bibliografía:
 
-
 [Datos](http://www.conapo.gob.mx/es/CONAPO/Datos_Abiertos_del_Indice_de_Marginacion)
 
 [Diccionario de datos](https://www.gob.mx/cms/uploads/attachment/file/307289/Dicc_ent.pdf)
