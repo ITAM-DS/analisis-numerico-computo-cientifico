@@ -1,5 +1,6 @@
 # Practica Final : Creación de indice con análisis de componentes principales (PCA)
 
+[liga del repo](https://github.com/AnaTorresR/PracticaFinalMNO)
 * Profesor: Erick Palacios Moreno
 * Lenguaje a utilizar: Python
 
