@@ -17,7 +17,7 @@
 
 # Objetivo
 
-Se usará análisis de componentes principales para reducir la dimensión de los $9$ indicadores socioeconómicos que forman al índice de marginación, una vez se tenga la reducción de dimensiones se recreará el índice de marginación del Consejo Nacional de la Población. Además se realizaran agrupaciones por el método de k-medias con las variables originales y las obtenidas por el método de componentes principales. 
+Se usará análisis de componentes principales para reducir la dimensión de los 9 indicadores socioeconómicos que forman al índice de marginación, una vez se tenga la reducción de dimensiones se recreará el índice de marginación del Consejo Nacional de la Población. Además se realizaran agrupaciones por el método de k-medias con las variables originales y las obtenidas por el método de componentes principales. 
 
 ---
 
