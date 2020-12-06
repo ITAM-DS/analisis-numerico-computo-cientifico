@@ -6,11 +6,11 @@ Proyecto final de la materia de Optimización 2020-2.
 
 ## Equipo 4
 
-| Nombre                 | User Github      | Clave única |
-|------------------------|------------------|-------------|
-| Carolina Acosta Tovany | caroacostatovany | 000197627   |
-| Cecilia Avilés Robles  | cecyar           | 000197817   |
-| Leonardo Ceja Pérez    | lecepe00         | 000197818   |
+| Nombre                 | User Github      |
+|------------------------|------------------|
+| Carolina Acosta Tovany | caroacostatovany |
+| Cecilia Avilés Robles  | cecyar           |
+| Leonardo Ceja Pérez    | lecepe00         |
 
 
 **Título del proyecto:**  
