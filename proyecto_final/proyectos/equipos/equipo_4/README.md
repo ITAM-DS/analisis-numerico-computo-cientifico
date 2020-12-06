@@ -24,13 +24,6 @@ Estudiar el método de PageRank y el uso de Eigenvectores y Eigenvalores para su
 * Equipo 4 - [PageRank](https://github.com/lecepe00/PageRank-eigenvectores-eigenvalores.git)
 
 
-## Avances:
-
-* [Avance 1](https://github.com/lecepe00/PageRank-eigenvectores-eigenvalores/blob/main/Avances/Avance1.md)
-* [Avance 2](https://github.com/lecepe00/PageRank-eigenvectores-eigenvalores/blob/main/Avances/Avance2.md)
-* Avance 3
-
-
 ## Referencias:
 
 * American Mathematical Society.  [How Google Finds Your Needle in the Web's Haystack](http://www.ams.org/publicoutreach/feature-column/fcarc-pagerank)
