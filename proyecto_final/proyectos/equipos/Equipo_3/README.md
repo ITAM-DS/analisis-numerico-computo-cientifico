@@ -49,8 +49,6 @@
     
         - [X] Separar los datos `base.csv` por años `1990`, `2000` y `2015`
 
-        - [X] EDA, GEDA y data profiling de la base de datos `base.csv` ya que esta separada por años, en el notebook analisis_exploratorio.ipynb hay funciones útiles que podemos usar.
-
         - [X] Crear nuestro el índice de marginación con los pesos obtenidos del análisis de componentes principales.
 
         - [X] Comparar el índice obtenido de los componentes con el índice creado por el Consejo Nacional de Población (CONAPO).
@@ -66,7 +64,6 @@
 
 - [X] Con Jupyter
 - [ ] Sin Jupyter
-
 
 
 ## Bibliografía obtenida en el primer avance
