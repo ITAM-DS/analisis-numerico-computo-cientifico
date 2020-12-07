@@ -2,6 +2,21 @@
 
 ---
 
+## [Equipo 2](equipos/equipo_2/)
+
+**Título:** Estimación de probabilidades de incumplimiento en el tiempo
+
+**Objetivo:**
+
+Análisis de las Probabilidades de Incumplimiento de créditos hipotecarios de Estados Unidos para identificar periodos de crisis y propuesta de credit scoring, mediante el uso de las herramientas vistas en el curso de Análisis Numérico y Computo Científico.
+
+[Trabajo escrito](https://github.com/arenitss/Proyecto_Final_Analisis_Numerico_Computo_Cientifico/blob/main/Reporte/Reporte.ipynb)
+
+[Repositorio](https://github.com/arenitss/Proyecto_Final_Analisis_Numerico_Computo_Cientifico)
+
+
+---
+
 ## [Equipo 3](equipos/equipo_3/)
 
 **Título:** Creación de indice con análisis de componentes principales (PCA)
