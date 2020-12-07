@@ -16,7 +16,7 @@ Análisis de las Probabilidades de Incumplimiento de créditos hipotecarios de E
 
 ### 2. Datos:
 
-Se utilizará la información de 60 trimestres de 5000 créditos hipotecarios de Estados Unidos tomada de protafolios bursatilizado (RMBSs) a partir del año 2000 (hasta 2015). El proveedor de la base es el International Financial Reasearch (www.internationalfinancialreaserch.org), y se tiene acceso a ella por la adquisición del libro Deep Credit Risk de Daniel Rosch y Harald Scheule, que es la principal fuente de este trabajo.
+Se utilizará la información de 60 trimestres de 5000 créditos hipotecarios de Estados Unidos tomada de protafolios bursatilizado (RMBSs) a partir del año 2000 (hasta 2015). El proveedor de la base es el International Financial Research (www.internationalfinancialreaserch.org) , y se tiene acceso a ella por la adquisición del libro Deep Credit Risk de Daniel Rosch y Harald Scheule, que es la principal fuente de este trabajo.
 
 
 
@@ -56,7 +56,8 @@ e. Conclusiones
 
 ### 4. Software
 Python y AWS
-Liga de la instancia: http://ec2-3-239-61-177.compute-1.amazonaws.com:8888/lab
+* [Liga de la instancia](http://ec2-3-239-61-177.compute-1.amazonaws.com:8888/lab).
+
 
 
 
@@ -65,7 +66,9 @@ Rosch Daniel, Scheule Harald. Deep Credit Risk. 2020. Amazon Fulfillment, Poloni
 Siddiqi, Naeem. Credit Risk Scorecards, Developing and Implementing Credit Scoring. 2006. Wiley, New Jersey 
 
 ### 6. Repositorio
-https://github.com/arenitss/Proyecto_Final_Analisis_Numerico_Computo_Cientifico
+* [Liga del repositorio](https://github.com/arenitss/Proyecto_Final_Analisis_Numerico_Computo_Cientifico).
+
+
 
 ## Integrantes y asignación de tareas del equipo
 
