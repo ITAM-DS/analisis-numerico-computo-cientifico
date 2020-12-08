@@ -2,6 +2,20 @@
 
 ---
 
+## [Equipo 1](equipos/equipo_1/)
+
+**Título:** FaceRecognitionSVD
+
+**Objetivo:**
+
+El trabajo busca implementar el algoritmo de Eigenfaces como uno de los modos de enfrentarse al problema de reconocimiento de rostro.
+
+[Trabajo escrito](https://github.com/ElenaVillano/FaceRecognitionSVD/blob/main/Reporte_final_eigenfaces_OK.ipynb)
+
+[Repositorio](https://github.com/ElenaVillano/FaceRecognitionSVD)
+
+---
+
 ## [Equipo 2](equipos/equipo_2/)
 
 **Título:** Estimación de probabilidades de incumplimiento en el tiempo
