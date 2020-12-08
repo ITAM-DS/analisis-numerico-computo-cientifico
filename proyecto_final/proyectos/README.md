@@ -45,6 +45,21 @@ Se usará análisis de componentes principales para reducir la dimensión de los
 
 ---
 
+## [Equipo 4](equipos/equipo_4/)
+
+**Título:** PageRank - Eigenvectores y Eigenvalores.
+
+**Objetivo:**
+
+Estudiar el método de PageRank y el uso de Eigenvectores y Eigenvalores para su aplicación práctica.
+
+[Trabajo escrito](https://github.com/lecepe00/PageRank-eigenvectores-eigenvalores/blob/main/Trabajo_Escrito/PageRank_notebook.ipynb)
+
+[Repositorio](https://github.com/lecepe00/PageRank-eigenvectores-eigenvalores)
+
+
+---
+
 ## [Equipo 5](equipos/equipo_hessiano/)
 
 **Título:** Método de Máxima Verosimilitud como problema de Optimización
