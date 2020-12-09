@@ -201,3 +201,32 @@ El video lo pueden descargar desde Teams pero sólo estará disponible unos día
 Llegamos hasta [resolviendo-el-problema-con-cvxpy](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#resolviendo-el-problema-con-cvxpy) en el ejemplo número 2 de la misma nota.
 
 El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
+
+
+## Clase 15
+
+18 de noviembre
+
+Finalizamos [Algoritmos_de_descenso_y_busqueda_de_linea_en_uco](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html)
+
+Llegamos hasta [regresión logística](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#regresion-logistica-clasificacion-en-mathcal-c-0-mathcal-c-1)
+
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
+
+
+## Clase 16
+
+25 de noviembre
+
+Llegamos hasta [ejemplo 3 en nota 3.3 Ejemplos_problemas_UCO_e_intro_CIEO_y_PI](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#ejemplo-3)
+
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
+
+
+## Clase 17
+
+2 de diciembre
+
+Llegamos a cubrir hasta [problemas-de-programacion-lineal](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#problemas-de-programacion-lineal). Tal tema junto con puntos interiores se revisó rápidamente.
+
+El video lo pueden descargar desde Teams pero sólo estará disponible unos días.
