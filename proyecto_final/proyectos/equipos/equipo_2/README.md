@@ -35,7 +35,7 @@ Se utilizará la información de 60 trimestres de 5000 créditos hipotecarios de
 |User | Nombre Completo| Tarea |
 |:---:|:---:|:---:|
 |@oaperez3|Oscar Perez|Project manager, levantamiento de instancia en AWS, implementación de metodología, responder preguntas
-|@Eduardo-Moreno|Eduardo Moreno|Investigación de variables, hardcodear código, implementación metodología, responder preguntas
+|@Eduardo-Moreno|Eduardo Moreno|Investigación de variables, implementación metodología, responder preguntas
 |@yefovar|Yedam Fortiz|Testing, estudio de parte matemática, expositor
 |@arenitss|Nayeli Arenas|Redacción, revisón de resultados, expositor
 
