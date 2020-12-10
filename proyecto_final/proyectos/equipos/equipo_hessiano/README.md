@@ -23,7 +23,7 @@ Correo dado de alta: erick89.itam@gmail.com
 
 Presentación: [liga_presentación](https://github.com/Rodriguit/Proyecto-final-equipo5-opt-2020/tree/main/reveal/reveal.js-master)
 
-Implementación (en el repo): [codigo](codigo) 
+Implementación: [codigo](codigo) 
 
 En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en el proyecto inicial con el que se estuvo trabajando (PCA) y ha sido cambiado.  
 En la carpeta [avance2](avance2) se encuentra el reporte del segundo avance y primer avance en el proyecto nuevo con el que se trabaja (Optimización MLE).  
