@@ -1,0 +1,47 @@
+---
+title: "Mapas IM"
+output: 
+  flexdashboard::flex_dashboard:
+    theme: spacelab
+    orientation: rows
+    vertical_layout: scroll
+    horizontal_layout: scroll
+    
+runtime: shiny
+---
+
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(shiny)
+library(flexdashboard)
+library("sf")
+library("sp")
+library("raster")
+library("st")
+library("tmap")
+```
+
+
+## Año 1990
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+base_espacial_90 <-  st_read("../data/Mapa_de_grado_de_marginacion_por_entidad_federativa_1990/IMEF_1990/IMEF_1990.shp")
+
+selectInput("poligonos", label="Colorear por:", choices = names(base_espacial_90))
+```
+
+```{r}
+tm_shape(base_espacial_90)+
+               tm_polygons(input$poligonos,palette = "BuPu",border.col = "white",border.alpha = 0.5,title="1990")+
+               tm_style("white")+
+               tm_compass( position = c("LEFT", "BOTTOM"),cardinal.directions = c("N", "E", "S", "W"))
+```
+
+
+
+## Año 2000
+
+
+
+## Año 2015
