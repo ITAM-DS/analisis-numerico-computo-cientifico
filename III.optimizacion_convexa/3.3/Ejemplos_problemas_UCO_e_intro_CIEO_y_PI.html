@@ -1369,7 +1369,7 @@ The optimal beta is
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6.31129004024284e-13
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>6.311290040242794e-13
 </pre></div>
 </div>
 </div>
@@ -1823,7 +1823,7 @@ The optimal beta is
 <p>Geométricamente se busca un hiperplano de dimensión <span class="math notranslate nohighlight">\(n-1\)</span> que separe ambos conjuntos:</p>
 <img src="https://dl.dropboxusercontent.com/s/qvrqz6ciyutzdkf/CIECO_SVM_1.png?dl=0" heigth="300" width="300"><p>En el dibujo tómese los puntos sin rellenar como los pertenecientes a una clase de <span class="math notranslate nohighlight">\(\{-1, 1\}\)</span>.</p>
 <p>Si <span class="math notranslate nohighlight">\(x, y\)</span> son puntos en el hiperplano entonces <span class="math notranslate nohighlight">\(f(x) = f(y) = 0\)</span> y además <span class="math notranslate nohighlight">\(a^T(x-y) = b - b = 0\)</span>, así <span class="math notranslate nohighlight">\(a\)</span> es ortogonal a todo punto en el hiperplano y determina la orientación de este:</p>
-<img src="https://dl.dropboxusercontent.com/s/rswe1hzpxxgt88n/CIECO_SVM_2.png?dl=0" heigth="350" width="350"><p>Si <span class="math notranslate nohighlight">\(x\)</span> es un punto en el hiperplano tenemos <span class="math notranslate nohighlight">\(f(x) = 0\)</span> por lo tanto la distancia perpendicular del origen al hiperplano está dada por: <span class="math notranslate nohighlight">\(\frac{|a^Tx|}{||a||_2} = \frac{|-b|}{||a||_2} = \frac{|b|}{||a||_2}\)</span> y el parámetro <span class="math notranslate nohighlight">\(b\)</span> determina la localización del hiperplano:</p>
+<img src="https://dl.dropboxusercontent.com/s/rswe1hzpxxgt88n/CIECO_SVM_2.png?dl=0" heigth="350" width="350"><p>Si <span class="math notranslate nohighlight">\(x\)</span> es un punto en el hiperplano tenemos <span class="math notranslate nohighlight">\(f(x) = 0\)</span> por lo tanto la distancia perpendicular del origen al hiperplano está dada por: <span class="math notranslate nohighlight">\(\frac{|a^Tx|}{||a||_2} = \frac{|b|}{||a||_2}\)</span> y el parámetro <span class="math notranslate nohighlight">\(b\)</span> determina la localización del hiperplano:</p>
 <img src="https://dl.dropboxusercontent.com/s/5uyp1d75ovl6sm9/CIECO_SVM_3.png?dl=0" heigth="450" width="450"><p>Sean <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span> y <span class="math notranslate nohighlight">\(x_{\perp} \in \mathbb{R}^n\)</span> la proyección ortogonal en el hiperplano:</p>
 <img src="https://dl.dropboxusercontent.com/s/u4pruk4ss53m8oz/CIECO_SVM_4.png?dl=0" heigth="550" width="550"><p>tenemos: <span class="math notranslate nohighlight">\(a^Tx = a^Tx_{\perp} + k||a||_2 = b + k ||a||_2\)</span> por lo que <span class="math notranslate nohighlight">\(a^Tx - b = k||a||_2\)</span> y:</p>
 <div class="math notranslate nohighlight">
@@ -1855,7 +1855,7 @@ The optimal beta is
 \[\displaystyle \max_{a,b} \left \{  \min_{i=1,\dots, N} \frac{|f(x_i)|}{||a||_2}  + \min_{i=1,\dots, M} \frac{|f(y_i)|}{||a||_2} \right \}\]</div>
 <p>Obsérvese que el cociente <span class="math notranslate nohighlight">\(\frac{|f(x_i)|}{||a||_2}\)</span> es invariante ante reescalamientos por ejemplo:</p>
 <div class="math notranslate nohighlight">
-\[\frac{ka^Tx - kb}{||ka||_2} = \frac{a^Tx - b}{||a||_2} \forall k \neq 0\]</div>
+\[\frac{|ka^Tx - kb|}{||ka||_2} = \frac{a^Tx - b}{||a||_2} \forall k \neq 0\]</div>
 <p>Por tanto, si los índices <span class="math notranslate nohighlight">\(i_1, i_2\)</span> cumplen:</p>
 <div class="math notranslate nohighlight">
 \[i_1 = \text{argmin}_{i=1,\dots, N} \left \{\frac{|f(x_i)|}{||a||_2} \right \}\]</div>
@@ -2058,25 +2058,33 @@ The optimal beta is
 <p class="sidebar-title"></p>
 <p>Ver <a class="reference external" href="https://www.cvxpy.org/examples/machine_learning/svm.html">cvxpy: svm</a></p>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>El vector <code class="docutils literal notranslate"><span class="pre">vec</span></code> contiene al intercepto <span class="math notranslate nohighlight">\(b\)</span> y al vector <span class="math notranslate nohighlight">\(a\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1">#number of variables</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1">#optimization variable</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1">#optimization variable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><code class="docutils literal notranslate"><span class="pre">vec[0]</span></code> es <span class="math notranslate nohighlight">\(b\)</span>, <code class="docutils literal notranslate"><span class="pre">vec[1:n]</span></code> es <span class="math notranslate nohighlight">\(a\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="c1">#fo just includes a not intercept</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="c1">#fo just includes a not intercept</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">,:]</span><span class="nd">@a</span> <span class="o">&lt;=-</span><span class="mi">1</span><span class="p">,</span>
-               <span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,:]</span><span class="nd">@a</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">,:]</span><span class="nd">@vec</span> <span class="o">&lt;=-</span><span class="mi">1</span><span class="p">,</span>
+               <span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,:]</span><span class="nd">@vec</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2104,15 +2112,15 @@ The optimal beta is
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The optimal value is&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The optimal a with intercept is&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The optimal vector with intercept is&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vec</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
 The optimal value is 0.6190278039214824
-The optimal a with intercept is
+The optimal vector with intercept is
 [-0.24  0.27 -0.34  0.7   0.75]
 </pre></div>
 </div>
@@ -2121,7 +2129,7 @@ The optimal a with intercept is
 <p>Los primeros <span class="math notranslate nohighlight">\(50\)</span> renglones pertenecen a la clase <span class="math notranslate nohighlight">\(\mathcal{C}_{-1}:\)</span> <em>I. setosa</em> y los restantes <span class="math notranslate nohighlight">\(50\)</span> renglones pertenecen a la clase <span class="math notranslate nohighlight">\(\mathcal{C}_{1}\)</span>: <em>I. versicolor</em>. Se clasifica de acuerdo al signo de: <span class="math notranslate nohighlight">\(a^Tx - b\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">,:]</span><span class="nd">@a</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">,:]</span><span class="nd">@vec</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2135,7 +2143,7 @@ The optimal a with intercept is
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,:]</span><span class="nd">@a</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,:]</span><span class="nd">@vec</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2161,20 +2169,17 @@ The optimal a with intercept is
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y_plot</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">y_plot_minus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">y_plot_plus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vec</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y_plot</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">y_plot_minus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y_plot</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">y_plot_minus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">b</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">y_plot_plus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y_plot_plus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2194,7 +2199,7 @@ The optimal a with intercept is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_311_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_311_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_313_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_313_0.png" />
 </div>
 </div>
 <p>Visualización utilizando únicamente <code class="docutils literal notranslate"><span class="pre">Petal.Length</span></code> y <code class="docutils literal notranslate"><span class="pre">Petal.Width</span></code>:</p>
@@ -2211,10 +2216,10 @@ The optimal a with intercept is
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y_plot</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">y_plot_minus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y_plot</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">y_plot_minus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">b</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">y_plot_plus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y_plot_plus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2234,7 +2239,7 @@ The optimal a with intercept is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_315_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_315_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_317_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_317_0.png" />
 </div>
 </div>
 <div class="tip admonition">
@@ -2268,22 +2273,22 @@ The optimal a with intercept is
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1">#number of variables</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1">#optimization variable</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1">#optimization variable</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="c1">#fo just includes a not intercept</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">cp</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="c1">#fo just includes a not intercept</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">,:]</span><span class="nd">@a</span> <span class="o">&lt;=-</span><span class="mi">1</span><span class="p">,</span>
-               <span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,:]</span><span class="nd">@a</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">,:]</span><span class="nd">@vec</span> <span class="o">&lt;=-</span><span class="mi">1</span><span class="p">,</span>
+               <span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,:]</span><span class="nd">@vec</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2311,15 +2316,15 @@ The optimal a with intercept is
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The optimal value is&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The optimal a with intercept is&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The optimal vector with intercept is&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vec</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>
 The optimal value is 11.273240420474107
-The optimal a with intercept is
+The optimal vector with intercept is
 [-0.93  4.03 -2.51]
 </pre></div>
 </div>
@@ -2327,7 +2332,7 @@ The optimal a with intercept is
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">,:]</span><span class="nd">@a</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">,:]</span><span class="nd">@vec</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2341,7 +2346,7 @@ The optimal a with intercept is
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,:]</span><span class="nd">@a</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">data_iris_setosa_versicolor</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">100</span><span class="p">,:]</span><span class="nd">@vec</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -2366,22 +2371,17 @@ The optimal a with intercept is
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y_plot</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">y_plot_minus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y_plot</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">y_plot_minus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">b</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">y_plot_plus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y_plot_plus_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x_plot</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-0.93  4.03 -2.51]
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vec</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2404,7 +2404,7 @@ The optimal a with intercept is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_332_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_332_0.png" />
+<img alt="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_334_0.png" src="../../_images/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI_334_0.png" />
 </div>
 </div>
 <div class="tip admonition">
