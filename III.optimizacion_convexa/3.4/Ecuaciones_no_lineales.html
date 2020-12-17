@@ -994,7 +994,7 @@ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &amp;=&amp; b_m
 <p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
 <blockquote>
 <div><ol class="simple">
-<li><p>Calcular  la derivada de <span class="math notranslate nohighlight">\(f\)</span> y verificar que <span class="math notranslate nohighlight">\(|f'(x)| &gt; 0\)</span>.</p></li>
+<li><p>Calcular  la derivada de <span class="math notranslate nohighlight">\(f\)</span> y verificar que <span class="math notranslate nohighlight">\(f'(x) \neq 0\)</span>.</p></li>
 <li><p>Realizar la actualización: <span class="math notranslate nohighlight">\(x = x - \frac{f(x)}{f'(x)}\)</span></p></li>
 </ol>
 </div></blockquote>
@@ -1215,14 +1215,13 @@ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &amp;=&amp; b_m
 <ul class="simple">
 <li><p>El criterio de paro es de la forma:</p></li>
 </ul>
-</div>
-<p>while |x_(k+1) - x_k| &lt; tol(|x_k| + 1) &amp;&amp; |f(x_m)| &gt; tol2 &amp;&amp; iterations &lt; max_iters</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-con `tol1`, `tol2` cantidades pequeñas y positivas (comúnmente menores o iguales a $10^{-8}$), `iterations` un contador de las iteraciones. También pueden utilizarse la medición entre iteraciones con los criterios descritos en {ref}`criterios de paro, escala de la variable x y de la función f &lt;CRITPARO&gt;` y si se tiene conocimiento del valor de $x^*$ se pueden calcular errores relativos de `x_k`.
-
-
-
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="o">|</span><span class="n">x_</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">x_k</span><span class="o">|</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">(</span><span class="o">|</span><span class="n">x_k</span><span class="o">|</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">|</span><span class="n">f</span><span class="p">(</span><span class="n">x_m</span><span class="p">)</span><span class="o">|</span> <span class="o">&gt;</span> <span class="n">tol2</span> <span class="o">&amp;&amp;</span> <span class="n">iterations</span> <span class="o">&lt;</span> <span class="n">max_iters</span>
 </pre></div>
+</div>
+<p>con <code class="docutils literal notranslate"><span class="pre">tol1</span></code>, <code class="docutils literal notranslate"><span class="pre">tol2</span></code> cantidades pequeñas y positivas (comúnmente menores o iguales a <span class="math notranslate nohighlight">\(10^{-8}\)</span>), <code class="docutils literal notranslate"><span class="pre">iterations</span></code> un contador de las iteraciones. También pueden utilizarse la medición entre iteraciones con los criterios descritos en <a class="reference internal" href="#critparo"><span class="std std-ref">criterios de paro, escala de la variable x y de la función f</span></a> y si se tiene conocimiento del valor de <span class="math notranslate nohighlight">\(x^*\)</span> se pueden calcular errores relativos de <code class="docutils literal notranslate"><span class="pre">x_k</span></code>.</p>
+<ul class="simple">
+<li><p>En la implementación del método hay que monitorear el valor absoluto de la derivada de <span class="math notranslate nohighlight">\(f\)</span>.</p></li>
+</ul>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observaciones</p>
@@ -1274,6 +1273,7 @@ con `tol1`, `tol2` cantidades pequeñas y positivas (comúnmente menores o igual
 </div></blockquote>
 <p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span> y <span class="math notranslate nohighlight">\(maxiter\)</span>.</p>
 </div></blockquote>
+<p>donde: <span class="math notranslate nohighlight">\(x_N\)</span> es la actualización por el método de Newton.</p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>Además de estrategias globales es común que no se tengan disponibles las derivadas de <span class="math notranslate nohighlight">\(f\)</span>, en este caso las metodologías de diferenciación finita son útiles, ver <a class="reference internal" href="../../I.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html#difnumdiffinitas"><span class="std std-ref">diferenciación numérica por diferencias finitas</span></a>.</p>
@@ -1404,13 +1404,18 @@ x_2 + 3x_1x_2^2-57 \nonumber
 <p class="admonition-title">Comentario</p>
 <p>Si <span class="math notranslate nohighlight">\(x^{(0)}\)</span> es cercano a la raíz <span class="math notranslate nohighlight">\(x^*\)</span> de <span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(J(x^*)\)</span> es no singular, no es mal condicionada y <span class="math notranslate nohighlight">\(J\)</span> es Lipschitz continua en una vecindad alrededor de <span class="math notranslate nohighlight">\(x^*\)</span> entonces el método de Newton multidimensional converge de forma cuadrática a <span class="math notranslate nohighlight">\(x^*\)</span>.</p>
 </div>
-<div class="admonition-comentario admonition">
-<p class="admonition-title">Comentario</p>
-<p>Aligual que en el caso de una dimensión, el criterio de paro es de la forma:</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Al igual que en el caso de una dimensión, el criterio de paro es de la forma:</p></li>
+</ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="o">||</span><span class="n">x_</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">x_k</span><span class="o">||</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">(</span><span class="o">||</span><span class="n">x_k</span><span class="o">||</span> <span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">|</span><span class="n">f</span><span class="p">(</span><span class="n">x_m</span><span class="p">)</span><span class="o">|</span> <span class="o">&gt;</span> <span class="n">tol2</span> <span class="o">&amp;&amp;</span> <span class="n">iterations</span> <span class="o">&lt;</span> <span class="n">max_iters</span>
 </pre></div>
 </div>
 <p>con <code class="docutils literal notranslate"><span class="pre">tol1</span></code>, <code class="docutils literal notranslate"><span class="pre">tol2</span></code> cantidades pequeñas y positivas (comúnmente menores o iguales a <span class="math notranslate nohighlight">\(10^{-8}\)</span>), <code class="docutils literal notranslate"><span class="pre">iterations</span></code> un contador de las iteraciones. También pueden utilizarse la medición entre iteraciones con los criterios descritos en <a class="reference internal" href="#critparo"><span class="std std-ref">criterios de paro, escala de la variable x y de la función f</span></a> y si se tiene conocimiento del valor de <span class="math notranslate nohighlight">\(x^*\)</span> se pueden calcular errores relativos de <code class="docutils literal notranslate"><span class="pre">x_k</span></code>.</p>
+<ul class="simple">
+<li><p>En la implementación del método hay que monitorear el número de condición de la Jacobiana de <span class="math notranslate nohighlight">\(f\)</span>.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="ejemplo-componentes-principales">
