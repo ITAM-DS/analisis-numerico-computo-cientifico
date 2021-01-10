@@ -672,7 +672,6 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 <div class="section" id="representacion-de-redes-matriz-de-adyacencia">
 <h2>Representación de redes: matriz de adyacencia<a class="headerlink" href="#representacion-de-redes-matriz-de-adyacencia" title="Permalink to this headline">¶</a></h2>
 <p>Nos ayuda a representar las adyacencias entre nodos. Almacena la red como una matriz <span class="math notranslate nohighlight">\(\mathcal{M}_{A}\)</span> de tamaño <span class="math notranslate nohighlight">\(n \times n\)</span> con <span class="math notranslate nohighlight">\(n\)</span> el número de nodos, tiene un renglón y columna por cada nodo. Su entrada <span class="math notranslate nohighlight">\(i,j\)</span> es igual a <span class="math notranslate nohighlight">\(1\)</span> si <span class="math notranslate nohighlight">\((i,j) \in \mathcal{A}\)</span> y <span class="math notranslate nohighlight">\(0\)</span> en otro caso.</p>
-<p>Si tenemos <span class="math notranslate nohighlight">\(m\)</span> arcos entonces <span class="math notranslate nohighlight">\(m\)</span> elementos de <span class="math notranslate nohighlight">\(\mathcal{M}_{A}\)</span> son distintos de cero. Si los arcos tienen costos o capacidades éstos se pueden almacenar en matrices del mismo tamaño siguiendo la misma representación anterior en la que se sustituye el <span class="math notranslate nohighlight">\(1\)</span> por el costo o capacidad.</p>
 <div class="section" id="id2">
 <h3>Ejemplo<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Para la red del ejemplo 1 anterior se tiene la función <code class="docutils literal notranslate"><span class="pre">adjacency_matrix</span></code> para una representación <em>sparse</em>:</p>
@@ -712,7 +711,7 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_47_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_47_0.png" />
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_48_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_48_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -775,7 +774,7 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_54_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_54_0.png" />
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_55_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_55_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -800,6 +799,10 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Obsérvese que se utiliza la función <code class="docutils literal notranslate"><span class="pre">todense</span></code> pues se almacena el <em>NumPy</em> <em>array</em> en formato <em>sparse</em>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">adjacency_matrix</span><span class="p">(</span><span class="n">G_ex_2</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
@@ -816,6 +819,10 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </pre></div>
 </div>
 </div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Observa que para una red no dirigida su matriz de adyacencia es simétrica.</p>
 </div>
 <p>Una representación de la matriz de adyacencia usando diccionarios es con la función <code class="docutils literal notranslate"><span class="pre">to_dict_of_dicts</span></code>:</p>
 <div class="cell docutils container">
@@ -842,18 +849,18 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </div>
 </div>
 </div>
-<div class="tip admonition">
-<p class="admonition-title">Observación</p>
-<p>Observa que para una red no dirigida su matriz de adyacencia es simétrica.</p>
-</div>
 </div>
 </div>
 <div class="section" id="representacion-de-redes-matriz-de-incidencia-nodo-arco">
 <h2>Representación de redes: matriz de incidencia nodo-arco<a class="headerlink" href="#representacion-de-redes-matriz-de-incidencia-nodo-arco" title="Permalink to this headline">¶</a></h2>
-<p>Nos ayuda a representar la red como una matriz <span class="math notranslate nohighlight">\(\mathcal{M}_{I}\)</span> de tamaño <span class="math notranslate nohighlight">\(n \times m\)</span> con <span class="math notranslate nohighlight">\(n\)</span> el número de nodos y <span class="math notranslate nohighlight">\(m\)</span> el número de arcos que contiene un renglón por cada nodo de la red y una columna por cada arco. La columna correspondiente al arco <span class="math notranslate nohighlight">\((i,j)\)</span> tiene el número <span class="math notranslate nohighlight">\(1\)</span> en el renglón correspondiente al nodo <span class="math notranslate nohighlight">\(i\)</span> y un <span class="math notranslate nohighlight">\(-1\)</span> en el renglón correspondiente al nodo <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<p>Nos ayuda a representar los arcos de una red como una matriz <span class="math notranslate nohighlight">\(\mathcal{M}_{I}\)</span> de tamaño <span class="math notranslate nohighlight">\(n \times m\)</span> con <span class="math notranslate nohighlight">\(n\)</span> el número de nodos y <span class="math notranslate nohighlight">\(m\)</span> el número de arcos que contiene un renglón por cada nodo de la red y una columna por cada arco. La columna correspondiente al arco <span class="math notranslate nohighlight">\((i,j)\)</span> tiene el número <span class="math notranslate nohighlight">\(1\)</span> en el renglón correspondiente al nodo <span class="math notranslate nohighlight">\(i\)</span> y un <span class="math notranslate nohighlight">\(-1\)</span> en el renglón correspondiente al nodo <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Multiplicamos por <span class="math notranslate nohighlight">\(-1\)</span> pues el resultado de la función <code class="docutils literal notranslate"><span class="pre">incidence_matrix</span></code> está volteado respecto a la definición de la matriz <span class="math notranslate nohighlight">\(\mathcal{I}\)</span>.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Obsérvese que se utiliza la función <code class="docutils literal notranslate"><span class="pre">todense</span></code> pues se almacena el <em>NumPy</em> <em>array</em> en formato <em>sparse</em>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -883,12 +890,8 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_66_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_66_0.png" />
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_69_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_69_0.png" />
 </div>
-</div>
-<div class="admonition-comentario admonition">
-<p class="admonition-title">Comentario</p>
-<p>Si consideramos a los renglones de la matriz de incidencia como vectores y hacemos la suma de los mismos entonces el resultado es cero, esto es equivalente a escribir que la matriz de incidencia no tiene <em>rank</em> igual a <span class="math notranslate nohighlight">\(n\)</span>. Puede verificarse que tiene <em>rank</em> igual a <span class="math notranslate nohighlight">\(n-1\)</span>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -908,6 +911,13 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </pre></div>
 </div>
 </div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Si consideramos a los renglones de la matriz de incidencia como vectores y hacemos la suma de los mismos entonces el resultado es cero, esto es equivalente a escribir que la matriz de incidencia no tiene <em>rank</em> igual a <span class="math notranslate nohighlight">\(n\)</span>. Puede verificarse que tiene <em>rank</em> igual a <span class="math notranslate nohighlight">\(n-1\)</span>.</p></li>
+<li><p>Sólo <span class="math notranslate nohighlight">\(2m\)</span> de las <span class="math notranslate nohighlight">\(nm\)</span> entradas son distintas de cero. Aún más, el número de <span class="math notranslate nohighlight">\(1\)</span>’s en un renglón equivale al <em>outdegree</em> del correspondiente nodo y el número de <span class="math notranslate nohighlight">\(-1\)</span>’s por renglón corresponde al <em>indegree</em> del nodo.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="subgraph">
