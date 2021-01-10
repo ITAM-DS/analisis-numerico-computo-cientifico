@@ -389,6 +389,39 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#representacion-de-redes-matriz-de-incidencia-nodo-arco">
+   Representación de redes: matriz de incidencia nodo-arco
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#subgraph">
+   <em>
+    Subgraph
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spanning-supbgraph">
+   <em>
+    Spanning supbgraph
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#walk">
+   <em>
+    Walk
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#path">
+   <em>
+    Path
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#algunas-aplicaciones-de-flujo-en-redes">
    Algunas aplicaciones de flujo en redes
   </a>
@@ -444,7 +477,7 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 </div>
 <div class="section" id="problemas-modelos-de-flujo-en-redes-aka-network-flow-problems-models-estandar">
 <h2>Problemas/Modelos de flujo en redes, <em>aka network flow problems/models</em>, estándar<a class="headerlink" href="#problemas-modelos-de-flujo-en-redes-aka-network-flow-problems-models-estandar" title="Permalink to this headline">¶</a></h2>
-<p>Un buen número de problemas de optimización de redes son en realidad tipos especiales de problemas de programación lineal, por ejemplo el <a class="reference internal" href="../../III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#ejprobtransporte"><span class="std std-ref">problema de transporte</span></a> en el que se resuelve cómo determinar la manera óptima de transportar bienes. Otro problema es el definido en un <strong>problema de asignación</strong> que incluye aplicaciones como la asignación de personas a tareas. Aunque los métodos clásicos del símplex o puntos interiores (ver <a class="reference internal" href="../../III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#intmetpin"><span class="std std-ref">introducción a los métodos de puntos interiores</span></a>) podrían utilizarse para resolver tales problemas, existen métodos especializados (como <a class="reference external" href="https://en.wikipedia.org/wiki/Network_simplex_algorithm">network simplex</a> o dual simplex) aplicados a redes que modelan tales problemas y tienen un mejor desempeño que los clásicos.</p>
+<p>Un buen número de problemas de optimización de redes son en realidad tipos especiales de problemas de <strong>programación lineal</strong>, por ejemplo el <a class="reference internal" href="../../III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#ejprobtransporte"><span class="std std-ref">problema de transporte</span></a> en el que se resuelve cómo determinar la manera óptima de transportar bienes. Otro problema es el definido en un <strong>problema de asignación</strong> que incluye aplicaciones como la asignación de personas a tareas. Aunque los métodos clásicos del símplex o puntos interiores (ver <a class="reference internal" href="../../III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#intmetpin"><span class="std std-ref">introducción a los métodos de puntos interiores</span></a>) podrían utilizarse para resolver tales problemas, existen métodos especializados (como <a class="reference external" href="https://en.wikipedia.org/wiki/Network_simplex_algorithm">network simplex</a> o dual simplex) aplicados a redes que modelan tales problemas y tienen un mejor desempeño que los clásicos.</p>
 <p>Es típico encontrar en la literatura el estudio de tres preguntas básicas relacionadas con problemas específicos:</p>
 <ol class="simple">
 <li><p><strong>Problema del camino o ruta más corta</strong>. ¿Cuál es la mejor manera para recorrer una red y llegar de un punto a otro de modo que sea lo más barato posible?</p></li>
@@ -469,11 +502,11 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 <h2>Redes dirigidas<a class="headerlink" href="#redes-dirigidas" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
-<p>Una red dirigida, <em>aka digraph</em>, <span class="math notranslate nohighlight">\(\mathcal{G} = (N, A)\)</span> consiste de un conjunto <span class="math notranslate nohighlight">\(N\)</span> de nodos (vértices, puntos) y un conjunto <span class="math notranslate nohighlight">\(A\)</span> de arcos (aristas, ramas, líneas) cuyos elementos son pares ordenados para nodos distintos.</p>
+<p>Una red dirigida, <em>aka digraph</em>, <span class="math notranslate nohighlight">\(\mathcal{G} = (\mathcal{N}, \mathcal{A})\)</span> consiste de un conjunto <span class="math notranslate nohighlight">\(\mathcal{N}\)</span> de nodos (vértices, puntos) y un conjunto <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> de arcos (aristas, ramas, líneas), <em>aka edges</em>, cuyos elementos son pares ordenados para nodos distintos.</p>
 </div>
 <div class="section" id="ejemplo">
 <h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
-<p>La siguiente red dirigida tiene como nodos <span class="math notranslate nohighlight">\(N = \{0, 1, 2, 3, 4, 5, 6\}\)</span> y arcos <span class="math notranslate nohighlight">\(A = \{(0,1), (0,2), (1,2), (1,3), (2,5), (3,4), (3,6), (4,1), (4,2), (4,6), (5,6) \}\)</span>.</p>
+<p>La siguiente red dirigida tiene como nodos <span class="math notranslate nohighlight">\(\mathcal{N} = \{0, 1, 2, 3, 4, 5, 6\}\)</span> y arcos <span class="math notranslate nohighlight">\(\mathcal{A} = \{(0,1), (0,2), (1,2), (1,3), (2,5), (3,4), (3,6), (4,1), (4,2), (4,6), (5,6) \}\)</span>.</p>
 <div class="cell tag_margin docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install --user --quiet networkx
@@ -535,15 +568,18 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 <ul class="simple">
 <li><p>El arco <span class="math notranslate nohighlight">\((i,j)\)</span> tiene dos <em>endpoints</em>: <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
 <li><p>El arco <span class="math notranslate nohighlight">\((i,j)\)</span> tiene <em>tail</em> <span class="math notranslate nohighlight">\(i\)</span> y <em>head</em> <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
-<li><p>El arco <span class="math notranslate nohighlight">\((i,j)\)</span> es incidente a los nodos <span class="math notranslate nohighlight">\(i,j\)</span>, emana del nodo <span class="math notranslate nohighlight">\(i\)</span> y termina en el nodo <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
-<li><p>El arco <span class="math notranslate nohighlight">\((i,j)\)</span> es un arco que sale de <span class="math notranslate nohighlight">\(i\)</span> y es un arco que entra a <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
+<li><p>El arco <span class="math notranslate nohighlight">\((i,j)\)</span> es incidente a los nodos <span class="math notranslate nohighlight">\(i,j\)</span>, sale (emana) del nodo <span class="math notranslate nohighlight">\(i\)</span> y termina (entra) en el nodo <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
 </ul>
 </div>
 </div>
 </div>
 <div class="section" id="grado-de-un-nodo">
 <h2>Grado de un nodo<a class="headerlink" href="#grado-de-un-nodo" title="Permalink to this headline">¶</a></h2>
-<p><em>indegree</em> es el número arcos que entran al nodo y <em>outdegree</em> es el número de arcos que salen al nodo. El grado de un nodo es la suma de su <em>indegree</em> y <em>outdegree</em>. Para el grafo anterior se tiene:</p>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>El <em>indegree</em> de un nodo es el número arcos que entran al nodo y su <em>outdegree</em> es el número de arcos que salen del mismo. El grado de un nodo es la suma de su <em>indegree</em> y <em>outdegree</em>.</p>
+</div>
+<p>Para el grafo anterior se tiene:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">G_ex_1</span><span class="p">))</span>
@@ -556,6 +592,7 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </div>
 </div>
 </div>
+<p>Entonces el nodo <span class="math notranslate nohighlight">\(0\)</span> tiene un grado de <span class="math notranslate nohighlight">\(2\)</span> y el nodo <span class="math notranslate nohighlight">\(6\)</span> de <span class="math notranslate nohighlight">\(3\)</span>.</p>
 </div>
 <div class="section" id="redes-no-dirigidas">
 <h2>Redes no dirigidas<a class="headerlink" href="#redes-no-dirigidas" title="Permalink to this headline">¶</a></h2>
@@ -569,7 +606,7 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </div>
 <div class="section" id="id1">
 <h3>Ejemplo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>La siguiente red no dirigida tiene como nodos <span class="math notranslate nohighlight">\(N = \{0, 1, 2, 3, 4, 5\}\)</span> y  arcos <span class="math notranslate nohighlight">\(A = \{(1,0), (0,2), (1,3), (4,1), (2, 3), (2, 4), (3, 5), (4, 5) \}\)</span>:</p>
+<p>La siguiente red no dirigida tiene como nodos <span class="math notranslate nohighlight">\(\mathcal{N} = \{0, 1, 2, 3, 4, 5\}\)</span> y arcos <span class="math notranslate nohighlight">\(\mathcal{A} = \{(1,0), (0,2), (1,3), (4,1), (2, 3), (2, 4), (3, 5), (4, 5) \}\)</span>:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nodes_pos_ex_2</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.09090909090909091</span><span class="p">,</span> <span class="mf">0.5454545454545454</span><span class="p">],</span>
@@ -608,19 +645,19 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_33_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_33_0.png" />
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_35_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_35_0.png" />
 </div>
 </div>
 <p>La red anterior tiene arcos con <strong>valores numéricos</strong> asociados que ayudan a representar típicamente costos, capacidades y/o suministro o demanda.</p>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
-<p>En la terminología de flujo en redes la capacidad de un arco es la cantidad máxima de flujo que puede circular en el mismo.</p>
+<p>En la terminología de flujo en redes, la capacidad de un arco es la cantidad máxima de flujo que puede circular en el mismo.</p>
 </div>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>Los arcos en una red no dirigida en ocasiones se les nombra ligaduras.</p></li>
-<li><p>Una red no dirigida puede convertirse en una dirigida sustituyendo sus ligaduras por dos arcos en direcciones opuestas entre el par de nodos involucrados. La interpretación en este caso puede ser un “flujo neto” entre ambos nodos. Por lo anterior las definiciones también son aplicables a redes no dirigidas por lo que las definiciones asumen que se tiene una red dirigida.</p></li>
+<li><p>Una red no dirigida puede convertirse en una dirigida sustituyendo sus ligaduras por dos arcos en direcciones opuestas entre el par de nodos involucrados. La interpretación en este caso puede ser un “flujo neto” entre ambos nodos. Por tanto, las definiciones también son aplicables a redes no dirigidas y las definiciones que se dan en esta nota <strong>asumen</strong> que se tiene una red dirigida.</p></li>
 </ul>
 </div>
 </div>
@@ -629,13 +666,13 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 <h2>Adyacencia<a class="headerlink" href="#adyacencia" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
-<p>Si existe un arco <span class="math notranslate nohighlight">\((i,j) \in A\)</span> entonces el nodo <span class="math notranslate nohighlight">\(j\)</span> es adyacente al nodo <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Si existe un arco <span class="math notranslate nohighlight">\((i,j) \in  \mathcal{A}\)</span> entonces el nodo <span class="math notranslate nohighlight">\(j\)</span> es adyacente al nodo <span class="math notranslate nohighlight">\(i\)</span>.</p>
 </div>
 </div>
 <div class="section" id="representacion-de-redes-matriz-de-adyacencia">
 <h2>Representación de redes: matriz de adyacencia<a class="headerlink" href="#representacion-de-redes-matriz-de-adyacencia" title="Permalink to this headline">¶</a></h2>
-<p>Nos ayuda a representar las adyacencias entre nodos. Almacena la red como una matriz de tamaño <span class="math notranslate nohighlight">\(n \times n\)</span> con <span class="math notranslate nohighlight">\(n\)</span> el número de nodos, tiene un renglón y columna por cada nodo. Su entrada <span class="math notranslate nohighlight">\(i,j\)</span> es igual a <span class="math notranslate nohighlight">\(1\)</span> si <span class="math notranslate nohighlight">\((i,j) \in A\)</span> y <span class="math notranslate nohighlight">\(0\)</span> en otro caso.</p>
-<p>Si tenemos <span class="math notranslate nohighlight">\(m\)</span> arcos entonces <span class="math notranslate nohighlight">\(m\)</span> elementos de la matriz de adyacencia son distintos de cero. Si los arcos tienen costos o capacidades éstos se pueden almacenar en matrices del mismo tamaño siguiendo la misma representación anterior en la que se sustituye el <span class="math notranslate nohighlight">\(1\)</span> por el costo o capacidad.</p>
+<p>Nos ayuda a representar las adyacencias entre nodos. Almacena la red como una matriz <span class="math notranslate nohighlight">\(\mathcal{M}_{A}\)</span> de tamaño <span class="math notranslate nohighlight">\(n \times n\)</span> con <span class="math notranslate nohighlight">\(n\)</span> el número de nodos, tiene un renglón y columna por cada nodo. Su entrada <span class="math notranslate nohighlight">\(i,j\)</span> es igual a <span class="math notranslate nohighlight">\(1\)</span> si <span class="math notranslate nohighlight">\((i,j) \in \mathcal{A}\)</span> y <span class="math notranslate nohighlight">\(0\)</span> en otro caso.</p>
+<p>Si tenemos <span class="math notranslate nohighlight">\(m\)</span> arcos entonces <span class="math notranslate nohighlight">\(m\)</span> elementos de <span class="math notranslate nohighlight">\(\mathcal{M}_{A}\)</span> son distintos de cero. Si los arcos tienen costos o capacidades éstos se pueden almacenar en matrices del mismo tamaño siguiendo la misma representación anterior en la que se sustituye el <span class="math notranslate nohighlight">\(1\)</span> por el costo o capacidad.</p>
 <div class="section" id="id2">
 <h3>Ejemplo<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Para la red del ejemplo 1 anterior se tiene la función <code class="docutils literal notranslate"><span class="pre">adjacency_matrix</span></code> para una representación <em>sparse</em>:</p>
@@ -675,7 +712,7 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_45_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_45_0.png" />
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_47_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_47_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -719,7 +756,7 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </div>
 </div>
 </div>
-<p>Podemos leer la matriz de adyacencia por renglón o columna. En el renglón <span class="math notranslate nohighlight">\(i\)</span> si nos encontramos con una entrada distinta de cero nos indica que en la red existe un arco dirigido que <strong>sale</strong> de <span class="math notranslate nohighlight">\(i\)</span>, esto es <span class="math notranslate nohighlight">\((i,j) \in A\)</span>. En la columna <span class="math notranslate nohighlight">\(j\)</span> si nos encontramos con una entrada distinta de cero nos indica que en la red existe un arco dirigido que <strong>entra</strong> al nodo <span class="math notranslate nohighlight">\(j\)</span>, esto es <span class="math notranslate nohighlight">\((i,j) \in A\)</span>.</p>
+<p>Podemos leer la matriz de adyacencia por renglón o columna. En el renglón <span class="math notranslate nohighlight">\(i\)</span> si nos encontramos con una entrada distinta de cero nos indica que en la red existe un arco dirigido que <strong>sale</strong> de <span class="math notranslate nohighlight">\(i\)</span>, esto es <span class="math notranslate nohighlight">\((i,j) \in \mathcal{A}\)</span>. En la columna <span class="math notranslate nohighlight">\(j\)</span> si nos encontramos con una entrada distinta de cero nos indica que en la red existe un arco dirigido que <strong>entra</strong> al nodo <span class="math notranslate nohighlight">\(j\)</span>, esto es <span class="math notranslate nohighlight">\((i,j) \in \mathcal{A}\)</span>.</p>
 </div>
 <div class="section" id="id3">
 <h3>Ejemplo<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
@@ -738,7 +775,7 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_52_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_52_0.png" />
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_54_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_54_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -810,6 +847,80 @@ You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upg
 <p>Observa que para una red no dirigida su matriz de adyacencia es simétrica.</p>
 </div>
 </div>
+</div>
+<div class="section" id="representacion-de-redes-matriz-de-incidencia-nodo-arco">
+<h2>Representación de redes: matriz de incidencia nodo-arco<a class="headerlink" href="#representacion-de-redes-matriz-de-incidencia-nodo-arco" title="Permalink to this headline">¶</a></h2>
+<p>Nos ayuda a representar la red como una matriz <span class="math notranslate nohighlight">\(\mathcal{M}_{I}\)</span> de tamaño <span class="math notranslate nohighlight">\(n \times m\)</span> con <span class="math notranslate nohighlight">\(n\)</span> el número de nodos y <span class="math notranslate nohighlight">\(m\)</span> el número de arcos que contiene un renglón por cada nodo de la red y una columna por cada arco. La columna correspondiente al arco <span class="math notranslate nohighlight">\((i,j)\)</span> tiene el número <span class="math notranslate nohighlight">\(1\)</span> en el renglón correspondiente al nodo <span class="math notranslate nohighlight">\(i\)</span> y un <span class="math notranslate nohighlight">\(-1\)</span> en el renglón correspondiente al nodo <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Multiplicamos por <span class="math notranslate nohighlight">\(-1\)</span> pues el resultado de la función <code class="docutils literal notranslate"><span class="pre">incidence_matrix</span></code> está volteado respecto a la definición de la matriz <span class="math notranslate nohighlight">\(\mathcal{I}\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">nx</span><span class="o">.</span><span class="n">incidence_matrix</span><span class="p">(</span><span class="n">G_ex_1</span><span class="p">,</span> <span class="n">oriented</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[[ 1.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+ [-1.  0.  1.  1.  0.  0.  0. -1.  0.  0.  0.]
+ [ 0. -1. -1.  0.  1.  0.  0.  0. -1.  0.  0.]
+ [ 0.  0.  0. -1.  0.  1.  1.  0.  0.  0.  0.]
+ [ 0.  0.  0.  0.  0. -1.  0.  1.  1.  1.  0.]
+ [ 0.  0.  0.  0. -1.  0.  0.  0.  0.  0.  1.]
+ [ 0.  0.  0.  0.  0.  0. -1.  0.  0. -1. -1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G_ex_1</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">nodes_pos_ex_1</span><span class="p">,</span>
+        <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_66_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_66_0.png" />
+</div>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Si consideramos a los renglones de la matriz de incidencia como vectores y hacemos la suma de los mismos entonces el resultado es cero, esto es equivalente a escribir que la matriz de incidencia no tiene <em>rank</em> igual a <span class="math notranslate nohighlight">\(n\)</span>. Puede verificarse que tiene <em>rank</em> igual a <span class="math notranslate nohighlight">\(n-1\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">incidence_matrix</span><span class="p">(</span><span class="n">G_ex_1</span><span class="p">,</span> <span class="n">oriented</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="subgraph">
+<h2><em>Subgraph</em><a class="headerlink" href="#subgraph" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="spanning-supbgraph">
+<h2><em>Spanning supbgraph</em><a class="headerlink" href="#spanning-supbgraph" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="walk">
+<h2><em>Walk</em><a class="headerlink" href="#walk" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="path">
+<h2><em>Path</em><a class="headerlink" href="#path" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="algunas-aplicaciones-de-flujo-en-redes">
 <h2>Algunas aplicaciones de flujo en redes<a class="headerlink" href="#algunas-aplicaciones-de-flujo-en-redes" title="Permalink to this headline">¶</a></h2>
