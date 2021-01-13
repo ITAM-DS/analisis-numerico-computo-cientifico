@@ -1,16 +1,16 @@
 # Objetivo
 
-Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de un método numérico para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
+Que l@s estudiantes refuercen la teoría vista en el curso con la investigación y/o implementación de métodos numéricos para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
 
 # Descripción
 
 ## Generalidades
 
-Cada equipo realiza una investigación del método numérico elegido para su estudio, reporte en un trabajo escrito, presentación e implementación para resolver el problema definido por el equipo en el marco del objetivo anterior. La definición del problema se discute entre los integrantes del equipo y con el profesor. Juntos determinan el tiempo que requieren para la entrega del proyecto, para ello, el equipo debe establecer las fechas que realizarán trabajo, siendo parte fundamental para el éxito del mismo. Más indicaciones respecto a esto último se encuentran en [indicaciones](indicaciones).
+Cada equipo realiza una investigación de los métodos numéricos elegido para su estudio, reporte en un trabajo escrito, presentación e implementación para resolver el problema definido por el equipo en el marco del objetivo anterior. La definición del problema se discute entre los integrantes del equipo y con el profesor. Juntos determinan el tiempo que requieren para la entrega del proyecto, para ello, el equipo debe establecer las fechas que realizarán trabajo, siendo parte fundamental para el éxito del mismo. Más indicaciones respecto a esto último se encuentran en [indicaciones](indicaciones).
 
-## Implementación
+## Investigación y/o implementación
 
-La implementación de los métodos numéricos es fundamental para el proyecto. 
+La investigación y/o implementación de los métodos numéricos es fundamental para el proyecto. 
 
 Para el proyecto final se utilizará:
 
