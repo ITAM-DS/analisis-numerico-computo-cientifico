@@ -1,6 +1,6 @@
 # Objetivo
 
-Que l@s estudiantes refuercen la teoría vista en el curso con la investigación y/o implementación de métodos numéricos para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
+Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de métodos numéricos para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
 
 # Descripción
 
@@ -10,7 +10,7 @@ Cada equipo realiza una investigación de los métodos numéricos elegidos para 
 
 ## Investigación y/o implementación
 
-La investigación y/o implementación de los métodos numéricos es fundamental para el proyecto. 
+La investigación e implementación de los métodos numéricos es fundamental para el proyecto. 
 
 Para el proyecto final se utilizará:
 
@@ -24,8 +24,9 @@ Para el proyecto final se utilizará:
 
 * Organización del equipo en una forma simplificada del framework [scrum](https://www.youtube.com/watch?v=b02ZkndLk1Y&feature=emb_logo) en tres grupos: grupo de programación, grupo de revisión y una persona *project manager*.
 
-
 Tiene un porcentaje de 40% y la calificación es por equipo. Se entrega el código de la implementación en una liga a ella, más información sobre esta liga en [indicaciones](indicaciones).
+
+**La implementación consiste en hacer desde cero los programas o bien utilizar herramientas hechas por la comunidad científica haciendo una explicación de la misma.**
 
 ## Trabajo escrito
 
@@ -66,7 +67,7 @@ La calificación se conforma de los porcentajes anteriores:
 
 * Presentación individual (10%) y por equipo (5%).
 
-* Implementación del método numérico por equipo (40%).
+* Investigación e implementación del método numérico por equipo (40%).
 
 El porcentaje del proyecto de acuerdo a la primera clase del curso tiene un porcentaje del `40%` de la **calificación final**.
 
