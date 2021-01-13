@@ -12,9 +12,9 @@
 
 Las clases son los días miércoles.
 
-| Días   | Tema                                                              |
+| Semanas   | Tema                                                              |
 | :--------:|:-----------------------------------------------------------------:|
-| "" de ""|""| 
+| Semana 1 ( x - y de m) |""|
 
 Total de clases: "". Total de número de horas: "" hrs.
 
