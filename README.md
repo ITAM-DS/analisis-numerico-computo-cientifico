@@ -6,9 +6,9 @@ Este es el repositorio para los cursos de **optimización** y **optimización av
 
 ### Dar click en [temario-opt-2](https://drive.google.com/file/d/17ydFChBFxxAOzsIPwUu90KR01zRXdCNZ/view?usp=sharing) para el temario de optimización avanzada.
 
-### Dar click en [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) para una presentación de introducción al curso de optimización 2020.
+### Dar click en [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) para una presentación de introducción al curso de optimización 2020 semestre agosto-dic.
 
-### Dar click en [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/)
+### Dar click en [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) para una presentación de introducción al curso de optimización 2021 semestre enero-mayo.
 
 ### Se ha creado el siguiente libro\* con el contenido de los temas en [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) para su consulta. Este libro seguiremos a lo largo del curso.
 
@@ -23,9 +23,9 @@ Este es el repositorio para los cursos de **optimización** y **optimización av
 \* Tal imagen de docker se descarga con un `docker pull palmoreck/jupyterlab_optimizacion:3.0.0` desde la terminal una vez hayan instalado docker en sus computadoras y posteriormente hacer un `docker run` de acuerdo a la documentación de la imagen. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
 
 
-### Organización de github classroom para el semestre agosto-diciembre 2020
+### Organización de github classroom para el semestre enero-mayo 2021
 
-La organización [optimizacion-2020-2-gh-classroom](https://github.com/optimizacion-2020-2-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas del semestre agosto-diciembre 2020. Ver [github education](https://github.com/education) como una referencia.
+La organización [optimizacion-2-2021-1-gh-classroom](https://github.com/optimizacion-2-2021-1-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas del semestre agosto-diciembre 2020. Ver [github education](https://github.com/education) como una referencia.
 
 ## Ramas del repositorio.
 
