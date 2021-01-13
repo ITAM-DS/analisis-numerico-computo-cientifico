@@ -6,9 +6,9 @@ Este es el repositorio para los cursos de **optimización** y **optimización av
 
 ### Dar click en [temario-opt-2](https://drive.google.com/file/d/17ydFChBFxxAOzsIPwUu90KR01zRXdCNZ/view?usp=sharing) para el temario de optimización avanzada.
 
-### Dar click en [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) para una presentación de introducción al curso de optimización 2020 semestre agosto-dic.
+### Dar click en [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) para una presentación de introducción al curso de optimización semestre agosto-dic 2020.
 
-### Dar click en [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) para una presentación de introducción al curso de optimización 2021 semestre enero-mayo.
+### Dar click en [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) para una presentación de introducción al curso de optimización avanzada semestre enero-mayo 2021.
 
 ### Se ha creado el siguiente libro\* con el contenido de los temas en [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) para su consulta. Este libro seguiremos a lo largo del curso.
 
@@ -35,7 +35,7 @@ En este repositorio se han creado diferentes ramas que pueden ser accesadas como
 
 Seleccionar por ejemplo la rama **mno-2019-1** (u otra) para información del curso de MNO de 2019.
 
-**Dar click en [liga](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2020-2) para la rama del curso del semestre agosto-diciembre 2020.**
+**Dar click en [optimizacion-2-2021-1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/optimizacion-2-2021-1) para la rama del curso del semestre agosto-diciembre 2020.**
 
 La rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/gh-pages) contiene los `html`s para visualización del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/).
 
