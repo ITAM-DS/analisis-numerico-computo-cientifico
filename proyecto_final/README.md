@@ -1,6 +1,6 @@
 # Objetivo
 
-Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de un método numérico para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
+Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de un método numérico para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
 
 # Descripción
 
