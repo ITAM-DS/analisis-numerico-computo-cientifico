@@ -2,7 +2,7 @@
 
 ### [Temario](https://drive.google.com/file/d/17ydFChBFxxAOzsIPwUu90KR01zRXdCNZ/view?usp=sharing)
 
-### El curso, calificación y entregas, correo al cual escribir en el documento [generalidades_curso_de_optimizacion.md](generalidades_curso_de_optimizacion.md)
+### El curso, calificación y entregas, correo al cual escribir en el documento [generalidades_curso_de_optimizacion_avanzada.md](generalidades_curso_de_optimizacion_avanzada.md)
 
 ### Dar click en el siguiente botón para unirse\* al chat del semestre "" en [gitter](https://gitter.im/): "" 
 
@@ -19,7 +19,7 @@ Las clases son los días miércoles.
 Total de clases: "". Total de número de horas: "" hrs.
 
 
-[Equipos de optimización]()
+[Equipos de optimización avanzada]()
 
 ### [Lista de estudiantes con calificaciones]()
 
