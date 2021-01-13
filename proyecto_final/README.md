@@ -67,7 +67,7 @@ La calificación se conforma de los porcentajes anteriores:
 
 * Presentación individual (10%) y por equipo (5%).
 
-* Investigación e implementación del método numérico por equipo (40%).
+* Investigación e implementación del (los) método(s) numérico(s) por equipo (40%).
 
 El porcentaje del proyecto de acuerdo a la primera clase del curso tiene un porcentaje del `40%` de la **calificación final**.
 
