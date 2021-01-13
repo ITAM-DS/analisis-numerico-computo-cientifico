@@ -2,11 +2,13 @@
 
 Este es el repositorio para los cursos de **optimización** y **optimización avanzada** impartida en la maestría de ciencia de datos del ITAM por el **Prof. Erick Palacios Moreno**, github: [palmoreck](https://github.com/palmoreck).
 
-### Dar click en [liga](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) para el temario de optimización.
+### Dar click en [temario-opt](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) para el temario de optimización.
 
-### Dar click en [liga]() para el temario de optimización avanzada.
+### Dar click en [temario-opt-2](https://drive.google.com/file/d/17ydFChBFxxAOzsIPwUu90KR01zRXdCNZ/view?usp=sharing) para el temario de optimización avanzada.
 
-### Dar click en [liga2](https://hackmd.io/@palmoreck/Hkr5rVQ-v) para una presentación de introducción al curso de optimización 2020.
+### Dar click en [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) para una presentación de introducción al curso de optimización 2020.
+
+### Dar click en [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/)
 
 ### Se ha creado el siguiente libro\* con el contenido de los temas en [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) para su consulta. Este libro seguiremos a lo largo del curso.
 
