@@ -4,7 +4,7 @@ Este es el repositorio para los cursos de **optimización** y **optimización av
 
 ### Dar click en [liga](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) para el temario de optimización.
 
-### Dar click en [liga]() para el temario de optimización 2.
+### Dar click en [liga]() para el temario de optimización avanzada.
 
 ### Dar click en [liga2](https://hackmd.io/@palmoreck/Hkr5rVQ-v) para una presentación de introducción al curso de optimización 2020.
 
@@ -12,11 +12,11 @@ Este es el repositorio para los cursos de **optimización** y **optimización av
 
 \*El libro fue creado con [jupyter book](https://jupyterbook.org/intro.html).
 
-### Dar click en el siguiente botón para unirse\* al chat del curso de optimización del primer semestre 2021 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2021-1/community.svg)](https://gitter.im/optimizacion-2-2021-1/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+### Dar click en el siguiente botón para unirse\* al chat del curso de optimización avanzada del primer semestre 2021 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2021-1/community.svg)](https://gitter.im/optimizacion-2-2021-1/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 \***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
 
-### En el curso de optimización 2 utilizaremos la imagen de [docker](https://www.docker.com/) `palmoreck/jupyterlab_optimizacion_2:3.0.0` cuya documentación la encuentran en [aquí](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2)\*. 
+### En el curso de optimización avanzada utilizaremos la imagen de [docker](https://www.docker.com/) `palmoreck/jupyterlab_optimizacion_2:3.0.0` cuya documentación la encuentran en [aquí](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2)\*. 
 
 \* Tal imagen de docker se descarga con un `docker pull palmoreck/jupyterlab_optimizacion:3.0.0` desde la terminal una vez hayan instalado docker en sus computadoras y posteriormente hacer un `docker run` de acuerdo a la documentación de la imagen. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
 
