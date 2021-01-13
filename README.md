@@ -21,7 +21,7 @@ Total de clases: "". Total de número de horas: "" hrs.
 
 [Equipos de optimización]()
 
-[Lista de estudiantes con calificaciones]()
+### [Lista de estudiantes con calificaciones]()
 
 [Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
 
