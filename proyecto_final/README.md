@@ -87,6 +87,4 @@ La siguiente lista no pretende ser exhaustiva.
 
 * Sistemas de ecuaciones diferenciales.
 
-* Algoritmos basados en árboles o grafos.
-
  **Los métodos numéricos deben ser utilizados en problemas de optimización numérica y en aplicaciones de áreas detalladas al inicio.**
