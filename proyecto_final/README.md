@@ -33,6 +33,8 @@ El trabajo escrito consiste en el reporte de la investigación realizada y los r
 
 Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega **una semana antes** de la fecha del examen final en un 95% completo.
 
+**Es indispensable que se describan y planteen el/los problemas de optimización a resolver en el trabajo escrito**.
+
 
 ## Presentación
 
