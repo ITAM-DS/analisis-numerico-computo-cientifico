@@ -1,16 +1,16 @@
 # Objetivo
 
-Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de un método numérico para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
+Que l@s estudiantes refuercen la teoría vista en el curso con la investigación y/o implementación de métodos numéricos para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
 
 # Descripción
 
 ## Generalidades
 
-Cada equipo realiza una investigación del método numérico elegido para su estudio, reporte en un trabajo escrito, presentación e implementación para resolver el problema definido por el equipo en el marco del objetivo anterior. La definición del problema se discute entre los integrantes del equipo y con el profesor. Juntos determinan el tiempo que requieren para la entrega del proyecto, para ello, el equipo debe establecer las fechas que realizarán trabajo, siendo parte fundamental para el éxito del mismo. Más indicaciones respecto a esto último se encuentran en [indicaciones](indicaciones).
+Cada equipo realiza una investigación de los métodos numéricos elegidos para su estudio, reporte en un trabajo escrito, presentación e implementación para resolver el problema definido por el equipo en el marco del objetivo anterior. La definición del problema se discute entre los integrantes del equipo y con el profesor. Juntos determinan el tiempo que requieren para la entrega del proyecto, para ello, el equipo debe establecer las fechas que realizarán trabajo, siendo parte fundamental para el éxito del mismo. Más indicaciones respecto a esto último se encuentran en [indicaciones](indicaciones).
 
-## Implementación
+## Investigación y/o implementación
 
-La implementación de los métodos numéricos es fundamental para el proyecto. 
+La investigación y/o implementación de los métodos numéricos es fundamental para el proyecto. 
 
 Para el proyecto final se utilizará:
 
@@ -20,7 +20,7 @@ Para el proyecto final se utilizará:
 
 * docker.
 
-* Python/R o algún otro lenguaje de programación.
+* Python/R o algún otro lenguaje de programación y paquetes para cómputo en paralelo o compilación a C.
 
 * Organización del equipo en una forma simplificada del framework [scrum](https://www.youtube.com/watch?v=b02ZkndLk1Y&feature=emb_logo) en tres grupos: grupo de programación, grupo de revisión y una persona *project manager*.
 
@@ -33,6 +33,7 @@ El trabajo escrito consiste en el reporte de la investigación realizada y los r
 
 Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega **una semana antes** de la fecha del examen final en un 95% completo.
 
+**Es indispensable que se describan y planteen el/los problemas de optimización a resolver en el trabajo escrito**.
 
 ## Presentación
 
@@ -75,16 +76,20 @@ El porcentaje del proyecto de acuerdo a la primera clase del curso tiene un porc
 
 La siguiente lista no pretende ser exhaustiva.
 
-* Reglas de integración.
+* Algoritmos basados en árboles o grafos para optimización de redes.
 
-* Factorización de matrices: qr, svd.
+* Método de símplex.
 
-* Cálculo de eigenvalores, eigenvectores.
+* Método de puntos interiores, barrera logarítmica.
 
-* Mínimos cuadrados.
+* Métodos Cuasi Newton.
 
-* Componentes principales.
+* Método de gradiente conjugado.
 
-* Sistemas de ecuaciones diferenciales.
+* Método de región de confianza.
+
+* Método de Gauss-Newton.
+
+* Método de Levenberg–Marquardt.
 
  **Los métodos numéricos deben ser utilizados en problemas de optimización numérica y en aplicaciones de áreas detalladas al inicio.**

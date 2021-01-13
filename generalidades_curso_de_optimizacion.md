@@ -1,4 +1,4 @@
-# Optimización
+# Optimización avanzada
 
 ## Prof. Erick Palacios Moreno
 
@@ -19,26 +19,16 @@ El curso se apoya de herramientas de software como:
 * Lenguajes de programación de Python y R. Ver [curso de verano](https://github.com/ITAM-DS/Propedeutico#%C3%ADndice-de-notas) para información sobre estos lenguajes.
 
 
-
-
 ## Calificación
 
-|Exámenes(2)| Prácticas(2)|Proyecto final|
+|Exámenes(1)| Prácticas(2)|Proyecto final|
 |:---:|:---:|:---:|
-|15|15|40|
+|20|20|40|
 
 
 ### Exámenes
 
-Se tendrán 2 exámenes de teoría que evaluarán los siguientes temas:
-
-|Tema| Puntos| Tipo|
-|:---:|:---:|:---:|
-|Temas del Cómputo Científico y del Álgebra Lineal Numérica|15|Teórico|
-|Temas de ecuaciones no lineales y Optimización|15|Teórico|
-
-
-Los exámenes de teoría se realizan de forma individual y las preguntas de los mismos se basan en las preguntas de comprehensión de los temas indicados. 
+Se tendrá únicamente 1 examen de teoría. Se realiza de forma individual y las preguntas del mismo se basa en las preguntas de comprehensión de los temas indicados. 
 
 
 ### Prácticas
@@ -47,14 +37,14 @@ Se realizarán dos prácticas por equipos (quiénes y cuántos integrantes se de
 
 |Tema| Puntos|
 |:---:|:---:|
-|Temas del Cómputo Científico y del Álgebra Lineal Numérica|15|
-|Temas de ecuaciones no lineales y Optimización|15|
+|Temas de optimización de redes y programación lineal|20|
+|Temas de algoritmos de optimización convexa y optimización de código|20|
 
 **La fecha de entrega de las prácticas se determinará conforme avancemos en el curso pero un buen indicador es que vayamos terminando los temas.**
 
 Para las prácticas se utilizarán:
 
-* La organización [optimizacion-2020-2-gh-classroom](https://github.com/optimizacion-2020-2-gh-classroom) de *github classroom* y tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, *issues*, *milestones*, *projects*).
+* La organización [optimizacion-<>-gh-classroom]() de *github classroom* y tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, *issues*, *milestones*, *projects*).
 
 * git/github para la organización de proyectos. Ver por ejemplo [video para crear proyectos en github](https://youtu.be/z4Xpif7HI04)
 
@@ -62,7 +52,7 @@ Para las prácticas se utilizarán:
 
 * docker.
 
-* Python/R.
+* Python/R o algún otro lenguaje de programación y paquetes para cómputo en paralelo o compilación a C.
 
 * Organización del equipo en una forma simplificada del framework [scrum](https://www.youtube.com/watch?v=b02ZkndLk1Y&feature=emb_logo) en tres grupos: grupo de programación, grupo de revisión y una persona *project manager*.
 
@@ -85,7 +75,7 @@ Para el proyecto final se utilizará:
 
 * docker.
 
-* Python/R.
+* Python/R o algún otro lenguaje de programación y paquetes para cómputo en paralelo o compilación a C.
 
 * Organización del equipo en una forma simplificada del framework [scrum](https://www.youtube.com/watch?v=b02ZkndLk1Y&feature=emb_logo) en tres grupos: grupo de programación, grupo de revisión y una persona *project manager*.
 

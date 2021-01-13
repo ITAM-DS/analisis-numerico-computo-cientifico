@@ -1,6 +1,6 @@
-# Optimización
+# Optimización avanzada
 
-### [Temario](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing)
+### [Temario](https://drive.google.com/file/d/17ydFChBFxxAOzsIPwUu90KR01zRXdCNZ/view?usp=sharing)
 
 ### El curso, calificación y entregas, correo al cual escribir en el documento [generalidades_curso_de_optimizacion.md](generalidades_curso_de_optimizacion.md)
 
@@ -21,7 +21,7 @@ Total de clases: "". Total de número de horas: "" hrs.
 
 [Equipos de optimización]()
 
-[Lista de estudiantes con calificaciones]()
+### [Lista de estudiantes con calificaciones]()
 
 [Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
 
