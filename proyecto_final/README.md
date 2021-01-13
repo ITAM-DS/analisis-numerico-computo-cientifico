@@ -68,7 +68,7 @@ La calificación se conforma de los porcentajes anteriores:
 
 * Presentación individual (10%) y por equipo (5%).
 
-* Investigación e implementación del método numérico por equipo (40%).
+* Investigación e implementación del (los) método(s) numérico(s) por equipo (40%).
 
 El porcentaje del proyecto de acuerdo a la primera clase del curso tiene un porcentaje del `40%` de la **calificación final**.
 
@@ -88,6 +88,8 @@ La siguiente lista no pretende ser exhaustiva.
 
 * Componentes principales.
 
-* Sistemas de ecuaciones diferenciales.
+* Métodos para resolver sistemas de ecuaciones lineales o ecuaciones diferenciales.
+
+* Métodos para resolver ecuaciones no lineales.
 
  **Los métodos numéricos deben ser utilizados en problemas de optimización numérica y en aplicaciones de áreas detalladas al inicio.**
