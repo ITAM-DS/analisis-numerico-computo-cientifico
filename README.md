@@ -4,7 +4,7 @@
 
 ### El curso, calificación y entregas, correo al cual escribir en el documento [generalidades_curso_de_optimizacion_avanzada.md](generalidades_curso_de_optimizacion_avanzada.md)
 
-### Dar click en el siguiente botón para unirse\* al chat del semestre "" en [gitter](https://gitter.im/): "" 
+### Dar click en el siguiente botón para unirse\* al chat del semestre enero mayo 2021 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2021-1/community.svg)](https://gitter.im/optimizacion-2-2021-1/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 \*Se puede hacer el registro con su cuenta de [github](https://github.com/).
 
@@ -57,5 +57,8 @@ Total de clases: 17. Total de número de horas: 45 hrs.
 
 ## Clase 1
 
-"" de ""
+13 de enero
+
+Introducción al curso, formas de calificar, dinámica.
+Repaso hasta la nota [3.1 Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#)
 
