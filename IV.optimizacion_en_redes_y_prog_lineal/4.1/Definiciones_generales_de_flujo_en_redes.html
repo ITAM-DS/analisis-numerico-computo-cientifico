@@ -626,9 +626,21 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ejemplos-de-problemas-modelos-estandar-de-flujo-en-redes">
-   Ejemplos de problemas/modelos estándar de flujo en redes
+  <a class="reference internal nav-link" href="#ejemplo-de-problemas-modelos-estandar-de-flujo-en-redes">
+   Ejemplo de problemas/modelos estándar de flujo en redes
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ruta-mas-corta">
+     Ruta más corta
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flujo-maximo">
+     Flujo máximo
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#algunas-aplicaciones-de-flujo-en-redes">
@@ -2153,12 +2165,216 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Un <em>spanning tree</em>* tiene <span class="math notranslate nohighlight">\(n-1\)</span> cortes fundamentales respecto a cualquier red.</p>
+<p>Un <em>spanning tree</em> tiene <span class="math notranslate nohighlight">\(n-1\)</span> cortes fundamentales respecto a cualquier red.</p>
 </div>
 </div>
 </div>
-<div class="section" id="ejemplos-de-problemas-modelos-estandar-de-flujo-en-redes">
-<h2>Ejemplos de problemas/modelos estándar de flujo en redes<a class="headerlink" href="#ejemplos-de-problemas-modelos-estandar-de-flujo-en-redes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ejemplo-de-problemas-modelos-estandar-de-flujo-en-redes">
+<h2>Ejemplo de problemas/modelos estándar de flujo en redes<a class="headerlink" href="#ejemplo-de-problemas-modelos-estandar-de-flujo-en-redes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ruta-mas-corta">
+<h3>Ruta más corta<a class="headerlink" href="#ruta-mas-corta" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nodes_pos</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5454545454545454</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.09090909090909091</span><span class="p">,</span> <span class="mf">0.7272727272727273</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.2727272727272727</span><span class="p">,</span> <span class="mf">0.5454545454545454</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.18181818181818182</span><span class="p">,</span> <span class="mf">0.36363636363636365</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.6363636363636364</span><span class="p">,</span> <span class="mf">0.5454545454545454</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.5454545454545454</span><span class="p">,</span> <span class="mf">0.36363636363636365</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.8181818181818182</span><span class="p">,</span> <span class="mf">0.6363636363636364</span><span class="p">]]</span>
+
+<span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span> <span class="p">]</span>
+
+<span class="n">nodes_and_pos</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">nodes_pos</span><span class="p">))</span>
+
+<span class="n">G_shortest_path</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span> 
+<span class="n">G_shortest_path</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+
+<span class="n">edge_labels</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span>
+               <span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">):</span> <span class="mi">5</span><span class="p">,</span>
+               <span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+               <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span>
+               <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="mi">7</span><span class="p">,</span>
+               <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+               <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span>               
+               <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+               <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+               <span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+               <span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">):</span> <span class="mi">5</span><span class="p">,</span>
+               <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">):</span> <span class="mi">7</span>
+              <span class="p">}</span> 
+<span class="n">G_shortest_path</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edge_labels</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G_shortest_path</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">G_shortest_path</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">G_shortest_path</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels</span><span class="p">[(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_shortest_path</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">min_source_margin</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                       <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_shortest_path</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">,</span>
+                             <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_shortest_path</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_shortest_path</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_223_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_223_0.png" />
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Ver <a class="reference external" href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.shortest_path.html#networkx.algorithms.shortest_paths.generic.shortest_path">shortest_path</a></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">G_shortest_path</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span>
+                       <span class="n">target</span><span class="o">=</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;O&#39;, &#39;A&#39;, &#39;B&#39;, &#39;D&#39;, &#39;T&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="flujo-maximo">
+<h3>Flujo máximo<a class="headerlink" href="#flujo-maximo" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_maximum_flow</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span> 
+<span class="n">G_maximum_flow</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+
+<span class="n">edge_capacities</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">):</span> <span class="mi">5</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">):</span> <span class="mi">7</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="mi">5</span><span class="p">,</span>               
+                   <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">):</span> <span class="mi">2</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">):</span> <span class="mi">9</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">):</span> <span class="mi">6</span>
+                  <span class="p">}</span> 
+<span class="n">G_maximum_flow</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edge_capacities</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G_maximum_flow</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">G_maximum_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_capacities</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">G_maximum_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_capacities</span><span class="p">[(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_maximum_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> 
+                       <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_maximum_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_capacities</span><span class="p">,</span>
+                             <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_maximum_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_maximum_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_227_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_227_0.png" />
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Ver <a class="reference external" href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.flow.maximum_flow.html">maximum_flow</a></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flow_value</span><span class="p">,</span> <span class="n">flow_dict</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">maximum_flow</span><span class="p">(</span><span class="n">G_maximum_flow</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">flow_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">flow_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;A&#39;: {&#39;B&#39;: 1, &#39;D&#39;: 3},
+ &#39;B&#39;: {&#39;C&#39;: 0, &#39;D&#39;: 4, &#39;E&#39;: 3},
+ &#39;C&#39;: {&#39;E&#39;: 4},
+ &#39;D&#39;: {&#39;T&#39;: 8},
+ &#39;E&#39;: {&#39;D&#39;: 1, &#39;T&#39;: 6},
+ &#39;O&#39;: {&#39;A&#39;: 4, &#39;B&#39;: 6, &#39;C&#39;: 4},
+ &#39;T&#39;: {}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_maximum_flow_solution</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span> 
+<span class="n">G_maximum_flow_solution</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+
+<span class="n">edge_capacities</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">):</span> <span class="mi">6</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span>               
+                   <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">):</span> <span class="mi">8</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
+                   <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">):</span> <span class="mi">6</span>
+                  <span class="p">}</span> 
+<span class="n">G_maximum_flow_solution</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edge_capacities</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G_maximum_flow_solution</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">G_maximum_flow_solution</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_capacities</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">G_maximum_flow_solution</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_capacities</span><span class="p">[(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_maximum_flow_solution</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> 
+                       <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_maximum_flow_solution</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_capacities</span><span class="p">,</span>
+                             <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_maximum_flow_solution</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_maximum_flow_solution</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_232_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_232_0.png" />
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="algunas-aplicaciones-de-flujo-en-redes">
 <h2>Algunas aplicaciones de flujo en redes<a class="headerlink" href="#algunas-aplicaciones-de-flujo-en-redes" title="Permalink to this headline">¶</a></h2>
