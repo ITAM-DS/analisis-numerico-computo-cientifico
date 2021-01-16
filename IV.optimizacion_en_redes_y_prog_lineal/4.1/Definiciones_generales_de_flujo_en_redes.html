@@ -2253,7 +2253,7 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 </div>
 <div class="section" id="flujo-maximo">
 <h3>Flujo máximo<a class="headerlink" href="#flujo-maximo" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_maximum_flow</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span> 
 <span class="n">G_maximum_flow</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
@@ -2272,11 +2272,9 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
                    <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">):</span> <span class="mi">6</span>
                   <span class="p">}</span> 
 <span class="n">G_maximum_flow</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edge_capacities</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G_maximum_flow</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">G_maximum_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_capacities</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="n">G_maximum_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_capacities</span><span class="p">[(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+    <span class="n">G_maximum_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_capacities</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_maximum_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
@@ -2338,12 +2336,12 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 </div>
 </div>
 <p>Red solución:</p>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_maximum_flow_solution</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span> 
 <span class="n">G_maximum_flow_solution</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
 
-<span class="n">edge_capacities</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+<span class="n">edge_flows</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
                    <span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">):</span> <span class="mi">6</span><span class="p">,</span>
                    <span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
                    <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
@@ -2355,19 +2353,14 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
                    <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="mi">1</span><span class="p">,</span>
                    <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">):</span> <span class="mi">6</span>
                   <span class="p">}</span> 
-<span class="n">G_maximum_flow_solution</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edge_capacities</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G_maximum_flow_solution</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">G_maximum_flow_solution</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_capacities</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="n">G_maximum_flow_solution</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_capacities</span><span class="p">[(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+<span class="n">G_maximum_flow_solution</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edge_flows</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_maximum_flow_solution</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> 
                        <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_maximum_flow_solution</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
-                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_capacities</span><span class="p">,</span>
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_flows</span><span class="p">,</span>
                              <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_maximum_flow_solution</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_maximum_flow_solution</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
@@ -2397,11 +2390,11 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 
 <span class="n">G_min_cost_flow</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
 
-<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="s2">&quot;A 50&quot;</span><span class="p">)</span>
-<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="s2">&quot;B 40&quot;</span><span class="p">)</span>
-<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="s2">&quot;E -60&quot;</span><span class="p">)</span>
-<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="s2">&quot;D -30&quot;</span><span class="p">)</span>
-<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="s2">&quot;C 0&quot;</span><span class="p">)</span>
+<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="o">-</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="o">-</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="mi">60</span><span class="p">)</span>
 
 <span class="n">edge_labels</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
                             <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
@@ -2412,32 +2405,31 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
                             <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
                <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
                <span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
-              <span class="p">}</span> 
+              <span class="p">}</span>
+
+
 <span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edge_labels</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels</span><span class="p">[(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
-<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels</span><span class="p">[(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+    <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">e</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span>
+        <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span>
+        <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span>
         
-<span class="n">labels</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="s1">&#39;demand&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
-                       <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+                       <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
-                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">,</span>
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
                              <span class="n">font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">nodes_and_pos_higher</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">y_off</span> <span class="o">=</span> <span class="mf">0.03</span>  <span class="c1"># offset on the y axis</span>
 
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">nodes_and_pos</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">nodes_and_pos_higher</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">y_off</span><span class="p">)</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="s2">&quot;demand&quot;</span><span class="p">)</span>
 
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos_higher</span><span class="p">,</span> 
                         <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
@@ -2450,6 +2442,67 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/Definiciones_generales_de_flujo_en_redes_235_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_235_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flowDict</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">min_cost_flow</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">flowDict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;A&#39;: {&#39;B&#39;: 0, &#39;C&#39;: 40, &#39;D&#39;: 10},
+ &#39;B&#39;: {&#39;C&#39;: 40},
+ &#39;C&#39;: {&#39;E&#39;: 80},
+ &#39;D&#39;: {&#39;E&#39;: 0},
+ &#39;E&#39;: {&#39;D&#39;: 20}}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Red solución:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_min_cost_flow_solution</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="n">G_min_cost_flow_solution</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+
+
+<span class="n">edge_flows</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">):</span> <span class="mi">0</span><span class="p">,</span>
+              <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">):</span> <span class="mi">40</span><span class="p">,</span>
+              <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="mi">10</span><span class="p">,</span>
+              <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">):</span> <span class="mi">40</span><span class="p">,</span>
+              <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="mi">80</span><span class="p">,</span>
+              <span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="mi">0</span><span class="p">,</span>            
+              <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="mi">20</span>
+              <span class="p">}</span>
+
+<span class="n">G_min_cost_flow_solution</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edge_flows</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_min_cost_flow_solution</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                       <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_min_cost_flow_solution</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_flows</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                             <span class="n">font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_min_cost_flow_solution</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_min_cost_flow_solution</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_239_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_239_0.png" />
 </div>
 </div>
 </div>
