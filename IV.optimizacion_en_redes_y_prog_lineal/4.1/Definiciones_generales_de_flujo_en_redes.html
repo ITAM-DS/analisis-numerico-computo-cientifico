@@ -631,8 +631,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ruta-mas-corta">
-     Ruta más corta
+    <a class="reference internal nav-link" href="#camino-o-ruta-mas-corta">
+     Camino o ruta más corta
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -2176,8 +2176,9 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 </div>
 <div class="section" id="ejemplo-de-problemas-modelos-estandar-de-flujo-en-redes">
 <h2>Ejemplo de problemas/modelos estándar de flujo en redes<a class="headerlink" href="#ejemplo-de-problemas-modelos-estandar-de-flujo-en-redes" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="ruta-mas-corta">
-<h3>Ruta más corta<a class="headerlink" href="#ruta-mas-corta" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="camino-o-ruta-mas-corta">
+<h3>Camino o ruta más corta<a class="headerlink" href="#camino-o-ruta-mas-corta" title="Permalink to this headline">¶</a></h3>
+<p>Dada la siguiente red se desea encontrar el camino más corto entre los nodos ‘O’ y ‘T’ de la siguiente red:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nodes_pos</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5454545454545454</span><span class="p">],</span>
@@ -2230,17 +2231,19 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_223_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_223_0.png" />
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_224_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_224_0.png" />
 </div>
 </div>
+<p>Cada valor de los arcos representan las distancias entre cada nodo.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Ver <a class="reference external" href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.shortest_path.html#networkx.algorithms.shortest_paths.generic.shortest_path">shortest_path</a></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">G_shortest_path</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span>
-                       <span class="n">target</span><span class="o">=</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sh_path</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">G_shortest_path</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span>
+                       <span class="n">target</span><span class="o">=</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sh_path</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2249,6 +2252,63 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edges_sh_path</span> <span class="o">=</span> <span class="p">[(</span><span class="n">sh_path</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sh_path</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sh_path</span><span class="p">))]</span>
+<span class="n">edge_att</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">G_shortest_path</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+<span class="n">distances_sh_path</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">edge_att</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">edges_sh_path</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">distances_sh_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(&#39;O&#39;, &#39;A&#39;): 2, (&#39;A&#39;, &#39;B&#39;): 2, (&#39;B&#39;, &#39;D&#39;): 4, (&#39;D&#39;, &#39;T&#39;): 5}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Red solución:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nodes_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">nodes_and_pos</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">sh_path</span><span class="p">]</span>
+
+<span class="n">nodes</span> <span class="o">=</span> <span class="n">sh_path</span>
+
+<span class="n">nodes_and_pos</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">nodes_pos</span><span class="p">))</span>
+
+<span class="n">G_shortest_path_sol</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span> 
+<span class="n">G_shortest_path_sol</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+
+<span class="n">G_shortest_path_sol</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">distances_sh_path</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_shortest_path_sol</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">min_source_margin</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                       <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_shortest_path_sol</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">distances_sh_path</span><span class="p">,</span>
+                             <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_shortest_path_sol</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_shortest_path_sol</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_231_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_231_0.png" />
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Encuentra la ruta más corta para la red dirigida <span class="math notranslate nohighlight">\(\mathcal{G}\)</span> con los arcos siguientes: <span class="math notranslate nohighlight">\(\{ (O, B): 5, (O, C): 4, (A, O): 2, (B, A): 2, (A, D): 7, (B, D): 4, (B, E): 3, (C, B): 1, (C, E): 4, (D, E): 1, (D, T): 5, (E, T): 7\}.\)</span> Realiza la gráfica de la red y calcula la distancia de la solución.</p>
 </div>
 </div>
 <div class="section" id="flujo-maximo">
@@ -2291,7 +2351,33 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_227_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_227_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">83</span><span class="o">-</span><span class="n">dd13950cee9b</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_maximum_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+<span class="g g-Whitespace">     </span><span class="mi">24</span>                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+<span class="ne">---&gt; </span><span class="mi">25</span>                        <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_maximum_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+<span class="g g-Whitespace">     </span><span class="mi">27</span>                              <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_capacities</span><span class="p">,</span>
+
+<span class="nn">~/.local/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py</span> in <span class="ni">draw_networkx_edges</span><span class="nt">(G, pos, edgelist, width, edge_color, style, alpha, arrowstyle, arrowsize, edge_cmap, edge_vmin, edge_vmax, ax, arrows, label, node_size, nodelist, node_shape, connectionstyle, min_source_margin, min_target_margin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">654</span> 
+<span class="g g-Whitespace">    </span><span class="mi">655</span>     <span class="c1"># set edge positions</span>
+<span class="ne">--&gt; </span><span class="mi">656</span>     <span class="n">edge_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([(</span><span class="n">pos</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">pos</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">edgelist</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">657</span> 
+<span class="g g-Whitespace">    </span><span class="mi">658</span>     <span class="c1"># Check if edge_color is an array of floats and map to edge_cmap.</span>
+
+<span class="nn">~/.local/lib/python3.7/site-packages/networkx/drawing/nx_pylab.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">654</span> 
+<span class="g g-Whitespace">    </span><span class="mi">655</span>     <span class="c1"># set edge positions</span>
+<span class="ne">--&gt; </span><span class="mi">656</span>     <span class="n">edge_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([(</span><span class="n">pos</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">pos</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">edgelist</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">657</span> 
+<span class="g g-Whitespace">    </span><span class="mi">658</span>     <span class="c1"># Check if edge_color is an array of floats and map to edge_cmap.</span>
+
+<span class="ne">KeyError</span>: &#39;C&#39;
+</pre></div>
+</div>
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_234_1.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_234_1.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -2370,7 +2456,7 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_233_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_233_0.png" />
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_240_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_240_0.png" />
 </div>
 </div>
 </div>
@@ -2450,7 +2536,7 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_235_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_235_0.png" />
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_242_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_242_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -2515,7 +2601,7 @@ Determinar la asignación de personas en tranvías para llegar a destinos median
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_240_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_240_0.png" />
+<img alt="../../_images/Definiciones_generales_de_flujo_en_redes_247_0.png" src="../../_images/Definiciones_generales_de_flujo_en_redes_247_0.png" />
 </div>
 </div>
 </div>
