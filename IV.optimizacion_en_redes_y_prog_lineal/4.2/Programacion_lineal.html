@@ -332,6 +332,20 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejemplo-flujo-en-redes">
+   Ejemplo: flujo en redes
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -348,7 +362,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--rm</span> <span class="pre">-v</span> <span class="pre">&lt;ruta</span> <span class="pre">a</span> <span class="pre">mi</span> <span class="pre">directorio&gt;:/datos</span> <span class="pre">--name</span> <span class="pre">jupyterlab_optimizacion</span> <span class="pre">-p</span> <span class="pre">8888:8888</span> <span class="pre">-p</span> <span class="pre">8787:8787</span> <span class="pre">-d</span> <span class="pre">palmoreck/jupyterlab_optimizacion_2:3.0.0</span></code></p>
 <p>password para jupyterlab: <code class="docutils literal notranslate"><span class="pre">qwerty</span></code></p>
 <p>Detener el contenedor de docker:</p>
-<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">stop</span> <span class="pre">jupyterlab_optimizacion</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">stop</span> <span class="pre">jupyterlab_optimizacion_2</span></code></p>
 <p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab_optimizacion_2:3.0.0</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2">liga</a>.</p>
 </div>
 <hr class="docutils" />
@@ -360,13 +374,162 @@
 </div>
 <div class="sidebar">
 <p class="sidebar-title">Un poco de historia …</p>
-<p>El desarrollo de la programación lineal (PL) ha sido clasificado como uno de los avances científicos más importantes  de  mediados del siglo XX. El efecto que ha tenido en la práctica y en áreas del conocimiento desde 1950 es en verdad grande. El tipo más común de aplicación abarca el problema general de asignar de la mejor manera posible, esto es, de forma óptima, recursos limitados a actividades que compiten entre sí por ellos. Con más precisión, se desea elegir el nivel de ciertas actividades que compiten por recursos escasos necesarios para realizarlas y se puedan asignar recursos a tales actividades. El desarrollo por Dantzig del método símplex para resolver programas lineales en los <span class="math notranslate nohighlight">\(40\)</span>’s marcó el inicio de la era moderna en optimización.</p>
+<p>El desarrollo de la programación lineal (PL) ha sido clasificado como uno de los avances científicos más importantes de mediados del siglo XX. Es quizás el modelo prototipo de la optimización con restricciones. El efecto que ha tenido en la práctica y en áreas del conocimiento desde 1950 es en verdad grande. El tipo más común de aplicación abarca el problema general de asignar de la mejor manera posible, esto es, de forma óptima, recursos limitados a actividades que compiten entre sí por ellos. Con más precisión, se desea elegir el nivel de ciertas actividades que compiten por recursos escasos necesarios para realizarlas y se puedan asignar recursos a tales actividades. El desarrollo por Dantzig del método símplex para resolver programas lineales en los <span class="math notranslate nohighlight">\(40\)</span>’s marcó el inicio de la era moderna en optimización.</p>
 <p>La PL utiliza un modelo matemático para describir el problema. El adjetivo lineal significa que todas las funciones matemáticas del modelo deben ser funciones lineales. En este caso, la palabra programación no se refiere a términos computacionales; en esencia es sinónimo de planeación. Por lo tanto, la PL involucra la planeación de actividades para obtener un resultado óptimo; esto es, el resultado que mejor alcance la meta establecida, de acuerdo con el modelo matemático, entre todas las alternativas factibles.</p>
 <p>Aunque la asignación de recursos a las actividades es la aplicación más frecuente en PL, cualquier problema cuyo  modelo matemático se ajuste al formato general del modelo de PL, es un problema de PL.</p>
+</div>
+<p>Un programa lineal <strong>en su forma estándar</strong> es un problema de optimización con una función lineal objetivo, un conjunto de restricciones lineales y un conjunto de restricciones no negativas impuestas a las variables. Es un <strong>modelo de optimización</strong> de la forma:</p>
+<div class="math notranslate nohighlight">
+\[\min c^Tx\]</div>
+<div class="math notranslate nohighlight">
+\[\text{sujeto a:}\]</div>
+<div class="math notranslate nohighlight">
+\[Ax=b\]</div>
+<div class="math notranslate nohighlight">
+\[x \geq 0\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> y se <strong>asume</strong> <span class="math notranslate nohighlight">\(m \leq n\)</span> y tiene <em>rank</em> completo por renglones y la última desigualdad se refiere a que todas las componentes del vector <span class="math notranslate nohighlight">\(x\)</span> son mayores o iguales a cero.</p>
+<div class="section" id="ejemplo-flujo-en-redes">
+<h2>Ejemplo: flujo en redes<a class="headerlink" href="#ejemplo-flujo-en-redes" title="Permalink to this headline">¶</a></h2>
+<p>Considérese el problema de satisfacer la demanda de todos los nodos con etiquetas “A, B, C, D” y “E” de la siguiente red de acuerdo a las capacidades de cada uno de ellos al menor costo posible:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nodes_pos</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.18181818181818182</span><span class="p">,</span> <span class="mf">0.7272727272727273</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.18181818181818182</span><span class="p">,</span> <span class="mf">0.2727272727272727</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.5454545454545454</span><span class="p">,</span> <span class="mf">0.2727272727272727</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.5454545454545454</span><span class="p">,</span> <span class="mf">0.7272727272727273</span><span class="p">],</span>
+             <span class="p">[</span><span class="mf">0.36363636363636365</span><span class="p">,</span> <span class="mf">0.5454545454545454</span><span class="p">]]</span>
+
+<span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">]</span>
+
+<span class="n">nodes_and_pos</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">nodes_pos</span><span class="p">))</span>
+
+<span class="n">G_min_cost_flow</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+
+<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">node_and_demand</span><span class="o">=</span><span class="s2">&quot;A [50]&quot;</span><span class="p">)</span>
+<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="n">node_and_demand</span><span class="o">=</span><span class="s2">&quot;B [40]&quot;</span><span class="p">)</span>
+<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">node_and_demand</span><span class="o">=</span><span class="s2">&quot;C [0]&quot;</span><span class="p">)</span>
+<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="n">node_and_demand</span><span class="o">=</span><span class="s2">&quot;D [-30]&quot;</span><span class="p">)</span>
+<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="n">demand</span> <span class="o">=</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="n">node_and_demand</span><span class="o">=</span><span class="s2">&quot;E [-60]&quot;</span><span class="p">)</span>
+
+<span class="n">edge_labels_min_cost_flow</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                            <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+                             <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+                             <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">},</span>
+                             <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+                             <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+                                          <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+                             <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+                             <span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="p">{</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+                            <span class="p">}</span>
+
+
+<span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">edge_labels_min_cost_flow</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">e</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span>
+        <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span>
+        <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels_min_cost_flow</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span>
+        
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                       <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels_min_cost_flow</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+                             <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">nodes_pos_modified</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">y_off</span> <span class="o">=</span> <span class="mf">0.03</span>
+
+<span class="n">nodes_and_pos_modified</span> <span class="o">=</span> <span class="n">nodes_and_pos</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">node</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span> <span class="ow">or</span> <span class="n">node</span> <span class="o">==</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span>
+        <span class="n">nodes_and_pos_modified</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[</span><span class="n">nodes_and_pos_modified</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> 
+                                         <span class="n">nodes_and_pos_modified</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_off</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nodes_and_pos_modified</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[</span><span class="n">nodes_and_pos_modified</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> 
+                                         <span class="n">nodes_and_pos_modified</span><span class="p">[</span><span class="n">node</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">y_off</span><span class="p">]</span>
+        
+    
+<span class="n">labels</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="s2">&quot;node_and_demand&quot;</span><span class="p">)</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos_modified</span><span class="p">,</span> 
+                        <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Programacion_lineal_12_0.png" src="../../_images/Programacion_lineal_12_0.png" />
+</div>
+</div>
+<p>En la red anterior el arco <span class="math notranslate nohighlight">\((D, E)\)</span> tiene costo igual a <span class="math notranslate nohighlight">\(3\)</span> y el arco <span class="math notranslate nohighlight">\((E, D)\)</span> tiene costo igual a <span class="math notranslate nohighlight">\(2\)</span>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Obsérvese que es ligeramente distinta la nomenclatura de este problema en cuanto a los términos de flujo neto y demanda que tiene un nodo de acuerdo a lo que se describió en el <a class="reference internal" href="../4.1/Definiciones_generales_de_flujo_en_redes.html#ejredflujocostomin"><span class="std std-ref">ejemplo de flujo de costo mínimo</span></a></p>
+</div>
+<p>Al lado de cada nodo en corchetes se presenta el flujo neto generado por el nodo. Los nodos origen tienen un flujo neto positivo y en la red son los nodos “A” y “B” (por ejemplo fábricas). Los nodos destino tienen un flujo neto negativo que en la red son los nodos “D” y “E” (por ejemplo clientes). El único nodo de transbordo es el nodo “C” que tiene flujo neto igual a cero (centro de distribución por ejemplo). Los valores de los costos se muestran en los arcos. Únicamente se tienen capacidades en los arcos <span class="math notranslate nohighlight">\((A, B)\)</span> igual a <span class="math notranslate nohighlight">\(10\)</span> y el arco <span class="math notranslate nohighlight">\((C, E)\)</span> igual a <span class="math notranslate nohighlight">\(80\)</span>.</p>
+<p>Entonces el modelo de programación lineal considerando que el <strong>flujo neto</strong> de un nodo es igual al flujo total que sale del nodo menos el flujo total que entra al nodo es:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle \min 2 x_{AB} + 4 x_{AC} + 9 x_{AD} + 3 x_{BC} + x_{CE} + 3 x_{DE} + 2x_{ED}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{sujeto a: }\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+&amp;x_{AB}&amp;  + &amp;x_{AC}&amp; + &amp;x_{AD}&amp;   &amp;&amp;         &amp;&amp;         &amp;&amp;         &amp;&amp;       &amp;=&amp; 50 \nonumber \\
+&amp;-x_{AB}&amp;   &amp;&amp;         &amp;&amp;       + &amp;x_{BC}&amp;   &amp;&amp;         &amp;&amp;         &amp;&amp;       &amp;=&amp; 40 \nonumber \\
+&amp;&amp;        - &amp;x_{AC}&amp;   &amp;&amp;       - &amp;x_{BC}&amp; + &amp;x_{CE}&amp;   &amp;&amp;         &amp;&amp;       &amp;=&amp; 0 \nonumber \\
+&amp;&amp;          &amp;&amp;       - &amp;x_{AD}&amp;   &amp;&amp;         &amp;&amp;       + &amp;x_{DE}&amp; - &amp;x_{ED}&amp; &amp;=&amp; -30 \nonumber \\
+&amp;&amp;          &amp;&amp;         &amp;&amp;         &amp;&amp;       - &amp;x_{CE}&amp; - &amp;x_{DE}&amp; + &amp;x_{ED}&amp; &amp;=&amp; -60 \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[x_{ij} \geq 0 \forall i,j\]</div>
+<div class="math notranslate nohighlight">
+\[x_{AB} \leq 10, x_{CE} \leq 80\]</div>
+<p>La primer restricción de igualdad representa el flujo neto para el nodo <span class="math notranslate nohighlight">\(A\)</span> y la última el flujo neto para el nodo <span class="math notranslate nohighlight">\(E\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que la matriz que representa a las restricciones de igualdad es la matriz de incidencia nodo-arco.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Multiplicamos por <span class="math notranslate nohighlight">\(-1\)</span> pues el resultado de la función <code class="docutils literal notranslate"><span class="pre">incidence_matrix</span></code> está volteado respecto a la definición de la matriz de incidencia nodo-arco.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">nx</span><span class="o">.</span><span class="n">incidence_matrix</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="n">oriented</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.  1.  1.  0.  0.  0.  0.]
+ [-1.  0.  0.  1.  0.  0.  0.]
+ [ 0. -1.  0. -1.  1.  0.  0.]
+ [ 0.  0. -1.  0.  0.  1. -1.]
+ [ 0.  0.  0.  0. -1. -1.  1.]]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
 <p>1.Resuelve los ejercicios y preguntas de la nota.</p>
+</div>
 </div>
 </div>
 
