@@ -342,6 +342,11 @@
    Ejemplo: flujo en redes
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejemplo-metodo-grafico">
+   Ejemplo: método gráfico
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -598,6 +603,150 @@
        7.99999996e+01, 1.51241040e-08, 1.99999999e+01])
 </pre></div>
 </div>
+</div>
+</div>
+<p>También con <code class="docutils literal notranslate"><span class="pre">cvxpy</span></code> podemos resolver el PL anterior:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Ver <a class="reference external" href="https://www.cvxpy.org/examples/basic/linear_program.html">cvxpy: linear_program</a></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cvxpy</span> <span class="k">as</span> <span class="nn">cp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="ne">RuntimeError</span>: module compiled against API version 0xe but this version of numpy is 0xd
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">7</span> <span class="c1">#number of variables</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">fo_cvxpy</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">T</span><span class="nd">@x</span> <span class="c1">#objective function</span>
+
+<span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">A_eq</span><span class="nd">@x</span> <span class="o">==</span> <span class="n">b</span><span class="p">,</span>
+               <span class="n">x</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">,</span>
+               <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">,</span>
+               <span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">80</span>
+               <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">opt_objective</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Minimize</span><span class="p">(</span><span class="n">fo_cvxpy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">opt_objective</span><span class="p">,</span> <span class="n">constraints</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prob</span><span class="o">.</span><span class="n">solve</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>490.0000000072316
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print result.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The optimal value is&quot;</span><span class="p">,</span> <span class="n">prob</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A solution x is&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The optimal value is 490.0000000072316
+A solution x is
+[4.98083642e-09 4.00000000e+01 1.00000000e+01 4.00000000e+01
+ 8.00000000e+01 3.58876853e-10 2.00000000e+01]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ejemplo-metodo-grafico">
+<h2>Ejemplo: método gráfico<a class="headerlink" href="#ejemplo-metodo-grafico" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#x_1 ≤ 4</span>
+
+<span class="n">point1_x_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">point2_x_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="n">point1_point2_x_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">point1_x_1</span><span class="p">,</span> <span class="n">point2_x_1</span><span class="p">))</span>
+
+<span class="c1">#x_1 ≥ 0</span>
+<span class="n">point3_x_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">point4_x_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="n">point3_point4_x_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">point3_x_1</span><span class="p">,</span> <span class="n">point4_x_1</span><span class="p">))</span>
+
+<span class="c1">#2x_2 ≤ 12 or x_2 ≤ 6</span>
+
+<span class="n">point1_x_2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+
+<span class="n">point2_x_2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+
+<span class="n">point1_point2_x_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">point1_x_2</span><span class="p">,</span> <span class="n">point2_x_2</span><span class="p">))</span>
+
+<span class="c1">#x_2 ≥ 0</span>
+
+<span class="n">point3_x_2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">point4_x_2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">point3_point4_x_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">point3_x_2</span><span class="p">,</span> <span class="n">point4_x_2</span><span class="p">))</span>
+
+<span class="c1">#3x_1 + 2x_2 ≤ 18</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">x_2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">18</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">point1_point2_x_1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">point1_point2_x_1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">point3_point4_x_1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">point3_point4_x_1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">point1_point2_x_2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">point1_point2_x_2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">point3_point4_x_2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">point3_point4_x_2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">x</span><span class="p">,</span> <span class="n">x_2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$x_1 \leq 4$&quot;</span><span class="p">,</span> <span class="s2">&quot;$x_1 \geq 0$&quot;</span><span class="p">,</span> 
+            <span class="s2">&quot;$2x_2 \leq 12$&quot;</span><span class="p">,</span> <span class="s2">&quot;$x_2 \geq 0$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;$3x_1+2x_2 \leq 18$&quot;</span><span class="p">],</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x_2</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">x_2</span><span class="o">&lt;=</span><span class="mi">6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;plum&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;plum&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Región factible del PL&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Programacion_lineal_42_0.png" src="../../_images/Programacion_lineal_42_0.png" />
 </div>
 </div>
 <div class="tip admonition">
