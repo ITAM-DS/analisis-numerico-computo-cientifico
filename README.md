@@ -53,8 +53,6 @@ Total de clases: 17. Total de número de horas: 45 hrs.
 [Tutorial para activar créditos de Amazon Web Services actualizado desde año 2020](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.1Activar-creditos-de-AWS-(update))
 
 
-
-
 ## Clase 1
 
 13 de enero
@@ -62,3 +60,10 @@ Total de clases: 17. Total de número de horas: 45 hrs.
 Introducción al curso, formas de calificar, dinámica.
 Repaso hasta la nota [3.1 Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#)
 
+## Clase 2
+
+20 de enero
+
+Finalizamos repaso hasta la nota [3.3 Ejemplos_problemas_UCO_e_intro_CIEO_y_PI](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html)
+
+Iniciamos la nota [3.4 Ecuaciones no lineales](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.4/Ecuaciones_no_lineales.html) hasta Sistemas de ecuaciones lineales square, underdetermined, overdetermined.
