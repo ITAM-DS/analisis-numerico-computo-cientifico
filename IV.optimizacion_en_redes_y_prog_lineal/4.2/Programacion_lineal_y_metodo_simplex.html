@@ -478,12 +478,26 @@
      Prueba de optimalidad
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#consideraciones-sobre-el-metodo-simplex">
+     Consideraciones sobre el método símplex
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sobre-el-calculo-de-b-1-y-la-actualizacion-de-las-variables-basicas-y-no-basicas">
+     Sobre el cálculo de
+     <span class="math notranslate nohighlight">
+      \(B^{-1}\)
+     </span>
+     y la actualización de las variables básicas y no básicas.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo">
+     Ejemplo
+    </a>
+   </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#consideraciones-sobre-el-metodo-simplex">
-   Consideraciones sobre el método símplex
-  </a>
  </li>
 </ul>
 
@@ -2619,16 +2633,294 @@ A =
 </div>
 <p><span class="math notranslate nohighlight">\(f_o(x) = \nu^Tb = 36\)</span></p>
 </div>
-</div>
 <div class="section" id="consideraciones-sobre-el-metodo-simplex">
-<h2>Consideraciones sobre el método símplex<a class="headerlink" href="#consideraciones-sobre-el-metodo-simplex" title="Permalink to this headline">¶</a></h2>
+<h3>Consideraciones sobre el método símplex<a class="headerlink" href="#consideraciones-sobre-el-metodo-simplex" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Sobre empates en la variable básica, no básica</p></li>
-<li><p>Sobre el cálculo de <span class="math notranslate nohighlight">\(B^{-1}\)</span></p></li>
+<li><p>Sobre el cálculo de <span class="math notranslate nohighlight">\(B^{-1}\)</span> y la actualización de las variables básicas y no básicas.</p></li>
 <li><p>Sobre el álgebra matricial numérica.</p></li>
-<li><p>Actualización de las variables básicas y no básicas.</p></li>
 <li><p>Sobre variables básicas degeneradas.</p></li>
 </ul>
+</div>
+<div class="section" id="sobre-el-calculo-de-b-1-y-la-actualizacion-de-las-variables-basicas-y-no-basicas">
+<h3>Sobre el cálculo de <span class="math notranslate nohighlight">\(B^{-1}\)</span> y la actualización de las variables básicas y no básicas.<a class="headerlink" href="#sobre-el-calculo-de-b-1-y-la-actualizacion-de-las-variables-basicas-y-no-basicas" title="Permalink to this headline">¶</a></h3>
+<p>En la descripción del ejemplo anterior pudimos evitar calcular <span class="math notranslate nohighlight">\(B^{-1}\)</span> excepto cuando tenemos que actualizar las variables básicas después del paso inicial (en el paso inicial <span class="math notranslate nohighlight">\(B\)</span> es la matriz identidad entonces esto no es un problema). Recordemos que calcular la inversa de una matriz implica resolver un sistema de ecuaciones lineales del mismo tamaño que la matriz involucrada lo que podría ser costoso computacionalmente.</p>
+<p>La actualización de las variables básicas después del paso inicial se realiza con la expresión:</p>
+<div class="math notranslate nohighlight">
+\[x_B = x_B - dx_q^{+}\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(x_q\)</span> es la variable no básica que se volverá básica en la iteración actual.</p>
+<p>Y se hace el intercambio entre <span class="math notranslate nohighlight">\(x_q\)</span> y <span class="math notranslate nohighlight">\(x_p\)</span> siendo <span class="math notranslate nohighlight">\(x_p\)</span> la variable básica que es intercambiada en <span class="math notranslate nohighlight">\(x_B\)</span>.</p>
+</div>
+<div class="section" id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
+<p><strong>En la iteración 1:</strong></p>
+<p>En el paso inicial:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}B = \left [ \begin{array}{ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{array} \right ]\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Así queda al final de esta iteración el vector <span class="math notranslate nohighlight">\(x_B\)</span>:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x_B = \left [ \begin{array}{c} x_3 \\ x_2 \\ x_5\end{array}\right ] = B^{-1}b = \left [ \begin{array}{ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 1 \end{array} \right ]^{-1} \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array}\right ] =  \left [ \begin{array}{ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; \frac{1}{2} &amp; 0 \\ 0 &amp; -1 &amp; 1 \end{array} \right ]\left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array}\right ] = \left [ \begin{array}{c} 4 \\ 6 \\ 6 \end{array}\right ]  \end{split}\]</div>
+<p>Y el vector <span class="math notranslate nohighlight">\(x_B\)</span> al <strong>inicio de esta iteración</strong> es: <span class="math notranslate nohighlight">\(x_B = \left [ \begin{array}{c} x_3 \\ x_4 \\ x_5\end{array}\right ] = \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array}\right ]\)</span></p>
+<p>Entonces utilizamos la expresión anterior para obtener <span class="math notranslate nohighlight">\(x_B\)</span> actualizada. Para esto tenemos que en esta iteración la variable no básica que se elige es <span class="math notranslate nohighlight">\(x_2\)</span> por lo que:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se resuelve la ecuación: <span class="math notranslate nohighlight">\(Bd = A_2\)</span> para <span class="math notranslate nohighlight">\(d\)</span> vector de incógnitas. La segunda columna de <span class="math notranslate nohighlight">\(A\)</span> se elige pues <span class="math notranslate nohighlight">\(x_2\)</span> es la variable no básica a la que se le aumentará su valor y sustituirá a una variable no básica.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0. 2. 2.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>En cada iteración el método símplex el lado derecho corresponde a los valores de las variables básicas y mantiene la igualdad: <span class="math notranslate nohighlight">\(x_B = B^{-1}b\)</span>. En esta iteración: <span class="math notranslate nohighlight">\(x_B = \left [ \begin{array}{c} x_3 \\ x_4 \\ x_5\end{array}\right ] = \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array}\right ]\)</span></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se hace la división únicamente entre las entradas estrictamente positivas</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_positive</span> <span class="o">=</span> <span class="n">d</span> <span class="o">&gt;</span><span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_B</span><span class="p">[</span><span class="n">idx_positive</span><span class="p">]</span><span class="o">/</span><span class="n">d</span><span class="p">[</span><span class="n">idx_positive</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6. 9.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>La actualización descrita se realiza con:</p>
+<div class="math notranslate nohighlight">
+\[x_B = x_B - dx_2^{+}\]</div>
+<p>pues <span class="math notranslate nohighlight">\(x_2\)</span> es la variable no básica que se volverá básica en la iteración actual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_2_plus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x_B</span><span class="p">[</span><span class="n">idx_positive</span><span class="p">]</span><span class="o">/</span><span class="n">d</span><span class="p">[</span><span class="n">idx_positive</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_2_plus</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_B</span> <span class="o">=</span> <span class="n">x_B</span> <span class="o">-</span> <span class="n">d</span><span class="o">*</span><span class="n">x_2_plus</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4. 0. 6.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aquí el valor de la variable <span class="math notranslate nohighlight">\(x_4\)</span> se hace cero y tenemos que intercambiar tal entrada con la de <span class="math notranslate nohighlight">\(x_2^+\)</span> para el vector <span class="math notranslate nohighlight">\(x_B\)</span>:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se verifica que se obtiene el mismo resultado con esta actualización al final de la primera iteración: <span class="math notranslate nohighlight">\(x_B = \left [ \begin{array}{c} x_3 \\ x_2 \\ x_5\end{array}\right ] = \left [ \begin{array}{c} 4 \\ 6 \\ 6 \end{array}\right ]\)</span></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_B</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_2_plus</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4. 6. 6.]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>En la iteración 2:</strong></p>
+<p>En la iteración 1:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}B = \left [ \begin{array}{ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 1 \end{array} \right ]\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Así queda al final de esta iteración el vector <span class="math notranslate nohighlight">\(x_B\)</span>:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x_B = \left [ \begin{array}{c} x_3 \\ x_2 \\ x_1\end{array}\right ] = B^{-1}b = \left [ \begin{array}{ccc} 1 &amp; 0 &amp; 1 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 3 \end{array} \right ]^{-1} \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array}\right ] =  \left [ \begin{array}{ccc} 1 &amp; \frac{1}{3} &amp; -\frac{1}{3} \\ 0 &amp; \frac{1}{2} &amp; 0 \\ 0 &amp; -\frac{1}{3} &amp; \frac{1}{3} \end{array} \right ]\left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array}\right ] = \left [ \begin{array}{c} 2 \\ 6 \\ 2 \end{array}\right ]  \end{split}\]</div>
+<p>Y el vector <span class="math notranslate nohighlight">\(x_B\)</span> al <strong>inicio de esta iteración</strong> es: <span class="math notranslate nohighlight">\(x_B = \left [ \begin{array}{c} x_3 \\ x_2 \\ x_5\end{array}\right ]= \left [ \begin{array}{c} 4 \\ 6 \\ 6\end{array}\right ]\)</span></p>
+<p>En esta iteración la variable no básica que se elige es <span class="math notranslate nohighlight">\(x_1\)</span> por lo que:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se resuelve la ecuación: <span class="math notranslate nohighlight">\(Bd = A_1\)</span> para <span class="math notranslate nohighlight">\(d\)</span> vector de incógnitas. La primera columna de <span class="math notranslate nohighlight">\(A\)</span> se elige pues <span class="math notranslate nohighlight">\(x_1\)</span> es la variable no básica a la que se le aumentará su valor y sustituirá a una variable no básica.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1. 0. 3.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>En cada iteración el método símplex el lado derecho corresponde a los valores de las variables básicas y mantiene la igualdad: <span class="math notranslate nohighlight">\(x_B = B^{-1}b\)</span>. En esta iteración: <span class="math notranslate nohighlight">\(x_B = \left [ \begin{array}{c} x_3 \\ x_2 \\ x_5\end{array}\right ] = \left [ \begin{array}{c} 4 \\ 6 \\ 6 \end{array}\right ]\)</span></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se hace la división únicamente entre las entradas estrictamente positivas</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_positive</span> <span class="o">=</span> <span class="n">d</span> <span class="o">&gt;</span><span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_B</span><span class="p">[</span><span class="n">idx_positive</span><span class="p">]</span><span class="o">/</span><span class="n">d</span><span class="p">[</span><span class="n">idx_positive</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4. 2.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>La actualización descrita se realiza con:</p>
+<div class="math notranslate nohighlight">
+\[x_B = x_B - dx_1^{+}\]</div>
+<p>pues <span class="math notranslate nohighlight">\(x_1\)</span> es la variable no básica que se volverá básica en la iteración actual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_1_plus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x_B</span><span class="p">[</span><span class="n">idx_positive</span><span class="p">]</span><span class="o">/</span><span class="n">d</span><span class="p">[</span><span class="n">idx_positive</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_1_plus</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_B</span> <span class="o">=</span> <span class="n">x_B</span> <span class="o">-</span> <span class="n">d</span><span class="o">*</span><span class="n">x_1_plus</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2. 6. 0.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aquí el valor de la variable <span class="math notranslate nohighlight">\(x_5\)</span> se hace cero y tenemos que intercambiar tal entrada con la de <span class="math notranslate nohighlight">\(x_1^+\)</span> para el vector <span class="math notranslate nohighlight">\(x_B\)</span>:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se verifica que se obtiene el mismo resultado con esta actualización al final de la segunda iteración: <span class="math notranslate nohighlight">\(x_B = \left [ \begin{array}{c} x_3 \\ x_2 \\ x_1\end{array}\right ] = \left [ \begin{array}{c} 2 \\ 6 \\ 2 \end{array}\right ]\)</span></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_B</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_1_plus</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2. 6. 2.]
+</pre></div>
+</div>
+</div>
+</div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
 <p>1.Resuelve los ejercicios y preguntas de la nota.</p>
@@ -2640,6 +2932,7 @@ A =
 <li><p>M. S. Bazaraa, J. J. Jarvis, H. D. Sherali, Linear Programming and Network Flows, Wiley, 2010.</p></li>
 <li><p>J. Nocedal, S. J. Wright, Numerical Optimization, Springer, 2006.</p></li>
 </ol>
+</div>
 </div>
 </div>
 
