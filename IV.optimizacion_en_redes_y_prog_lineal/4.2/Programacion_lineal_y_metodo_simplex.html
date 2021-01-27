@@ -1918,6 +1918,7 @@ A =
 <p>Y <span class="math notranslate nohighlight">\(x_N\)</span> en todos los pasos del método simplex se mantiene como un vector de ceros:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}x_N = \left [ \begin{array}{c} x_1 \\ x_2 \end{array} \right ] = \left [ \begin{array}{c} 0 \\ 0 \end{array} \right ]\end{split}\]</div>
+<p>El vector de costos en el paso inicial es <span class="math notranslate nohighlight">\(c_B = \left [ \begin{array}{c} c_{B_3} \\ c_{B_4} \\ c_{B_5} \end{array} \right ] = \left [ \begin{array}{c} 0 \\ 0 \\ 0 \end{array} \right ]\)</span> costos de las variables básicas y <span class="math notranslate nohighlight">\(c_N=\left [ \begin{array}{c} c_{N_1} \\ c_{N_2} \end{array} \right ]=\left [ \begin{array}{c}3 \\ 5 \end{array} \right ]\)</span> costos de las variables no básicas que en el paso inicial son <span class="math notranslate nohighlight">\(x_3, x_4, x_5\)</span> y <span class="math notranslate nohighlight">\(x_1, x_2\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -1926,6 +1927,11 @@ A =
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
               <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="n">c_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">c_N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+<span class="n">N_list_idx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">B_list_idx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1940,7 +1946,6 @@ A =
 </div>
 <div class="math notranslate nohighlight">
 \[\begin{split}f_o(x) = c^Tx = [c_B \quad c_N] ^T \left [ \begin{array}{c} x_B \\ x_N\end{array} \right ] = c_B^Tx_B + c_N^T x_N = c_B^T B^{-1}b = [0 \quad 0 \quad 0]^T \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array}\right ]=0\end{split}\]</div>
-<p>con <span class="math notranslate nohighlight">\(c_B = \left [ \begin{array}{c} c_{B_3} \\ c_{B_4} \\ c_{B_5} \end{array} \right ] = \left [ \begin{array}{c} 0 \\ 0 \\ 0 \end{array} \right ]\)</span> costos de las variables básicas y <span class="math notranslate nohighlight">\(c_N=\left [ \begin{array}{c} c_{N_1} \\ c_{N_2} \end{array} \right ]=\left [ \begin{array}{c}3 \\ 5 \end{array} \right ]\)</span> costos de las variables no básicas que en el paso inicial son <span class="math notranslate nohighlight">\(x_3, x_4, x_5\)</span> y <span class="math notranslate nohighlight">\(x_1, x_2\)</span>respectivamente.</p>
 <p>2.Obsérvese que todas las ecuaciones de frontera en su forma igualadas a cero pueden ser restadas de la función objetivo sin modificar su valor. Por ejemplo si tomamos la primer ecuación de frontera <span class="math notranslate nohighlight">\(x_1 + x_3 - 4 = 0\)</span> entonces:</p>
 <div class="math notranslate nohighlight">
 \[f_o(x) = f_o(x) - 0 =  f_o(x) -  (x_1 + x_3 - 4) = f_o(x) -x_1 -x_3 + 4\]</div>
@@ -2021,13 +2026,26 @@ f_o(x) &amp;=&amp; f_o(x) -  (x_1 + x_3 - 4) - (2x_2 + x_4 - 12) - (3x_1 + 2x_2 
 </div>
 </div>
 </div>
+<p>En el ejemplo <span class="math notranslate nohighlight">\(f_o(x) = \nu^Tb = 0\)</span> en el paso inicial:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><span class="math notranslate nohighlight">\(c_N= \left [ \begin{array}{c}3 \\ 5 \end{array} \right ]\)</span></p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c_N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span> <span class="n">N_list_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>
 </pre></div>
 </div>
 </div>
@@ -2039,7 +2057,7 @@ f_o(x) &amp;=&amp; f_o(x) -  (x_1 + x_3 - 4) - (2x_2 + x_4 - 12) - (3x_1 + 2x_2 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">5</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c_N</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span> <span class="n">N_list_idx</span><span class="p">[</span><span class="mi">1</span><span class="p">]]))</span>
 </pre></div>
 </div>
 </div>
@@ -2060,15 +2078,9 @@ f_o(x) &amp;=&amp; f_o(x) -  (x_1 + x_3 - 4) - (2x_2 + x_4 - 12) - (3x_1 + 2x_2 
 <p>Incrementar una variable no básica equivale geométricamente a moverse por una arista desde una solución FEV.</p>
 </div>
 <p>Como tenemos un problema de <strong>maximización</strong> la tasa más alta de mejoramiento de <span class="math notranslate nohighlight">\(f_o\)</span> la da la variable <span class="math notranslate nohighlight">\(x_2\)</span> por lo que es la variable no básica que sustituye a una variable básica. ¿Cuál variable básica se debe elegir?</p>
-<p>En el ejemplo <span class="math notranslate nohighlight">\(f_o(x) = \nu^Tb = 0\)</span> en el paso inicial:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_x_N</span> <span class="o">=</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -2198,7 +2210,7 @@ A =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span><span class="n">idx_x_N</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2256,6 +2268,13 @@ A =
 <p>Hacer cero una variable básica y convertirla en no básica equivale geométricamente a detener el movimiento por una arista hasta encontrar una solución FEV.</p>
 </div>
 <p>Entonces el mínimo ocurre en la segunda posición de <span class="math notranslate nohighlight">\(x_B\)</span> que corresponde a la variable básica <span class="math notranslate nohighlight">\(x_4\)</span>. Se elige <span class="math notranslate nohighlight">\(x_4\)</span> como variable básica que se vuelve no básica. <span class="math notranslate nohighlight">\(x_4\)</span> será sustituida por <span class="math notranslate nohighlight">\(x_2\)</span> en la próxima iteración.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_x_B</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="actualizacion-del-vector-x-b">
 <h3>Actualización del vector <span class="math notranslate nohighlight">\(x_B\)</span><a class="headerlink" href="#actualizacion-del-vector-x-b" title="Permalink to this headline">¶</a></h3>
@@ -2329,7 +2348,7 @@ A =
 <p>Aquí el valor de la variable <span class="math notranslate nohighlight">\(x_4\)</span> se hace cero y tenemos que intercambiar tal entrada con la de <span class="math notranslate nohighlight">\(x_2^+\)</span> para el vector <span class="math notranslate nohighlight">\(x_B\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_B</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_2_plus</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_B</span><span class="p">[</span><span class="n">idx_x_B</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_2_plus</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">x_B</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2341,18 +2360,42 @@ A =
 </div>
 </div>
 <p>Como <span class="math notranslate nohighlight">\(x_4\)</span> se intercambia por <span class="math notranslate nohighlight">\(x_2\)</span> entonces se intercambia la columna <span class="math notranslate nohighlight">\(2\)</span> de <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(a_2\)</span>, por la <span class="math notranslate nohighlight">\(2\)</span> de <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(b_2\)</span> por lo que al final de la iteración 1:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Antes de hacer el intercambio de columnas: <span class="math notranslate nohighlight">\(B = \left [ \begin{array}{ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{array} \right ]\)</span></p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Antes de hacer el intercambio de columnas: <span class="math notranslate nohighlight">\(A = 
+\left [
+\begin{array}{ccccc}
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 2 &amp; 0 &amp; 1 &amp; 0 \\
+3 &amp; 2 &amp; 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right ]
+\)</span></p>
+</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}B = \left [ \begin{array}{ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 1 \end{array} \right ]\end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aux</span> <span class="o">=</span> <span class="n">B</span><span class="p">[:,</span><span class="n">idx_x_B</span><span class="p">]</span>
+<span class="n">B</span><span class="p">[:,</span><span class="n">idx_x_B</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span><span class="n">idx_x_N</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(x_B =  \left [ \begin{array}{c} x_3 \\ x_2 \\ x_5 \end{array}\right ] = \left [ \begin{array}{c} 4 \\ 6 \\ 6 \end{array}\right ]\)</span>,  <span class="math notranslate nohighlight">\(x_N = \left [ \begin{array}{c} x_1 \\ x_4\end{array}\right ] = \left [ \begin{array}{c} 0 \\ 0\end{array}\right ]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aux</span> <span class="o">=</span> <span class="n">B_list_idx</span><span class="p">[</span><span class="n">idx_x_B</span><span class="p">]</span>
+<span class="n">B_list_idx</span><span class="p">[</span><span class="n">idx_x_B</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_list_idx</span><span class="p">[</span><span class="n">idx_x_N</span><span class="p">]</span>
+<span class="n">N_list_idx</span><span class="p">[</span><span class="n">idx_x_N</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>La actualización de <span class="math notranslate nohighlight">\(x_B\)</span> anterior se puede verificar que es equivalente a:</p>
@@ -2383,7 +2426,9 @@ A =
 \[B^T \nu = c_B\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aux</span> <span class="o">=</span> <span class="n">c_B</span><span class="p">[</span><span class="n">idx_x_B</span><span class="p">]</span>
+<span class="n">c_B</span><span class="p">[</span><span class="n">idx_x_B</span><span class="p">]</span> <span class="o">=</span> <span class="n">c_N</span><span class="p">[</span><span class="n">idx_x_N</span><span class="p">]</span>
+<span class="n">c_N</span><span class="p">[</span><span class="n">idx_x_N</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span>
 </pre></div>
 </div>
 </div>
@@ -2423,7 +2468,7 @@ A =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c_N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span><span class="n">N_list_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>
 </pre></div>
 </div>
 </div>
@@ -2435,7 +2480,7 @@ A =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c_N</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span><span class="n">N_list_idx</span><span class="p">[</span><span class="mi">1</span><span class="p">]]))</span>
 </pre></div>
 </div>
 </div>
@@ -2448,6 +2493,13 @@ A =
 <p><span class="math notranslate nohighlight">\(\text{coef}_{N_1} = c_{N_1} - \nu^Ta_1 = 3 - [0 \quad \frac{5}{2} \quad 0]^T \left [ \begin{array}{c} 1 \\ 0 \\ 3 \end{array}\right ] = 3\)</span></p>
 <p><span class="math notranslate nohighlight">\(\text{coef}_{N_4} = c_{N_4} - \nu^Ta_4 = 0 - [0 \quad \frac{5}{2} \quad 0]^T\left [ \begin{array}{c} 0 \\ 1 \\ 0 \end{array}\right ] = -2.5\)</span></p>
 <p>Como tenemos un problema de maximización la tasa más alta de mejoramiento de <span class="math notranslate nohighlight">\(f_o\)</span> la da la variable <span class="math notranslate nohighlight">\(x_1\)</span> por lo que es la variable no básica que sustituye a una variable básica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_x_N</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Valor de la función objetivo en la solución BF actual:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2489,7 +2541,7 @@ A =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span> <span class="n">idx_x_N</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2545,6 +2597,13 @@ A =
 </div>
 </div>
 <p>Entonces el mínimo ocurre en la tercera posición de <span class="math notranslate nohighlight">\(x_B\)</span> que corresponde a la variable básica <span class="math notranslate nohighlight">\(x_5\)</span>. Se elige <span class="math notranslate nohighlight">\(x_5\)</span> como variable básica que se vuelve no básica. <span class="math notranslate nohighlight">\(x_5\)</span> será sustituida por <span class="math notranslate nohighlight">\(x_1\)</span> en la próxima iteración.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_x_B</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="iteracion-2">
 <h3>Iteración 2<a class="headerlink" href="#iteracion-2" title="Permalink to this headline">¶</a></h3>
@@ -2610,7 +2669,7 @@ A =
 <p>Aquí el valor de la variable <span class="math notranslate nohighlight">\(x_5\)</span> se hace cero y tenemos que intercambiar tal entrada con la de <span class="math notranslate nohighlight">\(x_1^+\)</span> para el vector <span class="math notranslate nohighlight">\(x_B\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_B</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_1_plus</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_B</span><span class="p">[</span><span class="n">idx_x_B</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_1_plus</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">x_B</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2627,19 +2686,43 @@ A =
 <div class="math notranslate nohighlight">
 \[\begin{split}x_B = \left [ \begin{array}{c} x_3 \\ x_2 \\ x_1\end{array}\right ] = B^{-1}b = \left [ \begin{array}{ccc} 1 &amp; 0 &amp; 1 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 3 \end{array} \right ]^{-1} \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array}\right ] =  \left [ \begin{array}{ccc} 1 &amp; \frac{1}{3} &amp; -\frac{1}{3} \\ 0 &amp; \frac{1}{2} &amp; 0 \\ 0 &amp; -\frac{1}{3} &amp; \frac{1}{3} \end{array} \right ]\left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array}\right ] = \left [ \begin{array}{c} 2 \\ 6 \\ 2 \end{array}\right ]\end{split}\]</div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Antes de hacer el intercambio de columnas: <span class="math notranslate nohighlight">\(B = \left [ \begin{array}{ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 1 \end{array} \right ]\)</span></p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Antes de hacer el intercambio de columnas: <span class="math notranslate nohighlight">\( A = 
+\left [
+\begin{array}{ccccc}
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+3 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{array}
+\right ]
+\)</span></p>
+</div>
 <p>Como <span class="math notranslate nohighlight">\(x_5\)</span> se intercambia por <span class="math notranslate nohighlight">\(x_1\)</span> entonces se intercambia la columna <span class="math notranslate nohighlight">\(1\)</span> de <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(a_1\)</span>, por la <span class="math notranslate nohighlight">\(3\)</span> de <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(b_3\)</span> por lo que al final de la iteración <span class="math notranslate nohighlight">\(2\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}B = \left [ \begin{array}{ccc} 1 &amp; 0 &amp; 1 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 3 \end{array} \right ]\end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aux</span> <span class="o">=</span> <span class="n">B</span><span class="p">[:,</span><span class="n">idx_x_B</span><span class="p">]</span>
+<span class="n">B</span><span class="p">[:,</span><span class="n">idx_x_B</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span><span class="n">idx_x_N</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(x_B =  \left [ \begin{array}{c} x_3 \\ x_2 \\ x_1 \end{array}\right ] = \left [ \begin{array}{c} 2 \\ 6 \\ 2 \end{array}\right ]\)</span>,  <span class="math notranslate nohighlight">\(x_N = \left [ \begin{array}{c} x_5 \\ x_4\end{array}\right ] = \left [ \begin{array}{c} 0 \\ 0\end{array}\right ]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aux</span> <span class="o">=</span> <span class="n">B_list_idx</span><span class="p">[</span><span class="n">idx_x_B</span><span class="p">]</span>
+<span class="n">B_list_idx</span><span class="p">[</span><span class="n">idx_x_B</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_list_idx</span><span class="p">[</span><span class="n">idx_x_N</span><span class="p">]</span>
+<span class="n">N_list_idx</span><span class="p">[</span><span class="n">idx_x_N</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="id3">
 <h3>Prueba de optimalidad<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
@@ -2668,7 +2751,9 @@ A =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aux</span> <span class="o">=</span> <span class="n">c_B</span><span class="p">[</span><span class="n">idx_x_B</span><span class="p">]</span>
+<span class="n">c_B</span><span class="p">[</span><span class="n">idx_x_B</span><span class="p">]</span> <span class="o">=</span> <span class="n">c_N</span><span class="p">[</span><span class="n">idx_x_N</span><span class="p">]</span>
+<span class="n">c_N</span><span class="p">[</span><span class="n">idx_x_N</span><span class="p">]</span> <span class="o">=</span> <span class="n">aux</span>
 </pre></div>
 </div>
 </div>
@@ -2708,19 +2793,7 @@ A =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.5
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">4</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c_N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span><span class="n">N_list_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>
 </pre></div>
 </div>
 </div>
@@ -2730,8 +2803,20 @@ A =
 </div>
 </div>
 </div>
-<p><span class="math notranslate nohighlight">\(\text{coef}_{N_4} = c_{N_4} - \nu^Ta_4 = 0 - [0 \quad \frac{3}{2} \quad 1]^T \left [ \begin{array}{c} 0 \\ 1 \\ 0 \end{array}\right ] = -1.5\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c_N</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">A</span><span class="p">[:,</span><span class="n">N_list_idx</span><span class="p">[</span><span class="mi">1</span><span class="p">]]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.5
+</pre></div>
+</div>
+</div>
+</div>
 <p><span class="math notranslate nohighlight">\(\text{coef}_{N_5} = c_{N_5} - \nu^Ta_5 = 0 - [0 \quad \frac{3}{2} \quad 1]^T\left [ \begin{array}{c} 0 \\ 0 \\ 1 \end{array}\right ] = -1\)</span></p>
+<p><span class="math notranslate nohighlight">\(\text{coef}_{N_4} = c_{N_4} - \nu^Ta_4 = 0 - [0 \quad \frac{3}{2} \quad 1]^T \left [ \begin{array}{c} 0 \\ 1 \\ 0 \end{array}\right ] = -1.5\)</span></p>
 <p>Como tenemos un problema de maximización la tasa más alta de mejoramiento de <span class="math notranslate nohighlight">\(f_o\)</span> no la da ninguna de las variables no básicas por lo que la solución BF actual <span class="math notranslate nohighlight">\(x = \left [ \begin{array}{c} x_1\\ x_2\\ x_3\\ x_4 \\ x_5 \end{array} \right ]= \left [ \begin{array}{c} 2\\ 6\\ 2\\ 0 \\ 0 \end{array}\right ]\)</span> es la solución óptima.</p>
 <p>Valor de la función objetivo en la solución BF actual:</p>
 <div class="cell docutils container">
