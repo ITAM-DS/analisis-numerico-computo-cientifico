@@ -67,3 +67,9 @@ Repaso hasta la nota [3.1 Definicion_de_problema_optimizacion_conjuntos_y_funcio
 Finalizamos repaso hasta la nota [3.3 Ejemplos_problemas_UCO_e_intro_CIEO_y_PI](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html)
 
 Iniciamos la nota [3.4 Ecuaciones no lineales](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.4/Ecuaciones_no_lineales.html) hasta Sistemas de ecuaciones lineales square, underdetermined, overdetermined.
+
+## Clase 3
+
+28 de enero
+
+Llegamos hasta sistemas de ecuaciones no lineales en [3.4 Ecuaciones no lineales](https://itam-ds.github.io/analisis-numerico-computo-cientifico/III.optimizacion_convexa/3.4/Ecuaciones_no_lineales.html#sistema-de-ecuaciones-no-linales)
