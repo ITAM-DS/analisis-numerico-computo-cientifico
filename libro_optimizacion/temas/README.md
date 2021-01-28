@@ -12,7 +12,9 @@
 
 **Parte 5: optimización de código.**
 
-Dar click en [liga](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) para el temario.
+Dar click en [temario-opt](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) para el temario de optimización.
+
+Dar click en [temario-opt-2](https://drive.google.com/file/d/17ydFChBFxxAOzsIPwUu90KR01zRXdCNZ/view?usp=sharing) para el temario de optimización avanzada.
 
 Url del repositorio: [https://github.com/ITAM-DS/analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico)
 
