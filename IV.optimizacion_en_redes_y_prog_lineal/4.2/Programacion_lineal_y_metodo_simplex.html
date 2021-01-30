@@ -504,8 +504,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#revision-de-cual-variable-basica-es-sustituida">
-     Revisión de cuál variable básica es sustituida
+    <a class="reference internal nav-link" href="#revision-de-cual-arco-basico-es-sustituida">
+     Revisión de cuál arco básico es sustituida
     </a>
    </li>
   </ul>
@@ -565,7 +565,8 @@
 <p>Considérese el problema de satisfacer el flujo neto de todos los nodos con etiquetas “A, B, C, D” y “E” de la siguiente red de acuerdo a las capacidades de cada uno de ellos al menor costo posible:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
 
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -2961,14 +2962,14 @@ B =
 <span class="n">stri1</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="p">({</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="n">n1</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]},{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="n">n1</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]},)</span><span class="si">}</span><span class="s1">&#39;</span>
 <span class="n">stri2</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n\n\n</span><span class="s1">&#39;</span>
 <span class="n">stri3</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="p">({</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="n">n2</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]},</span> <span class="p">{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="n">n2</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]},)</span><span class="si">}</span><span class="s1">&#39;</span>
-<span class="n">string_for_edges_in_cycle</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">stri1</span><span class="p">,</span> <span class="n">stri2</span><span class="p">,</span> <span class="n">stri3</span><span class="p">])}</span>
+<span class="n">string_for_edges_trouble_to_visualize</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">stri1</span><span class="p">,</span> <span class="n">stri2</span><span class="p">,</span> <span class="n">stri3</span><span class="p">])}</span>
 <span class="n">list_of_edges_trouble_to_visualize_min_cost_flow</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">)]</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
                        <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
                        <span class="n">edgelist</span><span class="o">=</span><span class="n">list_of_edges_trouble_to_visualize_min_cost_flow</span><span class="p">)</span>
 
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
-                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">string_for_edges_in_cycle</span><span class="p">,</span>
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">string_for_edges_trouble_to_visualize</span><span class="p">,</span>
                              <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="n">nodes_pos_modified</span> <span class="o">=</span> <span class="p">{}</span>
@@ -3089,13 +3090,28 @@ B =
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_simplex</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
                              <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
+<span class="n">n1</span> <span class="o">=</span> <span class="n">G_simplex</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">][</span><span class="s1">&#39;D&#39;</span><span class="p">]</span>
+<span class="n">n2</span> <span class="o">=</span> <span class="n">G_simplex</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">][</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
+
+<span class="n">n1</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">n1</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;inf&quot;</span>
+
+<span class="n">n2</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">n2</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span><span class="o">=</span> <span class="s2">&quot;inf&quot;</span>
+
+<span class="n">stri1</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="p">({</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="n">n1</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]},{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="n">n1</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]},)</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">stri2</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n\n\n</span><span class="s1">&#39;</span>
+<span class="n">stri3</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="p">({</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="n">n2</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]},</span> <span class="p">{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="n">n2</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]},)</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">string_for_edges_trouble_to_visualize</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">stri1</span><span class="p">,</span> <span class="n">stri2</span><span class="p">,</span> <span class="n">stri3</span><span class="p">])}</span>
+
+<span class="n">list_of_edges_trouble_to_visualize_simplex</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">)]</span>
 
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
                        <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
-                       <span class="n">edgelist</span><span class="o">=</span><span class="n">list_of_edges_trouble_to_visualize_min_cost_flow</span><span class="p">)</span>
+                       <span class="n">edgelist</span><span class="o">=</span><span class="n">list_of_edges_trouble_to_visualize_simplex</span><span class="p">)</span>
 
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_simplex</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
-                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">string_for_edges_in_cycle</span><span class="p">,</span>
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">string_for_edges_trouble_to_visualize</span><span class="p">,</span>
                              <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="n">node_labels_simplex</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G_simplex</span><span class="p">,</span> <span class="s2">&quot;node_and_demand&quot;</span><span class="p">)</span>
@@ -3121,8 +3137,7 @@ B =
 <span class="n">G_simplex_spanning_tree_1</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
 <span class="n">G_simplex_spanning_tree_1</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">)</span>
 
-<span class="n">list_edges_spanning_tree_1</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">),</span>
-                              <span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">)]</span>
+<span class="n">list_edges_spanning_tree_1</span> <span class="o">=</span> <span class="n">G_simplex_spanning_tree_1</span><span class="o">.</span><span class="n">edges</span><span class="p">()</span>
 
 <span class="n">edge_labels_simplex_spanning_tree_1</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -3133,8 +3148,9 @@ B =
 <span class="n">edge_labels_simplex_spanning_tree_1</span><span class="p">[(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">)][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="n">edge_labels_simplex_spanning_tree_1</span><span class="p">[(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">)][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="n">edge_labels_simplex_spanning_tree_1</span><span class="p">[(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">)][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+
 <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G_simplex_spanning_tree_1</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
-    <span class="n">G_simplex_spanning_tree_1</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels_simplex_spanning_tree_1</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span>
+    <span class="n">G_simplex_spanning_tree_1</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels_simplex_spanning_tree_1</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex_spanning_tree_1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
@@ -3171,6 +3187,18 @@ B =
 \end{eqnarray}
 \end{split}\]</div>
 <p>Variables no básicas: <span class="math notranslate nohighlight">\(y_{AB}, x_{AC}, x_{ED}\)</span> que corresponden a árcos no básicos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">G_simplex_spanning_tree_1</span><span class="p">,</span> <span class="s2">&quot;flow&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(&#39;A&#39;, &#39;D&#39;): 40, (&#39;B&#39;, &#39;C&#39;): 50, (&#39;C&#39;, &#39;E&#39;): 50, (&#39;D&#39;, &#39;E&#39;): 10}
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="revision-de-cual-variable-no-basica-sustituye-a-una-variable-basica">
 <h3>Revisión de cuál variable no básica sustituye a una variable básica<a class="headerlink" href="#revision-de-cual-variable-no-basica-sustituye-a-una-variable-basica" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
@@ -3181,7 +3209,7 @@ B =
     <span class="n">G_cycle</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">arc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">G_cycle</span><span class="p">[</span><span class="n">arc</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">arc</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">G_full</span><span class="p">[</span><span class="n">arc</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">arc</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span>
     <span class="n">G_cycle</span><span class="p">[</span><span class="n">arc</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">arc</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">G_full</span><span class="p">[</span><span class="n">arc</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">arc</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span>
-    <span class="n">G_cycle</span><span class="p">[</span><span class="n">arc</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">arc</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$flow^+$&quot;</span>
+    <span class="n">G_cycle</span><span class="p">[</span><span class="n">arc</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">arc</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="n">edge_labels_new</span> <span class="o">=</span> <span class="n">edge_labels</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">edge_labels_new</span><span class="p">[</span><span class="n">arc</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">edge_labels_new</span><span class="p">[</span><span class="n">arc</span><span class="p">][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">G_cycle</span><span class="p">[</span><span class="n">arc</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">arc</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span>
@@ -3195,7 +3223,7 @@ B =
 <p><strong>Arco <span class="math notranslate nohighlight">\(y_{AB}\)</span>:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arc_to_be_added</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arc_to_be_added_1</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3203,7 +3231,7 @@ B =
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_simplex_cycle_1</span><span class="p">,</span> <span class="n">edge_labels_simplex_cycle_1</span> <span class="o">=</span> <span class="n">add_arc_from_spanning_tree</span><span class="p">(</span><span class="n">G_simplex</span><span class="p">,</span> <span class="n">G_simplex_spanning_tree_1</span><span class="p">,</span> 
-                                                                            <span class="n">arc_to_be_added</span><span class="p">,</span>
+                                                                            <span class="n">arc_to_be_added_1</span><span class="p">,</span>
                                                                             <span class="n">edge_labels_simplex_spanning_tree_1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex_cycle_1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
@@ -3213,7 +3241,7 @@ B =
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex_cycle_1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
                        <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
-                       <span class="n">edgelist</span><span class="o">=</span><span class="p">[</span><span class="n">arc_to_be_added</span><span class="p">],</span>
+                       <span class="n">edgelist</span><span class="o">=</span><span class="p">[</span><span class="n">arc_to_be_added_1</span><span class="p">],</span>
                        <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
                        <span class="n">style</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_simplex_cycle_1</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
@@ -3229,7 +3257,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_451_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_451_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_452_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_452_0.png" />
 </div>
 </div>
 <p>Entonces se forma un ciclo no dirigido. La orientación del ciclo se hereda de la dirección del arco añadido, en este caso en sentido de las manecillas del reloj:</p>
@@ -3240,7 +3268,6 @@ B =
 </div>
 </div>
 </div>
-<p>Se calcula el costo unitario de incrementar el flujo por una unidad. Para los “forward” se suma y para los “reverse” se restan los costos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fix_orientation</span><span class="p">(</span><span class="n">c_d</span><span class="p">,</span> <span class="n">arc</span><span class="p">):</span>
@@ -3257,7 +3284,7 @@ B =
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cycle_1_d</span> <span class="o">=</span> <span class="p">{(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">cycle_1</span><span class="p">}</span>
-<span class="n">fix_orientation</span><span class="p">(</span><span class="n">cycle_1_d</span><span class="p">,</span> <span class="n">arc_to_be_added</span><span class="p">)</span>
+<span class="n">fix_orientation</span><span class="p">(</span><span class="n">cycle_1_d</span><span class="p">,</span> <span class="n">arc_to_be_added_1</span><span class="p">)</span>
 <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">cycle_1_d</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3272,6 +3299,7 @@ B =
 </div>
 </div>
 </div>
+<p>Se calcula el costo unitario de incrementar el flujo por una unidad. Para los “forward” se suma y para los “reverse” se restan los costos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edges_and_weights_simplex_cycle_1</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">G_simplex_cycle_1</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">)</span>
@@ -3308,12 +3336,14 @@ B =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">compute_cost_for_unit_increment</span><span class="p">(</span><span class="n">cycle_1_d</span><span class="p">,</span> <span class="n">edges_and_weights_simplex_cycle_1</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">compute_cost_for_unit_increment</span><span class="p">(</span><span class="n">cycle_1_d</span><span class="p">,</span> 
+                                             <span class="n">edges_and_weights_simplex_cycle_1</span><span class="p">))</span>
+     <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
 </pre></div>
 </div>
 </div>
@@ -3321,7 +3351,7 @@ B =
 <p><strong>Arco <span class="math notranslate nohighlight">\(x_{AC}\)</span>:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arc_to_be_added</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arc_to_be_added_2</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3329,7 +3359,7 @@ B =
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_simplex_cycle_2</span><span class="p">,</span> <span class="n">edge_labels_simplex_cycle_2</span> <span class="o">=</span> <span class="n">add_arc_from_spanning_tree</span><span class="p">(</span><span class="n">G_simplex</span><span class="p">,</span> <span class="n">G_simplex_spanning_tree_1</span><span class="p">,</span> 
-                                                                            <span class="n">arc_to_be_added</span><span class="p">,</span>
+                                                                            <span class="n">arc_to_be_added_2</span><span class="p">,</span>
                                                                             <span class="n">edge_labels_simplex_spanning_tree_1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex_cycle_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
@@ -3339,7 +3369,7 @@ B =
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex_cycle_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
                        <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
-                       <span class="n">edgelist</span><span class="o">=</span><span class="p">[</span><span class="n">arc_to_be_added</span><span class="p">],</span>
+                       <span class="n">edgelist</span><span class="o">=</span><span class="p">[</span><span class="n">arc_to_be_added_2</span><span class="p">],</span>
                        <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
                        <span class="n">style</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_simplex_cycle_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
@@ -3355,7 +3385,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_463_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_463_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_464_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_464_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3365,11 +3395,10 @@ B =
 </div>
 </div>
 </div>
-<p>Se calcula el costo unitario de incrementar el flujo por una unidad. Para los “forward” se suma y para los “reverse” se restan los costos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cycle_2_d</span> <span class="o">=</span> <span class="p">{(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">cycle_2</span><span class="p">}</span>
-<span class="n">fix_orientation</span><span class="p">(</span><span class="n">cycle_2_d</span><span class="p">,</span> <span class="n">arc_to_be_added</span><span class="p">)</span>
+<span class="n">fix_orientation</span><span class="p">(</span><span class="n">cycle_2_d</span><span class="p">,</span> <span class="n">arc_to_be_added_2</span><span class="p">)</span>
 <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">cycle_2_d</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3383,6 +3412,7 @@ B =
 </div>
 </div>
 </div>
+<p>Se calcula el costo unitario de incrementar el flujo por una unidad. Para los “forward” se suma y para los “reverse” se restan los costos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edges_and_weights_simplex_cycle_2</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">G_simplex_cycle_2</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">)</span>
@@ -3404,12 +3434,14 @@ B =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">compute_cost_for_unit_increment</span><span class="p">(</span><span class="n">cycle_2_d</span><span class="p">,</span> <span class="n">edges_and_weights_simplex_cycle_2</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">compute_cost_for_unit_increment</span><span class="p">(</span><span class="n">cycle_2_d</span><span class="p">,</span> 
+                                             <span class="n">edges_and_weights_simplex_cycle_2</span><span class="p">))</span>
+     <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-7.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-7.0
 </pre></div>
 </div>
 </div>
@@ -3417,7 +3449,7 @@ B =
 <p><strong>Arco <span class="math notranslate nohighlight">\(x_{ED}\)</span>:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arc_to_be_added</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arc_to_be_added_3</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3425,7 +3457,7 @@ B =
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_simplex_cycle_3</span><span class="p">,</span> <span class="n">edge_labels_simplex_cycle_3</span> <span class="o">=</span> <span class="n">add_arc_from_spanning_tree</span><span class="p">(</span><span class="n">G_simplex</span><span class="p">,</span> <span class="n">G_simplex_spanning_tree_1</span><span class="p">,</span> 
-                                                                            <span class="n">arc_to_be_added</span><span class="p">,</span>
+                                                                            <span class="n">arc_to_be_added_3</span><span class="p">,</span>
                                                                             <span class="n">edge_labels_simplex_spanning_tree_1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex_cycle_3</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
@@ -3448,24 +3480,22 @@ B =
 <span class="n">n1</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">n1</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;inf&quot;</span>
 <span class="n">n1</span><span class="p">[</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$flow^+$&quot;</span>
-
-<span class="n">n2</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">n2</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span><span class="o">=</span> <span class="s2">&quot;inf&quot;</span>
+<span class="n">n2</span><span class="p">[</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
 
 <span class="n">stri1</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="p">({</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="n">n1</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]},{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="n">n1</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]},</span> <span class="p">{</span><span class="s2">&quot;flow&quot;</span><span class="p">:</span> <span class="n">n1</span><span class="p">[</span><span class="s2">&quot;flow&quot;</span><span class="p">]},)</span><span class="si">}</span><span class="s1">&#39;</span>
 <span class="n">stri2</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n\n\n</span><span class="s1">&#39;</span>
-<span class="n">stri3</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="p">({</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="n">n2</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]},</span> <span class="p">{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="n">n2</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]},{</span><span class="s2">&quot;flow&quot;</span><span class="p">:</span> <span class="n">n2</span><span class="p">[</span><span class="s2">&quot;flow&quot;</span><span class="p">]},)</span><span class="si">}</span><span class="s1">&#39;</span>
-<span class="n">string_for_edges_in_cycle</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">stri1</span><span class="p">,</span> <span class="n">stri2</span><span class="p">,</span> <span class="n">stri3</span><span class="p">])}</span>
+<span class="n">stri3</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="p">({</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="n">n2</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]},</span> <span class="p">{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="n">n2</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]},{</span><span class="s2">&quot;flow&quot;</span><span class="p">:</span> <span class="n">n2</span><span class="p">[</span><span class="s2">&quot;flow&quot;</span><span class="p">]})</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">string_for_edges_trouble_to_visualize</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">stri1</span><span class="p">,</span> <span class="n">stri2</span><span class="p">,</span> <span class="n">stri3</span><span class="p">])}</span>
 
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex_cycle_3</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
                        <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
-                       <span class="n">edgelist</span><span class="o">=</span><span class="p">[</span><span class="n">arc_to_be_added</span><span class="p">],</span>
+                       <span class="n">edgelist</span><span class="o">=</span><span class="p">[</span><span class="n">arc_to_be_added_3</span><span class="p">],</span>
                        <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
                        <span class="n">style</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
 
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_simplex_cycle_3</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
-                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">string_for_edges_in_cycle</span><span class="p">,</span>
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">string_for_edges_trouble_to_visualize</span><span class="p">,</span>
                              <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_simplex_cycle_3</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos_modified</span><span class="p">,</span> 
@@ -3478,7 +3508,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_472_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_472_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_473_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_473_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3488,11 +3518,10 @@ B =
 </div>
 </div>
 </div>
-<p>Se calcula el costo unitario de incrementar el flujo por una unidad. Para los “forward” se suma y para los “reverse” se restan los costos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cycle_3_d</span> <span class="o">=</span> <span class="p">{(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">cycle_3</span><span class="p">}</span>
-<span class="n">fix_orientation</span><span class="p">(</span><span class="n">cycle_3_d</span><span class="p">,</span> <span class="n">arc_to_be_added</span><span class="p">)</span>
+<span class="n">fix_orientation</span><span class="p">(</span><span class="n">cycle_3_d</span><span class="p">,</span> <span class="n">arc_to_be_added_3</span><span class="p">)</span>
 <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">cycle_3_d</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3503,6 +3532,7 @@ B =
 </div>
 </div>
 </div>
+<p>Se calcula el costo unitario de incrementar el flujo por una unidad. Para los “forward” se suma y para los “reverse” se restan los costos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edges_and_weights_simplex_cycle_3</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">G_simplex_cycle_3</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">)</span>
@@ -3524,41 +3554,278 @@ B =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">compute_cost_for_unit_increment</span><span class="p">(</span><span class="n">cycle_3_d</span><span class="p">,</span> <span class="n">edges_and_weights_simplex_cycle_3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">compute_cost_for_unit_increment</span><span class="p">(</span><span class="n">cycle_3_d</span><span class="p">,</span> 
+                                             <span class="n">edges_and_weights_simplex_cycle_3</span><span class="p">))</span>
+     <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.0
 </pre></div>
 </div>
 </div>
 </div>
+<p>En resúmen:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Arco</p></th>
+<th class="text-align:center head"><p>Costo por incrementar una unidad del arco</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>(B,A)</p></td>
+<td class="text-align:center"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>(A,C)</p></td>
+<td class="text-align:center"><p>-7</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>(E,D)</p></td>
+<td class="text-align:center"><p>5</p></td>
+</tr>
+</tbody>
+</table>
+<p>Entonces el arco no básico que tiene la tasa más alta de mejoramiento de <span class="math notranslate nohighlight">\(f_o\)</span> es <span class="math notranslate nohighlight">\((A,C)\)</span>.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Si no hay arcos no básicos que mejoren <span class="math notranslate nohighlight">\(f_o\)</span> entonces la solución actual es óptima.</p>
 </div>
-<div class="section" id="revision-de-cual-variable-basica-es-sustituida">
-<h3>Revisión de cuál variable básica es sustituida<a class="headerlink" href="#revision-de-cual-variable-basica-es-sustituida" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="revision-de-cual-arco-basico-es-sustituida">
+<h3>Revisión de cuál arco básico es sustituida<a class="headerlink" href="#revision-de-cual-arco-basico-es-sustituida" title="Permalink to this headline">¶</a></h3>
+<p>Se determina incrementando el flujo de la red lo más posible hasta que una de los arcos básicos llege a su cota inferior o superior. Denotemos al incremento como la cantidad <span class="math notranslate nohighlight">\(\text{flow}^+\)</span> y para los arcos que son “forward” se suma tal cantidad al flujo actual y para los que son “reverse” se resta:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">G_simplex_spanning_tree_1</span><span class="p">,</span> <span class="s2">&quot;flow&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_labels_simplex_spanning_tree_1</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(&#39;A&#39;, &#39;D&#39;): 9, (&#39;B&#39;, &#39;C&#39;): 3, (&#39;C&#39;, &#39;E&#39;): 1, (&#39;D&#39;, &#39;E&#39;): 3}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(&#39;A&#39;, &#39;D&#39;): {&#39;weight&#39;: 9, &#39;capacity&#39;: &#39;inf&#39;, &#39;flow&#39;: 40},
+ (&#39;B&#39;, &#39;C&#39;): {&#39;weight&#39;: 3, &#39;capacity&#39;: &#39;inf&#39;, &#39;flow&#39;: 50},
+ (&#39;C&#39;, &#39;E&#39;): {&#39;weight&#39;: 1, &#39;capacity&#39;: 80, &#39;flow&#39;: 50},
+ (&#39;D&#39;, &#39;E&#39;): {&#39;weight&#39;: 3, &#39;capacity&#39;: &#39;inf&#39;, &#39;flow&#39;: 10}}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">G_simplex_spanning_tree_1</span><span class="p">,</span> <span class="s2">&quot;capacity&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">edge_label_change_for_basic_arc_subs</span><span class="p">(</span><span class="n">c_d</span><span class="p">,</span> <span class="n">edge_labels_reference</span><span class="p">,</span> <span class="n">arc_to_be_added</span><span class="p">):</span>
+    <span class="n">edge_labels_modified</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">edge_labels_modified</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">edge_labels_reference</span><span class="p">)</span>
+    <span class="c1">#for e in c_d.keys():</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">edge_labels_modified</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="c1">#edge_labels_modified[e] = {}</span>
+        <span class="c1">#edge_labels_modified[e][&quot;weight&quot;] = edge_labels_reference[e][&quot;weight&quot;]</span>
+        <span class="c1">#edge_labels_modified[e][&quot;capacity&quot;] = edge_labels_reference[e][&quot;capacity&quot;]</span>
+        <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">c_d</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">e</span> <span class="o">!=</span> <span class="n">arc_to_be_added</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">c_d</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;forward&quot;</span><span class="p">:</span>
+                    <span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]),</span>
+                                                               <span class="s2">&quot;+ $flow^+$&quot;</span><span class="p">])</span>
+                    <span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;bool&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;+&quot;</span> 
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]),</span>
+                                                               <span class="s2">&quot;- $flow^+$&quot;</span><span class="p">])</span>
+                    <span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;bool&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]),</span>
+                                                           <span class="s2">&quot;$flow^+$&quot;</span><span class="p">])</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;bool&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> 
+    <span class="k">return</span> <span class="n">edge_labels_modified</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_labels_simplex_cycle_2_modified</span> <span class="o">=</span> <span class="n">edge_label_change_for_basic_arc_subs</span><span class="p">(</span><span class="n">cycle_2_d</span><span class="p">,</span> 
+                                                                            <span class="n">edge_labels_simplex_cycle_2</span><span class="p">,</span> 
+                                                                            <span class="n">arc_to_be_added_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">edge_labels_simplex_cycle_2_modified</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(&#39;A&#39;, &#39;D&#39;): &#39;inf&#39;, (&#39;B&#39;, &#39;C&#39;): &#39;inf&#39;, (&#39;C&#39;, &#39;E&#39;): 80, (&#39;D&#39;, &#39;E&#39;): &#39;inf&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(&#39;A&#39;, &#39;C&#39;): {&#39;capacity&#39;: &#39;inf&#39;, &#39;flow&#39;: &#39;$flow^+$&#39;, &#39;weight&#39;: 4},
+ (&#39;A&#39;, &#39;D&#39;): {&#39;bool&#39;: &#39;-&#39;,
+              &#39;capacity&#39;: &#39;inf&#39;,
+              &#39;flow&#39;: &#39;40- $flow^+$&#39;,
+              &#39;weight&#39;: 9},
+ (&#39;B&#39;, &#39;C&#39;): {&#39;bool&#39;: 0, &#39;capacity&#39;: &#39;inf&#39;, &#39;flow&#39;: 50, &#39;weight&#39;: 3},
+ (&#39;C&#39;, &#39;E&#39;): {&#39;bool&#39;: &#39;+&#39;, &#39;capacity&#39;: 80, &#39;flow&#39;: &#39;50+ $flow^+$&#39;, &#39;weight&#39;: 1},
+ (&#39;D&#39;, &#39;E&#39;): {&#39;bool&#39;: &#39;-&#39;,
+              &#39;capacity&#39;: &#39;inf&#39;,
+              &#39;flow&#39;: &#39;10- $flow^+$&#39;,
+              &#39;weight&#39;: 3}}
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_labels_simplex_spanning_tree_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(&#39;A&#39;, &#39;D&#39;): {&#39;weight&#39;: 9, &#39;capacity&#39;: &#39;inf&#39;, &#39;flow&#39;: 40},
+ (&#39;B&#39;, &#39;C&#39;): {&#39;weight&#39;: 3, &#39;capacity&#39;: &#39;inf&#39;, &#39;flow&#39;: 50},
+ (&#39;C&#39;, &#39;E&#39;): {&#39;weight&#39;: 1, &#39;capacity&#39;: 80, &#39;flow&#39;: 50},
+ (&#39;D&#39;, &#39;E&#39;): {&#39;weight&#39;: 3, &#39;capacity&#39;: &#39;inf&#39;, &#39;flow&#39;: 10}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex_cycle_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                       <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
+                       <span class="n">edgelist</span><span class="o">=</span><span class="n">G_simplex_spanning_tree_1</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex_cycle_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                       <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
+                       <span class="n">edgelist</span><span class="o">=</span><span class="p">[</span><span class="n">arc_to_be_added_2</span><span class="p">],</span>
+                       <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+                       <span class="n">style</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_simplex_cycle_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels_simplex_cycle_2_modified</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                             <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_simplex_cycle_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos_modified</span><span class="p">,</span> 
+                        <span class="n">labels</span><span class="o">=</span><span class="n">node_labels_simplex_spanning_tree_1</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_simplex_cycle_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_490_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_490_0.png" />
+</div>
+</div>
+<p>Como se debe cumplir la no negatividad y la cota superior, para los arcos en los que se aumenta y tienen cota superior se tiene</p>
+<div class="math notranslate nohighlight">
+\[x_{CE} = 50 + \text{flow}^+ \leq 80\]</div>
+<p>y para los arcos en los que se disminuye:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray}
+x_{AD} = 40 - \text{flow}^+ &amp;\geq&amp; 0 \nonumber \\
+x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
+\end{eqnarray}
+\end{split}\]</div>
+<p>Por lo que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray}
+\text{flow}^+ &amp;\leq&amp; 30 \nonumber \\
+\text{flow}^+ &amp;\leq&amp; 40 \nonumber \\
+\text{flow}^+ &amp;\leq&amp; 10 \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>El mínimo es <span class="math notranslate nohighlight">\(10\)</span>, entonces <span class="math notranslate nohighlight">\(\text{flow}^+ = 10\)</span> y el arco básico que será sustituido es <span class="math notranslate nohighlight">\((D,E)\)</span>.</p>
+<p>El nuevo <em>spanning tree</em> factible es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flow_plus</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arc_to_remove</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">)</span>
+<span class="n">arc_to_add</span> <span class="o">=</span> <span class="n">arc_to_be_added_2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_labels_simplex_cycle_2_modified</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(&#39;A&#39;, &#39;D&#39;): {&#39;weight&#39;: 9,
+  &#39;capacity&#39;: &#39;inf&#39;,
+  &#39;flow&#39;: &#39;40- $flow^+$&#39;,
+  &#39;bool&#39;: &#39;-&#39;},
+ (&#39;B&#39;, &#39;C&#39;): {&#39;weight&#39;: 3, &#39;capacity&#39;: &#39;inf&#39;, &#39;flow&#39;: 50, &#39;bool&#39;: 0},
+ (&#39;C&#39;, &#39;E&#39;): {&#39;weight&#39;: 1,
+  &#39;capacity&#39;: 80,
+  &#39;flow&#39;: &#39;50+ $flow^+$&#39;,
+  &#39;bool&#39;: &#39;+&#39;},
+ (&#39;D&#39;, &#39;E&#39;): {&#39;weight&#39;: 3,
+  &#39;capacity&#39;: &#39;inf&#39;,
+  &#39;flow&#39;: &#39;10- $flow^+$&#39;,
+  &#39;bool&#39;: &#39;-&#39;},
+ (&#39;A&#39;, &#39;C&#39;): {&#39;weight&#39;: 4, &#39;capacity&#39;: &#39;inf&#39;, &#39;flow&#39;: &#39;$flow^+$&#39;}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_simplex_spanning_tree_2</span> <span class="o">=</span> <span class="n">G_simplex_spanning_tree_1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">G_simplex_spanning_tree_2</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="n">arc_to_remove</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">arc_to_remove</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">G_simplex_spanning_tree_2</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">arc_to_add</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arc_to_add</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">list_edges_spanning_tree_2</span> <span class="o">=</span> <span class="n">G_simplex_spanning_tree_2</span><span class="o">.</span><span class="n">edges</span><span class="p">()</span>
+
+<span class="n">edge_labels_simplex_spanning_tree_2</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">list_edges_spanning_tree_2</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">e</span> <span class="o">!=</span> <span class="n">arc_to_add</span><span class="p">:</span>
+        <span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="n">G_simplex_spanning_tree_1</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">edge_labels_simplex_cycle_2_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;bool&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;+&quot;</span><span class="p">:</span>
+            <span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">flow_plus</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">edge_labels_simplex_cycle_2_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;bool&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">:</span>
+                <span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">flow_plus</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">e</span> <span class="o">==</span> <span class="n">arc_to_add</span><span class="p">:</span>
+        <span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">G_simplex</span><span class="p">[</span><span class="n">arc_to_add</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">arc_to_add</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span>
+        <span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">G_simplex</span><span class="p">[</span><span class="n">arc_to_add</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">arc_to_add</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span>
+        <span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">flow_plus</span> 
+        
+
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G_simplex_spanning_tree_2</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+    <span class="n">G_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex_spanning_tree_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                       <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_simplex_spanning_tree_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels_simplex_spanning_tree_2</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                             <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">node_labels_simplex_spanning_tree_2</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G_simplex_spanning_tree_2</span><span class="p">,</span> 
+                                                            <span class="s2">&quot;node_and_demand&quot;</span><span class="p">)</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_simplex_spanning_tree_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos_modified</span><span class="p">,</span> 
+                        <span class="n">labels</span><span class="o">=</span><span class="n">node_labels_simplex_spanning_tree_2</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_simplex_spanning_tree_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                       <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_502_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_502_0.png" />
 </div>
 </div>
 <div class="tip admonition">
