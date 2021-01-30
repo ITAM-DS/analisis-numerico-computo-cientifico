@@ -2045,6 +2045,10 @@ f_o(x) &amp;=&amp; f_o(x) -  (x_1 + x_3 - 4) - (2x_2 + x_4 - 12) - (3x_1 + 2x_2 
 <p class="admonition-title">Observación</p>
 <p>Obsérvese que <span class="math notranslate nohighlight">\(f_o(x) = c_B^Tx_B + c_N^T x_N = c_B^T B^{-1}b = \nu^Tb\)</span>.</p>
 </div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>En el método símplex se mantiene en cada iteración <span class="math notranslate nohighlight">\(\lambda_{B_j} = 0 \forall j \in \mathcal{B}\)</span> y se <strong>busca</strong> que <span class="math notranslate nohighlight">\(\lambda_{N_j} \forall j \in \mathcal{N}\)</span> sea estrictamente positivo para problemas de minimización o estrictamente negativo para problemas de maximización.</p>
+</div>
 <p>La prueba de optimalidad consiste en revisar los <span class="math notranslate nohighlight">\(\lambda_{N_j}\)</span>, <span class="math notranslate nohighlight">\(j \in \mathcal{N}\)</span>. Se selecciona(n) aquella(s) variable(s) no básica(s) que tenga(n) la tasa más alta de mejoramiento (esto depende si es un problema de maximización o minimización) del valor en la función objetivo.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -2844,6 +2848,40 @@ B =
 </div>
 <p><span class="math notranslate nohighlight">\(\lambda_{N_5} = c_{N_5} - \nu^Ta_5 = 0 - [0 \quad \frac{3}{2} \quad 1]^T\left [ \begin{array}{c} 0 \\ 0 \\ 1 \end{array}\right ] = -1\)</span></p>
 <p><span class="math notranslate nohighlight">\(\lambda_{N_4} = c_{N_4} - \nu^Ta_4 = 0 - [0 \quad \frac{3}{2} \quad 1]^T \left [ \begin{array}{c} 0 \\ 1 \\ 0 \end{array}\right ] = -1.5\)</span></p>
+<p><strong>Índices de las variables básicas:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">B_list_idx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 1, 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Índices de las variables no básicas:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">N_list_idx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Recuérdese que en el método símplex se mantiene en cada iteración <span class="math notranslate nohighlight">\(\lambda_{B_j} = 0 \forall j \in \mathcal{B}\)</span> y se <strong>busca</strong> que <span class="math notranslate nohighlight">\(\lambda_{N_j} \forall j \in \mathcal{N}\)</span> sea estrictamente positivo para problemas de minimización o estrictamente negativo para problemas de maximización.</p>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Entonces al finalizar el método símplex <span class="math notranslate nohighlight">\(\lambda_{B_1} = \lambda_{B_2} = \lambda_{B_3} = 0\)</span> para los índices de las variables básicas <span class="math notranslate nohighlight">\(x_1, x_2, x_3\)</span>, <span class="math notranslate nohighlight">\(\mathcal{B} = \{1, 2, 3\}\)</span> y <span class="math notranslate nohighlight">\(\lambda_{N_4} = -1.5\)</span>, <span class="math notranslate nohighlight">\(\lambda_{N_5} = -1\)</span> para los índices de las variables no básicas <span class="math notranslate nohighlight">\(x_4, x_5\)</span>, <span class="math notranslate nohighlight">\(\mathcal{N} = \{4, 5\}\)</span></p>
+</div>
 <p>Como tenemos un problema de maximización la tasa más alta de mejoramiento de <span class="math notranslate nohighlight">\(f_o\)</span> no la da ninguna de las variables no básicas por lo que la solución BF actual <span class="math notranslate nohighlight">\(x = \left [ \begin{array}{c} x_1\\ x_2\\ x_3\\ x_4 \\ x_5 \end{array} \right ]= \left [ \begin{array}{c} 2\\ 6\\ 2\\ 0 \\ 0 \end{array}\right ]\)</span> es la solución óptima.</p>
 <p>Valor de la función objetivo en la solución BF actual:</p>
 <div class="cell docutils container">
@@ -2854,9 +2892,6 @@ B =
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36.0
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -3002,7 +3037,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_426_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_426_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_433_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_433_0.png" />
 </div>
 </div>
 <p>En la red anterior el arco <span class="math notranslate nohighlight">\((D, E)\)</span> tiene costo igual a <span class="math notranslate nohighlight">\(3\)</span> y el arco <span class="math notranslate nohighlight">\((E, D)\)</span> tiene costo igual a <span class="math notranslate nohighlight">\(2\)</span>.</p>
@@ -3061,7 +3096,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_436_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_436_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_443_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_443_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -3129,7 +3164,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_441_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_441_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_448_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_448_0.png" />
 </div>
 </div>
 <p>Considérese el siguiente <em>spanning tree</em> factible de ésta red:</p>
@@ -3175,7 +3210,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_443_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_443_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_450_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_450_0.png" />
 </div>
 </div>
 <p>Los valores anteriores de flujo se pueden obtener resolviendo las siguientes ecuaciones de igualdad que resultan con el cambio <span class="math notranslate nohighlight">\(x_{AB} = 10 - y_{BA}\)</span> y considerando arcos no básicos: <span class="math notranslate nohighlight">\(y_{AB}, x_{AC}, x_{ED}\)</span> que tienen valor igual a <span class="math notranslate nohighlight">\(0\)</span>:</p>
@@ -3260,7 +3295,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_452_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_452_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_459_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_459_0.png" />
 </div>
 </div>
 <p>Entonces se forma un ciclo no dirigido. La orientación del ciclo se hereda de la dirección del arco añadido, en este caso en sentido de las manecillas del reloj:</p>
@@ -3388,7 +3423,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_464_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_464_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_471_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_471_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3511,7 +3546,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_473_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_473_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_480_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_480_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3695,7 +3730,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_489_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_489_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_496_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_496_0.png" />
 </div>
 </div>
 <p>Como se debe cumplir la no negatividad y la cota superior, para los arcos en los que se aumenta y tienen cota superior se tiene</p>
@@ -3784,7 +3819,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_500_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_500_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_507_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_507_0.png" />
 </div>
 </div>
 <div class="tip admonition">
