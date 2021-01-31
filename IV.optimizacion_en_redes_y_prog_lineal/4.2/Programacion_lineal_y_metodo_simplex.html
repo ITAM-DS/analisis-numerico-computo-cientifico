@@ -3144,18 +3144,60 @@ B =
 </div>
 <p>En la red anterior el arco <span class="math notranslate nohighlight">\((E, D)\)</span> es de <span class="math notranslate nohighlight">\(20\)</span> unidades. La designación del flujo anterior entre todos los nodos incurre en un costo de <span class="math notranslate nohighlight">\(490\)</span>.</p>
 <p>(explicación de la técnica de la cota superior o partir de una solución BF, luego llegar a la siguiente red utilizando el método de símplex de redes)</p>
-<p>Supóngase que en alguna iteración <span class="math notranslate nohighlight">\(x_{AB}\)</span> se convirtió en la variable básica que será sustituida pues alcanzó su cota superior de <span class="math notranslate nohighlight">\(10\)</span>. Por tanto el arco <span class="math notranslate nohighlight">\(x_{AB}\)</span> se sustituye por <span class="math notranslate nohighlight">\(x_{AB} = 10 - y_{BA}\)</span> con <span class="math notranslate nohighlight">\(y_{BA}=0\)</span> y por tanto es una variable no básica “nueva”. Entonces se sustituye el arco <span class="math notranslate nohighlight">\((A,B)\)</span> por el arco <span class="math notranslate nohighlight">\((B,A)\)</span> el cual tiene un flujo de <span class="math notranslate nohighlight">\(y_{BA}\)</span> con capacidad de <span class="math notranslate nohighlight">\(10\)</span> y un costo unitario de <span class="math notranslate nohighlight">\(-2\)</span>. También <span class="math notranslate nohighlight">\(b_A\)</span> disminuye de <span class="math notranslate nohighlight">\(50\)</span> a <span class="math notranslate nohighlight">\(40\)</span> y <span class="math notranslate nohighlight">\(b_B\)</span> aumenta de <span class="math notranslate nohighlight">\(40\)</span> a <span class="math notranslate nohighlight">\(50\)</span>:</p>
+<p>Supóngase que en alguna iteración <span class="math notranslate nohighlight">\(x_{AB}\)</span> se convirtió en la variable básica que será sustituida pues alcanzó su cota superior de <span class="math notranslate nohighlight">\(10\)</span>. Por tanto el arco <span class="math notranslate nohighlight">\(x_{AB}\)</span> se sustituye por <span class="math notranslate nohighlight">\(x_{AB} = 10 - y_{BA}\)</span> con <span class="math notranslate nohighlight">\(y_{BA}=0\)</span> y por tanto es una variable no básica “nueva”. Entonces se sustituye el arco <span class="math notranslate nohighlight">\((A,B)\)</span> por el arco <span class="math notranslate nohighlight">\((B,A)\)</span> el cual tiene un flujo de <span class="math notranslate nohighlight">\(y_{BA}\)</span> con capacidad de <span class="math notranslate nohighlight">\(10\)</span> y un costo unitario de <span class="math notranslate nohighlight">\(-2\)</span>. También <span class="math notranslate nohighlight">\(b_B\)</span> aumenta de <span class="math notranslate nohighlight">\(40\)</span> a <span class="math notranslate nohighlight">\(50\)</span> y <span class="math notranslate nohighlight">\(b_A\)</span> disminuye de <span class="math notranslate nohighlight">\(50\)</span> a <span class="math notranslate nohighlight">\(40\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_demand_B</span> <span class="o">=</span> <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">][</span><span class="s1">&#39;B&#39;</span><span class="p">][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="s2">&quot;demand&quot;</span><span class="p">)[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">new_demand_B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_demand_A</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G_min_cost_flow</span><span class="p">,</span> <span class="s2">&quot;demand&quot;</span><span class="p">)[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">][</span><span class="s1">&#39;B&#39;</span><span class="p">][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">new_demand_A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_simplex</span> <span class="o">=</span> <span class="n">G_min_cost_flow</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">G_simplex</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
 <span class="n">G_simplex</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
-<span class="n">G_simplex</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">][</span><span class="s1">&#39;A&#39;</span><span class="p">][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
-<span class="n">G_simplex</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">][</span><span class="s1">&#39;A&#39;</span><span class="p">][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span><span class="n">G_simplex</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;demand&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
-                                         <span class="s2">&quot;node_and_demand&quot;</span><span class="p">:</span> <span class="s2">&quot;A [40]&quot;</span><span class="p">},</span>
-                                   <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;demand&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
-                                         <span class="s2">&quot;node_and_demand&quot;</span><span class="p">:</span> <span class="s2">&quot;B [50]&quot;</span><span class="p">}</span>
+<span class="n">G_simplex</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">][</span><span class="s1">&#39;A&#39;</span><span class="p">][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">G_min_cost_flow</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">][</span><span class="s1">&#39;B&#39;</span><span class="p">][</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span>
+<span class="n">G_simplex</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">][</span><span class="s1">&#39;A&#39;</span><span class="p">][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">G_min_cost_flow</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">][</span><span class="s1">&#39;B&#39;</span><span class="p">][</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span>
+
+<span class="n">node_and_demand_B</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">new_demand_B</span><span class="p">),</span><span class="s1">&#39;]&#39;</span><span class="p">])</span>
+<span class="n">node_and_demand_A</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">new_demand_A</span><span class="p">),</span><span class="s1">&#39;]&#39;</span><span class="p">])</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span><span class="n">G_simplex</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;demand&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+                                         <span class="s2">&quot;node_and_demand&quot;</span><span class="p">:</span> <span class="n">node_and_demand_B</span><span class="p">},</span>
+                                   <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;demand&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+                                         <span class="s2">&quot;node_and_demand&quot;</span><span class="p">:</span> <span class="n">node_and_demand_A</span><span class="p">},</span>                                   
                                    <span class="p">})</span>
 
 <span class="n">list_of_edges_not_trouble_to_visualize_simplex</span> <span class="o">=</span> <span class="n">G_simplex</span><span class="o">.</span><span class="n">edges</span><span class="p">()</span>
@@ -3167,21 +3209,9 @@ B =
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_simplex</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
                              <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
-<span class="n">n1</span> <span class="o">=</span> <span class="n">G_simplex</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">][</span><span class="s1">&#39;D&#39;</span><span class="p">]</span>
-<span class="n">n2</span> <span class="o">=</span> <span class="n">G_simplex</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">][</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<span class="n">string_for_edges_trouble_to_visualize_simplex</span> <span class="o">=</span> <span class="n">string_for_edges_trouble_to_visualize_min_cost_flow</span>
 
-<span class="n">n1</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">n1</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;inf&quot;</span>
-
-<span class="n">n2</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">n2</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]</span><span class="o">=</span> <span class="s2">&quot;inf&quot;</span>
-
-<span class="n">stri1</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="p">({</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="n">n1</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]},{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="n">n1</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]},)</span><span class="si">}</span><span class="s1">&#39;</span>
-<span class="n">stri2</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n\n\n</span><span class="s1">&#39;</span>
-<span class="n">stri3</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="p">({</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="n">n2</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]},</span> <span class="p">{</span><span class="s2">&quot;capacity&quot;</span><span class="p">:</span> <span class="n">n2</span><span class="p">[</span><span class="s2">&quot;capacity&quot;</span><span class="p">]},)</span><span class="si">}</span><span class="s1">&#39;</span>
-<span class="n">string_for_edges_trouble_to_visualize_simplex</span> <span class="o">=</span> <span class="p">{(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">):</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">stri1</span><span class="p">,</span> <span class="n">stri2</span><span class="p">,</span> <span class="n">stri3</span><span class="p">])}</span>
-
-<span class="n">list_of_edges_trouble_to_visualize_simplex</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">)]</span>
+<span class="n">list_of_edges_trouble_to_visualize_simplex</span> <span class="o">=</span> <span class="n">list_of_edges_trouble_to_visualize_min_cost_flow</span>
 
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
                        <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
@@ -3203,7 +3233,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_449_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_449_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_453_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_453_0.png" />
 </div>
 </div>
 <p>Considérese el siguiente <em>spanning tree</em> factible de ésta red:</p>
@@ -3249,7 +3279,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_451_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_451_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_455_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_455_0.png" />
 </div>
 </div>
 <p>Los valores anteriores de flujo se pueden obtener resolviendo las siguientes ecuaciones de igualdad que resultan con el cambio <span class="math notranslate nohighlight">\(x_{AB} = 10 - y_{BA}\)</span> y considerando arcos no básicos: <span class="math notranslate nohighlight">\(y_{AB}, x_{AC}, x_{ED}\)</span> que tienen valor igual a <span class="math notranslate nohighlight">\(0\)</span>:</p>
@@ -3334,7 +3364,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_460_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_460_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_464_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_464_0.png" />
 </div>
 </div>
 <p>Entonces se forma un ciclo no dirigido. La orientación del ciclo se hereda de la dirección del arco añadido, en este caso en sentido de las manecillas del reloj:</p>
@@ -3462,7 +3492,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_472_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_472_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_476_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_476_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3505,9 +3535,6 @@ B =
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(&#39;A&#39;, &#39;C&#39;): 4, (&#39;A&#39;, &#39;D&#39;): 9, (&#39;B&#39;, &#39;C&#39;): 3, (&#39;C&#39;, &#39;E&#39;): 1, (&#39;D&#39;, &#39;E&#39;): 3}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -3588,7 +3615,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_481_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_481_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_485_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_485_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3757,7 +3784,7 @@ B =
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_496_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_496_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_500_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_500_0.png" />
 </div>
 </div>
 <p>Como se debe cumplir la no negatividad y la cota superior, para los arcos en los que se aumenta y tienen cota superior se tiene</p>
@@ -3862,7 +3889,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_508_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_508_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_512_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_512_0.png" />
 </div>
 </div>
 </div>
@@ -3898,7 +3925,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_510_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_510_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_514_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_514_0.png" />
 </div>
 </div>
 <p>Identificamos los arcos no básicos que son los que no están en el <em>spanning tree factible</em> que se obtuvo al final de la iteración anterior. En el margen se muestra la red, entonces los arcos no básicos son <span class="math notranslate nohighlight">\((B, A), (D, E), (E,D)\)</span>.</p>
@@ -3942,7 +3969,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_515_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_515_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_519_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_519_0.png" />
 </div>
 </div>
 <p>Entonces se forma un ciclo no dirigido. Se calcula el costo unitario de incrementar el flujo por una unidad. Para los arcos “forward” se suma y para los “reverse” se restan los costos:</p>
@@ -4003,7 +4030,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_520_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_520_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_524_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_524_0.png" />
 </div>
 </div>
 <p>Entonces se forma un ciclo no dirigido. Se calcula el costo unitario de incrementar el flujo por una unidad. Para los arcos “forward” se suma y para los “reverse” se restan los costos:</p>
@@ -4064,7 +4091,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_525_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_525_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_529_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_529_0.png" />
 </div>
 </div>
 <p>Entonces se forma un ciclo no dirigido. Se calcula el costo unitario de incrementar el flujo por una unidad. Para los arcos “forward” se suma y para los “reverse” se restan los costos:</p>
@@ -4169,7 +4196,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_534_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_534_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_538_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_538_0.png" />
 </div>
 </div>
 <p>Como se debe cumplir la no negatividad y la cota superior, para los arcos en los que se aumenta y tienen cota superior se tiene:</p>
@@ -4260,7 +4287,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
                              <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 
-<span class="n">list_of_edges_trouble_to_visualize_simplex2</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">)]</span>
+<span class="n">list_of_edges_trouble_to_visualize_simplex2</span> <span class="o">=</span> <span class="n">list_of_edges_trouble_to_visualize_simplex</span>
 
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
                        <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
@@ -4282,7 +4309,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_547_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_547_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_551_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_551_0.png" />
 </div>
 </div>
 <p>El nuevo <em>spanning tree</em> factible es:</p>
@@ -4374,7 +4401,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_552_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_552_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_556_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_556_0.png" />
 </div>
 </div>
 <div class="tip admonition">
