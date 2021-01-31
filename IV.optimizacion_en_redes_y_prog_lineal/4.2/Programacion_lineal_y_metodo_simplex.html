@@ -3700,42 +3700,42 @@ B =
 <p>Se determina incrementando el flujo de la red lo más posible hasta que uno de los arcos básicos llege a su cota inferior o superior. Denotemos al incremento como la cantidad <span class="math notranslate nohighlight">\(\text{flow}^+\)</span> y para los arcos que son “forward” se suma tal cantidad al flujo actual y para los que son “reverse” se resta:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">edge_label_change_for_basic_arc_subs</span><span class="p">(</span><span class="n">c_d</span><span class="p">,</span> <span class="n">edge_labels_reference</span><span class="p">,</span> <span class="n">edge_to_be_added</span><span class="p">):</span>
-    <span class="n">edge_labels_modified</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">edge_labels_modified</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">edge_labels_reference</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">edge_labels_modified</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">edge_label_change_for_basic_edge_subs</span><span class="p">(</span><span class="n">c_d</span><span class="p">,</span> <span class="n">edge_labels_reference</span><span class="p">,</span> <span class="n">edge_to_be_added</span><span class="p">):</span>
+    <span class="n">edge_labels_with_flow_change</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">edge_labels_with_flow_change</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">edge_labels_reference</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">edge_labels_with_flow_change</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">c_d</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">e</span> <span class="o">!=</span> <span class="n">edge_to_be_added</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">c_d</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;forward&quot;</span><span class="p">:</span>
-                    <span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]),</span>
-                                                               <span class="s2">&quot;+ $flow^+$&quot;</span><span class="p">])</span>
-                    <span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;bool&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;+&quot;</span> 
+                    <span class="n">edge_labels_with_flow_change</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">edge_labels_with_flow_change</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]),</span>
+                                                                           <span class="s2">&quot;+ $flow^+$&quot;</span><span class="p">])</span>
+                    <span class="n">edge_labels_with_flow_change</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;bool&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;+&quot;</span> 
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]),</span>
-                                                               <span class="s2">&quot;- $flow^+$&quot;</span><span class="p">])</span>
-                    <span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;bool&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span>
+                    <span class="n">edge_labels_with_flow_change</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">edge_labels_with_flow_change</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]),</span>
+                                                                           <span class="s2">&quot;- $flow^+$&quot;</span><span class="p">])</span>
+                    <span class="n">edge_labels_with_flow_change</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;bool&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]),</span>
-                                                           <span class="s2">&quot;$flow^+$&quot;</span><span class="p">])</span> 
+                <span class="n">edge_labels_with_flow_change</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">edge_labels_with_flow_change</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;flow&quot;</span><span class="p">]),</span>
+                                                                       <span class="s2">&quot;$flow^+$&quot;</span><span class="p">])</span> 
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">edge_labels_modified</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;bool&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> 
-    <span class="k">return</span> <span class="n">edge_labels_modified</span>
+            <span class="n">edge_labels_with_flow_change</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s2">&quot;bool&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> 
+    <span class="k">return</span> <span class="n">edge_labels_with_flow_change</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_labels_simplex_cycle_2_modified</span> <span class="o">=</span> <span class="n">edge_label_change_for_basic_arc_subs</span><span class="p">(</span><span class="n">cycle_2_d</span><span class="p">,</span> 
-                                                                            <span class="n">edge_labels_simplex_cycle_2</span><span class="p">,</span> 
-                                                                            <span class="n">edge_to_be_added_2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_labels_simplex_cycle_2_with_flow_change</span> <span class="o">=</span> <span class="n">edge_label_change_for_basic_edge_subs</span><span class="p">(</span><span class="n">cycle_2_d</span><span class="p">,</span> 
+                                                                                     <span class="n">edge_labels_simplex_cycle_2</span><span class="p">,</span> 
+                                                                                     <span class="n">edge_to_be_added_2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">edge_labels_simplex_cycle_2_modified</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">edge_labels_simplex_cycle_2_with_flow_change</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3769,7 +3769,7 @@ B =
                        <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
                        <span class="n">style</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_simplex_cycle_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
-                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels_simplex_cycle_2_modified</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels_simplex_cycle_2_with_flow_change</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                              <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_simplex_cycle_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos_modified</span><span class="p">,</span> 
                         <span class="n">labels</span><span class="o">=</span><span class="n">node_labels_simplex_spanning_tree_1</span><span class="p">)</span>
@@ -3878,7 +3878,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
                                                                  <span class="n">G_simplex_spanning_tree_1</span><span class="p">,</span> 
                                                                  <span class="n">edge_to_remove_spanning_tree_2</span><span class="p">,</span>
                                                                  <span class="n">edge_to_add_spanning_tree_2</span><span class="p">,</span> 
-                                                                 <span class="n">edge_labels_simplex_cycle_2_modified</span><span class="p">)</span>
+                                                                 <span class="n">edge_labels_simplex_cycle_2_with_flow_change</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_simplex_spanning_tree_2</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
@@ -4153,16 +4153,16 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 <p>Se denota como la cantidad <span class="math notranslate nohighlight">\(flow^+\)</span> y para los arcos que son “forward” se suma tal cantidad al flujo actual y para los que son “reverse” se resta:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_labels_simplex_cycle_3_modified</span> <span class="o">=</span> <span class="n">edge_label_change_for_basic_arc_subs</span><span class="p">(</span><span class="n">cycle_3_d</span><span class="p">,</span> 
-                                                                            <span class="n">edge_labels_simplex_cycle_3</span><span class="p">,</span> 
-                                                                            <span class="n">edge_to_be_added_3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_labels_simplex_cycle_3_with_flow_change</span> <span class="o">=</span> <span class="n">edge_label_change_for_basic_edge_subs</span><span class="p">(</span><span class="n">cycle_3_d</span><span class="p">,</span> 
+                                                                                     <span class="n">edge_labels_simplex_cycle_3</span><span class="p">,</span> 
+                                                                                     <span class="n">edge_to_be_added_3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">edge_labels_simplex_cycle_3_modified</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">edge_labels_simplex_cycle_3_with_flow_change</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4196,7 +4196,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
                        <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
                        <span class="n">style</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_simplex_cycle_3</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
-                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels_simplex_cycle_3_modified</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+                             <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels_simplex_cycle_3_with_flow_change</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
                              <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_simplex_cycle_3</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos_modified</span><span class="p">,</span> 
                         <span class="n">labels</span><span class="o">=</span><span class="n">node_labels_simplex_spanning_tree_2</span><span class="p">)</span>
@@ -4352,13 +4352,13 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_simplex_spanning_tree_3</span><span class="p">,</span> <span class="n">edge_labels_simplex_spanning_tree_3</span> <span class="o">=</span> <span class="n">get_spanning_tree_from_spanning_tree_reference</span><span class="p">(</span><span class="n">G_simplex2</span><span class="p">,</span> 
                                                                  <span class="n">G_simplex_spanning_tree_2</span><span class="p">,</span> 
                                                                  <span class="n">edge_to_remove_spanning_tree_3</span><span class="p">,</span>
                                                                  <span class="n">edge_to_add_spanning_tree_3</span><span class="p">,</span> 
-                                                                 <span class="n">edge_labels_simplex_cycle_3_modified</span><span class="p">)</span>
+                                                                 <span class="n">edge_labels_simplex_cycle_3_with_flow_change</span><span class="p">)</span>
 <span class="c1">#update demands after upper bound technique</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span><span class="n">G_simplex_spanning_tree_3</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;demand&quot;</span><span class="p">:</span> <span class="n">new_demand_C</span><span class="p">,</span>
                                                          <span class="s2">&quot;node_and_demand&quot;</span><span class="p">:</span> <span class="n">node_and_demand_C</span><span class="p">}})</span>
