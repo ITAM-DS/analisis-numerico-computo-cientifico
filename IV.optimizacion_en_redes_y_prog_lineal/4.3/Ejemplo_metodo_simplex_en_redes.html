@@ -447,7 +447,7 @@
 <li></li>
 </ul>
 </div>
-<p>Para ver un ejemplo del uso del método símplex aplicado a problemas de redes con capacidades (variables de decisión con cotas superiores) se utilizarán las <a class="reference internal" href="../4.1/Definiciones_generales_de_flujo_en_redes.html#dgflujoredes"><span class="std std-ref">Definiciones generales de flujo en redes</span></a> y  el ejemplo de <a class="reference internal" href="../4.2/Programacion_lineal_y_metodo_simplex.html#ejflujoenredesypl"><span class="std std-ref">flujo en redes</span></a> añadiendo capacidad a los arcos <span class="math notranslate nohighlight">\((A, B)\)</span> y <span class="math notranslate nohighlight">\((C, E)\)</span> igual a <span class="math notranslate nohighlight">\(10\)</span> y <span class="math notranslate nohighlight">\(80\)</span> respectivamente:</p>
+<p>En esta nota se revisa un ejemplo del uso del método símplex aplicado a problemas de redes con capacidades (variables de decisión con cotas superiores) se utilizarán las <a class="reference internal" href="../4.1/Definiciones_generales_de_flujo_en_redes.html#dgflujoredes"><span class="std std-ref">Definiciones generales de flujo en redes</span></a> y  el ejemplo de <a class="reference internal" href="../4.2/Programacion_lineal_y_metodo_simplex.html#ejflujoenredesypl"><span class="std std-ref">flujo en redes</span></a> añadiendo capacidad a los arcos <span class="math notranslate nohighlight">\((A, B)\)</span> y <span class="math notranslate nohighlight">\((C, E)\)</span> igual a <span class="math notranslate nohighlight">\(10\)</span> y <span class="math notranslate nohighlight">\(80\)</span> respectivamente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
@@ -460,7 +460,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_graph_with_edges_trouble_to_visualize</span><span class="p">(</span><span class="n">figsize_tuple</span><span class="p">,</span>
                                                <span class="n">G_to_plot</span><span class="p">,</span> <span class="n">nodes_position</span><span class="p">,</span>
@@ -488,7 +488,28 @@
     <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span> 
                            <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>    
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">plot_graph</span><span class="p">(</span><span class="n">figsize_tuple</span><span class="p">,</span> <span class="n">G_to_plot</span><span class="p">,</span>
+               <span class="n">nodes_position</span><span class="p">,</span>
+               <span class="n">nodes_position_modified</span><span class="p">,</span>
+               <span class="n">nodes_labels</span><span class="p">,</span>
+               <span class="n">edge_labels</span><span class="p">):</span>
+  
+    <span class="k">if</span> <span class="n">figsize_tuple</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize_tuple</span><span class="p">)</span>
+        
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span> 
+                           <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span>
+                                 <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">,</span>
+                                 <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position_modified</span><span class="p">,</span>
+                            <span class="n">labels</span><span class="o">=</span><span class="n">nodes_labels</span><span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span> 
+                           <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
 </pre></div>
 </div>
 </div>
@@ -616,32 +637,6 @@
 </div>
 </div>
 <p>La red solución (omitiendo arcos con flujo igual a cero) es:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_graph</span><span class="p">(</span><span class="n">figsize_tuple</span><span class="p">,</span> <span class="n">G_to_plot</span><span class="p">,</span>
-               <span class="n">nodes_position</span><span class="p">,</span>
-               <span class="n">nodes_position_modified</span><span class="p">,</span>
-               <span class="n">nodes_labels</span><span class="p">,</span>
-               <span class="n">edge_labels</span><span class="p">):</span>
-  
-    <span class="k">if</span> <span class="n">figsize_tuple</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize_tuple</span><span class="p">)</span>
-        
-    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span> 
-                           <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">)</span>
-    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span>
-                                 <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">,</span>
-                                 <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  
-    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position_modified</span><span class="p">,</span>
-                            <span class="n">labels</span><span class="o">=</span><span class="n">nodes_labels</span><span class="p">)</span>
-    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span> 
-                           <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_min_cost_flow_solution</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
@@ -674,7 +669,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_21_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_21_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_20_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_20_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -765,7 +760,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_37_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_37_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_36_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_36_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -802,7 +797,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_38_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_38_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_37_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_37_0.png" />
 </div>
 </div>
 <p>Para futura referencia el arco <span class="math notranslate nohighlight">\((A,B)\)</span> que alcanzó la cota superior lo guardamos en la red <code class="docutils literal notranslate"><span class="pre">G_simplex_edges_upper_bounds</span></code> (e iremos guardando los arcos que lleguen a tales cotas):</p>
@@ -870,7 +865,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_42_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_42_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_41_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_41_0.png" />
 </div>
 </div>
 <p>Considérese el siguiente <em>spanning tree</em> factible de ésta red:</p>
@@ -910,7 +905,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_44_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_44_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_43_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_43_0.png" />
 </div>
 </div>
 <p>Los valores anteriores de flujo se pueden obtener resolviendo las siguientes ecuaciones de igualdad que resultan con el cambio <span class="math notranslate nohighlight">\(x_{AB} = 10 - y_{BA}\)</span> y considerando arcos no básicos: <span class="math notranslate nohighlight">\(y_{AB}, x_{AC}, x_{ED}\)</span> que tienen valor igual a <span class="math notranslate nohighlight">\(0\)</span>:</p>
@@ -952,7 +947,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_49_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_49_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_48_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_48_0.png" />
 </div>
 </div>
 <div class="cell tag_margin tag_hide-input docutils container">
@@ -967,7 +962,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_50_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_50_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_49_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_49_0.png" />
 </div>
 </div>
 <p>Identificamos los arcos no básicos que son los que no están en el spanning tree factible que se obtuvo. En el margen se muestra la red de referencia y el <em>spanning tree</em> factible, entonces los arcos no básicos son: <span class="math notranslate nohighlight">\((B,A), (A,C), (E,D)\)</span>. Recuérdese que el arco <span class="math notranslate nohighlight">\((B,A)\)</span> se representa con la variable <span class="math notranslate nohighlight">\(y_{AB}\)</span>.</p>
@@ -990,7 +985,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_graph_with_cycle</span><span class="p">(</span><span class="n">figsize_tuple</span><span class="p">,</span> <span class="n">G_to_plot</span><span class="p">,</span>
                           <span class="n">nodes_position</span><span class="p">,</span>
@@ -1020,7 +1015,39 @@
                            <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">plot_graph_with_cycle_edges_trouble_to_visualize</span><span class="p">(</span><span class="n">figsize_tuple</span><span class="p">,</span>
+                                                     <span class="n">G_to_plot</span><span class="p">,</span>
+                                                     <span class="n">nodes_position</span><span class="p">,</span>
+                                                     <span class="n">nodes_position_modified</span><span class="p">,</span>
+                                                     <span class="n">nodes_labels</span><span class="p">,</span>
+                                                     <span class="n">edge_labels</span><span class="p">,</span>
+                                                     <span class="n">edge_to_be_added</span><span class="p">,</span>
+                                                     <span class="n">string_for_edges_trouble_to_visualize</span>
+                                                     <span class="p">):</span>
   
+    <span class="k">if</span> <span class="n">figsize_tuple</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize_tuple</span><span class="p">)</span>
+        
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span> 
+                           <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
+                           <span class="n">edgelist</span><span class="o">=</span><span class="n">G_to_plot</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span>
+                                 <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">,</span>
+                                 <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>    
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
+                           <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
+                           <span class="n">edgelist</span><span class="o">=</span><span class="p">[</span><span class="n">edge_to_be_added</span><span class="p">],</span>
+                           <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+                           <span class="n">style</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>    
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span> 
+                                <span class="n">edge_labels</span><span class="o">=</span><span class="n">string_for_edges_trouble_to_visualize</span><span class="p">,</span>
+                                <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> 
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position_modified</span><span class="p">,</span>
+                            <span class="n">labels</span><span class="o">=</span><span class="n">nodes_labels</span><span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span> 
+                           <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1050,7 +1077,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_56_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_56_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_55_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_55_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -1165,7 +1192,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_68_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_68_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_67_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_67_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1185,10 +1212,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(&#39;A&#39;, &#39;C&#39;): &#39;forward&#39;,
- (&#39;A&#39;, &#39;D&#39;): 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;reverse&#39;,
+ (&#39;A&#39;, &#39;D&#39;): &#39;reverse&#39;,
  (&#39;C&#39;, &#39;E&#39;): &#39;forward&#39;,
  (&#39;D&#39;, &#39;E&#39;): &#39;reverse&#39;}
 </pre></div>
@@ -1231,46 +1255,6 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_graph_with_cycle_edges_trouble_to_visualize</span><span class="p">(</span><span class="n">figsize_tuple</span><span class="p">,</span>
-                                                     <span class="n">G_to_plot</span><span class="p">,</span>
-                                                     <span class="n">nodes_position</span><span class="p">,</span>
-                                                     <span class="n">nodes_position_modified</span><span class="p">,</span>
-                                                     <span class="n">nodes_labels</span><span class="p">,</span>
-                                                     <span class="n">edge_labels</span><span class="p">,</span>
-                                                     <span class="n">edge_to_be_added</span><span class="p">,</span>
-                                                     <span class="n">string_for_edges_trouble_to_visualize</span>
-                                                     <span class="p">):</span>
-  
-    <span class="k">if</span> <span class="n">figsize_tuple</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize_tuple</span><span class="p">)</span>
-        
-    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span> 
-                           <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
-                           <span class="n">edgelist</span><span class="o">=</span><span class="n">G_to_plot</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
-    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span>
-                                 <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">,</span>
-                                 <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>    
-    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_and_pos</span><span class="p">,</span> 
-                           <span class="n">min_target_margin</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3, rad = 0.1&quot;</span><span class="p">,</span>
-                           <span class="n">edgelist</span><span class="o">=</span><span class="p">[</span><span class="n">edge_to_be_added</span><span class="p">],</span>
-                           <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
-                           <span class="n">style</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>    
-    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span> 
-                                <span class="n">edge_labels</span><span class="o">=</span><span class="n">string_for_edges_trouble_to_visualize</span><span class="p">,</span>
-                                <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> 
-    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position_modified</span><span class="p">,</span>
-                            <span class="n">labels</span><span class="o">=</span><span class="n">nodes_labels</span><span class="p">)</span>
-    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_to_plot</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">nodes_position</span><span class="p">,</span> 
-                           <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-  
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_simplex_cycle_3</span><span class="p">,</span> <span class="n">edge_labels_simplex_cycle_3</span> <span class="o">=</span> <span class="n">add_edge_from_spanning_tree</span><span class="p">(</span><span class="n">G_simplex</span><span class="p">,</span> <span class="n">G_simplex_spanning_tree_1</span><span class="p">,</span> 
@@ -1299,7 +1283,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_77_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_77_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_75_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_75_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1455,7 +1439,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_91_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_91_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_89_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_89_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1471,7 +1455,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_92_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_92_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_90_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_90_0.png" />
 </div>
 </div>
 <p>Como se debe cumplir la no negatividad y la cota superior, para los arcos en los que se aumenta y tienen cota superior se tiene</p>
@@ -1586,7 +1570,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_106_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_106_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_104_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_104_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1612,7 +1596,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_107_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_107_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_105_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_105_0.png" />
 </div>
 </div>
 </div>
@@ -1631,7 +1615,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_109_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_109_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_107_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_107_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input tag_margin docutils container">
@@ -1646,7 +1630,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_110_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_110_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_108_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_108_0.png" />
 </div>
 </div>
 <p>Identificamos los arcos no básicos que son los que no están en el <em>spanning tree</em> factible que se obtuvo al final de la iteración anterior. En el margen se muestra la red de referencia y el <em>spanning tree</em> factible, entonces los arcos no básicos son <span class="math notranslate nohighlight">\((B, A), (D, E), (E,D)\)</span>.</p>
@@ -1679,7 +1663,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_115_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_115_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_113_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_113_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -1733,7 +1717,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_121_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_121_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_119_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_119_0.png" />
 </div>
 </div>
 <p>Entonces se forma un ciclo no dirigido. Se calcula el costo unitario de incrementar el flujo por una unidad. Para los arcos “forward” se suma y para los “reverse” se restan los costos:</p>
@@ -1783,7 +1767,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_126_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_126_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_124_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_124_0.png" />
 </div>
 </div>
 <p>Entonces se forma un ciclo no dirigido. Se calcula el costo unitario de incrementar el flujo por una unidad. Para los arcos “forward” se suma y para los “reverse” se restan los costos:</p>
@@ -1887,7 +1871,7 @@ Se denota como la cantidad <span class="math notranslate nohighlight">\(flow^+\)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_136_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_136_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_134_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_134_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1903,7 +1887,7 @@ Se denota como la cantidad <span class="math notranslate nohighlight">\(flow^+\)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_137_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_137_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_135_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_135_0.png" />
 </div>
 </div>
 <p>Como se debe cumplir la no negatividad y la cota superior, para los arcos en los que se aumenta y tienen cota superior se tiene:</p>
@@ -1997,7 +1981,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_150_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_150_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_148_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_148_0.png" />
 </div>
 </div>
 <p>Para futura referencia el arco <span class="math notranslate nohighlight">\((C,E)\)</span> que alcanzó la cota superior lo guardamos en la red <code class="docutils literal notranslate"><span class="pre">G_simplex_edges_upper_bounds</span></code>.</p>
@@ -2030,7 +2014,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_153_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_153_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_151_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_151_0.png" />
 </div>
 </div>
 <p>El nuevo <em>spanning tree</em> factible es:</p>
@@ -2078,7 +2062,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_159_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_159_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_157_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_157_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -2109,7 +2093,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_160_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_160_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_158_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_158_0.png" />
 </div>
 </div>
 </div>
@@ -2128,7 +2112,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_162_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_162_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_160_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_160_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input tag_margin docutils container">
@@ -2143,7 +2127,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_163_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_163_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_161_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_161_0.png" />
 </div>
 </div>
 <p>Identificamos los arcos no básicos que son los que no están en el spanning tree factible que se obtuvo al final de la iteración anterior. En el margen se muestra la red y el <em>spanning tree</em> factible, entonces los arcos no básicos son <span class="math notranslate nohighlight">\((B,A), (E,C), (D,E)\)</span>.</p>
@@ -2177,7 +2161,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_168_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_168_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_166_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_166_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2226,7 +2210,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_172_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_172_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_170_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_170_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2287,7 +2271,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_176_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_176_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_174_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_174_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2389,7 +2373,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_185_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_185_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_183_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_183_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -2405,7 +2389,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_186_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_186_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_184_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_184_0.png" />
 </div>
 </div>
 <p>Como se debe cumplir la no negatividad y la cota superior, para los arcos en los que se aumenta y tienen cota superior se tiene:</p>
@@ -2495,7 +2479,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_200_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_200_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_198_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_198_0.png" />
 </div>
 </div>
 <p><strong>También recuérdese que el arco <span class="math notranslate nohighlight">\((A, B)\)</span> tenía flujo <span class="math notranslate nohighlight">\(x_{AB}\)</span> igual a su capacidad</strong>:</p>
@@ -2543,7 +2527,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_205_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_205_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_203_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_203_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -2562,7 +2546,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_207_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_207_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_205_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_205_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2610,7 +2594,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_213_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_213_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_211_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_211_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -2641,7 +2625,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_214_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_214_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_212_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_212_0.png" />
 </div>
 </div>
 </div>
@@ -2660,7 +2644,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_216_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_216_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_214_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_214_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input tag_margin docutils container">
@@ -2675,7 +2659,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_217_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_217_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_215_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_215_0.png" />
 </div>
 </div>
 <p>Identificamos los arcos no básicos que son los que no están en el <em>spanning tree</em> factible que se obtuvo al final de la iteración anterior. En el margen se muestra la red y el <em>spanning tree</em> factible, entonces los arcos no básicos son <span class="math notranslate nohighlight">\((A,B), (E,C), (D, E)\)</span>.</p>
@@ -2708,7 +2692,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_222_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_222_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_220_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_220_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2757,7 +2741,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_226_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_226_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_224_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_224_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2817,7 +2801,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_230_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_230_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_228_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_228_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2876,7 +2860,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_236_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_236_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_234_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_234_0.png" />
 </div>
 </div>
 <p>LLegando a este punto debemos comparar la red original que tiene los arcos originales y la última red que debido a la técnica de la cota superior cambió a tales arcos. Se presenta a continuación la última red y en el margen a la red original.</p>
@@ -2897,7 +2881,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_239_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_239_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_237_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_237_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -2913,7 +2897,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_240_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_240_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_238_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_238_0.png" />
 </div>
 </div>
 <p>Observamos que todos los arcos conservar su dirección original salvo el <span class="math notranslate nohighlight">\((C,E)\)</span> que fue cambiado por <span class="math notranslate nohighlight">\((E,C)\)</span>. Como se tiene la relación: <span class="math notranslate nohighlight">\(y_{CE} = 80 - x_{CE}\)</span> y <span class="math notranslate nohighlight">\(y_{CE}\)</span> es un arco no básico entonces: <span class="math notranslate nohighlight">\(y_{CE} = 0\)</span> y <span class="math notranslate nohighlight">\(x_{CE}=80\)</span>:</p>
@@ -2977,7 +2961,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_245_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_245_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_243_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_243_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
