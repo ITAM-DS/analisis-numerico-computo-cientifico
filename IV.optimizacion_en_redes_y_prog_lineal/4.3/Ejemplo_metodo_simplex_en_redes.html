@@ -1175,7 +1175,7 @@
 <div class="section" id="tecnica-de-la-cota-superior">
 <h2>Técnica de la cota superior<a class="headerlink" href="#tecnica-de-la-cota-superior" title="Permalink to this headline">¶</a></h2>
 <p>En este ejemplo se tienen cotas superiores como: <span class="math notranslate nohighlight">\(x_{AB} \leq 10\)</span> o <span class="math notranslate nohighlight">\(x_{CE} \leq 80\)</span> (capacidades de los arcos) por lo que se debe adaptar el método símplex descrito en el <a class="reference internal" href="../4.2/Programacion_lineal_y_metodo_simplex.html#ejmetsimplex"><span class="std std-ref">ejemplo del método símplex</span></a> con la técnica de la cota superior.</p>
-<p>La idea de la técnica es considerar que el <strong>arco básico</strong> que debido a un incremento llegue a un flujo igual al de su cota superior, sea <strong>reemplazado</strong> por un arco en dirección contraria con la misma capacidad y con costo igual al <strong>negativo</strong> del arco original. Además los flujos netos de los nodos deben ajustarse a este cambio.</p>
+<p>La idea de la técnica es considerar que el <strong>arco básico</strong> que debido a un incremento llegue a un flujo igual al de su cota superior, sea <strong>reemplazado</strong> por un arco en dirección contraria con la misma capacidad y con costo igual al <strong>negativo</strong> del arco original. Tales arcos los nombramos <strong>arcos inversos</strong>. Además los flujos netos de los nodos deben ajustarse a este cambio.</p>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
@@ -1784,7 +1784,7 @@ x_{DE} = 10 - \text{flow}^+ &amp;\geq&amp; 0
 \text{flow}^+ &amp;\leq&amp; 10 \quad \text{que se obtuvo del arco } x_{DE} \nonumber
 \end{eqnarray}
 \end{split}\]</div>
-<p>El mínimo es <span class="math notranslate nohighlight">\(10\)</span>, entonces <span class="math notranslate nohighlight">\(\text{flow}^+ = 10\)</span> y el arco básico que será sustituido es <span class="math notranslate nohighlight">\((D,E)\)</span>. Como su flujo llega a cero no lo guardamos en la red <code class="docutils literal notranslate"><span class="pre">G_simplex_edges_upper_bounds</span></code>.</p>
+<p>El mínimo es <span class="math notranslate nohighlight">\(10\)</span>, entonces <span class="math notranslate nohighlight">\(\text{flow}^+ = 10\)</span> y el arco básico que será sustituido es <span class="math notranslate nohighlight">\((D,E)\)</span>. Como su flujo llega a cero <strong>no</strong> lo guardamos en la red <code class="docutils literal notranslate"><span class="pre">G_simplex_edges_upper_bounds</span></code>.</p>
 <p>El nuevo <em>spanning tree</em> factible es:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2635,6 +2635,10 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 <div class="section" id="id7">
 <h3>Técnica de la cota superior<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>Al modificar el flujo con <span class="math notranslate nohighlight">\(\text{flow}^+=10\)</span> se tiene que el arco <span class="math notranslate nohighlight">\((B,A)\)</span> tiene un flujo igual a <span class="math notranslate nohighlight">\(10\)</span> con lo que llegó a su capacidad máxima. Entonces se intercambia el arco <span class="math notranslate nohighlight">\((B,A)\)</span> por el arco <span class="math notranslate nohighlight">\((A,B)\)</span> con costo unitario igual al negativo de <span class="math notranslate nohighlight">\((B,A)\)</span>, misma capacidad y con flujo igual igual 0. Las asignaciones en las variables son <span class="math notranslate nohighlight">\(y_{AB}=10\)</span> y <span class="math notranslate nohighlight">\(x_{AB} = 10 - y_{AB} = 10 - 10 = 0\)</span>. <span class="math notranslate nohighlight">\(b_A\)</span> se le aumenta <span class="math notranslate nohighlight">\(10\)</span> y <span class="math notranslate nohighlight">\(b_B\)</span> se le resta <span class="math notranslate nohighlight">\(10\)</span>.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Una variable nueva que se haya añadido por la técnica de la cota superior que alcance un valor igual a su capacidad puede eliminarse. En este caso <span class="math notranslate nohighlight">\(y_{AB} = 10\)</span> por lo que alcanzó un flujo igual a su capacidad y puede eliminarse.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_to_remove_from_network</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span>
@@ -2668,7 +2672,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_211_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_211_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_212_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_212_0.png" />
 </div>
 </div>
 <p><strong>También recuérdese que el arco <span class="math notranslate nohighlight">\((A, B)\)</span> tenía flujo <span class="math notranslate nohighlight">\(x_{AB}\)</span> igual a su capacidad</strong>:</p>
@@ -2716,7 +2720,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_216_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_216_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_217_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_217_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -2735,7 +2739,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_218_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_218_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_219_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_219_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2783,7 +2787,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_224_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_224_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_225_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_225_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2814,7 +2818,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_225_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_225_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_226_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_226_0.png" />
 </div>
 </div>
 </div>
@@ -2834,7 +2838,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_227_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_227_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_228_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_228_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input tag_margin docutils container">
@@ -2849,7 +2853,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_228_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_228_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_229_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_229_0.png" />
 </div>
 </div>
 <p>Identificamos los arcos no básicos que son los que no están en el <em>spanning tree</em> factible que se obtuvo al final de la iteración anterior. En el margen se muestra la red y el <em>spanning tree</em> factible, entonces los arcos no básicos son <span class="math notranslate nohighlight">\((A,B), (E,C), (D, E)\)</span>.</p>
@@ -2881,7 +2885,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_233_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_233_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_234_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_234_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2930,7 +2934,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_237_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_237_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_238_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_238_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2990,7 +2994,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_241_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_241_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_242_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_242_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3050,7 +3054,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_247_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_247_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_248_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_248_0.png" />
 </div>
 </div>
 <p>LLegando a este punto debemos comparar la red original que tiene los arcos originales y la última red que debido a la técnica de la cota superior cambió a tales arcos. Se presenta a continuación la última red y en el margen a la red original.</p>
@@ -3071,7 +3075,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_250_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_250_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_251_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_251_0.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -3087,10 +3091,26 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_251_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_251_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_252_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_252_0.png" />
 </div>
 </div>
-<p>Hay que revisar las redes anteriores y el <em>spanning tree</em> factible con el objetivo de: incluir en el <em>spanning tree</em> factible aquellos arcos que sean arcos no básicos, que estén en la red original y tengan un valor igual a su capacidad. Tales arcos no básicos que serán incluidos tendrán un flujo igual a su capacidad menos los valores de los arcos que van en sentido contrario que se produjeron por la técnica de la cota superior.</p>
+<p>Hay que revisar las redes anteriores y el último <em>spanning tree</em> factible con el objetivo de: incluir en el <em>spanning tree</em> factible aquellos arcos que sean arcos con flujo igual a su cota superior y que pertenezcan a la red original. Tales arcos que serán incluidos tendrán un flujo igual a su capacidad <strong>menos</strong> los valores de los arcos inversos que se produjeron por la técnica de la cota superior.</p>
+<p>Para lo anterior podemos consultar <code class="docutils literal notranslate"><span class="pre">G_simplex_edges_upper_bounds</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figsize_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">plot_graph</span><span class="p">(</span><span class="n">figsize_tuple</span><span class="p">,</span> <span class="n">G_simplex_edges_upper_bounds</span><span class="p">,</span>
+           <span class="n">nodes_and_pos</span><span class="p">,</span>
+           <span class="n">nodes_and_pos</span><span class="p">,</span>
+           <span class="n">node_labels_simplex_upper_bounds</span><span class="p">,</span>
+           <span class="n">edge_labels_simplex_upper_bounds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_255_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_255_0.png" />
+</div>
+</div>
 <p>Observamos que todos los arcos conservan su dirección original salvo el <span class="math notranslate nohighlight">\((C,E)\)</span> que fue cambiado por <span class="math notranslate nohighlight">\((E,C)\)</span>. Como se tiene la relación: <span class="math notranslate nohighlight">\(y_{CE} = 80 - x_{CE}\)</span> y <span class="math notranslate nohighlight">\(y_{CE}\)</span> es un arco no básico con valor de <span class="math notranslate nohighlight">\(0\)</span> entonces: <span class="math notranslate nohighlight">\(y_{CE} = 0\)</span> y <span class="math notranslate nohighlight">\(x_{CE}=80\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3152,7 +3172,7 @@ x_{AD} = 30 - \text{flow}^+ \geq 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_257_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_257_0.png" />
+<img alt="../../_images/Ejemplo_metodo_simplex_en_redes_260_0.png" src="../../_images/Ejemplo_metodo_simplex_en_redes_260_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
