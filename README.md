@@ -10,7 +10,7 @@ Este es el repositorio para los cursos de **optimización** y **optimización av
 
 ### Dar click en [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) para una presentación de introducción al curso de optimización avanzada del primer semestre del 2021.
 
-### Se ha creado el siguiente libro\* con el contenido de los temas en [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) para su consulta. Este libro seguiremos a lo largo del curso.
+### Se ha creado el siguiente libro\* con el contenido de los temas en [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) para su consulta. Este libro seguiremos a lo largo de los cursos.
 
 \*El libro fue creado con [jupyter book](https://jupyterbook.org/intro.html).
 
