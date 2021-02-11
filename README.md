@@ -79,4 +79,11 @@ Llegamos hasta sistemas de ecuaciones no lineales en [3.4 Ecuaciones no lineales
 
 3 de febrero
 
-Llegamos hasta [Red acíclica, árbol y bosque](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.1/Definiciones_generales_de_flujo_en_redes.html#red-aciclica-arbol-y-bosque)
+Llegamos hasta [4.1 Red acíclica, árbol y bosque](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.1/Definiciones_generales_de_flujo_en_redes.html#red-aciclica-arbol-y-bosque)
+
+
+## Clase 5
+
+10 de febrero
+
+Llegamos hasta [4.2 Tipo de soluciones en un PL](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.2/Programacion_lineal_y_metodo_simplex.html#tipo-de-soluciones-en-un-pl)
