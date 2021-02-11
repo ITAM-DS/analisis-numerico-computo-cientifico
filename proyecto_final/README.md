@@ -79,7 +79,7 @@ La siguiente lista no pretende ser exhaustiva.
 
 * Algoritmos basados en árboles o grafos para optimización de redes.
 
-* Método de símplex.
+* Método de símplex, dual símplex o símplex en redes.
 
 * Método de puntos interiores, barrera logarítmica.
 
@@ -92,5 +92,7 @@ La siguiente lista no pretende ser exhaustiva.
 * Método de Gauss-Newton.
 
 * Método de Levenberg–Marquardt.
+
+* Métodos en optimización combinatoria.
 
  **Los métodos numéricos deben ser utilizados en problemas de optimización numérica y en aplicaciones de áreas detalladas al inicio.**
