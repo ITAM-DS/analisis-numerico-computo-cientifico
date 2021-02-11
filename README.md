@@ -1,4 +1,4 @@
-# Métodos Numéricos y Optimización.
+# Optimización.
 
 Este es el repositorio para los cursos de **optimización** y **optimización avanzada** impartida en la maestría de ciencia de datos del ITAM por el **Prof. Erick Palacios Moreno**, github: [palmoreck](https://github.com/palmoreck).
 
