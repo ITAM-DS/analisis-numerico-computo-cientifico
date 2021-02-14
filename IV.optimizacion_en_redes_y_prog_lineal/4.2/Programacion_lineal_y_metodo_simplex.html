@@ -642,9 +642,10 @@
 <p>Considérese el problema de satisfacer el flujo neto de todos los nodos con etiquetas “A, B, C, D” y “E” de la siguiente red de acuerdo a las capacidades de cada uno de ellos al menor costo posible:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">import</span> <span class="nn">pprint</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pprint</span>
 
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">linprog</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
@@ -771,14 +772,6 @@
 </div>
 </div>
 <p>El problema anterior lo podemos resolver directamente con <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html#scipy-optimize-linprog">scipy-optimize-linprog</a> que es una función que resuelve PL’s:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">linprog</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
@@ -1083,14 +1076,6 @@ A solution x is
 <div class="math notranslate nohighlight">
 \[x_1 \geq 0, x_2 \geq 0\]</div>
 <p>Entonces se tiene la siguiente región definida por las desigualdades del PL:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#x_1 ≤ 4</span>
@@ -1154,7 +1139,7 @@ A solution x is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_82_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_82_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_80_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_80_0.png" />
 </div>
 </div>
 <p>La región sombreada es la región factible. Cualquier punto que se elija en la región factible satisface las desigualdades definidas en el PL. Ahora tenemos que seleccionar dentro de la región factible el punto que maximiza el valor de la función objetivo <span class="math notranslate nohighlight">\(f_o\)</span>.</p>
@@ -1211,7 +1196,7 @@ A solution x is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_86_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_86_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_84_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_84_0.png" />
 </div>
 </div>
 <p>Si realizamos este proceso para valores de <span class="math notranslate nohighlight">\(y\)</span> iguales a <span class="math notranslate nohighlight">\(36, 20, 10\)</span> observamos que la recta que da el mayor valor de la <span class="math notranslate nohighlight">\(f_o\)</span> y que se mantiene en la región factible es aquella con valor <span class="math notranslate nohighlight">\(y_1= f(x) = 36\)</span>. Corresponde a la pareja <span class="math notranslate nohighlight">\((x_1, x_2) = (2, 6)\)</span> y es la <strong>solución óptima</strong>. Entonces produciendo los productos <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(2\)</span> a una tasa de <span class="math notranslate nohighlight">\(2\)</span> y <span class="math notranslate nohighlight">\(6\)</span> lotes por semana se maximiza la ganancia siendo de 36 mil pesos. No existen otras tasas de producción que sean tan redituables como la anterior de acuerdo con el modelo.</p>
@@ -1289,7 +1274,7 @@ A solution x is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_98_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_98_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_96_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_96_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -1331,7 +1316,7 @@ A solution x is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_103_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_103_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_101_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_101_0.png" />
 </div>
 </div>
 <p>El segmento de recta que va de <span class="math notranslate nohighlight">\((2,6)\)</span> a <span class="math notranslate nohighlight">\((4,3)\)</span> (en línea punteada) son soluciones óptimas. Tal segmento es la curva de nivel de <span class="math notranslate nohighlight">\(f_o(x)\)</span> con el valor <span class="math notranslate nohighlight">\(18\)</span>. Cualquier PL que tenga soluciones óptimas múltiples tendrá un número infinito de ellas, todas con el mismo valor óptimo.</p>
@@ -1375,7 +1360,7 @@ A solution x is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_109_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_109_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_107_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_107_0.png" />
 </div>
 </div>
 <p>La intersección entre las dos regiones sombreadas es vacía.</p>
@@ -1401,7 +1386,7 @@ A solution x is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_112_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_112_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_110_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_110_0.png" />
 </div>
 </div>
 <p>Se observa en la gráfica anterior que se tiene una región factible no acotada y como el objetivo es maximizar podemos elegir el valor <span class="math notranslate nohighlight">\(x_1 = 4\)</span> y arbitrariamente un valor cada vez más grande de <span class="math notranslate nohighlight">\(x_2\)</span> y obtendremos una mejor solución dentro de la región factible.</p>
@@ -1477,7 +1462,7 @@ A solution x is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_125_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_125_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_123_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_123_0.png" />
 </div>
 </div>
 <p>Los puntos en la gráfica con etiqueta “FEV” son soluciones factibles en un vértice:</p>
@@ -1534,7 +1519,7 @@ A solution x is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_132_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_132_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_130_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_130_0.png" />
 </div>
 </div>
 <table class="colwidths-auto table">
@@ -1593,7 +1578,7 @@ A solution x is
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_136_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_136_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_134_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_134_0.png" />
 </div>
 </div>
 <p>En el ejemplo <span class="math notranslate nohighlight">\((0,0)\)</span> y <span class="math notranslate nohighlight">\((0,6)\)</span> son adyacentes pues comparten una arista formada por la ecuación de frontera <span class="math notranslate nohighlight">\(x_1=0\)</span> y de cada solución FEV salen dos aristas, esto es tienen dos soluciones FEV adyacentes.</p>
@@ -1751,7 +1736,7 @@ b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_175_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_175_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_173_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_173_0.png" />
 </div>
 </div>
 <div class="admonition-definiciones admonition">
@@ -1828,7 +1813,7 @@ x_5
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Programacion_lineal_y_metodo_simplex_181_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_181_0.png" />
+<img alt="../../_images/Programacion_lineal_y_metodo_simplex_179_0.png" src="../../_images/Programacion_lineal_y_metodo_simplex_179_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -2183,7 +2168,27 @@ f_o(x) &amp;=&amp; f_o(x) -  (x_1 + x_3 - 4) - (2x_2 + x_4 - 12) - (3x_1 + 2x_2 
 </div>
 </div>
 </div>
-<p>Valor de la función objetivo en la solución BF del paso inicial:  <span class="math notranslate nohighlight">\(f_o(x) = -\nu^Tb = 0\)</span>:</p>
+<p>Valor de la función objetivo en la solución BF actual: <span class="math notranslate nohighlight">\(f_o(x) = -c^Tx =  -\nu^Tb = 0\)</span></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(f_o(x) = -c^Tx = -c_B^Tx_B - c_N^T x_N = -c_B^T x_B\)</span> pues <span class="math notranslate nohighlight">\(x_N = 0\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">c_B</span><span class="p">,</span> <span class="n">x_B</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(f_o(x) = -\nu^Tb\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
@@ -2649,7 +2654,27 @@ B =
 </div>
 </div>
 </div>
-<p>Valor de la función objetivo en la solución BF actual: <span class="math notranslate nohighlight">\(f_o(x) = -\nu^Tb = 30\)</span></p>
+<p>Valor de la función objetivo en la solución BF actual: <span class="math notranslate nohighlight">\(f_o(x) = -c^Tx =  -\nu^Tb = 30\)</span></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(f_o(x) = -c^Tx = -c_B^Tx_B - c_N^T x_N = -c_B^T x_B\)</span> pues <span class="math notranslate nohighlight">\(x_N = 0\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">c_B</span><span class="p">,</span> <span class="n">x_B</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>30.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(f_o(x) = -\nu^Tb\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
@@ -2994,8 +3019,27 @@ B =
 </ul>
 </div>
 <p>Como tenemos un problema de maximización la tasa más alta de mejoramiento de <span class="math notranslate nohighlight">\(f_o\)</span> no la da ninguna de las variables no básicas por lo que la solución BF actual <span class="math notranslate nohighlight">\(x = \left [ \begin{array}{c} x_1\\ x_2\\ x_3\\ x_4 \\ x_5 \end{array} \right ]= \left [ \begin{array}{c} 2\\ 6\\ 2\\ 0 \\ 0 \end{array}\right ]\)</span> es la solución óptima.</p>
-<p>Valor de la función objetivo en la solución BF actual: <span class="math notranslate nohighlight">\(f_o(x) = -\nu^Tb = 36\)</span></p>
-<p>Valor de la función objetivo en la solución BF actual:</p>
+<p>Valor de la función objetivo en la solución BF actual: <span class="math notranslate nohighlight">\(f_o(x) = -c^Tx =  -\nu^Tb = 36\)</span></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(f_o(x) = -c^Tx = -c_B^Tx_B - c_N^T x_N = -c_B^T x_B\)</span> pues <span class="math notranslate nohighlight">\(x_N = 0\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">c_B</span><span class="p">,</span> <span class="n">x_B</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(f_o(x) = -\nu^Tb\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">nu</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
