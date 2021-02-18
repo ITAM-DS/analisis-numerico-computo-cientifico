@@ -87,3 +87,9 @@ Llegamos hasta [4.1 Red acíclica, árbol y bosque](https://itam-ds.github.io/an
 10 de febrero
 
 Llegamos hasta [4.2 Tipo de soluciones en un PL](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.2/Programacion_lineal_y_metodo_simplex.html#tipo-de-soluciones-en-un-pl)
+
+## Clase 6
+
+17 de febrero
+
+Llegamos hasta [Prueba del cociente mínimo: forma general y con notación matricial y vectorial](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.2/Programacion_lineal_y_metodo_simplex.html#prueba-del-cociente-minimo-forma-general-y-con-notacion-matricial-y-vectorial)
