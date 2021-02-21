@@ -464,6 +464,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#las-condiciones-kkt-para-un-pl-en-su-forma-estandar">
+   Las condiciones KKT para un PL en su forma estándar
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#el-metodo-simplex-y-las-condiciones-kkt">
    El método símplex y las condiciones KKT
   </a>
@@ -2013,7 +2018,7 @@ x \geq 0
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-\nabla_x \mathcal{L}(x^*, \lambda^*_1, \lambda^*_2) &amp;=&amp; c + A^T\lambda^*_1 - \lambda^*_2 \nonumber = 0 \nonumber \\
+\nabla_x \mathcal{L}(x^*, \lambda^*_1, \lambda^*_2) &amp;=&amp; c + A^T\lambda^*_1 - \lambda^*_2 = 0 \nonumber \\
 \lambda_1^{*T}(Ax^* - b) &amp;=&amp; 0 \nonumber \\
 \lambda_2^{*T}(-x^*) &amp;=&amp; 0 \nonumber \\
 Ax^* &amp;\leq&amp; b \nonumber \\
@@ -2168,6 +2173,67 @@ Ax \leq 0
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>El enunciado “<span class="math notranslate nohighlight">\(\nabla f_o(x)\)</span> sí es una combinación cónica de <span class="math notranslate nohighlight">\(-a_1, -a_2\)</span>” es equivalente a indicar que <span class="math notranslate nohighlight">\(A^T \lambda = c\)</span> y <span class="math notranslate nohighlight">\(\lambda \geq 0\)</span> tiene solución (sistema 2 lema de Farkas tiene solución).</p>
+</div>
+<p>El análisis anterior también puede realizarse para los puntos <span class="math notranslate nohighlight">\((0,0), (0, 4)\)</span> las otras soluciones FEV y verificar que no se satisfacen las condiciones KKT para tales puntos.</p>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realizar el análisis de las condiciones de KKT en cada solución FEV del ejemplo prototipo.</p>
+</div>
+</div>
+<div class="section" id="las-condiciones-kkt-para-un-pl-en-su-forma-estandar">
+<h2>Las condiciones KKT para un PL en su forma estándar<a class="headerlink" href="#las-condiciones-kkt-para-un-pl-en-su-forma-estandar" title="Permalink to this headline">¶</a></h2>
+<p>Considérese la forma estándar de un PL como problema primal:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\displaystyle \min_{x \in \mathbb{R}^n} c^Tx \\
+\text{sujeto a:}\\
+Ax = b \\
+x \geq 0
+\end{split}\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m\)</span> y las desigualdades se interpretan de una forma <em>pointwise</em>.</p>
+<p>La función Lagrangiana del problema anterior es:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Compárense estas condiciones con las señaladas en el <a class="reference internal" href="../../III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#primeraformulacioncondkkt"><span class="std std-ref">comentario</span></a> sobre las condiciones KKT en el contexto de problemas de optimización convexa.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(x, \lambda, \nu) = f_o(x) + \displaystyle \sum_{i=1}^n \lambda_i f_i(x) + \sum_{i=1}^m \nu_i h_i(x) = c^Tx + \lambda^T(-x)  + \nu^T(b-Ax)\]</div>
+<p>Las condiciones KKT son:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\nabla_x \mathcal{L}(x, \lambda_1, \lambda_2) &amp;=&amp; c - A^T\nu - \lambda = 0 \nonumber \\
+\lambda^T(-x) &amp;=&amp; 0 \nonumber \\
+Ax &amp;=&amp; b \nonumber \\
+-x &amp;\leq&amp; 0 \nonumber \\
+\lambda &amp;\geq&amp; 0
+\end{eqnarray}
+\end{split}\]</div>
+<p>El problema dual asociado es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\displaystyle \max_{\nu \in \mathbb{R}^m, \lambda \in \mathbb{R}^n} b^T \nu \\
+\text{sujeto a :} \\
+c - A^T \nu - \lambda = 0 \\
+\lambda \geq 0
+\end{split}\]</div>
+<p>Considérese un vector <span class="math notranslate nohighlight">\((x^*, \nu^*, \lambda^*)\)</span> que satisfaga las condiciones anteriores entonces se satisface la dualidad fuerte:</p>
+<div class="math notranslate nohighlight">
+\[c^Tx^* = (\lambda^* + A^T\nu^*)^Tx^* = \lambda^{*T}x^* + \nu^{*T}Ax^*=\nu^{*T} b = b^T\nu^*\]</div>
+<p>Si un vector <span class="math notranslate nohighlight">\(x\)</span> satisface la factibilidad primal y los vectores <span class="math notranslate nohighlight">\(\nu, \lambda\)</span> la factibilidad dual entonces:</p>
+<div class="math notranslate nohighlight">
+\[c^Tx - b^T \nu = c^T x - \nu^TAx = (c - A^T\nu)^T x = \lambda^Tx \geq 0\]</div>
+<p>por lo que se tiene la dualidad débil, el objetivo del dual es una cota inferior del objetivo primal: <span class="math notranslate nohighlight">\(b^T\nu \leq c^Tx\)</span>.</p>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<ul class="simple">
+<li><p>Los vectores <span class="math notranslate nohighlight">\((x, \nu, \lambda)\)</span> se les nombra primal-dual factibles si satisfacen la factibilidad primal y la factibilidad dual de sus problemas respectivos.</p></li>
+<li><p>La cantidad <span class="math notranslate nohighlight">\(c^Tx - b^T \nu\)</span> se le nombra <strong>brecha dual</strong>, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Duality_gap">duality gap</a> para vectores <span class="math notranslate nohighlight">\(x, \nu\)</span> primal-dual factibles.</p></li>
+</ul>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Si <span class="math notranslate nohighlight">\((x, \nu, \lambda)\)</span> son vectores primal-dual factibles y <span class="math notranslate nohighlight">\(x^*\)</span> es un punto óptimo del problema primal entonces:</p>
+<p><span class="math notranslate nohighlight">\(c^Tx = (\lambda + A^T \nu)^Tx = \lambda^Tx + \nu^TAx = \lambda^Tx + b^T\nu \geq b^T \nu^* = c^Tx^*\)</span></p>
+<p>pues <span class="math notranslate nohighlight">\(\lambda \geq 0, x \geq 0\)</span>. Aún más, si <span class="math notranslate nohighlight">\(\lambda^T x = 0\)</span> (brecha dual igual a cero) entonces <span class="math notranslate nohighlight">\((x, \nu, \lambda)\)</span> son óptimos de sus problemas respectivos.</p>
 </div>
 </div>
 <div class="section" id="el-metodo-simplex-y-las-condiciones-kkt">
