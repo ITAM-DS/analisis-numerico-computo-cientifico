@@ -374,6 +374,100 @@
 </div>
 <p>Los métodos por puntos interiores son esquemas iterativos para resolver problemas de optimización con restricciones. En un inicio su formulación se utilizó para resolver programas lineales pero se ha extendido su uso al caso no lineal. Por ejemplo, distintos tipos de métodos por puntos interiores han sido usados para resolver problemas de optimización convexos.</p>
 <p>En los métodos por puntos interiores cada iteración se satisfacen de forma estricta las restricciones de desigualdad del problema de optimización. Cada iteración en el esquema de puntos interiores es costosa de calcular y realiza avance significativo a la solución en contraste con el método símplex que requiere un gran número de iteraciones no costosas.</p>
+<p>Conforme se avanza en las interaciones en los métodos por puntos interiores se aproxima a los puntos óptimos en una bola abierta. Por ejemplo, para el <span class="xref std std-ref">ejemplo prototipo</span> de un programa lineal se presenta una trayectoria que se acerca a la solución óptima <span class="math notranslate nohighlight">\((2, 6)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#x_1 ≤ 4</span>
+
+<span class="n">point1_x_1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">point2_x_1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">point1_point2_x_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">point1_x_1</span><span class="p">,</span> <span class="n">point2_x_1</span><span class="p">))</span>
+
+<span class="c1">#x_1 ≥ 0</span>
+<span class="n">point3_x_1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">point4_x_1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">point3_point4_x_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">point3_x_1</span><span class="p">,</span> <span class="n">point4_x_1</span><span class="p">))</span>
+
+<span class="c1">#2x_2 ≤ 12 or x_2 ≤ 6</span>
+
+<span class="n">point1_x_2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="n">point2_x_2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="n">point1_point2_x_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">point1_x_2</span><span class="p">,</span> <span class="n">point2_x_2</span><span class="p">))</span>
+
+<span class="c1">#x_2 ≥ 0</span>
+
+<span class="n">point3_x_2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">point4_x_2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">point3_point4_x_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">point3_x_2</span><span class="p">,</span> <span class="n">point4_x_2</span><span class="p">))</span>
+
+<span class="c1">#3x_1 + 2x_2 ≤ 18</span>
+
+<span class="n">x_1_region_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">x_2_region_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">18</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x_1_region_1</span><span class="p">)</span>
+
+
+<span class="n">x_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">x_2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">18</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x_1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">point1_point2_x_1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">point1_point2_x_1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">point3_point4_x_1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">point3_point4_x_1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">point1_point2_x_2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">point1_point2_x_2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">point3_point4_x_2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">point3_point4_x_2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">x_1</span><span class="p">,</span> <span class="n">x_2</span><span class="p">)</span>
+
+<span class="n">optimal_point</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">optimal_point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">optimal_point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+            <span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$x_1 = 4$&quot;</span><span class="p">,</span> <span class="s2">&quot;$x_1 = 0$&quot;</span><span class="p">,</span> 
+            <span class="s2">&quot;$2x_2 = 12$&quot;</span><span class="p">,</span> <span class="s2">&quot;$x_2 = 0$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;$3x_1+2x_2 = 18$&quot;</span><span class="p">,</span> <span class="s2">&quot;(óptimo, valor óptimo)&quot;</span><span class="p">],</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">point_1_interior_points</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">point_2_interior_points</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.27</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">point_3_interior_points</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.38</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">point_4_interior_points</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.56</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">)</span>
+
+<span class="n">points_interior_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">point_1_interior_points</span><span class="p">,</span>
+                                       <span class="n">point_2_interior_points</span><span class="p">,</span>
+                                       <span class="n">point_3_interior_points</span><span class="p">,</span>
+                                       <span class="n">point_4_interior_points</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points_interior_points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">points_interior_points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> 
+         <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span>
+         <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_1_region_1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x_2_region_1</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">x_2_region_1</span><span class="o">&lt;=</span><span class="mi">6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;plum&quot;</span><span class="p">)</span>
+<span class="n">x_1_region_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_1_region_2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;plum&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Región factible del PL&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Puntos_interiores_9_0.png" src="../../_images/Puntos_interiores_9_0.png" />
+</div>
+</div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
 <p>1.Resuelve los ejercicios y preguntas de la nota.</p>
