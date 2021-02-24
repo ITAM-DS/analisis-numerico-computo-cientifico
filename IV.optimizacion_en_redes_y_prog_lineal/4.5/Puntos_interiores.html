@@ -353,8 +353,22 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#determinar-la-direccion-de-busqueda">
-     Determinar la dirección de búsqueda
+    <a class="reference internal nav-link" href="#primera-idea-determinar-la-direccion-de-busqueda">
+     Primera idea: determinar la dirección de búsqueda
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#segunda-idea-cortar-el-paso">
+     Segunda idea: cortar el paso
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tercera-idea-reducir-la-duality-gap-y-centrar">
+     Tercera idea: reducir la
+     <em>
+      duality gap
+     </em>
+     y centrar
     </a>
    </li>
   </ul>
@@ -509,6 +523,13 @@ x \geq 0
 <p>La función Lagrangiana del problema anterior es:</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x, \lambda, \nu) = f_o(x) + \displaystyle \sum_{i=1}^n \lambda_i f_i(x) + \sum_{i=1}^m \nu_i h_i(x) = c^Tx + \lambda^T(-x)  + \nu^T(b-Ax)\]</div>
+<p>El problema dual asociado es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\displaystyle \max_{\nu \in \mathbb{R}^m, \lambda \in \mathbb{R}^n} b^T \nu \\
+\text{sujeto a :} \\
+c - A^T \nu - \lambda = 0 \\
+\lambda \geq 0
+\end{split}\]</div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Compárense estas condiciones con las señaladas en el <a class="reference internal" href="../../III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#primeraformulacioncondkkt"><span class="std std-ref">comentario</span></a> sobre las condiciones KKT en el contexto de problemas de optimización convexa.</p>
@@ -526,32 +547,42 @@ Ax &amp;=&amp; b \nonumber \\
 \end{split}\]</div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>El problema primal es: <span class="math notranslate nohighlight">\(\displaystyle \min_{x \in \mathbb{R}^n} c^Tx \\
+<p>El problema primal es:</p>
+<p><span class="math notranslate nohighlight">\(\displaystyle \min_{x \in \mathbb{R}^n} c^Tx \\
 \text{sujeto a:}\\
 Ax = b \\
 x \geq 0
 \)</span></p>
 </div>
-<p>El problema dual asociado es:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\displaystyle \max_{\nu \in \mathbb{R}^m, \lambda \in \mathbb{R}^n} b^T \nu \\
-\text{sujeto a :} \\
-c - A^T \nu - \lambda = 0 \\
-\lambda \geq 0
-\end{split}\]</div>
 <p>Los métodos de la clase primal-dual encuentran soluciones <span class="math notranslate nohighlight">\((x^*, \lambda^*, \nu^*)\)</span> con variantes del método de Newton para las igualdades anteriores modificando las direcciones de búsqueda y tamaños de paso de modo que las desigualdades se satisfagan de forma <strong>estricta</strong> en cada iteración.</p>
 <p>La idea de los métodos de la clase primal-dual es reescribir las condiciones KKT de optimalidad anteriores mediante una función <span class="math notranslate nohighlight">\(F: \mathbb{R}^{2n + m} \rightarrow \mathbb{R}^{2n+m}\)</span> dada por:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}F(x, \lambda, \nu ) = \left [ \begin{array}{c} A^T \nu + \lambda -c \\ X \Lambda e \\  Ax - b \end{array} \right ]\end{split}\]</div>
 <p>y resolver la ecuación <strong>no lineal</strong> <span class="math notranslate nohighlight">\(F(x, \lambda, \nu )=0\)</span> para <span class="math notranslate nohighlight">\((x, \lambda) \geq 0\)</span>, donde: <span class="math notranslate nohighlight">\(X = \text{diag}(x_1, \dots, x_n)\)</span>, <span class="math notranslate nohighlight">\(\Lambda = \text{diag}(\lambda_1, \dots, \lambda_n)\)</span> y <span class="math notranslate nohighlight">\(e\)</span> es un vector de <span class="math notranslate nohighlight">\(1\)</span>’s en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>.</p>
 <p>Los métodos de la clase primal-dual producen iteraciones <span class="math notranslate nohighlight">\((x^{(k)}, \lambda^{(k)}, \nu^{(k)})\)</span> tales que <span class="math notranslate nohighlight">\(x^{(k)} &gt; 0\)</span> y <span class="math notranslate nohighlight">\(\lambda^{(k)} &gt; 0\)</span>, por esto tales métodos son considerados como puntos interiores.</p>
-<p>Como la mayoría de los métodos iterativos en optimización los métodos primal-dual tienen un procedimiento para determinar la dirección de búsqueda y una cantidad que sea monitoreada cuyo valor alcance un valor objetivo. En el caso de los PL’s tal cantidad es la <em>duality gap</em> medida como: <span class="math notranslate nohighlight">\(\frac{\lambda^Tx}{n}\)</span></p>
-<div class="section" id="determinar-la-direccion-de-busqueda">
-<h3>Determinar la dirección de búsqueda<a class="headerlink" href="#determinar-la-direccion-de-busqueda" title="Permalink to this headline">¶</a></h3>
+<p>Como la mayoría de los métodos iterativos en optimización, los métodos primal-dual tienen un procedimiento para determinar la dirección de búsqueda y una cantidad que sea monitoreada cuyo valor alcance un valor objetivo. En el caso de los PL’s tal cantidad es la <em>duality gap</em> medida como: <span class="math notranslate nohighlight">\(\frac{\lambda^Tx}{n}\)</span></p>
+<p>A continuación se presentan tres ideas que se utilizan en los métodos primal-dual:</p>
+<div class="section" id="primera-idea-determinar-la-direccion-de-busqueda">
+<h3>Primera idea: determinar la dirección de búsqueda<a class="headerlink" href="#primera-idea-determinar-la-direccion-de-busqueda" title="Permalink to this headline">¶</a></h3>
 <p>La dirección de búsqueda se determina con el método de Newton para el sistema de ecuaciones no lineales anterior. Entonces se resuelve el sistema de ecuaciones lineales:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}J_F(x, \lambda, \nu) \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] = - F(x, \lambda, \nu)\end{split}\]</div>
-<p>donde: <span class="math notranslate nohighlight">\(J_F\)</span> es la Jacobiana de <span class="math notranslate nohighlight">\(F\)</span></p>
+<p>donde: <span class="math notranslate nohighlight">\(J_F\)</span> es la Jacobiana de <span class="math notranslate nohighlight">\(F\)</span> cuya expresión es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}J_F(x, \lambda, \nu) = \left [ \begin{array}{ccc} 0 &amp; I &amp; A^T \\ \Lambda &amp; X &amp; 0 \\ A &amp; 0 &amp; 0 \end{array} \right ].\end{split}\]</div>
+<p>Si denotamos <span class="math notranslate nohighlight">\(r_d = A^T \nu + \lambda -c, r_p = Ax - b\)</span> como el residual para factibilidad dual y residual para factibilidad primal respectivamente entonces el sistema de ecuaciones lineales a resolver es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left [ \begin{array}{ccc} 0 &amp; I &amp; A^T \\ \Lambda &amp; X &amp; 0 \\ A &amp; 0 &amp; 0 \end{array} \right ]  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] =  - \left [ \begin{array}{c} r_d \\ X \Lambda e \\ r_p \end{array} \right ]\end{split}\]</div>
+</div>
+<div class="section" id="segunda-idea-cortar-el-paso">
+<h3>Segunda idea: cortar el paso<a class="headerlink" href="#segunda-idea-cortar-el-paso" title="Permalink to this headline">¶</a></h3>
+<p>Si se toma un paso completo es muy posible que en la siguiente iteración se encuentre muy cercano a alguna de las fronteras de restricción o bien <span class="math notranslate nohighlight">\((x, \lambda) &lt; 0\)</span>. Por ello se define un hiperparámetro <span class="math notranslate nohighlight">\(\alpha \in (0, 1]\)</span> de modo que la actualización es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left [ \begin{array}{c} x \\ \lambda \\ \nu \end{array} \right ] = \left [ \begin{array}{c} x \\ \lambda \\ \nu \end{array} \right ] + \alpha  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ].\end{split}\]</div>
+</div>
+<div class="section" id="tercera-idea-reducir-la-duality-gap-y-centrar">
+<h3>Tercera idea: reducir la <em>duality gap</em> y centrar<a class="headerlink" href="#tercera-idea-reducir-la-duality-gap-y-centrar" title="Permalink to this headline">¶</a></h3>
+<p>En cada iteración se busca reducir la <em>duality gap</em> o bien mantenerse cerca de la trayectoria nombrada como trayectoria central.</p>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
 <p>1.Resuelve los ejercicios y preguntas de la nota.</p>
