@@ -577,21 +577,26 @@ x \geq 0
 <p>A continuación se presentan tres ideas que se utilizan en los métodos primal-dual.</p>
 <div class="section" id="primera-idea-determinar-la-direccion-de-busqueda">
 <h3>Primera idea: determinar la dirección de búsqueda<a class="headerlink" href="#primera-idea-determinar-la-direccion-de-busqueda" title="Permalink to this headline">¶</a></h3>
-<p>La dirección de búsqueda se determina con el método de Newton para el sistema de ecuaciones no lineales anterior. Entonces se resuelve el sistema de ecuaciones lineales:</p>
+<p>La dirección de búsqueda se determina aplicando el método de Newton al sistema de ecuaciones no lineales anterior. Por tanto, se resuelve el sistema de ecuaciones lineales:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}J_F(x, \lambda, \nu) \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] = - F(x, \lambda, \nu)\end{split}\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(J_F\)</span> es la Jacobiana de <span class="math notranslate nohighlight">\(F\)</span> cuya expresión es:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}J_F(x, \lambda, \nu) = \left [ \begin{array}{ccc} 0 &amp; I &amp; A^T \\ \Lambda &amp; X &amp; 0 \\ A &amp; 0 &amp; 0 \end{array} \right ].\end{split}\]</div>
+<p>para el vector de incógnitas <span class="math notranslate nohighlight">\(\left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ]\)</span>. Una vez calculado tal vector de incógnitas se realiza la actualización:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left [ \begin{array}{c} x \\ \lambda \\ \nu \end{array} \right ]^{(k+1)} = \left [ \begin{array}{c} x \\ \lambda \\ \nu \end{array} \right ]^{(k)} + \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ]\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(k\)</span> hace referencia a la <span class="math notranslate nohighlight">\(k\)</span>-ésima iteración.</p>
 <p>Si denotamos <span class="math notranslate nohighlight">\(r_d = A^T \nu + \lambda -c, r_p = Ax - b\)</span> como el residual para factibilidad dual y residual para factibilidad primal respectivamente entonces el sistema de ecuaciones lineales a resolver es:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left [ \begin{array}{ccc} 0 &amp; I &amp; A^T \\ \Lambda &amp; X &amp; 0 \\ A &amp; 0 &amp; 0 \end{array} \right ]  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] =  - \left [ \begin{array}{c} r_d \\ X \Lambda e \\ r_p \end{array} \right ]\end{split}\]</div>
 </div>
 <div class="section" id="segunda-idea-cortar-el-paso">
 <h3>Segunda idea: cortar el paso<a class="headerlink" href="#segunda-idea-cortar-el-paso" title="Permalink to this headline">¶</a></h3>
-<p>Si se toma un paso completo es muy posible que en la siguiente iteración se encuentre muy cercano a alguna de las fronteras de restricción o bien <span class="math notranslate nohighlight">\((x, \lambda) &lt; 0\)</span>. Por ello se define un parámetro <span class="math notranslate nohighlight">\(t \in (0, 1]\)</span> de modo que la actualización es:</p>
+<p>Si se toma un paso completo es muy posible que en la siguiente iteración se encuentre muy cercano a alguna de las fronteras de restricción o bien se salga de la región factible. Por ello se define un parámetro <span class="math notranslate nohighlight">\(t^{(k)} \in (0, 1]\)</span> de modo que la actualización es:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\left [ \begin{array}{c} x \\ \lambda \\ \nu \end{array} \right ]^{(k+1)} = \left [ \begin{array}{c} x \\ \lambda \\ \nu \end{array} \right ]^{(k)} + t^{(k)}  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ].\end{split}\]</div>
+\[\begin{split}\left [ \begin{array}{c} x \\ \lambda \\ \nu \end{array} \right ]^{(k+1)} = \left [ \begin{array}{c} x \\ \lambda \\ \nu \end{array} \right ]^{(k)} + t^{(k)}  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ]\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(k\)</span> hace referencia a la <span class="math notranslate nohighlight">\(k\)</span>-ésima iteración.</p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>El parámetro <span class="math notranslate nohighlight">\(t^{(k)}\)</span> se calcula con metodologías como búsqueda de línea o regiones de confianza, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Line_search">line search</a>, <a class="reference internal" href="../../III.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#mbuslinback"><span class="std std-ref">método de búsqueda de línea por backtracking</span></a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Trust_region">trust region</a>.</p>
@@ -600,30 +605,110 @@ x \geq 0
 <div class="section" id="tercera-idea-reducir-la-duality-gap-y-centrar">
 <h3>Tercera idea: reducir la <em>duality gap</em> y centrar<a class="headerlink" href="#tercera-idea-reducir-la-duality-gap-y-centrar" title="Permalink to this headline">¶</a></h3>
 <p>En cada iteración de los métodos primal-dual se busca reducir la <em>duality gap</em> o bien mantenerse “cerca” de la trayectoria nombrada trayectoria central.</p>
-<p>Recuérdese que la <em>duality gap</em> en un PL para el par <span class="math notranslate nohighlight">\((x, \nu)\)</span> primal-dual factible está dada por la diferencia: <span class="math notranslate nohighlight">\(c^Tx - b^T \nu\)</span>. La <em>duality gap</em> en un PL es igual a <span class="math notranslate nohighlight">\(\lambda^Tx\)</span>. En el sistema de ecuaciones lineales anterior se le representa como <span class="math notranslate nohighlight">\(X \Lambda\)</span>.</p>
+<p>Recuérdese que la <em>duality gap</em> en un PL para el par <span class="math notranslate nohighlight">\((x, \nu)\)</span> primal-dual factible está dada por la diferencia: <span class="math notranslate nohighlight">\(c^Tx - b^T \nu\)</span>. La <em>duality gap</em> en un PL es igual a <span class="math notranslate nohighlight">\(\lambda^Tx\)</span>. En el sistema de ecuaciones lineales anterior se le representa como <span class="math notranslate nohighlight">\(X \Lambda e\)</span>.</p>
 <p>La trayectoria central se define a partir de la función de barrera logarítmica.</p>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
 <p>Considérese el problema de optimización convexa:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\displaystyle \min_{x \in \mathbb{R}^n} f_o(x) \\
-\text{sujeto a:} \\
-f_i(x) \leq 0  \quad i=1,\dots,m \\
-Ax = b
-\end{split}\]</div>
+\[\displaystyle \min_{x \in \mathbb{R}^n} f_o(x)\]</div>
+<div class="math notranslate nohighlight">
+\[\text{sujeto a:}\]</div>
+<div class="math notranslate nohighlight">
+\[f_i(x) \leq 0  \quad i=1,\dots,m\]</div>
+<div class="math notranslate nohighlight">
+\[Ax = b\]</div>
 <p>con <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{p \times n}\)</span> y <em>rank</em> de <span class="math notranslate nohighlight">\(A\)</span> igual a <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <p>Se define la función de barrera logarítmica como:</p>
 <div class="math notranslate nohighlight">
-\[B(x) = f_o(x) - \displaystyle \sum_{i=1}^m \frac{1}{t} \log(-f_i(x))\]</div>
+\[\phi(x) =-\displaystyle \sum_{i=1}^m \log(-f_i(x))\]</div>
 </div>
-<p>Entonces el problema de optimización de la definición se puede reescribir como:</p>
+<p>Entonces el problema de optimización de la definición anterior se puede reescribir como:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\displaystyle \min_{x \in \mathbb{R}^n} B(x) \\
+\displaystyle \min_{x \in \mathbb{R}^n} f_B(x|t_B) \\
 \text{sujeto a:} \\
 Ax = b
 \end{split}\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(f_B(x|t_B) = f_o(x) + \frac{1}{t_B} \phi(x) = f_o(x) -  \frac{1}{t_B} \displaystyle \sum_{i=1}^m \log(-f_i(x))\)</span></p>
+<p>con <span class="math notranslate nohighlight">\(t_B\)</span> un parámetro positivo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-.</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">log_barrier</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+<span class="n">t_B1</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">t_B2</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">t_B3</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">t_B4</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">t_B5</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">t_B1</span><span class="o">*</span><span class="n">log_barrier</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span>
+         <span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">t_B2</span><span class="o">*</span><span class="n">log_barrier</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span>
+         <span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">t_B3</span><span class="o">*</span><span class="n">log_barrier</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span>
+         <span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">t_B4</span><span class="o">*</span><span class="n">log_barrier</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+         <span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">t_B5</span><span class="o">*</span><span class="n">log_barrier</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$t_</span><span class="si">{B1}</span><span class="s2">=0.2$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;$t_</span><span class="si">{B2}</span><span class="s2">=0.5$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;$t_</span><span class="si">{B3}</span><span class="s2">=1$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;$t_</span><span class="si">{B4}</span><span class="s2">=2$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;$t_</span><span class="si">{B5}</span><span class="s2">=10$&quot;</span><span class="p">],</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Puntos_interiores_50_0.png" src="../../_images/Puntos_interiores_50_0.png" />
+</div>
+</div>
+<p>Valores más grandes del parámetro <span class="math notranslate nohighlight">\(t_B\)</span> tienden <span class="math notranslate nohighlight">\(f_B(x|t_B)\)</span> a <span class="math notranslate nohighlight">\(f_o(x)\)</span>: <span class="math notranslate nohighlight">\(f_B(x|t_B) = f_o(x) + \frac{1}{t_B} \phi(x) \approx f_o(x)\)</span>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>La función de barrera logarítmica es un caso particular de funciones de barrera que penalizan al no satisfacer las restricciones de desigualdad.</p></li>
+<li><p>En general las funciones de barrera deben tener las siguientes propiedades para <span class="math notranslate nohighlight">\(x\)</span> primal factibles:</p></li>
+</ul>
+<ol class="simple">
+<li><p>Deben tener valores “pequeños” si <span class="math notranslate nohighlight">\(x\)</span> está “lejos” de la frontera de la región factible.</p></li>
+<li><p>Deben tener valores “grandes” si <span class="math notranslate nohighlight">\(x\)</span> está “cerca” de la frontera de la región factible.</p></li>
+</ol>
+<p>Por lo anterior las funciones de barrera proporcionan una barrera que evita que se cruce o llegue a la frontera de la región factible del problema primal.</p>
+<ul class="simple">
+<li><p>Otra función de barrera para un PL es:</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(\phi(x) = \displaystyle \sum_{i=1}^m \frac{1}{f_i(x)}\)</span></p>
+<ul class="simple">
+<li><p>La función <span class="math notranslate nohighlight">\(f(u) = -\frac{1}{t_B} \log(-u)\)</span> para <span class="math notranslate nohighlight">\(u &lt; 0\)</span> es convexa, diferenciable y aproxima a la función indicadora:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}I(u) = \begin{cases} \infty \text{ si } u &gt; 0 \\ 0 \text{ si } u &lt;0 \end{cases}\end{split}\]</div>
+<ul class="simple">
+<li><p>La función indicadora del punto anterior ayuda a reescribir el problema: <span class="math notranslate nohighlight">\(\displaystyle \min_{x \in \mathbb{R}^n} f_o(x) \\
+\text{sujeto a:} \\
+f_i(x) \leq 0  \quad i=1,\dots,m \\
+Ax = b\)</span> como:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\displaystyle \min_{x \in \mathbb{R}^n} f_o(x) + \displaystyle \sum_{i=1}^m I(f_i(x))\\
+\text{sujeto a:} \\
+Ax = b
+\end{split}\]</div>
+</div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
 <p>1.Resuelve los ejercicios y preguntas de la nota.</p>
