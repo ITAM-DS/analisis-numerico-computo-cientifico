@@ -397,6 +397,7 @@
 <p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab_optimizacion_2:3.0.0</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2">liga</a>.</p>
 </div>
 <hr class="docutils" />
+<p>Nota generada a partir de <a class="reference external" href="https://drive.google.com/file/d/16-_PvWNaO0Zc9x04-SRsxCRdn5fxebf2/view">liga1</a>, <a class="reference external" href="https://drive.google.com/file/d/1oulU1QAKyLyYrkpJBLSPlbWnKFCWpllX/view">liga2</a>, <a class="reference external" href="https://drive.google.com/file/d/1RMwUXEN_SOHKue-J9Cx3Ldvj9bejLjiM/view">liga3</a></p>
 <div class="tip admonition">
 <p class="admonition-title">Al final de esta nota el y la lectora:</p>
 <ul class="simple">
@@ -517,7 +518,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Puntos_interiores_16_0.png" src="../../_images/Puntos_interiores_16_0.png" />
+<img alt="../../_images/Puntos_interiores_17_0.png" src="../../_images/Puntos_interiores_17_0.png" />
 </div>
 </div>
 <p>Aunque los métodos PI son una buena alternativa para resolver PL’s perdemos ventajas que tiene el método símplex como es el análisis de sensibilidad y análisis posterior que se realiza al resolver el PL al modificar sus parámetros. Ver las referencias al final de la nota para tales análisis.</p>
@@ -572,7 +573,7 @@ x \geq 0
 \[\begin{split}F(x, \lambda, \nu ) = \left [ \begin{array}{c} A^T \nu + \lambda -c \\ X \Lambda e \\  Ax - b \end{array} \right ]\end{split}\]</div>
 <p>y resolver la ecuación <strong>no lineal</strong> <span class="math notranslate nohighlight">\(F(x, \lambda, \nu )=0\)</span> para <span class="math notranslate nohighlight">\((x, \lambda) \geq 0\)</span>, donde: <span class="math notranslate nohighlight">\(X = \text{diag}(x_1, \dots, x_n)\)</span>, <span class="math notranslate nohighlight">\(\Lambda = \text{diag}(\lambda_1, \dots, \lambda_n)\)</span> y <span class="math notranslate nohighlight">\(e\)</span> es un vector de <span class="math notranslate nohighlight">\(1\)</span>’s en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>.</p>
 <p>Los métodos de la clase primal-dual producen iteraciones <span class="math notranslate nohighlight">\((x^{(k)}, \lambda^{(k)}, \nu^{(k)})\)</span> tales que <span class="math notranslate nohighlight">\(x^{(k)} &gt; 0\)</span> y <span class="math notranslate nohighlight">\(\lambda^{(k)} &gt; 0\)</span>, por esto tales métodos son considerados como puntos interiores.</p>
-<p>Como la mayoría de los métodos iterativos en optimización, los métodos primal-dual tienen un procedimiento para determinar la dirección de búsqueda y una cantidad que sea monitoreada cuyo valor alcance un valor objetivo. En el caso de los PL’s tal cantidad es la <em>duality gap</em> medida como: <span class="math notranslate nohighlight">\(\frac{\lambda^Tx}{n}\)</span></p>
+<p>Como la mayoría de los métodos iterativos en optimización, los métodos primal-dual tienen un procedimiento para determinar la dirección de búsqueda y una cantidad que debe ser monitoreada cuyo valor alcance un valor objetivo. En el caso de los PL’s tal cantidad es la <em>duality gap</em> medida como: <span class="math notranslate nohighlight">\(\lambda^Tx\)</span></p>
 <p>A continuación se presentan tres ideas que se utilizan en los métodos primal-dual.</p>
 <div class="section" id="primera-idea-determinar-la-direccion-de-busqueda">
 <h3>Primera idea: determinar la dirección de búsqueda<a class="headerlink" href="#primera-idea-determinar-la-direccion-de-busqueda" title="Permalink to this headline">¶</a></h3>
@@ -598,7 +599,31 @@ x \geq 0
 </div>
 <div class="section" id="tercera-idea-reducir-la-duality-gap-y-centrar">
 <h3>Tercera idea: reducir la <em>duality gap</em> y centrar<a class="headerlink" href="#tercera-idea-reducir-la-duality-gap-y-centrar" title="Permalink to this headline">¶</a></h3>
-<p>En cada iteración se busca reducir la <em>duality gap</em> o bien mantenerse cerca de la trayectoria nombrada trayectoria central.</p>
+<p>En cada iteración de los métodos primal-dual se busca reducir la <em>duality gap</em> o bien mantenerse “cerca” de la trayectoria nombrada trayectoria central.</p>
+<p>Recuérdese que la <em>duality gap</em> en un PL para el par <span class="math notranslate nohighlight">\((x, \nu)\)</span> primal-dual factible está dada por la diferencia: <span class="math notranslate nohighlight">\(c^Tx - b^T \nu\)</span>. La <em>duality gap</em> en un PL es igual a <span class="math notranslate nohighlight">\(\lambda^Tx\)</span>. En el sistema de ecuaciones lineales anterior se le representa como <span class="math notranslate nohighlight">\(X \Lambda\)</span>.</p>
+<p>La trayectoria central se define a partir de la función de barrera logarítmica.</p>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>Considérese el problema de optimización convexa:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\displaystyle \min_{x \in \mathbb{R}^n} f_o(x) \\
+\text{sujeto a:} \\
+f_i(x) \leq 0  \quad i=1,\dots,m \\
+Ax = b
+\end{split}\]</div>
+<p>con <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{p \times n}\)</span> y <em>rank</em> de <span class="math notranslate nohighlight">\(A\)</span> igual a <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>Se define la función de barrera logarítmica como:</p>
+<div class="math notranslate nohighlight">
+\[B(x) = f_o(x) - \displaystyle \sum_{i=1}^m \frac{1}{t} \log(-f_i(x))\]</div>
+</div>
+<p>Entonces el problema de optimización de la definición se puede reescribir como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\displaystyle \min_{x \in \mathbb{R}^n} B(x) \\
+\text{sujeto a:} \\
+Ax = b
+\end{split}\]</div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
 <p>1.Resuelve los ejercicios y preguntas de la nota.</p>
