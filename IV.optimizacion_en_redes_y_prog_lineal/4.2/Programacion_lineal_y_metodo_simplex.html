@@ -622,6 +622,8 @@
 <ul class="simple">
 <li><p>Conocerá el modelo de programación lineal, su interpretación y diferentes formas del mismo.</p></li>
 <li><p>Comprenderá el método gráfico y aspectos esenciales del método de símplex para resolver programas lineales.</p></li>
+<li><p>Aprenderá las definiciones de programación entera, mixta y binaria.</p></li>
+<li><p>Tendrá una lista de métodos heurísticos y meta heurísticas que ayudan a resolver problemas de optimización, en particular de optimización combinatoria.</p></li>
 </ul>
 </div>
 <div class="sidebar">
@@ -644,7 +646,7 @@
 <p>donde: <span class="math notranslate nohighlight">\(c \in \mathbb{R}^n\)</span> es un vector de costos, <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span>, se <strong>asume</strong> <span class="math notranslate nohighlight">\(m \leq n\)</span> y tiene <em>rank</em> completo por renglones y la última desigualdad se refiere a que todas las componentes del vector <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span> son mayores o iguales a cero (son mayores o iguales a cero de una forma <em>pointwise</em>). La función objetivo es <span class="math notranslate nohighlight">\(f_o(x) = c^Tx\)</span> y se busca minimizar el costo. El modelo anterior realiza suposiciones como son: proporcionalidad y aditividad para la función objetivo y restricciones. Tales supuestos se deben mantener respecto a las variables en <span class="math notranslate nohighlight">\(x\)</span>. La proporcionalidad se resume en que los exponentes de cada componente de <span class="math notranslate nohighlight">\(x\)</span> deben ser igual a uno y la aditividad en cuanto a que las contribuciones individuales de las componentes de <span class="math notranslate nohighlight">\(x\)</span> es su suma en la función objetivo y restricciones.</p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>El PL es un problema convexo pues una función lineal es convexa y cóncava al mismo tiempo. Obsérvese que la forma estándar de un problema convexo pide que el problema se escriba con desigualdades del tipo <span class="math notranslate nohighlight">\(\leq\)</span>. Tal forma se puede obtener si se definen <span class="math notranslate nohighlight">\(h(x) = Ax-b\)</span>, <span class="math notranslate nohighlight">\(f(x) = -x\)</span> con <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>, ver <a class="reference internal" href="../../III.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#proboptconvest"><span class="std std-ref">problemas de optimización convexa en su forma estándar o canónica</span></a>.</p>
+<p>El PL es un problema convexo pues una función lineal es convexa y cóncava al mismo tiempo. Obsérvese que la forma estándar de un problema convexo pide que el problema se escriba con desigualdades del tipo <span class="math notranslate nohighlight">\(\leq\)</span>. Tal forma se puede obtener si se definen <span class="math notranslate nohighlight">\(h: \mathbb{R}^n \rightarrow \mathbb{R}^m, f:\mathbb{R}^n \rightarrow \mathbb{R}^n\)</span>, <span class="math notranslate nohighlight">\(h(x) = Ax-b\)</span>, <span class="math notranslate nohighlight">\(f(x) = -x\)</span> con <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>, ver <a class="reference internal" href="../../III.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#proboptconvest"><span class="std std-ref">problemas de optimización convexa en su forma estándar o canónica</span></a>.</p>
 </div>
 </div>
 <div class="section" id="ejemplo-de-flujo-en-redes">
@@ -1193,15 +1195,28 @@ A solution x is
          <span class="p">)</span>
 
 
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$10 = 3x_1 + 5x_2$&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;$20 = 3x_1 + 5x_2$&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;$36 = 3x_1 + 5x_2$&quot;</span><span class="p">],</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-
 <span class="n">optimal_point</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">optimal_point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">optimal_point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
             <span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 
+<span class="n">point_origin</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">point_gradient_fo</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+
+<span class="n">points_for_gradient_fo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">point_origin</span><span class="p">,</span>
+                                       <span class="n">point_gradient_fo</span><span class="p">))</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="n">point_origin</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point_origin</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+          <span class="n">point_gradient_fo</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">point_gradient_fo</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+          <span class="n">width</span><span class="o">=.</span><span class="mi">05</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;olive&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$10 = 3x_1 + 5x_2$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;$20 = 3x_1 + 5x_2$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;$36 = 3x_1 + 5x_2$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">nabla f_o(x)$&quot;</span><span class="p">],</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -2989,9 +3004,6 @@ x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, x_4 \geq 0, x_5 \geq 0
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.  -1.5 -1. ]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
