@@ -722,7 +722,7 @@ Ax &amp;=&amp; b
 <p>Por lo anterior las funciones de barrera evitan que se cruce o llegue a la frontera de la región factible del problema primal.</p>
 <ul class="simple">
 <li><p>Otra función de barrera para un PL es: <span class="math notranslate nohighlight">\(\phi(x) = -\displaystyle \sum_{i=1}^m \frac{1}{f_i(x)}\)</span> para <span class="math notranslate nohighlight">\(x\)</span> factibles.</p></li>
-<li><p>Los problemas de optimización convexos con únicamente restricciones de desigualdad pueden resolverse con extensiones del método de Newton.</p></li>
+<li><p>Los problemas de optimización convexos con únicamente restricciones de igualdad pueden resolverse con extensiones del método de Newton.</p></li>
 </ul>
 </div>
 </div>
@@ -759,22 +759,32 @@ Ax=b\\
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-\mathcal{L}^{BL}(x, \nu) &amp;=&amp; f_{BL}(x) + \sum_{i=1}^m \nu_i h_i(x) \nonumber \\
+\mathcal{L}^{BL}(x, \nu) &amp;=&amp; f_{BL}(x|t_B) + \sum_{i=1}^m \nu_i h_i(x) \nonumber \\
 &amp;=&amp; c^Tx - \frac{1}{t_B} \displaystyle \sum_{i=1}^n \log(x_i)  + \sum_{i=1}^m \nu_i(b_i-a_i ^Tx) \nonumber \\
 &amp;=&amp; c^Tx - \frac{1}{t_B} \displaystyle \sum_{i=1}^n \log(x_i)  + \nu^T(b-Ax) \nonumber
 \end{eqnarray}
 \end{split}\]</div>
-<p>con <span class="math notranslate nohighlight">\(a_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima entrada de <span class="math notranslate nohighlight">\(b\)</span>.</p>
-<p>Los puntos centrales resuelven el PBL por lo que deben satisfacer las condiciones necesarias y suficientes KKT de optimalidad:</p>
+<p>con <span class="math notranslate nohighlight">\(a_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima entrada de <span class="math notranslate nohighlight">\(b\)</span>. Las condiciones necesarias y suficientes KKT de optimalidad son:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-\nabla \mathcal{L}^{BL}_x(x, \nu) &amp;=&amp; c - X^{-1}e + A^T\nu = 0 \nonumber \\
-Ax^*(t)) &amp;=&amp; b \nonumber \\
-f_i(x^*(t)) &amp;&lt;&amp; 0 \nonumber
+\nabla \mathcal{L}^{BL}_x(x, \nu) &amp;=&amp; c - \frac{1}{t_B} X^{-1}e + A^T\nu = 0 \nonumber \\
+Ax &amp;=&amp; b \nonumber \\
 \end{eqnarray}
 \end{split}\]</div>
 <p>ver <a class="reference internal" href="../4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html#condkktplestandar"><span class="std std-ref">condiciones KKT para un PL en su forma estándar</span></a>.</p>
+<p>Los puntos centrales resuelven el PBL y por tanto satisfacen:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\nabla \mathcal{L}^{BL}_x(x^*(t), \nu) &amp;=&amp; c - \frac{1}{t_B} X(t)^{*-1}e + A^T\nu = 0 \nonumber \\
+Ax^*(t)) &amp;=&amp; b \nonumber \\
+\end{eqnarray}
+\end{split}\]</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Por la definición de la FBL se cumple: <span class="math notranslate nohighlight">\(f_i(x)  = -x_i &lt; 0 \forall i=1, \dots, n\)</span> que son las desigualdades de la factibilidad primal pues la función <span class="math notranslate nohighlight">\(\log\)</span> está definida únicamente en <span class="math notranslate nohighlight">\(x_i &gt;0\)</span>. Entonces <span class="math notranslate nohighlight">\(x_i^*(t) &gt; 0\)</span> debe cumplirse para <span class="math notranslate nohighlight">\(x_i^*(t)\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima componente de <span class="math notranslate nohighlight">\(x^*(t)\)</span>.</p>
+</div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La forma estándar del problema de optimización convexa recuérdese es:</p>
