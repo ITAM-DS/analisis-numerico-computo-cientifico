@@ -424,7 +424,7 @@
 <p class="admonition-title">Comentario</p>
 <p>Los métodos PI pueden manejar un número grande de variables y restricciones, por ejemplo mayor a <span class="math notranslate nohighlight">\(10^5\)</span>, lo que los coloca como métodos para resolver problemas de optimización <em>large scale</em>. Además son métodos que pueden implementarse para procesamiento con cómputo en paralelo.</p>
 </div>
-<p>Conforme se avanza en las interaciones en los métodos PI se aproxima a los puntos óptimos sin llegar a tener un valor numérico igual a éstos. Por ejemplo, para el <a class="reference internal" href="../4.2/Programacion_lineal_y_metodo_simplex.html#ejprototipo"><span class="std std-ref">ejemplo prototipo</span></a> de un programa lineal se presenta una trayectoria obtenida por un método PI que se acerca a la solución óptima <span class="math notranslate nohighlight">\((2, 6)\)</span>:</p>
+<p>Conforme se avanza en las interaciones en los métodos PI se aproxima a los puntos óptimos en el límite. Por ejemplo, para el <a class="reference internal" href="../4.2/Programacion_lineal_y_metodo_simplex.html#ejprototipo"><span class="std std-ref">ejemplo prototipo</span></a> de un programa lineal se presenta una trayectoria obtenida por un método PI que se aproxima a la solución óptima <span class="math notranslate nohighlight">\((2, 6)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \max_{x \in \mathbb{R}^2} 3x_1 + 5x_2\]</div>
 <div class="math notranslate nohighlight">
@@ -545,6 +545,15 @@ x \geq 0
 <p>La función Lagrangiana del problema anterior es:</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x, \lambda, \nu) = f_o(x) + \displaystyle \sum_{i=1}^n \lambda_i f_i(x) + \sum_{i=1}^m \nu_i h_i(x) = c^Tx + \lambda^T(-x)  + \nu^T(b-Ax)\]</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>El problema primal es:</p>
+<p><span class="math notranslate nohighlight">\(\displaystyle \min_{x \in \mathbb{R}^n} c^Tx \\
+\text{sujeto a:}\\
+Ax = b \\
+x \geq 0
+\)</span></p>
+</div>
 <p>El problema dual asociado es:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\displaystyle \max_{\nu \in \mathbb{R}^m, \lambda \in \mathbb{R}^n} b^T \nu \\
@@ -567,15 +576,6 @@ Ax &amp;=&amp; b \nonumber \\
 \lambda &amp;\geq&amp; 0
 \end{eqnarray}
 \end{split}\]</div>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>El problema primal es:</p>
-<p><span class="math notranslate nohighlight">\(\displaystyle \min_{x \in \mathbb{R}^n} c^Tx \\
-\text{sujeto a:}\\
-Ax = b \\
-x \geq 0
-\)</span></p>
-</div>
 <p>Los métodos de la clase primal-dual encuentran soluciones <span class="math notranslate nohighlight">\((x^*, \lambda^*, \nu^*)\)</span> con variantes del método de Newton para las igualdades anteriores modificando las direcciones de búsqueda y tamaños de paso de modo que las desigualdades se satisfagan de forma <strong>estricta</strong> en cada iteración.</p>
 <p>La idea de los métodos de la clase primal-dual es reescribir las condiciones KKT de optimalidad anteriores mediante una función <span class="math notranslate nohighlight">\(F: \mathbb{R}^{2n + m} \rightarrow \mathbb{R}^{2n+m}\)</span> dada por:</p>
 <div class="math notranslate nohighlight">
@@ -588,9 +588,14 @@ x \geq 0
 <h3>Primera idea: determinar la dirección de búsqueda<a class="headerlink" href="#primera-idea-determinar-la-direccion-de-busqueda" title="Permalink to this headline">¶</a></h3>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
+<p>Sistema de ecuaciones no lineales a resolver:</p>
+<p><span class="math notranslate nohighlight">\(F(x, \lambda, \nu ) = \left [ \begin{array}{c} A^T \nu + \lambda -c \\ X \Lambda e \\  Ax - b \end{array} \right ] = 0\)</span></p>
+</div>
+<p>La dirección de búsqueda se determina aplicando el método de Newton al sistema de ecuaciones no lineales que se muestra en el margen. Por tanto, se resuelve el sistema de ecuaciones lineales:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
 <p>Si bien podría elegirse otra dirección de búsqueda, la dirección de Newton se prefiere por sus propiedades de convergencia e invarianza ante transformaciones afín.</p>
 </div>
-<p>La dirección de búsqueda se determina aplicando el método de Newton al sistema de ecuaciones no lineales anterior. Por tanto, se resuelve el sistema de ecuaciones lineales:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}J_F(x, \lambda, \nu) \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] = - F(x, \lambda, \nu)\end{split}\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(J_F\)</span> es la Jacobiana de <span class="math notranslate nohighlight">\(F\)</span> cuya expresión es:</p>
@@ -603,10 +608,14 @@ x \geq 0
 <p>Si denotamos <span class="math notranslate nohighlight">\(r_d = A^T \nu + \lambda -c, r_p = Ax - b\)</span> como el residual para factibilidad dual y residual para factibilidad primal respectivamente entonces el sistema de ecuaciones lineales a resolver es:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left [ \begin{array}{ccc} 0 &amp; I &amp; A^T \\ \Lambda &amp; X &amp; 0 \\ A &amp; 0 &amp; 0 \end{array} \right ]  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] =  - \left [ \begin{array}{c} r_d \\ X \Lambda e \\ r_p \end{array} \right ]\end{split}\]</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>El sistema de ecuaciones lineales anterior para problemas <em>large scale</em> no se construye, se busca resolverlo reduciéndolo a sistemas de ecuaciones equivalentes.</p>
+</div>
 </div>
 <div class="section" id="segunda-idea-cortar-el-paso">
 <h3>Segunda idea: cortar el paso<a class="headerlink" href="#segunda-idea-cortar-el-paso" title="Permalink to this headline">¶</a></h3>
-<p>Si se toma un paso completo es muy posible que en la siguiente iteración se encuentre muy cercano a alguna de las fronteras de restricción o bien se salga de la región factible. Por ello se define un parámetro <span class="math notranslate nohighlight">\(t^{(k)} \in (0, 1]\)</span> de modo que la actualización es:</p>
+<p>Si se toma un paso completo es muy posible que en la siguiente iteración se encuentre muy cerca a alguna de las fronteras de restricción o bien se salga de la región factible. Por ello se define un parámetro <span class="math notranslate nohighlight">\(t^{(k)} \in (0, 1]\)</span> de modo que la actualización es:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left [ \begin{array}{c} x \\ \lambda \\ \nu \end{array} \right ]^{(k+1)} = \left [ \begin{array}{c} x \\ \lambda \\ \nu \end{array} \right ]^{(k)} + t^{(k)}  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ]\end{split}\]</div>
 <p><span class="math notranslate nohighlight">\(k\)</span> hace referencia a la <span class="math notranslate nohighlight">\(k\)</span>-ésima iteración.</p>
@@ -618,7 +627,11 @@ x \geq 0
 <div class="section" id="tercera-idea-reducir-la-duality-gap-y-centrar">
 <h3>Tercera idea: reducir la <em>duality gap</em> y centrar<a class="headerlink" href="#tercera-idea-reducir-la-duality-gap-y-centrar" title="Permalink to this headline">¶</a></h3>
 <p>En cada iteración de los métodos primal-dual se busca reducir la <em>duality gap</em> o bien mantenerse “cerca” de la trayectoria nombrada trayectoria central.</p>
-<p>Recuérdese que la <em>duality gap</em> en un PL para el par <span class="math notranslate nohighlight">\((x, \nu)\)</span> primal-dual factible está dada por la diferencia: <span class="math notranslate nohighlight">\(c^Tx - b^T \nu\)</span>. La <em>duality gap</em> en un PL es igual a <span class="math notranslate nohighlight">\(\lambda^Tx\)</span>. En el sistema de ecuaciones lineales anterior se le representa como <span class="math notranslate nohighlight">\(X \Lambda e\)</span>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Sistema de ecuaciones lineales <span class="math notranslate nohighlight">\(\left [ \begin{array}{ccc} 0 &amp; I &amp; A^T \\ \Lambda &amp; X &amp; 0 \\ A &amp; 0 &amp; 0 \end{array} \right ]  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] =  - \left [ \begin{array}{c} r_d \\ X \Lambda e \\ r_p \end{array} \right ]\)</span></p>
+</div>
+<p>Recuérdese que la <em>duality gap</em> en un PL para el par <span class="math notranslate nohighlight">\((x, \nu)\)</span> primal-dual factible está dada por la diferencia: <span class="math notranslate nohighlight">\(c^Tx - b^T \nu\)</span>. La <em>duality gap</em> en un PL es igual a <span class="math notranslate nohighlight">\(\lambda^Tx\)</span>. En el sistema de ecuaciones lineales que se muestra en el margen se le representa como <span class="math notranslate nohighlight">\(X \Lambda e\)</span>.</p>
 <p>La trayectoria central se define a partir de la función de barrera logarítmica, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Barrier_function">Barrier function</a>.</p>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
@@ -632,7 +645,7 @@ x \geq 0
 <div class="math notranslate nohighlight">
 \[Ax = b\]</div>
 <p>con <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{p \times n}\)</span> y <em>rank</em> de <span class="math notranslate nohighlight">\(A\)</span> igual a <span class="math notranslate nohighlight">\(p &lt; n\)</span>.</p>
-<p>Se define la función de barrera logarítmica (BL) como:</p>
+<p>Se define la función de barrera logarítmica (FBL) como:</p>
 <div class="math notranslate nohighlight">
 \[\phi(x) =-\displaystyle \sum_{i=1}^m \log(-f_i(x))\]</div>
 </div>
@@ -675,7 +688,7 @@ Ax = b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Puntos_interiores_51_0.png" src="../../_images/Puntos_interiores_51_0.png" />
+<img alt="../../_images/Puntos_interiores_57_0.png" src="../../_images/Puntos_interiores_57_0.png" />
 </div>
 </div>
 <p>Valores más grandes de <span class="math notranslate nohighlight">\(t_B\)</span> hacen que <span class="math notranslate nohighlight">\(f_B(x|t_B)\)</span> tienda a <span class="math notranslate nohighlight">\(f_o(x)\)</span>. Como se observa en la gráfica anterior al elegir un valor de <span class="math notranslate nohighlight">\(t_B\)</span> cada vez más grande se tiene: <span class="math notranslate nohighlight">\(f_B(x|t_B) = f_o(x) + \frac{1}{t_B} \phi(x) \approx f_o(x)\)</span>.</p>
@@ -711,7 +724,7 @@ Ax &amp;=&amp; b
 <p>de aquí que resolver el problema de BL sea equivalente a resolver el problema original.</p>
 <ul class="simple">
 <li><p>Si <span class="math notranslate nohighlight">\(x\)</span> es facible del problema de BL y se incrementa <span class="math notranslate nohighlight">\(t_B\)</span> se tienen mejores aproximaciones al problema de optimización. <strong>Sin embargo</strong> para valores “grandes” de <span class="math notranslate nohighlight">\(t_B\)</span> la función objetivo del PBL tiene una Hessiana que varía rápidamente cerca de la frontera del conjunto factible.</p></li>
-<li><p>La función de barrera logarítmica es un caso particular de funciones de barrera que penalizan al no satisfacer las restricciones de desigualdad, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Penalty_method">Penalty method</a>.</p></li>
+<li><p>La FBL es un caso particular de funciones de barrera que penalizan al no satisfacer las restricciones de desigualdad, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Penalty_method">Penalty method</a>.</p></li>
 <li><p>En general las funciones de barrera deben tener las siguientes propiedades para <span class="math notranslate nohighlight">\(x\)</span> primal factibles:</p></li>
 </ul>
 <ol class="simple">
@@ -772,7 +785,7 @@ x \geq 0
 Ax &amp;=&amp; b \nonumber \\
 \end{eqnarray}
 \end{split}\]</div>
-<p>donde: <span class="math notranslate nohighlight">\(d = X^{-1}e = \left [ \begin{array}{c} \frac{1}{x_1} \\ \cdots \\ \frac{1}{x_n} \\ \end{array} \right ]\)</span>. Ver <a class="reference internal" href="../4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html#condkktplestandar"><span class="std std-ref">condiciones KKT para un PL en su forma estándar</span></a>.</p>
+<p>donde: <span class="math notranslate nohighlight">\(d = X^{-1}e = \left [ \begin{array}{c} \frac{1}{x_1} \\ \vdots \\ \frac{1}{x_n} \\ \end{array} \right ]\)</span>. Ver <a class="reference internal" href="../4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html#condkktplestandar"><span class="std std-ref">condiciones KKT para un PL en su forma estándar</span></a>.</p>
 <p>Los puntos centrales resuelven el PBL y por tanto satisfacen:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -781,7 +794,7 @@ Ax &amp;=&amp; b \nonumber \\
 Ax^*(t) &amp;=&amp; b \nonumber \\
 \end{eqnarray}
 \end{split}\]</div>
-<p>donde: <span class="math notranslate nohighlight">\(d(t) = X^{*-1}(t)e = \left [ \begin{array}{c} \frac{1}{x_1^*(t_B)} \\ \cdots \\ \frac{1}{x_n^*(t_B)} \\ \end{array} \right ]\)</span></p>
+<p>donde: <span class="math notranslate nohighlight">\(d(t) = X^{*-1}(t)e = \left [ \begin{array}{c} \frac{1}{x_1^*(t_B)} \\ \vdots \\ \frac{1}{x_n^*(t_B)} \\ \end{array} \right ]\)</span></p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>Por la definición de la FBL se cumple: <span class="math notranslate nohighlight">\(f_i(x)  = -x_i &lt; 0 \forall i=1, \dots, n\)</span> que son las desigualdades de la factibilidad primal pues la función <span class="math notranslate nohighlight">\(\log\)</span> está definida únicamente en <span class="math notranslate nohighlight">\(x_i &gt;0\)</span>. Entonces <span class="math notranslate nohighlight">\(x_i^*(t) &gt; 0\)</span> debe cumplirse para <span class="math notranslate nohighlight">\(x_i^*(t)\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima componente de <span class="math notranslate nohighlight">\(x^*(t)\)</span>.</p>
