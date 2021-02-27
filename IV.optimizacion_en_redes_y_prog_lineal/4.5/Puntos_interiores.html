@@ -581,6 +581,10 @@ x \geq 0
 <p>A continuación se presentan tres ideas que se utilizan en los métodos primal-dual.</p>
 <div class="section" id="primera-idea-determinar-la-direccion-de-busqueda">
 <h3>Primera idea: determinar la dirección de búsqueda<a class="headerlink" href="#primera-idea-determinar-la-direccion-de-busqueda" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Si bien podría elegirse otra dirección de búsqueda, la dirección de Newton se prefiere por sus propiedades de convergencia e invarianza ante transformaciones afín.</p>
+</div>
 <p>La dirección de búsqueda se determina aplicando el método de Newton al sistema de ecuaciones no lineales anterior. Por tanto, se resuelve el sistema de ecuaciones lineales:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}J_F(x, \lambda, \nu) \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] = - F(x, \lambda, \nu)\end{split}\]</div>
@@ -627,6 +631,10 @@ x \geq 0
 <div class="math notranslate nohighlight">
 \[\phi(x) =-\displaystyle \sum_{i=1}^m \log(-f_i(x))\]</div>
 </div>
+<div class="sidebar">
+<p class="sidebar-title">Un poco de historia …</p>
+<p>La metodología para resolver el problema de barrera logarítmica (PBL) está fundamentada en la <em>sequential unconstrained minimization technique (SUMT)</em>, <a class="reference external" href="https://www.jstor.org/stable/168637?seq=1">A. V. Fiacco, G. P. McCormick, 1965</a>. Es una técnica para resolver problemas no lineales que genera una secuencia de puntos interiores factibles que convergen a la solución del problema. Se eligen funciones de barrera que cumplan con propiedades como la convexidad. Hay versiones de la SUMT para puntos exteriores que son no factibles y vía la penalización se busca la convergencia hacia la región factible. En cada paso de SUMT se define un valor del parámetro de barrera y se resuelve un problema de optimización más sencillo que el original. Al final de cada paso se obtiene una solución que ayuda a definir puntos iniciales del siguiente problema a resolver. A medida que se avanza en las iteraciones la función objetivo del PBL se aproxima cada vez más a <span class="math notranslate nohighlight">\(f_o\)</span>, al valor óptimo y al conjunto óptimo.</p>
+</div>
 <p>Entonces el problema de optimización de la definición anterior que se debe resolver es:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -634,7 +642,7 @@ x \geq 0
 \text{sujeto a:} \\
 Ax = b
 \end{split}\]</div>
-<p>donde: <span class="math notranslate nohighlight">\(f_B(x|t_B) = f_o(x) + \frac{1}{t_B} \phi(x) = f_o(x) -  \frac{1}{t_B} \displaystyle \sum_{i=1}^m \log(-f_i(x))\)</span> con <span class="math notranslate nohighlight">\(t_B\)</span> un parámetro positivo. Denotamos a este problema como <strong>problema de barrera logarítmica (PBL)</strong>.</p>
+<p>donde: <span class="math notranslate nohighlight">\(f_B(x|t_B) = f_o(x) + \frac{1}{t_B} \phi(x) = f_o(x) -  \frac{1}{t_B} \displaystyle \sum_{i=1}^m \log(-f_i(x))\)</span> con <span class="math notranslate nohighlight">\(t_B\)</span> un parámetro positivo que nombramos <strong>parámetro de barrera</strong>. Denotamos a este problema como <strong>problema de barrera logarítmica (PBL)</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -676,10 +684,10 @@ Ax = b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Puntos_interiores_51_0.png" src="../../_images/Puntos_interiores_51_0.png" />
+<img alt="../../_images/Puntos_interiores_53_0.png" src="../../_images/Puntos_interiores_53_0.png" />
 </div>
 </div>
-<p>Valores más grandes del parámetro <span class="math notranslate nohighlight">\(t_B\)</span> hacen que <span class="math notranslate nohighlight">\(f_B(x|t_B)\)</span> tienda a <span class="math notranslate nohighlight">\(f_o(x)\)</span>. Como se observa en la gráfica anterior al elegir un valor de parámetro <span class="math notranslate nohighlight">\(t_B\)</span> cada vez más grande se tiene: <span class="math notranslate nohighlight">\(f_B(x|t_B) = f_o(x) + \frac{1}{t_B} \phi(x) \approx f_o(x)\)</span>.</p>
+<p>Valores más grandes de <span class="math notranslate nohighlight">\(t_B\)</span> hacen que <span class="math notranslate nohighlight">\(f_B(x|t_B)\)</span> tienda a <span class="math notranslate nohighlight">\(f_o(x)\)</span>. Como se observa en la gráfica anterior al elegir un valor de <span class="math notranslate nohighlight">\(t_B\)</span> cada vez más grande se tiene: <span class="math notranslate nohighlight">\(f_B(x|t_B) = f_o(x) + \frac{1}{t_B} \phi(x) \approx f_o(x)\)</span>.</p>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
@@ -706,7 +714,7 @@ Ax = b\end{split}\]</div>
 \[Ax = b\]</div>
 <p>de aquí que resolver el problema de BL sea equivalente a resolver el problema original.</p>
 <ul class="simple">
-<li><p>Si <span class="math notranslate nohighlight">\(x\)</span> es facible del problema de BL y se incrementa el parámetro de barrera <span class="math notranslate nohighlight">\(t_B\)</span> se tienen mejores aproximaciones al problema de optimización.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(x\)</span> es facible del problema de BL y se incrementa <span class="math notranslate nohighlight">\(t_B\)</span> se tienen mejores aproximaciones al problema de optimización.</p></li>
 <li><p>La función de barrera logarítmica es un caso particular de funciones de barrera que penalizan al no satisfacer las restricciones de desigualdad, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Penalty_method">Penalty method</a>.</p></li>
 <li><p>En general las funciones de barrera deben tener las siguientes propiedades para <span class="math notranslate nohighlight">\(x\)</span> primal factibles:</p></li>
 </ul>
@@ -717,6 +725,7 @@ Ax = b\end{split}\]</div>
 <p>Por lo anterior las funciones de barrera evitan que se cruce o llegue a la frontera de la región factible del problema primal.</p>
 <ul class="simple">
 <li><p>Otra función de barrera para un PL es: <span class="math notranslate nohighlight">\(\phi(x) = -\displaystyle \sum_{i=1}^m \frac{1}{f_i(x)}\)</span> para <span class="math notranslate nohighlight">\(x\)</span> factibles.</p></li>
+<li><p>Los problemas de optimización convexos con restricciones de desigualdad únicamente pueden resolverse con extensiones del método de Newton.</p></li>
 </ul>
 </div>
 <div class="tip admonition">
