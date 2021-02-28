@@ -353,8 +353,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#metodo-primal-dual">
-   Método primal-dual
+  <a class="reference internal nav-link" href="#id1">
+   Método primal-dual de barrera logarítmica (BL)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -368,17 +368,17 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tercera-idea-reducir-la-duality-gap-y-centrar">
+    <a class="reference internal nav-link" href="#tercera-idea-reducir-la-duality-gap-y-centrar-uso-de-la-funcion-de-barrera-logaritmica-fbl">
      Tercera idea: reducir la
      <em>
       duality gap
      </em>
-     y centrar
+     y centrar. Uso de la función de barrera logarítmica (FBL)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#trayectoria-central">
-     Trayectoria central
+    <a class="reference internal nav-link" href="#trayectoria-central-determinada-por-los-puntos-centrales">
+     Trayectoria central determinada por los puntos centrales
     </a>
    </li>
   </ul>
@@ -540,9 +540,9 @@
 </div>
 <p>Aunque los métodos PI son una buena alternativa para resolver PL’s perdemos ventajas que tiene el método símplex como es el análisis de sensibilidad y análisis posterior que se realiza al resolver el PL al modificar sus parámetros. Ver las referencias al final de la nota para tales análisis.</p>
 </div>
-<div class="section" id="metodo-primal-dual">
-<h2>Método primal-dual<a class="headerlink" href="#metodo-primal-dual" title="Permalink to this headline">¶</a></h2>
-<p>Considérese la forma estándar de un PL:</p>
+<div class="section" id="id1">
+<h2>Método primal-dual de barrera logarítmica (BL)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Se describirán dos ideas que se utilizan en los métodos primal dual y posteriormente una tercera idea que utiliza la función de barrera logarítmica (FBL). Para esto, considérese la forma estándar de un PL:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \displaystyle \min_{x \in \mathbb{R}^n} c^Tx\\
@@ -619,7 +619,7 @@ Ax &amp;=&amp; b \nonumber \\
 \[\begin{split}\left [ \begin{array}{ccc} 0 &amp; I &amp; A^T \\ \Lambda &amp; X &amp; 0 \\ A &amp; 0 &amp; 0 \end{array} \right ]  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] =  - \left [ \begin{array}{c} r_d \\ X \Lambda e \\ r_p \end{array} \right ]\end{split}\]</div>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>El sistema de ecuaciones lineales anterior para problemas <em>large scale</em> no se construye, se busca resolverlo reduciéndolo a sistemas de ecuaciones equivalentes y representa el paso más costoso del método primal-dual.</p>
+<p>El sistema de ecuaciones lineales anterior para problemas <em>large scale</em> no se construye, se resuelve reduciéndolo a sistemas de ecuaciones equivalentes y representa el paso más costoso del método primal-dual.</p>
 </div>
 </div>
 <div class="section" id="segunda-idea-cortar-el-paso">
@@ -633,15 +633,15 @@ Ax &amp;=&amp; b \nonumber \\
 <p>El parámetro <span class="math notranslate nohighlight">\(t^{(k)}\)</span> se calcula con metodologías como búsqueda de línea o regiones de confianza, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Line_search">line search</a>, <a class="reference internal" href="../../III.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#mbuslinback"><span class="std std-ref">método de búsqueda de línea por backtracking</span></a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Trust_region">trust region</a>.</p>
 </div>
 </div>
-<div class="section" id="tercera-idea-reducir-la-duality-gap-y-centrar">
-<h3>Tercera idea: reducir la <em>duality gap</em> y centrar<a class="headerlink" href="#tercera-idea-reducir-la-duality-gap-y-centrar" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="tercera-idea-reducir-la-duality-gap-y-centrar-uso-de-la-funcion-de-barrera-logaritmica-fbl">
+<h3>Tercera idea: reducir la <em>duality gap</em> y centrar. Uso de la función de barrera logarítmica (FBL)<a class="headerlink" href="#tercera-idea-reducir-la-duality-gap-y-centrar-uso-de-la-funcion-de-barrera-logaritmica-fbl" title="Permalink to this headline">¶</a></h3>
 <p>En cada iteración de los métodos primal-dual se busca reducir la <em>duality gap</em> o bien mantenerse “cerca” de la trayectoria nombrada trayectoria central.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Sistema de ecuaciones lineales <span class="math notranslate nohighlight">\(\left [ \begin{array}{ccc} 0 &amp; I &amp; A^T \\ \Lambda &amp; X &amp; 0 \\ A &amp; 0 &amp; 0 \end{array} \right ]  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] =  - \left [ \begin{array}{c} r_d \\ X \Lambda e \\ r_p \end{array} \right ]\)</span></p>
 </div>
 <p>Recuérdese que la <em>duality gap</em> en un PL para el par <span class="math notranslate nohighlight">\((x, \nu)\)</span> primal-dual factible está dada por la diferencia: <span class="math notranslate nohighlight">\(c^Tx - b^T \nu\)</span>. La <em>duality gap</em> en un PL es igual a <span class="math notranslate nohighlight">\(\lambda^Tx\)</span>. En el sistema de ecuaciones lineales que se muestra en el margen se representa cada sumando de <span class="math notranslate nohighlight">\(\lambda^Tx\)</span> con el producto <span class="math notranslate nohighlight">\(X \Lambda e\)</span>.</p>
-<p>La trayectoria central se define a partir de la función de barrera logarítmica, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Barrier_function">Barrier function</a>.</p>
+<p>La trayectoria central se define a partir de la FBL, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Barrier_function">Barrier function</a>.</p>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
 <p>Considérese el problema de optimización convexa en la forma estándar al que nombramos “original” para referirnos a éste:</p>
@@ -697,7 +697,7 @@ Ax = b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Metodo_primal_dual_de_BL_60_0.png" src="../../_images/Metodo_primal_dual_de_BL_60_0.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_61_0.png" src="../../_images/Metodo_primal_dual_de_BL_61_0.png" />
 </div>
 </div>
 <p>Valores más grandes de <span class="math notranslate nohighlight">\(t_B\)</span> hacen que <span class="math notranslate nohighlight">\(f_B(x|t_B)\)</span> tienda a <span class="math notranslate nohighlight">\(f_o(x)\)</span>. Como se observa en la gráfica anterior al elegir un valor de <span class="math notranslate nohighlight">\(t_B\)</span> cada vez más grande se tiene: <span class="math notranslate nohighlight">\(f_B(x|t_B) = f_o(x) + \frac{1}{t_B} \phi(x) \approx f_o(x)\)</span>.</p>
@@ -748,8 +748,8 @@ Ax &amp;=&amp; b
 </ul>
 </div>
 </div>
-<div class="section" id="trayectoria-central">
-<h3>Trayectoria central<a class="headerlink" href="#trayectoria-central" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="trayectoria-central-determinada-por-los-puntos-centrales">
+<h3>Trayectoria central determinada por los puntos centrales<a class="headerlink" href="#trayectoria-central-determinada-por-los-puntos-centrales" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
 <p>Para cada valor del parámetro de barrera <span class="math notranslate nohighlight">\(t_B\)</span>, se definen los <strong>puntos centrales</strong> <span class="math notranslate nohighlight">\(x^*(t_B)\)</span> como la solución del PBL y el conjunto de puntos centrales se le nombra trayectoria central, <em>central path</em>.</p>
