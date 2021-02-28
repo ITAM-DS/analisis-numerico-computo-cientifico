@@ -601,10 +601,6 @@ Ax &amp;=&amp; b \nonumber \\
 <p><span class="math notranslate nohighlight">\(F(x, \lambda, \nu ) = \left [ \begin{array}{c} A^T \nu + \lambda -c \\ X \Lambda e \\  Ax - b \end{array} \right ] = 0\)</span></p>
 </div>
 <p>La dirección de búsqueda se determina aplicando el método de Newton al sistema de ecuaciones no lineales que se muestra en el margen. Por tanto, se resuelve el sistema de ecuaciones lineales:</p>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Si bien podría elegirse otra dirección de búsqueda, la dirección de Newton se prefiere por sus propiedades de convergencia e invarianza ante transformaciones afín.</p>
-</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}J_F(x, \lambda, \nu) \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] = - F(x, \lambda, \nu)\end{split}\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(J_F\)</span> es la Jacobiana de <span class="math notranslate nohighlight">\(F\)</span> cuya expresión es:</p>
@@ -614,6 +610,10 @@ Ax &amp;=&amp; b \nonumber \\
 <div class="math notranslate nohighlight">
 \[\begin{split}\left [ \begin{array}{c} x \\ \lambda \\ \nu \end{array} \right ]^{(k+1)} = \left [ \begin{array}{c} x \\ \lambda \\ \nu \end{array} \right ]^{(k)} + \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ]\end{split}\]</div>
 <p><span class="math notranslate nohighlight">\(k\)</span> hace referencia a la <span class="math notranslate nohighlight">\(k\)</span>-ésima iteración.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Si bien podría elegirse otra dirección de búsqueda, la dirección de Newton (o variantes de ésta) se prefiere por sus propiedades de convergencia e invarianza ante transformaciones afín.</p>
+</div>
 <p>Si denotamos <span class="math notranslate nohighlight">\(r_d = A^T \nu + \lambda -c, r_p = Ax - b\)</span> como el residual para factibilidad dual y residual para factibilidad primal respectivamente entonces el sistema de ecuaciones lineales a resolver es:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left [ \begin{array}{ccc} 0 &amp; I &amp; A^T \\ \Lambda &amp; X &amp; 0 \\ A &amp; 0 &amp; 0 \end{array} \right ]  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] =  - \left [ \begin{array}{c} r_d \\ X \Lambda e \\ r_p \end{array} \right ]\end{split}\]</div>
@@ -660,7 +660,7 @@ Ax &amp;=&amp; b \nonumber \\
 </div>
 <div class="sidebar">
 <p class="sidebar-title">Un poco de historia …</p>
-<p>La metodología para resolver el problema de barrera logarítmica (PBL) está fundamentada en la <em>sequential unconstrained minimization technique (SUMT)</em>, <a class="reference external" href="https://www.jstor.org/stable/168637?seq=1">A. V. Fiacco, G. P. McCormick, 1965</a>. Es una técnica para resolver problemas no lineales sin restricciones generando una secuencia de puntos interiores factibles que convergen a la solución del problema. Se eligen funciones de barrera que cumplan con propiedades como la convexidad. Hay versiones de la SUMT para puntos exteriores que inicia con puntos no factibles y vía la penalización se busca la convergencia hacia la región factible. En cada iteración de SUMT se define un valor del parámetro de barrera y se resuelve un problema de optimización más sencillo que el original con el método de Newton. La solución del problema se utiliza para definir puntos iniciales del siguiente problema a resolver con un valor del parámetro de barrera diferente. A medida que se avanza en las iteraciones la función objetivo del PBL se aproxima cada vez más a <span class="math notranslate nohighlight">\(f_o\)</span>, al valor óptimo y al conjunto óptimo.</p>
+<p>La metodología para resolver el problema de barrera logarítmica (PBL) está fundamentada en la <em>sequential unconstrained minimization technique (SUMT)</em>, <a class="reference external" href="https://www.jstor.org/stable/168637?seq=1">A. V. Fiacco, G. P. McCormick, 1965</a>. Es una técnica para resolver problemas no lineales sin restricciones que genera una secuencia de puntos interiores factibles que convergen a la solución del problema. Se eligen funciones de barrera que cumplan propiedades como la convexidad. Hay versiones de la SUMT para puntos exteriores que inician con puntos no factibles y vía la penalización se busca la convergencia hacia la región factible. En cada iteración de SUMT se define un valor del parámetro de barrera y se resuelve un problema de optimización más sencillo que el original con el método de Newton. La solución del problema se utiliza para definir puntos iniciales del siguiente problema a resolver con un valor del parámetro de barrera diferente. A medida que se avanza en las iteraciones la función objetivo del PBL se aproxima cada vez más a <span class="math notranslate nohighlight">\(f_o\)</span>, al valor óptimo y al conjunto óptimo.</p>
 </div>
 <p>El problema de optimización original se resuelve planteando el siguiente:</p>
 <div class="math notranslate nohighlight">
@@ -732,7 +732,7 @@ Ax &amp;=&amp; b
 \[Ax = b\]</div>
 <p>por esto resolver el PBL es equivalente a resolver el problema original para valores más grandes de <span class="math notranslate nohighlight">\(t_B\)</span>.</p>
 <ul class="simple">
-<li><p>Si <span class="math notranslate nohighlight">\(x\)</span> es facible del PBL y se incrementa <span class="math notranslate nohighlight">\(t_B\)</span> se tienen mejores aproximaciones al problema de optimización original. <strong>Sin embargo</strong> para valores “grandes” de <span class="math notranslate nohighlight">\(t_B\)</span> la función objetivo del PBL tiene una Hessiana que varía rápidamente cerca de la frontera del conjunto factible.</p></li>
+<li><p>Si <span class="math notranslate nohighlight">\(x\)</span> es facible para el PBL y se incrementa <span class="math notranslate nohighlight">\(t_B\)</span>, se tienen mejores aproximaciones al problema de optimización original. <strong>Sin embargo</strong> para valores “grandes” de <span class="math notranslate nohighlight">\(t_B\)</span> la función objetivo del PBL tiene una Hessiana que varía rápidamente cerca de la frontera del conjunto factible.</p></li>
 <li><p>La FBL es un caso particular de funciones de barrera que penalizan al no satisfacer las restricciones de desigualdad, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Penalty_method">Penalty method</a>.</p></li>
 <li><p>En general las funciones de barrera deben tener las siguientes propiedades para <span class="math notranslate nohighlight">\(x\)</span> primal factibles:</p></li>
 </ul>
@@ -744,7 +744,7 @@ Ax &amp;=&amp; b
 <p>Por lo anterior las funciones de barrera evitan que se cruce o llegue a la frontera de la región factible del problema primal.</p>
 <ul class="simple">
 <li><p>Otra función de barrera para un PL es: <span class="math notranslate nohighlight">\(\phi(x) = -\displaystyle \sum_{i=1}^m \frac{1}{f_i(x)}\)</span> para <span class="math notranslate nohighlight">\(x\)</span> factibles.</p></li>
-<li><p>Los problemas de optimización convexos con únicamente restricciones de igualdad pueden resolverse con extensiones del método de Newton.</p></li>
+<li><p>Los problemas de optimización convexos con únicamente restricciones de igualdad pueden resolverse aplicando extensiones del método de Newton.</p></li>
 </ul>
 </div>
 </div>
@@ -762,6 +762,10 @@ Ax &amp;=&amp; b
 Ax=b\\
 x \geq 0
 \end{split}\]</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Recuérdese que en un PL estándar <span class="math notranslate nohighlight">\(f_i(x) = - x_i \forall i=1, \cdots, n\)</span>, <span class="math notranslate nohighlight">\(h_i(x) = b_i-a_i ^Tx\)</span> con <span class="math notranslate nohighlight">\(a_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima entrada de <span class="math notranslate nohighlight">\(b\)</span>.</p>
+</div>
 <p>Se tiene</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
