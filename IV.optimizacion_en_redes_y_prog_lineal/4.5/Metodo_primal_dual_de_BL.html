@@ -415,12 +415,12 @@
 </ul>
 </div>
 <p>Los métodos primal dual se caracterizan por ser métodos iterativos que realizan un manejo de las variables primales y duales de los problemas de optimización y se les clasifica como métodos por puntos interiores.</p>
+<div class="section" id="metodos-por-puntos-interiores-pi">
+<h2>Métodos por puntos interiores (PI)<a class="headerlink" href="#metodos-por-puntos-interiores-pi" title="Permalink to this headline">¶</a></h2>
 <div class="sidebar">
 <p class="sidebar-title">Un poco de historia …</p>
 <p>El <a class="reference external" href="https://en.wikipedia.org/wiki/Simplex_algorithm">método símplex</a> desarrollado por Dantzig en los <span class="math notranslate nohighlight">\(40\)</span>’s hizo posible que se formularan y analizaran modelos grandes en una forma sistemática y eficiente. Hoy en día continúa siendo uno de los métodos más utilizados para resolver programas lineales. No obstante puede ser ineficiente en problemas lineales “patológicos” (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Klee%E2%80%93Minty_cube">Klee-Minty cube</a>) pues el tiempo para resolver tales problemas es exponencial respecto al tamaño del problema (medido como el número de variables y la cantidad de almacenamiento para los datos del problema). Para la mayoría de problemas prácticos el método símplex es mucho más eficiente que estos casos “patológicos” pero esto motivó la investigación y desarrollo de nuevos algoritmos con mejor desempeño. En 1984 Karmarkar publicó el <a class="reference external" href="https://en.wikipedia.org/wiki/Karmarkar%27s_algorithm">algoritmo</a> que lleva su mismo nombre que tiene una complejidad polinomial y en la práctica resultó ser eficiente. Pertenece a la clase de métodos con el nombre de <a class="reference external" href="https://en.wikipedia.org/wiki/Interior-point_method">puntos interiores</a>. Hay diferentes tipos de métodos por puntos interiores siendo los de la clase primal-dual ampliamente usados en la práctica.</p>
 </div>
-<div class="section" id="metodos-por-puntos-interiores-pi">
-<h2>Métodos por puntos interiores (PI)<a class="headerlink" href="#metodos-por-puntos-interiores-pi" title="Permalink to this headline">¶</a></h2>
 <p>Los métodos por puntos interiores (PI) son esquemas iterativos que en un inicio se utilizaron para resolver PL’s, sin embargo, se ha extendido su uso al caso no lineal. Por ejemplo, distintos tipos de métodos por PI han sido usados para resolver problemas de optimización convexos, ver <a class="reference internal" href="../../III.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#proboptconvest"><span class="std std-ref">problemas de optimización convexa en su forma estándar o canónica</span></a>.</p>
 <p>En cada iteración de los métodos PI las restricciones de desigualdad del problema de optimización se satisfacen de forma estricta. Cada iteración es costosa de calcular y realiza avance significativo a la solución en contraste con el método símplex que requiere un gran número de iteraciones no costosas. No obstante, una propiedad que tienen los métodos PI es que los problemas grandes no requieren muchas más iteraciones que los problemas pequeños a diferencia del método símplex.</p>
 <p>En cada iteración el método símplex se mueve de la solución FEV actual a una solución FEV adyacente por una arista de la frontera de la región factible. Los problemas grandes tienen una cantidad enorme de soluciones FEV. Para ver esto piénsese en un PL al que se le van añadiendo restricciones funcionales. Entonces se añadirán aristas y por tanto soluciones FEV.  Los métodos PI evitan tal comportamiento pues avanzan por el interior de la región factible hacia los puntos óptimos y tiene muy poco efecto el ir añadiedo restricciones funcionales al PL para el desempeño de los métodos PI.</p>
@@ -554,6 +554,7 @@ x \geq 0
 <p>La función Lagrangiana del problema anterior es:</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x, \lambda, \nu) = f_o(x) + \displaystyle \sum_{i=1}^n \lambda_i f_i(x) + \sum_{i=1}^m \nu_i h_i(x) = c^Tx + \lambda^T(-x)  + \nu^T(b-Ax)\]</div>
+<p>El problema dual asociado es:</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>El problema primal es:</p>
@@ -563,18 +564,17 @@ Ax = b \\
 x \geq 0
 \)</span></p>
 </div>
-<p>El problema dual asociado es:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\displaystyle \max_{\nu \in \mathbb{R}^m, \lambda \in \mathbb{R}^n} b^T \nu \\
-\text{sujeto a :} \\
+\text{sujeto a :} \\
 c - A^T \nu - \lambda = 0 \\
 \lambda \geq 0
 \end{split}\]</div>
+<p>Las condiciones KKT son:</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Compárense estas condiciones con las señaladas en el <a class="reference internal" href="../../III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#primeraformulacioncondkkt"><span class="std std-ref">comentario</span></a> sobre las condiciones KKT en el contexto de problemas de optimización convexa.</p>
 </div>
-<p>Las condiciones KKT son:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
@@ -585,7 +585,7 @@ Ax &amp;=&amp; b \nonumber \\
 \lambda &amp;\geq&amp; 0
 \end{eqnarray}
 \end{split}\]</div>
-<p>Los métodos de la clase primal-dual encuentran soluciones <span class="math notranslate nohighlight">\((x^*, \lambda^*, \nu^*)\)</span> con variantes del método de Newton para las igualdades anteriores modificando las direcciones de búsqueda y tamaños de paso de modo que las desigualdades se satisfagan de forma <strong>estricta</strong> en cada iteración.</p>
+<p>Los métodos de la clase primal-dual encuentran soluciones <span class="math notranslate nohighlight">\((x^*, \lambda^*, \nu^*)\)</span> para las igualdades anteriores modificando las direcciones de búsqueda y tamaños de paso de modo que las desigualdades se satisfagan de forma <strong>estricta</strong> en cada iteración.</p>
 <p>La idea de los métodos de la clase primal-dual es reescribir las condiciones KKT de optimalidad anteriores mediante una función <span class="math notranslate nohighlight">\(F: \mathbb{R}^{2n + m} \rightarrow \mathbb{R}^{2n+m}\)</span> dada por:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}F(x, \lambda, \nu ) = \left [ \begin{array}{c} A^T \nu + \lambda -c \\ X \Lambda e \\  Ax - b \end{array} \right ]\end{split}\]</div>
@@ -697,7 +697,7 @@ Ax = b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Metodo_primal_dual_de_BL_59_0.png" src="../../_images/Metodo_primal_dual_de_BL_59_0.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_60_0.png" src="../../_images/Metodo_primal_dual_de_BL_60_0.png" />
 </div>
 </div>
 <p>Valores más grandes de <span class="math notranslate nohighlight">\(t_B\)</span> hacen que <span class="math notranslate nohighlight">\(f_B(x|t_B)\)</span> tienda a <span class="math notranslate nohighlight">\(f_o(x)\)</span>. Como se observa en la gráfica anterior al elegir un valor de <span class="math notranslate nohighlight">\(t_B\)</span> cada vez más grande se tiene: <span class="math notranslate nohighlight">\(f_B(x|t_B) = f_o(x) + \frac{1}{t_B} \phi(x) \approx f_o(x)\)</span>.</p>
