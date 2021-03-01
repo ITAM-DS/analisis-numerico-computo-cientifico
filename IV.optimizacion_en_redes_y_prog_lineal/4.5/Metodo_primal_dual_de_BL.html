@@ -450,10 +450,10 @@
 <p>Recuérdese que nombramos problemas de optimización <em>large scale</em> a aquellos problemas de optimización <strong>con restricciones</strong> que tienen un número de variables y restricciones mayor o igual a <span class="math notranslate nohighlight">\(10^5\)</span> (ambas).</p>
 </div>
 <p>En cada iteración de los métodos PI las restricciones de desigualdad del problema de optimización se satisfacen de forma estricta. Cada iteración es costosa de calcular y realiza avance significativo a la solución en contraste con el método símplex que requiere un gran número de iteraciones no costosas. Una característica que tienen los métodos PI es que los problemas <em>large scale</em> no requieren muchas más iteraciones que los problemas <em>small scale</em> a diferencia del método símplex. Sin embargo para problemas <em>small scale</em> en general realizan más iteraciones que el método símplex.</p>
-<p>En cada iteración el método símplex se mueve de la solución FEV actual a una solución FEV adyacente por una arista de la frontera de la región factible. Los problemas grandes tienen una cantidad enorme de soluciones FEV. Para ver esto piénsese en un PL al que se le van añadiendo restricciones funcionales. Entonces se añadirán aristas y por tanto soluciones FEV.  Los métodos PI evitan tal comportamiento pues avanzan por el interior de la región factible hacia los puntos óptimos y tiene muy poco efecto el ir añadiedo restricciones funcionales al PL para el desempeño de los métodos PI.</p>
-<div class="admonition-comentario admonition">
-<p class="admonition-title">Comentario</p>
-<p>Los métodos PI pueden manejar un número grande de variables y restricciones, por ejemplo mayor a <span class="math notranslate nohighlight">\(10^5\)</span>, lo que los coloca como métodos para resolver problemas de optimización <em>large scale</em>. Además son métodos que pueden implementarse para procesamiento con cómputo en paralelo.</p>
+<p>En cada iteración el método símplex se mueve de la solución FEV actual a una solución FEV adyacente por una arista de la frontera de la región factible. Los problemas del tipo <em>large scale</em> tienen una cantidad enorme de soluciones FEV. Para ver esto piénsese en un PL al que se le van añadiendo restricciones funcionales. Entonces se añadirán aristas y por tanto soluciones FEV.  Los métodos PI evitan tal comportamiento pues avanzan por el interior de la región factible hacia los puntos óptimos y tiene muy poco efecto el ir añadiedo restricciones funcionales al PL para el desempeño de los métodos PI.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Los métodos PI pueden resolver problemas de optimización <em>large scale</em>. Además son métodos que pueden implementarse para procesamiento con cómputo en paralelo.</p>
 </div>
 <p>Conforme se avanza en las interaciones en los métodos PI se aproxima a los puntos óptimos en el límite. Por ejemplo, para el <a class="reference internal" href="../4.2/Programacion_lineal_y_metodo_simplex.html#ejprototipo"><span class="std std-ref">ejemplo prototipo</span></a> de un programa lineal (PL) a continuación se presenta una trayectoria obtenida por un método PI que se aproxima a la solución óptima <span class="math notranslate nohighlight">\((2, 6)\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -578,6 +578,10 @@ Ax=b\\
 x \geq 0
 \end{split}\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m\)</span>, <span class="math notranslate nohighlight">\(m &lt; n\)</span> con <em>rank</em> completo por renglones y las restricciones se interpretan de una forma <em>pointwise</em>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Las restricciones <span class="math notranslate nohighlight">\(Ax = b\)</span> se pueden escribir con funciones <span class="math notranslate nohighlight">\(h: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> , <span class="math notranslate nohighlight">\(h_i(x) = b_i-a_i ^Tx\)</span>, <span class="math notranslate nohighlight">\(a_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> y <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima entrada de <span class="math notranslate nohighlight">\(b\)</span> para <span class="math notranslate nohighlight">\(i=1, \cdots, m\)</span></p>
+</div>
 <p>La función Lagrangiana del problema anterior es:</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x, \lambda, \nu) = f_o(x) + \displaystyle \sum_{i=1}^n \lambda_i f_i(x) + \sum_{i=1}^m \nu_i h_i(x) = c^Tx + \lambda^T(-x)  + \nu^T(b-Ax)\]</div>
@@ -678,7 +682,7 @@ Ax &amp;=&amp; b \nonumber \\
 <p>La trayectoria central se define a partir de la FBL, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Barrier_function">Barrier function</a>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Las restricciones <span class="math notranslate nohighlight">\(Ax = b\)</span> se pueden escribir con funciones <span class="math notranslate nohighlight">\(h: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> , <span class="math notranslate nohighlight">\(h_i(x) = b_i-a_i ^Tx\)</span>, <span class="math notranslate nohighlight">\(a_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> y <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima entrada de <span class="math notranslate nohighlight">\(b\)</span> para <span class="math notranslate nohighlight">\(i=1, \cdots, m\)</span></p>
+<p>Las restricciones <span class="math notranslate nohighlight">\(Ax = b\)</span> se pueden escribir con funciones <span class="math notranslate nohighlight">\(h: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> , <span class="math notranslate nohighlight">\(h_i(x) = b_i-a_i ^Tx\)</span>, <span class="math notranslate nohighlight">\(a_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{p \times n}\)</span> y <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima entrada de <span class="math notranslate nohighlight">\(b\)</span> para <span class="math notranslate nohighlight">\(i=1, \cdots, p\)</span></p>
 </div>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
@@ -736,7 +740,7 @@ Ax = b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Metodo_primal_dual_de_BL_65_0.png" src="../../_images/Metodo_primal_dual_de_BL_65_0.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_66_0.png" src="../../_images/Metodo_primal_dual_de_BL_66_0.png" />
 </div>
 </div>
 <p>Valores más grandes de <span class="math notranslate nohighlight">\(t_B\)</span> hacen que <span class="math notranslate nohighlight">\(f_B(x|t_B)\)</span> tienda a <span class="math notranslate nohighlight">\(f_o(x)\)</span>. Como se observa en la gráfica anterior al elegir un valor de <span class="math notranslate nohighlight">\(t_B\)</span> cada vez más grande se tiene: <span class="math notranslate nohighlight">\(f_B(x|t_B) = f_o(x) + \frac{1}{t_B} \phi(x) \approx f_o(x)\)</span>.</p>
@@ -802,6 +806,10 @@ Ax = b
 <p>Para cada valor del parámetro de barrera <span class="math notranslate nohighlight">\(t_B\)</span>, se definen los <strong>puntos centrales</strong> <span class="math notranslate nohighlight">\(x^*(t_B)\)</span> como la solución del PBL y el conjunto de puntos centrales se le nombra trayectoria central, <em>central path</em>.</p>
 </div>
 <p>Revisemos las condiciones KKT de optimalidad que deben cumplir los puntos centrales para un PL. Consideremos un PLE:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Recuérdese que en un PLE <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span>, <span class="math notranslate nohighlight">\(m &lt; n\)</span>.</p>
+</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \displaystyle \min_{x \in \mathbb{R}^n} c^Tx\\
@@ -809,11 +817,11 @@ Ax = b
 Ax=b\\
 x \geq 0
 \end{split}\]</div>
+<p>Se tiene:</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Recuérdese que en un PLE <span class="math notranslate nohighlight">\(f_i(x) = - x_i \forall i=1, \cdots, n\)</span>.</p>
 </div>
-<p>Se tiene</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
@@ -889,7 +897,7 @@ Ax = b
 \end{split}\]</div>
 <p>con: <span class="math notranslate nohighlight">\(\mathcal{L}: \mathbb{R}^n \times \mathbb{R}^p \rightarrow \mathbb{R}\)</span>,</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{eqnarray} \mathcal{L}^{BL}(x, \nu) &amp;=&amp; f_{BL}(x|t_B) + \sum_{i=1}^m \nu_i h_i(x) \nonumber \\
+\[\begin{split}\begin{eqnarray} \mathcal{L}^{BL}(x, \nu) &amp;=&amp; f_{BL}(x|t_B) + \sum_{i=1}^p \nu_i h_i(x) \nonumber \\
 &amp;=&amp; f_o(x|t_B) + \frac{1}{t_B} \phi(x) + \nu^T(b-Ax)
 \end{eqnarray}
 \end{split}\]</div>
