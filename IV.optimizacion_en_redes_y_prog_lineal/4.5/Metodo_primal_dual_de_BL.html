@@ -625,7 +625,7 @@ Ax &amp;=&amp; b \nonumber \\
 <p>Los métodos de la clase primal-dual encuentran soluciones <span class="math notranslate nohighlight">\((x^*, \lambda^*, \nu^*)\)</span> para las igualdades anteriores y modifican las direcciones de búsqueda y tamaños de paso para que las desigualdades se satisfagan de forma <strong>estricta</strong> en cada iteración.</p>
 <p>La idea de los métodos de la clase primal-dual es reescribir las condiciones KKT de optimalidad anteriores mediante una función <span class="math notranslate nohighlight">\(F: \mathbb{R}^{2n + m} \rightarrow \mathbb{R}^{2n+m}\)</span> dada por:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}F(x, \lambda, \nu ) = \left [ \begin{array}{c} A^T \nu + \lambda -c \\ X \Lambda e \\  Ax - b \end{array} \right ]\end{split}\]</div>
+\[\begin{split}F(x, \lambda, \nu ) = \left [ \begin{array}{c} A^T \nu + \lambda -c \\ X \Lambda e \\  b - Ax \end{array} \right ]\end{split}\]</div>
 <p>y resolver la ecuación <strong>no lineal</strong> <span class="math notranslate nohighlight">\(F(x, \lambda, \nu )=0\)</span> para <span class="math notranslate nohighlight">\((x, \lambda) \geq 0\)</span>, donde: <span class="math notranslate nohighlight">\(X = \text{diag}(x_1, \dots, x_n)\)</span>, <span class="math notranslate nohighlight">\(\Lambda = \text{diag}(\lambda_1, \dots, \lambda_n)\)</span> y <span class="math notranslate nohighlight">\(e\)</span> es un vector de <span class="math notranslate nohighlight">\(1\)</span>’s en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>.</p>
 <p>Los métodos de la clase primal-dual producen iteraciones <span class="math notranslate nohighlight">\((x^{(k)}, \lambda^{(k)}, \nu^{(k)})\)</span> tales que <span class="math notranslate nohighlight">\(x^{(k)} &gt; 0\)</span> y <span class="math notranslate nohighlight">\(\lambda^{(k)} &gt; 0\)</span>, por esto tales métodos son considerados como puntos interiores.</p>
 <p>Como la mayoría de los métodos iterativos en optimización, los métodos primal-dual tienen un procedimiento para determinar la dirección de búsqueda y una cantidad que debe ser monitoreada cuyo valor alcance un valor objetivo. En el caso de los PL’s tal cantidad es la <em>duality gap</em> medida como: <span class="math notranslate nohighlight">\(\lambda^Tx\)</span></p>
@@ -651,7 +651,7 @@ Ax &amp;=&amp; b \nonumber \\
 <p class="admonition-title">Observación</p>
 <p>Si bien podría elegirse otra dirección de búsqueda, la dirección de Newton (o variantes de ésta) se prefiere por sus propiedades de convergencia e invarianza ante transformaciones afín.</p>
 </div>
-<p>Si denotamos <span class="math notranslate nohighlight">\(r_d = A^T \nu + \lambda -c, r_p = Ax - b\)</span> como el residual para factibilidad dual y residual para factibilidad primal respectivamente entonces el sistema de ecuaciones lineales a resolver es:</p>
+<p>Si denotamos <span class="math notranslate nohighlight">\(r_d = A^T \nu + \lambda -c, r_p = b - Ax\)</span> como el residual para factibilidad dual y residual para factibilidad primal respectivamente entonces el sistema de ecuaciones lineales a resolver es:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left [ \begin{array}{ccc} 0 &amp; I &amp; A^T \\ \Lambda &amp; X &amp; 0 \\ A &amp; 0 &amp; 0 \end{array} \right ]  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] =  - \left [ \begin{array}{c} r_d \\ X \Lambda e \\ r_p \end{array} \right ]\end{split}\]</div>
 <div class="admonition-comentario admonition">
@@ -938,7 +938,8 @@ Ax = b
 \end{split}\]</div>
 <p>y el sistema de ecuaciones lineales a resolver es:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\left [ \begin{array}{cc} \nabla^2f_o(x) + \frac{1}{t_B} \nabla^2 \phi(x)  &amp; -A^T \\ -A &amp; 0\end{array} \right ] \left [ \begin{array}{c} \Delta x \\ \Delta \nu \end{array} \right ] = -\left [ \begin{array}{c} \nabla f_o(x) + \frac{1}{t_B} \nabla \phi(x) \\ b-Ax \end{array} \right ]\end{split}\]</div>
+\[\begin{split}\left [ \begin{array}{cc} \nabla^2f_o(x) + \frac{1}{t_B} \nabla^2 \phi(x)  &amp; -A^T \\ -A &amp; 0\end{array} \right ] \left [ \begin{array}{c} \Delta x \\ \Delta \nu \end{array} \right ] = -\left [ \begin{array}{c} \nabla f_o(x) + \frac{1}{t_B} \nabla \phi(x) \\ r_p \end{array} \right ]\end{split}\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(r_p = b - Ax\)</span> es el residual para factibilidad primal.</p>
 <p>Ver <a class="reference internal" href="../../III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#funlagrangiana"><span class="std std-ref">la función Lagrangiana</span></a>.</p>
 </div>
 <p><strong>Comentario para el que sería bueno mostrar un dibujo/gráfica:</strong></p>
