@@ -100,3 +100,12 @@ Llegamos hasta [4.2 Prueba del cociente mínimo: forma general y con notación m
 24 de febrero
 
 Terminamos nota [4.2 Programación lineal (PL) y método símplex](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.2/Programacion_lineal_y_metodo_simplex.html)
+
+
+## Clase 8
+
+3 de marzo
+
+Terminamos nota [4.3 Ejemplo del método símplex de redes](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.3/Ejemplo_metodo_simplex_de_redes.html)
+
+Llegamos hasta [Interpretación del problema dual](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html#interpretacion-del-problema-dual)
