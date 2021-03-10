@@ -494,13 +494,13 @@
 <p>Los métodos por puntos interiores (PI) son esquemas iterativos que en un inicio se utilizaron para resolver PL’s, sin embargo, se ha extendido su uso al caso no lineal. Por ejemplo, distintos tipos de métodos por PI han sido usados para resolver problemas de optimización convexos, ver <a class="reference internal" href="../../III.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#proboptconvest"><span class="std std-ref">problemas de optimización convexa en su forma estándar o canónica</span></a>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Recuérdese que nombramos problemas de optimización <em>large scale</em> a aquellos problemas de optimización <strong>con restricciones</strong> que tienen un número de variables y restricciones mayor o igual a <span class="math notranslate nohighlight">\(10^5\)</span> (ambas).</p>
+<p>Recuérdese que nombramos problemas de optimización con restricciones <em>large scale</em> a aquellos problemas de optimización que tienen un número de variables y restricciones mayor o igual a <span class="math notranslate nohighlight">\(10^5\)</span> (ambas).</p>
 </div>
 <p>En cada iteración de los métodos PI las restricciones de desigualdad del problema de optimización se satisfacen de forma estricta. Cada iteración es costosa de calcular y realiza avance significativo a la solución en contraste con el método símplex que requiere un gran número de iteraciones no costosas. Una característica que tienen los métodos PI es que los problemas <em>large scale</em> no requieren muchas más iteraciones que los problemas <em>small scale</em> a diferencia del método símplex. Sin embargo para problemas <em>small scale</em> en general realizan más iteraciones que el método símplex.</p>
 <p>En cada iteración el método símplex se mueve de la solución FEV actual a una solución FEV adyacente por una arista de la frontera de la región factible, ver <a class="reference internal" href="../4.2/Programacion_lineal_y_metodo_simplex.html#metodosimplex"><span class="std std-ref">método símplex</span></a>. Los problemas del tipo <em>large scale</em> tienen una cantidad enorme de soluciones FEV. Para ver esto piénsese en un PL al que se le van añadiendo restricciones funcionales. Entonces se añadirán aristas y por tanto soluciones FEV.  Los métodos PI evitan tal comportamiento pues avanzan por el interior de la región factible hacia los puntos óptimos y tiene muy poco efecto el ir añadiedo restricciones funcionales al PL para el desempeño de los métodos PI.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Los métodos PI pueden resolver problemas de optimización <em>large scale</em>. Además son métodos que pueden implementarse para procesamiento con cómputo en paralelo.</p>
+<p>Los métodos PI han mostrado “buena” eficiencia (en términos del número de iteraciones realizadas) en resolver problemas de optimización <em>large scale</em>. Además son métodos que pueden implementarse para procesamiento con cómputo en paralelo.</p>
 </div>
 <p>Los métodos PI conforme avanzan en las interaciones aproximan a los puntos óptimos en el límite. Por ejemplo, para el <a class="reference internal" href="../4.2/Programacion_lineal_y_metodo_simplex.html#ejprototipo"><span class="std std-ref">ejemplo prototipo</span></a> de un programa lineal (PL) a continuación se presenta una trayectoria obtenida por un método PI que se aproxima a la solución óptima <span class="math notranslate nohighlight">\((2, 6)\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -788,7 +788,7 @@ Ax = b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Metodo_primal_dual_de_BL_69_0.png" src="../../_images/Metodo_primal_dual_de_BL_69_0.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_68_0.png" src="../../_images/Metodo_primal_dual_de_BL_68_0.png" />
 </div>
 </div>
 <p>Valores más grandes de <span class="math notranslate nohighlight">\(t_B\)</span> hacen que <span class="math notranslate nohighlight">\(f_B(x|t_B)\)</span> tienda a <span class="math notranslate nohighlight">\(f_o(x)\)</span>. Como se observa en la gráfica anterior al elegir un valor de <span class="math notranslate nohighlight">\(t_B\)</span> cada vez más grande se tiene: <span class="math notranslate nohighlight">\(f_B(x|t_B) = f_o(x) + \frac{1}{t_B} \phi(x) \approx f_o(x)\)</span>.</p>
@@ -905,7 +905,7 @@ x \geq 0
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-\mathcal{L}_B(x, \nu) &amp;=&amp; f_{BL}(x|t_B) + \sum_{i=1}^m \nu_i h_i(x) \nonumber \\
+\mathcal{L}_B(x, \nu) &amp;=&amp; f_B(x|t_B) + \sum_{i=1}^m \nu_i h_i(x) \nonumber \\
 &amp;=&amp; c^Tx - \frac{1}{t_B} \displaystyle \sum_{i=1}^n \log(x_i)  + \sum_{i=1}^m \nu_i(b_i-a_i ^Tx) \nonumber \\
 &amp;=&amp; c^Tx - \frac{1}{t_B} \displaystyle \sum_{i=1}^n \log(x_i)  + \nu^T(b-Ax) \nonumber
 \end{eqnarray}
@@ -1047,7 +1047,7 @@ Ax=b
 <p>con <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> y <em>rank</em> de <span class="math notranslate nohighlight">\(A\)</span> igual a <span class="math notranslate nohighlight">\(m &lt; n\)</span>. Las condiciones KKT son:</p>
 <p><span class="math notranslate nohighlight">\(
 \begin{eqnarray}
-\nabla_x \mathcal{L}^{BL}(x, \nu) &amp;=&amp; c - A^T\nu - \frac{1}{t_B}d = 0 \nonumber \\
+\nabla_x \mathcal{L}_B(x, \nu) &amp;=&amp; c - A^T\nu - \frac{1}{t_B}d = 0 \nonumber \\
 Ax &amp;=&amp; b \nonumber \\
 \end{eqnarray}
 \)</span></p>
@@ -1055,7 +1055,12 @@ Ax &amp;=&amp; b \nonumber \\
 </div>
 <div class="math notranslate nohighlight">
 \[\begin{split}F(x, \nu) = \left [ \begin{array}{c} c - A^T\nu - \frac{1}{t_B}d(t_B) \\ b- Ax(t_B) \end{array} \right ] = 0\end{split}\]</div>
-<p>donde: <span class="math notranslate nohighlight">\(d(t_B) = X^{*-1}(t)e = \left [ \begin{array}{c} \frac{1}{x_1^*(t_B)} \\ \vdots \\ \frac{1}{x_n^*(t_B)} \\ \end{array} \right ]\)</span>. Este sistema de ecuaciones no lineales conduce a resolver el sistema de ecuaciones lineales:</p>
+<p>donde: <span class="math notranslate nohighlight">\(d(t_B) = X^{*-1}(t)e = \left [ \begin{array}{c} \frac{1}{x_1^*(t_B)} \\ \vdots \\ \frac{1}{x_n^*(t_B)} \\ \end{array} \right ]\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que se están utilizando las condiciones KKT de optimalidad del PBL-PLE que se muestran en el margen pero perturbadas.</p>
+</div>
+<p>Este sistema de ecuaciones no lineales conduce a resolver el sistema de ecuaciones lineales:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}J_F(x, \nu) \left [ \begin{array}{c} \Delta x \\ \Delta \nu \end{array} \right ] = - F(x, \nu)\end{split}\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(J_F(x, \nu) = \left [ \begin{array}{cc} \nabla_{xx} ^2 \mathcal{L}_B(x, \nu)  &amp;  \nabla_{\nu x} \mathcal{L}_B(x,\nu) \\ -A &amp; 0\end{array} \right ] = \left [ \begin{array}{cc} \frac{1}{t_B} D^2(t_B) &amp;  -A^T \\ -A &amp; 0\end{array} \right ]\)</span> y <span class="math notranslate nohighlight">\(D^2(t_B) = \text{diag}^2(d(t_B)) \in \mathbb{R}^{n \times n}\)</span>.</p>
@@ -1063,9 +1068,20 @@ Ax &amp;=&amp; b \nonumber \\
 <div class="math notranslate nohighlight">
 \[\begin{split}\left [ \begin{array}{c} x \\ \nu \end{array} \right ]^{(k+1)} = \left [ \begin{array}{c} x \\ \nu \end{array} \right ]^{(k)} + t^{(k)}  \left [ \begin{array}{c} \Delta x \\ \Delta \nu \end{array} \right ]\end{split}\]</div>
 <p>donde se utilizó la <a class="reference internal" href="#segunideaprimdual"><span class="std std-ref">segunda idea: cortar el paso</span></a>.</p>
-<div class="tip admonition">
-<p class="admonition-title">Observación</p>
-<p>Se pueden eliminar los signos negativos que están en los bloques de la matriz del sistema de ecuaciones lineales anterior que contienen <span class="math notranslate nohighlight">\(A, A^T\)</span> pero por consistencia con lo desarrollado en la nota de dualidad se mantienen los signos negativos (si se eliminan también debe de ajustarse el lado derecho del sistema).</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Se pueden eliminar los signos negativos que están en los bloques de la matriz del sistema de ecuaciones lineales anterior que contienen <span class="math notranslate nohighlight">\(A, A^T\)</span> pero por consistencia con lo desarrollado en la nota de dualidad para un PL se mantienen los signos negativos (si se eliminan también debe de ajustarse el lado derecho del sistema). Esta modificación se relaciona con la definición de la función Lagrangiana.</p></li>
+<li><p>También una modificación que se realiza para que en el primer bloque del sistema de ecuaciones lineales anterior no tengamos del lado izquierdo y del lado derecho <span class="math notranslate nohighlight">\(\frac{1}{t_B}\)</span> se puede trabajar con el problema de optimización equivalente:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\displaystyle \min_{x \in \mathbb{R}^n} f_B(x|t_B) \\
+\text{sujeto a:} \\
+Ax = b
+\end{split}\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(f_B(x|t_B) = t_Bf_o(x) + \phi(x) = t_Bf_o(x) - \displaystyle \sum_{i=1}^m \log(-f_i(x))\)</span> con <span class="math notranslate nohighlight">\(t_B\)</span> <strong>parámetro de barrera</strong>.</p>
+<p><strong>Estas dos modificaciones se utilizan para implementar el PBL</strong>.</p>
 </div>
 </div>
 </div>
