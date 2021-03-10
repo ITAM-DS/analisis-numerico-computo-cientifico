@@ -1106,7 +1106,7 @@ Ax = b
 </div>
 <div class="section" id="metodo-primal-dual-de-bl-aplicado-al-ejemplo-prototipo">
 <h2>Método primal-dual de BL aplicado al ejemplo prototipo<a class="headerlink" href="#metodo-primal-dual-de-bl-aplicado-al-ejemplo-prototipo" title="Permalink to this headline">¶</a></h2>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">log_barrier_aux_eval_constraints</span><span class="p">(</span><span class="n">eval_f_const_inequality</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -1116,14 +1116,15 @@ Ax = b
     <span class="c1">#get values that are nonnegative through indexes</span>
     <span class="n">idx_zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">eval_f_const_inequality</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
                                <span class="n">eval_f_const_inequality</span> <span class="o">&gt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">idx_positive</span> <span class="o">=</span> <span class="n">eval_f_const_inequality</span> <span class="o">&gt;</span> <span class="mi">0</span> 
-    <span class="n">idx</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">idx_zeros</span><span class="p">,</span> <span class="n">idx_positive</span><span class="p">)</span> 
+    <span class="n">idx_negative</span> <span class="o">=</span> <span class="n">eval_f_const_inequality</span> <span class="o">&lt;</span> <span class="mi">0</span> 
+    <span class="n">idx</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">idx_zeros</span><span class="p">,</span> <span class="n">idx_negative</span><span class="p">)</span> 
     <span class="c1">#eval constraint inequality functions</span>
     <span class="c1">#next line produces warning if a value of constraint </span>
-    <span class="c1">#is nonnegative</span>
-    <span class="n">eval_f_const_inequality</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="o">-</span><span class="n">eval_f_const_inequality</span><span class="p">)</span>                                                           
-    <span class="c1">#assign large value for values positive or equal to 0</span>
-    <span class="n">eval_f_const_inequality</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e10</span>     
+    <span class="c1">#is nonpositive</span>
+    <span class="n">eval_f_const_inequality</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eval_f_const_inequality</span><span class="p">)</span>                                                           
+    <span class="c1">#assign large negative value for constraints</span>
+    <span class="c1">#that have values negative or equal to 0</span>
+    <span class="n">eval_f_const_inequality</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1e10</span>     
     <span class="k">return</span> <span class="n">eval_f_const_inequality</span>
 <span class="k">def</span> <span class="nf">constraint_inequalities_funcs_generator</span><span class="p">(</span><span class="n">constraint_inequalities</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -1141,13 +1142,19 @@ Ax = b
     <span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">const</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">const</span> <span class="ow">in</span> \
                                       <span class="n">constraint_inequalities_funcs_generator</span><span class="p">(</span><span class="n">constraint_inequalities</span><span class="p">)])</span>
     <span class="k">return</span> <span class="n">const_ineq_funcs_eval</span>
+<span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implementation of phi function for logarithmic barrier.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">constraint_ineq_funcs_eval</span> <span class="o">=</span> <span class="o">-</span><span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraint_inequalities</span><span class="p">)</span>
+    <span class="n">log_barrier_const_eval</span> <span class="o">=</span> <span class="n">log_barrier_aux_eval_constraints</span><span class="p">(</span><span class="n">constraint_ineq_funcs_eval</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_barrier_const_eval</span><span class="p">)</span>
+
 <span class="k">def</span> <span class="nf">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implementation of Logarithmic barrier function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">constraint_ineq_funcs_eval</span> <span class="o">=</span> <span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraint_inequalities</span><span class="p">)</span>
-    <span class="n">log_barrier_const_eval</span> <span class="o">=</span> <span class="n">log_barrier_aux_eval_constraints</span><span class="p">(</span><span class="n">constraint_ineq_funcs_eval</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">t_B</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_barrier_const_eval</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">t_B</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span> <span class="n">phi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">dir_desc</span><span class="p">,</span>
                                                 <span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
@@ -1177,14 +1184,14 @@ Ax = b
         <span class="n">t</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
     <span class="k">if</span> <span class="n">beta</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;beta must be less than 1&#39;</span><span class="p">)</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>   
+        <span class="n">t</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>   
     <span class="k">if</span> <span class="n">t</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">eval1</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">dir_desc</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span><span class="n">constraint_inequalities</span><span class="p">)</span>
-        <span class="n">eval2</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span><span class="n">constraint_inequalities</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">der_direct</span>
+        <span class="n">eval1</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">dir_desc</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">)</span>
+        <span class="n">eval2</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">der_direct</span>
         <span class="k">while</span> <span class="n">eval1</span> <span class="o">&gt;</span> <span class="n">eval2</span><span class="p">:</span>
             <span class="n">t</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="n">t</span>
-            <span class="n">eval1</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">dir_desc</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span><span class="n">constraint_inequalities</span><span class="p">)</span>
-            <span class="n">eval2</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span><span class="n">constraint_inequalities</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">der_direct</span>
+            <span class="n">eval1</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">dir_desc</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">)</span>
+            <span class="n">eval2</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">der_direct</span>
     <span class="k">return</span> <span class="n">t</span>
 
         
@@ -1202,7 +1209,7 @@ x_1 \leq 4 \nonumber    \\
 x_1 \geq 0              \\
 x_2 \geq 0              \\
 \end{split}\]</div>
-<p><span class="math notranslate nohighlight">\(\phi(x) = - \displaystyle \sum_{i=1}^m \log(-(a_i ^Tx-b_i)) - \sum_{i=1}^n \log(-{e}_i ^Tx)\)</span> con <span class="math notranslate nohighlight">\(a_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A = \left [ \begin{array}{cc} 1 &amp; 0 \\0 &amp; 2 \\ 3 &amp; 2 \end{array} \right ]\)</span>, <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima entrada del vector <span class="math notranslate nohighlight">\(b = \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array} \right ]\)</span> y <span class="math notranslate nohighlight">\(e_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo vector canónico</p>
+<p><span class="math notranslate nohighlight">\(\phi(x) = - \displaystyle \sum_{i=1}^m \log(-(a_i ^Tx-b_i)) - \sum_{i=1}^n \log(-{e}_i ^T(-x))\)</span> con <span class="math notranslate nohighlight">\(a_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A = \left [ \begin{array}{cc} 1 &amp; 0 \\0 &amp; 2 \\ 3 &amp; 2 \end{array} \right ]\)</span>, <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima entrada del vector <span class="math notranslate nohighlight">\(b = \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array} \right ]\)</span> y <span class="math notranslate nohighlight">\(e_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo vector canónico.</p>
 <p>Reescribimos el problema anterior sin las restricciones <span class="math notranslate nohighlight">\(A x \leq b\)</span> como:</p>
 <p><span class="math notranslate nohighlight">\(
 \displaystyle \min_{x \in \mathbb{R}^2} t_B(-3x_1 -5x_2) - [\log(4-x_1) + \log(12 - 2x_2) + \log(18 - (3 x_1 + 2 x_2)) + \log(x_1) + \log(x_2) ]\\
@@ -1229,7 +1236,7 @@ x_2 \geq 0              \\
 <p>Y el vector <span class="math notranslate nohighlight">\(d(t_B) = \left [ \begin{array}{c} \frac{1}{b_1 - a_1^Tx(t_B)} \\ \frac{1}{b_2 - a_2^Tx(t_B)} \\ \frac{1}{b_3 - a_3^Tx(t_B)} \\ \frac{1}{x_1(t_B)} \\ \frac{1}{x_2(t_B)} \end{array}\right ] = \left [ \begin{array}{c} \frac{1}{4-x_1(t_B)} \\ \frac{1}{12-2x_2(t_B)} \\ \frac{1}{18-3x_1(t_B)-2x_2(t_B)} \\ \frac{1}{-x_1(t_B)} \\ \frac{1}{-x_2(t_B)} \end{array}\right ]\)</span>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Aunque podríamos definir:</p>
+<p>Aunque podríamos definir las siguientes líneas de acuerdo al desarrollo matemático anterior, usamos <em>SymPy</em> para uso de diferenciación simbólica (no se recomienda para problemas <em>medium</em> o <em>large scale</em>):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
               <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
@@ -1248,7 +1255,6 @@ x_2 \geq 0              \\
 </pre></div>
 </div>
 </div>
-<p>de acuerdo al desarrollo matemático anterior, usamos <em>SymPy</em> para uso de diferenciación simbólica (no se recomienda para problemas <em>medium</em> o <em>large scale</em>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
@@ -1264,10 +1270,10 @@ x_2 \geq 0              \\
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x1, x2&quot;</span><span class="p">)</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">fo</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x2</span>
-<span class="n">phi</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">12</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">18</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
-<span class="n">gf</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">gphi</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+<span class="n">fo_sympy</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x2</span>
+<span class="n">phi_sympy</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">12</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">18</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
+<span class="n">gf</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+<span class="n">gphi</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">phi_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
 <span class="n">Hf</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
 <span class="n">Hphi</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gphi</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
 
@@ -1276,13 +1282,15 @@ x_2 \geq 0              \\
 <span class="n">gfobj</span> <span class="o">=</span> <span class="n">t_B</span><span class="o">*</span><span class="n">gf</span> <span class="o">+</span> <span class="n">gphi</span>
 <span class="n">Hfobj</span> <span class="o">=</span> <span class="n">t_B</span><span class="o">*</span><span class="n">Hf</span> <span class="o">+</span> <span class="n">Hphi</span>
 <span class="n">n</span><span class="o">=</span><span class="mi">2</span>
-<span class="n">Hfobj_eval</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
-                                                                 <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">t_B</span><span class="o">*</span><span class="n">Hf</span> <span class="o">+</span> <span class="n">Hphi</span><span class="p">],</span>
-                                <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 
 <span class="n">gfobj_eval</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">component</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                                 <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span> <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">t_B</span><span class="o">*</span><span class="n">gf</span> <span class="o">+</span> <span class="n">gphi</span><span class="p">],</span>
+                                                 <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span> <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">gfobj</span><span class="p">],</span>
                                   <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+
+
+<span class="n">Hfobj_eval</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                                                                 <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hfobj</span><span class="p">],</span>
+                                <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1311,14 +1319,14 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fo</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1330,14 +1338,14 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-123.73090371629374
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-136.26909628370626
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="o">-</span><span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1349,29 +1357,29 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ -3  -8 -11  -1  -2]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 3  8 11  1  2]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">const_ineq_funcs_eval</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">&gt;=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some constraint inequalities evaluated in x were nonnegative, check approximations&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">const_ineq_funcs_eval</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;=-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some constraint inequalities evaluated in x were nonpositive, check approximations&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_eval</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fo_eval</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_eval</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fo_eval</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1455,7 +1463,7 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
                                                 <span class="n">constraints_ineq</span><span class="p">,</span>
                                                 <span class="n">der_direct</span><span class="p">)</span>
 </pre></div>
@@ -1512,7 +1520,7 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1524,14 +1532,14 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-244.5226709379092
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-255.91817648985682
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="o">-</span><span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1543,29 +1551,29 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.69225026 -3.56048273 -5.63723353 -1.30774974 -4.21975863]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.69225026 3.56048273 5.63723353 1.30774974 4.21975863]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">const_ineq_funcs_eval</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">&gt;=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some constraint inequalities evaluated in x were nonnegative, check approximations&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">const_ineq_funcs_eval</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;=-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some constraint inequalities evaluated in x were nonpositive, check approximations&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_eval</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fo_eval</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_eval</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fo_eval</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1641,7 +1649,7 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
                                                 <span class="n">constraints_ineq</span><span class="p">,</span>
                                                 <span class="n">der_direct</span><span class="p">)</span>
 </pre></div>
@@ -1698,7 +1706,7 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1710,14 +1718,14 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-326.4077359030384
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-333.0255657565843
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="o">-</span><span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1729,29 +1737,29 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.50584368 -0.60432155 -2.12185259 -1.49415632 -5.69783922]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.50584368 0.60432155 2.12185259 1.49415632 5.69783922]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">const_ineq_funcs_eval</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">&gt;=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some constraint inequalities evaluated in x were nonnegative, check approximations&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">const_ineq_funcs_eval</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;=-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some constraint inequalities evaluated in x were nonpositive, check approximations&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_eval</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fo_eval</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_eval</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fo_eval</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1816,9 +1824,6 @@ x_2 \geq 0              \\
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>203.15688808773476
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -1830,7 +1835,7 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
                                                 <span class="n">constraints_ineq</span><span class="p">,</span>
                                                 <span class="n">der_direct</span><span class="p">)</span>
 </pre></div>
@@ -1887,7 +1892,7 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1899,14 +1904,14 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-340.7835693619201
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-345.44359598266846
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="o">-</span><span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1918,29 +1923,29 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.20434115 -0.43024732 -1.04327076 -1.79565885 -5.78487634]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.20434115 0.43024732 1.04327076 1.79565885 5.78487634]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">const_ineq_funcs_eval</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">&gt;=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some constraint inequalities evaluated in x were nonnegative, check approximations&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">const_ineq_funcs_eval</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;=-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some constraint inequalities evaluated in x were nonpositive, check approximations&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_eval</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fo_eval</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_eval</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fo_eval</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2016,7 +2021,7 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
                                                 <span class="n">constraints_ineq</span><span class="p">,</span>
                                                 <span class="n">der_direct</span><span class="p">)</span>
 </pre></div>
