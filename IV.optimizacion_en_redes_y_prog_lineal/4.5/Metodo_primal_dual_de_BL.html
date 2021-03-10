@@ -1053,7 +1053,7 @@ Ax(t_B) &amp;=&amp; b \nonumber \\
 \lambda(t_B)x_i(t_B) &amp;=&amp; \frac{1}{t_B}
 \end{eqnarray}
 \end{split}\]</div>
-<p>donde: <span class="math notranslate nohighlight">\(\hat{\nu} = t_B \nu\)</span>, <span class="math notranslate nohighlight">\(d(t_B) = X^{-1}(t)e = \left [ \begin{array}{c} \frac{1}{x_1^(t_B)} \\ \vdots \\ \frac{1}{x_n^(t_B)} \\ \end{array} \right ]\)</span> y la <em>duality gap</em> se estima como: <span class="math notranslate nohighlight">\(\lambda(t_B)^Tx(t_B) = \frac{n}{t_B}\)</span></p>
+<p>donde: <span class="math notranslate nohighlight">\(\hat{\nu} = t_B \nu\)</span>, <span class="math notranslate nohighlight">\(d(t_B) = X^{-1}(t)e = \left [ \begin{array}{c} \frac{1}{x_1^(t_B)} \\ \vdots \\ \frac{1}{x_n^(t_B)} \\ \end{array} \right ]\)</span> y la <em>duality gap</em> se estima como: <span class="math notranslate nohighlight">\(\lambda(t_B)^Tx(t_B) = \frac{n}{t_B}\)</span>.</p>
 </div>
 </div>
 <div class="section" id="como-calcular-los-puntos-centrales">
@@ -1125,6 +1125,13 @@ Ax = b
     <span class="c1">#assign large value for values positive or equal to 0</span>
     <span class="n">eval_f_const_inequality</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e10</span>     
     <span class="k">return</span> <span class="n">eval_f_const_inequality</span>
+<span class="k">def</span> <span class="nf">constraint_inequalities_funcs_generator</span><span class="p">(</span><span class="n">constraint_inequalities</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generator for functional form of inequalities.</span>
+<span class="sd">    For every example this function produces different fuctions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">constraint_inequalities</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">v</span>
 <span class="k">def</span> <span class="nf">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> 
                                        <span class="n">constraint_inequalities</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -1141,13 +1148,7 @@ Ax = b
     <span class="n">constraint_ineq_funcs_eval</span> <span class="o">=</span> <span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraint_inequalities</span><span class="p">)</span>
     <span class="n">log_barrier_const_eval</span> <span class="o">=</span> <span class="n">log_barrier_aux_eval_constraints</span><span class="p">(</span><span class="n">constraint_ineq_funcs_eval</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">t_B</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_barrier_const_eval</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">constraint_inequalities_funcs_generator</span><span class="p">(</span><span class="n">constraint_inequalities</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generator for functional form of inequalities.</span>
-<span class="sd">    For every example this function produces different fuctions.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">constraint_inequalities</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">yield</span> <span class="n">v</span>
+
 <span class="k">def</span> <span class="nf">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">dir_desc</span><span class="p">,</span>
                                                 <span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
                                                 <span class="n">constraint_inequalities</span><span class="p">,</span>
@@ -1204,9 +1205,9 @@ x_2 \geq 0              \\
 <p><span class="math notranslate nohighlight">\(\phi(x) = - \displaystyle \sum_{i=1}^m \log(-(a_i ^Tx-b_i)) - \sum_{i=1}^n \log(-{e}_i ^Tx)\)</span> con <span class="math notranslate nohighlight">\(a_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A = \left [ \begin{array}{cc} 1 &amp; 0 \\0 &amp; 2 \\ 3 &amp; 2 \end{array} \right ]\)</span>, <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima entrada del vector <span class="math notranslate nohighlight">\(b = \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array} \right ]\)</span> y <span class="math notranslate nohighlight">\(e_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo vector canónico</p>
 <p>Reescribimos el problema anterior sin las restricciones <span class="math notranslate nohighlight">\(A x \leq b\)</span> como:</p>
 <p><span class="math notranslate nohighlight">\(
-\displaystyle \min_{x \in \mathbb{R}^2} (-3x_1 -5x_2) - \frac{1}{t_B}[\log(4-x_1) + \log(12 - 2x_2) + \log(18 - (3 x_1 + 2 x_2)) + \log(x_1) + \log(x_2) ]\\
+\displaystyle \min_{x \in \mathbb{R}^2} t_B(-3x_1 -5x_2) - [\log(4-x_1) + \log(12 - 2x_2) + \log(18 - (3 x_1 + 2 x_2)) + \log(x_1) + \log(x_2) ]\\
 \)</span></p>
-<p>Con <span class="math notranslate nohighlight">\(t_B\)</span> parámetro que se incrementará después de aplicar el método de Newton. Realizamos la actualización:</p>
+<p>Realizamos la actualización:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left [ \begin{array}{c}x_1 \\ x_2 \end{array} \right ] = \left [ \begin{array}{c}x_1 \\ x_2 \end{array} \right ] + t \left [ \begin{array}{c}\Delta x_1 \\ \Delta x_2 \end{array} \right ]\end{split}\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(t\)</span> es parámetro de <em>backtracking</em> y <span class="math notranslate nohighlight">\(\left [ \begin{array}{c}\Delta x_1 \\ \Delta x_2 \end{array} \right ]\)</span> es solución del sistema de ecuaciones lineales:</p>
@@ -1218,7 +1219,6 @@ x_2 \geq 0              \\
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
-\frac{1}{t_B}\tilde{A}^T \text{diag}^2(d)\tilde{A} \left [ \begin{array}{c}\Delta x_1 \\ \Delta x_2 \end{array} \right ] &amp;=&amp; -(c - \frac{1}{t_B}(-\tilde{A})^Td(t_B)) \nonumber \\
 \tilde{A}^T \text{diag}^2(d)\tilde{A} \left [ \begin{array}{c}\Delta x_1 \\ \Delta x_2 \end{array} \right ] &amp;=&amp; -(t_Bc + \tilde{A}^Td(t_B)) \nonumber 
 \end{eqnarray}
 \end{split}\]</div>
@@ -1227,6 +1227,8 @@ x_2 \geq 0              \\
 \tilde{A} = \left [ \begin{array}{c} A \\ I \end{array} \right ] = \left [ \begin{array}{cc} 1 &amp; 0 \\0 &amp; 2 \\ 3 &amp; 2 \\ 1 &amp; 0 \\ 0 &amp; 1 \end{array} \right ]\)</span>,
 <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima entrada del vector <span class="math notranslate nohighlight">\(b = \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array} \right ]\)</span>.</p>
 <p>Y el vector <span class="math notranslate nohighlight">\(d(t_B) = \left [ \begin{array}{c} \frac{1}{b_1 - a_1^Tx(t_B)} \\ \frac{1}{b_2 - a_2^Tx(t_B)} \\ \frac{1}{b_3 - a_3^Tx(t_B)} \\ \frac{1}{x_1(t_B)} \\ \frac{1}{x_2(t_B)} \end{array}\right ] = \left [ \begin{array}{c} \frac{1}{4-x_1(t_B)} \\ \frac{1}{12-2x_2(t_B)} \\ \frac{1}{18-3x_1(t_B)-2x_2(t_B)} \\ \frac{1}{-x_1(t_B)} \\ \frac{1}{-x_2(t_B)} \end{array}\right ]\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
 <p>Aunque podríamos definir:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
@@ -1243,10 +1245,13 @@ x_2 \geq 0              \\
               <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
 <span class="n">system_matrix</span> <span class="o">=</span> <span class="p">(</span><span class="n">A_tilde</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="n">d</span><span class="o">*</span><span class="n">d</span><span class="p">))</span><span class="nd">@A_tilde</span>
 <span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">t_B</span><span class="o">*</span><span class="n">c</span> <span class="o">+</span><span class="n">A_tilde</span><span class="o">.</span><span class="n">T</span><span class="nd">@d</span><span class="p">)</span>
-
 </pre></div>
 </div>
-<p>de acuerdo al desarrollo matemático anterior, usamos <em>SymPy</em> para uso de diferenciación simbólica (no se recomienda para mediana-gran escala).</p>
+</div>
+<p>de acuerdo al desarrollo matemático anterior, usamos <em>SymPy</em> para uso de diferenciación simbólica (no se recomienda para problemas <em>medium</em> o <em>large scale</em>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span>
@@ -1809,6 +1814,9 @@ x_2 \geq 0              \\
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>203.15688808773476
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
