@@ -1113,7 +1113,7 @@ Ax = b
 <span class="sd">    Auxiliary function for evaluation of constraint inequalities</span>
 <span class="sd">    in logarithmic barrier</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#get values that are nonnegative through indexes</span>
+    <span class="c1">#get values that are nonpositive through indexes</span>
     <span class="n">idx_zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">eval_f_const_inequality</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
                                <span class="n">eval_f_const_inequality</span> <span class="o">&gt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">idx_negative</span> <span class="o">=</span> <span class="n">eval_f_const_inequality</span> <span class="o">&lt;</span> <span class="mi">0</span> 
@@ -1123,13 +1123,12 @@ Ax = b
     <span class="c1">#is nonpositive</span>
     <span class="n">eval_f_const_inequality</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eval_f_const_inequality</span><span class="p">)</span>                                                           
     <span class="c1">#assign large negative value for constraints</span>
-    <span class="c1">#that have values negative or equal to 0</span>
+    <span class="c1">#that are nonpositive</span>
     <span class="n">eval_f_const_inequality</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1e10</span>     
     <span class="k">return</span> <span class="n">eval_f_const_inequality</span>
 <span class="k">def</span> <span class="nf">constraint_inequalities_funcs_generator</span><span class="p">(</span><span class="n">constraint_inequalities</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generator for functional form of inequalities.</span>
-<span class="sd">    For every example this function produces different fuctions.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">constraint_inequalities</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">yield</span> <span class="n">v</span>
@@ -1236,7 +1235,7 @@ x_2 \geq 0              \\
 <p>Y el vector <span class="math notranslate nohighlight">\(d(t_B) = \left [ \begin{array}{c} \frac{1}{b_1 - a_1^Tx(t_B)} \\ \frac{1}{b_2 - a_2^Tx(t_B)} \\ \frac{1}{b_3 - a_3^Tx(t_B)} \\ \frac{1}{x_1(t_B)} \\ \frac{1}{x_2(t_B)} \end{array}\right ] = \left [ \begin{array}{c} \frac{1}{4-x_1(t_B)} \\ \frac{1}{12-2x_2(t_B)} \\ \frac{1}{18-3x_1(t_B)-2x_2(t_B)} \\ \frac{1}{-x_1(t_B)} \\ \frac{1}{-x_2(t_B)} \end{array}\right ]\)</span>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Aunque podríamos definir las siguientes líneas de acuerdo al desarrollo matemático anterior, usamos <em>SymPy</em> para uso de diferenciación simbólica (no se recomienda para problemas <em>medium</em> o <em>large scale</em>):</p>
+<p>Aunque podríamos definir las siguientes líneas de acuerdo al desarrollo matemático anterior, usamos <em>SymPy</em> para uso de diferenciación simbólica:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
               <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
@@ -1252,11 +1251,10 @@ x_2 \geq 0              \\
               <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
 <span class="n">system_matrix</span> <span class="o">=</span> <span class="p">(</span><span class="n">A_tilde</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="n">d</span><span class="o">*</span><span class="n">d</span><span class="p">))</span><span class="nd">@A_tilde</span>
 <span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">t_B</span><span class="o">*</span><span class="n">c</span> <span class="o">+</span><span class="n">A_tilde</span><span class="o">.</span><span class="n">T</span><span class="nd">@d</span><span class="p">)</span>
+
 </pre></div>
 </div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
+<p>No se recomienda el uso de <em>SymPy</em> para problemas <em>medium</em> o <em>large scale</em>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
