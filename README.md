@@ -109,3 +109,9 @@ Terminamos nota [4.2 Programación lineal (PL) y método símplex](https://itam-
 Terminamos nota [4.3 Ejemplo del método símplex de redes](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.3/Ejemplo_metodo_simplex_de_redes.html)
 
 Llegamos hasta [Interpretación del problema dual](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html#interpretacion-del-problema-dual)
+
+## Clase 9
+
+10 de marzo
+
+Terminamos nota [4.4 Dualidad, lema de Farkas y condiciones de Karush-Kuhn-Tucker (KKT) de optimalidad](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html)
