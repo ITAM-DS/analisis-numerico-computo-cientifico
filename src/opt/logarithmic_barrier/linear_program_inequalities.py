@@ -1,5 +1,5 @@
 import numpy as np
-from opti.utils_logarithmic_barrier import logarithmic_barrier, \
+from opt.utils_logarithmic_barrier import logarithmic_barrier, \
                                            constraint_inequalities_funcs_eval, \
                                            plot_inner_iterations, \
                                            plot_central_path, \
