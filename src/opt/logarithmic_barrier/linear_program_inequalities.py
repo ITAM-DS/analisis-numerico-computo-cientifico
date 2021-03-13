@@ -4,7 +4,7 @@ from opt.utils_logarithmic_barrier import logarithmic_barrier, \
                                            plot_inner_iterations, \
                                            plot_central_path, \
                                            line_search_for_log_barrier_by_backtracking
-from opti.utils import compute_error, print_iterations
+from opt.utils import compute_error, print_iterations
 
 def primal_dual_method(f, constraints_ineq,
                        x_0, tol, tol_backtracking,
