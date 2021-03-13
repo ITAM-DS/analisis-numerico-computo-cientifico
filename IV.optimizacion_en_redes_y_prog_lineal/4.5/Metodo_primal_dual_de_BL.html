@@ -444,6 +444,11 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-primal-dual-aplicado-al-ejemplo-prototipo-completo">
+   Método primal-dual aplicado al ejemplo prototipo (completo)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#algoritmo-bl">
    Algoritmo BL
   </a>
@@ -2085,13 +2090,6 @@ x_2 \geq 0              \\
 </div>
 <p>y realiza cuatro iteraciones recalculando lo necesario para el sistema de ecuaciones lineales con <code class="docutils literal notranslate"><span class="pre">system_matrix</span></code> y <code class="docutils literal notranslate"><span class="pre">rhs</span></code> dadas por las últimas dos líneas del código que está en este ejercicio. Corrobora que obtienes los mismos resultados que con <em>SymPy</em>.</p>
 </div>
-</div>
-</div>
-<div class="section" id="algoritmo-bl">
-<h2>Algoritmo BL<a class="headerlink" href="#algoritmo-bl" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="definicion-decremento-de-newton">
-<h2>Definición decremento de Newton<a class="headerlink" href="#definicion-decremento-de-newton" title="Permalink to this headline">¶</a></h2>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>El POCE recuérdese es:</p>
@@ -2140,6 +2138,1389 @@ f_B(x|t_B) &amp;=&amp; f_o(x) + \frac{1}{t_B} \phi(x) \nonumber \\
 <p>donde: <span class="math notranslate nohighlight">\(r_p = b - Ax\)</span> es el residual para factibilidad primal.</p>
 <p>Ver <a class="reference internal" href="../../III.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#funlagrangiana"><span class="std std-ref">la función Lagrangiana</span></a>.</p>
 </div>
+</div>
+</div>
+<div class="section" id="metodo-primal-dual-aplicado-al-ejemplo-prototipo-completo">
+<h2>Método primal-dual aplicado al ejemplo prototipo (completo)<a class="headerlink" href="#metodo-primal-dual-aplicado-al-ejemplo-prototipo-completo" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tol_outer_iter</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span>
+<span class="n">tol_backtracking</span><span class="o">=</span><span class="mf">1e-12</span>
+<span class="n">max_inner_iter</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">mu</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">fo</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">constraints_ineq</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="mi">1</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="mi">2</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                    <span class="mi">3</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="mi">4</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                   <span class="p">}</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">x_0</span><span class="o">.</span><span class="n">size</span>
+<span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x1, x2&quot;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="n">x_ast</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="n">p_ast</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">x_ast</span><span class="p">)</span>
+    
+<span class="n">t_B_0</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">fo_sympy</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x2</span>
+<span class="n">phi_sympy</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">12</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">18</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
+<span class="n">gf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+<span class="n">Hf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gf_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+<span class="n">gphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">phi_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+<span class="n">Hphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gphi_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+
+
+<span class="n">gf_B</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">component</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                                <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                                <span class="s2">&quot;t_B&quot;</span><span class="p">:</span> <span class="n">t_B</span><span class="p">})</span> <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">t_B</span><span class="o">*</span><span class="n">gf_sympy</span> <span class="o">+</span> <span class="n">gphi_sympy</span><span class="p">],</span>
+                                <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+<span class="n">Hf_B</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                                                                <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                                                <span class="s2">&quot;t_B&quot;</span><span class="p">:</span> <span class="n">t_B</span><span class="p">})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">t_B</span><span class="o">*</span><span class="n">Hf_sympy</span> <span class="o">+</span> <span class="n">Hphi_sympy</span><span class="p">],</span>
+                                <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">opt.logarithmic_barrier.linear_program_inequalities</span> <span class="kn">import</span> <span class="n">primal_dual_method</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">87</span><span class="o">-</span><span class="mf">26e2</span><span class="n">e413b5cb</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">opt.logarithmic_barrier.linear_program_inequalities</span> <span class="kn">import</span> <span class="n">primal_dual_method</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;opt&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">total_iter</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x_plot</span><span class="p">]</span> <span class="o">=</span> <span class="n">primal_dual_method</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span> <span class="n">constraints_ineq</span><span class="p">,</span>
+                                             <span class="n">x_0</span><span class="p">,</span> <span class="n">tol</span><span class="p">,</span>
+                                             <span class="n">tol_backtracking</span><span class="p">,</span>
+                                             <span class="n">t_B_0</span><span class="p">,</span>
+                                             <span class="n">x_ast</span><span class="o">=</span><span class="n">x_ast</span><span class="p">,</span> 
+                                             <span class="n">p_ast</span><span class="o">=</span><span class="n">p_ast</span><span class="p">,</span> 
+                                             <span class="n">max_inner_iter</span><span class="o">=</span><span class="n">max_inner_iter</span><span class="p">,</span>
+                                             <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> 
+                                             <span class="n">tol_outer_iter</span><span class="o">=</span><span class="n">tol_outer_iter</span><span class="p">,</span>
+                                             <span class="n">gf_B</span><span class="o">=</span><span class="n">gf_B</span><span class="p">,</span>
+                                             <span class="n">Hf_B</span><span class="o">=</span><span class="n">Hf_B</span><span class="p">,</span>
+                                             <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outer iterations of path following method
+Mu value: 1.00e+01
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Outer iter</th>
+      <th>logbarrier</th>
+      <th>t_log_barrier</th>
+      <th>stopping criteria</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row0</th>
+      <td>0</td>
+      <td>-1.36e+02</td>
+      <td>10</td>
+      <td>5.00e-01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------------------------------
+-----------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row0</th>
+      <td>0</td>
+      <td>5.86e+01</td>
+      <td>7.71e+03</td>
+      <td>6.52e-01</td>
+      <td>6.39e-01</td>
+      <td>---</td>
+      <td>3.47e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/datos/MNO_desde_2018/ramas_repo/mno-master/src/opti/utils_logarithmic_barrier.py:17: RuntimeWarning: invalid value encountered in log
+  eval_f_const_inequality = np.log(eval_f_const_inequality)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row1</th>
+      <td>1</td>
+      <td>5.77e+01</td>
+      <td>5.02e+03</td>
+      <td>3.02e-01</td>
+      <td>3.05e-01</td>
+      <td>1.56e-02</td>
+      <td>2.46e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/datos/MNO_desde_2018/ramas_repo/mno-master/src/opti/utils_logarithmic_barrier.py:17: RuntimeWarning: invalid value encountered in log
+  eval_f_const_inequality = np.log(eval_f_const_inequality)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row2</th>
+      <td>2</td>
+      <td>5.42e+01</td>
+      <td>4.06e+02</td>
+      <td>9.32e-02</td>
+      <td>8.41e-02</td>
+      <td>1.56e-02</td>
+      <td>4.99e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/datos/MNO_desde_2018/ramas_repo/mno-master/src/opti/utils_logarithmic_barrier.py:17: RuntimeWarning: invalid value encountered in log
+  eval_f_const_inequality = np.log(eval_f_const_inequality)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row3</th>
+      <td>3</td>
+      <td>5.14e+01</td>
+      <td>1.17e+02</td>
+      <td>4.69e-02</td>
+      <td>4.69e-02</td>
+      <td>3.12e-02</td>
+      <td>3.79e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/datos/MNO_desde_2018/ramas_repo/mno-master/src/opti/utils_logarithmic_barrier.py:17: RuntimeWarning: invalid value encountered in log
+  eval_f_const_inequality = np.log(eval_f_const_inequality)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row4</th>
+      <td>4</td>
+      <td>4.51e+01</td>
+      <td>2.27e+01</td>
+      <td>2.39e-02</td>
+      <td>2.42e-02</td>
+      <td>6.25e-02</td>
+      <td>3.51e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/datos/MNO_desde_2018/ramas_repo/mno-master/src/opti/utils_logarithmic_barrier.py:17: RuntimeWarning: invalid value encountered in log
+  eval_f_const_inequality = np.log(eval_f_const_inequality)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row5</th>
+      <td>5</td>
+      <td>3.39e+01</td>
+      <td>2.35e-01</td>
+      <td>4.36e-03</td>
+      <td>3.81e-03</td>
+      <td>2.50e-01</td>
+      <td>5.96e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row6</th>
+      <td>6</td>
+      <td>9.93e+00</td>
+      <td>4.36e-02</td>
+      <td>5.15e-03</td>
+      <td>4.89e-03</td>
+      <td>1</td>
+      <td>4.43e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row7</th>
+      <td>7</td>
+      <td>1.63e+00</td>
+      <td>1.83e-03</td>
+      <td>5.46e-03</td>
+      <td>5.42e-03</td>
+      <td>1</td>
+      <td>3.80e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row8</th>
+      <td>8</td>
+      <td>6.61e-02</td>
+      <td>3.35e-06</td>
+      <td>5.53e-03</td>
+      <td>5.53e-03</td>
+      <td>1</td>
+      <td>3.70e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row9</th>
+      <td>9</td>
+      <td>1.21e-04</td>
+      <td>1.12e-11</td>
+      <td>5.53e-03</td>
+      <td>5.54e-03</td>
+      <td>1</td>
+      <td>3.69e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error of x with respect to x_ast: 5.53e-03
+Approximate solution: [1.98877452 5.96684773]
+</pre></div>
+</div>
+<img alt="../../_images/Metodo_primal_dual_de_BL_220_19.png" src="../../_images/Metodo_primal_dual_de_BL_220_19.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_220_20.png" src="../../_images/Metodo_primal_dual_de_BL_220_20.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
+[1.98877452 5.96684773]
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+Outer iterations of path following method
+Mu value: 1.00e+01
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Outer iter</th>
+      <th>logbarrier</th>
+      <th>t_log_barrier</th>
+      <th>stopping criteria</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row1</th>
+      <td>1</td>
+      <td>-3.58e+03</td>
+      <td>100</td>
+      <td>5.00e-02</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------------------------------
+-----------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row0</th>
+      <td>0</td>
+      <td>5.25e+02</td>
+      <td>1.61e+02</td>
+      <td>5.53e-03</td>
+      <td>5.54e-03</td>
+      <td>---</td>
+      <td>3.69e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/datos/MNO_desde_2018/ramas_repo/mno-master/src/opti/utils_logarithmic_barrier.py:17: RuntimeWarning: invalid value encountered in log
+  eval_f_const_inequality = np.log(eval_f_const_inequality)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row1</th>
+      <td>1</td>
+      <td>4.50e+02</td>
+      <td>2.28e+01</td>
+      <td>2.43e-03</td>
+      <td>2.43e-03</td>
+      <td>6.25e-02</td>
+      <td>3.71e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/datos/MNO_desde_2018/ramas_repo/mno-master/src/opti/utils_logarithmic_barrier.py:17: RuntimeWarning: invalid value encountered in log
+  eval_f_const_inequality = np.log(eval_f_const_inequality)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row2</th>
+      <td>2</td>
+      <td>2.75e+02</td>
+      <td>2.06e-01</td>
+      <td>3.76e-04</td>
+      <td>3.77e-04</td>
+      <td>2.50e-01</td>
+      <td>3.68e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row3</th>
+      <td>3</td>
+      <td>6.68e+01</td>
+      <td>2.12e-02</td>
+      <td>4.98e-04</td>
+      <td>4.98e-04</td>
+      <td>1</td>
+      <td>3.69e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row4</th>
+      <td>4</td>
+      <td>6.23e+00</td>
+      <td>2.26e-04</td>
+      <td>5.49e-04</td>
+      <td>5.50e-04</td>
+      <td>1</td>
+      <td>3.70e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row5</th>
+      <td>5</td>
+      <td>6.54e-02</td>
+      <td>2.58e-08</td>
+      <td>5.55e-04</td>
+      <td>5.55e-04</td>
+      <td>1</td>
+      <td>3.70e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row6</th>
+      <td>6</td>
+      <td>7.40e-06</td>
+      <td>3.42e-16</td>
+      <td>5.55e-04</td>
+      <td>5.55e-04</td>
+      <td>1</td>
+      <td>3.70e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error of x with respect to x_ast: 5.55e-04
+Approximate solution: [1.99888766 5.99666851]
+</pre></div>
+</div>
+<img alt="../../_images/Metodo_primal_dual_de_BL_220_34.png" src="../../_images/Metodo_primal_dual_de_BL_220_34.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_220_35.png" src="../../_images/Metodo_primal_dual_de_BL_220_35.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
+[1.99888766 5.99666851]
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+Outer iterations of path following method
+Mu value: 1.00e+01
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Outer iter</th>
+      <th>logbarrier</th>
+      <th>t_log_barrier</th>
+      <th>stopping criteria</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row2</th>
+      <td>2</td>
+      <td>-3.60e+04</td>
+      <td>1000</td>
+      <td>5.00e-03</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------------------------------
+-----------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row0</th>
+      <td>0</td>
+      <td>5.25e+03</td>
+      <td>1.62e+02</td>
+      <td>5.55e-04</td>
+      <td>5.55e-04</td>
+      <td>---</td>
+      <td>3.70e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/datos/MNO_desde_2018/ramas_repo/mno-master/src/opti/utils_logarithmic_barrier.py:17: RuntimeWarning: invalid value encountered in log
+  eval_f_const_inequality = np.log(eval_f_const_inequality)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row1</th>
+      <td>1</td>
+      <td>4.50e+03</td>
+      <td>2.28e+01</td>
+      <td>2.43e-04</td>
+      <td>2.43e-04</td>
+      <td>6.25e-02</td>
+      <td>3.71e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/datos/MNO_desde_2018/ramas_repo/mno-master/src/opti/utils_logarithmic_barrier.py:17: RuntimeWarning: invalid value encountered in log
+  eval_f_const_inequality = np.log(eval_f_const_inequality)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row2</th>
+      <td>2</td>
+      <td>2.70e+03</td>
+      <td>2.01e-01</td>
+      <td>3.79e-05</td>
+      <td>3.80e-05</td>
+      <td>2.50e-01</td>
+      <td>3.70e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row3</th>
+      <td>3</td>
+      <td>6.50e+02</td>
+      <td>2.02e-02</td>
+      <td>5.00e-05</td>
+      <td>5.00e-05</td>
+      <td>1</td>
+      <td>3.70e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row4</th>
+      <td>4</td>
+      <td>5.93e+01</td>
+      <td>2.03e-04</td>
+      <td>5.50e-05</td>
+      <td>5.50e-05</td>
+      <td>1</td>
+      <td>3.71e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row5</th>
+      <td>5</td>
+      <td>5.92e-01</td>
+      <td>2.06e-08</td>
+      <td>5.55e-05</td>
+      <td>5.55e-05</td>
+      <td>1</td>
+      <td>3.71e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>Cond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row6</th>
+      <td>6</td>
+      <td>6.00e-05</td>
+      <td>2.13e-16</td>
+      <td>5.56e-05</td>
+      <td>5.56e-05</td>
+      <td>1</td>
+      <td>3.71e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error of x with respect to x_ast: 5.56e-05
+Approximate solution: [1.99988888 5.99966669]
+</pre></div>
+</div>
+<img alt="../../_images/Metodo_primal_dual_de_BL_220_49.png" src="../../_images/Metodo_primal_dual_de_BL_220_49.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_220_50.png" src="../../_images/Metodo_primal_dual_de_BL_220_50.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
+[1.99988888 5.99966669]
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+Outer iterations of path following method
+Mu value: 1.00e+01
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Outer iter</th>
+      <th>logbarrier</th>
+      <th>t_log_barrier</th>
+      <th>stopping criteria</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row3</th>
+      <td>3</td>
+      <td>-3.60e+05</td>
+      <td>10000</td>
+      <td>5.00e-04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----------------------------------------------------------------
+-----------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">opt.utils_logarithmic_barrier</span> <span class="kn">import</span> <span class="n">constraint_inequalities_funcs_generator</span>
+<span class="kn">from</span> <span class="nn">opt.utils_logarithmic_barrier</span> <span class="kn">import</span> <span class="n">plot_central_path</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">density</span><span class="o">=</span><span class="mf">1e-1</span>
+<span class="n">x1l</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="n">x2d</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="n">x1r</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">x2u</span><span class="o">=</span><span class="mi">8</span>
+<span class="n">x1_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x1l</span><span class="p">,</span><span class="n">x1r</span><span class="p">,</span><span class="n">density</span><span class="p">)</span>
+<span class="n">x2_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x2d</span><span class="p">,</span><span class="n">x2u</span><span class="p">,</span><span class="n">density</span><span class="p">)</span>
+<span class="n">x1_mesh</span><span class="p">,</span><span class="n">x2_mesh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x1_p</span><span class="p">,</span><span class="n">x2_p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">const_ineq_two_pars</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">:</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                       <span class="mi">1</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                       <span class="mi">2</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">:</span> <span class="mi">3</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x2</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                       <span class="mi">3</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">:</span> <span class="o">-</span><span class="n">x1</span><span class="p">,</span>
+                       <span class="mi">4</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">:</span> <span class="o">-</span><span class="n">x2</span>
+                       <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">const_ineq_funcs_eval_two_pars</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span> 
+                                   <span class="n">const_ineq</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Auxiliary function for the evaluation of constraint inequalities</span>
+<span class="sd">    in logarithmic barrier function using two parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">const</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span> <span class="k">for</span> <span class="n">const</span> <span class="ow">in</span> \
+                                      <span class="n">constraint_inequalities_funcs_generator</span><span class="p">(</span><span class="n">const_ineq</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">const_ineq_funcs_eval</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">phi_two_pars</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span> <span class="n">const_ineq</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implementation of phi function for logarithmic barrier using two parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="o">-</span><span class="n">const_ineq_funcs_eval_two_pars</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span>
+                                                            <span class="n">x2</span><span class="p">,</span>
+                                                            <span class="n">const_ineq</span><span class="p">)</span>
+    <span class="n">log_barrier_const_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">const_ineq_funcs_eval</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_barrier_const_eval</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">density</span><span class="o">=</span><span class="mf">1e-1</span>
+<span class="n">x1l</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="n">x2d</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="n">x1r</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">x2u</span><span class="o">=</span><span class="mi">8</span>
+<span class="n">x1_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x1l</span><span class="p">,</span><span class="n">x1r</span><span class="p">,</span><span class="n">density</span><span class="p">)</span>
+<span class="n">x2_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x2d</span><span class="p">,</span><span class="n">x2u</span><span class="p">,</span><span class="n">density</span><span class="p">)</span>
+<span class="n">x1_mesh</span><span class="p">,</span><span class="n">x2_mesh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x1_p</span><span class="p">,</span><span class="n">x2_p</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">phi_two_pars</span><span class="p">(</span><span class="n">x1_mesh</span><span class="p">,</span><span class="n">x2_mesh</span><span class="p">,</span><span class="n">const_ineq_two_pars</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">x1_p</span><span class="p">,</span> <span class="n">x2_p</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">6.5</span><span class="p">)</span>
+<span class="n">plot_central_path</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:8: RuntimeWarning: divide by zero encountered in log
+  
+/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:8: RuntimeWarning: invalid value encountered in log
+  
+</pre></div>
+</div>
+<img alt="../../_images/Metodo_primal_dual_de_BL_226_1.png" src="../../_images/Metodo_primal_dual_de_BL_226_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="algoritmo-bl">
+<h2>Algoritmo BL<a class="headerlink" href="#algoritmo-bl" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="definicion-decremento-de-newton">
+<h2>Definición decremento de Newton<a class="headerlink" href="#definicion-decremento-de-newton" title="Permalink to this headline">¶</a></h2>
 <p><strong>Comentario para el que sería bueno mostrar un dibujo/gráfica:</strong></p>
 <p>Valores más “grandes” de <span class="math notranslate nohighlight">\(t_B\)</span> hacen que la Hessiana de la función objetivo del PBL varíe rápidamente cerca de la frontera del conjunto factible.</p>
 <div class="tip admonition">
