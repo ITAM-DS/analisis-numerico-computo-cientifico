@@ -20,6 +20,35 @@ def primal_dual_method(f, constraints_ineq,
     """
     Outer iterations for logarithmic barrier method
     to numerically approximate solution of PL with only inequalities.
+    Args:
+        f_B (fun): definition of logarithmic barrier function
+                   as lambda expression or function definition.
+        constraints_ineq: dictionary of inequalities constraints
+                          in "<= 0" form.
+        x_0 (numpy ndarray): initial point for Newton's method.
+        tol (float): tolerance that will halt method.
+                     Controls stopping criteria. 
+        tol_backtracking (float): tolerance that will halt method.
+                                  Controls value of line search
+                                  by backtracking.
+        t (float): parameter barrier.
+        plot (bool): if true make plots of Err vs iterations and
+                     plot of inner iterations.
+        x_ast (numpy ndarray): solution of min f_B, now it's required
+                               that user knows the solution...
+        p_ast (float): value of f_B(x_ast), now it's required that
+                       user knows the solution...
+        max_inner_iter (int): maximum number of inner iterations.
+        mu (float): parameter that will multiply barrier parameter.
+        gf_B (fun): definition of gradient of f_B as lambda
+                     expressionr or function definition.
+        Hf_B (fun): definition of Hessian of f_B as lambda
+                     expressionr or function definition.
+        tol_outer_iter (float): tolerance that will halt method.
+                                Controls stopping criteria.
+        max_total_iter (int): maximum number of total iterations.                     
+    Returns:
+        []
     """
     x = x_0
     n = x.size
@@ -157,7 +186,7 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
     dec_Newton = dec_Newton = rhs.dot(dir_Newton)
     columns = ["Iter", "Normgf", "Newtons decrement",
                "Err x ast", "Err p ast",
-               "line search", "Cond"]
+               "line search", "CondHf"]
     list_values = [iteration, normgf, dec_Newton,
                    Err, Err_plot_aux[iteration], "---", condHf]
     data = {"row" + str(iteration): list_values}
