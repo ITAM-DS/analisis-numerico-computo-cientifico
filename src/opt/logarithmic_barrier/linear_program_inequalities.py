@@ -55,7 +55,7 @@ def primal_dual_method(f, constraints_ineq,
                                                      max_inner_iter,
                                                      gf_B,
                                                      Hf_B)
-        if(outer_iter == 1):
+        if(outer_iter == 0):
             x_plot_total_iter = x_plot
         else:
             x_plot_total_iter = np.column_stack((x_plot_total_iter,
