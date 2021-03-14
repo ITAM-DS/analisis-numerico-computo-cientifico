@@ -27,17 +27,16 @@ def primal_dual_method(f, constraints_ineq,
                           in "<= 0" form.
         x_0 (numpy ndarray): initial point for Newton's method.
         tol (float): tolerance that will halt method.
-                     Controls stopping criteria. 
+                     Controls stopping criteria.
         tol_backtracking (float): tolerance that will halt method.
                                   Controls value of line search
                                   by backtracking.
         t (float): parameter barrier.
         plot (bool): if true make plots of Err vs iterations and
                      plot of inner iterations.
-        x_ast (numpy ndarray): solution of min f_B, now it's required
-                               that user knows the solution...
-        p_ast (float): value of f_B(x_ast), now it's required that
-                       user knows the solution...
+        x_ast (numpy ndarray): solution of min f_o subject to Ax <= b.
+                               It's required that user knows the solution...
+        p_ast (float): value of f_B(x_ast).
         max_inner_iter (int): maximum number of inner iterations.
         mu (float): parameter that will multiply barrier parameter.
         gf_B (fun): definition of gradient of f_B as lambda
@@ -46,9 +45,18 @@ def primal_dual_method(f, constraints_ineq,
                      expressionr or function definition.
         tol_outer_iter (float): tolerance that will halt method.
                                 Controls stopping criteria.
-        max_total_iter (int): maximum number of total iterations.                     
+        max_total_iter (int): maximum number of total iterations.
     Returns:
-        []
+        x (numpy ndarray): numpy array, approximation of x_ast.
+        total_iter (int): number of iterations regarding outer and
+                          inner iterations.
+        t (float): updated barrier parameter.
+        x_plot_total_iter (numpy ndarray): numpy array that containts
+                                           in columns vector of
+                                           approximations of all inner
+                                           iterations. Last column contains
+                                           x, approximation of solution.
+                                           Useful for plotting.
     """
     x = x_0
     n = x.size
@@ -139,17 +147,17 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
         tol_backtracking (float): tolerance that will halt method.
                                   Controls value of line search
                                   by backtracking.
-        x_ast (numpy ndarray): solution of min f_B, now it's required
-                               that user knows the solution...
-        p_ast (float): value of f_B(x_ast), now it's required that
-                       user knows the solution...
+        x_ast (numpy ndarray): solution of min f_o subject to Ax <= b.
+                               It's required that user knows the solution...
+        p_ast (float): value of f_o(x_ast).
         maxiter (int): maximum number of iterations
         gf_B (fun): definition of gradient of f_B as lambda
                      expressionr or function definition.
         Hf_B (fun): definition of Hessian of f_B as lambda
                      expressionr or function definition.
     Returns:
-        x (numpy ndarray): numpy array, approximation of x_ast.
+        x (numpy ndarray): numpy array, approximation solution of
+                           inner iterations problem.
         iteration (int): number of iterations.
         Err_plot (numpy ndarray): numpy array of absolute error
                                   between p_ast and f(x) with x
