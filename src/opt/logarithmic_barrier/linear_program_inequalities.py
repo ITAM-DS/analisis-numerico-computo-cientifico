@@ -22,6 +22,7 @@ def primal_dual_method(f, constraints_ineq,
     to numerically approximate solution of PL with only inequalities.
     """
     x = x_0
+    n = x.size
     log_barrier_eval = logarithmic_barrier(f,x,t,constraints_ineq)
     m = len(constraints_ineq.keys())
     stopping_criteria = m/t
@@ -38,7 +39,6 @@ def primal_dual_method(f, constraints_ineq,
     print_iterations(data, columns)
     print("-"*65 + "\n" + "-"*65)
     error_between_iterations = 1
-    x_plot_total_iter = np.array([[],[]])
 
     while(stopping_criteria > tol_outer_iter \
           and error_between_iterations > tol_outer_iter \
@@ -55,8 +55,11 @@ def primal_dual_method(f, constraints_ineq,
                                                      max_inner_iter,
                                                      gf_B,
                                                      Hf_B)
-        x_plot_total_iter = np.column_stack((x_plot_total_iter,
-                                             x_plot))
+        if(outer_iter == 1):
+            x_plot_total_iter = x_plot
+        else:
+            x_plot_total_iter = np.column_stack((x_plot_total_iter,
+                                                 x_plot))
         error_between_iterations = compute_error(x, x_aux)
         if(error_between_iterations > tol_outer_iter):
             if plot:
