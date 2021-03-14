@@ -436,16 +436,11 @@
      Tercera iteración
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cuarta-iteracion">
-     Cuarta iteración
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#metodo-primal-dual-aplicado-al-ejemplo-prototipo-completo">
-   Método primal-dual aplicado al ejemplo prototipo (completo)
+  <a class="reference internal nav-link" href="#metodo-primal-dual-de-bl-aplicado-al-ejemplo-prototipo-completo">
+   Método primal-dual de BL aplicado al ejemplo prototipo (completo)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -524,6 +519,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -610,7 +612,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Metodo_primal_dual_de_BL_21_0.png" src="../../_images/Metodo_primal_dual_de_BL_21_0.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_22_0.png" src="../../_images/Metodo_primal_dual_de_BL_22_0.png" />
 </div>
 </div>
 <div class="margin sidebar">
@@ -793,7 +795,7 @@ Ax = b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Metodo_primal_dual_de_BL_68_0.png" src="../../_images/Metodo_primal_dual_de_BL_68_0.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_69_0.png" src="../../_images/Metodo_primal_dual_de_BL_69_0.png" />
 </div>
 </div>
 <p>Valores más grandes de <span class="math notranslate nohighlight">\(t_B\)</span> hacen que <span class="math notranslate nohighlight">\(f_B(x|t_B)\)</span> tienda a <span class="math notranslate nohighlight">\(f_o(x)\)</span>. Como se observa en la gráfica anterior al elegir un valor de <span class="math notranslate nohighlight">\(t_B\)</span> cada vez más grande se tiene: <span class="math notranslate nohighlight">\(f_B(x|t_B) = f_o(x) + \frac{1}{t_B} \phi(x) \approx f_o(x)\)</span>.</p>
@@ -1111,94 +1113,24 @@ Ax = b
 </div>
 <div class="section" id="metodo-primal-dual-de-bl-aplicado-al-ejemplo-prototipo">
 <h2>Método primal-dual de BL aplicado al ejemplo prototipo<a class="headerlink" href="#metodo-primal-dual-de-bl-aplicado-al-ejemplo-prototipo" title="Permalink to this headline">¶</a></h2>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">log_barrier_aux_eval_constraints</span><span class="p">(</span><span class="n">eval_f_const_inequality</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Auxiliary function for evaluation of constraint inequalities</span>
-<span class="sd">    in logarithmic barrier</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#get values that are nonpositive through indexes</span>
-    <span class="n">idx_zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span><span class="n">eval_f_const_inequality</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
-                               <span class="n">eval_f_const_inequality</span> <span class="o">&gt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">idx_negative</span> <span class="o">=</span> <span class="n">eval_f_const_inequality</span> <span class="o">&lt;</span> <span class="mi">0</span> 
-    <span class="n">idx</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">idx_zeros</span><span class="p">,</span> <span class="n">idx_negative</span><span class="p">)</span> 
-    <span class="c1">#eval constraint inequality functions</span>
-    <span class="c1">#next line produces warning if a value of constraint </span>
-    <span class="c1">#is nonpositive</span>
-    <span class="n">eval_f_const_inequality</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eval_f_const_inequality</span><span class="p">)</span>                                                           
-    <span class="c1">#assign large negative value for constraints</span>
-    <span class="c1">#that are nonpositive</span>
-    <span class="n">eval_f_const_inequality</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1e10</span>     
-    <span class="k">return</span> <span class="n">eval_f_const_inequality</span>
-<span class="k">def</span> <span class="nf">constraint_inequalities_funcs_generator</span><span class="p">(</span><span class="n">constraint_inequalities</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generator for functional form of inequalities.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">constraint_inequalities</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">yield</span> <span class="n">v</span>
-<span class="k">def</span> <span class="nf">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> 
-                                       <span class="n">constraint_inequalities</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Auxiliary function for the evaluation of constraint inequalities</span>
-<span class="sd">    in logarithmic barrier function</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">const</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">const</span> <span class="ow">in</span> \
-                                      <span class="n">constraint_inequalities_funcs_generator</span><span class="p">(</span><span class="n">constraint_inequalities</span><span class="p">)])</span>
-    <span class="k">return</span> <span class="n">const_ineq_funcs_eval</span>
-<span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Implementation of phi function for logarithmic barrier.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">constraint_ineq_funcs_eval</span> <span class="o">=</span> <span class="o">-</span><span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraint_inequalities</span><span class="p">)</span>
-    <span class="n">log_barrier_const_eval</span> <span class="o">=</span> <span class="n">log_barrier_aux_eval_constraints</span><span class="p">(</span><span class="n">constraint_ineq_funcs_eval</span><span class="p">)</span>    
-    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">log_barrier_const_eval</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Implementation of Logarithmic barrier function.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">t_B</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span> <span class="n">phi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">dir_desc</span><span class="p">,</span>
-                                                <span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
-                                                <span class="n">constraint_inequalities</span><span class="p">,</span>
-                                                <span class="n">der_direct</span><span class="p">,</span> 
-                                                <span class="n">alpha</span><span class="o">=.</span><span class="mi">15</span><span class="p">,</span> <span class="n">beta</span><span class="o">=.</span><span class="mi">5</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Line search that sufficiently decreases f restricted to a </span>
-<span class="sd">    ray in the direction dir_desc.</span>
-<span class="sd">    Args:</span>
-<span class="sd">        alpha (float): parameter in line search with backtracking, </span>
-<span class="sd">                       tipically .15</span>
-<span class="sd">        beta (float): parameter in line search with backtracking, </span>
-<span class="sd">                      tipically .5</span>
-<span class="sd">        f (lambda expression): definition of function f.</span>
-<span class="sd">        dir_desc (array): descent direction.</span>
-<span class="sd">        x (array): numpy array that holds values where line search </span>
-<span class="sd">                   will be performed.</span>
-<span class="sd">        der_direct (float): directional derivative of f.</span>
-<span class="sd">    Returns:</span>
-<span class="sd">        t (float): positive number for stepsize along dir_desc that </span>
-<span class="sd">                   sufficiently decreases f.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="n">alpha</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;alpha must be less than or equal to 1/2&#39;</span><span class="p">)</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="k">if</span> <span class="n">beta</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;beta must be less than 1&#39;</span><span class="p">)</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>   
-    <span class="k">if</span> <span class="n">t</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">eval1</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">dir_desc</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">)</span>
-        <span class="n">eval2</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">der_direct</span>
-        <span class="k">while</span> <span class="n">eval1</span> <span class="o">&gt;</span> <span class="n">eval2</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">beta</span><span class="o">*</span><span class="n">t</span>
-            <span class="n">eval1</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">dir_desc</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">)</span>
-            <span class="n">eval2</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">,</span> <span class="n">constraint_inequalities</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">der_direct</span>
-    <span class="k">return</span> <span class="n">t</span>
-
-        
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install --quiet <span class="s2">&quot;git+https://github.com/ITAM-DS/analisis-numerico-computo-cientifico.git#egg=opt&amp;subdirectory=src&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: You are using pip version 20.3.3; however, version 21.0.1 is available.</span>
+<span class=" -Color -Color-Yellow">You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upgrade pip&#39; command.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">opt.utils_logarithmic_barrier</span> <span class="kn">import</span> <span class="n">log_barrier_aux_eval_constraints</span><span class="p">,</span> \
+<span class="n">constraint_inequalities_funcs_generator</span><span class="p">,</span> <span class="n">constraint_inequalities_funcs_eval</span><span class="p">,</span> \
+<span class="n">phi</span><span class="p">,</span> <span class="n">logarithmic_barrier</span><span class="p">,</span> <span class="n">line_search_for_log_barrier_by_backtracking</span>
 </pre></div>
 </div>
 </div>
@@ -1275,24 +1207,35 @@ x_2 \geq 0              \\
 <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">])</span>
 <span class="n">fo_sympy</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x2</span>
 <span class="n">phi_sympy</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">12</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">18</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
-<span class="n">gf</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">gphi</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">phi_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">Hf</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">Hphi</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gphi</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
 
-<span class="n">t_B</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">gf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+<span class="n">Hf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gf_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+<span class="n">gphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">phi_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+<span class="n">Hphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gphi_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
 
-<span class="n">gfobj</span> <span class="o">=</span> <span class="n">t_B</span><span class="o">*</span><span class="n">gf</span> <span class="o">+</span> <span class="n">gphi</span>
-<span class="n">Hfobj</span> <span class="o">=</span> <span class="n">t_B</span><span class="o">*</span><span class="n">Hf</span> <span class="o">+</span> <span class="n">Hphi</span>
-<span class="n">n</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">constraints_ineq</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="mi">1</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="mi">2</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                    <span class="mi">3</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="mi">4</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                   <span class="p">}</span>
+<span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
-<span class="n">gfobj_eval</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">component</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                                 <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span> <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">gfobj</span><span class="p">],</span>
-                                  <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x_0</span>
+<span class="n">fo</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">t_B_0</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">x_0</span><span class="o">.</span><span class="n">size</span>
 
 
-<span class="n">Hfobj_eval</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
-                                                                 <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hfobj</span><span class="p">],</span>
+<span class="n">gf_B</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">component</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                                <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                                <span class="s2">&quot;t_B&quot;</span><span class="p">:</span> <span class="n">t_B</span><span class="p">})</span> <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">t_B</span><span class="o">*</span><span class="n">gf_sympy</span> <span class="o">+</span> <span class="n">gphi_sympy</span><span class="p">],</span>
+                                <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+<span class="n">Hf_B</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+                                                                <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                                                <span class="s2">&quot;t_B&quot;</span><span class="p">:</span> <span class="n">t_B</span><span class="p">})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">t_B</span><span class="o">*</span><span class="n">Hf_sympy</span> <span class="o">+</span> <span class="n">Hphi_sympy</span><span class="p">],</span>
                                 <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1302,34 +1245,7 @@ x_2 \geq 0              \\
 <h3>Primera iteración<a class="headerlink" href="#primera-iteracion" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="c1">#init point</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">constraints_ineq</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                    <span class="mi">1</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                    <span class="mi">2</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-                    <span class="mi">3</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                    <span class="mi">4</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                   <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fo</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B_0</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1394,8 +1310,8 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hfobj_eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gfobj_eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hf_B</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_B_0</span><span class="p">)</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gf_B</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_B_0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1414,7 +1330,7 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 19.69598309 142.0645525 ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 19.696 142.065]
 </pre></div>
 </div>
 </div>
@@ -1466,15 +1382,15 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x_0</span><span class="p">,</span><span class="n">t_B_0</span><span class="p">,</span>
                                                 <span class="n">constraints_ineq</span><span class="p">,</span>
                                                 <span class="n">der_direct</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:14: RuntimeWarning: invalid value encountered in log
-  
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/miuser/.local/lib/python3.7/site-packages/opt/utils_logarithmic_barrier.py:17: RuntimeWarning: invalid value encountered in log
+  eval_f_const_inequality = np.log(eval_f_const_inequality)
 </pre></div>
 </div>
 </div>
@@ -1505,7 +1421,7 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.30774974 4.21975863]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.308 4.22 ]
 </pre></div>
 </div>
 </div>
@@ -1515,15 +1431,15 @@ x_2 \geq 0              \\
 <h3>Segunda iteración<a class="headerlink" href="#segunda-iteracion" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hfobj_eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gfobj_eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hf_B</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_B_0</span><span class="p">)</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gf_B</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_B_0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B_0</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1554,7 +1470,7 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.69225026 3.56048273 5.63723353 1.30774974 4.21975863]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.692 3.56  5.637 1.308 4.22 ]
 </pre></div>
 </div>
 </div>
@@ -1600,7 +1516,7 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[11.93002144 94.59715784]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[11.93  94.597]
 </pre></div>
 </div>
 </div>
@@ -1652,15 +1568,9 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B_0</span><span class="p">,</span>
                                                 <span class="n">constraints_ineq</span><span class="p">,</span>
                                                 <span class="n">der_direct</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:14: RuntimeWarning: invalid value encountered in log
-  
 </pre></div>
 </div>
 </div>
@@ -1691,7 +1601,7 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.49415632 5.69783922]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.494 5.698]
 </pre></div>
 </div>
 </div>
@@ -1701,15 +1611,15 @@ x_2 \geq 0              \\
 <h3>Tercera iteración<a class="headerlink" href="#tercera-iteracion" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hfobj_eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gfobj_eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hf_B</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_B_0</span><span class="p">)</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gf_B</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_B_0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B_0</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1740,7 +1650,7 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.50584368 0.60432155 2.12185259 1.49415632 5.69783922]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.506 0.604 2.122 1.494 5.698]
 </pre></div>
 </div>
 </div>
@@ -1786,7 +1696,7 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[9.64808104 2.78518775]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[9.648 2.785]
 </pre></div>
 </div>
 </div>
@@ -1838,15 +1748,9 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B_0</span><span class="p">,</span>
                                                 <span class="n">constraints_ineq</span><span class="p">,</span>
                                                 <span class="n">der_direct</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:14: RuntimeWarning: invalid value encountered in log
-  
 </pre></div>
 </div>
 </div>
@@ -1877,193 +1781,7 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.79565885 5.78487634]
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="cuarta-iteracion">
-<h3>Cuarta iteración<a class="headerlink" href="#cuarta-iteracion" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hfobj_eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gfobj_eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">log_barrier_eval</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-345.44359598266846
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">const_ineq_funcs_eval</span> <span class="o">=</span> <span class="o">-</span><span class="n">constraint_inequalities_funcs_eval</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">const_ineq_funcs_eval</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.20434115 0.43024732 1.04327076 1.79565885 5.78487634]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">const_ineq_funcs_eval</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;=-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Some constraint inequalities evaluated in x were nonpositive, check approximations&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fo_eval</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">fo_eval</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-34.31135826722943
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dir_Newton</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">system_matrix</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.3378585  1.21357147]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dec_Newton</span> <span class="o">=</span> <span class="n">rhs</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dec_Newton</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>116.57506350717865
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stopping_criteria</span> <span class="o">=</span> <span class="n">dec_Newton</span><span class="o">/</span><span class="mi">2</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">stopping_criteria</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>58.28753175358933
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">der_direct</span> <span class="o">=</span> <span class="o">-</span><span class="n">dec_Newton</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">line_search_for_log_barrier_by_backtracking</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">dir_Newton</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span>
-                                                <span class="n">constraints_ineq</span><span class="p">,</span>
-                                                <span class="n">der_direct</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:14: RuntimeWarning: invalid value encountered in log
-  
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0625
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="n">dir_Newton</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.94177501 5.86072456]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.796 5.785]
 </pre></div>
 </div>
 </div>
@@ -2140,8 +1858,8 @@ f_B(x|t_B) &amp;=&amp; f_o(x) + \frac{1}{t_B} \phi(x) \nonumber \\
 </div>
 </div>
 </div>
-<div class="section" id="metodo-primal-dual-aplicado-al-ejemplo-prototipo-completo">
-<h2>Método primal-dual aplicado al ejemplo prototipo (completo)<a class="headerlink" href="#metodo-primal-dual-aplicado-al-ejemplo-prototipo-completo" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="metodo-primal-dual-de-bl-aplicado-al-ejemplo-prototipo-completo">
+<h2>Método primal-dual de BL aplicado al ejemplo prototipo (completo)<a class="headerlink" href="#metodo-primal-dual-de-bl-aplicado-al-ejemplo-prototipo-completo" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tol_outer_iter</span> <span class="o">=</span> <span class="mf">1e-6</span>
@@ -2158,49 +1876,10 @@ f_B(x|t_B) &amp;=&amp; f_o(x) + \frac{1}{t_B} \phi(x) \nonumber \\
                     <span class="mi">4</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
                    <span class="p">}</span>
 
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-
-<span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-
-<span class="n">n</span> <span class="o">=</span> <span class="n">x_0</span><span class="o">.</span><span class="n">size</span>
-<span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x1, x2&quot;</span><span class="p">)</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">])</span>
-
 <span class="n">x_ast</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
 <span class="n">p_ast</span> <span class="o">=</span> <span class="n">fo</span><span class="p">(</span><span class="n">x_ast</span><span class="p">)</span>
     
-<span class="n">t_B_0</span> <span class="o">=</span> <span class="mi">10</span>
-
-<span class="n">fo_sympy</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x2</span>
-<span class="n">phi_sympy</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">12</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">18</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
-<span class="n">gf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">Hf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gf_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">gphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">phi_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">Hphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gphi_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-
-
-<span class="n">gf_B</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">component</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                                <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                                                <span class="s2">&quot;t_B&quot;</span><span class="p">:</span> <span class="n">t_B</span><span class="p">})</span> <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">t_B</span><span class="o">*</span><span class="n">gf_sympy</span> <span class="o">+</span> <span class="n">gphi_sympy</span><span class="p">],</span>
-                                <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
-<span class="n">Hf_B</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">t_B</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
-                                                                <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                                                                <span class="s2">&quot;t_B&quot;</span><span class="p">:</span> <span class="n">t_B</span><span class="p">})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">t_B</span><span class="o">*</span><span class="n">Hf_sympy</span> <span class="o">+</span> <span class="n">Hphi_sympy</span><span class="p">],</span>
-                                <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_margin docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install --quiet <span class="s2">&quot;git+https://github.com/ITAM-DS/analisis-numerico-computo-cientifico.git#egg=opt&amp;subdirectory=src&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: You are using pip version 20.3.3; however, version 21.0.1 is available.</span>
-<span class=" -Color -Color-Yellow">You should consider upgrading via the &#39;/usr/bin/python3 -m pip install --upgrade pip&#39; command.</span>
 </pre></div>
 </div>
 </div>
@@ -2693,13 +2372,13 @@ Mu value: 1.00e+01
   </tbody>
 </table>
 </div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error of x with respect to x_ast: 5.53e-03
-Approximate solution: [1.98877452 5.96684773]
+Approximate solution: [1.989 5.967]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_221_19.png" src="../../_images/Metodo_primal_dual_de_BL_221_19.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_221_20.png" src="../../_images/Metodo_primal_dual_de_BL_221_20.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_199_19.png" src="../../_images/Metodo_primal_dual_de_BL_199_19.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_199_20.png" src="../../_images/Metodo_primal_dual_de_BL_199_20.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
-[1.98877452 5.96684773]
+[1.989 5.967]
 -----------------------------------------------------------------
 -----------------------------------------------------------------
 Outer iterations of path following method
@@ -3033,13 +2712,13 @@ Mu value: 1.00e+01
   </tbody>
 </table>
 </div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error of x with respect to x_ast: 5.55e-04
-Approximate solution: [1.99888766 5.99666851]
+Approximate solution: [1.999 5.997]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_221_34.png" src="../../_images/Metodo_primal_dual_de_BL_221_34.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_221_35.png" src="../../_images/Metodo_primal_dual_de_BL_221_35.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_199_34.png" src="../../_images/Metodo_primal_dual_de_BL_199_34.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_199_35.png" src="../../_images/Metodo_primal_dual_de_BL_199_35.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
-[1.99888766 5.99666851]
+[1.999 5.997]
 -----------------------------------------------------------------
 -----------------------------------------------------------------
 Outer iterations of path following method
@@ -3373,13 +3052,13 @@ Mu value: 1.00e+01
   </tbody>
 </table>
 </div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error of x with respect to x_ast: 5.56e-05
-Approximate solution: [1.99988888 5.99966669]
+Approximate solution: [2. 6.]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_221_49.png" src="../../_images/Metodo_primal_dual_de_BL_221_49.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_221_50.png" src="../../_images/Metodo_primal_dual_de_BL_221_50.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_199_49.png" src="../../_images/Metodo_primal_dual_de_BL_199_49.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_199_50.png" src="../../_images/Metodo_primal_dual_de_BL_199_50.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
-[1.99988888 5.99966669]
+[2. 6.]
 -----------------------------------------------------------------
 -----------------------------------------------------------------
 Outer iterations of path following method
@@ -3515,7 +3194,7 @@ Mu value: 1.00e+01
   
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_227_1.png" src="../../_images/Metodo_primal_dual_de_BL_227_1.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_205_1.png" src="../../_images/Metodo_primal_dual_de_BL_205_1.png" />
 </div>
 </div>
 </div>
