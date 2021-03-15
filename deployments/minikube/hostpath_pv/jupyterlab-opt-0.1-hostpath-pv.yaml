@@ -1,0 +1,42 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+        name: jupyterlab-opt-0-1-hostpath-pv
+        namespace: kubeflow
+spec:
+        replicas: 1 # This is the number of containers that are going to be deployed.
+        selector:
+                matchLabels:
+                        app: jupyterlab-opt-0-1-hostpath-pv-app
+        template:
+                metadata:
+                        labels:
+                                app: jupyterlab-opt-0-1-hostpath-pv-app
+                spec:
+                        containers: 
+                        - name: jupyterlab-opt-0-1-hostpath-pv
+                          imagePullPolicy: Always
+                          image: palmoreck/jupyterlab_optimizacion_2:3.0.0
+                          ports:
+                                  - containerPort: 8888
+                          env:
+                                  - name: mount_point
+                                    value: /shared_volume
+                                  - name: LC_ALL
+                                    value: C.UTF-8
+                                  - name: LANG
+                                    value: C.UTF-8
+                          resources:
+                                  requests:
+                                          cpu: ".5" # This value depends of type of AWS instance chosen
+                                          memory: 4Gi # This value depends of type of AWS instance chosen
+                                  limits:
+                                          cpu: ".5" # This value depends of type of AWS instance chosen
+                                          memory: 4Gi # This value depends of type of AWS instance chosen
+                          volumeMounts:
+                                  - name: hostpath-pv
+                                    mountPath: "/shared_volume"
+                        volumes:
+                        - name: hostpath-pv
+                          persistentVolumeClaim:
+                                  claimName: hostpath-pvc 
