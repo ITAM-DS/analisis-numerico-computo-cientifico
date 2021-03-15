@@ -191,7 +191,7 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
 
     #Newton's direction and Newton's decrement
     dir_Newton = np.linalg.solve(system_matrix, rhs)
-    dec_Newton = dec_Newton = rhs.dot(dir_Newton)
+    dec_Newton = rhs.dot(dir_Newton)
     columns = ["Iter", "Normgf", "Newtons decrement",
                "Err x ast", "Err p ast",
                "line search", "CondHf"]
