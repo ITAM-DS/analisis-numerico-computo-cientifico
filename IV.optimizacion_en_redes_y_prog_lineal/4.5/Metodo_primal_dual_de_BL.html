@@ -439,13 +439,13 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#algoritmo-primal-dual-de-bl-para-un-pl-con-unicamente-desigualdades">
-   Algoritmo primal-dual de BL para un PL con únicamente desigualdades
+  <a class="reference internal nav-link" href="#definicion-decremento-de-newton">
+   Definición decremento de Newton
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#definicion-decremento-de-newton">
-   Definición decremento de Newton
+  <a class="reference internal nav-link" href="#algoritmo-primal-dual-de-bl-para-un-pl-con-unicamente-desigualdades">
+   Algoritmo primal-dual de BL para un PL con únicamente desigualdades
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1930,6 +1930,31 @@ f_B(x|t_B) &amp;=&amp; f_o(x) + \frac{1}{t_B} \phi(x) \nonumber \\
 </div>
 </div>
 </div>
+<div class="section" id="definicion-decremento-de-newton">
+<h2>Definición decremento de Newton<a class="headerlink" href="#definicion-decremento-de-newton" title="Permalink to this headline">¶</a></h2>
+<p>Para problemas de optimización convexos sin restricciones:</p>
+<div class="math notranslate nohighlight">
+\[\min_{x \in \mathbb{R}^n} f_o(x)\]</div>
+<p>en los que utilizamos el método de Newton para resolverlos, se utiliza una cantidad en criterios de paro y en resultados de convergencia nombrada el decremento de Newton.</p>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>El decremento de Newton para <span class="math notranslate nohighlight">\(f_o: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> en <span class="math notranslate nohighlight">\(x\)</span> es la cantidad:</p>
+<div class="math notranslate nohighlight">
+\[\lambda(x) = (\nabla f_o(x)^T \nabla^2f_o(x)^{-1} \nabla f_o(x))^{1/2}\]</div>
+<p>en donde se asume que <span class="math notranslate nohighlight">\(f_o \in \mathcal{C}^2(\text{dom}f_o)\)</span>.</p>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Asumiendo que existe un punto óptimo <span class="math notranslate nohighlight">\(x^*\)</span> y el valor óptimo se denota por <span class="math notranslate nohighlight">\(p^* = f_o(x^*)\)</span> el decremento de Newton tiene propiedades como son:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\frac{1}{2} \lambda ^2 (x)\)</span> estima <span class="math notranslate nohighlight">\(f_o(x)-p^*\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(|| \nabla^2 f_o(x)^{-1} \nabla f_o(x)||_{\nabla ^2f_o(x)} = \left ( \nabla f_o(x)^T \nabla^2 f_o(x)^{-1} \nabla ^2 f(x) \nabla ^2 f_o(x)^{-1} \nabla f_o(x) \right )^{1/2} = \lambda(x) \)</span> que indica que <span class="math notranslate nohighlight">\(\lambda(x)\)</span> es la norma del paso de Newton en la norma cuadrática definida por la Hessiana.</p></li>
+<li><p>En el método de búsqueda de línea por <em>backtracking</em> <span class="math notranslate nohighlight">\(-\lambda (x) ^2\)</span> es la derivada direccional de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x\)</span> en la dirección de <span class="math notranslate nohighlight">\(\Delta x_{\text{nt}}\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\frac{df(x+t \Delta x_{\text{nt}})}{dt} \Bigr|_{t=0} = \nabla f_o(x)^T \Delta x_{\text{nt}} = \nabla f_o(x)^T (-\nabla^2 f_o(x)^{-1} \nabla f_o(x)) = -\lambda(x)^2.\]</div>
+</div>
+</div>
 <div class="section" id="algoritmo-primal-dual-de-bl-para-un-pl-con-unicamente-desigualdades">
 <h2>Algoritmo primal-dual de BL para un PL con únicamente desigualdades<a class="headerlink" href="#algoritmo-primal-dual-de-bl-para-un-pl-con-unicamente-desigualdades" title="Permalink to this headline">¶</a></h2>
 <p>Para un problema de la forma:</p>
@@ -1971,9 +1996,6 @@ f_B(x|t_B) &amp;=&amp; f_o(x) + \frac{1}{t_B} \phi(x) \nonumber \\
 </div>
 <p>con <code class="docutils literal notranslate"><span class="pre">dec_Newton/2</span></code> el decremento de Newton, <code class="docutils literal notranslate"><span class="pre">tol</span></code> una cantidad pequeña y positiva (comúnmente menor o igual a 10−8), <code class="docutils literal notranslate"><span class="pre">iterations</span></code> un contador de iteraciones.</p>
 </div>
-</div>
-<div class="section" id="definicion-decremento-de-newton">
-<h2>Definición decremento de Newton<a class="headerlink" href="#definicion-decremento-de-newton" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="metodo-primal-dual-de-bl-aplicado-al-ejemplo-prototipo-completo">
 <h2>Método primal-dual de BL aplicado al ejemplo prototipo (completo)<a class="headerlink" href="#metodo-primal-dual-de-bl-aplicado-al-ejemplo-prototipo-completo" title="Permalink to this headline">¶</a></h2>
@@ -2481,8 +2503,8 @@ Mu value: 1.00e+01
 Approximate solution: [1.989 5.967]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_208_19.png" src="../../_images/Metodo_primal_dual_de_BL_208_19.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_208_20.png" src="../../_images/Metodo_primal_dual_de_BL_208_20.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_212_19.png" src="../../_images/Metodo_primal_dual_de_BL_212_19.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_212_20.png" src="../../_images/Metodo_primal_dual_de_BL_212_20.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
 [1.989 5.967]
 -----------------------------------------------------------------
@@ -2821,8 +2843,8 @@ Mu value: 1.00e+01
 Approximate solution: [1.999 5.997]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_208_34.png" src="../../_images/Metodo_primal_dual_de_BL_208_34.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_208_35.png" src="../../_images/Metodo_primal_dual_de_BL_208_35.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_212_34.png" src="../../_images/Metodo_primal_dual_de_BL_212_34.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_212_35.png" src="../../_images/Metodo_primal_dual_de_BL_212_35.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
 [1.999 5.997]
 -----------------------------------------------------------------
@@ -3161,8 +3183,8 @@ Mu value: 1.00e+01
 Approximate solution: [2. 6.]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_208_49.png" src="../../_images/Metodo_primal_dual_de_BL_208_49.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_208_50.png" src="../../_images/Metodo_primal_dual_de_BL_208_50.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_212_49.png" src="../../_images/Metodo_primal_dual_de_BL_212_49.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_212_50.png" src="../../_images/Metodo_primal_dual_de_BL_212_50.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
 [2. 6.]
 -----------------------------------------------------------------
@@ -3247,7 +3269,7 @@ Mu value: 1.00e+01
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Metodo_primal_dual_de_BL_211_0.png" src="../../_images/Metodo_primal_dual_de_BL_211_0.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_215_0.png" src="../../_images/Metodo_primal_dual_de_BL_215_0.png" />
 </div>
 </div>
 <div class="admonition-comentario admonition">
