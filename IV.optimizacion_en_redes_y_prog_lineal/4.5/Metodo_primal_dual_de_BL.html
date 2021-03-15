@@ -1315,6 +1315,16 @@ x_2 \geq 0              \\
 </div>
 <div class="section" id="primera-iteracion">
 <h3>Primera iteración<a class="headerlink" href="#primera-iteracion" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Aquí evaluamos la FBL del ejemplo prototipo:</p>
+<p><span class="math notranslate nohighlight">\(\begin{eqnarray}
+f_B(x|t_B) &amp;=&amp; t_B(-3x_1 -5x_2) \nonumber \\
+&amp;-&amp; \log(4-x_1) - \log(12 - 2x_2) \nonumber \\
+&amp;-&amp; \log(18 - (3 x_1 + 2 x_2)) - \log(x_1) - \log(x_2) 
+\end{eqnarray}
+\)</span></p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">log_barrier_eval</span> <span class="o">=</span> <span class="n">logarithmic_barrier</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">t_B_0</span><span class="p">,</span><span class="n">constraints_ineq</span><span class="p">)</span>
@@ -1353,6 +1363,10 @@ x_2 \geq 0              \\
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Aquí revisamos que al evaluar las restricciones esté dentro del dominio de la función <span class="math notranslate nohighlight">\(\log\)</span> (valores estrictamente positivos).</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">const_ineq_funcs_eval</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">nextafter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">&lt;=-</span><span class="mi">1</span><span class="p">):</span>
@@ -1380,6 +1394,10 @@ x_2 \geq 0              \\
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Resolvemos el sistema de ecuaciones lineales para calcular la dirección de Newton.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hf_B</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_B_0</span><span class="p">)</span>
@@ -1406,6 +1424,10 @@ x_2 \geq 0              \\
 </pre></div>
 </div>
 </div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Aquí calculamos el decremento de Newton cuya definición se da al finalizar las iteraciones.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1451,6 +1473,10 @@ x_2 \geq 0              \\
 </pre></div>
 </div>
 </div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Aquí cortamos el paso con la metodología de búsqueda de línea por <em>backtracking</em>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1941,7 +1967,7 @@ f_B(x|t_B) &amp;=&amp; f_o(x) + \frac{1}{t_B} \phi(x) \nonumber \\
 <p>El decremento de Newton para <span class="math notranslate nohighlight">\(f_o: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> en <span class="math notranslate nohighlight">\(x\)</span> es la cantidad:</p>
 <div class="math notranslate nohighlight">
 \[\lambda(x) = (\nabla f_o(x)^T \nabla^2f_o(x)^{-1} \nabla f_o(x))^{1/2}\]</div>
-<p>en donde se asume que <span class="math notranslate nohighlight">\(f_o \in \mathcal{C}^2(\text{dom}f_o)\)</span>.</p>
+<p>en donde se asume que <span class="math notranslate nohighlight">\(f_o \in \mathcal{C}^2(\text{dom}f_o)\)</span> y su Hessiana es semidefinida positiva.</p>
 </div>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
@@ -1952,7 +1978,8 @@ f_B(x|t_B) &amp;=&amp; f_o(x) + \frac{1}{t_B} \phi(x) \nonumber \\
 <li><p>En el método de búsqueda de línea por <em>backtracking</em> <span class="math notranslate nohighlight">\(-\lambda (x) ^2\)</span> es la derivada direccional de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x\)</span> en la dirección de <span class="math notranslate nohighlight">\(\Delta x_{\text{nt}}\)</span>:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\frac{df(x+t \Delta x_{\text{nt}})}{dt} \Bigr|_{t=0} = \nabla f_o(x)^T \Delta x_{\text{nt}} = \nabla f_o(x)^T (-\nabla^2 f_o(x)^{-1} \nabla f_o(x)) = -\lambda(x)^2.\]</div>
+\[\frac{df(x+t \Delta x_{\text{nt}})}{dt} \Bigr|_{t=0} = \nabla f_o(x)^T \Delta x_{\text{nt}} = \nabla f_o(x)^T (-\nabla^2 f_o(x)^{-1} \nabla f_o(x)) = -\lambda(x)^2\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(\Delta x_{\text{nt}} = -\nabla ^2 f_o(x) \nabla f_o(x)\)</span> para <span class="math notranslate nohighlight">\(x \in \text{dom}f_o\)</span> es la dirección de Newton para <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x\)</span>.</p>
 </div>
 </div>
 <div class="section" id="algoritmo-primal-dual-de-bl-para-un-pl-con-unicamente-desigualdades">
@@ -2503,8 +2530,8 @@ Mu value: 1.00e+01
 Approximate solution: [1.989 5.967]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_212_19.png" src="../../_images/Metodo_primal_dual_de_BL_212_19.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_212_20.png" src="../../_images/Metodo_primal_dual_de_BL_212_20.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_217_19.png" src="../../_images/Metodo_primal_dual_de_BL_217_19.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_217_20.png" src="../../_images/Metodo_primal_dual_de_BL_217_20.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
 [1.989 5.967]
 -----------------------------------------------------------------
@@ -2843,8 +2870,8 @@ Mu value: 1.00e+01
 Approximate solution: [1.999 5.997]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_212_34.png" src="../../_images/Metodo_primal_dual_de_BL_212_34.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_212_35.png" src="../../_images/Metodo_primal_dual_de_BL_212_35.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_217_34.png" src="../../_images/Metodo_primal_dual_de_BL_217_34.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_217_35.png" src="../../_images/Metodo_primal_dual_de_BL_217_35.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
 [1.999 5.997]
 -----------------------------------------------------------------
@@ -3183,8 +3210,8 @@ Mu value: 1.00e+01
 Approximate solution: [2. 6.]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_212_49.png" src="../../_images/Metodo_primal_dual_de_BL_212_49.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_212_50.png" src="../../_images/Metodo_primal_dual_de_BL_212_50.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_217_49.png" src="../../_images/Metodo_primal_dual_de_BL_217_49.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_217_50.png" src="../../_images/Metodo_primal_dual_de_BL_217_50.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
 [2. 6.]
 -----------------------------------------------------------------
@@ -3269,7 +3296,7 @@ Mu value: 1.00e+01
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Metodo_primal_dual_de_BL_215_0.png" src="../../_images/Metodo_primal_dual_de_BL_215_0.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_220_0.png" src="../../_images/Metodo_primal_dual_de_BL_220_0.png" />
 </div>
 </div>
 <div class="admonition-comentario admonition">
