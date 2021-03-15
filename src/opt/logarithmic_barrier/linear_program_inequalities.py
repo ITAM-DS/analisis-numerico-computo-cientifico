@@ -66,7 +66,7 @@ def primal_dual_method(f, constraints_ineq,
     outer_iter = 0
     total_iter = 0
     const_funcs_eval = constraint_inequalities_funcs_eval(x,constraints_ineq)
-    print("Outer iterations of path following method")
+    print("Outer iterations of primal-dual LB method")
     print('{} {:0.2e}'.format("Mu value:", mu))
     columns = ["Outer iter", "logbarrier", "t_log_barrier",
                "duality gap"]
