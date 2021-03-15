@@ -681,7 +681,7 @@ Ax &amp;=&amp; b \nonumber \\
 <p>Los métodos de la clase primal-dual encuentran soluciones <span class="math notranslate nohighlight">\((x^*, \lambda^*, \nu^*)\)</span> para las igualdades anteriores y modifican las direcciones de búsqueda y tamaños de paso para que las desigualdades se satisfagan de forma <strong>estricta</strong> en cada iteración.</p>
 <p>En los métodos de la clase primal-dual reescribimos las condiciones KKT de optimalidad anteriores mediante una función <span class="math notranslate nohighlight">\(F: \mathbb{R}^{2n + m} \rightarrow \mathbb{R}^{2n+m}\)</span> dada por:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}F(x, \lambda, \nu ) = \left [ \begin{array}{c} A^T \nu + \lambda -c \\ X \Lambda e \\  b - Ax \end{array} \right ]\end{split}\]</div>
+\[\begin{split}F(x, \lambda, \nu ) = \left [ \begin{array}{c} c - A^T \nu - \lambda \\ X \Lambda e \\  b - Ax \end{array} \right ]\end{split}\]</div>
 <p>y resolvemos la ecuación <strong>no lineal</strong> <span class="math notranslate nohighlight">\(F(x, \lambda, \nu )=0\)</span> para <span class="math notranslate nohighlight">\((x, \lambda) \geq 0\)</span>, donde: <span class="math notranslate nohighlight">\(X = \text{diag}(x_1, \dots, x_n)\)</span>, <span class="math notranslate nohighlight">\(\Lambda = \text{diag}(\lambda_1, \dots, \lambda_n)\)</span> y <span class="math notranslate nohighlight">\(e\)</span> es un vector de <span class="math notranslate nohighlight">\(1\)</span>’s en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. Además en cada iteración se cumple <span class="math notranslate nohighlight">\(x^{(k)} &gt; 0\)</span> y <span class="math notranslate nohighlight">\(\lambda^{(k)} &gt; 0\)</span> para <span class="math notranslate nohighlight">\((x^{(k)}, \lambda^{(k)}, \nu^{(k)})\)</span>, por esto tales métodos son considerados como puntos interiores.</p>
 <p>Como la mayoría de los métodos iterativos en optimización, los métodos primal-dual tienen un procedimiento para determinar la dirección de búsqueda y una cantidad que debe ser monitoreada cuyo valor alcance un valor objetivo. En el caso de los PLE’s tal cantidad es la <em>duality gap</em> medida como: <span class="math notranslate nohighlight">\(\lambda^Tx\)</span>, ver <a class="reference internal" href="../4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html#brechadual"><span class="std std-ref">brecha dual</span></a>.</p>
 <div class="section" id="primera-idea-determinar-la-direccion-de-busqueda">
@@ -696,7 +696,7 @@ Ax &amp;=&amp; b \nonumber \\
 \[\begin{split}J_F(x, \lambda, \nu) \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] = - F(x, \lambda, \nu)\end{split}\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(J_F\)</span> es la Jacobiana de <span class="math notranslate nohighlight">\(F\)</span> cuya expresión es:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}J_F(x, \lambda, \nu) = \left [ \begin{array}{ccc} 0 &amp; I &amp; A^T \\ \Lambda &amp; X &amp; 0 \\ A &amp; 0 &amp; 0 \end{array} \right ].\end{split}\]</div>
+\[\begin{split}J_F(x, \lambda, \nu) = \left [ \begin{array}{ccc} 0 &amp; I &amp; -A^T \\ \Lambda &amp; X &amp; 0 \\ -A &amp; 0 &amp; 0 \end{array} \right ].\end{split}\]</div>
 <p>para el vector de incógnitas <span class="math notranslate nohighlight">\(\left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ]\)</span>.</p>
 <p>Una vez calculado tal vector de incógnitas se realiza la actualización:</p>
 <div class="math notranslate nohighlight">
@@ -709,10 +709,13 @@ Ax &amp;=&amp; b \nonumber \\
 </div>
 <p>Si denotamos <span class="math notranslate nohighlight">\(r_d = A^T \nu + \lambda -c, r_p = b - Ax\)</span> como el residual para factibilidad dual y residual para factibilidad primal respectivamente entonces el sistema de ecuaciones lineales a resolver es:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\left [ \begin{array}{ccc} 0 &amp; I &amp; A^T \\ \Lambda &amp; X &amp; 0 \\ A &amp; 0 &amp; 0 \end{array} \right ]  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] =  - \left [ \begin{array}{c} r_d \\ X \Lambda e \\ r_p \end{array} \right ]\end{split}\]</div>
-<div class="admonition-comentario admonition">
-<p class="admonition-title">Comentario</p>
-<p>El sistema de ecuaciones lineales anterior para problemas <em>large scale</em> no se construye pues es un sistema cuadrado de tamaño <span class="math notranslate nohighlight">\(2n + m \times 2n + m\)</span> y se resuelve reduciéndolo a sistemas de ecuaciones equivalentes. Representa el paso más costoso del método primal-dual.</p>
+\[\begin{split}\left [ \begin{array}{ccc} 0 &amp; I &amp; -A^T \\ \Lambda &amp; X &amp; 0 \\ -A &amp; 0 &amp; 0 \end{array} \right ]  \left [ \begin{array}{c} \Delta x \\ \Delta \lambda \\ \Delta \nu \end{array} \right ] =  - \left [ \begin{array}{c} r_d \\ X \Lambda e \\ r_p \end{array} \right ]\end{split}\]</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>El sistema de ecuaciones lineales anterior para problemas <em>large scale</em> no se construye pues es un sistema cuadrado de tamaño <span class="math notranslate nohighlight">\(2n + m \times 2n + m\)</span> y se resuelve reduciéndolo a sistemas de ecuaciones equivalentes. Representa el paso más costoso del método primal-dual.</p></li>
+<li><p>Se pueden eliminar los signos negativos que están en los bloques de la matriz del sistema de ecuaciones lineales anterior que contienen <span class="math notranslate nohighlight">\(A, A^T\)</span> pero por consistencia con lo desarrollado en la nota de dualidad para un PL se mantienen los signos negativos (si se eliminan también debe de ajustarse el lado derecho del sistema). Esta modificación se relaciona con la definición de la función Lagrangiana.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="segunda-idea-cortar-el-paso">
@@ -1202,6 +1205,7 @@ x_2 \geq 0              \\
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_1</span><span class="p">,</span> <span class="n">x_2</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;_nolegend_&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">x1_p</span><span class="p">,</span> <span class="n">x2_p</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Curvas de nivel de $\phi$&quot;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1941,9 +1945,9 @@ f_B(x|t_B) &amp;=&amp; f_o(x) + \frac{1}{t_B} \phi(x) \nonumber \\
 <div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(x\)</span> un punto estrictamente factible, esto es: <span class="math notranslate nohighlight">\(x &gt; 0\)</span> (todas las entradas de <span class="math notranslate nohighlight">\(x\)</span> son positivas), <span class="math notranslate nohighlight">\(t_B^{(0)}\)</span> parámetro de barrera, <span class="math notranslate nohighlight">\(\mu &gt; 1\)</span>, <span class="math notranslate nohighlight">\(tol &gt; 0\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(t_B:= t_B^{(0)}\)</span>.</p>
 <p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
-<p><em>Outer iterations:</em></p>
+<p><em><strong>Outer iterations</strong></em>:</p>
 <blockquote>
-<div><p>Paso de centrado o <em>inner iterations</em>:</p>
+<div><p><strong>Paso de centrado o <em>inner iterations</em></strong>:</p>
 <p>Calcular <span class="math notranslate nohighlight">\(x^*(t_B)\)</span> que resuelva: <span class="math notranslate nohighlight">\(\displaystyle \min_{x \in \mathbb{R}^n} tf_o(x) + \phi(x)\)</span> iniciando con <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>Utilizar criterio de paro para <em>inner iterations</em>.</p>
 </div></blockquote>
@@ -3221,6 +3225,21 @@ Mu value: 1.00e+01
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">x1_p</span><span class="p">,</span> <span class="n">x2_p</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="c1">#level curves for fo</span>
+<span class="n">x_1_line_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">x_2_line_1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x_1_line_1</span> <span class="o">+</span> <span class="mi">23</span><span class="p">)</span>
+<span class="n">x_1_line_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">x_2_line_2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x_1_line_2</span> <span class="o">+</span> <span class="mi">29</span><span class="p">)</span>
+<span class="n">x_1_line_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">x_2_line_3</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x_1_line_3</span> <span class="o">+</span> <span class="mi">36</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_1_line_1</span><span class="p">,</span> <span class="n">x_2_line_1</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span>
+         <span class="n">x_1_line_2</span><span class="p">,</span> <span class="n">x_2_line_2</span><span class="p">,</span> <span class="s2">&quot;indigo&quot;</span><span class="p">,</span>
+         <span class="n">x_1_line_3</span><span class="p">,</span> <span class="n">x_2_line_3</span><span class="p">,</span> <span class="s2">&quot;darkturquoise&quot;</span>
+         <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$8 = 3x_1 + 5x_2$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;$20 = 3x_1 + 5x_2$&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;$36 = 3x_1 + 5x_2$&quot;</span><span class="p">],</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">6.5</span><span class="p">)</span>
 <span class="n">plot_central_path</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)</span>
@@ -3230,6 +3249,10 @@ Mu value: 1.00e+01
 <div class="cell_output docutils container">
 <img alt="../../_images/Metodo_primal_dual_de_BL_211_0.png" src="../../_images/Metodo_primal_dual_de_BL_211_0.png" />
 </div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que las curvas de nivel de la función objetivo <span class="math notranslate nohighlight">\(f_o\)</span> representadas con rectas en la gráfica anterior son tangentes a las curvas de nivel de <span class="math notranslate nohighlight">\(\phi\)</span> en <span class="math notranslate nohighlight">\(x^*(t_B)\)</span>.</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicio</p>
