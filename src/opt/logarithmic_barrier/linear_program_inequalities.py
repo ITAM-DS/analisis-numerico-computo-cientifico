@@ -116,7 +116,7 @@ def primal_dual_method(f, constraints_ineq,
             total_iter+= total_iter + inner_iterations
             #print
             print("-"*65 + "\n" + "-"*65)
-            print("Outer iterations of path following method")
+            print("Outer iterations of primal-dual LB method")
             print('{} {:0.2e}'.format("Mu value:", mu))
             list_values = [outer_iter, log_barrier_eval, t,
                            stopping_criteria]
@@ -173,6 +173,7 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
     x = x_0
     n = x.size
 
+    #Eval
     f_B_eval = f_B(x)
     gf_B_eval = gf_B(x, t_B)
     Hf_B_eval = Hf_B(x, t_B)
@@ -183,6 +184,7 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
     Err_plot_aux[iteration]=compute_error(p_ast,f_B_eval)
 
     Err = compute_error(x_ast,x)
+
     system_matrix = Hf_B_eval
     rhs = -gf_B_eval
 
@@ -198,7 +200,11 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
     list_values = [iteration, normgf, dec_Newton,
                    Err, Err_plot_aux[iteration], "---", condHf]
     data = {"row" + str(iteration): list_values}
+
+    #print
     print_iterations(data, columns)
+
+    #stopping criteria
     stopping_criteria = dec_Newton/2
     iteration+=1
 
