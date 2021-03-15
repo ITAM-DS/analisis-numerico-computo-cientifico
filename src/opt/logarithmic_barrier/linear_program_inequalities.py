@@ -69,7 +69,7 @@ def primal_dual_method(f, constraints_ineq,
     print("Outer iterations of path following method")
     print('{} {:0.2e}'.format("Mu value:", mu))
     columns = ["Outer iter", "logbarrier", "t_log_barrier",
-               "stopping criteria"]
+               "duality gap"]
     list_values = [outer_iter, log_barrier_eval, t,
                    stopping_criteria]
     data = {"row" + str(outer_iter): list_values}
