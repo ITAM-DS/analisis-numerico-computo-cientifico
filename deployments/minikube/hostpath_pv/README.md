@@ -1,4 +1,4 @@
-# Using Kubeflow namespace:
+# For Kubeflow namespace:
 
 Set:
 
