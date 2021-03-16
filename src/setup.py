@@ -9,6 +9,7 @@ setup(name="opt",
       license="MIT",
       packages=find_packages(),
       install_requires = [
+                          "sympy",
                           "numpy",
                           "pandas",
                           "matplotlib"
