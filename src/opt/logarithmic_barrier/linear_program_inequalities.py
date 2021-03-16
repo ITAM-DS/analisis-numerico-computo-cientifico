@@ -178,8 +178,8 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
     gf_B_eval = gf_B(x, t_B)
     Hf_B_eval = Hf_B(x, t_B)
 
-    normgf = np.linalg.norm(gf_B_eval)
-    condHf= np.linalg.cond(Hf_B_eval)
+    normgf_B = np.linalg.norm(gf_B_eval)
+    condHf_B= np.linalg.cond(Hf_B_eval)
     Err_plot_aux = np.zeros(maxiter)
     Err_plot_aux[iteration]=compute_error(p_ast,f_B_eval)
 
@@ -194,11 +194,11 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
     #Newton's direction and Newton's decrement
     dir_Newton = np.linalg.solve(system_matrix, rhs)
     dec_Newton = rhs.dot(dir_Newton)
-    columns = ["Iter", "Normgf", "Newtons decrement",
+    columns = ["Iter", "Normgf_B", "Newtons decrement",
                "Err x ast", "Err p ast",
-               "line search", "CondHf"]
-    list_values = [iteration, normgf, dec_Newton,
-                   Err, Err_plot_aux[iteration], "---", condHf]
+               "line search", "CondHf_B"]
+    list_values = [iteration, normgf_B, dec_Newton,
+                   Err, Err_plot_aux[iteration], "---", condHf_B]
     data = {"row" + str(iteration): list_values}
 
     #print
@@ -231,12 +231,12 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
         x_plot[:,iteration] = x
         Err = compute_error(x_ast,x)
         stopping_criteria = dec_Newton/2
-        condHf= np.linalg.cond(Hf_B_eval)
-        normgf = np.linalg.norm(gf_B_eval)
+        condHf_B= np.linalg.cond(Hf_B_eval)
+        normgf_B = np.linalg.norm(gf_B_eval)
 
         #print
-        list_values = [iteration, normgf, dec_Newton,
-                       Err, Err_plot_aux[iteration], t, condHf]
+        list_values = [iteration, normgf_B, dec_Newton,
+                       Err, Err_plot_aux[iteration], t, condHf_B]
         data = {"row" + str(iteration): list_values}
         print_iterations(data, columns)
 
