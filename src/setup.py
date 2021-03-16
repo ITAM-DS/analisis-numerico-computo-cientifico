@@ -11,5 +11,6 @@ setup(name="opt",
       install_requires = [
                           "numpy",
                           "pandas",
+                          "matplotlib"
                           ],
       )
