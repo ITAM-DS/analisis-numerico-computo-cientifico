@@ -57,19 +57,28 @@ def line_search_for_log_barrier_by_backtracking(f,dir_desc,
     """
     Line search that sufficiently decreases f restricted to a
     ray in the direction dir_desc.
+
     Args:
+
         alpha (float): parameter in line search with backtracking,
-                       tipically .15
+            tipically .15
+
         beta (float): parameter in line search with backtracking,
-                      tipically .5
+            tipically .5
+
         f (lambda expression): definition of function f.
+
         dir_desc (array): descent direction.
+
         x (array): numpy array that holds values where line search
-                   will be performed.
+            will be performed.
+
         der_direct (float): directional derivative of f.
+
     Returns:
+
         t (float): positive number for stepsize along dir_desc that
-                   sufficiently decreases f.
+            sufficiently decreases f.
     """
     t = 1
     if alpha > 1/2:
