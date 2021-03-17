@@ -23,6 +23,9 @@ Este es el repositorio para los cursos de **optimización** y **optimización av
 \* Tal imagen de docker se descarga con un `docker pull palmoreck/jupyterlab_optimizacion:3.0.0` desde la terminal una vez hayan instalado docker en sus computadoras y posteriormente hacer un `docker run` de acuerdo a la documentación de la imagen. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
 
 
+### Dar click en [opt](https://analisis-numerico-computo-cientifico.readthedocs.io/) para ejemplo de un paquete de *Python3*.
+
+
 ### Organización de github classroom para el primer semestre del 2021
 
 La organización [optimizacion-2-2021-1-gh-classroom](https://github.com/optimizacion-2-2021-1-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas del primer semestre del 2021. Ver [github education](https://github.com/education) como una referencia.
