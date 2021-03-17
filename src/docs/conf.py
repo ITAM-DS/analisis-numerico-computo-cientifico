@@ -16,7 +16,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = '"opt"'
+project = "opt"
 copyright = '2021, "Erick Palacios Moreno -- palmoreck --"'
 author = '"Erick Palacios Moreno"'
 master_doc = 'index'
