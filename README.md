@@ -6,6 +6,8 @@ Este es el repositorio para los cursos de **optimización** y **optimización av
 
 ### Dar click en [temario-opt-2](https://drive.google.com/file/d/17ydFChBFxxAOzsIPwUu90KR01zRXdCNZ/view?usp=sharing) para el temario de optimización avanzada.
 
+### Dar click en [opt](https://analisis-numerico-computo-cientifico.readthedocs.io/) para ejemplo de un paquete de *Python*.
+
 ### Dar click en [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) para una presentación de introducción al curso de optimización del segundo semestre del 2020.
 
 ### Dar click en [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) para una presentación de introducción al curso de optimización avanzada del primer semestre del 2021.
@@ -21,9 +23,6 @@ Este es el repositorio para los cursos de **optimización** y **optimización av
 ### En el curso de optimización avanzada utilizaremos la imagen de [docker](https://www.docker.com/) `palmoreck/jupyterlab_optimizacion_2:3.0.0` cuya documentación la encuentran en [aquí](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2)\*. 
 
 \* Tal imagen de docker se descarga con un `docker pull palmoreck/jupyterlab_optimizacion:3.0.0` desde la terminal una vez hayan instalado docker en sus computadoras y posteriormente hacer un `docker run` de acuerdo a la documentación de la imagen. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
-
-
-### Dar click en [opt](https://analisis-numerico-computo-cientifico.readthedocs.io/) para ejemplo de un paquete de *Python3*.
 
 
 ## Organización de github classroom para el primer semestre del 2021
