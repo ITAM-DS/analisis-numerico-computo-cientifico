@@ -12,6 +12,7 @@ setup(name="opt",
                           "sympy",
                           "numpy",
                           "pandas",
-                          "matplotlib"
+                          "matplotlib",
+                          "ipython"
                           ],
       )
