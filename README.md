@@ -8,13 +8,13 @@ Este es el repositorio para los cursos de **optimización** y **optimización av
 
 ### Dar click en [opt](https://analisis-numerico-computo-cientifico.readthedocs.io/) para ejemplo de un paquete de *Python*.
 
-### Dar click en [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) para una presentación de introducción al curso de optimización del segundo semestre del 2020.
-
-### Dar click en [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) para una presentación de introducción al curso de optimización avanzada del primer semestre del 2021.
-
 ### Se ha creado el siguiente libro\* con el contenido de los temas en [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) para su consulta. Este libro seguiremos a lo largo de los cursos.
 
 \*El libro fue creado con [jupyter book](https://jupyterbook.org/intro.html).
+
+### Dar click en [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) para una presentación de introducción al curso de optimización del segundo semestre del 2020.
+
+### Dar click en [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) para una presentación de introducción al curso de optimización avanzada del primer semestre del 2021.
 
 ### Dar click en el siguiente botón para unirse\* al chat del curso de optimización avanzada del primer semestre 2021 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2021-1/community.svg)](https://gitter.im/optimizacion-2-2021-1/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
