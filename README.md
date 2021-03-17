@@ -26,7 +26,7 @@ Este es el repositorio para los cursos de **optimización** y **optimización av
 ### Dar click en [opt](https://analisis-numerico-computo-cientifico.readthedocs.io/) para ejemplo de un paquete de *Python3*.
 
 
-### Organización de github classroom para el primer semestre del 2021
+## Organización de github classroom para el primer semestre del 2021
 
 La organización [optimizacion-2-2021-1-gh-classroom](https://github.com/optimizacion-2-2021-1-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas del primer semestre del 2021. Ver [github education](https://github.com/education) como una referencia.
 
