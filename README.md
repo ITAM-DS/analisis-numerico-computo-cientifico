@@ -115,3 +115,11 @@ Llegamos hasta [Interpretación del problema dual](https://itam-ds.github.io/ana
 10 de marzo
 
 Terminamos nota [4.4 Dualidad, lema de Farkas y condiciones de Karush-Kuhn-Tucker (KKT) de optimalidad](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html)
+
+## Clase 10
+
+17 de marzo
+
+Llegamos a [Tercera idea: reducir la duality gap y centrar nota 4.5](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.5/Metodo_primal_dual_de_BL.html#tercera-idea-reducir-la-duality-gap-y-centrar-uso-de-la-funcion-de-barrera-logaritmica-fbl)
+
+Revisamos [Kale](https://github.com/kubeflow-kale/kale) e hicimos ejemplos en AWS Educate con [deployments](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/deployments/minikube/hostpath_pv) y [src](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/src)
