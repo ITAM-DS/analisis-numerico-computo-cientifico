@@ -18,3 +18,5 @@ Utils
    utils_logarithmic_barrier.phi
    utils_logarithmic_barrier.logarithmic_barrier
    utils_logarithmic_barrier.line_search_for_log_barrier_by_backtracking
+   utils_logarithmic_barrier.plot_inner_iterations
+   utils_logarithmic_barrier.plot_central_path
