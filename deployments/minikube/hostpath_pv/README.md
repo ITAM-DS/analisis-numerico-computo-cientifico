@@ -75,6 +75,6 @@ kubectl delete pv -n kubeflow $OPT_PV
 kubectl delete deployment -n kubeflow $OPT_JUPYTERLAB_SERVICE 
 ```
 
-# JUPYTERLAB SERVICE IS USING DOCKER IMAGE FROM NEXT [Dockerfile](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/kale/opt/0.6.1/Dockerfile)
+# JUPYTERLAB SERVICE IS USING DOCKER IMAGE FROM NEXT [Dockerfile](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/kale/opt/0.1/Dockerfile)
 
 
