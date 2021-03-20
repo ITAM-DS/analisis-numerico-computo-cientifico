@@ -4,14 +4,21 @@
 Functions
 *********
       
-Utils
-=====
+Utils module
+============
 
 .. autosummary::
    :toctree: _autosummary
 
    utils.compute_error
    utils.print_iterations
+
+Utils logarithmic barrier module
+================================
+
+.. autosummary::
+   :toctree: _autosummary
+
    utils_logarithmic_barrier.log_barrier_aux_eval_constraints
    utils_logarithmic_barrier.constraint_inequalities_funcs_generator
    utils_logarithmic_barrier.constraint_inequalities_funcs_eval
