@@ -4,8 +4,8 @@
 Modules
 *******
       
-Logarithmic barrier
-===================
+Logarithmic barrier functions
+=============================
 
 .. autosummary::
    :toctree: ../_autosummary
