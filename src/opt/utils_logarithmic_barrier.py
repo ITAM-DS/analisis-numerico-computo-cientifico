@@ -59,21 +59,26 @@ def line_search_for_log_barrier_by_backtracking(f,dir_desc,
     ray in the direction dir_desc.
 
     Args:
+    
+        f (lambda expression): definition of function f.
+        
+        dir_desc (array): descent direction.
+        
+        x (array): numpy array that holds values where line search
+            will be performed.
+            
+        t_B (float): barrier parameter.
+        
+        constraint_inequalities (dict): dictionary of inequalities constraints
+            in "<= 0" form.
+            
+        der_direct (float): directional derivative of f.            
 
         alpha (float): parameter in line search with backtracking,
             tipically .15
 
         beta (float): parameter in line search with backtracking,
-            tipically .5
-
-        f (lambda expression): definition of function f.
-
-        dir_desc (array): descent direction.
-
-        x (array): numpy array that holds values where line search
-            will be performed.
-
-        der_direct (float): directional derivative of f.
+            tipically .5        
 
     Returns:
 
