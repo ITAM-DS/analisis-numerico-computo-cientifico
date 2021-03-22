@@ -683,13 +683,13 @@
 <div class="section" id="ejemplo">
 <h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
 <p>En C al declarar un arreglo con la línea: <code class="docutils literal notranslate"><span class="pre">float</span> <span class="pre">z[20];</span></code> se le solicita al sistema de memoria que se alojen <span class="math notranslate nohighlight">\(20\)</span> bloques contiguos de ubicaciones de memoria en la RAM, esto es: la ubicación para el almacenamiento de <code class="docutils literal notranslate"><span class="pre">z[1]</span></code> está inmediatamente después de la de <code class="docutils literal notranslate"><span class="pre">z[0]</span></code>. Si además tenemos un programa como el siguiente:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
-<span class="nb">float</span> <span class="n">z</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
-<span class="nb">float</span> <span class="nb">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<span class="nb">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="kt">float</span> <span class="n">z</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+<span class="kt">float</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">20</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-   <span class="nb">sum</span><span class="o">+=</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-<span class="o">...</span>
+   <span class="n">sum</span><span class="o">+=</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">...</span>
 </pre></div>
 </div>
 <p>y nuestro cache line permite almacenar <span class="math notranslate nohighlight">\(16\)</span> floats, entonces el sistema de memoria leerá los datos <code class="docutils literal notranslate"><span class="pre">z[0],...,z[15]</span></code> de la RAM al caché y el procesador realizará la suma.</p>
@@ -700,26 +700,25 @@
 <p>C almacena los arreglos de dos dimensiones en una forma <strong>row major</strong>, esto es, aunque en papel representamos tales arreglos como un bloque rectangular, en la implementación en este lenguaje se están almacenando como un arreglo de una dimensión: el renglón <span class="math notranslate nohighlight">\(0\)</span> es almacenado primero, a continuación el renglón <span class="math notranslate nohighlight">\(1\)</span> y así sucesivamente.</p>
 <p>Observemos los siguientes códigos que realizan una multiplicación <strong>secuencial</strong> entre una matriz <code class="docutils literal notranslate"><span class="pre">A</span></code> y un vector <code class="docutils literal notranslate"><span class="pre">x</span></code> para obtener al vector <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
 <p><strong>Algoritmo: multiplicación matriz vector secuencial</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">A</span><span class="p">[</span><span class="n">MAX</span><span class="p">][</span><span class="n">MAX</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">MAX</span><span class="p">],</span> <span class="n">y</span> <span class="p">[</span><span class="n">MAX</span><span class="p">];</span> <span class="o">//</span><span class="n">MAX</span> <span class="n">es</span> <span class="n">un</span> <span class="n">valor</span> <span class="n">constante</span> <span class="n">definido</span> <span class="n">previamente</span>
-<span class="o">...</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">A</span><span class="p">[</span><span class="n">MAX</span><span class="p">][</span><span class="n">MAX</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">MAX</span><span class="p">],</span> <span class="n">y</span> <span class="p">[</span><span class="n">MAX</span><span class="p">];</span> <span class="c1">//MAX es un valor constante definido previamente</span>
+<span class="p">...</span>
 
-<span class="o">//</span><span class="n">bloque</span> <span class="n">de</span> <span class="n">código</span> <span class="n">para</span> <span class="n">inicializar</span> <span class="n">A</span><span class="p">,</span><span class="n">x</span>
-<span class="o">//</span><span class="n">bloque</span> <span class="n">de</span> <span class="n">código</span> <span class="n">para</span> <span class="n">inicializar</span> <span class="n">y</span> <span class="n">con</span> <span class="n">ceros</span>
+<span class="c1">//bloque de código para inicializar A,x</span>
+<span class="c1">//bloque de código para inicializar y con ceros</span>
 
-<span class="o">//</span><span class="n">Algoritmo</span> <span class="mi">1</span><span class="p">:</span>
+<span class="c1">//Algoritmo 1:</span>
 
 <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">MAX</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
     <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">MAX</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
         <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
 
-<span class="o">//</span><span class="n">volver</span> <span class="n">a</span> <span class="n">asignar</span> <span class="n">a</span> <span class="n">y</span> <span class="n">con</span> <span class="n">ceros</span>
+<span class="c1">//volver a asignar a y con ceros</span>
 
-<span class="o">//</span><span class="n">Algoritmo</span> <span class="mi">2</span><span class="p">:</span>
+<span class="c1">//Algoritmo 2:</span>
 
 <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">MAX</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
     <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">MAX</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
         <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-
 </pre></div>
 </div>
 <p>Supongamos que <code class="docutils literal notranslate"><span class="pre">MAX=4</span></code> y los elementos de <code class="docutils literal notranslate"><span class="pre">A</span></code> están almacenados en memoria como sigue:</p>
@@ -776,7 +775,11 @@
 </div>
 <div class="section" id="unidades-computacionales">
 <h3>Unidades computacionales<a class="headerlink" href="#unidades-computacionales" title="Permalink to this headline">¶</a></h3>
-<p>Sea una CPU o una GPU, las unidades computacionales toman como input un conjunto de bits (que representan números por ejemplo) y producen otro conjunto de bits (por ejemplo la suma de los números). El performance de éstas unidades se mide en <strong>instrucciones por ciclo</strong> y en <strong>ciclos por segundo</strong>. Para referencias de instrucciones por ciclo (IPC) ver <a class="reference external" href="https://en.wikipedia.org/wiki/Instructions_per_cycle">liga</a> y número de ciclos por segundo (llamado clock rate o clock speed) ver <a class="reference external" href="https://en.wikipedia.org/wiki/Clock_rate">liga</a>. La IPC incrementarse vía la <strong>vectorización</strong>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Para referencias de instrucciones por ciclo (IPC) ver <a class="reference external" href="https://en.wikipedia.org/wiki/Instructions_per_cycle">liga</a> y número de ciclos por segundo (llamado <em>clock rate</em> o <em>clock speed</em>) ver <a class="reference external" href="https://en.wikipedia.org/wiki/Clock_rate">liga</a>.</p>
+</div>
+<p>Sea una CPU o una GPU, las unidades computacionales toman como input un conjunto de bits (que representan números por ejemplo) y producen otro conjunto de bits (por ejemplo la suma de los números). El performance de éstas unidades se mide en <strong>instrucciones por ciclo</strong> y en <strong>ciclos por segundo</strong>. La IPC puede incrementarse vía la <strong>vectorización</strong>.</p>
 </div>
 </div>
 <div class="section" id="vectorizacion-y-niveles-de-blas">
