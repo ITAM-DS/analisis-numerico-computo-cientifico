@@ -83,7 +83,7 @@ def primal_dual_method(f, constraints_ineq,
     stopping_criteria = m/t
     outer_iter = 0
     total_iter = 0
-    const_funcs_eval = constraint_inequalities_funcs_eval(x,constraints_ineq)
+    const_funcs_eval = -constraint_inequalities_funcs_eval(x,constraints_ineq)
 
     if(sum(const_funcs_eval < -np.nextafter(0,1)) >=1):
         print("Some constraint inequalities evaluated in x were nonpositive, change initial point")
@@ -126,8 +126,8 @@ def primal_dual_method(f, constraints_ineq,
                     plot_central_path(x_plot)
                 print("Inner iterations")
                 print(x)
-                const_ineq_funcs_eval = constraint_inequalities_funcs_eval(x,
-                                                                           constraints_ineq)
+                const_ineq_funcs_eval = -constraint_inequalities_funcs_eval(x,
+                                                                            constraints_ineq)
                 t=mu*t
                 log_barrier_eval = logarithmic_barrier(f,x,t,
                                                        constraints_ineq)
