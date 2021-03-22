@@ -84,65 +84,71 @@ def primal_dual_method(f, constraints_ineq,
     outer_iter = 0
     total_iter = 0
     const_funcs_eval = constraint_inequalities_funcs_eval(x,constraints_ineq)
-    print("Outer iterations of primal-dual LB method")
-    print('{} {:0.2e}'.format("Mu value:", mu))
-    columns = ["Outer iter", "logbarrier", "t_log_barrier",
-               "duality gap"]
-    list_values = [outer_iter, log_barrier_eval, t,
-                   stopping_criteria]
-    data = {"row" + str(outer_iter): list_values}
-    print_iterations(data, columns)
-    print("-"*65 + "\n" + "-"*65)
-    error_between_iterations = 1
 
-    while(stopping_criteria > tol_outer_iter \
-          and error_between_iterations > tol_outer_iter \
-          and total_iter < max_total_iterations):
-        x_aux = x
-        [x,
-         inner_iterations,
-         Err_plot,
-         x_plot] = logarithmic_barrier_newton_method(f,
-                                                     constraints_ineq,
-                                                     t, x, tol,
-                                                     tol_backtracking,
-                                                     x_ast, p_ast,
-                                                     max_inner_iter,
-                                                     gf_B,
-                                                     Hf_B)
-        if(outer_iter == 0):
-            x_plot_total_iter = x_plot
-        else:
-            x_plot_total_iter = np.column_stack((x_plot_total_iter,
-                                                 x_plot))
-        error_between_iterations = compute_error(x, x_aux)
-        if(error_between_iterations > tol_outer_iter):
-            if plot:
-                plot_inner_iterations(Err_plot)
-                plot_central_path(x_plot)
-            print("Inner iterations")
-            print(x)
-            const_ineq_funcs_eval = constraint_inequalities_funcs_eval(x,
-                                                                       constraints_ineq)
-            t=mu*t
-            log_barrier_eval = logarithmic_barrier(f,x,t,
-                                                   constraints_ineq)
-            if(sum(const_ineq_funcs_eval < -np.nextafter(0,1)) <=-1):
-                print("Some constraint inequalities evaluated in x were nonpositive, check approximations")
-            outer_iter+=1
-            stopping_criteria = m/t
-            total_iter+= total_iter + inner_iterations
-            #print
-            print("-"*65 + "\n" + "-"*65)
-            print("Outer iterations of primal-dual LB method")
-            print('{} {:0.2e}'.format("Mu value:", mu))
-            list_values = [outer_iter, log_barrier_eval, t,
-                           stopping_criteria]
-            data = {"row" + str(outer_iter): list_values}
-            print_iterations(data, columns)
-            print("-"*65 + "\n" + "-"*65)
+    if(sum(const_funcs_eval < -np.nextafter(0,1)) >=1):
+        print("Some constraint inequalities evaluated in x were nonpositive, change initial point")
+    else:
+        print("Outer iterations of primal-dual LB method")
+        print('{} {:0.2e}'.format("Mu value:", mu))
+        columns = ["Outer iter", "logbarrier", "t_log_barrier",
+                   "duality gap"]
+        list_values = [outer_iter, log_barrier_eval, t,
+                       stopping_criteria]
+        data = {"row" + str(outer_iter): list_values}
+        print_iterations(data, columns)
+        print("-"*65 + "\n" + "-"*65)
+        error_between_iterations = 1
+
+        while(stopping_criteria > tol_outer_iter \
+              and error_between_iterations > tol_outer_iter \
+              and total_iter < max_total_iterations):
+            x_aux = x
+            [x,
+             inner_iterations,
+             Err_plot,
+             x_plot] = logarithmic_barrier_newton_method(f,
+                                                         constraints_ineq,
+                                                         t, x, tol,
+                                                         tol_backtracking,
+                                                         x_ast, p_ast,
+                                                         max_inner_iter,
+                                                         gf_B,
+                                                         Hf_B)
+            if(outer_iter == 0):
+                x_plot_total_iter = x_plot
+            else:
+                x_plot_total_iter = np.column_stack((x_plot_total_iter,
+                                                     x_plot))
+            error_between_iterations = compute_error(x, x_aux)
+            if(error_between_iterations > tol_outer_iter):
+                if plot:
+                    plot_inner_iterations(Err_plot)
+                    plot_central_path(x_plot)
+                print("Inner iterations")
+                print(x)
+                const_ineq_funcs_eval = constraint_inequalities_funcs_eval(x,
+                                                                           constraints_ineq)
+                t=mu*t
+                log_barrier_eval = logarithmic_barrier(f,x,t,
+                                                       constraints_ineq)
+                if(sum(const_ineq_funcs_eval < -np.nextafter(0,1)) >=1):
+                    print("Some constraint inequalities evaluated in x were nonpositive, check approximations")
+                    total_iter = max_total_iterations
+                    x = t = x_plot_total_iter = None
+                else:
+                    outer_iter+=1
+                    stopping_criteria = m/t
+                    total_iter+= total_iter + inner_iterations
+                    #print
+                    print("-"*65 + "\n" + "-"*65)
+                    print("Outer iterations of primal-dual LB method")
+                    print('{} {:0.2e}'.format("Mu value:", mu))
+                    list_values = [outer_iter, log_barrier_eval, t,
+                                   stopping_criteria]
+                    data = {"row" + str(outer_iter): list_values}
+                    print_iterations(data, columns)
+                    print("-"*65 + "\n" + "-"*65)
     return [x,total_iter,t,x_plot_total_iter]
-
 
 def logarithmic_barrier_newton_method(f_B, constraints_ineq,
                                       t_B, x_0, tol,
