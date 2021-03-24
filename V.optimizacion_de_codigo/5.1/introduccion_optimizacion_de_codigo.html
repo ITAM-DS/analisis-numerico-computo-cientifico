@@ -427,13 +427,27 @@
      Unidades computacionales
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#vectorizacion-y-niveles-de-blas">
-   Vectorización y niveles de BLAS
-  </a>
-  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiples-cpu-s-o-cores">
+     Múltiples CPU’s o cores
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#threading-o-hyperthreading">
+     <em>
+      Threading
+     </em>
+     o
+     <em>
+      Hyperthreading
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vectorizacion-y-niveles-de-blas">
+     Vectorización y niveles de BLAS
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#implementaciones-de-la-api-standard-de-blas-y-lapack">
      Implementaciones de la API standard de BLAS y LAPACK
@@ -742,7 +756,7 @@
 <p class="admonition-title">Observación</p>
 <p>¿Cuál es el número de cache misses para el algoritmo 2?.</p>
 </div>
-<p>Mayor número de <em>cache misses</em> incrementa el tiempo de ejecución de las instrucciones por el procesador pues no solamente el procesador espera mientras se transfieren los datos de la RAM hacia el caché sino también se interrumpe el flujo de la ejecución del <em>pipeline</em>. Por ello es importante que los algoritmos trabajen con un buen <em><strong>data layout</strong></em> de la información y utilicen el <em><strong>data reuse</strong></em> y <em><strong>data locality</strong></em>.</p>
+<p>Mayor número de <em>cache misses</em> incrementa el tiempo de ejecución de las instrucciones por el procesador pues no solamente el procesador espera mientras se transfieren los datos de la RAM hacia el caché sino también se interrumpe el flujo de la ejecución del <em>pipeline</em>. Por ello es importante que los algoritmos trabajen con un buen <em><strong>data layout</strong></em> de la información en memoria y utilicen el <em><strong>data reuse</strong></em> y <em><strong>data locality</strong></em>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Ver <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a></p>
@@ -762,7 +776,7 @@
 <p>Hay distintos <em>bus</em> que permiten la comunicación entre las unidades computacionales y las de memoria:</p>
 <ul class="simple">
 <li><p>El <em>backside bus</em> que permite la conexión entre el caché y el procesador. Tiene la tasa de transferencia de datos más alta.</p></li>
-<li><p>El <em>frontside bus</em> permite la conexión entre la RAM y los L’s cachés. Mueve los datos para ser procesados por el procesador (CPU o GPU) y mueve los datos de salida (resultados).</p></li>
+<li><p>El <em>frontside bus</em> permite la conexión entre la RAM y los L’s cachés. Mueve los datos para ser procesados por el procesador (CPU o GPU) y mueve los datos de salida (resultados) entre estas regiones de memoria.</p></li>
 <li><p>El <em>external bus</em> cuya acción se realiza en los dispositivos de hardware como los discos duros y tarjetas de memoria hacia la CPU y el sistema de memoria. Este <em>bus</em>  típicamente es más lento que el <em>frontside bus</em>.</p></li>
 </ul>
 <p>Entonces los datos se mueven del disco hacia la RAM con el <em>external bus</em>, luego de la RAM hacia el caché vía el <em>frontside bus</em> y finalmente del caché hacia la CPU con el <em>backside bus</em>.</p>
@@ -773,7 +787,7 @@
 <li><p>Otra capa de comunicación en un sistema de computadora es la red o <em>network</em>. Un dispositivo de red puede conectarse a una unidad de memoria u a otra unidad de computación. Típicamente la comunicación por red es mucho más lenta que las comunicaciones descritas en esta sección.</p></li>
 <li><p>La propiedad principal de un <em>bus</em> es su velocidad: ¿cuántos datos pueden moverse en un periodo de tiempo? Esta propiedad se obtiene combinando el <em>bus width</em> entendido como ¿cuántos datos se pueden mover en una transferencia? (físicamente se puede observar por el número de cables del <em>bus</em>) y el <em>bus frequency</em> ¿cuántas transferencias se pueden hacer por segundo? (físicamente se ve en la longitud de los cables que unen a las unidades de cómputo o memoria).</p></li>
 <li><p>Es importante notar que el movimiento de los datos en una transferencia siempre es secuencial: un pedazo de datos es leído de memoria y es movido a otro lugar: no es posible leer un pedazo de datos y moverlo a distintos lugares o leer divisiones del pedazo de datos que estén en distintos lugares.</p></li>
-<li><p>Un <em>bus width</em> grande ayuda a la vectorización pues en una sola transferencia se mueven los datos importantes. Un <em>bus frequency</em> alto puede ayudar al código a realizar una gran candidad de lecturas de diferentes lugares de la memoria. Depende qué operación es la que se desea realizar lo que en un caso u otro convendrá pues podríamos tener un <em>bus frequency</em> alto y un <em>bus width</em> pequeño y aún así resolver el bottleneck que tenemos, si el problema a resolver se relaciona con la cantidad de lecturas que se deben hacer, por ejemplo.</p></li>
+<li><p>Un <em>bus width</em> grande ayuda a la vectorización pues en una sola transferencia se mueven los datos importantes. Un <em>bus frequency</em> alto puede ayudar al código a realizar una gran candidad de lecturas de diferentes lugares de la memoria. Depende qué operación es la que se desea realizar lo que en un caso u otro convendrá. Por ejemplo, si el problema a resolver se relaciona con la cantidad de lecturas que se deben hacer, podríamos tener un <em>bus frequency</em> alto y un <em>bus width</em> pequeño para resolver un <em>bottleneck</em> de lecturas.</p></li>
 </ul>
 </div>
 </div>
@@ -784,10 +798,43 @@
 <p>Para referencias de instrucciones por ciclo (IPC) ver <a class="reference external" href="https://en.wikipedia.org/wiki/Instructions_per_cycle">liga</a> y número de ciclos por segundo (llamado <em>clock rate</em> o <em>clock speed</em>) ver <a class="reference external" href="https://en.wikipedia.org/wiki/Clock_rate">liga</a>.</p>
 </div>
 <p>Sea una CPU o una GPU, las unidades computacionales toman como input un conjunto de bits (que representan números por ejemplo) y producen otro conjunto de bits (por ejemplo la suma de los números). El performance de éstas unidades se mide en <strong>instrucciones por ciclo</strong> y en <strong>ciclos por segundo</strong>. La IPC puede incrementarse vía la <strong>vectorización</strong>.</p>
+<p>Entre los rediseños que se han hecho para las unidades computacionales de un modelo clásico de Von Neumman con el objetivo de resolver los <em>bottlenecks</em>, mejorar la velocidad y el <em>performance</em> se encuentran:</p>
+</div>
+<div class="section" id="multiples-cpu-s-o-cores">
+<h3>Múltiples CPU’s o cores<a class="headerlink" href="#multiples-cpu-s-o-cores" title="Permalink to this headline">¶</a></h3>
+<p>Incrementar el <em>clock speed</em> en una unidad computacional hace más rápido a un programa y también es importante la medida de IPC. La IPC se puede incrementar vía la <strong>vectorización</strong> y es típico en procesadores que soportan las instrucciones llamadas <em><strong>Single Instruction Multiple Data</strong></em> (SIMD). La vectorización consiste en que dados múltiples datos, el procesador puede trabajar sobre ellos en un instante o tiempo (ejecución en <strong>paralelo</strong>):</p>
+<img src="https://dl.dropboxusercontent.com/s/mpfk9xmtq9fm7vm/SIMD.png?dl=0" heigth="450" width="450"><div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Este tipo de procesadores reemplazaron al modelo de Von Neumann clásico <em><strong>Single Instruction Single Data</strong></em> (SISD):</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/bdx27axhnl3ug5n/SISD.png?dl=0" heigth="300" width="300">
+<p>en el que un conjunto de datos se procesaban en un tiempo determinado y no de forma simultánea o en <strong>paralelo</strong>. Así, se transitó de un diseño de hardware secuencial hacia un hardware paralelo.</p>
+<ul class="simple">
+<li><p>Un ejemplo de procesadores SIMD son los procesadores vectoriales o en arreglo, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Vector_processor">liga</a>.</p></li>
+<li><p>En la práctica se ha visto que simplemente añadir más CPU’s o cores al sistema <strong>no siempre</strong> aumenta la velocidad de ejecución en un programa. Existe una ley que explica lo anterior, <strong>la ley de Amdahl</strong>, la cual indica que si un programa está diseñado para ejecutarse en múltiples cores y tiene algunas secciones de su código que pueden sólo ejecutarse en un core, entonces éste será el <em>bottleneck</em> del programa. Por ejemplo, si tuviéramos que realizar una encuesta que tarda <span class="math notranslate nohighlight">\(1\)</span> min a <span class="math notranslate nohighlight">\(100\)</span> personas y tenemos una sola persona, entonces nos tardaríamos <span class="math notranslate nohighlight">\(100\)</span> minutos (proceso serial). Si tenemos a <span class="math notranslate nohighlight">\(100\)</span> personas entonces nos tardaríamos <span class="math notranslate nohighlight">\(1\)</span> minuto en completar todas las encuestas (proceso en paralelo). Pero si tenemos más de <span class="math notranslate nohighlight">\(100\)</span> personas, entonces no nos tardaremos menos de <span class="math notranslate nohighlight">\(1\)</span> minuto pues las personas “extras” no podrán participar en realizar la encuesta. En este punto la única forma de reducir el tiempo es reducir el tiempo que le toma a una persona encuestar a otra (esta es la parte secuencial del programa).</p></li>
+<li><p>Los sistemas SISD, SIMD y <em><strong>Multiple Instruction Multiple Data</strong></em> (MIMD), presentado a continuación:</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/ddze2xuzwn9bh6h/MIMD.png?dl=0" heigth="500" width="500">
+<p>son parte de la taxonomía de Flynn (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Flynn%27s_taxonomy">liga</a>) que clasifica a los sistemas dependiendo del número de stream de datos e instrucciones que puede procesar. Ejemplos de sistemas MIMD son máquinas multicore y clústers de máquinas.</p>
+<ul class="simple">
+<li><p>En la taxonomía de Flynn hay una división más, la del sistema <em><strong>Simple Program Multiple Data</strong></em> (SPMD) en el que un mismo programa se ejecuta en múltiples datos, éste sistema lo encontramos en la GPU por ejemplo.</p></li>
+<li><p>Hoy en día la industria continúa desarrollando y creando procesadores capaces de ejecutar instrucciones basadas en operaciones vectorizadas. Ver por ejemplo <a class="reference external" href="https://en.wikipedia.org/wiki/SSE2">Streaming SIMD Extensions 2: SSE2</a> y <a class="reference external" href="https://en.wikipedia.org/wiki/Advanced_Vector_Extensions">Advanced Vector Extensions: AVX</a>.</p></li>
+</ul>
 </div>
 </div>
+<div class="section" id="threading-o-hyperthreading">
+<h3><em>Threading</em> o <em>Hyperthreading</em><a class="headerlink" href="#threading-o-hyperthreading" title="Permalink to this headline">¶</a></h3>
+<p>Otra funcionalidad que se les añadió a los procesadores para incrementar la velocidad de ejecución de un <strong>proceso</strong> y resolver el <em>bottleneck</em> de Von Neumann fue la capacidad de crear hilos, <strong>threads</strong>, de ejecución en un programa contenidos en un proceso, el llamado <em>threading</em> o <em>hyperthreading</em> en una CPU o en un core. Básicamente el <em>threading</em> permite la ejecución de más de una instrucción en un mismo core “virtualizando” un procesador adicional (el sistema operativo “cree” que en lugar de haber un core hay dos).</p>
+<div class="admonition-definiciones admonition">
+<p class="admonition-title">Definiciones</p>
+<p>Un proceso es una instancia de un programa que se ejecuta en el procesador y está compuesto por elementos como por ejemplo los bloques de memoria que puede utilizar (los llamados <em>stack</em> y <em>heap</em>) e información de su estado, entre otros.</p>
+<p>Un <em>thread</em>, al igual que un proceso, es una instancia de un programa, se ejecuta en el procesador pero está contenido en el proceso del que salió. Al estar contenido en el proceso, comparte elementos de éste, tienen distinto <em>stack</em> de memoria (variables locales creadas en funciones) y en sistemas <em>multicore</em> es posible definir variables que sean accesadas por todos los <em>threads</em> (variables globales).</p>
+</div>
+<p>La creación de threads a partir de un proceso se le llama <em>fork</em> y su unión al proceso se le llama <em>join</em>:</p>
+<img src="https://dl.dropboxusercontent.com/s/0vnjfdk7fo62m8h/threading.png?dl=0" heigth="400" width="400"></div>
 <div class="section" id="vectorizacion-y-niveles-de-blas">
-<h2>Vectorización y niveles de BLAS<a class="headerlink" href="#vectorizacion-y-niveles-de-blas" title="Permalink to this headline">¶</a></h2>
+<h3>Vectorización y niveles de BLAS<a class="headerlink" href="#vectorizacion-y-niveles-de-blas" title="Permalink to this headline">¶</a></h3>
 <p>En términos simples vectorizar una operación significa realizar la operación de forma independiente al mismo tiempo sobre diferentes pedazos de datos. La vectorización <strong>sólo puede realizarse</strong> si se llena el caché con los datos usables o relevantes para la operación. Para lograr esto el <em>bus</em> moverá pedazos de memoria contiguos lo cual será posible sólo si los datos están almacenados secuencialmente en la memoria. Si se tiene <em>data fragmentation</em>, por el uso de listas por ejemplo para realizar operaciones vectoriales o matriciales, causará <em>memory fragmentation</em> pues se tendrán los datos esparcidos en la memoria. Aún si se llenara la capacidad del <em>bus width</em> si no se tienen los datos usables o relevantes para la operación se tendrán <em>cache misses</em>.</p>
 <p>Un ejemplo de un paquete que permite realizar operaciones de forma vectorizada es <a class="reference external" href="https://numpy.org/">numpy</a>. Tales operaciones se clasifican de acuerdo a los niveles de BLAS que utilizan.</p>
 <p>El cómputo matricial está construído sobre una jerarquía de operaciones del álgebra lineal:</p>
@@ -798,6 +845,7 @@
 </ul>
 <p>Las operaciones anteriores se describen en el álgebra lineal con la teoría de espacios vectoriales pero también es posible describirlas en una forma algorítmica. Ambas descripciones se complementan una a la otra.</p>
 <p>Ver <a class="reference external" href="http://www.netlib.org/lapack/explore-html/dir_fa94b7b114d387a7a8beb2e3e22bf78d.html">Linear Algebra Package: LAPACK</a> para nombres que se utilizan para operaciones anteriores (escalares, vectores o matrices) y <a class="reference external" href="https://github.com/Reference-LAPACK/lapack">Reference-LAPACK / lapack</a> para el repositorio.</p>
+</div>
 <div class="section" id="implementaciones-de-la-api-standard-de-blas-y-lapack">
 <h3>Implementaciones de la API standard de BLAS y LAPACK<a class="headerlink" href="#implementaciones-de-la-api-standard-de-blas-y-lapack" title="Permalink to this headline">¶</a></h3>
 <div class="margin sidebar">
@@ -1044,23 +1092,37 @@
 <p>1.Resuelve los ejercicios y preguntas de la nota.</p>
 </div>
 <p><strong>Preguntas de comprehensión:</strong></p>
-<p>1)Menciona la ley de Amdahl.</p>
-<p>2)¿Qué significan los términos concurrencia, paralelo, distribuido?</p>
-<p>3)¿Cuáles son los enfoques que se utilizan para escribir programas en paralelo?</p>
-<p>4)Define a cuál enfoque corresponde (de acuerdo a la pregunta 13) cada uno de los siguientes incisos:</p>
-<p>a) Supón que tienes 2 cores y un arreglo de tamaño 100</p>
+<p>1)¿Qué factores han influido en que desde el 2002-2003 a la fecha, el <em>performance</em> de los procesadores se esté incrementando en un 20% por año vs el 50% de incremento por año que se tenía entre 1986 y 2002?</p>
+<p>2)Menciona los componentes y realiza un esquema de una arquitectura von Neumann y descríbelas.</p>
+<p>3)Menciona la ley de Amdahl.</p>
+<p>4)¿Qué es un proceso y de qué consta?</p>
+<p>5)¿Qué es un <em>thread</em>?</p>
+<p>6)¿Qué es el <em>threading</em>? ¿qué ventajas nos da para la programación en un sistema de memoria compartida?</p>
+<p>7)¿Qué es el caché?</p>
+<p>8)Nosotros como programadores o programadoras, ¿cómo podemos obtener ventajas del caché?</p>
+<p>9)¿Qué es un <em>cache hit</em>? ¿un <em>cache miss</em>?</p>
+<p>10)De acuerdo a la taxonomía de Flynn, ¿qué tipos de arquitecturas existen? Menciona sus características, ventajas /desventajas y ejemplos.</p>
+<p>11)Menciona algunos ejemplos de:</p>
+<p>a.Sistemas de memoria distribuida.
+b.Sistemas de memoria compartida.</p>
+<p>12)¿Qué es el <em>pipelining</em> y el <em>branch prediction</em>?</p>
+<p>13)Menciona los distintos <em>bus</em> o interconexiones en un sistema de computadora y su propiedad principal o lo que nos interesa medir en un <em>bus</em>.</p>
+<p>14)¿Qué significan los términos concurrencia, paralelo, distribuido?</p>
+<p>15)¿Cuáles son los enfoques que se utilizan para escribir programas en paralelo?</p>
+<p>16)Define a cuál enfoque corresponde (de acuerdo a la pregunta 13) cada uno de los siguientes incisos:</p>
+<p>a)Supón que tienes 2 cores y un arreglo de tamaño 100</p>
 <p>if(rango_core módulo 2 == 0 )
 operar en los elementos 50 a 99
 else
 operar en los elementos 0 a 49</p>
 <p>Donde módulo es una operación que nos devuelve el residuo al dividir un número entre otro.</p>
-<p>b) Tenemos tres trabajadores: Aurora, Pedro, Daniel</p>
+<p>b)Tenemos tres trabajadores: Aurora, Pedro, Daniel</p>
 <p>if(mi_nombre es Pedro)
 lavo el baño
 else
 voy de compras</p>
-<p>5)En el cómputo en paralelo debemos realizar coordinación entre procesos o threads y considerar el load balancing. Menciona tipos de coordinación que existen y ¿a qué se refiere el load balancing?</p>
-<p>6)¿Cuáles son los pasos a seguir, que de acuerdo a Ian Foster, se puede seguir para el diseño de programas en paralelo?</p>
+<p>17)En el cómputo en paralelo debemos realizar coordinación entre procesos o <em>threads</em> y considerar el <em>load balancing</em>. Menciona tipos de coordinación que existen y ¿a qué se refiere el <em>load balancing</em>?</p>
+<p>18)¿Cuáles son los pasos a seguir, que de acuerdo a Ian Foster, se puede seguir para el diseño de programas en paralelo?</p>
 <p><strong>Referencias:</strong></p>
 <ol class="simple">
 <li><p>M. Gorelick, I. Ozsvald, High Performance Python, O’Reilly Media, 2014.</p></li>
