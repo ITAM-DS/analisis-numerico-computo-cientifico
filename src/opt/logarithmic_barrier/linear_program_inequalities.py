@@ -230,11 +230,11 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
 
     #Newton's direction and Newton's decrement
     dir_Newton = np.linalg.solve(system_matrix, rhs)
-    dec_Newton = rhs.dot(dir_Newton)
+    dec_Newton_squared = rhs.dot(dir_Newton)
     columns = ["Iter", "Normgf_B", "Newtons decrement",
                "Err x ast", "Err p ast",
                "line search", "CondHf_B"]
-    list_values = [iteration, normgf_B, dec_Newton,
+    list_values = [iteration, normgf_B, dec_Newton_squared,
                    Err, Err_plot_aux[iteration], "---", condHf_B]
     data = {"row" + str(iteration): list_values}
 
@@ -242,11 +242,11 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
     print_iterations(data, columns)
 
     #stopping criteria
-    stopping_criteria = dec_Newton/2
+    stopping_criteria = dec_Newton_squared/2
     iteration+=1
 
     while(stopping_criteria>tol and iteration < maxiter):
-        der_direct = -dec_Newton
+        der_direct = -dec_Newton_squared
         t = line_search_for_log_barrier_by_backtracking(f_B,dir_Newton,
                                                         x,t_B,
                                                         constraints_ineq,
@@ -263,16 +263,16 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
 
         #Update
         dir_Newton = np.linalg.solve(system_matrix, rhs)
-        dec_Newton = dec_Newton = rhs.dot(dir_Newton)
+        dec_Newton_squared = rhs.dot(dir_Newton)
         Err_plot_aux[iteration]=compute_error(p_ast,f_B_eval)
         x_plot[:,iteration] = x
         Err = compute_error(x_ast,x)
-        stopping_criteria = dec_Newton/2
+        stopping_criteria = dec_Newton_squared/2
         condHf_B= np.linalg.cond(Hf_B_eval)
         normgf_B = np.linalg.norm(gf_B_eval)
 
         #print
-        list_values = [iteration, normgf_B, dec_Newton,
+        list_values = [iteration, normgf_B, dec_Newton_squared,
                        Err, Err_plot_aux[iteration], t, condHf_B]
         data = {"row" + str(iteration): list_values}
         print_iterations(data, columns)
