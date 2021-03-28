@@ -449,6 +449,11 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-de-operacion-nivel-blas-1-producto-interno-estandar-o-producto-punto">
+     Ejemplo de operación nivel BLAS 1: producto interno estándar o producto punto
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#implementaciones-de-la-api-standard-de-blas-y-lapack">
      Implementaciones de la API standard de BLAS y LAPACK
     </a>
@@ -603,7 +608,7 @@
 <li><p>Conocerá razones del por qué implementaciones de algoritmos son ineficientes a diferentes niveles. Uno es al nivel de lenguajes utilizados. Otro es al nivel de componentes de un sistema computacional.</p></li>
 <li><p>Conocerá herramientas para analizar y escribir programas para un alto rendimiento.</p></li>
 <li><p>Conocerá rediseños que se han hecho a las unidades computacionales de un sistema computacional para resolver <em>bottlenecks</em>.</p></li>
-<li><p>Conocerá jerarquía de almacenamiento en el sistema de memoria de un sistema computacional.</p></li>
+<li><p>Conocerá la jerarquía de almacenamiento en el sistema de memoria de un sistema computacional.</p></li>
 <li><p>Conocerá la diferencia entre programas secuenciales y en paralelo.</p></li>
 <li><p>Aprenderá una metodología y enfoques utilizados para escribir programas en paralelo.</p></li>
 </ul>
@@ -762,17 +767,13 @@
 <p>¿Cuál es el número de cache misses para el algoritmo 2?.</p>
 </div>
 <p>Mayor número de <em>cache misses</em> incrementa el tiempo de ejecución de las instrucciones por el procesador pues no solamente el procesador espera mientras se transfieren los datos de la RAM hacia el caché sino también se interrumpe el flujo de la ejecución del <em>pipeline</em>. Por ello es importante que los algoritmos trabajen con un buen <em><strong>data layout</strong></em> de la información en memoria y utilicen el <em><strong>data reuse</strong></em> y <em><strong>data locality</strong></em>.</p>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Ver <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a></p>
-</div>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>El <em>pipelining</em> es un mecanismo utilizado por un procesador para la ejecución de instrucciones. Obstáculos al <em>pipelining</em> se encuentran los <em>cache misses</em> o el llamado <em>mispredicted branching</em>. El <em>branch prediction</em>, relacionado con el <em>branching</em> en un código (para el <em>branching</em> piénsese por ejemplo en una línea de código del tipo <code class="docutils literal notranslate"><span class="pre">if...then</span></code>), es otro mecanismo del procesador para tratar de predecir la siguiente instrucción a ejecutar y cargar las porciones relevantes de memoria en el caché mientras se trabaja en la instrucción actual. El procesador al toparse con un <em>branching</em> en el código trata de hacer una suposición de qué dirección se tomará en el <em>branching</em> y precargar las instrucciones relevantes, si falla tiene <em><strong>branch-misses</strong></em>. Aunque también son importantes estos aspectos al considerar la implementación de un algoritmo, la herramienta más rápida que tenemos para resolver los <em>bottlenecks</em> en este contexto, son trabajar en la localidad y temporalidad de los datos.</p></li>
-<li><p>Un factor que incrementa el número de <em>cache-misses</em> es la fragmentación de datos, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Fragmentation_(computing)">Fragmentation</a>. La fragmentación incrementa el número de transferencias de memoria hacia la CPU y además imposibilita la vectorización porque el caché no está lleno. El caché puede llenarse sólo al tener bloques contiguos de memoria alojados para los datos (la interconexión o <em>bus</em> sólo puede mover <em>chunks</em> de memoria contigua). Python en su implementación común CPython, tiene <em><strong>data fragmentation</strong></em> por ejemplo al usar listas. Las listas de Python alojan locaciones donde se pueden encontrar los datos y no los datos en sí. Al utilizar tales estructuras para operaciones matriciales el <em>runtime</em> de Python debe realizar <em>lookups</em> por índices y al no encontrarse de forma contigua los datos, el <em>overhead</em> en la transferencia de datos es mayor lo que causa que se tengan mayor número de <em>cache-misses</em> y que los <em>cores</em> tengan que esperar hasta que los datos estén disponibles en el caché. Por lo anterior las listas no se recomiendan para operaciones vectoriales o matriciales pero sí se utilizarían en casos como almacenar diferentes tipos de valores.</p></li>
+<li><p>Un factor que incrementa el número de <em>cache-misses</em> es la fragmentación de datos, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Fragmentation_(computing)">Fragmentation</a>. La fragmentación incrementa el número de transferencias de memoria hacia la CPU y además imposibilita la vectorización porque el caché no está lleno. El caché puede llenarse sólo al tener bloques contiguos de memoria alojados para los datos (la interconexión o <em>bus</em> sólo puede mover <em>chunks</em> de memoria contigua). Python en su implementación común <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a>, tiene <em><strong>data fragmentation</strong></em> por ejemplo al usar listas. Las listas de Python alojan locaciones donde se pueden encontrar los datos y no los datos en sí. Al utilizar tales estructuras para operaciones matriciales el <em>runtime</em> de Python debe realizar <em>lookups</em> por índices y al no encontrarse de forma contigua los datos, el <em>overhead</em> en la transferencia de datos es mayor lo que causa que se tengan mayor número de <em>cache-misses</em> y que los <em>cores</em> tengan que esperar hasta que los datos estén disponibles en el caché. Por lo anterior las listas no se recomiendan para operaciones vectoriales o matriciales pero sí se utilizarían en casos como almacenar diferentes tipos de valores.</p></li>
 <li><p>En Python se tiene el paquete de <a class="reference external" href="https://numpy.org/">numpy</a> para almacenamiento de bloques de memoria contiguos de arreglos y uso de la capacidad de la CPU para operaciones en un modo vectorizado. Sin extensiones a Python con paquetes como <code class="docutils literal notranslate"><span class="pre">numpy</span></code> no sería posible en este lenguaje aprovechar la vectorización (capaz de realizar un procesador actual) ni alojar bloques de memoria contiguos. El no soporte para operaciones vectorizadas tiene que ver con que el <a class="reference external" href="https://en.wikipedia.org/wiki/Bytecode">bytecode</a> de Python no está optimizado para vectorización. En el caso del alojamiento de bloques de memoria contiguos, Python es un <em>garbage-collected language</em> que permite que la memoria sea automáticamente alojada y liberada. No obstante tal característica causa problemas del tipo <em><strong>memory fragmentation</strong></em> que afecta la transferencia al caché de datos <strong>usables</strong> o <strong>relevantes</strong> para las operaciones (ver ejemplo del algoritmo 2 anterior).</p></li>
-<li><p>Para monitoreo de número de instrucciones por ciclo, número de ciclos por segundo, <em>branch misses, cache references</em> (o <em>hits</em>) y <em>misses</em> se recomienda las herramientas de <a class="reference external" href="https://en.wikipedia.org/wiki/Perf">perf</a>, <a class="reference external" href="https://valgrind.org/">valgrind</a>, ver también: <a class="reference external" href="https://en.wikipedia.org/wiki/Valgrind">Valgrind</a>.</p></li>
+<li><p>Para monitoreo de número de instrucciones por ciclo, número de ciclos por segundo, <em>branch misses, cache references</em> (o <em>hits</em>) y <em>misses</em> se recomiendan las herramientas de <a class="reference external" href="https://en.wikipedia.org/wiki/Perf">perf</a>, <a class="reference external" href="https://valgrind.org/">valgrind</a>, ver también: <a class="reference external" href="https://en.wikipedia.org/wiki/Valgrind">Valgrind</a>.</p></li>
 </ul>
 </div>
 </div>
@@ -788,8 +789,8 @@
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>La <strong>GPU</strong> está conectada en un dispositivo periférico y se comunica através del <em>PCI bus</em>, (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Conventional_PCI">PCI</a>) el cual es más lento que el <em>frontside bus</em>. Como resultado, la transferencia de datos hacia la GPU y fuera de ésta es una operación costosa. Un diseño que atiende este problema es tener tanto a la CPU como a la GPU en el <em>frontside bus</em> para reducción de costos de transferencia hacia la GPU para grandes cantidades de información.</p></li>
-<li><p>Otra capa de comunicación en un sistema de computadora es la red o <em>network</em>. Un dispositivo de red puede conectarse a una unidad de memoria u a otra unidad de computación. Típicamente la comunicación por red es mucho más lenta que las comunicaciones descritas en esta sección.</p></li>
+<li><p>La GPU está conectada en un dispositivo periférico y se comunica através del <em>PCI bus</em>, (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Conventional_PCI">PCI</a>) el cual es más lento que el <em>frontside bus</em>. Como resultado, la transferencia de datos hacia la GPU y fuera de ésta es una operación costosa. Un diseño que atiende este problema es tener tanto a la CPU como a la GPU en el <em>frontside bus</em> para reducción de costos de transferencia hacia la GPU para grandes cantidades de información.</p></li>
+<li><p>Otra capa de comunicación en un sistema de computadora es la red o <em>network</em>. Un dispositivo de red puede conectarse a una unidad de memoria u a otra unidad de computación. Típicamente la comunicación por red es mucho más lenta que las comunicaciones con el <em>backside, frontside, external bus</em>.</p></li>
 <li><p>La propiedad principal de un <em>bus</em> es su velocidad: ¿cuántos datos pueden moverse en un periodo de tiempo? Esta propiedad se obtiene combinando el <em>bus width</em> entendido como ¿cuántos datos se pueden mover en una transferencia? (físicamente se puede observar por el número de cables del <em>bus</em>) y el <em>bus frequency</em> ¿cuántas transferencias se pueden hacer por segundo? (físicamente se ve en la longitud de los cables que unen a las unidades de cómputo o memoria).</p></li>
 <li><p>Es importante notar que el movimiento de los datos en una transferencia siempre es secuencial: un pedazo de datos es leído de memoria y es movido a otro lugar: no es posible leer un pedazo de datos y moverlo a distintos lugares o leer divisiones del pedazo de datos que estén en distintos lugares.</p></li>
 <li><p>Un <em>bus width</em> grande ayuda a la vectorización pues en una sola transferencia se mueven los datos importantes. Un <em>bus frequency</em> alto puede ayudar al código a realizar una gran candidad de lecturas de diferentes lugares de la memoria. Depende qué operación es la que se desea realizar lo que en un caso u otro convendrá. Por ejemplo, si el problema a resolver se relaciona con la cantidad de lecturas que se deben hacer, podríamos tener un <em>bus frequency</em> alto y un <em>bus width</em> pequeño para resolver un <em>bottleneck</em> de lecturas.</p></li>
@@ -800,9 +801,9 @@
 <h3>Unidades computacionales<a class="headerlink" href="#unidades-computacionales" title="Permalink to this headline">¶</a></h3>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Para referencias de instrucciones por ciclo (IPC) ver <a class="reference external" href="https://en.wikipedia.org/wiki/Instructions_per_cycle">liga</a> y número de ciclos por segundo (llamado <em>clock rate</em> o <em>clock speed</em>) ver <a class="reference external" href="https://en.wikipedia.org/wiki/Clock_rate">liga</a>.</p>
+<p>Para referencias de instrucciones por ciclo (IPC) ver <a class="reference external" href="https://en.wikipedia.org/wiki/Instructions_per_cycle">liga</a> y número de ciclos por segundo ver <a class="reference external" href="https://en.wikipedia.org/wiki/Clock_rate">liga</a>.</p>
 </div>
-<p>Sea una CPU o una GPU, las unidades computacionales toman como input un conjunto de bits (que representan números por ejemplo) y producen otro conjunto de bits (por ejemplo la suma de los números). El performance de éstas unidades se mide en <strong>instrucciones por ciclo</strong> y en <strong>ciclos por segundo</strong>. La IPC puede incrementarse vía la <strong>vectorización</strong>.</p>
+<p>Sea una CPU o una GPU, las unidades computacionales toman como input un conjunto de bits (que representan números por ejemplo) y producen otro conjunto de bits (por ejemplo la suma de los números). El performance de éstas unidades se mide en <strong>instrucciones por ciclo</strong> y en <strong>ciclos por segundo</strong>, nombrado <em>clock rate</em> o <em>clock speed</em>. La IPC puede incrementarse vía la <strong>vectorización</strong>.</p>
 <p>Entre los rediseños que se han hecho para las unidades computacionales de un modelo clásico de Von Neumman con el objetivo de resolver los <em>bottlenecks</em>, mejorar la velocidad y el <em>performance</em> se encuentran:</p>
 </div>
 <div class="section" id="multiples-cpu-s-o-cores">
@@ -844,19 +845,54 @@
 <img src="https://dl.dropboxusercontent.com/s/0vnjfdk7fo62m8h/threading.png?dl=0" heigth="400" width="400"></div>
 <div class="section" id="vectorizacion-y-niveles-de-blas">
 <h3>Vectorización y niveles de BLAS<a class="headerlink" href="#vectorizacion-y-niveles-de-blas" title="Permalink to this headline">¶</a></h3>
-<p>En términos simples vectorizar una operación significa realizar la operación de forma independiente al mismo tiempo sobre diferentes pedazos de datos. La vectorización <strong>sólo puede realizarse</strong> si se llena el caché con los datos usables o relevantes para la operación. Para lograr esto el <em>bus</em> moverá pedazos de memoria contiguos lo cual será posible sólo si los datos están almacenados secuencialmente en la memoria. Si se tiene <em>data fragmentation</em>, por el uso de listas por ejemplo para realizar operaciones vectoriales o matriciales, causará <em>memory fragmentation</em> pues se tendrán los datos esparcidos en la memoria. Aún si se llenara la capacidad del <em>bus width</em> si no se tienen los datos usables o relevantes para la operación se tendrán <em>cache misses</em>.</p>
-<p>Un ejemplo de un paquete que permite realizar operaciones de forma vectorizada es <a class="reference external" href="https://numpy.org/">numpy</a>. Tales operaciones se clasifican de acuerdo a los niveles de BLAS que utilizan.</p>
-<p>El cómputo matricial está construído sobre una jerarquía de operaciones del álgebra lineal:</p>
+<p>En términos simples vectorizar una operación significa realizar la operación de forma independiente al mismo tiempo sobre diferentes pedazos de datos. La vectorización <strong>sólo puede realizarse</strong> si se llena el caché con los datos usables o relevantes para la operación. Para lograr esto el <em>bus</em> moverá pedazos de memoria contiguos lo cual será posible sólo si los datos están almacenados secuencialmente en la memoria. Si se tiene <em>data fragmentation</em> causará <em>memory fragmentation</em> pues se tendrán los datos esparcidos en la memoria. Aún si se llenara la capacidad del <em>bus width</em> si no se tienen los datos usables o relevantes para la operación se tendrán <em>cache misses</em>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>En <em>Python</em> se tiene <em>data fragmentation</em> al usar listas por lo que no se recomienda su uso para realizar operaciones vectoriales o matriciales. Un ejemplo de un paquete que permite realizar operaciones de forma vectorizada es <a class="reference external" href="https://numpy.org/">numpy</a>. Tales operaciones se clasifican de acuerdo a los niveles de BLAS que utilizan.</p>
+</div>
+<p>Para lograr la vectorización los paquetes de <em>software</em> utilizan el hecho que el cómputo matricial está construído sobre una jerarquía de operaciones del álgebra lineal:</p>
 <ul class="simple">
 <li><p>Productos punto involucran operaciones escalares de suma y multiplicación (nivel BLAS 1).</p></li>
 <li><p>La multiplicación matriz-vector está hecha de productos punto (nivel BLAS 2).</p></li>
 <li><p>La multiplicación matriz-matriz utiliza colecciones de productos matriz-vector (nivel BLAS 3).</p></li>
 </ul>
 <p>Las operaciones anteriores se describen en el álgebra lineal con la teoría de espacios vectoriales pero también es posible describirlas en una forma algorítmica. Ambas descripciones se complementan una a la otra.</p>
-<p>Ver <a class="reference external" href="http://www.netlib.org/lapack/explore-html/dir_fa94b7b114d387a7a8beb2e3e22bf78d.html">Linear Algebra Package: LAPACK</a> para nombres que se utilizan para operaciones anteriores (escalares, vectores o matrices) y <a class="reference external" href="https://github.com/Reference-LAPACK/lapack">Reference-LAPACK / lapack</a> para el repositorio.</p>
+</div>
+<div class="section" id="ejemplo-de-operacion-nivel-blas-1-producto-interno-estandar-o-producto-punto">
+<h3>Ejemplo de operación nivel BLAS 1: producto interno estándar o producto punto<a class="headerlink" href="#ejemplo-de-operacion-nivel-blas-1-producto-interno-estandar-o-producto-punto" title="Permalink to this headline">¶</a></h3>
+<p>Consideramos <span class="math notranslate nohighlight">\(x,y \in \mathbb{R}^n\)</span>. El producto punto entre <span class="math notranslate nohighlight">\(x\)</span> y <span class="math notranslate nohighlight">\(y\)</span> es <span class="math notranslate nohighlight">\(c = x^Ty = \displaystyle \sum_{i=1}^n x_iy_i\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mf">1.5</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-7.5
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="implementaciones-de-la-api-standard-de-blas-y-lapack">
 <h3>Implementaciones de la API standard de BLAS y LAPACK<a class="headerlink" href="#implementaciones-de-la-api-standard-de-blas-y-lapack" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Ver <a class="reference external" href="http://www.netlib.org/lapack/explore-html/dir_fa94b7b114d387a7a8beb2e3e22bf78d.html">Linear Algebra Package: LAPACK</a> para nombres que se utilizan para operaciones anteriores (escalares, vectores o matrices) y <a class="reference external" href="https://github.com/Reference-LAPACK/lapack">Reference-LAPACK / lapack</a> para el repositorio.</p>
+</div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Ver <a class="reference external" href="https://en.wikipedia.org/wiki/Application_programming_interface">Application Programming Interface: API</a> para una explicación de lo que es una API.</p>
