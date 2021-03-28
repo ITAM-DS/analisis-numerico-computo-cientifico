@@ -582,6 +582,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias-de-interes">
+   Referencias de interés
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -777,8 +782,6 @@
 <li><p>El <em>pipelining</em> es un mecanismo utilizado por un procesador para la ejecución de instrucciones. Obstáculos al <em>pipelining</em> se encuentran los <em>cache misses</em> o el llamado <em>mispredicted branching</em>. El <em>branch prediction</em>, relacionado con el <em>branching</em> en un código (para el <em>branching</em> piénsese por ejemplo en una línea de código del tipo <code class="docutils literal notranslate"><span class="pre">if...then</span></code>), es otro mecanismo del procesador para tratar de predecir la siguiente instrucción a ejecutar y cargar las porciones relevantes de memoria en el caché mientras se trabaja en la instrucción actual. El procesador al toparse con un <em>branching</em> en el código trata de hacer una suposición de qué dirección se tomará en el <em>branching</em> y precargar las instrucciones relevantes, si falla tiene <em><strong>branch-misses</strong></em>. Aunque también son importantes estos aspectos al considerar la implementación de un algoritmo, la herramienta más rápida que tenemos para resolver los <em>bottlenecks</em> en este contexto, son trabajar en la localidad y temporalidad de los datos.</p></li>
 <li><p>Un factor que incrementa el número de <em>cache-misses</em> es la fragmentación de datos, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Fragmentation_(computing)">Fragmentation</a>. La fragmentación incrementa el número de transferencias de memoria hacia la CPU y además imposibilita la vectorización porque el caché no está lleno. El caché puede llenarse sólo al tener bloques contiguos de memoria alojados para los datos (la interconexión o <em>bus</em> sólo puede mover <em>chunks</em> de memoria contigua). Python en su implementación común <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a>, tiene <em><strong>data fragmentation</strong></em> por ejemplo al usar listas. Las listas de Python alojan locaciones donde se pueden encontrar los datos y no los datos en sí. Al utilizar listas para operaciones matriciales el <em>runtime</em> de Python tiene <em>overhead</em> en la transferencia de datos pues debe realizar <em>lookups</em> por índices, al no encontrarse de forma contigua los datos se tendrán un mayor número de <em>cache-misses</em> y también los <em>cores</em> deberán esperar hasta que los datos estén disponibles en el caché. Por lo anterior las listas no se recomiendan para operaciones vectoriales o matriciales pero sí se utilizarían en casos como almacenar diferentes tipos de valores.</p></li>
 <li><p>En Python se tiene el paquete de <a class="reference external" href="https://numpy.org/">numpy</a> para almacenamiento de bloques de memoria contiguos de arreglos y uso de la capacidad de la CPU para operaciones en un modo vectorizado. Sin extensiones a Python con paquetes como <code class="docutils literal notranslate"><span class="pre">numpy</span></code> no sería posible en este lenguaje aprovechar la vectorización (capaz de realizar un procesador actual) ni alojar bloques de memoria contiguos. El no soporte para operaciones vectorizadas tiene que ver con que el <a class="reference external" href="https://en.wikipedia.org/wiki/Bytecode">bytecode</a> de Python no está optimizado para vectorización. En el caso del alojamiento de bloques de memoria contiguos, Python es un <em>garbage-collected language</em> que permite que la memoria sea automáticamente alojada y liberada. No obstante tal característica causa problemas del tipo <em><strong>memory fragmentation</strong></em> que afecta la transferencia al caché de datos <strong>usables</strong> o <strong>relevantes</strong> para las operaciones (ver ejemplo del algoritmo 2 anterior).</p></li>
-<li><p>Para monitoreo de número de instrucciones por ciclo, número de ciclos por segundo, <em>branch misses, cache references</em> (o <em>hits</em>) y <em>misses</em> se recomiendan las herramientas de <a class="reference external" href="https://en.wikipedia.org/wiki/Perf">perf</a>, <a class="reference external" href="https://valgrind.org/">valgrind</a>, ver también: <a class="reference external" href="https://en.wikipedia.org/wiki/Valgrind">Valgrind</a>.</p></li>
-<li><p>Algunas ligas que explican lo que es el <em>garbage collector</em> son: <a class="reference external" href="https://rushter.com/blog/python-garbage-collector/">python-garbage-collector</a>, <a class="reference external" href="https://stackify.com/python-garbage-collection/">python-garbage-collection</a> y <a class="reference external" href="https://stackoverflow.com/questions/4484167/python-garbage-collector-documentation">python-garbage-collector-documentation</a></p></li>
 </ul>
 </div>
 </div>
@@ -914,7 +917,7 @@
 <p>Sin embargo existen otras implementaciones de la API que están optimizadas para la arquitectura de nuestras máquinas, por ejemplo:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a></p></li>
-<li><p><a class="reference external" href="http://math-atlas.sourceforge.net">Atlas</a></p></li>
+<li><p><a class="reference external" href="http://math-atlas.sourceforge.net">Atlas</a>, <a class="reference external" href="http://math-atlas.sourceforge.net/atlas_install/node8.html">Building a full LAPACK library using ATLAS and netlib’s LAPACK</a>, <a class="reference external" href="http://math-atlas.sourceforge.net/faq.html">ATLAS FAQ</a></p></li>
 </ul>
 </div>
 </div>
@@ -1130,7 +1133,7 @@
 </ul>
 <p>Si deseamos usar <em>cores</em> en una GPU y algunas soportan multi-GPU tenemos:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html">CUDA C</a>, <a class="reference external" href="https://docs.nvidia.com/cuda/cublas/index.html">CUBLAS</a>, <a class="reference external" href="https://icl.cs.utk.edu/magma/">MAGMA</a>, <a class="reference external" href="http://www.culatools.com/cula_dense_programmers_guide/">CULA</a>, <a class="reference external" href="https://docs.nvidia.com/cuda/cusolver/index.html">CUSOLVER</a></p></li>
+<li><p><a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html">CUDA C</a>, <a class="reference external" href="https://docs.nvidia.com/cuda/cublas/index.html">CUBLAS</a>, <a class="reference external" href="https://icl.cs.utk.edu/magma/">MAGMA</a>, <a class="reference external" href="http://www.culatools.com/cula_dense_programmers_guide/">CULA</a>, <a class="reference external" href="https://docs.nvidia.com/cuda/cusolver/index.html">CUSOLVER</a>, <a class="reference external" href="https://docs.nvidia.com/cuda/nvblas/">NVBLAS</a></p></li>
 <li><p><a class="reference external" href="https://docs.cupy.dev/en/stable/">CuPy</a></p></li>
 <li><p><a class="reference external" href="https://documen.tician.de/pycuda/">PyCUDA</a></p></li>
 <li><p><a class="reference external" href="https://github.com/rapidsai/dask-cuda">dask-cuda</a>, <a class="reference external" href="https://rapids.ai/">Rapids</a></p></li>
@@ -1153,10 +1156,18 @@
 <li><p><a class="reference external" href="https://github.com/pytorch/pytorch">pytorch</a></p></li>
 <li><p><a class="reference external" href="https://github.com/Theano/Theano">Theano</a>, <a class="reference external" href="https://github.com/pymc-devs/aesara">pymc-devs/aesara</a></p></li>
 </ul>
-<div class="tip admonition">
-<p class="admonition-title">Ejercicios</p>
-<p>1.Resuelve los ejercicios y preguntas de la nota.</p>
+<p>Y un estándar para cómputo en sistemas heterogéneos: <a class="reference external" href="https://www.khronos.org/opencl/">OpenCL</a>, <a class="reference external" href="https://www.khronos.org/registry/OpenCL/specs/3.0-unified/html/OpenCL_C.html#the-opencl-c-programming-language">OpenCL-c-programming-language</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/OpenCL">OpenCl-Wikipedia</a></p>
 </div>
+</div>
+<div class="section" id="referencias-de-interes">
+<h2>Referencias de interés<a class="headerlink" href="#referencias-de-interes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://developer.nvidia.com/sites/default/files/akamai/cuda/files/Misc/mygpu.pdf">MAGMA by example</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pymc-devs/pymc3">pymc3</a></p></li>
+<li><p>Para monitoreo de número de instrucciones por ciclo, número de ciclos por segundo, <em>branch misses, cache references</em> (o <em>hits</em>) y <em>misses</em> se recomiendan las herramientas de <a class="reference external" href="https://en.wikipedia.org/wiki/Perf">perf</a>, <a class="reference external" href="https://valgrind.org/">valgrind</a>, ver también: <a class="reference external" href="https://en.wikipedia.org/wiki/Valgrind">Valgrind</a>.</p></li>
+<li><p>Algunas ligas que explican lo que es el <em>garbage collector</em> en Python son: <a class="reference external" href="https://rushter.com/blog/python-garbage-collector/">python-garbage-collector</a>, <a class="reference external" href="https://stackify.com/python-garbage-collection/">python-garbage-collection</a> y <a class="reference external" href="https://stackoverflow.com/questions/4484167/python-garbage-collector-documentation">python-garbage-collector-documentation</a>.</p></li>
+<li><p>Ver <a class="reference external" href="https://stackoverflow.com/questions/17130975/python-vs-cpython">pregunta en stackoverflow</a> para una breve explicación de implementaciones de Python.</p></li>
+</ul>
 <p><strong>Preguntas de comprehensión:</strong></p>
 <p>1)¿Qué factores han influido en que desde el 2002-2003 a la fecha, el <em>performance</em> de los procesadores se esté incrementando en un 20% por año vs el 50% de incremento por año que se tenía entre 1986 y 2002?</p>
 <p>2)Menciona los componentes y realiza un esquema de una arquitectura von Neumann y descríbelas.</p>
@@ -1197,10 +1208,6 @@ A. Greenbaum, S. Hammarling, A. Mckenney and D. Sorensen, LAPACK Users Guide, So
 <li><p>P. Pacheco, An Introduction to Parallel Programming, Morgan Kaufmann, 2011.</p></li>
 <li><p>https://xkcd.com/</p></li>
 </ol>
-<p><strong>Otras referencias de interés:</strong></p>
-<p><a class="reference external" href="https://developer.nvidia.com/sites/default/files/akamai/cuda/files/Misc/mygpu.pdf">MAGMA by example</a></p>
-<p><a class="reference external" href="https://github.com/pymc-devs/pymc3">pymc3</a></p>
-</div>
 </div>
 </div>
 
