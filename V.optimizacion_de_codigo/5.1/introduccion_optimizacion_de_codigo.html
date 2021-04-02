@@ -56,7 +56,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="6.1 Problemas tipo Unconstrained Convex Optimization (UCO)" href="../../VI.algoritmos_optimizacion_convexa/6.1/Problemas_UCO.html" />
+    <link rel="next" title="5.2 Herramientas en lenguajes de programación y del sistema operativo para perfilamiento e implementaciones de BLAS" href="../5.2/Herramientas_en_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html" />
     <link rel="prev" title="4.5 Método primal-dual de barrera logarítmica (BL)" href="../../IV.optimizacion_en_redes_y_prog_lineal/4.5/Metodo_primal_dual_de_BL.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -237,6 +237,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    5.1 Introducción optimización de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../5.2/Herramientas_en_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html">
+   5.2 Herramientas en lenguajes de programación y del sistema operativo para perfilamiento e implementaciones de BLAS
   </a>
  </li>
 </ul>
@@ -782,7 +787,7 @@
 <ul class="simple">
 <li><p>El <em>pipelining</em> es un mecanismo utilizado por un procesador para la ejecución de instrucciones. Obstáculos al <em>pipelining</em> se encuentran los <em>cache misses</em> o el llamado <em>mispredicted branching</em>. El <em>branch prediction</em>, relacionado con el <em>branching</em> en un código (para el <em>branching</em> piénsese por ejemplo en una línea de código del tipo <code class="docutils literal notranslate"><span class="pre">if...then</span></code>), es otro mecanismo del procesador para tratar de predecir la siguiente instrucción a ejecutar y cargar las porciones relevantes de memoria en el caché mientras se trabaja en la instrucción actual. El procesador al toparse con un <em>branching</em> en el código trata de hacer una suposición de qué dirección se tomará en el <em>branching</em> y precargar las instrucciones relevantes, si falla tiene <em><strong>branch-misses</strong></em>. Aunque también son importantes estos aspectos al considerar la implementación de un algoritmo, la herramienta más rápida que tenemos para resolver los <em>bottlenecks</em> en este contexto, son trabajar en la localidad y temporalidad de los datos.</p></li>
 <li><p>Un factor que incrementa el número de <em>cache-misses</em> es la fragmentación de datos, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Fragmentation_(computing)">Fragmentation</a>. La fragmentación incrementa el número de transferencias de memoria hacia la CPU y además imposibilita la vectorización porque el caché no está lleno. El caché puede llenarse sólo al tener bloques contiguos de memoria alojados para los datos (la interconexión o <em>bus</em> sólo puede mover <em>chunks</em> de memoria contigua). Python en su implementación común <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a>, tiene <em><strong>data fragmentation</strong></em> por ejemplo al usar listas. Las listas de Python alojan locaciones donde se pueden encontrar los datos y no los datos en sí. Al utilizar listas para operaciones matriciales el <em>runtime</em> de Python tiene <em>overhead</em> en la transferencia de datos pues debe realizar <em>lookups</em> por índices, al no encontrarse de forma contigua los datos se tendrán un mayor número de <em>cache-misses</em> y también los <em>cores</em> deberán esperar hasta que los datos estén disponibles en el caché. Por lo anterior las listas no se recomiendan para operaciones vectoriales o matriciales pero sí se utilizarían en casos como almacenar diferentes tipos de valores.</p></li>
-<li><p>En Python se tiene el paquete de <a class="reference external" href="https://numpy.org/">numpy</a> para almacenamiento de bloques de memoria contiguos de arreglos y uso de la capacidad de la CPU para operaciones en un modo vectorizado. Sin extensiones a Python con paquetes como <code class="docutils literal notranslate"><span class="pre">numpy</span></code> no sería posible en este lenguaje aprovechar la vectorización (capaz de realizar un procesador actual) ni alojar bloques de memoria contiguos. El no soporte para operaciones vectorizadas tiene que ver con que el <a class="reference external" href="https://en.wikipedia.org/wiki/Bytecode">bytecode</a> de Python no está optimizado para vectorización. En el caso del alojamiento de bloques de memoria contiguos, Python es un <em>garbage-collected language</em> que permite que la memoria sea automáticamente alojada y liberada. No obstante tal característica causa problemas del tipo <em><strong>memory fragmentation</strong></em> que afecta la transferencia al caché de datos <strong>usables</strong> o <strong>relevantes</strong> para las operaciones (ver ejemplo del algoritmo 2 anterior).</p></li>
+<li><p>En Python se tiene el paquete de <a class="reference external" href="https://numpy.org/">NumPy</a> para almacenamiento de bloques de memoria contiguos de arreglos y uso de la capacidad de la CPU para operaciones en un modo vectorizado. Sin extensiones a Python con paquetes como <code class="docutils literal notranslate"><span class="pre">numpy</span></code> no sería posible en este lenguaje aprovechar la vectorización (capaz de realizar un procesador actual) ni alojar bloques de memoria contiguos. El no soporte para operaciones vectorizadas tiene que ver con que el <a class="reference external" href="https://en.wikipedia.org/wiki/Bytecode">bytecode</a> de Python no está optimizado para vectorización. En el caso del alojamiento de bloques de memoria contiguos, Python es un <em>garbage-collected language</em> que permite que la memoria sea automáticamente alojada y liberada. No obstante tal característica causa problemas del tipo <em><strong>memory fragmentation</strong></em> que afecta la transferencia al caché de datos <strong>usables</strong> o <strong>relevantes</strong> para las operaciones (ver ejemplo del algoritmo 2 anterior).</p></li>
 </ul>
 </div>
 </div>
@@ -922,6 +927,10 @@
 <li><p><a class="reference external" href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a></p></li>
 <li><p><a class="reference external" href="http://math-atlas.sourceforge.net">Atlas</a>, <a class="reference external" href="http://math-atlas.sourceforge.net/atlas_install/node8.html">Building a full LAPACK library using ATLAS and netlib’s LAPACK</a>, <a class="reference external" href="http://math-atlas.sourceforge.net/faq.html">ATLAS FAQ</a></p></li>
 </ul>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Ver <a class="reference external" href="https://numpy.org/devdocs/user/building.html#prerequisites">Building from source-Prerequisites</a> para información sobre diferentes librerías de álgebra lineal que se pueden utilizar para <em>NumPy</em> al instalarlas en nuestras máquinas.</p>
+</div>
 </div>
 </div>
 <div class="section" id="que-es-el-perfilamiento-y-por-que-es-necesario">
@@ -1243,7 +1252,7 @@ A. Greenbaum, S. Hammarling, A. Mckenney and D. Sorensen, LAPACK Users Guide, So
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="../../IV.optimizacion_en_redes_y_prog_lineal/4.5/Metodo_primal_dual_de_BL.html" title="previous page">4.5 Método primal-dual de barrera logarítmica (BL)</a>
-    <a class='right-next' id="next-link" href="../../VI.algoritmos_optimizacion_convexa/6.1/Problemas_UCO.html" title="next page">6.1 Problemas tipo <em>Unconstrained Convex Optimization</em> (UCO)</a>
+    <a class='right-next' id="next-link" href="../5.2/Herramientas_en_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html" title="next page">5.2 Herramientas en lenguajes de programación y del sistema operativo para perfilamiento e implementaciones de BLAS</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
