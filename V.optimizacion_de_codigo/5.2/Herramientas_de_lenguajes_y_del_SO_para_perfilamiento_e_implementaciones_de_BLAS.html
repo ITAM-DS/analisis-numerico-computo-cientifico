@@ -369,24 +369,28 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#perfilamiento">
-   Perfilamiento
+  <a class="reference internal nav-link" href="#python">
+   <em>
+    Python
+   </em>
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#medicion-de-tiempo">
-   Medición de tiempo
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#medicion-de-uso-de-cpu">
-   Medición de uso de CPU
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#medicion-de-uso-de-memoria">
-   Medición de uso de Memoria
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perfilamiento-medicion-de-tiempo">
+     Perfilamiento: medición de tiempo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perfilamiento-medicion-de-uso-de-cpu">
+     Perfilamiento: medición de uso de CPU
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perfilamiento-medicion-de-uso-de-memoria">
+     Perfilamiento: medición de uso de Memoria
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#blas">
@@ -401,21 +405,18 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#herramientas-independientes-de-python">
-   Herramientas independientes de
-   <em>
-    Python
-   </em>
+  <a class="reference internal nav-link" href="#herramientas-del-sistema-operativo-gnu-linux">
+   Herramientas del sistema operativo GNU/Linux
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#medicion-de-tiempos-time">
-     Medición de tiempos: time
+    <a class="reference internal nav-link" href="#perfilamiento-medicion-de-tiempos">
+     Perfilamiento: medición de tiempos
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#medicion-de-uso-de-cpu-perf">
-     Medición de uso de CPU: Perf
+    <a class="reference internal nav-link" href="#id1">
+     Perfilamiento: medición de uso de CPU
     </a>
    </li>
   </ul>
@@ -444,8 +445,8 @@
 <p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab_optimizacion_2:3.0.0</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2">liga</a>.</p>
 </div>
 <hr class="docutils" />
-<p>En esta nota revisamos algunas herramientas en lenguajes de programación y de los sistemas GNU/Linux para perfilamiento de código. También se revisan las operaciones de BLAS en sus diferentes niveles con ejemplos de paquetes en los lenguajes.</p>
-<p>Se presentan códigos con reportes de las ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a> y se sugiere se utilice la AMI –aquí colocar nombre de AMI– de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con los siguientes <em>statements</em>:</p>
+<p>En esta nota revisamos algunas herramientas de los lenguajes de programación y de los sistemas GNU/Linux para perfilamiento de código. También se revisan las operaciones de BLAS en sus diferentes niveles con ejemplos de paquetes en los lenguajes.</p>
+<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se sugiere se utilice la AMI –aquí colocar nombre de AMI– de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con los siguientes <em>statements</em>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#Virginia region</span>
 <span class="nv">region</span><span class="o">=</span>us-east-1
@@ -519,11 +520,10 @@ sudo -H --preserve-env -u <span class="nv">$USER</span> bash <span class="s">&lt
 <span class="s">EOF</span>
 </pre></div>
 </div>
-<div class="section" id="perfilamiento">
-<h2>Perfilamiento<a class="headerlink" href="#perfilamiento" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="medicion-de-tiempo">
-<h2>Medición de tiempo<a class="headerlink" href="#medicion-de-tiempo" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="python">
+<h2><em>Python</em><a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="perfilamiento-medicion-de-tiempo">
+<h3>Perfilamiento: medición de tiempo<a class="headerlink" href="#perfilamiento-medicion-de-tiempo" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/time.html#time.time">time</a></p></li>
 </ul>
@@ -536,15 +536,16 @@ sudo -H --preserve-env -u <span class="nv">$USER</span> bash <span class="s">&lt
 <li><p><a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-timeit">%timeit</a> de comandos de <em>magic</em>.</p></li>
 </ul>
 </div>
-<div class="section" id="medicion-de-uso-de-cpu">
-<h2>Medición de uso de CPU<a class="headerlink" href="#medicion-de-uso-de-cpu" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="perfilamiento-medicion-de-uso-de-cpu">
+<h3>Perfilamiento: medición de uso de CPU<a class="headerlink" href="#perfilamiento-medicion-de-uso-de-cpu" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>De CPU con: <a class="reference external" href="https://pypi.org/project/line-profiler/">line_profiler</a>, <a class="reference external" href="https://docs.python.org/2/library/profile.html">CProfile</a> que es <code class="docutils literal notranslate"><span class="pre">built-in</span></code> en la <em>standard-library</em> de Python.</p></li>
 <li><p>De memoria con: <a class="reference external" href="https://pypi.org/project/memory-profiler/">memory_profiler</a> y <a class="reference external" href="https://pypi.org/project/guppy/">heapy</a>.</p></li>
 </ul>
 </div>
-<div class="section" id="medicion-de-uso-de-memoria">
-<h2>Medición de uso de Memoria<a class="headerlink" href="#medicion-de-uso-de-memoria" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="perfilamiento-medicion-de-uso-de-memoria">
+<h3>Perfilamiento: medición de uso de Memoria<a class="headerlink" href="#perfilamiento-medicion-de-uso-de-memoria" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 <div class="section" id="blas">
 <h2>BLAS<a class="headerlink" href="#blas" title="Permalink to this headline">¶</a></h2>
@@ -552,16 +553,19 @@ sudo -H --preserve-env -u <span class="nv">$USER</span> bash <span class="s">&lt
 <h3>OpenBLAS<a class="headerlink" href="#openblas" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
-<div class="section" id="herramientas-independientes-de-python">
-<h2>Herramientas independientes de <em>Python</em><a class="headerlink" href="#herramientas-independientes-de-python" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="medicion-de-tiempos-time">
-<h3>Medición de tiempos: time<a class="headerlink" href="#medicion-de-tiempos-time" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="herramientas-del-sistema-operativo-gnu-linux">
+<h2>Herramientas del sistema operativo GNU/Linux<a class="headerlink" href="#herramientas-del-sistema-operativo-gnu-linux" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="perfilamiento-medicion-de-tiempos">
+<h3>Perfilamiento: medición de tiempos<a class="headerlink" href="#perfilamiento-medicion-de-tiempos" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Time_(Unix)">/usr/bin/time</a> de <code class="docutils literal notranslate"><span class="pre">Unix</span></code>.</p></li>
 </ul>
 </div>
-<div class="section" id="medicion-de-uso-de-cpu-perf">
-<h3>Medición de uso de CPU: Perf<a class="headerlink" href="#medicion-de-uso-de-cpu-perf" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Perfilamiento: medición de uso de CPU<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/torvalds/linux/tree/master/tools/perf">perf</a></p></li>
+</ul>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
 <p>1.Resuelve los ejercicios y preguntas de la nota.</p>
