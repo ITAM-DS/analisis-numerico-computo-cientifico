@@ -382,8 +382,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#time-timeit-de-comandos-de-magic">
-     %time, %timeit de comandos de
+    <a class="reference internal nav-link" href="#time">
+     %time
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#timeit-de-comandos-de-magic">
+     %timeit de comandos de
      <em>
       magic
      </em>
@@ -594,11 +599,9 @@ sudo -H --preserve-env -u <span class="nv">$USER</span> bash <span class="s">&lt
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
-
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute numerical approximation using rectangle or mid-point</span>
 <span class="sd">    method in an interval.</span>
@@ -648,12 +651,35 @@ sudo -H --preserve-env -u <span class="nv">$USER</span> bash <span class="s">&lt
 </pre></div>
 </div>
 </div>
-<div class="section" id="time-timeit-de-comandos-de-magic">
-<h3><a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-time">%time</a>, <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-timeit">%timeit</a> de comandos de <em>magic</em>.<a class="headerlink" href="#time-timeit-de-comandos-de-magic" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="time">
+<h3><a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-time">%time</a><a class="headerlink" href="#time" title="Permalink to this headline">¶</a></h3>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Los comandos de <em>magic</em> los podemos utilizar en los <em>jupyter notebooks</em>.</p>
+<p>Los comandos de <em>magic</em> los podemos utilizar en los <em>jupyter notebooks</em> pero también con <em>import</em>’s.</p>
 </div>
+<p>Nos regresa las mediciones siguientes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CPU</span> <span class="pre">times</span></code> que contiene:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span></code>: mide la cantidad de tiempo de los <em>statements</em> que la CPU gastó para funciones que no están relacionadas con el <em>kernel</em> del sistema.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sys</span></code>: mide la cantidad de tiempo de los <em>statements</em> que la CPU gastó en funciones a nivel de kernel del sistema.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total</span></code>: suma entre el <code class="docutils literal notranslate"><span class="pre">user</span></code> y <code class="docutils literal notranslate"><span class="pre">sys</span></code> para todos <strong>todos los <em>cores</em></strong>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">time</span></code>: mide el <em>wall clock</em> o <em>elapsed time</em> que se refiere al tiempo desde que inicia la ejecución de los <em>statements</em> hasta su finalización.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Out</span></code>: resultado.</p></li>
+</ul>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Para mediciones de tiempos que involucran cómputo en paralelo es posible que <code class="docutils literal notranslate"><span class="pre">total</span></code> exceda a <code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">time</span></code> pues es la suma de tiempos para todos los <em>cores</em>.</p></li>
+<li><p>Recuérdese que algunos ejemplos de funciones relacionadas con el <em>kernel</em> del sistema es el alojamiento de memoria al crear una variable tanto lectura y escritura, las relacionadas con el I/O de disco o network.</p></li>
+<li><p>Para una ejecución secuencial la diferencia entre <code class="docutils literal notranslate"><span class="pre">total</span></code> y <code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">time</span></code> da una idea de la cantidad de tiempo que se ocupó el sistema en la ejecución de <em>statements</em> que no involucran <code class="docutils literal notranslate"><span class="pre">user</span></code> ni a <code class="docutils literal notranslate"><span class="pre">sys</span></code> (por ejemplo un <em>statement</em> del tipo <code class="docutils literal notranslate"><span class="pre">sleep</span></code>) o en tareas no relacionadas con los <em>statements</em> medidos (por ejemplo si en el momento de la medición se están corriendo otros procesos).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="timeit-de-comandos-de-magic">
+<h3><a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-timeit">%timeit</a> de comandos de <em>magic</em>.<a class="headerlink" href="#timeit-de-comandos-de-magic" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="perfilamiento-medicion-de-uso-de-cpu-en-python">
