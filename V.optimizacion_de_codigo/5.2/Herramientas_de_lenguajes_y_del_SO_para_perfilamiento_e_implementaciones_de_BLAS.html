@@ -518,6 +518,13 @@
 <li></li>
 </ul>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">execute_cell</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>En esta nota revisamos algunas herramientas de los lenguajes de programación y de los sistemas GNU/Linux para perfilamiento de código. También se revisan las operaciones de BLAS en sus diferentes niveles con ejemplos de paquetes en los lenguajes.</p>
 <p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se sugiere se utilice la AMI –aquí colocar nombre de AMI– de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con los siguientes <em>statements</em>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
@@ -601,14 +608,21 @@ sudo -H --preserve-env -u <span class="nv">$USER</span> bash <span class="s">&lt
 <div class="section" id="modulo-time">
 <h3>Módulo: <a class="reference external" href="https://docs.python.org/3/library/time.html#time.time">time</a><a class="headerlink" href="#modulo-time" title="Permalink to this headline">¶</a></h3>
 <p>Imports y funciones de apoyo:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute numerical approximation using rectangle or mid-point</span>
 <span class="sd">    method in an interval.</span>
@@ -637,25 +651,43 @@ sudo -H --preserve-env -u <span class="nv">$USER</span> bash <span class="s">&lt
     <span class="k">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span>
 </pre></div>
 </div>
+</div>
+</div>
 <p>Objetivo:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="cell tag_remove-cel docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">execute_cell</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#using math library</span>
+    <span class="n">a</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">b</span><span class="o">=</span><span class="mi">1</span>
+    <span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
 </div>
 <p>Medición de tiempo:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#using math library</span>
-<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
-<span class="n">a</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">b</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">res</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-<span class="n">secs</span> <span class="o">=</span> <span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rcf tomó&quot;</span><span class="p">,</span><span class="n">secs</span><span class="p">,</span><span class="s2">&quot;segundos&quot;</span> <span class="p">)</span>
+<div class="cell tag_remove-cel docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">execute_cell</span><span class="p">:</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">res</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">secs</span> <span class="o">=</span> <span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rcf tomó&quot;</span><span class="p">,</span><span class="n">secs</span><span class="p">,</span><span class="s2">&quot;segundos&quot;</span> <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
 <p>Prueba que se resuelve correctamente el problema:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+<div class="cell tag_remove-cel docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">execute_cell</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
 </pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="comando-de-magic-time">
