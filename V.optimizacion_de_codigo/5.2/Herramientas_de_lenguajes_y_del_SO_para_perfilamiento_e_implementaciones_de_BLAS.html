@@ -465,8 +465,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#perfilamiento-medicion-de-tiempo-en-el-sistema-operativo-gnu-linux">
-   Perfilamiento: medición de tiempo en el sistema operativo GNU/Linux
+  <a class="reference internal nav-link" href="#perfilamiento-medicion-de-tiempo-en-el-sistema-operativo-ubuntu-20-04">
+   Perfilamiento: medición de tiempo en el sistema operativo Ubuntu 20.04
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -778,10 +778,132 @@ lscpu
 <h3>OpenBLAS y librerías de cómputo matricial de <em>R</em><a class="headerlink" href="#openblas-y-librerias-de-computo-matricial-de-r" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
-<div class="section" id="perfilamiento-medicion-de-tiempo-en-el-sistema-operativo-gnu-linux">
-<h2>Perfilamiento: medición de tiempo en el sistema operativo GNU/Linux<a class="headerlink" href="#perfilamiento-medicion-de-tiempo-en-el-sistema-operativo-gnu-linux" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="perfilamiento-medicion-de-tiempo-en-el-sistema-operativo-ubuntu-20-04">
+<h2>Perfilamiento: medición de tiempo en el sistema operativo Ubuntu 20.04<a class="headerlink" href="#perfilamiento-medicion-de-tiempo-en-el-sistema-operativo-ubuntu-20-04" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="usr-bin-time">
-<h3><a class="reference external" href="https://en.wikipedia.org/wiki/Time_(Unix)">/usr/bin/time</a><a class="headerlink" href="#usr-bin-time" title="Permalink to this headline">¶</a></h3>
+<h3><a class="reference external" href="http://manpages.ubuntu.com/manpages/focal/man1/time.1.html">/usr/bin/time</a><a class="headerlink" href="#usr-bin-time" title="Permalink to this headline">¶</a></h3>
+<p>Ver también: <a class="reference external" href="https://en.wikipedia.org/wiki/Time_(Unix)">Wikipedia: Time_Unix</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf.py
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+<span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute numerical approximation using rectangle or mid-point</span>
+<span class="sd">    method in an interval.</span>
+<span class="sd">    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for</span>
+<span class="sd">    i=0,1,...,n-1 and h_hat=(b-a)/n</span>
+<span class="sd">    Args:</span>
+<span class="sd">    </span>
+<span class="sd">        f (function): function expression of integrand.</span>
+<span class="sd">        </span>
+<span class="sd">        a (float): left point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        b (float): right point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        n (float): number of subintervals.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        sum_res (float): numerical approximation to integral</span>
+<span class="sd">            of f in the interval a,b</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">nodes</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+        <span class="n">sum_res</span><span class="o">=</span><span class="n">sum_res</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span> <span class="c1">#añadimos este bloque para ejecución de la función Rcf</span>
+    <span class="n">a</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">b</span><span class="o">=</span><span class="mi">1</span>
+    <span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;objetivo: </span><span class="si">{:0.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">res</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;aproximación: </span><span class="si">{:0.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+/usr/bin/time -p python3 Rcf.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>objetivo: 7.468241e-01
+aproximación: 7.468272e-01
+False
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real 0.50
+user 0.33
+sys 0.27
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+/usr/bin/time -v python3 Rcf.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>objetivo: 7.468241e-01
+aproximación: 7.468272e-01
+False
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Command being timed: &quot;python3 Rcf.py&quot;
+	User time (seconds): 0.34
+	System time (seconds): 0.27
+	Percent of CPU this job got: 120%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.50
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 58280
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 9181
+	Voluntary context switches: 234
+	Involuntary context switches: 267
+	Swaps: 0
+	File system inputs: 16
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Una breve explicación del <em>output</em> se puede encontrar <a class="reference external" href="http://manpages.ubuntu.com/manpages/focal/man1/time.1.html">/usr/bin/time</a>. Por ejemplo, para el caso de <code class="docutils literal notranslate"><span class="pre">Major</span> <span class="pre">(requiring</span> <span class="pre">I/O)</span></code> nos interesa que sea <span class="math notranslate nohighlight">\(0\)</span> pues indica que el sistema operativo tiene que cargar páginas de datos del disco pues tales datos ya no residen en RAM (por alguna razón).</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>La medición <code class="docutils literal notranslate"><span class="pre">real</span></code> que regresa <code class="docutils literal notranslate"><span class="pre">/usr/bin/time</span></code> es el equivalente al <code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">time</span></code> de <code class="docutils literal notranslate"><span class="pre">%time</span></code>.</p>
+</div>
 </div>
 </div>
 <div class="section" id="perfilamiento-medicion-de-uso-de-cpu-en-el-sistema-operativo-gnu-linux">
