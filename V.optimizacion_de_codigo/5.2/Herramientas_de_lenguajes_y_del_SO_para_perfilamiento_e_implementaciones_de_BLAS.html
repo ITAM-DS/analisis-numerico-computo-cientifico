@@ -382,17 +382,21 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#time">
-     %time
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#timeit-de-comandos-de-magic">
-     %timeit de comandos de
+    <a class="reference internal nav-link" href="#comando-de-magic-time">
+     Comando de
      <em>
       magic
      </em>
-     .
+     : %time
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comando-de-magic-timeit">
+     Comando de
+     <em>
+      magic
+     </em>
+     : %timeit
     </a>
    </li>
   </ul>
@@ -518,13 +522,11 @@
 <p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se sugiere se utilice la AMI –aquí colocar nombre de AMI– de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con los siguientes <em>statements</em>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#Virginia region</span>
-<span class="nv">region</span><span class="o">=</span>us-east-1
-<span class="nv">name_instance</span><span class="o">=</span>profiling-OpenBLAS
 <span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive
 <span class="nv">DEB_BUILD_DEPS</span><span class="o">=</span><span class="s2">&quot;build-essential python3-dev python3-pip python3-setuptools software-properties-common libgit2-dev dirmngr libgmp3-dev libmpfr-dev&quot;</span>
 <span class="c1">#Install OpenBLAS and other tools</span>
 <span class="nv">DEB_PACKAGES</span><span class="o">=</span><span class="s2">&quot;sudo nano less time git nodejs curl wget htop gfortran linux-tools-</span><span class="k">$(</span>uname -r<span class="k">)</span><span class="s2"> linux-tools-generic libopenblas-dev&quot;</span>
-<span class="nv">PIP_PACKAGES</span><span class="o">=</span><span class="s2">&quot;awscli line_profiler memory_profiler psutil guppy3 jedi==0.17.2 awscli&quot;</span>
+<span class="nv">PIP_PACKAGES</span><span class="o">=</span><span class="s2">&quot;line_profiler memory_profiler psutil guppy3 jedi==0.17.2 awscli&quot;</span>
 <span class="nv">R_KEY</span><span class="o">=</span><span class="s2">&quot;E298A3A825C0D65DFD57CBB651716619E084DAB9&quot;</span>
 <span class="nv">R_DEB_BUILD_DEPS</span><span class="o">=</span><span class="s2">&quot;focal-cran40 r-base libssl-dev libxml2-dev libcurl4-openssl-dev&quot;</span>
 <span class="nv">USER</span><span class="o">=</span>ubuntu
@@ -589,6 +591,11 @@ sudo -H --preserve-env -u <span class="nv">$USER</span> bash <span class="s">&lt
 <span class="s">EOF</span>
 </pre></div>
 </div>
+<p>Y la máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> tiene las siguientes características:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+<span class="n">lscpu</span>
+</pre></div>
+</div>
 <div class="section" id="perfilamiento-medicion-de-tiempo-en-python">
 <h2>Perfilamiento: medición de tiempo en <em>Python</em><a class="headerlink" href="#perfilamiento-medicion-de-tiempo-en-python" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="modulo-time">
@@ -651,8 +658,8 @@ sudo -H --preserve-env -u <span class="nv">$USER</span> bash <span class="s">&lt
 </pre></div>
 </div>
 </div>
-<div class="section" id="time">
-<h3><a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-time">%time</a><a class="headerlink" href="#time" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="comando-de-magic-time">
+<h3>Comando de <em>magic</em>: <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-time">%time</a><a class="headerlink" href="#comando-de-magic-time" title="Permalink to this headline">¶</a></h3>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Los comandos de <em>magic</em> los podemos utilizar en los <em>jupyter notebooks</em> pero también con <em>import</em>’s.</p>
@@ -673,13 +680,29 @@ sudo -H --preserve-env -u <span class="nv">$USER</span> bash <span class="s">&lt
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>Para mediciones de tiempos que involucran cómputo en paralelo es posible que <code class="docutils literal notranslate"><span class="pre">total</span></code> exceda a <code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">time</span></code> pues es la suma de tiempos para todos los <em>cores</em>.</p></li>
-<li><p>Recuérdese que algunos ejemplos de funciones relacionadas con el <em>kernel</em> del sistema es el alojamiento de memoria al crear una variable tanto lectura y escritura, las relacionadas con el I/O de disco o network.</p></li>
-<li><p>La diferencia entre <code class="docutils literal notranslate"><span class="pre">total</span></code> y <code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">time</span></code> da una idea de la cantidad de tiempo que se ocupó el sistema en la ejecución de <em>statements</em> que no involucran <code class="docutils literal notranslate"><span class="pre">user</span></code> ni a <code class="docutils literal notranslate"><span class="pre">sys</span></code> (por ejemplo un <em>statement</em> del tipo <code class="docutils literal notranslate"><span class="pre">sleep</span></code>) o en tareas no relacionadas con los <em>statements</em> medidos (por ejemplo si en el momento de la medición se están corriendo otros procesos).</p></li>
+<li><p>Recuérdese que algunos ejemplos de funciones relacionadas con el <em>kernel</em> del sistema es el alojamiento, lectura y escritura de variables en memoria, las relacionadas con el I/O de disco o <em>network</em>.</p></li>
+<li><p>La diferencia entre <code class="docutils literal notranslate"><span class="pre">total</span></code> y <code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">time</span></code> da una idea de la cantidad de tiempo que se ocupó el sistema en la ejecución de <em>statements</em> que no involucran <code class="docutils literal notranslate"><span class="pre">user</span></code> ni a <code class="docutils literal notranslate"><span class="pre">sys</span></code> (por ejemplo un <em>statement</em> del tipo <code class="docutils literal notranslate"><span class="pre">sleep</span></code>) o en tareas no relacionadas con los <em>statements</em> medidos (por ejemplo si en el momento de la medición se estaban corriendo otros procesos).</p></li>
 </ul>
 </div>
+<p>Al medir tiempos de ejecución, <strong>siempre</strong> hay variación en la medición por lo que se recomienda realizar las mediciones un número repetido de veces. Para este caso el comando de <em>magic</em> <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> nos ayuda.</p>
 </div>
-<div class="section" id="timeit-de-comandos-de-magic">
-<h3><a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-timeit">%timeit</a> de comandos de <em>magic</em>.<a class="headerlink" href="#timeit-de-comandos-de-magic" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="comando-de-magic-timeit">
+<h3>Comando de <em>magic</em>: <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-timeit">%timeit</a><a class="headerlink" href="#comando-de-magic-timeit" title="Permalink to this headline">¶</a></h3>
+<p>A continuación se mide el tiempo de ejecución para la función <code class="docutils literal notranslate"><span class="pre">Rcf</span></code>. Se promedian los tiempos de <span class="math notranslate nohighlight">\(n=5\)</span> ejecuciones y se calcula su desviación estándar. Se reptite lo anterior <span class="math notranslate nohighlight">\(r=10\)</span> veces y se reporta el mejor resultado.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">timeit</span> <span class="o">-</span><span class="n">n</span> <span class="mi">5</span> <span class="o">-</span><span class="n">r</span> <span class="mi">10</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p><span class="math notranslate nohighlight">\(ms\)</span> es milisecond, <span class="math notranslate nohighlight">\(\mu s\)</span> es microsecond y <span class="math notranslate nohighlight">\(ns\)</span> es nanosecond.</p>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%timeit</span></code> se recomienda usar para secciones de código pequeñas. Si se observa una variación en las mediciones de tiempo entre distintas repeticiones entonces hay que realizar más repeticiones hasta tener un resultado estable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%timeit</span></code> desabilita temporalmente el <em>garbage collector</em> de <em>Python</em> (esto es, no habrá desalojamiento en memoria de objetos de Python que no se utilicen). Si el <em>garbage collector</em> es invocado en tus <em>statements</em>, esto puede ser una razón de posibles diferencias que se obtengan en las mediciones de tiempo.</p></li>
+</ul>
+</div>
 </div>
 </div>
 <div class="section" id="perfilamiento-medicion-de-uso-de-cpu-en-python">
