@@ -519,78 +519,7 @@
 </ul>
 </div>
 <p>En esta nota revisamos algunas herramientas de los lenguajes de programación y de los sistemas GNU/Linux para perfilamiento de código. También se revisan las operaciones de BLAS en sus diferentes niveles con ejemplos de paquetes en los lenguajes.</p>
-<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se sugiere se utilice la AMI –aquí colocar nombre de AMI– de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con los siguientes <em>statements</em>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1">#Virginia region</span>
-<span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive
-<span class="nv">DEB_BUILD_DEPS</span><span class="o">=</span><span class="s2">&quot;build-essential python3-dev python3-pip python3-setuptools software-properties-common libgit2-dev dirmngr libgmp3-dev libmpfr-dev&quot;</span>
-<span class="c1">#Install OpenBLAS and other tools</span>
-<span class="nv">DEB_PACKAGES</span><span class="o">=</span><span class="s2">&quot;sudo nano less time git nodejs curl wget htop gfortran linux-tools-</span><span class="k">$(</span>uname -r<span class="k">)</span><span class="s2"> linux-tools-generic libopenblas-dev&quot;</span>
-<span class="nv">PIP_PACKAGES</span><span class="o">=</span><span class="s2">&quot;line_profiler memory_profiler psutil guppy3 jedi==0.17.2 awscli&quot;</span>
-<span class="nv">R_KEY</span><span class="o">=</span><span class="s2">&quot;E298A3A825C0D65DFD57CBB651716619E084DAB9&quot;</span>
-<span class="nv">R_DEB_BUILD_DEPS</span><span class="o">=</span><span class="s2">&quot;focal-cran40 r-base libssl-dev libxml2-dev libcurl4-openssl-dev&quot;</span>
-<span class="nv">USER</span><span class="o">=</span>ubuntu
-<span class="nv">JUPYTERLAB_VERSION</span><span class="o">=</span><span class="m">3</span>.0.0
-<span class="nv">LANG</span><span class="o">=</span>C.UTF-8
-<span class="nv">LC_ALL</span><span class="o">=</span>C.UTF-8
-<span class="nv">R_SITE_LIBRARY</span><span class="o">=</span><span class="s2">&quot;/usr/local/lib/R/site-library&quot;</span>
-<span class="nv">R_PACKAGES</span><span class="o">=</span><span class="s2">&quot;\&quot;repr IRdisplay evaluate crayon pbdZMQ devtools uuid digest CVXR tidyverse tictoc microbenchmark\&quot;&quot;</span>
-
-apt-get update <span class="o">&amp;&amp;</span> <span class="nb">export</span> <span class="nv">$DEBIAN_FRONTEND</span> <span class="o">&amp;&amp;</span> apt-get install -y tzdata
-
-apt-get update <span class="o">&amp;&amp;</span> apt-get install -y <span class="nv">$DEB_BUILD_DEPS</span> <span class="nv">$DEB_PACKAGES</span> <span class="o">&amp;&amp;</span> pip3 install --upgrade pip
-
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys <span class="nv">$R_KEY</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
-add-apt-repository <span class="s2">&quot;deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/&quot;</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
-apt-get update <span class="o">&amp;&amp;</span> <span class="se">\</span>
-apt-get install -yt <span class="nv">$R_DEB_BUILD_DEPS</span>
-
-<span class="c1">#install next packages for ubuntu user</span>
-
-sudo -H --preserve-env -u <span class="nv">$USER</span> bash <span class="s">&lt;&lt; EOF</span>
-<span class="s">export PATH=/home/$USER/.local/bin:$PATH</span>
-
-<span class="s">pip3 install --user jupyter jupyterlab==$JUPYTERLAB_VERSION</span>
-
-<span class="s">jupyter notebook --generate-config &amp;&amp; sed -i &quot;s/# c.NotebookApp.password = .*/c.NotebookApp.password = u&#39;sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380&#39;/&quot; /home/$USER/.jupyter/jupyter_notebook_config.py</span>
-
-<span class="s">#install numpy and scipy using OpenBLAS installation</span>
-
-<span class="s">pip3 install --user numpy --no-binary numpy</span>
-<span class="s">pip3 install --user scipy --no-binary scipy</span>
-
-<span class="s">pip3 install --user $PIP_PACKAGES</span>
-
-<span class="s">#c kernel in jupyter</span>
-
-<span class="s">pip3 install --user git+https://github.com/brendan-rius/jupyter-c-kernel.git &amp;&amp; python3 /home/$USER/.local/lib/python3.8/site-packages/jupyter_c_kernel/install_c_kernel --prefix=/home/$USER/.local/</span>
-
-<span class="s">#r kernel in jupyter</span>
-<span class="s">sudo chmod gou+wrx $R_SITE_LIBRARY</span>
-<span class="s">R -e &#39;install.packages(strsplit($R_PACKAGES, &quot; &quot;)[[1]], lib=&quot;/usr/local/lib/R/site-library/&quot;)&#39; &amp;&amp; \</span>
-<span class="s">R -e &#39;devtools::install_github(&quot;IRkernel/IRkernel&quot;)&#39; &amp;&amp; \</span>
-<span class="s">R -e &#39;IRkernel::installspec()&#39; #or:R -e &#39;IRkernel::installspec(user=FALSE)&#39;</span>
-
-<span class="s">#julia kernel in jupyter</span>
-
-<span class="s">sudo mkdir /usr/local/julia-1.6.0</span>
-<span class="s">cd</span>
-<span class="s">wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.0-linux-x86_64.tar.gz</span>
-<span class="s">tar zxvf julia-1.6.0-linux-x86_64.tar.gz</span>
-
-<span class="s">sudo cp -r julia-1.6.0/* /usr/local/julia-1.6.0/ </span>
-
-<span class="s">/usr/local/julia-1.6.0/bin/julia -e &#39;using Pkg;Pkg.add(&quot;IJulia&quot;)&#39; &amp;&amp; \</span>
-<span class="s">/usr/local/julia-1.6.0/bin/julia -e &#39;using Pkg;Pkg.add(Pkg.PackageSpec(name=&quot;JuMP&quot;, rev=&quot;master&quot;))&#39; &amp;&amp; \</span>
-<span class="s">/usr/local/julia-1.6.0/bin/julia -e &#39;using Pkg;Pkg.add(&quot;ECOS&quot;);Pkg.add(&quot;OSQP&quot;);Pkg.add(&quot;SCS&quot;);Pkg.add(&quot;GLPK&quot;);Pkg.add(&quot;Optim&quot;)&#39;</span>
-
-<span class="s">#launch jupyter lab</span>
-
-<span class="s">/home/$USER/.local/bin/jupyter lab --ip=0.0.0.0 --no-browser --config=/home/$USER/.jupyter/jupyter_notebook_config.py &amp;</span>
-
-<span class="s">EOF</span>
-</pre></div>
-</div>
+<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se sugiere se utilice la AMI –aquí colocar nombre de AMI– de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a></p>
 <p>Y la máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> tiene las siguientes características:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -600,27 +529,65 @@ lscpu
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Architecture:        x86_64
-CPU op-mode(s):      32-bit, 64-bit
-Byte Order:          Little Endian
-Address sizes:       39 bits physical, 48 bits virtual
-CPU(s):              2
-On-line CPU(s) list: 0,1
-Thread(s) per core:  1
-Core(s) per socket:  1
-Socket(s):           2
-Vendor ID:           GenuineIntel
-CPU family:          6
-Model:               61
-Model name:          Intel(R) Core(TM) i5-5257U CPU @ 2.70GHz
-Stepping:            4
-CPU MHz:             2699.647
-BogoMIPS:            5399.29
-L1d cache:           32K
-L1i cache:           32K
-L2 cache:            256K
-L3 cache:            3072K
-Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht pbe syscall nx pdpe1gb lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq dtes64 ds_cpl ssse3 sdbg fma cx16 xtpr pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch fsgsbase bmi1 avx2 bmi2 erms xsaveopt arat
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   46 bits physical, 48 bits virtual
+CPU(s):                          8
+On-line CPU(s) list:             0-7
+Thread(s) per core:              2
+Core(s) per socket:              4
+Socket(s):                       1
+NUMA node(s):                    1
+Vendor ID:                       GenuineIntel
+CPU family:                      6
+Model:                           85
+Model name:                      Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz
+Stepping:                        7
+CPU MHz:                         3353.649
+BogoMIPS:                        4999.99
+Hypervisor vendor:               KVM
+Virtualization type:             full
+L1d cache:                       128 KiB
+L1i cache:                       128 KiB
+L2 cache:                        4 MiB
+L3 cache:                        35.8 MiB
+NUMA node0 CPU(s):               0-7
+Vulnerability Itlb multihit:     KVM: Vulnerable
+Vulnerability L1tf:              Mitigation; PTE Inversion
+Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Spec store bypass: Vulnerable
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves ida arat pku ospke
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+sudo lshw -C memory
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  *-firmware
+       description: BIOS
+       vendor: Amazon EC2
+       physical id: 0
+       version: 1.0
+       date: 10/16/2017
+       size: 64KiB
+       capacity: 64KiB
+       capabilities: pci edd acpi virtualmachine
+  *-memory
+       description: System memory
+       physical id: 1
+       size: 31GiB
 </pre></div>
 </div>
 </div>
@@ -690,11 +657,16 @@ Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cm
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7468241328124271
+</pre></div>
+</div>
+</div>
 </div>
 <p>Medición de tiempo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
 <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">res</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
@@ -704,7 +676,7 @@ Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cm
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 4.506111145019531e-05 segundos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 0.3066103458404541 segundos
 </pre></div>
 </div>
 </div>
@@ -717,7 +689,7 @@ Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cm
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
 </pre></div>
 </div>
 </div>
@@ -752,7 +724,12 @@ Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cm
 <p>A continuación se mide el tiempo de ejecución para la función <code class="docutils literal notranslate"><span class="pre">Rcf</span></code>. Se promedian los tiempos de <span class="math notranslate nohighlight">\(n=5\)</span> ejecuciones y se calcula su desviación estándar. Se reptite lo anterior <span class="math notranslate nohighlight">\(r=10\)</span> veces y se reporta el mejor resultado.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -n 5 -r 10 Rcf(f,0,1,n)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -n 5 -r 10 Rcf(f,a, b,n)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>301 ms ± 636 µs per loop (mean ± std. dev. of 10 runs, 5 loops each)
 </pre></div>
 </div>
 </div>
@@ -843,7 +820,7 @@ Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cm
     <span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;objetivo: </span><span class="si">{:0.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
-    <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
     <span class="n">res</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;aproximación: </span><span class="si">{:0.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
@@ -865,13 +842,13 @@ Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cm
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>objetivo: 7.468241e-01
-aproximación: 7.468272e-01
-False
+aproximación: 7.468241e-01
+True
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real 0.50
-user 0.33
-sys 0.27
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real 0.64
+user 0.91
+sys 0.48
 </pre></div>
 </div>
 </div>
@@ -885,27 +862,27 @@ sys 0.27
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>objetivo: 7.468241e-01
-aproximación: 7.468272e-01
-False
+aproximación: 7.468241e-01
+True
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Command being timed: &quot;python3 Rcf.py&quot;
-	User time (seconds): 0.34
-	System time (seconds): 0.27
-	Percent of CPU this job got: 120%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.50
+	User time (seconds): 0.90
+	System time (seconds): 0.47
+	Percent of CPU this job got: 219%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.63
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 58280
+	Maximum resident set size (kbytes): 97272
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 9181
-	Voluntary context switches: 234
-	Involuntary context switches: 267
+	Minor (reclaiming a frame) page faults: 20709
+	Voluntary context switches: 13
+	Involuntary context switches: 14
 	Swaps: 0
-	File system inputs: 16
+	File system inputs: 0
 	File system outputs: 0
 	Socket messages sent: 0
 	Socket messages received: 0
