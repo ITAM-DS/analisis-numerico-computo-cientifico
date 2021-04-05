@@ -519,8 +519,26 @@
 </ul>
 </div>
 <p>En esta nota revisamos algunas herramientas de los lenguajes de programación y de los sistemas GNU/Linux para perfilamiento de código. También se revisan las operaciones de BLAS en sus diferentes niveles con ejemplos de paquetes en los lenguajes.</p>
-<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se sugiere se utilice la AMI –aquí colocar nombre de AMI– de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a></p>
-<p>Y la máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> tiene las siguientes características:</p>
+<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se sugiere se utilice la AMI <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>. Si se utiliza la AMI anterior usar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Si se utiliza la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> colocar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">##variables:</span>
+<span class="nv">region</span><span class="o">=</span>us-east-1 <span class="c1">#make sure instance is in Virginia</span>
+<span class="nv">name_instance</span><span class="o">=</span>OpenBLAS
+<span class="nv">USER</span><span class="o">=</span>ubuntu
+<span class="c1">##System update</span>
+apt-get update -yq
+<span class="c1">##Tag instance</span>
+<span class="nv">INSTANCE_ID</span><span class="o">=</span><span class="k">$(</span>curl -s http://instance-data/latest/meta-data/instance-id<span class="k">)</span>
+<span class="nv">PUBLIC_IP</span><span class="o">=</span><span class="k">$(</span>curl -s http://instance-data/latest/meta-data/public-ipv4<span class="k">)</span>
+sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;/home/</span><span class="nv">$USER</span><span class="s2">/.local/bin/aws ec2 create-tags --resources </span><span class="nv">$INSTANCE_ID</span><span class="s2"> --tag Key=Name,Value=</span><span class="nv">$name_instance</span><span class="s2">-</span><span class="nv">$PUBLIC_IP</span><span class="s2"> --region=</span><span class="nv">$region</span><span class="s2">&quot;</span>
+sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &amp;&amp; /home/</span><span class="nv">$USER</span><span class="s2">/.local/bin/jupyter lab --ip=0.0.0.0 --no-browser --config=/home/</span><span class="nv">$USER</span><span class="s2">/.jupyter/jupyter_notebook_config.py &amp;&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>La máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> tiene las siguientes características:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
@@ -773,6 +791,25 @@ sudo lshw -C memory
 </div>
 <div class="section" id="openblas-y-librerias-de-computo-matricial-de-r">
 <h3>OpenBLAS y librerías de cómputo matricial de <em>R</em><a class="headerlink" href="#openblas-y-librerias-de-computo-matricial-de-r" title="Permalink to this headline">¶</a></h3>
+<p>En esta sección se sugiere para reproducibilidad de resultados utilizar la <em>AMI</em> descrita al inicio y la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) en una máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Tal AMI se construyó a partir de una <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a></p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Si se utiliza la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code> colocar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">##variables:</span>
+<span class="nv">region</span><span class="o">=</span>us-east-1 <span class="c1">#make sure instance is in Virginia</span>
+<span class="nv">name_instance</span><span class="o">=</span>no-OpenBLAS
+<span class="nv">USER</span><span class="o">=</span>ubuntu
+<span class="c1">##System update</span>
+apt-get update -yq
+<span class="c1">##Tag instance</span>
+<span class="nv">INSTANCE_ID</span><span class="o">=</span><span class="k">$(</span>curl -s http://instance-data/latest/meta-data/instance-id<span class="k">)</span>
+<span class="nv">PUBLIC_IP</span><span class="o">=</span><span class="k">$(</span>curl -s http://instance-data/latest/meta-data/public-ipv4<span class="k">)</span>
+sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;/home/</span><span class="nv">$USER</span><span class="s2">/.local/bin/aws ec2 create-tags --resources </span><span class="nv">$INSTANCE_ID</span><span class="s2"> --tag Key=Name,Value=</span><span class="nv">$name_instance</span><span class="s2">-</span><span class="nv">$PUBLIC_IP</span><span class="s2"> --region=</span><span class="nv">$region</span><span class="s2">&quot;</span>
+sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &amp;&amp; /home/</span><span class="nv">$USER</span><span class="s2">/.local/bin/jupyter lab --ip=0.0.0.0 --no-browser --config=/home/</span><span class="nv">$USER</span><span class="s2">/.jupyter/jupyter_notebook_config.py &amp;&quot;</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="perfilamiento-medicion-de-tiempo-en-el-sistema-operativo-ubuntu-20-04">
