@@ -40,7 +40,7 @@ Total de clases: 17. Total de número de horas: 45 hrs.
 
 [Equipos de optimización avanzada]()
 
-### [Lista de estudiantes con calificaciones]()
+### [Lista de estudiantes con calificaciones](https://drive.google.com/file/d/1pUuzpDY6yTZo4aY1PSmTRYcQDP1YBZ8Q/view?usp=sharing)
 
 [Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
 
