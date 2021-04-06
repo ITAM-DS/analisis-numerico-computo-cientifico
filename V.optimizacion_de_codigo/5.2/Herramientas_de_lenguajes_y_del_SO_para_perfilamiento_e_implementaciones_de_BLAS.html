@@ -488,6 +488,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#perf-openblas">
+   perf OpenBLAS
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -519,7 +524,7 @@
 </ul>
 </div>
 <p>En esta nota revisamos algunas herramientas de los lenguajes de programación y de los sistemas GNU/Linux para perfilamiento de código. También se revisan las operaciones de BLAS en sus diferentes niveles con ejemplos de paquetes en los lenguajes.</p>
-<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se sugiere se utilice la AMI <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>.</p>
+<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se sugiere se utilice la AMI <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>.</p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>Si se utiliza la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> colocar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
@@ -538,7 +543,7 @@ sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &am
 </pre></div>
 </div>
 </div>
-<p>La máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> tiene las siguientes características:</p>
+<p>La máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> tiene las siguientes características:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
@@ -551,26 +556,29 @@ lscpu
 CPU op-mode(s):                  32-bit, 64-bit
 Byte Order:                      Little Endian
 Address sizes:                   46 bits physical, 48 bits virtual
-CPU(s):                          8
-On-line CPU(s) list:             0-7
+CPU(s):                          64
+On-line CPU(s) list:             0-63
 Thread(s) per core:              2
-Core(s) per socket:              4
-Socket(s):                       1
-NUMA node(s):                    1
+Core(s) per socket:              16
+Socket(s):                       2
+NUMA node(s):                    2
 Vendor ID:                       GenuineIntel
 CPU family:                      6
-Model:                           85
-Model name:                      Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz
-Stepping:                        7
-CPU MHz:                         3095.571
-BogoMIPS:                        5000.00
-Hypervisor vendor:               KVM
+Model:                           79
+Model name:                      Intel(R) Xeon(R) CPU E5-2686 v4 @ 2.30GHz
+Stepping:                        1
+CPU MHz:                         2709.718
+CPU max MHz:                     3000.0000
+CPU min MHz:                     1200.0000
+BogoMIPS:                        4600.02
+Hypervisor vendor:               Xen
 Virtualization type:             full
-L1d cache:                       128 KiB
-L1i cache:                       128 KiB
-L2 cache:                        4 MiB
-L3 cache:                        35.8 MiB
-NUMA node0 CPU(s):               0-7
+L1d cache:                       1 MiB
+L1i cache:                       1 MiB
+L2 cache:                        8 MiB
+L3 cache:                        90 MiB
+NUMA node0 CPU(s):               0-15,32-47
+NUMA node1 CPU(s):               16-31,48-63
 Vulnerability Itlb multihit:     KVM: Vulnerable
 Vulnerability L1tf:              Mitigation; PTE Inversion
 Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
@@ -579,8 +587,8 @@ Vulnerability Spec store bypass: Vulnerable
 Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
 Vulnerability Spectre v2:        Mitigation; Full generic retpoline, STIBP disabled, RSB filling
 Vulnerability Srbds:             Not affected
-Vulnerability Tsx async abort:   Not affected
-Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves ida arat pku ospke
+Vulnerability Tsx async abort:   Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq monitor est ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm cpuid_fault invpcid_single pti fsgsbase bmi1 hle avx2 smep bmi2 erms invpcid rtm xsaveopt ida
 </pre></div>
 </div>
 </div>
@@ -595,17 +603,114 @@ sudo lshw -C memory
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  *-firmware
        description: BIOS
-       vendor: Amazon EC2
+       vendor: Xen
        physical id: 0
-       version: 1.0
-       date: 10/16/2017
-       size: 64KiB
-       capacity: 64KiB
-       capabilities: pci edd acpi virtualmachine
+       version: 4.11.amazon
+       date: 08/24/2006
+       size: 96KiB
+       capabilities: pci edd
   *-memory
-       description: System memory
-       physical id: 1
-       size: 31GiB
+       description: System Memory
+       physical id: 1000
+       size: 256GiB
+       capabilities: ecc
+       configuration: errordetection=multi-bit-ecc
+     *-bank:0
+          description: DIMM RAM
+          physical id: 0
+          slot: DIMM 0
+          size: 16GiB
+          width: 64 bits
+     *-bank:1
+          description: DIMM RAM
+          physical id: 1
+          slot: DIMM 1
+          size: 16GiB
+          width: 64 bits
+     *-bank:2
+          description: DIMM RAM
+          physical id: 2
+          slot: DIMM 2
+          size: 16GiB
+          width: 64 bits
+     *-bank:3
+          description: DIMM RAM
+          physical id: 3
+          slot: DIMM 3
+          size: 16GiB
+          width: 64 bits
+     *-bank:4
+          description: DIMM RAM
+          physical id: 4
+          slot: DIMM 4
+          size: 16GiB
+          width: 64 bits
+     *-bank:5
+          description: DIMM RAM
+          physical id: 5
+          slot: DIMM 5
+          size: 16GiB
+          width: 64 bits
+     *-bank:6
+          description: DIMM RAM
+          physical id: 6
+          slot: DIMM 6
+          size: 16GiB
+          width: 64 bits
+     *-bank:7
+          description: DIMM RAM
+          physical id: 7
+          slot: DIMM 7
+          size: 16GiB
+          width: 64 bits
+     *-bank:8
+          description: DIMM RAM
+          physical id: 8
+          slot: DIMM 8
+          size: 16GiB
+          width: 64 bits
+     *-bank:9
+          description: DIMM RAM
+          physical id: 9
+          slot: DIMM 9
+          size: 16GiB
+          width: 64 bits
+     *-bank:10
+          description: DIMM RAM
+          physical id: a
+          slot: DIMM 10
+          size: 16GiB
+          width: 64 bits
+     *-bank:11
+          description: DIMM RAM
+          physical id: b
+          slot: DIMM 11
+          size: 16GiB
+          width: 64 bits
+     *-bank:12
+          description: DIMM RAM
+          physical id: c
+          slot: DIMM 12
+          size: 16GiB
+          width: 64 bits
+     *-bank:13
+          description: DIMM RAM
+          physical id: d
+          slot: DIMM 13
+          size: 16GiB
+          width: 64 bits
+     *-bank:14
+          description: DIMM RAM
+          physical id: e
+          slot: DIMM 14
+          size: 16GiB
+          width: 64 bits
+     *-bank:15
+          description: DIMM RAM
+          physical id: f
+          slot: DIMM 15
+          size: 16GiB
+          width: 64 bits
 </pre></div>
 </div>
 </div>
@@ -694,7 +799,7 @@ sudo lshw -C memory
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 0.30778026580810547 segundos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 0.44214773178100586 segundos
 </pre></div>
 </div>
 </div>
@@ -734,8 +839,8 @@ sudo lshw -C memory
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 290 ms, sys: 15 ms, total: 304 ms
-Wall time: 303 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 365 ms, sys: 22.9 ms, total: 388 ms
+Wall time: 386 ms
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7468241328124773
@@ -763,7 +868,7 @@ Wall time: 303 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>300 ms ± 464 µs per loop (mean ± std. dev. of 10 runs, 5 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>369 ms ± 1.99 ms per loop (mean ± std. dev. of 10 runs, 5 loops each)
 </pre></div>
 </div>
 </div>
@@ -804,7 +909,7 @@ Wall time: 303 ms
 <h2>BLAS<a class="headerlink" href="#blas" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="openblas-y-numpy">
 <h3>OpenBLAS y <em>NumPy</em><a class="headerlink" href="#openblas-y-numpy" title="Permalink to this headline">¶</a></h3>
-<p>En esta sección se sugiere para reproducibilidad de resultados utilizar la <em>AMI</em> descrita al inicio y la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) en una máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Tal AMI se construyó a partir de una <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a></p>
+<p>En esta sección se sugiere para reproducibilidad de resultados utilizar la <em>AMI</em> descrita al inicio y la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) en una máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Tal AMI se construyó a partir de una <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a></p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>Si se utiliza la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code> colocar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
@@ -897,43 +1002,7 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.45 s ± 119 ms per loop (mean ± std. dev. of 2 runs, 1 loop each)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mult_matrix_matrix_numpy_openblas.py
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
-<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
-<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
-
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
-<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
-<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
-<span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
-
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
-<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
-<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
-<span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-
-<span class="n">A</span><span class="nd">@B</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing mult_matrix_matrix_numpy_openblas.py
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%bash</span>
-<span class="c1">#sudo perf stat -S -a --per-core -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_matrix_numpy_openblas.py</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.96 s ± 149 ms per loop (mean ± std. dev. of 2 runs, 1 loop each)
 </pre></div>
 </div>
 </div>
@@ -942,7 +1011,7 @@ None
 </div>
 <div class="section" id="openblas-y-librerias-de-computo-matricial-de-r">
 <h3>OpenBLAS y librerías de cómputo matricial de <em>R</em><a class="headerlink" href="#openblas-y-librerias-de-computo-matricial-de-r" title="Permalink to this headline">¶</a></h3>
-<p>En esta sección se sugiere para reproducibilidad de resultados utilizar la <em>AMI</em> descrita al inicio y la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) en una máquina <code class="docutils literal notranslate"><span class="pre">m5.2xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Tal AMI se construyó a partir de una <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a></p>
+<p>En esta sección se sugiere para reproducibilidad de resultados utilizar la <em>AMI</em> descrita al inicio y la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) en una máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Tal AMI se construyó a partir de una <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a></p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>Si se utiliza la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code> colocar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
@@ -959,6 +1028,95 @@ apt-get update -yq
 sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;/home/</span><span class="nv">$USER</span><span class="s2">/.local/bin/aws ec2 create-tags --resources </span><span class="nv">$INSTANCE_ID</span><span class="s2"> --tag Key=Name,Value=</span><span class="nv">$name_instance</span><span class="s2">-</span><span class="nv">$PUBLIC_IP</span><span class="s2"> --region=</span><span class="nv">$region</span><span class="s2">&quot;</span>
 sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &amp;&amp; /home/</span><span class="nv">$USER</span><span class="s2">/.local/bin/jupyter lab --ip=0.0.0.0 --no-browser --config=/home/</span><span class="nv">$USER</span><span class="s2">/.jupyter/jupyter_notebook_config.py &amp;&quot;</span>
 </pre></div>
+</div>
+</div>
+<p>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code></p>
+<p>Verificamos que las librerías de álgebra matricial de <em>R</em> está usando <em>OpenBLAS</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sessionInfo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R version 4.0.5 (2021-03-31)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.2 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+ [1] fansi_0.4.2         digest_0.6.27       utf8_1.2.1         
+ [4] crayon_1.4.1        IRdisplay_1.0       repr_1.1.3         
+ [7] lifecycle_1.0.0     jsonlite_1.7.2      evaluate_0.14      
+[10] pillar_1.5.1        rlang_0.4.10        uuid_0.1-4         
+[13] ellipsis_0.3.1      IRkernel_1.1.1.9000 tools_4.0.5        
+[16] compiler_4.0.5      base64enc_0.1-3     pbdZMQ_0.3-5       
+[19] htmltools_0.5.1.1  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">m</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">r</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">A</span> <span class="o">&lt;-</span> <span class="n">matrix</span><span class="p">(</span><span class="n">runif</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">r</span><span class="p">),</span> <span class="n">m</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+<span class="n">r</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">B</span> <span class="o">&lt;-</span> <span class="n">matrix</span><span class="p">(</span><span class="n">runif</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">n</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">microbenchmark</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbk</span><span class="o">&lt;-</span><span class="n">microbenchmark</span><span class="p">(</span>
+    <span class="n">A</span><span class="o">%*%</span><span class="k">B</span>,
+    <span class="n">times</span><span class="o">=</span><span class="mi">7</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mbk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unit: seconds
+    expr      min       lq     mean   median       uq      max neval
+ A %*% B 2.600818 2.723897 2.952135 2.833146 3.038394 3.706399     7
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1034,9 +1192,9 @@ aproximación: 7.468241e-01
 True
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real 0.64
-user 0.91
-sys 0.48
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>real 0.84
+user 2.57
+sys 2.20
 </pre></div>
 </div>
 </div>
@@ -1055,20 +1213,20 @@ True
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Command being timed: &quot;python3 Rcf.py&quot;
-	User time (seconds): 0.90
-	System time (seconds): 0.47
-	Percent of CPU this job got: 219%
-	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.63
+	User time (seconds): 2.55
+	System time (seconds): 2.34
+	Percent of CPU this job got: 612%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.79
 	Average shared text size (kbytes): 0
 	Average unshared data size (kbytes): 0
 	Average stack size (kbytes): 0
 	Average total size (kbytes): 0
-	Maximum resident set size (kbytes): 97272
+	Maximum resident set size (kbytes): 97688
 	Average resident set size (kbytes): 0
 	Major (requiring I/O) page faults: 0
-	Minor (reclaiming a frame) page faults: 20709
-	Voluntary context switches: 13
-	Involuntary context switches: 14
+	Minor (reclaiming a frame) page faults: 20846
+	Voluntary context switches: 87
+	Involuntary context switches: 877104
 	Swaps: 0
 	File system inputs: 0
 	File system outputs: 0
@@ -1095,6 +1253,195 @@ True
 <h2>Perfilamiento: medición de uso de CPU en el sistema operativo GNU/Linux<a class="headerlink" href="#perfilamiento-medicion-de-uso-de-cpu-en-el-sistema-operativo-gnu-linux" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="perf">
 <h3><a class="reference external" href="https://github.com/torvalds/linux/tree/master/tools/perf">perf</a><a class="headerlink" href="#perf" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="perf-openblas">
+<h2>perf OpenBLAS<a class="headerlink" href="#perf-openblas" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mult_matrix_matrix_numpy_openblas.py
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">A</span><span class="nd">@B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing mult_matrix_matrix_numpy_openblas.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+echo &quot;-1&quot; |sudo tee -a /proc/sys/kernel/perf_event_paranoid
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+perf stat -S -a --per-core -e cycles,instructions,cache-references,cache-misses -r 7 python3 mult_matrix_matrix_numpy_openblas.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;system wide&#39; (7 runs):
+
+S0-D0-C0           2        18418711959      cycles                                                        (75.00%)
+S0-D0-C0           2        18369720566      instructions              #    1.00  insn per cycle           (75.06%)
+S0-D0-C0           2          537701642      cache-references                                              (75.06%)
+S0-D0-C0           2           24051039      cache-misses              #    4.473 % of all cache refs      (75.02%)
+S0-D0-C1           2        18196672426      cycles                                                        (75.03%)
+S0-D0-C1           2        18408825312      instructions              #    1.01  insn per cycle           (75.06%)
+S0-D0-C1           2          525743359      cache-references                                              (75.07%)
+S0-D0-C1           2           23125192      cache-misses              #    4.399 % of all cache refs      (75.01%)
+S0-D0-C2           2        17745013942      cycles                                                        (75.04%)
+S0-D0-C2           2        18325997854      instructions              #    1.03  insn per cycle           (75.06%)
+S0-D0-C2           2          526665812      cache-references                                              (75.05%)
+S0-D0-C2           2           22407034      cache-misses              #    4.255 % of all cache refs      (75.01%)
+S0-D0-C3           2        17121222047      cycles                                                        (75.04%)
+S0-D0-C3           2        18146087876      instructions              #    1.06  insn per cycle           (75.06%)
+S0-D0-C3           2          490965446      cache-references                                              (75.06%)
+S0-D0-C3           2           26610387      cache-misses              #    5.420 % of all cache refs      (75.01%)
+S0-D0-C4           2        16890058309      cycles                                                        (75.04%)
+S0-D0-C4           2        17885504024      instructions              #    1.06  insn per cycle           (75.06%)
+S0-D0-C4           2          487993921      cache-references                                              (75.05%)
+S0-D0-C4           2           23144032      cache-misses              #    4.743 % of all cache refs      (75.01%)
+S0-D0-C5           2        17199231962      cycles                                                        (75.03%)
+S0-D0-C5           2        18263131622      instructions              #    1.06  insn per cycle           (75.06%)
+S0-D0-C5           2          496088789      cache-references                                              (75.06%)
+S0-D0-C5           2           21848774      cache-misses              #    4.404 % of all cache refs      (75.01%)
+S0-D0-C6           2        16349945326      cycles                                                        (75.03%)
+S0-D0-C6           2        17917357673      instructions              #    1.10  insn per cycle           (75.06%)
+S0-D0-C6           2          479652808      cache-references                                              (75.06%)
+S0-D0-C6           2           24499853      cache-misses              #    5.108 % of all cache refs      (75.01%)
+S0-D0-C7           2        16412097276      cycles                                                        (75.03%)
+S0-D0-C7           2        17611472168      instructions              #    1.07  insn per cycle           (75.06%)
+S0-D0-C7           2          469719191      cache-references                                              (75.06%)
+S0-D0-C7           2           21824081      cache-misses              #    4.646 % of all cache refs      (75.01%)
+S0-D0-C8           2        15249556261      cycles                                                        (75.03%)
+S0-D0-C8           2        16618749720      instructions              #    1.09  insn per cycle           (75.06%)
+S0-D0-C8           2          455682584      cache-references                                              (75.06%)
+S0-D0-C8           2           25286843      cache-misses              #    5.549 % of all cache refs      (75.02%)
+S0-D0-C9           2        16231214981      cycles                                                        (75.03%)
+S0-D0-C9           2        17646720887      instructions              #    1.09  insn per cycle           (75.05%)
+S0-D0-C9           2          473228118      cache-references                                              (75.06%)
+S0-D0-C9           2           19449589      cache-misses              #    4.110 % of all cache refs      (75.02%)
+S0-D0-C10          2        15892959983      cycles                                                        (75.03%)
+S0-D0-C10          2        17337209550      instructions              #    1.09  insn per cycle           (75.06%)
+S0-D0-C10          2          469461284      cache-references                                              (75.06%)
+S0-D0-C10          2           28237009      cache-misses              #    6.015 % of all cache refs      (75.01%)
+S0-D0-C11          2        14874401788      cycles                                                        (75.04%)
+S0-D0-C11          2        16217229463      instructions              #    1.09  insn per cycle           (75.06%)
+S0-D0-C11          2          452670920      cache-references                                              (75.05%)
+S0-D0-C11          2           21648129      cache-misses              #    4.782 % of all cache refs      (75.02%)
+S0-D0-C12          2        14543839541      cycles                                                        (75.03%)
+S0-D0-C12          2        15959236359      instructions              #    1.10  insn per cycle           (75.06%)
+S0-D0-C12          2          441998264      cache-references                                              (75.06%)
+S0-D0-C12          2           26386041      cache-misses              #    5.970 % of all cache refs      (75.02%)
+S0-D0-C13          2        18262472756      cycles                                                        (75.03%)
+S0-D0-C13          2        18538540372      instructions              #    1.02  insn per cycle           (75.06%)
+S0-D0-C13          2          535986137      cache-references                                              (75.06%)
+S0-D0-C13          2           28397666      cache-misses              #    5.298 % of all cache refs      (75.02%)
+S0-D0-C14          2        13209247629      cycles                                                        (75.03%)
+S0-D0-C14          2        15254857451      instructions              #    1.15  insn per cycle           (75.06%)
+S0-D0-C14          2          410995623      cache-references                                              (75.06%)
+S0-D0-C14          2           24991392      cache-misses              #    6.081 % of all cache refs      (75.02%)
+S0-D0-C15          2        12118816441      cycles                                                        (75.03%)
+S0-D0-C15          2        14453817862      instructions              #    1.19  insn per cycle           (75.05%)
+S0-D0-C15          2          371089450      cache-references                                              (75.05%)
+S0-D0-C15          2           22741899      cache-misses              #    6.128 % of all cache refs      (75.02%)
+S1-D0-C0           2        18232984530      cycles                                                        (75.03%)
+S1-D0-C0           2        18449109986      instructions              #    1.01  insn per cycle           (75.05%)
+S1-D0-C0           2          519913031      cache-references                                              (75.06%)
+S1-D0-C0           2           23752828      cache-misses              #    4.569 % of all cache refs      (75.02%)
+S1-D0-C1           2        25269014354      cycles                                                        (75.03%)
+S1-D0-C1           2        39384365171      instructions              #    1.56  insn per cycle           (75.06%)
+S1-D0-C1           2          651968755      cache-references                                              (75.05%)
+S1-D0-C1           2           38228051      cache-misses              #    5.863 % of all cache refs      (75.03%)
+S1-D0-C2           2        18444454550      cycles                                                        (75.03%)
+S1-D0-C2           2        21204362696      instructions              #    1.15  insn per cycle           (75.06%)
+S1-D0-C2           2          621058606      cache-references                                              (75.06%)
+S1-D0-C2           2           40990630      cache-misses              #    6.600 % of all cache refs      (75.02%)
+S1-D0-C3           2        18278696053      cycles                                                        (75.03%)
+S1-D0-C3           2        20067036382      instructions              #    1.10  insn per cycle           (75.06%)
+S1-D0-C3           2          585310801      cache-references                                              (75.06%)
+S1-D0-C3           2           31863601      cache-misses              #    5.444 % of all cache refs      (75.02%)
+S1-D0-C4           2        18431841316      cycles                                                        (75.03%)
+S1-D0-C4           2        18669484458      instructions              #    1.01  insn per cycle           (75.06%)
+S1-D0-C4           2          528305336      cache-references                                              (75.05%)
+S1-D0-C4           2           29086972      cache-misses              #    5.506 % of all cache refs      (75.03%)
+S1-D0-C5           2        18460857989      cycles                                                        (75.03%)
+S1-D0-C5           2        18836165277      instructions              #    1.02  insn per cycle           (75.05%)
+S1-D0-C5           2          532097512      cache-references                                              (75.06%)
+S1-D0-C5           2           29550365      cache-misses              #    5.554 % of all cache refs      (75.03%)
+S1-D0-C6           2        18490159829      cycles                                                        (75.02%)
+S1-D0-C6           2        18996196633      instructions              #    1.03  insn per cycle           (75.05%)
+S1-D0-C6           2          537973011      cache-references                                              (75.06%)
+S1-D0-C6           2           34758081      cache-misses              #    6.461 % of all cache refs      (75.03%)
+S1-D0-C7           2        18393424333      cycles                                                        (75.03%)
+S1-D0-C7           2        19082601979      instructions              #    1.04  insn per cycle           (75.05%)
+S1-D0-C7           2          540775846      cache-references                                              (75.06%)
+S1-D0-C7           2           30967762      cache-misses              #    5.727 % of all cache refs      (75.03%)
+S1-D0-C8           2        18439236440      cycles                                                        (75.03%)
+S1-D0-C8           2        18698390120      instructions              #    1.01  insn per cycle           (75.05%)
+S1-D0-C8           2          532154105      cache-references                                              (75.05%)
+S1-D0-C8           2           30098986      cache-misses              #    5.656 % of all cache refs      (75.03%)
+S1-D0-C9           2        18393128954      cycles                                                        (75.02%)
+S1-D0-C9           2        20510456724      instructions              #    1.12  insn per cycle           (75.06%)
+S1-D0-C9           2          596975317      cache-references                                              (75.05%)
+S1-D0-C9           2           32463279      cache-misses              #    5.438 % of all cache refs      (75.03%)
+S1-D0-C10          2        18384672465      cycles                                                        (75.02%)
+S1-D0-C10          2        18518315158      instructions              #    1.01  insn per cycle           (75.05%)
+S1-D0-C10          2          518920459      cache-references                                              (75.06%)
+S1-D0-C10          2           22063526      cache-misses              #    4.252 % of all cache refs      (75.04%)
+S1-D0-C11          2        18321366651      cycles                                                        (75.02%)
+S1-D0-C11          2        20344437281      instructions              #    1.11  insn per cycle           (75.04%)
+S1-D0-C11          2          592757359      cache-references                                              (75.06%)
+S1-D0-C11          2           28883791      cache-misses              #    4.873 % of all cache refs      (75.03%)
+S1-D0-C12          2        18438219285      cycles                                                        (75.02%)
+S1-D0-C12          2        18558196540      instructions              #    1.01  insn per cycle           (75.04%)
+S1-D0-C12          2          509104381      cache-references                                              (75.06%)
+S1-D0-C12          2           22171256      cache-misses              #    4.355 % of all cache refs      (75.03%)
+S1-D0-C13          2        18307643489      cycles                                                        (75.02%)
+S1-D0-C13          2        18400984979      instructions              #    1.01  insn per cycle           (75.04%)
+S1-D0-C13          2          515663807      cache-references                                              (75.05%)
+S1-D0-C13          2           24967988      cache-misses              #    4.842 % of all cache refs      (75.04%)
+S1-D0-C14          2        18361935174      cycles                                                        (75.02%)
+S1-D0-C14          2        20383885122      instructions              #    1.11  insn per cycle           (75.03%)
+S1-D0-C14          2          587106108      cache-references                                              (75.06%)
+S1-D0-C14          2           33154210      cache-misses              #    5.647 % of all cache refs      (75.04%)
+S1-D0-C15          2        18346242027      cycles                                                        (75.05%)
+S1-D0-C15          2        18387811753      instructions              #    1.00  insn per cycle           (75.04%)
+S1-D0-C15          2          520851546      cache-references                                              (75.07%)
+S1-D0-C15          2           21406519      cache-misses              #    4.110 % of all cache refs      (75.01%)
+
+             5.944 +- 0.128 seconds time elapsed  ( +-  2.15% )
+</pre></div>
+</div>
+</div>
+</div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
 <p>1.Resuelve los ejercicios y preguntas de la nota.</p>
@@ -1105,7 +1452,6 @@ True
 <li><p>E. Anderson, Z. Bai, C. Bischof, L. S. Blackford, J. Demmel, J. Dongarra, J. Du Croz,
 A. Greenbaum, S. Hammarling, A. Mckenney and D. Sorensen, LAPACK Users Guide, Society for Industrial and Applied Mathematics, Philadelphia, PA, third ed., 1999.</p></li>
 </ol>
-</div>
 </div>
 </div>
 
