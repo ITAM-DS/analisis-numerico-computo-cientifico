@@ -495,6 +495,57 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operacion-de-multiplicacion-matriz-matriz-nivel-3-de-blas">
+     Operación de multiplicación matriz-matriz (nivel 3 de BLAS)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#otras-versiones-de-la-multiplicacion-de-matrices-apoyandose-de-las-formas-i-j-k-j-k-i">
+     Otras versiones de la multiplicación de matrices apoyándose de las formas (i,j,k), (j,k,i),…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operaciones-tipicas-del-algebra-lineal-y-los-flops-que-realizan">
+     Operaciones típicas del álgebra lineal y los
+     <em>
+      flops
+     </em>
+     que realizan
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#blocking-algorithms-para-multiplicacion-de-matrices">
+   Blocking algorithms para multiplicación de matrices
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algunas-operaciones-en-matrices-por-bloques">
+     Algunas operaciones en matrices por bloques
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiplicacion-por-escalares">
+     Multiplicación por escalares
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transposicion">
+     Transposición
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#suma">
+     Suma
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiplicacion">
+     Multiplicación
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#openblas-y-numpy">
      OpenBLAS y
      <em>
@@ -584,8 +635,46 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#perf-openblas">
-     perf OpenBLAS
+    <a class="reference internal nav-link" href="#perf-openblas-gaxpy-row-column-oriented-nivel-2">
+     perf OpenBLAS:
+     <em>
+      gaxpy row, column oriented
+     </em>
+     (nivel 2)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaxpy-column-oriented-caso-no-vectorizado">
+     <em>
+      gaxpy column oriented
+     </em>
+     caso no vectorizado
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaxpy-column-oriented-caso-vectorizando">
+     <em>
+      gaxpy column oriented
+     </em>
+     caso vectorizando
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gaxpy-row-oriented-caso-vectorizando">
+     <em>
+      gaxpy row oriented
+     </em>
+     caso vectorizando
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perf-openblas-nivel-3-multiplicacion-de-matrices">
+     perf OpenBLAS: nivel 3 multiplicación de matrices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparacion-de-versiones-de-multiplicacion-de-matrices-utilizando-nivel-1-vs-nivel-2-de-blas">
+     Comparación de versiones de multiplicación de matrices utilizando nivel 1 vs nivel 2 de BLAS
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -1402,6 +1491,189 @@ Wall time: 386 ms
 </pre></div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="operacion-de-multiplicacion-matriz-matriz-nivel-3-de-blas">
+<h3>Operación de multiplicación matriz-matriz (nivel 3 de BLAS)<a class="headerlink" href="#operacion-de-multiplicacion-matriz-matriz-nivel-3-de-blas" title="Permalink to this headline">¶</a></h3>
+<p>El algoritmo de multiplicación de matrices <span class="math notranslate nohighlight">\(C = C + AB\)</span> con <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times r}, B \in \mathbb{R}^{r \times n}, C \in \mathbb{R}^{m \times n}\)</span> se cataloga como de nivel 3 de BLAS pues realiza una <strong>cantidad de trabajo cúbica</strong> sobre una <strong>cantidad cuadrática de datos</strong>. Ver <a class="reference external" href="http://www.netlib.org/blas/#_level_3">level 3</a> para más ejemplos de algoritmos en el álgebra lineal en esta categoría.</p>
+<p>En LAPACK encontramos al algoritmo de multiplicación matricial con nombres como <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d4/de2/sgemm_8f.html">sgemm</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d7/d2b/dgemm_8f.html">dgemm</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d6/d5b/cgemm_8f.html">cgemm</a> y <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d7/d76/zgemm_8f.html">zgemm</a> para los casos de precisión simple, doble o números complejos respectivamente.</p>
+<p>El algoritmo de multiplicación de matrices puede escribirse en diferentes versiones. Por ejemplo la versión  <strong>i,j,k</strong> es:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+            <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    
+</pre></div>
+</div>
+<p>y la versión <strong>j,k,i</strong> es:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+            <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Cualquiera de las versiones (hay <span class="math notranslate nohighlight">\(3!\)</span> de ellas) involucra una cantidad de trabajo del orden <span class="math notranslate nohighlight">\(\mathcal{O}(mnr)\)</span>, la cual es cúbica. Es posible interpretar ésta cantidad de trabajo con una frase del tipo “si duplicamos cada dimensión de <span class="math notranslate nohighlight">\(A\)</span> entonces la cantidad de trabajo se incrementa por un factor de <span class="math notranslate nohighlight">\(8\)</span>”.</p></li>
+<li><p>Distintas versiones tienen distinto patrón de acceso a los datos de <span class="math notranslate nohighlight">\(A, B\)</span> y <span class="math notranslate nohighlight">\(C\)</span>. Por ejemplo, para la variante <strong>i,j,k</strong> el <strong>inner loop</strong> realiza un producto punto que requiere acceso a renglones de <span class="math notranslate nohighlight">\(A\)</span> y columnas de <span class="math notranslate nohighlight">\(B\)</span> en una forma izquierda-derecha y abajo-arriba respectivamente. La variante <strong>j,k,i</strong> involucra una operación <em>saxpy</em> en el <strong>inner loop</strong> y acceso por columnas a la matriz <span class="math notranslate nohighlight">\(C\)</span> y a <span class="math notranslate nohighlight">\(A\)</span>. Un resúmen de lo anterior se presenta en el siguiente cuadro:</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/rw81crmo1b7fjvb/tabla_con_versiones_mult_matrices.png?dl=0" heigth="450" width="450">
+</div>
+</div>
+<div class="section" id="otras-versiones-de-la-multiplicacion-de-matrices-apoyandose-de-las-formas-i-j-k-j-k-i">
+<h3>Otras versiones de la multiplicación de matrices apoyándose de las formas (i,j,k), (j,k,i),…<a class="headerlink" href="#otras-versiones-de-la-multiplicacion-de-matrices-apoyandose-de-las-formas-i-j-k-j-k-i" title="Permalink to this headline">¶</a></h3>
+<p>Si utilizamos la versión <strong>i,j,k</strong> podemos reescribir la multiplicación de matrices en una forma:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">[:,</span><span class="n">j</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>y hemos vectorizado el <em>inner loop</em> para usar productos punto que es una operación nivel 1 de BLAS.</p>
+<p>Además <code class="docutils literal notranslate"><span class="pre">numpy</span></code> nos provee de funcionalidad para reescribir ésta forma de productos punto en una como sigue:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="nd">@B</span>
+</pre></div>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>En esta reescritura se realizan <span class="math notranslate nohighlight">\(m\)</span> operaciones <em>gaxpy</em> de nivel 2 en el <em>loop</em>. Esta versión debe ser más rápida que la que utiliza operaciones de nivel 1 de BLAS.</p>
+</div>
+</div>
+<div class="section" id="operaciones-tipicas-del-algebra-lineal-y-los-flops-que-realizan">
+<h3>Operaciones típicas del álgebra lineal y los <em>flops</em> que realizan<a class="headerlink" href="#operaciones-tipicas-del-algebra-lineal-y-los-flops-que-realizan" title="Permalink to this headline">¶</a></h3>
+<p>A continuación se muestra una tabla que presenta el número de <em>flops</em> realizados por distintas operaciones del álgebra lineal:</p>
+<img src="https://dl.dropboxusercontent.com/s/rvqkokicaqkwrif/tabla_con_flops_para_operaciones_alg_lineal.png?dl=0" heigth="550" width="550">
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Por la tabla anterior, <em>gaxpy</em> (nivel 2 de BLAS) realiza más <em>flops</em> que un producto punto. Aún así, debe cumplirse que la versión de <em>gaxpy</em> sea más rápida que la versión con productos punto (nivel 1 de BLAS) para la multiplicación de matrices pues aprovecha mejor el <em>data reuse</em> y <em>data locality</em>. Esto se logra pues <em>gaxpy</em> disminuye el número de <em>cache misses</em> y por tanto el tráfico hacia y desde el caché, el llamado <em>data movement/motion</em>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="blocking-algorithms-para-multiplicacion-de-matrices">
+<h2>Blocking algorithms para multiplicación de matrices<a class="headerlink" href="#blocking-algorithms-para-multiplicacion-de-matrices" title="Permalink to this headline">¶</a></h2>
+<p>El <em>data reuse</em> y el <em>data locality</em> se incrementa al utilizar operaciones de nivel BLAS mayores. También disminuye el <em>data motion</em> hacia y desde el caché lo que disminuye el tráfico de datos o <em>data movement/motion</em> pues se resuelve el <em>bottleneck</em> de Von Neumann.</p>
+<p>Por lo anterior hay algoritmos que se diseñan con el objetivo de aprovechar lo más posible el <em>data reuse</em> y el <em>data locality</em> y se nombran <em>blocking algorithms</em>. Entre los <em>blocking algorithms</em> encontramos a los que trabajan con matrices por bloques pues son más eficientes al utilizar un nivel <span class="math notranslate nohighlight">\(3\)</span> de BLAS. Una matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> por bloques se puede escribir como:</p>
+<img src="https://dl.dropboxusercontent.com/s/s77weq74yoi2rfc/matrix_A_by_blocks.png?dl=0" heigth="300" width="300">
+<p>donde: <span class="math notranslate nohighlight">\(m_1 + \dots + m_q = m\)</span>, <span class="math notranslate nohighlight">\(n_1 + \dots + n_r = n\)</span>. Con esta definición se llama a la matriz <span class="math notranslate nohighlight">\(A\)</span>, una matriz por bloques de tamaño <span class="math notranslate nohighlight">\(q \times r\)</span>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Hay que tener en cuenta que trabajar con matrices por bloques utiliza mayor cantidad de memoria que un algoritmo que opera a un nivel escalar esto puede ser benéfico o no dependiendo del problema, máquina o arquitectura en la que se esté trabajando.</p></li>
+<li><p>Trabajar con <em>blocking algorithms</em> permite simplificar notación matemática. Su escritura ayuda a pensar en una implementación con cómputo en paralelo.</p></li>
+</ul>
+</div>
+<div class="section" id="algunas-operaciones-en-matrices-por-bloques">
+<h3>Algunas operaciones en matrices por bloques<a class="headerlink" href="#algunas-operaciones-en-matrices-por-bloques" title="Permalink to this headline">¶</a></h3>
+<p>Entre las operaciones que son posibles realizar a un nivel por bloques se encuentran:</p>
+</div>
+<div class="section" id="multiplicacion-por-escalares">
+<h3>Multiplicación por escalares<a class="headerlink" href="#multiplicacion-por-escalares" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+\mu \left[ \begin{array}{cc}
+A_{11} &amp; A_{12}\\
+A_{21} &amp; A_{22}\\
+A_{31} &amp; A_{32}
+\end{array}
+\right] = 
+\left[\begin{array}{cc}
+\mu A_{11} &amp; \mu A_{12}\\
+\mu A_{21} &amp; \mu A_{22}\\
+\mu A_{31} &amp; \mu A_{32}
+\end{array}
+\right] 
+\end{array}
+\end{split}\]</div>
+<p>con <span class="math notranslate nohighlight">\(\mu \in \mathbb{R}\)</span>.</p>
+</div>
+<div class="section" id="transposicion">
+<h3>Transposición<a class="headerlink" href="#transposicion" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+\left[ \begin{array}{cc}
+A_{11} &amp; A_{12}\\
+A_{21} &amp; A_{22}\\
+A_{31} &amp; A_{32}
+\end{array}
+\right]^T = 
+\left[\begin{array}{ccc}
+A_{11}^T &amp; A_{21}^T &amp; A_{31}^T\\
+A_{12}^T &amp; A_{22}^T &amp; A_{32}^T\\
+\end{array}
+\right] 
+\end{array}
+\end{split}\]</div>
+</div>
+<div class="section" id="suma">
+<h3>Suma<a class="headerlink" href="#suma" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+\left[ \begin{array}{cc}
+A_{11} &amp; A_{12}\\
+A_{21} &amp; A_{22}\\
+A_{31} &amp; A_{32}
+\end{array}
+\right] + 
+\left[\begin{array}{cc}
+B_{11} &amp; B_{12}\\
+B_{21} &amp; B_{22}\\
+B_{31} &amp; B_{32}
+\end{array}
+\right] =
+\left[\begin{array}{cc}
+A_{11} + B_{11} &amp; A_{12} + B_{12}\\
+A_{21} + B_{21} &amp; A_{22} + B_{22}\\
+A_{31} + B_{31} &amp; A_{32} + B_{32}
+\end{array}
+\right]
+\end{array}
+\end{split}\]</div>
+</div>
+<div class="section" id="multiplicacion">
+<h3>Multiplicación<a class="headerlink" href="#multiplicacion" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+\left[ \begin{array}{cc}
+A_{11} &amp; A_{12}\\
+A_{21} &amp; A_{22}\\
+A_{31} &amp; A_{32}
+\end{array}
+\right] \cdot
+\left[\begin{array}{cc}
+B_{11} &amp; B_{12}\\
+B_{21} &amp; B_{22}\\
+\end{array}
+\right] =
+\left[\begin{array}{cc}
+A_{11}B_{11} + A_{12}B_{21} &amp; A_{11}B_{12} + A_{12}B_{22}\\
+A_{21}B_{11} + A_{22}B_{21} &amp; A_{21}B_{12} + A_{22}B_{22}\\
+A_{31}B_{11} + A_{32}B_{21} &amp; A_{31}B_{12} + A_{32}B_{22}
+\end{array}
+\right]
+\end{array}
+\end{split}\]</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>El número de columnas de los bloques <span class="math notranslate nohighlight">\(A_{11}, A_{21}, A_{31}\)</span> deben coincidir con el número de renglones de <span class="math notranslate nohighlight">\(B_{11}, B_{12}\)</span>. Así como con los bloques <span class="math notranslate nohighlight">\(A_{12}, A_{22}, A_{32}\)</span> y <span class="math notranslate nohighlight">\(B_{21}, B_{22}\)</span>.</p>
+</div>
+<p>Considérese que se particionan a las matrices <span class="math notranslate nohighlight">\(A, B, C\)</span> como sigue:</p>
+<img src="https://dl.dropboxusercontent.com/s/j0p89i19vf5r88k/A_B_C_matrices_by_blocks.png?dl=0" heigth="400" width="400">
+<p>Esto es, <span class="math notranslate nohighlight">\(A,B,C\)</span> son <span class="math notranslate nohighlight">\(N \times N\)</span> matrices por bloques con <span class="math notranslate nohighlight">\(\ell \times \ell\)</span> bloques. Entonces, para índices <span class="math notranslate nohighlight">\(\alpha = 1,2,\dots, N\)</span> y <span class="math notranslate nohighlight">\(\beta = 1,2,\dots,N\)</span> se tiene que el bloque <span class="math notranslate nohighlight">\(\alpha \beta\)</span> de <span class="math notranslate nohighlight">\(C\)</span> se obtiene: <span class="math notranslate nohighlight">\(C_{\alpha \beta} = \displaystyle \sum_{\gamma=1}^N A_{\alpha \gamma} B_{\gamma \beta}\)</span>.</p>
+<p>El algoritmo una vez definido el bloque de tamaño <span class="math notranslate nohighlight">\(\ell\)</span> es:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">((</span><span class="n">alpha</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span><span class="n">alpha</span><span class="o">*</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#TODO: check if index is well defined</span>
+    <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">((</span><span class="n">beta</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">beta</span><span class="o">*</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#TODO: check if index is well defined</span>
+        <span class="k">for</span> <span class="n">gamma</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">((</span><span class="n">gamma</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">gamma</span><span class="o">*</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#TODO: check if index is well defined</span>
+            <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][:,</span><span class="n">j</span><span class="p">]</span>
+
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Implementar la multiplicación por bloques en <em>Python</em> y <em>R</em>. Perfilar tal implementación con <code class="docutils literal notranslate"><span class="pre">perf</span></code>.</p>
 </div>
 </div>
 <div class="section" id="openblas-y-numpy">
@@ -3734,8 +4006,265 @@ CPU63                 520349      branch-misses             #    2.79% of all br
 </div>
 </div>
 </div>
-<div class="section" id="perf-openblas">
-<h3>perf OpenBLAS<a class="headerlink" href="#perf-openblas" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="perf-openblas-gaxpy-row-column-oriented-nivel-2">
+<h3>perf OpenBLAS: <em>gaxpy row, column oriented</em> (nivel 2)<a class="headerlink" href="#perf-openblas-gaxpy-row-column-oriented-nivel-2" title="Permalink to this headline">¶</a></h3>
+<p>Utilizaremos <code class="docutils literal notranslate"><span class="pre">perf</span></code> en lo que sigue para evaluar las métricas de IPC, <em>cache-references</em>, <em>cache-misses</em> y medir el tiempo de ejecución. Además, esto permitirá comparar los tiempos de ejecución del algoritmo <em>gaxpy</em> (nivel BLAS 2), con vectorización y sin vectorización.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">file</span><span class="o">=</span><span class="s1">&#39;A.txt&#39;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Arhivo sin vectorizar y utilizando listas para construir a la matriz y a los vectores:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mult_matrix_vector.py
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mf">2.5</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">file</span><span class="o">=</span><span class="s1">&#39;A.txt&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">l</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="s1">&#39;,&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)])</span>      
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing mult_matrix_vector.py
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gaxpy-column-oriented-caso-no-vectorizado">
+<h3><em>gaxpy column oriented</em> caso no vectorizado<a class="headerlink" href="#gaxpy-column-oriented-caso-no-vectorizado" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+perf stat -S -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;python3 mult_matrix_vector.py&#39; (2 runs):
+
+      253636293168      cycles                                                        ( +-  2.57% )
+      612211438956      instructions              #    2.41  insn per cycle           ( +-  0.80% )
+        1021919811      cache-references                                              ( +-  0.04% )
+         127117602      cache-misses              #   12.439 % of all cache refs      ( +-  0.56% )
+
+      63.613271875 seconds time elapsed                                          ( +-  2.51% )
+</pre></div>
+</div>
+</div>
+</div>
+<p>Métricas por core:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+perf stat -S --all-cpus -A --per-core -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;system wide&#39; (2 runs):
+
+S0-C0           2          343119167      cycles                                                      
+S0-C0           2           98370360      instructions              #    0.29  insn per cycle         
+S0-C0           2            5840329      cache-references                                            
+S0-C0           2            1414327      cache-misses              #   24.217 % of all cache refs    
+S0-C1           2          528971112      cycles                                                      
+S0-C1           2          258058789      instructions              #    0.49  insn per cycle         
+S0-C1           2            8051433      cache-references                                            
+S0-C1           2            2969543      cache-misses              #   36.882 % of all cache refs    
+S0-C2           2        69421643702      cycles                                                      
+S0-C2           2       146665430983      instructions              #    2.11  insn per cycle         
+S0-C2           2          510280653      cache-references                                            
+S0-C2           2           75086567      cache-misses              #   14.715 % of all cache refs    
+S0-C3           2       182606290800      cycles                                                      
+S0-C3           2       459364489796      instructions              #    2.52  insn per cycle         
+S0-C3           2          530605786      cache-references                                            
+S0-C3           2           60288944      cache-misses              #   11.362 % of all cache refs    
+
+      61.854651367 seconds time elapsed                                          ( +-  0.61% )
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gaxpy-column-oriented-caso-vectorizando">
+<h3><em>gaxpy column oriented</em> caso vectorizando<a class="headerlink" href="#gaxpy-column-oriented-caso-vectorizando" title="Permalink to this headline">¶</a></h3>
+<p>Archivo vectorizando con numpy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mult_matrix_vector_numpy.py
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">2.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">file</span><span class="o">=</span><span class="s1">&#39;A.txt&#39;</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">y</span><span class="o">+=</span><span class="n">A</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing mult_matrix_vector_numpy.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+perf stat -S -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector_numpy.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;python3 mult_matrix_vector_numpy.py&#39; (2 runs):
+
+      243217588216      cycles                                                        ( +-  1.27% )
+      598729874148      instructions              #    2.46  insn per cycle           ( +-  0.42% )
+         662503038      cache-references                                              ( +-  1.39% )
+          95202746      cache-misses              #   14.370 % of all cache refs      ( +-  0.97% )
+
+      60.488697485 seconds time elapsed                                          ( +-  1.26% )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+perf stat -S --all-cpus -A --per-core -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector_numpy.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;system wide&#39; (2 runs):
+
+S0-C0           2         2664298731      cycles                                                      
+S0-C0           2         1964872569      instructions              #    0.74  insn per cycle         
+S0-C0           2           10837071      cache-references                                            
+S0-C0           2            4435770      cache-misses              #   40.931 % of all cache refs    
+S0-C1           2          964636936      cycles                                                      
+S0-C1           2          320553130      instructions              #    0.33  insn per cycle         
+S0-C1           2            6043601      cache-references                                            
+S0-C1           2            2799592      cache-misses              #   46.323 % of all cache refs    
+S0-C2           2         1339127149      cycles                                                      
+S0-C2           2          935833922      instructions              #    0.70  insn per cycle         
+S0-C2           2            8451552      cache-references                                            
+S0-C2           2            2653359      cache-misses              #   31.395 % of all cache refs    
+S0-C3           2       305074104555      cycles                                                      
+S0-C3           2       606515058789      instructions              #    1.99  insn per cycle         
+S0-C3           2          661941985      cache-references                                            
+S0-C3           2           94553002      cache-misses              #   14.284 % of all cache refs    
+
+      61.588377630 seconds time elapsed                                          ( +-  2.84% )
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gaxpy-row-oriented-caso-vectorizando">
+<h3><em>gaxpy row oriented</em> caso vectorizando<a class="headerlink" href="#gaxpy-row-oriented-caso-vectorizando" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mult_matrix_vector_numpy_row_oriented.py
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">2.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">file</span><span class="o">=</span><span class="s1">&#39;A.txt&#39;</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting mult_matrix_vector_numpy_row_oriented.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+sudo perf stat -S -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector_numpy_row_oriented.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;python3 mult_matrix_vector_numpy_row_oriented.py&#39; (2 runs):
+
+      240065888790      cycles                                                        ( +-  0.31% )
+      596676621081      instructions              #    2.49  insn per cycle           ( +-  0.28% )
+         549617732      cache-references                                              ( +-  0.84% )
+          87432788      cache-misses              #   15.908 % of all cache refs      ( +-  0.29% )
+
+      59.657694617 seconds time elapsed                                          ( +-  0.32% )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+sudo perf stat -S -a --per-core -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector_numpy_row_oriented.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;system wide&#39; (2 runs):
+
+S0-C0           2         2022241353      cycles                                                      
+S0-C0           2          749567422      instructions              #    0.37  insn per cycle         
+S0-C0           2            5565741      cache-references                                            
+S0-C0           2            1418960      cache-misses              #   25.495 % of all cache refs    
+S0-C1           2          978643966      cycles                                                      
+S0-C1           2          468796681      instructions              #    0.48  insn per cycle         
+S0-C1           2            5124516      cache-references                                            
+S0-C1           2            2519200      cache-misses              #   49.160 % of all cache refs    
+S0-C2           2         1827829093      cycles                                                      
+S0-C2           2         1157668329      instructions              #    0.63  insn per cycle         
+S0-C2           2            7050536      cache-references                                            
+S0-C2           2            4433714      cache-misses              #   62.885 % of all cache refs    
+S0-C3           2       253080374948      cycles                                                      
+S0-C3           2       606973949249      instructions              #    2.40  insn per cycle         
+S0-C3           2          559644223      cache-references                                            
+S0-C3           2           87449250      cache-misses              #   15.626 % of all cache refs    
+
+      60.039748269 seconds time elapsed                                          ( +-  1.13% )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>No se observa una gran diferencia entre el caso vectorizado y no vectorizado salvo que en el caso vectorizando se tiene un <span class="math notranslate nohighlight">\(\%\)</span> mayor de <em>cache-misses</em>. Sería conveniente realizar más repeticiones de esta misma operación o con diferentes operaciones de nivel 2 BLAS para realizar conclusiones más sólidas. Ver <a class="reference external" href="http://www.netlib.org/blas/#_level_2">level 2</a> para más ejemplos de algoritmos en el álgebra lineal en esta categoría.</p></li>
+<li><p>Otra opción que se tiene es utilizar la siguiente implementación ya que <code class="docutils literal notranslate"><span class="pre">numpy</span></code> soporta operaciones del tipo matriz-vector sin necesidad de utilizar un <em>for loop</em>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="perf-openblas-nivel-3-multiplicacion-de-matrices">
+<h3>perf OpenBLAS: nivel 3 multiplicación de matrices<a class="headerlink" href="#perf-openblas-nivel-3-multiplicacion-de-matrices" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mult_matrix_matrix_numpy_openblas.py
@@ -3767,7 +4296,7 @@ CPU63                 520349      branch-misses             #    2.79% of all br
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-perf stat -S -a --per-core -e cycles,instructions,cache-references,cache-misses -r 7 python3 mult_matrix_matrix_numpy_openblas.py
+perf stat -S --all-cpus -A -e cycles,instructions,cache-references,cache-misses -r 7 python3 mult_matrix_matrix_numpy_openblas.py
 </pre></div>
 </div>
 </div>
@@ -3904,6 +4433,186 @@ S1-D0-C15          2          520851546      cache-references                   
 S1-D0-C15          2           21406519      cache-misses              #    4.110 % of all cache refs      (75.01%)
 
              5.944 +- 0.128 seconds time elapsed  ( +-  2.15% )
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="comparacion-de-versiones-de-multiplicacion-de-matrices-utilizando-nivel-1-vs-nivel-2-de-blas">
+<h3>Comparación de versiones de multiplicación de matrices utilizando nivel 1 vs nivel 2 de BLAS<a class="headerlink" href="#comparacion-de-versiones-de-multiplicacion-de-matrices-utilizando-nivel-1-vs-nivel-2-de-blas" title="Permalink to this headline">¶</a></h3>
+<p>Utilizamos matrices <span class="math notranslate nohighlight">\(A, B \in \mathbb{R}^{10^3 \times 10^3}\)</span> pseudoaleatorias:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span>
+
+<span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+<span class="n">fileA_10_3</span><span class="o">=</span><span class="s1">&#39;A_10_3.txt&#39;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">fileA_10_3</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span>
+
+<span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+<span class="n">fileB_10_3</span><span class="o">=</span><span class="s1">&#39;B_10_3.txt&#39;</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">fileB_10_3</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mult_matrix_matrix_numpy_dot_product.py
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span>
+
+<span class="n">fileA_10_3</span><span class="o">=</span><span class="s1">&#39;A_10_3.txt&#39;</span>
+<span class="n">fileB_10_3</span><span class="o">=</span><span class="s1">&#39;B_10_3.txt&#39;</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fileA_10_3</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fileB_10_3</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B</span><span class="p">[:,</span><span class="n">j</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing mult_matrix_matrix_numpy_dot_product.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+perf stat -S --all-cpus -A -e cycles,instructions,cache-references,cache-misses -r 5 python3 mult_matrix_matrix_numpy_dot_product.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;system wide&#39; (5 runs):
+
+       17727880724      cycles                                                        ( +-  2.67% )
+       31196800089      instructions              #    1.76  insn per cycle           ( +-  0.18% )
+         174120561      cache-references                                              ( +-  1.57% )
+          14645042      cache-misses              #    8.411 % of all cache refs      ( +-  8.98% )
+
+       3.817488998 seconds time elapsed                                          ( +-  0.55% )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+perf stat -S --all-cpus -A --per-core -e cycles,instructions,cache-references,cache-misses -r 5 python3 mult_matrix_matrix_numpy_dot_product.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;system wide&#39; (5 runs):
+
+S0-C0           2          582438322      cycles                                                      
+S0-C0           2          225885082      instructions              #    0.39  insn per cycle         
+S0-C0           2             274724      cache-references                                            
+S0-C0           2             130031      cache-misses              #   47.332 % of all cache refs    
+S0-C1           2          642407408      cycles                                                      
+S0-C1           2          272043994      instructions              #    0.42  insn per cycle         
+S0-C1           2             546749      cache-references                                            
+S0-C1           2             324188      cache-misses              #   59.294 % of all cache refs    
+S0-C2           2          596216226      cycles                                                      
+S0-C2           2          226892804      instructions              #    0.38  insn per cycle         
+S0-C2           2             446956      cache-references                                            
+S0-C2           2             184440      cache-misses              #   41.266 % of all cache refs    
+S0-C3           2        17956845889      cycles                                                      
+S0-C3           2        30574523485      instructions              #    1.70  insn per cycle         
+S0-C3           2          185655560      cache-references                                            
+S0-C3           2           15107439      cache-misses              #    8.137 % of all cache refs    
+
+       3.861269417 seconds time elapsed                                          ( +-  0.93% )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mult_matrix_matrix_numpy_dot_product_gaxpy.py
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">fileA_10_3</span><span class="o">=</span><span class="s1">&#39;A_10_3.txt&#39;</span>
+<span class="n">fileB_10_3</span><span class="o">=</span><span class="s1">&#39;B_10_3.txt&#39;</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fileA_10_3</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">fileB_10_3</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="nd">@B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting mult_matrix_matrix_numpy_dot_product_gaxpy.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+perf stat -S --all-cpus -A -e cycles,instructions,cache-references,cache-misses -r 5 python3 mult_matrix_matrix_numpy_dot_product_gaxpy.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;system wide&#39; (5 runs):
+
+       11010075589      cycles                                                        ( +-  0.66% )
+       14922627515      instructions              #    1.36  insn per cycle           ( +-  0.26% )
+         142059490      cache-references                                              ( +-  1.24% )
+           8572872      cache-misses              #    6.035 % of all cache refs      ( +- 11.05% )
+
+       1.455285799 seconds time elapsed                                          ( +-  0.44% )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+perf stat -S --all-cpus -A --per-core -e cycles,instructions,cache-references,cache-misses -r 5 python3 mult_matrix_matrix_numpy_dot_product_gaxpy.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;system wide&#39; (5 runs):
+
+S0-C0           2         1448177294      cycles                                                      
+S0-C0           2          623468047      instructions              #    0.43  insn per cycle         
+S0-C0           2           29581790      cache-references                                            
+S0-C0           2             575180      cache-misses              #    1.944 % of all cache refs    
+S0-C1           2         1477272782      cycles                                                      
+S0-C1           2          656096587      instructions              #    0.44  insn per cycle         
+S0-C1           2           29881953      cache-references                                            
+S0-C1           2             608210      cache-misses              #    2.035 % of all cache refs    
+S0-C2           2         1457641798      cycles                                                      
+S0-C2           2          633875919      instructions              #    0.43  insn per cycle         
+S0-C2           2           24959423      cache-references                                            
+S0-C2           2            1281191      cache-misses              #    5.133 % of all cache refs    
+S0-C3           2         6518413194      cycles                                                      
+S0-C3           2        12982975813      instructions              #    1.99  insn per cycle         
+S0-C3           2           53648618      cache-references                                            
+S0-C3           2            2954550      cache-misses              #    5.507 % of all cache refs    
+
+       1.449412595 seconds time elapsed                                          ( +-  0.43% )
 </pre></div>
 </div>
 </div>
