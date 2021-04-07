@@ -568,6 +568,16 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiplicacion-de-matrices">
+     Multiplicación de matrices
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factorizacion-lu">
+     Factorización LU
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#resultados-utilizando-opt2-aws-educate-no-openblas-04-04-2021">
      Resultados utilizando
      <code class="docutils literal notranslate">
@@ -575,6 +585,11 @@
        opt2-aws-educate-no-openblas-04-04-2021
       </span>
      </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Multiplicación de matrices
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -586,7 +601,7 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
+    <a class="reference internal nav-link" href="#id3">
      Resultados utilizando
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -596,7 +611,7 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
+    <a class="reference internal nav-link" href="#id4">
      Resultados utilizando
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -638,6 +653,13 @@
      al cuadrado de un vector
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#check-next-results">
+   Check next results:
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#perf-openblas-gaxpy-row-column-oriented-nivel-2">
      perf OpenBLAS:
@@ -999,7 +1021,7 @@ sudo lshw -C memory
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 0.44214773178100586 segundos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 0.39971065521240234 segundos
 </pre></div>
 </div>
 </div>
@@ -1094,7 +1116,7 @@ Wall time: 386 ms
 <p>https://stackoverflow.com/questions/51536411/saving-cprofile-results-to-readable-external-file</p>
 <p>https://stackoverflow.com/questions/21274898/python-getting-meaningful-results-from-cprofile</p>
 <p>https://stackoverflow.com/questions/23805312/filter-profiler-files-with-maximum-cumulative-time-greater-then-x</p>
-<p><em>CProfile</em> es <code class="docutils literal notranslate"><span class="pre">built-in</span></code> en la <em>standard-library</em> de Python. Se utiliza con la implementación <code class="docutils literal notranslate"><span class="pre">CPython</span></code> de <code class="docutils literal notranslate"><span class="pre">Python</span></code> para medir el tiempo de ejecución de cada función en el programa.</p>
+<p><em>CProfile</em> es <code class="docutils literal notranslate"><span class="pre">built-in</span></code> en la <em>standard-library</em> de Python. Se utiliza con la implementación <code class="docutils literal notranslate"><span class="pre">CPython</span></code> de <code class="docutils literal notranslate"><span class="pre">Python</span></code> para medir el tiempo de ejecución de cada función en el programa. Se ejecuta desde la línea de comandos con un comando de <em>magic</em> o realizando <code class="docutils literal notranslate"><span class="pre">import</span></code>. La flag <code class="docutils literal notranslate"><span class="pre">-s</span></code> por la ejecución vía línea de comando, indica que se ordene el resultado por el tiempo acumulado dentro de cada función.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cProfile</span>
@@ -1104,7 +1126,7 @@ Wall time: 386 ms
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
 <span class="n">pr</span> <span class="o">=</span> <span class="n">cProfile</span><span class="o">.</span><span class="n">Profile</span><span class="p">()</span>
 <span class="n">pr</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
 <span class="n">res</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
@@ -1114,41 +1136,49 @@ Wall time: 386 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         249 function calls in 0.002 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         2000047 function calls in 3.050 seconds
 
    Ordered by: internal time
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-      100    0.001    0.000    0.001    0.000 &lt;ipython-input-25-e098c9ed7b86&gt;:1(&lt;lambda&gt;)
-        1    0.000    0.000    0.001    0.001 &lt;ipython-input-24-303d3a3bb088&gt;:1(Rcf)
-      100    0.000    0.000    0.000    0.000 {built-in method math.exp}
+  1000000    1.468    0.000    2.139    0.000 &lt;ipython-input-3-e098c9ed7b86&gt;:1(&lt;lambda&gt;)
+        1    0.759    0.759    3.040    3.040 &lt;ipython-input-2-303d3a3bb088&gt;:1(Rcf)
+  1000000    0.671    0.000    0.671    0.000 {built-in method math.exp}
+        1    0.142    0.142    0.142    0.142 &lt;ipython-input-2-303d3a3bb088&gt;:23(&lt;listcomp&gt;)
+        1    0.010    0.010    3.050    3.050 &lt;ipython-input-6-ebe01b6d678c&gt;:4(&lt;module&gt;)
         2    0.000    0.000    0.000    0.000 {built-in method builtins.compile}
-        2    0.000    0.000    0.001    0.001 interactiveshell.py:3377(run_code)
-        4    0.000    0.000    0.000    0.000 {built-in method builtins.next}
-        4    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
-        2    0.000    0.000    0.000    0.000 codeop.py:132(__call__)
-        1    0.000    0.000    0.000    0.000 &lt;ipython-input-24-303d3a3bb088&gt;:23(&lt;listcomp&gt;)
-        2    0.000    0.000    0.000    0.000 contextlib.py:81(__init__)
-        2    0.000    0.000    0.000    0.000 contextlib.py:116(__exit__)
-        2    0.000    0.000    0.001    0.001 {built-in method builtins.exec}
+        2    0.000    0.000    3.050    1.525 interactiveshell.py:3396(run_code)
+        2    0.000    0.000    0.000    0.000 contextlib.py:117(__exit__)
+        2    0.000    0.000    0.000    0.000 codeop.py:140(__call__)
         2    0.000    0.000    0.000    0.000 hooks.py:103(__call__)
-        2    0.000    0.000    0.000    0.000 traitlets.py:564(__get__)
-        2    0.000    0.000    0.000    0.000 contextlib.py:107(__enter__)
-        2    0.000    0.000    0.000    0.000 contextlib.py:237(helper)
-        4    0.000    0.000    0.000    0.000 compilerop.py:138(extra_flags)
-        1    0.000    0.000    0.001    0.001 &lt;ipython-input-28-3c9f1c8f513f&gt;:4(&lt;module&gt;)
-        2    0.000    0.000    0.000    0.000 interactiveshell.py:117(&lt;lambda&gt;)
-        1    0.000    0.000    0.000    0.000 &lt;ipython-input-28-3c9f1c8f513f&gt;:5(&lt;module&gt;)
-        2    0.000    0.000    0.000    0.000 interactiveshell.py:1277(user_global_ns)
+        2    0.000    0.000    0.000    0.000 contextlib.py:82(__init__)
+        4    0.000    0.000    0.000    0.000 compilerop.py:166(extra_flags)
+        1    0.000    0.000    0.000    0.000 &lt;ipython-input-6-ebe01b6d678c&gt;:5(&lt;module&gt;)
+        4    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+        4    0.000    0.000    0.000    0.000 {built-in method builtins.next}
         2    0.000    0.000    0.000    0.000 ipstruct.py:125(__getattr__)
-        2    0.000    0.000    0.000    0.000 traitlets.py:533(get)
+        2    0.000    0.000    3.050    1.525 {built-in method builtins.exec}
+        2    0.000    0.000    0.000    0.000 interactiveshell.py:3334(compare)
+        2    0.000    0.000    0.000    0.000 contextlib.py:108(__enter__)
+        2    0.000    0.000    0.000    0.000 traitlets.py:564(__get__)
         2    0.000    0.000    0.000    0.000 hooks.py:168(pre_run_code_hook)
-        2    0.000    0.000    0.000    0.000 interactiveshell.py:3319(compare)
+        2    0.000    0.000    0.000    0.000 contextlib.py:238(helper)
+        2    0.000    0.000    0.000    0.000 traitlets.py:533(get)
         1    0.000    0.000    0.000    0.000 {method &#39;disable&#39; of &#39;_lsprof.Profiler&#39; objects}
+        2    0.000    0.000    0.000    0.000 interactiveshell.py:1278(user_global_ns)
 </pre></div>
 </div>
 </div>
 </div>
+<p>El output siguiente de <code class="docutils literal notranslate"><span class="pre">cProfile</span></code> muestra:</p>
+<ul class="simple">
+<li><p>El tiempo total de ejecución, el cual incluye el tiempo del bloque de código que estamos midiendo y el overhead al usar <code class="docutils literal notranslate"><span class="pre">cProfile</span></code>. Por esta razón se tiene un mayor tiempo de ejecución que con las mediciones de tiempo anteriores.</p></li>
+<li><p>La columna <code class="docutils literal notranslate"><span class="pre">ncalls</span></code> que como el nombre indica, muestra el número de veces que se llamó a cada función. En este caso las funciones <code class="docutils literal notranslate"><span class="pre">lambda</span></code> y <code class="docutils literal notranslate"><span class="pre">math.exp</span></code> son las que se llaman un mayor número de veces: <span class="math notranslate nohighlight">\(n=10^6\)</span> veces. La columna<code class="docutils literal notranslate"><span class="pre">tottime</span></code> muestra el tiempo que tardaron estas funciones en ejecutarse (sin llamar a otras funciones).</p></li>
+<li><p>La columna <code class="docutils literal notranslate"><span class="pre">percall</span></code> es el cociente entre <code class="docutils literal notranslate"><span class="pre">tottime</span></code> y <code class="docutils literal notranslate"><span class="pre">ncalls</span></code>.</p></li>
+<li><p>La columna <code class="docutils literal notranslate"><span class="pre">cumtime</span></code> contiene el tiempo gastado en la función y en las demás que llama. Por ejemplo la función <code class="docutils literal notranslate"><span class="pre">Rcf</span></code> llama a <code class="docutils literal notranslate"><span class="pre">listcomp</span></code> por lo que es natural que <code class="docutils literal notranslate"><span class="pre">Rcf</span></code> esté más arriba en el output ordenado de <code class="docutils literal notranslate"><span class="pre">cProfile</span></code>. Esto también ocurre con <code class="docutils literal notranslate"><span class="pre">lambda</span></code> y <code class="docutils literal notranslate"><span class="pre">math.exp</span></code> pues la primera llama a la segunda.</p></li>
+<li><p>La columna de <code class="docutils literal notranslate"><span class="pre">percall</span></code> es un cociente entre la columna <code class="docutils literal notranslate"><span class="pre">cumtime</span></code> y el llamado a primitivas.</p></li>
+<li><p>La última columna indica información de la función y la línea en la que se encuentra dentro del código. La forma como se está ejecutando vía un <em>jupyter notebook</em> no es muy ilustrativa. Compárese con lo siguiente en donde se obtendrá que la línea <span class="math notranslate nohighlight">\(1\)</span> del módulo es el llamado a la función <code class="docutils literal notranslate"><span class="pre">__main__</span></code>. La línea <span class="math notranslate nohighlight">\(2\)</span> es el llamado a la función <code class="docutils literal notranslate"><span class="pre">Rcf</span></code>.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf.py
@@ -1863,6 +1893,9 @@ None
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="multiplicacion-de-matrices">
+<h3>Multiplicación de matrices<a class="headerlink" href="#multiplicacion-de-matrices" title="Permalink to this headline">¶</a></h3>
 <p>Hacemos una prueba de medición de tiempos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1902,6 +1935,9 @@ None
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="factorizacion-lu">
+<h3>Factorización LU<a class="headerlink" href="#factorizacion-lu" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="resultados-utilizando-opt2-aws-educate-no-openblas-04-04-2021">
 <h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code><a class="headerlink" href="#resultados-utilizando-opt2-aws-educate-no-openblas-04-04-2021" title="Permalink to this headline">¶</a></h3>
@@ -1944,6 +1980,9 @@ None
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="id2">
+<h3>Multiplicación de matrices<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Hacemos una prueba de medición de tiempos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2013,8 +2052,8 @@ sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &am
 </div>
 </div>
 </div>
-<div class="section" id="id2">
-<h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Verificamos que las librerías de cómputo matricial de <em>R</em> están usando la implementación de la API de BLAS con OpenBLAS que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code>, ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2112,8 +2151,8 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 </div>
-<div class="section" id="id3">
-<h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>Verificamos que las librerías de cómputo matricial de <em>R</em> <strong>no</strong> están usando la implementación de la API de BLAS con OpenBLAS que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code>, ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4130,6 +4169,9 @@ CPU63                 520349      branch-misses             #    2.79% of all br
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="check-next-results">
+<h2>Check next results:<a class="headerlink" href="#check-next-results" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="perf-openblas-gaxpy-row-column-oriented-nivel-2">
 <h3>perf OpenBLAS: <em>gaxpy row, column oriented</em> (nivel 2)<a class="headerlink" href="#perf-openblas-gaxpy-row-column-oriented-nivel-2" title="Permalink to this headline">¶</a></h3>
 <p>Utilizaremos <code class="docutils literal notranslate"><span class="pre">perf</span></code> en lo que sigue para evaluar las métricas de IPC, <em>cache-references</em>, <em>cache-misses</em> y medir el tiempo de ejecución. Además, esto permitirá comparar los tiempos de ejecución del algoritmo <em>gaxpy</em> (nivel BLAS 2), con vectorización y sin vectorización.</p>
@@ -4183,12 +4225,12 @@ perf stat -S -e cycles,instructions,cache-references,cache-misses -r 2 python3 m
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;python3 mult_matrix_vector.py&#39; (2 runs):
 
-      253636293168      cycles                                                        ( +-  2.57% )
-      612211438956      instructions              #    2.41  insn per cycle           ( +-  0.80% )
-        1021919811      cache-references                                              ( +-  0.04% )
-         127117602      cache-misses              #   12.439 % of all cache refs      ( +-  0.56% )
+      271994249914      cycles                                                        ( +-  2.18% )  (75.00%)
+      590762909258      instructions              #    2.17  insn per cycle           ( +-  0.17% )  (75.00%)
+        2657542777      cache-references                                              ( +-  1.66% )  (75.01%)
+         441152508      cache-misses              #   16.600 % of all cache refs      ( +-  2.06% )  (75.00%)
 
-      63.613271875 seconds time elapsed                                          ( +-  2.51% )
+            102.15 +- 2.48 seconds time elapsed  ( +-  2.43% )
 </pre></div>
 </div>
 </div>
@@ -4197,31 +4239,271 @@ perf stat -S -e cycles,instructions,cache-references,cache-misses -r 2 python3 m
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-perf stat -S --all-cpus -A --per-core -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector.py
+perf stat -S --all-cpus -A -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;system wide&#39; (2 runs):
 
-S0-C0           2          343119167      cycles                                                      
-S0-C0           2           98370360      instructions              #    0.29  insn per cycle         
-S0-C0           2            5840329      cache-references                                            
-S0-C0           2            1414327      cache-misses              #   24.217 % of all cache refs    
-S0-C1           2          528971112      cycles                                                      
-S0-C1           2          258058789      instructions              #    0.49  insn per cycle         
-S0-C1           2            8051433      cache-references                                            
-S0-C1           2            2969543      cache-misses              #   36.882 % of all cache refs    
-S0-C2           2        69421643702      cycles                                                      
-S0-C2           2       146665430983      instructions              #    2.11  insn per cycle         
-S0-C2           2          510280653      cache-references                                            
-S0-C2           2           75086567      cache-misses              #   14.715 % of all cache refs    
-S0-C3           2       182606290800      cycles                                                      
-S0-C3           2       459364489796      instructions              #    2.52  insn per cycle         
-S0-C3           2          530605786      cache-references                                            
-S0-C3           2           60288944      cache-misses              #   11.362 % of all cache refs    
+CPU0              3578630443      cycles                                                        (75.01%)
+CPU1              3605899218      cycles                                                        (75.01%)
+CPU2              3524746112      cycles                                                        (75.01%)
+CPU3              3589221497      cycles                                                        (75.00%)
+CPU4              3535171266      cycles                                                        (75.01%)
+CPU5              3591223324      cycles                                                        (75.00%)
+CPU6              3537162601      cycles                                                        (75.01%)
+CPU7              3628710964      cycles                                                        (75.01%)
+CPU8              3479570426      cycles                                                        (75.00%)
+CPU9              3634161821      cycles                                                        (75.01%)
+CPU10             3630174692      cycles                                                        (75.00%)
+CPU11             3880625753      cycles                                                        (75.00%)
+CPU12             3552480169      cycles                                                        (75.00%)
+CPU13             3610296320      cycles                                                        (75.00%)
+CPU14             3674008708      cycles                                                        (75.01%)
+CPU15             3665733244      cycles                                                        (75.01%)
+CPU16             6813910657      cycles                                                        (75.00%)
+CPU17             3688328384      cycles                                                        (75.00%)
+CPU18             3688265224      cycles                                                        (75.00%)
+CPU19             3741251424      cycles                                                        (75.00%)
+CPU20             3865124613      cycles                                                        (75.00%)
+CPU21            83358635487      cycles                                                        (75.00%)
+CPU22             3656196664      cycles                                                        (75.00%)
+CPU23             3647326929      cycles                                                        (75.00%)
+CPU24             3674870846      cycles                                                        (75.00%)
+CPU25             3620249123      cycles                                                        (75.00%)
+CPU26             3763095517      cycles                                                        (75.00%)
+CPU27             3753232412      cycles                                                        (75.00%)
+CPU28             3656084972      cycles                                                        (75.00%)
+CPU29             3649319629      cycles                                                        (75.00%)
+CPU30             3739270785      cycles                                                        (75.00%)
+CPU31             3760041482      cycles                                                        (75.00%)
+CPU32             2948149349      cycles                                                        (75.01%)
+CPU33             3004624838      cycles                                                        (75.01%)
+CPU34             2942060521      cycles                                                        (75.01%)
+CPU35             3028456942      cycles                                                        (75.00%)
+CPU36             3003643141      cycles                                                        (75.01%)
+CPU37             3122474624      cycles                                                        (75.00%)
+CPU38             2978803776      cycles                                                        (75.00%)
+CPU39             3066843393      cycles                                                        (75.00%)
+CPU40             2911795941      cycles                                                        (75.00%)
+CPU41             3010958395      cycles                                                        (75.00%)
+CPU42             3092057823      cycles                                                        (75.00%)
+CPU43             3085276334      cycles                                                        (75.00%)
+CPU44             3021289409      cycles                                                        (75.00%)
+CPU45             3108317638      cycles                                                        (75.00%)
+CPU46             3081307028      cycles                                                        (75.00%)
+CPU47             3118314391      cycles                                                        (75.00%)
+CPU48             3072544726      cycles                                                        (75.00%)
+CPU49             3104065556      cycles                                                        (75.00%)
+CPU50             3125141441      cycles                                                        (75.00%)
+CPU51             3174839815      cycles                                                        (75.00%)
+CPU52             3156513626      cycles                                                        (75.00%)
+CPU53           183686846682      cycles                                                        (75.00%)
+CPU54             3105420655      cycles                                                        (75.00%)
+CPU55             3113156091      cycles                                                        (75.00%)
+CPU56             3147171204      cycles                                                        (75.00%)
+CPU57             3080453124      cycles                                                        (75.01%)
+CPU58             3234992187      cycles                                                        (75.01%)
+CPU59             3236019232      cycles                                                        (75.01%)
+CPU60             3101021008      cycles                                                        (75.01%)
+CPU61             3127621372      cycles                                                        (75.01%)
+CPU62             3198398350      cycles                                                        (75.01%)
+CPU63             3231246410      cycles                                                        (75.01%)
+CPU0               445401837      instructions              #    0.12  insn per cycle           (75.00%)
+CPU1               375089498      instructions              #    0.10  insn per cycle           (75.00%)
+CPU2               371069279      instructions              #    0.10  insn per cycle           (75.00%)
+CPU3               368878368      instructions              #    0.10  insn per cycle           (75.01%)
+CPU4               371981019      instructions              #    0.10  insn per cycle           (75.00%)
+CPU5               390693306      instructions              #    0.11  insn per cycle           (75.00%)
+CPU6               370452495      instructions              #    0.10  insn per cycle           (75.00%)
+CPU7               376448600      instructions              #    0.10  insn per cycle           (75.00%)
+CPU8               359140727      instructions              #    0.10  insn per cycle           (75.00%)
+CPU9               367727151      instructions              #    0.10  insn per cycle           (75.00%)
+CPU10              371111628      instructions              #    0.10  insn per cycle           (75.00%)
+CPU11              538117317      instructions              #    0.13  insn per cycle           (75.00%)
+CPU12              370806800      instructions              #    0.10  insn per cycle           (75.00%)
+CPU13              374622751      instructions              #    0.10  insn per cycle           (75.00%)
+CPU14              425733525      instructions              #    0.11  insn per cycle           (75.00%)
+CPU15              374039218      instructions              #    0.10  insn per cycle           (75.00%)
+CPU16             2876954774      instructions              #    0.42  insn per cycle           (75.00%)
+CPU17              374554932      instructions              #    0.10  insn per cycle           (75.00%)
+CPU18              369853846      instructions              #    0.10  insn per cycle           (75.00%)
+CPU19              366634019      instructions              #    0.10  insn per cycle           (75.00%)
+CPU20              413233384      instructions              #    0.11  insn per cycle           (75.00%)
+CPU21           156177941209      instructions              #    3.64  insn per cycle           (75.00%)
+CPU22              363140993      instructions              #    0.10  insn per cycle           (75.00%)
+CPU23              367156164      instructions              #    0.10  insn per cycle           (75.00%)
+CPU24              367041646      instructions              #    0.10  insn per cycle           (75.00%)
+CPU25              367158876      instructions              #    0.10  insn per cycle           (75.01%)
+CPU26              358085155      instructions              #    0.09  insn per cycle           (75.01%)
+CPU27              360878071      instructions              #    0.09  insn per cycle           (75.01%)
+CPU28              364876619      instructions              #    0.10  insn per cycle           (75.00%)
+CPU29              369955596      instructions              #    0.10  insn per cycle           (75.01%)
+CPU30              365469344      instructions              #    0.10  insn per cycle           (75.01%)
+CPU31              358234364      instructions              #    0.09  insn per cycle           (75.01%)
+CPU32              359473221      instructions              #    0.12  insn per cycle           (75.00%)
+CPU33              360682215      instructions              #    0.12  insn per cycle           (75.00%)
+CPU34              341887284      instructions              #    0.11  insn per cycle           (75.00%)
+CPU35              357739554      instructions              #    0.12  insn per cycle           (75.01%)
+CPU36              371992262      instructions              #    0.12  insn per cycle           (75.00%)
+CPU37              435947794      instructions              #    0.14  insn per cycle           (75.00%)
+CPU38              362216849      instructions              #    0.12  insn per cycle           (75.00%)
+CPU39              371455337      instructions              #    0.12  insn per cycle           (75.00%)
+CPU40              346231567      instructions              #    0.12  insn per cycle           (75.00%)
+CPU41              353748447      instructions              #    0.12  insn per cycle           (75.00%)
+CPU42              358300747      instructions              #    0.11  insn per cycle           (75.00%)
+CPU43              359980833      instructions              #    0.11  insn per cycle           (75.00%)
+CPU44              361501450      instructions              #    0.12  insn per cycle           (75.00%)
+CPU45              729214480      instructions              #    0.22  insn per cycle           (75.00%)
+CPU46              361319130      instructions              #    0.11  insn per cycle           (75.00%)
+CPU47              359405785      instructions              #    0.11  insn per cycle           (75.00%)
+CPU48              349001345      instructions              #    0.11  insn per cycle           (75.00%)
+CPU49              353201778      instructions              #    0.11  insn per cycle           (75.00%)
+CPU50              352533836      instructions              #    0.11  insn per cycle           (75.00%)
+CPU51              354905538      instructions              #    0.11  insn per cycle           (75.00%)
+CPU52              363936165      instructions              #    0.11  insn per cycle           (75.00%)
+CPU53           430385363112      instructions              #    1.87  insn per cycle           (75.00%)
+CPU54              349859095      instructions              #    0.11  insn per cycle           (75.00%)
+CPU55              355794555      instructions              #    0.11  insn per cycle           (75.00%)
+CPU56              353952894      instructions              #    0.11  insn per cycle           (75.00%)
+CPU57              356412466      instructions              #    0.11  insn per cycle           (75.00%)
+CPU58              350179815      instructions              #    0.11  insn per cycle           (75.00%)
+CPU59              353354929      instructions              #    0.11  insn per cycle           (75.00%)
+CPU60              356211649      instructions              #    0.11  insn per cycle           (75.00%)
+CPU61              362129707      instructions              #    0.11  insn per cycle           (75.00%)
+CPU62              351208136      instructions              #    0.11  insn per cycle           (75.00%)
+CPU63              350488103      instructions              #    0.11  insn per cycle           (75.00%)
+CPU0                40283890      cache-references                                              (75.00%)
+CPU1                40019376      cache-references                                              (75.00%)
+CPU2                39321166      cache-references                                              (75.00%)
+CPU3                39716502      cache-references                                              (75.00%)
+CPU4                39251761      cache-references                                              (75.00%)
+CPU5                39998332      cache-references                                              (75.00%)
+CPU6                39258646      cache-references                                              (75.00%)
+CPU7                40243636      cache-references                                              (75.00%)
+CPU8                37957401      cache-references                                              (75.00%)
+CPU9                41597044      cache-references                                              (75.00%)
+CPU10               38307310      cache-references                                              (75.00%)
+CPU11               46053886      cache-references                                              (75.00%)
+CPU12               38737119      cache-references                                              (75.00%)
+CPU13               39086179      cache-references                                              (75.00%)
+CPU14               38862607      cache-references                                              (75.00%)
+CPU15               38801163      cache-references                                              (75.00%)
+CPU16               64164646      cache-references                                              (75.00%)
+CPU17               40402596      cache-references                                              (75.00%)
+CPU18               41309296      cache-references                                              (75.00%)
+CPU19               38442725      cache-references                                              (75.00%)
+CPU20               42683033      cache-references                                              (75.00%)
+CPU21              863219114      cache-references                                              (75.00%)
+CPU22               37406529      cache-references                                              (75.00%)
+CPU23               37519015      cache-references                                              (75.00%)
+CPU24               36691463      cache-references                                              (75.00%)
+CPU25               38146766      cache-references                                              (75.00%)
+CPU26               39601686      cache-references                                              (75.00%)
+CPU27               39424791      cache-references                                              (75.00%)
+CPU28               39222547      cache-references                                              (75.00%)
+CPU29               38496867      cache-references                                              (75.00%)
+CPU30               37185982      cache-references                                              (75.00%)
+CPU31               38968535      cache-references                                              (75.00%)
+CPU32               42389468      cache-references                                              (75.00%)
+CPU33               42520306      cache-references                                              (75.00%)
+CPU34               40137590      cache-references                                              (75.00%)
+CPU35               39674707      cache-references                                              (75.00%)
+CPU36               39430792      cache-references                                              (75.00%)
+CPU37               42108170      cache-references                                              (75.00%)
+CPU38               40334230      cache-references                                              (75.00%)
+CPU39               41752404      cache-references                                              (75.00%)
+CPU40               39332668      cache-references                                              (75.00%)
+CPU41               42271596      cache-references                                              (75.00%)
+CPU42               40215827      cache-references                                              (75.00%)
+CPU43               40692823      cache-references                                              (75.01%)
+CPU44               39533691      cache-references                                              (75.00%)
+CPU45               43972822      cache-references                                              (75.00%)
+CPU46               40467056      cache-references                                              (75.00%)
+CPU47               40828475      cache-references                                              (75.00%)
+CPU48               41528399      cache-references                                              (75.01%)
+CPU49               40238204      cache-references                                              (75.00%)
+CPU50               38902775      cache-references                                              (75.00%)
+CPU51               40915501      cache-references                                              (75.01%)
+CPU52               41928625      cache-references                                              (75.00%)
+CPU53             1786598964      cache-references                                              (75.00%)
+CPU54               40088227      cache-references                                              (75.01%)
+CPU55               40422291      cache-references                                              (75.00%)
+CPU56               41210516      cache-references                                              (75.00%)
+CPU57               39800652      cache-references                                              (75.00%)
+CPU58               39781928      cache-references                                              (75.00%)
+CPU59               38376209      cache-references                                              (75.00%)
+CPU60               39179763      cache-references                                              (75.00%)
+CPU61               39405936      cache-references                                              (75.00%)
+CPU62               40990440      cache-references                                              (75.00%)
+CPU63               38406523      cache-references                                              (75.00%)
+CPU0                  493110      cache-misses              #    1.215 % of all cache refs      (75.00%)
+CPU1                  106179      cache-misses              #    0.261 % of all cache refs      (75.00%)
+CPU2                   80659      cache-misses              #    0.201 % of all cache refs      (75.00%)
+CPU3                   79941      cache-misses              #    0.198 % of all cache refs      (75.00%)
+CPU4                  103226      cache-misses              #    0.257 % of all cache refs      (75.00%)
+CPU5                  145783      cache-misses              #    0.360 % of all cache refs      (75.00%)
+CPU6                   83631      cache-misses              #    0.209 % of all cache refs      (75.00%)
+CPU7                  128582      cache-misses              #    0.311 % of all cache refs      (75.00%)
+CPU8                  297859      cache-misses              #    0.757 % of all cache refs      (75.00%)
+CPU9                  112477      cache-misses              #    0.272 % of all cache refs      (75.00%)
+CPU10                  62512      cache-misses              #    0.159 % of all cache refs      (75.00%)
+CPU11                 621952      cache-misses              #    1.253 % of all cache refs      (75.00%)
+CPU12                  80510      cache-misses              #    0.203 % of all cache refs      (75.00%)
+CPU13                  89526      cache-misses              #    0.226 % of all cache refs      (75.00%)
+CPU14                 194631      cache-misses              #    0.493 % of all cache refs      (75.00%)
+CPU15                  66171      cache-misses              #    0.167 % of all cache refs      (75.00%)
+CPU16                7847960      cache-misses              #   12.138 % of all cache refs      (75.00%)
+CPU17                 174109      cache-misses              #    0.425 % of all cache refs      (75.00%)
+CPU18                 162690      cache-misses              #    0.387 % of all cache refs      (75.00%)
+CPU19                 156605      cache-misses              #    0.394 % of all cache refs      (75.01%)
+CPU20                 479786      cache-misses              #    1.120 % of all cache refs      (75.00%)
+CPU21              205643595      cache-misses              #   46.254 % of all cache refs      (75.00%)
+CPU22                 168010      cache-misses              #    0.432 % of all cache refs      (75.00%)
+CPU23                 126177      cache-misses              #    0.327 % of all cache refs      (75.00%)
+CPU24                 130577      cache-misses              #    0.346 % of all cache refs      (75.00%)
+CPU25                 117914      cache-misses              #    0.302 % of all cache refs      (75.00%)
+CPU26                 110282      cache-misses              #    0.271 % of all cache refs      (75.00%)
+CPU27                 103320      cache-misses              #    0.254 % of all cache refs      (75.00%)
+CPU28                 220975      cache-misses              #    0.550 % of all cache refs      (75.00%)
+CPU29                 193715      cache-misses              #    0.489 % of all cache refs      (75.00%)
+CPU30                 167115      cache-misses              #    0.436 % of all cache refs      (75.00%)
+CPU31                 128706      cache-misses              #    0.319 % of all cache refs      (75.00%)
+CPU32                 168895      cache-misses              #    0.392 % of all cache refs      (75.00%)
+CPU33                  95430      cache-misses              #    0.220 % of all cache refs      (75.00%)
+CPU34                  82872      cache-misses              #    0.203 % of all cache refs      (75.00%)
+CPU35                  84179      cache-misses              #    0.207 % of all cache refs      (75.00%)
+CPU36                 132104      cache-misses              #    0.327 % of all cache refs      (75.00%)
+CPU37                 431628      cache-misses              #    1.016 % of all cache refs      (75.00%)
+CPU38                  94355      cache-misses              #    0.228 % of all cache refs      (75.00%)
+CPU39                 136175      cache-misses              #    0.308 % of all cache refs      (75.00%)
+CPU40                 265485      cache-misses              #    0.653 % of all cache refs      (75.00%)
+CPU41                 103910      cache-misses              #    0.248 % of all cache refs      (75.00%)
+CPU42                  60000      cache-misses              #    0.146 % of all cache refs      (75.00%)
+CPU43                  57267      cache-misses              #    0.138 % of all cache refs      (75.00%)
+CPU44                  82353      cache-misses              #    0.204 % of all cache refs      (75.00%)
+CPU45                 222745      cache-misses              #    0.501 % of all cache refs      (75.00%)
+CPU46                  68270      cache-misses              #    0.165 % of all cache refs      (75.00%)
+CPU47                  66954      cache-misses              #    0.161 % of all cache refs      (75.00%)
+CPU48                 225577      cache-misses              #    0.535 % of all cache refs      (75.00%)
+CPU49                 121098      cache-misses              #    0.292 % of all cache refs      (75.00%)
+CPU50                 176107      cache-misses              #    0.439 % of all cache refs      (75.00%)
+CPU51                 130837      cache-misses              #    0.311 % of all cache refs      (75.00%)
+CPU52                 150721      cache-misses              #    0.358 % of all cache refs      (75.00%)
+CPU53              222049813      cache-misses              #   10.099 % of all cache refs      (75.00%)
+CPU54                 145229      cache-misses              #    0.351 % of all cache refs      (75.00%)
+CPU55                  97721      cache-misses              #    0.236 % of all cache refs      (75.00%)
+CPU56                 130451      cache-misses              #    0.308 % of all cache refs      (75.00%)
+CPU57                 106175      cache-misses              #    0.260 % of all cache refs      (75.00%)
+CPU58                 208002      cache-misses              #    0.507 % of all cache refs      (75.00%)
+CPU59                 179152      cache-misses              #    0.453 % of all cache refs      (75.00%)
+CPU60                  89397      cache-misses              #    0.222 % of all cache refs      (75.00%)
+CPU61                 210548      cache-misses              #    0.519 % of all cache refs      (75.00%)
+CPU62                 122447      cache-misses              #    0.290 % of all cache refs      (75.00%)
+CPU63                 164496      cache-misses              #    0.415 % of all cache refs      (75.00%)
 
-      61.854651367 seconds time elapsed                                          ( +-  0.61% )
+            103.27 +- 2.15 seconds time elapsed  ( +-  2.09% )
 </pre></div>
 </div>
 </div>
@@ -4261,12 +4543,12 @@ perf stat -S -e cycles,instructions,cache-references,cache-misses -r 2 python3 m
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;python3 mult_matrix_vector_numpy.py&#39; (2 runs):
 
-      243217588216      cycles                                                        ( +-  1.27% )
-      598729874148      instructions              #    2.46  insn per cycle           ( +-  0.42% )
-         662503038      cache-references                                              ( +-  1.39% )
-          95202746      cache-misses              #   14.370 % of all cache refs      ( +-  0.97% )
+      252492709980      cycles                                                        ( +-  0.03% )  (75.00%)
+      588235668466      instructions              #    2.33  insn per cycle           ( +-  0.08% )  (74.99%)
+        2343784574      cache-references                                              ( +-  0.13% )  (75.01%)
+         359287809      cache-misses              #   15.329 % of all cache refs      ( +-  0.43% )  (75.01%)
 
-      60.488697485 seconds time elapsed                                          ( +-  1.26% )
+            91.207 +- 0.124 seconds time elapsed  ( +-  0.14% )
 </pre></div>
 </div>
 </div>
@@ -4274,31 +4556,271 @@ perf stat -S -e cycles,instructions,cache-references,cache-misses -r 2 python3 m
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-perf stat -S --all-cpus -A --per-core -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector_numpy.py
+perf stat -S --all-cpus -A -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector_numpy.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;system wide&#39; (2 runs):
 
-S0-C0           2         2664298731      cycles                                                      
-S0-C0           2         1964872569      instructions              #    0.74  insn per cycle         
-S0-C0           2           10837071      cache-references                                            
-S0-C0           2            4435770      cache-misses              #   40.931 % of all cache refs    
-S0-C1           2          964636936      cycles                                                      
-S0-C1           2          320553130      instructions              #    0.33  insn per cycle         
-S0-C1           2            6043601      cache-references                                            
-S0-C1           2            2799592      cache-misses              #   46.323 % of all cache refs    
-S0-C2           2         1339127149      cycles                                                      
-S0-C2           2          935833922      instructions              #    0.70  insn per cycle         
-S0-C2           2            8451552      cache-references                                            
-S0-C2           2            2653359      cache-misses              #   31.395 % of all cache refs    
-S0-C3           2       305074104555      cycles                                                      
-S0-C3           2       606515058789      instructions              #    1.99  insn per cycle         
-S0-C3           2          661941985      cache-references                                            
-S0-C3           2           94553002      cache-misses              #   14.284 % of all cache refs    
+CPU0              3559339595      cycles                                                        (75.00%)
+CPU1              3622620309      cycles                                                        (75.00%)
+CPU2              3698861782      cycles                                                        (75.01%)
+CPU3              3659761440      cycles                                                        (75.00%)
+CPU4              3630648008      cycles                                                        (75.01%)
+CPU5              3635328509      cycles                                                        (75.00%)
+CPU6              3626589292      cycles                                                        (75.01%)
+CPU7              3651908127      cycles                                                        (75.00%)
+CPU8              3547347368      cycles                                                        (75.00%)
+CPU9              3599265876      cycles                                                        (75.00%)
+CPU10             3718948933      cycles                                                        (75.00%)
+CPU11             3941021889      cycles                                                        (75.00%)
+CPU12             3641225133      cycles                                                        (75.00%)
+CPU13             3645563282      cycles                                                        (75.00%)
+CPU14             3723594233      cycles                                                        (75.00%)
+CPU15             3724263433      cycles                                                        (75.00%)
+CPU16             3496164807      cycles                                                        (75.00%)
+CPU17           244320642901      cycles                                                        (75.00%)
+CPU18             3723529557      cycles                                                        (75.00%)
+CPU19             5618802338      cycles                                                        (75.00%)
+CPU20             4811699717      cycles                                                        (75.00%)
+CPU21             3360764372      cycles                                                        (75.00%)
+CPU22             3434888049      cycles                                                        (75.00%)
+CPU23             3407701363      cycles                                                        (75.00%)
+CPU24             3461231775      cycles                                                        (75.00%)
+CPU25             3387599849      cycles                                                        (75.00%)
+CPU26             3511408948      cycles                                                        (75.01%)
+CPU27             3517943269      cycles                                                        (75.00%)
+CPU28             3402254180      cycles                                                        (75.00%)
+CPU29             3407542199      cycles                                                        (75.00%)
+CPU30             3501656442      cycles                                                        (75.01%)
+CPU31             3528330150      cycles                                                        (75.01%)
+CPU32             3050463754      cycles                                                        (75.00%)
+CPU33             2868355595      cycles                                                        (75.00%)
+CPU34             3284749399      cycles                                                        (75.01%)
+CPU35             3134567368      cycles                                                        (75.00%)
+CPU36             3112432768      cycles                                                        (75.01%)
+CPU37             3199219494      cycles                                                        (75.00%)
+CPU38             3110038093      cycles                                                        (75.01%)
+CPU39             3155211338      cycles                                                        (75.00%)
+CPU40             3027295778      cycles                                                        (75.00%)
+CPU41             3085389177      cycles                                                        (75.00%)
+CPU42             3228807075      cycles                                                        (75.00%)
+CPU43             3204451543      cycles                                                        (75.00%)
+CPU44             3147832242      cycles                                                        (75.00%)
+CPU45             3296287640      cycles                                                        (75.00%)
+CPU46             3189554892      cycles                                                        (75.00%)
+CPU47             3252233722      cycles                                                        (75.00%)
+CPU48             2928375129      cycles                                                        (75.00%)
+CPU49             1887433109      cycles                                                        (75.00%)
+CPU50             2909905397      cycles                                                        (75.00%)
+CPU51             2999852329      cycles                                                        (75.00%)
+CPU52             2901002420      cycles                                                        (75.00%)
+CPU53             2808585284      cycles                                                        (75.00%)
+CPU54             2910023282      cycles                                                        (75.00%)
+CPU55             2900016958      cycles                                                        (75.00%)
+CPU56             2946808652      cycles                                                        (75.00%)
+CPU57             2886506440      cycles                                                        (75.00%)
+CPU58             3033664326      cycles                                                        (75.00%)
+CPU59             3036083556      cycles                                                        (75.00%)
+CPU60             2891616481      cycles                                                        (75.00%)
+CPU61             2919238585      cycles                                                        (75.00%)
+CPU62             2997666289      cycles                                                        (75.00%)
+CPU63             3029978228      cycles                                                        (75.00%)
+CPU0               491215679      instructions              #    0.13  insn per cycle           (75.00%)
+CPU1               547896028      instructions              #    0.15  insn per cycle           (75.00%)
+CPU2               456157981      instructions              #    0.12  insn per cycle           (75.00%)
+CPU3               458707381      instructions              #    0.11  insn per cycle           (75.00%)
+CPU4               461166176      instructions              #    0.12  insn per cycle           (75.00%)
+CPU5               477734722      instructions              #    0.12  insn per cycle           (75.00%)
+CPU6               482035250      instructions              #    0.00  insn per cycle           (75.00%)
+CPU7               483994470      instructions              #    0.13  insn per cycle           (75.00%)
+CPU8               430565043      instructions              #    0.11  insn per cycle           (75.00%)
+CPU9               456845288      instructions              #    0.12  insn per cycle           (75.00%)
+CPU10              475300196      instructions              #    0.12  insn per cycle           (75.00%)
+CPU11              642800462      instructions              #    0.15  insn per cycle           (75.00%)
+CPU12              477374732      instructions              #    0.13  insn per cycle           (75.00%)
+CPU13              440664205      instructions              #    0.12  insn per cycle           (75.00%)
+CPU14              474836473      instructions              #    0.12  insn per cycle           (75.00%)
+CPU15              451351372      instructions              #    0.12  insn per cycle           (75.00%)
+CPU16              355930373      instructions              #    0.05  insn per cycle           (75.00%)
+CPU17           584539729985      instructions              #    4.60  insn per cycle           (75.00%)
+CPU18              500327515      instructions              #    0.12  insn per cycle           (75.00%)
+CPU19             2007756180      instructions              #    0.31  insn per cycle           (75.00%)
+CPU20             1464877742      instructions              #    0.32  insn per cycle           (75.00%)
+CPU21              358148485      instructions              #    0.10  insn per cycle           (75.00%)
+CPU22              339923254      instructions              #    0.08  insn per cycle           (75.00%)
+CPU23              339577650      instructions              #    0.07  insn per cycle           (75.00%)
+CPU24              340380136      instructions              #    0.06  insn per cycle           (75.00%)
+CPU25              340896677      instructions              #    0.08  insn per cycle           (75.00%)
+CPU26              339632183      instructions              #    0.06  insn per cycle           (75.00%)
+CPU27              337991261      instructions              #    0.05  insn per cycle           (75.00%)
+CPU28              337597707      instructions              #    0.08  insn per cycle           (75.00%)
+CPU29              346660784      instructions              #    0.07  insn per cycle           (75.00%)
+CPU30              341051540      instructions              #    0.08  insn per cycle           (75.00%)
+CPU31              335614085      instructions              #    0.09  insn per cycle           (75.00%)
+CPU32              441590496      instructions              #    0.13  insn per cycle           (75.00%)
+CPU33              360967795      instructions              #    0.11  insn per cycle           (75.00%)
+CPU34              592086583      instructions              #    0.14  insn per cycle           (75.00%)
+CPU35              442704153      instructions              #    0.10  insn per cycle           (75.00%)
+CPU36              454026299      instructions              #    0.12  insn per cycle           (75.00%)
+CPU37              621412845      instructions              #    0.14  insn per cycle           (75.00%)
+CPU38              469783117      instructions              #    0.17  insn per cycle           (75.00%)
+CPU39              474902037      instructions              #    0.14  insn per cycle           (75.00%)
+CPU40              422848688      instructions              #    0.13  insn per cycle           (75.00%)
+CPU41              442138473      instructions              #    0.14  insn per cycle           (75.00%)
+CPU42              478223894      instructions              #    0.14  insn per cycle           (75.00%)
+CPU43              472132750      instructions              #    0.14  insn per cycle           (75.00%)
+CPU44              465698627      instructions              #    0.14  insn per cycle           (75.00%)
+CPU45              761994510      instructions              #    0.23  insn per cycle           (75.00%)
+CPU46              442547837      instructions              #    0.13  insn per cycle           (75.00%)
+CPU47              462871610      instructions              #    0.14  insn per cycle           (75.00%)
+CPU48              329654570      instructions              #    0.09  insn per cycle           (75.00%)
+CPU49              352884187      instructions              #    0.12  insn per cycle           (75.00%)
+CPU50              327453848      instructions              #    0.10  insn per cycle           (75.00%)
+CPU51              340227776      instructions              #    0.10  insn per cycle           (75.01%)
+CPU52              326796054      instructions              #    0.10  insn per cycle           (75.01%)
+CPU53              325315663      instructions              #    0.10  insn per cycle           (75.00%)
+CPU54              326359996      instructions              #    0.09  insn per cycle           (75.00%)
+CPU55              327958619      instructions              #    0.06  insn per cycle           (75.00%)
+CPU56              327405477      instructions              #    0.08  insn per cycle           (75.00%)
+CPU57              331315187      instructions              #    0.05  insn per cycle           (75.00%)
+CPU58              330293788      instructions              #    0.05  insn per cycle           (75.00%)
+CPU59              330858303      instructions              #    0.08  insn per cycle           (75.00%)
+CPU60              329837545      instructions              #    0.09  insn per cycle           (75.00%)
+CPU61              339116709      instructions              #    0.11  insn per cycle           (75.00%)
+CPU62              330421374      instructions              #    0.09  insn per cycle           (75.00%)
+CPU63              328857937      instructions              #    0.07  insn per cycle           (75.00%)
+CPU0                35933902      cache-references                                              (75.01%)
+CPU1                36413540      cache-references                                              (75.01%)
+CPU2                38671244      cache-references                                              (75.01%)
+CPU3                37192583      cache-references                                              (75.00%)
+CPU4                37503234      cache-references                                              (75.01%)
+CPU5                38063268      cache-references                                              (75.00%)
+CPU6                36685789      cache-references                                              (75.01%)
+CPU7                37670139      cache-references                                              (75.00%)
+CPU8                36045188      cache-references                                              (75.00%)
+CPU9                37164458      cache-references                                              (75.00%)
+CPU10               36093825      cache-references                                              (75.00%)
+CPU11               42747321      cache-references                                              (75.01%)
+CPU12               36526232      cache-references                                              (75.00%)
+CPU13               36349691      cache-references                                              (75.00%)
+CPU14               35315460      cache-references                                              (75.00%)
+CPU15               36755232      cache-references                                              (75.00%)
+CPU16               38775841      cache-references                                              (75.00%)
+CPU17             2346295319      cache-references                                              (75.00%)
+CPU18               37959024      cache-references                                              (75.00%)
+CPU19               48456133      cache-references                                              (75.01%)
+CPU20               44258216      cache-references                                              (75.01%)
+CPU21               36489278      cache-references                                              (75.00%)
+CPU22               35499025      cache-references                                              (75.00%)
+CPU23               34760011      cache-references                                              (75.00%)
+CPU24               34593498      cache-references                                              (75.00%)
+CPU25               35609494      cache-references                                              (75.00%)
+CPU26               36656827      cache-references                                              (75.00%)
+CPU27               37089992      cache-references                                              (75.00%)
+CPU28               36703284      cache-references                                              (75.00%)
+CPU29               36202990      cache-references                                              (75.00%)
+CPU30               34986146      cache-references                                              (75.00%)
+CPU31               36669251      cache-references                                              (75.00%)
+CPU32               39888636      cache-references                                              (75.00%)
+CPU33               38702557      cache-references                                              (75.00%)
+CPU34               42634570      cache-references                                              (75.00%)
+CPU35               37372359      cache-references                                              (75.00%)
+CPU36               37728125      cache-references                                              (75.00%)
+CPU37               38864221      cache-references                                              (75.00%)
+CPU38               38465884      cache-references                                              (75.01%)
+CPU39               39145248      cache-references                                              (75.00%)
+CPU40               36909505      cache-references                                              (75.00%)
+CPU41               37323890      cache-references                                              (75.00%)
+CPU42               37593752      cache-references                                              (75.00%)
+CPU43               38237870      cache-references                                              (75.00%)
+CPU44               37323440      cache-references                                              (75.00%)
+CPU45               40452167      cache-references                                              (75.00%)
+CPU46               38848852      cache-references                                              (75.00%)
+CPU47               38233568      cache-references                                              (75.00%)
+CPU48               38831580      cache-references                                              (75.01%)
+CPU49               22854003      cache-references                                              (75.01%)
+CPU50               36312289      cache-references                                              (75.01%)
+CPU51               41678883      cache-references                                              (75.00%)
+CPU52               36773666      cache-references                                              (75.00%)
+CPU53               36698073      cache-references                                              (75.01%)
+CPU54               37261537      cache-references                                              (75.01%)
+CPU55               38136619      cache-references                                              (75.01%)
+CPU56               39540002      cache-references                                              (75.01%)
+CPU57               37431645      cache-references                                              (75.01%)
+CPU58               37028702      cache-references                                              (75.01%)
+CPU59               36044261      cache-references                                              (75.01%)
+CPU60               36612970      cache-references                                              (75.01%)
+CPU61               36880323      cache-references                                              (75.01%)
+CPU62               38456344      cache-references                                              (75.01%)
+CPU63               36294445      cache-references                                              (75.00%)
+CPU0                  315293      cache-misses              #    0.843 % of all cache refs      (75.00%)
+CPU1                   94955      cache-misses              #    0.251 % of all cache refs      (75.00%)
+CPU2                   94688      cache-misses              #    0.231 % of all cache refs      (75.00%)
+CPU3                   84391      cache-misses              #    0.192 % of all cache refs      (75.00%)
+CPU4                  105146      cache-misses              #    0.264 % of all cache refs      (75.00%)
+CPU5                  102827      cache-misses              #    0.246 % of all cache refs      (75.00%)
+CPU6                   99223      cache-misses              #    0.008 % of all cache refs      (75.00%)
+CPU7                  105787      cache-misses              #    0.267 % of all cache refs      (75.00%)
+CPU8                  289572      cache-misses              #    0.756 % of all cache refs      (75.00%)
+CPU9                   93560      cache-misses              #    0.247 % of all cache refs      (75.00%)
+CPU10                  58969      cache-misses              #    0.158 % of all cache refs      (75.00%)
+CPU11                 211131      cache-misses              #    0.433 % of all cache refs      (75.00%)
+CPU12                  70592      cache-misses              #    0.184 % of all cache refs      (75.00%)
+CPU13                  78109      cache-misses              #    0.207 % of all cache refs      (75.00%)
+CPU14                  66750      cache-misses              #    0.174 % of all cache refs      (75.00%)
+CPU15                  67843      cache-misses              #    0.181 % of all cache refs      (75.00%)
+CPU16                 224989      cache-misses              #    0.272 % of all cache refs      (75.01%)
+CPU17              359722523      cache-misses              #   29.326 % of all cache refs      (75.00%)
+CPU18                 425021      cache-misses              #    0.888 % of all cache refs      (75.01%)
+CPU19                4580402      cache-misses              #    7.898 % of all cache refs      (75.00%)
+CPU20                3046792      cache-misses              #    6.645 % of all cache refs      (75.00%)
+CPU21                 168365      cache-misses              #    0.416 % of all cache refs      (75.01%)
+CPU22                 158439      cache-misses              #    0.363 % of all cache refs      (75.00%)
+CPU23                 112403      cache-misses              #    0.199 % of all cache refs      (75.01%)
+CPU24                 116910      cache-misses              #    0.144 % of all cache refs      (75.01%)
+CPU25                  96745      cache-misses              #    0.184 % of all cache refs      (75.01%)
+CPU26                  90402      cache-misses              #    0.123 % of all cache refs      (75.00%)
+CPU27                  87249      cache-misses              #    0.099 % of all cache refs      (75.01%)
+CPU28                 227328      cache-misses              #    0.408 % of all cache refs      (75.01%)
+CPU29                 165138      cache-misses              #    0.251 % of all cache refs      (75.01%)
+CPU30                 187989      cache-misses              #    0.358 % of all cache refs      (75.01%)
+CPU31                 107351      cache-misses              #    0.268 % of all cache refs      (75.00%)
+CPU32                 171715      cache-misses              #    0.397 % of all cache refs      (75.00%)
+CPU33                  79057      cache-misses              #    0.180 % of all cache refs      (75.00%)
+CPU34                 142423      cache-misses              #    0.285 % of all cache refs      (75.00%)
+CPU35                  86027      cache-misses              #    0.164 % of all cache refs      (75.00%)
+CPU36                 113991      cache-misses              #    0.242 % of all cache refs      (75.00%)
+CPU37                 353191      cache-misses              #    0.660 % of all cache refs      (75.00%)
+CPU38                  80669      cache-misses              #    0.260 % of all cache refs      (75.00%)
+CPU39                 129011      cache-misses              #    0.301 % of all cache refs      (75.00%)
+CPU40                 262396      cache-misses              #    0.691 % of all cache refs      (75.00%)
+CPU41                 100135      cache-misses              #    0.258 % of all cache refs      (75.00%)
+CPU42                  59723      cache-misses              #    0.156 % of all cache refs      (75.00%)
+CPU43                  64477      cache-misses              #    0.165 % of all cache refs      (75.00%)
+CPU44                  78399      cache-misses              #    0.207 % of all cache refs      (75.00%)
+CPU45                 143783      cache-misses              #    0.348 % of all cache refs      (75.00%)
+CPU46                  72958      cache-misses              #    0.183 % of all cache refs      (75.00%)
+CPU47                  76953      cache-misses              #    0.197 % of all cache refs      (75.00%)
+CPU48                 136356      cache-misses              #    0.280 % of all cache refs      (75.00%)
+CPU49                 157336      cache-misses              #    0.427 % of all cache refs      (75.00%)
+CPU50                 149954      cache-misses              #    0.355 % of all cache refs      (75.00%)
+CPU51                 122562      cache-misses              #    0.270 % of all cache refs      (75.00%)
+CPU52                 136963      cache-misses              #    0.322 % of all cache refs      (75.00%)
+CPU53                 151151      cache-misses              #    0.359 % of all cache refs      (75.00%)
+CPU54                 119721      cache-misses              #    0.238 % of all cache refs      (75.00%)
+CPU55                  87057      cache-misses              #    0.101 % of all cache refs      (75.00%)
+CPU56                 146755      cache-misses              #    0.245 % of all cache refs      (75.00%)
+CPU57                  78810      cache-misses              #    0.069 % of all cache refs      (75.00%)
+CPU58                 197124      cache-misses              #    0.203 % of all cache refs      (75.01%)
+CPU59                 151798      cache-misses              #    0.234 % of all cache refs      (75.00%)
+CPU60                  85513      cache-misses              #    0.150 % of all cache refs      (75.00%)
+CPU61                 183801      cache-misses              #    0.440 % of all cache refs      (75.00%)
+CPU62                  99933      cache-misses              #    0.179 % of all cache refs      (75.01%)
+CPU63                 133100      cache-misses              #    0.204 % of all cache refs      (75.01%)
 
-      61.588377630 seconds time elapsed                                          ( +-  2.84% )
+            93.664 +- 0.413 seconds time elapsed  ( +-  0.44% )
 </pre></div>
 </div>
 </div>
@@ -4322,7 +4844,7 @@ S0-C3           2           94553002      cache-misses              #   14.284 %
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting mult_matrix_vector_numpy_row_oriented.py
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing mult_matrix_vector_numpy_row_oriented.py
 </pre></div>
 </div>
 </div>
@@ -4330,19 +4852,19 @@ S0-C3           2           94553002      cache-misses              #   14.284 %
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-sudo perf stat -S -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector_numpy_row_oriented.py
+perf stat -S -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector_numpy_row_oriented.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;python3 mult_matrix_vector_numpy_row_oriented.py&#39; (2 runs):
 
-      240065888790      cycles                                                        ( +-  0.31% )
-      596676621081      instructions              #    2.49  insn per cycle           ( +-  0.28% )
-         549617732      cache-references                                              ( +-  0.84% )
-          87432788      cache-misses              #   15.908 % of all cache refs      ( +-  0.29% )
+      256134434754      cycles                                                        ( +-  0.98% )  (75.01%)
+      588336703466      instructions              #    2.30  insn per cycle           ( +-  0.15% )  (74.97%)
+        2247446202      cache-references                                              ( +-  0.39% )  (74.99%)
+         355207686      cache-misses              #   15.805 % of all cache refs      ( +-  0.31% )  (75.03%)
 
-      59.657694617 seconds time elapsed                                          ( +-  0.32% )
+            91.614 +- 0.112 seconds time elapsed  ( +-  0.12% )
 </pre></div>
 </div>
 </div>
@@ -4350,31 +4872,271 @@ sudo perf stat -S -e cycles,instructions,cache-references,cache-misses -r 2 pyth
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-sudo perf stat -S -a --per-core -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector_numpy_row_oriented.py
+perf stat -S --all-cpus -A -e cycles,instructions,cache-references,cache-misses -r 2 python3 mult_matrix_vector_numpy_row_oriented.py
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Performance counter stats for &#39;system wide&#39; (2 runs):
 
-S0-C0           2         2022241353      cycles                                                      
-S0-C0           2          749567422      instructions              #    0.37  insn per cycle         
-S0-C0           2            5565741      cache-references                                            
-S0-C0           2            1418960      cache-misses              #   25.495 % of all cache refs    
-S0-C1           2          978643966      cycles                                                      
-S0-C1           2          468796681      instructions              #    0.48  insn per cycle         
-S0-C1           2            5124516      cache-references                                            
-S0-C1           2            2519200      cache-misses              #   49.160 % of all cache refs    
-S0-C2           2         1827829093      cycles                                                      
-S0-C2           2         1157668329      instructions              #    0.63  insn per cycle         
-S0-C2           2            7050536      cache-references                                            
-S0-C2           2            4433714      cache-misses              #   62.885 % of all cache refs    
-S0-C3           2       253080374948      cycles                                                      
-S0-C3           2       606973949249      instructions              #    2.40  insn per cycle         
-S0-C3           2          559644223      cache-references                                            
-S0-C3           2           87449250      cache-misses              #   15.626 % of all cache refs    
+CPU0              3534676857      cycles                                                        (75.00%)
+CPU1              3867238642      cycles                                                        (75.00%)
+CPU2              2265829941      cycles                                                        (75.00%)
+CPU3              3739389473      cycles                                                        (75.00%)
+CPU4              3721173577      cycles                                                        (75.00%)
+CPU5              3773710409      cycles                                                        (75.00%)
+CPU6              3682262363      cycles                                                        (75.00%)
+CPU7              3738741450      cycles                                                        (75.00%)
+CPU8              3695276843      cycles                                                        (75.00%)
+CPU9              3673069250      cycles                                                        (75.00%)
+CPU10             3817412263      cycles                                                        (75.00%)
+CPU11             3893264396      cycles                                                        (75.00%)
+CPU12             3707548462      cycles                                                        (75.00%)
+CPU13             3704622783      cycles                                                        (75.00%)
+CPU14             3774098958      cycles                                                        (75.00%)
+CPU15             3871392284      cycles                                                        (75.00%)
+CPU16             3589147909      cycles                                                        (75.01%)
+CPU17             3276463525      cycles                                                        (75.01%)
+CPU18             3264576459      cycles                                                        (75.00%)
+CPU19             3337592739      cycles                                                        (75.00%)
+CPU20             5816172823      cycles                                                        (75.00%)
+CPU21             3196988058      cycles                                                        (75.00%)
+CPU22             3259326392      cycles                                                        (75.00%)
+CPU23             3389815178      cycles                                                        (75.00%)
+CPU24             3472509540      cycles                                                        (75.00%)
+CPU25             3233069884      cycles                                                        (75.01%)
+CPU26             3341322551      cycles                                                        (75.01%)
+CPU27             3547500808      cycles                                                        (75.00%)
+CPU28             3258655552      cycles                                                        (75.01%)
+CPU29             3293498279      cycles                                                        (75.00%)
+CPU30             3354327917      cycles                                                        (75.01%)
+CPU31             3484863298      cycles                                                        (75.00%)
+CPU32             3107941082      cycles                                                        (75.01%)
+CPU33             3168344123      cycles                                                        (75.01%)
+CPU34           243124118037      cycles                                                        (75.00%)
+CPU35             3205357167      cycles                                                        (75.01%)
+CPU36             3196310764      cycles                                                        (75.01%)
+CPU37             3293335921      cycles                                                        (75.01%)
+CPU38             3184752297      cycles                                                        (75.01%)
+CPU39             3205376388      cycles                                                        (75.01%)
+CPU40             3148025218      cycles                                                        (75.00%)
+CPU41             3207286242      cycles                                                        (75.01%)
+CPU42             3328945509      cycles                                                        (75.01%)
+CPU43             3263028387      cycles                                                        (75.01%)
+CPU44             3209890282      cycles                                                        (75.01%)
+CPU45             3294554506      cycles                                                        (75.01%)
+CPU46             3276320802      cycles                                                        (75.01%)
+CPU47             3348354225      cycles                                                        (75.01%)
+CPU48             2720616460      cycles                                                        (75.00%)
+CPU49             2731193555      cycles                                                        (75.00%)
+CPU50             2756161899      cycles                                                        (75.01%)
+CPU51             2812700935      cycles                                                        (75.01%)
+CPU52             2734664706      cycles                                                        (75.00%)
+CPU53             2673877461      cycles                                                        (75.00%)
+CPU54             2734791893      cycles                                                        (75.00%)
+CPU55             2736837718      cycles                                                        (75.01%)
+CPU56             2812996068      cycles                                                        (75.00%)
+CPU57             2733096019      cycles                                                        (75.01%)
+CPU58             2858869476      cycles                                                        (75.01%)
+CPU59             2933529815      cycles                                                        (75.00%)
+CPU60             2751067711      cycles                                                        (75.01%)
+CPU61             3125551591      cycles                                                        (75.00%)
+CPU62             2872590793      cycles                                                        (75.01%)
+CPU63             2888024231      cycles                                                        (75.00%)
+CPU0               439603683      instructions              #    0.12  insn per cycle           (75.01%)
+CPU1               541787087      instructions              #    0.15  insn per cycle           (75.01%)
+CPU2               508532678      instructions              #    0.00  insn per cycle           (75.00%)
+CPU3               469672922      instructions              #    0.13  insn per cycle           (75.01%)
+CPU4               455923055      instructions              #    0.12  insn per cycle           (75.01%)
+CPU5               444791900      instructions              #    0.12  insn per cycle           (75.01%)
+CPU6               448812685      instructions              #    0.12  insn per cycle           (75.01%)
+CPU7               469371252      instructions              #    0.13  insn per cycle           (75.00%)
+CPU8               473850845      instructions              #    0.13  insn per cycle           (75.00%)
+CPU9               439135233      instructions              #    0.12  insn per cycle           (75.01%)
+CPU10              476495302      instructions              #    0.13  insn per cycle           (75.01%)
+CPU11              475133885      instructions              #    0.11  insn per cycle           (75.01%)
+CPU12              433051443      instructions              #    0.12  insn per cycle           (75.01%)
+CPU13              432155663      instructions              #    0.12  insn per cycle           (75.01%)
+CPU14              434663148      instructions              #    0.12  insn per cycle           (75.01%)
+CPU15              433522468      instructions              #    0.11  insn per cycle           (75.01%)
+CPU16              547941172      instructions              #    0.16  insn per cycle           (75.00%)
+CPU17              346623670      instructions              #    0.11  insn per cycle           (75.00%)
+CPU18              331889629      instructions              #    0.10  insn per cycle           (75.01%)
+CPU19              333247244      instructions              #    0.10  insn per cycle           (75.01%)
+CPU20             2889879547      instructions              #    0.49  insn per cycle           (75.00%)
+CPU21              345683907      instructions              #    0.11  insn per cycle           (75.00%)
+CPU22              331766518      instructions              #    0.10  insn per cycle           (75.00%)
+CPU23              400245262      instructions              #    0.12  insn per cycle           (75.01%)
+CPU24              404640016      instructions              #    0.12  insn per cycle           (75.00%)
+CPU25              329293710      instructions              #    0.10  insn per cycle           (75.00%)
+CPU26              330118167      instructions              #    0.10  insn per cycle           (75.00%)
+CPU27              375233492      instructions              #    0.11  insn per cycle           (75.00%)
+CPU28              328520544      instructions              #    0.10  insn per cycle           (75.00%)
+CPU29              343655549      instructions              #    0.10  insn per cycle           (75.00%)
+CPU30              334101486      instructions              #    0.10  insn per cycle           (75.00%)
+CPU31              380939241      instructions              #    0.11  insn per cycle           (75.01%)
+CPU32              424015458      instructions              #    0.14  insn per cycle           (75.00%)
+CPU33              435075226      instructions              #    0.14  insn per cycle           (75.00%)
+CPU34           583323841280      instructions              #    4.76  insn per cycle           (75.00%)
+CPU35              434421623      instructions              #    0.14  insn per cycle           (74.99%)
+CPU36              440282394      instructions              #    0.14  insn per cycle           (75.00%)
+CPU37              487113118      instructions              #    0.15  insn per cycle           (75.00%)
+CPU38              456918684      instructions              #    0.14  insn per cycle           (75.00%)
+CPU39              438580857      instructions              #    0.14  insn per cycle           (75.00%)
+CPU40              447530383      instructions              #    0.14  insn per cycle           (75.00%)
+CPU41              461710606      instructions              #    0.14  insn per cycle           (75.00%)
+CPU42              467210271      instructions              #    0.14  insn per cycle           (75.00%)
+CPU43              429146540      instructions              #    0.13  insn per cycle           (75.00%)
+CPU44              426974136      instructions              #    0.13  insn per cycle           (75.00%)
+CPU45              544727378      instructions              #    0.17  insn per cycle           (75.00%)
+CPU46              425652048      instructions              #    0.13  insn per cycle           (75.00%)
+CPU47              427841442      instructions              #    0.13  insn per cycle           (75.00%)
+CPU48              324171910      instructions              #    0.12  insn per cycle           (75.00%)
+CPU49              321230570      instructions              #    0.12  insn per cycle           (75.00%)
+CPU50              322247838      instructions              #    0.12  insn per cycle           (75.00%)
+CPU51              322748292      instructions              #    0.11  insn per cycle           (75.00%)
+CPU52              321239509      instructions              #    0.12  insn per cycle           (75.00%)
+CPU53              320976553      instructions              #    0.12  insn per cycle           (75.00%)
+CPU54              321156531      instructions              #    0.12  insn per cycle           (75.00%)
+CPU55              318020522      instructions              #    0.12  insn per cycle           (75.00%)
+CPU56              324293126      instructions              #    0.12  insn per cycle           (75.00%)
+CPU57              320763749      instructions              #    0.12  insn per cycle           (75.00%)
+CPU58              321720779      instructions              #    0.11  insn per cycle           (75.00%)
+CPU59              325102306      instructions              #    0.11  insn per cycle           (75.00%)
+CPU60              323888382      instructions              #    0.11  insn per cycle           (75.00%)
+CPU61              527739360      instructions              #    0.18  insn per cycle           (75.00%)
+CPU62              331131152      instructions              #    0.12  insn per cycle           (75.00%)
+CPU63              323684797      instructions              #    0.11  insn per cycle           (75.00%)
+CPU0                33108232      cache-references                                              (75.00%)
+CPU1                37100368      cache-references                                              (75.00%)
+CPU2                23526696      cache-references                                              (75.00%)
+CPU3                35803078      cache-references                                              (74.99%)
+CPU4                36306537      cache-references                                              (75.00%)
+CPU5                38466164      cache-references                                              (75.00%)
+CPU6                36052996      cache-references                                              (75.00%)
+CPU7                36708384      cache-references                                              (75.00%)
+CPU8                36351011      cache-references                                              (75.00%)
+CPU9                36099458      cache-references                                              (75.00%)
+CPU10               35961214      cache-references                                              (75.00%)
+CPU11               38448950      cache-references                                              (75.00%)
+CPU12               35992327      cache-references                                              (75.00%)
+CPU13               36306329      cache-references                                              (75.00%)
+CPU14               35271801      cache-references                                              (75.00%)
+CPU15               37938631      cache-references                                              (75.00%)
+CPU16               37745311      cache-references                                              (75.00%)
+CPU17               36768255      cache-references                                              (75.00%)
+CPU18               37336981      cache-references                                              (75.00%)
+CPU19               35581049      cache-references                                              (75.00%)
+CPU20               57600736      cache-references                                              (75.00%)
+CPU21               35359115      cache-references                                              (75.00%)
+CPU22               34742644      cache-references                                              (75.00%)
+CPU23               34495730      cache-references                                              (75.00%)
+CPU24               35349027      cache-references                                              (75.00%)
+CPU25               34499860      cache-references                                              (75.00%)
+CPU26               36071056      cache-references                                              (75.01%)
+CPU27               39393533      cache-references                                              (74.99%)
+CPU28               35572338      cache-references                                              (75.00%)
+CPU29               36477520      cache-references                                              (75.00%)
+CPU30               33979565      cache-references                                              (75.00%)
+CPU31               36613007      cache-references                                              (75.00%)
+CPU32               40755619      cache-references                                              (75.00%)
+CPU33               40142349      cache-references                                              (75.00%)
+CPU34             2224001243      cache-references                                              (75.00%)
+CPU35               36762948      cache-references                                              (75.01%)
+CPU36               37577697      cache-references                                              (75.00%)
+CPU37               39864833      cache-references                                              (75.00%)
+CPU38               38339225      cache-references                                              (75.00%)
+CPU39               37742980      cache-references                                              (75.00%)
+CPU40               37288310      cache-references                                              (75.00%)
+CPU41               37674375      cache-references                                              (75.00%)
+CPU42               37700940      cache-references                                              (75.00%)
+CPU43               37941574      cache-references                                              (75.00%)
+CPU44               36736460      cache-references                                              (75.00%)
+CPU45               39729387      cache-references                                              (75.00%)
+CPU46               38054508      cache-references                                              (75.00%)
+CPU47               39746821      cache-references                                              (75.00%)
+CPU48               36679158      cache-references                                              (75.00%)
+CPU49               37684474      cache-references                                              (75.00%)
+CPU50               36409837      cache-references                                              (75.00%)
+CPU51               38539583      cache-references                                              (75.00%)
+CPU52               37792894      cache-references                                              (75.01%)
+CPU53               37247106      cache-references                                              (75.00%)
+CPU54               37270619      cache-references                                              (75.00%)
+CPU55               37784212      cache-references                                              (75.00%)
+CPU56               38574060      cache-references                                              (75.00%)
+CPU57               37185254      cache-references                                              (75.00%)
+CPU58               36478907      cache-references                                              (75.01%)
+CPU59               38204134      cache-references                                              (74.99%)
+CPU60               36790907      cache-references                                              (75.00%)
+CPU61               37491922      cache-references                                              (75.00%)
+CPU62               39585254      cache-references                                              (75.00%)
+CPU63               36251749      cache-references                                              (75.00%)
+CPU0                  335360      cache-misses              #    0.989 % of all cache refs      (75.00%)
+CPU1                  532428      cache-misses              #    1.454 % of all cache refs      (75.00%)
+CPU2                  220999      cache-misses              #    0.020 % of all cache refs      (75.00%)
+CPU3                  128756      cache-misses              #    0.360 % of all cache refs      (75.01%)
+CPU4                  168662      cache-misses              #    0.464 % of all cache refs      (75.00%)
+CPU5                  170999      cache-misses              #    0.443 % of all cache refs      (75.00%)
+CPU6                  241036      cache-misses              #    0.666 % of all cache refs      (75.01%)
+CPU7                  199982      cache-misses              #    0.542 % of all cache refs      (75.00%)
+CPU8                  235072      cache-misses              #    0.644 % of all cache refs      (75.00%)
+CPU9                  135952      cache-misses              #    0.377 % of all cache refs      (75.00%)
+CPU10                 108971      cache-misses              #    0.303 % of all cache refs      (75.00%)
+CPU11                1130429      cache-misses              #    2.631 % of all cache refs      (75.00%)
+CPU12                 109446      cache-misses              #    0.304 % of all cache refs      (75.00%)
+CPU13                 140055      cache-misses              #    0.386 % of all cache refs      (75.00%)
+CPU14                 102441      cache-misses              #    0.291 % of all cache refs      (75.01%)
+CPU15                 105918      cache-misses              #    0.278 % of all cache refs      (75.00%)
+CPU16                 261745      cache-misses              #    0.685 % of all cache refs      (75.00%)
+CPU17                 125630      cache-misses              #    0.341 % of all cache refs      (75.01%)
+CPU18                 117378      cache-misses              #    0.312 % of all cache refs      (75.00%)
+CPU19                 155914      cache-misses              #    0.435 % of all cache refs      (75.01%)
+CPU20                1793003      cache-misses              #    3.124 % of all cache refs      (75.01%)
+CPU21                 133243      cache-misses              #    0.381 % of all cache refs      (75.01%)
+CPU22                 150954      cache-misses              #    0.430 % of all cache refs      (75.00%)
+CPU23                 139790      cache-misses              #    0.409 % of all cache refs      (75.00%)
+CPU24                 142825      cache-misses              #    0.407 % of all cache refs      (75.00%)
+CPU25                 106847      cache-misses              #    0.309 % of all cache refs      (75.00%)
+CPU26                 106085      cache-misses              #    0.295 % of all cache refs      (75.00%)
+CPU27                 111148      cache-misses              #    0.288 % of all cache refs      (75.01%)
+CPU28                 125838      cache-misses              #    0.352 % of all cache refs      (75.00%)
+CPU29                 230347      cache-misses              #    0.628 % of all cache refs      (75.00%)
+CPU30                 184000      cache-misses              #    0.545 % of all cache refs      (75.00%)
+CPU31                 132914      cache-misses              #    0.366 % of all cache refs      (75.00%)
+CPU32                 200001      cache-misses              #    0.486 % of all cache refs      (75.00%)
+CPU33                 159593      cache-misses              #    0.397 % of all cache refs      (75.00%)
+CPU34              355046789      cache-misses              #   31.601 % of all cache refs      (75.00%)
+CPU35                 128278      cache-misses              #    0.349 % of all cache refs      (75.00%)
+CPU36                 144119      cache-misses              #    0.383 % of all cache refs      (75.00%)
+CPU37                 697123      cache-misses              #    1.739 % of all cache refs      (75.00%)
+CPU38                 143047      cache-misses              #    0.372 % of all cache refs      (75.00%)
+CPU39                 263001      cache-misses              #    0.692 % of all cache refs      (75.00%)
+CPU40                 197033      cache-misses              #    0.527 % of all cache refs      (75.00%)
+CPU41                 127245      cache-misses              #    0.338 % of all cache refs      (75.00%)
+CPU42                 125822      cache-misses              #    0.334 % of all cache refs      (75.00%)
+CPU43                 115355      cache-misses              #    0.304 % of all cache refs      (75.00%)
+CPU44                 120903      cache-misses              #    0.327 % of all cache refs      (75.00%)
+CPU45                 341919      cache-misses              #    0.858 % of all cache refs      (75.00%)
+CPU46                 126339      cache-misses              #    0.327 % of all cache refs      (75.00%)
+CPU47                 137798      cache-misses              #    0.347 % of all cache refs      (75.00%)
+CPU48                 157900      cache-misses              #    0.431 % of all cache refs      (75.01%)
+CPU49                 106906      cache-misses              #    0.285 % of all cache refs      (75.01%)
+CPU50                 166243      cache-misses              #    0.457 % of all cache refs      (75.00%)
+CPU51                 147108      cache-misses              #    0.382 % of all cache refs      (75.00%)
+CPU52                 163174      cache-misses              #    0.430 % of all cache refs      (75.00%)
+CPU53                 114912      cache-misses              #    0.308 % of all cache refs      (75.00%)
+CPU54                 122656      cache-misses              #    0.328 % of all cache refs      (75.00%)
+CPU55                 103966      cache-misses              #    0.276 % of all cache refs      (75.00%)
+CPU56                 144866      cache-misses              #    0.375 % of all cache refs      (75.00%)
+CPU57                  99787      cache-misses              #    0.266 % of all cache refs      (75.00%)
+CPU58                 211976      cache-misses              #    0.582 % of all cache refs      (75.00%)
+CPU59                 193698      cache-misses              #    0.513 % of all cache refs      (75.01%)
+CPU60                  99468      cache-misses              #    0.269 % of all cache refs      (75.00%)
+CPU61                 488186      cache-misses              #    1.301 % of all cache refs      (75.01%)
+CPU62                 150570      cache-misses              #    0.385 % of all cache refs      (75.00%)
+CPU63                 153768      cache-misses              #    0.426 % of all cache refs      (75.01%)
 
-      60.039748269 seconds time elapsed                                          ( +-  1.13% )
+            92.997 +- 0.159 seconds time elapsed  ( +-  0.17% )
 </pre></div>
 </div>
 </div>
