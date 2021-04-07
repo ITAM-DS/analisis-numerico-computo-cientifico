@@ -455,11 +455,51 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resultados-utilizando-opt2-aws-educate-openblas-04-04-2021">
+     Resultados utilizando
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       opt2-aws-educate-openblas-04-04-2021
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resultados-utilizando-opt2-aws-educate-no-openblas-04-04-2021">
+     Resultados utilizando
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       opt2-aws-educate-no-openblas-04-04-2021
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#openblas-y-librerias-de-computo-matricial-de-r">
      OpenBLAS y librerías de cómputo matricial de
      <em>
       R
      </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Resultados utilizando
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       opt2-aws-educate-openblas-04-04-2021
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Resultados utilizando
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       opt2-aws-educate-no-openblas-04-04-2021
+      </span>
+     </code>
     </a>
    </li>
   </ul>
@@ -486,12 +526,17 @@
      perf
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#perf-openblas">
+     perf OpenBLAS
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#otras-herramientas-para-medicion-de-uso-de-cpu-en-el-sistema-operativo-gnu-linux">
+     Otras herramientas para medición de uso de CPU en el sistema operativo GNU/Linux
+    </a>
+   </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#perf-openblas">
-   perf OpenBLAS
-  </a>
  </li>
 </ul>
 
@@ -524,7 +569,11 @@
 </ul>
 </div>
 <p>En esta nota revisamos algunas herramientas de los lenguajes de programación y de los sistemas GNU/Linux para perfilamiento de código. También se revisan las operaciones de BLAS en sus diferentes niveles con ejemplos de paquetes en los lenguajes.</p>
-<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se sugiere se utilice la AMI <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Utilizamos la máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> pues en AWS no todas las instancias se pueden obtener algunas métricas con <code class="docutils literal notranslate"><span class="pre">perf</span></code>. Ver <a class="reference external" href="https://stackoverflow.com/questions/45683901/event-cache-misses-not-supported-by-perf-in-aws">stackoverflow1</a>, <a class="reference external" href="https://stackoverflow.com/questions/19763070/ubuntu-12-10-perf-stat-not-supported-cycles">stackoverflow2</a>, <a class="reference external" href="http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html">the-pmcs-of-ec2</a></p>
+</div>
+<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se sugiere se utilice la AMI <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a></p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>Si se utiliza la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> colocar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
@@ -928,8 +977,10 @@ sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &am
 </pre></div>
 </div>
 </div>
-<p>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code></p>
-<p>Verificamos que <em>NumPy</em> está usando <em>OpenBLAS</em></p>
+</div>
+<div class="section" id="resultados-utilizando-opt2-aws-educate-openblas-04-04-2021">
+<h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code><a class="headerlink" href="#resultados-utilizando-opt2-aws-educate-openblas-04-04-2021" title="Permalink to this headline">¶</a></h3>
+<p>Verificamos que <em>NumPy</em> está usando la instalación de <em>OpenBLAS</em> que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">np.show_config</span><span class="p">())</span>
@@ -997,7 +1048,7 @@ None
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>%<span class="n">timeit</span> <span class="o">-</span><span class="n">n</span> <span class="m">1</span> <span class="o">-</span><span class="n">r</span> <span class="m">2</span> <span class="n">A</span><span class="o">@</span><span class="n">B</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>%<span class="n">timeit</span> <span class="o">-</span><span class="n">n</span> <span class="m">1</span> <span class="o">-</span><span class="n">r</span> <span class="m">7</span> <span class="n">A</span><span class="o">@</span><span class="n">B</span>
 </pre></div>
 </div>
 </div>
@@ -1007,8 +1058,10 @@ None
 </div>
 </div>
 </div>
-<p>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code></p>
-<p>Verificamos que <em>NumPy</em> <strong>no</strong> está usando la instalación de <em>OpenBLAS</em> con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code></p>
+</div>
+<div class="section" id="resultados-utilizando-opt2-aws-educate-no-openblas-04-04-2021">
+<h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code><a class="headerlink" href="#resultados-utilizando-opt2-aws-educate-no-openblas-04-04-2021" title="Permalink to this headline">¶</a></h3>
+<p>Verificamos que <em>NumPy</em> <strong>no</strong> está usando la instalación de <em>OpenBLAS</em> que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">np.show_config</span><span class="p">())</span>
@@ -1086,6 +1139,13 @@ None
 </div>
 </div>
 </div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>La implementación de la API de BLAS con OpenBLAS que se instala mediante <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> y <em>NumPy</em> instalado vía <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">numpy</span> <span class="pre">--no-binary</span> <span class="pre">numpy</span></code> resulta para el algoritmo de multiplicación de matrices ser un poco más rápido que con la implementación de la API de BLAS integrada en la instalación de <em>NumPy</em> vía <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">numpy</span></code>.</p></li>
+<li><p>Más <em>cores</em> reducen el tiempo de cómputo, para ver esto probar lo anterior con máquinas con menos <em>cores</em>.</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="openblas-y-librerias-de-computo-matricial-de-r">
 <h3>OpenBLAS y librerías de cómputo matricial de <em>R</em><a class="headerlink" href="#openblas-y-librerias-de-computo-matricial-de-r" title="Permalink to this headline">¶</a></h3>
@@ -1108,8 +1168,10 @@ sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &am
 </pre></div>
 </div>
 </div>
-<p>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code></p>
-<p>Verificamos que las librerías de álgebra matricial de <em>R</em> está usando <em>OpenBLAS</em></p>
+</div>
+<div class="section" id="id1">
+<h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Verificamos que las librerías de cómputo matricial de <em>R</em> están usando la instalación de <em>OpenBLAS</em> que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
@@ -1173,6 +1235,10 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Mientras se ejecuta la siguiente celda se sugiere en la terminal ejecutar en la línea de comando <code class="docutils literal notranslate"><span class="pre">htop</span></code>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mbk</span><span class="o">&lt;-</span><span class="nf">microbenchmark</span><span class="p">(</span>
@@ -1197,8 +1263,10 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 </div>
-<p>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code></p>
-<p>Verificamos que las librerías de álgebra matricial de <em>R</em> <strong>no</strong> está usando <em>OpenBLAS</em>.</p>
+</div>
+<div class="section" id="id2">
+<h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Verificamos que las librerías de cómputo matricial de <em>R</em> <strong>no</strong> están usando la instalación de <em>OpenBLAS</em> que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
@@ -1262,11 +1330,15 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Mientras se ejecuta la siguiente celda se sugiere en la terminal ejecutar en la línea de comando <code class="docutils literal notranslate"><span class="pre">htop</span></code>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mbk</span><span class="o">&lt;-</span><span class="nf">microbenchmark</span><span class="p">(</span>
     <span class="n">A</span><span class="o">%*%</span><span class="n">B</span><span class="p">,</span>
-    <span class="n">times</span><span class="o">=</span><span class="m">1</span> <span class="c1">#just one time as takes too long time</span>
+    <span class="n">times</span><span class="o">=</span><span class="m">1</span> <span class="c1">#just one time as it takes too much time</span>
     <span class="p">)</span>
 </pre></div>
 </div>
@@ -1278,6 +1350,13 @@ loaded via a namespace (and not attached):
 </pre></div>
 </div>
 </div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>La implementación de la API de BLAS con OpenBLAS que se instala mediante <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> y las librerías de cómputo matricial de <em>R</em> que utilizan tal instalación resulta para el algoritmo de multiplicación de matrices ser mucho más rápido que con la implementación de la API de BLAS integrada en la instalación de <em>R</em>.</p></li>
+<li><p>Más <em>cores</em> reducen el tiempo de cómputo, para ver esto probar lo anterior con máquinas con menos <em>cores</em>.</p></li>
+</ul>
 </div>
 </div>
 </div>
@@ -1414,9 +1493,8 @@ True
 <div class="section" id="perf">
 <h3><a class="reference external" href="https://github.com/torvalds/linux/tree/master/tools/perf">perf</a><a class="headerlink" href="#perf" title="Permalink to this headline">¶</a></h3>
 </div>
-</div>
 <div class="section" id="perf-openblas">
-<h2>perf OpenBLAS<a class="headerlink" href="#perf-openblas" title="Permalink to this headline">¶</a></h2>
+<h3>perf OpenBLAS<a class="headerlink" href="#perf-openblas" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">mult_matrix_matrix_numpy_openblas.py</span>
@@ -1602,6 +1680,12 @@ S1-D0-C15          2           21406519      cache-misses              #    4.11
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="otras-herramientas-para-medicion-de-uso-de-cpu-en-el-sistema-operativo-gnu-linux">
+<h3>Otras herramientas para medición de uso de CPU en el sistema operativo GNU/Linux<a class="headerlink" href="#otras-herramientas-para-medicion-de-uso-de-cpu-en-el-sistema-operativo-gnu-linux" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/brendangregg/pmc-cloud-tools">pmc-cloud-tools</a></p></li>
+</ul>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
 <p>1.Resuelve los ejercicios y preguntas de la nota.</p>
@@ -1612,6 +1696,7 @@ S1-D0-C15          2           21406519      cache-misses              #    4.11
 <li><p>E. Anderson, Z. Bai, C. Bischof, L. S. Blackford, J. Demmel, J. Dongarra, J. Du Croz,
 A. Greenbaum, S. Hammarling, A. Mckenney and D. Sorensen, LAPACK Users Guide, Society for Industrial and Applied Mathematics, Philadelphia, PA, third ed., 1999.</p></li>
 </ol>
+</div>
 </div>
 </div>
 
