@@ -442,10 +442,58 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#blas">
-   BLAS
+  <a class="reference internal nav-link" href="#basic-linear-algebra-subprograms-blas">
+   <em>
+    Basic Linear Algebra Subprograms
+   </em>
+   (BLAS)
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operacion-del-producto-interno-estandar-o-producto-punto-nivel-1-de-blas">
+     Operación del producto interno estándar o producto punto (nivel 1 de BLAS)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-y-algoritmo">
+     Ejemplo y algoritmo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operacion-saxpy-nivel-1-de-blas">
+     Operación
+     <strong>
+      saxpy
+     </strong>
+     (nivel 1 de BLAS)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Ejemplo y algoritmo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operacion-de-multiplicacion-matriz-vector-nivel-2-de-blas">
+     Operación de multiplicación matriz-vector (nivel 2 de BLAS)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-y-algoritmo-gaxpy-row-oriented">
+     Ejemplo y algoritmo gaxpy
+     <em>
+      row oriented
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-y-algoritmo-gaxpy-column-oriented">
+     Ejemplo y algoritmo gaxpy
+     <em>
+      column oriented
+     </em>
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#openblas-y-numpy">
      OpenBLAS y
@@ -483,7 +531,7 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
+    <a class="reference internal nav-link" href="#id2">
      Resultados utilizando
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -493,7 +541,7 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
+    <a class="reference internal nav-link" href="#id3">
      Resultados utilizando
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -954,8 +1002,422 @@ Wall time: 386 ms
 <h3><a class="reference external" href="https://pypi.org/project/guppy/">heapy</a><a class="headerlink" href="#heapy" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
-<div class="section" id="blas">
-<h2>BLAS<a class="headerlink" href="#blas" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basic-linear-algebra-subprograms-blas">
+<h2><em>Basic Linear Algebra Subprograms</em> (BLAS)<a class="headerlink" href="#basic-linear-algebra-subprograms-blas" title="Permalink to this headline">¶</a></h2>
+<p>De acuerdo a la especificación BLAS, hay diferentes niveles dependiendo del número de datos y cantidad de operaciones a realizar que involucran tales datos.</p>
+<div class="section" id="operacion-del-producto-interno-estandar-o-producto-punto-nivel-1-de-blas">
+<h3>Operación del producto interno estándar o producto punto (nivel 1 de BLAS)<a class="headerlink" href="#operacion-del-producto-interno-estandar-o-producto-punto-nivel-1-de-blas" title="Permalink to this headline">¶</a></h3>
+<p>Consideramos <span class="math notranslate nohighlight">\(x,y \in \mathbb{R}^n\)</span>. El producto punto entre <span class="math notranslate nohighlight">\(x\)</span> y <span class="math notranslate nohighlight">\(y\)</span> es <span class="math notranslate nohighlight">\(c = x^Ty = \displaystyle \sum_{i=1}^n x_iy_i\)</span>.</p>
+</div>
+<div class="section" id="ejemplo-y-algoritmo">
+<h3>Ejemplo y algoritmo<a class="headerlink" href="#ejemplo-y-algoritmo" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">=</span><span class="m">0</span>
+<span class="n">n</span><span class="o">=</span><span class="m">5</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="m">-1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="m">1.5</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+
+<span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">c</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-7.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Los <em>flops</em> que realiza un algoritmo es una forma de cuantificar el volumen de trabajo asociado con un cálculo. Un <em>flop</em> es una operación de punto flotante: suma, multiplicación o división. Por ejemplo, en la línea:</p>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>El producto punto de dos <span class="math notranslate nohighlight">\(n\)</span>-vectores involucran <span class="math notranslate nohighlight">\(n\)</span> multiplicaciones y <span class="math notranslate nohighlight">\(n\)</span> sumas para un total de <span class="math notranslate nohighlight">\(2n\)</span> operaciones o <a class="reference external" href="https://en.wikipedia.org/wiki/FLOPS">floating point operations per second</a> (flops). Usamos la notación <span class="math notranslate nohighlight">\(\mathcal{O}(\cdot)\)</span> para escribir que el producto punto es <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> y se lee “de orden <span class="math notranslate nohighlight">\(n\)</span> o proporcional a <span class="math notranslate nohighlight">\(n\)</span>” para indicar que la <strong>cantidad de trabajo</strong> tiene un comportamiento <strong>lineal</strong> con la dimensión <span class="math notranslate nohighlight">\(n\)</span>. También tal cantidad de trabajo opera sobre una <strong>cantidad lineal de datos</strong>.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>se realizan <span class="math notranslate nohighlight">\(2\)</span> <em>flops</em>. Los flops sólo representan una componente para categorizar a los algoritmos de acuerdo al trabajo que realizan, otras componentes son la transferencia o movimientos de datos, <em>data movement/motion</em>, ejecución secuencial o en paralelo y el <em>data locality</em> y <em>data reuse</em> que realizan.</p>
+<ul class="simple">
+<li><p>En LAPACK encontramos <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d0/d16/sdot_8f.html">sdot</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d5/df6/ddot_8f.html">ddot</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d7/d7b/cdotu_8f.html">cdotu</a> y <a class="reference external" href="http://www.netlib.org/lapack/explore-html/db/d2d/zdotu_8f.html">zdotu</a> para descripción de las funciones/subrutinas escritas en <a class="reference external" href="https://en.wikipedia.org/wiki/Fortran">Fortran</a> del producto punto en los casos de precisión simple, doble o números complejos respectivamente.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="operacion-saxpy-nivel-1-de-blas">
+<h3>Operación <strong>saxpy</strong> (nivel 1 de BLAS)<a class="headerlink" href="#operacion-saxpy-nivel-1-de-blas" title="Permalink to this headline">¶</a></h3>
+<p>Consideramos <span class="math notranslate nohighlight">\(\alpha \in \mathbb{R}, x,y \in \mathbb{R}^n\)</span>. El nombre lo recibe por <em>scalar alpha x plus y</em>. En LAPACK <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d8/daf/saxpy_8f.html">saxpy</a> se escribe en forma <em>update</em>:</p>
+<div class="math notranslate nohighlight">
+\[y=\alpha x + y \therefore y_i = \alpha x_i + y_i \forall i=1,...,n\]</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>El símbolo <span class="math notranslate nohighlight">\(=\)</span> no se utiliza como igualdad de expresiones sino para denotar asignación (como en computación al escribir un algoritmo).</p></li>
+<li><p>También encontramos en LAPACK <a class="reference external" href="http://www.netlib.org/lapack/explore-html/de/da2/caxpy_8f.html">caxpy</a> o <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d9/dcd/daxpy_8f.html">daxpy</a> para el caso complejo y para números en doble precisión respectivamente.</p></li>
+<li><p>Ésta operación realiza un trabajo de <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> sobre una cantidad de datos <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Ejemplo y algoritmo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span><span class="o">=</span><span class="m">2</span>
+<span class="n">n</span><span class="o">=</span><span class="m">5</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="m">-2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="m">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+
+<span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-4, -4, -4, -4, -4]
+</pre></div>
+</div>
+</div>
+</div>
+<p>o en una forma <em>update</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span><span class="o">=</span><span class="m">2</span>
+<span class="n">n</span><span class="o">=</span><span class="m">5</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="m">-2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">-1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">]</span>
+
+<span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1, 0, -5, -4, -3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>La operación de producto punto y <em>saxpy</em> son algoritmos catalogados como de <strong>nivel BLAS 1</strong>, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms">BLAS: Basic Linear Algebra Subprograms</a>. Éstos algoritmos se caracterizan por involucrar una cantidad de trabajo lineal sobre una cantidad lineal de datos. Ver <a class="reference external" href="http://www.netlib.org/blas/#_level_1">level 1</a> para más ejemplos de este tipo de algoritmos.</p>
+</div>
+</div>
+<div class="section" id="operacion-de-multiplicacion-matriz-vector-nivel-2-de-blas">
+<h3>Operación de multiplicación matriz-vector (nivel 2 de BLAS)<a class="headerlink" href="#operacion-de-multiplicacion-matriz-vector-nivel-2-de-blas" title="Permalink to this headline">¶</a></h3>
+<p>Consideramos <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}, x \in \mathbb{R}^n, y \in \mathbb{R}^m\)</span>. La operación <span class="math notranslate nohighlight">\(y = y + Ax\)</span> es una operación <em>generalizada</em> saxpy, por ello se denomina <strong>gaxpy</strong> pero en LAPACK podemos encontrarla con nombres como <a class="reference external" href="http://www.netlib.org/lapack/explore-html/db/d58/sgemv_8f.html">sgemv</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/dc/da8/dgemv_8f.html">dgemv</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d4/d8a/cgemv_8f.html">cgemv</a> o <a class="reference external" href="http://www.netlib.org/lapack/explore-html/db/d40/zgemv_8f.html">zgemv</a> para los casos de precisión simple, doble o números complejos respectivamente. Hay diferentes formas de visualizar y escribir el algoritmo de multiplicación matriz-vector. Por ejemplo para una matriz <span class="math notranslate nohighlight">\(A\)</span> con entradas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">=</span><span class="m">2</span>
+<span class="n">n</span><span class="o">=</span><span class="m">5</span>
+<span class="n">A</span><span class="o">=</span><span class="p">[[</span><span class="m">1.2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span> <span class="n">if</span> <span class="n">i</span>%<span class="m">2</span><span class="o">==</span><span class="m">0</span> <span class="n">else</span> <span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span> <span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.2, 1.2, 1.2, 1.2, 1.2], [1, 1, 1, 1, 1]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="m">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="m">1</span><span class="p">][</span><span class="n">n</span><span class="m">-1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>se tiene:</p>
+</div>
+<div class="section" id="ejemplo-y-algoritmo-gaxpy-row-oriented">
+<h3>Ejemplo y algoritmo gaxpy <em>row oriented</em><a class="headerlink" href="#ejemplo-y-algoritmo-gaxpy-row-oriented" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="m">0</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
+<span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">for</span> <span class="n">j</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12.0, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si <span class="math notranslate nohighlight">\(y\)</span> tiene valores distintos de <span class="math notranslate nohighlight">\(0\)</span>, se realiza un <em>update</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="m">-1</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
+<span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">for</span> <span class="n">j</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[11.0, 9]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>En la versión <em>row oriented</em> del algoritmo <em>gaxpy</em>, el <strong>inner loop</strong> realiza <strong>productos punto</strong> entre el <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A\)</span> y el vector <span class="math notranslate nohighlight">\(x\)</span>. Se realizan <span class="math notranslate nohighlight">\(m\)</span> productos punto <span class="math notranslate nohighlight">\(A[i,:]^Tx\)</span>:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">*</span><span class="n">x</span> <span class="c1">#producto punto</span>
+    
+</pre></div>
+</div>
+<p>donde: <span class="math notranslate nohighlight">\(A[i,:]\)</span> es el <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A\)</span>. Así podemos reescribir de forma más compacta este algoritmo.</p>
+<ul class="simple">
+<li><p>Obsérvese que el acceso a la matriz <span class="math notranslate nohighlight">\(A\)</span> del algoritmo <em>gaxpy row oriented</em> es <strong>por renglón</strong>.</p></li>
+</ul>
+</div>
+<p>También puede escribirse al algoritmo <em>gaxpy</em> en una forma orientada por columnas:</p>
+</div>
+<div class="section" id="ejemplo-y-algoritmo-gaxpy-column-oriented">
+<h3>Ejemplo y algoritmo gaxpy <em>column oriented</em><a class="headerlink" href="#ejemplo-y-algoritmo-gaxpy-column-oriented" title="Permalink to this headline">¶</a></h3>
+<p>Este algoritmo ayuda a visualizar al producto matriz-vector como una combinación lineal de las columnas de <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[Ax = \displaystyle \sum_{j=1}^n A_jx_j\]</div>
+<p>con <span class="math notranslate nohighlight">\(A_j\)</span> la <span class="math notranslate nohighlight">\(j\)</span>-ésima columna de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="m">0</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
+<span class="n">for</span> <span class="n">j</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">:</span>
+        <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12.0, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>El algoritmo de multiplicación matriz-vector (versión <em>row</em> o <em>column</em> oriented) involucra <span class="math notranslate nohighlight">\(\mathcal{O}(mn)\)</span> operaciones o una cantidad <strong>cuadrática</strong> de trabajo, que podemos entender como “si duplicamos cada dimensión de <span class="math notranslate nohighlight">\(A\)</span> entonces la cantidad de trabajo se incrementa por un factor de <span class="math notranslate nohighlight">\(4\)</span>”. Tal número de operaciones trabajan sobre una matriz o sobre una cantidad <strong>cuadrática</strong> de datos. A los algoritmos que realizan una cantidad cuadrática de trabajo sobre una cantidad cuadrática de datos se les cataloga de <strong>nivel BLAS 2</strong>. Ver <a class="reference external" href="http://www.netlib.org/blas/#_level_2">level 2</a> para más ejemplos de algoritmos en el álgebra lineal en esta categoría.</p></li>
+<li><p>En el algoritmo <em>gaxpy column oriented</em> el acceso a la matriz <span class="math notranslate nohighlight">\(A\)</span> es por columna.</p></li>
+<li><p>La versión <em>column oriented</em> se puede analizar desde el punto de vista puramente algorítmico como un intercambio entre las líneas con los índices <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(j\)</span> de cada <em>loop</em> y un acceso a los datos de la matriz por columna. O bien, se puede analizar desde el álgebra lineal indicando que el vector <span class="math notranslate nohighlight">\(y\)</span> está en el <strong>espacio generado</strong> por las columnas de <span class="math notranslate nohighlight">\(A\)</span> y cuyas coordenadas son dadas por las entradas del vector <span class="math notranslate nohighlight">\(x\)</span>:</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/6a2b7rjs4a71sni/combinacion_lineal_columnas_A.png?dl=0" heigth="700" width="700">
+<p>Una ejemplo de visualización del espacio generado por las columnas de <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{3 \times 2}\)</span>, llamado <strong>rango o imagen</strong> de <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(Im(A)\)</span>, es el siguiente:</p>
+<img src="https://dl.dropboxusercontent.com/s/zkbhzv9a2jiw11b/espacio_generado_columnas_de_A.png?dl=0" heigth="400" width="400">
+<p>En este dibujo los vectores <span class="math notranslate nohighlight">\(b, r(x) \in \mathbb{R}^3\)</span> no están en <span class="math notranslate nohighlight">\(Im(A) \subset \mathbb{R}^3\)</span> pero <span class="math notranslate nohighlight">\(Ax\)</span> en azul sí. <span class="math notranslate nohighlight">\(Im(A)\)</span> en el dibujo es un plano en el espacio <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>.</p>
+<ul class="simple">
+<li><p>Obsérvese que el <strong>inner loop</strong> de la versión <em>column oriented</em> en <em>gaxpy</em> es un <strong>saxpy</strong> en la que el escalar está dado por una entrada de <span class="math notranslate nohighlight">\(x\)</span>. Esto lo podemos escribir de forma explícita definiendo <span class="math notranslate nohighlight">\(A[:,j]\)</span> a la <span class="math notranslate nohighlight">\(j\)</span>-ésima columna de <span class="math notranslate nohighlight">\(A\)</span> por lo que <span class="math notranslate nohighlight">\(A = [A[:,1] | A[:,2] | \dots | A[:,n]]\)</span>, entonces:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">y</span><span class="o">+=</span><span class="n">A</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+ 
+</pre></div>
+</div>
+<p>sin embargo como hemos visto en Python con su implementación más común CPython, no es posible realizar tal indexado:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">y</span><span class="o">+=</span><span class="n">A</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>resulta en el error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="mi">93</span><span class="n">f449af9194</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+      <span class="mi">2</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
+      <span class="mi">3</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="o">----&gt;</span> <span class="mi">4</span>     <span class="n">y</span><span class="o">+=</span><span class="n">A</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="nb">list</span> <span class="n">indices</span> <span class="n">must</span> <span class="n">be</span> <span class="n">integers</span> <span class="ow">or</span> <span class="n">slices</span><span class="p">,</span> <span class="ow">not</span> <span class="nb">tuple</span>
+
+</pre></div>
+</div>
+<p>a menos que incorporemos alguna paquetería que permita la <strong>vectorización</strong> y el uso de índices para extracción de columnas (o renglones) de <span class="math notranslate nohighlight">\(A\)</span> como <em>NumPy</em>. Entre las razones que encontramos en Python el no soporte para la vectorización está que el <a class="reference external" href="https://en.wikipedia.org/wiki/Bytecode">bytecode</a> de Python no está optimizado para vectorización.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">2</span><span class="o">*</span><span class="nf">np.ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">np.zeros</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2., 2., 2., 2., 2.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="nf">np.array</span><span class="p">([[</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">],[</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.2, 1.2, 1.2, 1.2, 1.2],
+       [1. , 1. , 1. , 1. , 1. ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">for</span> <span class="n">j</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">y</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([12., 10.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>El algoritmo <em>gaxpy row oriented</em> puede escribirse de forma más compacta haciendo uso de la definición de producto punto estándar: <span class="math notranslate nohighlight">\(x^Ty\)</span> para dos vectores columna <span class="math notranslate nohighlight">\(x\)</span> y <span class="math notranslate nohighlight">\(y\)</span>. En el caso de una matriz <span class="math notranslate nohighlight">\(A\)</span> se tiene:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">^</span><span class="n">T</span><span class="o">*</span><span class="n">x</span>
+</pre></div>
+</div>
+<p>donde: <span class="math notranslate nohighlight">\(A[i,:]\)</span> es el <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A\)</span>. En <em>Python</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">2</span><span class="o">*</span><span class="nf">np.ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">np.zeros</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">A</span><span class="o">=</span><span class="nf">np.array</span><span class="p">([[</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">],[</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="o">:</span><span class="p">]</span><span class="nf">.dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([12., 10.])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="openblas-y-numpy">
 <h3>OpenBLAS y <em>NumPy</em><a class="headerlink" href="#openblas-y-numpy" title="Permalink to this headline">¶</a></h3>
 <p>En esta sección se sugiere para reproducibilidad de resultados utilizar la <em>AMI</em> descrita al inicio y la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) en una máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Tal AMI se construyó a partir de una <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a></p>
@@ -980,7 +1442,7 @@ sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &am
 </div>
 <div class="section" id="resultados-utilizando-opt2-aws-educate-openblas-04-04-2021">
 <h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code><a class="headerlink" href="#resultados-utilizando-opt2-aws-educate-openblas-04-04-2021" title="Permalink to this headline">¶</a></h3>
-<p>Verificamos que <em>NumPy</em> está usando la instalación de <em>OpenBLAS</em> que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
+<p>Verificamos que <em>NumPy</em> está usando la implementación de la API de BLAS con OpenBLAS que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">np.show_config</span><span class="p">())</span>
@@ -1061,7 +1523,7 @@ None
 </div>
 <div class="section" id="resultados-utilizando-opt2-aws-educate-no-openblas-04-04-2021">
 <h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code><a class="headerlink" href="#resultados-utilizando-opt2-aws-educate-no-openblas-04-04-2021" title="Permalink to this headline">¶</a></h3>
-<p>Verificamos que <em>NumPy</em> <strong>no</strong> está usando la instalación de <em>OpenBLAS</em> que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
+<p>Verificamos que <em>NumPy</em> <strong>no</strong> está usando la implementación de la API de BLAS con OpenBLAS que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">np.show_config</span><span class="p">())</span>
@@ -1169,9 +1631,9 @@ sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &am
 </div>
 </div>
 </div>
-<div class="section" id="id1">
-<h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>Verificamos que las librerías de cómputo matricial de <em>R</em> están usando la instalación de <em>OpenBLAS</em> que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
+<div class="section" id="id2">
+<h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Verificamos que las librerías de cómputo matricial de <em>R</em> están usando la implementación de la API de BLAS con OpenBLAS que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
@@ -1264,9 +1726,9 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 </div>
-<div class="section" id="id2">
-<h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>Verificamos que las librerías de cómputo matricial de <em>R</em> <strong>no</strong> están usando la instalación de <em>OpenBLAS</em> que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
+<div class="section" id="id3">
+<h3>Resultados utilizando <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-no-openblas-04-04-2021</span></code><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Verificamos que las librerías de cómputo matricial de <em>R</em> <strong>no</strong> están usando la implementación de la API de BLAS con OpenBLAS que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
