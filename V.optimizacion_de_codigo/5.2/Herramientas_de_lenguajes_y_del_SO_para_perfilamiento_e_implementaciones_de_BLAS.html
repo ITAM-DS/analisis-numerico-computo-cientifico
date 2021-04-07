@@ -616,7 +616,7 @@
 <li></li>
 </ul>
 </div>
-<p>En esta nota revisamos algunas herramientas de los lenguajes de programación y de los sistemas GNU/Linux para perfilamiento de código. También se revisan las operaciones de BLAS en sus diferentes niveles con ejemplos de paquetes en los lenguajes.</p>
+<p>En esta nota revisamos algunas herramientas de los lenguajes de programación y de los sistemas GNU/Linux para perfilamiento de código. También se revisan implementaciones de la especificación de <em>Basic Linear Algebra Subprograms</em> (BLAS) en sus diferentes niveles con ejemplos de paquetes en los lenguajes.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Utilizamos la máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> pues en AWS no todas las instancias se pueden obtener algunas métricas con <code class="docutils literal notranslate"><span class="pre">perf</span></code>. Ver <a class="reference external" href="https://stackoverflow.com/questions/45683901/event-cache-misses-not-supported-by-perf-in-aws">stackoverflow1</a>, <a class="reference external" href="https://stackoverflow.com/questions/19763070/ubuntu-12-10-perf-stat-not-supported-cycles">stackoverflow2</a>, <a class="reference external" href="http://www.brendangregg.com/blog/2017-05-04/the-pmcs-of-ec2.html">the-pmcs-of-ec2</a></p>
@@ -643,8 +643,8 @@ sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &am
 <p>La máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> tiene las siguientes características:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">lscpu</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+lscpu
 </pre></div>
 </div>
 </div>
@@ -692,8 +692,8 @@ Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtr
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">sudo</span> <span class="n">lshw</span> <span class="o">-</span><span class="n">C</span> <span class="n">memory</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+sudo lshw -C memory
 </pre></div>
 </div>
 </div>
@@ -823,45 +823,45 @@ Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtr
 <p>Imports y funciones de apoyo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">import</span> <span class="n">math</span>
-<span class="n">import</span> <span class="n">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
-<span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
-<span class="n">from</span> <span class="n">pytest</span> <span class="n">import</span> <span class="n">approx</span>
-<span class="n">from</span> <span class="n">scipy.integrate</span> <span class="n">import</span> <span class="n">quad</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
-    <span class="s">&quot;&quot;&quot;</span>
-<span class="s">    Compute numerical approximation using rectangle or mid-point</span>
-<span class="s">    method in an interval.</span>
-<span class="s">    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for</span>
-<span class="s">    i=0,1,...,n-1 and h_hat=(b-a)/n</span>
-<span class="s">    Args:</span>
-<span class="s">    </span>
-<span class="s">        f (function): function expression of integrand.</span>
-<span class="s">        </span>
-<span class="s">        a (float): left point of interval.</span>
-<span class="s">        </span>
-<span class="s">        b (float): right point of interval.</span>
-<span class="s">        </span>
-<span class="s">        n (float): number of subintervals.</span>
-<span class="s">        </span>
-<span class="s">    Returns:</span>
-<span class="s">    </span>
-<span class="s">        sum_res (float): numerical approximation to integral</span>
-<span class="s">            of f in the interval a,b</span>
-<span class="s">    &quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute numerical approximation using rectangle or mid-point</span>
+<span class="sd">    method in an interval.</span>
+<span class="sd">    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for</span>
+<span class="sd">    i=0,1,...,n-1 and h_hat=(b-a)/n</span>
+<span class="sd">    Args:</span>
+<span class="sd">    </span>
+<span class="sd">        f (function): function expression of integrand.</span>
+<span class="sd">        </span>
+<span class="sd">        a (float): left point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        b (float): right point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        n (float): number of subintervals.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        sum_res (float): numerical approximation to integral</span>
+<span class="sd">            of f in the interval a,b</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
-    <span class="n">nodes</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="m">+1</span><span class="o">/</span><span class="m">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span> <span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">n</span><span class="p">)]</span>
-    <span class="n">sum_res</span><span class="o">=</span><span class="m">0</span>
-    <span class="n">for</span> <span class="n">node</span> <span class="n">in</span> <span class="n">nodes</span><span class="o">:</span>
-        <span class="n">sum_res</span><span class="o">=</span><span class="n">sum_res</span><span class="o">+</span><span class="nf">f</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-    <span class="n">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span>
+    <span class="n">nodes</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+        <span class="n">sum_res</span><span class="o">=</span><span class="n">sum_res</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span>
 </pre></div>
 </div>
 </div>
@@ -869,11 +869,11 @@ Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtr
 <p>Objetivo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="n">lambda</span> <span class="n">x</span><span class="o">:</span> <span class="nf">math.exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="m">2</span><span class="p">)</span> <span class="c1">#using math library</span>
-<span class="n">a</span><span class="o">=</span><span class="m">0</span>
-<span class="n">b</span><span class="o">=</span><span class="m">1</span>
-<span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="nf">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#using math library</span>
+<span class="n">a</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -886,12 +886,12 @@ Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtr
 <p>Medición de tiempo:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">6</span>
-<span class="n">start_time</span> <span class="o">=</span> <span class="nf">time.time</span><span class="p">()</span>
-<span class="n">res</span><span class="o">=</span><span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-<span class="n">end_time</span> <span class="o">=</span> <span class="nf">time.time</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">res</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">secs</span> <span class="o">=</span> <span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Rcf tomó&quot;</span><span class="p">,</span><span class="n">secs</span><span class="p">,</span><span class="s">&quot;segundos&quot;</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rcf tomó&quot;</span><span class="p">,</span><span class="n">secs</span><span class="p">,</span><span class="s2">&quot;segundos&quot;</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -904,7 +904,7 @@ Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtr
 <p>Prueba que se resuelve correctamente el problema:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="nf">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -931,7 +931,7 @@ Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtr
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>%<span class="n">time</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> Rcf(f,a, b,n)
 </pre></div>
 </div>
 </div>
@@ -948,7 +948,7 @@ Wall time: 386 ms
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>Para mediciones de tiempos que involucran cómputo en paralelo es posible que <code class="docutils literal notranslate"><span class="pre">total</span></code> exceda a <code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">time</span></code> por una diferencia marcada pues es la suma de tiempos para todos los <em>cores</em>.</p></li>
+<li><p>Para mediciones de tiempos que involucran cómputo en paralelo es posible que <code class="docutils literal notranslate"><span class="pre">total</span></code> exceda a <code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">time</span></code> por una diferencia notable pues es la suma de tiempos para todos los <em>cores</em>.</p></li>
 <li><p>Recuérdese que algunos ejemplos de funciones relacionadas con el <em>kernel</em> del sistema es el alojamiento, lectura y escritura de variables en memoria, las relacionadas con el I/O de disco o <em>network</em>.</p></li>
 <li><p>La diferencia entre <code class="docutils literal notranslate"><span class="pre">total</span></code> y <code class="docutils literal notranslate"><span class="pre">Wall</span> <span class="pre">time</span></code> da una idea de la cantidad de tiempo que se ocupó el sistema en la ejecución de <em>statements</em> que no involucran <code class="docutils literal notranslate"><span class="pre">user</span></code> ni a <code class="docutils literal notranslate"><span class="pre">sys</span></code> (por ejemplo un <em>statement</em> del tipo <code class="docutils literal notranslate"><span class="pre">sleep</span></code>) o en tareas no relacionadas con los <em>statements</em> medidos (por ejemplo si en el momento de la medición se estaban corriendo otros procesos).</p></li>
 </ul>
@@ -960,7 +960,7 @@ Wall time: 386 ms
 <p>A continuación se mide el tiempo de ejecución para la función <code class="docutils literal notranslate"><span class="pre">Rcf</span></code>. Se promedian los tiempos de <span class="math notranslate nohighlight">\(n=5\)</span> ejecuciones y se calcula su desviación estándar. Se reptite lo anterior <span class="math notranslate nohighlight">\(r=10\)</span> veces y se reporta el mejor resultado.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>%<span class="n">timeit</span> <span class="o">-</span><span class="n">n</span> <span class="m">5</span> <span class="o">-</span><span class="n">r</span> <span class="m">10</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -n 5 -r 10 Rcf(f,a, b,n)
 </pre></div>
 </div>
 </div>
@@ -1013,12 +1013,12 @@ Wall time: 386 ms
 <h3>Ejemplo y algoritmo<a class="headerlink" href="#ejemplo-y-algoritmo" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">=</span><span class="m">0</span>
-<span class="n">n</span><span class="o">=</span><span class="m">5</span>
-<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="m">-1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
-<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="m">1.5</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mf">1.5</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
 
-<span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">c</span> <span class="o">+=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1026,7 +1026,7 @@ Wall time: 386 ms
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">c</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span>
 </pre></div>
 </div>
 </div>
@@ -1036,14 +1036,11 @@ Wall time: 386 ms
 </div>
 </div>
 </div>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Los <em>flops</em> que realiza un algoritmo es una forma de cuantificar el volumen de trabajo asociado con un cálculo. Un <em>flop</em> es una operación de punto flotante: suma, multiplicación o división. Por ejemplo, en la línea:</p>
-</div>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>El producto punto de dos <span class="math notranslate nohighlight">\(n\)</span>-vectores involucran <span class="math notranslate nohighlight">\(n\)</span> multiplicaciones y <span class="math notranslate nohighlight">\(n\)</span> sumas para un total de <span class="math notranslate nohighlight">\(2n\)</span> operaciones o <a class="reference external" href="https://en.wikipedia.org/wiki/FLOPS">floating point operations per second</a> (flops). Usamos la notación <span class="math notranslate nohighlight">\(\mathcal{O}(\cdot)\)</span> para escribir que el producto punto es <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> y se lee “de orden <span class="math notranslate nohighlight">\(n\)</span> o proporcional a <span class="math notranslate nohighlight">\(n\)</span>” para indicar que la <strong>cantidad de trabajo</strong> tiene un comportamiento <strong>lineal</strong> con la dimensión <span class="math notranslate nohighlight">\(n\)</span>. También tal cantidad de trabajo opera sobre una <strong>cantidad lineal de datos</strong>.</p></li>
+<li><p>Los <em>flops</em> que realiza un algoritmo es una forma de cuantificar el volumen de trabajo asociado con un cálculo. Un <em>flop</em> es una operación de punto flotante: suma, multiplicación o división. Por ejemplo, en la línea:</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
 </pre></div>
@@ -1062,7 +1059,7 @@ Wall time: 386 ms
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>El símbolo <span class="math notranslate nohighlight">\(=\)</span> no se utiliza como igualdad de expresiones sino para denotar asignación (como en computación al escribir un algoritmo).</p></li>
+<li><p>El símbolo “=” no se utiliza como igualdad de expresiones sino para denotar asignación (como en computación al escribir un algoritmo).</p></li>
 <li><p>También encontramos en LAPACK <a class="reference external" href="http://www.netlib.org/lapack/explore-html/de/da2/caxpy_8f.html">caxpy</a> o <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d9/dcd/daxpy_8f.html">daxpy</a> para el caso complejo y para números en doble precisión respectivamente.</p></li>
 <li><p>Ésta operación realiza un trabajo de <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> sobre una cantidad de datos <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>.</p></li>
 </ul>
@@ -1072,12 +1069,12 @@ Wall time: 386 ms
 <h3>Ejemplo y algoritmo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span><span class="o">=</span><span class="m">2</span>
-<span class="n">n</span><span class="o">=</span><span class="m">5</span>
-<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="m">-2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
-<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="m">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
 
-<span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1085,12 +1082,12 @@ Wall time: 386 ms
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-4, -4, -4, -4, -4]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-4, -4, -4, -4, -4]
 </pre></div>
 </div>
 </div>
@@ -1098,12 +1095,12 @@ Wall time: 386 ms
 <p>o en una forma <em>update</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span><span class="o">=</span><span class="m">2</span>
-<span class="n">n</span><span class="o">=</span><span class="m">5</span>
-<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="m">-2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
-<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">-1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1111,12 +1108,12 @@ Wall time: 386 ms
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1, 0, -5, -4, -3]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1, 0, -5, -4, -3]
 </pre></div>
 </div>
 </div>
@@ -1131,45 +1128,21 @@ Wall time: 386 ms
 <p>Consideramos <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}, x \in \mathbb{R}^n, y \in \mathbb{R}^m\)</span>. La operación <span class="math notranslate nohighlight">\(y = y + Ax\)</span> es una operación <em>generalizada</em> saxpy, por ello se denomina <strong>gaxpy</strong> pero en LAPACK podemos encontrarla con nombres como <a class="reference external" href="http://www.netlib.org/lapack/explore-html/db/d58/sgemv_8f.html">sgemv</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/dc/da8/dgemv_8f.html">dgemv</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d4/d8a/cgemv_8f.html">cgemv</a> o <a class="reference external" href="http://www.netlib.org/lapack/explore-html/db/d40/zgemv_8f.html">zgemv</a> para los casos de precisión simple, doble o números complejos respectivamente. Hay diferentes formas de visualizar y escribir el algoritmo de multiplicación matriz-vector. Por ejemplo para una matriz <span class="math notranslate nohighlight">\(A\)</span> con entradas:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">=</span><span class="m">2</span>
-<span class="n">n</span><span class="o">=</span><span class="m">5</span>
-<span class="n">A</span><span class="o">=</span><span class="p">[[</span><span class="m">1.2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span> <span class="n">if</span> <span class="n">i</span>%<span class="m">2</span><span class="o">==</span><span class="m">0</span> <span class="n">else</span> <span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span> <span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">A</span><span class="o">=</span><span class="p">[[</span><span class="mf">1.2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span>==0 else [1]*n for i in range(m)]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">A</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.2, 1.2, 1.2, 1.2, 1.2], [1, 1, 1, 1, 1]]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="m">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="m">1</span><span class="p">][</span><span class="n">n</span><span class="m">-1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.2, 1.2, 1.2, 1.2, 1.2], [1, 1, 1, 1, 1]]
 </pre></div>
 </div>
 </div>
@@ -1180,10 +1153,10 @@ Wall time: 386 ms
 <h3>Ejemplo y algoritmo gaxpy <em>row oriented</em><a class="headerlink" href="#ejemplo-y-algoritmo-gaxpy-row-oriented" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
-<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="m">0</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
-<span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">:</span>
-    <span class="n">for</span> <span class="n">j</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1191,12 +1164,12 @@ Wall time: 386 ms
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12.0, 10]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12.0, 10]
 </pre></div>
 </div>
 </div>
@@ -1204,10 +1177,10 @@ Wall time: 386 ms
 <p>Si <span class="math notranslate nohighlight">\(y\)</span> tiene valores distintos de <span class="math notranslate nohighlight">\(0\)</span>, se realiza un <em>update</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
-<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="m">-1</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
-<span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">:</span>
-    <span class="n">for</span> <span class="n">j</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
         <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1215,12 +1188,12 @@ Wall time: 386 ms
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[11.0, 9]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[11.0, 9]
 </pre></div>
 </div>
 </div>
@@ -1228,7 +1201,7 @@ Wall time: 386 ms
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>En la versión <em>row oriented</em> del algoritmo <em>gaxpy</em>, el <strong>inner loop</strong> realiza <strong>productos punto</strong> entre el <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A\)</span> y el vector <span class="math notranslate nohighlight">\(x\)</span>. Se realizan <span class="math notranslate nohighlight">\(m\)</span> productos punto <span class="math notranslate nohighlight">\(A[i,:]^Tx\)</span>:</p></li>
+<li><p>En la versión <em>row oriented</em> del algoritmo <em>gaxpy</em>, el <strong>inner loop</strong> realiza <strong>productos punto</strong> entre el <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A\)</span> y el vector <span class="math notranslate nohighlight">\(x\)</span>. Se realizan <span class="math notranslate nohighlight">\(m\)</span> productos punto <span class="math notranslate nohighlight">\(A[i,:]^Tx\)</span></p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
     <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">*</span><span class="n">x</span> <span class="c1">#producto punto</span>
@@ -1240,7 +1213,7 @@ Wall time: 386 ms
 <li><p>Obsérvese que el acceso a la matriz <span class="math notranslate nohighlight">\(A\)</span> del algoritmo <em>gaxpy row oriented</em> es <strong>por renglón</strong>.</p></li>
 </ul>
 </div>
-<p>También puede escribirse al algoritmo <em>gaxpy</em> en una forma orientada por columnas:</p>
+<p>También puede escribirse al algoritmo <em>gaxpy</em> en una forma orientada por columnas.</p>
 </div>
 <div class="section" id="ejemplo-y-algoritmo-gaxpy-column-oriented">
 <h3>Ejemplo y algoritmo gaxpy <em>column oriented</em><a class="headerlink" href="#ejemplo-y-algoritmo-gaxpy-column-oriented" title="Permalink to this headline">¶</a></h3>
@@ -1250,10 +1223,10 @@ Wall time: 386 ms
 <p>con <span class="math notranslate nohighlight">\(A_j\)</span> la <span class="math notranslate nohighlight">\(j\)</span>-ésima columna de <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
-<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="m">0</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
-<span class="n">for</span> <span class="n">j</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
-    <span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+<span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">m</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
         <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1261,12 +1234,12 @@ Wall time: 386 ms
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12.0, 10]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12.0, 10]
 </pre></div>
 </div>
 </div>
@@ -1305,76 +1278,76 @@ Wall time: 386 ms
 
 </pre></div>
 </div>
-<p>a menos que incorporemos alguna paquetería que permita la <strong>vectorización</strong> y el uso de índices para extracción de columnas (o renglones) de <span class="math notranslate nohighlight">\(A\)</span> como <em>NumPy</em>. Entre las razones que encontramos en Python el no soporte para la vectorización está que el <a class="reference external" href="https://en.wikipedia.org/wiki/Bytecode">bytecode</a> de Python no está optimizado para vectorización.</p>
+<p>a menos que incorporemos alguna paquetería que permita la <strong>vectorización</strong> y el uso de índices para extracción de columnas (o renglones) de <span class="math notranslate nohighlight">\(A\)</span> como <em>NumPy</em>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">2</span><span class="o">*</span><span class="nf">np.ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="nf">np.zeros</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2., 2., 2., 2., 2.])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2. 2. 2. 2. 2.]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 0.])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0. 0.]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="nf">np.array</span><span class="p">([[</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">],[</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">A</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.2, 1.2, 1.2, 1.2, 1.2],
-       [1. , 1. , 1. , 1. , 1. ]])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.2 1.2 1.2 1.2 1.2]
+ [1.  1.  1.  1.  1. ]]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">for</span> <span class="n">j</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
-    <span class="n">y</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">y</span><span class="o">+=</span><span class="n">A</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([12., 10.])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12. 10.]
 </pre></div>
 </div>
 </div>
@@ -1387,29 +1360,29 @@ Wall time: 386 ms
 <p>donde: <span class="math notranslate nohighlight">\(A[i,:]\)</span> es el <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A\)</span>. En <em>Python</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">2</span><span class="o">*</span><span class="nf">np.ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="nf">np.zeros</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-<span class="n">A</span><span class="o">=</span><span class="nf">np.array</span><span class="p">([[</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">,</span><span class="m">1.2</span><span class="p">],[</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">:</span>
-    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="o">:</span><span class="p">]</span><span class="nf">.dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([12., 10.])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[12. 10.]
 </pre></div>
 </div>
 </div>
@@ -1442,7 +1415,7 @@ sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &am
 <p>Verificamos que <em>NumPy</em> está usando la implementación de la API de BLAS con OpenBLAS que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">np.show_config</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">show_config</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1481,22 +1454,22 @@ None
 <p>Hacemos una prueba de medición de tiempos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">np.random.seed</span><span class="p">(</span><span class="m">2020</span><span class="p">)</span>
-<span class="n">m</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">r</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
 
-<span class="n">A</span><span class="o">=</span><span class="nf">np.random.rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+<span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">np.random.seed</span><span class="p">(</span><span class="m">2021</span><span class="p">)</span>
-<span class="n">r</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">n</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
 
-<span class="n">B</span><span class="o">=</span><span class="nf">np.random.rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1507,7 +1480,7 @@ None
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>%<span class="n">timeit</span> <span class="o">-</span><span class="n">n</span> <span class="m">1</span> <span class="o">-</span><span class="n">r</span> <span class="m">7</span> <span class="n">A</span><span class="o">@</span><span class="n">B</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -n 1 -r 7 A@B
 </pre></div>
 </div>
 </div>
@@ -1523,7 +1496,7 @@ None
 <p>Verificamos que <em>NumPy</em> <strong>no</strong> está usando la implementación de la API de BLAS con OpenBLAS que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="nf">np.show_config</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">show_config</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1562,22 +1535,22 @@ None
 <p>Hacemos una prueba de medición de tiempos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">np.random.seed</span><span class="p">(</span><span class="m">2020</span><span class="p">)</span>
-<span class="n">m</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">r</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
 
-<span class="n">A</span><span class="o">=</span><span class="nf">np.random.rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+<span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">np.random.seed</span><span class="p">(</span><span class="m">2021</span><span class="p">)</span>
-<span class="n">r</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">n</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
 
-<span class="n">B</span><span class="o">=</span><span class="nf">np.random.rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1588,7 +1561,7 @@ None
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>%<span class="n">timeit</span> <span class="o">-</span><span class="n">n</span> <span class="m">1</span> <span class="o">-</span><span class="n">r</span> <span class="m">7</span> <span class="n">A</span><span class="o">@</span><span class="n">B</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -n 1 -r 7 A@B
 </pre></div>
 </div>
 </div>
@@ -1633,7 +1606,7 @@ sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &am
 <p>Verificamos que las librerías de cómputo matricial de <em>R</em> están usando la implementación de la API de BLAS con OpenBLAS que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sessionInfo</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1669,27 +1642,27 @@ loaded via a namespace (and not attached):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">2020</span><span class="p">)</span>
-<span class="n">m</span><span class="o">&lt;-</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">r</span><span class="o">&lt;-</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">A</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">r</span><span class="p">),</span> <span class="n">m</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">m</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">r</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">A</span> <span class="o">&lt;-</span> <span class="n">matrix</span><span class="p">(</span><span class="n">runif</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">r</span><span class="p">),</span> <span class="n">m</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">2021</span><span class="p">)</span>
-<span class="n">r</span><span class="o">&lt;-</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">n</span><span class="o">&lt;-</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">B</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">n</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+<span class="n">r</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">B</span> <span class="o">&lt;-</span> <span class="n">matrix</span><span class="p">(</span><span class="n">runif</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">n</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">microbenchmark</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">microbenchmark</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1700,9 +1673,9 @@ loaded via a namespace (and not attached):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mbk</span><span class="o">&lt;-</span><span class="nf">microbenchmark</span><span class="p">(</span>
-    <span class="n">A</span><span class="o">%*%</span><span class="n">B</span><span class="p">,</span>
-    <span class="n">times</span><span class="o">=</span><span class="m">7</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbk</span><span class="o">&lt;-</span><span class="n">microbenchmark</span><span class="p">(</span>
+    <span class="n">A</span><span class="o">%*%</span><span class="k">B</span>,
+    <span class="n">times</span><span class="o">=</span><span class="mi">7</span>
     <span class="p">)</span>
 </pre></div>
 </div>
@@ -1710,7 +1683,7 @@ loaded via a namespace (and not attached):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">mbk</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mbk</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1728,7 +1701,7 @@ loaded via a namespace (and not attached):
 <p>Verificamos que las librerías de cómputo matricial de <em>R</em> <strong>no</strong> están usando la implementación de la API de BLAS con OpenBLAS que se obtiene con <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">libopenblas-dev</span></code> (ver <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a>, <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_no_OpenBLAS.sh">script_no_OpenBLAS.sh</a>)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sessionInfo</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1764,27 +1737,27 @@ loaded via a namespace (and not attached):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">2020</span><span class="p">)</span>
-<span class="n">m</span><span class="o">&lt;-</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">r</span><span class="o">&lt;-</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">A</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">r</span><span class="p">),</span> <span class="n">m</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">m</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">r</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">A</span> <span class="o">&lt;-</span> <span class="n">matrix</span><span class="p">(</span><span class="n">runif</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">r</span><span class="p">),</span> <span class="n">m</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">2021</span><span class="p">)</span>
-<span class="n">r</span><span class="o">&lt;-</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">n</span><span class="o">&lt;-</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">B</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">n</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+<span class="n">r</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">&lt;-</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">B</span> <span class="o">&lt;-</span> <span class="n">matrix</span><span class="p">(</span><span class="n">runif</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">n</span><span class="p">),</span> <span class="n">r</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">microbenchmark</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">microbenchmark</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1795,9 +1768,9 @@ loaded via a namespace (and not attached):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mbk</span><span class="o">&lt;-</span><span class="nf">microbenchmark</span><span class="p">(</span>
-    <span class="n">A</span><span class="o">%*%</span><span class="n">B</span><span class="p">,</span>
-    <span class="n">times</span><span class="o">=</span><span class="m">1</span> <span class="c1">#just one time as it takes too much time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mbk</span><span class="o">&lt;-</span><span class="n">microbenchmark</span><span class="p">(</span>
+    <span class="n">A</span><span class="o">%*%</span><span class="k">B</span>,
+    <span class="n">times</span><span class="o">=</span><span class="mi">1</span> <span class="c1">#just one time as it takes too much time</span>
     <span class="p">)</span>
 </pre></div>
 </div>
@@ -1805,7 +1778,7 @@ loaded via a namespace (and not attached):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">print</span><span class="p">(</span><span class="n">mbk</span><span class="p">)</span> <span class="c1">#after ten minutes didnt finish</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mbk</span><span class="p">)</span> <span class="c1">#after ten minutes didnt finish</span>
 </pre></div>
 </div>
 </div>
@@ -1826,48 +1799,48 @@ loaded via a namespace (and not attached):
 <p>Ver también: <a class="reference external" href="https://en.wikipedia.org/wiki/Time_(Unix)">Wikipedia: Time_Unix</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">Rcf.py</span>
-<span class="n">import</span> <span class="n">math</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf.py
+<span class="kn">import</span> <span class="nn">math</span>
 
-<span class="n">from</span> <span class="n">pytest</span> <span class="n">import</span> <span class="n">approx</span>
-<span class="n">from</span> <span class="n">scipy.integrate</span> <span class="n">import</span> <span class="n">quad</span>
-<span class="n">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="o">:</span>
-    <span class="s">&quot;&quot;&quot;</span>
-<span class="s">    Compute numerical approximation using rectangle or mid-point</span>
-<span class="s">    method in an interval.</span>
-<span class="s">    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for</span>
-<span class="s">    i=0,1,...,n-1 and h_hat=(b-a)/n</span>
-<span class="s">    Args:</span>
-<span class="s">    </span>
-<span class="s">        f (function): function expression of integrand.</span>
-<span class="s">        </span>
-<span class="s">        a (float): left point of interval.</span>
-<span class="s">        </span>
-<span class="s">        b (float): right point of interval.</span>
-<span class="s">        </span>
-<span class="s">        n (float): number of subintervals.</span>
-<span class="s">        </span>
-<span class="s">    Returns:</span>
-<span class="s">    </span>
-<span class="s">        sum_res (float): numerical approximation to integral</span>
-<span class="s">            of f in the interval a,b</span>
-<span class="s">    &quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+<span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute numerical approximation using rectangle or mid-point</span>
+<span class="sd">    method in an interval.</span>
+<span class="sd">    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for</span>
+<span class="sd">    i=0,1,...,n-1 and h_hat=(b-a)/n</span>
+<span class="sd">    Args:</span>
+<span class="sd">    </span>
+<span class="sd">        f (function): function expression of integrand.</span>
+<span class="sd">        </span>
+<span class="sd">        a (float): left point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        b (float): right point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        n (float): number of subintervals.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        sum_res (float): numerical approximation to integral</span>
+<span class="sd">            of f in the interval a,b</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
-    <span class="n">nodes</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="m">+1</span><span class="o">/</span><span class="m">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span> <span class="n">for</span> <span class="n">i</span> <span class="n">in</span> <span class="nf">range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">n</span><span class="p">)]</span>
-    <span class="n">sum_res</span><span class="o">=</span><span class="m">0</span>
-    <span class="n">for</span> <span class="n">node</span> <span class="n">in</span> <span class="n">nodes</span><span class="o">:</span>
-        <span class="n">sum_res</span><span class="o">=</span><span class="n">sum_res</span><span class="o">+</span><span class="nf">f</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-    <span class="n">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span>
-<span class="n">if</span> __<span class="n">name__</span><span class="o">==</span><span class="s">&quot;__main__&quot;</span><span class="o">:</span> <span class="c1">#añadimos este bloque para ejecución de la función Rcf</span>
-    <span class="n">a</span><span class="o">=</span><span class="m">0</span>
-    <span class="n">b</span><span class="o">=</span><span class="m">1</span>
-    <span class="n">f</span><span class="o">=</span><span class="n">lambda</span> <span class="n">x</span><span class="o">:</span> <span class="nf">math.exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="m">2</span><span class="p">)</span>
-    <span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="nf">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">&quot;objetivo: {:0.6e}&quot;</span><span class="nf">.format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
-    <span class="n">n</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">6</span>
-    <span class="n">res</span><span class="o">=</span><span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="s">&quot;aproximación: {:0.6e}&quot;</span><span class="nf">.format</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="nf">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+    <span class="n">nodes</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+        <span class="n">sum_res</span><span class="o">=</span><span class="n">sum_res</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span> <span class="c1">#añadimos este bloque para ejecución de la función Rcf</span>
+    <span class="n">a</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">b</span><span class="o">=</span><span class="mi">1</span>
+    <span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;objetivo: </span><span class="si">{:0.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
+    <span class="n">res</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;aproximación: </span><span class="si">{:0.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1879,8 +1852,8 @@ loaded via a namespace (and not attached):
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">time</span> <span class="o">-</span><span class="n">p</span> <span class="n">python3</span> <span class="n">Rcf.py</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+/usr/bin/time -p python3 Rcf.py
 </pre></div>
 </div>
 </div>
@@ -1899,8 +1872,8 @@ sys 2.20
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">time</span> <span class="o">-</span><span class="n">v</span> <span class="n">python3</span> <span class="n">Rcf.py</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+/usr/bin/time -v python3 Rcf.py
 </pre></div>
 </div>
 </div>
@@ -1956,23 +1929,23 @@ True
 <h3>perf OpenBLAS<a class="headerlink" href="#perf-openblas" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">mult_matrix_matrix_numpy_openblas.py</span>
-<span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
-<span class="n">m</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">r</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">n</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mult_matrix_matrix_numpy_openblas.py
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
 
-<span class="nf">np.random.seed</span><span class="p">(</span><span class="m">2020</span><span class="p">)</span>
-<span class="n">m</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">r</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">A</span><span class="o">=</span><span class="nf">np.random.rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
 
-<span class="nf">np.random.seed</span><span class="p">(</span><span class="m">2021</span><span class="p">)</span>
-<span class="n">r</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">n</span><span class="o">=</span><span class="m">10</span><span class="o">**</span><span class="m">4</span>
-<span class="n">B</span><span class="o">=</span><span class="nf">np.random.rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+<span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 
-<span class="n">A</span><span class="o">@</span><span class="n">B</span>
+<span class="n">A</span><span class="nd">@B</span>
 </pre></div>
 </div>
 </div>
@@ -1984,8 +1957,8 @@ True
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">echo</span> <span class="s">&quot;-1&quot;</span> <span class="o">|</span><span class="n">sudo</span> <span class="n">tee</span> <span class="o">-</span><span class="n">a</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">kernel</span><span class="o">/</span><span class="n">perf_event_paranoid</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+echo &quot;-1&quot; |sudo tee -a /proc/sys/kernel/perf_event_paranoid
 </pre></div>
 </div>
 </div>
@@ -1997,8 +1970,8 @@ True
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-<span class="n">perf</span> <span class="n">stat</span> <span class="o">-</span><span class="n">S</span> <span class="o">-</span><span class="n">a</span> <span class="o">--</span><span class="n">per</span><span class="o">-</span><span class="n">core</span> <span class="o">-</span><span class="n">e</span> <span class="n">cycles</span><span class="p">,</span><span class="n">instructions</span><span class="p">,</span><span class="n">cache</span><span class="o">-</span><span class="n">references</span><span class="p">,</span><span class="n">cache</span><span class="o">-</span><span class="n">misses</span> <span class="o">-</span><span class="n">r</span> <span class="m">7</span> <span class="n">python3</span> <span class="n">mult_matrix_matrix_numpy_openblas.py</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+perf stat -S -a --per-core -e cycles,instructions,cache-references,cache-misses -r 7 python3 mult_matrix_matrix_numpy_openblas.py
 </pre></div>
 </div>
 </div>
@@ -2168,16 +2141,16 @@ A. Greenbaum, S. Hammarling, A. Mckenney and D. Sorensen, LAPACK Users Guide, So
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "r"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "ir",
+            kernelName: "python3",
             path: "./V.optimizacion_de_codigo/5.2"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'ir'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
