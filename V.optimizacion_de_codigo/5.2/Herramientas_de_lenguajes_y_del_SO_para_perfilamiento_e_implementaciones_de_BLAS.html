@@ -369,10 +369,14 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#perfilamiento-medicion-de-tiempo-en-python">
+  <a class="reference internal nav-link" href="#perfilamiento-medicion-de-tiempo-en-python-y-ipython">
    Perfilamiento: medición de tiempo en
    <em>
     Python
+   </em>
+   y
+   <em>
+    IPython
    </em>
   </a>
   <ul class="nav section-nav flex-column">
@@ -410,13 +414,13 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#line-profiler">
-     line_profiler
+    <a class="reference internal nav-link" href="#cprofile">
+     CProfile
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cprofile">
-     CProfile
+    <a class="reference internal nav-link" href="#line-profiler">
+     line_profiler
     </a>
    </li>
   </ul>
@@ -914,8 +918,9 @@ sudo lshw -C memory
 <p class="admonition-title">Observación</p>
 <p>En la celda anterior se utilizó el comando de <em>magic</em> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>. Algunos comandos de <em>magic</em> los podemos utilizar también con <em>import</em>’s. Ver <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">ipython-magics</a></p>
 </div>
-<div class="section" id="perfilamiento-medicion-de-tiempo-en-python">
-<h2>Perfilamiento: medición de tiempo en <em>Python</em><a class="headerlink" href="#perfilamiento-medicion-de-tiempo-en-python" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="perfilamiento-medicion-de-tiempo-en-python-y-ipython">
+<h2>Perfilamiento: medición de tiempo en <em>Python</em> y <em>IPython</em><a class="headerlink" href="#perfilamiento-medicion-de-tiempo-en-python-y-ipython" title="Permalink to this headline">¶</a></h2>
+<p>Lo más natural que podemos pensar en medir es el tiempo de ejecución de nuestros códigos. <em>Python</em> y <em>IPython</em> tienen herramientas para este propósito.</p>
 <div class="section" id="modulo-time">
 <h3>Módulo: <a class="reference external" href="https://docs.python.org/3/library/time.html#time.time">time</a><a class="headerlink" href="#modulo-time" title="Permalink to this headline">¶</a></h3>
 <p>Imports y funciones de apoyo:</p>
@@ -1083,12 +1088,131 @@ Wall time: 386 ms
 </div>
 <div class="section" id="perfilamiento-medicion-de-uso-de-cpu-en-python">
 <h2>Perfilamiento: medición de uso de CPU en <em>Python</em><a class="headerlink" href="#perfilamiento-medicion-de-uso-de-cpu-en-python" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="line-profiler">
-<h3><a class="reference external" href="https://pypi.org/project/line-profiler/">line_profiler</a><a class="headerlink" href="#line-profiler" title="Permalink to this headline">¶</a></h3>
-</div>
 <div class="section" id="cprofile">
 <h3><a class="reference external" href="https://docs.python.org/2/library/profile.html">CProfile</a><a class="headerlink" href="#cprofile" title="Permalink to this headline">¶</a></h3>
-<p><em>CProfile</em> es <code class="docutils literal notranslate"><span class="pre">built-in</span></code> en la <em>standard-library</em> de Python.</p>
+<p>See:</p>
+<p>https://stackoverflow.com/questions/51536411/saving-cprofile-results-to-readable-external-file</p>
+<p>https://stackoverflow.com/questions/21274898/python-getting-meaningful-results-from-cprofile</p>
+<p>https://stackoverflow.com/questions/23805312/filter-profiler-files-with-maximum-cumulative-time-greater-then-x</p>
+<p><em>CProfile</em> es <code class="docutils literal notranslate"><span class="pre">built-in</span></code> en la <em>standard-library</em> de Python. Se utiliza con la implementación <code class="docutils literal notranslate"><span class="pre">CPython</span></code> de <code class="docutils literal notranslate"><span class="pre">Python</span></code> para medir el tiempo de ejecución de cada función en el programa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cProfile</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">pr</span> <span class="o">=</span> <span class="n">cProfile</span><span class="o">.</span><span class="n">Profile</span><span class="p">()</span>
+<span class="n">pr</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<span class="n">res</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">pr</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
+<span class="n">pr</span><span class="o">.</span><span class="n">print_stats</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         249 function calls in 0.002 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      100    0.001    0.000    0.001    0.000 &lt;ipython-input-25-e098c9ed7b86&gt;:1(&lt;lambda&gt;)
+        1    0.000    0.000    0.001    0.001 &lt;ipython-input-24-303d3a3bb088&gt;:1(Rcf)
+      100    0.000    0.000    0.000    0.000 {built-in method math.exp}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.compile}
+        2    0.000    0.000    0.001    0.001 interactiveshell.py:3377(run_code)
+        4    0.000    0.000    0.000    0.000 {built-in method builtins.next}
+        4    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+        2    0.000    0.000    0.000    0.000 codeop.py:132(__call__)
+        1    0.000    0.000    0.000    0.000 &lt;ipython-input-24-303d3a3bb088&gt;:23(&lt;listcomp&gt;)
+        2    0.000    0.000    0.000    0.000 contextlib.py:81(__init__)
+        2    0.000    0.000    0.000    0.000 contextlib.py:116(__exit__)
+        2    0.000    0.000    0.001    0.001 {built-in method builtins.exec}
+        2    0.000    0.000    0.000    0.000 hooks.py:103(__call__)
+        2    0.000    0.000    0.000    0.000 traitlets.py:564(__get__)
+        2    0.000    0.000    0.000    0.000 contextlib.py:107(__enter__)
+        2    0.000    0.000    0.000    0.000 contextlib.py:237(helper)
+        4    0.000    0.000    0.000    0.000 compilerop.py:138(extra_flags)
+        1    0.000    0.000    0.001    0.001 &lt;ipython-input-28-3c9f1c8f513f&gt;:4(&lt;module&gt;)
+        2    0.000    0.000    0.000    0.000 interactiveshell.py:117(&lt;lambda&gt;)
+        1    0.000    0.000    0.000    0.000 &lt;ipython-input-28-3c9f1c8f513f&gt;:5(&lt;module&gt;)
+        2    0.000    0.000    0.000    0.000 interactiveshell.py:1277(user_global_ns)
+        2    0.000    0.000    0.000    0.000 ipstruct.py:125(__getattr__)
+        2    0.000    0.000    0.000    0.000 traitlets.py:533(get)
+        2    0.000    0.000    0.000    0.000 hooks.py:168(pre_run_code_hook)
+        2    0.000    0.000    0.000    0.000 interactiveshell.py:3319(compare)
+        1    0.000    0.000    0.000    0.000 {method &#39;disable&#39; of &#39;_lsprof.Profiler&#39; objects}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf.py
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+<span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute numerical approximation using rectangle or mid-point</span>
+<span class="sd">    method in an interval.</span>
+<span class="sd">    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for</span>
+<span class="sd">    i=0,1,...,n-1 and h_hat=(b-a)/n</span>
+<span class="sd">    Args:</span>
+<span class="sd">    </span>
+<span class="sd">        f (function): function expression of integrand.</span>
+<span class="sd">        </span>
+<span class="sd">        a (float): left point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        b (float): right point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        n (float): number of subintervals.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        sum_res (float): numerical approximation to integral</span>
+<span class="sd">            of f in the interval a,b</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">nodes</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+        <span class="n">sum_res</span><span class="o">=</span><span class="n">sum_res</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&quot;__main__&quot;</span><span class="p">:</span> <span class="c1">#añadimos este bloque para ejecución de la función Rcf</span>
+    <span class="n">a</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">b</span><span class="o">=</span><span class="mi">1</span>
+    <span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;objetivo: </span><span class="si">{:0.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
+    <span class="n">res</span><span class="o">=</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;aproximación: </span><span class="si">{:0.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%bash</span>
+<span class="c1">#python3 -m cProfile -s cumulative Rcf.py</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="line-profiler">
+<h3><a class="reference external" href="https://pypi.org/project/line-profiler/">line_profiler</a><a class="headerlink" href="#line-profiler" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="perfilamiento-medicion-de-uso-de-memoria-en-python">
