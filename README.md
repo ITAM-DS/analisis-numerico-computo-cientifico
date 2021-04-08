@@ -131,3 +131,10 @@ Revisamos [Kale](https://github.com/kubeflow-kale/kale) e hicimos ejemplos en AW
 Terminamos [4.5 Método primal-dual de barrera logarítmica (BL)](https://itam-ds.github.io/analisis-numerico-computo-cientifico/IV.optimizacion_en_redes_y_prog_lineal/4.5/Metodo_primal_dual_de_BL.html)
 
 Inicio de [5.1 Introducción optimización de código](https://itam-ds.github.io/analisis-numerico-computo-cientifico/V.optimizacion_de_codigo/5.1/introduccion_optimizacion_de_codigo.html)
+
+
+## Clase 12
+
+9 de abril
+
+Llegamos hasta [5.1 Software para cómputo en paralelo](https://itam-ds.github.io/analisis-numerico-computo-cientifico/V.optimizacion_de_codigo/5.1/introduccion_optimizacion_de_codigo.html#software)
