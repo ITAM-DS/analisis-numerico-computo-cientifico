@@ -415,7 +415,7 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cprofile">
-     CProfile
+     cProfile
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -936,6 +936,14 @@ sudo lshw -C memory
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+uname -ar
+</pre></div>
+</div>
+</div>
+</div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>En la celda anterior se utilizó el comando de <em>magic</em> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>. Algunos comandos de <em>magic</em> los podemos utilizar también con <em>import</em>’s. Ver <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">ipython-magics</a></p>
@@ -1111,8 +1119,8 @@ Wall time: 386 ms
 <div class="section" id="perfilamiento-medicion-de-uso-de-cpu-en-python">
 <h2>Perfilamiento: medición de uso de CPU en <em>Python</em><a class="headerlink" href="#perfilamiento-medicion-de-uso-de-cpu-en-python" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="cprofile">
-<h3><a class="reference external" href="https://docs.python.org/3/library/profile.html">CProfile</a><a class="headerlink" href="#cprofile" title="Permalink to this headline">¶</a></h3>
-<p><em>CProfile</em> es <code class="docutils literal notranslate"><span class="pre">built-in</span></code> en la <em>standard-library</em> de Python. Se utiliza con la implementación <code class="docutils literal notranslate"><span class="pre">CPython</span></code> de <code class="docutils literal notranslate"><span class="pre">Python</span></code> para medir el tiempo de ejecución de cada función en el programa. Se ejecuta desde la línea de comandos, con un comando de <em>magic</em> o realizando <code class="docutils literal notranslate"><span class="pre">import</span></code>. La flag <code class="docutils literal notranslate"><span class="pre">-s</span></code> con la ejecución vía línea de comando, indica que se ordene el resultado por el tiempo acumulado dentro de cada función.</p>
+<h3><a class="reference external" href="https://docs.python.org/3/library/profile.html">cProfile</a><a class="headerlink" href="#cprofile" title="Permalink to this headline">¶</a></h3>
+<p><em>cProfile</em> está en la <em>standard-library</em> de Python como <em>built-in</em>. Se utiliza con la implementación <code class="docutils literal notranslate"><span class="pre">CPython</span></code> de <code class="docutils literal notranslate"><span class="pre">Python</span></code> para medir el tiempo de ejecución de cada función en el programa. Se ejecuta desde la línea de comandos, con un comando de <em>magic</em> o realizando <code class="docutils literal notranslate"><span class="pre">import</span></code>. La flag <code class="docutils literal notranslate"><span class="pre">-s</span></code> con la ejecución vía línea de comando, indica que se ordene el resultado por el tiempo acumulado dentro de cada función.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cProfile</span>
@@ -1167,27 +1175,28 @@ Wall time: 386 ms
 </div>
 </div>
 </div>
-<p>El output de <code class="docutils literal notranslate"><span class="pre">cProfile</span></code> muestra:</p>
+<p>El output de <em>cProfile</em> muestra:</p>
 <ul class="simple">
-<li><p>El tiempo total de ejecución, el cual incluye el tiempo del bloque de código que estamos midiendo y el overhead al usar <code class="docutils literal notranslate"><span class="pre">cProfile</span></code>. Por esta razón se tiene un mayor tiempo de ejecución que con las mediciones de tiempo anteriores.</p></li>
+<li><p>El tiempo total de ejecución, el cual incluye el tiempo del bloque de código que estamos midiendo y el overhead al usar <em>cProfile</em>. Por esta razón se tiene un mayor tiempo de ejecución que con las mediciones de tiempo anteriores.</p></li>
 <li><p>La columna <code class="docutils literal notranslate"><span class="pre">ncalls</span></code> que como el nombre indica, muestra el número de veces que se llamó a cada función. En este caso las funciones <code class="docutils literal notranslate"><span class="pre">lambda</span></code> y <code class="docutils literal notranslate"><span class="pre">math.exp</span></code> son las que se llaman un mayor número de veces: <span class="math notranslate nohighlight">\(n=10^6\)</span> veces.</p></li>
-<li><p>La columna<code class="docutils literal notranslate"><span class="pre">tottime</span></code> muestra el tiempo que tardaron estas funciones en ejecutarse (sin llamar a otras funciones).</p></li>
+<li><p>La columna <code class="docutils literal notranslate"><span class="pre">tottime</span></code> muestra el tiempo que tardaron estas funciones en ejecutarse (sin llamar a otras funciones).</p></li>
 <li><p>La columna <code class="docutils literal notranslate"><span class="pre">percall</span></code> es el cociente entre <code class="docutils literal notranslate"><span class="pre">tottime</span></code> y <code class="docutils literal notranslate"><span class="pre">ncalls</span></code>.</p></li>
-<li><p>La columna <code class="docutils literal notranslate"><span class="pre">cumtime</span></code> contiene el tiempo gastado en la función y en las demás que llama. Por ejemplo la función <code class="docutils literal notranslate"><span class="pre">Rcf</span></code> llama a <code class="docutils literal notranslate"><span class="pre">listcomp</span></code> por lo que es natural que <code class="docutils literal notranslate"><span class="pre">Rcf</span></code> esté más arriba en el output ordenado de <code class="docutils literal notranslate"><span class="pre">cProfile</span></code>. Esto también ocurre con <code class="docutils literal notranslate"><span class="pre">lambda</span></code> y <code class="docutils literal notranslate"><span class="pre">math.exp</span></code> pues la primera llama a la segunda.</p></li>
+<li><p>La columna <code class="docutils literal notranslate"><span class="pre">cumtime</span></code> contiene el tiempo gastado en la función y en las demás que llama. Por ejemplo la función <code class="docutils literal notranslate"><span class="pre">Rcf</span></code> llama a <code class="docutils literal notranslate"><span class="pre">listcomp</span></code> por lo que es natural que <code class="docutils literal notranslate"><span class="pre">Rcf</span></code> esté más arriba en el output ordenado de <em>cProfile</em>. Esto también ocurre con <code class="docutils literal notranslate"><span class="pre">lambda</span></code> y <code class="docutils literal notranslate"><span class="pre">math.exp</span></code> pues la primera llama a la segunda.</p></li>
 <li><p>La columna de <code class="docutils literal notranslate"><span class="pre">percall</span></code> es un cociente entre la columna <code class="docutils literal notranslate"><span class="pre">cumtime</span></code> y el conteo del número de veces que se llamaron a funciones primitivas o también nombradas <em>built in functions</em>.</p></li>
 <li><p>La última columna indica información de la función y la línea en la que se encuentra dentro del código. Por ejemplo para el caso de <code class="docutils literal notranslate"><span class="pre">listcomp</span></code> sale la línea 23 y si se va a la celda en donde se definió <code class="docutils literal notranslate"><span class="pre">Rcf</span></code> corresponde tal línea al llamado <code class="docutils literal notranslate"><span class="pre">nodes=[a+(i+1/2)*h_hat</span> <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(0,n)]</span></code>.</p></li>
 </ul>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>El comando de <em>magic</em> para ejecutar CProfile es: <code class="docutils literal notranslate"><span class="pre">%prun</span> <span class="pre">-s</span> <span class="pre">cumulative</span> <span class="pre">Rcf(f,a,</span> <span class="pre">b,n)</span></code></p></li>
-<li><p>CProfile puede ejecutarse desde la línea de comando con: <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">cProfile</span> <span class="pre">-s</span> <span class="pre">cumulative</span> <span class="pre">Rcf.pypython3</span> <span class="pre">-m</span> <span class="pre">cProfile</span> <span class="pre">-s</span> <span class="pre">cumulative</span> <span class="pre">Rcf.py</span></code> creando el módulo <code class="docutils literal notranslate"><span class="pre">Rcf.py</span></code> por ejemplo con:</p></li>
+<li><p>El comando de <em>magic</em> para ejecutar <em>cProfile</em> en una celda del <em>jupyter notebook</em> es: <code class="docutils literal notranslate"><span class="pre">%prun</span> <span class="pre">-s</span> <span class="pre">cumulative</span> <span class="pre">Rcf(f,a,</span> <span class="pre">b,n)</span></code></p></li>
+<li><p><em>cProfile</em> puede ejecutarse desde la línea de comando con: <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">cProfile</span> <span class="pre">-s</span> <span class="pre">cumulative</span> <span class="pre">Rcf.py</span></code> creando el módulo <code class="docutils literal notranslate"><span class="pre">Rcf.py</span></code> por ejemplo con:</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">Rcf</span><span class="o">.</span><span class="n">py</span>
 <span class="kn">import</span> <span class="nn">math</span>
 
 <span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+
 <span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute numerical approximation using rectangle or mid-point</span>
@@ -1229,7 +1238,11 @@ Wall time: 386 ms
 </pre></div>
 </div>
 </div>
-<p>El <em>output</em> de CProfile no es muy flexible por lo que tenemos el módulo <code class="docutils literal notranslate"><span class="pre">pstats</span></code> con la clase <code class="docutils literal notranslate"><span class="pre">Stats</span></code> para manipular los resultados dentro de <em>Python</em>. Por ejemplo para ordenar por <em>cumulative time</em> e imprimir sólo las 10 líneas más significativas se puede realizar:</p>
+<p>El <em>output</em> de <em>cProfile</em> no es muy flexible por lo que tenemos el módulo <code class="docutils literal notranslate"><span class="pre">pstats</span></code> con la clase <code class="docutils literal notranslate"><span class="pre">Stats</span></code> para manipular los resultados dentro de <em>Python</em>. Por ejemplo para ordenar por <em>cumulative time</em> e imprimir sólo las 10 líneas más significativas se puede realizar:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Creamos el archivo <code class="docutils literal notranslate"><span class="pre">Rcf_stats</span></code> para ser usado por <code class="docutils literal notranslate"><span class="pre">pstats</span></code>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cprof</span><span class="o">.</span><span class="n">dump_stats</span><span class="p">(</span><span class="s2">&quot;Rcf_stats&quot;</span><span class="p">)</span>
@@ -1495,7 +1508,7 @@ interactiveshell.py:117(&lt;lambda&gt;)           -&gt;
 </div>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>CProfile sólo mide tiempos para llamadas a funciones de forma explícita no métodos que son llamados de forma interna como en el siguiente ejemplo en el que se hace una extracción de la primer columna de un <em>NumPy</em> <em>array</em>.</p>
+<p><em>cProfile</em> sólo mide tiempos para llamadas a funciones de forma explícita no métodos que son llamados de forma interna como en el siguiente ejemplo en el que se hace una extracción de la primer columna de un <em>NumPy</em> <em>array</em>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1532,11 +1545,15 @@ interactiveshell.py:117(&lt;lambda&gt;)           -&gt;
 </div>
 </div>
 </div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p><em>cProfile</em> puede usarse en compañía del paquete <a class="reference external" href="https://jiffyclub.github.io/snakeviz/">SnakeViz</a> para visualizar los resultados.</p>
+</div>
 </div>
 <div class="section" id="line-profiler">
 <h3><a class="reference external" href="https://github.com/pyutils/line_profilerhttps://github.com/pyutils/line_profiler">line_profiler</a><a class="headerlink" href="#line-profiler" title="Permalink to this headline">¶</a></h3>
 <p>Nos ayuda a perfilar el código línea por línea.</p>
-<p>Una buena idea es perfilar el código primero con <code class="docutils literal notranslate"><span class="pre">CProfile</span></code> para identificar aquellas funciones que gastan un mayor tiempo de ejecución y posteriormente perfilarlas con <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code>.</p>
+<p>Una buena idea es perfilar el código primero con <em>cProfile</em> para identificar aquellas funciones que gastan un mayor tiempo de ejecución y posteriormente perfilarlas con <em>line_profiler</em>.</p>
 <p>Se ejecuta desde la línea de comandos, con un comando de magic o realizando <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1605,7 +1622,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 </div>
 </div>
 </div>
-<p>El <em>output</em> de <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code> muestra:</p>
+<p>El <em>output</em> de <em>line_profiler</em> muestra:</p>
 <ul class="simple">
 <li><p><em>Line</em> #: el número de la línea.</p></li>
 <li><p><em>Hits</em>: el número de veces que la línea fue ejecutada.</p></li>
@@ -1617,8 +1634,8 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>Para cambiar <code class="docutils literal notranslate"><span class="pre">Timer</span> <span class="pre">unit</span></code> puede usarse: line_prof.print_stats(output_unit=1e-03).</p></li>
-<li><p>Con <code class="docutils literal notranslate"><span class="pre">add_function</span></code> de <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code> es posible perfilar varias funciones.</p></li>
+<li><p>Para cambiar <code class="docutils literal notranslate"><span class="pre">Timer</span> <span class="pre">unit</span></code> puede usarse: <code class="docutils literal notranslate"><span class="pre">line_prof.print_stats(output_unit=1e-03)</span></code>.</p></li>
+<li><p>Con <code class="docutils literal notranslate"><span class="pre">add_function</span></code> de <em>line_profiler</em> es posible perfilar varias funciones.</p></li>
 </ul>
 </div>
 <div class="cell docutils container">
@@ -1836,7 +1853,7 @@ None
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>Para su uso con el comando de <em>magic</em> hay que cargarlo como una extensión: <code class="docutils literal notranslate"><span class="pre">%load_ext</span> <span class="pre">line_profiler</span></code> y posteriormente usar: <code class="docutils literal notranslate"><span class="pre">%lprun</span> <span class="pre">-f</span> <span class="pre">Rcf</span> <span class="pre">Rcf(f,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">n)</span></code>.</p></li>
-<li><p>Para su uso vía la línea de comandos se debe ejecutar: <code class="docutils literal notranslate"><span class="pre">kernprof</span> <span class="pre">-v</span> <span class="pre">-l</span> <span class="pre">&lt;script.py&gt;</span></code> . La opción <code class="docutils literal notranslate"><span class="pre">-v</span></code> es *view the results, <code class="docutils literal notranslate"><span class="pre">-l</span></code> indica que se haga el perfilamiento línea a línea. Por <em>default</em> se escribe un archivo con extensión <code class="docutils literal notranslate"><span class="pre">.lprof</span></code> el cual puede revisarse con <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">line_profiler</span> <span class="pre">&lt;script.py.lprof&gt;</span></code></p></li>
+<li><p>Para su uso vía la línea de comandos se debe ejecutar: <code class="docutils literal notranslate"><span class="pre">kernprof</span> <span class="pre">-v</span> <span class="pre">-l</span> <span class="pre">&lt;script.py&gt;</span></code> . La opción <code class="docutils literal notranslate"><span class="pre">-v</span></code> es <em>view the results</em>, <code class="docutils literal notranslate"><span class="pre">-l</span></code> indica que se haga el perfilamiento línea a línea. Por <em>default</em> se escribe un archivo con extensión <code class="docutils literal notranslate"><span class="pre">.lprof</span></code> el cual puede revisarse con <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">line_profiler</span> <span class="pre">&lt;script.py.lprof&gt;</span></code></p></li>
 </ul>
 </div>
 <div class="cell docutils container">
@@ -1846,7 +1863,8 @@ None
 
 <span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
-<span class="nd">@profile</span> <span class="c1">#you decorate the functions you want to profile with kernprof </span>
+
+<span class="nd">@profile</span> <span class="c1">#decorate the functions you want to profile with kernprof </span>
 <span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute numerical approximation using rectangle or mid-point</span>
@@ -1946,7 +1964,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 </div>
 </div>
 </div>
-<p>Otra opción utilizando <code class="docutils literal notranslate"><span class="pre">python3</span></code>:</p>
+<p>Otra opción utilizando <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">&lt;script.py&gt;</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf_line_profiler_2.py
