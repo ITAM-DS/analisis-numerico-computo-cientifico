@@ -476,17 +476,17 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ejemplo-y-algoritmo-gaxpy-row-oriented">
-     Ejemplo y algoritmo gaxpy
+     Ejemplo y algoritmo
      <em>
-      row oriented
+      gaxpy row oriented
      </em>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ejemplo-y-algoritmo-gaxpy-column-oriented">
-     Ejemplo y algoritmo gaxpy
+     Ejemplo y algoritmo
      <em>
-      column oriented
+      gaxpy column oriented
      </em>
     </a>
    </li>
@@ -503,6 +503,15 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#operaciones-tipicas-del-algebra-lineal-y-los-flops-que-realizan">
      Operaciones típicas del álgebra lineal y los
+     <em>
+      flops
+     </em>
+     que realizan
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metodos-para-resolver-sistemas-de-ecuaciones-lineales-sel-o-factorizaciones-matriciales-fm-y-los-flops-que-realizan">
+     Métodos para resolver sistemas de ecuaciones lineales (SEL) o factorizaciones matriciales (FM) y los
      <em>
       flops
      </em>
@@ -539,6 +548,42 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multiplicacion">
      Multiplicación
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metodos-o-algoritmos-numericos-por-bloques-para-resolver-sistemas-de-ecuaciones-lineales">
+     Métodos o algoritmos numéricos por bloques para resolver sistemas de ecuaciones lineales
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eliminacion-por-bloque">
+     Eliminación por bloque
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algoritmo-metodo-de-eliminacion-por-bloque">
+     Algoritmo: método de eliminación por bloque
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factor-solve-method">
+     <em>
+      Factor-Solve method
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#descripcion-matematica-del-algoritmo">
+     Descripción matemática del algoritmo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metodo-de-eliminacion-por-bloques-escrito-como-un-factor-solve-method">
+     Método de eliminación por bloques escrito como un
+     <em>
+      factor-solve method
+     </em>
+     :
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -947,7 +992,7 @@ uname -ar #r for kernel, a for all
 </div>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>Lo más recomendable para realizar perfilamiento de códigos es realizarlos <strong>no</strong> en <em>jupyter notebooks</em>. A continuación se realizarán algunas mediciones en este <em>notebook</em> para propósitos didácticos pero se sugiere perfilar en el intérprete de <em>Python</em> o ejecutando un &lt;script.py&gt;.</p>
+<p>Lo más recomendable para realizar perfilamiento de códigos es realizarlos <strong>no</strong> en <em>jupyter notebooks</em>. A continuación se realizarán algunas mediciones en este <em>notebook</em> para propósitos didácticos pero se sugiere perfilar en el intérprete de <em>Python</em> o ejecutando un <code class="docutils literal notranslate"><span class="pre">script.py</span></code>.</p>
 </div>
 <div class="section" id="perfilamiento-medicion-de-tiempo-en-python-y-ipython">
 <h2>Perfilamiento: medición de tiempo en <em>Python</em> y <em>IPython</em><a class="headerlink" href="#perfilamiento-medicion-de-tiempo-en-python-y-ipython" title="Permalink to this headline">¶</a></h2>
@@ -1116,6 +1161,10 @@ Wall time: 385 ms
 <li><p><code class="docutils literal notranslate"><span class="pre">%timeit</span></code> desabilita temporalmente el <em>garbage collector</em> de <em>Python</em> (esto es, no habrá desalojamiento en memoria de objetos de Python que no se utilicen). Si el <em>garbage collector</em> es invocado en tus <em>statements</em>, esto puede ser una razón de posibles diferencias que se obtengan en las mediciones de tiempo.</p></li>
 <li><p>Para su uso con un <code class="docutils literal notranslate"><span class="pre">import</span></code> ver <a class="reference external" href="https://docs.python.org/3/library/timeit.html">timeit</a> y <a class="reference external" href="https://stackoverflow.com/questions/8220801/how-to-use-timeit-module">how-to-use-timeit-module</a>.</p></li>
 </ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Implementar la regla de Simpson compuesta para aproximar la misma integral y medir los tiempos de ejecución con un mismo número de subintervalos. Revisar que se está aproximando correctamente el valor numérico con <code class="docutils literal notranslate"><span class="pre">quad</span></code>.</p>
 </div>
 </div>
 </div>
@@ -1546,6 +1595,10 @@ Function                                    called...
 <p class="admonition-title">Comentario</p>
 <p><em>cProfile</em> puede usarse en compañía del paquete <a class="reference external" href="https://jiffyclub.github.io/snakeviz/">SnakeViz</a> para visualizar los resultados.</p>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Perfilar la regla de Simpson que se implementó en el primer ejercicio con <code class="docutils literal notranslate"><span class="pre">cProfile</span></code> utilizando su <code class="docutils literal notranslate"><span class="pre">import</span></code> y  el paquete <code class="docutils literal notranslate"><span class="pre">pstats</span></code>.</p>
+</div>
 </div>
 <div class="section" id="line-profiler">
 <h3><a class="reference external" href="https://github.com/pyutils/line_profilerhttps://github.com/pyutils/line_profiler">line_profiler</a><a class="headerlink" href="#line-profiler" title="Permalink to this headline">¶</a></h3>
@@ -1637,6 +1690,7 @@ None
 <li><p>Con <code class="docutils literal notranslate"><span class="pre">add_function</span></code> de <em>line_profiler</em> es posible perfilar varias funciones.</p></li>
 </ul>
 </div>
+<p>Utilizando <em>generators</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Rcf_2</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
@@ -1683,6 +1737,7 @@ None
 </div>
 </div>
 </div>
+<p>Utilizando funcionalidad de <em>NumPy</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_np</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
@@ -2074,6 +2129,10 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 </div>
 </div>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Perfilar la regla de Simpson que se implementó en el primer ejercicio con <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code> utilizando su <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p>
+</div>
 </div>
 </div>
 <div class="section" id="perfilamiento-medicion-de-uso-de-memoria-en-python">
@@ -2308,7 +2367,7 @@ Line #    Mem usage    Increment  Occurences   Line Contents
 <p>El <em>output</em> de <code class="docutils literal notranslate"><span class="pre">%mprun</span></code> contiene:</p>
 <ul class="simple">
 <li><p>La primera columna hace referencia a la línea de código.</p></li>
-<li><p><em>Mem usage</em> es la memoria usada por <em>Python</em> después que tal línea ha sido ejecutada. En el caso anterior se tienen de inicio una cantidad positiva de <code class="docutils literal notranslate"><span class="pre">MiB</span></code> para cargar el script <code class="docutils literal notranslate"><span class="pre">&lt;script.py&gt;</span></code>, realizar <code class="docutils literal notranslate"><span class="pre">imports</span></code>.</p></li>
+<li><p><em>Mem usage</em> es la memoria usada por <em>Python</em> después que tal línea ha sido ejecutada. En el caso anterior se tienen de inicio una cantidad positiva de <code class="docutils literal notranslate"><span class="pre">MiB</span></code> para cargar el script <code class="docutils literal notranslate"><span class="pre">script.py</span></code>, realizar <code class="docutils literal notranslate"><span class="pre">imports</span></code>.</p></li>
 <li><p><em>Increment</em> representa la diferencia en memoria de la línea actual respecto a la línea anterior. Las cantidades que se muestran en esta columna no necesariamente indican que en memoria se alojan tales cantidades.</p></li>
 <li><p><em>Ocurrences</em> contador del número de veces que se ejecuta tal línea.</p></li>
 <li><p><em>Line contents</em> el código a perfilar.</p></li>
@@ -2371,8 +2430,12 @@ True
 <p><em>Q: How accurate are the results ?
 A: This module gets the memory consumption by querying the operating system kernel about the amount of memory the current process has allocated, which might be slightly different from the amount of memory that is actually used by the Python interpreter. Also, because of how the garbage collector works in Python the result might be different between platforms and even between runs.</em></p>
 <ul class="simple">
-<li><p>También <em>memory_profiler</em> contiene un <em>script</em> de nombre <code class="docutils literal notranslate"><span class="pre">mprof</span></code> que permite monitorear uso de memoria de un proceso (que puede ser un <em>Python script</em> u otro) y también soporta el monitoreo de <em>child processes</em> que fueron <em>spawn</em> de un proceso en un contexto de <em>multiprocess</em>, ver <a class="reference external" href="https://github.com/pythonprofilers/memory_profiler#time-based-memory-usage">memory_profiler#time-based-memory-usage</a></p></li>
+<li><p>También <em>memory_profiler</em> contiene un <em>script</em> de nombre <code class="docutils literal notranslate"><span class="pre">mprof</span></code> que permite monitorear uso de memoria de un proceso (que puede ser un <em>Python script</em> u otro) y también soporta el monitoreo de <em>child processes</em> que fueron <em>spawn</em> de un proceso en un contexto de <a class="reference external" href="https://docs.python.org/3.9/library/multiprocessing.html#contexts-and-start-methods">multiprocessing-contexts-and-start-methods</a>, ver <a class="reference external" href="https://github.com/pythonprofilers/memory_profiler#time-based-memory-usage">memory_profiler#time-based-memory-usage</a></p></li>
 </ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Perfilar la regla de Simpson que se implementó en el primer ejercicio con <code class="docutils literal notranslate"><span class="pre">memory_profiler</span></code> utilizando su <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p>
 </div>
 </div>
 <div class="section" id="heapy">
@@ -2382,7 +2445,7 @@ A: This module gets the memory consumption by querying the operating system kern
 <p class="sidebar-title"></p>
 <p>Ver <a class="reference external" href="https://stackoverflow.com/questions/2308751/what-is-a-memory-heap">stackoverflow: What is a Memory Heap?</a>, <a class="reference external" href="https://docs.python.org/3/c-api/memory.html">Python: memory management</a>, <a class="reference external" href="https://stackoverflow.com/questions/14546178/does-python-have-a-stack-heap-and-how-is-memory-managed">stackoverflow: does-python-have-a-stack-heap-and-how-is-memory-managed</a>.</p>
 </div>
-<p>La herramienta <em>heapy</em> nos ayuda a obtener información acerca de los objetos en la memoria <em>heap</em>. Por ejemplo podemos revisar el número y tamaño de cada objeto que está en la <em>heap</em>. También nos ayuda a encontrar <em>memory leaks</em> que ocurren si apuntamos a un objeto al que ya no deberíamos estar apuntando.</p>
+<p>La herramienta <em>heapy</em> nos ayuda a obtener información acerca de los objetos en la memoria <em>heap</em>. Por ejemplo podemos revisar el número y tamaño de cada objeto que está en la <em>heap</em>. También nos ayuda a encontrar <em>memory leaks</em>.</p>
 <p><em>heapy</em> funciona escribiendo líneas para llamar a la función <code class="docutils literal notranslate"><span class="pre">heap</span></code> que encierren las secciones de código que queremos monitorear. Subsecuentes llamados a tal función nos proporciona información en una forma incremental.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2778,6 +2841,10 @@ Partition of a set of 11 objects. Total size = 8001769 bytes.
 </div>
 </div>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Perfilar la regla de Simpson que se implementó en el primer ejercicio con <code class="docutils literal notranslate"><span class="pre">heapy</span></code>.</p>
+</div>
 </div>
 </div>
 <div class="section" id="basic-linear-algebra-subprograms-blas">
@@ -2825,7 +2892,7 @@ Partition of a set of 11 objects. Total size = 8001769 bytes.
 </div>
 <p>se realizan <span class="math notranslate nohighlight">\(2\)</span> <em>flops</em>. Los flops sólo representan una componente para categorizar a los algoritmos de acuerdo al trabajo que realizan, otras componentes son la transferencia o movimientos de datos, <em>data movement/motion</em>, ejecución secuencial o en paralelo y el <em>data locality</em> y <em>data reuse</em> que realizan.</p>
 <ul class="simple">
-<li><p>En LAPACK encontramos <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d0/d16/sdot_8f.html">sdot</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d5/df6/ddot_8f.html">ddot</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d7/d7b/cdotu_8f.html">cdotu</a> y <a class="reference external" href="http://www.netlib.org/lapack/explore-html/db/d2d/zdotu_8f.html">zdotu</a> para descripción de las funciones/subrutinas escritas en <a class="reference external" href="https://en.wikipedia.org/wiki/Fortran">Fortran</a> del producto punto en los casos de precisión simple, doble o números complejos respectivamente.</p></li>
+<li><p>En LAPACK encontramos <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d0/d16/sdot_8f.html">sdot</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d5/df6/ddot_8f.html">ddot</a> y <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d7/d7b/cdotu_8f.html">cdotu</a> para descripción de las funciones/subrutinas escritas en <a class="reference external" href="https://en.wikipedia.org/wiki/Fortran">Fortran</a> del producto punto en los casos de precisión simple, doble o números complejos respectivamente.</p></li>
 </ul>
 </div>
 </div>
@@ -2838,7 +2905,7 @@ Partition of a set of 11 objects. Total size = 8001769 bytes.
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>El símbolo “=” no se utiliza como igualdad de expresiones sino para denotar asignación (como en computación al escribir un algoritmo).</p></li>
-<li><p>También encontramos en LAPACK <a class="reference external" href="http://www.netlib.org/lapack/explore-html/de/da2/caxpy_8f.html">caxpy</a> o <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d9/dcd/daxpy_8f.html">daxpy</a> para el caso complejo y para números en doble precisión respectivamente.</p></li>
+<li><p>También encontramos en LAPACK <a class="reference external" href="http://www.netlib.org/lapack/explore-html/de/da2/caxpy_8f.html">caxpy</a> y <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d9/dcd/daxpy_8f.html">daxpy</a> para el caso complejo y para números en doble precisión respectivamente.</p></li>
 <li><p>Ésta operación realiza un trabajo de <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> sobre una cantidad de datos <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>.</p></li>
 </ul>
 </div>
@@ -2903,7 +2970,7 @@ Partition of a set of 11 objects. Total size = 8001769 bytes.
 </div>
 <div class="section" id="operacion-de-multiplicacion-matriz-vector-nivel-2-de-blas">
 <h3>Operación de multiplicación matriz-vector (nivel 2 de BLAS)<a class="headerlink" href="#operacion-de-multiplicacion-matriz-vector-nivel-2-de-blas" title="Permalink to this headline">¶</a></h3>
-<p>Consideramos <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}, x \in \mathbb{R}^n, y \in \mathbb{R}^m\)</span>. La operación <span class="math notranslate nohighlight">\(y = y + Ax\)</span> es una operación <em>generalizada</em> saxpy, por ello se denomina <strong>gaxpy</strong> pero en LAPACK podemos encontrarla con nombres como <a class="reference external" href="http://www.netlib.org/lapack/explore-html/db/d58/sgemv_8f.html">sgemv</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/dc/da8/dgemv_8f.html">dgemv</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d4/d8a/cgemv_8f.html">cgemv</a> o <a class="reference external" href="http://www.netlib.org/lapack/explore-html/db/d40/zgemv_8f.html">zgemv</a> para los casos de precisión simple, doble o números complejos respectivamente. Hay diferentes formas de visualizar y escribir el algoritmo de multiplicación matriz-vector. Por ejemplo para una matriz <span class="math notranslate nohighlight">\(A\)</span> con entradas:</p>
+<p>Consideramos <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}, x \in \mathbb{R}^n, y \in \mathbb{R}^m\)</span>. La operación <span class="math notranslate nohighlight">\(y = y + Ax\)</span> es una operación <em>generalizada</em> saxpy, por ello se denomina <strong>gaxpy</strong> pero en LAPACK podemos encontrarla con nombres como <a class="reference external" href="http://www.netlib.org/lapack/explore-html/db/d58/sgemv_8f.html">sgemv</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/dc/da8/dgemv_8f.html">dgemv</a> y <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d4/d8a/cgemv_8f.html">cgemv</a> para los casos de precisión simple, doble y números complejos respectivamente. Hay diferentes formas de visualizar y escribir el algoritmo de multiplicación matriz-vector. Por ejemplo para una matriz <span class="math notranslate nohighlight">\(A\)</span> con entradas:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">=</span><span class="mi">2</span>
@@ -2928,7 +2995,7 @@ Partition of a set of 11 objects. Total size = 8001769 bytes.
 <p>se tiene:</p>
 </div>
 <div class="section" id="ejemplo-y-algoritmo-gaxpy-row-oriented">
-<h3>Ejemplo y algoritmo gaxpy <em>row oriented</em><a class="headerlink" href="#ejemplo-y-algoritmo-gaxpy-row-oriented" title="Permalink to this headline">¶</a></h3>
+<h3>Ejemplo y algoritmo <em>gaxpy row oriented</em><a class="headerlink" href="#ejemplo-y-algoritmo-gaxpy-row-oriented" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
@@ -3007,7 +3074,7 @@ Partition of a set of 11 objects. Total size = 8001769 bytes.
 <p>También puede escribirse al algoritmo <em>gaxpy</em> en una forma orientada por columnas.</p>
 </div>
 <div class="section" id="ejemplo-y-algoritmo-gaxpy-column-oriented">
-<h3>Ejemplo y algoritmo gaxpy <em>column oriented</em><a class="headerlink" href="#ejemplo-y-algoritmo-gaxpy-column-oriented" title="Permalink to this headline">¶</a></h3>
+<h3>Ejemplo y algoritmo <em>gaxpy column oriented</em><a class="headerlink" href="#ejemplo-y-algoritmo-gaxpy-column-oriented" title="Permalink to this headline">¶</a></h3>
 <p>Este algoritmo ayuda a visualizar al producto matriz-vector como una combinación lineal de las columnas de <span class="math notranslate nohighlight">\(A\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[Ax = \displaystyle \sum_{j=1}^n A_jx_j\]</div>
@@ -3176,7 +3243,7 @@ Partition of a set of 11 objects. Total size = 8001769 bytes.
 <div class="section" id="operacion-de-multiplicacion-matriz-matriz-nivel-3-de-blas">
 <h3>Operación de multiplicación matriz-matriz (nivel 3 de BLAS)<a class="headerlink" href="#operacion-de-multiplicacion-matriz-matriz-nivel-3-de-blas" title="Permalink to this headline">¶</a></h3>
 <p>El algoritmo de multiplicación de matrices <span class="math notranslate nohighlight">\(C = C + AB\)</span> con <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times r}, B \in \mathbb{R}^{r \times n}, C \in \mathbb{R}^{m \times n}\)</span> se cataloga como de nivel 3 de BLAS pues realiza una <strong>cantidad de trabajo cúbica</strong> sobre una <strong>cantidad cuadrática de datos</strong>. Ver <a class="reference external" href="http://www.netlib.org/blas/#_level_3">level 3</a> para más ejemplos de algoritmos en el álgebra lineal en esta categoría.</p>
-<p>En LAPACK encontramos al algoritmo de multiplicación matricial con nombres como <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d4/de2/sgemm_8f.html">sgemm</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d7/d2b/dgemm_8f.html">dgemm</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d6/d5b/cgemm_8f.html">cgemm</a> y <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d7/d76/zgemm_8f.html">zgemm</a> para los casos de precisión simple, doble o números complejos respectivamente.</p>
+<p>En LAPACK encontramos al algoritmo de multiplicación matricial con nombres como <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d4/de2/sgemm_8f.html">sgemm</a>, <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d7/d2b/dgemm_8f.html">dgemm</a> y <a class="reference external" href="http://www.netlib.org/lapack/explore-html/d6/d5b/cgemm_8f.html">cgemm</a> para los casos de precisión simple, doble y números complejos respectivamente.</p>
 <p>El algoritmo de multiplicación de matrices puede escribirse en diferentes versiones. Por ejemplo la versión  <strong>i,j,k</strong> es:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -3210,7 +3277,7 @@ Partition of a set of 11 objects. Total size = 8001769 bytes.
 </pre></div>
 </div>
 <p>y hemos vectorizado el <em>inner loop</em> para usar productos punto que es una operación nivel 1 de BLAS.</p>
-<p>Además <code class="docutils literal notranslate"><span class="pre">numpy</span></code> nos provee de funcionalidad para reescribir ésta forma de productos punto en una como sigue:</p>
+<p>Además <em>NumPy</em> nos provee de funcionalidad para reescribir ésta forma de productos punto en una como sigue:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
     <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="nd">@B</span>
 </pre></div>
@@ -3226,21 +3293,36 @@ Partition of a set of 11 objects. Total size = 8001769 bytes.
 <img src="https://dl.dropboxusercontent.com/s/rvqkokicaqkwrif/tabla_con_flops_para_operaciones_alg_lineal.png?dl=0" heigth="550" width="550">
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>Por la tabla anterior, <em>gaxpy</em> (nivel 2 de BLAS) realiza más <em>flops</em> que un producto punto. Aún así, debe cumplirse que la versión de <em>gaxpy</em> sea más rápida que la versión con productos punto (nivel 1 de BLAS) para la multiplicación de matrices pues aprovecha mejor el <em>data reuse</em> y <em>data locality</em>. Esto se logra pues <em>gaxpy</em> disminuye el número de <em>cache misses</em> y por tanto el tráfico hacia y desde el caché, el llamado <em>data movement/motion</em>.</p>
+<p>Por la tabla anterior, <em>gaxpy</em> (nivel 2 de BLAS) realiza más <em>flops</em> que un producto punto. Aún así, debe cumplirse que la versión de <em>gaxpy</em> sea más rápida que la versión con productos punto (nivel 1 de BLAS) para la multiplicación de matrices pues aprovecha mejor el <em>data reuse</em> y <em>data locality</em>. Esto se logra pues <em>gaxpy</em> disminuye el número de <em>cache misses</em> y por tanto el tráfico hacia y desde el caché, (<em>data movement/motion</em>).</p>
+</div>
+</div>
+<div class="section" id="metodos-para-resolver-sistemas-de-ecuaciones-lineales-sel-o-factorizaciones-matriciales-fm-y-los-flops-que-realizan">
+<h3>Métodos para resolver sistemas de ecuaciones lineales (SEL) o factorizaciones matriciales (FM) y los <em>flops</em> que realizan<a class="headerlink" href="#metodos-para-resolver-sistemas-de-ecuaciones-lineales-sel-o-factorizaciones-matriciales-fm-y-los-flops-que-realizan" title="Permalink to this headline">¶</a></h3>
+<p>Ver <a class="reference internal" href="../../III.optimizacion_convexa/3.4/Ecuaciones_no_lineales.html#algsel"><span class="std std-ref">algoritmos para resolver sistemas de ecuaciones lineales</span></a> para ejemplos de métodos directos o basados en FM e iterativos que resuelven SEL.</p>
+<p>Los métodos iterativos no realizan FM. Hay características de la matriz (por ejemplo simetría) que no explotan en su implementación pero se benefician de otras (por ejemplo si <span class="math notranslate nohighlight">\(A\)</span> es <em>sparse</em> o rala: muchos ceros). Otras características de tales métodos son: uso de menos memoria que los directos o basados en FM, convergen bajo condiciones simples de verificar y son sencillos de implementar.</p>
+<p>Los métodos directos o basados en FM en general consumen más memoria que los iterativos, tienen el potencial de utilizar operaciones de nivel BLAS <span class="math notranslate nohighlight">\(3\)</span>, siempre encuentran solución si la matriz del sistema es no singular y en general requieren mejor dominio de la programación para su implementación que los iterativos. Una vez calculada la FM de la matriz <span class="math notranslate nohighlight">\(A\)</span> se utilizan métodos para resolver SEL que resultan de la FM. Un ejemplo de tales métodos son los de sustitución hacia delante y hacia atrás para resolver SEL triangulares.</p>
+<p>Nombremos a los métodos o algoritmos numéricos anteriores nuestros <strong>métodos básicos del álgebra lineal para resolver SEL o FM</strong> (MBAL para SEL o FM). Cada uno puede utilizarse para resolver SEL, FM o para otros propósitos. Por ejemplo la factorización QR también se utiliza en el cálculo de eigenvalores y eigenvectores en el algoritmo QR.</p>
+<p>Aquí se presenta una tabla que muestra el número de flops si se desea resolver <span class="math notranslate nohighlight">\(Ax=b\)</span> con <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> de algunos MBAL para SEL o FM:</p>
+<img src="https://dl.dropboxusercontent.com/s/7i01uxbxyadhuh1/flops_MBAL_ABAL.png?dl=0" heigth="250" width="250"><div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Es fácil verificar que resolver <span class="math notranslate nohighlight">\(Ax = b\)</span> calculando la inversa (por ejemplo <code class="docutils literal notranslate"><span class="pre">np.linalg.inv(A)&#64;b</span></code>) resultan en aproximadamente <span class="math notranslate nohighlight">\(\frac{8n^3}{3}\)</span> <em>flops</em>.</p></li>
+<li><p>Los MBAL para SEL o FM sirven de apoyo para resolver SEL por <strong>bloques</strong>.</p></li>
+</ul>
 </div>
 </div>
 </div>
 <div class="section" id="blocking-algorithms-para-multiplicacion-de-matrices">
 <h2>Blocking algorithms para multiplicación de matrices<a class="headerlink" href="#blocking-algorithms-para-multiplicacion-de-matrices" title="Permalink to this headline">¶</a></h2>
-<p>El <em>data reuse</em> y el <em>data locality</em> se incrementa al utilizar operaciones de nivel BLAS mayores. También disminuye el <em>data motion</em> hacia y desde el caché lo que disminuye el tráfico de datos o <em>data movement/motion</em> pues se resuelve el <em>bottleneck</em> de Von Neumann.</p>
+<p>El <em>data reuse</em> y el <em>data locality</em> se incrementa al utilizar operaciones de nivel BLAS mayores. También disminuye el <em>data movement/motion</em> hacia y desde el caché lo que disminuye el tráfico de datos y por tanto tiene menos impacto el <em>bottleneck</em> de Von Neumann en el <em>performance</em>.</p>
 <p>Por lo anterior hay algoritmos que se diseñan con el objetivo de aprovechar lo más posible el <em>data reuse</em> y el <em>data locality</em> y se nombran <em>blocking algorithms</em>. Entre los <em>blocking algorithms</em> encontramos a los que trabajan con matrices por bloques pues son más eficientes al utilizar un nivel <span class="math notranslate nohighlight">\(3\)</span> de BLAS. Una matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> por bloques se puede escribir como:</p>
 <img src="https://dl.dropboxusercontent.com/s/s77weq74yoi2rfc/matrix_A_by_blocks.png?dl=0" heigth="300" width="300">
 <p>donde: <span class="math notranslate nohighlight">\(m_1 + \dots + m_q = m\)</span>, <span class="math notranslate nohighlight">\(n_1 + \dots + n_r = n\)</span>. Con esta definición se llama a la matriz <span class="math notranslate nohighlight">\(A\)</span>, una matriz por bloques de tamaño <span class="math notranslate nohighlight">\(q \times r\)</span>.</p>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>Hay que tener en cuenta que trabajar con matrices por bloques utiliza mayor cantidad de memoria que un algoritmo que opera a un nivel escalar esto puede ser benéfico o no dependiendo del problema, máquina o arquitectura en la que se esté trabajando.</p></li>
-<li><p>Trabajar con <em>blocking algorithms</em> permite simplificar notación matemática. Su escritura ayuda a pensar en una implementación con cómputo en paralelo.</p></li>
+<li><p>Hay que tener en cuenta que trabajar con matrices por bloques utiliza mayor cantidad de memoria que un algoritmo que opera a un nivel escalar esto puede ser benéfico o no dependiendo del problema (por ejemplo simetría de una matriz puede aprovecharse en este caso), máquina o arquitectura en la que se esté trabajando.</p></li>
+<li><p>Trabajar con <em>blocking algorithms</em> permite simplificar notación matemática. Además, su escritura ayuda a pensar en una implementación con cómputo en paralelo.</p></li>
 </ul>
 </div>
 <div class="section" id="algunas-operaciones-en-matrices-por-bloques">
@@ -3354,6 +3436,171 @@ A_{31}B_{11} + A_{32}B_{21} &amp; A_{31}B_{12} + A_{32}B_{22}
 <div class="tip admonition">
 <p class="admonition-title">Ejercicio</p>
 <p>Implementar la multiplicación por bloques en <em>Python</em> y <em>R</em>.</p>
+</div>
+</div>
+<div class="section" id="metodos-o-algoritmos-numericos-por-bloques-para-resolver-sistemas-de-ecuaciones-lineales">
+<h3>Métodos o algoritmos numéricos por bloques para resolver sistemas de ecuaciones lineales<a class="headerlink" href="#metodos-o-algoritmos-numericos-por-bloques-para-resolver-sistemas-de-ecuaciones-lineales" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="eliminacion-por-bloque">
+<h3>Eliminación por bloque<a class="headerlink" href="#eliminacion-por-bloque" title="Permalink to this headline">¶</a></h3>
+<p>Este método consiste en eliminar un subconjunto de variables y resolver un sistema más pequeño. Si el sistema más pequeño asociado a la submatriz puede resolverse con alguno de los MBAL para SEL o FM anteriores entonces este método puede tener más eficiencia que uno que no trabaja por bloques.</p>
+<p>Considérese un sistema de la forma: <span class="math notranslate nohighlight">\(Ax=b\)</span> escrito como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+\left[ \begin{array}{cc}
+A_{11} &amp; A_{12}\\
+A_{21} &amp; A_{22}
+\end{array}
+\right] \cdot 
+\left[\begin{array}{c}
+x_1\\
+x_2
+\end{array}
+\right] =
+\left[\begin{array}{c}
+b_1\\
+b_2
+\end{array}
+\right]
+\end{array}
+\end{split}\]</div>
+<p>con <span class="math notranslate nohighlight">\(x_1 \in \mathbb{R}^{n_1}, x_2 \in \mathbb{R}^{n_2}, A_{11} \in \mathbb{R}^{n_1 \times n_1}, A_{22} \in \mathbb{R}^{n_2 \times n_2}, b_1 \in \mathbb{R}^{n_1}, b_2 \in \mathbb{R}^{n_2}\)</span>.</p>
+<p>El método de eliminación por bloques consiste en que si <span class="math notranslate nohighlight">\(A_{11}\)</span> es invertible, entonces se puede eliminar <span class="math notranslate nohighlight">\(x_1\)</span> de las ecuaciones como sigue:</p>
+<ul class="simple">
+<li><p>De la primer ecuación por bloques: <span class="math notranslate nohighlight">\(A_{11}x_1 + A_{12}x_2 = b_1\)</span> se obtiene: <span class="math notranslate nohighlight">\(x_1 = A_{11}^{-1}(b_1-A_{12}x_2)\)</span>.</p></li>
+<li><p>Sustituyendo esta relación en la segunda ecuación por bloques obtenemos la ecuación reducida: <span class="math notranslate nohighlight">\((A_{22}-A_{21}A_{11}^{-1}A_{12})x_2 = b_2 - A_{21}A_{11}^{-1}b_1\)</span>.</p></li>
+</ul>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Las dos ecuaciones anteriores son equivalentes al sistema original <span class="math notranslate nohighlight">\(Ax=b\)</span>.</p></li>
+<li><p>La matriz <span class="math notranslate nohighlight">\(A_{22}-A_{21}A_{11}^{-1}A_{12}\)</span> se le nombra <strong>complemento de Schur</strong> del bloque <span class="math notranslate nohighlight">\(A_{11}\)</span> en <span class="math notranslate nohighlight">\(A\)</span> (ver <a class="reference external" href="https://en.wikipedia.org/wiki/Schur_complement">Schur complement</a>) esto es:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[S = A_{22}-A_{21}A_{11}^{-1}A_{12}.\]</div>
+<ul class="simple">
+<li><p>Se tiene la propiedad siguiente: <span class="math notranslate nohighlight">\(S\)</span> es no singular si y sólo si <span class="math notranslate nohighlight">\(A\)</span> es no singular.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="algoritmo-metodo-de-eliminacion-por-bloque">
+<h3>Algoritmo: método de eliminación por bloque<a class="headerlink" href="#algoritmo-metodo-de-eliminacion-por-bloque" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(A_{11}\)</span> no singulares</p>
+<ol class="simple">
+<li><p>Calcular <span class="math notranslate nohighlight">\(A_{11}^{-1}A_{12}\)</span> y <span class="math notranslate nohighlight">\(A_{11}^{-1}b_1\)</span> teniendo cuidado en <strong>no</strong> calcular la inversa sino un sistema de ecuaciones lineales:</p></li>
+</ol>
+<blockquote>
+<div><p>Para realizar la multiplicación <span class="math notranslate nohighlight">\(A_{11}^{-1}b_1\)</span> definimos <span class="math notranslate nohighlight">\(y=A_{11}^{-1}b_1\)</span> y por tanto <span class="math notranslate nohighlight">\(A_{11}y = b_1\)</span> (<span class="math notranslate nohighlight">\(A_{11}\)</span> es no singular). Así, resolvemos para <span class="math notranslate nohighlight">\(y\)</span> el sistema anterior y habremos calculado <span class="math notranslate nohighlight">\(A_{11}^{-1}b_1\)</span>. Similarmente definimos <span class="math notranslate nohighlight">\(Y=A_{11}^{-1}A_{12}\)</span> con lo que se tiene <span class="math notranslate nohighlight">\(A_{11}Y=A_{12}\)</span>. Resolvemos para <span class="math notranslate nohighlight">\(Y \in \mathbb{R} ^{n_1 \times n_1}\)</span> y habremos calculado <span class="math notranslate nohighlight">\(A_{11}^{-1}A_{12}\)</span>.</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>Calcular el complemento de Schur del bloque <span class="math notranslate nohighlight">\(A_{11}\)</span> en <span class="math notranslate nohighlight">\(A\)</span>: <span class="math notranslate nohighlight">\(S = A_{22}-A_{21}A_{11}^{-1}A_{12}\)</span>. Calcular <span class="math notranslate nohighlight">\( \hat{b} = b_2-A_{21}A_{11}^{-1}b_1\)</span>.</p></li>
+<li><p>Resolver <span class="math notranslate nohighlight">\(Sx_2 = \hat{b}\)</span>.</p></li>
+<li><p>Resolver <span class="math notranslate nohighlight">\(A_{11}x_1 = b_1-A_{12}x_2\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>En los pasos que se requieren resolver sistemas de ecuaciones lineales se utilizan los MBAL para SEL o FM.</p>
+</div>
+</div>
+<div class="section" id="factor-solve-method">
+<h3><em>Factor-Solve method</em><a class="headerlink" href="#factor-solve-method" title="Permalink to this headline">¶</a></h3>
+<p>El método de factor solve consiste en expresar a la matriz del sistema <span class="math notranslate nohighlight">\(Ax = b\)</span> como un producto de la forma: <span class="math notranslate nohighlight">\(A = A_1A_2 \cdots A_k\)</span>. Si <span class="math notranslate nohighlight">\(A\)</span> es no singular entonces: <span class="math notranslate nohighlight">\(x = A^{-1}b = A_k^{-1}A_{k-1}^{-1} \cdots A_1^{-1}b\)</span>.</p>
+<p>De esta forma, <span class="math notranslate nohighlight">\(x\)</span> puede calcularse de “derecha a izquierda”:</p>
+</div>
+<div class="section" id="descripcion-matematica-del-algoritmo">
+<h3>Descripción matemática del algoritmo<a class="headerlink" href="#descripcion-matematica-del-algoritmo" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+z_1&amp;:=&amp;A_1^{-1}b \nonumber \\
+z_2&amp;:=&amp;A_2^{-1}z_1 &amp;= A_2^{-1}A_1^{-1}b \nonumber\\
+\vdots \nonumber\\
+z_{k-1}&amp;:=&amp;A_{k-1}^{-1}z_{k-2} &amp;= A_{k-1}^{-1} \cdots A_1^{-1}b \nonumber\\
+x &amp;:=&amp;A_k^{-1}z_{k-1} &amp;= A_k^{-1} \cdot A_{k-1}^{-1} \cdots A_1^{-1}b \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>El paso que consiste en factorizar a la matriz <span class="math notranslate nohighlight">\(A\)</span> es el paso nombrado <strong>factor</strong> y el usado en resolver el sistema <span class="math notranslate nohighlight">\(A_iz_i = z_{i-1}\)</span> es nombrado <strong>solve</strong>.</p></li>
+<li><p>Normalmente <span class="math notranslate nohighlight">\(A_i\)</span> tiene una estructura aprovechable (por ejemplo triangular superior/inferior) para resolver el sistema <span class="math notranslate nohighlight">\(A_iz_i = z_{i-1}\)</span>. Por ejemplo en el caso de la factorización <span class="math notranslate nohighlight">\(LU\)</span> de <span class="math notranslate nohighlight">\(A\)</span> se cumple <span class="math notranslate nohighlight">\(PA = LU\)</span> con <span class="math notranslate nohighlight">\(P\)</span> matriz de permutación, <span class="math notranslate nohighlight">\(L\)</span> triangular inferior con <span class="math notranslate nohighlight">\(1\)</span>’s en la diagonal y <span class="math notranslate nohighlight">\(U\)</span> triangular superior. Entonces:</p>
+<ul>
+<li><p>Paso 1: encontrar factores <span class="math notranslate nohighlight">\(P,L,U\)</span> tales que <span class="math notranslate nohighlight">\(PA=LU\)</span>.</p></li>
+<li><p>Paso 2: resolver <span class="math notranslate nohighlight">\(Ld=Pb\)</span>.</p></li>
+<li><p>Paso 3: resolver <span class="math notranslate nohighlight">\(Ux=d\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="metodo-de-eliminacion-por-bloques-escrito-como-un-factor-solve-method">
+<h3>Método de eliminación por bloques escrito como un <em>factor-solve method</em>:<a class="headerlink" href="#metodo-de-eliminacion-por-bloques-escrito-como-un-factor-solve-method" title="Permalink to this headline">¶</a></h3>
+<p>El método de <em>block elimination</em> puede escribirse como un <em>factor-solve method</em>:</p>
+<p>Paso <span class="math notranslate nohighlight">\(1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+\left[ \begin{array}{cc}
+A_{11} &amp; A_{12}\\
+A_{21} &amp; A_{22}
+\end{array}
+\right]=
+\left[\begin{array}{cc}
+A_{11} &amp; 0 \\
+A_{21} &amp; S
+\end{array}
+\right]
+\left[\begin{array}{cc}
+I &amp; A_{11}^{-1}A_{12} \\
+0 &amp; I
+\end{array}
+\right]
+\end{array}
+\end{split}\]</div>
+<p>Paso <span class="math notranslate nohighlight">\(2\)</span>. Resolver por el método de sustitución hacia delante por bloques:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+\left[ \begin{array}{cc}
+A_{11} &amp; 0\\
+A_{21} &amp; S
+\end{array}
+\right] \cdot
+\left[\begin{array}{c}
+z_1 \\
+z_2
+\end{array}
+\right] = 
+\left[\begin{array}{c}
+b_1\\
+b_2
+\end{array}
+\right]
+\end{array}
+\end{split}\]</div>
+<p>Paso <span class="math notranslate nohighlight">\(3\)</span>. Resolver por el método de sustitución hacia atrás por bloques:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}
+\left[ \begin{array}{cc}
+I &amp; A_{11}^{-1}A_{12}\\
+0 &amp; I
+\end{array}
+\right] \cdot
+\left[\begin{array}{c}
+x_1 \\
+x_2
+\end{array}
+\right] = 
+\left[\begin{array}{c}
+z_1\\
+z_2
+\end{array}
+\right]
+\end{array}
+\end{split}\]</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>En los pasos que se requieren resolver sistemas de ecuaciones lineales se utilizan los MBAL/ABAL para SEL o FM.</p>
 </div>
 </div>
 <div class="section" id="openblas-y-numpy">
@@ -7670,6 +7917,7 @@ CPU63                 484337      cache-misses              #    6.751 % of all 
 <li><p>M. Gorelick, I. Ozsvald, High Performance Python, O’Reilly Media, 2014.</p></li>
 <li><p>E. Anderson, Z. Bai, C. Bischof, L. S. Blackford, J. Demmel, J. Dongarra, J. Du Croz,
 A. Greenbaum, S. Hammarling, A. Mckenney and D. Sorensen, LAPACK Users Guide, Society for Industrial and Applied Mathematics, Philadelphia, PA, third ed., 1999.</p></li>
+<li><p>G. H. Golub, C. F. Van Loan, Matrix Computations, John Hopkins University Press, 2013.</p></li>
 </ol>
 </div>
 </div>
