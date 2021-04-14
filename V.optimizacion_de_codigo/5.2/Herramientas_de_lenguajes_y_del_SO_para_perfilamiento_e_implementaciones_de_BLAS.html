@@ -551,8 +551,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#metodos-o-algoritmos-numericos-por-bloques-para-resolver-sistemas-de-ecuaciones-lineales">
-     Métodos o algoritmos numéricos por bloques para resolver sistemas de ecuaciones lineales
+    <a class="reference internal nav-link" href="#metodos-por-bloques-para-resolver-sistemas-de-ecuaciones-lineales">
+     Métodos por bloques para resolver sistemas de ecuaciones lineales
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -690,13 +690,6 @@
      al cuadrado de un vector
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#check-next-results">
-   Check next results:
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#perf-openblas-gaxpy-row-column-oriented-nivel-2">
      perf OpenBLAS:
@@ -3293,7 +3286,7 @@ Partition of a set of 11 objects. Total size = 8001769 bytes.
 <img src="https://dl.dropboxusercontent.com/s/rvqkokicaqkwrif/tabla_con_flops_para_operaciones_alg_lineal.png?dl=0" heigth="550" width="550">
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>Por la tabla anterior, <em>gaxpy</em> (nivel 2 de BLAS) realiza más <em>flops</em> que un producto punto. Aún así, debe cumplirse que la versión de <em>gaxpy</em> sea más rápida que la versión con productos punto (nivel 1 de BLAS) para la multiplicación de matrices pues aprovecha mejor el <em>data reuse</em> y <em>data locality</em>. Esto se logra pues <em>gaxpy</em> disminuye el número de <em>cache misses</em> y por tanto el tráfico hacia y desde el caché, (<em>data movement/motion</em>).</p>
+<p>Por la tabla anterior, <em>gaxpy</em> (nivel 2 de BLAS) realiza más <em>flops</em> que un producto punto. Aún así, debe cumplirse que la versión de <em>gaxpy</em> sea más rápida que la versión con productos punto (nivel 1 de BLAS) para la multiplicación de matrices pues aprovecha mejor el <em>data reuse</em> y <em>data locality</em>. Esto se logra pues <em>gaxpy</em> disminuye el número de <em>cache misses</em> y por tanto el tráfico hacia y desde el caché (<em>data movement/motion</em>).</p>
 </div>
 </div>
 <div class="section" id="metodos-para-resolver-sistemas-de-ecuaciones-lineales-sel-o-factorizaciones-matriciales-fm-y-los-flops-que-realizan">
@@ -3314,7 +3307,7 @@ Partition of a set of 11 objects. Total size = 8001769 bytes.
 </div>
 <div class="section" id="blocking-algorithms-para-multiplicacion-de-matrices">
 <h2>Blocking algorithms para multiplicación de matrices<a class="headerlink" href="#blocking-algorithms-para-multiplicacion-de-matrices" title="Permalink to this headline">¶</a></h2>
-<p>El <em>data reuse</em> y el <em>data locality</em> se incrementa al utilizar operaciones de nivel BLAS mayores. También disminuye el <em>data movement/motion</em> hacia y desde el caché lo que disminuye el tráfico de datos y por tanto tiene menos impacto el <em>bottleneck</em> de Von Neumann en el <em>performance</em>.</p>
+<p>El <em>data reuse</em> y el <em>data locality</em> se incrementa al utilizar operaciones de nivel BLAS mayores. También disminuye el <em>data movement/motion</em> hacia y desde el caché y por tanto tiene menos impacto el <em>bottleneck</em> de Von Neumann en el <em>performance</em>.</p>
 <p>Por lo anterior hay algoritmos que se diseñan con el objetivo de aprovechar lo más posible el <em>data reuse</em> y el <em>data locality</em> y se nombran <em>blocking algorithms</em>. Entre los <em>blocking algorithms</em> encontramos a los que trabajan con matrices por bloques pues son más eficientes al utilizar un nivel <span class="math notranslate nohighlight">\(3\)</span> de BLAS. Una matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> por bloques se puede escribir como:</p>
 <img src="https://dl.dropboxusercontent.com/s/s77weq74yoi2rfc/matrix_A_by_blocks.png?dl=0" heigth="300" width="300">
 <p>donde: <span class="math notranslate nohighlight">\(m_1 + \dots + m_q = m\)</span>, <span class="math notranslate nohighlight">\(n_1 + \dots + n_r = n\)</span>. Con esta definición se llama a la matriz <span class="math notranslate nohighlight">\(A\)</span>, una matriz por bloques de tamaño <span class="math notranslate nohighlight">\(q \times r\)</span>.</p>
@@ -3438,8 +3431,8 @@ A_{31}B_{11} + A_{32}B_{21} &amp; A_{31}B_{12} + A_{32}B_{22}
 <p>Implementar la multiplicación por bloques en <em>Python</em> y <em>R</em>.</p>
 </div>
 </div>
-<div class="section" id="metodos-o-algoritmos-numericos-por-bloques-para-resolver-sistemas-de-ecuaciones-lineales">
-<h3>Métodos o algoritmos numéricos por bloques para resolver sistemas de ecuaciones lineales<a class="headerlink" href="#metodos-o-algoritmos-numericos-por-bloques-para-resolver-sistemas-de-ecuaciones-lineales" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="metodos-por-bloques-para-resolver-sistemas-de-ecuaciones-lineales">
+<h3>Métodos por bloques para resolver sistemas de ecuaciones lineales<a class="headerlink" href="#metodos-por-bloques-para-resolver-sistemas-de-ecuaciones-lineales" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="eliminacion-por-bloque">
 <h3>Eliminación por bloque<a class="headerlink" href="#eliminacion-por-bloque" title="Permalink to this headline">¶</a></h3>
@@ -3487,17 +3480,13 @@ b_2
 <h3>Algoritmo: método de eliminación por bloque<a class="headerlink" href="#algoritmo-metodo-de-eliminacion-por-bloque" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(A_{11}\)</span> no singulares</p>
-<ol class="simple">
-<li><p>Calcular <span class="math notranslate nohighlight">\(A_{11}^{-1}A_{12}\)</span> y <span class="math notranslate nohighlight">\(A_{11}^{-1}b_1\)</span> teniendo cuidado en <strong>no</strong> calcular la inversa sino un sistema de ecuaciones lineales:</p></li>
-</ol>
+<p>1.Calcular <span class="math notranslate nohighlight">\(A_{11}^{-1}A_{12}\)</span> y <span class="math notranslate nohighlight">\(A_{11}^{-1}b_1\)</span> teniendo cuidado en <strong>no</strong> calcular la inversa sino un sistema de ecuaciones lineales:</p>
 <blockquote>
 <div><p>Para realizar la multiplicación <span class="math notranslate nohighlight">\(A_{11}^{-1}b_1\)</span> definimos <span class="math notranslate nohighlight">\(y=A_{11}^{-1}b_1\)</span> y por tanto <span class="math notranslate nohighlight">\(A_{11}y = b_1\)</span> (<span class="math notranslate nohighlight">\(A_{11}\)</span> es no singular). Así, resolvemos para <span class="math notranslate nohighlight">\(y\)</span> el sistema anterior y habremos calculado <span class="math notranslate nohighlight">\(A_{11}^{-1}b_1\)</span>. Similarmente definimos <span class="math notranslate nohighlight">\(Y=A_{11}^{-1}A_{12}\)</span> con lo que se tiene <span class="math notranslate nohighlight">\(A_{11}Y=A_{12}\)</span>. Resolvemos para <span class="math notranslate nohighlight">\(Y \in \mathbb{R} ^{n_1 \times n_1}\)</span> y habremos calculado <span class="math notranslate nohighlight">\(A_{11}^{-1}A_{12}\)</span>.</p>
 </div></blockquote>
-<ol class="simple">
-<li><p>Calcular el complemento de Schur del bloque <span class="math notranslate nohighlight">\(A_{11}\)</span> en <span class="math notranslate nohighlight">\(A\)</span>: <span class="math notranslate nohighlight">\(S = A_{22}-A_{21}A_{11}^{-1}A_{12}\)</span>. Calcular <span class="math notranslate nohighlight">\( \hat{b} = b_2-A_{21}A_{11}^{-1}b_1\)</span>.</p></li>
-<li><p>Resolver <span class="math notranslate nohighlight">\(Sx_2 = \hat{b}\)</span>.</p></li>
-<li><p>Resolver <span class="math notranslate nohighlight">\(A_{11}x_1 = b_1-A_{12}x_2\)</span>.</p></li>
-</ol>
+<p>2.Calcular el complemento de Schur del bloque <span class="math notranslate nohighlight">\(A_{11}\)</span> en <span class="math notranslate nohighlight">\(A\)</span>: <span class="math notranslate nohighlight">\(S = A_{22}-A_{21}A_{11}^{-1}A_{12}\)</span>. Calcular <span class="math notranslate nohighlight">\( \hat{b} = b_2-A_{21}A_{11}^{-1}b_1\)</span>.</p>
+<p>3.Resolver <span class="math notranslate nohighlight">\(Sx_2 = \hat{b}\)</span>.</p>
+<p>4.Resolver <span class="math notranslate nohighlight">\(A_{11}x_1 = b_1-A_{12}x_2\)</span>.</p>
 </div></blockquote>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
@@ -3600,7 +3589,7 @@ z_2
 \end{split}\]</div>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>En los pasos que se requieren resolver sistemas de ecuaciones lineales se utilizan los MBAL/ABAL para SEL o FM.</p>
+<p>En los pasos que se requieren resolver sistemas de ecuaciones lineales se utilizan los MBAL para SEL o FM.</p>
 </div>
 </div>
 <div class="section" id="openblas-y-numpy">
@@ -5942,9 +5931,6 @@ CPU63                 520349      branch-misses             #    2.79% of all br
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="check-next-results">
-<h2>Check next results:<a class="headerlink" href="#check-next-results" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="perf-openblas-gaxpy-row-column-oriented-nivel-2">
 <h3>perf OpenBLAS: <em>gaxpy row, column oriented</em> (nivel 2)<a class="headerlink" href="#perf-openblas-gaxpy-row-column-oriented-nivel-2" title="Permalink to this headline">¶</a></h3>
 <p>Utilizaremos <code class="docutils literal notranslate"><span class="pre">perf</span></code> en lo que sigue para evaluar las métricas de IPC, <em>cache-references</em>, <em>cache-misses</em> y medir el tiempo de ejecución. Además, esto permitirá comparar los tiempos de ejecución del algoritmo <em>gaxpy</em> (nivel BLAS 2), con vectorización y sin vectorización.</p>
@@ -5960,7 +5946,7 @@ CPU63                 520349      branch-misses             #    2.79% of all br
 </div>
 </div>
 </div>
-<p>Arhivo sin vectorizar y utilizando listas para construir a la matriz y a los vectores:</p>
+<p>Utilizando listas para construir a la matriz y a los vectores:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mult_matrix_vector.py
@@ -6008,7 +5994,7 @@ perf stat -S -e cycles,instructions,cache-references,cache-misses -r 7 python3 m
 </div>
 </div>
 </div>
-<p>Métricas por core:</p>
+<p>Métricas por <em>core</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
@@ -6284,7 +6270,7 @@ CPU63                 641561      cache-misses              #    1.330 % of all 
 </div>
 <div class="section" id="gaxpy-column-oriented-caso-vectorizando">
 <h3><em>gaxpy column oriented</em> caso vectorizando<a class="headerlink" href="#gaxpy-column-oriented-caso-vectorizando" title="Permalink to this headline">¶</a></h3>
-<p>Archivo vectorizando con numpy:</p>
+<p>Vectorizando con <em>NumPy</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mult_matrix_vector_numpy.py
@@ -6326,6 +6312,7 @@ perf stat -S -e cycles,instructions,cache-references,cache-misses -r 7 python3 m
 </div>
 </div>
 </div>
+<p>Métricas por <em>core</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
@@ -6917,7 +6904,7 @@ CPU63                1460917      cache-misses              #    2.413 % of all 
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>No se observa una gran diferencia entre el caso vectorizado y no vectorizado salvo que en el caso vectorizando se tiene un <span class="math notranslate nohighlight">\(\%\)</span> mayor de <em>cache-misses</em>. Sería conveniente realizar más repeticiones de esta misma operación o con diferentes operaciones de nivel 2 BLAS para realizar conclusiones más sólidas. Ver <a class="reference external" href="http://www.netlib.org/blas/#_level_2">level 2</a> para más ejemplos de algoritmos en el álgebra lineal en esta categoría.</p></li>
+<li><p>No se observa una gran diferencia en tiempo de ejecución entre el caso vectorizado y no vectorizado en los niveles 1 y 2 de BLAS salvo que en el caso vectorizando se tiene un <span class="math notranslate nohighlight">\(\%\)</span> mayor de <em>cache-misses</em>.</p></li>
 <li><p>Otra opción que se tiene es utilizar la siguiente implementación ya que <code class="docutils literal notranslate"><span class="pre">numpy</span></code> soporta operaciones del tipo matriz-vector sin necesidad de utilizar un <em>for loop</em>.</p></li>
 </ul>
 </div>
