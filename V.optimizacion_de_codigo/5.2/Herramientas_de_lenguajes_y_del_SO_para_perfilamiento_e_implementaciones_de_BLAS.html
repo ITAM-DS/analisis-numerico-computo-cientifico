@@ -442,6 +442,11 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rerun-next-cell-change-made-regarding-order-of-assignment-statements">
+   Rerun next cell (Change made regarding order of assignment statements):
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#basic-linear-algebra-subprograms-blas">
    <em>
     Basic Linear Algebra Subprograms
@@ -2294,7 +2299,7 @@ fun output 0.7468241328124773
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">Rcf_memory_profiler</span> <span class="kn">import</span> <span class="n">Rcf_mprun</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">Rcf_memory_profiler</span> <span class="kn">import</span> <span class="n">Rcf</span>
 </pre></div>
 </div>
 </div>
@@ -2436,6 +2441,10 @@ A: This module gets the memory consumption by querying the operating system kern
 </div>
 <p>La herramienta <em>heapy</em> nos ayuda a obtener información acerca de los objetos en la memoria <em>heap</em>. Por ejemplo podemos revisar el número y tamaño de cada objeto que está en la <em>heap</em>. También nos ayuda a encontrar <em>memory leaks</em>.</p>
 <p><em>heapy</em> funciona escribiendo líneas para llamar a la función <code class="docutils literal notranslate"><span class="pre">heap</span></code> que encierren las secciones de código que queremos monitorear. Subsecuentes llamados a tal función nos proporciona información en una forma incremental.</p>
+</div>
+</div>
+<div class="section" id="rerun-next-cell-change-made-regarding-order-of-assignment-statements">
+<h2>Rerun next cell (Change made regarding order of assignment statements):<a class="headerlink" href="#rerun-next-cell-change-made-regarding-order-of-assignment-statements" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> heapy_ex_1
@@ -2443,12 +2452,12 @@ A: This module gets the memory consumption by querying the operating system kern
 
 <span class="kn">from</span> <span class="nn">guppy</span> <span class="kn">import</span> <span class="n">hpy</span>
 
+<span class="n">hp</span> <span class="o">=</span> <span class="n">hpy</span><span class="p">()</span>
+<span class="n">hp</span><span class="o">.</span><span class="n">setrelheap</span><span class="p">()</span> <span class="c1">#Everything allocated before this call will not be in the objects you get later.</span>
 <span class="n">a</span><span class="o">=</span><span class="mi">0</span>
 <span class="n">b</span><span class="o">=</span><span class="mi">1</span>
 <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
 <span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">hp</span> <span class="o">=</span> <span class="n">hpy</span><span class="p">()</span>
-<span class="n">hp</span><span class="o">.</span><span class="n">setrelheap</span><span class="p">()</span> <span class="c1">#Everything allocated before this call will not be in the objects you get later.</span>
 <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
 <span class="n">h</span> <span class="o">=</span> <span class="n">hp</span><span class="o">.</span><span class="n">heap</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
@@ -2833,7 +2842,6 @@ Partition of a set of 11 objects. Total size = 8001769 bytes.
 <div class="tip admonition">
 <p class="admonition-title">Ejercicio</p>
 <p>Perfilar la regla de Simpson que se implementó en el primer ejercicio con <code class="docutils literal notranslate"><span class="pre">heapy</span></code> en una máquina de AWS con las mismas características que la que se presenta en esta nota..</p>
-</div>
 </div>
 </div>
 <div class="section" id="basic-linear-algebra-subprograms-blas">
