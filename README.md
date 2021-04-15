@@ -138,3 +138,9 @@ Inicio de [5.1 Introducción optimización de código](https://itam-ds.github.io
 9 de abril
 
 Llegamos hasta [5.1 Software para cómputo en paralelo](https://itam-ds.github.io/analisis-numerico-computo-cientifico/V.optimizacion_de_codigo/5.1/introduccion_optimizacion_de_codigo.html#software)
+
+## Clase 13
+
+14 de abril
+
+Llegamos hasta [Blocking algorithms para multiplicación de matrices](https://itam-ds.github.io/analisis-numerico-computo-cientifico/V.optimizacion_de_codigo/5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html#blocking-algorithms-para-multiplicacion-de-matrices)
