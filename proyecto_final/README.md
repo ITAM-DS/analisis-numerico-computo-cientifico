@@ -20,7 +20,9 @@ Para el proyecto final se utilizará:
 
 * docker.
 
-* Python/R o algún otro lenguaje de programación y paquetes para cómputo en paralelo o compilación a C.
+* Python/R o algún otro lenguaje de programación y paquetes para perfilamiento, cómputo en paralelo o compilación a C.
+
+* Minikube, kubeflow y kale (opcional).
 
 * Organización del equipo en una forma simplificada del framework [scrum](https://www.youtube.com/watch?v=b02ZkndLk1Y&feature=emb_logo) en tres grupos: grupo de programación, grupo de revisión y una persona *project manager*.
 
@@ -95,4 +97,22 @@ La siguiente lista no pretende ser exhaustiva.
 
 * Métodos en optimización combinatoria.
 
+* Métodos que resuelvan problemas planteados en machine learning
+
  **Los métodos numéricos deben ser utilizados en problemas de optimización numérica y en aplicaciones de áreas detalladas al inicio.**
+
+
+# Nota
+
+Es muy importante que en cualquier *dataset*, paquete de *software* o problema de optimización que elijan para su práctica/trabajo final, se estudie muy bien lo siguiente:
+
+* ¿Qué características tiene el problema de optimización?
+
+* ¿Qué tipo de problema de optimización es?
+
+* Entendimiento del método de optimización utilizado (vía una implementación por ejemplo).
+
+* ¿Qué métodos existen para resolver el problema de optimización?
+
+* ¿Cómo están resolviendo los métodos el problema de optimización?
+
