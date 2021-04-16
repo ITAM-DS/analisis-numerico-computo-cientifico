@@ -1,6 +1,6 @@
 # Indicaciones
 
-Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. La calificación del trabajo por cada integrante será de acuerdo a los *commits* realizados y a los avances que realizan en su trabajo incremental.
+Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. La calificación del trabajo por cada integrante será de acuerdo a los *commits* realizados y a los avances que realizan en su trabajo incremental para la parte 2 de la práctica 2 realizada en la [organización optimizacion-2-2021-1-gh-classroom](https://github.com/optimizacion-2-2021-1-gh-classroom). **Tomaré la calificación final de esa parte 2 para el rubro de avances**.
 
 En el nivel:  
 
