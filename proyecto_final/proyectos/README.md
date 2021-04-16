@@ -12,8 +12,6 @@ Ejemplo
 
 Objetivo
 
-**Avances del proyecto:**
-
 [Trabajo escrito](liga hacia trabajo escrito)
 
 [Presentacion](liga hacia presentacion)
