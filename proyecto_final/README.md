@@ -20,7 +20,7 @@ Para el proyecto final se utilizará:
 
 * docker.
 
-* Python/R o algún otro lenguaje de programación y paquetes para perfilamiento, cómputo en paralelo o compilación a C.
+* Python/R o algún otro lenguaje de programación y paquetes para perfilamiento, niveles de BLAS, cómputo en paralelo o compilación a C.
 
 * Minikube, kubeflow y kale (opcional).
 
