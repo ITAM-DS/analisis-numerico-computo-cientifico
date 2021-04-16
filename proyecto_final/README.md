@@ -22,7 +22,7 @@ Para el proyecto final se utilizará:
 
 * Python/R o algún otro lenguaje de programación y paquetes para perfilamiento, cómputo en paralelo o compilación a C.
 
-* Minikube, kubeflow y kale.
+* Minikube, kubeflow y kale (opcional).
 
 * Organización del equipo en una forma simplificada del framework [scrum](https://www.youtube.com/watch?v=b02ZkndLk1Y&feature=emb_logo) en tres grupos: grupo de programación, grupo de revisión y una persona *project manager*.
 
