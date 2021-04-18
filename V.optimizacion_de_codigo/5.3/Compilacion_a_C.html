@@ -374,6 +374,11 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caracteristicas-de-los-lenguajes-de-programacion">
+   Características de los lenguajes de programación
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#python">
    Python
   </a>
@@ -433,6 +438,216 @@
 <li></li>
 </ul>
 </div>
+<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se utilizó la AMI <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a></p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Si se utiliza la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> colocar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">##variables:</span>
+<span class="nv">region</span><span class="o">=</span>us-east-1 <span class="c1">#make sure instance is in Virginia</span>
+<span class="nv">name_instance</span><span class="o">=</span>OpenBLAS
+<span class="nv">USER</span><span class="o">=</span>ubuntu
+<span class="c1">##System update</span>
+apt-get update -yq
+<span class="c1">##Tag instance</span>
+<span class="nv">INSTANCE_ID</span><span class="o">=</span><span class="k">$(</span>curl -s http://instance-data/latest/meta-data/instance-id<span class="k">)</span>
+<span class="nv">PUBLIC_IP</span><span class="o">=</span><span class="k">$(</span>curl -s http://instance-data/latest/meta-data/public-ipv4<span class="k">)</span>
+sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;/home/</span><span class="nv">$USER</span><span class="s2">/.local/bin/aws ec2 create-tags --resources </span><span class="nv">$INSTANCE_ID</span><span class="s2"> --tag Key=Name,Value=</span><span class="nv">$name_instance</span><span class="s2">-</span><span class="nv">$PUBLIC_IP</span><span class="s2"> --region=</span><span class="nv">$region</span><span class="s2">&quot;</span>
+sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &amp;&amp; /home/</span><span class="nv">$USER</span><span class="s2">/.local/bin/jupyter lab --ip=0.0.0.0 --no-browser --config=/home/</span><span class="nv">$USER</span><span class="s2">/.jupyter/jupyter_notebook_config.py &amp;&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>La máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> tiene las siguientes características:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+lscpu
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   46 bits physical, 48 bits virtual
+CPU(s):                          64
+On-line CPU(s) list:             0-63
+Thread(s) per core:              2
+Core(s) per socket:              16
+Socket(s):                       2
+NUMA node(s):                    2
+Vendor ID:                       GenuineIntel
+CPU family:                      6
+Model:                           79
+Model name:                      Intel(R) Xeon(R) CPU E5-2686 v4 @ 2.30GHz
+Stepping:                        1
+CPU MHz:                         2290.913
+CPU max MHz:                     3000.0000
+CPU min MHz:                     1200.0000
+BogoMIPS:                        4600.03
+Hypervisor vendor:               Xen
+Virtualization type:             full
+L1d cache:                       1 MiB
+L1i cache:                       1 MiB
+L2 cache:                        8 MiB
+L3 cache:                        90 MiB
+NUMA node0 CPU(s):               0-15,32-47
+NUMA node1 CPU(s):               16-31,48-63
+Vulnerability Itlb multihit:     KVM: Vulnerable
+Vulnerability L1tf:              Mitigation; PTE Inversion
+Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Spec store bypass: Vulnerable
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Full generic retpoline, STIBP disabled, RSB filling
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq monitor est ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm cpuid_fault invpcid_single pti fsgsbase bmi1 hle avx2 smep bmi2 erms invpcid rtm xsaveopt ida
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+sudo lshw -C memory
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  *-firmware
+       description: BIOS
+       vendor: Xen
+       physical id: 0
+       version: 4.11.amazon
+       date: 08/24/2006
+       size: 96KiB
+       capabilities: pci edd
+  *-memory
+       description: System Memory
+       physical id: 1000
+       size: 256GiB
+       capabilities: ecc
+       configuration: errordetection=multi-bit-ecc
+     *-bank:0
+          description: DIMM RAM
+          physical id: 0
+          slot: DIMM 0
+          size: 16GiB
+          width: 64 bits
+     *-bank:1
+          description: DIMM RAM
+          physical id: 1
+          slot: DIMM 1
+          size: 16GiB
+          width: 64 bits
+     *-bank:2
+          description: DIMM RAM
+          physical id: 2
+          slot: DIMM 2
+          size: 16GiB
+          width: 64 bits
+     *-bank:3
+          description: DIMM RAM
+          physical id: 3
+          slot: DIMM 3
+          size: 16GiB
+          width: 64 bits
+     *-bank:4
+          description: DIMM RAM
+          physical id: 4
+          slot: DIMM 4
+          size: 16GiB
+          width: 64 bits
+     *-bank:5
+          description: DIMM RAM
+          physical id: 5
+          slot: DIMM 5
+          size: 16GiB
+          width: 64 bits
+     *-bank:6
+          description: DIMM RAM
+          physical id: 6
+          slot: DIMM 6
+          size: 16GiB
+          width: 64 bits
+     *-bank:7
+          description: DIMM RAM
+          physical id: 7
+          slot: DIMM 7
+          size: 16GiB
+          width: 64 bits
+     *-bank:8
+          description: DIMM RAM
+          physical id: 8
+          slot: DIMM 8
+          size: 16GiB
+          width: 64 bits
+     *-bank:9
+          description: DIMM RAM
+          physical id: 9
+          slot: DIMM 9
+          size: 16GiB
+          width: 64 bits
+     *-bank:10
+          description: DIMM RAM
+          physical id: a
+          slot: DIMM 10
+          size: 16GiB
+          width: 64 bits
+     *-bank:11
+          description: DIMM RAM
+          physical id: b
+          slot: DIMM 11
+          size: 16GiB
+          width: 64 bits
+     *-bank:12
+          description: DIMM RAM
+          physical id: c
+          slot: DIMM 12
+          size: 16GiB
+          width: 64 bits
+     *-bank:13
+          description: DIMM RAM
+          physical id: d
+          slot: DIMM 13
+          size: 16GiB
+          width: 64 bits
+     *-bank:14
+          description: DIMM RAM
+          physical id: e
+          slot: DIMM 14
+          size: 16GiB
+          width: 64 bits
+     *-bank:15
+          description: DIMM RAM
+          physical id: f
+          slot: DIMM 15
+          size: 16GiB
+          width: 64 bits
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+uname -ar #r for kernel, a for all
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linux ip-10-0-0-140 5.4.0-1038-aws #40-Ubuntu SMP Fri Feb 5 23:50:40 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>En la celda anterior se utilizó el comando de <em>magic</em> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>. Algunos comandos de <em>magic</em> los podemos utilizar también con <em>import</em>’s. Ver <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">ipython-magics</a></p>
+</div>
+<div class="section" id="caracteristicas-de-los-lenguajes-de-programacion">
+<h2>Características de los lenguajes de programación<a class="headerlink" href="#caracteristicas-de-los-lenguajes-de-programacion" title="Permalink to this headline">¶</a></h2>
 <p>Los lenguajes de programación y sus implementaciones pueden tener características como las siguientes:</p>
 <ul class="simple">
 <li><p>Realizar un <em>parsing</em> de las instrucciones y ejecutar las acciones de forma casi inmediata (intérprete). Como ejemplo está <a class="reference external" href="https://en.wikipedia.org/wiki/BASIC">Beginners’ All-purpose Symbolic Instruction Code: BASIC</a></p></li>
@@ -441,6 +656,7 @@
 <li><p>Realizar un <em>parsing</em> de las instrucciones y compilar las instrucciones en una forma <a class="reference external" href="https://en.wikipedia.org/wiki/Just-in-time_compilation">just in time compilation</a> y <em>at</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Runtime_(program_lifecycle_phase)">runtime</a>. Como ejemplos se encuentran <em>Julia</em> y <em>Python</em> en su implementación con <a class="reference external" href="https://en.wikipedia.org/wiki/PyPy">PyPy</a>.</p></li>
 </ul>
 <p>La ejecución de instrucciones en los lenguajes de programación será más rápida dependiendo del lenguaje, la implementación que se utilice del mismo y <em>features</em> que tenga el lenguaje.</p>
+</div>
 <div class="section" id="python">
 <h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
