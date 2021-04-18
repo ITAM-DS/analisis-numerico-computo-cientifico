@@ -384,11 +384,6 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#c">
-   C
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#r">
    R
   </a>
@@ -399,9 +394,31 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c">
+   C
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cython">
    cython
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython">
+   ¿En qué casos y qué tipo de ganancias en velocidad podemos esperar al usar Cython?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-con-un-script-setup-py">
+     Ejemplo con un script
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       setup.py
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias-de-interes">
@@ -655,7 +672,7 @@ uname -ar #r for kernel, a for all
 <li><p>Compilar <a class="reference external" href="https://en.wikipedia.org/wiki/Ahead-of-time_compilation">ahead of time</a> las instrucciones antes de su ejecución. Como ejemplo se encuentran <em>C, C++</em> y <em>Fortran</em>.</p></li>
 <li><p>Realizar un <em>parsing</em> de las instrucciones y compilar las instrucciones en una forma <a class="reference external" href="https://en.wikipedia.org/wiki/Just-in-time_compilation">just in time compilation</a> y <em>at</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Runtime_(program_lifecycle_phase)">runtime</a>. Como ejemplos se encuentran <em>Julia</em> y <em>Python</em> en su implementación con <a class="reference external" href="https://en.wikipedia.org/wiki/PyPy">PyPy</a>.</p></li>
 </ul>
-<p>La ejecución de instrucciones en los lenguajes de programación será más rápida dependiendo del lenguaje, la implementación que se utilice del mismo y <em>features</em> que tenga el lenguaje.</p>
+<p>La ejecución de instrucciones en los lenguajes de programación será más rápida dependiendo del lenguaje, la implementación que se utilice del mismo y de sus <em>features</em>.</p>
 </div>
 <div class="section" id="python">
 <h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
@@ -720,86 +737,6 @@ python3 Rcf_python.py
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 3.4265081882476807 segundos
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="c">
-<h2>C<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>
-<p>Para la medición de tiempos se utilizaron las ligas: <a class="reference external" href="https://stackoverflow.com/questions/16764276/measuring-time-in-millisecond-precision">liga</a> y <a class="reference external" href="https://www.techiedelight.com/find-execution-time-c-program/">liga2</a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf_c.c
-<span class="c1">#include&lt;stdio.h&gt;</span>
-<span class="c1">#include&lt;stdlib.h&gt;</span>
-<span class="c1">#include&lt;math.h&gt;</span>
-<span class="c1">#include&lt;time.h&gt;</span>
-<span class="c1">#include &lt;sys/time.h&gt;</span>
-
-<span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="n">ext_izq</span><span class="p">,</span> <span class="n">double</span> <span class="n">ext_der</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span>\
-    <span class="n">double</span> <span class="o">*</span><span class="n">suma_global_p</span><span class="p">);</span>
-<span class="n">double</span> <span class="n">f</span><span class="p">(</span><span class="n">double</span> <span class="n">nodo</span><span class="p">);</span>
-<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
-    <span class="n">double</span> <span class="n">suma_global</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-    <span class="n">double</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
-    <span class="nb">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mf">1e7</span><span class="p">;</span>
-    <span class="n">struct</span> <span class="n">timeval</span> <span class="n">start</span><span class="p">;</span>
-    <span class="n">struct</span> <span class="n">timeval</span> <span class="n">end</span><span class="p">;</span>
-    <span class="n">long</span> <span class="n">seconds</span><span class="p">;</span>
-    <span class="n">long</span> <span class="n">long</span> <span class="n">mili</span><span class="p">;</span>
-    
-    <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
-    <span class="n">Rcf</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">suma_global</span><span class="p">);</span>
-    <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
-    <span class="n">seconds</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_sec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_sec</span><span class="p">);</span>
-    <span class="n">mili</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_usec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_usec</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">;</span>    
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de ejecución: %lld milisegundos&quot;</span><span class="p">,</span> <span class="n">mili</span><span class="p">);</span>
-    
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">b</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="nb">sum</span><span class="p">){</span>
-    <span class="n">double</span> <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
-    <span class="n">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-    <span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span><span class="p">;</span>
-        <span class="o">*</span><span class="nb">sum</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">h_hat</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="nb">sum</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="n">double</span> <span class="n">f</span><span class="p">(</span><span class="n">double</span> <span class="n">nodo</span><span class="p">){</span>
-    <span class="n">double</span> <span class="n">valor_f</span><span class="p">;</span>
-    <span class="n">valor_f</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="nb">pow</span><span class="p">(</span><span class="n">nodo</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
-    <span class="k">return</span> <span class="n">valor_f</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf_c.c
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-gcc -Wall Rcf_c.c -o Rcf_c.out -lm
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-./Rcf_c.out
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 482 milisegundos
 </pre></div>
 </div>
 </div>
@@ -987,12 +924,272 @@ Rscript Rcf_R.R
 </div>
 </div>
 </div>
+<div class="section" id="c">
+<h2>C<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h2>
+<p>Para la medición de tiempos se utilizaron las ligas: <a class="reference external" href="https://stackoverflow.com/questions/16764276/measuring-time-in-millisecond-precision">liga</a> y <a class="reference external" href="https://www.techiedelight.com/find-execution-time-c-program/">liga2</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf_c.c
+<span class="c1">#include&lt;stdio.h&gt;</span>
+<span class="c1">#include&lt;stdlib.h&gt;</span>
+<span class="c1">#include&lt;math.h&gt;</span>
+<span class="c1">#include&lt;time.h&gt;</span>
+<span class="c1">#include &lt;sys/time.h&gt;</span>
+
+<span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="n">ext_izq</span><span class="p">,</span> <span class="n">double</span> <span class="n">ext_der</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span>\
+    <span class="n">double</span> <span class="o">*</span><span class="n">suma_global_p</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">f</span><span class="p">(</span><span class="n">double</span> <span class="n">nodo</span><span class="p">);</span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
+    <span class="n">double</span> <span class="n">suma_global</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mf">1e7</span><span class="p">;</span>
+    <span class="n">struct</span> <span class="n">timeval</span> <span class="n">start</span><span class="p">;</span>
+    <span class="n">struct</span> <span class="n">timeval</span> <span class="n">end</span><span class="p">;</span>
+    <span class="n">long</span> <span class="n">seconds</span><span class="p">;</span>
+    <span class="n">long</span> <span class="n">long</span> <span class="n">mili</span><span class="p">;</span>
+    
+    <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+    <span class="n">Rcf</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">suma_global</span><span class="p">);</span>
+    <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+    <span class="n">seconds</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_sec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_sec</span><span class="p">);</span>
+    <span class="n">mili</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_usec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_usec</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">;</span>    
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de ejecución: %lld milisegundos&quot;</span><span class="p">,</span> <span class="n">mili</span><span class="p">);</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">b</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="nb">sum</span><span class="p">){</span>
+    <span class="n">double</span> <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span><span class="p">;</span>
+        <span class="o">*</span><span class="nb">sum</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">h_hat</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="nb">sum</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">double</span> <span class="n">f</span><span class="p">(</span><span class="n">double</span> <span class="n">nodo</span><span class="p">){</span>
+    <span class="n">double</span> <span class="n">valor_f</span><span class="p">;</span>
+    <span class="n">valor_f</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="nb">pow</span><span class="p">(</span><span class="n">nodo</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">valor_f</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf_c.c
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+gcc -Wall Rcf_c.c -o Rcf_c.out -lm
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+./Rcf_c.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 482 milisegundos
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="cython">
 <h2><a class="reference external" href="https://cython.org/">cython</a><a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
+<p>Cython es un compilador que traduce instrucciones escritas en Python “anotadas” en un módulo compilado que funciona como una extensión de Python. Los programas que se escriben con tales anotaciones resultan similares en sintaxis al lenguaje <em>C</em>. Este módulo puede ser importado como un módulo regular de Python utilizando <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>La frase código tipo <em>CPU-bound</em> es código cuya ejecución involucra un porcentaje mayor para uso de CPU que uso de memoria o I/O.</p>
+</div>
+<p><em>Cython</em> tiene un buen tiempo en la comunidad (2007 aproximadamente), es altamente usado y es de las herramientas preferidas para código tipo <em>CPU-bound</em>.</p>
+<p>Soporta la <a class="reference external" href="https://www.openmp.org/">API OpenMP</a> para aprovechar los múltiples <em>cores</em> de una máquina.</p>
+<p>Cython puede utilizarse vía un script <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> que compila un módulo pero también puede utilizarse en <code class="docutils literal notranslate"><span class="pre">IPython</span></code> vía un comando <code class="docutils literal notranslate"><span class="pre">magic</span></code>.</p>
+</div>
+<div class="section" id="en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython">
+<h2>¿En qué casos y qué tipo de ganancias en velocidad podemos esperar al usar Cython?<a class="headerlink" href="#en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython" title="Permalink to this headline">¶</a></h2>
+<p>Un caso es en el que se tenga un código con muchos <em>loops</em> que realicen operaciones matemáticas típicamente no vectorizadas o que no pueden vectorizarse. Esto es, códigos en los que las instrucciones son básicamente sólo <em>Python</em> sin utilizar paquetes externos. Además, si en el ciclo las variables no cambian de su tipo (por ejemplo de <code class="docutils literal notranslate"><span class="pre">int</span></code> a <code class="docutils literal notranslate"><span class="pre">float</span></code>) entonces es un código que obtendrá ganancia en velocidad al compilar a código de máquina.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Si tu código de <em>Python</em> llama a operaciones vectorizadas vía <em>NumPy</em> podría ser que no se ejecute más rápido tu código después de compilarlo.</p>
+</div>
+<p>No esperamos tener un <em>speedup</em> después de compilar para llamadas a librerías externas (por ejemplo paqueterías que manejan bases de datos). También es poco probable que se obtengan ganancias significativas en programas que tengan alta carga de I/O.</p>
+<p>En general es poco probable que tu código compilado se ejecute más rápido que un código en <em>C</em> “bien escrito” y también es poco probable que se ejecute más lento. Es muy posible que el código <em>C</em> generado desde <em>Python</em> mediante <em>Cython</em> pueda alcanzar las velocidades de un código escrito en <em>C</em>, a menos que la persona que programó en <em>C</em> tenga un gran conocimiento de formas de hacer que el código de <em>C</em> se ajuste a la arquitectura de la máquina sobre la que se ejecutan los códigos.</p>
+<div class="section" id="ejemplo-con-un-script-setup-py">
+<h3>Ejemplo con un script <code class="docutils literal notranslate"><span class="pre">setup.py</span></code><a class="headerlink" href="#ejemplo-con-un-script-setup-py" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para este caso requerimos tres archivos:</p>
+<p>1.El código que será compilado en un archivo con extensión <code class="docutils literal notranslate"><span class="pre">.pyx</span></code> (escrito en <em>Python</em>).</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>La extensión <code class="docutils literal notranslate"><span class="pre">.pyx</span></code> se utiliza en el lenguaje <a class="reference external" href="https://www.csse.canterbury.ac.nz/greg.ewing/python/Pyrex/">Pyrex</a> que en términos simples es <em>Python</em> con manejo de tipo de valores de <em>C</em>. <em>Pyrex</em> traduce el código escrito en <em>Python</em> a código de <em>C</em> (por lo que ayuda a evitar el uso de la <a class="reference external" href="https://docs.python.org/3/c-api/index.html">Python/C API</a> y permite la declaración de parámetros o valores en tipos de valores de <em>C</em>.</p>
+</div>
+<p>2.Un archivo <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> que contiene las instrucciones para llamar a <em>cython</em> y cree el módulo compilado.</p>
+<p>3.El código escrito en <em>Python</em> que importará el módulo compilado.</p>
+<p>Archivo <code class="docutils literal notranslate"><span class="pre">.pyx</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf_cython.pyx
+<span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span> <span class="c1">#Rcf: rectángulo compuesto para f</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute numerical approximation using rectangle or mid-point</span>
+<span class="sd">    method in an interval.</span>
+<span class="sd">    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for</span>
+<span class="sd">    i=0,1,...,n-1 and h_hat=(b-a)/n</span>
+<span class="sd">    Args:</span>
+<span class="sd">    </span>
+<span class="sd">        f (float): function expression of integrand.</span>
+<span class="sd">        </span>
+<span class="sd">        a (float): left point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        b (float): right point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        n (float): number of subintervals.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        sum_res (float): numerical approximation to integral</span>
+<span class="sd">            of f in the interval a,b</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">sum_res</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+        <span class="n">sum_res</span> <span class="o">=</span> <span class="n">sum_res</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf_cython.pyx
+</pre></div>
+</div>
+</div>
+</div>
+<p>Archivo <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> que contiene las instrucciones para el <em>build</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> setup.py
+<span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+<span class="kn">from</span> <span class="nn">Cython.Build</span> <span class="kn">import</span> <span class="n">cythonize</span>
+
+<span class="n">setup</span><span class="p">(</span><span class="n">ext_modules</span> <span class="o">=</span> <span class="n">cythonize</span><span class="p">(</span><span class="s2">&quot;Rcf_cython.pyx&quot;</span><span class="p">,</span> 
+                              <span class="n">compiler_directives</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;language_level&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+     <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing setup.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compilar desde la línea de comandos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+python3 setup.py build_ext --inplace
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Compiling Rcf_cython.pyx because it changed.
+[1/1] Cythonizing Rcf_cython.pyx
+running build_ext
+building &#39;Rcf_cython&#39; extension
+creating build
+creating build/temp.linux-x86_64-3.7
+x86_64-linux-gnu-gcc -pthread -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC -I/usr/include/python3.7m -c Rcf_cython.c -o build/temp.linux-x86_64-3.7/Rcf_cython.o
+x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,relro -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 build/temp.linux-x86_64-3.7/Rcf_cython.o -o /datos/MNO_desde_2018/ramas_repo/mno-master/libro_optimizacion/temas/V.optimizacion_de_codigo/5.3/Rcf_cython.cpython-37m-x86_64-linux-gnu.so
+</pre></div>
+</div>
+</div>
+</div>
+<p>Importar módulo compilado y ejecutarlo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#using math library</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">Rcf_cython</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">Rcf_cython</span><span class="o">.</span><span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">secs</span> <span class="o">=</span> <span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rcf tomó&quot;</span><span class="p">,</span><span class="n">secs</span><span class="p">,</span><span class="s2">&quot;segundos&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 0.0001289844512939453 segundos
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="referencias-de-interes">
 <h2>Referencias de interés<a class="headerlink" href="#referencias-de-interes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Cython">Cython</a>.</p></li>
 <li><p><a class="reference external" href="http://okigiveup.net/an-introduction-to-cython/">introduction to cython</a>.</p></li>
 <li><p><a class="reference external" href="https://cython.readthedocs.io/en/latest/src/tutorial/cython_tutorial.html">Basic cython tutorial</a></p></li>
 <li><p><a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html">Source files and compilation</a></p></li>
