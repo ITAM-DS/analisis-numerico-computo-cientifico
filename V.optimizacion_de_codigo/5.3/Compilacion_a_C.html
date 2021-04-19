@@ -379,6 +379,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compilacion-aot-y-jit">
+   Compilación AOT y JIT
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#python">
    Python
   </a>
@@ -400,7 +405,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cython">
-   cython
+   Cython
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -665,14 +670,32 @@ uname -ar #r for kernel, a for all
 </div>
 <div class="section" id="caracteristicas-de-los-lenguajes-de-programacion">
 <h2>Características de los lenguajes de programación<a class="headerlink" href="#caracteristicas-de-los-lenguajes-de-programacion" title="Permalink to this headline">¶</a></h2>
-<p>Los lenguajes de programación y sus implementaciones pueden tener características como las siguientes:</p>
+<p>Los lenguajes de programación y sus implementaciones tienen características como las siguientes:</p>
 <ul class="simple">
-<li><p>Realizar un <em>parsing</em> de las instrucciones y ejecutar las acciones de forma casi inmediata (intérprete). Como ejemplo está <a class="reference external" href="https://en.wikipedia.org/wiki/BASIC">Beginners’ All-purpose Symbolic Instruction Code: BASIC</a></p></li>
-<li><p>Realizar un <em>parsing</em> de las instrucciones, traducir a una <a class="reference external" href="https://en.wikipedia.org/wiki/Intermediate_representation">representación intermedia</a> y ejecutar las acciones. Como ejemplo se encuentra <em>Python</em> en su implementación <em>CPython</em>. La interpretación de código intermedia es un <a class="reference external" href="https://en.wikipedia.org/wiki/Bytecode">bytecode</a>.</p></li>
-<li><p>Compilar <a class="reference external" href="https://en.wikipedia.org/wiki/Ahead-of-time_compilation">ahead of time</a> las instrucciones antes de su ejecución. Como ejemplo se encuentran <em>C, C++</em> y <em>Fortran</em>.</p></li>
-<li><p>Realizar un <em>parsing</em> de las instrucciones y compilar las instrucciones en una forma <a class="reference external" href="https://en.wikipedia.org/wiki/Just-in-time_compilation">just in time compilation</a> y <em>at</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Runtime_(program_lifecycle_phase)">runtime</a>. Como ejemplos se encuentran <em>Julia</em> y <em>Python</em> en su implementación con <a class="reference external" href="https://en.wikipedia.org/wiki/PyPy">PyPy</a>.</p></li>
+<li><p>Realizar un <em>parsing</em> de las instrucciones y ejecutar las acciones de forma casi inmediata (intérprete). Como ejemplo está el lenguaje: <a class="reference external" href="https://en.wikipedia.org/wiki/BASIC">Beginners’ All-purpose Symbolic Instruction Code: BASIC</a></p></li>
+<li><p>Realizar un <em>parsing</em> de las instrucciones, traducir a una <a class="reference external" href="https://en.wikipedia.org/wiki/Intermediate_representation">representación intermedia</a> y ejecutar las acciones. Como ejemplo se encuentra el lenguaje <em>Python</em> en su implementación <em>CPython</em>. La interpretación de código intermedia es un <a class="reference external" href="https://en.wikipedia.org/wiki/Bytecode">bytecode</a>.</p></li>
+<li><p>Compilar <a class="reference external" href="https://en.wikipedia.org/wiki/Ahead-of-time_compilation">ahead of time</a> (AOT) las instrucciones antes de su ejecución. Como ejemplo se encuentran los lenguajes <em>C, C++</em> y <em>Fortran</em>.</p></li>
+<li><p>Realizar un <em>parsing</em> de las instrucciones y compilar las instrucciones en una forma <a class="reference external" href="https://en.wikipedia.org/wiki/Just-in-time_compilation">just in time compilation</a> (JIT) y <em>at</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Runtime_(program_lifecycle_phase)">runtime</a>. Como ejemplos se encuentran los lenguajes <em>Julia</em> y <em>Python</em> en su implementación con <em>PyPy</em>.</p></li>
 </ul>
 <p>La ejecución de instrucciones será más rápida dependiendo del lenguaje, la implementación que se haga del mismo y de sus <em>features</em>.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Varios proyectos están en desarrollo para mejorar eficiencia en <em>Python</em> y otros temas como el uso de <a class="reference external" href="https://en.wikipedia.org/wiki/Global_interpreter_lock">Global interpreter lock</a>. Algunos de ellos son:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://doc.pypy.org/en/latest/index.html">PyPy</a></p></li>
+<li><p><em>A better API for extending Python in C</em>: <a class="reference external" href="https://github.com/hpyproject/hpy">hpyproject</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="compilacion-aot-y-jit">
+<h2>Compilación AOT y JIT<a class="headerlink" href="#compilacion-aot-y-jit" title="Permalink to this headline">¶</a></h2>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Es común utilizar la palabra librería en lugar de paquete en el contexto de compilación.</p>
+</div>
+<p>Una compilación AOT crea una librería estática, especializada para nuestras máquinas y se puede utilizar de forma instantánea. Por ejemplo, las librerías de <em>NumPy</em>, <em>SciPy</em> o <em>Scikit-learn</em> instalados vía <em>pip</em> o <em>conda</em> utilizan <em>Cython</em> para compilar secciones de tales librerías adaptadas a nuestras máquinas.</p>
+<p>Una compilación JIT no requiere que se realice “trabajo previo” de nuestro lado, la compilación se realiza al tiempo que se utiliza el código. En términos coloquiales, al inicio se ejecutará el código en un modo “frío” en el que se identificarán diferentes secciones que correrán lentamente pues se estará realizando la compilación al tiempo de ejecución. Sin embargo, en sucesivas ejecuciones del <strong>mismo</strong> código tales secciones serán más rápidas.</p>
+<p>La compilación AOT da los mejores <em>speedups</em> pero solicita mayor trabajo de nuestro lado. La compilación JIT da buenos <em>speedups</em> con poca intervención nuestra pero utiliza más memoria y más tiempo en iniciar la ejecución del código, ver por ejemplo <a class="reference external" href="https://raw.githubusercontent.com/vstinner/talks/main/2019-EuroPython/python_performance.pdf">python_performance-slide-15</a> acerca de <em>PyPy issues</em>. Para la ejecución frecuente de <em>scripts</em> pequeños la compilación AOT resulta una mejor opción que la compilación JIT, ver por ejemplo <a class="reference external" href="https://doc.pypy.org/en/latest/faq.html#couldn-t-the-jit-dump-and-reload-already-compiled-machine-code">couldn-t-the-jit-dump-and-reload-already-compiled-machine-code</a>.</p>
 </div>
 <div class="section" id="python">
 <h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
@@ -1005,13 +1028,14 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 </div>
 </div>
 <div class="section" id="cython">
-<h2><a class="reference external" href="https://cython.org/">cython</a><a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
+<h2><a class="reference external" href="https://cython.org/">Cython</a><a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
 <p>Cython es un compilador que traduce instrucciones escritas en Python “anotadas” en un módulo compilado que funciona como una extensión de Python. Los programas que se escriben con tales anotaciones resultan similares en sintaxis al lenguaje <em>C</em>. Este módulo puede ser importado como un módulo regular de Python utilizando <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La frase código tipo <em>CPU-bound</em> es código cuya ejecución involucra un porcentaje mayor para uso de CPU que uso de memoria o I/O.</p>
 </div>
 <p><em>Cython</em> tiene un buen tiempo en la comunidad (2007 aproximadamente), es altamente usado y es de las herramientas preferidas para código tipo <em>CPU-bound</em>.</p>
+<p>Requiere conocimiento del lenguaje <em>C</em> lo cual debe tomarse en cuenta en un equipo de desarrollo de <em>software</em>, sin embargo, se sugiere utilizar <em>cython</em> en secciones pequeñas del código.</p>
 <p>Soporta la <a class="reference external" href="https://www.openmp.org/">API OpenMP</a> para aprovechar los múltiples <em>cores</em> de una máquina.</p>
 <p>Cython puede utilizarse vía un script <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> que compila un módulo para usarse con <code class="docutils literal notranslate"><span class="pre">import</span></code> y también puede utilizarse en <em>IPython</em> vía un comando <em>magic</em>.</p>
 </div>
@@ -1020,7 +1044,7 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 <p>Un caso es en el que se tenga un código con muchos <em>loops</em> que realicen operaciones matemáticas típicamente no vectorizadas o que no pueden vectorizarse. Esto es, códigos en los que las instrucciones son básicamente sólo <em>Python</em> sin utilizar paquetes externos. Además, si en el ciclo las variables no cambian de su tipo (por ejemplo de <code class="docutils literal notranslate"><span class="pre">int</span></code> a <code class="docutils literal notranslate"><span class="pre">float</span></code>) entonces es un código que obtendrá ganancia en velocidad al compilar a código de máquina.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Si tu código de <em>Python</em> llama a operaciones vectorizadas vía <em>NumPy</em> podría ser que no se ejecute más rápido tu código después de compilarlo.</p>
+<p>Si tu código de <em>Python</em> llama a operaciones vectorizadas vía <em>NumPy</em> podría ser que no se ejecute más rápido tu código después de compilarlo. Principalmente porque probablemente no se crearán muchos objetos intermedios que es un <em>feature</em> de <em>NumPy</em>.</p>
 </div>
 <p>No esperamos tener un <em>speedup</em> después de compilar para llamadas a librerías externas (por ejemplo paqueterías que manejan bases de datos). También es poco probable que se obtengan ganancias significativas en programas que tengan alta carga de I/O.</p>
 <p>En general es poco probable que tu código compilado se ejecute más rápido que un código en <em>C</em> “bien escrito” y también es poco probable que se ejecute más lento. Es muy posible que el código <em>C</em> generado desde <em>Python</em> mediante <em>Cython</em> pueda alcanzar las velocidades de un código escrito en <em>C</em>, a menos que la persona que programó en <em>C</em> tenga un gran conocimiento de formas de hacer que el código de <em>C</em> se ajuste a la arquitectura de la máquina sobre la que se ejecutan los códigos.</p>
@@ -1201,6 +1225,9 @@ x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,re
 <li><p><a class="reference external" href="http://dirk.eddelbuettel.com/code/rcpp/Rcpp-quickref.pdf">Rcpp quick reference guide</a>.</p></li>
 <li><p><a class="reference external" href="https://www.learncpp.com/">Learncpp</a>.</p></li>
 <li><p><a class="reference external" href="http://www.cplusplus.com/">Cplusplus</a>.</p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/4037946/what-are-the-downsides-of-jit-compilation">what-are-the-downsides-of-jit-compilation</a></p></li>
+<li><p><a class="reference external" href="https://morepypy.blogspot.com/2019/12/hpy-kick-off-sprint-report.html">hpy-kick-off-sprint-report</a></p></li>
+<li><p><a class="reference external" href="https://doc.pypy.org/en/latest/faq.html">PyPy - FAQ</a></p></li>
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
