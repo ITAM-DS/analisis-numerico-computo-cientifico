@@ -710,7 +710,7 @@ uname -ar #r for kernel, a for all
 <p class="sidebar-title"></p>
 <p>Es común utilizar la palabra librería en lugar de paquete en el contexto de compilación.</p>
 </div>
-<p>Una compilación AOT crea una librería <strong>estática</strong>, especializada para nuestras máquinas y se puede utilizar de forma instantánea. Por ejemplo, las librerías de <em>NumPy</em>, <em>SciPy</em> o <em>Scikit-learn</em> instalados vía <em>pip</em> o <em>conda</em> utilizan <em>Cython</em> para compilar secciones de tales librerías adaptadas a nuestras máquinas.</p>
+<p>Una compilación AOT crea una librería <strong>estática</strong>, especializada para nuestras máquinas y se puede utilizar de forma instantánea. <em>Cython</em> es un paquete que realiza la compilación de módulos de <em>Python</em>. Por ejemplo, las librerías de <em>NumPy</em>, <em>SciPy</em> o <em>Scikit-learn</em> instalados vía <em>pip</em> o <em>conda</em> utilizan <em>Cython</em> para compilar secciones de tales librerías adaptadas a nuestras máquinas.</p>
 <p>Una compilación JIT no requiere que se realice “trabajo previo” de nuestro lado, la compilación se realiza al tiempo que se utiliza el código, <em>at runtime</em>. En términos coloquiales, en una compilación JIT, se iniciará la ejecución del código identificando diferentes secciones que pueden compilarse y que por tanto se ejecutarán más lentamente de lo normal pues se estará realizando la compilación al tiempo de ejecución. Sin embargo, en sucesivas ejecuciones del <strong>mismo</strong> código tales secciones serán más rápidas. En resúmen se requiere un <em>warm-up</em>, ver por ejemplo <a class="reference external" href="https://doc.pypy.org/en/latest/faq.html#how-fast-is-pypy">how-fast-is-pypy</a>.</p>
 <p>La compilación AOT da los mejores <em>speedups</em> pero solicita mayor trabajo de nuestro lado. La compilación JIT da buenos <em>speedups</em> con poca intervención nuestra pero utiliza más memoria y más tiempo en iniciar la ejecución del código, ver por ejemplo <a class="reference external" href="https://raw.githubusercontent.com/vstinner/talks/main/2019-EuroPython/python_performance.pdf">python_performance-slide-15</a> acerca de <em>PyPy issues</em>.</p>
 <p>Para la ejecución frecuente de <em>scripts</em> pequeños la compilación AOT resulta una mejor opción que la compilación JIT, ver por ejemplo <a class="reference external" href="https://doc.pypy.org/en/latest/faq.html#couldn-t-the-jit-dump-and-reload-already-compiled-machine-code">couldn-t-the-jit-dump-and-reload-already-compiled-machine-code</a>.</p>
@@ -1093,7 +1093,7 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>Además cada número en <em>Python</em> está <em>wrapped up</em> en un objeto de <em>Python</em> de alto nivel. Por ejemplo para un entero se tiene el objeto <code class="docutils literal notranslate"><span class="pre">int</span></code>. Tal objeto tiene otras funciones por ejemplo <code class="docutils literal notranslate"><span class="pre">__str__</span></code> para imprimirlo.</p></li>
-<li><p>Es muy común que en los códigos no cambien los tipos por lo que se la compilación estática es una buena opción para una ejecución más rápida.</p></li>
+<li><p>Es muy común que en los códigos no cambien los tipos por lo que se la compilación AOT es una buena opción para una ejecución más rápida.</p></li>
 </ul>
 </div>
 </div>
@@ -1105,7 +1105,7 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 <p class="sidebar-title"></p>
 <p>La frase código tipo <em>CPU-bound</em> es código cuya ejecución involucra un porcentaje mayor para uso de CPU que uso de memoria o I/O.</p>
 </div>
-<p><em>Cython</em> tiene un buen tiempo en la comunidad (2007 aproximadamente), es altamente usado y es de las herramientas preferidas para código tipo <em>CPU-bound</em>. Utiliza el compilador <a class="reference external" href="https://gcc.gnu.org/">gcc</a>. Es un <em>fork</em> de <a class="reference external" href="https://www.csse.canterbury.ac.nz/greg.ewing/python/Pyrex/">Pyrex</a> (2002) que expande sus capacidades.</p>
+<p><em>Cython</em> tiene un buen tiempo en la comunidad (2007 aproximadamente), es altamente usado y es de las herramientas preferidas para código tipo <em>CPU-bound</em>. Es un <em>fork</em> de <a class="reference external" href="https://www.csse.canterbury.ac.nz/greg.ewing/python/Pyrex/">Pyrex</a> (2002) que expande sus capacidades.</p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p><em>Pyrex</em> en términos simples es <em>Python</em> con manejo de tipo de valores de <em>C</em>. <em>Pyrex</em> traduce el código escrito en <em>Python</em> a código de <em>C</em> (lo cual evita el uso de la <a class="reference external" href="https://docs.python.org/3/c-api/index.html">Python/C API</a>) y permite la declaración de parámetros o valores en tipos de valores de <em>C</em>.</p>
@@ -1113,7 +1113,11 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 <p>Requiere conocimiento del lenguaje <em>C</em> lo cual debe tomarse en cuenta en un equipo de desarrollo de <em>software</em>, sin embargo, se sugiere utilizar <em>cython</em> en secciones pequeñas del código.</p>
 <p>Soporta la <a class="reference external" href="https://www.openmp.org/">API OpenMP</a> para aprovechar los múltiples <em>cores</em> de una máquina.</p>
 <p>Cython puede utilizarse vía un script <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> que compila un módulo para usarse con <code class="docutils literal notranslate"><span class="pre">import</span></code> y también puede utilizarse en <em>IPython</em> vía un comando <em>magic</em>.</p>
-<img src="https://dl.dropboxusercontent.com/s/162u0zcfpm8lewu/cython.png?dl=0" heigth="900" width="900"><p><em>Cython</em> y el compilador analizan el código anotado para determinar qué instrucciones pueden optimizarse mediante una compilación AOT.</p>
+<img src="https://dl.dropboxusercontent.com/s/162u0zcfpm8lewu/cython.png?dl=0" heigth="900" width="900"><div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>En el dibujo se está omitiendo en el paso de compilación a código de máquina detalles como son: creación de un archivo <code class="docutils literal notranslate"><span class="pre">.c</span></code>  y compilación de tal archivo con el compilador <em>gcc</em> al módulo compilado (en sistemas Unix tiene extensión <code class="docutils literal notranslate"><span class="pre">.so</span></code>).</p>
+</div>
+<p><em>Cython</em> y el compilador <em>gcc</em> analizan el código anotado para determinar qué instrucciones pueden optimizarse mediante una compilación AOT.</p>
 </div>
 <div class="section" id="en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython">
 <h2>¿En qué casos y qué tipo de ganancias en velocidad podemos esperar al usar Cython?<a class="headerlink" href="#en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython" title="Permalink to this headline">¶</a></h2>
