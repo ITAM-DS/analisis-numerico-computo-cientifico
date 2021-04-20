@@ -697,7 +697,7 @@ uname -ar #r for kernel, a for all
 <li><p><em>A better API for extending Python in C</em>: <a class="reference external" href="https://github.com/hpyproject/hpy">hpyproject</a></p></li>
 </ul>
 </li>
-<li><p>Ver <a class="reference external" href="https://en.wikipedia.org/wiki/Global_interpreter_lock">Global_interpreter_lock</a> para una explicación más general.</p></li>
+<li><p>Ver <a class="reference external" href="https://en.wikipedia.org/wiki/Global_interpreter_lock">global interpreter lock</a> para una explicación más general.</p></li>
 </ul>
 </div>
 </div>
@@ -710,10 +710,10 @@ uname -ar #r for kernel, a for all
 <p class="sidebar-title"></p>
 <p>Es común utilizar la palabra librería en lugar de paquete en el contexto de compilación.</p>
 </div>
-<p>Una compilación AOT crea una librería <strong>estática</strong>, especializada para nuestras máquinas y se puede utilizar de forma instantánea. <em>Cython</em> es un paquete que realiza la compilación de módulos de <em>Python</em>. Por ejemplo, las librerías de <em>NumPy</em>, <em>SciPy</em> o <em>Scikit-learn</em> instalados vía <em>pip</em> o <em>conda</em> utilizan <em>Cython</em> para compilar secciones de tales librerías adaptadas a nuestras máquinas.</p>
+<p>Una compilación AOT crea una librería, especializada para nuestras máquinas y se puede utilizar de forma instantánea. <em>Cython</em> es un paquete que realiza la compilación de módulos de <em>Python</em>. Por ejemplo, las librerías de <em>NumPy</em>, <em>SciPy</em> o <em>Scikit-learn</em> instalados vía <em>pip</em> o <em>conda</em> utilizan <em>Cython</em> para compilar secciones de tales librerías adaptadas a nuestras máquinas.</p>
 <p>Una compilación JIT no requiere que se realice “trabajo previo” de nuestro lado, la compilación se realiza al tiempo que se utiliza el código, <em>at runtime</em>. En términos coloquiales, en una compilación JIT, se iniciará la ejecución del código identificando diferentes secciones que pueden compilarse y que por tanto se ejecutarán más lentamente de lo normal pues se estará realizando la compilación al tiempo de ejecución. Sin embargo, en sucesivas ejecuciones del <strong>mismo</strong> código tales secciones serán más rápidas. En resúmen se requiere un <em>warm-up</em>, ver por ejemplo <a class="reference external" href="https://doc.pypy.org/en/latest/faq.html#how-fast-is-pypy">how-fast-is-pypy</a>.</p>
 <p>La compilación AOT da los mejores <em>speedups</em> pero solicita mayor trabajo de nuestro lado. La compilación JIT da buenos <em>speedups</em> con poca intervención nuestra pero utiliza más memoria y más tiempo en iniciar la ejecución del código, ver por ejemplo <a class="reference external" href="https://raw.githubusercontent.com/vstinner/talks/main/2019-EuroPython/python_performance.pdf">python_performance-slide-15</a> acerca de <em>PyPy issues</em>.</p>
-<p>Para la ejecución frecuente de <em>scripts</em> pequeños la compilación AOT resulta una mejor opción que la compilación JIT, ver por ejemplo <a class="reference external" href="https://doc.pypy.org/en/latest/faq.html#couldn-t-the-jit-dump-and-reload-already-compiled-machine-code">couldn-t-the-jit-dump-and-reload-already-compiled-machine-code</a>.</p>
+<p>Para la ejecución frecuente de <em>scripts</em> pequeños la compilación AOT resulta una mejor opción que la compilación JIT, ver por ejemplo <a class="reference external" href="https://doc.pypy.org/en/latest/faq.html#couldn-t-the-jit-dump-and-reload-already-compiled-machine-code">couldn’t the jit dump and reload already compiled machine code</a>.</p>
 <p>A continuación se presentan ejecuciones en diferentes lenguajes con sus implementaciones estándar para aproximar el área debajo de la curva de <span class="math notranslate nohighlight">\(f(x) = e^{-x^2}\)</span> en el intervalo <span class="math notranslate nohighlight">\([0, 1]\)</span> con la regla del rectángulo compuesto. Se mide el tiempo de ejecución utilizando <span class="math notranslate nohighlight">\(n = 10^7\)</span> nodos.</p>
 </div>
 <div class="section" id="python">
@@ -1093,7 +1093,7 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>Además cada número en <em>Python</em> está <em>wrapped up</em> en un objeto de <em>Python</em> de alto nivel. Por ejemplo para un entero se tiene el objeto <code class="docutils literal notranslate"><span class="pre">int</span></code>. Tal objeto tiene otras funciones por ejemplo <code class="docutils literal notranslate"><span class="pre">__str__</span></code> para imprimirlo.</p></li>
-<li><p>Es muy común que en los códigos no cambien los tipos por lo que se la compilación AOT es una buena opción para una ejecución más rápida.</p></li>
+<li><p>Es muy común que en los códigos no cambien los tipos por lo que la compilación AOT es una buena opción para una ejecución más rápida.</p></li>
 </ul>
 </div>
 </div>
@@ -1115,7 +1115,7 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 <p>Cython puede utilizarse vía un script <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> que compila un módulo para usarse con <code class="docutils literal notranslate"><span class="pre">import</span></code> y también puede utilizarse en <em>IPython</em> vía un comando <em>magic</em>.</p>
 <img src="https://dl.dropboxusercontent.com/s/162u0zcfpm8lewu/cython.png?dl=0" heigth="900" width="900"><div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>En el dibujo se está omitiendo en el paso de compilación a código de máquina detalles como son: creación de un archivo <code class="docutils literal notranslate"><span class="pre">.c</span></code>  y compilación de tal archivo con el compilador <em>gcc</em> al módulo compilado (en sistemas Unix tiene extensión <code class="docutils literal notranslate"><span class="pre">.so</span></code>).</p>
+<p>En el paso de compilación a código de máquina del dibujo anterior se omitieron detalles como son: creación de un archivo <code class="docutils literal notranslate"><span class="pre">.c</span></code>  y compilación de tal archivo con el compilador <em>gcc</em> al módulo compilado (en sistemas Unix tiene extensión <code class="docutils literal notranslate"><span class="pre">.so</span></code>).</p>
 </div>
 <p><em>Cython</em> y el compilador <em>gcc</em> analizan el código anotado para determinar qué instrucciones pueden optimizarse mediante una compilación AOT.</p>
 </div>
