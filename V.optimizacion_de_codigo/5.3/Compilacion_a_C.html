@@ -409,6 +409,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#por-que-dar-informacion-sobre-el-tipo-de-valores-u-objetos-que-se-utilizan-en-un-codigo-ayuda-a-que-su-ejecucion-sea-mas-rapida">
+   ¿Por qué dar información sobre el tipo de valores (u objetos) que se utilizan en un código ayuda a que su ejecución sea más rápida?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cython">
    Cython
   </a>
@@ -705,10 +710,11 @@ uname -ar #r for kernel, a for all
 <p class="sidebar-title"></p>
 <p>Es común utilizar la palabra librería en lugar de paquete en el contexto de compilación.</p>
 </div>
-<p>Una compilación AOT crea una librería estática, especializada para nuestras máquinas y se puede utilizar de forma instantánea. Por ejemplo, las librerías de <em>NumPy</em>, <em>SciPy</em> o <em>Scikit-learn</em> instalados vía <em>pip</em> o <em>conda</em> utilizan <em>Cython</em> para compilar secciones de tales librerías adaptadas a nuestras máquinas.</p>
+<p>Una compilación AOT crea una librería <strong>estática</strong>, especializada para nuestras máquinas y se puede utilizar de forma instantánea. Por ejemplo, las librerías de <em>NumPy</em>, <em>SciPy</em> o <em>Scikit-learn</em> instalados vía <em>pip</em> o <em>conda</em> utilizan <em>Cython</em> para compilar secciones de tales librerías adaptadas a nuestras máquinas.</p>
 <p>Una compilación JIT no requiere que se realice “trabajo previo” de nuestro lado, la compilación se realiza al tiempo que se utiliza el código, <em>at runtime</em>. En términos coloquiales, en una compilación JIT, se iniciará la ejecución del código identificando diferentes secciones que pueden compilarse y que por tanto se ejecutarán más lentamente de lo normal pues se estará realizando la compilación al tiempo de ejecución. Sin embargo, en sucesivas ejecuciones del <strong>mismo</strong> código tales secciones serán más rápidas. En resúmen se requiere un <em>warm-up</em>, ver por ejemplo <a class="reference external" href="https://doc.pypy.org/en/latest/faq.html#how-fast-is-pypy">how-fast-is-pypy</a>.</p>
 <p>La compilación AOT da los mejores <em>speedups</em> pero solicita mayor trabajo de nuestro lado. La compilación JIT da buenos <em>speedups</em> con poca intervención nuestra pero utiliza más memoria y más tiempo en iniciar la ejecución del código, ver por ejemplo <a class="reference external" href="https://raw.githubusercontent.com/vstinner/talks/main/2019-EuroPython/python_performance.pdf">python_performance-slide-15</a> acerca de <em>PyPy issues</em>.</p>
 <p>Para la ejecución frecuente de <em>scripts</em> pequeños la compilación AOT resulta una mejor opción que la compilación JIT, ver por ejemplo <a class="reference external" href="https://doc.pypy.org/en/latest/faq.html#couldn-t-the-jit-dump-and-reload-already-compiled-machine-code">couldn-t-the-jit-dump-and-reload-already-compiled-machine-code</a>.</p>
+<p>A continuación se presentan ejecuciones en diferentes lenguajes con sus implementaciones estándar para aproximar el área debajo de la curva de <span class="math notranslate nohighlight">\(f(x) = e^{-x^2}\)</span> en el intervalo <span class="math notranslate nohighlight">\([0, 1]\)</span> con la regla del rectángulo compuesto. Se mide el tiempo de ejecución utilizando <span class="math notranslate nohighlight">\(n = 10^7\)</span> nodos.</p>
 </div>
 <div class="section" id="python">
 <h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
@@ -1040,19 +1046,75 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 </div>
 </div>
 </div>
+<div class="section" id="por-que-dar-informacion-sobre-el-tipo-de-valores-u-objetos-que-se-utilizan-en-un-codigo-ayuda-a-que-su-ejecucion-sea-mas-rapida">
+<h2>¿Por qué dar información sobre el tipo de valores (u objetos) que se utilizan en un código ayuda a que su ejecución sea más rápida?<a class="headerlink" href="#por-que-dar-informacion-sobre-el-tipo-de-valores-u-objetos-que-se-utilizan-en-un-codigo-ayuda-a-que-su-ejecucion-sea-mas-rapida" title="Permalink to this headline">¶</a></h2>
+<p><em>Python</em> es <em>dynamically typed</em> que se refiere a que un objeto de cualquier tipo y cualquier <em>statement</em> que haga referencia a un objeto, <strong>pueden cambiar su tipo</strong>. Esto hace difícil que la máquina virtual pueda optimizar la ejecución del código pues no se conoce qué tipo será utilizado para las operaciones futuras. Por ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;float&#39;&gt; 1.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="n">j</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;complex&#39;&gt; 1.4142135623730951
+</pre></div>
+</div>
+</div>
+</div>
+<p>La función <code class="docutils literal notranslate"><span class="pre">abs</span></code> trabaja diferente dependiendo del tipo de objeto. Para un número entero o punto flotante regresa el negativo de <span class="math notranslate nohighlight">\(-1.0\)</span>  y para un número complejo calcula una norma Euclidiana tomando de <span class="math notranslate nohighlight">\(v\)</span> su parte real e imaginaria: <span class="math notranslate nohighlight">\(\text{abs}(c) = \sqrt{c.real^2 + c.imag^2}\)</span>.</p>
+<p>Lo anterior en la práctica implica la ejecución de más instrucciones y por tanto mayor tiempo en ejecutarse. Antes de llamar a <code class="docutils literal notranslate"><span class="pre">abs</span></code> en la variable, <em>Python</em> revisa el tipo y decide cuál método llamar (<em>overhead</em>).</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Además cada número en <em>Python</em> está <em>wrapped up</em> en un objeto de <em>Python</em> de alto nivel. Por ejemplo para un entero se tiene el objeto <code class="docutils literal notranslate"><span class="pre">int</span></code>. Tal objeto tiene otras funciones por ejemplo <code class="docutils literal notranslate"><span class="pre">__str__</span></code> para imprimirlo.</p></li>
+<li><p>Es muy común que en los códigos no cambien los tipos por lo que se la compilación estática es una buena opción para una ejecución más rápida.</p></li>
+</ul>
+</div>
+</div>
 <div class="section" id="cython">
 <h2><a class="reference external" href="https://cython.org/">Cython</a><a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
-<p>Cython es un compilador que traduce instrucciones escritas en Python “anotadas” en un módulo compilado. Este módulo puede ser importado como un módulo regular de Python utilizando <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p>
+<p>Cython es un compilador que traduce instrucciones escritas en Python <strong>anotadas</strong> en un módulo compilado. Este módulo puede ser importado como un módulo regular de Python utilizando <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p>
 <p>Típicamente las secciones de código que resultan son similares en sintaxis al lenguaje <em>C</em>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La frase código tipo <em>CPU-bound</em> es código cuya ejecución involucra un porcentaje mayor para uso de CPU que uso de memoria o I/O.</p>
 </div>
-<p><em>Cython</em> tiene un buen tiempo en la comunidad (2007 aproximadamente), es altamente usado y es de las herramientas preferidas para código tipo <em>CPU-bound</em>.</p>
+<p><em>Cython</em> tiene un buen tiempo en la comunidad (2007 aproximadamente), es altamente usado y es de las herramientas preferidas para código tipo <em>CPU-bound</em>. Utiliza el compilador <a class="reference external" href="https://gcc.gnu.org/">gcc</a>. Es un <em>fork</em> de <a class="reference external" href="https://www.csse.canterbury.ac.nz/greg.ewing/python/Pyrex/">Pyrex</a> (2002) que expande sus capacidades.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p><em>Pyrex</em> en términos simples es <em>Python</em> con manejo de tipo de valores de <em>C</em>. <em>Pyrex</em> traduce el código escrito en <em>Python</em> a código de <em>C</em> (lo cual evita el uso de la <a class="reference external" href="https://docs.python.org/3/c-api/index.html">Python/C API</a>) y permite la declaración de parámetros o valores en tipos de valores de <em>C</em>.</p>
+</div>
 <p>Requiere conocimiento del lenguaje <em>C</em> lo cual debe tomarse en cuenta en un equipo de desarrollo de <em>software</em>, sin embargo, se sugiere utilizar <em>cython</em> en secciones pequeñas del código.</p>
 <p>Soporta la <a class="reference external" href="https://www.openmp.org/">API OpenMP</a> para aprovechar los múltiples <em>cores</em> de una máquina.</p>
 <p>Cython puede utilizarse vía un script <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> que compila un módulo para usarse con <code class="docutils literal notranslate"><span class="pre">import</span></code> y también puede utilizarse en <em>IPython</em> vía un comando <em>magic</em>.</p>
-<img src="https://dl.dropboxusercontent.com/s/162u0zcfpm8lewu/cython.png?dl=0" heigth="900" width="900"></div>
+<img src="https://dl.dropboxusercontent.com/s/162u0zcfpm8lewu/cython.png?dl=0" heigth="900" width="900"><p><em>Cython</em> y el compilador analizan el código anotado para determinar qué instrucciones pueden optimizarse mediante una compilación AOT.</p>
+</div>
 <div class="section" id="en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython">
 <h2>¿En qué casos y qué tipo de ganancias en velocidad podemos esperar al usar Cython?<a class="headerlink" href="#en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython" title="Permalink to this headline">¶</a></h2>
 <p>Un caso es en el que se tenga un código con muchos <em>loops</em> que realicen operaciones matemáticas típicamente no vectorizadas o que no pueden vectorizarse. Esto es, códigos en los que las instrucciones son básicamente sólo <em>Python</em> sin utilizar paquetes externos. Además, si en el ciclo las variables no cambian de su tipo (por ejemplo de <code class="docutils literal notranslate"><span class="pre">int</span></code> a <code class="docutils literal notranslate"><span class="pre">float</span></code>) entonces es un código que obtendrá ganancia en velocidad al compilar a código de máquina.</p>
@@ -1077,9 +1139,9 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 </div>
 <p>Para este caso requerimos tres archivos:</p>
 <p>1.El código que será compilado en un archivo con extensión <code class="docutils literal notranslate"><span class="pre">.pyx</span></code> (escrito en <em>Python</em>).</p>
-<div class="admonition-comentario admonition">
-<p class="admonition-title">Comentario</p>
-<p>La extensión <code class="docutils literal notranslate"><span class="pre">.pyx</span></code> se utiliza en el lenguaje <a class="reference external" href="https://www.csse.canterbury.ac.nz/greg.ewing/python/Pyrex/">Pyrex</a> que en términos simples es <em>Python</em> con manejo de tipo de valores de <em>C</em>. <em>Pyrex</em> traduce el código escrito en <em>Python</em> a código de <em>C</em> (lo cual evita el uso de la <a class="reference external" href="https://docs.python.org/3/c-api/index.html">Python/C API</a>) y permite la declaración de parámetros o valores en tipos de valores de <em>C</em>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>La extensión <code class="docutils literal notranslate"><span class="pre">.pyx</span></code> se utiliza en el lenguaje <em>Pyrex</em>.</p>
 </div>
 <p>2.Un archivo <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> que contiene las instrucciones para llamar a <em>cython</em> y se encarga de crear el módulo compilado.</p>
 <p>3.El código escrito en <em>Python</em> que importará el módulo compilado.</p>
