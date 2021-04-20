@@ -424,8 +424,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo-con-un-script-setup-py">
-     Ejemplo con un script
+    <a class="reference internal nav-link" href="#ejemplo-utilizando-un-archivo-setup-py">
+     Ejemplo utilizando un archivo
      <code class="docutils literal notranslate">
       <span class="pre">
        setup.py
@@ -433,7 +433,34 @@
      </code>
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comando-de-magic-cython">
+     Comando de
+     <em>
+      magic
+     </em>
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       %cython
+      </span>
+     </code>
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cython-annotations-para-analizar-un-bloque-de-codigo">
+   Cython
+   <em>
+    annotations
+   </em>
+   para analizar un bloque de código
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#via-linea-de-comando">
+   Vía línea de comando:
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias-de-interes">
@@ -1098,7 +1125,7 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 </div>
 </div>
 <div class="section" id="cython">
-<h2><a class="reference external" href="https://cython.org/">Cython</a><a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
+<h2><a class="reference external" href="https://github.com/cython/cython/">Cython</a><a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
 <p>Cython es un compilador que traduce instrucciones escritas en Python <strong>anotadas</strong> en un módulo compilado. Este módulo puede ser importado como un módulo regular de Python utilizando <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p>
 <p>Típicamente las secciones de código que resultan son similares en sintaxis al lenguaje <em>C</em>.</p>
 <div class="margin sidebar">
@@ -1128,8 +1155,8 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 </div>
 <p>No esperamos tener un <em>speedup</em> después de compilar para llamadas a librerías externas (por ejemplo paqueterías que manejan bases de datos). También es poco probable que se obtengan ganancias significativas en programas que tengan alta carga de I/O.</p>
 <p>En general es poco probable que tu código compilado se ejecute más rápido que un código en <em>C</em> “bien escrito” y también es poco probable que se ejecute más lento. Es muy posible que el código <em>C</em> generado desde <em>Python</em> mediante <em>Cython</em> pueda alcanzar las velocidades de un código escrito en <em>C</em>, a menos que la persona que programó en <em>C</em> tenga un gran conocimiento de formas de hacer que el código de <em>C</em> se ajuste a la arquitectura de la máquina sobre la que se ejecutan los códigos.</p>
-<div class="section" id="ejemplo-con-un-script-setup-py">
-<h3>Ejemplo con un script <code class="docutils literal notranslate"><span class="pre">setup.py</span></code><a class="headerlink" href="#ejemplo-con-un-script-setup-py" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="ejemplo-utilizando-un-archivo-setup-py">
+<h3>Ejemplo utilizando un archivo <code class="docutils literal notranslate"><span class="pre">setup.py</span></code><a class="headerlink" href="#ejemplo-utilizando-un-archivo-setup-py" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -1147,7 +1174,7 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 <p class="admonition-title">Observación</p>
 <p>La extensión <code class="docutils literal notranslate"><span class="pre">.pyx</span></code> se utiliza en el lenguaje <em>Pyrex</em>.</p>
 </div>
-<p>2.Un archivo <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> que contiene las instrucciones para llamar a <em>cython</em> y se encarga de crear el módulo compilado.</p>
+<p>2.Un archivo <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> que contiene las instrucciones para llamar a <em>Cython</em> y se encarga de crear el módulo compilado.</p>
 <p>3.El código escrito en <em>Python</em> que importará el módulo compilado.</p>
 <p>Archivo <code class="docutils literal notranslate"><span class="pre">.pyx</span></code>:</p>
 <div class="cell docutils container">
@@ -1264,7 +1291,7 @@ x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,re
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 0.0001289844512939453 segundos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 0.0001354217529296875 segundos
 </pre></div>
 </div>
 </div>
@@ -1288,6 +1315,142 @@ x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,re
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="comando-de-magic-cython">
+<h3>Comando de <em>magic</em> <code class="docutils literal notranslate"><span class="pre">%cython</span></code><a class="headerlink" href="#comando-de-magic-cython" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Ver <a class="reference external" href="https://ipython.readthedocs.io/en/stable/config/extensions/index.html?highlight=cython#extensions-bundled-with-ipython">extensions-bundled-with-ipython</a> para extensiones que antes se incluían en <em>Ipython</em>.</p>
+</div>
+<p>Al instalar <em>Cython</em> se incluye tal comando. Al ejecutarse crea el archivo <code class="docutils literal notranslate"><span class="pre">.pyx</span></code>, lo compila con <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> e importa en el <em>notebook</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> Cython
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">cython</span>
+def Rcf(f,a,b,n): #Rcf: rectángulo compuesto para f
+    &quot;&quot;&quot;
+    Compute numerical approximation using rectangle or mid-point
+    method in an interval.
+    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for
+    i=0,1,...,n-1 and h_hat=(b-a)/n
+    Args:
+    
+        f (float): function expression of integrand.
+        
+        a (float): left point of interval.
+        
+        b (float): right point of interval.
+        
+        n (float): number of subintervals.
+        
+    Returns:
+    
+        sum_res (float): numerical approximation to integral
+            of f in the interval a,b
+    &quot;&quot;&quot;
+    h_hat = (b-a)/n
+    nodes = [a+(i+1/2)*h_hat for i in range(n)]
+    sum_res = 0
+    for node in nodes:
+        sum_res = sum_res+f(node)
+    return h_hat*sum_res
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">secs</span> <span class="o">=</span> <span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rcf tomó&quot;</span><span class="p">,</span><span class="n">secs</span><span class="p">,</span><span class="s2">&quot;segundos&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 0.00021123886108398438 segundos
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">res</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="cython-annotations-para-analizar-un-bloque-de-codigo">
+<h2>Cython <em>annotations</em> para analizar un bloque de código<a class="headerlink" href="#cython-annotations-para-analizar-un-bloque-de-codigo" title="Permalink to this headline">¶</a></h2>
+<p>Cython tiene una opción de <em>annotation</em> que generará un archivo con extensión <code class="docutils literal notranslate"><span class="pre">.html</span></code> que se puede visualizar en jupyterlab o en un browser.</p>
+<p>Cada línea puede ser expandida haciendo un doble click que mostrará el código C generado. Líneas más amarillas refieren a más llamadas en la máquina virtual de Python, mientras que líneas más blancas significan “más código en C y no Python”.</p>
+<p>El objetivo es remover la mayor cantidad de líneas amarillas posibles pues típicamente son costosas en tiempo y si las líneas están dentro de loops son todavía más costosas. Así se tendrán códigos cuyas anotaciones sean lo más blancas posibles.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Concentra tu atención en las líneas que son amarillas y están dentro de los <em>loops</em>, no inviertas tiempo en líneas amarillas que están fuera de <em>loops</em> y que no causan una ejecución lenta (para identificar lo anterior el perfilamiento es de ayuda).</p>
+</div>
+</div>
+<div class="section" id="via-linea-de-comando">
+<h2>Vía línea de comando:<a class="headerlink" href="#via-linea-de-comando" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+$HOME/.local/bin/cython -3 --annotate Rcf_cython.pyx
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ver archivo creado: <code class="docutils literal notranslate"><span class="pre">Rcf_cython.html</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s2">&quot;Rcf_cython.html&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="700"
+    height="600"
+    src="Rcf_cython.html"
+    frameborder="0"
+    allowfullscreen
+></iframe>
+</div></div>
 </div>
 </div>
 <div class="section" id="referencias-de-interes">
