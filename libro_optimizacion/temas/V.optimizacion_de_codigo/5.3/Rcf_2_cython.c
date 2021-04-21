@@ -1122,7 +1122,7 @@ static PyObject *__pyx_codeobj__2;
 
 /* Python wrapper */
 static PyObject *__pyx_pw_12Rcf_2_cython_1Rcf(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_12Rcf_2_cython_Rcf[] = "\n    Compute numerical approximation using rectangle or mid-point\n    method in an interval.\n    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for\n    i=0,1,...,n-1 and h_hat=(b-a)/n\n    Args:\n    \n        f (float): function expression of integrand.\n        \n        a (float): left point of interval.\n        \n        b (float): right point of interval.\n        \n        n (float): number of subintervals.\n        \n    Returns:\n    \n        sum_res (float): numerical approximation to integral\n            of f in the interval a,b\n    ";
+static char __pyx_doc_12Rcf_2_cython_Rcf[] = "\n    Compute numerical approximation using rectangle or mid-point\n    method in an interval.\n    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for\n    i=0,1,...,n-1 and h_hat=(b-a)/n\n    Args:\n    \n        f (float): function expression of integrand.\n        \n        a (float): left point of interval.\n        \n        b (float): right point of interval.\n        \n        n (int): number of subintervals.\n        \n    Returns:\n    \n        sum_res (float): numerical approximation to integral\n            of f in the interval a,b\n    ";
 static PyMethodDef __pyx_mdef_12Rcf_2_cython_1Rcf = {"Rcf", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12Rcf_2_cython_1Rcf, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12Rcf_2_cython_Rcf};
 static PyObject *__pyx_pw_12Rcf_2_cython_1Rcf(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_f = 0;
