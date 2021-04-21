@@ -449,18 +449,16 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cython-annotations-para-analizar-un-bloque-de-codigo">
-   Cython
-   <em>
-    annotations
-   </em>
-   para analizar un bloque de código
+  <a class="reference internal nav-link" href="#anotaciones-para-analizar-un-bloque-de-codigo">
+   Anotaciones para analizar un bloque de código
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#via-linea-de-comando">
-   Vía línea de comando:
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-via-linea-de-comando">
+     Ejemplo vía línea de comando
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#referencias-de-interes">
@@ -712,7 +710,7 @@ uname -ar #r for kernel, a for all
 <li><p>Realizar un <em>parsing</em> de las instrucciones y ejecutarlas de forma casi inmediata (intérprete). Como ejemplo está el lenguaje: <a class="reference external" href="https://en.wikipedia.org/wiki/BASIC">Beginners’ All-purpose Symbolic Instruction Code: BASIC</a></p></li>
 <li><p>Realizar un <em>parsing</em> de las instrucciones, traducirlas a una <a class="reference external" href="https://en.wikipedia.org/wiki/Intermediate_representation">representación intermedia</a> y ejecutarlas. La traducción a una representación intermedia es un <a class="reference external" href="https://en.wikipedia.org/wiki/Bytecode">bytecode</a>. Como ejemplo se encuentra el lenguaje <em>Python</em> en su implementación <a class="reference external" href="https://github.com/python/cpython">CPython</a>.</p></li>
 <li><p>Compilar <a class="reference external" href="https://en.wikipedia.org/wiki/Ahead-of-time_compilation">ahead of time</a> (AOT) las instrucciones antes de su ejecución. Como ejemplo se encuentran los lenguajes <em>C, C++</em> y <em>Fortran</em>.</p></li>
-<li><p>Realizar un <em>parsing</em> de las instrucciones y compilarlas en una forma <a class="reference external" href="https://en.wikipedia.org/wiki/Just-in-time_compilation">just in time compilation</a> (JIT) <em>at</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Runtime_(program_lifecycle_phase)">runtime</a>. Como ejemplos se encuentran los lenguajes <em>Julia</em> y <em>Python</em> en su implementación con <em>PyPy</em>.</p></li>
+<li><p>Realizar un <em>parsing</em> de las instrucciones y compilarlas en una forma <a class="reference external" href="https://en.wikipedia.org/wiki/Just-in-time_compilation">just in time compilation</a> (JIT) <em>at</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Runtime_(program_lifecycle_phase)">runtime</a>. Como ejemplos se encuentran los lenguajes <em>Julia</em> y <em>Python</em> en su implementación con <a class="reference external" href="https://doc.pypy.org/en/latest/index.html">PyPy</a>.</p></li>
 </ul>
 <p>La ejecución de instrucciones será más rápida dependiendo del lenguaje, la implementación que se haga del mismo y de sus <em>features</em>.</p>
 <div class="admonition-comentarios admonition">
@@ -720,7 +718,7 @@ uname -ar #r for kernel, a for all
 <ul class="simple">
 <li><p>Varios proyectos están en desarrollo para mejorar eficiencia y otros temas como el uso del <a class="reference external" href="https://docs.python.org/3.9/glossary.html#term-global-interpreter-lock">global interpreter lock</a> en <em>Python</em>. Algunos de ellos son:</p>
 <ul>
-<li><p><a class="reference external" href="https://doc.pypy.org/en/latest/index.html">PyPy</a></p></li>
+<li><p><em>PyPy</em></p></li>
 <li><p><em>A better API for extending Python in C</em>: <a class="reference external" href="https://github.com/hpyproject/hpy">hpyproject</a></p></li>
 </ul>
 </li>
@@ -1114,7 +1112,7 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 </div>
 </div>
 </div>
-<p>La función <code class="docutils literal notranslate"><span class="pre">abs</span></code> trabaja diferente dependiendo del tipo de objeto. Para un número entero o punto flotante regresa el negativo de <span class="math notranslate nohighlight">\(-1.0\)</span>  y para un número complejo calcula una norma Euclidiana tomando de <span class="math notranslate nohighlight">\(v\)</span> su parte real e imaginaria: <span class="math notranslate nohighlight">\(\text{abs}(c) = \sqrt{c.real^2 + c.imag^2}\)</span>.</p>
+<p>La función <code class="docutils literal notranslate"><span class="pre">abs</span></code> trabaja diferente dependiendo del tipo de objeto. Para un número entero o punto flotante regresa el negativo de <span class="math notranslate nohighlight">\(-1.0\)</span>  y para un número complejo calcula una norma Euclidiana tomando de <span class="math notranslate nohighlight">\(v\)</span> su parte real e imaginaria: <span class="math notranslate nohighlight">\(\text{abs}(v) = \sqrt{v.real^2 + v.imag^2}\)</span>.</p>
 <p>Lo anterior en la práctica implica la ejecución de más instrucciones y por tanto mayor tiempo en ejecutarse. Antes de llamar a <code class="docutils literal notranslate"><span class="pre">abs</span></code> en la variable, <em>Python</em> revisa el tipo y decide cuál método llamar (<em>overhead</em>).</p>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
@@ -1126,35 +1124,46 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 </div>
 <div class="section" id="cython">
 <h2><a class="reference external" href="https://github.com/cython/cython/">Cython</a><a class="headerlink" href="#cython" title="Permalink to this headline">¶</a></h2>
-<p>Cython es un compilador que traduce instrucciones escritas en Python <strong>anotadas</strong> en un módulo compilado. Este módulo puede ser importado como un módulo regular de Python utilizando <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p>
-<p>Típicamente las secciones de código que resultan son similares en sintaxis al lenguaje <em>C</em>.</p>
+<ul class="simple">
+<li><p>Es un compilador que traduce instrucciones <strong>anotadas</strong> y escritas en un lenguaje híbrido entre Python y C que resultan un módulo compilado. Este módulo puede ser importado como un módulo regular de Python utilizando <code class="docutils literal notranslate"><span class="pre">import</span></code>. Típicamente el módulo compilado resulta ser similar en sintaxis al lenguaje <em>C</em>.</p></li>
+</ul>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La frase código tipo <em>CPU-bound</em> es código cuya ejecución involucra un porcentaje mayor para uso de CPU que uso de memoria o I/O.</p>
 </div>
-<p><em>Cython</em> tiene un buen tiempo en la comunidad (2007 aproximadamente), es altamente usado y es de las herramientas preferidas para código tipo <em>CPU-bound</em>. Es un <em>fork</em> de <a class="reference external" href="https://www.csse.canterbury.ac.nz/greg.ewing/python/Pyrex/">Pyrex</a> (2002) que expande sus capacidades.</p>
+<ul class="simple">
+<li><p>Tiene un buen tiempo en la comunidad (2007 aproximadamente), es altamente usado y es de las herramientas preferidas para código tipo <em>CPU-bound</em>. Es un <em>fork</em> de <a class="reference external" href="https://www.csse.canterbury.ac.nz/greg.ewing/python/Pyrex/">Pyrex</a> (2002) que expande sus capacidades.</p></li>
+</ul>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p><em>Pyrex</em> en términos simples es <em>Python</em> con manejo de tipo de valores de <em>C</em>. <em>Pyrex</em> traduce el código escrito en <em>Python</em> a código de <em>C</em> (lo cual evita el uso de la <a class="reference external" href="https://docs.python.org/3/c-api/index.html">Python/C API</a>) y permite la declaración de parámetros o valores en tipos de valores de <em>C</em>.</p>
 </div>
-<p>Requiere conocimiento del lenguaje <em>C</em> lo cual debe tomarse en cuenta en un equipo de desarrollo de <em>software</em>, sin embargo, se sugiere utilizar <em>cython</em> en secciones pequeñas del código.</p>
-<p>Soporta la <a class="reference external" href="https://www.openmp.org/">API OpenMP</a> para aprovechar los múltiples <em>cores</em> de una máquina.</p>
-<p>Cython puede utilizarse vía un script <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> que compila un módulo para usarse con <code class="docutils literal notranslate"><span class="pre">import</span></code> y también puede utilizarse en <em>IPython</em> vía un comando <em>magic</em>.</p>
+<ul class="simple">
+<li><p>Requiere conocimiento del lenguaje <em>C</em> lo cual debe tomarse en cuenta en un equipo de desarrollo de <em>software</em> y se sugiere utilizarlo en secciones pequeñas del código.</p></li>
+<li><p>Soporta la <a class="reference external" href="https://www.openmp.org/">API OpenMP</a> para aprovechar los múltiples <em>cores</em> de una máquina.</p></li>
+<li><p>Puede utilizarse vía un script <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> que compila un módulo para usarse con <code class="docutils literal notranslate"><span class="pre">import</span></code> y también puede utilizarse en <em>IPython</em> vía un comando <em>magic</em>.</p></li>
+</ul>
 <img src="https://dl.dropboxusercontent.com/s/162u0zcfpm8lewu/cython.png?dl=0" heigth="900" width="900"><div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>En el paso de compilación a código de máquina del dibujo anterior se omitieron detalles como son: creación de un archivo <code class="docutils literal notranslate"><span class="pre">.c</span></code>  y compilación de tal archivo con el compilador <em>gcc</em> al módulo compilado (en sistemas Unix tiene extensión <code class="docutils literal notranslate"><span class="pre">.so</span></code>).</p>
 </div>
-<p><em>Cython</em> y el compilador <em>gcc</em> analizan el código anotado para determinar qué instrucciones pueden optimizarse mediante una compilación AOT.</p>
+<ul class="simple">
+<li><p><em>Cython</em> y el compilador <em>gcc</em> analizan el código anotado para determinar qué instrucciones pueden optimizarse mediante una compilación AOT.</p></li>
+</ul>
 </div>
 <div class="section" id="en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython">
 <h2>¿En qué casos y qué tipo de ganancias en velocidad podemos esperar al usar Cython?<a class="headerlink" href="#en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython" title="Permalink to this headline">¶</a></h2>
-<p>Un caso es en el que se tenga un código con muchos <em>loops</em> que realicen operaciones matemáticas típicamente no vectorizadas o que no pueden vectorizarse. Esto es, códigos en los que las instrucciones son básicamente sólo <em>Python</em> sin utilizar paquetes externos. Además, si en el ciclo las variables no cambian de su tipo (por ejemplo de <code class="docutils literal notranslate"><span class="pre">int</span></code> a <code class="docutils literal notranslate"><span class="pre">float</span></code>) entonces es un código que obtendrá ganancia en velocidad al compilar a código de máquina.</p>
+<ul class="simple">
+<li><p>Un caso es en el que se tenga un código con muchos <em>loops</em> que realicen operaciones matemáticas típicamente no vectorizadas o que no pueden vectorizarse. Esto es, códigos en los que las instrucciones son básicamente sólo <em>Python</em> sin utilizar paquetes externos. Además, si en el ciclo las variables no cambian de su tipo (por ejemplo de <code class="docutils literal notranslate"><span class="pre">int</span></code> a <code class="docutils literal notranslate"><span class="pre">float</span></code>) entonces es un código que obtendrá ganancia en velocidad al compilar a código de máquina.</p></li>
+</ul>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Si tu código de <em>Python</em> llama a operaciones vectorizadas vía <em>NumPy</em> podría ser que no se ejecute más rápido tu código después de compilarlo. Principalmente porque probablemente no se crearán muchos objetos intermedios que es un <em>feature</em> de <em>NumPy</em>.</p>
 </div>
-<p>No esperamos tener un <em>speedup</em> después de compilar para llamadas a librerías externas (por ejemplo paqueterías que manejan bases de datos). También es poco probable que se obtengan ganancias significativas en programas que tengan alta carga de I/O.</p>
-<p>En general es poco probable que tu código compilado se ejecute más rápido que un código en <em>C</em> “bien escrito” y también es poco probable que se ejecute más lento. Es muy posible que el código <em>C</em> generado desde <em>Python</em> mediante <em>Cython</em> pueda alcanzar las velocidades de un código escrito en <em>C</em>, a menos que la persona que programó en <em>C</em> tenga un gran conocimiento de formas de hacer que el código de <em>C</em> se ajuste a la arquitectura de la máquina sobre la que se ejecutan los códigos.</p>
+<ul class="simple">
+<li><p>No esperamos tener un <em>speedup</em> después de compilar para llamadas a librerías externas (por ejemplo paqueterías que manejan bases de datos). También es poco probable que se obtengan ganancias significativas en programas que tengan alta carga de I/O.</p></li>
+<li><p>En general es poco probable que tu código compilado se ejecute más rápido que un código en <em>C</em> “bien escrito” y también es poco probable que se ejecute más lento. Es muy posible que el código <em>C</em> generado desde <em>Python</em> mediante <em>Cython</em> pueda alcanzar las velocidades de un código escrito en <em>C</em>, a menos que la persona que programó en <em>C</em> tenga un gran conocimiento de formas de hacer que el código de <em>C</em> se ajuste a la arquitectura de la máquina sobre la que se ejecutan los códigos.</p></li>
+</ul>
 <div class="section" id="ejemplo-utilizando-un-archivo-setup-py">
 <h3>Ejemplo utilizando un archivo <code class="docutils literal notranslate"><span class="pre">setup.py</span></code><a class="headerlink" href="#ejemplo-utilizando-un-archivo-setup-py" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
@@ -1407,18 +1416,16 @@ def Rcf(f,a,b,n): #Rcf: rectángulo compuesto para f
 </div>
 </div>
 </div>
-<div class="section" id="cython-annotations-para-analizar-un-bloque-de-codigo">
-<h2>Cython <em>annotations</em> para analizar un bloque de código<a class="headerlink" href="#cython-annotations-para-analizar-un-bloque-de-codigo" title="Permalink to this headline">¶</a></h2>
-<p>Cython tiene una opción de <em>annotation</em> que generará un archivo con extensión <code class="docutils literal notranslate"><span class="pre">.html</span></code> que se puede visualizar en jupyterlab o en un browser.</p>
-<p>Cada línea puede ser expandida haciendo un doble click que mostrará el código C generado. Líneas más amarillas refieren a más llamadas en la máquina virtual de Python, mientras que líneas más blancas significan “más código en C y no Python”.</p>
-<p>El objetivo es remover la mayor cantidad de líneas amarillas posibles pues típicamente son costosas en tiempo y si las líneas están dentro de loops son todavía más costosas. Así se tendrán códigos cuyas anotaciones sean lo más blancas posibles.</p>
+<div class="section" id="anotaciones-para-analizar-un-bloque-de-codigo">
+<h2>Anotaciones para analizar un bloque de código<a class="headerlink" href="#anotaciones-para-analizar-un-bloque-de-codigo" title="Permalink to this headline">¶</a></h2>
+<p><em>Cython</em> tiene la opción de <em>annotation</em> para generar un archivo con extensión <code class="docutils literal notranslate"><span class="pre">.html</span></code> en el que cada línea puede ser expandida haciendo un doble click que mostrará el código <em>C</em> generado. Líneas “más amarillas” refieren a más llamadas en la máquina virtual de <em>Python</em>, mientras que líneas más blancas significan “más código en <em>C</em> y no <em>Python</em>”.</p>
+<p>El objetivo es remover la mayor cantidad de líneas amarillas posibles pues son costosas en tiempo. Si tales líneas están dentro de loops serán todavía más costosas. Al final se busca tener códigos cuyas anotaciones sean lo más blancas posibles.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Concentra tu atención en las líneas que son amarillas y están dentro de los <em>loops</em>, no inviertas tiempo en líneas amarillas que están fuera de <em>loops</em> y que no causan una ejecución lenta (para identificar lo anterior el perfilamiento es de ayuda).</p>
+<p>Concentra tu atención en las líneas que son amarillas y están dentro de los <em>loops</em>, no inviertas tiempo en líneas amarillas que están fuera de <em>loops</em> y que no causan una ejecución lenta. Una ayuda para identificar lo anterior la da el perfilamiento.</p>
 </div>
-</div>
-<div class="section" id="via-linea-de-comando">
-<h2>Vía línea de comando:<a class="headerlink" href="#via-linea-de-comando" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ejemplo-via-linea-de-comando">
+<h3>Ejemplo vía línea de comando<a class="headerlink" href="#ejemplo-via-linea-de-comando" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
@@ -2088,6 +2095,695 @@ static PyObject *__pyx_pf_10Rcf_cython_Rcf(CYTHON_UNUSED PyObject *__pyx_self, P
   goto __pyx_L0;
 </pre></div></body></html>
 </div></div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<p>Para el código anterior el <em>statement</em> en donde se crean los nodos involucra un <em>loop</em> y es “muy amarilla”. Si se perfila el código se verá que es una línea en la que se gasta una buena parte del tiempo total de ejecución del código.</p>
+</div>
+<p>Una primera opción que tenemos es crear los nodos para el método de integración dentro del <em>loop</em> y separar el llamado a la <em>list comprehension</em> <code class="docutils literal notranslate"><span class="pre">nodes=[a+(i+1/2)*h_hat</span> <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">range(n)]</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf_2_cython.pyx
+<span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span> <span class="c1">#Rcf: rectángulo compuesto para f</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute numerical approximation using rectangle or mid-point</span>
+<span class="sd">    method in an interval.</span>
+<span class="sd">    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for</span>
+<span class="sd">    i=0,1,...,n-1 and h_hat=(b-a)/n</span>
+<span class="sd">    Args:</span>
+<span class="sd">    </span>
+<span class="sd">        f (float): function expression of integrand.</span>
+<span class="sd">        </span>
+<span class="sd">        a (float): left point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        b (float): right point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        n (float): number of subintervals.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        sum_res (float): numerical approximation to integral</span>
+<span class="sd">            of f in the interval a,b</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">sum_res</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span>
+        <span class="n">sum_res</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf_2_cython.pyx
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+$HOME/.local/bin/cython -3 --annotate Rcf_2_cython.pyx
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;Rcf_2_cython.html&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><!DOCTYPE html>
+<!-- Generated by Cython 0.29.21 -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Cython: Rcf_2_cython.pyx</title>
+    <style type="text/css">
+
+body.cython { font-family: courier; font-size: 12; }
+
+.cython.tag  {  }
+.cython.line { margin: 0em }
+.cython.code { font-size: 9; color: #444444; display: none; margin: 0px 0px 0px 8px; border-left: 8px none; }
+
+.cython.line .run { background-color: #B0FFB0; }
+.cython.line .mis { background-color: #FFB0B0; }
+.cython.code.run  { border-left: 8px solid #B0FFB0; }
+.cython.code.mis  { border-left: 8px solid #FFB0B0; }
+
+.cython.code .py_c_api  { color: red; }
+.cython.code .py_macro_api  { color: #FF7000; }
+.cython.code .pyx_c_api  { color: #FF3000; }
+.cython.code .pyx_macro_api  { color: #FF7000; }
+.cython.code .refnanny  { color: #FFA000; }
+.cython.code .trace  { color: #FFA000; }
+.cython.code .error_goto  { color: #FFA000; }
+
+.cython.code .coerce  { color: #008000; border: 1px dotted #008000 }
+.cython.code .py_attr { color: #FF0000; font-weight: bold; }
+.cython.code .c_attr  { color: #0000FF; }
+.cython.code .py_call { color: #FF0000; font-weight: bold; }
+.cython.code .c_call  { color: #0000FF; }
+
+.cython.score-0 {background-color: #FFFFff;}
+.cython.score-1 {background-color: #FFFFe7;}
+.cython.score-2 {background-color: #FFFFd4;}
+.cython.score-3 {background-color: #FFFFc4;}
+.cython.score-4 {background-color: #FFFFb6;}
+.cython.score-5 {background-color: #FFFFaa;}
+.cython.score-6 {background-color: #FFFF9f;}
+.cython.score-7 {background-color: #FFFF96;}
+.cython.score-8 {background-color: #FFFF8d;}
+.cython.score-9 {background-color: #FFFF86;}
+.cython.score-10 {background-color: #FFFF7f;}
+.cython.score-11 {background-color: #FFFF79;}
+.cython.score-12 {background-color: #FFFF73;}
+.cython.score-13 {background-color: #FFFF6e;}
+.cython.score-14 {background-color: #FFFF6a;}
+.cython.score-15 {background-color: #FFFF66;}
+.cython.score-16 {background-color: #FFFF62;}
+.cython.score-17 {background-color: #FFFF5e;}
+.cython.score-18 {background-color: #FFFF5b;}
+.cython.score-19 {background-color: #FFFF57;}
+.cython.score-20 {background-color: #FFFF55;}
+.cython.score-21 {background-color: #FFFF52;}
+.cython.score-22 {background-color: #FFFF4f;}
+.cython.score-23 {background-color: #FFFF4d;}
+.cython.score-24 {background-color: #FFFF4b;}
+.cython.score-25 {background-color: #FFFF48;}
+.cython.score-26 {background-color: #FFFF46;}
+.cython.score-27 {background-color: #FFFF44;}
+.cython.score-28 {background-color: #FFFF43;}
+.cython.score-29 {background-color: #FFFF41;}
+.cython.score-30 {background-color: #FFFF3f;}
+.cython.score-31 {background-color: #FFFF3e;}
+.cython.score-32 {background-color: #FFFF3c;}
+.cython.score-33 {background-color: #FFFF3b;}
+.cython.score-34 {background-color: #FFFF39;}
+.cython.score-35 {background-color: #FFFF38;}
+.cython.score-36 {background-color: #FFFF37;}
+.cython.score-37 {background-color: #FFFF36;}
+.cython.score-38 {background-color: #FFFF35;}
+.cython.score-39 {background-color: #FFFF34;}
+.cython.score-40 {background-color: #FFFF33;}
+.cython.score-41 {background-color: #FFFF32;}
+.cython.score-42 {background-color: #FFFF31;}
+.cython.score-43 {background-color: #FFFF30;}
+.cython.score-44 {background-color: #FFFF2f;}
+.cython.score-45 {background-color: #FFFF2e;}
+.cython.score-46 {background-color: #FFFF2d;}
+.cython.score-47 {background-color: #FFFF2c;}
+.cython.score-48 {background-color: #FFFF2b;}
+.cython.score-49 {background-color: #FFFF2b;}
+.cython.score-50 {background-color: #FFFF2a;}
+.cython.score-51 {background-color: #FFFF29;}
+.cython.score-52 {background-color: #FFFF29;}
+.cython.score-53 {background-color: #FFFF28;}
+.cython.score-54 {background-color: #FFFF27;}
+.cython.score-55 {background-color: #FFFF27;}
+.cython.score-56 {background-color: #FFFF26;}
+.cython.score-57 {background-color: #FFFF26;}
+.cython.score-58 {background-color: #FFFF25;}
+.cython.score-59 {background-color: #FFFF24;}
+.cython.score-60 {background-color: #FFFF24;}
+.cython.score-61 {background-color: #FFFF23;}
+.cython.score-62 {background-color: #FFFF23;}
+.cython.score-63 {background-color: #FFFF22;}
+.cython.score-64 {background-color: #FFFF22;}
+.cython.score-65 {background-color: #FFFF22;}
+.cython.score-66 {background-color: #FFFF21;}
+.cython.score-67 {background-color: #FFFF21;}
+.cython.score-68 {background-color: #FFFF20;}
+.cython.score-69 {background-color: #FFFF20;}
+.cython.score-70 {background-color: #FFFF1f;}
+.cython.score-71 {background-color: #FFFF1f;}
+.cython.score-72 {background-color: #FFFF1f;}
+.cython.score-73 {background-color: #FFFF1e;}
+.cython.score-74 {background-color: #FFFF1e;}
+.cython.score-75 {background-color: #FFFF1e;}
+.cython.score-76 {background-color: #FFFF1d;}
+.cython.score-77 {background-color: #FFFF1d;}
+.cython.score-78 {background-color: #FFFF1c;}
+.cython.score-79 {background-color: #FFFF1c;}
+.cython.score-80 {background-color: #FFFF1c;}
+.cython.score-81 {background-color: #FFFF1c;}
+.cython.score-82 {background-color: #FFFF1b;}
+.cython.score-83 {background-color: #FFFF1b;}
+.cython.score-84 {background-color: #FFFF1b;}
+.cython.score-85 {background-color: #FFFF1a;}
+.cython.score-86 {background-color: #FFFF1a;}
+.cython.score-87 {background-color: #FFFF1a;}
+.cython.score-88 {background-color: #FFFF1a;}
+.cython.score-89 {background-color: #FFFF19;}
+.cython.score-90 {background-color: #FFFF19;}
+.cython.score-91 {background-color: #FFFF19;}
+.cython.score-92 {background-color: #FFFF19;}
+.cython.score-93 {background-color: #FFFF18;}
+.cython.score-94 {background-color: #FFFF18;}
+.cython.score-95 {background-color: #FFFF18;}
+.cython.score-96 {background-color: #FFFF18;}
+.cython.score-97 {background-color: #FFFF17;}
+.cython.score-98 {background-color: #FFFF17;}
+.cython.score-99 {background-color: #FFFF17;}
+.cython.score-100 {background-color: #FFFF17;}
+.cython.score-101 {background-color: #FFFF16;}
+.cython.score-102 {background-color: #FFFF16;}
+.cython.score-103 {background-color: #FFFF16;}
+.cython.score-104 {background-color: #FFFF16;}
+.cython.score-105 {background-color: #FFFF16;}
+.cython.score-106 {background-color: #FFFF15;}
+.cython.score-107 {background-color: #FFFF15;}
+.cython.score-108 {background-color: #FFFF15;}
+.cython.score-109 {background-color: #FFFF15;}
+.cython.score-110 {background-color: #FFFF15;}
+.cython.score-111 {background-color: #FFFF15;}
+.cython.score-112 {background-color: #FFFF14;}
+.cython.score-113 {background-color: #FFFF14;}
+.cython.score-114 {background-color: #FFFF14;}
+.cython.score-115 {background-color: #FFFF14;}
+.cython.score-116 {background-color: #FFFF14;}
+.cython.score-117 {background-color: #FFFF14;}
+.cython.score-118 {background-color: #FFFF13;}
+.cython.score-119 {background-color: #FFFF13;}
+.cython.score-120 {background-color: #FFFF13;}
+.cython.score-121 {background-color: #FFFF13;}
+.cython.score-122 {background-color: #FFFF13;}
+.cython.score-123 {background-color: #FFFF13;}
+.cython.score-124 {background-color: #FFFF13;}
+.cython.score-125 {background-color: #FFFF12;}
+.cython.score-126 {background-color: #FFFF12;}
+.cython.score-127 {background-color: #FFFF12;}
+.cython.score-128 {background-color: #FFFF12;}
+.cython.score-129 {background-color: #FFFF12;}
+.cython.score-130 {background-color: #FFFF12;}
+.cython.score-131 {background-color: #FFFF12;}
+.cython.score-132 {background-color: #FFFF11;}
+.cython.score-133 {background-color: #FFFF11;}
+.cython.score-134 {background-color: #FFFF11;}
+.cython.score-135 {background-color: #FFFF11;}
+.cython.score-136 {background-color: #FFFF11;}
+.cython.score-137 {background-color: #FFFF11;}
+.cython.score-138 {background-color: #FFFF11;}
+.cython.score-139 {background-color: #FFFF11;}
+.cython.score-140 {background-color: #FFFF11;}
+.cython.score-141 {background-color: #FFFF10;}
+.cython.score-142 {background-color: #FFFF10;}
+.cython.score-143 {background-color: #FFFF10;}
+.cython.score-144 {background-color: #FFFF10;}
+.cython.score-145 {background-color: #FFFF10;}
+.cython.score-146 {background-color: #FFFF10;}
+.cython.score-147 {background-color: #FFFF10;}
+.cython.score-148 {background-color: #FFFF10;}
+.cython.score-149 {background-color: #FFFF10;}
+.cython.score-150 {background-color: #FFFF0f;}
+.cython.score-151 {background-color: #FFFF0f;}
+.cython.score-152 {background-color: #FFFF0f;}
+.cython.score-153 {background-color: #FFFF0f;}
+.cython.score-154 {background-color: #FFFF0f;}
+.cython.score-155 {background-color: #FFFF0f;}
+.cython.score-156 {background-color: #FFFF0f;}
+.cython.score-157 {background-color: #FFFF0f;}
+.cython.score-158 {background-color: #FFFF0f;}
+.cython.score-159 {background-color: #FFFF0f;}
+.cython.score-160 {background-color: #FFFF0f;}
+.cython.score-161 {background-color: #FFFF0e;}
+.cython.score-162 {background-color: #FFFF0e;}
+.cython.score-163 {background-color: #FFFF0e;}
+.cython.score-164 {background-color: #FFFF0e;}
+.cython.score-165 {background-color: #FFFF0e;}
+.cython.score-166 {background-color: #FFFF0e;}
+.cython.score-167 {background-color: #FFFF0e;}
+.cython.score-168 {background-color: #FFFF0e;}
+.cython.score-169 {background-color: #FFFF0e;}
+.cython.score-170 {background-color: #FFFF0e;}
+.cython.score-171 {background-color: #FFFF0e;}
+.cython.score-172 {background-color: #FFFF0e;}
+.cython.score-173 {background-color: #FFFF0d;}
+.cython.score-174 {background-color: #FFFF0d;}
+.cython.score-175 {background-color: #FFFF0d;}
+.cython.score-176 {background-color: #FFFF0d;}
+.cython.score-177 {background-color: #FFFF0d;}
+.cython.score-178 {background-color: #FFFF0d;}
+.cython.score-179 {background-color: #FFFF0d;}
+.cython.score-180 {background-color: #FFFF0d;}
+.cython.score-181 {background-color: #FFFF0d;}
+.cython.score-182 {background-color: #FFFF0d;}
+.cython.score-183 {background-color: #FFFF0d;}
+.cython.score-184 {background-color: #FFFF0d;}
+.cython.score-185 {background-color: #FFFF0d;}
+.cython.score-186 {background-color: #FFFF0d;}
+.cython.score-187 {background-color: #FFFF0c;}
+.cython.score-188 {background-color: #FFFF0c;}
+.cython.score-189 {background-color: #FFFF0c;}
+.cython.score-190 {background-color: #FFFF0c;}
+.cython.score-191 {background-color: #FFFF0c;}
+.cython.score-192 {background-color: #FFFF0c;}
+.cython.score-193 {background-color: #FFFF0c;}
+.cython.score-194 {background-color: #FFFF0c;}
+.cython.score-195 {background-color: #FFFF0c;}
+.cython.score-196 {background-color: #FFFF0c;}
+.cython.score-197 {background-color: #FFFF0c;}
+.cython.score-198 {background-color: #FFFF0c;}
+.cython.score-199 {background-color: #FFFF0c;}
+.cython.score-200 {background-color: #FFFF0c;}
+.cython.score-201 {background-color: #FFFF0c;}
+.cython.score-202 {background-color: #FFFF0c;}
+.cython.score-203 {background-color: #FFFF0b;}
+.cython.score-204 {background-color: #FFFF0b;}
+.cython.score-205 {background-color: #FFFF0b;}
+.cython.score-206 {background-color: #FFFF0b;}
+.cython.score-207 {background-color: #FFFF0b;}
+.cython.score-208 {background-color: #FFFF0b;}
+.cython.score-209 {background-color: #FFFF0b;}
+.cython.score-210 {background-color: #FFFF0b;}
+.cython.score-211 {background-color: #FFFF0b;}
+.cython.score-212 {background-color: #FFFF0b;}
+.cython.score-213 {background-color: #FFFF0b;}
+.cython.score-214 {background-color: #FFFF0b;}
+.cython.score-215 {background-color: #FFFF0b;}
+.cython.score-216 {background-color: #FFFF0b;}
+.cython.score-217 {background-color: #FFFF0b;}
+.cython.score-218 {background-color: #FFFF0b;}
+.cython.score-219 {background-color: #FFFF0b;}
+.cython.score-220 {background-color: #FFFF0b;}
+.cython.score-221 {background-color: #FFFF0b;}
+.cython.score-222 {background-color: #FFFF0a;}
+.cython.score-223 {background-color: #FFFF0a;}
+.cython.score-224 {background-color: #FFFF0a;}
+.cython.score-225 {background-color: #FFFF0a;}
+.cython.score-226 {background-color: #FFFF0a;}
+.cython.score-227 {background-color: #FFFF0a;}
+.cython.score-228 {background-color: #FFFF0a;}
+.cython.score-229 {background-color: #FFFF0a;}
+.cython.score-230 {background-color: #FFFF0a;}
+.cython.score-231 {background-color: #FFFF0a;}
+.cython.score-232 {background-color: #FFFF0a;}
+.cython.score-233 {background-color: #FFFF0a;}
+.cython.score-234 {background-color: #FFFF0a;}
+.cython.score-235 {background-color: #FFFF0a;}
+.cython.score-236 {background-color: #FFFF0a;}
+.cython.score-237 {background-color: #FFFF0a;}
+.cython.score-238 {background-color: #FFFF0a;}
+.cython.score-239 {background-color: #FFFF0a;}
+.cython.score-240 {background-color: #FFFF0a;}
+.cython.score-241 {background-color: #FFFF0a;}
+.cython.score-242 {background-color: #FFFF0a;}
+.cython.score-243 {background-color: #FFFF0a;}
+.cython.score-244 {background-color: #FFFF0a;}
+.cython.score-245 {background-color: #FFFF0a;}
+.cython.score-246 {background-color: #FFFF09;}
+.cython.score-247 {background-color: #FFFF09;}
+.cython.score-248 {background-color: #FFFF09;}
+.cython.score-249 {background-color: #FFFF09;}
+.cython.score-250 {background-color: #FFFF09;}
+.cython.score-251 {background-color: #FFFF09;}
+.cython.score-252 {background-color: #FFFF09;}
+.cython.score-253 {background-color: #FFFF09;}
+.cython.score-254 {background-color: #FFFF09;}
+pre { line-height: 125%; }
+td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.cython .hll { background-color: #ffffcc }
+.cython { background: #f8f8f8; }
+.cython .c { color: #408080; font-style: italic } /* Comment */
+.cython .err { border: 1px solid #FF0000 } /* Error */
+.cython .k { color: #008000; font-weight: bold } /* Keyword */
+.cython .o { color: #666666 } /* Operator */
+.cython .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.cython .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.cython .cp { color: #BC7A00 } /* Comment.Preproc */
+.cython .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.cython .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.cython .cs { color: #408080; font-style: italic } /* Comment.Special */
+.cython .gd { color: #A00000 } /* Generic.Deleted */
+.cython .ge { font-style: italic } /* Generic.Emph */
+.cython .gr { color: #FF0000 } /* Generic.Error */
+.cython .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.cython .gi { color: #00A000 } /* Generic.Inserted */
+.cython .go { color: #888888 } /* Generic.Output */
+.cython .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.cython .gs { font-weight: bold } /* Generic.Strong */
+.cython .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.cython .gt { color: #0044DD } /* Generic.Traceback */
+.cython .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.cython .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.cython .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.cython .kp { color: #008000 } /* Keyword.Pseudo */
+.cython .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.cython .kt { color: #B00040 } /* Keyword.Type */
+.cython .m { color: #666666 } /* Literal.Number */
+.cython .s { color: #BA2121 } /* Literal.String */
+.cython .na { color: #7D9029 } /* Name.Attribute */
+.cython .nb { color: #008000 } /* Name.Builtin */
+.cython .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.cython .no { color: #880000 } /* Name.Constant */
+.cython .nd { color: #AA22FF } /* Name.Decorator */
+.cython .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.cython .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.cython .nf { color: #0000FF } /* Name.Function */
+.cython .nl { color: #A0A000 } /* Name.Label */
+.cython .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.cython .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.cython .nv { color: #19177C } /* Name.Variable */
+.cython .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.cython .w { color: #bbbbbb } /* Text.Whitespace */
+.cython .mb { color: #666666 } /* Literal.Number.Bin */
+.cython .mf { color: #666666 } /* Literal.Number.Float */
+.cython .mh { color: #666666 } /* Literal.Number.Hex */
+.cython .mi { color: #666666 } /* Literal.Number.Integer */
+.cython .mo { color: #666666 } /* Literal.Number.Oct */
+.cython .sa { color: #BA2121 } /* Literal.String.Affix */
+.cython .sb { color: #BA2121 } /* Literal.String.Backtick */
+.cython .sc { color: #BA2121 } /* Literal.String.Char */
+.cython .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.cython .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.cython .s2 { color: #BA2121 } /* Literal.String.Double */
+.cython .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.cython .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.cython .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.cython .sx { color: #008000 } /* Literal.String.Other */
+.cython .sr { color: #BB6688 } /* Literal.String.Regex */
+.cython .s1 { color: #BA2121 } /* Literal.String.Single */
+.cython .ss { color: #19177C } /* Literal.String.Symbol */
+.cython .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.cython .fm { color: #0000FF } /* Name.Function.Magic */
+.cython .vc { color: #19177C } /* Name.Variable.Class */
+.cython .vg { color: #19177C } /* Name.Variable.Global */
+.cython .vi { color: #19177C } /* Name.Variable.Instance */
+.cython .vm { color: #19177C } /* Name.Variable.Magic */
+.cython .il { color: #666666 } /* Literal.Number.Integer.Long */
+    </style>
+</head>
+<body class="cython">
+<p><span style="border-bottom: solid 1px grey;">Generated by Cython 0.29.21</span></p>
+<p>
+    <span style="background-color: #FFFF00">Yellow lines</span> hint at Python interaction.<br />
+    Click on a line that starts with a "<code>+</code>" to see the C code that Cython generated for it.
+</p>
+<p>Raw output: <a href="Rcf_2_cython.c">Rcf_2_cython.c</a></p>
+<div class="cython"><pre class="cython line score-57" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">01</span>: <span class="k">def</span> <span class="nf">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span> <span class="c">#Rcf: rectángulo compuesto para f</span></pre>
+<pre class='cython code score-57 '>/* Python wrapper */
+static PyObject *__pyx_pw_12Rcf_2_cython_1Rcf(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_12Rcf_2_cython_Rcf[] = "\n    Compute numerical approximation using rectangle or mid-point\n    method in an interval.\n    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for\n    i=0,1,...,n-1 and h_hat=(b-a)/n\n    Args:\n    \n        f (float): function expression of integrand.\n        \n        a (float): left point of interval.\n        \n        b (float): right point of interval.\n        \n        n (float): number of subintervals.\n        \n    Returns:\n    \n        sum_res (float): numerical approximation to integral\n            of f in the interval a,b\n    ";
+static PyMethodDef __pyx_mdef_12Rcf_2_cython_1Rcf = {"Rcf", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12Rcf_2_cython_1Rcf, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12Rcf_2_cython_Rcf};
+static PyObject *__pyx_pw_12Rcf_2_cython_1Rcf(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_f = 0;
+  PyObject *__pyx_v_a = 0;
+  PyObject *__pyx_v_b = 0;
+  PyObject *__pyx_v_n = 0;
+  PyObject *__pyx_r = 0;
+  <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Rcf (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&amp;__pyx_n_s_f,&amp;__pyx_n_s_a,&amp;__pyx_n_s_b,&amp;__pyx_n_s_n,0};
+    PyObject* values[4] = {0,0,0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
+      switch (pos_args) {
+        case  4: values[3] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 3);
+        CYTHON_FALLTHROUGH;
+        case  3: values[2] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = <span class='py_c_api'>PyDict_Size</span>(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = <span class='pyx_c_api'>__Pyx_PyDict_GetItemStr</span>(__pyx_kwds, __pyx_n_s_f)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = <span class='pyx_c_api'>__Pyx_PyDict_GetItemStr</span>(__pyx_kwds, __pyx_n_s_a)) != 0)) kw_args--;
+        else {
+          <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("Rcf", 1, 4, 4, 1); <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L3_error)</span>
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = <span class='pyx_c_api'>__Pyx_PyDict_GetItemStr</span>(__pyx_kwds, __pyx_n_s_b)) != 0)) kw_args--;
+        else {
+          <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("Rcf", 1, 4, 4, 2); <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L3_error)</span>
+        }
+        CYTHON_FALLTHROUGH;
+        case  3:
+        if (likely((values[3] = <span class='pyx_c_api'>__Pyx_PyDict_GetItemStr</span>(__pyx_kwds, __pyx_n_s_n)) != 0)) kw_args--;
+        else {
+          <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("Rcf", 1, 4, 4, 3); <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L3_error)</span>
+        }
+      }
+      if (unlikely(kw_args &gt; 0)) {
+        if (unlikely(<span class='pyx_c_api'>__Pyx_ParseOptionalKeywords</span>(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "Rcf") &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L3_error)</span>
+      }
+    } else if (<span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args) != 4) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 0);
+      values[1] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 1);
+      values[2] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 2);
+      values[3] = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_args, 3);
+    }
+    __pyx_v_f = values[0];
+    __pyx_v_a = values[1];
+    __pyx_v_b = values[2];
+    __pyx_v_n = values[3];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("Rcf", 1, 4, 4, <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args)); <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L3_error)</span>
+  __pyx_L3_error:;
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("Rcf_2_cython.Rcf", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_12Rcf_2_cython_Rcf(__pyx_self, __pyx_v_f, __pyx_v_a, __pyx_v_b, __pyx_v_n);
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+
+  /* function exit code */
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_12Rcf_2_cython_Rcf(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_f, PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_n) {
+  PyObject *__pyx_v_h_hat = NULL;
+  PyObject *__pyx_v_sum_res = NULL;
+  PyObject *__pyx_v_i = NULL;
+  PyObject *__pyx_v_x = NULL;
+  PyObject *__pyx_r = NULL;
+  <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("Rcf", 0);
+/* … */
+  /* function exit code */
+  __pyx_L1_error:;
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_1);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_5);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_6);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("Rcf_2_cython.Rcf", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_h_hat);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_sum_res);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_i);
+  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_x);
+  <span class='refnanny'>__Pyx_XGIVEREF</span>(__pyx_r);
+  <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
+  return __pyx_r;
+}
+/* … */
+  __pyx_tuple_ = <span class='py_c_api'>PyTuple_Pack</span>(8, __pyx_n_s_f, __pyx_n_s_a, __pyx_n_s_b, __pyx_n_s_n, __pyx_n_s_h_hat, __pyx_n_s_sum_res, __pyx_n_s_i, __pyx_n_s_x);<span class='error_goto'> if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 1, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_tuple_);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_tuple_);
+/* … */
+  __pyx_t_1 = PyCFunction_NewEx(&amp;__pyx_mdef_12Rcf_2_cython_1Rcf, NULL, __pyx_n_s_Rcf_2_cython);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_d, __pyx_n_s_Rcf, __pyx_t_1) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">02</span>:     <span class="sd">&quot;&quot;&quot;</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">03</span>: <span class="sd">    Compute numerical approximation using rectangle or mid-point</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">04</span>: <span class="sd">    method in an interval.</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">05</span>: <span class="sd">    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">06</span>: <span class="sd">    i=0,1,...,n-1 and h_hat=(b-a)/n</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">07</span>: <span class="sd">    Args:</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">08</span>: <span class="sd">    </span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">09</span>: <span class="sd">        f (float): function expression of integrand.</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">10</span>: <span class="sd">        </span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">11</span>: <span class="sd">        a (float): left point of interval.</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">12</span>: <span class="sd">        </span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">13</span>: <span class="sd">        b (float): right point of interval.</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">14</span>: <span class="sd">        </span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">15</span>: <span class="sd">        n (float): number of subintervals.</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">16</span>: <span class="sd">        </span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">17</span>: <span class="sd">    Returns:</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">18</span>: <span class="sd">    </span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">19</span>: <span class="sd">        sum_res (float): numerical approximation to integral</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">20</span>: <span class="sd">            of f in the interval a,b</span></pre>
+<pre class="cython line score-0">&#xA0;<span class="">21</span>: <span class="sd">    &quot;&quot;&quot;</span></pre>
+<pre class="cython line score-8" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">22</span>:     <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span></pre>
+<pre class='cython code score-8 '>  __pyx_t_1 = <span class='py_c_api'>PyNumber_Subtract</span>(__pyx_v_b, __pyx_v_a);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyNumber_Divide</span>(__pyx_t_1, __pyx_v_n);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_h_hat = __pyx_t_2;
+  __pyx_t_2 = 0;
+</pre><pre class="cython line score-1" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">23</span>:     <span class="n">sum_res</span> <span class="o">=</span> <span class="mf">0</span></pre>
+<pre class='cython code score-1 '>  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_int_0);
+  __pyx_v_sum_res = __pyx_int_0;
+</pre><pre class="cython line score-56" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">24</span>:     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="n">n</span><span class="p">):</span></pre>
+<pre class='cython code score-56 '>  __pyx_t_2 = <span class='py_c_api'>PyTuple_New</span>(2);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_int_0);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_int_0);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_2, 0, __pyx_int_0);
+  <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_n);
+  <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_v_n);
+  <span class='py_macro_api'>PyTuple_SET_ITEM</span>(__pyx_t_2, 1, __pyx_v_n);
+  __pyx_t_1 = <span class='pyx_c_api'>__Pyx_PyObject_Call</span>(__pyx_builtin_range, __pyx_t_2, NULL);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+  if (likely(<span class='py_c_api'>PyList_CheckExact</span>(__pyx_t_1)) || <span class='py_c_api'>PyTuple_CheckExact</span>(__pyx_t_1)) {
+    __pyx_t_2 = __pyx_t_1; <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_2); __pyx_t_3 = 0;
+    __pyx_t_4 = NULL;
+  } else {
+    __pyx_t_3 = -1; __pyx_t_2 = <span class='py_c_api'>PyObject_GetIter</span>(__pyx_t_1);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+    __pyx_t_4 = Py_TYPE(__pyx_t_2)-&gt;tp_iternext;<span class='error_goto'> if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 24, __pyx_L1_error)</span>
+  }
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+  for (;;) {
+    if (likely(!__pyx_t_4)) {
+      if (likely(<span class='py_c_api'>PyList_CheckExact</span>(__pyx_t_2))) {
+        if (__pyx_t_3 &gt;= <span class='py_macro_api'>PyList_GET_SIZE</span>(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS &amp;&amp; !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = <span class='py_macro_api'>PyList_GET_ITEM</span>(__pyx_t_2, __pyx_t_3); <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_1); __pyx_t_3++; if (unlikely(0 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 24, __pyx_L1_error)</span>
+        #else
+        __pyx_t_1 = <span class='py_macro_api'>PySequence_ITEM</span>(__pyx_t_2, __pyx_t_3); __pyx_t_3++;<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)</span>
+        <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+        #endif
+      } else {
+        if (__pyx_t_3 &gt;= <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS &amp;&amp; !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = <span class='py_macro_api'>PyTuple_GET_ITEM</span>(__pyx_t_2, __pyx_t_3); <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_1); __pyx_t_3++; if (unlikely(0 &lt; 0)) <span class='error_goto'>__PYX_ERR(0, 24, __pyx_L1_error)</span>
+        #else
+        __pyx_t_1 = <span class='py_macro_api'>PySequence_ITEM</span>(__pyx_t_2, __pyx_t_3); __pyx_t_3++;<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)</span>
+        <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+        #endif
+      }
+    } else {
+      __pyx_t_1 = __pyx_t_4(__pyx_t_2);
+      if (unlikely(!__pyx_t_1)) {
+        PyObject* exc_type = <span class='py_c_api'>PyErr_Occurred</span>();
+        if (exc_type) {
+          if (likely(<span class='pyx_c_api'>__Pyx_PyErr_GivenExceptionMatches</span>(exc_type, PyExc_StopIteration))) <span class='py_c_api'>PyErr_Clear</span>();
+          else <span class='error_goto'>__PYX_ERR(0, 24, __pyx_L1_error)</span>
+        }
+        break;
+      }
+      <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    }
+    <span class='pyx_macro_api'>__Pyx_XDECREF_SET</span>(__pyx_v_i, __pyx_t_1);
+    __pyx_t_1 = 0;
+/* … */
+  }
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+</pre><pre class="cython line score-24" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">25</span>:         <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mf">1</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span></pre>
+<pre class='cython code score-24 '>    __pyx_t_1 = <span class='py_c_api'>PyFloat_FromDouble</span>((1.0 / 2.0));<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 25, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    __pyx_t_5 = <span class='py_c_api'>PyNumber_Add</span>(__pyx_v_i, __pyx_t_1);<span class='error_goto'> if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 25, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_5);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = <span class='py_c_api'>PyNumber_Multiply</span>(__pyx_t_5, __pyx_v_h_hat);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 25, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_5 = <span class='py_c_api'>PyNumber_Add</span>(__pyx_v_a, __pyx_t_1);<span class='error_goto'> if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 25, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_5);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+    <span class='pyx_macro_api'>__Pyx_XDECREF_SET</span>(__pyx_v_x, __pyx_t_5);
+    __pyx_t_5 = 0;
+</pre><pre class="cython line score-22" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">26</span>:         <span class="n">sum_res</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></pre>
+<pre class='cython code score-22 '>    <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_v_f);
+    __pyx_t_1 = __pyx_v_f; __pyx_t_6 = NULL;
+    if (CYTHON_UNPACK_METHODS &amp;&amp; unlikely(<span class='py_c_api'>PyMethod_Check</span>(__pyx_t_1))) {
+      __pyx_t_6 = <span class='py_macro_api'>PyMethod_GET_SELF</span>(__pyx_t_1);
+      if (likely(__pyx_t_6)) {
+        PyObject* function = <span class='py_macro_api'>PyMethod_GET_FUNCTION</span>(__pyx_t_1);
+        <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_6);
+        <span class='pyx_macro_api'>__Pyx_INCREF</span>(function);
+        <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_t_1, function);
+      }
+    }
+    __pyx_t_5 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_6, __pyx_v_x) : <span class='pyx_c_api'>__Pyx_PyObject_CallOneArg</span>(__pyx_t_1, __pyx_v_x);
+    <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_6); __pyx_t_6 = 0;
+    if (unlikely(!__pyx_t_5)) <span class='error_goto'>__PYX_ERR(0, 26, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_5);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = <span class='py_c_api'>PyNumber_InPlaceAdd</span>(__pyx_v_sum_res, __pyx_t_5);<span class='error_goto'> if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)</span>
+    <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
+    <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_5); __pyx_t_5 = 0;
+    <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_v_sum_res, __pyx_t_1);
+    __pyx_t_1 = 0;
+</pre><pre class="cython line score-6" onclick="(function(s){s.display=s.display==='block'?'none':'block'})(this.nextElementSibling.style)">+<span class="">27</span>:     <span class="k">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span></pre>
+<pre class='cython code score-6 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
+  __pyx_t_2 = <span class='py_c_api'>PyNumber_Multiply</span>(__pyx_v_h_hat, __pyx_v_sum_res);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+</pre></div></body></html>
+</div></div>
+</div>
 </div>
 </div>
 <div class="section" id="referencias-de-interes">
