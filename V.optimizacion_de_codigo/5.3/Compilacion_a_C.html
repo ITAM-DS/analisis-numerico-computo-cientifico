@@ -728,7 +728,7 @@ uname -ar #r for kernel, a for all
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>Varios proyectos están en desarrollo para mejorar eficiencia y otros temas como el uso del <a class="reference external" href="https://docs.python.org/3.9/glossary.html#term-global-interpreter-lock">global interpreter lock</a> en <em>Python</em>. Algunos de ellos son:</p>
+<li><p>Varios proyectos están en desarrollo para mejorar eficiencia y otros temas como el uso del <a class="reference external" href="https://docs.python.org/3.9/glossary.html#term-global-interpreter-lock">global interpreter lock</a> (GIL) en <em>Python</em>. Algunos de ellos son:</p>
 <ul>
 <li><p><em>PyPy</em></p></li>
 <li><p><em>A better API for extending Python in C</em>: <a class="reference external" href="https://github.com/hpyproject/hpy">hpyproject</a></p></li>
@@ -5055,7 +5055,13 @@ x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsym
 </div>
 </div>
 <div class="section" id="openmp">
-<h2>OpenMP<a class="headerlink" href="#openmp" title="Permalink to this headline">¶</a></h2>
+<h2><a class="reference external" href="http://www.openmp.org/">OpenMP</a><a class="headerlink" href="#openmp" title="Permalink to this headline">¶</a></h2>
+<p>Es una extensión al lenguaje <em>C</em> y es una API para <em>shared memory parallel programming</em>. Se revisará con mayor profundidad en la nota de cómputo en paralelo.</p>
+<p>En <em>Cython</em>, <em>OpenMP</em> se utiliza mediante <a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/parallelism.html#cython.parallel.prange">prange</a> (<em>parallel range</em>). Además debe deshabilitarse el <em>GIL</em>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Al deshabilitar el GIL en una sección de código se debe operar con tipos primitivos en tal sección no con objetos <em>Python</em> (por ejemplo listas).</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf_5_cython_openmp.pyx
@@ -5103,14 +5109,19 @@ x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsym
 </div>
 </div>
 </div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Con <code class="docutils literal notranslate"><span class="pre">prange</span></code> puede elegirse diferente <em>scheduling</em>. Si <code class="docutils literal notranslate"><span class="pre">schedule</span></code> recibe el valor <code class="docutils literal notranslate"><span class="pre">static</span></code> el trabajo a realizar se reparte equitativamente entre los <em>cores</em> y si algunos <em>threads</em> terminan antes permanecerán sin realizar trabajo, <em>aka idle</em>. Con <code class="docutils literal notranslate"><span class="pre">dynamic</span></code> y <code class="docutils literal notranslate"><span class="pre">guided</span></code> se reparte de manera dinámica <em>at runtime</em> que es útil si la cantidad de trabajo es variable y si <em>threads</em> terminan antes pueden recibir trabajo a realizar.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-$HOME/.local/bin/cython -3 --force --annotate Rcf_5_cython_openmp.pyx
+$HOME/.local/bin/cython -3 --force Rcf_5_cython_openmp.pyx
 </pre></div>
 </div>
 </div>
 </div>
+<p>En el archivo <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> se coloca la <strong>directiva</strong> <code class="docutils literal notranslate"><span class="pre">-fopenmp</span></code>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La liga correcta del archivo <code class="docutils literal notranslate"><span class="pre">Rcf_5_cython_openmp.c</span></code> es <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/V.optimizacion_de_codigo/5.3/Rcf_5_cython_openmp.c">Rcf_5_cython_openmp.c</a></p>
