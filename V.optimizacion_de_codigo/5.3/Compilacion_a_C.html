@@ -4380,6 +4380,286 @@ x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsym
 <p class="admonition-title">Observación</p>
 <p>Compárese la implementación vía <em>NumPy</em> con el uso de listas para los nodos. Recuérdese que las listas de <em>Python</em> alojan locaciones donde se pueden encontrar los valores y no los valores en sí. Los <em>arrays</em> de <em>NumPy</em> almacenan tipos de valores primitivos. Las listas tienen <em>data fragmentation</em> que causan <em>memory fragmentation</em> y por tanto un mayor impacto del <em>Von Neumann bottleneck</em>. Además el almacenamiento de tipo de objetos de alto nivel en las listas causa <em>overhead</em> en lugar de almacenamiento de tipo de valores primitivos en un <em>array</em> de <em>NumPy</em>.</p>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">Rcf_numba</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute numerical approximation using rectangle or mid-point</span>
+<span class="sd">    method in an interval.</span>
+<span class="sd">    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for</span>
+<span class="sd">    i=0,1,...,n-1 and h_hat=(b-a)/n</span>
+<span class="sd">    Args:</span>
+<span class="sd">    </span>
+<span class="sd">        f (float): function expression of integrand.</span>
+<span class="sd">        </span>
+<span class="sd">        a (float): left point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        b (float): right point of interval.</span>
+<span class="sd">        </span>
+<span class="sd">        n (int): number of subintervals.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        sum_res (float): numerical approximation to integral</span>
+<span class="sd">            of f in the interval a,b</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">sum_res</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span>
+        <span class="n">sum_res</span> <span class="o">+=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">Rcf_numba</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Rcf_numba</span><span class="o">.</span><span class="n">inspect_types</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf_numba (int64, int64, int64)
+--------------------------------------------------------------------------------
+# File: &lt;ipython-input-2-dec025a39115&gt;
+# --- LINE 1 --- 
+
+@jit()
+
+# --- LINE 2 --- 
+
+def Rcf_numba(a,b,n):
+
+    # --- LINE 3 --- 
+
+    &quot;&quot;&quot;
+
+    # --- LINE 4 --- 
+
+    Compute numerical approximation using rectangle or mid-point
+
+    # --- LINE 5 --- 
+
+    method in an interval.
+
+    # --- LINE 6 --- 
+
+    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for
+
+    # --- LINE 7 --- 
+
+    i=0,1,...,n-1 and h_hat=(b-a)/n
+
+    # --- LINE 8 --- 
+
+    Args:
+
+# --- LINE 9 --- 
+
+
+
+        # --- LINE 10 --- 
+
+        f (float): function expression of integrand.
+
+# --- LINE 11 --- 
+
+
+
+        # --- LINE 12 --- 
+
+        a (float): left point of interval.
+
+# --- LINE 13 --- 
+
+
+
+        # --- LINE 14 --- 
+
+        b (float): right point of interval.
+
+# --- LINE 15 --- 
+
+
+
+        # --- LINE 16 --- 
+
+        n (int): number of subintervals.
+
+# --- LINE 17 --- 
+
+
+
+    # --- LINE 18 --- 
+
+    Returns:
+
+# --- LINE 19 --- 
+
+
+
+        # --- LINE 20 --- 
+
+        sum_res (float): numerical approximation to integral
+
+            # --- LINE 21 --- 
+
+            of f in the interval a,b
+
+    # --- LINE 22 --- 
+
+    &quot;&quot;&quot;
+
+    # --- LINE 23 --- 
+    # label 0
+    #   a = arg(0, name=a)  :: int64
+    #   b = arg(1, name=b)  :: int64
+    #   n = arg(2, name=n)  :: int64
+    #   $6binary_subtract.2 = b - a  :: int64
+    #   del b
+    #   $10binary_true_divide.4 = $6binary_subtract.2 / n  :: float64
+    #   del $6binary_subtract.2
+    #   h_hat = $10binary_true_divide.4  :: float64
+    #   del $10binary_true_divide.4
+
+    h_hat = (b-a)/n
+
+    # --- LINE 24 --- 
+    #   $const14.5 = const(int, 0)  :: Literal[int](0)
+    #   sum_res = $const14.5  :: Literal[int](0)
+    #   del $const14.5
+
+    sum_res = 0
+
+    # --- LINE 25 --- 
+    #   jump 18
+    # label 18
+    #   $20load_global.0 = global(range: &lt;class &#39;range&#39;&gt;)  :: Function(&lt;class &#39;range&#39;&gt;)
+    #   $24call_function.2 = call $20load_global.0(n, func=$20load_global.0, args=[Var(n, &lt;ipython-input-2-dec025a39115&gt;:23)], kws=(), vararg=None)  :: (int64,) -&gt; range_state_int64
+    #   del n
+    #   del $20load_global.0
+    #   $26get_iter.3 = getiter(value=$24call_function.2)  :: range_iter_int64
+    #   del $24call_function.2
+    #   $phi28.0 = $26get_iter.3  :: range_iter_int64
+    #   del $26get_iter.3
+    #   jump 28
+    # label 28
+    #   sum_res.2 = phi(incoming_values=[Var(sum_res, &lt;ipython-input-2-dec025a39115&gt;:24), Var(sum_res.1, &lt;ipython-input-2-dec025a39115&gt;:27)], incoming_blocks=[18, 30])  :: float64
+    #   del sum_res.1
+    #   $28for_iter.1 = iternext(value=$phi28.0)  :: pair&lt;int64, bool&gt;
+    #   $28for_iter.2 = pair_first(value=$28for_iter.1)  :: int64
+    #   $28for_iter.3 = pair_second(value=$28for_iter.1)  :: bool
+    #   del $28for_iter.1
+    #   $phi30.1 = $28for_iter.2  :: int64
+    #   del $28for_iter.2
+    #   branch $28for_iter.3, 30, 70
+    # label 30
+    #   del $28for_iter.3
+    #   i = $phi30.1  :: int64
+    #   del $phi30.1
+
+    for i in range(n):
+
+        # --- LINE 26 --- 
+        #   $const36.4 = const(float, 0.5)  :: float64
+        #   $38binary_add.5 = i + $const36.4  :: float64
+        #   del i
+        #   del $const36.4
+        #   $42binary_multiply.7 = $38binary_add.5 * h_hat  :: float64
+        #   del $38binary_add.5
+        #   $44binary_add.8 = a + $42binary_multiply.7  :: float64
+        #   del $42binary_multiply.7
+        #   x = $44binary_add.8  :: float64
+        #   del $44binary_add.8
+
+        x = a+(i+1/2)*h_hat
+
+        # --- LINE 27 --- 
+        #   $50load_global.10 = global(math: &lt;module &#39;math&#39; (built-in)&gt;)  :: Module(&lt;module &#39;math&#39; (built-in)&gt;)
+        #   $52load_method.11 = getattr(value=$50load_global.10, attr=exp)  :: Function(&lt;built-in function exp&gt;)
+        #   del $50load_global.10
+        #   $const56.13 = const(int, 2)  :: Literal[int](2)
+        #   $58binary_power.14 = x ** $const56.13  :: float64
+        #   del x
+        #   del $const56.13
+        #   $60unary_negative.15 = unary(fn=&lt;built-in function neg&gt;, value=$58binary_power.14)  :: float64
+        #   del $58binary_power.14
+        #   $62call_method.16 = call $52load_method.11($60unary_negative.15, func=$52load_method.11, args=[Var($60unary_negative.15, &lt;ipython-input-2-dec025a39115&gt;:27)], kws=(), vararg=None)  :: (float64,) -&gt; float64
+        #   del $60unary_negative.15
+        #   del $52load_method.11
+        #   $64inplace_add.17 = inplace_binop(fn=&lt;built-in function iadd&gt;, immutable_fn=&lt;built-in function add&gt;, lhs=sum_res.2, rhs=$62call_method.16, static_lhs=Undefined, static_rhs=Undefined)  :: float64
+        #   del sum_res.2
+        #   del $62call_method.16
+        #   sum_res.1 = $64inplace_add.17  :: float64
+        #   del $64inplace_add.17
+        #   jump 28
+        # label 70
+
+        sum_res += math.exp(-x**2)
+
+    # --- LINE 28 --- 
+    #   del sum_res
+    #   del a
+    #   del $phi30.1
+    #   del $phi28.0
+    #   del $28for_iter.3
+    #   jump 72
+    # label 72
+    #   $76binary_multiply.2 = h_hat * sum_res.2  :: float64
+    #   del sum_res.2
+    #   del h_hat
+    #   $78return_value.3 = cast(value=$76binary_multiply.2)  :: float64
+    #   del $76binary_multiply.2
+    #   return $78return_value.3
+
+    return h_hat*sum_res
+
+
+================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">Rcf_numba</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">secs</span> <span class="o">=</span> <span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rcf tomó&quot;</span><span class="p">,</span> <span class="n">secs</span><span class="p">,</span> <span class="s2">&quot;segundos&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 0.00018477439880371094 segundos
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="referencias-de-interes">
