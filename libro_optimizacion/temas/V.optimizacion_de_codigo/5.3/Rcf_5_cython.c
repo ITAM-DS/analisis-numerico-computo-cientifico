@@ -1036,7 +1036,7 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 /* Module declarations from 'libc.math' */
 
 /* Module declarations from 'Rcf_5_cython' */
-static CYTHON_INLINE double __pyx_f_12Rcf_5_cython_f(double); /*proto*/
+static double __pyx_f_12Rcf_5_cython_f(double); /*proto*/
 #define __Pyx_MODULE_NAME "Rcf_5_cython"
 extern int __pyx_module_is_main_Rcf_5_cython;
 int __pyx_module_is_main_Rcf_5_cython = 0;
@@ -1081,18 +1081,18 @@ static PyObject *__pyx_codeobj__2;
 /* "Rcf_5_cython.pyx":3
  * from libc.math cimport exp as c_exp
  * 
- * cdef inline double f(double x) nogil:             # <<<<<<<<<<<<<<
- *         return c_exp(-x**2)
+ * cdef double f(double x) nogil:             # <<<<<<<<<<<<<<
+ *     return c_exp(-x**2)
  * 
  */
 
-static CYTHON_INLINE double __pyx_f_12Rcf_5_cython_f(double __pyx_v_x) {
+static double __pyx_f_12Rcf_5_cython_f(double __pyx_v_x) {
   double __pyx_r;
 
   /* "Rcf_5_cython.pyx":4
  * 
- * cdef inline double f(double x) nogil:
- *         return c_exp(-x**2)             # <<<<<<<<<<<<<<
+ * cdef double f(double x) nogil:
+ *     return c_exp(-x**2)             # <<<<<<<<<<<<<<
  * 
  * def Rcf(double a, double b, unsigned int n):
  */
@@ -1102,8 +1102,8 @@ static CYTHON_INLINE double __pyx_f_12Rcf_5_cython_f(double __pyx_v_x) {
   /* "Rcf_5_cython.pyx":3
  * from libc.math cimport exp as c_exp
  * 
- * cdef inline double f(double x) nogil:             # <<<<<<<<<<<<<<
- *         return c_exp(-x**2)
+ * cdef double f(double x) nogil:             # <<<<<<<<<<<<<<
+ *     return c_exp(-x**2)
  * 
  */
 
@@ -1113,7 +1113,7 @@ static CYTHON_INLINE double __pyx_f_12Rcf_5_cython_f(double __pyx_v_x) {
 }
 
 /* "Rcf_5_cython.pyx":6
- *         return c_exp(-x**2)
+ *     return c_exp(-x**2)
  * 
  * def Rcf(double a, double b, unsigned int n):             # <<<<<<<<<<<<<<
  *     """
@@ -1280,7 +1280,7 @@ static PyObject *__pyx_pf_12Rcf_5_cython_Rcf(CYTHON_UNUSED PyObject *__pyx_self,
   goto __pyx_L0;
 
   /* "Rcf_5_cython.pyx":6
- *         return c_exp(-x**2)
+ *     return c_exp(-x**2)
  * 
  * def Rcf(double a, double b, unsigned int n):             # <<<<<<<<<<<<<<
  *     """
@@ -1373,7 +1373,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
   /* "Rcf_5_cython.pyx":6
- *         return c_exp(-x**2)
+ *     return c_exp(-x**2)
  * 
  * def Rcf(double a, double b, unsigned int n):             # <<<<<<<<<<<<<<
  *     """
@@ -1664,7 +1664,7 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "Rcf_5_cython.pyx":6
- *         return c_exp(-x**2)
+ *     return c_exp(-x**2)
  * 
  * def Rcf(double a, double b, unsigned int n):             # <<<<<<<<<<<<<<
  *     """
@@ -1678,7 +1678,7 @@ if (!__Pyx_RefNanny) {
   /* "Rcf_5_cython.pyx":1
  * from libc.math cimport exp as c_exp             # <<<<<<<<<<<<<<
  * 
- * cdef inline double f(double x) nogil:
+ * cdef double f(double x) nogil:
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);

@@ -1037,7 +1037,7 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 /* Module declarations from 'libc.math' */
 
 /* Module declarations from 'Rcf_5_cython_openmp' */
-static CYTHON_INLINE double __pyx_f_19Rcf_5_cython_openmp_f(double); /*proto*/
+static double __pyx_f_19Rcf_5_cython_openmp_f(double); /*proto*/
 #define __Pyx_MODULE_NAME "Rcf_5_cython_openmp"
 extern int __pyx_module_is_main_Rcf_5_cython_openmp;
 int __pyx_module_is_main_Rcf_5_cython_openmp = 0;
@@ -1079,18 +1079,18 @@ static PyObject *__pyx_codeobj__2;
 /* "Rcf_5_cython_openmp.pyx":4
  * from libc.math cimport exp as c_exp
  * 
- * cdef inline double f(double x) nogil:             # <<<<<<<<<<<<<<
- *         return c_exp(-x**2)
+ * cdef double f(double x) nogil:             # <<<<<<<<<<<<<<
+ *     return c_exp(-x**2)
  * 
  */
 
-static CYTHON_INLINE double __pyx_f_19Rcf_5_cython_openmp_f(double __pyx_v_x) {
+static double __pyx_f_19Rcf_5_cython_openmp_f(double __pyx_v_x) {
   double __pyx_r;
 
   /* "Rcf_5_cython_openmp.pyx":5
  * 
- * cdef inline double f(double x) nogil:
- *         return c_exp(-x**2)             # <<<<<<<<<<<<<<
+ * cdef double f(double x) nogil:
+ *     return c_exp(-x**2)             # <<<<<<<<<<<<<<
  * 
  * def Rcf(double a, double b, unsigned int n):
  */
@@ -1100,8 +1100,8 @@ static CYTHON_INLINE double __pyx_f_19Rcf_5_cython_openmp_f(double __pyx_v_x) {
   /* "Rcf_5_cython_openmp.pyx":4
  * from libc.math cimport exp as c_exp
  * 
- * cdef inline double f(double x) nogil:             # <<<<<<<<<<<<<<
- *         return c_exp(-x**2)
+ * cdef double f(double x) nogil:             # <<<<<<<<<<<<<<
+ *     return c_exp(-x**2)
  * 
  */
 
@@ -1111,7 +1111,7 @@ static CYTHON_INLINE double __pyx_f_19Rcf_5_cython_openmp_f(double __pyx_v_x) {
 }
 
 /* "Rcf_5_cython_openmp.pyx":7
- *         return c_exp(-x**2)
+ *     return c_exp(-x**2)
  * 
  * def Rcf(double a, double b, unsigned int n):             # <<<<<<<<<<<<<<
  *     """
@@ -1335,7 +1335,7 @@ static PyObject *__pyx_pf_19Rcf_5_cython_openmp_Rcf(CYTHON_UNUSED PyObject *__py
   goto __pyx_L0;
 
   /* "Rcf_5_cython_openmp.pyx":7
- *         return c_exp(-x**2)
+ *     return c_exp(-x**2)
  * 
  * def Rcf(double a, double b, unsigned int n):             # <<<<<<<<<<<<<<
  *     """
@@ -1424,7 +1424,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
   /* "Rcf_5_cython_openmp.pyx":7
- *         return c_exp(-x**2)
+ *     return c_exp(-x**2)
  * 
  * def Rcf(double a, double b, unsigned int n):             # <<<<<<<<<<<<<<
  *     """
@@ -1722,7 +1722,7 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "Rcf_5_cython_openmp.pyx":7
- *         return c_exp(-x**2)
+ *     return c_exp(-x**2)
  * 
  * def Rcf(double a, double b, unsigned int n):             # <<<<<<<<<<<<<<
  *     """
