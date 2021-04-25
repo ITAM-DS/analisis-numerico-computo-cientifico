@@ -1161,7 +1161,7 @@ static PyObject *__pyx_codeobj__2;
 
 /* Python wrapper */
 static PyObject *__pyx_pw_12Rcf_4_cython_1Rcf(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_12Rcf_4_cython_Rcf[] = "\n    Compute numerical approximation using rectangle or mid-point\n    method in an interval.\n    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for\n    i=0,1,...,n-1 and h_hat=(b-a)/n\n    Args:\n    \n        f (float): function expression of integrand.\n        \n        a (float): left point of interval.\n        \n        b (float): right point of interval.\n        \n        n (int): number of subintervals.\n        \n    Returns:\n    \n        sum_res (float): numerical approximation to integral\n            of f in the interval a,b\n    ";
+static char __pyx_doc_12Rcf_4_cython_Rcf[] = "\n    Compute numerical approximation using rectangle or mid-point\n    method in an interval.\n    Nodes are generated via formula: x_i = a+(i+1/2)h_hat for\n    i=0,1,...,n-1 and h_hat=(b-a)/n\n    Args:\n    \n        a (float): left point of interval.\n        \n        b (float): right point of interval.\n        \n        n (int): number of subintervals.\n        \n    Returns:\n    \n        sum_res (float): numerical approximation to integral\n            of f in the interval a,b\n    ";
 static PyMethodDef __pyx_mdef_12Rcf_4_cython_1Rcf = {"Rcf", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_12Rcf_4_cython_1Rcf, METH_VARARGS|METH_KEYWORDS, __pyx_doc_12Rcf_4_cython_Rcf};
 static PyObject *__pyx_pw_12Rcf_4_cython_1Rcf(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   double __pyx_v_a;
@@ -1257,7 +1257,7 @@ static PyObject *__pyx_pf_12Rcf_4_cython_Rcf(CYTHON_UNUSED PyObject *__pyx_self,
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Rcf", 0);
 
-  /* "Rcf_4_cython.pyx":25
+  /* "Rcf_4_cython.pyx":23
  *     cdef unsigned int i
  *     cdef double x, sum_res, h_hat
  *     h_hat = (b-a)/n             # <<<<<<<<<<<<<<
@@ -1267,11 +1267,11 @@ static PyObject *__pyx_pf_12Rcf_4_cython_Rcf(CYTHON_UNUSED PyObject *__pyx_self,
   __pyx_t_1 = (__pyx_v_b - __pyx_v_a);
   if (unlikely(__pyx_v_n == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "float division");
-    __PYX_ERR(0, 25, __pyx_L1_error)
+    __PYX_ERR(0, 23, __pyx_L1_error)
   }
   __pyx_v_h_hat = (__pyx_t_1 / ((double)__pyx_v_n));
 
-  /* "Rcf_4_cython.pyx":26
+  /* "Rcf_4_cython.pyx":24
  *     cdef double x, sum_res, h_hat
  *     h_hat = (b-a)/n
  *     sum_res = 0             # <<<<<<<<<<<<<<
@@ -1280,7 +1280,7 @@ static PyObject *__pyx_pf_12Rcf_4_cython_Rcf(CYTHON_UNUSED PyObject *__pyx_self,
  */
   __pyx_v_sum_res = 0.0;
 
-  /* "Rcf_4_cython.pyx":27
+  /* "Rcf_4_cython.pyx":25
  *     h_hat = (b-a)/n
  *     sum_res = 0
  *     for i in range(n):             # <<<<<<<<<<<<<<
@@ -1292,7 +1292,7 @@ static PyObject *__pyx_pf_12Rcf_4_cython_Rcf(CYTHON_UNUSED PyObject *__pyx_self,
   for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
     __pyx_v_i = __pyx_t_4;
 
-    /* "Rcf_4_cython.pyx":28
+    /* "Rcf_4_cython.pyx":26
  *     sum_res = 0
  *     for i in range(n):
  *         x = a+(i+1/2)*h_hat             # <<<<<<<<<<<<<<
@@ -1301,20 +1301,20 @@ static PyObject *__pyx_pf_12Rcf_4_cython_Rcf(CYTHON_UNUSED PyObject *__pyx_self,
  */
     __pyx_v_x = (__pyx_v_a + ((__pyx_v_i + (1.0 / 2.0)) * __pyx_v_h_hat));
 
-    /* "Rcf_4_cython.pyx":29
+    /* "Rcf_4_cython.pyx":27
  *     for i in range(n):
  *         x = a+(i+1/2)*h_hat
  *         sum_res += math.exp(-x**2)             # <<<<<<<<<<<<<<
  *     return h_hat*sum_res
  */
-    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_sum_res); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 29, __pyx_L1_error)
+    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_sum_res); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 27, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_math); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 29, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_math); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 27, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_exp); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 29, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_exp); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 27, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = PyFloat_FromDouble((-pow(__pyx_v_x, 2.0))); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 29, __pyx_L1_error)
+    __pyx_t_7 = PyFloat_FromDouble((-pow(__pyx_v_x, 2.0))); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 27, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_9 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_8))) {
@@ -1329,25 +1329,25 @@ static PyObject *__pyx_pf_12Rcf_4_cython_Rcf(CYTHON_UNUSED PyObject *__pyx_self,
     __pyx_t_6 = (__pyx_t_9) ? __Pyx_PyObject_Call2Args(__pyx_t_8, __pyx_t_9, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_7);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 29, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 27, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 29, __pyx_L1_error)
+    __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 27, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_t_8); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 29, __pyx_L1_error)
+    __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_t_8); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 27, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_v_sum_res = __pyx_t_1;
   }
 
-  /* "Rcf_4_cython.pyx":30
+  /* "Rcf_4_cython.pyx":28
  *         x = a+(i+1/2)*h_hat
  *         sum_res += math.exp(-x**2)
  *     return h_hat*sum_res             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_8 = PyFloat_FromDouble((__pyx_v_h_hat * __pyx_v_sum_res)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_8 = PyFloat_FromDouble((__pyx_v_h_hat * __pyx_v_sum_res)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_r = __pyx_t_8;
   __pyx_t_8 = 0;
@@ -1442,7 +1442,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 25, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
