@@ -461,6 +461,17 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#en-la-siguiente-implementacion-quitar-inline-y-revisar-si-es-necesario">
+   En la siguiente implementación quitar
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     inline
+    </span>
+   </code>
+   y revisar si es necesario
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#openmp">
    OpenMP
   </a>
@@ -4064,6 +4075,11 @@ static PyObject *__pyx_pf_12Rcf_4_cython_Rcf(CYTHON_UNUSED PyObject *__pyx_self,
 </pre></div></body></html>
 </div></div>
 </div>
+<p>Mejoramos el tiempo si directamente utilizamos la función <code class="docutils literal notranslate"><span class="pre">exp</span></code> de la librería <code class="docutils literal notranslate"><span class="pre">math</span></code> de <em>Cython</em>, ver <a class="reference external" href="https://cython.readthedocs.io/en/latest/src/tutorial/external.html">calling C functions</a>.</p>
+</div>
+</div>
+<div class="section" id="en-la-siguiente-implementacion-quitar-inline-y-revisar-si-es-necesario">
+<h2>En la siguiente implementación quitar <code class="docutils literal notranslate"><span class="pre">inline</span></code> y revisar si es necesario<a class="headerlink" href="#en-la-siguiente-implementacion-quitar-inline-y-revisar-si-es-necesario" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf_5_cython.pyx
@@ -5044,14 +5060,13 @@ x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsym
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>La implementación con <em>NumPy</em> resulta ser la más rápida principalmente por el uso de bloques contiguos de memoria para almacenar los valores y la vectorización. La implementación anterior, sin embargo, requiere un conocimiento de las funciones de tal paquete. Para este ejemplo utilizamos <code class="docutils literal notranslate"><span class="pre">linspace</span></code> y la funcionalidad de realizar operaciones de forma vectorizada para la creación de los nodos. Una situación que podría darse es que para un problema no podamos utilizar alguna función de <em>NumPy</em> o bien no tengamos el ingenio para pensar cómo realizar una operación de forma vectorizada. En este caso <em>Cython</em> puede ser una opción a utilizar.</p></li>
+<li><p>La implementación con <em>NumPy</em> resulta ser la segunda más rápida principalmente por el uso de bloques contiguos de memoria para almacenar los valores y la vectorización. La implementación anterior, sin embargo, requiere un conocimiento de las funciones de tal paquete. Para este ejemplo utilizamos <code class="docutils literal notranslate"><span class="pre">linspace</span></code> y la funcionalidad de realizar operaciones de forma vectorizada para la creación de los nodos. Una situación que podría darse es que para un problema no podamos utilizar alguna función de <em>NumPy</em> o bien no tengamos el ingenio para pensar cómo realizar una operación de forma vectorizada. En este caso <em>Cython</em> puede ser una opción a utilizar.</p></li>
 <li><p>En <em>Cython</em> se tienen las <a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/memoryviews.html">memoryviews</a> para acceso de bajo nivel a la memoria similar a la que proveen los <em>arrays</em> de <em>NumPy</em> en el caso de requerirse <em>arrays</em> en una forma más general que no sólo sean de <em>NumPy</em> (por ejemplo de <em>C</em> o de <em>Cython</em>, ver <a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/memoryviews.html#view-cython-arrays">Cython arrays</a>).</p></li>
 </ul>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Compárese la implementación vía <em>NumPy</em> con el uso de listas para los nodos. Recuérdese que las listas de <em>Python</em> alojan locaciones donde se pueden encontrar los valores y no los valores en sí. Los <em>arrays</em> de <em>NumPy</em> almacenan tipos de valores primitivos. Las listas tienen <em>data fragmentation</em> que causan <em>memory fragmentation</em> y por tanto un mayor impacto del <em>Von Neumann bottleneck</em>. Además el almacenamiento de tipo de objetos de alto nivel en las listas causa <em>overhead</em> en lugar de almacenamiento de tipo de valores primitivos en un <em>array</em> de <em>NumPy</em>.</p>
-</div>
 </div>
 </div>
 <div class="section" id="openmp">
@@ -5124,7 +5139,7 @@ $HOME/.local/bin/cython -3 --force Rcf_5_cython_openmp.pyx
 <p>En el archivo <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> se coloca la <strong>directiva</strong> <code class="docutils literal notranslate"><span class="pre">-fopenmp</span></code>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>La liga correcta del archivo <code class="docutils literal notranslate"><span class="pre">Rcf_5_cython_openmp.c</span></code> es <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/V.optimizacion_de_codigo/5.3/Rcf_5_cython_openmp.c">Rcf_5_cython_openmp.c</a></p>
+<p>Ver <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/libro_optimizacion/temas/V.optimizacion_de_codigo/5.3/Rcf_5_cython_openmp.c">Rcf_5_cython_openmp.c</a> para la implementación en <em>C</em> de la función <code class="docutils literal notranslate"><span class="pre">Rcf_5_cython_openmp.Rcf</span></code>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
