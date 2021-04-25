@@ -417,12 +417,12 @@
   <a class="reference internal nav-link" href="#cython">
    Cython
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython">
-   ¿En qué casos y qué tipo de ganancias en velocidad podemos esperar al usar Cython?
-  </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython">
+     ¿En qué casos y qué tipo de ganancias en velocidad podemos esperar al usar Cython?
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ejemplo-utilizando-un-archivo-setup-py">
      Ejemplo utilizando un archivo
@@ -446,13 +446,11 @@
      </code>
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#anotaciones-para-analizar-un-bloque-de-codigo">
-   Anotaciones para analizar un bloque de código
-  </a>
-  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anotaciones-para-analizar-un-bloque-de-codigo">
+     Anotaciones para analizar un bloque de código
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ejemplo-via-linea-de-comando">
      Ejemplo vía línea de comando
@@ -470,13 +468,34 @@
    </code>
    y revisar si es necesario
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implementacion-con-numpy">
+     Implementación con
+     <em>
+      NumPy
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cython-y-openmp">
+     <em>
+      Cython
+     </em>
+     y OpenMP
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cython-y-openmp">
-   <em>
-    Cython
-   </em>
-   y OpenMP
+  <a class="reference internal nav-link" href="#id1">
+   En la siguiente implementación quitar
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     inline
+    </span>
+   </code>
+   y revisar si es necesario
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1200,9 +1219,8 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 <ul class="simple">
 <li><p><em>Cython</em> y el compilador <em>gcc</em> analizan el código anotado para determinar qué instrucciones pueden optimizarse mediante una compilación AOT.</p></li>
 </ul>
-</div>
 <div class="section" id="en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython">
-<h2>¿En qué casos y qué tipo de ganancias en velocidad podemos esperar al usar Cython?<a class="headerlink" href="#en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython" title="Permalink to this headline">¶</a></h2>
+<h3>¿En qué casos y qué tipo de ganancias en velocidad podemos esperar al usar Cython?<a class="headerlink" href="#en-que-casos-y-que-tipo-de-ganancias-en-velocidad-podemos-esperar-al-usar-cython" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Un caso es en el que se tenga un código con muchos <em>loops</em> que realicen operaciones matemáticas típicamente no vectorizadas o que no pueden vectorizarse. Esto es, códigos en los que las instrucciones son básicamente sólo <em>Python</em> sin utilizar paquetes externos. Además, si en el ciclo las variables no cambian de su tipo (por ejemplo de <code class="docutils literal notranslate"><span class="pre">int</span></code> a <code class="docutils literal notranslate"><span class="pre">float</span></code>) entonces es un código que obtendrá ganancia en velocidad al compilar a código de máquina.</p></li>
 </ul>
@@ -1214,6 +1232,7 @@ gcc -Wall Rcf_c.c -o Rcf_c.out -lm
 <li><p>No esperamos tener un <em>speedup</em> después de compilar para llamadas a librerías externas (por ejemplo paqueterías que manejan bases de datos). También es poco probable que se obtengan ganancias significativas en programas que tengan alta carga de I/O.</p></li>
 <li><p>En general es poco probable que tu código compilado se ejecute más rápido que un código en <em>C</em> “bien escrito” y también es poco probable que se ejecute más lento. Es muy posible que el código <em>C</em> generado desde <em>Python</em> mediante <em>Cython</em> pueda alcanzar las velocidades de un código escrito en <em>C</em>, a menos que la persona que programó en <em>C</em> tenga un gran conocimiento de formas de hacer que el código de <em>C</em> se ajuste a la arquitectura de la máquina sobre la que se ejecutan los códigos.</p></li>
 </ul>
+</div>
 <div class="section" id="ejemplo-utilizando-un-archivo-setup-py">
 <h3>Ejemplo utilizando un archivo <code class="docutils literal notranslate"><span class="pre">setup.py</span></code><a class="headerlink" href="#ejemplo-utilizando-un-archivo-setup-py" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
@@ -1472,14 +1491,14 @@ def Rcf(f,a,b,n):
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="anotaciones-para-analizar-un-bloque-de-codigo">
-<h2>Anotaciones para analizar un bloque de código<a class="headerlink" href="#anotaciones-para-analizar-un-bloque-de-codigo" title="Permalink to this headline">¶</a></h2>
+<h3>Anotaciones para analizar un bloque de código<a class="headerlink" href="#anotaciones-para-analizar-un-bloque-de-codigo" title="Permalink to this headline">¶</a></h3>
 <p><em>Cython</em> tiene la opción de <em>annotation</em> para generar un archivo con extensión <code class="docutils literal notranslate"><span class="pre">.html</span></code> en el que cada línea puede ser expandida haciendo un doble click que mostrará el código <em>C</em> generado. Líneas “más amarillas” refieren a más llamadas en la máquina virtual de <em>Python</em>, mientras que líneas más blancas significan “más código en <em>C</em> y no <em>Python</em>”.</p>
 <p>El objetivo es remover la mayor cantidad de líneas amarillas posibles pues son costosas en tiempo. Si tales líneas están dentro de loops serán todavía más costosas. Al final se busca tener códigos cuyas anotaciones sean lo más blancas posibles.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Concentra tu atención en las líneas que son amarillas y están dentro de los <em>loops</em>, no inviertas tiempo en líneas amarillas que están fuera de <em>loops</em> y que no causan una ejecución lenta. Una ayuda para identificar lo anterior la da el perfilamiento.</p>
+</div>
 </div>
 <div class="section" id="ejemplo-via-linea-de-comando">
 <h3>Ejemplo vía línea de comando<a class="headerlink" href="#ejemplo-via-linea-de-comando" title="Permalink to this headline">¶</a></h3>
@@ -4995,6 +5014,8 @@ x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsym
 </div>
 </div>
 </div>
+<div class="section" id="implementacion-con-numpy">
+<h3>Implementación con <em>NumPy</em><a class="headerlink" href="#implementacion-con-numpy" title="Permalink to this headline">¶</a></h3>
 <p>Comparamos con una implementación usando <em>NumPy</em> y vectorización:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5088,13 +5109,17 @@ x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsym
 </div>
 </div>
 <div class="section" id="cython-y-openmp">
-<h2><em>Cython</em> y <a class="reference external" href="http://www.openmp.org/">OpenMP</a><a class="headerlink" href="#cython-y-openmp" title="Permalink to this headline">¶</a></h2>
+<h3><em>Cython</em> y <a class="reference external" href="http://www.openmp.org/">OpenMP</a><a class="headerlink" href="#cython-y-openmp" title="Permalink to this headline">¶</a></h3>
 <p><em>OpenMP</em> es una extensión al lenguaje <em>C</em> y es una API para <em>shared memory parallel programming</em>. Se revisará con mayor profundidad en la nota de cómputo en paralelo.</p>
 <p>En <em>Cython</em>, <em>OpenMP</em> se utiliza mediante <a class="reference external" href="https://cython.readthedocs.io/en/latest/src/userguide/parallelism.html#cython.parallel.prange">prange</a> (<em>parallel range</em>). Además debe deshabilitarse el <em>GIL</em>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Al deshabilitar el GIL en una sección de código se debe operar con tipos primitivos. En tal sección no se debe operar con objetos <em>Python</em> (por ejemplo listas).</p>
 </div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>En la siguiente implementación quitar <code class="docutils literal notranslate"><span class="pre">inline</span></code> y revisar si es necesario<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf_5_cython_openmp.pyx
