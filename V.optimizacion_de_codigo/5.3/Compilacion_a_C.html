@@ -6128,7 +6128,7 @@ None
 <span class="s">             double x;</span>
 <span class="s">             h_hat=(b-a)/n;</span>
 <span class="s">             for(i=0;i&lt;=n-1;i++){</span>
-<span class="s">                    x = a+(i+1/2.0)*h_hat;</span>
+<span class="s">                    x = a+(i+1/2)*h_hat;</span>
 <span class="s">                    sum_res += exp(-pow(x,2));</span>
 <span class="s">             }</span>
 <span class="s">             return h_hat*sum_res;</span>
@@ -6218,10 +6218,13 @@ DIR: /tmp/RtmpmOAi1r/sourceCpp-x86_64-pc-linux-gnu-1.0.6/sourcecpp_376475ae9fd3
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>Al ejecutar la línea de <code class="docutils literal notranslate"><span class="pre">cppFunction</span></code>, <em>Rcpp</em> compilará el código de <em>C++</em> y construirá una función de <em>R</em> que se conecta con la función compilada de <em>C++</em> (que le nombramos <em>wrapper</em>).</p></li>
-<li><p>Si se lee la salida de la ejecución con <code class="docutils literal notranslate"><span class="pre">verbose=TRUE</span></code> se encuentra un bloque de <em>C</em> y un tipo de dato <code class="docutils literal notranslate"><span class="pre">SEXP</span></code> que de acuerdo a H. Wickham:</p></li>
+<li><p>Al ejecutar la línea de <code class="docutils literal notranslate"><span class="pre">cppFunction</span></code>, <em>Rcpp</em> compilará el código de <em>C++</em> y construirá una función de <em>R</em> que se conecta con la función compilada de <em>C++</em>.</p></li>
+<li><p>Si se lee la salida de la ejecución con <code class="docutils literal notranslate"><span class="pre">verbose=TRUE</span></code> se utiliza un tipo de valor <code class="docutils literal notranslate"><span class="pre">SEXP</span></code>. De acuerdo a H. Wickham:</p></li>
 </ul>
 <p><em>…functions that talk to R must use the SEXP type for both inputs and outputs. SEXP, short for S expression, is the C struct used to represent every type of object in R. A C function typically starts by converting SEXPs to atomic C objects, and ends by converting C objects back to a SEXP. (The R API is designed so that these conversions often don’t require copying.)</em></p>
+<ul class="simple">
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">Rcpp::wrap</span></code> convierte objetos de <em>C++</em> a objetos de <em>R</em> y <code class="docutils literal notranslate"><span class="pre">Rcpp:as</span></code> viceversa.</p></li>
+</ul>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -6254,7 +6257,7 @@ DIR: /tmp/RtmpmOAi1r/sourceCpp-x86_64-pc-linux-gnu-1.0.6/sourcecpp_376475ae9fd3
 </div>
 <div class="section" id="numericvector">
 <h3><code class="docutils literal notranslate"><span class="pre">NumericVector</span></code><a class="headerlink" href="#numericvector" title="Permalink to this headline">¶</a></h3>
-<p>Se tienen clases que relacionan los tipos de valores en <em>R</em> para vectores. Entre éstas se encuentran <code class="docutils literal notranslate"><span class="pre">NumericVector</span></code>, <code class="docutils literal notranslate"><span class="pre">IntegerVector</span></code>, <code class="docutils literal notranslate"><span class="pre">CharacterVector</span></code> y <code class="docutils literal notranslate"><span class="pre">LogicalVector</span></code> que se relacionan con vectores tipo <code class="docutils literal notranslate"><span class="pre">numeric</span></code>, <code class="docutils literal notranslate"><span class="pre">integer</span></code>, <code class="docutils literal notranslate"><span class="pre">character</span></code> y <code class="docutils literal notranslate"><span class="pre">logical</span></code>.</p>
+<p>En <em>Rcpp</em> se definen clases para relacionar tipos de valores de <em>R</em> con tipo de valores de <em>C++</em> para el manejo de vectores. Entre éstas se encuentran <code class="docutils literal notranslate"><span class="pre">NumericVector</span></code>, <code class="docutils literal notranslate"><span class="pre">IntegerVector</span></code>, <code class="docutils literal notranslate"><span class="pre">CharacterVector</span></code> y <code class="docutils literal notranslate"><span class="pre">LogicalVector</span></code> que se relacionan con vectores tipo <code class="docutils literal notranslate"><span class="pre">numeric</span></code>, <code class="docutils literal notranslate"><span class="pre">integer</span></code>, <code class="docutils literal notranslate"><span class="pre">character</span></code> y <code class="docutils literal notranslate"><span class="pre">logical</span></code> respectivamente.</p>
 <p>Por ejemplo, para el caso de <code class="docutils literal notranslate"><span class="pre">NumericVector</span></code> se tiene el siguiente ejemplo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -6284,7 +6287,7 @@ DIR: /tmp/RtmpmOAi1r/sourceCpp-x86_64-pc-linux-gnu-1.0.6/sourcecpp_376475ae9fd3
 </div>
 </div>
 </div>
-<p>Para mostrar otro ejemplo en el caso de la regla de integración del rectángulo se tiene la siguiente implementación.</p>
+<p>Para mostrar otro ejemplo en el caso de la regla de integración del rectángulo considérese la siguiente implementación.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Rcf_implementation_example</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">){</span>
@@ -6336,11 +6339,29 @@ DIR: /tmp/RtmpmOAi1r/sourceCpp-x86_64-pc-linux-gnu-1.0.6/sourcecpp_376475ae9fd3
 </div>
 </div>
 </div>
+<p>Utilicemos <em>Rcpp</em> para definir una función que recibe un <code class="docutils literal notranslate"><span class="pre">NumericVector</span></code> para realizar la suma.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>El método <code class="docutils literal notranslate"><span class="pre">.size()</span></code> regresa un <em>integer</em>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">&lt;-</span> <span class="m">0</span>
-<span class="n">b</span> <span class="o">&lt;-</span> <span class="m">1</span>
-<span class="n">h_hat</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">f_str</span><span class="o">&lt;-</span><span class="s">&#39;double Rcf_numeric_vector(NumericVector f_x,double h_hat){</span>
+<span class="s">             double sum_res=0;</span>
+<span class="s">             int i;</span>
+<span class="s">             int n = f_x.size();</span>
+<span class="s">             for(i=0;i&lt;=n-1;i++){</span>
+<span class="s">                    sum_res+=f_x[i];</span>
+<span class="s">             }</span>
+<span class="s">             return h_hat*sum_res;</span>
+<span class="s">        }&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">h_hat</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
 </pre></div>
 </div>
 </div>
@@ -6360,25 +6381,6 @@ DIR: /tmp/RtmpmOAi1r/sourceCpp-x86_64-pc-linux-gnu-1.0.6/sourcecpp_376475ae9fd3
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 0.3678798 0.3678798 0.3678797 0.3678796 0.3678796 0.3678795
-</pre></div>
-</div>
-</div>
-</div>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>El método <code class="docutils literal notranslate"><span class="pre">.size()</span></code> regresa un <em>integer</em>.</p>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">f_str</span><span class="o">&lt;-</span><span class="s">&#39;double Rcf_numeric_vector(NumericVector f_x,double h_hat){</span>
-<span class="s">             double sum_res=0;</span>
-<span class="s">             int i;</span>
-<span class="s">             int n = f_x.size();</span>
-<span class="s">             for(i=0;i&lt;=n-1;i++){</span>
-<span class="s">                    sum_res+=f_x[i];</span>
-<span class="s">             }</span>
-<span class="s">             return h_hat*sum_res;</span>
-<span class="s">        }&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -6444,6 +6446,10 @@ DIR: /tmp/RtmpmOAi1r/sourceCpp-x86_64-pc-linux-gnu-1.0.6/sourcecpp_376475ae9fd3
 </div>
 </div>
 <p>También en <em>Rcpp</em> es posible llamar funciones definidas en el ambiente global, por ejemplo.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><code class="docutils literal notranslate"><span class="pre">RObject</span></code> es una clase de <em>C++</em> para definir un objeto de <em>R</em>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">f_str</span> <span class="o">&lt;-</span> <span class="s">&#39;RObject fun(double x){</span>
@@ -6514,7 +6520,7 @@ DIR: /tmp/RtmpmOAi1r/sourceCpp-x86_64-pc-linux-gnu-1.0.6/sourcecpp_376475ae9fd3
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicio</p>
-<p>Revisar <a class="reference external" href="http://adv-r.had.co.nz/Rcpp.html#rcpp-sugar">rcpp-sugar</a> y <a class="reference external" href="http://dirk.eddelbuettel.com/code/rcpp/Rcpp-sugar.pdf">Rcpp syntactic sugar</a> y proponer programas que utilicen <em>sugar</em>.</p>
+<p>Revisar <a class="reference external" href="http://adv-r.had.co.nz/Rcpp.html#rcpp-sugar">rcpp-sugar</a>, <a class="reference external" href="http://dirk.eddelbuettel.com/code/rcpp/Rcpp-sugar.pdf">Rcpp syntactic sugar</a> y proponer programas que utilicen <em>sugar</em>.</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicio</p>
@@ -6544,6 +6550,7 @@ DIR: /tmp/RtmpmOAi1r/sourceCpp-x86_64-pc-linux-gnu-1.0.6/sourcecpp_376475ae9fd3
 <li><p><a class="reference external" href="http://dirk.eddelbuettel.com/papers/rcpp_rfinance_may2017.pdf">Introduction to rcpp:From Simple Examples to Machine Learning</a>.</p></li>
 <li><p><a class="reference external" href="http://yixuan.cos.name/rcpp-note/index.html">Rcpp note</a>.</p></li>
 <li><p><a class="reference external" href="http://dirk.eddelbuettel.com/code/rcpp/Rcpp-quickref.pdf">Rcpp quick reference guide</a>.</p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/41602024/should-i-prefer-rcppnumericvector-over-stdvector">should-i-prefer-rcppnumericvector-over-stdvector</a></p></li>
 <li><p><a class="reference external" href="https://www.learncpp.com/">Learncpp</a>.</p></li>
 <li><p><a class="reference external" href="http://www.cplusplus.com/">Cplusplus</a>.</p></li>
 <li><p><a class="reference external" href="https://stackoverflow.com/questions/4037946/what-are-the-downsides-of-jit-compilation">what-are-the-downsides-of-jit-compilation</a></p></li>
