@@ -384,13 +384,18 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sistemas-de-memoria-compartida-smc">
+   Sistemas de memoria compartida (SMC)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#openmp">
    OpenMP
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#multiprocessing">
-   Multiprocessing.
+   Multiprocessing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -432,7 +437,7 @@
 <p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab_optimizacion_2:3.0.0</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2">liga</a>.</p>
 </div>
 <hr class="docutils" />
-<p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/oauifmx3e19ofyq/2.3.Sistemas_de_memoria_compartida_Pthreads.pdf?dl=0">liga1</a>, <a class="reference external" href="https://www.dropbox.com/s/vcxbrqkk6x946d7/2.4.Sistemas_de_memoria_compartida_openMP.pdf?dl=0">liga2</a></p>
+<p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/oauifmx3e19ofyq/2.3.Sistemas_de_memoria_compartida_Pthreads.pdf?dl=0">liga1</a>, <a class="reference external" href="https://www.dropbox.com/s/vcxbrqkk6x946d7/2.4.Sistemas_de_memoria_compartida_openMP.pdf?dl=0">liga2</a>, <a class="reference external" href="https://www.dropbox.com/s/v4ub0p3ndf7w1p0/2.2.Sistemas_de_memoria_distribuida_MPI.pdf?dl=0">liga3</a></p>
 <div class="tip admonition">
 <p class="admonition-title">Al final de esta nota el y la lectora:</p>
 <ul class="simple">
@@ -648,11 +653,37 @@ uname -ar #r for kernel, a for all
 <p class="admonition-title">Observación</p>
 <p>En la celda anterior se utilizó el comando de <em>magic</em> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>. Algunos comandos de <em>magic</em> los podemos utilizar también con <code class="docutils literal notranslate"><span class="pre">import</span></code>. Ver <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">ipython-magics</a></p>
 </div>
+<div class="section" id="sistemas-de-memoria-compartida-smc">
+<h2>Sistemas de memoria compartida (SMC)<a class="headerlink" href="#sistemas-de-memoria-compartida-smc" title="Permalink to this headline">¶</a></h2>
+<p>Un SMC en general se ve como el siguiente dibujo:</p>
+<img src="https://dl.dropboxusercontent.com/s/ao3if8tzwsvzfi7/shared_memory_sistems.png?dl=0" heigth="500" width="500"><p>El dibujo anterior es un SMC con acceso uniforme a la memoria (<a class="reference external" href="https://en.wikipedia.org/wiki/Uniform_memory_access">UMA</a>), esto es, cada procesador o <em>core</em> acceden con las mismas velocidades a la memoria.</p>
+<p>Cada proceso o <em>thread</em> creado en el procesador en este tipo de sistemas tienen acceso a la memoria principal.</p>
+<p>La <strong>comunicación</strong> en este tipo de sistemas depende si se utilizan procesos o <em>threads</em> pues aunque los procesos generados por un proceso principal tienen acceso a la memoria principal, los cambios que haga uno de ellos en una variable (p.ej.) no lo llegan a ver los otros procesos. Esto es distinto con los <em>threads</em> pues un cambio que realice un <em>thread</em> en una variable sí lo pueden ver los otros <em>threads</em>. Lo anterior se debe a las distintas direcciones de memoria que utilizan los procesos vs la misma dirección de memoria que utilizan los <em>threads</em>.</p>
+<p>Trabajar sobre este tipo de sistemas tiene ventajas y desventajas. Por ejemplo, crear <strong>variables globales</strong> o que pueden ser accesadas por todos los <em>threads</em> (variable compartida) facilita la comunicación. Una desventaja es la <strong>coordinación</strong> para ejecutar instrucciones pues al tener una variable compartida o global debemos crear candados, <em>locks</em>, ya que si un <em>thread</em> por ejemplo con etiqueta <span class="math notranslate nohighlight">\(1\)</span> accede a ella, otro <em>thread</em> por ejemplo con etiqueta <span class="math notranslate nohighlight">\(2\)</span>, no pueda utilizarla hasta que finalice el thread <span class="math notranslate nohighlight">\(1\)</span> de usarla. Ver <a class="reference external" href="https://en.wikipedia.org/wiki/Thread_safety">Thread Safety</a> y <a class="reference external" href="https://en.wikipedia.org/wiki/Race_condition#Computing">Race Condition</a>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>En una <em>race condition</em> múltiples <em>threads</em> intentan acceder a un recurso compartido, al menos uno de los accesos resulta en una modificación al recurso y posteriormente los siguientes accesos pueden no ver la modificación. A la sección del código que causa la <em>race condition</em> se le llama <em>critical section</em>. Las <em>critical sections</em> se ejecutan con código secuencial o con <em>locks</em> para evitar las <em>race conditions</em>.</p></li>
+<li><p>Para crear procesos o <em>threads</em> en los lenguajes de programación de <em>C, Python</em> o <em>R</em>, utilizamos las librerías, API’s o extensiones vía paquetes a tales lenguajes pues tanto <em>C, Python</em> como <em>R</em> en sus implementaciones* más utilizadas, fueron diseñados con el propósito de utilizarse sobre sistemas con un sólo procesador.</p></li>
+<li><p>Un ejemplo de una máquina de sistema de memoria compartida son las laptops.</p></li>
+<li><p>En un SMC los procesos o <em>threads</em> pueden acceder a la memoria en una forma no uniforme <a class="reference external" href="https://en.wikipedia.org/wiki/Non-uniform_memory_access">NUMA</a>:</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/dqwdqdxiecj91vy/shared_memory_systems_2.png?dl=0" heigth="500" width="500">
+<ul class="simple">
+<li><p>Un SMC contrasta con un sistema de memoria distribuida (SMD) que en general se ve como el siguiente dibujo:</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/iky7af1m3dcj3e0/distributed_memory_systems.png?dl=0" heigth="600" width="600">
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>En distintas implementaciones hay soporte para sistemas de memoria compartida. La implementación más utilizada por ejemplo de Python es <em>CPython</em>, pero hay otras más como <a class="reference external" href="https://doc.pypy.org/en/latest/index.html">PyPy</a>. Ver <a class="reference external" href="https://stackoverflow.com/questions/17130975/python-vs-cpython">pregunta en stackoverflow</a> para una breve explicación de implementaciones de Python. Ver <a class="reference external" href="http://adv-r.had.co.nz/Performance.html#faster-r">Alternative R implementations</a> y <a class="reference external" href="https://en.wikipedia.org/wiki/R_(programming_language)#Implementations">R implementations</a> para otras implementaciones de <em>R</em>.</p>
+</div>
+</div>
 <div class="section" id="openmp">
 <h2><a class="reference external" href="http://www.openmp.org/">OpenMP</a><a class="headerlink" href="#openmp" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="multiprocessing">
-<h2><a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html">Multiprocessing</a>.<a class="headerlink" href="#multiprocessing" title="Permalink to this headline">¶</a></h2>
+<h2><a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html">Multiprocessing</a><a class="headerlink" href="#multiprocessing" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="dask">
 <h2><a class="reference external" href="https://docs.dask.org/en/latest/">Dask</a><a class="headerlink" href="#dask" title="Permalink to this headline">¶</a></h2>
