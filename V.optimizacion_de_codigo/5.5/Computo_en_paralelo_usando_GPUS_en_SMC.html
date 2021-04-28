@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5.4 Cómputo en paralelo usando CPUs un sistema de memoria compartida (SMC)</title>
+    <title>5.5 Cómputo en paralelo usando GPUs en un sistema de memoria compartida (SMC)</title>
     
   <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -56,8 +56,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="5.5 Cómputo en paralelo usando GPUs en un sistema de memoria compartida (SMC)" href="../5.5/Computo_en_paralelo_usando_GPUS_en_SMC.html" />
-    <link rel="prev" title="5.3 Compilación a C" href="../5.3/Compilacion_a_C.html" />
+    <link rel="next" title="6.1 Problemas tipo Unconstrained Convex Optimization (UCO)" href="../../VI.algoritmos_optimizacion_convexa/6.1/Problemas_UCO.html" />
+    <link rel="prev" title="5.4 Cómputo en paralelo usando CPUs un sistema de memoria compartida (SMC)" href="../5.4/Computo_en_paralelo_usando_CPUS_en_SMC.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -249,13 +249,13 @@
    5.3 Compilación a C
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../5.4/Computo_en_paralelo_usando_CPUS_en_SMC.html">
    5.4 Cómputo en paralelo usando CPUs un sistema de memoria compartida (SMC)
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../5.5/Computo_en_paralelo_usando_GPUS_en_SMC.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    5.5 Cómputo en paralelo usando GPUs en un sistema de memoria compartida (SMC)
   </a>
  </li>
@@ -333,7 +333,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/V.optimizacion_de_codigo/5.4/Computo_en_paralelo_usando_CPUS_en_SMC.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/V.optimizacion_de_codigo/5.5/Computo_en_paralelo_usando_GPUS_en_SMC.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -358,7 +358,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/V.optimizacion_de_codigo/5.4/Computo_en_paralelo_usando_CPUS_en_SMC.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/V.optimizacion_de_codigo/5.5/Computo_en_paralelo_usando_GPUS_en_SMC.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
@@ -384,23 +384,18 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#openmp">
-   OpenMP
+  <a class="reference internal nav-link" href="#cuda-c">
+   CUDA-C
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multiprocessing">
-   Multiprocessing.
+  <a class="reference internal nav-link" href="#cupy">
+   CuPy
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dask">
-   Dask
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parallel">
-   Parallel
+  <a class="reference internal nav-link" href="#gputools">
+   Gputools
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -419,8 +414,8 @@
         
               <div>
                 
-  <div class="section" id="computo-en-paralelo-usando-cpus-un-sistema-de-memoria-compartida-smc">
-<span id="compparalelocpussmc"></span><h1>5.4 Cómputo en paralelo usando CPUs un sistema de memoria compartida (SMC)<a class="headerlink" href="#computo-en-paralelo-usando-cpus-un-sistema-de-memoria-compartida-smc" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="computo-en-paralelo-usando-gpus-en-un-sistema-de-memoria-compartida-smc">
+<span id="compparalelogpussmc"></span><h1>5.5 Cómputo en paralelo usando GPUs en un sistema de memoria compartida (SMC)<a class="headerlink" href="#computo-en-paralelo-usando-gpus-en-un-sistema-de-memoria-compartida-smc" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-notas-para-contenedor-de-docker admonition">
 <p class="admonition-title">Notas para contenedor de docker:</p>
 <p>Comando de docker para ejecución de la nota de forma local:</p>
@@ -432,7 +427,7 @@
 <p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab_optimizacion_2:3.0.0</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2">liga</a>.</p>
 </div>
 <hr class="docutils" />
-<p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/oauifmx3e19ofyq/2.3.Sistemas_de_memoria_compartida_Pthreads.pdf?dl=0">liga1</a>, <a class="reference external" href="https://www.dropbox.com/s/vcxbrqkk6x946d7/2.4.Sistemas_de_memoria_compartida_openMP.pdf?dl=0">liga2</a></p>
+<p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/yjijtfuky3s5dfz/2.5.Compute_Unified_Device_Architecture.pdf?dl=0">liga</a></p>
 <div class="tip admonition">
 <p class="admonition-title">Al final de esta nota el y la lectora:</p>
 <ul class="simple">
@@ -648,47 +643,86 @@ uname -ar #r for kernel, a for all
 <p class="admonition-title">Observación</p>
 <p>En la celda anterior se utilizó el comando de <em>magic</em> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>. Algunos comandos de <em>magic</em> los podemos utilizar también con <code class="docutils literal notranslate"><span class="pre">import</span></code>. Ver <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">ipython-magics</a></p>
 </div>
-<div class="section" id="openmp">
-<h2><a class="reference external" href="http://www.openmp.org/">OpenMP</a><a class="headerlink" href="#openmp" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cuda-c">
+<h2><a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/">CUDA-C</a><a class="headerlink" href="#cuda-c" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="multiprocessing">
-<h2><a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html">Multiprocessing</a>.<a class="headerlink" href="#multiprocessing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cupy">
+<h2><a class="reference external" href="https://github.com/cupy/cupy">CuPy</a><a class="headerlink" href="#cupy" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="dask">
-<h2><a class="reference external" href="https://docs.dask.org/en/latest/">Dask</a><a class="headerlink" href="#dask" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="parallel">
-<h2><a class="reference external" href="https://www.rdocumentation.org/packages/parallel/versions/3.6.2">Parallel</a><a class="headerlink" href="#parallel" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="gputools">
+<h2><a class="reference external" href="https://github.com/nullsatz/gputools">Gputools</a><a class="headerlink" href="#gputools" title="Permalink to this headline">¶</a></h2>
+<p>Ver <a class="reference external" href="https://rdrr.io/cran/gputools/">gputools: cran</a></p>
 </div>
 <div class="section" id="referencias-de-interes">
 <h2>Referencias de interés<a class="headerlink" href="#referencias-de-interes" title="Permalink to this headline">¶</a></h2>
+<p>Para más sobre <em>Unified Memory</em> revisar:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://stories.dask.org/en/latest/">Use cases with dask</a></p></li>
-<li><p><a class="reference external" href="https://github.com/dask/dask-tutorial">dask-tutorial</a></p></li>
-<li><p>En <em>dask</em> se hace referencia al uso de funciones <em>pure</em>. Ver: <a class="reference external" href="https://distributed.dask.org/en/latest/client.html#pure-functions-by-default">Pure Functions by Default</a> y <a class="reference external" href="https://toolz.readthedocs.io/en/latest/purity.html">Function Purity</a> para ejemplos de funciones <em>pure</em>.</p></li>
-<li><p>En <a class="reference external" href="https://www.youtube.com/watch?v=EX_voquHdk0">Dask JupyterLab Extension</a> se muestra cómo instalar la extensión en jupyterlab para dask.</p></li>
-<li><p><a class="reference external" href="http://www.sfu.ca/~sblay/R/snow.html">snow Simplified</a></p></li>
-<li><p><a class="reference external" href="https://docs.microsoft.com/en-us/machine-learning-server/r/how-to-revoscaler-distributed-computing-foreach">Using foreach and iterators for manual parallel execution</a></p></li>
+<li><p><a class="reference external" href="https://devblogs.nvidia.com/even-easier-introduction-cuda/">Even easier introduction to cuda</a></p></li>
+<li><p><a class="reference external" href="https://devblogs.nvidia.com/unified-memory-cuda-beginners/">Unified memory cuda beginners</a></p></li>
 </ul>
-<p>Otro paquete de <em>R</em> a revisar:</p>
+<p>Es importante el manejo de errores por ejemplo en el alojamiento de memoria en la GPU. En este caso es útil revisar:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.rdocumentation.org/packages/future/versions/1.21.0">future</a></p></li>
+<li><p><a class="reference external" href="https://devblogs.nvidia.com/how-query-device-properties-and-handle-errors-cuda-cc/">How to Query Device Properties and Handle Errors in CUDA C/C++</a></p></li>
 </ul>
+<p>En <em>stackoverflow</em> encontramos a personas desarrolladoras de CUDA que resuelven preguntas muy útiles para continuar con el aprendizaje de CUDA C. Por ejemplo:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/51526082/cuda-parallel-reduction-over-one-axis">Parallel reduction over one axis</a></p></li>
+</ul>
+<p>Otros sistemas de software para el <a class="reference external" href="https://en.wikipedia.org/wiki/Heterogeneous_computing">Heterogeneous computing</a> son:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/OpenCL">OpenCl</a>. Ver <a class="reference external" href="https://developer.nvidia.com/opencl">NVIDIA OpenCL SDK Code Samples</a> para ejemplos con NVIDIA GPU’s.</p></li>
+<li><p><a class="reference external" href="https://github.com/Rth-org/Rth">Rth-org/Rth</a> y más reciente <a class="reference external" href="https://github.com/matloff/Rth">matloff/Rth</a>. Ver también <a class="reference external" href="https://rdrr.io/github/matloff/Rth/f/README.md">rdrr.io matloff/Rth</a>.</p></li>
+</ul>
+<p>Es posible escribir <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/master/temas/II.computo_paralelo/2.3.CUDA_C.ipynb">kernels</a> con CuPy. Ver por ejemplo: <a class="reference external" href="https://docs-cupy.chainer.org/en/stable/tutorial/kernel.html">User-Defined Kernels</a>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs-cupy.chainer.org/en/stable/index.html">CuPy – NumPy-like API accelerated with CUDA</a></p></li>
+<li><p><a class="reference external" href="https://github.com/cupy/cupy">CuPy : NumPy-like API accelerated with CUDA github</a></p></li>
+</ul>
+<p>Otro paquete para uso de Python+GPU para cómputo matricial es:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/inducer/pycuda/">PyCUDA</a> y ver <a class="reference external" href="https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/master/Python/PyCUDA">PyCUDA en el repo de la clase</a> para más información.</p></li>
+</ul>
+<p>Un paquete para uso de pandas+GPU:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/rapidsai">Rapids</a>, <a class="reference external" href="https://github.com/rapidsai/cudf">cudf</a></p></li>
+</ul>
+<p>Ver <a class="reference external" href="https://docs-cupy.chainer.org/en/stable/install.html#optional-libraries">optional-libraries</a> para librerías que pueden ser utilizadas con CuPy.</p>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
 <p>1.Resuelve los ejercicios y preguntas de la nota.</p>
 </div>
 <p><strong>Preguntas de comprehensión:</strong></p>
-<p>1)Menciona diferencias que surgen en un programa que se ejecuta en un sistema de memoria compartida contra los que se ejecutan en un sistema de memoria distribuida.</p>
-<p>2)¿A qué se le llama no determinismo y da un ejemplo en el que esto surge en un sistema de memoria compartida?</p>
-<p>3)¿Qué es una <em>critical section</em>? ¿qué es una <em>race condition</em>? ¿cómo se puede lidiar con las <em>critical sections</em>?</p>
-<p>4)¿Cuál es la terminología para nombrar a las variables que pueden ser accesadas por todos los <em>threads</em> y para las variables que sólo pueden ser accesadas por un <em>thread</em>?</p>
+<p>1)¿Qué factores han determinado un mejor <em>performance</em> de una GPU vs una CPU? (contrasta los diseños de una CPU vs una GPU).</p>
+<p>2)¿Dentro de qué modelo de arquitectura de máquinas se ubica a la GPU y que puede comparársele con el modelo <strong>Single Program Multiple Data (SPMD)</strong> dentro de la taxonomía de Flynn?</p>
+<p>3)¿Qué significan las siglas CUDA y detalla qué es CUDA?.</p>
+<p>4)¿Qué es y en qué consiste CUDA C?</p>
+<p>5)¿Qué es un <em>kernel</em>?</p>
+<p>6)¿Qué pieza de CUDA se encarga de asignar los bloques de <em>cuda-threads</em> a las SM’s?</p>
+<p>7)¿Qué características (recursos compartidos, dimensiones, forma de agendar la ejecución en <em>threads</em>) tienen los bloques que se asignan a una SM al lanzarse y ejecutarse un <em>kernel</em>?</p>
+<p>8)¿Qué es un <em>warp</em>?</p>
+<p>9)Menciona los tipos de memorias que existen en las GPU’s.</p>
+<ol class="simple">
+<li><p>Supón que tienes una tarjeta GT200 cuyas características son:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Máximo número de <em>threads</em> que soporta una SM en un mismo instante en el tiempo: 1024</p></li>
+<li><p>Máximo número de <em>threads</em> en un bloque: 512</p></li>
+<li><p>Máximo número de bloques por SM: 8</p></li>
+<li><p>Número de SM’s que tiene esta GPU: 30</p></li>
+</ul>
+<p>Responde:</p>
+<p>a)¿Cuál es la máxima cantidad de <em>threads</em> que puede soportar esta GPU en un mismo instante en el tiempo?
+b)¿Cuál es la máxima cantidad de <em>warps</em> por SM que puede soportar esta GPU en un mismo instante en el tiempo?
+c)¿Cuáles configuraciones de bloques y <em>threads</em> siguientes aprovechan la máxima cantidad de <em>warps</em> en una SM de esta GPU para un mismo instante en el tiempo?</p>
+<p>1.Una configuración del tipo: bloques de 64 <em>threads</em> y 16 bloques.
+2.Una configuración del tipo: bloques de 1024 <em>threads</em> y 1 bloque.
+3.Una configuración del tipo: bloques de 256 <em>threads</em> y 4 bloques.
+4.Una configuración del tipo: bloques de 512 <em>threads</em> y 8 bloques.</p>
+<p>*Debes considerar las restricciones/características de la GPU dadas para responder pues algunas configuraciones infringen las mismas. No estamos considerando <em>registers</em> o <em>shared memory</em>.</p>
 <p><strong>Referencias:</strong></p>
 <ol class="simple">
-<li><p>P. Pacheco, An Introduction to Parallel Programming, Morgan Kaufmann, 2011.</p></li>
-<li><p>M. Gorelick, I. Ozsvald, High Performance Python, O’Reilly Media, 2014.</p></li>
 <li><p>N. Matloff, Parallel Computing for Data Science. With Examples in R, C++ and CUDA, 2014.</p></li>
-<li><p><a class="reference external" href="https://github.com/palmoreck/programming-languages/tree/master/C/extensiones_a_C/openMP">C/extensiones_a_C/openMP</a></p></li>
+<li><p><a class="reference external" href="https://github.com/palmoreck/programming-languages/tree/master/C/extensiones_a_C/CUDA">C/extensiones_a_C/CUDA/</a></p></li>
 </ol>
 </div>
 </div>
@@ -706,7 +740,7 @@ uname -ar #r for kernel, a for all
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./V.optimizacion_de_codigo/5.4"
+            path: "./V.optimizacion_de_codigo/5.5"
         },
         predefinedOutput: true
     }
@@ -721,8 +755,8 @@ uname -ar #r for kernel, a for all
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../5.3/Compilacion_a_C.html" title="previous page">5.3 Compilación a C</a>
-    <a class='right-next' id="next-link" href="../5.5/Computo_en_paralelo_usando_GPUS_en_SMC.html" title="next page">5.5 Cómputo en paralelo usando GPUs en un sistema de memoria compartida (SMC)</a>
+    <a class='left-prev' id="prev-link" href="../5.4/Computo_en_paralelo_usando_CPUS_en_SMC.html" title="previous page">5.4 Cómputo en paralelo usando CPUs un sistema de memoria compartida (SMC)</a>
+    <a class='right-next' id="next-link" href="../../VI.algoritmos_optimizacion_convexa/6.1/Problemas_UCO.html" title="next page">6.1 Problemas tipo <em>Unconstrained Convex Optimization</em> (UCO)</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
