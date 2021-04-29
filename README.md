@@ -150,3 +150,10 @@ Llegamos hasta [Blocking algorithms para multiplicación de matrices](https://it
 21 de abril
 
 Finalizamos [Herramientas de lenguajes de programación y del sistema operativo para perfilamiento e implementaciones de BLAS](https://itam-ds.github.io/analisis-numerico-computo-cientifico/V.optimizacion_de_codigo/5.3/Compilacion_a_C.html#ejemplo-via-linea-de-comando)
+
+
+## Clase 15
+
+28 de abril
+
+Finalizamos [Compilación a C](https://itam-ds.github.io/analisis-numerico-computo-cientifico/V.optimizacion_de_codigo/5.3/Compilacion_a_C.html)
