@@ -748,22 +748,15 @@ uname -ar #r for kernel, a for all
 <span class="n">void</span> <span class="n">Hello</span><span class="p">(</span><span class="n">void</span><span class="p">);</span> <span class="o">//</span><span class="n">prototipo</span> <span class="n">de</span> <span class="n">función</span> <span class="n">a</span> <span class="n">ejecutar</span> <span class="n">por</span> <span class="n">los</span> <span class="n">threads</span><span class="o">.</span>
 <span class="nb">int</span> <span class="n">main</span><span class="p">(){</span>
 
-    <span class="o">//</span><span class="n">Siempre</span> <span class="n">iniciamos</span> <span class="n">con</span> <span class="n">un</span> <span class="c1">#pragma omp ... :</span>
-
-    <span class="c1">#pragma omp parallel //directiva parallel</span>
-       <span class="o">//</span><span class="n">structured</span> <span class="n">block</span> <span class="n">que</span> <span class="n">sólo</span> <span class="n">consiste</span> <span class="k">del</span> <span class="n">llamado</span> <span class="n">a</span> <span class="n">la</span> <span class="n">función</span> <span class="n">Hello</span><span class="p">:</span> 
+    <span class="c1">#pragma omp parallel</span>
         <span class="n">Hello</span><span class="p">();</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="o">//</span><span class="n">función</span> <span class="n">que</span> <span class="n">será</span> <span class="n">ejecutada</span> <span class="n">por</span> <span class="n">los</span> <span class="n">threads</span>
 <span class="n">void</span> <span class="n">Hello</span><span class="p">(</span><span class="n">void</span><span class="p">){</span>
-    <span class="nb">int</span> <span class="n">mi_rango</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span> <span class="o">//</span><span class="n">obtenemos</span> <span class="n">el</span> <span class="n">rank</span> <span class="n">dado</span> <span class="n">por</span>
-                    <span class="o">//</span><span class="n">el</span> <span class="n">run</span><span class="o">-</span><span class="n">time</span> <span class="n">system</span> <span class="n">a</span> <span class="n">cada</span> <span class="n">thread</span>
-    <span class="nb">int</span> <span class="n">conteo_threads</span> <span class="o">=</span> <span class="n">omp_get_num_threads</span><span class="p">();</span> <span class="o">//</span><span class="n">obtenemos</span> <span class="n">el</span> <span class="n">número</span> <span class="n">de</span> <span class="n">threads</span> 
-                    <span class="o">//</span><span class="n">que</span> <span class="n">realizaron</span> <span class="n">un</span> <span class="n">fork</span>
-                    <span class="o">//</span><span class="k">del</span> <span class="n">master</span> <span class="n">thread</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hola del thread: </span><span class="si">%d</span><span class="s2"> de </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">mi_rango</span><span class="p">,</span> <span class="n">conteo_threads</span><span class="p">);</span>
+    <span class="nb">int</span> <span class="n">my_rank</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span> 
+    <span class="nb">int</span> <span class="n">num_threads</span> <span class="o">=</span> <span class="n">omp_get_num_threads</span><span class="p">();</span> 
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hola del thread: </span><span class="si">%d</span><span class="s2"> de </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">my_rank</span><span class="p">,</span> <span class="n">num_threads</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -779,6 +772,9 @@ Hola del thread: 0 de 2
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">omp.h</span></code> es un <em>header file</em> con prototipos y definiciones de macros para uso de la librería de funciones y macros de <em>openMP</em>.</p></li>
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">Hello</span></code> será ejecutada por los <em>threads</em>.</p></li>
+<li><p>La función <code class="docutils literal notranslate"><span class="pre">omp_get_thread_num</span></code> da el <em>rank</em> asignado por el <em>run-time system</em> a cada <em>thread</em>.</p></li>
+<li><p>Con la función <code class="docutils literal notranslate"><span class="pre">omp_get_num_threads</span></code> se obtiene el número de <em>threads</em> que realizaron un <em>fork</em> del <em>thread</em> principal.</p></li>
 <li><p>Para compilar el archivo anterior hay que añadir la <em>flag</em> <code class="docutils literal notranslate"><span class="pre">-fopenmp</span></code> para soporte de <code class="docutils literal notranslate"><span class="pre">OpenMP</span></code>. De modo que la compilación se realiza:</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-Wall</span> <span class="pre">-fopenmp</span> <span class="pre">hello_world_omp.c</span> <span class="pre">-o</span> <span class="pre">hello_world_omp.out</span></code></p>
