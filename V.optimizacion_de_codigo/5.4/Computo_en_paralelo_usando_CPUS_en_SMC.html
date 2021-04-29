@@ -685,7 +685,7 @@ uname -ar #r for kernel, a for all
 <li><p>Un sistema de memoria distribuida (SMD) tiene una conexión, por ejemplo vía una <em>network</em>, entre pares de <em>core-memoria</em> y en general se ve como el siguiente dibujo:</p></li>
 </ul>
 <img src="https://dl.dropboxusercontent.com/s/iky7af1m3dcj3e0/distributed_memory_systems.png?dl=0" heigth="600" width="600">
-<p>La memoria en un SMD asociada al <em>core</em> sólo puede ser accesada por éste y es inaccesible a los demás <em>cores</em>, esto es, se tiene una memoria “privada”. Lo anterior contrasta con los SMC en los que todos los <em>cores</em> accesan a una memoria “global”. En un SMD el cómputo distribuido crea múltiples procesos a partir de un proceso principal. En un SMC el cómputo paralelo crea múltiples procesos o <em>threads</em>. Un ejemplo de un SMD es un clúster de máquinas. Cada máquina en el clúster puede ser un SMC y por tanto los procesos en cada máquina tienen la capacidad de crear <em>threads</em>. En este caso se tiene un sistema híbrido SMD y SMC. Un programa diseñado para ejecutarse en un SMD puede ejecutarse en un SMC pues se divide su memoria de forma lógica en espacios de memoria privados para los <em>threads</em>.</p>
+<p>La memoria en un SMD asociada al <em>core</em> sólo puede ser accesada por éste y es inaccesible a los demás <em>cores</em>, esto es, se tiene una memoria “privada”. Lo anterior contrasta con los SMC en los que todos los <em>cores</em> accesan a una memoria “global”. En un SMD el cómputo distribuido crea múltiples procesos a partir de un proceso principal. En un SMC el cómputo paralelo crea múltiples procesos o <em>threads</em>. Un ejemplo de un SMD es un clúster de máquinas. Cada máquina en el clúster puede ser un SMC y por tanto los procesos en cada máquina tienen la capacidad de crear procesos o <em>threads</em>. En este caso se tiene un sistema híbrido SMD y SMC. Un programa diseñado para ejecutarse en un SMD puede ejecutarse en un SMC pues se divide su memoria de forma lógica en espacios de memoria privados para los <em>threads</em>.</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
@@ -694,6 +694,28 @@ uname -ar #r for kernel, a for all
 </div>
 <div class="section" id="openmp">
 <h2><a class="reference external" href="http://www.openmp.org/">OpenMP</a><a class="headerlink" href="#openmp" title="Permalink to this headline">¶</a></h2>
+<p>Es una extensión al lenguaje <em>C</em> y es una API para cómputo en paralelo en un sistema de memoria compartida, <em>aka, shared memory parallel programming</em> con CPUs. Lo anterior es posible con el <em>threading</em> en los <em>cores</em>: <em>fork</em> y <em>join</em> de <em>threads</em> a partir de un proceso principal.</p>
+<img src="https://dl.dropboxusercontent.com/s/0vnjfdk7fo62m8h/threading.png?dl=0" heigth="400" width="400"><p>Ver <a class="reference internal" href="../5.1/introduccion_optimizacion_de_codigo.html#threadinghyper"><span class="std std-ref">Threading o Hyperthreading</span></a>.</p>
+<ul class="simple">
+<li><p>Las siglas <em>MP</em> se refieren a <em>multiprocessing</em> un sinónimo de <em>shared memory parallel computing</em>. <em>OpenMP</em> se utiliza en un SMC por lo que cada <em>thread</em> de un <em>core</em> puede tiene acceso a toda la memoria disponible.</p></li>
+<li><p>Algunas características de <em>OpenMP</em> son:</p>
+<ul>
+<li><p>Paralelización de ciclos <em>for</em> secuenciales en los que las iteraciones son independientes una de la otra de forma simple.</p></li>
+<li><p>Paralelización de tareas y sincronización explícita de <em>threads</em>.</p></li>
+</ul>
+</li>
+</ul>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Las directivas son instrucciones que indican al <a class="reference external" href="https://en.wikipedia.org/wiki/Preprocessor">preprocesador</a> (vía la compilación) que ejecutaremos una instrucción que no se encuentra en la especificación básica del lenguaje C (ver <a class="reference external" href="https://en.wikipedia.org/wiki/C_preprocessor">C preprocessor</a>).</p>
+</div>
+<ul class="simple">
+<li><p>Provee <strong>directivas</strong> vía <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span></code> para el cómputo en paralelo en un SMC.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Los <code class="docutils literal notranslate"><span class="pre">pragma</span></code> se utilizan para extender la funcionalidad de <em>C</em> pues no son parte de su especificación básica. Las versiones más recientes del compilador <code class="docutils literal notranslate"><span class="pre">gcc</span></code> soportan a los <code class="docutils literal notranslate"><span class="pre">pragma</span></code> y todas las <em>preprocessor directive</em> son por <em>default</em> de longitud una línea. Si no cabe en una línea usamos un <em>escaping</em> (precedemos con un backslash “” la “nueva línea”).</p>
+</div>
 </div>
 <div class="section" id="multiprocessing">
 <h2><a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html">Multiprocessing</a><a class="headerlink" href="#multiprocessing" title="Permalink to this headline">¶</a></h2>
@@ -709,12 +731,14 @@ uname -ar #r for kernel, a for all
 <ul class="simple">
 <li><p><a class="reference external" href="https://stories.dask.org/en/latest/">Use cases with dask</a></p></li>
 <li><p><a class="reference external" href="https://github.com/dask/dask-tutorial">dask-tutorial</a></p></li>
-<li><p>En <em>dask</em> se hace referencia al uso de funciones <em>pure</em>. Ver: <a class="reference external" href="https://distributed.dask.org/en/latest/client.html#pure-functions-by-default">Pure Functions by Default</a> y <a class="reference external" href="https://toolz.readthedocs.io/en/latest/purity.html">Function Purity</a> para ejemplos de funciones <em>pure</em>.</p></li>
-<li><p>En <a class="reference external" href="https://www.youtube.com/watch?v=EX_voquHdk0">Dask JupyterLab Extension</a> se muestra cómo instalar la extensión en jupyterlab para dask.</p></li>
+</ul>
+<p>En <em>dask</em> se hace referencia al uso de funciones <em>pure</em>. Ver: <a class="reference external" href="https://distributed.dask.org/en/latest/client.html#pure-functions-by-default">Pure Functions by Default</a> y <a class="reference external" href="https://toolz.readthedocs.io/en/latest/purity.html">Function Purity</a> para ejemplos de funciones <em>pure</em>.</p>
+<p>En <a class="reference external" href="https://www.youtube.com/watch?v=EX_voquHdk0">Dask JupyterLab Extension</a> se muestra cómo instalar la extensión en jupyterlab para dask.</p>
+<ul class="simple">
 <li><p><a class="reference external" href="http://www.sfu.ca/~sblay/R/snow.html">snow Simplified</a></p></li>
 <li><p><a class="reference external" href="https://docs.microsoft.com/en-us/machine-learning-server/r/how-to-revoscaler-distributed-computing-foreach">Using foreach and iterators for manual parallel execution</a></p></li>
-<li><p>Paquete de <em>R</em>: <a class="reference external" href="https://www.rdocumentation.org/packages/future/versions/1.21.0">future</a></p></li>
 </ul>
+<p>Paquete de <em>R</em>: <a class="reference external" href="https://www.rdocumentation.org/packages/future/versions/1.21.0">future</a></p>
 <div class="tip admonition">
 <p class="admonition-title">Ejercicios</p>
 <p>1.Resuelve los ejercicios y preguntas de la nota.</p>
