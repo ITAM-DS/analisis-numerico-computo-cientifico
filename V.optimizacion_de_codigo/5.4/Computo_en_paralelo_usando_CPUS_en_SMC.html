@@ -406,6 +406,23 @@
      </em>
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-hello-world-con-clause-num-threads">
+     Ejemplo:
+     <em>
+      Hello world
+     </em>
+     con
+     <em>
+      clause
+     </em>
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       num_threads
+      </span>
+     </code>
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -745,11 +762,12 @@ uname -ar #r for kernel, a for all
 <span class="c1">#include&lt;stdlib.h&gt;</span>
 <span class="c1">#include&lt;omp.h&gt; </span>
 
-<span class="n">void</span> <span class="n">Hello</span><span class="p">(</span><span class="n">void</span><span class="p">);</span> <span class="o">//</span><span class="n">prototipo</span> <span class="n">de</span> <span class="n">función</span> <span class="n">a</span> <span class="n">ejecutar</span> <span class="n">por</span> <span class="n">los</span> <span class="n">threads</span><span class="o">.</span>
+<span class="n">void</span> <span class="n">Hello</span><span class="p">(</span><span class="n">void</span><span class="p">);</span>
 <span class="nb">int</span> <span class="n">main</span><span class="p">(){</span>
 
     <span class="c1">#pragma omp parallel</span>
         <span class="n">Hello</span><span class="p">();</span>
+    
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -771,11 +789,11 @@ Hola del thread: 0 de 2
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">omp.h</span></code> es un <em>header file</em> con prototipos y definiciones de macros para uso de la librería de funciones y macros de <em>openMP</em>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">omp.h</span></code> es un <em>header file</em> con prototipos y definiciones de macros para uso de la librería de funciones y macros de <em>OpenMP</em>.</p></li>
 <li><p>La función <code class="docutils literal notranslate"><span class="pre">Hello</span></code> será ejecutada por los <em>threads</em>.</p></li>
 <li><p>La función <code class="docutils literal notranslate"><span class="pre">omp_get_thread_num</span></code> da el <em>rank</em> asignado por el <em>run-time system</em> a cada <em>thread</em>.</p></li>
 <li><p>Con la función <code class="docutils literal notranslate"><span class="pre">omp_get_num_threads</span></code> se obtiene el número de <em>threads</em> que realizaron un <em>fork</em> del <em>thread</em> principal.</p></li>
-<li><p>Para compilar el archivo anterior hay que añadir la <em>flag</em> <code class="docutils literal notranslate"><span class="pre">-fopenmp</span></code> para soporte de <code class="docutils literal notranslate"><span class="pre">OpenMP</span></code>. De modo que la compilación se realiza:</p></li>
+<li><p>Para compilar el archivo anterior hay que añadir la <em>flag</em> <code class="docutils literal notranslate"><span class="pre">-fopenmp</span></code> para soporte de <em>OpenMP</em>. De modo que la compilación se realiza:</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-Wall</span> <span class="pre">-fopenmp</span> <span class="pre">hello_world_omp.c</span> <span class="pre">-o</span> <span class="pre">hello_world_omp.out</span></code></p>
 <ul class="simple">
@@ -796,6 +814,46 @@ Hola del thread: 0 de 2
         <span class="k">return</span> <span class="mi">-1</span><span class="p">;</span>
     <span class="p">}</span>
 </pre></div>
+</div>
+</div>
+<p>A continuación de la directiva <code class="docutils literal notranslate"><span class="pre">parallel</span></code> podemos usar diferentes tipos de *clauses. Una <em>clause</em> en <em>OpenMP</em> es un texto que modifica una directiva. Por ejemplo, podemos usar la <em>clause</em> <code class="docutils literal notranslate"><span class="pre">num_threads</span></code> para especificar el número de threads que ejecutarán el structured block.</p>
+</div>
+<div class="section" id="ejemplo-hello-world-con-clause-num-threads">
+<h3>Ejemplo: <em>Hello world</em> con <em>clause</em> <code class="docutils literal notranslate"><span class="pre">num_threads</span></code><a class="headerlink" href="#ejemplo-hello-world-con-clause-num-threads" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">hello_world_omp_num_threads.c</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">//%</span><span class="k">cflags</span>:-fopenmp
+<span class="o">//%</span><span class="k">cflags</span>:-Wall
+<span class="c1">#include&lt;stdio.h&gt;</span>
+<span class="c1">#include&lt;stdlib.h&gt;</span>
+<span class="c1">#include&lt;omp.h&gt; </span>
+
+<span class="n">void</span> <span class="n">Hello</span><span class="p">(</span><span class="n">void</span><span class="p">);</span> 
+<span class="nb">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="nb">int</span> <span class="n">n_threads</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+    <span class="c1">#pragma omp parallel num_threads(n_threads) </span>
+        <span class="n">Hello</span><span class="p">();</span>
+    
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">Hello</span><span class="p">(</span><span class="n">void</span><span class="p">){</span>
+    <span class="nb">int</span> <span class="n">my_rank</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span> 
+    <span class="nb">int</span> <span class="n">num_threads</span> <span class="o">=</span> <span class="n">omp_get_num_threads</span><span class="p">();</span> 
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hola del thread: </span><span class="si">%d</span><span class="s2"> de </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">my_rank</span><span class="p">,</span> <span class="n">num_threads</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hola del thread: 0 de 5
+Hola del thread: 4 de 5
+Hola del thread: 3 de 5
+Hola del thread: 2 de 5
+Hola del thread: 1 de 5
+</pre></div>
+</div>
 </div>
 </div>
 </div>
