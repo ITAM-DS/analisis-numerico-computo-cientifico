@@ -881,7 +881,7 @@ Hola del thread: 1 de 5
 </div>
 <div class="section" id="reduction-clause">
 <h3><em>Reduction clause</em><a class="headerlink" href="#reduction-clause" title="Permalink to this headline">¶</a></h3>
-<p><em>OpenMP</em> provee <em>reduction clause</em> para aplicar la operación de suma (operador binario) a cada resultado calculado de un <em>thread</em> de forma repetida y almacenar en una variable la respuesta.</p>
+<p><em>OpenMP</em> provee la <em>reduction clause</em> para aplicar la operación de suma (operador binario) a cada resultado calculado de un <em>thread</em> de forma repetida y almacenar en una variable la respuesta.</p>
 <p>Nombramos <em>reduction variable</em> a la variable que almacenará los resultados intermedios calculados por cada <em>thread</em> y <em>reduction operator</em> a la operación binaria (por ejemplo una suma o multiplicación) que se aplica repetidamente a una secuencia de operandos para obtener un resultado, en un proceso que se le nombra <em>reduction</em>.</p>
 <p>Por ejemplo, si <code class="docutils literal notranslate"><span class="pre">A</span></code> es un arreglo de <code class="docutils literal notranslate"><span class="pre">n</span></code> enteros, el cálculo:</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
@@ -892,54 +892,62 @@ Hola del thread: 1 de 5
 <p>es un proceso de <em>reduction</em> en el que el <em>reduction operator</em> es la suma.</p>
 <p>En openMP utilizamos la <em>reduction clause</em> en la <em>parallel directive</em>.</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">suma_global</span><span class="o">=</span><span class="mf">0.0</span>
-<span class="cp">#pragma omp parallel num_threads(conteo_threads) reduction(+: suma_global)</span>
+<span class="cp">#pragma omp parallel num_threads(conteo_threads) reduction(+: sum_shared)</span>
     <span class="n">sum_shared</span> <span class="o">+=</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n_subintervals_per_core</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Con la <em>reduction clause</em> openMP crea una variable privada por cada <em>thread</em>* y el <em>run time system</em> almacena el resultado de cada <em>thread</em> en esta variable. <em>openMP</em> también crea una <em>critical section</em> y los valores almacenados en las variables privadas son sumadas en esta <em>critical section</em> y almacenados en la <em>reduction variable</em> <code class="docutils literal notranslate"><span class="pre">sum_shared</span></code>. El <em>reduction operator</em> es: <code class="docutils literal notranslate"><span class="pre">+</span></code>.</p>
+<p>Con la <em>reduction clause</em> openMP crea una variable privada por cada <em>thread</em> y el <em>run time system</em> almacena el resultado de cada <em>thread</em> en esta variable. <em>openMP</em> también crea una <em>critical section</em> y los valores almacenados en las variables privadas son sumadas en esta <em>critical section</em> y almacenados en la <em>reduction variable</em> <code class="docutils literal notranslate"><span class="pre">sum_shared</span></code>. El <em>reduction operator</em> es: <code class="docutils literal notranslate"><span class="pre">+</span></code>.</p>
 <p>La sintaxis de la <em>reduction clause</em> es:</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">reduction</span><span class="p">(</span> <span class="o">&lt;</span><span class="n">operator</span><span class="o">&gt;:</span> <span class="o">&lt;</span><span class="n">variable</span> <span class="n">list</span><span class="o">&gt;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>El <em>reduction operator</em> puede ser cualquiera de los operadores: <code class="docutils literal notranslate"><span class="pre">+,*,-,&amp;,|,^,&amp;&amp;,||</span></code>. Cabe señalar que el proceso de <em>reduction</em> asume que los operadores utilizados cumplen con la propiedad asociativa (el operador de resta no cumple con esto…).</p>
-<p>La variable que está en la <em>reduction clause</em> es compartida. Sin embargo una variable privada es creada por cada <em>thread</em> en el <em>team</em> (<strong>con el mismo nombre</strong> que aparece en la <em>reduction clause</em>) y si un <em>thread</em> ejecuta un statement en el <em>parallel block</em> que involucra a la variable, entonces se utiliza la variable <strong>private</strong> y al finalizar el <em>parallel block</em>, los valores calculados en las variables privadas son combinados en la variable compartida.</p>
+<p>El <em>reduction operator</em> puede ser cualquiera de los operadores: <code class="docutils literal notranslate"><span class="pre">+,*,-,&amp;,|,^,&amp;&amp;,||</span></code>. Cabe señalar que el proceso de <em>reduction</em> asume que los operadores utilizados cumplen con la propiedad asociativa (por ejemplo, el operador de resta no cumple con esto).</p>
+<p>La variable que está en la <em>reduction clause</em> es compartida. Sin embargo una variable privada es creada por cada <em>thread</em> en el <em>team</em> (<strong>con el mismo nombre</strong> que aparece en la <em>reduction clause</em>) y si un <em>thread</em> ejecuta un statement en el <em>parallel block</em> que involucra a la variable, entonces se utiliza la variable privada y al finalizar el <em>parallel block</em>, los valores calculados en las variables privadas son combinados en la variable compartida.</p>
 </div>
 <div class="section" id="ejemplo-de-uso-de-nombres-de-variables-al-definir-variables-privadas-y-compartidas-en-reduction-clause">
 <h3>Ejemplo de uso de nombres de variables al definir variables privadas y compartidas en <em>reduction clause</em><a class="headerlink" href="#ejemplo-de-uso-de-nombres-de-variables-al-definir-variables-privadas-y-compartidas-en-reduction-clause" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ejemplo_nombre_variable_privada_compartida_reduction_clause.c</span></code></p>
-<p>#include&lt;stdio.h&gt;
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#include&lt;stdio.h&gt;
 #include&lt;stdlib.h&gt;
 #include&lt;omp.h&gt;
 int main(int argc, char *argv[]){
 long n_threads;
 int private_variable;
 int sum_shared=7;
-n_threads=strtol(argv[1], NULL, 10);</p>
-<p>printf(“variable sum_shared al inicio : %d\n”, sum_shared);</p>
-<p>#pragma omp parallel num_threads(n_threads) reduction(+: sum_shared)
+n_threads=strtol(argv[1], NULL, 10);
+
+printf(&quot;variable sum_shared al inicio : %d\n&quot;, sum_shared);
+
+#pragma omp parallel num_threads(n_threads) reduction(+: sum_shared)
 {
-int my_rank=omp_get_thread_num();
-if(my_rank==0)
-printf(“suma_global, 1 printf del thread 0: %d\n”, sum_shared);
-else
-printf(“suma_global, 1 prinftf thread 1: %d\n”, sum_shared);
-sum_shared=(my_rank==0)?10:20;
-private_variable=(my_rank==0)?1:2;
-if(my_rank==0)
-printf(“sum_shared, 2 printf del thread 0: %d\n”, sum_shared);
-else
-printf(“sum_shared, 2 printf del thread 1: %d\n”, sum_shared);
-sum_shared += private_variable;
-if(my_rank==0)
-printf(“sum_shared, 3 printf del thread 0: %d\n”, sum_shared);
-else
-printf(“sum_shared, 3 printf del thread 1: %d\n”, sum_shared);</p>
-<p>}
-printf(“sum_shared al final de la directive parallel %d\n”, sum_shared);</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>return 0;
+    int my_rank=omp_get_thread_num();
+    if(my_rank==0)
+                printf(&quot;suma_global, 1 printf del thread 0: %d\n&quot;, sum_shared);
+        else
+                printf(&quot;suma_global, 1 prinftf thread 1: %d\n&quot;, sum_shared);
+    sum_shared=(my_rank==0)?10:20;
+    private_variable=(my_rank==0)?1:2;
+    if(my_rank==0)
+        printf(&quot;sum_shared, 2 printf del thread 0: %d\n&quot;, sum_shared);
+    else
+        printf(&quot;sum_shared, 2 printf del thread 1: %d\n&quot;, sum_shared);
+    sum_shared += private_variable;
+        if(my_rank==0)
+                printf(&quot;sum_shared, 3 printf del thread 0: %d\n&quot;, sum_shared);
+        else
+                printf(&quot;sum_shared, 3 printf del thread 1: %d\n&quot;, sum_shared);
+
+}
+    printf(&quot;sum_shared al final de la directive parallel %d\n&quot;, sum_shared);
+    
+    return 0;
+}
 </pre></div>
 </div>
-<p>}</p>
+</div>
+</div>
 <p>Compilamos:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1072,8 +1080,8 @@ Tiempo de ejecución con 8 threads: 19 miliseconds
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>Dividimos el número de subintervalos  <strong>n</strong> entre el número de <em>threads</em> que deseamos lanzar, por esto, <strong>n</strong> debe ser <strong>divisible</strong> entre las entradas del <em>array</em> <strong>n_threads</strong>. Esta cantidad es el número de subintervalos contiguos que le corresponden a cada <em>thread</em>.</p></li>
-<li><p>Además, se debe de agregar el resultado de la suma de cada <em>thread</em>. Esto es posible realizar de forma sencilla definiendo una variable que sea compartida. Una variable es compartida en openMP si puede ser accesada por todos los <em>threads</em> de un <em>team</em>. Al definir tal variable en la función <em>main</em> y antes de un <em>parallel block</em> el <em>default</em> es que sea considerada como compartida.</p></li>
+<li><p>Dividimos el número de subintervalos  <strong>n</strong> entre el número de <em>threads</em> que deseamos lanzar, por esto, <strong>n</strong> debe ser <strong>divisible</strong> entre las entradas del <em>array</em> <code class="docutils literal notranslate"><span class="pre">n_threads</span></code>. Esta cantidad es el número de subintervalos contiguos que le corresponden a cada <em>thread</em>.</p></li>
+<li><p>Además, se debe de agregar el resultado de la suma de cada <em>thread</em>. Esto es posible realizar de forma sencilla definiendo una variable que sea compartida. Al definir tal variable en la función <em>main</em> y antes de un <em>parallel block</em> el <em>default</em> es que sea considerada como compartida.</p></li>
 <li><p>Las variables que son privadas se definen en la función <code class="docutils literal notranslate"><span class="pre">Rcf_parallel</span></code>.</p></li>
 </ul>
 </div>
