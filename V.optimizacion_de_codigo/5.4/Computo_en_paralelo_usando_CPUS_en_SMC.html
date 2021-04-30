@@ -423,6 +423,11 @@
      </code>
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-para-regla-compuesta-del-rectangulo">
+     Ejemplo para regla compuesta del rectángulo
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -692,14 +697,14 @@ uname -ar #r for kernel, a for all
 <p>La <strong>comunicación</strong> en este tipo de sistemas depende si se utilizan procesos o <em>threads</em> ya que aunque los procesos generados por un proceso principal tienen acceso a la memoria, los cambios/actualizaciones que haga uno de ellos a una variable no lo llegan a ver los otros procesos. Esto es distinto con los <em>threads</em> dado que un cambio que realice un <em>thread</em> en una variable sí lo pueden ver los otros <em>threads</em>. Lo anterior se debe a las distintas direcciones de memoria que utilizan los procesos vs la misma dirección de memoria que utilizan los <em>threads</em>.</p>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
-<p>Las variables que pueden ser accesadas por todos los <em>threads</em> en un SMC se les nombra <strong>variables globales o variables compartidas</strong>.</p>
+<p>Las variables que pueden ser accesadas por todos los <em>threads</em> en un SMC se les nombra <strong>variables compartidas</strong>.</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Hay paqueterías que crean subprocesos a partir de un proceso principal en lugar de <em>threads</em>. En este caso en lugar de un <em>fork</em> se realiza un <em>spawn</em>. Los subprocesos pueden ver cambios a variables hechos por otros.</p>
 <p>Ver <a class="reference external" href="https://docs.python.org/3.9/library/multiprocessing.html#contexts-and-start-methods">Contexts and start methods</a> y <a class="reference external" href="https://stackoverflow.com/questions/46045956/whats-the-difference-between-threadpool-vs-pool-in-python-multiprocessing-modul">stackoverflow: difference between threadpool vs pool in python multiprocessing</a> para diferencias entre <em>fork</em> y <em>spawn</em>.</p>
 </div>
-<p>Trabajar sobre SMC tiene ventajas y desventajas. Una ventaja es facilidad de comunicación y una desventaja es la <strong>coordinación</strong> para ejecutar instrucciones. Por ejemplo, con variables globales se puede realizar la comunicación entre los <em>threads</em>, sin embargo, para el uso de tales variables por diferentes <em>threads</em> debemos crear candados, <em>locks</em>. Lo anterior surge pues si un <em>thread</em> con etiqueta <span class="math notranslate nohighlight">\(1\)</span> accede a una variable global, otro <em>thread</em> con etiqueta <span class="math notranslate nohighlight">\(2\)</span>, no podrá utilizarla hasta que el thread <span class="math notranslate nohighlight">\(1\)</span> finalice de usarla. Ver <a class="reference external" href="https://en.wikipedia.org/wiki/Thread_safety">Thread Safety</a> y <a class="reference external" href="https://en.wikipedia.org/wiki/Race_condition#Computing">Race Condition</a>.</p>
+<p>Trabajar sobre SMC tiene ventajas y desventajas. Una ventaja es facilidad de comunicación y una desventaja es la <strong>coordinación</strong> para ejecutar instrucciones. Por ejemplo, con variables compartidas se puede realizar la comunicación entre los <em>threads</em>, sin embargo, para el uso de tales variables por diferentes <em>threads</em> debemos crear candados, <em>locks</em>. Lo anterior surge pues si un <em>thread</em> con etiqueta <span class="math notranslate nohighlight">\(1\)</span> accede a una variable compartida, otro <em>thread</em> con etiqueta <span class="math notranslate nohighlight">\(2\)</span>, no podrá utilizarla hasta que el thread <span class="math notranslate nohighlight">\(1\)</span> finalice de usarla. Ver <a class="reference external" href="https://en.wikipedia.org/wiki/Thread_safety">Thread Safety</a> y <a class="reference external" href="https://en.wikipedia.org/wiki/Race_condition#Computing">Race Condition</a>.</p>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
 <p>En una <em>race condition</em> múltiples <em>threads</em> intentan acceder a un recurso compartido, al menos uno de los accesos resulta en una modificación al recurso y posteriormente los siguientes accesos pueden no ver la modificación. A la sección del código que causa la <em>race condition</em> se le nombra <em>critical section</em>. Las <em>critical sections</em> se ejecutan con código secuencial o con <em>locks</em> para evitar las <em>race conditions</em>.</p>
@@ -717,7 +722,7 @@ uname -ar #r for kernel, a for all
 <li><p>Un sistema de memoria distribuida (SMD) tiene una conexión, por ejemplo vía una <em>network</em>, entre pares de <em>core-memoria</em> y en general se ve como el siguiente dibujo:</p></li>
 </ul>
 <img src="https://dl.dropboxusercontent.com/s/iky7af1m3dcj3e0/distributed_memory_systems.png?dl=0" heigth="600" width="600">
-<p>La memoria en un SMD asociada al <em>core</em> sólo puede ser accesada por éste y es inaccesible a los demás <em>cores</em>, esto es, se tiene una memoria “privada”. Lo anterior contrasta con los SMC en los que todos los <em>cores</em> accesan a una memoria “global”. En un SMD el cómputo distribuido crea múltiples procesos a partir de un proceso principal. En un SMC el cómputo paralelo crea múltiples procesos o <em>threads</em>. Un ejemplo de un SMD es un clúster de máquinas. Cada máquina en el clúster puede ser un SMC y por tanto los procesos en cada máquina tienen la capacidad de crear procesos o <em>threads</em>. En este caso se tiene un sistema híbrido SMD y SMC. Un programa diseñado para ejecutarse en un SMD puede ejecutarse en un SMC pues se divide su memoria de forma lógica en espacios de memoria privados para los <em>threads</em>.</p>
+<p>La memoria en un SMD asociada al <em>core</em> sólo puede ser accesada por éste y es inaccesible a los demás <em>cores</em>, esto es, se tiene una memoria “privada”. Lo anterior contrasta con los SMC en los que todos los <em>cores</em> accesan a una memoria compartida. En un SMD el cómputo distribuido crea múltiples procesos a partir de un proceso principal. En un SMC el cómputo paralelo crea múltiples procesos o <em>threads</em>. Un ejemplo de un SMD es un clúster de máquinas. Cada máquina en el clúster puede ser un SMC y por tanto los procesos en cada máquina tienen la capacidad de crear procesos o <em>threads</em>. En este caso se tiene un sistema híbrido SMD y SMC. Un programa diseñado para ejecutarse en un SMD puede ejecutarse en un SMC pues se divide su memoria de forma lógica en espacios de memoria privados para los <em>threads</em>.</p>
 </div>
 </div>
 <div class="section" id="openmp">
@@ -848,6 +853,113 @@ Hola del thread: 4 de 5
 Hola del thread: 3 de 5
 Hola del thread: 2 de 5
 Hola del thread: 1 de 5
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ejemplo-para-regla-compuesta-del-rectangulo">
+<h3>Ejemplo para regla compuesta del rectángulo<a class="headerlink" href="#ejemplo-para-regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h3>
+<p>Para la medición de tiempos se utilizaron las ligas: <a class="reference external" href="https://stackoverflow.com/questions/16764276/measuring-time-in-millisecond-precision">liga</a> y <a class="reference external" href="https://www.techiedelight.com/find-execution-time-c-program/">liga2</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">Rcf_openmp.c</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">//%</span><span class="k">cflags</span>:-fopenmp
+<span class="o">//%</span><span class="k">cflags</span>:-lm
+<span class="o">//%</span><span class="k">cflags</span>:-Wall
+<span class="c1">#include&lt;stdio.h&gt;</span>
+<span class="c1">#include&lt;stdlib.h&gt;</span>
+<span class="c1">#include&lt;omp.h&gt;</span>
+<span class="c1">#include&lt;math.h&gt; </span>
+<span class="c1">#include&lt;time.h&gt;</span>
+<span class="c1">#include &lt;sys/time.h&gt;</span>
+
+<span class="n">double</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">ns_p</span><span class="p">);</span>
+
+<span class="n">double</span> <span class="n">f</span><span class="p">(</span><span class="n">double</span> <span class="n">node</span><span class="p">);</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">(){</span>
+    <span class="n">double</span> <span class="n">sum_shared</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="o">//</span><span class="n">shared</span> <span class="n">variable</span> <span class="k">for</span> <span class="n">threads</span>
+    <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mf">1e7</span><span class="p">;</span> <span class="o">//</span><span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
+    <span class="n">double</span> <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">ns_p</span><span class="p">;</span> <span class="o">//</span><span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span> <span class="n">assigned</span> <span class="n">to</span> <span class="n">each</span> <span class="n">core</span>
+    <span class="nb">int</span> <span class="n">n_threads</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="o">//</span><span class="n">n_threads</span> <span class="n">must</span> <span class="n">divide</span> <span class="n">exactly</span> <span class="n">n</span> <span class="n">variable</span>
+    <span class="nb">int</span> <span class="n">len_n_threads_array</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
+    <span class="n">struct</span> <span class="n">timeval</span> <span class="n">start</span><span class="p">;</span>
+    <span class="n">struct</span> <span class="n">timeval</span> <span class="n">end</span><span class="p">;</span>
+    <span class="n">long</span> <span class="n">seconds</span><span class="p">;</span>
+    <span class="n">long</span> <span class="n">long</span> <span class="n">mili</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">n_threads</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">n_threads</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+    <span class="n">n_threads</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span>
+    <span class="n">n_threads</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+    <span class="n">n_threads</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="mi">8</span><span class="p">;</span>
+    <span class="n">len_n_threads_array</span> <span class="o">=</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">n_threads</span><span class="p">)</span><span class="o">/</span><span class="n">sizeof</span><span class="p">(</span><span class="n">n_threads</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len_n_threads_array</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">ns_p</span><span class="o">=</span><span class="n">n</span><span class="o">/</span><span class="n">n_threads</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+        <span class="c1">#pragma omp parallel num_threads(n_threads[i]) reduction(+: sum_shared)</span>
+            <span class="n">sum_shared</span> <span class="o">+=</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">ns_p</span><span class="p">);</span>
+        <span class="n">sum_shared</span> <span class="o">=</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_shared</span><span class="p">;</span>
+        <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+        <span class="n">seconds</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_sec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_sec</span><span class="p">);</span>
+        <span class="n">mili</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_usec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_usec</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">sum_shared</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sum_shared</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de ejecución con </span><span class="si">%d</span><span class="s2"> threads: %lld miliseconds</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">n_threads</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">mili</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;----------------------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+        <span class="n">sum_shared</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">double</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">ns_p</span><span class="p">){</span>
+    <span class="nb">int</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">my_rank</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
+    <span class="n">double</span> <span class="n">local_int</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">x</span><span class="p">;</span>
+    <span class="n">begin</span> <span class="o">=</span> <span class="n">my_rank</span><span class="o">*</span><span class="n">ns_p</span><span class="p">;</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">ns_p</span><span class="p">;</span> 
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">begin</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">end</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span><span class="p">;</span>
+        <span class="n">local_int</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="p">}</span>   
+    <span class="k">return</span> <span class="n">local_int</span><span class="p">;</span>
+<span class="p">}</span>
+        
+<span class="n">double</span> <span class="n">f</span><span class="p">(</span><span class="n">double</span> <span class="n">node</span><span class="p">){</span>
+    <span class="n">double</span> <span class="n">f_value</span><span class="p">;</span>
+    <span class="n">f_value</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="nb">pow</span><span class="p">(</span><span class="n">nodo</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">f_value</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328124773e-01
+Error relativo de la solución: 6.719397313003120e-14
+Tiempo de ejecución con 1 threads: 32 miliseconds
+----------------------
+Integral de 0.000000 a 1.000000 = 7.468241328124707e-01
+Error relativo de la solución: 5.842307840730588e-14
+Tiempo de ejecución con 2 threads: 17 miliseconds
+----------------------
+Integral de 0.000000 a 1.000000 = 7.468241328124631e-01
+Error relativo de la solución: 4.816559135869493e-14
+Tiempo de ejecución con 4 threads: 12 miliseconds
+----------------------
+Integral de 0.000000 a 1.000000 = 7.468241328124646e-01
+Error relativo de la solución: 5.024682061493483e-14
+Tiempo de ejecución con 5 threads: 11 miliseconds
+----------------------
+Integral de 0.000000 a 1.000000 = 7.468241328124514e-01
+Error relativo de la solución: 3.255637193689565e-14
+Tiempo de ejecución con 8 threads: 19 miliseconds
+----------------------
 </pre></div>
 </div>
 </div>
