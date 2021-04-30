@@ -454,6 +454,14 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nota-sobre-el-gil-y-multiprocessing">
+   Nota sobre el GIL y
+   <em>
+    multiprocessing
+   </em>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dask">
    Dask
   </a>
@@ -989,7 +997,7 @@ Hola del thread: 4 de 5
 </div>
 <p>es un proceso de <em>reduction</em> en el que el <em>reduction operator</em> es la suma.</p>
 <p>En openMP utilizamos la <em>reduction clause</em> en la <em>parallel directive</em>.</p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">suma_global</span><span class="o">=</span><span class="mf">0.0</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">sum_shared</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="cp">#pragma omp parallel num_threads(conteo_threads) reduction(+: sum_shared)</span>
     <span class="n">sum_shared</span> <span class="o">+=</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n_subintervals_per_core</span><span class="p">);</span>
 </pre></div>
@@ -1029,11 +1037,11 @@ int main(int argc, char *argv[]){
         else
             printf(&quot;sum_shared, prinftf 1 thread 1: %d\n&quot;, sum_shared);
         sum_shared = (my_rank==0)?10:20;
-        private_variable = (my_rank==0)?1:2;
         if(my_rank==0)
             printf(&quot;sum_shared, printf 2 del thread 0: %d\n&quot;, sum_shared);
         else
             printf(&quot;sum_shared, printf 2 del thread 1: %d\n&quot;, sum_shared);
+        private_variable = (my_rank==0)?1:2;
         sum_shared += private_variable;
         if(my_rank==0)
             printf(&quot;sum_shared, printf 3 del thread 0: %d\n&quot;, sum_shared);
@@ -1091,7 +1099,7 @@ sum_shared al final de la directive parallel 40
 </div>
 <div class="section" id="ejemplo-regla-compuesta-del-rectangulo">
 <h3>Ejemplo regla compuesta del rectángulo<a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h3>
-<p>Para la medición de tiempos se utilizaron las ligas: <a class="reference external" href="https://stackoverflow.com/questions/16764276/measuring-time-in-millisecond-precision">liga</a> y <a class="reference external" href="https://www.techiedelight.com/find-execution-time-c-program/">liga2</a></p>
+<p>Para la medición de tiempos se utilizaron las ligas: <a class="reference external" href="https://stackoverflow.com/questions/16764276/measuring-time-in-millisecond-precision">measuring-time-in-millisecond-precision</a> y <a class="reference external" href="https://www.techiedelight.com/find-execution-time-c-program/">find-execution-time-c-program</a></p>
 <p><code class="docutils literal notranslate"><span class="pre">Rcf_openmp.c</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1142,7 +1150,7 @@ sum_shared al final de la directive parallel 40
         <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sum_shared</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
         <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de ejecución con </span><span class="si">%d</span><span class="s2"> threads: %lld miliseconds</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">n_threads</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">mili</span><span class="p">);</span>
         <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;----------------------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
-        <span class="n">sum_shared</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+        <span class="n">sum_shared</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -1232,10 +1240,33 @@ Tiempo de ejecución con 64 threads: 24 miliseconds
 <li><p>Las variables que son privadas se definen en la función <code class="docutils literal notranslate"><span class="pre">Rcf_parallel</span></code>.</p></li>
 </ul>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Implementar la regla de Simpson con <em>OpenMP</em> utilizando una <em>reduction clause</em> en una máquina de AWS con las mismas características que la que se presenta en esta nota y medir tiempo de ejecución.</p>
+</div>
 </div>
 </div>
 <div class="section" id="multiprocessing">
 <h2><a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html">Multiprocessing</a><a class="headerlink" href="#multiprocessing" title="Permalink to this headline">¶</a></h2>
+<p>La implementación estándar de Python, <a class="reference external" href="https://github.com/python/cpython">CPython</a> no utiliza múltiples <em>cores</em> por <em>default</em> para procesamiento. En el apartado de <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">Cpython-Design</a> se menciona el por qué CPython no soporta ejecución <em>multithreaded</em> o <em>multiprocesses</em> y a continuación se coloca unos párrafos de tal discusión.</p>
+<p><em>A particular feature of CPython is that it makes use of a global interpreter lock (GIL) on each CPython interpreter process, which means that within a single process, only one thread may be processing Python bytecode at any one time. This does not mean that there is no point in multithreading; the most common multithreading scenario is where threads are mostly waiting on external processes to complete.</em></p>
+<p><em>For example, imagine when three threads are servicing separate clients. One thread may be waiting for a client to reply, and another may be waiting for a database query to execute, while the third thread is actually processing Python code.</em></p>
+<p><em>However, the GIL does mean that CPython is not suitable for processes that implement CPU-intensive algorithms in Python code that could potentially be distributed across multiple cores. …</em></p>
+<p>El módulo <em>multiprocessing</em> permite realizar procesamientos basados en procesos o <em>threads</em> para compartir trabajo y datos y lidiar con lo mencionado anteriormente.</p>
+<p>Se recomienda usar este módulo para el <em>shared memory programming</em> y para trabajos que son demandantes de CPU. Para paralelizar trabajos demandantes en I/O no se recomienda su uso.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Otro módulo en <em>Python</em> para procesamiento utilizando los cores de tu máquina es <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a> que provee el comportamiento principal de <em>multiprocessing</em>. Ver <a class="reference external" href="https://stackoverflow.com/questions/38311431/concurrent-futures-processpoolexecutor-vs-multiprocessing-pool-pool?noredirect=1&amp;lq=1">concurrent-futures-processpoolexecutor-vs-multiprocessing-pool-pool</a> y <a class="reference external" href="https://stackoverflow.com/questions/20776189/concurrent-futures-vs-multiprocessing-in-python-3">concurrent-futures-vs-multiprocessing-in-python-3</a> para más sobre <em>concurrent.futures</em> y <em>concurrent.futures</em> vs <em>multiprocessing</em>.</p>
+</div>
+</div>
+<div class="section" id="nota-sobre-el-gil-y-multiprocessing">
+<h2>Nota sobre el GIL y <em>multiprocessing</em><a class="headerlink" href="#nota-sobre-el-gil-y-multiprocessing" title="Permalink to this headline">¶</a></h2>
+<p>Aunque en <em>Python</em> los <em>threads</em> son nativos del sistema operativo (esto es, no se simulan, son realmente <em>threads</em> del sistema operativo creados en el hardware), están limitados por el <em>global interpreter lock</em> (GIL), de modo que un sólo <em>thread</em> interactúe con un objeto Python en un único tiempo. Esto degrada el <em>performance</em> de los programas pues los threads <strong>compiten</strong> por el <em>GIL</em> presente en el intérprete de Python, ver <a class="reference external" href="http://www.dabeaz.com/GIL/">Understanding the Python GIL</a>.</p>
+<p>Al usar el módulo <em>multiprocessing</em> ejecutamos en paralelo un número de intérpretes Python (CPython), cada uno con su propio espacio de memoria privada y su propio GIL que se ejecutan en un instante (y con un <em>thread</em>).</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>En <em>multiprocessing</em> se utilizan subprocesos en lugar de <em>threads</em> y en lugar de <em>fork</em> se realiza <em>spawn</em>.</p>
+</div>
 </div>
 <div class="section" id="dask">
 <h2><a class="reference external" href="https://docs.dask.org/en/latest/">Dask</a><a class="headerlink" href="#dask" title="Permalink to this headline">¶</a></h2>
