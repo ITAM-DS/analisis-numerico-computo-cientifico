@@ -424,8 +424,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo-para-regla-compuesta-del-rectangulo">
-     Ejemplo para regla compuesta del rectángulo
+    <a class="reference internal nav-link" href="#ejemplo-regla-compuesta-del-rectangulo">
+     Ejemplo regla compuesta del rectángulo
     </a>
    </li>
   </ul>
@@ -858,8 +858,8 @@ Hola del thread: 1 de 5
 </div>
 </div>
 </div>
-<div class="section" id="ejemplo-para-regla-compuesta-del-rectangulo">
-<h3>Ejemplo para regla compuesta del rectángulo<a class="headerlink" href="#ejemplo-para-regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="ejemplo-regla-compuesta-del-rectangulo">
+<h3>Ejemplo regla compuesta del rectángulo<a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h3>
 <p>Para la medición de tiempos se utilizaron las ligas: <a class="reference external" href="https://stackoverflow.com/questions/16764276/measuring-time-in-millisecond-precision">liga</a> y <a class="reference external" href="https://www.techiedelight.com/find-execution-time-c-program/">liga2</a></p>
 <p><code class="docutils literal notranslate"><span class="pre">Rcf_openmp.c</span></code></p>
 <div class="cell docutils container">
@@ -883,7 +883,7 @@ Hola del thread: 1 de 5
     <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mf">1e7</span><span class="p">;</span> <span class="o">//</span><span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
     <span class="n">double</span> <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
-    <span class="nb">int</span> <span class="n">ns_p</span><span class="p">;</span> <span class="o">//</span><span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span> <span class="n">assigned</span> <span class="n">to</span> <span class="n">each</span> <span class="n">core</span>
+    <span class="nb">int</span> <span class="n">n_subintervals_per_core</span><span class="p">;</span> <span class="o">//</span><span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span> <span class="n">assigned</span> <span class="n">to</span> <span class="n">each</span> <span class="n">core</span>
     <span class="nb">int</span> <span class="n">n_threads</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="o">//</span><span class="n">n_threads</span> <span class="n">must</span> <span class="n">divide</span> <span class="n">exactly</span> <span class="n">n</span> <span class="n">variable</span>
     <span class="nb">int</span> <span class="n">len_n_threads_array</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
@@ -899,10 +899,10 @@ Hola del thread: 1 de 5
     <span class="n">n_threads</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="mi">8</span><span class="p">;</span>
     <span class="n">len_n_threads_array</span> <span class="o">=</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">n_threads</span><span class="p">)</span><span class="o">/</span><span class="n">sizeof</span><span class="p">(</span><span class="n">n_threads</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
     <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len_n_threads_array</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="n">ns_p</span><span class="o">=</span><span class="n">n</span><span class="o">/</span><span class="n">n_threads</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">n_subintervals_per_core</span><span class="o">=</span><span class="n">n</span><span class="o">/</span><span class="n">n_threads</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
         <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
         <span class="c1">#pragma omp parallel num_threads(n_threads[i]) reduction(+: sum_shared)</span>
-            <span class="n">sum_shared</span> <span class="o">+=</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">ns_p</span><span class="p">);</span>
+            <span class="n">sum_shared</span> <span class="o">+=</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n_subintervals_per_core</span><span class="p">);</span>
         <span class="n">sum_shared</span> <span class="o">=</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_shared</span><span class="p">;</span>
         <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
         <span class="n">seconds</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_sec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_sec</span><span class="p">);</span>
@@ -916,14 +916,14 @@ Hola del thread: 1 de 5
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">double</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">ns_p</span><span class="p">){</span>
+<span class="n">double</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n_s_c</span><span class="p">){</span>
     <span class="nb">int</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">my_rank</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
     <span class="n">double</span> <span class="n">local_int</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">i</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">x</span><span class="p">;</span>
-    <span class="n">begin</span> <span class="o">=</span> <span class="n">my_rank</span><span class="o">*</span><span class="n">ns_p</span><span class="p">;</span>
-    <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">ns_p</span><span class="p">;</span> 
+    <span class="n">begin</span> <span class="o">=</span> <span class="n">my_rank</span><span class="o">*</span><span class="n">n_s_c</span><span class="p">;</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="n">n_s_c</span><span class="p">;</span> 
     <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">begin</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">end</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span><span class="p">;</span>
         <span class="n">local_int</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
