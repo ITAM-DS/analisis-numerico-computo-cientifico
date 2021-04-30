@@ -699,7 +699,7 @@ uname -ar #r for kernel, a for all
 <p>Hay paqueterías que crean subprocesos a partir de un proceso principal en lugar de <em>threads</em>. En este caso en lugar de un <em>fork</em> se realiza un <em>spawn</em>. Los subprocesos pueden ver cambios a variables hechos por otros.</p>
 <p>Ver <a class="reference external" href="https://docs.python.org/3.9/library/multiprocessing.html#contexts-and-start-methods">Contexts and start methods</a> y <a class="reference external" href="https://stackoverflow.com/questions/46045956/whats-the-difference-between-threadpool-vs-pool-in-python-multiprocessing-modul">stackoverflow: difference between threadpool vs pool in python multiprocessing</a> para diferencias entre <em>fork</em> y <em>spawn</em>.</p>
 </div>
-<p>Trabajar sobre SMC tiene ventajas y desventajas. Una ventaja es facilidad de <strong>comunicación</strong> y una desventaja es la <strong>coordinación</strong> para ejecutar instrucciones. Por ejemplo, con variables globales se puede realizar la comunicación entre los <em>threads</em>, sin embargo, para el uso de tal variable por diferentes <em>threads</em> debemos crear candados, <em>locks</em>. Lo anterior surge pues si un <em>thread</em> con etiqueta <span class="math notranslate nohighlight">\(1\)</span> accede a ella, otro <em>thread</em> con etiqueta <span class="math notranslate nohighlight">\(2\)</span>, no podrá utilizarla hasta que el thread <span class="math notranslate nohighlight">\(1\)</span> finalice de usarla. Ver <a class="reference external" href="https://en.wikipedia.org/wiki/Thread_safety">Thread Safety</a> y <a class="reference external" href="https://en.wikipedia.org/wiki/Race_condition#Computing">Race Condition</a>.</p>
+<p>Trabajar sobre SMC tiene ventajas y desventajas. Una ventaja es facilidad de comunicación y una desventaja es la <strong>coordinación</strong> para ejecutar instrucciones. Por ejemplo, con variables globales se puede realizar la comunicación entre los <em>threads</em>, sin embargo, para el uso de tales variables por diferentes <em>threads</em> debemos crear candados, <em>locks</em>. Lo anterior surge pues si un <em>thread</em> con etiqueta <span class="math notranslate nohighlight">\(1\)</span> accede a una variable global, otro <em>thread</em> con etiqueta <span class="math notranslate nohighlight">\(2\)</span>, no podrá utilizarla hasta que el thread <span class="math notranslate nohighlight">\(1\)</span> finalice de usarla. Ver <a class="reference external" href="https://en.wikipedia.org/wiki/Thread_safety">Thread Safety</a> y <a class="reference external" href="https://en.wikipedia.org/wiki/Race_condition#Computing">Race Condition</a>.</p>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
 <p>En una <em>race condition</em> múltiples <em>threads</em> intentan acceder a un recurso compartido, al menos uno de los accesos resulta en una modificación al recurso y posteriormente los siguientes accesos pueden no ver la modificación. A la sección del código que causa la <em>race condition</em> se le nombra <em>critical section</em>. Las <em>critical sections</em> se ejecutan con código secuencial o con <em>locks</em> para evitar las <em>race conditions</em>.</p>
@@ -707,8 +707,8 @@ uname -ar #r for kernel, a for all
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>Para crear procesos o <em>threads</em> en los lenguajes de programación de <em>C, Python</em> o <em>R</em>, utilizamos las librerías, API’s o extensiones vía paquetes a tales lenguajes. Lo anterior se debe a que <em>C, Python</em> y <em>R</em> en sus implementaciones más utilizadas, fueron diseñados con el propósito de utilizarse sobre sistemas con un sólo procesador.</p></li>
-<li><p>Ejemplos de máquinas con sistemas de memoria compartida son las laptops, los celulares, máquinas de escritorio con más de un <em>core</em>.</p></li>
+<li><p>Para crear procesos o <em>threads</em> en los lenguajes de programación de <em>C, Python</em> o <em>R</em>, utilizamos las librerías, API’s o extensiones vía paquetes a tales lenguajes. Lo anterior se debe a que <em>C, Python</em> y <em>R</em> en sus implementaciones más utilizadas o estándar, fueron diseñados con el propósito de utilizarse sobre sistemas con un sólo procesador. En distintas implementaciones de los lenguajes hay soporte para SMC.</p></li>
+<li><p>Ejemplos de máquinas con SMC son las laptops, los celulares, máquinas de escritorio con más de un <em>core</em>.</p></li>
 <li><p>Otro tipo de SMC se puede representar con el siguiente dibujo:</p></li>
 </ul>
 <img src="https://dl.dropboxusercontent.com/s/dqwdqdxiecj91vy/shared_memory_systems_2.png?dl=0" heigth="500" width="500">
@@ -719,17 +719,13 @@ uname -ar #r for kernel, a for all
 <img src="https://dl.dropboxusercontent.com/s/iky7af1m3dcj3e0/distributed_memory_systems.png?dl=0" heigth="600" width="600">
 <p>La memoria en un SMD asociada al <em>core</em> sólo puede ser accesada por éste y es inaccesible a los demás <em>cores</em>, esto es, se tiene una memoria “privada”. Lo anterior contrasta con los SMC en los que todos los <em>cores</em> accesan a una memoria “global”. En un SMD el cómputo distribuido crea múltiples procesos a partir de un proceso principal. En un SMC el cómputo paralelo crea múltiples procesos o <em>threads</em>. Un ejemplo de un SMD es un clúster de máquinas. Cada máquina en el clúster puede ser un SMC y por tanto los procesos en cada máquina tienen la capacidad de crear procesos o <em>threads</em>. En este caso se tiene un sistema híbrido SMD y SMC. Un programa diseñado para ejecutarse en un SMD puede ejecutarse en un SMC pues se divide su memoria de forma lógica en espacios de memoria privados para los <em>threads</em>.</p>
 </div>
-<div class="tip admonition">
-<p class="admonition-title">Observación</p>
-<p>En distintas implementaciones de los lenguajes hay soporte para SMC.</p>
-</div>
 </div>
 <div class="section" id="openmp">
 <h2><a class="reference external" href="http://www.openmp.org/">OpenMP</a><a class="headerlink" href="#openmp" title="Permalink to this headline">¶</a></h2>
-<p>Es una extensión al lenguaje <em>C</em> y es una API para cómputo en paralelo en un sistema de memoria compartida, <em>aka, shared memory parallel programming</em> con CPUs. Lo anterior es posible con el <em>threading</em> en los <em>cores</em>: <em>fork</em> y <em>join</em> de <em>threads</em> a partir de un proceso principal.</p>
+<p>Es una extensión al lenguaje <em>C</em> y es una API para cómputo en paralelo en un sistema de memoria compartida, <em>aka, shared memory parallel programming</em> con CPUs. Lo anterior <em>OpenMP</em> lo posibilita con el <em>threading</em>: <em>fork</em> y <em>join</em> de <em>threads</em> a partir de un proceso principal.</p>
 <img src="https://dl.dropboxusercontent.com/s/0vnjfdk7fo62m8h/threading.png?dl=0" heigth="400" width="400"><p>Ver <a class="reference internal" href="../5.1/introduccion_optimizacion_de_codigo.html#threadinghyper"><span class="std std-ref">Threading o Hyperthreading</span></a>.</p>
 <ul class="simple">
-<li><p>Las siglas <em>MP</em> se refieren a <em>multiprocessing</em>, un sinónimo de <em>shared memory parallel computing</em>. <em>OpenMP</em> se utiliza en un SMC por lo que cada <em>thread</em> de un <em>core</em> tiene acceso a la memoria.</p></li>
+<li><p>Las siglas <em>MP</em> se refieren a <em>multiprocessing</em>, un sinónimo de <em>shared memory parallel computing</em>. <em>OpenMP</em> se utiliza en un SMC por lo que cada <em>thread</em> tiene acceso a la memoria.</p></li>
 <li><p>Algunas características de <em>OpenMP</em> son:</p>
 <ul>
 <li><p>Paralelización de ciclos <em>for</em> secuenciales en los que las iteraciones son independientes una de la otra de forma simple.</p></li>
@@ -746,7 +742,7 @@ uname -ar #r for kernel, a for all
 </ul>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Los <code class="docutils literal notranslate"><span class="pre">pragma</span></code> se utilizan para extender la funcionalidad de <em>C</em> pues no son parte de su especificación básica. Las versiones más recientes del compilador <code class="docutils literal notranslate"><span class="pre">gcc</span></code> soportan a los <code class="docutils literal notranslate"><span class="pre">pragma</span></code> y todas las <em>preprocessor directive</em> son por <em>default</em> de longitud una línea.</p>
+<p>Los <code class="docutils literal notranslate"><span class="pre">pragma</span></code> se utilizan para extender la funcionalidad de <em>C</em> pues no son parte de su especificación básica. Las versiones más recientes del compilador <code class="docutils literal notranslate"><span class="pre">gcc</span></code> soportan a los <code class="docutils literal notranslate"><span class="pre">pragma</span></code> y todas las <em>preprocessor directives</em> son por <em>default</em> de longitud una línea.</p>
 </div>
 <div class="section" id="directiva-parallel">
 <h3>Directiva parallel<a class="headerlink" href="#directiva-parallel" title="Permalink to this headline">¶</a></h3>
@@ -798,7 +794,6 @@ Hola del thread: 0 de 2
 <p><code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-Wall</span> <span class="pre">-fopenmp</span> <span class="pre">hello_world_omp.c</span> <span class="pre">-o</span> <span class="pre">hello_world_omp.out</span></code></p>
 <ul class="simple">
 <li><p>Dependiendo del número de cores de nuestro sistema tendremos diferentes número de <code class="docutils literal notranslate"><span class="pre">printf</span></code>’s.</p></li>
-<li><p>Dentro de la directiva <code class="docutils literal notranslate"><span class="pre">parallel</span></code> //structured block que sólo consiste del llamado a la función Hello:</p></li>
 <li><p>Lo que continúa a la línea de <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">parallel</span></code> es un <em>structured block</em>, esto es, un <em>statement</em> o conjunto de <em>statements</em> que tienen un punto de entrada y un punto de salida. En el caso anterior sólo se llama a la función <code class="docutils literal notranslate"><span class="pre">Hello</span></code>, no se permiten statements como el siguiente:</p></li>
 </ul>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma omp parallel</span>
@@ -816,7 +811,7 @@ Hola del thread: 0 de 2
 </pre></div>
 </div>
 </div>
-<p>A continuación de la directiva <code class="docutils literal notranslate"><span class="pre">parallel</span></code> podemos usar diferentes tipos de *clauses. Una <em>clause</em> en <em>OpenMP</em> es un texto que modifica una directiva. Por ejemplo, podemos usar la <em>clause</em> <code class="docutils literal notranslate"><span class="pre">num_threads</span></code> para especificar el número de threads que ejecutarán el structured block.</p>
+<p>A continuación de la directiva <code class="docutils literal notranslate"><span class="pre">parallel</span></code> podemos usar diferentes tipos de <em>clauses</em>. Una <em>clause</em> en <em>OpenMP</em> es un texto que modifica una directiva. Por ejemplo, podemos usar la <em>clause</em> <code class="docutils literal notranslate"><span class="pre">num_threads</span></code> para especificar el número de threads que ejecutarán el <em>structured block</em>.</p>
 </div>
 <div class="section" id="ejemplo-hello-world-con-clause-num-threads">
 <h3>Ejemplo: <em>Hello world</em> con <em>clause</em> <code class="docutils literal notranslate"><span class="pre">num_threads</span></code><a class="headerlink" href="#ejemplo-hello-world-con-clause-num-threads" title="Permalink to this headline">¶</a></h3>
