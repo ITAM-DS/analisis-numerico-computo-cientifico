@@ -461,6 +461,49 @@
      </em>
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Ejemplo
+     <em>
+      Hello world
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pool-of-workers">
+     <em>
+      Pool of workers
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Ejemplo
+     <em>
+      Hello world
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-utilizando-apply">
+     Ejemplo utilizando
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       apply
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-con-context-manager">
+     Ejemplo con context manager
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regla-compuesta-del-rectangulo">
+     3) Regla compuesta del rectángulo
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1101,7 +1144,7 @@ sum_shared al final de la directive parallel 40
 </div>
 <div class="section" id="ejemplo-regla-compuesta-del-rectangulo">
 <h3>Ejemplo regla compuesta del rectángulo<a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h3>
-<p>Para la medición de tiempos se utilizaron las ligas: <a class="reference external" href="https://stackoverflow.com/questions/16764276/measuring-time-in-millisecond-precision">measuring-time-in-millisecond-precision</a> y <a class="reference external" href="https://www.techiedelight.com/find-execution-time-c-program/">find-execution-time-c-program</a></p>
+<p>Para la medición de tiempos se utilizaron las ligas: <a class="reference external" href="https://stackoverflow.com/questions/16764276/measuring-time-in-millisecond-precision">measuring-time-in-millisecond-precision</a> y <a class="reference external" href="https://www.techiedelight.com/find-execution-time-c-program/">find-execution-time-c-program</a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Rcf_openmp.c</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1269,6 +1312,253 @@ Tiempo de ejecución con 64 threads: 24 miliseconds
 <p class="admonition-title">Observación</p>
 <p>En <em>multiprocessing</em> se utilizan subprocesos en lugar de <em>threads</em> y en lugar de <em>fork</em> se realiza <em>spawn</em>.</p>
 </div>
+</div>
+<div class="section" id="id2">
+<h3>Ejemplo <em>Hello world</em><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>En <em>Multiprocessing</em> los procesos son generados al utilizar la clase <code class="docutils literal notranslate"><span class="pre">Process</span></code> para crear objetos y llamar al método <code class="docutils literal notranslate"><span class="pre">start</span></code>. Ver <a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html#multiprocessing.Process">Process</a> para documentación de ésta clase.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world! de subproceso&#39;</span><span class="p">)</span>
+    
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">p1</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">p2</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">p1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> 
+    <span class="n">p2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> 
+    <span class="n">p1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> 
+    <span class="n">p2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world! de proceso&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hello world! de subproceso
+hello world! de subproceso
+hello world! de proceso
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">start</span></code> sólo puede ser llamada una vez por objeto <code class="docutils literal notranslate"><span class="pre">Process</span></code>.</p></li>
+<li><p>Con el primer <code class="docutils literal notranslate"><span class="pre">join</span></code> el proceso principal espera a que termine <code class="docutils literal notranslate"><span class="pre">p1</span></code>. Con el segundo <code class="docutils literal notranslate"><span class="pre">join</span></code> el proceso principal espera a que termine <code class="docutils literal notranslate"><span class="pre">p2</span></code>.</p></li>
+</ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Es buena práctica explícitamente hacer <em>joins</em> para cada objeto <em>process</em> que realizó <code class="docutils literal notranslate"><span class="pre">start</span></code>. Ver <a class="reference external" href="https://docs.python.org/3.9/library/multiprocessing.html#programming-guidelines">Programming guidelines</a> para buenas prácticas.</p>
+</div>
+<p>La clase <code class="docutils literal notranslate"><span class="pre">Process</span></code> recibe la función a ejecutar para cada proceso con el argumento <code class="docutils literal notranslate"><span class="pre">target</span></code> y también tiene <code class="docutils literal notranslate"><span class="pre">args</span></code> para los argumentos de la función:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">p1</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;hola&#39;</span><span class="p">,))</span>
+    <span class="n">p2</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;mundo&#39;</span><span class="p">,))</span> 
+    <span class="n">p1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">p2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">p1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="n">p2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hola
+mundo
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<ul class="simple">
+<li><p>De acuerdo a <a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html#programming-guidelines">Programming guidelines</a> se debe usar un bloque del tipo <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__=='__main__':</span></code> para las personas que tienen Windows puedan ejecutar sin problema el código (para las personas que están en Unix pueden quitar el bloque de <code class="docutils literal notranslate"><span class="pre">if</span></code>). El bloque del <code class="docutils literal notranslate"><span class="pre">if</span></code> ayuda a que los subprocesos importen el módulo <code class="docutils literal notranslate"><span class="pre">__main__</span></code> (por lo que no se ejecuta la sección que está dentro de <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__=='__main__':</span></code> pues no son programas principales) y continúa la ejecución de las líneas de <code class="docutils literal notranslate"><span class="pre">start</span></code> (cada subproceso ejecuta <code class="docutils literal notranslate"><span class="pre">f</span></code>) y <code class="docutils literal notranslate"><span class="pre">join</span></code>. Si se quita este statement por ejemplo:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;hola&#39;</span><span class="p">,))</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;mundo&#39;</span><span class="p">,))</span> 
+<span class="n">p1</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">p2</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+<span class="n">p2</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>el <em>notebook</em> quedará bloqueado pues una celda con el código anterior creará subprocesos que a su vez crearán otros subprocesos, que a su vez crearán otros subprocesos… y así de forma recursiva.</p>
+</div>
+<ul class="simple">
+<li><p>Los argumentos tienen que ser objetos <em>pickable</em> o serializados. Ver <a class="reference external" href="https://docs.python.org/3/library/pickle.html#what-can-be-pickled-and-unpickled">what can be pickled and unpickled</a> para una lista de objetos <em>pickable</em>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>En <em>multiprocessing</em> tenemos la función <code class="docutils literal notranslate"><span class="pre">cpu_count</span></code> para determinar el número de cores que el sistema operativo puede usar. Este número es la cantidad física o simulada (hyperthreading) de cores.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pool-of-workers">
+<h3><em>Pool of workers</em><a class="headerlink" href="#pool-of-workers" title="Permalink to this headline">¶</a></h3>
+<p>Ver <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#using-a-pool-of-workers">Using a pool of workers</a>.</p>
+<p>La clase <code class="docutils literal notranslate"><span class="pre">Pool</span></code> crea un conjunto (<em>pool</em>) de procesos tipo <em>worker</em> que procesarán las tareas a realizar vía funciones tipo <code class="docutils literal notranslate"><span class="pre">map</span></code> o <code class="docutils literal notranslate"><span class="pre">apply</span></code>. Se hace <code class="docutils literal notranslate"><span class="pre">map</span></code> del <em>input</em> hacia los procesadores y se colecta el <em>output</em> de éstos. Mientras el <code class="docutils literal notranslate"><span class="pre">map</span></code> se realiza, el proceso que lanzó el map se bloquea hasta que finalicen las tareas (aunque hay <a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html#multiprocessing.pool.multiprocessing.Pool.map_async">map_async</a>). El <em>output</em> es una lista.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>El procesamiento de las tareas podríamos hacerlo con la clase <code class="docutils literal notranslate"><span class="pre">Process</span></code> de arriba pero tendríamos que utilizar un ciclo y colectar los resultados.</p>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Para un gran número de tareas a realizar, utilizar <code class="docutils literal notranslate"><span class="pre">Pool</span></code>. Para pocas tareas a realizar (menos de <span class="math notranslate nohighlight">\(10\)</span>), utilizar <code class="docutils literal notranslate"><span class="pre">Process</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Ejemplo <em>Hello world</em><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">dummy</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;hello world!&#39;</span>
+    
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>    
+    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hello world!&#39;, &#39;hello world!&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">dummy</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;hello world!&#39;</span>
+    
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">num_processes</span><span class="o">=</span><span class="mi">2</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="n">num_processes</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">num_processes</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>    
+    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hello world!&#39;, &#39;hello world!&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ejemplo-utilizando-apply">
+<h3>Ejemplo utilizando <code class="docutils literal notranslate"><span class="pre">apply</span></code><a class="headerlink" href="#ejemplo-utilizando-apply" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;hello world!&#39;</span>
+    
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">num_processes</span><span class="o">=</span><span class="mi">2</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="n">num_processes</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">pool</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_processes</span><span class="p">)]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>    
+    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hello world!&#39;, &#39;hello world!&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ejemplo-con-context-manager">
+<h3>Ejemplo con <a class="reference external" href="https://book.pythontips.com/en/latest/context_managers.html#context-managers">context manager</a><a class="headerlink" href="#ejemplo-con-context-manager" title="Permalink to this headline">¶</a></h3>
+<p>Nos ayuda a no escribir <em>statements</em>: <code class="docutils literal notranslate"><span class="pre">pool.close</span></code>, <code class="docutils literal notranslate"><span class="pre">pool.join</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">dummy</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;hello world!&#39;</span>
+    
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">num_processes</span><span class="o">=</span><span class="mi">2</span>
+    <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">num_processes</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">num_processes</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hello world!&#39;, &#39;hello world!&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>### Ejemplo para pasar múltiples argumentos vía <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.Pool.starmap">starmap</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">s</span>
+    
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">num_processes</span><span class="o">=</span><span class="mi">2</span>
+    <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">num_processes</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span><span class="n">f</span><span class="p">,[(</span><span class="s1">&#39;hola&#39;</span><span class="p">,),(</span><span class="s1">&#39;mundo&#39;</span><span class="p">,)])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hola&#39;, &#39;mundo&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>De acuerdo a <a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html#programming-guidelines">Programming guidelines</a>:</p>
+<p><em>Explicitly pass resources to child processes … On Unix a child process can make use of a shared resource created in a parent process using a global resource. However, it is better to pass the object as an argument to the constructor for the child process…</em></p>
+</div>
+<div class="section" id="regla-compuesta-del-rectangulo">
+<h3>3) Regla compuesta del rectángulo<a class="headerlink" href="#regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="dask">
