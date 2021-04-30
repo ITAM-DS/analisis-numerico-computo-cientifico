@@ -500,8 +500,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regla-compuesta-del-rectangulo">
-     3) Regla compuesta del rectángulo
+    <a class="reference internal nav-link" href="#ejemplo-para-pasar-multiples-argumentos-via-starmap">
+     Ejemplo para pasar múltiples argumentos vía starmap
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Ejemplo regla compuesta del rectángulo
     </a>
    </li>
   </ul>
@@ -1534,7 +1539,9 @@ mundo
 </div>
 </div>
 </div>
-<p>### Ejemplo para pasar múltiples argumentos vía <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.Pool.starmap">starmap</a></p>
+</div>
+<div class="section" id="ejemplo-para-pasar-multiples-argumentos-via-starmap">
+<h3>Ejemplo para pasar múltiples argumentos vía <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.Pool.starmap">starmap</a><a class="headerlink" href="#ejemplo-para-pasar-multiples-argumentos-via-starmap" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
@@ -1557,8 +1564,151 @@ mundo
 <p>De acuerdo a <a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html#programming-guidelines">Programming guidelines</a>:</p>
 <p><em>Explicitly pass resources to child processes … On Unix a child process can make use of a shared resource created in a parent process using a global resource. However, it is better to pass the object as an argument to the constructor for the child process…</em></p>
 </div>
-<div class="section" id="regla-compuesta-del-rectangulo">
-<h3>3) Regla compuesta del rectángulo<a class="headerlink" href="#regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>Ejemplo regla compuesta del rectángulo<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+<span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">7</span>
+<span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+<span class="n">n_subintervals_per_core</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">p</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p><code class="docutils literal notranslate"><span class="pre">n_subintervals_per_core</span></code> es el número de subintervalos por <em>core</em>. Se asume que <code class="docutils literal notranslate"><span class="pre">n</span></code> es divisible por <code class="docutils literal notranslate"><span class="pre">p</span></code>. Si no se cumple esto, se puede definir <code class="docutils literal notranslate"><span class="pre">n_subintervals_per_core=int(n/p)</span></code> habiendo definido <code class="docutils literal notranslate"><span class="pre">n</span></code> primero y redefinir <code class="docutils literal notranslate"><span class="pre">n</span></code> como: <code class="docutils literal notranslate"><span class="pre">n=p*n_subintervals_per_core</span></code></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;número de subintervalos:&quot;</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>número de subintervalos: 1000000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;número de subintervalos por proceso:&quot;</span><span class="p">,</span><span class="n">n_subintervals_per_core</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>número de subintervalos por proceso: 500000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Rcf_multiprocessing</span><span class="p">(</span><span class="n">mi_id</span><span class="p">):</span>
+    <span class="n">begin</span> <span class="o">=</span> <span class="n">mi_id</span><span class="o">*</span><span class="n">n_subintervals_per_core</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span><span class="o">+</span><span class="n">n_subintervals_per_core</span>
+    <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">sum_res</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span>
+        <span class="n">sum_res</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sum_res</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">start_time</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">p</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">Rcf_multiprocessing</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+        <span class="n">res_multiprocessing</span> <span class="o">=</span> <span class="n">h_hat</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">secs</span> <span class="o">=</span> <span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rcf_multiprocessing tomó&quot;</span><span class="p">,</span><span class="n">secs</span><span class="p">,</span><span class="s2">&quot;segundos&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf_parallel tomó 0.23510241508483887 segundos
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">res_multiprocessing</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it -n 5 -r 10 -o
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">p</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">Rcf_parallel</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+        <span class="n">aprox</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>241 ms ± 19.1 ms per loop (mean ± std. dev. of 10 runs, 5 loops each)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 241 ms ± 19.1 ms per loop (mean ± std. dev. of 10 runs, 5 loops each)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Rcf_parallel_timeit</span> <span class="o">=</span> <span class="n">_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Rcf_parallel_timeit</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2410215291600025
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="dask">
