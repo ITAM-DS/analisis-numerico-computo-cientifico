@@ -853,7 +853,7 @@ Hola del thread: 0 de 2
 
 <span class="n">void</span> <span class="n">Hello</span><span class="p">(</span><span class="n">void</span><span class="p">);</span> 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(){</span>
-    <span class="nb">int</span> <span class="n">n_threads</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n_threads</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
     <span class="c1">#pragma omp parallel num_threads(n_threads) </span>
         <span class="n">Hello</span><span class="p">();</span>
     
@@ -884,9 +884,9 @@ Hola del thread: 1 de 5
 <p><em>OpenMP</em> provee la <em>reduction clause</em> para aplicar la operación de suma (operador binario) a cada resultado calculado de un <em>thread</em> de forma repetida y almacenar en una variable la respuesta.</p>
 <p>Nombramos <em>reduction variable</em> a la variable que almacenará los resultados intermedios calculados por cada <em>thread</em> y <em>reduction operator</em> a la operación binaria (por ejemplo una suma o multiplicación) que se aplica repetidamente a una secuencia de operandos para obtener un resultado, en un proceso que se le nombra <em>reduction</em>.</p>
 <p>Por ejemplo, si <code class="docutils literal notranslate"><span class="pre">A</span></code> es un arreglo de <code class="docutils literal notranslate"><span class="pre">n</span></code> enteros, el cálculo:</p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="n">sum</span><span class="o">+=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 </pre></div>
 </div>
 <p>es un proceso de <em>reduction</em> en el que el <em>reduction operator</em> es la suma.</p>
@@ -912,34 +912,36 @@ Hola del thread: 1 de 5
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>#include&lt;stdio.h&gt;
 #include&lt;stdlib.h&gt;
 #include&lt;omp.h&gt;
+
 int main(int argc, char *argv[]){
-long n_threads;
-int private_variable;
-int sum_shared=7;
-n_threads=strtol(argv[1], NULL, 10);
-
-printf(&quot;variable sum_shared al inicio : %d\n&quot;, sum_shared);
-
-#pragma omp parallel num_threads(n_threads) reduction(+: sum_shared)
-{
-    int my_rank=omp_get_thread_num();
-    if(my_rank==0)
-                printf(&quot;sum_shared, printf 1 del thread 0: %d\n&quot;, sum_shared);
-        else
-                printf(&quot;sum_shared, prinftf 1 thread 1: %d\n&quot;, sum_shared);
-    sum_shared=(my_rank==0)?10:20;
-    private_variable=(my_rank==0)?1:2;
-    if(my_rank==0)
-        printf(&quot;sum_shared, printf 2 del thread 0: %d\n&quot;, sum_shared);
-    else
-        printf(&quot;sum_shared, printf 2 del thread 1: %d\n&quot;, sum_shared);
-    sum_shared += private_variable;
+    long n_threads;
+    int private_variable;
+    int sum_shared = 7;
+        
+    n_threads = strtol(argv[1], NULL, 10);
+    
+    printf(&quot;variable sum_shared al inicio : %d\n&quot;, sum_shared);
+    
+    #pragma omp parallel num_threads(n_threads) reduction(+: sum_shared)
+    {
+        int my_rank = omp_get_thread_num();
         if(my_rank==0)
-                printf(&quot;sum_shared, printf 3 del thread 0: %d\n&quot;, sum_shared);
+                    printf(&quot;sum_shared, printf 1 del thread 0: %d\n&quot;, sum_shared);
+            else
+                    printf(&quot;sum_shared, prinftf 1 thread 1: %d\n&quot;, sum_shared);
+        sum_shared = (my_rank==0)?10:20;
+        private_variable = (my_rank==0)?1:2;
+        if(my_rank==0)
+            printf(&quot;sum_shared, printf 2 del thread 0: %d\n&quot;, sum_shared);
         else
-                printf(&quot;sum_shared, printf 3 del thread 1: %d\n&quot;, sum_shared);
-
-}
+            printf(&quot;sum_shared, printf 2 del thread 1: %d\n&quot;, sum_shared);
+        sum_shared += private_variable;
+            if(my_rank==0)
+                    printf(&quot;sum_shared, printf 3 del thread 0: %d\n&quot;, sum_shared);
+            else
+                    printf(&quot;sum_shared, printf 3 del thread 1: %d\n&quot;, sum_shared);
+    
+    }
     printf(&quot;sum_shared al final de la directive parallel %d\n&quot;, sum_shared);
     
     return 0;
@@ -993,26 +995,26 @@ gcc -Wall -fopenmp ejemplo_nombre_variable_privada_compartida_reduction_clause.c
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(){</span>
     <span class="n">double</span> <span class="n">sum_shared</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span> <span class="o">//</span><span class="n">shared</span> <span class="n">variable</span> <span class="k">for</span> <span class="n">threads</span>
-    <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
-    <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mf">1e7</span><span class="p">;</span> <span class="o">//</span><span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
-    <span class="n">double</span> <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mf">1e7</span><span class="p">;</span> <span class="o">//</span><span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
+    <span class="n">double</span> <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">n_subintervals_per_core</span><span class="p">;</span> <span class="o">//</span><span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span> <span class="n">assigned</span> <span class="n">to</span> <span class="n">each</span> <span class="n">core</span>
-    <span class="nb">int</span> <span class="n">n_threads</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="o">//</span><span class="n">n_threads</span> <span class="n">must</span> <span class="n">divide</span> <span class="n">exactly</span> <span class="n">n</span> <span class="n">variable</span>
+    <span class="nb">int</span> <span class="n">n_threads</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="o">//</span><span class="n">n_threads</span> <span class="n">must</span> <span class="n">divide</span> <span class="n">exactly</span> <span class="n">n</span> <span class="n">variable</span>
     <span class="nb">int</span> <span class="n">len_n_threads_array</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">obj</span> <span class="o">=</span> <span class="mf">0.7468241328124271</span><span class="p">;</span>
     <span class="n">struct</span> <span class="n">timeval</span> <span class="n">start</span><span class="p">;</span>
     <span class="n">struct</span> <span class="n">timeval</span> <span class="n">end</span><span class="p">;</span>
     <span class="n">long</span> <span class="n">seconds</span><span class="p">;</span>
     <span class="n">long</span> <span class="n">long</span> <span class="n">mili</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">i</span><span class="p">;</span>
-    <span class="n">n_threads</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-    <span class="n">n_threads</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
-    <span class="n">n_threads</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span>
-    <span class="n">n_threads</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
-    <span class="n">n_threads</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="mi">8</span><span class="p">;</span>
+    <span class="n">n_threads</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">n_threads</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">n_threads</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">n_threads</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="n">n_threads</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
     <span class="n">len_n_threads_array</span> <span class="o">=</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">n_threads</span><span class="p">)</span><span class="o">/</span><span class="n">sizeof</span><span class="p">(</span><span class="n">n_threads</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
     <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len_n_threads_array</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="n">n_subintervals_per_core</span><span class="o">=</span><span class="n">n</span><span class="o">/</span><span class="n">n_threads</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">n_subintervals_per_core</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="n">n_threads</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
         <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
         <span class="c1">#pragma omp parallel num_threads(n_threads[i]) reduction(+: sum_shared)</span>
             <span class="n">sum_shared</span> <span class="o">+=</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n_subintervals_per_core</span><span class="p">);</span>
