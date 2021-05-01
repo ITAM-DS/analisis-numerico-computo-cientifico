@@ -1333,8 +1333,8 @@ Tiempo de ejecución con 64 threads: 24 miliseconds
 <span class="c1">#include&lt;time.h&gt;</span>
 <span class="c1">#include &lt;sys/time.h&gt;</span>
 
-<span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="n">ext_izq</span><span class="p">,</span> <span class="n">double</span> <span class="n">ext_der</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span>\
-    <span class="n">double</span> <span class="o">*</span><span class="n">sum_res_p</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">long</span> <span class="n">n_t</span><span class="p">,</span> <span class="n">double</span> <span class="n">ext_izq</span><span class="p">,</span> <span class="n">double</span> <span class="n">ext_der</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span>\
+           <span class="n">double</span> <span class="n">s_res</span><span class="p">);</span>
 <span class="n">double</span> <span class="n">f</span><span class="p">(</span><span class="n">double</span> <span class="n">nodo</span><span class="p">);</span>
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
@@ -1346,10 +1346,11 @@ Tiempo de ejecución con 64 threads: 24 miliseconds
     <span class="n">long</span> <span class="n">seconds</span><span class="p">;</span>
     <span class="n">long</span> <span class="n">long</span> <span class="n">mili</span><span class="p">;</span>
     <span class="n">long</span> <span class="n">n_threads</span><span class="p">;</span>
-
+    <span class="n">double</span> <span class="n">res_rcf</span><span class="p">;</span>
+    
     <span class="n">n_threads</span> <span class="o">=</span> <span class="n">strtol</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">NULL</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>   
     <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
-    <span class="n">Rcf</span><span class="p">(</span><span class="n">n_threads</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">sum_res</span><span class="p">);</span>
+    <span class="n">res_rcf</span> <span class="o">=</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">n_threads</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">,</span> <span class="n">sum_res</span><span class="p">);</span>
     <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
     <span class="n">seconds</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_sec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_sec</span><span class="p">);</span>
     <span class="n">mili</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_usec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_usec</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">;</span>    
@@ -1357,23 +1358,28 @@ Tiempo de ejecución con 64 threads: 24 miliseconds
     
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">long</span> <span class="n">n_th</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">b</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="nb">sum</span><span class="p">){</span>
+<span class="n">double</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">long</span> <span class="n">n_th</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">b</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="nb">sum</span><span class="p">){</span>
     <span class="n">double</span> <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
     <span class="c1"># pragma omp parallel for num_threads(n_th) reduction(+: sum)</span>
         <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span><span class="p">;</span>
-            <span class="o">*</span><span class="nb">sum</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+            <span class="nb">sum</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
         <span class="p">}</span>
-    <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">h_hat</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="nb">sum</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="nb">sum</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="n">double</span> <span class="n">f</span><span class="p">(</span><span class="n">double</span> <span class="n">nodo</span><span class="p">){</span>
     <span class="n">double</span> <span class="n">valor_f</span><span class="p">;</span>
     <span class="n">valor_f</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="nb">pow</span><span class="p">(</span><span class="n">nodo</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
     <span class="k">return</span> <span class="n">valor_f</span><span class="p">;</span>
 <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf_parallel_for.c
 </pre></div>
 </div>
 </div>
@@ -1385,11 +1391,24 @@ gcc -Wall -fopenmp Rcf_parallel_for.c -o Rcf_parallel_for.out -lm
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf_parallel_for.c: In function ‘main’:
+Rcf_parallel_for.c:20:12: warning: variable ‘res_rcf’ set but not used [-Wunused-but-set-variable]
+   20 |     double res_rcf;
+      |            ^~~~~~~
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%bash</span>
-<span class="c1">#./Rcf_parallel_for.out</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+./Rcf_parallel_for.out 32
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 170 milisegundos
 </pre></div>
 </div>
 </div>
