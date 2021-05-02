@@ -598,6 +598,13 @@
   <a class="reference internal nav-link" href="#regla-compuesta-del-rectangulo">
    Regla compuesta del rectángulo
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grafica-de-tiempo-de-ejecucion-vs-numero-de-procesos">
+     Gráfica de tiempo de ejecución vs número de procesos
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#parallel">
@@ -2674,6 +2681,404 @@ Wall time: 2.02 s
 </div>
 <div class="section" id="regla-compuesta-del-rectangulo">
 <h2>Regla compuesta del rectángulo<a class="headerlink" href="#regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_nodes_in_subintervals</span><span class="p">(</span><span class="n">my_id</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">n_s_c</span><span class="p">):</span>
+    <span class="n">begin</span> <span class="o">=</span> <span class="n">my_id</span><span class="o">*</span><span class="n">n_s_c</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">begin</span><span class="o">+</span><span class="n">n_s_c</span>
+    <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">):</span>
+        <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">nodes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_f_in_nodes_and_sum</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span><span class="n">f</span><span class="p">):</span>
+    <span class="n">sum_res</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+        <span class="n">sum_res</span><span class="o">+=</span><span class="n">f</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sum_res</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">futures_nodes</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">create_nodes_in_subintervals</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
+                           <span class="o">**</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="n">a</span><span class="p">,</span>
+                              <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">b</span><span class="p">,</span>
+                              <span class="s2">&quot;h_hat&quot;</span><span class="p">:</span><span class="n">h_hat</span><span class="p">,</span>
+                              <span class="s1">&#39;n&#39;</span><span class="p">:</span><span class="n">n</span><span class="p">,</span>
+                              <span class="s2">&quot;n_s_c&quot;</span><span class="p">:</span><span class="n">n_subintervals_per_core</span><span class="p">}</span>
+                            <span class="p">)</span>
+<span class="n">futures_evaluated</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">evaluate_f_in_nodes_and_sum</span><span class="p">,</span> <span class="n">futures_nodes</span><span class="p">,</span>
+                            <span class="o">**</span><span class="p">{</span><span class="s1">&#39;f&#39;</span><span class="p">:</span><span class="n">f</span><span class="p">}</span>
+                            <span class="p">)</span>
+<span class="n">results_gather</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">futures_evaluated</span><span class="p">)</span>
+<span class="n">res_rcf_distributed</span> <span class="o">=</span> <span class="n">h_hat</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="n">results_gather</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 80 ms, sys: 10 ms, total: 90 ms
+Wall time: 1.23 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">res_rcf_distributed</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Con <code class="docutils literal notranslate"><span class="pre">map</span></code> o <code class="docutils literal notranslate"><span class="pre">submit</span></code> se han enviado las <em>tasks</em> al <em>scheduler</em> a realizar. Ver <a class="reference external" href="https://distributed.dask.org/en/latest/api.html">map</a>, <a class="reference external" href="https://distributed.dask.org/en/latest/api.html#distributed.Client.submit">submit</a> y <a class="reference external" href="https://distributed.dask.org/en/latest/client.html#concurrent-futures">concurrent.futures</a>.</p></li>
+<li><p>Los cálculos definidos por las funciones <code class="docutils literal notranslate"><span class="pre">create_nodes_in_subintervals</span></code> y <code class="docutils literal notranslate"><span class="pre">evaluate_f_in_nodes_and_sum</span></code> se ejecutan en cada <em>dask-worker</em> y a distintos tiempos.</p></li>
+<li><p>Obsérvese que se puede hacer <code class="docutils literal notranslate"><span class="pre">map</span></code> o <code class="docutils literal notranslate"><span class="pre">submit</span></code> en <em>futures</em>.</p></li>
+<li><p>Los resultados viven en los procesos <em>dask-workers</em>.</p></li>
+<li><p>Con <code class="docutils literal notranslate"><span class="pre">gather</span></code> se juntan los resultados (<em>futures</em>) en el proceso local.</p></li>
+<li><p>Podemos usar <code class="docutils literal notranslate"><span class="pre">gather</span></code> o <code class="docutils literal notranslate"><span class="pre">result</span></code> de los <em>futures</em>.</p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">n_workers</span><span class="o">=</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">(),</span>
+                <span class="n">threads_per_worker</span><span class="o">=</span><span class="mi">1</span>
+               <span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table style="border: 2px solid white;">
+<tr>
+<td style="vertical-align: top; border: 0px solid white">
+<h3 style="text-align: left;">Client</h3>
+<ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
+  <li><b>Scheduler: </b>tcp://127.0.0.1:40057</li>
+  <li><b>Dashboard: </b><a href='http://127.0.0.1:8787/status' target='_blank'>http://127.0.0.1:8787/status</a>
+</ul>
+</td>
+<td style="vertical-align: top; border: 0px solid white">
+<h3 style="text-align: left;">Cluster</h3>
+<ul style="text-align: left; list-style:none; margin: 0; padding: 0;">
+  <li><b>Workers: </b>8</li>
+  <li><b>Cores: </b>8</li>
+  <li><b>Memory: </b>6.25 GB</li>
+</ul>
+</td>
+</tr>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">futures_nodes</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">create_nodes_in_subintervals</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
+                           <span class="o">**</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="n">a</span><span class="p">,</span>
+                              <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">b</span><span class="p">,</span>
+                              <span class="s2">&quot;h_hat&quot;</span><span class="p">:</span><span class="n">h_hat</span><span class="p">,</span>
+                              <span class="s1">&#39;n&#39;</span><span class="p">:</span><span class="n">n</span><span class="p">,</span>
+                              <span class="s2">&quot;n_s_c&quot;</span><span class="p">:</span><span class="n">n_subintervals_per_core</span><span class="p">}</span>
+                            <span class="p">)</span>
+<span class="n">futures_evaluated</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">evaluate_f_in_nodes_and_sum</span><span class="p">,</span> <span class="n">futures_nodes</span><span class="p">,</span>
+                                                       <span class="o">**</span><span class="p">{</span><span class="s1">&#39;f&#39;</span><span class="p">:</span><span class="n">f</span><span class="p">}</span>
+                            <span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">futures_evaluated</span><span class="p">]</span>
+<span class="n">res_rcf_distributed</span> <span class="o">=</span> <span class="n">h_hat</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 110 ms, sys: 20 ms, total: 130 ms
+Wall time: 1.11 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">res_rcf_distributed</span> <span class="o">==</span> <span class="n">approx</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="grafica-de-tiempo-de-ejecucion-vs-numero-de-procesos">
+<h3>Gráfica de tiempo de ejecución vs número de procesos<a class="headerlink" href="#grafica-de-tiempo-de-ejecucion-vs-numero-de-procesos" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">err_np</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">n_cpus</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">relative_error</span><span class="p">(</span><span class="n">aprox</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">aprox</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Rcf_dask</span><span class="p">(</span><span class="n">my_id</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">n_s_c</span><span class="p">):</span>
+    <span class="n">begin</span><span class="o">=</span><span class="n">my_id</span><span class="o">*</span><span class="n">n_s_c</span>
+    <span class="n">end</span><span class="o">=</span><span class="n">begin</span><span class="o">+</span><span class="n">n_s_c</span>
+    <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">sum_res</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span>
+        <span class="n">sum_res</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sum_res</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfun</span><span class="p">(</span><span class="n">cl</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">n_s_c</span><span class="p">):</span>
+    <span class="n">futures_Rcf_dask</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">Rcf_dask</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
+                              <span class="o">**</span><span class="p">{</span><span class="s1">&#39;f&#39;</span><span class="p">:</span><span class="n">f</span><span class="p">,</span>
+                                 <span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="n">a</span><span class="p">,</span>
+                                 <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">b</span><span class="p">,</span>
+                                 <span class="s2">&quot;h_hat&quot;</span><span class="p">:</span><span class="n">h_hat</span><span class="p">,</span>
+                                 <span class="s1">&#39;n&#39;</span><span class="p">:</span><span class="n">n</span><span class="p">,</span>
+                                 <span class="s2">&quot;n_s_c&quot;</span><span class="p">:</span><span class="n">n_s_c</span><span class="p">}</span>
+                              <span class="p">)</span> 
+    <span class="n">results_gather</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">futures_Rcf_dask</span><span class="p">)</span>
+    <span class="n">res_rcf_dask</span> <span class="o">=</span> <span class="n">h_hat</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="n">results_gather</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">relative_error</span><span class="p">(</span><span class="n">res_rcf_dask</span><span class="p">,</span><span class="n">obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table style="border: 2px solid white;">
+<tr>
+<td style="vertical-align: top; border: 0px solid white">
+<h3 style="text-align: left;">Client</h3>
+<ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
+  <li><b>Scheduler: </b>tcp://127.0.0.1:40057</li>
+  <li><b>Dashboard: </b><a href='http://127.0.0.1:8787/status' target='_blank'>http://127.0.0.1:8787/status</a>
+</ul>
+</td>
+<td style="vertical-align: top; border: 0px solid white">
+<h3 style="text-align: left;">Cluster</h3>
+<ul style="text-align: left; list-style:none; margin: 0; padding: 0;">
+  <li><b>Workers: </b>0</li>
+  <li><b>Cores: </b>0</li>
+  <li><b>Memory: </b>0 B</li>
+</ul>
+</td>
+</tr>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="k">p</span>==0:
+        <span class="n">n_subintervals_per_core</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">n_workers</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+                        <span class="n">threads_per_worker</span><span class="o">=</span><span class="mi">1</span>
+                       <span class="p">)</span>
+        <span class="n">err_np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">myfun</span><span class="p">(</span><span class="n">client</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">n_subintervals_per_core</span><span class="p">))</span>
+        <span class="n">n_cpus</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">err_np</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6.71939731300312e-14,
+ 5.842307840730588e-14,
+ 4.816559135869493e-14,
+ 5.024682061493483e-14,
+ 3.2556371936895645e-14]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">n_cpus</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 4, 5, 8]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">n_cpus</span><span class="o">=</span><span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table style="border: 2px solid white;">
+<tr>
+<td style="vertical-align: top; border: 0px solid white">
+<h3 style="text-align: left;">Client</h3>
+<ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
+  <li><b>Scheduler: </b>tcp://127.0.0.1:39611</li>
+  <li><b>Dashboard: </b><a href='http://127.0.0.1:41953/status' target='_blank'>http://127.0.0.1:41953/status</a>
+</ul>
+</td>
+<td style="vertical-align: top; border: 0px solid white">
+<h3 style="text-align: left;">Cluster</h3>
+<ul style="text-align: left; list-style:none; margin: 0; padding: 0;">
+  <li><b>Workers: </b>0</li>
+  <li><b>Cores: </b>0</li>
+  <li><b>Memory: </b>0 B</li>
+</ul>
+</td>
+</tr>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="k">p</span>==0:
+        <span class="n">n_subintervals_per_core</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">n_workers</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+                <span class="n">threads_per_worker</span><span class="o">=</span><span class="mi">1</span>
+               <span class="p">)</span>
+        <span class="n">futures_Rcf_dask</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">Rcf_dask</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
+                                      <span class="o">**</span><span class="p">{</span><span class="s1">&#39;f&#39;</span><span class="p">:</span><span class="n">f</span><span class="p">,</span>
+                                         <span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="n">a</span><span class="p">,</span>
+                                         <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">b</span><span class="p">,</span>
+                                         <span class="s2">&quot;h_hat&quot;</span><span class="p">:</span><span class="n">h_hat</span><span class="p">,</span>
+                                         <span class="s1">&#39;n&#39;</span><span class="p">:</span><span class="n">n</span><span class="p">,</span>
+                                         <span class="s2">&quot;n_s_c&quot;</span><span class="p">:</span><span class="n">n_subintervals_per_core</span><span class="p">}</span>
+                                         <span class="p">)</span>
+        <span class="n">res_timeit</span><span class="o">=%</span><span class="k">timeit</span> -n 1 -r 1 -o client.gather(futures_Rcf_dask)
+        <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res_timeit</span><span class="o">.</span><span class="n">average</span><span class="p">)</span>
+        <span class="n">n_cpus</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>462 ms ± 0 ns per loop (mean ± std. dev. of 1 run, 1 loop each)
+255 ms ± 0 ns per loop (mean ± std. dev. of 1 run, 1 loop each)
+141 ms ± 0 ns per loop (mean ± std. dev. of 1 run, 1 loop each)
+147 ms ± 0 ns per loop (mean ± std. dev. of 1 run, 1 loop each)
+155 ms ± 0 ns per loop (mean ± std. dev. of 1 run, 1 loop each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.46233253995887935,
+ 0.25474231713451445,
+ 0.14068673201836646,
+ 0.14710374106653035,
+ 0.15464612585492432]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">n_cpus</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 4, 5, 8]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_cpus</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gráfica num cpus vs tiempo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;num cpus&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;tiempo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_268_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_268_0.png" />
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="parallel">
 <h2><a class="reference external" href="https://www.rdocumentation.org/packages/parallel/versions/3.6.2">Parallel</a><a class="headerlink" href="#parallel" title="Permalink to this headline">¶</a></h2>
