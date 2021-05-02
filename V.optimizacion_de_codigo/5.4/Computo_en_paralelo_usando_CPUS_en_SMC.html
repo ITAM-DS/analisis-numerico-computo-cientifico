@@ -564,11 +564,39 @@
      Ejemplo
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dask-distributed">
+     Dask distributed
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concurrent-futures">
+     ¿concurrent.futures?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Ejemplo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#client-de-dask-distributed">
+     <em>
+      Client
+     </em>
+     de
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       dask.distributed
+      </span>
+     </code>
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dask-distributed">
-   Dask distributed
+  <a class="reference internal nav-link" href="#regla-compuesta-del-rectangulo">
+   Regla compuesta del rectángulo
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -2035,8 +2063,7 @@ mundo
 </div>
 <div class="section" id="en-resumen-en-dask-seguimos-un-flujo-como-el-siguiente-dibujo">
 <h2>En resumen en dask seguimos un flujo como el siguiente dibujo:<a class="headerlink" href="#en-resumen-en-dask-seguimos-un-flujo-como-el-siguiente-dibujo" title="Permalink to this headline">¶</a></h2>
-<img src="https://docs.dask.org/en/latest/_images/dask-overview.svg" heigth="400" width="400"><p><strong>y.</strong></p>
-<div class="tip admonition">
+<img src="https://docs.dask.org/en/latest/_images/dask-overview.svg" heigth="400" width="400"><div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Para crear <em>task graphs</em> podemos partir de las <em>collections</em> o bien, definir nuestras propias <em>dask graphs</em>.</p>
 </div>
@@ -2279,7 +2306,7 @@ mundo
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_187_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_187_0.png" />
+<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_186_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_186_0.png" />
 </div>
 </div>
 <p>Ver la API de <em>dask array</em> en <a class="reference external" href="https://docs.dask.org/en/latest/array-api.html">array api</a> para más funcionalidad.</p>
@@ -2344,7 +2371,7 @@ mundo
 </div>
 </div>
 </div>
-<p>También se puede especificar para el scheduler <code class="docutils literal notranslate"><span class="pre">threaded</span></code> o <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> el número de workers en <code class="docutils literal notranslate"><span class="pre">compute</span></code>:</p>
+<p>También se puede especificar para el <em>scheduler</em> <code class="docutils literal notranslate"><span class="pre">threaded</span></code> o <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> el número de workers en <code class="docutils literal notranslate"><span class="pre">compute</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -2357,12 +2384,296 @@ mundo
 </div>
 </div>
 </div>
-<p>Ver <a class="reference external" href="https://docs.dask.org/en/latest/scheduling.html#configuration">configuration</a> para otras formas de especificar al <code class="docutils literal notranslate"><span class="pre">scheduler</span></code>.</p>
-<p>Ver también <a class="reference external" href="https://docs.dask.org/en/latest/delayed.html">Delayed</a> y <a class="reference external" href="https://examples.dask.org/delayed.html">Custom Workloads with Dask Delayed</a> para otra opción diferente a los <em>dask array</em>’s, <em>dask dataframe</em>’s y <em>dask bag</em>’s para cómputo <em>lazy</em>.</p>
-</div>
+<p>Ver <a class="reference external" href="https://docs.dask.org/en/latest/scheduling.html#configuration">configuration</a> para otras formas de especificar al <em>scheduler</em>. Ver también <a class="reference external" href="https://docs.dask.org/en/latest/delayed.html">Delayed</a> y <a class="reference external" href="https://examples.dask.org/delayed.html">Custom Workloads with Dask Delayed</a> para otra opción diferente a los <em>dask array</em>’s, <em>dask dataframe</em>’s y <em>dask bag</em>’s para cómputo <em>lazy</em>.</p>
 </div>
 <div class="section" id="dask-distributed">
-<h2>Dask distributed<a class="headerlink" href="#dask-distributed" title="Permalink to this headline">¶</a></h2>
+<h3><a class="reference external" href="https://github.com/dask/distributed">Dask distributed</a><a class="headerlink" href="#dask-distributed" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Es un paquete que extiende a <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a> (<code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> es similar a <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>) y a <em>Daks</em> para clústers de tamaño mediano (alrededor de cientos de máquinas).</p></li>
+<li><p>Aunque el nombre <em>distributed</em> puede tomarse como que la ejecución sólo puede llevarse a cabo en clústers de máquinas, también puede utilizarse en nuestra máquina local.</p></li>
+<li><p>Por razones como proveer acceso a una API asíncrona: <a class="reference external" href="https://docs.dask.org/en/latest/futures.html">Futures</a>, acceso a un <em>dashboard</em> diagnóstico y manejar mejor la <em>data locality</em> con múltiples procesos más eficientemente que con <code class="docutils literal notranslate"><span class="pre">dask.multiprocessing.get</span></code>, representa una <strong>alternativa fuerte</strong> a la generación de procesos locales vía <code class="docutils literal notranslate"><span class="pre">dask.multiprocessing</span></code>:  <em>The distributed scheduler described a couple sections below is often a better choice today than <code class="docutils literal notranslate"><span class="pre">dask.multiprocessing</span></code>…</em></p></li>
+</ul>
+<p>Tiene las siguientes características.</p>
+<ul class="simple">
+<li><p><em>Low latency: Each task suffers about 1ms of overhead. A small computation and network roundtrip can complete in less than 10ms.</em></p></li>
+<li><p><em>Peer-to-peer data sharing: Workers communicate with each other to share data. This removes central bottlenecks for data transfer.</em></p></li>
+<li><p><em>Complex Scheduling: Supports complex workflows (not just map/filter/reduce) which are necessary for sophisticated algorithms used in nd-arrays, machine learning, image processing, and statistics.</em></p></li>
+<li><p><em>Data Locality: Scheduling algorithms cleverly execute computations where data lives. This minimizes network traffic and improves efficiency.</em></p></li>
+<li><p><em>Familiar APIs: Compatible with the <a class="reference external" href="https://www.python.org/dev/peps/pep-3148/">concurrent.futures</a> API in the Python standard library. Compatible with dask API for parallel algorithms.</em></p></li>
+</ul>
+<p>Para ver más sobre el <em>distributed scheduler</em> ver <a class="reference external" href="https://distributed.dask.org/en/latest/#architecture">dask-architecture</a>.</p>
+</div>
+<div class="section" id="concurrent-futures">
+<h3>¿<a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a>?<a class="headerlink" href="#concurrent-futures" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Es un paquete para ejecución de <em>tasks</em> en paralelo.</p></li>
+<li><p>En <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> se trabaja con objetos de tipo valor <code class="docutils literal notranslate"><span class="pre">future</span></code> los cuales son resultados de cálculos que estarán disponibles en un futuro, de aquí el nombre de <em>future</em> y su cómputo *<em>no</em> es <em>lazy</em> sino inmediato.</p></li>
+<li><p>La obtención del <em>future</em> es asíncrona por lo que permite cómputo concurrente.</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3>Ejemplo<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Ejecución secuencial</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">results</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+    <span class="n">result</span><span class="o">=</span><span class="n">inc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 0 ns, total: 0 ns
+Wall time: 10 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Ejecución con</strong> <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">executor</span> <span class="o">=</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">executor</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;concurrent.futures.process.ProcessPoolExecutor at 0x7f29b4331710&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 0 ns, total: 0 ns
+Wall time: 759 µs
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que se obtiene el <code class="docutils literal notranslate"><span class="pre">future</span></code> inmediatamente. Ver <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.submit">submit</a></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Future at 0x7f29b42daa20 state=running&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>La ejecución del <code class="docutils literal notranslate"><span class="pre">future</span></code> se encuentra en algún subproceso del proceso local. Obsérvese que tiene un estado <em>running</em>. Y después de un tiempo el estado ya es <em>finished</em>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Future at 0x7f29b42daa20 state=finished returned int&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para obtener el resultado hacemos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Entonces podemos hacer <code class="docutils literal notranslate"><span class="pre">submit</span></code> de varios cálculos de forma asíncrona con el objeto <code class="docutils literal notranslate"><span class="pre">executor</span></code> que devolverá <em>futures</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">futures</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+    <span class="n">future</span><span class="o">=</span><span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">futures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+    
+<span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">futures</span><span class="p">]</span> <span class="c1">#esta línea bloquea la ejecución </span>
+                                                  <span class="c1">#del proceso local</span>
+                                                  <span class="c1">#hasta que todos los procesos </span>
+                                                  <span class="c1">#finalizan la ejecución.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 10 ms, sys: 0 ns, total: 10 ms
+Wall time: 2.02 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que se redujo el tiempo pues la ejecución fue en paralelo por los subprocesos que ejecutaron <code class="docutils literal notranslate"><span class="pre">inc</span></code>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">executor</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>También en <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> se tiene una función <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.map">map</a> para cómputo inmediato (no <em>lazy</em>) usando <em>futures</em> que soporta múltiples llamados a una función utilizando un <em>iterable</em>.</p></li>
+<li><p>Para una vista rápida a <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> ver: <a class="reference external" href="http://masnun.com/2016/03/29/python-a-quick-introduction-to-the-concurrent-futures-module.html">Python: A quick introduction to the concurrent.futures module</a>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="client-de-dask-distributed">
+<h3><em>Client</em> de <code class="docutils literal notranslate"><span class="pre">dask.distributed</span></code><a class="headerlink" href="#client-de-dask-distributed" title="Permalink to this headline">¶</a></h3>
+<p>El <a class="reference external" href="https://distributed.dask.org/en/latest/client.html">Client</a> es el <em>entry point</em> para users de <code class="docutils literal notranslate"><span class="pre">dask.distributed</span></code>. Creamos un <em>distributed scheduler</em> al importar <code class="docutils literal notranslate"><span class="pre">Client</span></code>. Esta acción <em>override</em> cualquier configuración que se haya hecho del <em>scheduler</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Al <code class="docutils literal notranslate"><span class="pre">Client</span></code> se le pueden pasar argumentos como número de <em>workers</em>, si se desean procesos o no, el límite de memoria a usar por cada proceso, entre otros.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table style="border: 2px solid white;">
+<tr>
+<td style="vertical-align: top; border: 0px solid white">
+<h3 style="text-align: left;">Client</h3>
+<ul style="text-align: left; list-style: none; margin: 0; padding: 0;">
+  <li><b>Scheduler: </b>tcp://127.0.0.1:39781</li>
+  <li><b>Dashboard: </b><a href='http://127.0.0.1:8787/status' target='_blank'>http://127.0.0.1:8787/status</a>
+</ul>
+</td>
+<td style="vertical-align: top; border: 0px solid white">
+<h3 style="text-align: left;">Cluster</h3>
+<ul style="text-align: left; list-style:none; margin: 0; padding: 0;">
+  <li><b>Workers: </b>4</li>
+  <li><b>Cores: </b>8</li>
+  <li><b>Memory: </b>6.25 GB</li>
+</ul>
+</td>
+</tr>
+</table></div></div>
+</div>
+<p>Al dar click en el <em>dashboard</em> de arriba se mostrará la página de <code class="docutils literal notranslate"><span class="pre">status</span></code> mediante <a class="reference external" href="https://docs.bokeh.org/en/latest/index.html">bokeh</a>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Si se ejecuta con una imagen de <em>Docker</em>, revisar a qué puerto está mapeado el <code class="docutils literal notranslate"><span class="pre">8787</span></code>.</p>
+</div>
+<img src="https://dl.dropboxusercontent.com/s/n5i7r4tp0saffmx/dask_1.png?dl=0" heigth="500" width="500"><p>y en el apartado de <code class="docutils literal notranslate"><span class="pre">workers</span></code>:</p>
+<img src="https://dl.dropboxusercontent.com/s/aqspobw9mmtw1tw/dask_2.png?dl=0" heigth="500" width="500"><p>Ver <a class="reference external" href="http://distributed.dask.org/en/1.12.2/web.html">Web Interface</a> y <a class="reference external" href="https://distributed.dask.org/en/latest/diagnosing-performance.html">Diagnosing Performance</a> para más sobre la información de diagnóstico que se junta en el dashboard.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>La línea anterior que contiene <code class="docutils literal notranslate"><span class="pre">Client</span></code>, configura un <em>scheduler</em> en el proceso local y varios procesos <em>workers</em> o <em>dask-workers</em> que corren un <em>thread</em> de ejecución (pueden correr más por <em>default</em>). Si se desea que los procesos <em>worker</em> estén contenidos en el proceso local puede usarse <code class="docutils literal notranslate"><span class="pre">Client(processes=False)</span></code>. Esta situación es preferible si se desea evitar comunicación <em>inter worker</em> y si nuestros cálculos están soltando el <em>GIL</em> (por ejemplo al usar <em>NumPy</em> o <code class="docutils literal notranslate"><span class="pre">dask.array</span></code>).</p></li>
+<li><p>Algunas opciones que pueden utilizarse con la línea de <code class="docutils literal notranslate"><span class="pre">Client</span></code> son:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Client(n_workers=4)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Client(threads_per_worker=2)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Client(memory_limit='10GB')</span></code>.</p></li>
+</ul>
+<p>Ver <a class="reference external" href="https://docs.dask.org/en/latest/setup/single-distributed.html#distributed.deploy.local.LocalCluster">LocalCluster</a> para opciones a usar en <code class="docutils literal notranslate"><span class="pre">Client</span></code> y <a class="reference external" href="https://distributed.dask.org/en/latest/api.html">API</a> para la API con <code class="docutils literal notranslate"><span class="pre">Client</span></code>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="regla-compuesta-del-rectangulo">
+<h2>Regla compuesta del rectángulo<a class="headerlink" href="#regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="parallel">
 <h2><a class="reference external" href="https://www.rdocumentation.org/packages/parallel/versions/3.6.2">Parallel</a><a class="headerlink" href="#parallel" title="Permalink to this headline">¶</a></h2>
@@ -2372,7 +2683,7 @@ mundo
 <ul class="simple">
 <li><p><a class="reference external" href="https://stories.dask.org/en/latest/">Use cases with dask</a></p></li>
 <li><p><a class="reference external" href="https://github.com/dask/dask-tutorial">dask-tutorial</a></p></li>
-<li><p><a class="reference external" href="http://matthewrocklin.com/blog/">matthew-rocklin-blog</a></p></li>
+<li><p><a class="reference external" href="http://matthewrocklin.com/blog/">matthew-rocklin-blog</a>, ver <a class="reference external" href="http://matthewrocklin.com/blog/work/2015/02/13/Towards-OOC-Slicing-and-Stacking">Towards-OutOfCore-ND-Arrays-Slicing-and-Stacking</a></p></li>
 </ul>
 <p>En <em>dask</em> se hace referencia al uso de funciones <em>pure</em>. Ver: <a class="reference external" href="https://distributed.dask.org/en/latest/client.html#pure-functions-by-default">Pure Functions by Default</a> y <a class="reference external" href="https://toolz.readthedocs.io/en/latest/purity.html">Function Purity</a> para ejemplos de funciones <em>pure</em>.</p>
 <p>En <a class="reference external" href="https://www.youtube.com/watch?v=EX_voquHdk0">Dask JupyterLab Extension</a> se muestra cómo instalar la extensión en jupyterlab para dask.</p>
