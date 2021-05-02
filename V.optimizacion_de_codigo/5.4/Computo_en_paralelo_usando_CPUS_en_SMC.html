@@ -552,13 +552,14 @@
      ?
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#en-resumen-en-dask-seguimos-un-flujo-como-el-siguiente-dibujo">
-   En resumen en dask seguimos un flujo como el siguiente dibujo:
-  </a>
-  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flujo-de-trabajo-con-dask-collections">
+     Flujo de trabajo con
+     <em>
+      Dask collections
+     </em>
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id6">
      Ejemplo
@@ -862,14 +863,14 @@ uname -ar #r for kernel, a for all
 <p>La <strong>comunicación</strong> en este tipo de sistemas depende si se utilizan procesos o <em>threads</em> ya que aunque los procesos generados por un proceso principal tienen acceso a la memoria, los cambios/actualizaciones que haga uno de ellos a una variable no lo llegan a ver los otros procesos. Esto es distinto con los <em>threads</em> dado que un cambio que realice un <em>thread</em> en una variable sí lo pueden ver los otros <em>threads</em>. Lo anterior se debe a las distintas direcciones de memoria que utilizan los procesos vs la misma dirección de memoria que utilizan los <em>threads</em>.</p>
 <p>Recuérdese que se crean <em>threads</em> a partir de un proceso principal, realizan <em>fork</em>, y una vez que terminan su ejecución se unen nuevamente, realizan <em>join</em>, esto es el <em>threading</em>.</p>
 <img src="https://dl.dropboxusercontent.com/s/0vnjfdk7fo62m8h/threading.png?dl=0" heigth="400" width="400"><p>Ver <a class="reference internal" href="../5.1/introduccion_optimizacion_de_codigo.html#threadinghyper"><span class="std std-ref">Threading o Hyperthreading</span></a>.</p>
-<div class="admonition-definicion admonition">
-<p class="admonition-title">Definición</p>
-<p>Las variables que pueden ser accesadas por todos los <em>threads</em> en un SMC se les nombra <strong>variables compartidas</strong>.</p>
-</div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Hay paqueterías que crean subprocesos a partir de un proceso principal en lugar de <em>threads</em>. En este caso en lugar de un <em>fork</em> se realiza un <em>spawn</em>. Los subprocesos pueden ver cambios a variables hechos por otros.</p>
 <p>Ver <a class="reference external" href="https://docs.python.org/3.9/library/multiprocessing.html#contexts-and-start-methods">Contexts and start methods</a> y <a class="reference external" href="https://stackoverflow.com/questions/46045956/whats-the-difference-between-threadpool-vs-pool-in-python-multiprocessing-modul">difference between threadpool vs pool in python multiprocessing</a> para diferencias entre <em>fork</em> y <em>spawn</em>.</p>
+</div>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>Las variables que pueden ser accesadas por todos los <em>threads</em> en un SMC se les nombra <strong>variables compartidas</strong>.</p>
 </div>
 <p>Trabajar sobre SMC tiene ventajas y desventajas. Una ventaja es facilidad de comunicación y una desventaja es la <strong>coordinación</strong> para ejecutar instrucciones. Por ejemplo, con variables compartidas se puede realizar la comunicación entre los <em>threads</em>, sin embargo, para el uso de tales variables por diferentes <em>threads</em> debemos crear candados, <em>locks</em>. Lo anterior surge pues si un <em>thread</em> con etiqueta <span class="math notranslate nohighlight">\(1\)</span> accede a una variable compartida, otro <em>thread</em> con etiqueta <span class="math notranslate nohighlight">\(2\)</span>, no podrá utilizarla hasta que el thread <span class="math notranslate nohighlight">\(1\)</span> finalice de usarla. Ver <a class="reference external" href="https://en.wikipedia.org/wiki/Thread_safety">Thread Safety</a> y <a class="reference external" href="https://en.wikipedia.org/wiki/Race_condition#Computing">Race Condition</a>.</p>
 <div class="admonition-definicion admonition">
@@ -1045,7 +1046,7 @@ Hola del thread: 52 de 64
 <li><p>Con la función <code class="docutils literal notranslate"><span class="pre">omp_get_num_threads</span></code> se obtiene el número de <em>threads</em> que realizaron un <em>fork</em> del <em>thread</em> principal.</p></li>
 <li><p>Obsérvese que para la compilación se utilizó la <em>flag</em> <code class="docutils literal notranslate"><span class="pre">-fopenmp</span></code> para soporte de <em>OpenMP</em>.</p></li>
 <li><p>Dependiendo del número de cores de nuestro sistema tendremos diferentes número de <code class="docutils literal notranslate"><span class="pre">printf</span></code>’s.</p></li>
-<li><p>Lo que continúa a la línea de <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">parallel</span></code> es un <em>structured block</em>, esto es, un <em>statement</em> o conjunto de <em>statements</em> que tienen un punto de entrada y un punto de salida. En el caso anterior sólo se llama a la función <code class="docutils literal notranslate"><span class="pre">Hello</span></code>, no se permiten statements como el siguiente:</p></li>
+<li><p>Lo que continúa a la línea de <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">parallel</span></code> es un <em>structured block</em>, esto es, un <em>statement</em> o conjunto de <em>statements</em> que tienen un punto de entrada y un punto de salida. En el caso anterior sólo se llama a la función <code class="docutils literal notranslate"><span class="pre">Hello</span></code>, no se permiten <em>statements</em> como el siguiente:</p></li>
 </ul>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma omp parallel</span>
 
@@ -1248,7 +1249,7 @@ sum_shared al final de la directive parallel 40
 <p>4.<em>Communication</em> y <em>mapping</em>: el área de los rectángulos calculados por cada procesador deben sumarse para calcular la aproximación a la integral.</p>
 <img src="https://dl.dropboxusercontent.com/s/mfo5rfzjnonn8lq/parallel_processing_Rcf_3.png?dl=0" heigth="400" width="500">
 <p>Para la medición de tiempos se utilizaron las ligas: <a class="reference external" href="https://stackoverflow.com/questions/16764276/measuring-time-in-millisecond-precision">measuring-time-in-millisecond-precision</a> y <a class="reference external" href="https://www.techiedelight.com/find-execution-time-c-program/">find-execution-time-c-program</a>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Rcf_openmp.c</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Rcf_parallel.c</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf_openmp.c
@@ -1259,7 +1260,7 @@ sum_shared al final de la directive parallel 40
 <span class="c1">#include&lt;time.h&gt;</span>
 <span class="c1">#include &lt;sys/time.h&gt;</span>
 
-<span class="n">double</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">ns_p</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">ns_p</span><span class="p">);</span>
 
 <span class="n">double</span> <span class="n">f</span><span class="p">(</span><span class="n">double</span> <span class="n">node</span><span class="p">);</span>
 
@@ -1269,7 +1270,7 @@ sum_shared al final de la directive parallel 40
     <span class="nb">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mf">1e7</span><span class="p">;</span> <span class="o">//</span><span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
     <span class="n">double</span> <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">n_subintervals_per_core</span><span class="p">;</span> <span class="o">//</span><span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span> <span class="n">assigned</span> <span class="n">to</span> <span class="n">each</span> <span class="n">core</span>
-    <span class="nb">int</span> <span class="n">n_threads</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="o">//</span><span class="n">n_threads</span> <span class="n">must</span> <span class="n">divide</span> <span class="n">exactly</span> <span class="n">n</span> <span class="n">variable</span>
+    <span class="nb">int</span> <span class="n">n_threads</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="o">//</span><span class="n">each</span> <span class="n">entry</span> <span class="n">of</span> <span class="n">n_threads</span> <span class="n">must</span> <span class="n">divide</span> <span class="n">n</span> <span class="n">variable</span> <span class="n">exactly</span>
     <span class="nb">int</span> <span class="n">len_n_threads_array</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">obj</span> <span class="o">=</span> <span class="mf">0.7468241328124271</span><span class="p">;</span>
     <span class="n">struct</span> <span class="n">timeval</span> <span class="n">start</span><span class="p">;</span>
@@ -1289,7 +1290,7 @@ sum_shared al final de la directive parallel 40
         <span class="n">n_subintervals_per_core</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="n">n_threads</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
         <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
         <span class="c1">#pragma omp parallel num_threads(n_threads[i]) reduction(+: sum_shared)</span>
-            <span class="n">sum_shared</span> <span class="o">+=</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n_subintervals_per_core</span><span class="p">);</span>
+            <span class="n">sum_shared</span> <span class="o">+=</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n_subintervals_per_core</span><span class="p">);</span>
         <span class="n">sum_shared</span> <span class="o">=</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_shared</span><span class="p">;</span>
         <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
         <span class="n">seconds</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_sec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_sec</span><span class="p">);</span>
@@ -1303,7 +1304,7 @@ sum_shared al final de la directive parallel 40
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">double</span> <span class="n">Rcf_parallel</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n_s_c</span><span class="p">){</span>
+<span class="n">double</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n_s_c</span><span class="p">){</span>
     <span class="nb">int</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">my_rank</span> <span class="o">=</span> <span class="n">omp_get_thread_num</span><span class="p">();</span>
     <span class="n">double</span> <span class="n">local_int</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
@@ -1383,9 +1384,9 @@ Tiempo de ejecución con 64 threads: 24 miliseconds
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>Dividimos el número de subintervalos  <strong>n</strong> entre el número de <em>threads</em> que deseamos lanzar, por esto, <strong>n</strong> debe ser <strong>divisible</strong> entre las entradas del <em>array</em> <code class="docutils literal notranslate"><span class="pre">n_threads</span></code>. Esta cantidad es el número de subintervalos contiguos que le corresponden a cada <em>thread</em>.</p></li>
+<li><p>Dividimos el número de subintervalos  <strong>n</strong> entre el número de <em>threads</em> que deseamos lanzar, por esto, <code class="docutils literal notranslate"><span class="pre">n</span></code> debe ser <strong>divisible</strong> entre las entradas del <em>array</em> <code class="docutils literal notranslate"><span class="pre">n_threads</span></code>. Esta cantidad es el número de subintervalos contiguos que le corresponden a cada <em>thread</em>.</p></li>
 <li><p>Además, se debe de agregar el resultado de la suma de cada <em>thread</em>. Esto es posible realizar de forma sencilla definiendo una variable que sea compartida. Al definir tal variable en la función <em>main</em> y antes de un <em>parallel block</em> el <em>default</em> es que sea considerada como compartida.</p></li>
-<li><p>Las variables que son privadas se definen en la función <code class="docutils literal notranslate"><span class="pre">Rcf_parallel</span></code>.</p></li>
+<li><p>Las variables que son privadas se definen en la función <code class="docutils literal notranslate"><span class="pre">Rcf</span></code>.</p></li>
 </ul>
 </div>
 </div>
@@ -1585,8 +1586,8 @@ mundo
 </div>
 </div>
 </div>
-<div class="admonition-comentario admonition">
-<p class="admonition-title">Comentario</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>De acuerdo a <a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html#programming-guidelines">Programming guidelines</a> se debe usar un bloque del tipo <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__=='__main__':</span></code> para las personas que tienen Windows puedan ejecutar sin problema el código:</p></li>
 </ul>
@@ -1600,13 +1601,14 @@ mundo
 </pre></div>
 </div>
 <p>El bloque del <code class="docutils literal notranslate"><span class="pre">if</span></code> ayuda a que los subprocesos importen el módulo <code class="docutils literal notranslate"><span class="pre">__main__</span></code> (por lo que no se ejecuta la sección que está dentro de <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__=='__main__':</span></code> pues no son programas principales) y continúa la ejecución de las líneas de <code class="docutils literal notranslate"><span class="pre">start</span></code> (cada subproceso ejecuta <code class="docutils literal notranslate"><span class="pre">f</span></code>) y <code class="docutils literal notranslate"><span class="pre">join</span></code>. Sin tal bloque <code class="docutils literal notranslate"><span class="pre">if</span></code>, el <em>notebook</em> quedará bloqueado pues una celda con el código anterior creará subprocesos que a su vez crearán otros subprocesos, que a su vez crearán otros subprocesos… y así de forma recursiva.</p>
+<ul class="simple">
+<li><ul>
+<li><p>Los argumentos en <code class="docutils literal notranslate"><span class="pre">args</span></code> de <code class="docutils literal notranslate"><span class="pre">Process</span></code> tienen que ser objetos <em>pickable</em> o serializados. Ver <a class="reference external" href="https://docs.python.org/3/library/pickle.html#what-can-be-pickled-and-unpickled">what can be pickled and unpickled</a> para una lista de objetos <em>pickable</em>.</p></li>
+</ul>
+</li>
+</ul>
 </div>
-<ul class="simple">
-<li><p>Los argumentos tienen que ser objetos <em>pickable</em> o serializados. Ver <a class="reference external" href="https://docs.python.org/3/library/pickle.html#what-can-be-pickled-and-unpickled">what can be pickled and unpickled</a> para una lista de objetos <em>pickable</em>.</p></li>
-</ul>
-<ul class="simple">
-<li><p>En <em>multiprocessing</em> tenemos la función <code class="docutils literal notranslate"><span class="pre">cpu_count</span></code> para determinar el número de cores que el sistema operativo puede usar. Este número es la cantidad física o simulada (hyperthreading) de cores.</p></li>
-</ul>
+<p>En <em>Multiprocessing</em> tenemos la función <code class="docutils literal notranslate"><span class="pre">cpu_count</span></code> para determinar el número de <em>cores</em> que el sistema operativo puede usar. Este número es la cantidad física o simulada (<em>hyperthreading</em>) de <em>cores</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">multiprocessing</span>
@@ -1630,7 +1632,7 @@ mundo
 <div class="section" id="pool-of-workers">
 <h3><em>Pool of workers</em><a class="headerlink" href="#pool-of-workers" title="Permalink to this headline">¶</a></h3>
 <p>Ver <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#using-a-pool-of-workers">Using a pool of workers</a>.</p>
-<p>La clase <code class="docutils literal notranslate"><span class="pre">Pool</span></code> crea un conjunto (<em>pool</em>) de procesos tipo <em>worker</em> que procesarán las tareas a realizar vía funciones tipo <code class="docutils literal notranslate"><span class="pre">map</span></code> o <code class="docutils literal notranslate"><span class="pre">apply</span></code>. Se hace <code class="docutils literal notranslate"><span class="pre">map</span></code> del <em>input</em> hacia los procesadores y se colecta el <em>output</em> de éstos. Mientras el <code class="docutils literal notranslate"><span class="pre">map</span></code> se realiza, el proceso que lanzó el map se bloquea hasta que finalicen las tareas (aunque hay <a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html#multiprocessing.pool.multiprocessing.Pool.map_async">map_async</a>). El <em>output</em> es una lista.</p>
+<p>La clase <code class="docutils literal notranslate"><span class="pre">Pool</span></code> crea un conjunto (<em>pool</em>) de procesos tipo <em>worker</em> que procesarán las tareas a realizar vía funciones tipo <code class="docutils literal notranslate"><span class="pre">map</span></code> o <code class="docutils literal notranslate"><span class="pre">apply</span></code>. Se hace <code class="docutils literal notranslate"><span class="pre">map</span></code> del <em>input</em> hacia los procesadores y se colecta el <em>output</em> de éstos. Mientras el <code class="docutils literal notranslate"><span class="pre">map</span></code> se realiza, el proceso que lanzó el <code class="docutils literal notranslate"><span class="pre">map</span></code> se bloquea hasta que finalicen las tareas (aunque hay <a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html#multiprocessing.pool.multiprocessing.Pool.map_async">map_async</a>). El <em>output</em> es una lista.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>El procesamiento de las tareas podríamos hacerlo con la clase <code class="docutils literal notranslate"><span class="pre">Process</span></code> de arriba pero tendríamos que utilizar un ciclo y colectar los resultados.</p>
@@ -1934,9 +1936,10 @@ mundo
 <h2><a class="reference external" href="https://github.com/dask/dask/">Dask</a><a class="headerlink" href="#dask" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Permite procesamiento en SMC o SMD.</p></li>
-<li><p>Extiende interfaces de <em>arrays, dataframes</em> y listas usadas en <em>NumPy</em>, <em>Pandas</em> e <em>iterators</em> para su procesamiento en y manejo de <em>datasets</em> que no caben en la memoria RAM: <em>larger than memory datasets</em>. En el contexto de dask a los tipos de datos anteriores les denomina <em>big data collections</em>. Entonces las <em>big data collections</em> soportadas por <em>Dask</em> son alternativas a los <em>arrays</em> y <em>dataframes</em> de <em>NumPy</em> y <em>Pandas</em> para <em>datasets</em> grandes y ejecución con cómputo paralelo o distribuido de <strong>algunas funciones</strong> de éstos paquetes.</p></li>
-</ul>
-<ul class="simple">
+<li><p>Extiende interfaces de <em>arrays, dataframes</em> y listas usadas en <em>NumPy</em>, <em>Pandas</em> e <em>iterators</em> para su procesamiento. En el contexto de <em>Dask</em> a los tipos de valores anteriores les denomina <em>big data collections</em>.</p></li>
+<li><p>Manejo de <em>datasets</em> que no caben en la memoria RAM: <em>larger than memory datasets</em> o <a class="reference external" href="https://en.wikipedia.org/wiki/External_memory_algorithm">out of core</a> <em>datasets</em>.</p></li>
+<li><p>Las <em>big data collections</em> soportadas por <em>Dask</em> son alternativas a los <em>arrays</em> y <em>dataframes</em> de <em>NumPy</em> y <em>Pandas</em> respectivamente para <em>datasets</em> grandes.</p></li>
+<li><p>Provee ejecución con cómputo paralelo o distribuido de <strong>algunas funciones</strong> de <em>NumPy</em> y <em>Pandas</em>.</p></li>
 <li><p>Soporta un <em>task scheduling</em> dinámico y optimizado para cómputo.</p></li>
 </ul>
 <div class="admonition-comentarios admonition">
@@ -1944,17 +1947,17 @@ mundo
 <ul class="simple">
 <li><p><em>Task scheduling</em> es un enfoque de paralelización en el que dividimos el programa en muchos <em>tasks medium-sized</em>. En <em>Dask</em> se representan tales <em>tasks</em> como nodos de un grafo con líneas entre éstos si un <em>task</em> depende de lo producido por otro.</p></li>
 <li><p>Dinámico pues las <a class="reference external" href="https://docs.dask.org/en/latest/graphs.html">task graphs</a> pueden ser definidas a partir de las <em>big data collections</em> o por <em>users</em>.</p></li>
-<li><p><em>Dask</em> posee módulos para optimizar la ejecución de las <em>task graphs</em>. Ver <a class="reference external" href="https://docs.dask.org/en/latest/optimize.html">optimization</a>.</p></li>
+<li><p><em>Dask</em> posee módulos para optimizar la ejecución de las <em>task graphs</em> (más abajo se describe cómo construir una <em>task graph</em>). Ver <a class="reference external" href="https://docs.dask.org/en/latest/optimize.html">optimization</a>.</p></li>
 </ul>
 </div>
 <ul class="simple">
-<li><p>En <em>Dask</em> existen <a class="reference external" href="https://docs.dask.org/en/latest/scheduling.html">task schedulers</a> para ejecutar en paralelo, distribuido o secuencial la <em>task graph</em>.</p></li>
+<li><p>En <em>Dask</em> existen <a class="reference external" href="https://docs.dask.org/en/latest/scheduling.html">task schedulers</a> para ejecución en paralelo, distribuida o secuencial la <em>task graph</em>.</p></li>
 </ul>
 <ul class="simple">
 <li><p>Soporta el enfoque de paralelización de datos con las <em>collections</em>:</p>
 <ul>
 <li><p><a class="reference external" href="https://docs.dask.org/en/latest/array.html">dask arrays</a>,</p></li>
-<li><p><a class="reference external" href="https://docs.dask.org/en/latest/dataframe.html">dask dataframes</a></p></li>
+<li><p><a class="reference external" href="https://docs.dask.org/en/latest/dataframe.html">dask dataframes</a>,</p></li>
 <li><p><a class="reference external" href="https://docs.dask.org/en/latest/bag.html">dask bags</a>.</p></li>
 </ul>
 </li>
@@ -2049,7 +2052,7 @@ mundo
 <li><p>La función <code class="docutils literal notranslate"><span class="pre">dask.get</span></code> ejecuta con un <code class="docutils literal notranslate"><span class="pre">synchronous</span> <span class="pre">scheduler</span></code> el cual sólo utiliza un thread de ejecución sin paralelización. Útil para <em>debugging</em> y perfilamiento.</p></li>
 <li><p>La función <code class="docutils literal notranslate"><span class="pre">dask.threaded.get</span></code> ejecuta con un <em>scheduler</em> <code class="docutils literal notranslate"><span class="pre">multiprocessing.pool.ThreadPool</span></code>. Como el nombre lo indica, se hacen <em>forks</em> y <em>joins</em> de un proceso. El <em>overhead</em> para ejecución es pequeño y no hay costo en transferencia de datos entre los <em>taks</em>. Sin embargo debido al GIL de <em>Python</em>, este <em>scheduler</em> provee paralelización si tu código es esencialmente “no <em>Python</em>”, por ejemplo si utilizas código de <em>NumPy, Pandas</em> o <em>Cython</em>.</p></li>
 <li><p>La función <code class="docutils literal notranslate"><span class="pre">dask.multiprocessing.get</span></code> ejecuta con un <em>scheduler</em> <code class="docutils literal notranslate"><span class="pre">multiprocessing.Pool</span></code>. Para cada <em>task</em> se crea un proceso, no tiene problemas del GIL de Python para código <em>Python</em>. Sin embargo, mover datos hacia procesos y de vuelta al proceso principal tiene costos altos. Útil para <em>tasks</em> que no requieren mucha transferencia de datos y los <em>inputs</em> y <em>outputs</em> son pequeños en tamaño.</p></li>
-<li><p>En la documentación de <em>Dask</em> se recomienda utilizar al <em>scheduler distributed</em> en lugar de usar <code class="docutils literal notranslate"><span class="pre">dask.multiprocesing.get</span></code>. La documentación se encuentra en <a class="reference external" href="https://distributed.dask.org/en/latest/">Dask.distributed</a>. Para una pequeña explicación ver <a class="reference external" href="https://docs.dask.org/en/latest/scheduling.html#dask-distributed-local">Dask Distributed</a>.</p></li>
+<li><p>En la documentación de <em>Dask</em> se recomienda utilizar al <em>scheduler distributed</em> en lugar de usar <code class="docutils literal notranslate"><span class="pre">dask.multiprocesing.get</span></code>. La documentación se encuentra en <a class="reference external" href="https://distributed.dask.org/en/latest/">Dask.distributed</a>. Para una pequeña explicación ver <a class="reference external" href="https://docs.dask.org/en/latest/scheduling.html#dask-distributed-local">Dask Distributed local</a>.</p></li>
 </ul>
 </div>
 </div>
@@ -2071,14 +2074,14 @@ sudo apt-get install -y graphviz
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_162_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_162_0.png" />
+<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_160_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_160_0.png" />
 </div>
 </div>
 <p>Las cajas representan datos, los círculos representan funciones que se ejecutan sobre tales datos y las flechas especifican cuáles funciones producen/consumen qué datos.</p>
 </div>
-</div>
-<div class="section" id="en-resumen-en-dask-seguimos-un-flujo-como-el-siguiente-dibujo">
-<h2>En resumen en dask seguimos un flujo como el siguiente dibujo:<a class="headerlink" href="#en-resumen-en-dask-seguimos-un-flujo-como-el-siguiente-dibujo" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="flujo-de-trabajo-con-dask-collections">
+<h3>Flujo de trabajo con <em>Dask collections</em><a class="headerlink" href="#flujo-de-trabajo-con-dask-collections" title="Permalink to this headline">¶</a></h3>
+<p>En resumen en <em>Dask</em> seguimos un flujo como el siguiente dibujo.</p>
 <img src="https://docs.dask.org/en/latest/_images/dask-overview.svg" heigth="400" width="400"><div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Para crear <em>task graphs</em> podemos partir de las <em>collections</em> o bien, definir nuestras propias <em>dask graphs</em>.</p>
@@ -2087,9 +2090,10 @@ sudo apt-get install -y graphviz
 <p class="admonition-title">Comentario</p>
 <p>Si trabajamos con las <em>collections</em> será extraño que trabajemos a nivel de funciones <code class="docutils literal notranslate"><span class="pre">get</span></code>. Cada <em>collection</em> tiene un default scheduler y una función <a class="reference external" href="https://docs.dask.org/en/latest/scheduler-overview.html#using-compute-methods">compute</a> que calcula el <em>output</em> de la <em>collection</em>.</p>
 </div>
+</div>
 <div class="section" id="id6">
 <h3>Ejemplo<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://docs.dask.org/en/latest/array.html">dask arrays</a> y <a class="reference external" href="https://docs.dask.org/en/latest/dataframe.html">dask dataframes</a> utilizan al <em>threaded scheduler</em> por default pero con <code class="docutils literal notranslate"><span class="pre">compute</span></code> puede cambiarse de <em>scheduler</em>.</p>
+<p><a class="reference external" href="https://docs.dask.org/en/latest/array.html">dask arrays</a> y <a class="reference external" href="https://docs.dask.org/en/latest/dataframe.html">dask dataframes</a> utilizan al <em>threaded scheduler</em> por <em>default</em> pero con <code class="docutils literal notranslate"><span class="pre">compute</span></code> puede cambiarse de <em>scheduler</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dask.array</span> <span class="k">as</span> <span class="nn">da</span>
@@ -2172,7 +2176,11 @@ sudo apt-get install -y graphviz
 </div>
 </div>
 </div>
-<p>Llamamos a la función <a class="reference external" href="https://docs.dask.org/en/latest/api.html#dask.compute">dask.compute</a>. Por default para el <em>dask array</em> utiliza el <em>threaded scheduler</em> para la ejecución de la <em>dask graph</em> asociada:</p>
+<p>Llamamos a la función <a class="reference external" href="https://docs.dask.org/en/latest/api.html#dask.compute">dask.compute</a>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Por <em>default</em> el <em>dask array</em> utiliza el <em>threaded scheduler</em> para la ejecución de la <em>dask graph</em> asociada.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">())</span>
@@ -2185,7 +2193,7 @@ sudo apt-get install -y graphviz
 </div>
 </div>
 </div>
-<p>Podemos cambiar de <em>scheduler</em> con <em>compute</em>:</p>
+<p>Podemos cambiar de <em>scheduler</em> especificando en <code class="docutils literal notranslate"><span class="pre">compute</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">scheduler</span><span class="o">=</span><span class="s2">&quot;processes&quot;</span><span class="p">))</span>
@@ -2198,10 +2206,7 @@ sudo apt-get install -y graphviz
 </div>
 </div>
 </div>
-<div class="tip admonition">
-<p class="admonition-title">Observación</p>
 <p>Por <em>default</em> <code class="docutils literal notranslate"><span class="pre">dask</span> <span class="pre">array</span></code> trabaja con <em>chunks</em>.</p>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">chunks</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -2262,10 +2267,7 @@ sudo apt-get install -y graphviz
 </tr>
 </table></div></div>
 </div>
-<div class="tip admonition">
-<p class="admonition-title">Observación</p>
 <p>Por <em>default</em>, <code class="docutils literal notranslate"><span class="pre">dask</span> <span class="pre">array</span></code> trabaja de una forma <em>lazy</em>, esto es, <code class="docutils literal notranslate"><span class="pre">dask</span> <span class="pre">array</span></code> no calculará ningún resultado hasta que explícitamente se le dé la instrucción.</p>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -2399,7 +2401,7 @@ sudo apt-get install -y graphviz
 </div>
 </div>
 </div>
-<p>También se puede especificar para el <em>scheduler</em> <code class="docutils literal notranslate"><span class="pre">threaded</span></code> o <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> el número de workers en <code class="docutils literal notranslate"><span class="pre">compute</span></code>:</p>
+<p>También se puede especificar para un <em>scheduler</em> <code class="docutils literal notranslate"><span class="pre">threaded</span></code> o <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code>, el número de <em>workers</em> en <code class="docutils literal notranslate"><span class="pre">compute</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
@@ -2417,7 +2419,7 @@ sudo apt-get install -y graphviz
 <div class="section" id="dask-distributed">
 <h3><a class="reference external" href="https://github.com/dask/distributed">Dask distributed</a><a class="headerlink" href="#dask-distributed" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Es un paquete que extiende a <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a> (<code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> es similar a <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>) y a <em>Daks</em> para clústers de tamaño mediano (alrededor de cientos de máquinas).</p></li>
+<li><p>Es un paquete que extiende a <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a> (<code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> es similar a <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>) y a <em>Dask</em> para clústers de tamaño mediano (alrededor de cientos de máquinas).</p></li>
 <li><p>Aunque el nombre <em>distributed</em> puede tomarse como que la ejecución sólo puede llevarse a cabo en clústers de máquinas, también puede utilizarse en nuestra máquina local.</p></li>
 <li><p>Por razones como proveer acceso a una API asíncrona: <a class="reference external" href="https://docs.dask.org/en/latest/futures.html">Futures</a>, acceso a un <em>dashboard</em> diagnóstico y manejar mejor la <em>data locality</em> con múltiples procesos más eficientemente que con <code class="docutils literal notranslate"><span class="pre">dask.multiprocessing.get</span></code>, representa una <strong>alternativa fuerte</strong> a la generación de procesos locales vía <code class="docutils literal notranslate"><span class="pre">dask.multiprocessing</span></code>:  <em>The distributed scheduler described a couple sections below is often a better choice today than <code class="docutils literal notranslate"><span class="pre">dask.multiprocessing</span></code>…</em></p></li>
 </ul>
@@ -2435,7 +2437,7 @@ sudo apt-get install -y graphviz
 <h3>¿<a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a>?<a class="headerlink" href="#concurrent-futures" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Es un paquete para ejecución de <em>tasks</em> en paralelo.</p></li>
-<li><p>En <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> se trabaja con objetos de tipo valor <code class="docutils literal notranslate"><span class="pre">future</span></code> los cuales son resultados de cálculos que estarán disponibles en un futuro, de aquí el nombre de <em>future</em> y su cómputo *<em>no</em> es <em>lazy</em> sino inmediato.</p></li>
+<li><p>En <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> se trabaja con objetos de tipo valor <code class="docutils literal notranslate"><span class="pre">future</span></code> los cuales son resultados de cálculos que estarán disponibles en un futuro, de aquí el nombre de <em>future</em> y su cómputo <strong>no</strong> es <em>lazy</em> sino inmediato.</p></li>
 <li><p>La obtención del <em>future</em> es asíncrona por lo que permite cómputo concurrente.</p></li>
 </ul>
 </div>
@@ -2549,7 +2551,7 @@ Wall time: 234 ms
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>La ejecución del <code class="docutils literal notranslate"><span class="pre">future</span></code> se encuentra en algún subproceso del proceso local. Obsérvese que tiene un estado <em>running</em>. Y después de un tiempo el estado ya es <em>finished</em>.</p>
+<p>La ejecución del <code class="docutils literal notranslate"><span class="pre">future</span></code> se encuentra en algún subproceso del proceso principal. Obsérvese que tiene un estado <em>running</em>. Y después de un tiempo el estado ya es <em>finished</em>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
