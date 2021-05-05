@@ -1,6 +1,6 @@
 # Objetivo
 
-Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de métodos numéricos para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
+Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de métodos numéricos para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas. La aplicación se muestra con el uso de un paquete hecho por el equipo en un ***dataset***.
 
 # Descripción
 
@@ -22,7 +22,7 @@ Para el proyecto final se utilizará:
 
 * Python/R o algún otro lenguaje de programación y paquetes para perfilamiento, niveles de BLAS, cómputo en paralelo o compilación a C.
 
-* Minikube, kubeflow y kale (opcional).
+* Minikube, kubeflow y kale.
 
 * Organización del equipo en una forma simplificada del framework [scrum](https://www.youtube.com/watch?v=b02ZkndLk1Y&feature=emb_logo) en tres grupos: grupo de programación, grupo de revisión y una persona *project manager*.
 
