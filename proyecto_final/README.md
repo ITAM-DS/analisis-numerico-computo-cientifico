@@ -28,7 +28,7 @@ Para el proyecto final se utilizará:
 
 Tiene un porcentaje de 40% y la calificación es por equipo. Se entrega el código de la implementación en una liga a ella, más información sobre esta liga en [indicaciones](indicaciones).
 
-**La implementación consiste en hacer desde cero los programas o bien utilizar herramientas hechas por la comunidad científica haciendo una explicación de la misma.**
+**La implementación consiste en crear un paquete que resuelva problemas de optimización numérica y aplicarlo a un *dataset*.**
 
 ## Trabajo escrito
 
