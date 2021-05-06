@@ -157,3 +157,10 @@ Finalizamos [Herramientas de lenguajes de programación y del sistema operativo 
 28 de abril
 
 Finalizamos [Compilación a C](https://itam-ds.github.io/analisis-numerico-computo-cientifico/V.optimizacion_de_codigo/5.3/Compilacion_a_C.html)
+
+
+## Clase 16
+
+5 de mayo
+
+Llegamos hasta antes de [Computo_en_paralelo_usando_CPUS_en_SMC: Dask](https://itam-ds.github.io/analisis-numerico-computo-cientifico/V.optimizacion_de_codigo/5.4/Computo_en_paralelo_usando_CPUS_en_SMC.html#dask)
