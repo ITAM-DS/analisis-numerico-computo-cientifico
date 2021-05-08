@@ -598,14 +598,14 @@
 <li></li>
 </ul>
 </div>
-<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">&lt;falta</span> <span class="pre">colocar&gt;</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se utilizó la AMI <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a></p>
+<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">p2.xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se utilizó la AMI <code class="docutils literal notranslate"><span class="pre">opt2-aws-cuda-and-tools-08-05-2021</span></code> de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_cuda_and_tools.sh">script_cuda_and_tools.sh</a></p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>Si se utiliza la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> colocar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
+<p>Si se utiliza la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-cuda-and-tools-08-05-2021</span></code> colocar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">##variables:</span>
 <span class="nv">region</span><span class="o">=</span>us-east-1 <span class="c1">#make sure instance is in Virginia</span>
-<span class="nv">name_instance</span><span class="o">=</span>OpenBLAS
+<span class="nv">name_instance</span><span class="o">=</span>CUDA
 <span class="nv">USER</span><span class="o">=</span>ubuntu
 <span class="c1">##System update</span>
 apt-get update -yq
@@ -1455,14 +1455,11 @@ nvcc --compiler-options -Wall suma_vectorial.cu -o suma_vectorial.out
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span>    <span class="kt">int</span> <span class="o">*</span><span class="n">device_a</span><span class="p">,</span> <span class="o">*</span><span class="n">device_b</span><span class="p">,</span> <span class="o">*</span><span class="n">device_c</span><span class="p">;</span>
 </pre></div>
 </div>
-</div>
 <p>en sintaxis de <em>C</em> se definen apuntadores que refieren a una dirección de memoria. En el contexto de la <em>GPU programming</em> estos apuntadores no apuntan a una dirección de memoria en el <em>device</em>. Aunque NVIDIA añadió el <em>feature</em> de <a class="reference external" href="https://devblogs.nvidia.com/unified-memory-cuda-beginners/">Unified Memory</a> (un espacio de memoria accesible para el <em>host</em> y el <em>device</em>) aquí no se está usando tal <em>feature</em>. Más bien se están utilizando los apuntadores anteriores para apuntar a un <a class="reference external" href="https://en.wikipedia.org/wiki/Struct_(C_programming_language)">struct</a> de <em>C</em> en el que uno de sus tipos de datos es una dirección de memoria en el <em>device</em>.</p>
 <ul class="simple">
 <li><p>El uso de <code class="docutils literal notranslate"><span class="pre">(void</span> <span class="pre">**)</span></code> es por la definición de la función <code class="docutils literal notranslate"><span class="pre">cudaMalloc</span></code>.</p></li>
 <li><p>En el programa anterior se coloca en comentario que se asume que <span class="math notranslate nohighlight">\(N\)</span> el número de datos en el arreglo es menor al número de bloques que es posible lanzar. Esto como veremos más adelante es importante considerar pues aunque en un <em>device</em> se pueden lanzar muchos bloques y muchos threads, se tienen límites en el número de éstos que es posible lanzar.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
 </div>
 </div>
 <div class="section" id="perfilamiento-en-cuda">
