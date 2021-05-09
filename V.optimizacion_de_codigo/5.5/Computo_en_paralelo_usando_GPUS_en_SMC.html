@@ -2116,36 +2116,17 @@ nvcc --compiler-options -Wall device_properties.cu -o device_properties.out
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------------
 ----device 0 ----
-Device Name: Tesla K20Xm
-Compute capability: 3.5
-Clock rate: 732000
+Device Name: NVIDIA Tesla K80
+Compute capability: 3.7
+Clock rate: 823500
 Unified memory: 1
  ---Memory Information for device 0 (results on bytes)---
-Total global mem: 5977800704
+Total global mem: 11996954624
 Total constant Mem: 65536
 Shared memory per thread block: 49152
-Shared memory per SM: 49152
+Shared memory per SM: 114688
  ---MP Information for device 0 ---
-SM count: 14
-Threads in warp: 32
-Max threads per SM: 2048
-Max warps per SM: 64
-Max threads per block: 1024
-Max thread dimensions: (1024, 1024, 64)
-Max grid dimensions: (2147483647, 65535, 65535)
-----------------------
-----device 1 ----
-Device Name: Tesla K20Xm
-Compute capability: 3.5
-Clock rate: 732000
-Unified memory: 1
- ---Memory Information for device 1 (results on bytes)---
-Total global mem: 5977800704
-Total constant Mem: 65536
-Shared memory per thread block: 49152
-Shared memory per SM: 49152
- ---MP Information for device 1 ---
-SM count: 14
+SM count: 13
 Threads in warp: 32
 Max threads per SM: 2048
 Max warps per SM: 64
@@ -2217,7 +2198,7 @@ Max grid dimensions: (2147483647, 65535, 65535)
 <span class="c1">#include &lt;thrust/reduce.h&gt;</span>
 <span class="c1">#include &lt;thrust/execution_policy.h&gt;</span>
 
-<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="nb">sum</span> <span class="p">)</span> <span class="p">{</span>
+<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="n">sum_res</span> <span class="p">)</span> <span class="p">{</span>
     <span class="o">/*</span>
     <span class="n">Compute</span> <span class="n">numerical</span> <span class="n">approximation</span> <span class="n">using</span> <span class="n">rectangle</span> <span class="ow">or</span> <span class="n">mid</span><span class="o">-</span><span class="n">point</span> <span class="n">method</span> <span class="ow">in</span> 
     <span class="n">an</span> <span class="n">interval</span><span class="o">.</span>
@@ -2227,7 +2208,7 @@ Max grid dimensions: (2147483647, 65535, 65535)
         <span class="n">n</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
         <span class="n">data</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">array</span> <span class="n">that</span> <span class="n">will</span> <span class="n">hold</span> <span class="n">values</span> <span class="n">evaluated</span> <span class="ow">in</span> <span class="n">function</span>
     <span class="n">Returns</span><span class="p">:</span>
-        <span class="nb">sum</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
+        <span class="n">sum_res</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
     <span class="o">*/</span>
     <span class="n">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="k">if</span><span class="p">(</span><span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">){</span>
@@ -2235,34 +2216,34 @@ Max grid dimensions: (2147483647, 65535, 65535)
         <span class="n">data</span><span class="p">[</span><span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span><span class="p">]</span><span class="o">=</span><span class="n">std</span><span class="p">::</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">std</span><span class="p">::</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
     <span class="p">}</span>
     <span class="k">if</span><span class="p">(</span><span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-        <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
+        <span class="o">*</span><span class="n">sum_res</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
-    <span class="n">double</span> <span class="n">suma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">sum_res</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="o">*</span><span class="n">d_data</span><span class="p">;</span>
-    <span class="n">double</span> <span class="o">*</span><span class="n">d_suma</span><span class="p">;</span>
+    <span class="n">double</span> <span class="o">*</span><span class="n">d_sum</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">h_hat</span><span class="p">;</span>
-    <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mf">1e3</span><span class="p">;</span> <span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
-    <span class="n">double</span> <span class="n">objetivo</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mf">1e3</span><span class="p">;</span> 
+    <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">time_spent</span><span class="p">;</span>
     <span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
     <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_data</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
-    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_suma</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
+    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_sum</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
     <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="n">begin</span><span class="o">=</span><span class="n">clock</span><span class="p">();</span>
-    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_suma</span><span class="p">);</span> <span class="o">//</span><span class="mi">1</span> <span class="n">bloque</span> <span class="n">de</span> <span class="n">n</span> <span class="n">threads</span>
+    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_sum</span><span class="p">);</span> <span class="o">//</span><span class="mi">1</span> <span class="n">bloque</span> <span class="n">de</span> <span class="n">n</span> <span class="n">threads</span>
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="n">end</span><span class="o">=</span><span class="n">clock</span><span class="p">();</span>
     <span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
-    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">suma</span><span class="p">,</span> <span class="n">d_suma</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
-    <span class="n">suma</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">suma</span><span class="p">;</span>
+    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sum_res</span><span class="p">,</span> <span class="n">d_sum</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span><span class="p">;</span>
     <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_data</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_suma</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">suma</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">suma</span><span class="o">-</span><span class="n">objetivo</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">objetivo</span><span class="p">));</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_sum</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">sum_res</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sum_res</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de cálculo en la gpu </span><span class="si">%.5f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -2278,7 +2259,13 @@ Max grid dimensions: (2147483647, 65535, 65535)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-nvcc --compiler-options -Wall Rcf.cu -o Rcf.out
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf.cu -o Rcf.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -2293,7 +2280,7 @@ nvcc --compiler-options -Wall Rcf.cu -o Rcf.out
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241634690490e-01
 Error relativo de la solución: 4.104931878976858e-08
-Tiempo de cálculo en la gpu 0.00009
+Tiempo de cálculo en la gpu 0.00014
 </pre></div>
 </div>
 </div>
@@ -2301,6 +2288,7 @@ Tiempo de cálculo en la gpu 0.00009
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source ~/.profile
 nvprof --normalized-time-unit s ./Rcf.out
 </pre></div>
 </div>
@@ -2308,28 +2296,30 @@ nvprof --normalized-time-unit s ./Rcf.out
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241634690490e-01
 Error relativo de la solución: 4.104931878976858e-08
-Tiempo de cálculo en la gpu 0.00010
+Tiempo de cálculo en la gpu 0.00018
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==525== NVPROF is profiling process 525, command: ./Rcf.out
-==525== Profiling application: ./Rcf.out
-==525== Profiling result:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==6560== NVPROF is profiling process 6560, command: ./Rcf.out
+==6560== Warning: Auto boost enabled on device 0. Profiling results may be inconsistent.
+==6560== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
+==6560== Profiling application: ./Rcf.out
+==6560== Profiling result:
             Type  Time(%)      Time     Calls       Avg       Min       Max  Name
                         %         s                   s         s         s
- GPU activities:    98.00  6.89e-05         1  6.89e-05  6.89e-05  6.89e-05  Rcf(double*, double, double, int, double*)
-                     2.00  1.41e-06         1  1.41e-06  1.41e-06  1.41e-06  [CUDA memcpy DtoH]
-      API calls:    99.49  0.088044         2  0.044022  6.13e-06  0.088038  cudaMalloc
-                     0.21  1.83e-04        97  1.89e-06  3.26e-07  7.10e-05  cuDeviceGetAttribute
-                     0.09  7.86e-05         1  7.86e-05  7.86e-05  7.86e-05  cuDeviceTotalMem
-                     0.08  7.15e-05         1  7.15e-05  7.15e-05  7.15e-05  cudaDeviceSynchronize
-                     0.06  5.31e-05         2  2.65e-05  6.30e-06  4.68e-05  cudaFree
-                     0.03  2.80e-05         1  2.80e-05  2.80e-05  2.80e-05  cuDeviceGetName
-                     0.02  1.97e-05         1  1.97e-05  1.97e-05  1.97e-05  cudaLaunchKernel
-                     0.02  1.44e-05         1  1.44e-05  1.44e-05  1.44e-05  cudaMemcpy
-                     0.00  2.11e-06         3  7.03e-07  3.96e-07  1.29e-06  cuDeviceGetCount
-                     0.00  2.10e-06         1  2.10e-06  2.10e-06  2.10e-06  cuDeviceGetPCIBusId
-                     0.00  1.23e-06         2  6.17e-07  3.24e-07  9.10e-07  cuDeviceGet
-                     0.00  5.00e-07         1  5.00e-07  5.00e-07  5.00e-07  cuDeviceGetUuid
+ GPU activities:    97.51  1.00e-04         1  1.00e-04  1.00e-04  1.00e-04  Rcf(double*, double, double, int, double*)
+                     2.49  2.56e-06         1  2.56e-06  2.56e-06  2.56e-06  [CUDA memcpy DtoH]
+      API calls:    99.53  0.246660         2  0.123330  5.87e-06  0.246654  cudaMalloc
+                     0.21  5.19e-04         1  5.19e-04  5.19e-04  5.19e-04  cuDeviceTotalMem
+                     0.10  2.56e-04       101  2.54e-06  7.36e-07  8.41e-05  cuDeviceGetAttribute
+                     0.06  1.54e-04         2  7.71e-05  8.97e-06  1.45e-04  cudaFree
+                     0.04  1.07e-04         1  1.07e-04  1.07e-04  1.07e-04  cudaDeviceSynchronize
+                     0.03  6.35e-05         1  6.35e-05  6.35e-05  6.35e-05  cudaLaunchKernel
+                     0.01  3.26e-05         1  3.26e-05  3.26e-05  3.26e-05  cudaMemcpy
+                     0.01  2.67e-05         1  2.67e-05  2.67e-05  2.67e-05  cuDeviceGetName
+                     0.00  7.84e-06         1  7.84e-06  7.84e-06  7.84e-06  cuDeviceGetPCIBusId
+                     0.00  4.05e-06         3  1.35e-06  7.79e-07  2.02e-06  cuDeviceGetCount
+                     0.00  2.23e-06         2  1.11e-06  8.03e-07  1.42e-06  cuDeviceGet
+                     0.00  9.31e-07         1  9.31e-07  9.31e-07  9.31e-07  cuDeviceGetUuid
 </pre></div>
 </div>
 </div>
@@ -2342,7 +2332,7 @@ Tiempo de cálculo en la gpu 0.00010
 <span class="c1">#include &lt;thrust/reduce.h&gt;</span>
 <span class="c1">#include &lt;thrust/execution_policy.h&gt;</span>
 
-<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="nb">sum</span> <span class="p">)</span> <span class="p">{</span>
+<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="n">sum_res</span> <span class="p">)</span> <span class="p">{</span>
     <span class="o">/*</span>
     <span class="n">Compute</span> <span class="n">numerical</span> <span class="n">approximation</span> <span class="n">using</span> <span class="n">rectangle</span> <span class="ow">or</span> <span class="n">mid</span><span class="o">-</span><span class="n">point</span> <span class="n">method</span> <span class="ow">in</span> 
     <span class="n">an</span> <span class="n">interval</span><span class="o">.</span>
@@ -2352,7 +2342,7 @@ Tiempo de cálculo en la gpu 0.00010
         <span class="n">n</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
         <span class="n">data</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">array</span> <span class="n">that</span> <span class="n">will</span> <span class="n">hold</span> <span class="n">values</span> <span class="n">evaluated</span> <span class="ow">in</span> <span class="n">function</span>
     <span class="n">Returns</span><span class="p">:</span>
-        <span class="nb">sum</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
+        <span class="n">sum_res</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
     <span class="o">*/</span>
     <span class="n">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="k">if</span><span class="p">(</span><span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">){</span>
@@ -2360,34 +2350,34 @@ Tiempo de cálculo en la gpu 0.00010
         <span class="n">data</span><span class="p">[</span><span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span><span class="p">]</span><span class="o">=</span><span class="n">std</span><span class="p">::</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">std</span><span class="p">::</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
     <span class="p">}</span>
     <span class="k">if</span><span class="p">(</span><span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-        <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
+        <span class="o">*</span><span class="n">sum_res</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
-    <span class="n">double</span> <span class="n">suma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">sum_res</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="o">*</span><span class="n">d_data</span><span class="p">;</span>
-    <span class="n">double</span> <span class="o">*</span><span class="n">d_suma</span><span class="p">;</span>
+    <span class="n">double</span> <span class="o">*</span><span class="n">d_sum</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">h_hat</span><span class="p">;</span>
-    <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">1025</span><span class="p">;</span> <span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
-    <span class="n">double</span> <span class="n">objetivo</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">1025</span><span class="p">;</span> 
+    <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">time_spent</span><span class="p">;</span>
     <span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
     <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_data</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
-    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_suma</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
+    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_sum</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
     <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="n">begin</span><span class="o">=</span><span class="n">clock</span><span class="p">();</span>
-    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_suma</span><span class="p">);</span> <span class="o">//</span><span class="mi">1</span> <span class="n">bloque</span> <span class="n">de</span> <span class="n">n</span> <span class="n">threads</span>
+    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_sum</span><span class="p">);</span> <span class="o">//</span><span class="mi">1</span> <span class="n">bloque</span> <span class="n">de</span> <span class="n">n</span> <span class="n">threads</span>
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="n">end</span><span class="o">=</span><span class="n">clock</span><span class="p">();</span>
     <span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
-    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">suma</span><span class="p">,</span> <span class="n">d_suma</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
-    <span class="n">suma</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">suma</span><span class="p">;</span>
+    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sum_res</span><span class="p">,</span> <span class="n">d_sum</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span><span class="p">;</span>
     <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_data</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_suma</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">suma</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">suma</span><span class="o">-</span><span class="n">objetivo</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">objetivo</span><span class="p">));</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_sum</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">sum_res</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sum_res</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de cálculo en la gpu </span><span class="si">%.5f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -2403,7 +2393,13 @@ Tiempo de cálculo en la gpu 0.00010
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-nvcc --compiler-options -Wall Rcf2.cu -o Rcf2.out
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf2.cu -o Rcf2.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -2432,7 +2428,7 @@ Tiempo de cálculo en la gpu 0.00001
 <span class="c1">#include &lt;thrust/reduce.h&gt;</span>
 <span class="c1">#include &lt;thrust/execution_policy.h&gt;</span>
 
-<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="nb">sum</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="n">sum_res</span><span class="p">)</span> <span class="p">{</span>
     <span class="o">/*</span>
     <span class="n">Compute</span> <span class="n">numerical</span> <span class="n">approximation</span> <span class="n">using</span> <span class="n">rectangle</span> <span class="ow">or</span> <span class="n">mid</span><span class="o">-</span><span class="n">point</span> <span class="n">method</span> <span class="ow">in</span> 
     <span class="n">an</span> <span class="n">interval</span><span class="o">.</span>
@@ -2442,7 +2438,7 @@ Tiempo de cálculo en la gpu 0.00001
         <span class="n">n</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
         <span class="n">data</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">array</span> <span class="n">that</span> <span class="n">will</span> <span class="n">hold</span> <span class="n">values</span> <span class="n">evaluated</span> <span class="ow">in</span> <span class="n">function</span>
     <span class="n">Returns</span><span class="p">:</span>
-        <span class="nb">sum</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
+        <span class="n">sum_res</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
     <span class="o">*/</span>
     <span class="n">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">stride</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
@@ -2454,36 +2450,36 @@ Tiempo de cálculo en la gpu 0.00001
         <span class="n">stride</span><span class="o">=</span><span class="n">blockDim</span><span class="o">.</span><span class="n">x</span><span class="p">;</span>
         <span class="n">x</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="n">stride</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span><span class="p">;</span>
         <span class="n">data</span><span class="p">[</span><span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="n">stride</span><span class="p">]</span><span class="o">=</span><span class="n">std</span><span class="p">::</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">std</span><span class="p">::</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
-        <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
+        <span class="o">*</span><span class="n">sum_res</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
-    <span class="n">double</span> <span class="n">suma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">sum_res</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="o">*</span><span class="n">d_data</span><span class="p">;</span>
-    <span class="n">double</span> <span class="o">*</span><span class="n">d_suma</span><span class="p">;</span>
+    <span class="n">double</span> <span class="o">*</span><span class="n">d_sum</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">h_hat</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">n_threads_per_block</span><span class="o">=</span><span class="mi">1024</span><span class="p">;</span> 
-    <span class="nb">int</span> <span class="n">n_bloques</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
-    <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">1025</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
-    <span class="n">double</span> <span class="n">objetivo</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n_blocks</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">1025</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">time_spent</span><span class="p">;</span>
     <span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
     <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_data</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
-    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_suma</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
+    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_sum</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
     <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="n">begin</span><span class="o">=</span><span class="n">clock</span><span class="p">();</span>
-    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">n_bloques</span><span class="p">,</span><span class="n">n_threads_per_block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_suma</span><span class="p">);</span> 
+    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">n_blocks</span><span class="p">,</span><span class="n">n_threads_per_block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_sum</span><span class="p">);</span> 
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="n">end</span><span class="o">=</span><span class="n">clock</span><span class="p">();</span>
     <span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
-    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">suma</span><span class="p">,</span> <span class="n">d_suma</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
-    <span class="n">suma</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">suma</span><span class="p">;</span>
+    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sum_res</span><span class="p">,</span> <span class="n">d_sum</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span><span class="p">;</span>
     <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_data</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_suma</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">suma</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">suma</span><span class="o">-</span><span class="n">objetivo</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">objetivo</span><span class="p">));</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_sum</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">sum_res</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sum_res</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de cálculo en la gpu </span><span class="si">%.5f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -2499,7 +2495,13 @@ Tiempo de cálculo en la gpu 0.00001
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-nvcc --compiler-options -Wall Rcf3.cu -o Rcf3.out
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf3.cu -o Rcf3.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -2514,7 +2516,7 @@ nvcc --compiler-options -Wall Rcf3.cu -o Rcf3.out
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241619918411e-01
 Error relativo de la solución: 3.907133247860604e-08
-Tiempo de cálculo en la gpu 0.00009
+Tiempo de cálculo en la gpu 0.00015
 </pre></div>
 </div>
 </div>
@@ -2527,7 +2529,7 @@ Tiempo de cálculo en la gpu 0.00009
 <span class="c1">#include &lt;thrust/reduce.h&gt;</span>
 <span class="c1">#include &lt;thrust/execution_policy.h&gt;</span>
 
-<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="nb">sum</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="n">sum_res</span><span class="p">)</span> <span class="p">{</span>
     <span class="o">/*</span>
     <span class="n">Compute</span> <span class="n">numerical</span> <span class="n">approximation</span> <span class="n">using</span> <span class="n">rectangle</span> <span class="ow">or</span> <span class="n">mid</span><span class="o">-</span><span class="n">point</span> <span class="n">method</span> <span class="ow">in</span> 
     <span class="n">an</span> <span class="n">interval</span><span class="o">.</span>
@@ -2537,7 +2539,7 @@ Tiempo de cálculo en la gpu 0.00009
         <span class="n">n</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
         <span class="n">data</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">array</span> <span class="n">that</span> <span class="n">will</span> <span class="n">hold</span> <span class="n">values</span> <span class="n">evaluated</span> <span class="ow">in</span> <span class="n">function</span>
     <span class="n">Returns</span><span class="p">:</span>
-        <span class="nb">sum</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
+        <span class="n">sum_res</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
     <span class="o">*/</span>
     <span class="n">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">stride</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
@@ -2550,36 +2552,36 @@ Tiempo de cálculo en la gpu 0.00009
         <span class="p">}</span>
     <span class="p">}</span>
     <span class="k">if</span><span class="p">(</span><span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-        <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
+        <span class="o">*</span><span class="n">sum_res</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
-    <span class="n">double</span> <span class="n">suma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">sum_res</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="o">*</span><span class="n">d_data</span><span class="p">;</span>
-    <span class="n">double</span> <span class="o">*</span><span class="n">d_suma</span><span class="p">;</span>
+    <span class="n">double</span> <span class="o">*</span><span class="n">d_sum</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">h_hat</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">n_threads_per_block</span><span class="o">=</span><span class="mi">1024</span><span class="p">;</span> 
-    <span class="nb">int</span> <span class="n">n_bloques</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
-    <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="n">n_threads_per_block</span><span class="o">*</span><span class="n">n_bloques</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
-    <span class="n">double</span> <span class="n">objetivo</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n_blocks</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="n">n_threads_per_block</span><span class="o">*</span><span class="n">n_blocks</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
+    <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">time_spent</span><span class="p">;</span>
     <span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
     <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_data</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
-    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_suma</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
+    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_sum</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
     <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="n">begin</span><span class="o">=</span><span class="n">clock</span><span class="p">();</span>
-    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">n_bloques</span><span class="p">,</span><span class="n">n_threads_per_block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_suma</span><span class="p">);</span> 
+    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">n_blocks</span><span class="p">,</span><span class="n">n_threads_per_block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_sum</span><span class="p">);</span> 
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="n">end</span><span class="o">=</span><span class="n">clock</span><span class="p">();</span>
     <span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
-    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">suma</span><span class="p">,</span> <span class="n">d_suma</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
-    <span class="n">suma</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">suma</span><span class="p">;</span>
+    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sum_res</span><span class="p">,</span> <span class="n">d_sum</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span><span class="p">;</span>
     <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_data</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_suma</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">suma</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">suma</span><span class="o">-</span><span class="n">objetivo</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">objetivo</span><span class="p">));</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_sum</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">sum_res</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sum_res</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de cálculo en la gpu </span><span class="si">%.5f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -2595,7 +2597,13 @@ Tiempo de cálculo en la gpu 0.00009
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-nvcc --compiler-options -Wall Rcf4.cu -o Rcf4.out
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf4.cu -o Rcf4.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -2610,7 +2618,7 @@ nvcc --compiler-options -Wall Rcf4.cu -o Rcf4.out
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241401215338e-01
 Error relativo de la solución: 9.786918140590463e-09
-Tiempo de cálculo en la gpu 0.00016
+Tiempo de cálculo en la gpu 0.00024
 </pre></div>
 </div>
 </div>
@@ -2623,7 +2631,7 @@ Tiempo de cálculo en la gpu 0.00016
 <span class="c1">#include &lt;thrust/reduce.h&gt;</span>
 <span class="c1">#include &lt;thrust/execution_policy.h&gt;</span>
 
-<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="nb">sum</span> <span class="p">)</span> <span class="p">{</span>
+<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="n">sum_res</span> <span class="p">)</span> <span class="p">{</span>
     <span class="o">/*</span>
     <span class="n">Compute</span> <span class="n">numerical</span> <span class="n">approximation</span> <span class="n">using</span> <span class="n">rectangle</span> <span class="ow">or</span> <span class="n">mid</span><span class="o">-</span><span class="n">point</span> <span class="n">method</span> <span class="ow">in</span> 
     <span class="n">an</span> <span class="n">interval</span><span class="o">.</span>
@@ -2633,7 +2641,7 @@ Tiempo de cálculo en la gpu 0.00016
         <span class="n">n</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
         <span class="n">data</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">array</span> <span class="n">that</span> <span class="n">will</span> <span class="n">hold</span> <span class="n">values</span> <span class="n">evaluated</span> <span class="ow">in</span> <span class="n">function</span>
     <span class="n">Returns</span><span class="p">:</span>
-        <span class="nb">sum</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
+        <span class="n">sum_res</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
     <span class="o">*/</span>
     <span class="n">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">idx</span><span class="p">;</span>
@@ -2643,36 +2651,36 @@ Tiempo de cálculo en la gpu 0.00016
         <span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">=</span><span class="n">std</span><span class="p">::</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">std</span><span class="p">::</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
     <span class="p">}</span>
     <span class="k">if</span><span class="p">(</span><span class="n">idx</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-        <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
+        <span class="o">*</span><span class="n">sum_res</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
-    <span class="n">double</span> <span class="n">suma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">sum_res</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="o">*</span><span class="n">d_data</span><span class="p">;</span>
-    <span class="n">double</span> <span class="o">*</span><span class="n">d_suma</span><span class="p">;</span>
+    <span class="n">double</span> <span class="o">*</span><span class="n">d_sum</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">h_hat</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">n_threads_per_block</span><span class="o">=</span><span class="mi">1024</span><span class="p">;</span> 
-    <span class="nb">int</span> <span class="n">n_bloques</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
-    <span class="n">double</span> <span class="n">objetivo</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
-    <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="n">n_bloques</span><span class="o">*</span><span class="n">n_threads_per_block</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
+    <span class="nb">int</span> <span class="n">n_blocks</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="n">n_blocks</span><span class="o">*</span><span class="n">n_threads_per_block</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
     <span class="n">double</span> <span class="n">time_spent</span><span class="p">;</span>
     <span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
     <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_data</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
-    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_suma</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
+    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_sum</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
     <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">n_bloques</span><span class="p">,</span><span class="n">n_threads_per_block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_suma</span><span class="p">);</span> 
+    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">n_blocks</span><span class="p">,</span><span class="n">n_threads_per_block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_sum</span><span class="p">);</span> 
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
     <span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
-    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">suma</span><span class="p">,</span> <span class="n">d_suma</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
-    <span class="n">suma</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">suma</span><span class="p">;</span>
+    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sum_res</span><span class="p">,</span> <span class="n">d_sum</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span><span class="p">;</span>
     <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_data</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_suma</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">suma</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">suma</span><span class="o">-</span><span class="n">objetivo</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">objetivo</span><span class="p">));</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_sum</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">sum_res</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sum_res</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de cálculo en la gpu </span><span class="si">%.5f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -2688,7 +2696,13 @@ Tiempo de cálculo en la gpu 0.00016
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-nvcc --compiler-options -Wall Rcf5.cu -o Rcf5.out
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf5.cu -o Rcf5.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -2703,7 +2717,7 @@ nvcc --compiler-options -Wall Rcf5.cu -o Rcf5.out
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241401215338e-01
 Error relativo de la solución: 9.786918140590463e-09
-Tiempo de cálculo en la gpu 0.00014
+Tiempo de cálculo en la gpu 0.00024
 </pre></div>
 </div>
 </div>
@@ -2711,6 +2725,7 @@ Tiempo de cálculo en la gpu 0.00014
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source ~/.profile
 nvprof --normalized-time-unit s ./Rcf5.out
 </pre></div>
 </div>
@@ -2718,28 +2733,30 @@ nvprof --normalized-time-unit s ./Rcf5.out
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241401215338e-01
 Error relativo de la solución: 9.786918140590463e-09
-Tiempo de cálculo en la gpu 0.00014
+Tiempo de cálculo en la gpu 0.00029
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==694== NVPROF is profiling process 694, command: ./Rcf5.out
-==694== Profiling application: ./Rcf5.out
-==694== Profiling result:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==6759== NVPROF is profiling process 6759, command: ./Rcf5.out
+==6759== Warning: Auto boost enabled on device 0. Profiling results may be inconsistent.
+==6759== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
+==6759== Profiling application: ./Rcf5.out
+==6759== Profiling result:
             Type  Time(%)      Time     Calls       Avg       Min       Max  Name
                         %         s                   s         s         s
- GPU activities:    98.76  1.17e-04         1  1.17e-04  1.17e-04  1.17e-04  Rcf(double*, double, double, int, double*)
-                     1.24  1.47e-06         1  1.47e-06  1.47e-06  1.47e-06  [CUDA memcpy DtoH]
-      API calls:    99.36  0.093178         2  0.046589  4.18e-06  0.093174  cudaMalloc
-                     0.31  2.88e-04        97  2.96e-06  2.85e-07  1.57e-04  cuDeviceGetAttribute
-                     0.13  1.20e-04         1  1.20e-04  1.20e-04  1.20e-04  cudaDeviceSynchronize
-                     0.08  7.32e-05         1  7.32e-05  7.32e-05  7.32e-05  cuDeviceTotalMem
-                     0.06  5.18e-05         2  2.59e-05  5.26e-06  4.66e-05  cudaFree
-                     0.03  2.69e-05         1  2.69e-05  2.69e-05  2.69e-05  cuDeviceGetName
-                     0.02  1.98e-05         1  1.98e-05  1.98e-05  1.98e-05  cudaLaunchKernel
-                     0.02  1.45e-05         1  1.45e-05  1.45e-05  1.45e-05  cudaMemcpy
-                     0.00  2.12e-06         3  7.07e-07  3.85e-07  1.34e-06  cuDeviceGetCount
-                     0.00  1.82e-06         1  1.82e-06  1.82e-06  1.82e-06  cuDeviceGetPCIBusId
-                     0.00  9.84e-07         2  4.92e-07  3.02e-07  6.82e-07  cuDeviceGet
-                     0.00  4.23e-07         1  4.23e-07  4.23e-07  4.23e-07  cuDeviceGetUuid
+ GPU activities:    98.70  1.95e-04         1  1.95e-04  1.95e-04  1.95e-04  Rcf(double*, double, double, int, double*)
+                     1.30  2.56e-06         1  2.56e-06  2.56e-06  2.56e-06  [CUDA memcpy DtoH]
+      API calls:    99.49  0.256498         2  0.128249  4.98e-06  0.256493  cudaMalloc
+                     0.21  5.31e-04         1  5.31e-04  5.31e-04  5.31e-04  cuDeviceTotalMem
+                     0.11  2.76e-04       101  2.73e-06  7.41e-07  9.35e-05  cuDeviceGetAttribute
+                     0.08  1.99e-04         1  1.99e-04  1.99e-04  1.99e-04  cudaDeviceSynchronize
+                     0.06  1.52e-04         2  7.58e-05  7.94e-06  1.44e-04  cudaFree
+                     0.03  8.19e-05         1  8.19e-05  8.19e-05  8.19e-05  cudaLaunchKernel
+                     0.01  3.10e-05         1  3.10e-05  3.10e-05  3.10e-05  cudaMemcpy
+                     0.01  2.93e-05         1  2.93e-05  2.93e-05  2.93e-05  cuDeviceGetName
+                     0.00  7.66e-06         1  7.66e-06  7.66e-06  7.66e-06  cuDeviceGetPCIBusId
+                     0.00  4.12e-06         3  1.37e-06  8.06e-07  1.99e-06  cuDeviceGetCount
+                     0.00  2.14e-06         2  1.07e-06  8.01e-07  1.34e-06  cuDeviceGet
+                     0.00  8.91e-07         1  8.91e-07  8.91e-07  8.91e-07  cuDeviceGetUuid
 </pre></div>
 </div>
 </div>
@@ -2754,7 +2771,7 @@ Tiempo de cálculo en la gpu 0.00014
 <span class="c1">#include &lt;thrust/reduce.h&gt;</span>
 <span class="c1">#include &lt;thrust/execution_policy.h&gt;</span>
 
-<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="nb">sum</span> <span class="p">)</span> <span class="p">{</span>
+<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="n">sum_res</span> <span class="p">)</span> <span class="p">{</span>
     <span class="o">/*</span>
     <span class="n">Compute</span> <span class="n">numerical</span> <span class="n">approximation</span> <span class="n">using</span> <span class="n">rectangle</span> <span class="ow">or</span> <span class="n">mid</span><span class="o">-</span><span class="n">point</span> <span class="n">method</span> <span class="ow">in</span> 
     <span class="n">an</span> <span class="n">interval</span><span class="o">.</span>
@@ -2764,7 +2781,7 @@ Tiempo de cálculo en la gpu 0.00014
         <span class="n">n</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
         <span class="n">data</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">array</span> <span class="n">that</span> <span class="n">will</span> <span class="n">hold</span> <span class="n">values</span> <span class="n">evaluated</span> <span class="ow">in</span> <span class="n">function</span>
     <span class="n">Returns</span><span class="p">:</span>
-        <span class="nb">sum</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
+        <span class="n">sum_res</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
     <span class="o">*/</span>
     <span class="n">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">idx</span><span class="p">;</span>
@@ -2774,41 +2791,41 @@ Tiempo de cálculo en la gpu 0.00014
         <span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">=</span><span class="n">std</span><span class="p">::</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">std</span><span class="p">::</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
     <span class="p">}</span>
     <span class="k">if</span><span class="p">(</span><span class="n">idx</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-        <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
+        <span class="o">*</span><span class="n">sum_res</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
-    <span class="n">double</span> <span class="n">suma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">sum_res</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="o">*</span><span class="n">d_data</span><span class="p">;</span>
-    <span class="n">double</span> <span class="o">*</span><span class="n">d_suma</span><span class="p">;</span>
+    <span class="n">double</span> <span class="o">*</span><span class="n">d_sum</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">h_hat</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">n_threads_per_block</span><span class="o">=</span><span class="mi">1024</span><span class="p">;</span> 
-    <span class="nb">int</span> <span class="n">n_bloques</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
-    <span class="n">double</span> <span class="n">objetivo</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n_blocks</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
+    <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
     <span class="n">double</span> <span class="n">time_spent</span><span class="p">;</span>
     <span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
     <span class="n">cudaDeviceProp</span> <span class="n">properties</span><span class="p">;</span>
     <span class="n">cudaGetDeviceProperties</span><span class="p">(</span><span class="o">&amp;</span><span class="n">properties</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="n">n_bloques</span> <span class="o">=</span> <span class="mi">256</span> <span class="o">*</span> <span class="n">properties</span><span class="o">.</span><span class="n">multiProcessorCount</span><span class="p">;</span> <span class="o">//</span><span class="n">elegimos</span> <span class="n">un</span> <span class="n">múltiplo</span> <span class="k">del</span> <span class="n">número</span> <span class="n">de</span> <span class="n">SM</span><span class="s1">&#39;s</span>
+    <span class="n">n_blocks</span> <span class="o">=</span> <span class="mi">256</span> <span class="o">*</span> <span class="n">properties</span><span class="o">.</span><span class="n">multiProcessorCount</span><span class="p">;</span> <span class="o">//</span><span class="n">elegimos</span> <span class="n">un</span> <span class="n">múltiplo</span> <span class="k">del</span> <span class="n">número</span> <span class="n">de</span> <span class="n">SM</span><span class="s1">&#39;s</span>
                                                     <span class="o">//</span><span class="n">y</span> <span class="n">además</span> <span class="n">que</span> <span class="n">sea</span> <span class="n">menor</span> <span class="n">a</span> <span class="mi">10</span><span class="o">^</span><span class="mi">4</span> <span class="p">(</span><span class="n">para</span> <span class="n">tener</span> <span class="mi">10</span><span class="o">^</span><span class="mi">6</span> <span class="n">aprox</span> <span class="n">subintervalos</span><span class="p">)</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">n_bloques</span><span class="o">*</span><span class="n">n_threads_per_block</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n_blocks</span><span class="o">*</span><span class="n">n_threads_per_block</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
     <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_data</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
-    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_suma</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
+    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_sum</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
     <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">n_bloques</span><span class="p">,</span><span class="n">n_threads_per_block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_suma</span><span class="p">);</span> 
+    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">n_blocks</span><span class="p">,</span><span class="n">n_threads_per_block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_sum</span><span class="p">);</span> 
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
     <span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
-    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">suma</span><span class="p">,</span> <span class="n">d_suma</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
-    <span class="n">suma</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">suma</span><span class="p">;</span>
+    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sum_res</span><span class="p">,</span> <span class="n">d_sum</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span><span class="p">;</span>
     <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_data</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_suma</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">suma</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">suma</span><span class="o">-</span><span class="n">objetivo</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">objetivo</span><span class="p">));</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_sum</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">sum_res</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sum_res</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de cálculo en la gpu </span><span class="si">%.5f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -2816,7 +2833,7 @@ Tiempo de cálculo en la gpu 0.00014
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting Rcf6.cu
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf6.cu
 </pre></div>
 </div>
 </div>
@@ -2824,7 +2841,13 @@ Tiempo de cálculo en la gpu 0.00014
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-nvcc --compiler-options -Wall Rcf6.cu -o Rcf6.out
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf6.cu -o Rcf6.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -2837,9 +2860,9 @@ nvcc --compiler-options -Wall Rcf6.cu -o Rcf6.out
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328124761e-01
-Error relativo de la solución: 6.555872157155699e-14
-Tiempo de cálculo en la gpu 0.06257
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328124654e-01
+Error relativo de la solución: 5.128743524305478e-14
+Tiempo de cálculo en la gpu 0.42348
 </pre></div>
 </div>
 </div>
@@ -2847,36 +2870,39 @@ Tiempo de cálculo en la gpu 0.06257
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source ~/.profile
 nvprof --normalized-time-unit s ./Rcf6.out
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328124761e-01
-Error relativo de la solución: 6.555872157155699e-14
-Tiempo de cálculo en la gpu 0.06288
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328124654e-01
+Error relativo de la solución: 5.128743524305478e-14
+Tiempo de cálculo en la gpu 0.43533
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==963== NVPROF is profiling process 963, command: ./Rcf6.out
-==963== Profiling application: ./Rcf6.out
-==963== Profiling result:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==6837== NVPROF is profiling process 6837, command: ./Rcf6.out
+==6837== Warning: Auto boost enabled on device 0. Profiling results may be inconsistent.
+==6837== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
+==6837== Profiling application: ./Rcf6.out
+==6837== Profiling result:
             Type  Time(%)      Time     Calls       Avg       Min       Max  Name
                         %         s                   s         s         s
- GPU activities:   100.00  0.062851         1  0.062851  0.062851  0.062851  Rcf(double*, double, double, int, double*)
-                     0.00  1.57e-06         1  1.57e-06  1.57e-06  1.57e-06  [CUDA memcpy DtoH]
-      API calls:    58.26  0.089315         2  0.044657  5.76e-05  0.089257  cudaMalloc
-                    41.00  0.062855         1  0.062855  0.062855  0.062855  cudaDeviceSynchronize
-                     0.41  6.22e-04         2  3.11e-04  5.54e-05  5.67e-04  cudaFree
-                     0.13  1.94e-04        97  2.00e-06  3.36e-07  7.47e-05  cuDeviceGetAttribute
-                     0.10  1.58e-04         1  1.58e-04  1.58e-04  1.58e-04  cudaGetDeviceProperties
-                     0.05  8.27e-05         1  8.27e-05  8.27e-05  8.27e-05  cuDeviceTotalMem
-                     0.02  2.92e-05         1  2.92e-05  2.92e-05  2.92e-05  cuDeviceGetName
-                     0.01  2.01e-05         1  2.01e-05  2.01e-05  2.01e-05  cudaLaunchKernel
-                     0.01  1.77e-05         1  1.77e-05  1.77e-05  1.77e-05  cudaMemcpy
-                     0.00  2.19e-06         1  2.19e-06  2.19e-06  2.19e-06  cuDeviceGetPCIBusId
-                     0.00  1.99e-06         3  6.63e-07  3.77e-07  1.16e-06  cuDeviceGetCount
-                     0.00  1.33e-06         2  6.66e-07  3.45e-07  9.87e-07  cuDeviceGet
-                     0.00  5.68e-07         1  5.68e-07  5.68e-07  5.68e-07  cuDeviceGetUuid
+ GPU activities:   100.00  0.434770         1  0.434770  0.434770  0.434770  Rcf(double*, double, double, int, double*)
+                     0.00  2.59e-06         1  2.59e-06  2.59e-06  2.59e-06  [CUDA memcpy DtoH]
+      API calls:    60.64  0.434787         1  0.434787  0.434787  0.434787  cudaDeviceSynchronize
+                    38.76  0.277887         2  0.138943  1.39e-04  0.277747  cudaMalloc
+                     0.44  3.12e-03         2  1.56e-03  2.63e-04  2.86e-03  cudaFree
+                     0.07  5.18e-04         1  5.18e-04  5.18e-04  5.18e-04  cuDeviceTotalMem
+                     0.04  2.87e-04       101  2.84e-06  7.53e-07  9.76e-05  cuDeviceGetAttribute
+                     0.03  1.90e-04         1  1.90e-04  1.90e-04  1.90e-04  cudaGetDeviceProperties
+                     0.01  7.36e-05         1  7.36e-05  7.36e-05  7.36e-05  cudaLaunchKernel
+                     0.01  6.04e-05         1  6.04e-05  6.04e-05  6.04e-05  cudaMemcpy
+                     0.00  2.91e-05         1  2.91e-05  2.91e-05  2.91e-05  cuDeviceGetName
+                     0.00  9.63e-06         1  9.63e-06  9.63e-06  9.63e-06  cuDeviceGetPCIBusId
+                     0.00  4.26e-06         3  1.42e-06  8.03e-07  1.97e-06  cuDeviceGetCount
+                     0.00  2.42e-06         2  1.21e-06  8.44e-07  1.57e-06  cuDeviceGet
+                     0.00  9.11e-07         1  9.11e-07  9.11e-07  9.11e-07  cuDeviceGetUuid
 </pre></div>
 </div>
 </div>
@@ -2889,7 +2915,7 @@ Tiempo de cálculo en la gpu 0.06288
 <span class="c1">#include &lt;thrust/reduce.h&gt;</span>
 <span class="c1">#include &lt;thrust/execution_policy.h&gt;</span>
 
-<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="nb">sum</span> <span class="p">)</span> <span class="p">{</span>
+<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="n">sum_res</span> <span class="p">)</span> <span class="p">{</span>
     <span class="o">/*</span>
     <span class="n">Compute</span> <span class="n">numerical</span> <span class="n">approximation</span> <span class="n">using</span> <span class="n">rectangle</span> <span class="ow">or</span> <span class="n">mid</span><span class="o">-</span><span class="n">point</span> <span class="n">method</span> <span class="ow">in</span> 
     <span class="n">an</span> <span class="n">interval</span><span class="o">.</span>
@@ -2899,7 +2925,7 @@ Tiempo de cálculo en la gpu 0.06288
         <span class="n">n</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
         <span class="n">data</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">array</span> <span class="n">that</span> <span class="n">will</span> <span class="n">hold</span> <span class="n">values</span> <span class="n">evaluated</span> <span class="ow">in</span> <span class="n">function</span>
     <span class="n">Returns</span><span class="p">:</span>
-        <span class="nb">sum</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
+        <span class="n">sum_res</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
     <span class="o">*/</span>
     <span class="n">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">idx</span><span class="p">;</span>
@@ -2909,41 +2935,41 @@ Tiempo de cálculo en la gpu 0.06288
         <span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">=</span><span class="n">std</span><span class="p">::</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">std</span><span class="p">::</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
     <span class="p">}</span>
     <span class="k">if</span><span class="p">(</span><span class="n">idx</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-        <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
+        <span class="o">*</span><span class="n">sum_res</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
-    <span class="n">double</span> <span class="n">suma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">sum_res</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="o">*</span><span class="n">d_data</span><span class="p">;</span>
-    <span class="n">double</span> <span class="o">*</span><span class="n">d_suma</span><span class="p">;</span>
+    <span class="n">double</span> <span class="o">*</span><span class="n">d_sum</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">h_hat</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">n_threads_per_block</span><span class="o">=</span><span class="mi">1024</span><span class="p">;</span> 
-    <span class="nb">int</span> <span class="n">n_bloques</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
-    <span class="n">double</span> <span class="n">objetivo</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n_blocks</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
+    <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
     <span class="n">double</span> <span class="n">time_spent</span><span class="p">;</span>
     <span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
     <span class="n">cudaDeviceProp</span> <span class="n">properties</span><span class="p">;</span>
     <span class="n">cudaGetDeviceProperties</span><span class="p">(</span><span class="o">&amp;</span><span class="n">properties</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="n">n_bloques</span> <span class="o">=</span> <span class="mi">4096</span> <span class="o">*</span> <span class="n">properties</span><span class="o">.</span><span class="n">multiProcessorCount</span><span class="p">;</span> <span class="o">//</span><span class="n">elegimos</span> <span class="n">un</span> <span class="n">múltiplo</span> <span class="k">del</span> <span class="n">número</span> <span class="n">de</span> <span class="n">SM</span><span class="s1">&#39;s</span>
+    <span class="n">n_blocks</span> <span class="o">=</span> <span class="mi">4096</span> <span class="o">*</span> <span class="n">properties</span><span class="o">.</span><span class="n">multiProcessorCount</span><span class="p">;</span> <span class="o">//</span><span class="n">elegimos</span> <span class="n">un</span> <span class="n">múltiplo</span> <span class="k">del</span> <span class="n">número</span> <span class="n">de</span> <span class="n">SM</span><span class="s1">&#39;s</span>
                                                     <span class="o">//</span><span class="n">y</span> <span class="n">además</span> <span class="n">que</span> <span class="n">sea</span> <span class="n">menor</span> <span class="n">a</span> <span class="mi">10</span><span class="o">^</span><span class="mi">8</span> <span class="p">(</span><span class="n">para</span> <span class="n">tener</span> <span class="mi">10</span><span class="o">^</span><span class="mi">7</span> <span class="n">aprox</span> <span class="n">subintervalos</span><span class="p">)</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">n_bloques</span><span class="o">*</span><span class="n">n_threads_per_block</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n_blocks</span><span class="o">*</span><span class="n">n_threads_per_block</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
     <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_data</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
-    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_suma</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
+    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_sum</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
     <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">n_bloques</span><span class="p">,</span><span class="n">n_threads_per_block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_suma</span><span class="p">);</span> 
+    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">n_blocks</span><span class="p">,</span><span class="n">n_threads_per_block</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_sum</span><span class="p">);</span> 
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
     <span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
-    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">suma</span><span class="p">,</span> <span class="n">d_suma</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
-    <span class="n">suma</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">suma</span><span class="p">;</span>
+    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sum_res</span><span class="p">,</span> <span class="n">d_sum</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span><span class="p">;</span>
     <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_data</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_suma</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">suma</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">suma</span><span class="o">-</span><span class="n">objetivo</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">objetivo</span><span class="p">));</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_sum</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">sum_res</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sum_res</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de cálculo en la gpu </span><span class="si">%.5f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -2951,7 +2977,7 @@ Tiempo de cálculo en la gpu 0.06288
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting Rcf7.cu
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf7.cu
 </pre></div>
 </div>
 </div>
@@ -2959,7 +2985,13 @@ Tiempo de cálculo en la gpu 0.06288
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-nvcc --compiler-options -Wall Rcf7.cu -o Rcf7.out
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf7.cu -o Rcf7.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -2972,9 +3004,9 @@ nvcc --compiler-options -Wall Rcf7.cu -o Rcf7.out
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328123114e-01
-Error relativo de la solución: 1.549029203572843e-13
-Tiempo de cálculo en la gpu 0.94370
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328130133e-01
+Error relativo de la solución: 7.849207480676210e-13
+Tiempo de cálculo en la gpu 5.47597
 </pre></div>
 </div>
 </div>
@@ -2982,36 +3014,39 @@ Tiempo de cálculo en la gpu 0.94370
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source ~/.profile
 nvprof --normalized-time-unit s ./Rcf7.out
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328123114e-01
-Error relativo de la solución: 1.549029203572843e-13
-Tiempo de cálculo en la gpu 0.94049
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328130133e-01
+Error relativo de la solución: 7.849207480676210e-13
+Tiempo de cálculo en la gpu 5.33121
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==1118== NVPROF is profiling process 1118, command: ./Rcf7.out
-==1118== Profiling application: ./Rcf7.out
-==1118== Profiling result:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==6952== NVPROF is profiling process 6952, command: ./Rcf7.out
+==6952== Warning: Auto boost enabled on device 0. Profiling results may be inconsistent.
+==6952== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
+==6952== Profiling application: ./Rcf7.out
+==6952== Profiling result:
             Type  Time(%)      Time     Calls       Avg       Min       Max  Name
                         %         s                   s         s         s
- GPU activities:   100.00  0.939793         1  0.939793  0.939793  0.939793  Rcf(double*, double, double, int, double*)
-                     0.00  1.44e-06         1  1.44e-06  1.44e-06  1.44e-06  [CUDA memcpy DtoH]
-      API calls:    90.36  0.939797         1  0.939797  0.939797  0.939797  cudaDeviceSynchronize
-                     8.80  0.091559         2  0.045780  6.07e-05  0.091499  cudaMalloc
-                     0.76  7.94e-03         2  3.97e-03  1.58e-04  7.78e-03  cudaFree
-                     0.03  3.02e-04        97  3.11e-06  3.18e-07  1.61e-04  cuDeviceGetAttribute
-                     0.03  2.61e-04         1  2.61e-04  2.61e-04  2.61e-04  cudaGetDeviceProperties
-                     0.01  8.03e-05         1  8.03e-05  8.03e-05  8.03e-05  cuDeviceTotalMem
-                     0.00  2.99e-05         1  2.99e-05  2.99e-05  2.99e-05  cuDeviceGetName
-                     0.00  2.02e-05         1  2.02e-05  2.02e-05  2.02e-05  cudaLaunchKernel
-                     0.00  1.82e-05         1  1.82e-05  1.82e-05  1.82e-05  cudaMemcpy
-                     0.00  2.19e-06         3  7.29e-07  4.02e-07  1.35e-06  cuDeviceGetCount
-                     0.00  2.10e-06         1  2.10e-06  2.10e-06  2.10e-06  cuDeviceGetPCIBusId
-                     0.00  1.33e-06         2  6.65e-07  3.42e-07  9.89e-07  cuDeviceGet
-                     0.00  5.26e-07         1  5.26e-07  5.26e-07  5.26e-07  cuDeviceGetUuid
+ GPU activities:   100.00  5.327689         1  5.327689  5.327689  5.327689  Rcf(double*, double, double, int, double*)
+                     0.00  2.18e-06         1  2.18e-06  2.18e-06  2.18e-06  [CUDA memcpy DtoH]
+      API calls:    94.95  5.327721         1  5.327721  5.327721  5.327721  cudaDeviceSynchronize
+                     4.39  0.246195         2  0.123098  1.53e-04  0.246042  cudaMalloc
+                     0.65  0.036204         2  0.018102  7.18e-04  0.035486  cudaFree
+                     0.01  5.14e-04         1  5.14e-04  5.14e-04  5.14e-04  cuDeviceTotalMem
+                     0.00  2.57e-04       101  2.54e-06  7.40e-07  8.46e-05  cuDeviceGetAttribute
+                     0.00  2.06e-04         1  2.06e-04  2.06e-04  2.06e-04  cudaGetDeviceProperties
+                     0.00  6.82e-05         1  6.82e-05  6.82e-05  6.82e-05  cudaLaunchKernel
+                     0.00  5.86e-05         1  5.86e-05  5.86e-05  5.86e-05  cudaMemcpy
+                     0.00  2.46e-05         1  2.46e-05  2.46e-05  2.46e-05  cuDeviceGetName
+                     0.00  7.94e-06         1  7.94e-06  7.94e-06  7.94e-06  cuDeviceGetPCIBusId
+                     0.00  3.60e-06         3  1.20e-06  7.62e-07  1.74e-06  cuDeviceGetCount
+                     0.00  2.23e-06         2  1.11e-06  7.92e-07  1.43e-06  cuDeviceGet
+                     0.00  9.28e-07         1  9.28e-07  9.28e-07  9.28e-07  cuDeviceGetUuid
 </pre></div>
 </div>
 </div>
@@ -3024,7 +3059,7 @@ Tiempo de cálculo en la gpu 0.94049
 <span class="c1">#include &lt;thrust/reduce.h&gt;</span>
 <span class="c1">#include &lt;thrust/execution_policy.h&gt;</span>
 
-<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="n">long</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="nb">sum</span> <span class="p">)</span> <span class="p">{</span>
+<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="n">long</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="n">sum_res</span> <span class="p">)</span> <span class="p">{</span>
     <span class="o">/*</span>
     <span class="n">Compute</span> <span class="n">numerical</span> <span class="n">approximation</span> <span class="n">using</span> <span class="n">rectangle</span> <span class="ow">or</span> <span class="n">mid</span><span class="o">-</span><span class="n">point</span> <span class="n">method</span> <span class="ow">in</span> 
     <span class="n">an</span> <span class="n">interval</span><span class="o">.</span>
@@ -3034,7 +3069,7 @@ Tiempo de cálculo en la gpu 0.94049
         <span class="n">n</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
         <span class="n">data</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">array</span> <span class="n">that</span> <span class="n">will</span> <span class="n">hold</span> <span class="n">values</span> <span class="n">evaluated</span> <span class="ow">in</span> <span class="n">function</span>
     <span class="n">Returns</span><span class="p">:</span>
-        <span class="nb">sum</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
+        <span class="n">sum_res</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
     <span class="o">*/</span>
     <span class="n">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">idx</span><span class="p">;</span>
@@ -3054,43 +3089,43 @@ Tiempo de cálculo en la gpu 0.94049
     <span class="o">//</span><span class="p">}</span>
     
     <span class="k">if</span><span class="p">(</span><span class="n">idx</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-        <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
+        <span class="o">*</span><span class="n">sum_res</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
-    <span class="n">double</span> <span class="n">suma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">sum_res</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="o">*</span><span class="n">d_data</span><span class="p">;</span>
-    <span class="n">double</span> <span class="o">*</span><span class="n">d_suma</span><span class="p">;</span>
+    <span class="n">double</span> <span class="o">*</span><span class="n">d_sum</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">h_hat</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">n_threads_per_block</span><span class="o">=</span><span class="mi">1024</span><span class="p">;</span> 
-    <span class="n">long</span> <span class="nb">int</span> <span class="n">n_bloques</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
-    <span class="n">double</span> <span class="n">objetivo</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
+    <span class="n">long</span> <span class="nb">int</span> <span class="n">n_blocks</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
+    <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
     <span class="n">long</span> <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
     <span class="n">double</span> <span class="n">time_spent</span><span class="p">;</span>
     <span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
     <span class="n">cudaDeviceProp</span> <span class="n">properties</span><span class="p">;</span>    
     <span class="n">cudaGetDeviceProperties</span><span class="p">(</span><span class="o">&amp;</span><span class="n">properties</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="n">n_bloques</span> <span class="o">=</span> <span class="mi">8192</span> <span class="o">*</span> <span class="n">properties</span><span class="o">.</span><span class="n">multiProcessorCount</span><span class="p">;</span> <span class="o">//</span><span class="n">elegimos</span> <span class="n">un</span> <span class="n">múltiplo</span> <span class="k">del</span> <span class="n">número</span> <span class="n">de</span> <span class="n">SM</span><span class="s1">&#39;s</span>
+    <span class="n">n_blocks</span> <span class="o">=</span> <span class="mi">8192</span> <span class="o">*</span> <span class="n">properties</span><span class="o">.</span><span class="n">multiProcessorCount</span><span class="p">;</span> <span class="o">//</span><span class="n">elegimos</span> <span class="n">un</span> <span class="n">múltiplo</span> <span class="k">del</span> <span class="n">número</span> <span class="n">de</span> <span class="n">SM</span><span class="s1">&#39;s</span>
                                                     <span class="o">//</span><span class="n">y</span> <span class="n">además</span> <span class="n">que</span> <span class="n">sea</span> <span class="n">menor</span> <span class="n">a</span> <span class="mi">10</span><span class="o">^</span><span class="mi">9</span> <span class="p">(</span><span class="n">para</span> <span class="n">tener</span> <span class="mi">10</span><span class="o">^</span><span class="mi">8</span> <span class="n">aprox</span> <span class="n">subintervalos</span><span class="p">)</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">n_bloques</span><span class="o">*</span><span class="n">n_threads_per_block</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
-    <span class="n">dim3</span> <span class="n">dimGrid</span><span class="p">(</span><span class="n">n_bloques</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n_blocks</span><span class="o">*</span><span class="n">n_threads_per_block</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
+    <span class="n">dim3</span> <span class="n">dimGrid</span><span class="p">(</span><span class="n">n_blocks</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">dim3</span> <span class="n">dimBlock</span><span class="p">(</span><span class="n">n_threads_per_block</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_data</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">);</span>
-    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_suma</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
+    <span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_sum</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">));</span>
     <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">dimGrid</span><span class="p">,</span><span class="n">dimBlock</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_suma</span><span class="p">);</span> 
+    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">dimGrid</span><span class="p">,</span><span class="n">dimBlock</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_sum</span><span class="p">);</span> 
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
     <span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
-    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">suma</span><span class="p">,</span> <span class="n">d_suma</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
-    <span class="n">suma</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">suma</span><span class="p">;</span>
+    <span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sum_res</span><span class="p">,</span> <span class="n">d_sum</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">);</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span><span class="p">;</span>
     <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_data</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_suma</span><span class="p">)</span> <span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">suma</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">suma</span><span class="o">-</span><span class="n">objetivo</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">objetivo</span><span class="p">));</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_sum</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">sum_res</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sum_res</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de cálculo en la gpu </span><span class="si">%.5f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -3106,7 +3141,13 @@ Tiempo de cálculo en la gpu 0.94049
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-nvcc --compiler-options -Wall Rcf8.cu -o Rcf8.out
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf8.cu -o Rcf8.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -3119,9 +3160,9 @@ nvcc --compiler-options -Wall Rcf8.cu -o Rcf8.out
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328125712e-01
-Error relativo de la solución: 1.929596838999568e-13
-Tiempo de cálculo en la gpu 12.95516
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328130135e-01
+Error relativo de la solución: 7.852180665327982e-13
+Tiempo de cálculo en la gpu 10.78316
 </pre></div>
 </div>
 </div>
@@ -3129,37 +3170,39 @@ Tiempo de cálculo en la gpu 12.95516
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source ~/.profile
 nvprof --normalized-time-unit s ./Rcf8.out
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328125712e-01
-Error relativo de la solución: 1.929596838999568e-13
-Tiempo de cálculo en la gpu 13.00077
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328130135e-01
+Error relativo de la solución: 7.852180665327982e-13
+Tiempo de cálculo en la gpu 10.81419
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==173== NVPROF is profiling process 173, command: ./Rcf8.out
-==173== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
-==173== Profiling application: ./Rcf8.out
-==173== Profiling result:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==7043== NVPROF is profiling process 7043, command: ./Rcf8.out
+==7043== Warning: Auto boost enabled on device 0. Profiling results may be inconsistent.
+==7043== Warning: Profiling results might be incorrect with current version of nvcc compiler used to compile cuda app. Compile with nvcc compiler 9.0 or later version to get correct profiling results. Ignore this warning if code is already compiled with the recommended nvcc version 
+==7043== Profiling application: ./Rcf8.out
+==7043== Profiling result:
             Type  Time(%)      Time     Calls       Avg       Min       Max  Name
                         %         s                   s         s         s
- GPU activities:   100.00  12.99435         1  12.99435  12.99435  12.99435  Rcf(double*, double, double, long, double*)
-                     0.00  2.46e-06         1  2.46e-06  2.46e-06  2.46e-06  [CUDA memcpy DtoH]
-      API calls:    97.08  12.99439         1  12.99439  12.99439  12.99439  cudaDeviceSynchronize
-                     2.21  0.296135         2  0.148068  1.54e-04  0.295981  cudaMalloc
-                     0.69  0.092310         2  0.046155  1.33e-03  0.090979  cudaFree
-                     0.00  5.54e-04       194  2.85e-06  2.41e-07  1.05e-04  cuDeviceGetAttribute
-                     0.00  5.52e-04         2  2.76e-04  2.57e-04  2.95e-04  cuDeviceTotalMem
-                     0.00  3.02e-04         1  3.02e-04  3.02e-04  3.02e-04  cudaLaunchKernel
-                     0.00  2.43e-04         1  2.43e-04  2.43e-04  2.43e-04  cudaGetDeviceProperties
-                     0.00  1.02e-04         2  5.10e-05  2.03e-05  8.17e-05  cuDeviceGetName
-                     0.00  8.62e-05         1  8.62e-05  8.62e-05  8.62e-05  cudaMemcpy
-                     0.00  6.53e-06         2  3.27e-06  2.73e-06  3.80e-06  cuDeviceGetPCIBusId
-                     0.00  2.42e-06         4  6.06e-07  2.69e-07  1.19e-06  cuDeviceGet
-                     0.00  1.94e-06         3  6.48e-07  3.04e-07  1.05e-06  cuDeviceGetCount
-                     0.00  8.75e-07         2  4.37e-07  3.71e-07  5.04e-07  cuDeviceGetUuid
+ GPU activities:   100.00  10.80508         1  10.80508  10.80508  10.80508  Rcf(double*, double, double, long, double*)
+                     0.00  2.34e-06         1  2.34e-06  2.34e-06  2.34e-06  [CUDA memcpy DtoH]
+      API calls:    97.05  10.80505         1  10.80505  10.80505  10.80505  cudaDeviceSynchronize
+                     2.29  0.254595         2  0.127297  1.68e-04  0.254426  cudaMalloc
+                     0.65  0.072182         2  0.036091  1.21e-03  0.070972  cudaFree
+                     0.00  5.39e-04         1  5.39e-04  5.39e-04  5.39e-04  cuDeviceTotalMem
+                     0.00  2.75e-04       101  2.72e-06  7.31e-07  9.11e-05  cuDeviceGetAttribute
+                     0.00  1.90e-04         1  1.90e-04  1.90e-04  1.90e-04  cudaGetDeviceProperties
+                     0.00  8.16e-05         1  8.16e-05  8.16e-05  8.16e-05  cudaLaunchKernel
+                     0.00  6.06e-05         1  6.06e-05  6.06e-05  6.06e-05  cudaMemcpy
+                     0.00  2.42e-05         1  2.42e-05  2.42e-05  2.42e-05  cuDeviceGetName
+                     0.00  7.76e-06         1  7.76e-06  7.76e-06  7.76e-06  cuDeviceGetPCIBusId
+                     0.00  3.50e-06         3  1.17e-06  7.63e-07  1.67e-06  cuDeviceGetCount
+                     0.00  2.69e-06         2  1.34e-06  8.22e-07  1.86e-06  cuDeviceGet
+                     0.00  8.90e-07         1  8.90e-07  8.90e-07  8.90e-07  cuDeviceGetUuid
 </pre></div>
 </div>
 </div>
@@ -3172,7 +3215,7 @@ Tiempo de cálculo en la gpu 13.00077
 <span class="c1">#include &lt;thrust/reduce.h&gt;</span>
 <span class="c1">#include &lt;thrust/execution_policy.h&gt;</span>
 
-<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="n">long</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="nb">sum</span> <span class="p">)</span> <span class="p">{</span>
+<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="n">long</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="n">sum_res</span> <span class="p">)</span> <span class="p">{</span>
     <span class="o">/*</span>
     <span class="n">Compute</span> <span class="n">numerical</span> <span class="n">approximation</span> <span class="n">using</span> <span class="n">rectangle</span> <span class="ow">or</span> <span class="n">mid</span><span class="o">-</span><span class="n">point</span> <span class="n">method</span> <span class="ow">in</span> 
     <span class="n">an</span> <span class="n">interval</span><span class="o">.</span>
@@ -3182,7 +3225,7 @@ Tiempo de cálculo en la gpu 13.00077
         <span class="n">n</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
         <span class="n">data</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">array</span> <span class="n">that</span> <span class="n">will</span> <span class="n">hold</span> <span class="n">values</span> <span class="n">evaluated</span> <span class="ow">in</span> <span class="n">function</span>
     <span class="n">Returns</span><span class="p">:</span>
-        <span class="nb">sum</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
+        <span class="n">sum_res</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
     <span class="o">*/</span>
     <span class="n">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">idx</span><span class="p">;</span>
@@ -3198,11 +3241,11 @@ Tiempo de cálculo en la gpu 13.00077
 <span class="p">}</span>
     
     <span class="k">if</span><span class="p">(</span><span class="n">idx</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
-        <span class="o">*</span><span class="nb">sum</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
+        <span class="o">*</span><span class="n">sum_res</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">cudaError_t</span> <span class="n">fun_checa_error</span><span class="p">(</span><span class="n">cudaError_t</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">cudaError_t</span> <span class="n">check_error</span><span class="p">(</span><span class="n">cudaError_t</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">!=</span> <span class="n">cudaSuccess</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s2">&quot;Error: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cudaGetErrorString</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
     <span class="p">}</span>
@@ -3210,38 +3253,38 @@ Tiempo de cálculo en la gpu 13.00077
 <span class="p">}</span>
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
-    <span class="n">double</span> <span class="n">suma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">sum_res</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="o">*</span><span class="n">d_data</span><span class="p">;</span>
-    <span class="n">double</span> <span class="o">*</span><span class="n">d_suma</span><span class="p">;</span>
+    <span class="n">double</span> <span class="o">*</span><span class="n">d_sum</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">h_hat</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">n_threads_per_block</span><span class="o">=</span><span class="mi">1024</span><span class="p">;</span> 
-    <span class="n">long</span> <span class="nb">int</span> <span class="n">n_bloques</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
-    <span class="n">double</span> <span class="n">objetivo</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
+    <span class="n">long</span> <span class="nb">int</span> <span class="n">n_blocks</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
+    <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
     <span class="n">long</span> <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
     <span class="n">double</span> <span class="n">time_spent</span><span class="p">;</span>
     <span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
     <span class="n">cudaDeviceProp</span> <span class="n">properties</span><span class="p">;</span>    
     <span class="n">cudaGetDeviceProperties</span><span class="p">(</span><span class="o">&amp;</span><span class="n">properties</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="n">n_bloques</span> <span class="o">=</span> <span class="mi">32768</span> <span class="o">*</span> <span class="n">properties</span><span class="o">.</span><span class="n">multiProcessorCount</span><span class="p">;</span> <span class="o">//</span><span class="n">elegimos</span> <span class="n">un</span> <span class="n">múltiplo</span> <span class="k">del</span> <span class="n">número</span> <span class="n">de</span> <span class="n">SM</span><span class="s1">&#39;s</span>
+    <span class="n">n_blocks</span> <span class="o">=</span> <span class="mi">32768</span> <span class="o">*</span> <span class="n">properties</span><span class="o">.</span><span class="n">multiProcessorCount</span><span class="p">;</span> <span class="o">//</span><span class="n">elegimos</span> <span class="n">un</span> <span class="n">múltiplo</span> <span class="k">del</span> <span class="n">número</span> <span class="n">de</span> <span class="n">SM</span><span class="s1">&#39;s</span>
                                                     <span class="o">//</span><span class="n">y</span> <span class="n">además</span> <span class="n">que</span> <span class="n">sea</span> <span class="n">menor</span> <span class="n">a</span> <span class="mi">10</span><span class="o">^</span><span class="mi">9</span> <span class="p">(</span><span class="n">para</span> <span class="n">tener</span> <span class="mi">10</span><span class="o">^</span><span class="mi">8</span> <span class="n">aprox</span> <span class="n">subintervalos</span><span class="p">)</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">n_bloques</span><span class="o">*</span><span class="n">n_threads_per_block</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
-    <span class="n">dim3</span> <span class="n">dimGrid</span><span class="p">(</span><span class="n">n_bloques</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n_blocks</span><span class="o">*</span><span class="n">n_threads_per_block</span><span class="p">;</span><span class="o">//</span><span class="n">número</span> <span class="n">de</span> <span class="n">subintervalos</span>
+    <span class="n">dim3</span> <span class="n">dimGrid</span><span class="p">(</span><span class="n">n_blocks</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">dim3</span> <span class="n">dimBlock</span><span class="p">(</span><span class="n">n_threads_per_block</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-    <span class="n">fun_checa_error</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_data</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">));</span>
-    <span class="n">fun_checa_error</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_suma</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)));</span>
+    <span class="n">check_error</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_data</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">));</span>
+    <span class="n">check_error</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_sum</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)));</span>
     <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
-    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">dimGrid</span><span class="p">,</span><span class="n">dimBlock</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_suma</span><span class="p">);</span> 
+    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">dimGrid</span><span class="p">,</span><span class="n">dimBlock</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_sum</span><span class="p">);</span> 
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
     <span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
-    <span class="n">fun_checa_error</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">suma</span><span class="p">,</span> <span class="n">d_suma</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">));</span>
-    <span class="n">suma</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">suma</span><span class="p">;</span>
+    <span class="n">check_error</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sum_res</span><span class="p">,</span> <span class="n">d_sum</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">));</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span><span class="p">;</span>
     <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_data</span><span class="p">);</span>
-    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_suma</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">suma</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">suma</span><span class="o">-</span><span class="n">objetivo</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">objetivo</span><span class="p">));</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_sum</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">sum_res</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sum_res</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de cálculo en la gpu </span><span class="si">%.5f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -3257,7 +3300,13 @@ Tiempo de cálculo en la gpu 13.00077
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-nvcc --compiler-options -Wall Rcf9.cu -o Rcf9.out
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf9.cu -o Rcf9.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -3270,13 +3319,9 @@ nvcc --compiler-options -Wall Rcf9.cu -o Rcf9.out
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 0.000000000000000e+00
-Error relativo de la solución: 1.000000000000000e+00
-Tiempo de cálculo en la gpu 0.00048
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error: out of memory
-Error: an illegal memory access was encountered
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328124106e-01
+Error relativo de la solución: 2.215022565569613e-14
+Tiempo de cálculo en la gpu 42.72796
 </pre></div>
 </div>
 </div>
