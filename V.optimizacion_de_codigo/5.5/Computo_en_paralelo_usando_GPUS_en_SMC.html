@@ -642,7 +642,7 @@ CPU family:                      6
 Model:                           79
 Model name:                      Intel(R) Xeon(R) CPU E5-2686 v4 @ 2.30GHz
 Stepping:                        1
-CPU MHz:                         2698.856
+CPU MHz:                         2699.996
 CPU max MHz:                     3000.0000
 CPU min MHz:                     1200.0000
 BogoMIPS:                        4600.15
@@ -823,7 +823,7 @@ nvidia-smi
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sat May  8 23:46:44 2021       
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sat May  8 23:49:06 2021       
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 465.19.01    Driver Version: 465.19.01    CUDA Version: 11.3     |
 |-------------------------------+----------------------+----------------------+
@@ -832,7 +832,7 @@ nvidia-smi
 |                               |                      |               MIG M. |
 |===============================+======================+======================|
 |   0  NVIDIA Tesla K80    On   | 00000000:00:1E.0 Off |                    0 |
-| N/A   40C    P8    27W / 149W |      0MiB / 11441MiB |      0%      Default |
+| N/A   40C    P8    26W / 149W |      0MiB / 11441MiB |      0%      Default |
 |                               |                      |                  N/A |
 +-------------------------------+----------------------+----------------------+
                                                                                
@@ -857,7 +857,7 @@ nvidia-smi -a
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==============NVSMI LOG==============
 
-Timestamp                                 : Sat May  8 23:46:45 2021
+Timestamp                                 : Sat May  8 23:49:08 2021
 Driver Version                            : 465.19.01
 CUDA Version                              : 11.3
 
@@ -1066,6 +1066,10 @@ GPU 00000000:00:1E.0
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Ver <a class="reference external" href="https://stackoverflow.com/questions/63675040/cuda-11-kernel-doesnt-run">cuda-11-kernel-doesnt-run</a>, <a class="reference external" href="https://stackoverflow.com/questions/35656294/cuda-how-to-use-arch-and-code-and-sm-vs-compute/35657430#35657430">cuda-how-to-use-arch-and-code-and-sm-vs-compute</a>, <a class="reference external" href="https://stackoverflow.com/questions/28932864/cuda-compute-capability-requirements/28933055#28933055">cuda-compute-capability-requirements</a>, <a class="reference external" href="https://stackoverflow.com/questions/14038589/what-is-the-canonical-way-to-check-for-errors-using-the-cuda-runtime-api">what-is-the-canonical-way-to-check-for-errors-using-the-cuda-runtime-api</a></p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
@@ -1111,7 +1115,9 @@ cd /usr/local/cuda/samples/1_Utilities/deviceQuery/ &amp;&amp; sudo make
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>make: Nothing to be done for &#39;all&#39;.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/cuda-11.3/bin/nvcc -ccbin g++   -m64      -gencode arch=compute_35,code=sm_35 -gencode arch=compute_37,code=sm_37 -gencode arch=compute_50,code=sm_50 -gencode arch=compute_52,code=sm_52 -gencode arch=compute_60,code=sm_60 -gencode arch=compute_61,code=sm_61 -gencode arch=compute_70,code=sm_70 -gencode arch=compute_75,code=sm_75 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_86,code=compute_86 -o deviceQuery deviceQuery.o 
+mkdir -p ../../bin/x86_64/linux/release
+cp deviceQuery ../../bin/x86_64/linux/release
 /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery Starting...
 
  CUDA Device Query (Runtime API) version (CUDART static linking)
@@ -1158,6 +1164,9 @@ Device 0: &quot;NVIDIA Tesla K80&quot;
 
 deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 11.3, CUDA Runtime Version = 11.3, NumDevs = 1
 Result = PASS
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -1213,10 +1222,10 @@ Result = PASS
 </div>
 <div class="section" id="ejemplo">
 <h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">hello_world.cu</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">hello_world_simple.cu</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> hello_world.cu
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> hello_world_simple.cu
 <span class="c1">#include&lt;stdio.h&gt;</span>
 <span class="n">__global__</span> <span class="n">void</span> <span class="n">func</span><span class="p">(</span><span class="n">void</span><span class="p">){</span>
 <span class="p">}</span>
@@ -1229,7 +1238,7 @@ Result = PASS
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting hello_world.cu
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing hello_world_simple.cu
 </pre></div>
 </div>
 </div>
@@ -1239,7 +1248,7 @@ Result = PASS
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 source ~/.profile
-nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall hello_world.cu -o hello_world.out
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall hello_world_simple.cu -o hello_world_simple.out
 </pre></div>
 </div>
 </div>
@@ -1253,7 +1262,7 @@ nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall hello_world.cu
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-./hello_world.out
+./hello_world_simple.out
 </pre></div>
 </div>
 </div>
@@ -1294,7 +1303,7 @@ nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall hello_world.cu
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">){</span>
     <span class="n">func</span><span class="o">&lt;&lt;&lt;</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;&gt;&gt;</span><span class="p">();</span> <span class="o">//</span><span class="mi">2</span> <span class="n">bloques</span> <span class="n">de</span> <span class="mi">3</span> <span class="n">threads</span> <span class="n">cada</span> <span class="n">uno</span>
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
-    <span class="o">//</span><span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hola del cpu thread</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+    <span class="o">//</span><span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hello world del cpu thread</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -1368,7 +1377,7 @@ Hello world del bloque 1 del thread 2!
     <span class="n">dim3</span> <span class="n">dimBlock</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="o">//</span><span class="mi">3</span> <span class="n">threads</span> <span class="n">por</span> <span class="n">bloque</span>
     <span class="n">func</span><span class="o">&lt;&lt;&lt;</span><span class="n">dimGrid</span><span class="p">,</span><span class="n">dimBlock</span><span class="o">&gt;&gt;&gt;</span><span class="p">();</span> 
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hola del cpu thread</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hello world del cpu thread</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -1384,7 +1393,12 @@ Hello world del bloque 1 del thread 2!
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 source ~/.profile
-nvcc --compiler-options -Wall hello_world_3.cu -o hello_world_3.out
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall hello_world_3.cu -o hello_world_3.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -1397,7 +1411,13 @@ nvcc --compiler-options -Wall hello_world_3.cu -o hello_world_3.out
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hola del cpu thread
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello world del bloque 0 del thread 0!
+Hello world del bloque 0 del thread 1!
+Hello world del bloque 0 del thread 2!
+Hello world del bloque 1 del thread 0!
+Hello world del bloque 1 del thread 1!
+Hello world del bloque 1 del thread 2!
+Hello world del cpu thread
 </pre></div>
 </div>
 </div>
@@ -1428,7 +1448,7 @@ nvcc --compiler-options -Wall hello_world_3.cu -o hello_world_3.out
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting thread_idxs.cu
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing thread_idxs.cu
 </pre></div>
 </div>
 </div>
@@ -1500,8 +1520,14 @@ thread idx.z:0
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span> 
-nvcc --compiler-options -Wall block_idxs.cu -o block_idxs.out
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall block_idxs.cu -o block_idxs.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -1520,11 +1546,11 @@ blockIdx.x:0
 blockIdx.x:0
 blockIdx.y:1
 blockIdx.y:0
-blockIdx.y:0
 blockIdx.y:1
-blockIdx.z:0
-blockIdx.z:0
+blockIdx.y:0
 blockIdx.z:1
+blockIdx.z:0
+blockIdx.z:0
 blockIdx.z:1
 </pre></div>
 </div>
@@ -1564,8 +1590,14 @@ blockIdx.z:1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span> 
-nvcc --compiler-options -Wall block_dims.cu -o block_dims.out
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall block_dims.cu -o block_dims.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -1657,7 +1689,13 @@ blockDim.z:2
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-nvcc --compiler-options -Wall suma_vectorial.cu -o suma_vectorial.out
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall suma_vectorial.cu -o suma_vectorial.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -1704,7 +1742,8 @@ nvcc --compiler-options -Wall suma_vectorial.cu -o suma_vectorial.out
 <p>Al instalar el <em>CUDA toolkit</em> en sus máquinas o bien si utilizan el contenedor de docker (descrito al inicio de la nota) se instala la línea de comando <a class="reference external" href="https://docs.nvidia.com/cuda/profiler-users-guide/index.html">nvprof</a> para perfilamiento. Se puede ejecutar con:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source ~/.profile
 nvprof --normalized-time-unit s ./suma_vectorial.out
 </pre></div>
 </div>
@@ -1722,26 +1761,27 @@ nvprof --normalized-time-unit s ./suma_vectorial.out
 9+81 = 90
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==342== NVPROF is profiling process 342, command: ./suma_vectorial.out
-==342== Profiling application: ./suma_vectorial.out
-==342== Profiling result:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==5009== NVPROF is profiling process 5009, command: ./suma_vectorial.out
+==5009== Warning: Auto boost enabled on device 0. Profiling results may be inconsistent.
+==5009== Profiling application: ./suma_vectorial.out
+==5009== Profiling result:
             Type  Time(%)      Time     Calls       Avg       Min       Max  Name
                         %         s                   s         s         s
- GPU activities:    36.80  1.47e-06         1  1.47e-06  1.47e-06  1.47e-06  suma_vect(int*, int*, int*)
-                    35.20  1.41e-06         2  7.04e-07  5.44e-07  8.64e-07  [CUDA memcpy HtoD]
-                    28.00  1.12e-06         1  1.12e-06  1.12e-06  1.12e-06  [CUDA memcpy DtoH]
-      API calls:    99.55  0.087959         3  0.029320  4.69e-06  0.087948  cudaMalloc
-                     0.25  2.18e-04        97  2.25e-06  1.79e-07  1.36e-04  cuDeviceGetAttribute
-                     0.06  5.50e-05         3  1.83e-05  3.40e-06  4.55e-05  cudaFree
-                     0.05  4.70e-05         1  4.70e-05  4.70e-05  4.70e-05  cuDeviceTotalMem
-                     0.03  2.69e-05         3  8.96e-06  5.04e-06  1.11e-05  cudaMemcpy
-                     0.02  1.92e-05         1  1.92e-05  1.92e-05  1.92e-05  cudaLaunchKernel
-                     0.02  1.86e-05         1  1.86e-05  1.86e-05  1.86e-05  cuDeviceGetName
-                     0.00  4.01e-06         1  4.01e-06  4.01e-06  4.01e-06  cudaDeviceSynchronize
-                     0.00  2.45e-06         1  2.45e-06  2.45e-06  2.45e-06  cuDeviceGetPCIBusId
-                     0.00  1.65e-06         3  5.49e-07  2.53e-07  1.03e-06  cuDeviceGetCount
-                     0.00  9.27e-07         2  4.63e-07  1.84e-07  7.43e-07  cuDeviceGet
-                     0.00  2.72e-07         1  2.72e-07  2.72e-07  2.72e-07  cuDeviceGetUuid
+ GPU activities:    46.12  5.31e-06         1  5.31e-06  5.31e-06  5.31e-06  suma_vect(int*, int*, int*)
+                    31.67  3.65e-06         2  1.82e-06  1.54e-06  2.11e-06  [CUDA memcpy HtoD]
+                    22.22  2.56e-06         1  2.56e-06  2.56e-06  2.56e-06  [CUDA memcpy DtoH]
+      API calls:    99.93  1.607231         3  0.535744  5.65e-06  1.607219  cudaMalloc
+                     0.03  5.22e-04         1  5.22e-04  5.22e-04  5.22e-04  cuDeviceTotalMem
+                     0.02  2.87e-04       101  2.84e-06  7.42e-07  1.01e-04  cuDeviceGetAttribute
+                     0.01  1.60e-04         3  5.35e-05  4.79e-06  1.46e-04  cudaFree
+                     0.00  6.98e-05         3  2.33e-05  1.22e-05  3.26e-05  cudaMemcpy
+                     0.00  3.65e-05         1  3.65e-05  3.65e-05  3.65e-05  cuDeviceGetName
+                     0.00  3.53e-05         1  3.53e-05  3.53e-05  3.53e-05  cudaLaunchKernel
+                     0.00  1.00e-05         1  1.00e-05  1.00e-05  1.00e-05  cudaDeviceSynchronize
+                     0.00  9.41e-06         1  9.41e-06  9.41e-06  9.41e-06  cuDeviceGetPCIBusId
+                     0.00  4.00e-06         3  1.33e-06  7.91e-07  1.99e-06  cuDeviceGetCount
+                     0.00  2.61e-06         2  1.30e-06  7.66e-07  1.84e-06  cuDeviceGet
+                     0.00  8.91e-07         1  8.91e-07  8.91e-07  8.91e-07  cuDeviceGetUuid
 </pre></div>
 </div>
 </div>
@@ -1799,14 +1839,21 @@ nvprof --normalized-time-unit s ./suma_vectorial.out
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-nvcc --compiler-options -Wall suma_vectorial_2.cu -o suma_vectorial_2.out
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall suma_vectorial_2.cu -o suma_vectorial_2.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source ~/.profile
 nvprof --normalized-time-unit s ./suma_vectorial_2.out
 </pre></div>
 </div>
@@ -1824,29 +1871,30 @@ nvprof --normalized-time-unit s ./suma_vectorial_2.out
 9+81 = 90
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==389== NVPROF is profiling process 389, command: ./suma_vectorial_2.out
-==389== Profiling application: ./suma_vectorial_2.out
-==389== Profiling result:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==5070== NVPROF is profiling process 5070, command: ./suma_vectorial_2.out
+==5070== Warning: Auto boost enabled on device 0. Profiling results may be inconsistent.
+==5070== Profiling application: ./suma_vectorial_2.out
+==5070== Profiling result:
             Type  Time(%)      Time     Calls       Avg       Min       Max  Name
                         %         s                   s         s         s
- GPU activities:   100.00  2.05e-06         1  2.05e-06  2.05e-06  2.05e-06  suma_vect(int*, int*, int*)
-      API calls:    99.40  0.151464         3  0.050488  1.09e-05  0.151432  cudaMallocManaged
-                     0.27  4.08e-04         1  4.08e-04  4.08e-04  4.08e-04  cudaLaunchKernel
-                     0.19  2.82e-04        97  2.91e-06  3.09e-07  1.61e-04  cuDeviceGetAttribute
-                     0.06  9.38e-05         3  3.13e-05  1.15e-05  5.90e-05  cudaFree
-                     0.05  7.66e-05         1  7.66e-05  7.66e-05  7.66e-05  cuDeviceTotalMem
-                     0.02  2.95e-05         1  2.95e-05  2.95e-05  2.95e-05  cuDeviceGetName
-                     0.01  1.31e-05         1  1.31e-05  1.31e-05  1.31e-05  cudaDeviceSynchronize
-                     0.00  2.76e-06         3  9.18e-07  3.62e-07  1.29e-06  cuDeviceGetCount
-                     0.00  1.91e-06         1  1.91e-06  1.91e-06  1.91e-06  cuDeviceGetPCIBusId
-                     0.00  1.46e-06         2  7.30e-07  4.97e-07  9.63e-07  cuDeviceGet
-                     0.00  4.90e-07         1  4.90e-07  4.90e-07  4.90e-07  cuDeviceGetUuid
+ GPU activities:   100.00  5.82e-06         1  5.82e-06  5.82e-06  5.82e-06  suma_vect(int*, int*, int*)
+      API calls:    99.57  0.291506         3  0.097169  7.08e-06  0.291487  cudaMallocManaged
+                     0.19  5.43e-04         1  5.43e-04  5.43e-04  5.43e-04  cuDeviceTotalMem
+                     0.10  2.83e-04       101  2.80e-06  7.42e-07  9.71e-05  cuDeviceGetAttribute
+                     0.08  2.40e-04         1  2.40e-04  2.40e-04  2.40e-04  cudaLaunchKernel
+                     0.04  1.29e-04         3  4.31e-05  9.50e-06  9.73e-05  cudaFree
+                     0.01  2.58e-05         1  2.58e-05  2.58e-05  2.58e-05  cuDeviceGetName
+                     0.01  1.68e-05         1  1.68e-05  1.68e-05  1.68e-05  cudaDeviceSynchronize
+                     0.00  7.88e-06         1  7.88e-06  7.88e-06  7.88e-06  cuDeviceGetPCIBusId
+                     0.00  3.94e-06         3  1.31e-06  8.28e-07  2.04e-06  cuDeviceGetCount
+                     0.00  2.50e-06         2  1.25e-06  8.30e-07  1.67e-06  cuDeviceGet
+                     0.00  9.04e-07         1  9.04e-07  9.04e-07  9.04e-07  cuDeviceGetUuid
 
-==389== Unified Memory profiling result:
-Device &quot;GeForce GTX 750 (0)&quot;
+==5070== Unified Memory profiling result:
+Device &quot;NVIDIA Tesla K80 (0)&quot;
    Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
-       1  8.0000KB  8.0000KB  8.0000KB  8.000000KB  1.6960e-06s  Host To Device
-       5  25.600KB  4.0000KB  60.000KB  128.0000KB  1.2960e-05s  Device To Host
+       1  8.0000KB  8.0000KB  8.0000KB  8.000000KB  3.8710e-06s  Host To Device
+       5  25.600KB  4.0000KB  60.000KB  128.0000KB  2.7104e-05s  Device To Host
 Total CPU Page faults: 2
 </pre></div>
 </div>
@@ -1914,7 +1962,13 @@ Total CPU Page faults: 2
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-nvcc --compiler-options -Wall suma_vectorial_3.cu -o suma_vectorial_3.out
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall suma_vectorial_3.cu -o suma_vectorial_3.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
 </pre></div>
 </div>
 </div>
@@ -1922,6 +1976,7 @@ nvcc --compiler-options -Wall suma_vectorial_3.cu -o suma_vectorial_3.out
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source ~/.profile
 nvprof --normalized-time-unit s ./suma_vectorial_3.out
 </pre></div>
 </div>
@@ -1939,29 +1994,30 @@ nvprof --normalized-time-unit s ./suma_vectorial_3.out
 9+81 = 90
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==436== NVPROF is profiling process 436, command: ./suma_vectorial_3.out
-==436== Profiling application: ./suma_vectorial_3.out
-==436== Profiling result:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==5178== NVPROF is profiling process 5178, command: ./suma_vectorial_3.out
+==5178== Warning: Auto boost enabled on device 0. Profiling results may be inconsistent.
+==5178== Profiling application: ./suma_vectorial_3.out
+==5178== Profiling result:
             Type  Time(%)      Time     Calls       Avg       Min       Max  Name
                         %         s                   s         s         s
- GPU activities:    51.28  1.92e-06         1  1.92e-06  1.92e-06  1.92e-06  suma_vect(int*, int*, int*)
-                    48.72  1.82e-06         1  1.82e-06  1.82e-06  1.82e-06  init(int*, int*)
-      API calls:    99.37  0.149377         3  0.049792  1.17e-05  0.149330  cudaMallocManaged
-                     0.28  4.28e-04         2  2.14e-04  1.33e-05  4.15e-04  cudaLaunchKernel
-                     0.19  2.93e-04        97  3.02e-06  3.01e-07  1.60e-04  cuDeviceGetAttribute
-                     0.07  1.05e-04         3  3.50e-05  1.25e-05  6.47e-05  cudaFree
-                     0.05  7.66e-05         1  7.66e-05  7.66e-05  7.66e-05  cuDeviceTotalMem
-                     0.02  2.88e-05         1  2.88e-05  2.88e-05  2.88e-05  cuDeviceGetName
-                     0.01  1.25e-05         1  1.25e-05  1.25e-05  1.25e-05  cudaDeviceSynchronize
-                     0.00  1.99e-06         3  6.63e-07  3.55e-07  1.18e-06  cuDeviceGetCount
-                     0.00  1.96e-06         1  1.96e-06  1.96e-06  1.96e-06  cuDeviceGetPCIBusId
-                     0.00  1.20e-06         2  6.00e-07  3.18e-07  8.83e-07  cuDeviceGet
-                     0.00  5.35e-07         1  5.35e-07  5.35e-07  5.35e-07  cuDeviceGetUuid
+ GPU activities:    50.48  5.06e-06         1  5.06e-06  5.06e-06  5.06e-06  suma_vect(int*, int*, int*)
+                    49.52  4.96e-06         1  4.96e-06  4.96e-06  4.96e-06  init(int*, int*)
+      API calls:    99.55  0.298658         3  0.099553  7.31e-06  0.298632  cudaMallocManaged
+                     0.17  5.24e-04         1  5.24e-04  5.24e-04  5.24e-04  cuDeviceTotalMem
+                     0.10  2.95e-04       101  2.92e-06  7.34e-07  1.06e-04  cuDeviceGetAttribute
+                     0.10  2.90e-04         2  1.45e-04  1.18e-04  1.72e-04  cudaLaunchKernel
+                     0.05  1.46e-04         3  4.85e-05  9.42e-06  1.12e-04  cudaFree
+                     0.01  3.43e-05         1  3.43e-05  3.43e-05  3.43e-05  cuDeviceGetName
+                     0.01  3.18e-05         2  1.59e-05  1.30e-05  1.87e-05  cudaDeviceSynchronize
+                     0.00  7.98e-06         1  7.98e-06  7.98e-06  7.98e-06  cuDeviceGetPCIBusId
+                     0.00  4.54e-06         3  1.51e-06  8.21e-07  2.23e-06  cuDeviceGetCount
+                     0.00  2.45e-06         2  1.22e-06  8.48e-07  1.60e-06  cuDeviceGet
+                     0.00  9.27e-07         1  9.27e-07  9.27e-07  9.27e-07  cuDeviceGetUuid
 
-==436== Unified Memory profiling result:
-Device &quot;GeForce GTX 750 (0)&quot;
+==5178== Unified Memory profiling result:
+Device &quot;NVIDIA Tesla K80 (0)&quot;
    Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
-       3  21.333KB  4.0000KB  52.000KB  64.00000KB  6.8480e-06s  Device To Host
+       3  21.333KB  4.0000KB  52.000KB  64.00000KB  1.5297e-05s  Device To Host
 Total CPU Page faults: 1
 </pre></div>
 </div>
