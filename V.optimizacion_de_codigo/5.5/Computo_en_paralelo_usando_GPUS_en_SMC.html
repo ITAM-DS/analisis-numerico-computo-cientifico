@@ -551,7 +551,14 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#arquitectura-de-una-gpu-y-limites-en-numero-de-threads-y-bloques-que-podemos-lanzar-en-el-kernel">
-   Arquitectura de una GPU y límites en número de threads y bloques que podemos lanzar en el kernel
+   Arquitectura de una GPU y límites en número de
+   <em>
+    threads
+   </em>
+   y bloques que podemos lanzar en el
+   <em>
+    kernel
+   </em>
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -561,7 +568,10 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#grid-configuration-choices">
-     Grid Configuration Choices?
+     <em>
+      Grid Configuration Choices
+     </em>
+     ?
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -1689,12 +1699,18 @@ blockDim.z:2
 </div>
 <div class="section" id="alojamiento-de-memoria-en-el-device">
 <h3>Alojamiento de memoria en el <em>device</em><a class="headerlink" href="#alojamiento-de-memoria-en-el-device" title="Permalink to this headline">¶</a></h3>
-<p>Para alojar memoria en el <em>device</em> se utiliza el llamado a <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g37d37965bfb4803b6d4e59ff26856356">cudaMalloc</a> y para transferir datos del <em>host</em> al <em>device</em> o viceversa se llama a lafunción <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1gc263dbe6574220cc776b45438fc351e8">cudaMemcpy</a> con respectivos parámetros como <code class="docutils literal notranslate"><span class="pre">cudaMemcpyHostToDevice</span></code> o <code class="docutils literal notranslate"><span class="pre">cudaMemcpyDeviceToHost</span></code>.</p>
+<p>Para alojar memoria en el <em>device</em> se utiliza el llamado a <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g37d37965bfb4803b6d4e59ff26856356">cudaMalloc</a> y para transferir datos del <em>host</em> al <em>device</em> o viceversa se llama a la función <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1gc263dbe6574220cc776b45438fc351e8">cudaMemcpy</a> con respectivos parámetros como <code class="docutils literal notranslate"><span class="pre">cudaMemcpyHostToDevice</span></code> o <code class="docutils literal notranslate"><span class="pre">cudaMemcpyDeviceToHost</span></code>.</p>
 <p>Para desalojar memoria del <em>device</em> se utiliza el llamado a <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1ga042655cbbf3408f01061652a075e094">cudaFree</a>.</p>
 </div>
 <div class="section" id="id6">
 <h3>Ejemplo<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p><strong>N bloques de 1 thread</strong></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(N,1,1);</span></code> representa N bloques en el <em>grid</em>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(1,1,1);</span></code> representa 1 <em>thread</em> por bloque.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;dimGrid,dimBlock&gt;&gt;&gt;</span></code> N bloques de 1 <em>thread</em>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> vector_sum.cu
@@ -1724,7 +1740,6 @@ blockDim.z:2
     <span class="o">//</span><span class="n">making</span> <span class="n">copies</span> <span class="n">of</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="n">arrays</span> <span class="n">to</span> <span class="n">GPU</span>
     <span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">device_a</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">N</span><span class="o">*</span><span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">cudaMemcpyHostToDevice</span><span class="p">);</span>
     <span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">device_b</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">N</span><span class="o">*</span><span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">cudaMemcpyHostToDevice</span><span class="p">);</span>
-    <span class="o">//</span><span class="n">mandamos</span> <span class="n">a</span> <span class="n">llamar</span> <span class="n">a</span> <span class="n">suma_vect</span><span class="p">:</span>
     <span class="n">vect_sum</span><span class="o">&lt;&lt;&lt;</span><span class="n">dimGrid</span><span class="p">,</span><span class="n">dimBlock</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">device_a</span><span class="p">,</span><span class="n">device_b</span><span class="p">,</span><span class="n">device_c</span><span class="p">);</span>
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="o">//</span><span class="n">copy</span> <span class="n">result</span> <span class="n">to</span> <span class="n">c</span> <span class="n">array</span>
@@ -1744,14 +1759,6 @@ blockDim.z:2
 </pre></div>
 </div>
 </div>
-</div>
-<div class="admonition-comentarios admonition">
-<p class="admonition-title">Comentarios</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(N,1,1);</span></code> representa N bloques en el <em>grid</em>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(1,1,1);</span></code> representa 1 <em>thread</em> por bloque.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;dimGrid,dimBlock&gt;&gt;&gt;</span></code> N bloques de 1 <em>thread</em>.</p></li>
-</ul>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1792,21 +1799,21 @@ nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall vector_sum.cu 
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>Los <em>statements</em>:</p></li>
+<li><p>El <em>statement</em>:</p></li>
 </ul>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span>    <span class="kt">int</span> <span class="o">*</span><span class="n">device_a</span><span class="p">,</span> <span class="o">*</span><span class="n">device_b</span><span class="p">,</span> <span class="o">*</span><span class="n">device_c</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>en sintaxis de <em>C</em> se definen apuntadores que refieren a una dirección de memoria. En el contexto de la <em>GPU programming</em> estos apuntadores no apuntan a una dirección de memoria en el <em>device</em>. Aunque NVIDIA añadió el <em>feature</em> de <a class="reference external" href="https://devblogs.nvidia.com/unified-memory-cuda-beginners/">Unified Memory</a> (un espacio de memoria accesible para el <em>host</em> y el <em>device</em>) aquí no se está usando tal <em>feature</em>. Más bien se están utilizando los apuntadores anteriores para apuntar a un <a class="reference external" href="https://en.wikipedia.org/wiki/Struct_(C_programming_language)">struct</a> de <em>C</em> en el que uno de sus tipos de datos es una dirección de memoria en el <em>device</em>.</p>
+<p>en sintaxis de <em>C</em> definen apuntadores que refieren a una dirección de memoria. En el contexto de la <em>GPU programming</em> estos apuntadores no apuntan a una dirección de memoria en el <em>device</em>. Aunque NVIDIA añadió el <em>feature</em> de <a class="reference external" href="https://devblogs.nvidia.com/unified-memory-cuda-beginners/">Unified Memory</a> (un espacio de memoria accesible para el <em>host</em> y el <em>device</em>) aquí no se está usando tal <em>feature</em>. Más bien se están utilizando los apuntadores anteriores para apuntar a un <a class="reference external" href="https://en.wikipedia.org/wiki/Struct_(C_programming_language)">struct</a> de <em>C</em> en el que uno de sus tipos de datos es una dirección de memoria en el <em>device</em>.</p>
 <ul class="simple">
-<li><p>El uso de <code class="docutils literal notranslate"><span class="pre">(void</span> <span class="pre">**)</span></code> es por la definición de la función <code class="docutils literal notranslate"><span class="pre">cudaMalloc</span></code>.</p></li>
+<li><p>El uso de <code class="docutils literal notranslate"><span class="pre">(void</span> <span class="pre">**)</span></code> en el <em>statement</em>  <code class="docutils literal notranslate"><span class="pre">cudaMalloc((void</span> <span class="pre">**)&amp;device_a,</span> <span class="pre">sizeof(int)*N);</span></code> es por la definición de la función <code class="docutils literal notranslate"><span class="pre">cudaMalloc</span></code>.</p></li>
 <li><p>En el programa anterior se coloca en comentario que se asume que <span class="math notranslate nohighlight">\(N\)</span> el número de datos en el arreglo es menor al número de bloques que es posible lanzar. Esto como veremos más adelante es importante considerar pues aunque en un <em>device</em> se pueden lanzar muchos bloques y muchos threads, se tienen límites en el número de éstos que es posible lanzar.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="perfilamiento-en-cuda">
 <h3>¿Perfilamiento en CUDA?<a class="headerlink" href="#perfilamiento-en-cuda" title="Permalink to this headline">¶</a></h3>
-<p>Al instalar el <em>CUDA toolkit</em> en sus máquinas o bien si utilizan el contenedor de docker (descrito al inicio de la nota) se instala la línea de comando <a class="reference external" href="https://docs.nvidia.com/cuda/profiler-users-guide/index.html">nvprof</a> para perfilamiento. Se puede ejecutar con:</p>
+<p>Al instalar el <em>CUDA toolkit</em> en sus máquinas se instala la línea de comando <a class="reference external" href="https://docs.nvidia.com/cuda/profiler-users-guide/index.html">nvprof</a> para perfilamiento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
@@ -1853,12 +1860,20 @@ nvprof --normalized-time-unit s ./vector_sum.out
 </div>
 </div>
 </div>
-<p><strong>Comentarios:</strong></p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>Las unidades en las que se reporta son s: second, ms: millisecond, us: microsecond, ns: nanosecond.</p></li>
 <li><p>En la documentación de NVIDIA se menciona que <code class="docutils literal notranslate"><span class="pre">nvprof</span></code> será reemplazada próximamente por <a class="reference external" href="https://developer.nvidia.com/nsight-compute">NVIDIA Nsight Compute</a> y <a class="reference external" href="https://developer.nvidia.com/nsight-systems">NVIDIA Nsight Systems</a>.</p></li>
 </ul>
+</div>
 <p>En el ejemplo anterior se lanzaron <span class="math notranslate nohighlight">\(N\)</span> bloques con <span class="math notranslate nohighlight">\(1\)</span> <em>thread</em> cada uno y a continuación se lanza <span class="math notranslate nohighlight">\(1\)</span> bloque con <span class="math notranslate nohighlight">\(N\)</span> <em>threads</em>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(1,1,1);</span></code> representa 1 bloque en el <em>grid</em>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(N,1,1);</span></code> representa N <em>threads</em> por bloque.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;dimGrid,dimBlock&gt;&gt;&gt;</span></code> 1 bloque con N <em>threads</em>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> vector_sum_2.cu
@@ -1874,11 +1889,11 @@ nvprof --normalized-time-unit s ./vector_sum.out
     <span class="nb">int</span> <span class="n">i</span><span class="p">;</span>
     <span class="n">dim3</span> <span class="n">dimGrid</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">dim3</span> <span class="n">dimBlock</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-    <span class="o">//</span><span class="n">alojando</span> <span class="n">en</span> <span class="n">device</span> <span class="n">con</span> <span class="n">Unified</span> <span class="n">Memory</span>
+    <span class="o">//</span><span class="n">allocation</span> <span class="ow">in</span> <span class="n">device</span> <span class="k">with</span> <span class="n">Unified</span> <span class="n">Memory</span>
     <span class="n">cudaMallocManaged</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_a</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">*</span><span class="n">N</span><span class="p">);</span>
     <span class="n">cudaMallocManaged</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_b</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">*</span><span class="n">N</span><span class="p">);</span>
     <span class="n">cudaMallocManaged</span><span class="p">(</span><span class="o">&amp;</span><span class="n">device_c</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">*</span><span class="n">N</span><span class="p">);</span>
-    <span class="o">//</span><span class="n">llenando</span> <span class="n">los</span> <span class="n">arreglos</span><span class="p">:</span>
+    <span class="o">//</span><span class="n">dummy</span> <span class="n">data</span>
     <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">N</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
         <span class="n">device_a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
         <span class="n">device_b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="p">;</span>
@@ -1900,14 +1915,6 @@ nvprof --normalized-time-unit s ./vector_sum.out
 </pre></div>
 </div>
 </div>
-</div>
-<div class="admonition-comentarios admonition">
-<p class="admonition-title">Comentarios</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(1,1,1);</span></code> representa 1 bloque en el <em>grid</em>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(N,1,1);</span></code> representa N <em>threads</em> por bloque.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;dimGrid,dimBlock&gt;&gt;&gt;</span></code> 1 bloque con N <em>threads</em>.</p></li>
-</ul>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1973,15 +1980,17 @@ Total CPU Page faults: 2
 </div>
 </div>
 </div>
-<p><strong>Comentarios:</strong></p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>El programa anterior utiliza la <a class="reference external" href="https://devblogs.nvidia.com/unified-memory-cuda-beginners/">Unified Memory</a> con la función <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__HIGHLEVEL.html#group__CUDART__HIGHLEVEL_1gcf6b9b1019e73c5bc2b39b39fe90816e">cudaMallocManaged</a>. La <em>Unified Memory</em> es un <em>feature</em> que se añadió a CUDA desde las arquitecturas de <strong>Kepler</strong> y <strong>Maxwell</strong> pero que ha ido mejorando (por ejemplo añadiendo <a class="reference external" href="https://en.wikipedia.org/wiki/Page_fault">page faulting</a> and <a class="reference external" href="https://www.kernel.org/doc/html/latest/vm/page_migration.html">migration</a>) en las arquitecturas siguientes a la de <em>Kepler</em>: la arquitectura Pascal y Volta. Por esto en el <em>output</em> anterior de <em>nvprof</em> aparece una sección de <em>page fault</em>.</p></li>
-<li><p>Obsérvese que en el programa anterior se comenta que se asume que <span class="math notranslate nohighlight">\(N\)</span> el número de datos en el arreglo es menor al número de <em>threads</em> que es posible lanzar. Esto como veremos más adelante es importante considerar pues aunque en el <em>device</em> se pueden lanzar muchos bloques y muchos threads, se tienen límites en el número de éstos que es posible lanzar.</p></li>
+<li><p>Al igual que antes, en el programa anterior se asume que <span class="math notranslate nohighlight">\(N\)</span> el número de datos en el arreglo es menor al número de <em>threads</em> que es posible lanzar. Esto como veremos más adelante es importante considerar pues aunque en el <em>device</em> se pueden lanzar muchos bloques y muchos threads, se tienen límites en el número de éstos que es posible lanzar.</p></li>
 </ul>
+</div>
 </div>
 <div class="section" id="tenemos-que-inicializar-los-datos-en-la-cpu-y-copiarlos-hacia-la-gpu">
 <h3>¿Tenemos que inicializar los datos en la CPU y copiarlos hacia la GPU?<a class="headerlink" href="#tenemos-que-inicializar-los-datos-en-la-cpu-y-copiarlos-hacia-la-gpu" title="Permalink to this headline">¶</a></h3>
-<p>En realidad no tenemos que realizarlo para el ejemplo de <code class="docutils literal notranslate"><span class="pre">suma_vectorial.cu</span></code> anterior. Por ejemplo:</p>
+<p>En realidad no tenemos que realizarlo para el ejemplo de <code class="docutils literal notranslate"><span class="pre">vector_sum_2.cu</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> vector_sum_3.cu
@@ -2054,22 +2063,25 @@ nvprof --normalized-time-unit s ./vector_sum_3.out
 </div>
 </div>
 <div class="section" id="arquitectura-de-una-gpu-y-limites-en-numero-de-threads-y-bloques-que-podemos-lanzar-en-el-kernel">
-<h2>Arquitectura de una GPU y límites en número de threads y bloques que podemos lanzar en el kernel<a class="headerlink" href="#arquitectura-de-una-gpu-y-limites-en-numero-de-threads-y-bloques-que-podemos-lanzar-en-el-kernel" title="Permalink to this headline">¶</a></h2>
+<h2>Arquitectura de una GPU y límites en número de <em>threads</em> y bloques que podemos lanzar en el <em>kernel</em><a class="headerlink" href="#arquitectura-de-una-gpu-y-limites-en-numero-de-threads-y-bloques-que-podemos-lanzar-en-el-kernel" title="Permalink to this headline">¶</a></h2>
 <p>Un <em>device</em> está compuesto por arreglos de <strong>streaming multiprocessors SM’s</strong> (también denotados como MP’s) y en cada <em>SM</em> encontramos un número (determinado por la arquitectura del device) de <strong>streaming processors SP’s</strong> que comparten el caché y unidades de control (que están dentro de cada SM):</p>
 <img src="https://dl.dropboxusercontent.com/s/oxx55upoayfmliw/SMS_CUDA.png?dl=0" heigth="700" width="700">
-<p>En el dibujo anterior se muestran las SM’s en color rojo y los SP’s en morado. Hay dos SM’s por cada bloque anaranjado y ocho SP’s por cada SM. Así, una GPU es una máquina multicore. Aunque cada SM ejecuta las instrucciones de forma independiente a otra SM, comparten la <strong>memoria global</strong>.</p>
-<p>Los bloques de threads son <strong>asignados a cada SM por el CUDA runtime system</strong>, puede asignar más de un bloque a una SM pero hay un límite de bloques que pueden ser asignados a cada SM. Ver <a class="reference external" href="https://stackoverflow.com/questions/22520209/programmatically-retrieve-maximum-number-of-blocks-per-multiprocessor">maximum number of blocks per multiprocessor</a>.</p>
-<p><strong>Comentarios:</strong></p>
+<p>Ver <a class="reference external" href="https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model">Hardware model: streamingmultiprocessor</a>.</p>
+<p>En el dibujo anterior se muestran las SM’s en color rojo y los SP’s en morado. Hay dos SM’s por cada bloque anaranjado y ocho SP’s por cada SM. Así, una GPU es una máquina <em>multicore</em>. Aunque cada SM ejecuta las instrucciones de forma independiente a otra SM, comparten la <strong>memoria global</strong>.</p>
+<p>Los bloques de <em>threads</em> son <strong>asignados a cada SM por el <em>CUDA runtime system</em></strong>, el cual puede asignar más de un bloque a una SM pero hay un límite de bloques que pueden ser asignados a cada SM. Ver <a class="reference external" href="https://stackoverflow.com/questions/22520209/programmatically-retrieve-maximum-number-of-blocks-per-multiprocessor">maximum number of blocks per multiprocessor</a>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
 <ul class="simple">
-<li><p>Por ejemplo para el modelo <em>GT200</em> el máximo número de bloques que podían asignarse a cada SM eran de <span class="math notranslate nohighlight">\(8\)</span> bloques. Tal modelo tenía <span class="math notranslate nohighlight">\(30\)</span> SM’s lo que resultaban en <span class="math notranslate nohighlight">\(240\)</span> bloques que en un instante podían asignarse al device para su ejecución simultánea (asignándose en cualquier orden en alguna SM disponible). Por supuesto que un grid podía contener más de <span class="math notranslate nohighlight">\(240\)</span> bloques en este modelo y en este caso el <em>CUDA runtime system</em> lleva una lista de bloques que va asignando a cada SM y conforme cada SM terminan la ejecución, nuevos bloques son asignados a tales SM que finalizaron. Para visualizar esta situación, considérese una simplificación de lo anterior en donde se tiene un <em>device</em> con <span class="math notranslate nohighlight">\(2\)</span> SM’s y con un kernel se han lanzado <span class="math notranslate nohighlight">\(6\)</span> bloques. El <em>CUDA runtime system</em> ha asignado <span class="math notranslate nohighlight">\(3\)</span> bloques a cada SM, entonces se tiene un dibujo como el siguiente:</p></li>
+<li><p>Por ejemplo para el modelo <em>GT200</em> el máximo número de bloques que podían asignarse a cada SM eran de <span class="math notranslate nohighlight">\(8\)</span> bloques. Tal modelo tenía <span class="math notranslate nohighlight">\(30\)</span> SM’s lo que resultaban en <span class="math notranslate nohighlight">\(240\)</span> bloques que en un instante podían asignarse al device para su ejecución simultánea (asignándose en cualquier orden en alguna SM disponible). Por supuesto que un grid podía contener más de <span class="math notranslate nohighlight">\(240\)</span> bloques en este modelo y en este caso el <em>CUDA runtime system</em> lleva una lista de bloques que va asignando a cada SM y conforme cada SM terminan la ejecución, nuevos bloques son asignados a tales SM que finalizaron. Para visualizar esta situación, considérese una simplificación de lo anterior en donde se tiene un <em>device</em> con <span class="math notranslate nohighlight">\(2\)</span> SM’s y con un <em>kernel</em> se han lanzado <span class="math notranslate nohighlight">\(6\)</span> bloques. El <em>CUDA runtime system</em> ha asignado <span class="math notranslate nohighlight">\(3\)</span> bloques a cada SM, entonces se tiene un dibujo como el siguiente:</p></li>
 </ul>
 <img src="https://dl.dropboxusercontent.com/s/p0nu72ofmdjtck8/kernel_launch_example.png?dl=0" heigth="600" width="600">
 <ul class="simple">
 <li><p>Los bloques asignados a una SM comparten recursos (por ejemplo memoria) y su ejecución es independiente entre ellos, no es posible sincronizar al “bloque 1” con el “bloque 0”. También no es posible sincronizar a los <em>threads</em> de diferentes SM’s pero sí es posible sincronizar a los <em>threads</em> dentro de un mismo bloque.</p></li>
 </ul>
+</div>
 <div class="section" id="que-otros-limites-puedo-encontrar-en-mi-s-device-s-de-mi-sistema">
 <h3>¿Qué otros límites puedo encontrar en mi(s) device(s) de mi sistema?<a class="headerlink" href="#que-otros-limites-puedo-encontrar-en-mi-s-device-s-de-mi-sistema" title="Permalink to this headline">¶</a></h3>
-<p>Para responder lo anterior se puede utilizar el siguiente programa que está basado en <a class="reference external" href="https://devblogs.nvidia.com/how-query-device-properties-and-handle-errors-cuda-cc/">liga</a> y <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/structcudaDeviceProp.html">cudaDeviceProp Struct Reference</a>:</p>
+<p>Para responder lo anterior se puede utilizar el siguiente programa que está basado en <a class="reference external" href="https://devblogs.nvidia.com/how-query-device-properties-and-handle-errors-cuda-cc/">how-query-device-properties-and-handle-errors-cuda-cc</a> y <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/structcudaDeviceProp.html">cudaDeviceProp Struct Reference</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> device_properties.cu
@@ -2155,59 +2167,64 @@ Max grid dimensions: (2147483647, 65535, 65535)
 </div>
 </div>
 </div>
-<p><strong>Comentarios:</strong></p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>También en la documentación oficial de NVIDIA dentro de <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities">compute-capabilities</a> se pueden revisar los valores anteriores y muchos más.</p></li>
 <li><p>Obsérvese del <em>output</em> anterior que el sistema tiene dos <em>devices</em> con las mismas capacidades.</p></li>
-<li><p>En un <em>device</em> encontramos diferentes tipos de memoria: global, constante, <em>shared</em> y <em>texture</em>. En esta nota únicamente trabajamos con la memoria global. Tenemos funciones en CUDA para poder comunicar/coordinar a los <em>threads</em> en un bloque por medio de la <em>shared memory</em>. Ver por ejemplo <a class="reference external" href="https://devblogs.nvidia.com/using-shared-memory-cuda-cc/">Using Shared Memory in CUDA C/C++</a> para un pequeño <em>post</em> del <span class="math notranslate nohighlight">\(2013\)</span> sobre <em>shared memory</em>.</p></li>
-<li><p>Los bloques de threads que son asignados a una SM son divididos en <strong>warps</strong> que es la unidad de <strong>thread scheduling*</strong> que tiene el <em>CUDA run time system</em>. El <em>output</em> anterior indica que son divisiones de <span class="math notranslate nohighlight">\(32\)</span> threads: un warp consta de <span class="math notranslate nohighlight">\(32\)</span> threads.</p></li>
-</ul>
-<p>* El <em>thread scheduling</em> se puede pensar a la funcionalidad del hardware para seleccionar una instrucción del programa y asginar su ejecución por los <em>threads</em> en un <em>warp</em> (<a class="reference external" href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_threads">SIMT</a>). Otro ejemplo es tener una instrucción que indica que se debe realizar lectura o escritura, entonces el hardware del <em>device</em> utiliza un <em>warp</em> de threads para tal operación mientras selecciona un <em>warp</em> de threads distinto para seleccionar otra instrucción diferente a la de I/O.</p>
-<ul class="simple">
-<li><p>El número máximo de threads que pueden iniciarse de forma simultánea o en un instante por SM es de <span class="math notranslate nohighlight">\(2048\)</span> o bien <span class="math notranslate nohighlight">\(2048/32 = 64\)</span> warps.</p></li>
-<li><p>El <em>output</em> anterior muestra los límites para número de bloques en las tres dimensiones de un grid y el número de threads en las tres dimensiones en un bloque.</p></li>
+<li><p>En un <em>device</em> encontramos diferentes tipos de memoria: global, constante, <em>shared</em> y <em>texture</em>. En esta nota únicamente trabajamos con la memoria global.</p></li>
+<li><p>Tenemos funciones en CUDA para poder comunicar/coordinar a los <em>threads</em> en un bloque por medio de la <em>shared memory</em>. Ver por ejemplo <a class="reference external" href="https://devblogs.nvidia.com/using-shared-memory-cuda-cc/">Using Shared Memory in CUDA C/C++</a> para un pequeño <em>post</em> del <span class="math notranslate nohighlight">\(2013\)</span> sobre <em>shared memory</em>.</p></li>
+<li><p>Los bloques de <em>threads</em> que son asignados a una SM son divididos en <strong>warps</strong> que es la unidad de <em><strong>thread scheduling</strong></em> que tiene el <em>CUDA run time system</em>. El <em>output</em> anterior indica que son divisiones de <span class="math notranslate nohighlight">\(32\)</span> threads: un <em>warp</em> consta de <span class="math notranslate nohighlight">\(32\)</span> threads.</p></li>
+<li><p>El <em>thread scheduling</em> se puede pensar a la funcionalidad que tiene el <em>hardware</em> del <em>device</em> para seleccionar una instrucción del programa y asginar su ejecución por los <em>threads</em> en un <em>warp</em> (<a class="reference external" href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_threads">SIMT</a>). Otro ejemplo es tener una instrucción que indica que se debe realizar lectura o escritura, entonces el <em>hardware</em> del <em>device</em> utiliza un <em>warp</em> de threads para tal operación mientras selecciona un <em>warp</em> de <em>threads</em> distinto para seleccionar otra instrucción diferente a la de I/O.</p></li>
+<li><p>El número máximo de <em>threads</em> que pueden iniciarse de forma simultánea o en un instante por SM es de <span class="math notranslate nohighlight">\(2048\)</span> o bien <span class="math notranslate nohighlight">\(2048/32 = 64\)</span> warps.</p></li>
+<li><p>El <em>output</em> anterior muestra los límites para número de bloques en las tres dimensiones de un <em>grid</em> y el número de <em>threads</em> en las tres dimensiones en un bloque.</p></li>
 <li><p>Un bloque puede tener como máximo <span class="math notranslate nohighlight">\(1024\)</span> threads en cualquier configuración: por ejemplo <span class="math notranslate nohighlight">\((1024,1,1), (32,1,32), (4,4,64)\)</span>.</p></li>
-<li><p>Por los puntos anteriores si lanzamos bloques de <span class="math notranslate nohighlight">\(1024\)</span> threads entonces sólo <span class="math notranslate nohighlight">\(2\)</span> bloques pueden residir en una SM en un instante. Con esta configuración alcanzaríamos <span class="math notranslate nohighlight">\(1024/32=32\)</span> warps por cada bloque y como lanzamos <span class="math notranslate nohighlight">\(2\)</span> bloques alcanzaríamos <span class="math notranslate nohighlight">\(64\)</span> warps (que es el máximo de warps por SM que podemos tener en un instante). Otra configuración para alcanzar el máximo número de warps en un instante, es considerar <span class="math notranslate nohighlight">\(4\)</span> bloques de <span class="math notranslate nohighlight">\(512\)</span> threads pues tendríamos <span class="math notranslate nohighlight">\(512/32=16\)</span> warps por bloque y en total serían <span class="math notranslate nohighlight">\(16*4\)</span> (warps <span class="math notranslate nohighlight">\(\times\)</span> bloques) <span class="math notranslate nohighlight">\(=64\)</span> warps. Entre los datos que hay que elegir en los programas de CUDA C se tienen las configuraciones en el número de threads y el número de bloques a lanzar. La idea es alcanzar o rebasar el máximo número de warps en cada SM que soporta nuestro device en un instante.</p></li>
-<li><p>Por ejemplo para el dibujo en el que se asumió que el <em>CUDA runtime system</em> había asignado <span class="math notranslate nohighlight">\(3\)</span> bloques a cada SM, se tendría una división de cada bloque en un <em>warp</em> de <span class="math notranslate nohighlight">\(32\)</span> threads como sigue:</p></li>
+<li><p>Por los puntos anteriores si lanzamos bloques de <span class="math notranslate nohighlight">\(1024\)</span> <em>threads</em> entonces sólo <span class="math notranslate nohighlight">\(2\)</span> bloques pueden residir en una SM en un instante. Con esta configuración alcanzaríamos <span class="math notranslate nohighlight">\(1024/32=32\)</span> <em>warps</em> por cada bloque y como lanzamos <span class="math notranslate nohighlight">\(2\)</span> bloques alcanzaríamos <span class="math notranslate nohighlight">\(64\)</span> <em>warps</em> (que es el máximo de <em>warps</em> por SM que podemos tener en un instante). Otra configuración para alcanzar el máximo número de <em>warps</em> en un instante, es considerar <span class="math notranslate nohighlight">\(4\)</span> bloques de <span class="math notranslate nohighlight">\(512\)</span> <em>threads</em> pues tendríamos <span class="math notranslate nohighlight">\(512/32=16\)</span> <em>warps</em> por bloque y en total serían <span class="math notranslate nohighlight">\(16*4\)</span> (<em>warps</em> <span class="math notranslate nohighlight">\(\times\)</span> bloques) <span class="math notranslate nohighlight">\(=64\)</span> <em>warps</em>. Entre los datos que hay que elegir en los programas de <em>CUDA C</em> se encuentran las configuraciones en el número de <em>threads</em> y el número de bloques a lanzar. La idea es alcanzar o rebasar el máximo número de <em>warps</em> en cada SM que soporta nuestro <em>device</em> en un instante.</p></li>
+<li><p>Por ejemplo para el dibujo en el que se asumió que el <em>CUDA runtime system</em> había asignado <span class="math notranslate nohighlight">\(3\)</span> bloques a cada SM, se tendría una división de cada bloque en un <em>warp</em> de <span class="math notranslate nohighlight">\(32\)</span> <em>threads</em> como sigue:</p></li>
 </ul>
 <img src="https://dl.dropboxusercontent.com/s/yngq4r66i2nk5mg/warp_division.png?dl=0" heigth="600" width="600">
 </div>
+</div>
 <div class="section" id="grid-configuration-choices">
-<h3>Grid Configuration Choices?<a class="headerlink" href="#grid-configuration-choices" title="Permalink to this headline">¶</a></h3>
-<p>Los programas de CUDA C tienen la opción de elegir el número de <em>threads</em> y de <em>bloques</em> a ser lanzados. En la referencia “Parallel Computing for Data Science. With Examples in R, C++ and CUDA” de N. Matloff se enlistan algunas consideraciones para elegir tales parámetros:</p>
+<h3><em>Grid Configuration Choices</em>?<a class="headerlink" href="#grid-configuration-choices" title="Permalink to this headline">¶</a></h3>
+<p>Los programas de <em>CUDA C</em> tienen la opción de elegir el número de <em>threads</em> y de <em>bloques</em> a ser lanzados. En la referencia <em>Parallel Computing for Data Science. With Examples in R, C++ and CUDA</em> de N. Matloff se enlistan algunas consideraciones para elegir tales parámetros:</p>
 <ul class="simple">
-<li><p>Given that scheduling is done on a warp basis, block size should be a multiple of the warp size (32).</p></li>
-<li><p>One wants to utilize all the SMs. If one sets the block size too large, not all will be used, as a block cannot be split across SM’s.</p></li>
-<li><p>…, barrier synchronization can be done effectively only at the block level. The larger the block, the more the barrier delay, so one might want smaller blocks.</p></li>
-<li><p>On the other hand, if one is using shared memory, this can only be done at the block level, and efficient use may indicate using a larger block.</p></li>
-<li><p>Two threads doing unrelated work, or the same work but with many if/elses, would cause a lot of thread divergence if they were in the same block. In some cases, it may be known in advance which threads will do the “ifs” and which will do the “elses”, in which case they should be placed in different blocks if possible.</p></li>
-<li><p>A commonly-cited rule of thumb is to have between <span class="math notranslate nohighlight">\(128\)</span> and <span class="math notranslate nohighlight">\(256\)</span> <em>threads</em> per block.</p></li>
+<li><p><em>Given that scheduling is done on a warp basis, block size should be a multiple of the warp size (32).</em></p></li>
+<li><p><em>One wants to utilize all the SMs. If one sets the block size too large, not all will be used, as a block cannot be split across SM’s.</em></p></li>
+<li><p><em>…, barrier synchronization can be done effectively only at the block level. The larger the block, the more the barrier delay, so one might want smaller blocks.</em></p></li>
+<li><p><em>On the other hand, if one is using shared memory, this can only be done at the block level, and efficient use may indicate using a larger block.</em></p></li>
+<li><p><em>Two threads doing unrelated work, or the same work but with many if/elses, would cause a lot of thread divergence if they were in the same block. In some cases, it may be known in advance which threads will do the “ifs” and which will do the “elses”, in which case they should be placed in different blocks if possible.</em></p></li>
+<li><p><em>A commonly-cited rule of thumb is to have between <span class="math notranslate nohighlight">\(128\)</span> and <span class="math notranslate nohighlight">\(256\)</span> <em>threads</em> per block.</em></p></li>
 </ul>
 </div>
 <div class="section" id="regla-compuesta-del-rectangulo">
 <h3>Regla compuesta del rectángulo<a class="headerlink" href="#regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h3>
 <p>En el uso de CUDA se recomienda que:</p>
 <ul class="simple">
-<li><p>Users escriban código de CUDA C simple.</p></li>
+<li><p><em>Users</em> escriban código de <em>CUDA C</em> simple.</p></li>
 <li><p>Utilicen las librerías ya hechas por NVIDIA o terceros para mantener simplicidad y eficiencia en el código.</p></li>
 </ul>
-<p>Lo anterior para disminuir el tiempo y la cantidad de código que <em>users</em> tengan que hacer (o rehacer) y puesto que dominar la programación de CUDA C requiere una buena inversión de tiempo.</p>
+<p>Lo anterior para disminuir el tiempo y la cantidad de código que <em>users</em> tengan que hacer (o rehacer) y puesto que dominar la programación de <em>CUDA C</em> requiere una buena inversión de tiempo.</p>
 <p>Así, tenemos a <a class="reference external" href="https://docs.nvidia.com/cuda/thrust/index.html">Thrust</a> una <em>template library</em> basada en la <a class="reference external" href="https://en.wikipedia.org/wiki/Standard_Template_Library">Standard Template Library (STL)</a> de C++ construída por NVIDIA que de acuerdo a su documentación:</p>
-<p>“Thrust provides a rich collection of data parallel primitives such as scan, sort, and reduce, which can be composed together to implement complex algorithms with concise, readable source code. By describing your computation in terms of these high-level abstractions you provide Thrust with the freedom to select the most efficient implementation automatically. As a result, Thrust can be utilized in rapid prototyping of CUDA applications, where programmer productivity matters most, as well as in production, where robustness and absolute performance are crucial.”</p>
-<p><code class="docutils literal notranslate"><span class="pre">Thrust</span></code> tiene la opción de utilizarse con <a class="reference external" href="https://www.openmp.org/">OpenMP</a>, <a class="reference external" href="https://www.threadingbuildingblocks.org/intel-tbb-tutorial">Thread Building Blocks (TBB)</a> y con CUDA-C++. Ver por ejemplo <a class="reference external" href="https://github.com/thrust/thrust/wiki/Device-Backends">Device Backends</a> para conocer cómo cambiar entre OpenMP y CUDA-C++, lo cual se realiza en la compilación y <strong>sin hacer cambios en el código!</strong>. A los sistemas de software que tienen este <em>feature</em> se les llama <a class="reference external" href="https://en.wikipedia.org/wiki/Heterogeneous_computing">Heterogeneous computing</a>.</p>
-<p>Si se instala el <em>CUDA toolkit</em> o se utiliza la imagen de docker descrita al inicio de la nota, los headers en la librería template de <code class="docutils literal notranslate"><span class="pre">Thrust</span></code> estarán disponibles para su uso.</p>
+<p><em>Thrust provides a rich collection of data parallel primitives such as scan, sort, and reduce, which can be composed together to implement complex algorithms with concise, readable source code. By describing your computation in terms of these high-level abstractions you provide Thrust with the freedom to select the most efficient implementation automatically. As a result, Thrust can be utilized in rapid prototyping of CUDA applications, where programmer productivity matters most, as well as in production, where robustness and absolute performance are crucial.</em></p>
+<p><em>Thrust</em> tiene la opción de utilizarse con <a class="reference external" href="https://www.openmp.org/">OpenMP</a>, <a class="reference external" href="https://www.threadingbuildingblocks.org/intel-tbb-tutorial">Thread Building Blocks (TBB)</a> y con <em>CUDA C++</em>. Ver por ejemplo <a class="reference external" href="https://github.com/thrust/thrust/wiki/Device-Backends">Device Backends</a> para conocer cómo cambiar entre <em>OpenMP</em> y <em>CUDA C++</em>, lo cual se realiza en la compilación y <strong>¡sin hacer cambios en el código!</strong>.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>A los sistemas de <em>software</em> que tienen el <em>feature</em> anterior (por ejemplo cambiar entre <em>OpenMP</em> y <em>CUDA C++</em> se les nombra <a class="reference external" href="https://en.wikipedia.org/wiki/Heterogeneous_computing">Heterogeneous computing</a>.</p>
+</div>
+<p>Si se instala el <em>CUDA toolkit</em> los <em>headers</em> en la librería template de <code class="docutils literal notranslate"><span class="pre">Thrust</span></code> estarán disponibles para su uso.</p>
 <p>En el siguiente ejemplo de la regla del rectángulo compuesta se utiliza:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.nvidia.com/cuda/thrust/index.html#reductions">Reductions</a></p></li>
-<li><p>Los headers:</p>
+<li><p>Los <em>headers</em>:</p>
 <ul>
 <li><p><a class="reference external" href="https://thrust.github.io/doc/structthrust_1_1device__execution__policy.html">thrust/execution_policy</a></p></li>
 <li><p><a class="reference external" href="https://thrust.github.io/doc/group__reductions_ga43eea9a000f912716189687306884fc7.html#ga43eea9a000f912716189687306884fc7">thhrust/reduce()</a></p></li>
 </ul>
 </li>
 </ul>
-<p>y se hace explícito el uso de la política de ejecucion <a class="reference external" href="https://thrust.github.io/doc/group__execution__policies_ga78249cb3aa4239b64e65aaf6e82ac2f8.html">thrust::device</a>.</p>
-<p>Referencias para el programa siguiente se encuentran en <a class="reference external" href="https://stackoverflow.com/questions/5510715/thrust-inside-user-written-kernels">thrust inside user written kernels</a> y <a class="reference external" href="https://stackoverflow.com/questions/42525713/cuda-how-to-sum-all-elements-of-an-array-into-one-number-within-the-gpu">cuda how to sum all elements of an array into one number within the gpu</a> de stackoverflow.</p>
+<p>Se hace explícito el uso de la política de ejecucion <a class="reference external" href="https://thrust.github.io/doc/group__execution__policies_ga78249cb3aa4239b64e65aaf6e82ac2f8.html">thrust::device</a>.</p>
+<p>Referencias para el programa siguiente se encuentran en <a class="reference external" href="https://stackoverflow.com/questions/5510715/thrust-inside-user-written-kernels">thrust inside user written kernels</a> y <a class="reference external" href="https://stackoverflow.com/questions/42525713/cuda-how-to-sum-all-elements-of-an-array-into-one-number-within-the-gpu">cuda how to sum all elements of an array into one number within the gpu</a>.</p>
 <p><strong><span class="math notranslate nohighlight">\(n=10^3\)</span></strong> subintervalos</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
