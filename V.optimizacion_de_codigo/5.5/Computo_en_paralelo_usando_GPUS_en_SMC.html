@@ -479,7 +479,9 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#kernel">
-     Kernel
+     <em>
+      Kernel
+     </em>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -617,7 +619,6 @@
 </div>
 <p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">p2.xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se utilizó la AMI:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">opt2</span><span class="o">-</span><span class="n">aws</span><span class="o">-</span><span class="n">cuda</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">tools</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">2021</span>
-
 </pre></div>
 </div>
 <p>de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_cuda_and_tools.sh">script_cuda_and_tools.sh</a></p>
@@ -640,7 +641,6 @@ sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &am
 </div>
 </div>
 <p>La máquina <code class="docutils literal notranslate"><span class="pre">p2.xlarge</span></code> tiene las siguientes características:</p>
-<p><strong>Falta ejecutar de acuerdo a la máquina elegida</strong></p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
@@ -821,7 +821,7 @@ uname -ar #r for kernel, a for all
 <p>Es una extensión al lenguaje <em>C</em> de programación en el que se utiliza una nueva sintaxis para procesamiento en la GPU. Contiene también una librería <em>runtime</em> que define funciones que se ejecutan desde el <em><strong>host</strong></em> por ejemplo para alojar y desalojar memoria en el <em><strong>device</strong></em>, transferir datos entre la memoria <em>host</em> y la memoria <em>device</em> o manejar múltiples <em>devices</em>. La librería <em>runtime</em> está hecha encima de una API de <em>C</em> de bajo nivel llamada <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-driver-api/index.html">NVIDIA CUDA Driver API</a> la cual es accesible desde el código. Para información de la API de la librería runtime ver <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/index.html">NVIDIA CUDA Runtime API</a>.</p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>La transferencia de datos entre la memoria del <em>host</em> a <em>device</em> o viceversa es un <em>bottleneck</em> fuerte.</p>
+<p>La transferencia de datos entre la memoria del <em>host</em> a <em>device</em> o viceversa constituye un <em>bottleneck</em> fuerte.</p>
 </div>
 </div>
 <div class="section" id="a-que-se-refiere-la-terminologia-de-host-y-device">
@@ -1113,9 +1113,8 @@ nvcc -gencode arch=compute_37,code=sm_37 hello_world.cu -o hello_world.out
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">nvcc</span></code> es un <em>wrapper</em> para el compilador de programas escritos en <em>C</em>.</p></li>
 <li><p>En ocasiones para tener funcionalidad de un determinado <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities">compute capability</a> se especifica la <em>flag</em> de <code class="docutils literal notranslate"><span class="pre">-arch=sm_11</span></code> en la línea de <code class="docutils literal notranslate"><span class="pre">nvcc</span></code>. En este caso se le indica al compilador que compile el programa para un <em>compute capability</em> de <span class="math notranslate nohighlight">\(1.1\)</span>. Ver <a class="reference external" href="https://stackoverflow.com/questions/16954931/cuda-5-0-cudagetdeviceproperties-strange-grid-size-or-a-bug-in-my-code">run a kernel using the larger grid size support offered</a> por ejemplo.</p></li>
+<li><p>Para la versión 11 de CUDA se requiere explícitamente indicar la arquitectura y código para la compilación. Ver <a class="reference external" href="https://stackoverflow.com/questions/63675040/cuda-11-kernel-doesnt-run">cuda-11-kernel-doesnt-run</a>, <a class="reference external" href="https://stackoverflow.com/questions/35656294/cuda-how-to-use-arch-and-code-and-sm-vs-compute/35657430#35657430">cuda-how-to-use-arch-and-code-and-sm-vs-compute</a>, <a class="reference external" href="https://stackoverflow.com/questions/28932864/cuda-compute-capability-requirements/28933055#28933055">cuda-compute-capability-requirements</a>, <a class="reference external" href="https://stackoverflow.com/questions/14038589/what-is-the-canonical-way-to-check-for-errors-using-the-cuda-runtime-api">what-is-the-canonical-way-to-check-for-errors-using-the-cuda-runtime-api</a>.</p></li>
 </ul>
-<p>Para la versión 11 de CUDA se requiere explícitamente indicar la arquitectura y código para la compilación.</p>
-<p>Ver <a class="reference external" href="https://stackoverflow.com/questions/63675040/cuda-11-kernel-doesnt-run">cuda-11-kernel-doesnt-run</a>, <a class="reference external" href="https://stackoverflow.com/questions/35656294/cuda-how-to-use-arch-and-code-and-sm-vs-compute/35657430#35657430">cuda-how-to-use-arch-and-code-and-sm-vs-compute</a>, <a class="reference external" href="https://stackoverflow.com/questions/28932864/cuda-compute-capability-requirements/28933055#28933055">cuda-compute-capability-requirements</a>, <a class="reference external" href="https://stackoverflow.com/questions/14038589/what-is-the-canonical-way-to-check-for-errors-using-the-cuda-runtime-api">what-is-the-canonical-way-to-check-for-errors-using-the-cuda-runtime-api</a>.</p>
 </div>
 <p>Ejecutamos.</p>
 <div class="cell docutils container">
@@ -1211,7 +1210,7 @@ Result = PASS
 </ul>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p><em>Deep learning</em> se ha utilizado para resolver problemas en <em>machine learning</em> típicos. Ejemplos de esto son la clasificación de imágenes, de sonidos o análisis de textos, ver por ejemplo <a class="reference external" href="https://medium.com/&#64;michael.fire/practical-text-analysis-using-deep-learning-5fb0744efdf9">Practical text analysis using deep learning</a>.</p>
+<p><em>Deep learning</em> se ha utilizado para resolver problemas en <em>machine learning</em> típicos. Ejemplos de esto son la clasificación de imágenes, de sonidos o análisis de textos. Ver por ejemplo <a class="reference external" href="https://medium.com/&#64;michael.fire/practical-text-analysis-using-deep-learning-5fb0744efdf9">Practical text analysis using deep learning</a>.</p>
 </div>
 <ul class="simple">
 <li><p>El cómputo en la GPU constituye hoy en día una alternativa fuerte a la implementación de modelos de <em>machine learning</em> ampliamente utilizada por la comunidad científica, también para cómputo matricial y <em>deep learning</em>.</p></li>
@@ -1235,17 +1234,17 @@ Result = PASS
 <h2><a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/">CUDA-C</a><a class="headerlink" href="#cuda-c" title="Permalink to this headline">¶</a></h2>
 <p>Consiste en extensiones al lenguaje C y en una <em>runtime library</em>.</p>
 <div class="section" id="kernel">
-<h3>Kernel<a class="headerlink" href="#kernel" title="Permalink to this headline">¶</a></h3>
+<h3><em>Kernel</em><a class="headerlink" href="#kernel" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>En CUDA C se define una función que se ejecuta en el <em><strong>device</strong></em> y que se le nombra <em><strong>kernel</strong></em>. El <em>kernel</em> inicia con la sintaxis:</p></li>
+<li><p>En <em>CUDA C</em> se define una función que se ejecuta en el <em><strong>device</strong></em> y que se le nombra <em><strong>kernel</strong></em>. El <em>kernel</em> inicia con la sintaxis:</p></li>
 </ul>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">__global__</span> <span class="kt">void</span> <span class="n">mifun</span><span class="p">(</span><span class="kt">int</span> <span class="n">param</span><span class="p">){</span>
 <span class="p">...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Siempre es tipo <code class="docutils literal notranslate"><span class="pre">void</span></code> (no hay <code class="docutils literal notranslate"><span class="pre">return</span></code>).</p>
 <ul class="simple">
+<li><p>Siempre es tipo <code class="docutils literal notranslate"><span class="pre">void</span></code> (no hay <code class="docutils literal notranslate"><span class="pre">return</span></code>).</p></li>
 <li><p>El llamado al <em>kernel</em> se realiza desde el <em><strong>host</strong></em> y con una sintaxis en la que se define el número de <em>threads</em>, nombrados <em><strong>CUDA threads</strong></em> (que son distintos a los <em>CPU threads</em>), y bloques, nombrados <em><strong>CUDA blocks</strong></em>, que serán utilizados para la ejecución del <em>kernel</em>. La sintaxis que se utiliza es <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;</span> <span class="pre">&gt;&gt;&gt;</span></code> y en la primera entrada se coloca el número de <em>CUDA blocks</em> y en la segunda entrada el número de <em>CUDA threads</em>. Por ejemplo para lanzar N bloques de 5 <em>threads</em>.</p></li>
 </ul>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">__global__</span> <span class="kt">void</span> <span class="n">mifun</span><span class="p">(</span><span class="kt">int</span> <span class="n">param</span><span class="p">){</span>
@@ -1330,6 +1329,10 @@ nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall hello_world_si
 </div>
 <div class="section" id="id1">
 <h3>Ejemplo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><code class="docutils literal notranslate"><span class="pre">func&lt;&lt;&lt;2,3&gt;&gt;&gt;();</span></code> representa 2 bloques de 3 <em>threads</em> cada uno.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> hello_world_2.cu
@@ -1338,7 +1341,7 @@ nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall hello_world_si
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hello world! del bloque </span><span class="si">%d</span><span class="s2"> del thread </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">blockIdx</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">){</span>
-    <span class="n">func</span><span class="o">&lt;&lt;&lt;</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;&gt;&gt;</span><span class="p">();</span> <span class="o">//</span><span class="mi">2</span> <span class="n">bloques</span> <span class="n">de</span> <span class="mi">3</span> <span class="n">threads</span> <span class="n">cada</span> <span class="n">uno</span>
+    <span class="n">func</span><span class="o">&lt;&lt;&lt;</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;&gt;&gt;</span><span class="p">();</span>
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="o">//</span><span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hello world! del cpu thread</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -1389,7 +1392,7 @@ Hello world! del bloque 1 del thread 2
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>El llamado a la ejecución del <em>kernel</em> se realizó en el <em>host</em> y se lanzaron <span class="math notranslate nohighlight">\(2\)</span> bloques cada uno con <span class="math notranslate nohighlight">\(3\)</span> <em>threads</em>.</p></li>
-<li><p>Se utiliza la función <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g10e20b05a95f638a4071a655503df25d">cudaDeviceSynchronize</a> para que el <em>cpu-thread</em> espere la finalización de la ejecución del kernel.</p></li>
+<li><p>Se utiliza la función <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g10e20b05a95f638a4071a655503df25d">cudaDeviceSynchronize</a> para que el <em>cpu-thread</em> espere la finalización de la ejecución del <em>kernel</em>.</p></li>
 <li><p>En el ejemplo anterior, las variables <code class="docutils literal notranslate"><span class="pre">blockIdx</span></code> y <code class="docutils literal notranslate"><span class="pre">threadIdx</span></code> hacen referencia a los <strong>id</strong>’s que tienen los bloques y los <em>threads</em>. El <em>id</em> del bloque dentro del <em>grid</em> y el <em>id</em> del thread dentro del bloque. La parte <code class="docutils literal notranslate"><span class="pre">.x</span></code> de las variables: <code class="docutils literal notranslate"><span class="pre">blockIdx.x</span></code> y <code class="docutils literal notranslate"><span class="pre">threadIdx.x</span></code> refieren a la <strong>primera coordenada</strong> del bloque en el <em>grid</em> y a la <strong>primera coordenada</strong> del <em>thread</em> en en el bloque.</p></li>
 <li><p>La elección del número de bloques en un <em>grid</em> o el número de <em>threads</em> en un bloque no corresponde a alguna disposición del <em>hardware</em>. Esto es, si se lanza un <em>kernel</em> con <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;</span> <span class="pre">1,</span> <span class="pre">3</span> <span class="pre">&gt;&gt;&gt;</span></code> no implica que la GPU tenga en su <em>hardware</em> un bloque o 3 <em>threads</em>. Asimismo, las coordenadas que se obtienen vía <code class="docutils literal notranslate"><span class="pre">blockIdx</span></code> o <code class="docutils literal notranslate"><span class="pre">threadIdx</span></code> son meras abstracciones, no corresponden a algún ordenamiento en el hardware de la GPU.</p></li>
 <li><p>Todos los <em>threads</em> de un bloque  ejecutan el <em>kernel</em> por lo que se tienen tantas copias del kernel como número de bloques sean lanzados. Esto es una muestra la GPU sigue el modelo  <em>Single Instruction Multiple Threads <a class="reference external" href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_threads">(SIMT)</a></em>.</p></li>
@@ -1402,6 +1405,11 @@ Hello world! del bloque 1 del thread 2
 </div>
 <div class="section" id="id2">
 <h3>Ejemplo<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(1,2,1);</span></code> representa 2 bloques en el <em>grid</em>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(1,1,3);</span></code> representa 3 <em>threads</em> por bloque.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> hello_world_3.cu
@@ -1410,8 +1418,8 @@ Hello world! del bloque 1 del thread 2
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hello world! del bloque </span><span class="si">%d</span><span class="s2"> del thread </span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">blockIdx</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">threadIdx</span><span class="o">.</span><span class="n">z</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">){</span>
-    <span class="n">dim3</span> <span class="n">dimGrid</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="o">//</span><span class="mi">2</span> <span class="n">bloques</span> <span class="n">en</span> <span class="n">el</span> <span class="n">grid</span>
-    <span class="n">dim3</span> <span class="n">dimBlock</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="o">//</span><span class="mi">3</span> <span class="n">threads</span> <span class="n">por</span> <span class="n">bloque</span>
+    <span class="n">dim3</span> <span class="n">dimGrid</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">dim3</span> <span class="n">dimBlock</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
     <span class="n">func</span><span class="o">&lt;&lt;&lt;</span><span class="n">dimGrid</span><span class="p">,</span><span class="n">dimBlock</span><span class="o">&gt;&gt;&gt;</span><span class="p">();</span> 
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Hello world! del cpu thread</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
@@ -1462,6 +1470,11 @@ Hello world! del cpu thread
 </div>
 <div class="section" id="id3">
 <h3>Ejemplo<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(1,1,1);</span></code> representa 1 bloque en el <em>grid</em>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(1,3,1);</span></code> representa 3 <em>threads</em> por bloque.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> thread_idxs.cu
@@ -1475,8 +1488,8 @@ Hello world! del cpu thread
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;thread idx.z:</span><span class="si">%d</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">threadIdx</span><span class="o">.</span><span class="n">z</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="n">void</span><span class="p">){</span>
-    <span class="n">dim3</span> <span class="n">dimGrid</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="o">//</span><span class="mi">1</span> <span class="n">bloque</span> <span class="n">en</span> <span class="n">el</span> <span class="n">grid</span>
-    <span class="n">dim3</span> <span class="n">dimBlock</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="o">//</span><span class="mi">3</span> <span class="n">threads</span> <span class="n">por</span> <span class="n">bloque</span>
+    <span class="n">dim3</span> <span class="n">dimGrid</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">dim3</span> <span class="n">dimBlock</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">func</span><span class="o">&lt;&lt;&lt;</span><span class="n">dimGrid</span><span class="p">,</span><span class="n">dimBlock</span><span class="o">&gt;&gt;&gt;</span><span class="p">();</span> 
     <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
@@ -1489,13 +1502,6 @@ Hello world! del cpu thread
 </pre></div>
 </div>
 </div>
-</div>
-<div class="admonition-comentarios admonition">
-<p class="admonition-title">Comentarios</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(1,1,1);</span></code> representa 1 bloque en el <em>grid</em>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(1,3,1);</span></code> representa 3 <em>threads</em> por bloque.</p></li>
-</ul>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1536,6 +1542,11 @@ thread idx.z:0
 </div>
 <div class="section" id="id4">
 <h3>Ejemplo<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(1,2,2);</span></code> representa 4 bloques en el <em>grid</em>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(1,1,1);</span></code> representa 1 <em>thread</em> por bloque.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> block_idxs.cu
@@ -1561,13 +1572,6 @@ thread idx.z:0
 </pre></div>
 </div>
 </div>
-</div>
-<div class="admonition-comentarios admonition">
-<p class="admonition-title">Comentarios</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(1,2,2);</span></code> representa 4 bloques en el <em>grid</em>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(1,1,1);</span></code> representa 1 <em>thread</em> por bloque.</p></li>
-</ul>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1610,7 +1614,12 @@ blockIdx.z:1
 </div>
 <div class="section" id="id5">
 <h3>Ejemplo<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>Podemos usar la variable <code class="docutils literal notranslate"><span class="pre">blockDim</span></code> para cada coordenada <code class="docutils literal notranslate"><span class="pre">x,</span> <span class="pre">y</span></code> o <code class="docutils literal notranslate"><span class="pre">z</span></code> y obtener la dimensión de los bloques:</p>
+<p>Podemos usar la variable <code class="docutils literal notranslate"><span class="pre">blockDim</span></code> para cada coordenada <code class="docutils literal notranslate"><span class="pre">x,</span> <span class="pre">y</span></code> o <code class="docutils literal notranslate"><span class="pre">z</span></code> y obtener la dimensión de los bloques.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(2,2,2);</span></code> representa 8 bloques en el <em>grid</em>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(3,1,2);</span></code> representa 6 <em>threads</em> por bloque.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> block_dims.cu
@@ -1638,13 +1647,6 @@ blockIdx.z:1
 </pre></div>
 </div>
 </div>
-</div>
-<div class="admonition-comentarios admonition">
-<p class="admonition-title">Comentarios</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(2,2,2);</span></code> representa 8 bloques en el <em>grid</em>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(3,1,2);</span></code> representa 6 <em>threads</em> por bloque.</p></li>
-</ul>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
