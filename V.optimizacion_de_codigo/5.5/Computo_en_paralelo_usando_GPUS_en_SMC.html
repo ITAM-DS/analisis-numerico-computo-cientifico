@@ -3153,13 +3153,134 @@ Tiempo de cálculo en la gpu 1.12291
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf8.cu
+<span class="c1">#include&lt;stdio.h&gt;</span>
+<span class="c1">#include &lt;thrust/reduce.h&gt;</span>
+<span class="c1">#include &lt;thrust/execution_policy.h&gt;</span>
+
+<span class="n">__global__</span> <span class="n">void</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">double</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">h_hat</span><span class="p">,</span> <span class="n">long</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="o">*</span><span class="n">sum_res</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="o">/*</span>
+    <span class="n">Compute</span> <span class="n">numerical</span> <span class="n">approximation</span> <span class="n">using</span> <span class="n">rectangle</span> <span class="ow">or</span> <span class="n">mid</span><span class="o">-</span><span class="n">point</span> <span class="n">method</span> <span class="ow">in</span> 
+    <span class="n">an</span> <span class="n">interval</span><span class="o">.</span>
+    <span class="n">Nodes</span> <span class="n">are</span> <span class="n">generated</span> <span class="n">via</span> <span class="n">formula</span><span class="p">:</span> <span class="n">x_i</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="n">h_hat</span> <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">...</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">Args</span><span class="p">:</span>
+        <span class="n">data</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">array</span> <span class="n">that</span> <span class="n">will</span> <span class="n">hold</span> <span class="n">values</span> <span class="n">evaluated</span> <span class="ow">in</span> <span class="n">function</span>
+        <span class="n">a</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">left</span> <span class="n">point</span> <span class="n">of</span> <span class="n">interval</span>
+        <span class="n">h_hat</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">width</span> <span class="n">of</span> <span class="n">subinterval</span>    
+        <span class="n">n</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">number</span> <span class="n">of</span> <span class="n">subintervals</span>
+        <span class="n">sum_res</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>    
+    <span class="n">Returns</span><span class="p">:</span>
+        <span class="n">sum_res</span> <span class="p">(</span><span class="n">double</span><span class="p">):</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">result</span>
+    <span class="o">*/</span>
+    <span class="n">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">idx</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">num_threads</span><span class="o">=</span><span class="n">gridDim</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">blockDim</span><span class="o">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">stride</span> <span class="o">=</span> <span class="n">num_threads</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">blockDim</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">idx</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="n">stride</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">idx</span><span class="o">&lt;=</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span><span class="p">;</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">=</span><span class="n">std</span><span class="p">::</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">std</span><span class="p">::</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">idx</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+        <span class="o">*</span><span class="n">sum_res</span> <span class="o">=</span> <span class="n">thrust</span><span class="p">::</span><span class="n">reduce</span><span class="p">(</span><span class="n">thrust</span><span class="p">::</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span> <span class="p">,</span> <span class="n">data</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="mi">0</span><span class="p">,</span> <span class="n">thrust</span><span class="p">::</span><span class="n">plus</span><span class="o">&lt;</span><span class="n">double</span><span class="o">&gt;</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">cudaError_t</span> <span class="n">check_error</span><span class="p">(</span><span class="n">cudaError_t</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">!=</span> <span class="n">cudaSuccess</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s2">&quot;Error: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cudaGetErrorString</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
+    <span class="n">double</span> <span class="n">sum_res</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="o">*</span><span class="n">d_data</span><span class="p">;</span>
+    <span class="n">double</span> <span class="o">*</span><span class="n">d_sum</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">h_hat</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">n_threads_per_block</span><span class="o">=</span><span class="mi">1024</span><span class="p">;</span> 
+    <span class="n">long</span> <span class="nb">int</span> <span class="n">n_blocks</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> 
+    <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
+    <span class="n">long</span> <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> 
+    <span class="n">double</span> <span class="n">time_spent</span><span class="p">;</span>
+    <span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
+    <span class="n">cudaDeviceProp</span> <span class="n">properties</span><span class="p">;</span>    
+    <span class="n">cudaGetDeviceProperties</span><span class="p">(</span><span class="o">&amp;</span><span class="n">properties</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">n_blocks</span> <span class="o">=</span> <span class="mi">100000</span> <span class="o">*</span> <span class="n">properties</span><span class="o">.</span><span class="n">multiProcessorCount</span><span class="p">;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n_blocks</span><span class="o">*</span><span class="n">n_threads_per_block</span><span class="p">;</span>
+    <span class="n">dim3</span> <span class="n">dimGrid</span><span class="p">(</span><span class="n">n_blocks</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">dim3</span> <span class="n">dimBlock</span><span class="p">(</span><span class="n">n_threads_per_block</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">check_error</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span> <span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_data</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">));</span>
+    <span class="n">check_error</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">((</span><span class="n">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">d_sum</span><span class="p">,</span><span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">)));</span>
+    <span class="n">h_hat</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+    <span class="n">begin</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="n">Rcf</span><span class="o">&lt;&lt;&lt;</span><span class="n">dimGrid</span><span class="p">,</span><span class="n">dimBlock</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_data</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">d_sum</span><span class="p">);</span> 
+    <span class="n">cudaDeviceSynchronize</span><span class="p">();</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="n">time_spent</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">begin</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
+    <span class="n">check_error</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sum_res</span><span class="p">,</span> <span class="n">d_sum</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">double</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">));</span>
+    <span class="n">sum_res</span><span class="o">=</span><span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span><span class="p">;</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_data</span><span class="p">);</span>
+    <span class="n">cudaFree</span><span class="p">(</span><span class="n">d_sum</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Número de subintervalos: </span><span class="si">%ld</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>    
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">sum_res</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sum_res</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de cálculo en la gpu </span><span class="si">%.5f</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">time_spent</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf8.cu
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+source ~/.profile
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf8.cu -o Rcf8.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nvcc warning : The &#39;compute_35&#39;, &#39;compute_37&#39;, &#39;compute_50&#39;, &#39;sm_35&#39;, &#39;sm_37&#39; and &#39;sm_50&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+./Rcf8.out
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número de subintervalos: 1331200000
+Integral de 0.000000 a 1.000000 = 7.468241328124491e-01
+Error relativo de la solución: 2.943452805253579e-14
+Tiempo de cálculo en la gpu 130.57445
+</pre></div>
+</div>
+</div>
+</div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>En la programación con CUDA-C es importante checar posibles errores de alojamiento de memoria. Una forma es con los tipos <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html#group__CUDART__TYPES_1gf599e5b8b829ce7db0f5216928f6ecb6">cudaError_t</a> y <code class="docutils literal notranslate"><span class="pre">cudaSuccess</span></code> . Ver <a class="reference external" href="https://stackoverflow.com/questions/58902166/why-do-i-have-insufficient-buffer-space-when-i-put-allocation-code-in-a-functi">liga</a>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf8.cu
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf9.cu
 <span class="c1">#include&lt;stdio.h&gt;</span>
 <span class="c1">#include &lt;thrust/reduce.h&gt;</span>
 <span class="c1">#include &lt;thrust/execution_policy.h&gt;</span>
@@ -3243,7 +3364,7 @@ Tiempo de cálculo en la gpu 1.12291
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf8.cu
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf9.cu
 </pre></div>
 </div>
 </div>
@@ -3252,7 +3373,7 @@ Tiempo de cálculo en la gpu 1.12291
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
 source ~/.profile
-nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf8.cu -o Rcf8.out
+nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf9.cu -o Rcf9.out
 </pre></div>
 </div>
 </div>
@@ -3265,7 +3386,7 @@ nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf8.cu -o Rcf
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-./Rcf8.out
+./Rcf9.out
 </pre></div>
 </div>
 </div>
@@ -3408,6 +3529,159 @@ Error: an illegal memory access was encountered
 </div>
 </div>
 <p>Ver <a class="reference external" href="https://docs.cupy.dev/en/stable/user_guide/performance.html">performance</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">Rcf_cupy</span><span class="p">,</span> <span class="p">(</span><span class="n">f_cp</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">),</span> <span class="n">n_repeat</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/ubuntu/.local/lib/python3.8/site-packages/cupyx/time.py:115: FutureWarning: cupyx.time.repeat is experimental. The interface can change in the future.
+  _util.experimental(&#39;cupyx.time.repeat&#39;)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NVRTCError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">~/.local/lib/python3.8/site-packages/cupy/cuda/compiler.py</span> in <span class="ni">compile</span><span class="nt">(self, options, log_stream)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span>                     <span class="n">nvrtc</span><span class="o">.</span><span class="n">addAddNameExpression</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ptr</span><span class="p">,</span> <span class="n">ker</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">623</span>             <span class="n">nvrtc</span><span class="o">.</span><span class="n">compileProgram</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ptr</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">624</span>             <span class="n">mapping</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">cupy_backends/cuda/libs/nvrtc.pyx</span> in <span class="ni">cupy_backends.cuda.libs.nvrtc.compileProgram</span><span class="nt">()</span>
+
+<span class="nn">cupy_backends/cuda/libs/nvrtc.pyx</span> in <span class="ni">cupy_backends.cuda.libs.nvrtc.compileProgram</span><span class="nt">()</span>
+
+<span class="nn">cupy_backends/cuda/libs/nvrtc.pyx</span> in <span class="ni">cupy_backends.cuda.libs.nvrtc.check_status</span><span class="nt">()</span>
+
+<span class="ne">NVRTCError</span>: NVRTC_ERROR_COMPILATION (6)
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">CompileException</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">6</span><span class="o">-</span><span class="mi">33</span><span class="n">ae1eff6e88</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="n">repeat</span><span class="p">(</span><span class="n">Rcf_cupy</span><span class="p">,</span> <span class="p">(</span><span class="n">f_cp</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">),</span> <span class="n">n_repeat</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="nn">~/.local/lib/python3.8/site-packages/cupyx/time.py</span> in <span class="ni">repeat</span><span class="nt">(func, args, kwargs, n_repeat, name, n_warmup, max_duration, devices)</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;`devices` should be of tuple type&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span> 
+<span class="ne">--&gt; </span><span class="mi">139</span>     <span class="k">return</span> <span class="n">_repeat</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span>         <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">n_repeat</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">n_warmup</span><span class="p">,</span> <span class="n">max_duration</span><span class="p">,</span> <span class="n">devices</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span> 
+
+<span class="nn">~/.local/lib/python3.8/site-packages/cupyx/time.py</span> in <span class="ni">_repeat</span><span class="nt">(func, args, kwargs, n_repeat, name, n_warmup, max_duration, devices)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span> 
+<span class="g g-Whitespace">    </span><span class="mi">157</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_warmup</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">158</span>         <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span> 
+<span class="g g-Whitespace">    </span><span class="mi">160</span>     <span class="k">for</span> <span class="n">event</span><span class="p">,</span> <span class="n">device</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">events_1</span><span class="p">,</span> <span class="n">devices</span><span class="p">):</span>
+
+<span class="nn">&lt;ipython-input-3-417a01c1f5d1&gt;</span> in <span class="ni">Rcf_cupy</span><span class="nt">(f, a, b, n)</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span><span class="s2">     h_hat = (b-a)/n</span>
+<span class="ne">---&gt; </span><span class="mi">23</span><span class="s2">     aux_vec = cp.linspace(a, b, n+1)</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span><span class="s2">     nodes = (aux_vec[:-1]+aux_vec[1:])/2</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span><span class="s2">     return h_hat*cp.sum(f(nodes))</span>
+
+<span class="nn">~/.local/lib/python3.8/site-packages/cupy/_creation/ranges.py</span> in <span class="ni">linspace</span><span class="nt">(start, stop, num, endpoint, retstep, dtype, axis)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="s2">     scalar_stop = cupy.isscalar(stop)</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="s2">     if scalar_start and scalar_stop:</span>
+<span class="ne">--&gt; </span><span class="mi">158</span><span class="s2">         return _linspace_scalar(start, stop, num, endpoint, retstep, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span><span class="s2">     if not scalar_start:</span>
+
+<span class="nn">~/.local/lib/python3.8/site-packages/cupy/_creation/ranges.py</span> in <span class="ni">_linspace_scalar</span><span class="nt">(start, stop, num, endpoint, retstep, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span><span class="s2">         if endpoint:</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span><span class="s2">             # Here num == div + 1 &gt; 1 is ensured.</span>
+<span class="ne">--&gt; </span><span class="mi">106</span><span class="s2">             ret[-1] = stop</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span><span class="s2">     if cupy.issubdtype(dtype, cupy.integer):</span>
+
+<span class="nn">cupy/_core/core.pyx</span> in <span class="ni">cupy._core.core.ndarray.__setitem__</span><span class="nt">()</span>
+
+<span class="nn">cupy/_core/_routines_indexing.pyx</span> in <span class="ni">cupy._core._routines_indexing._ndarray_setitem</span><span class="nt">()</span>
+
+<span class="nn">cupy/_core/_routines_indexing.pyx</span> in <span class="ni">cupy._core._routines_indexing._scatter_op</span><span class="nt">()</span>
+
+<span class="nn">cupy/_core/core.pyx</span> in <span class="ni">cupy._core.core.ndarray.fill</span><span class="nt">()</span>
+
+<span class="nn">cupy/_core/_kernel.pyx</span> in <span class="ni">cupy._core._kernel.ElementwiseKernel.__call__</span><span class="nt">()</span>
+
+<span class="nn">cupy/_core/_kernel.pyx</span> in <span class="ni">cupy._core._kernel.ElementwiseKernel._get_elementwise_kernel</span><span class="nt">()</span>
+
+<span class="nn">cupy/_util.pyx</span> in <span class="ni">cupy._util.memoize.decorator.ret</span><span class="nt">()</span>
+
+<span class="nn">cupy/_core/_kernel.pyx</span> in <span class="ni">cupy._core._kernel._get_elementwise_kernel</span><span class="nt">()</span>
+
+<span class="nn">cupy/_core/_kernel.pyx</span> in <span class="ni">cupy._core._kernel._get_simple_elementwise_kernel</span><span class="nt">()</span>
+
+<span class="nn">cupy/_core/core.pyx</span> in <span class="ni">cupy._core.core.compile_with_cache</span><span class="nt">()</span>
+
+<span class="nn">~/.local/lib/python3.8/site-packages/cupy/cuda/compiler.py</span> in <span class="ni">compile_with_cache</span><span class="nt">(source, options, arch, cache_dir, extra_source, backend, enable_cooperative_groups, name_expressions, log_stream, jitify)</span>
+<span class="g g-Whitespace">    </span><span class="mi">430</span><span class="s2">             name_expressions, log_stream, cache_in_memory)</span>
+<span class="g g-Whitespace">    </span><span class="mi">431</span><span class="s2">     else:</span>
+<span class="ne">--&gt; </span><span class="mi">432</span><span class="s2">         return _compile_with_cache_cuda(</span>
+<span class="g g-Whitespace">    </span><span class="mi">433</span><span class="s2">             source, options, arch, cache_dir, extra_source, backend,</span>
+<span class="g g-Whitespace">    </span><span class="mi">434</span><span class="s2">             enable_cooperative_groups, name_expressions, log_stream,</span>
+
+<span class="nn">~/.local/lib/python3.8/site-packages/cupy/cuda/compiler.py</span> in <span class="ni">_compile_with_cache_cuda</span><span class="nt">(source, options, arch, cache_dir, extra_source, backend, enable_cooperative_groups, name_expressions, log_stream, cache_in_memory, jitify)</span>
+<span class="g g-Whitespace">    </span><span class="mi">507</span><span class="s2">     if backend == &#39;nvrtc&#39;:</span>
+<span class="g g-Whitespace">    </span><span class="mi">508</span><span class="s2">         cu_name = &#39;&#39; if cache_in_memory else name + &#39;.cu&#39;</span>
+<span class="ne">--&gt; </span><span class="mi">509</span><span class="s2">         ptx, mapping = compile_using_nvrtc(</span>
+<span class="g g-Whitespace">    </span><span class="mi">510</span><span class="s2">             source, options, arch, cu_name, name_expressions,</span>
+<span class="g g-Whitespace">    </span><span class="mi">511</span><span class="s2">             log_stream, cache_in_memory, jitify)</span>
+
+<span class="nn">~/.local/lib/python3.8/site-packages/cupy/cuda/compiler.py</span> in <span class="ni">compile_using_nvrtc</span><span class="nt">(source, options, arch, filename, name_expressions, log_stream, cache_in_memory, jitify)</span>
+<span class="g g-Whitespace">    </span><span class="mi">269</span><span class="s2">                 cu_file.write(source)</span>
+<span class="g g-Whitespace">    </span><span class="mi">270</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">271</span><span class="s2">             return _compile(source, options, cu_path,</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span><span class="s2">                             name_expressions, log_stream, jitify)</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span><span class="s2">     else:</span>
+
+<span class="nn">~/.local/lib/python3.8/site-packages/cupy/cuda/compiler.py</span> in <span class="ni">_compile</span><span class="nt">(source, options, cu_path, name_expressions, log_stream, jitify)</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span><span class="s2">                              name_expressions=name_expressions)</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span><span class="s2">         try:</span>
+<span class="ne">--&gt; </span><span class="mi">255</span><span class="s2">             ptx, mapping = prog.compile(options, log_stream)</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span><span class="s2">         except CompileException as e:</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span><span class="s2">             dump = _get_bool_env_variable(</span>
+
+<span class="nn">~/.local/lib/python3.8/site-packages/cupy/cuda/compiler.py</span> in <span class="ni">compile</span><span class="nt">(self, options, log_stream)</span>
+<span class="g g-Whitespace">    </span><span class="mi">633</span><span class="s2">         except nvrtc.NVRTCError:</span>
+<span class="g g-Whitespace">    </span><span class="mi">634</span><span class="s2">             log = nvrtc.getProgramLog(self.ptr)</span>
+<span class="ne">--&gt; </span><span class="mi">635</span><span class="s2">             raise CompileException(log, self.src, self.name, options,</span>
+<span class="g g-Whitespace">    </span><span class="mi">636</span><span class="s2">                                    &#39;nvrtc&#39; if not runtime.is_hip else &#39;hiprtc&#39;)</span>
+<span class="g g-Whitespace">    </span><span class="mi">637</span><span class="s2"> </span>
+
+<span class="ne">CompileException</span>: /home/ubuntu/.local/lib/python3.8/site-packages/cupy/_core/include/cupy/carray.cuh(220): error: the size of an array must be greater than zero
+<span class="s2">          detected during instantiation of class &quot;CArray&lt;T, _ndim, _c_contiguous, _use_32bit_indexing&gt; [with T=double, _ndim=0, _c_contiguous=true, _use_32bit_indexing=false]&quot; </span>
+<span class="s2">/tmp/tmpy38z_fir/80b50dce313ef4bb36a0d424596a2ca1_2.cubin.cu(8): here</span>
+
+<span class="s2">/home/ubuntu/.local/lib/python3.8/site-packages/cupy/_core/include/cupy/carray.cuh(221): error: the size of an array must be greater than zero</span>
+<span class="s2">          detected during instantiation of class &quot;CArray&lt;T, _ndim, _c_contiguous, _use_32bit_indexing&gt; [with T=double, _ndim=0, _c_contiguous=true, _use_32bit_indexing=false]&quot; </span>
+<span class="s2">/tmp/tmpy38z_fir/80b50dce313ef4bb36a0d424596a2ca1_2.cubin.cu(8): here</span>
+
+<span class="s2">/home/ubuntu/.local/lib/python3.8/site-packages/cupy/_core/include/cupy/carray.cuh(322): error: the size of an array must be greater than zero</span>
+<span class="s2">          detected during instantiation of class &quot;CArray&lt;T, _ndim, _c_contiguous, _use_32bit_indexing&gt; [with T=double, _ndim=0, _c_contiguous=true, _use_32bit_indexing=false]&quot; </span>
+<span class="s2">/tmp/tmpy38z_fir/80b50dce313ef4bb36a0d424596a2ca1_2.cubin.cu(8): here</span>
+
+<span class="s2">/home/ubuntu/.local/lib/python3.8/site-packages/cupy/_core/include/cupy/carray.cuh(327): error: the size of an array must be greater than zero</span>
+<span class="s2">          detected during instantiation of class &quot;CArray&lt;T, _ndim, _c_contiguous, _use_32bit_indexing&gt; [with T=double, _ndim=0, _c_contiguous=true, _use_32bit_indexing=false]&quot; </span>
+<span class="s2">/tmp/tmpy38z_fir/80b50dce313ef4bb36a0d424596a2ca1_2.cubin.cu(8): here</span>
+
+<span class="s2">/tmp/tmpy38z_fir/80b50dce313ef4bb36a0d424596a2ca1_2.cubin.cu(12): error: no operator &quot;[]&quot; matches these operands</span>
+<span class="s2">            operand types are: CArray&lt;double, 0, true, false&gt; [ const ptrdiff_t * ]</span>
+
+<span class="mi">5</span><span class="s2"> errors detected in the compilation of &quot;/tmp/tmpy38z_fir/80b50dce313ef4bb36a0d424596a2ca1_2.cubin.cu&quot;.</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="gputools">
 <h2><a class="reference external" href="https://github.com/nullsatz/gputools">Gputools</a><a class="headerlink" href="#gputools" title="Permalink to this headline">¶</a></h2>
