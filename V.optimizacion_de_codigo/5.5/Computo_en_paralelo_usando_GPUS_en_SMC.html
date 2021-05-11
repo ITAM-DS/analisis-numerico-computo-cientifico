@@ -3153,7 +3153,10 @@ Tiempo de cálculo en la gpu 1.12291
 </div>
 </div>
 </div>
-<p><strong>Obs:</strong> en la programación con CUDA-C es importante checar posibles errores de alojamiento de memoria. Una forma es con los tipos <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html#group__CUDART__TYPES_1gf599e5b8b829ce7db0f5216928f6ecb6">cudaError_t</a> y <code class="docutils literal notranslate"><span class="pre">cudaSuccess</span></code> . Ver <a class="reference external" href="https://stackoverflow.com/questions/58902166/why-do-i-have-insufficient-buffer-space-when-i-put-allocation-code-in-a-functi">liga</a>:</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>En la programación con CUDA-C es importante checar posibles errores de alojamiento de memoria. Una forma es con los tipos <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html#group__CUDART__TYPES_1gf599e5b8b829ce7db0f5216928f6ecb6">cudaError_t</a> y <code class="docutils literal notranslate"><span class="pre">cudaSuccess</span></code> . Ver <a class="reference external" href="https://stackoverflow.com/questions/58902166/why-do-i-have-insufficient-buffer-space-when-i-put-allocation-code-in-a-functi">liga</a>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf8.cu
@@ -3209,12 +3212,12 @@ Tiempo de cálculo en la gpu 1.12291
     <span class="nb">int</span> <span class="n">n_threads_per_block</span><span class="o">=</span><span class="mi">1024</span><span class="p">;</span> 
     <span class="n">long</span> <span class="nb">int</span> <span class="n">n_blocks</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> 
     <span class="n">double</span> <span class="n">obj</span><span class="o">=</span><span class="mf">0.7468241328124271</span><span class="p">;</span>
-    <span class="n">long</span> <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="o">//</span><span class="n">inicializamos</span> <span class="n">en</span> <span class="mi">0</span>
+    <span class="n">long</span> <span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> 
     <span class="n">double</span> <span class="n">time_spent</span><span class="p">;</span>
     <span class="n">clock_t</span> <span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
     <span class="n">cudaDeviceProp</span> <span class="n">properties</span><span class="p">;</span>    
     <span class="n">cudaGetDeviceProperties</span><span class="p">(</span><span class="o">&amp;</span><span class="n">properties</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="n">n_blocks</span> <span class="o">=</span> <span class="mi">32768</span> <span class="o">*</span> <span class="n">properties</span><span class="o">.</span><span class="n">multiProcessorCount</span><span class="p">;</span>
+    <span class="n">n_blocks</span> <span class="o">=</span> <span class="mi">150000</span> <span class="o">*</span> <span class="n">properties</span><span class="o">.</span><span class="n">multiProcessorCount</span><span class="p">;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">n_blocks</span><span class="o">*</span><span class="n">n_threads_per_block</span><span class="p">;</span>
     <span class="n">dim3</span> <span class="n">dimGrid</span><span class="p">(</span><span class="n">n_blocks</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
     <span class="n">dim3</span> <span class="n">dimBlock</span><span class="p">(</span><span class="n">n_threads_per_block</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
@@ -3267,10 +3270,14 @@ nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf8.cu -o Rcf
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número de subintervalos: 436207616
-Integral de 0.000000 a 1.000000 = 7.468241328124106e-01
-Error relativo de la solución: 2.215022565569613e-14
-Tiempo de cálculo en la gpu 42.87404
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número de subintervalos: 1996800000
+Integral de 0.000000 a 1.000000 = 0.000000000000000e+00
+Error relativo de la solución: 1.000000000000000e+00
+Tiempo de cálculo en la gpu 0.06584
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error: out of memory
+Error: an illegal memory access was encountered
 </pre></div>
 </div>
 </div>
