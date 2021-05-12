@@ -713,21 +713,23 @@
 <p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab_optimizacion_2:3.0.0</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2">liga</a>.</p>
 </div>
 <hr class="docutils" />
-<p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/yjijtfuky3s5dfz/2.5.Compute_Unified_Device_Architecture.pdf?dl=0">liga</a></p>
+<p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/yjijtfuky3s5dfz/2.5.Compute_Unified_Device_Architecture.pdf?dl=0">liga</a>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Al final de esta nota el y la lectora:</p>
 <ul class="simple">
-<li></li>
+<li><p>Aprenderá un poco de historia y arquitectura de la GPU.</p></li>
+<li><p>Se familiarizará con la sintaxis de <em>CUDA-C</em> para cómputo en la GPU con ejemplos sencillos y los relacionará con el modelo de programación CUDA.</p></li>
+<li><p>Utilizará el paquete de <em>Python</em> <em>CuPy</em> para cómputo en la GPU.</p></li>
 </ul>
 </div>
 <p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">p2.xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se utilizó la AMI:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">opt2</span><span class="o">-</span><span class="n">aws</span><span class="o">-</span><span class="n">cuda</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">tools</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">2021</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">opt2</span><span class="o">-</span><span class="n">aws</span><span class="o">-</span><span class="n">cuda</span><span class="o">-</span><span class="n">toolkit</span><span class="o">-</span><span class="n">cupy</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">2021</span>
 </pre></div>
 </div>
 <p>de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_cuda_and_tools.sh">script_cuda_and_tools.sh</a></p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
-<p>Si se utiliza la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-cuda-and-tools-08-05-2021</span></code> colocar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
+<p>Si se utiliza la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-cuda-toolkit-cupy-08-05-2021</span></code> colocar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">##variables:</span>
 <span class="nv">region</span><span class="o">=</span>us-east-1 <span class="c1">#make sure instance is in Virginia</span>
@@ -1164,9 +1166,12 @@ GPU 00000000:00:1E.0
 </div>
 </div>
 <p>Para más información del comando <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> ver <a class="reference external" href="https://askubuntu.com/questions/1220144/can-somebody-explain-the-results-for-the-nvidia-smi-command-in-a-terminal">results-for-the-nvidia-smi-command-in-a-terminal</a> y <a class="reference external" href="https://developer.download.nvidia.com/compute/DCGM/docs/nvidia-smi-367.38.pdf">nvidia-smi-367.38</a>.</p>
-<div class="admonition-comentario admonition">
-<p class="admonition-title">Comentario</p>
-<p>Ejecutando <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span> <span class="pre">-l</span> <span class="pre">1</span></code> nos da información cada segundo.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Ejecutando <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span> <span class="pre">-l</span> <span class="pre">1</span></code> nos da información cada segundo.</p></li>
+<li><p>Una herramienta que nos ayuda al monitoreo de uso de la(s) GPU(s) es <a class="reference external" href="https://github.com/Syllo/nvtop">nvtop</a>.</p></li>
+</ul>
 </div>
 <p>2)Compilando y ejecutando el siguiente programa de <em>CUDA C</em>:</p>
 <div class="cell docutils container">
@@ -3038,7 +3043,7 @@ nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf6.cu -o Rcf
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Mientras se ejecuta la siguiente celda se sugiere en la terminal ejecutar en la línea de comando <a class="reference external" href="https://github.com/Syllo/nvtop">nvtop</a>.</p>
+<p>Mientras se ejecuta la siguiente celda se sugiere en la terminal ejecutar en la línea de comando <code class="docutils literal notranslate"><span class="pre">nvtop</span></code>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3190,7 +3195,7 @@ nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall Rcf7.cu -o Rcf
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
-<p>Mientras se ejecuta la siguiente celda se sugiere en la terminal ejecutar en la línea de comando <a class="reference external" href="https://github.com/Syllo/nvtop">nvtop</a>.</p>
+<p>Mientras se ejecuta la siguiente celda se sugiere en la terminal ejecutar en la línea de comando <code class="docutils literal notranslate"><span class="pre">nvtop</span></code>.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
