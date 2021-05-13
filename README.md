@@ -164,3 +164,9 @@ Finalizamos [Compilación a C](https://itam-ds.github.io/analisis-numerico-compu
 5 de mayo
 
 Llegamos hasta antes de [Computo_en_paralelo_usando_CPUS_en_SMC: Dask](https://itam-ds.github.io/analisis-numerico-computo-cientifico/V.optimizacion_de_codigo/5.4/Computo_en_paralelo_usando_CPUS_en_SMC.html#dask)
+
+## Clase 17
+
+12 de mayo
+
+Revisamos [5.5 Cómputo en paralelo usando GPUs en un sistema de memoria compartida (SMC)](https://itam-ds.github.io/analisis-numerico-computo-cientifico/V.optimizacion_de_codigo/5.5/Computo_en_paralelo_usando_GPUS_en_SMC.html) sin entrar en detalles.
