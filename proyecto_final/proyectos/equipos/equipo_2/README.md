@@ -13,7 +13,7 @@ Objetivo del proyecto: Explicar el algoritmo Ford-Fulkerson así como los proble
 
 [Liga a repo](https://github.com/diramtz/ProyectoFinal_MaxFlow)
 
-Trabajo escrito: [liga_trabajo_escrito](https://github.com/diramtz/ProyectoFinal_MaxFlow/blob/main/reporte_equipo_2.ipynb)
+Trabajo escrito: [trabajo escrito](https://github.com/diramtz/ProyectoFinal_MaxFlow/blob/main/reporte_equipo_2.ipynb)
 
 Presentación: (pendiente)
 
