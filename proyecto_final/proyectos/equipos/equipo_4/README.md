@@ -9,9 +9,9 @@ Integrantes:
 
 Título del proyecto: Algoritmo ACO para resolver problemas TSP
 
-Objetivo del proyecto: 
+**Objetivo del proyecto:**  Estudiar el problema de optimización del viajero (_Travelling Salesman Problem - TSP_) y su solución por medio del algoritmo de colonia de hormigas (_Ant Colony-ACO_) .  Realizar la implementación del algoritmo ACO en lenguaje `Python` en la librería [![ACO-TSP](https://gist.githack.com/C1587S/6f2fccb2473f9c9c8a093db7a03f9ab3/raw/f895b41f3ea45fd26c529b7e80ea4a3c69b0e0a5/ACO%20TSP%20pkg.svg)](https://github.com/optimizacion-2-2021-1-gh-classroom/practica-1-segunda-parte-ltejadal) para la solución de problemas TSP con conjuntos de datos reales. En las fases de desarrollo del proyecto se busca robustecer las implementaciones de la librería por medio de cómputo en paralelo y ḿetodos de selección de hiper-parámetros.  Probar la librería en lanzamientos de _pipelines_ con  `kubeflow`y `kale`.
 
-[Liga del Repo](https://github.com/ltejadal/analisis-numerico-computo-cientifico?organization=ltejadal&organization=ltejadal)
+[Liga del Repo](https://github.com/C1587S/ACO-TSP)
 
 Trabajo escrito: [liga](https://hackmd.io/ibLufWb0SRKVZC82lwH4gg?view)
 
