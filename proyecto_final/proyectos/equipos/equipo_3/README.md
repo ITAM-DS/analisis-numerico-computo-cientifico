@@ -21,4 +21,4 @@ El paquete desarrollado para resolver el problema se encuentra en la siguiente [
 
 ### Reporte
 
-El documento escrito se encuentra en la carpeta `reporte` del siguiente repositorio `//github.com/jreyesgar93/practica-final-opt-2021`, se anexa la liga para su consulta [aquí]().
+El documento escrito se encuentra en la carpeta `reporte` del siguiente repositorio `//github.com/jreyesgar93/practica-final-opt-2021`, se anexa la liga para su consulta [aquí](https://github.com/jreyesgar93/practica-final-opt-2021/blob/main/reporte/reporte_final_equipo_3.pdf)
