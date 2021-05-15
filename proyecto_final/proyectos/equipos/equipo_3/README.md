@@ -17,8 +17,8 @@ En este caso, se busca resolver un problema de programación lineal de enteros e
 
 ### Paquete Simplex
 
-El paquete desarrollado para resolver el problema se encuentra [aquí](https://github.com/optimizacion-2-2021-1-gh-classroom/practica-1-segunda-parte-yefovar) y su documentación se encuentra [aquí](https://optimizacion-2-2021-1-gh-classroom.github.io/practica-1-segunda-parte-yefovar/index.html#).
+El paquete desarrollado para resolver el problema se encuentra en la siguiente [liga](https://github.com/optimizacion-2-2021-1-gh-classroom/practica-1-segunda-parte-yefovar) y su documentación se encuentra [aquí](https://optimizacion-2-2021-1-gh-classroom.github.io/practica-1-segunda-parte-yefovar/index.html#).
 
 ### Reporte
 
-La liga al reporte en Overleaf se encuentra [aquí](https://www.overleaf.com/read/mrqyqwnzksdb). El archivo PDF se encuentra dentro de la carpeta `reporte` de este repositorio. 
+El documento escrito se encuentra en la carpeta `reporte` del siguiente repositorio `//github.com/jreyesgar93/practica-final-opt-2021`, se anexa la liga para su consulta [aquí]().
