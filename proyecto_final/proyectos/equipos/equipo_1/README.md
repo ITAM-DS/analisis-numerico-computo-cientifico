@@ -17,7 +17,7 @@ programación lineal a cualquier escala con método simplex.
 
 [Repositorio en donde se encuentra nuestro trabajo](https://github.com/lecepe00/mex_simplex)
 
-[Trabajo escrito](https://github.com/lecepe00/mex_simplex/blob/main/documentation/Reporte_equipo_1_proyecto_final.html)
+[Trabajo escrito](https://htmlpreview.github.io/?https://github.com/lecepe00/mex_simplex/blob/main/documentation/Reporte_equipo_1_proyecto_final.html)
 
 [Presentación](https://github.com/lecepe00/mex_simplex/blob/main/documentation/Presentacion_mex.pdf)
 
