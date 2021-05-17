@@ -47,7 +47,7 @@ Trabajo escrito: (Overleaf) [hill_cg](https://www.overleaf.com/project/609f37d0e
 
 Presentación (fuera del repo): [liga_presentación](https://github.com/jlrzarcor/OptAvzda-2021-hill-eureka/tree/main/report)
 
-Implementación (en el repo): [*Hill Climbing*](https://github.com/optimizacion-2-2021-1-gh-classroom/practica-2-segunda-parte-jlrzarcor/tree/main/src) 
+Implementación: [*Hill Climbing*](codigo) 
 
 
 En la carpeta [notebooks](notebooks) se encuentra material para comprensión del código realizado. No es un reporte final son de apoyo para ejecutar el código y/o entenderlo.
