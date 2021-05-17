@@ -43,7 +43,7 @@ Objetivo del proyecto: **Implementar el método de Hill climbing para resolver T
 Liga a repo: [OptAvzda-2021-hill-eureka](https://github.com/jlrzarcor/OptAvzda-2021-hill-eureka)
 
 
-Trabajo escrito: (Overleaf) [hill_cg](https://www.overleaf.com/project/609f37d0e16e23034b3c1654);  [pdf](https://github.com/jlrzarcor/ptAvzda-2021-hill-eureka/tree/main/report)
+Trabajo escrito: (Overleaf) [hill_cg](https://www.overleaf.com/project/609f37d0e16e23034b3c1654);  [pdf](https://github.com/jlrzarcor/OptAvzda-2021-hill-eureka/tree/main/report)
 
 Presentación (fuera del repo): [liga_presentación]()
 
