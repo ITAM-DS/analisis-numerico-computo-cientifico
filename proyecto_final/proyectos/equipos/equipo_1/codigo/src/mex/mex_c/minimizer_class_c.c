@@ -3,12 +3,12 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "name": "minimizer_class_c",
+        "name": "mex.mex_c.minimizer_class_c",
         "sources": [
             "minimizer_class_c.pyx"
         ]
     },
-    "module_name": "minimizer_class_c"
+    "module_name": "mex.mex_c.minimizer_class_c"
 }
 END: Cython Metadata */
 
@@ -616,8 +616,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__minimizer_class_c
-#define __PYX_HAVE_API__minimizer_class_c
+#define __PYX_HAVE__mex__mex_c__minimizer_class_c
+#define __PYX_HAVE_API__mex__mex_c__minimizer_class_c
 /* Early includes */
 #ifdef _OPENMP
 #include <omp.h>
@@ -974,6 +974,23 @@ static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_ve
 static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
 #endif
 
+/* ListCompAppend.proto */
+#if CYTHON_USE_PYLIST_INTERNALS && CYTHON_ASSUME_SAFE_MACROS
+static CYTHON_INLINE int __Pyx_ListComp_Append(PyObject* list, PyObject* x) {
+    PyListObject* L = (PyListObject*) list;
+    Py_ssize_t len = Py_SIZE(list);
+    if (likely(L->allocated > len)) {
+        Py_INCREF(x);
+        PyList_SET_ITEM(list, len, x);
+        __Pyx_SET_SIZE(list, len + 1);
+        return 0;
+    }
+    return PyList_Append(list, x);
+}
+#else
+#define __Pyx_ListComp_Append(L,x) PyList_Append(L,x)
+#endif
+
 /* PyFunctionFastCall.proto */
 #if CYTHON_FAST_PYCALL
 #define __Pyx_PyFunction_FastCall(func, args, nargs)\
@@ -1231,12 +1248,16 @@ static int __Pyx_check_binary_version(void);
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
-/* Module declarations from 'minimizer_class_c' */
-#define __Pyx_MODULE_NAME "minimizer_class_c"
-extern int __pyx_module_is_main_minimizer_class_c;
-int __pyx_module_is_main_minimizer_class_c = 0;
+/* Module declarations from 'mex.mex_c.minimizer_class_c' */
+#define __Pyx_MODULE_NAME "mex.mex_c.minimizer_class_c"
+extern int __pyx_module_is_main_mex__mex_c__minimizer_class_c;
+int __pyx_module_is_main_mex__mex_c__minimizer_class_c = 0;
 
-/* Implementation of 'minimizer_class_c' */
+/* Implementation of 'mex.mex_c.minimizer_class_c' */
+static const char __pyx_k_A[] = "A";
+static const char __pyx_k_b[] = "b";
+static const char __pyx_k_c[] = "c";
+static const char __pyx_k_x[] = "x";
 static const char __pyx_k_np[] = "np";
 static const char __pyx_k_doc[] = "__doc__";
 static const char __pyx_k_min[] = "min";
@@ -1249,6 +1270,7 @@ static const char __pyx_k_self[] = "self";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_array[] = "array";
 static const char __pyx_k_coeff[] = "coeff";
+static const char __pyx_k_compr[] = "compr";
 static const char __pyx_k_numpy[] = "numpy";
 static const char __pyx_k_solve[] = "solve";
 static const char __pyx_k_import[] = "__import__";
@@ -1257,81 +1279,89 @@ static const char __pyx_k_module[] = "__module__";
 static const char __pyx_k_values[] = "values";
 static const char __pyx_k_get_min[] = "get_min";
 static const char __pyx_k_prepare[] = "__prepare__";
+static const char __pyx_k_A_matrix[] = "A_matrix";
+static const char __pyx_k_b_vector[] = "b_vector";
+static const char __pyx_k_c_vector[] = "c_vector";
 static const char __pyx_k_qualname[] = "__qualname__";
-static const char __pyx_k_Minimizer[] = "Minimizer";
 static const char __pyx_k_constrain[] = "constrain";
 static const char __pyx_k_get_coeff[] = "get_coeff";
 static const char __pyx_k_metaclass[] = "__metaclass__";
-static const char __pyx_k_objective[] = "objective";
-static const char __pyx_k_constraint[] = "constraint";
-static const char __pyx_k_n_variables[] = "n_variables";
-static const char __pyx_k_add_objective[] = "add_objective";
+static const char __pyx_k_Minimizer_c[] = "Minimizer_c";
+static const char __pyx_k_lowerbounds[] = "lowerbounds";
+static const char __pyx_k_upperbounds[] = "upperbounds";
 static const char __pyx_k_create_matrix[] = "create_matrix";
-static const char __pyx_k_n_constraints[] = "n_constraints";
-static const char __pyx_k_add_constraint[] = "add_constraint";
-static const char __pyx_k_Minimizer_solve[] = "Minimizer.solve";
-static const char __pyx_k_Minimizer___init[] = "Minimizer.__init__";
-static const char __pyx_k_Minimizer_get_min[] = "Minimizer.get_min";
-static const char __pyx_k_minimizer_class_c[] = "minimizer_class_c";
+static const char __pyx_k_add_constraints[] = "add_constraints";
+static const char __pyx_k_generate_tableau[] = "generate_tableau";
+static const char __pyx_k_generates_matrix[] = "generates_matrix";
+static const char __pyx_k_Minimizer_c_solve[] = "Minimizer_c.solve";
+static const char __pyx_k_Minimizer_c___init[] = "Minimizer_c.__init__";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_simplex_networks_c[] = "simplex_networks_c";
-static const char __pyx_k_Minimizer_get_coeff[] = "Minimizer.get_coeff";
-static const char __pyx_k_problem_definition_c[] = "problem_definition_c";
+static const char __pyx_k_Minimizer_c_get_min[] = "Minimizer_c.get_min";
+static const char __pyx_k_mex_mex_c_general_c[] = "mex.mex_c.general_c";
+static const char __pyx_k_Minimizer_c_get_coeff[] = "Minimizer_c.get_coeff";
 static const char __pyx_k_minimizer_class_c_pyx[] = "minimizer_class_c.pyx";
-static const char __pyx_k_Minimizer_add_objective[] = "Minimizer.add_objective";
-static const char __pyx_k_Minimizer_add_constraint[] = "Minimizer.add_constraint";
-static const char __pyx_k_Minimize_the_objective_function[] = "Minimize the objective function";
+static const char __pyx_k_Minimizer_c_add_constraints[] = "Minimizer_c.add_constraints";
+static const char __pyx_k_mex_mex_c_minimizer_class_c[] = "mex.mex_c.minimizer_class_c";
+static const char __pyx_k_mex_mex_c_simplex_networks_c[] = "mex.mex_c.simplex_networks_c";
+static const char __pyx_k_mex_mex_c_problem_definition_c[] = "mex.mex_c.problem_definition_c";
+static const char __pyx_k_Minimize_the_objective_function[] = "\n    Minimize the objective function.\n    \n    Args:\n    \n        A (matrix):\n        \n        b (vector):\n        \n        c (vector):\n        \n    >>> A_min = [[1, 1], [-1, 2]]\n    >>> b_min = [[6], [8]]\n    >>> c_min = [[-1], [-3]]\n    >>>\n    >>> minim = Minimizer(A_min_obj, b_min_obj, c_min_obj)\n    >>> minim.solve()\n    >>> min_approx = minim.get_min()\n    >>> coeff_approx = minim.get_coeff()\n    ";
+static PyObject *__pyx_n_s_A;
+static PyObject *__pyx_n_s_A_matrix;
 static PyObject *__pyx_kp_s_Minimize_the_objective_function;
-static PyObject *__pyx_n_s_Minimizer;
-static PyObject *__pyx_n_s_Minimizer___init;
-static PyObject *__pyx_n_s_Minimizer_add_constraint;
-static PyObject *__pyx_n_s_Minimizer_add_objective;
-static PyObject *__pyx_n_s_Minimizer_get_coeff;
-static PyObject *__pyx_n_s_Minimizer_get_min;
-static PyObject *__pyx_n_s_Minimizer_solve;
-static PyObject *__pyx_n_s_add_constraint;
-static PyObject *__pyx_n_s_add_objective;
+static PyObject *__pyx_n_s_Minimizer_c;
+static PyObject *__pyx_n_s_Minimizer_c___init;
+static PyObject *__pyx_n_s_Minimizer_c_add_constraints;
+static PyObject *__pyx_n_s_Minimizer_c_get_coeff;
+static PyObject *__pyx_n_s_Minimizer_c_get_min;
+static PyObject *__pyx_n_s_Minimizer_c_solve;
+static PyObject *__pyx_n_s_add_constraints;
 static PyObject *__pyx_n_s_array;
+static PyObject *__pyx_n_s_b;
+static PyObject *__pyx_n_s_b_vector;
+static PyObject *__pyx_n_s_c;
+static PyObject *__pyx_n_s_c_vector;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_coeff;
+static PyObject *__pyx_n_s_compr;
 static PyObject *__pyx_n_s_constrain;
-static PyObject *__pyx_n_s_constraint;
 static PyObject *__pyx_n_s_create_matrix;
 static PyObject *__pyx_n_s_doc;
+static PyObject *__pyx_n_s_generate_tableau;
+static PyObject *__pyx_n_s_generates_matrix;
 static PyObject *__pyx_n_s_get_coeff;
 static PyObject *__pyx_n_s_get_min;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_init;
+static PyObject *__pyx_n_s_lowerbounds;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_matrix;
 static PyObject *__pyx_n_s_metaclass;
+static PyObject *__pyx_n_s_mex_mex_c_general_c;
+static PyObject *__pyx_n_s_mex_mex_c_minimizer_class_c;
+static PyObject *__pyx_n_s_mex_mex_c_problem_definition_c;
+static PyObject *__pyx_n_s_mex_mex_c_simplex_networks_c;
 static PyObject *__pyx_n_s_min;
 static PyObject *__pyx_n_u_min;
-static PyObject *__pyx_n_s_minimizer_class_c;
 static PyObject *__pyx_kp_s_minimizer_class_c_pyx;
 static PyObject *__pyx_n_s_minz;
 static PyObject *__pyx_n_s_module;
-static PyObject *__pyx_n_s_n_constraints;
-static PyObject *__pyx_n_s_n_variables;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_np;
 static PyObject *__pyx_n_s_numpy;
 static PyObject *__pyx_n_s_obj;
-static PyObject *__pyx_n_s_objective;
 static PyObject *__pyx_n_s_prepare;
-static PyObject *__pyx_n_s_problem_definition_c;
 static PyObject *__pyx_n_s_qualname;
 static PyObject *__pyx_n_s_self;
-static PyObject *__pyx_n_s_simplex_networks_c;
 static PyObject *__pyx_n_s_solve;
 static PyObject *__pyx_n_s_test;
+static PyObject *__pyx_n_s_upperbounds;
 static PyObject *__pyx_n_s_values;
-static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_n_variables, PyObject *__pyx_v_n_constraints); /* proto */
-static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_2add_constraint(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_constraint); /* proto */
-static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_4add_objective(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_objective); /* proto */
-static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_6solve(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_8get_min(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_10get_coeff(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_n_s_x;
+static PyObject *__pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_A, PyObject *__pyx_v_b, PyObject *__pyx_v_c); /* proto */
+static PyObject *__pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_2add_constraints(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_lowerbounds, PyObject *__pyx_v_upperbounds); /* proto */
+static PyObject *__pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_4solve(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_6get_min(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_8get_coeff(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_int_neg_1;
 static PyObject *__pyx_slice_;
 static PyObject *__pyx_tuple__2;
@@ -1339,30 +1369,29 @@ static PyObject *__pyx_tuple__4;
 static PyObject *__pyx_tuple__6;
 static PyObject *__pyx_tuple__8;
 static PyObject *__pyx_tuple__10;
-static PyObject *__pyx_tuple__12;
 static PyObject *__pyx_codeobj__3;
 static PyObject *__pyx_codeobj__5;
 static PyObject *__pyx_codeobj__7;
 static PyObject *__pyx_codeobj__9;
 static PyObject *__pyx_codeobj__11;
-static PyObject *__pyx_codeobj__13;
 /* Late includes */
 
-/* "minimizer_class_c.pyx":8
- *     """Minimize the objective function"""
+/* "mex/mex_c/minimizer_class_c.pyx":29
+ *     """
  * 
- *     def __init__(self, n_variables, n_constraints):             # <<<<<<<<<<<<<<
- *         self.n_variables = n_variables
- *         self.n_constraints = n_constraints
+ *     def __init__(self, A, b, c):             # <<<<<<<<<<<<<<
+ *         self.A_matrix = A
+ *         self.b_vector = b
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_17minimizer_class_c_9Minimizer_1__init__ = {"__init__", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17minimizer_class_c_9Minimizer_1__init__, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_1__init__ = {"__init__", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_1__init__, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
-  PyObject *__pyx_v_n_variables = 0;
-  PyObject *__pyx_v_n_constraints = 0;
+  PyObject *__pyx_v_A = 0;
+  PyObject *__pyx_v_b = 0;
+  PyObject *__pyx_v_c = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -1370,7 +1399,309 @@ static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_1__init__(PyObject *__p
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__init__ (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_n_variables,&__pyx_n_s_n_constraints,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_A,&__pyx_n_s_b,&__pyx_n_s_c,0};
+    PyObject* values[4] = {0,0,0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        CYTHON_FALLTHROUGH;
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_self)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_A)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 4, 4, 1); __PYX_ERR(0, 29, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_b)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 4, 4, 2); __PYX_ERR(0, 29, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  3:
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_c)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 4, 4, 3); __PYX_ERR(0, 29, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 29, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_A = values[1];
+    __pyx_v_b = values[2];
+    __pyx_v_c = values[3];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 29, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("mex.mex_c.minimizer_class_c.Minimizer_c.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c___init__(__pyx_self, __pyx_v_self, __pyx_v_A, __pyx_v_b, __pyx_v_c);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_A, PyObject *__pyx_v_b, PyObject *__pyx_v_c) {
+  PyObject *__pyx_7genexpr__pyx_v_x = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  Py_ssize_t __pyx_t_5;
+  PyObject *(*__pyx_t_6)(PyObject *);
+  PyObject *__pyx_t_7 = NULL;
+  int __pyx_t_8;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__init__", 0);
+
+  /* "mex/mex_c/minimizer_class_c.pyx":30
+ * 
+ *     def __init__(self, A, b, c):
+ *         self.A_matrix = A             # <<<<<<<<<<<<<<
+ *         self.b_vector = b
+ *         self.c_vector = c
+ */
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_A_matrix, __pyx_v_A) < 0) __PYX_ERR(0, 30, __pyx_L1_error)
+
+  /* "mex/mex_c/minimizer_class_c.pyx":31
+ *     def __init__(self, A, b, c):
+ *         self.A_matrix = A
+ *         self.b_vector = b             # <<<<<<<<<<<<<<
+ *         self.c_vector = c
+ *         self.matrix = generates_matrix(A, b, [-1*x for x in c])
+ */
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_b_vector, __pyx_v_b) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+
+  /* "mex/mex_c/minimizer_class_c.pyx":32
+ *         self.A_matrix = A
+ *         self.b_vector = b
+ *         self.c_vector = c             # <<<<<<<<<<<<<<
+ *         self.matrix = generates_matrix(A, b, [-1*x for x in c])
+ *         self.min = None
+ */
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_c_vector, __pyx_v_c) < 0) __PYX_ERR(0, 32, __pyx_L1_error)
+
+  /* "mex/mex_c/minimizer_class_c.pyx":33
+ *         self.b_vector = b
+ *         self.c_vector = c
+ *         self.matrix = generates_matrix(A, b, [-1*x for x in c])             # <<<<<<<<<<<<<<
+ *         self.min = None
+ *         self.coeff = None
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_generates_matrix); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  { /* enter inner scope */
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 33, __pyx_L5_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (likely(PyList_CheckExact(__pyx_v_c)) || PyTuple_CheckExact(__pyx_v_c)) {
+      __pyx_t_4 = __pyx_v_c; __Pyx_INCREF(__pyx_t_4); __pyx_t_5 = 0;
+      __pyx_t_6 = NULL;
+    } else {
+      __pyx_t_5 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_v_c); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L5_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_6 = Py_TYPE(__pyx_t_4)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 33, __pyx_L5_error)
+    }
+    for (;;) {
+      if (likely(!__pyx_t_6)) {
+        if (likely(PyList_CheckExact(__pyx_t_4))) {
+          if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_4)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_7 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_5); __Pyx_INCREF(__pyx_t_7); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 33, __pyx_L5_error)
+          #else
+          __pyx_t_7 = PySequence_ITEM(__pyx_t_4, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 33, __pyx_L5_error)
+          __Pyx_GOTREF(__pyx_t_7);
+          #endif
+        } else {
+          if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_4)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_5); __Pyx_INCREF(__pyx_t_7); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 33, __pyx_L5_error)
+          #else
+          __pyx_t_7 = PySequence_ITEM(__pyx_t_4, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 33, __pyx_L5_error)
+          __Pyx_GOTREF(__pyx_t_7);
+          #endif
+        }
+      } else {
+        __pyx_t_7 = __pyx_t_6(__pyx_t_4);
+        if (unlikely(!__pyx_t_7)) {
+          PyObject* exc_type = PyErr_Occurred();
+          if (exc_type) {
+            if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+            else __PYX_ERR(0, 33, __pyx_L5_error)
+          }
+          break;
+        }
+        __Pyx_GOTREF(__pyx_t_7);
+      }
+      __Pyx_XDECREF_SET(__pyx_7genexpr__pyx_v_x, __pyx_t_7);
+      __pyx_t_7 = 0;
+      __pyx_t_7 = PyNumber_Multiply(__pyx_int_neg_1, __pyx_7genexpr__pyx_v_x); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 33, __pyx_L5_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_7))) __PYX_ERR(0, 33, __pyx_L5_error)
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    }
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_XDECREF(__pyx_7genexpr__pyx_v_x); __pyx_7genexpr__pyx_v_x = 0;
+    goto __pyx_L8_exit_scope;
+    __pyx_L5_error:;
+    __Pyx_XDECREF(__pyx_7genexpr__pyx_v_x); __pyx_7genexpr__pyx_v_x = 0;
+    goto __pyx_L1_error;
+    __pyx_L8_exit_scope:;
+  } /* exit inner scope */
+  __pyx_t_4 = NULL;
+  __pyx_t_8 = 0;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __pyx_t_8 = 1;
+    }
+  }
+  #if CYTHON_FAST_PYCALL
+  if (PyFunction_Check(__pyx_t_2)) {
+    PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_v_A, __pyx_v_b, __pyx_t_3};
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  } else
+  #endif
+  #if CYTHON_FAST_PYCCALL
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
+    PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_v_A, __pyx_v_b, __pyx_t_3};
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 3+__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  } else
+  #endif
+  {
+    __pyx_t_7 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 33, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    if (__pyx_t_4) {
+      __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4); __pyx_t_4 = NULL;
+    }
+    __Pyx_INCREF(__pyx_v_A);
+    __Pyx_GIVEREF(__pyx_v_A);
+    PyTuple_SET_ITEM(__pyx_t_7, 0+__pyx_t_8, __pyx_v_A);
+    __Pyx_INCREF(__pyx_v_b);
+    __Pyx_GIVEREF(__pyx_v_b);
+    PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_8, __pyx_v_b);
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_7, 2+__pyx_t_8, __pyx_t_3);
+    __pyx_t_3 = 0;
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_matrix, __pyx_t_1) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "mex/mex_c/minimizer_class_c.pyx":34
+ *         self.c_vector = c
+ *         self.matrix = generates_matrix(A, b, [-1*x for x in c])
+ *         self.min = None             # <<<<<<<<<<<<<<
+ *         self.coeff = None
+ * 
+ */
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_min, Py_None) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
+
+  /* "mex/mex_c/minimizer_class_c.pyx":35
+ *         self.matrix = generates_matrix(A, b, [-1*x for x in c])
+ *         self.min = None
+ *         self.coeff = None             # <<<<<<<<<<<<<<
+ * 
+ *     def add_constraints(self, lowerbounds, upperbounds):
+ */
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_coeff, Py_None) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
+
+  /* "mex/mex_c/minimizer_class_c.pyx":29
+ *     """
+ * 
+ *     def __init__(self, A, b, c):             # <<<<<<<<<<<<<<
+ *         self.A_matrix = A
+ *         self.b_vector = b
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("mex.mex_c.minimizer_class_c.Minimizer_c.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_7genexpr__pyx_v_x);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "mex/mex_c/minimizer_class_c.pyx":37
+ *         self.coeff = None
+ * 
+ *     def add_constraints(self, lowerbounds, upperbounds):             # <<<<<<<<<<<<<<
+ *         """
+ *         Add constraints to current matrix.
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_3add_constraints(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_2add_constraints[] = "\n        Add constraints to current matrix.\n        \n        Args:\n        \n              lowerbounds (vector): lower bounds of the problem.\n              \n              upperbounds (vector): upper bounds of the problem.\n        ";
+static PyMethodDef __pyx_mdef_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_3add_constraints = {"add_constraints", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_3add_constraints, METH_VARARGS|METH_KEYWORDS, __pyx_doc_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_2add_constraints};
+static PyObject *__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_3add_constraints(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_lowerbounds = 0;
+  PyObject *__pyx_v_upperbounds = 0;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("add_constraints (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_lowerbounds,&__pyx_n_s_upperbounds,0};
     PyObject* values[3] = {0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
@@ -1392,19 +1723,19 @@ static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_1__init__(PyObject *__p
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_n_variables)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lowerbounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 3, 3, 1); __PYX_ERR(0, 8, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("add_constraints", 1, 3, 3, 1); __PYX_ERR(0, 37, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_n_constraints)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_upperbounds)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 3, 3, 2); __PYX_ERR(0, 8, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("add_constraints", 1, 3, 3, 2); __PYX_ERR(0, 37, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 8, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "add_constraints") < 0)) __PYX_ERR(0, 37, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -1414,25 +1745,25 @@ static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_1__init__(PyObject *__p
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
     __pyx_v_self = values[0];
-    __pyx_v_n_variables = values[1];
-    __pyx_v_n_constraints = values[2];
+    __pyx_v_lowerbounds = values[1];
+    __pyx_v_upperbounds = values[2];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 8, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("add_constraints", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 37, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("minimizer_class_c.Minimizer.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mex.mex_c.minimizer_class_c.Minimizer_c.add_constraints", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_17minimizer_class_c_9Minimizer___init__(__pyx_self, __pyx_v_self, __pyx_v_n_variables, __pyx_v_n_constraints);
+  __pyx_r = __pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_2add_constraints(__pyx_self, __pyx_v_self, __pyx_v_lowerbounds, __pyx_v_upperbounds);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_n_variables, PyObject *__pyx_v_n_constraints) {
+static PyObject *__pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_2add_constraints(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_lowerbounds, PyObject *__pyx_v_upperbounds) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -1440,120 +1771,60 @@ static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer___init__(CYTHON_UNUSED 
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
-  int __pyx_t_6;
-  PyObject *__pyx_t_7 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("__init__", 0);
+  __Pyx_RefNannySetupContext("add_constraints", 0);
 
-  /* "minimizer_class_c.pyx":9
+  /* "mex/mex_c/minimizer_class_c.pyx":47
+ *               upperbounds (vector): upper bounds of the problem.
+ *         """
+ *         self.matrix = generate_tableau(self.A_matrix, self.b_vector, lowerbounds, upperbounds, self.c_vector, compr=False)             # <<<<<<<<<<<<<<
  * 
- *     def __init__(self, n_variables, n_constraints):
- *         self.n_variables = n_variables             # <<<<<<<<<<<<<<
- *         self.n_constraints = n_constraints
- *         self.matrix = create_matrix(self.n_variables, self.n_constraints)
+ *     def solve(self):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_n_variables, __pyx_v_n_variables) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
-
-  /* "minimizer_class_c.pyx":10
- *     def __init__(self, n_variables, n_constraints):
- *         self.n_variables = n_variables
- *         self.n_constraints = n_constraints             # <<<<<<<<<<<<<<
- *         self.matrix = create_matrix(self.n_variables, self.n_constraints)
- *         self.min = None
- */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_n_constraints, __pyx_v_n_constraints) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
-
-  /* "minimizer_class_c.pyx":11
- *         self.n_variables = n_variables
- *         self.n_constraints = n_constraints
- *         self.matrix = create_matrix(self.n_variables, self.n_constraints)             # <<<<<<<<<<<<<<
- *         self.min = None
- *         self.coeff = None
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_create_matrix); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_generate_tableau); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_A_matrix); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_n_variables); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_b_vector); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_n_constraints); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_c_vector); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = NULL;
-  __pyx_t_6 = 0;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_5)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_5);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-      __pyx_t_6 = 1;
-    }
-  }
-  #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_2)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_t_3, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  } else
-  #endif
-  #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_5, __pyx_t_3, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  } else
-  #endif
-  {
-    __pyx_t_7 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 11, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    if (__pyx_t_5) {
-      __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __pyx_t_5 = NULL;
-    }
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_7, 0+__pyx_t_6, __pyx_t_3);
-    __Pyx_GIVEREF(__pyx_t_4);
-    PyTuple_SET_ITEM(__pyx_t_7, 1+__pyx_t_6, __pyx_t_4);
-    __pyx_t_3 = 0;
-    __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_matrix, __pyx_t_1) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_3);
+  PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_3);
+  __Pyx_INCREF(__pyx_v_lowerbounds);
+  __Pyx_GIVEREF(__pyx_v_lowerbounds);
+  PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_v_lowerbounds);
+  __Pyx_INCREF(__pyx_v_upperbounds);
+  __Pyx_GIVEREF(__pyx_v_upperbounds);
+  PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_v_upperbounds);
+  __Pyx_GIVEREF(__pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_5, 4, __pyx_t_4);
+  __pyx_t_2 = 0;
+  __pyx_t_3 = 0;
+  __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_compr, Py_False) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_matrix, __pyx_t_3) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "minimizer_class_c.pyx":12
- *         self.n_constraints = n_constraints
- *         self.matrix = create_matrix(self.n_variables, self.n_constraints)
- *         self.min = None             # <<<<<<<<<<<<<<
+  /* "mex/mex_c/minimizer_class_c.pyx":37
  *         self.coeff = None
  * 
- */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_min, Py_None) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
-
-  /* "minimizer_class_c.pyx":13
- *         self.matrix = create_matrix(self.n_variables, self.n_constraints)
- *         self.min = None
- *         self.coeff = None             # <<<<<<<<<<<<<<
- * 
- *     def add_constraint(self, constraint):
- */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_coeff, Py_None) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
-
-  /* "minimizer_class_c.pyx":8
- *     """Minimize the objective function"""
- * 
- *     def __init__(self, n_variables, n_constraints):             # <<<<<<<<<<<<<<
- *         self.n_variables = n_variables
- *         self.n_constraints = n_constraints
+ *     def add_constraints(self, lowerbounds, upperbounds):             # <<<<<<<<<<<<<<
+ *         """
+ *         Add constraints to current matrix.
  */
 
   /* function exit code */
@@ -1565,8 +1836,7 @@ static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer___init__(CYTHON_UNUSED 
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("minimizer_class_c.Minimizer.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mex.mex_c.minimizer_class_c.Minimizer_c.add_constraints", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1574,373 +1844,30 @@ static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer___init__(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "minimizer_class_c.pyx":15
- *         self.coeff = None
- * 
- *     def add_constraint(self, constraint):             # <<<<<<<<<<<<<<
- *         constrain(self.matrix, constraint)
- * 
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_3add_constraint(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_17minimizer_class_c_9Minimizer_3add_constraint = {"add_constraint", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17minimizer_class_c_9Minimizer_3add_constraint, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_3add_constraint(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_self = 0;
-  PyObject *__pyx_v_constraint = 0;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("add_constraint (wrapper)", 0);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_constraint,0};
-    PyObject* values[2] = {0,0};
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_self)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_constraint)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("add_constraint", 1, 2, 2, 1); __PYX_ERR(0, 15, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "add_constraint") < 0)) __PYX_ERR(0, 15, __pyx_L3_error)
-      }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-    }
-    __pyx_v_self = values[0];
-    __pyx_v_constraint = values[1];
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("add_constraint", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 15, __pyx_L3_error)
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("minimizer_class_c.Minimizer.add_constraint", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_17minimizer_class_c_9Minimizer_2add_constraint(__pyx_self, __pyx_v_self, __pyx_v_constraint);
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_2add_constraint(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_constraint) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  int __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("add_constraint", 0);
-
-  /* "minimizer_class_c.pyx":16
- * 
- *     def add_constraint(self, constraint):
- *         constrain(self.matrix, constraint)             # <<<<<<<<<<<<<<
- * 
- *     def add_objective(self, objective):
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_constrain); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_matrix); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 16, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = NULL;
-  __pyx_t_5 = 0;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-      __pyx_t_5 = 1;
-    }
-  }
-  #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_2)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_3, __pyx_v_constraint};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  } else
-  #endif
-  #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_3, __pyx_v_constraint};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  } else
-  #endif
-  {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 16, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    if (__pyx_t_4) {
-      __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
-    }
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_6, 0+__pyx_t_5, __pyx_t_3);
-    __Pyx_INCREF(__pyx_v_constraint);
-    __Pyx_GIVEREF(__pyx_v_constraint);
-    PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_constraint);
-    __pyx_t_3 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "minimizer_class_c.pyx":15
- *         self.coeff = None
- * 
- *     def add_constraint(self, constraint):             # <<<<<<<<<<<<<<
- *         constrain(self.matrix, constraint)
- * 
- */
-
-  /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("minimizer_class_c.Minimizer.add_constraint", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "minimizer_class_c.pyx":18
- *         constrain(self.matrix, constraint)
- * 
- *     def add_objective(self, objective):             # <<<<<<<<<<<<<<
- *         obj(self.matrix, objective)
- * 
- */
-
-/* Python wrapper */
-static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_5add_objective(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_17minimizer_class_c_9Minimizer_5add_objective = {"add_objective", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17minimizer_class_c_9Minimizer_5add_objective, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_5add_objective(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_self = 0;
-  PyObject *__pyx_v_objective = 0;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("add_objective (wrapper)", 0);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_objective,0};
-    PyObject* values[2] = {0,0};
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_self)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_objective)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("add_objective", 1, 2, 2, 1); __PYX_ERR(0, 18, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "add_objective") < 0)) __PYX_ERR(0, 18, __pyx_L3_error)
-      }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-    }
-    __pyx_v_self = values[0];
-    __pyx_v_objective = values[1];
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("add_objective", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 18, __pyx_L3_error)
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("minimizer_class_c.Minimizer.add_objective", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_17minimizer_class_c_9Minimizer_4add_objective(__pyx_self, __pyx_v_self, __pyx_v_objective);
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_4add_objective(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_objective) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  int __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("add_objective", 0);
-
-  /* "minimizer_class_c.pyx":19
- * 
- *     def add_objective(self, objective):
- *         obj(self.matrix, objective)             # <<<<<<<<<<<<<<
- * 
- *     def solve(self):
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_obj); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_matrix); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = NULL;
-  __pyx_t_5 = 0;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-      __pyx_t_5 = 1;
-    }
-  }
-  #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_2)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_3, __pyx_v_objective};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  } else
-  #endif
-  #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_t_3, __pyx_v_objective};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  } else
-  #endif
-  {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 19, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    if (__pyx_t_4) {
-      __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
-    }
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_6, 0+__pyx_t_5, __pyx_t_3);
-    __Pyx_INCREF(__pyx_v_objective);
-    __Pyx_GIVEREF(__pyx_v_objective);
-    PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_v_objective);
-    __pyx_t_3 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "minimizer_class_c.pyx":18
- *         constrain(self.matrix, constraint)
- * 
- *     def add_objective(self, objective):             # <<<<<<<<<<<<<<
- *         obj(self.matrix, objective)
- * 
- */
-
-  /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("minimizer_class_c.Minimizer.add_objective", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "minimizer_class_c.pyx":21
- *         obj(self.matrix, objective)
+/* "mex/mex_c/minimizer_class_c.pyx":49
+ *         self.matrix = generate_tableau(self.A_matrix, self.b_vector, lowerbounds, upperbounds, self.c_vector, compr=False)
  * 
  *     def solve(self):             # <<<<<<<<<<<<<<
- *         solve = minz(self.matrix)
- *         self.min = solve['min']
+ *         """
+ *         Solve the minimization problem.
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_7solve(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
-static PyMethodDef __pyx_mdef_17minimizer_class_c_9Minimizer_7solve = {"solve", (PyCFunction)__pyx_pw_17minimizer_class_c_9Minimizer_7solve, METH_O, 0};
-static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_7solve(PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_5solve(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
+static char __pyx_doc_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_4solve[] = "\n        Solve the minimization problem.\n        ";
+static PyMethodDef __pyx_mdef_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_5solve = {"solve", (PyCFunction)__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_5solve, METH_O, __pyx_doc_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_4solve};
+static PyObject *__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_5solve(PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("solve (wrapper)", 0);
-  __pyx_r = __pyx_pf_17minimizer_class_c_9Minimizer_6solve(__pyx_self, ((PyObject *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_4solve(__pyx_self, ((PyObject *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_6solve(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_4solve(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_v_solve = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -1954,16 +1881,16 @@ static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_6solve(CYTHON_UNUSED Py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("solve", 0);
 
-  /* "minimizer_class_c.pyx":22
- * 
- *     def solve(self):
+  /* "mex/mex_c/minimizer_class_c.pyx":53
+ *         Solve the minimization problem.
+ *         """
  *         solve = minz(self.matrix)             # <<<<<<<<<<<<<<
  *         self.min = solve['min']
  *         self.coeff = np.array(list(solve.values()))[:-1]
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_minz); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_minz); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_matrix); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_matrix); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -1978,37 +1905,37 @@ static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_6solve(CYTHON_UNUSED Py
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_solve = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "minimizer_class_c.pyx":23
- *     def solve(self):
+  /* "mex/mex_c/minimizer_class_c.pyx":54
+ *         """
  *         solve = minz(self.matrix)
  *         self.min = solve['min']             # <<<<<<<<<<<<<<
  *         self.coeff = np.array(list(solve.values()))[:-1]
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_solve, __pyx_n_u_min); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_solve, __pyx_n_u_min); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_min, __pyx_t_1) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_min, __pyx_t_1) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "minimizer_class_c.pyx":24
+  /* "mex/mex_c/minimizer_class_c.pyx":55
  *         solve = minz(self.matrix)
  *         self.min = solve['min']
  *         self.coeff = np.array(list(solve.values()))[:-1]             # <<<<<<<<<<<<<<
  * 
  *     def get_min(self):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_array); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_solve, __pyx_n_s_values); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_solve, __pyx_n_s_values); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -2022,10 +1949,10 @@ static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_6solve(CYTHON_UNUSED Py
   }
   __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5) : __Pyx_PyObject_CallNoArg(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PySequence_List(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_4 = PySequence_List(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -2041,21 +1968,21 @@ static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_6solve(CYTHON_UNUSED Py
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetSlice(__pyx_t_1, 0, -1L, NULL, NULL, &__pyx_slice_, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetSlice(__pyx_t_1, 0, -1L, NULL, NULL, &__pyx_slice_, 0, 1, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_coeff, __pyx_t_3) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_coeff, __pyx_t_3) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "minimizer_class_c.pyx":21
- *         obj(self.matrix, objective)
+  /* "mex/mex_c/minimizer_class_c.pyx":49
+ *         self.matrix = generate_tableau(self.A_matrix, self.b_vector, lowerbounds, upperbounds, self.c_vector, compr=False)
  * 
  *     def solve(self):             # <<<<<<<<<<<<<<
- *         solve = minz(self.matrix)
- *         self.min = solve['min']
+ *         """
+ *         Solve the minimization problem.
  */
 
   /* function exit code */
@@ -2067,7 +1994,7 @@ static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_6solve(CYTHON_UNUSED Py
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("minimizer_class_c.Minimizer.solve", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mex.mex_c.minimizer_class_c.Minimizer_c.solve", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_solve);
@@ -2076,29 +2003,30 @@ static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_6solve(CYTHON_UNUSED Py
   return __pyx_r;
 }
 
-/* "minimizer_class_c.pyx":26
+/* "mex/mex_c/minimizer_class_c.pyx":57
  *         self.coeff = np.array(list(solve.values()))[:-1]
  * 
  *     def get_min(self):             # <<<<<<<<<<<<<<
- *         return self.min
- * 
+ *         """
+ *         Obtain the approximated minimum value.
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_9get_min(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
-static PyMethodDef __pyx_mdef_17minimizer_class_c_9Minimizer_9get_min = {"get_min", (PyCFunction)__pyx_pw_17minimizer_class_c_9Minimizer_9get_min, METH_O, 0};
-static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_9get_min(PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_7get_min(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
+static char __pyx_doc_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_6get_min[] = "\n        Obtain the approximated minimum value.\n        \n        Returns:\n        \n            min (value): Minimum value of the problem\n        ";
+static PyMethodDef __pyx_mdef_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_7get_min = {"get_min", (PyCFunction)__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_7get_min, METH_O, __pyx_doc_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_6get_min};
+static PyObject *__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_7get_min(PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_min (wrapper)", 0);
-  __pyx_r = __pyx_pf_17minimizer_class_c_9Minimizer_8get_min(__pyx_self, ((PyObject *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_6get_min(__pyx_self, ((PyObject *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_8get_min(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_6get_min(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2107,32 +2035,32 @@ static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_8get_min(CYTHON_UNUSED 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_min", 0);
 
-  /* "minimizer_class_c.pyx":27
- * 
- *     def get_min(self):
+  /* "mex/mex_c/minimizer_class_c.pyx":65
+ *             min (value): Minimum value of the problem
+ *         """
  *         return self.min             # <<<<<<<<<<<<<<
  * 
  *     def get_coeff(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_min); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_min); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "minimizer_class_c.pyx":26
+  /* "mex/mex_c/minimizer_class_c.pyx":57
  *         self.coeff = np.array(list(solve.values()))[:-1]
  * 
  *     def get_min(self):             # <<<<<<<<<<<<<<
- *         return self.min
- * 
+ *         """
+ *         Obtain the approximated minimum value.
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("minimizer_class_c.Minimizer.get_min", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mex.mex_c.minimizer_class_c.Minimizer_c.get_min", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2140,28 +2068,30 @@ static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_8get_min(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "minimizer_class_c.pyx":29
+/* "mex/mex_c/minimizer_class_c.pyx":67
  *         return self.min
  * 
  *     def get_coeff(self):             # <<<<<<<<<<<<<<
- *         return self.coeff
+ *         """
+ *         Obtain the approximated coefficients per variable
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_11get_coeff(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
-static PyMethodDef __pyx_mdef_17minimizer_class_c_9Minimizer_11get_coeff = {"get_coeff", (PyCFunction)__pyx_pw_17minimizer_class_c_9Minimizer_11get_coeff, METH_O, 0};
-static PyObject *__pyx_pw_17minimizer_class_c_9Minimizer_11get_coeff(PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_9get_coeff(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
+static char __pyx_doc_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_8get_coeff[] = "\n        Obtain the approximated coefficients per variable\n        \n        Returns:\n        \n            coeff (dictionary): Dictionary of the approximated coefficients.\n        ";
+static PyMethodDef __pyx_mdef_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_9get_coeff = {"get_coeff", (PyCFunction)__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_9get_coeff, METH_O, __pyx_doc_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_8get_coeff};
+static PyObject *__pyx_pw_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_9get_coeff(PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_coeff (wrapper)", 0);
-  __pyx_r = __pyx_pf_17minimizer_class_c_9Minimizer_10get_coeff(__pyx_self, ((PyObject *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_8get_coeff(__pyx_self, ((PyObject *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_10get_coeff(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pf_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_8get_coeff(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2170,29 +2100,30 @@ static PyObject *__pyx_pf_17minimizer_class_c_9Minimizer_10get_coeff(CYTHON_UNUS
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_coeff", 0);
 
-  /* "minimizer_class_c.pyx":30
- * 
- *     def get_coeff(self):
+  /* "mex/mex_c/minimizer_class_c.pyx":75
+ *             coeff (dictionary): Dictionary of the approximated coefficients.
+ *         """
  *         return self.coeff             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_coeff); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_coeff); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "minimizer_class_c.pyx":29
+  /* "mex/mex_c/minimizer_class_c.pyx":67
  *         return self.min
  * 
  *     def get_coeff(self):             # <<<<<<<<<<<<<<
- *         return self.coeff
+ *         """
+ *         Obtain the approximated coefficients per variable
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("minimizer_class_c.Minimizer.get_coeff", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("mex.mex_c.minimizer_class_c.Minimizer_c.get_coeff", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2246,51 +2177,58 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
+  {&__pyx_n_s_A, __pyx_k_A, sizeof(__pyx_k_A), 0, 0, 1, 1},
+  {&__pyx_n_s_A_matrix, __pyx_k_A_matrix, sizeof(__pyx_k_A_matrix), 0, 0, 1, 1},
   {&__pyx_kp_s_Minimize_the_objective_function, __pyx_k_Minimize_the_objective_function, sizeof(__pyx_k_Minimize_the_objective_function), 0, 0, 1, 0},
-  {&__pyx_n_s_Minimizer, __pyx_k_Minimizer, sizeof(__pyx_k_Minimizer), 0, 0, 1, 1},
-  {&__pyx_n_s_Minimizer___init, __pyx_k_Minimizer___init, sizeof(__pyx_k_Minimizer___init), 0, 0, 1, 1},
-  {&__pyx_n_s_Minimizer_add_constraint, __pyx_k_Minimizer_add_constraint, sizeof(__pyx_k_Minimizer_add_constraint), 0, 0, 1, 1},
-  {&__pyx_n_s_Minimizer_add_objective, __pyx_k_Minimizer_add_objective, sizeof(__pyx_k_Minimizer_add_objective), 0, 0, 1, 1},
-  {&__pyx_n_s_Minimizer_get_coeff, __pyx_k_Minimizer_get_coeff, sizeof(__pyx_k_Minimizer_get_coeff), 0, 0, 1, 1},
-  {&__pyx_n_s_Minimizer_get_min, __pyx_k_Minimizer_get_min, sizeof(__pyx_k_Minimizer_get_min), 0, 0, 1, 1},
-  {&__pyx_n_s_Minimizer_solve, __pyx_k_Minimizer_solve, sizeof(__pyx_k_Minimizer_solve), 0, 0, 1, 1},
-  {&__pyx_n_s_add_constraint, __pyx_k_add_constraint, sizeof(__pyx_k_add_constraint), 0, 0, 1, 1},
-  {&__pyx_n_s_add_objective, __pyx_k_add_objective, sizeof(__pyx_k_add_objective), 0, 0, 1, 1},
+  {&__pyx_n_s_Minimizer_c, __pyx_k_Minimizer_c, sizeof(__pyx_k_Minimizer_c), 0, 0, 1, 1},
+  {&__pyx_n_s_Minimizer_c___init, __pyx_k_Minimizer_c___init, sizeof(__pyx_k_Minimizer_c___init), 0, 0, 1, 1},
+  {&__pyx_n_s_Minimizer_c_add_constraints, __pyx_k_Minimizer_c_add_constraints, sizeof(__pyx_k_Minimizer_c_add_constraints), 0, 0, 1, 1},
+  {&__pyx_n_s_Minimizer_c_get_coeff, __pyx_k_Minimizer_c_get_coeff, sizeof(__pyx_k_Minimizer_c_get_coeff), 0, 0, 1, 1},
+  {&__pyx_n_s_Minimizer_c_get_min, __pyx_k_Minimizer_c_get_min, sizeof(__pyx_k_Minimizer_c_get_min), 0, 0, 1, 1},
+  {&__pyx_n_s_Minimizer_c_solve, __pyx_k_Minimizer_c_solve, sizeof(__pyx_k_Minimizer_c_solve), 0, 0, 1, 1},
+  {&__pyx_n_s_add_constraints, __pyx_k_add_constraints, sizeof(__pyx_k_add_constraints), 0, 0, 1, 1},
   {&__pyx_n_s_array, __pyx_k_array, sizeof(__pyx_k_array), 0, 0, 1, 1},
+  {&__pyx_n_s_b, __pyx_k_b, sizeof(__pyx_k_b), 0, 0, 1, 1},
+  {&__pyx_n_s_b_vector, __pyx_k_b_vector, sizeof(__pyx_k_b_vector), 0, 0, 1, 1},
+  {&__pyx_n_s_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
+  {&__pyx_n_s_c_vector, __pyx_k_c_vector, sizeof(__pyx_k_c_vector), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_coeff, __pyx_k_coeff, sizeof(__pyx_k_coeff), 0, 0, 1, 1},
+  {&__pyx_n_s_compr, __pyx_k_compr, sizeof(__pyx_k_compr), 0, 0, 1, 1},
   {&__pyx_n_s_constrain, __pyx_k_constrain, sizeof(__pyx_k_constrain), 0, 0, 1, 1},
-  {&__pyx_n_s_constraint, __pyx_k_constraint, sizeof(__pyx_k_constraint), 0, 0, 1, 1},
   {&__pyx_n_s_create_matrix, __pyx_k_create_matrix, sizeof(__pyx_k_create_matrix), 0, 0, 1, 1},
   {&__pyx_n_s_doc, __pyx_k_doc, sizeof(__pyx_k_doc), 0, 0, 1, 1},
+  {&__pyx_n_s_generate_tableau, __pyx_k_generate_tableau, sizeof(__pyx_k_generate_tableau), 0, 0, 1, 1},
+  {&__pyx_n_s_generates_matrix, __pyx_k_generates_matrix, sizeof(__pyx_k_generates_matrix), 0, 0, 1, 1},
   {&__pyx_n_s_get_coeff, __pyx_k_get_coeff, sizeof(__pyx_k_get_coeff), 0, 0, 1, 1},
   {&__pyx_n_s_get_min, __pyx_k_get_min, sizeof(__pyx_k_get_min), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_init, __pyx_k_init, sizeof(__pyx_k_init), 0, 0, 1, 1},
+  {&__pyx_n_s_lowerbounds, __pyx_k_lowerbounds, sizeof(__pyx_k_lowerbounds), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_matrix, __pyx_k_matrix, sizeof(__pyx_k_matrix), 0, 0, 1, 1},
   {&__pyx_n_s_metaclass, __pyx_k_metaclass, sizeof(__pyx_k_metaclass), 0, 0, 1, 1},
+  {&__pyx_n_s_mex_mex_c_general_c, __pyx_k_mex_mex_c_general_c, sizeof(__pyx_k_mex_mex_c_general_c), 0, 0, 1, 1},
+  {&__pyx_n_s_mex_mex_c_minimizer_class_c, __pyx_k_mex_mex_c_minimizer_class_c, sizeof(__pyx_k_mex_mex_c_minimizer_class_c), 0, 0, 1, 1},
+  {&__pyx_n_s_mex_mex_c_problem_definition_c, __pyx_k_mex_mex_c_problem_definition_c, sizeof(__pyx_k_mex_mex_c_problem_definition_c), 0, 0, 1, 1},
+  {&__pyx_n_s_mex_mex_c_simplex_networks_c, __pyx_k_mex_mex_c_simplex_networks_c, sizeof(__pyx_k_mex_mex_c_simplex_networks_c), 0, 0, 1, 1},
   {&__pyx_n_s_min, __pyx_k_min, sizeof(__pyx_k_min), 0, 0, 1, 1},
   {&__pyx_n_u_min, __pyx_k_min, sizeof(__pyx_k_min), 0, 1, 0, 1},
-  {&__pyx_n_s_minimizer_class_c, __pyx_k_minimizer_class_c, sizeof(__pyx_k_minimizer_class_c), 0, 0, 1, 1},
   {&__pyx_kp_s_minimizer_class_c_pyx, __pyx_k_minimizer_class_c_pyx, sizeof(__pyx_k_minimizer_class_c_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_minz, __pyx_k_minz, sizeof(__pyx_k_minz), 0, 0, 1, 1},
   {&__pyx_n_s_module, __pyx_k_module, sizeof(__pyx_k_module), 0, 0, 1, 1},
-  {&__pyx_n_s_n_constraints, __pyx_k_n_constraints, sizeof(__pyx_k_n_constraints), 0, 0, 1, 1},
-  {&__pyx_n_s_n_variables, __pyx_k_n_variables, sizeof(__pyx_k_n_variables), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_np, __pyx_k_np, sizeof(__pyx_k_np), 0, 0, 1, 1},
   {&__pyx_n_s_numpy, __pyx_k_numpy, sizeof(__pyx_k_numpy), 0, 0, 1, 1},
   {&__pyx_n_s_obj, __pyx_k_obj, sizeof(__pyx_k_obj), 0, 0, 1, 1},
-  {&__pyx_n_s_objective, __pyx_k_objective, sizeof(__pyx_k_objective), 0, 0, 1, 1},
   {&__pyx_n_s_prepare, __pyx_k_prepare, sizeof(__pyx_k_prepare), 0, 0, 1, 1},
-  {&__pyx_n_s_problem_definition_c, __pyx_k_problem_definition_c, sizeof(__pyx_k_problem_definition_c), 0, 0, 1, 1},
   {&__pyx_n_s_qualname, __pyx_k_qualname, sizeof(__pyx_k_qualname), 0, 0, 1, 1},
   {&__pyx_n_s_self, __pyx_k_self, sizeof(__pyx_k_self), 0, 0, 1, 1},
-  {&__pyx_n_s_simplex_networks_c, __pyx_k_simplex_networks_c, sizeof(__pyx_k_simplex_networks_c), 0, 0, 1, 1},
   {&__pyx_n_s_solve, __pyx_k_solve, sizeof(__pyx_k_solve), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
+  {&__pyx_n_s_upperbounds, __pyx_k_upperbounds, sizeof(__pyx_k_upperbounds), 0, 0, 1, 1},
   {&__pyx_n_s_values, __pyx_k_values, sizeof(__pyx_k_values), 0, 0, 1, 1},
+  {&__pyx_n_s_x, __pyx_k_x, sizeof(__pyx_k_x), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
@@ -2301,87 +2239,76 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "minimizer_class_c.pyx":24
+  /* "mex/mex_c/minimizer_class_c.pyx":55
  *         solve = minz(self.matrix)
  *         self.min = solve['min']
  *         self.coeff = np.array(list(solve.values()))[:-1]             # <<<<<<<<<<<<<<
  * 
  *     def get_min(self):
  */
-  __pyx_slice_ = PySlice_New(Py_None, __pyx_int_neg_1, Py_None); if (unlikely(!__pyx_slice_)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_slice_ = PySlice_New(Py_None, __pyx_int_neg_1, Py_None); if (unlikely(!__pyx_slice_)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice_);
   __Pyx_GIVEREF(__pyx_slice_);
 
-  /* "minimizer_class_c.pyx":8
- *     """Minimize the objective function"""
+  /* "mex/mex_c/minimizer_class_c.pyx":29
+ *     """
  * 
- *     def __init__(self, n_variables, n_constraints):             # <<<<<<<<<<<<<<
- *         self.n_variables = n_variables
- *         self.n_constraints = n_constraints
+ *     def __init__(self, A, b, c):             # <<<<<<<<<<<<<<
+ *         self.A_matrix = A
+ *         self.b_vector = b
  */
-  __pyx_tuple__2 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_n_variables, __pyx_n_s_n_constraints); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_A, __pyx_n_s_b, __pyx_n_s_c, __pyx_n_s_x); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
-  __pyx_codeobj__3 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__2, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_minimizer_class_c_pyx, __pyx_n_s_init, 8, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__3)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __pyx_codeobj__3 = (PyObject*)__Pyx_PyCode_New(4, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__2, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_minimizer_class_c_pyx, __pyx_n_s_init, 29, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__3)) __PYX_ERR(0, 29, __pyx_L1_error)
 
-  /* "minimizer_class_c.pyx":15
+  /* "mex/mex_c/minimizer_class_c.pyx":37
  *         self.coeff = None
  * 
- *     def add_constraint(self, constraint):             # <<<<<<<<<<<<<<
- *         constrain(self.matrix, constraint)
- * 
+ *     def add_constraints(self, lowerbounds, upperbounds):             # <<<<<<<<<<<<<<
+ *         """
+ *         Add constraints to current matrix.
  */
-  __pyx_tuple__4 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_constraint); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_lowerbounds, __pyx_n_s_upperbounds); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
-  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_minimizer_class_c_pyx, __pyx_n_s_add_constraint, 15, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_minimizer_class_c_pyx, __pyx_n_s_add_constraints, 37, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 37, __pyx_L1_error)
 
-  /* "minimizer_class_c.pyx":18
- *         constrain(self.matrix, constraint)
- * 
- *     def add_objective(self, objective):             # <<<<<<<<<<<<<<
- *         obj(self.matrix, objective)
- * 
- */
-  __pyx_tuple__6 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_objective); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 18, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__6);
-  __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_minimizer_class_c_pyx, __pyx_n_s_add_objective, 18, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 18, __pyx_L1_error)
-
-  /* "minimizer_class_c.pyx":21
- *         obj(self.matrix, objective)
+  /* "mex/mex_c/minimizer_class_c.pyx":49
+ *         self.matrix = generate_tableau(self.A_matrix, self.b_vector, lowerbounds, upperbounds, self.c_vector, compr=False)
  * 
  *     def solve(self):             # <<<<<<<<<<<<<<
- *         solve = minz(self.matrix)
- *         self.min = solve['min']
+ *         """
+ *         Solve the minimization problem.
  */
-  __pyx_tuple__8 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_solve); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 21, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__8);
-  __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_minimizer_class_c_pyx, __pyx_n_s_solve, 21, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_solve); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__6);
+  __Pyx_GIVEREF(__pyx_tuple__6);
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(1, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_minimizer_class_c_pyx, __pyx_n_s_solve, 49, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 49, __pyx_L1_error)
 
-  /* "minimizer_class_c.pyx":26
+  /* "mex/mex_c/minimizer_class_c.pyx":57
  *         self.coeff = np.array(list(solve.values()))[:-1]
  * 
  *     def get_min(self):             # <<<<<<<<<<<<<<
- *         return self.min
- * 
+ *         """
+ *         Obtain the approximated minimum value.
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__10);
-  __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_minimizer_class_c_pyx, __pyx_n_s_get_min, 26, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_minimizer_class_c_pyx, __pyx_n_s_get_min, 57, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 57, __pyx_L1_error)
 
-  /* "minimizer_class_c.pyx":29
+  /* "mex/mex_c/minimizer_class_c.pyx":67
  *         return self.min
  * 
  *     def get_coeff(self):             # <<<<<<<<<<<<<<
- *         return self.coeff
+ *         """
+ *         Obtain the approximated coefficients per variable
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__12);
-  __Pyx_GIVEREF(__pyx_tuple__12);
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_minimizer_class_c_pyx, __pyx_n_s_get_coeff, 29, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__10);
+  __Pyx_GIVEREF(__pyx_tuple__10);
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_minimizer_class_c_pyx, __pyx_n_s_get_coeff, 67, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -2636,14 +2563,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_minimizer_class_c) {
+  if (__pyx_module_is_main_mex__mex_c__minimizer_class_c) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "minimizer_class_c")) {
-      if (unlikely(PyDict_SetItemString(modules, "minimizer_class_c", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "mex.mex_c.minimizer_class_c")) {
+      if (unlikely(PyDict_SetItemString(modules, "mex.mex_c.minimizer_class_c", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -2664,174 +2591,191 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "minimizer_class_c.pyx":1
+  /* "mex/mex_c/minimizer_class_c.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
- * from simplex_networks_c import create_matrix
- * from problem_definition_c import constrain, obj, minz
+ * from mex.mex_c.general_c import generates_matrix, generate_tableau
+ * from mex.mex_c.simplex_networks_c import create_matrix
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_numpy, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "minimizer_class_c.pyx":2
+  /* "mex/mex_c/minimizer_class_c.pyx":2
  * import numpy as np
- * from simplex_networks_c import create_matrix             # <<<<<<<<<<<<<<
- * from problem_definition_c import constrain, obj, minz
+ * from mex.mex_c.general_c import generates_matrix, generate_tableau             # <<<<<<<<<<<<<<
+ * from mex.mex_c.simplex_networks_c import create_matrix
+ * from mex.mex_c.problem_definition_c import constrain, obj, minz
+ */
+  __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(__pyx_n_s_generates_matrix);
+  __Pyx_GIVEREF(__pyx_n_s_generates_matrix);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_generates_matrix);
+  __Pyx_INCREF(__pyx_n_s_generate_tableau);
+  __Pyx_GIVEREF(__pyx_n_s_generate_tableau);
+  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_s_generate_tableau);
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_mex_mex_c_general_c, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_generates_matrix); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_generates_matrix, __pyx_t_1) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_generate_tableau); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_generate_tableau, __pyx_t_1) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "mex/mex_c/minimizer_class_c.pyx":3
+ * import numpy as np
+ * from mex.mex_c.general_c import generates_matrix, generate_tableau
+ * from mex.mex_c.simplex_networks_c import create_matrix             # <<<<<<<<<<<<<<
+ * from mex.mex_c.problem_definition_c import constrain, obj, minz
  * 
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_create_matrix);
   __Pyx_GIVEREF(__pyx_n_s_create_matrix);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_create_matrix);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_simplex_networks_c, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_create_matrix); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_create_matrix);
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_mex_mex_c_simplex_networks_c, __pyx_t_2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_create_matrix, __pyx_t_1) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "minimizer_class_c.pyx":3
- * import numpy as np
- * from simplex_networks_c import create_matrix
- * from problem_definition_c import constrain, obj, minz             # <<<<<<<<<<<<<<
- * 
- * class Minimizer():
- */
-  __pyx_t_2 = PyList_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_create_matrix); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_create_matrix, __pyx_t_2) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "mex/mex_c/minimizer_class_c.pyx":4
+ * from mex.mex_c.general_c import generates_matrix, generate_tableau
+ * from mex.mex_c.simplex_networks_c import create_matrix
+ * from mex.mex_c.problem_definition_c import constrain, obj, minz             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_constrain);
   __Pyx_GIVEREF(__pyx_n_s_constrain);
-  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_constrain);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_constrain);
   __Pyx_INCREF(__pyx_n_s_obj);
   __Pyx_GIVEREF(__pyx_n_s_obj);
-  PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_obj);
+  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_s_obj);
   __Pyx_INCREF(__pyx_n_s_minz);
   __Pyx_GIVEREF(__pyx_n_s_minz);
-  PyList_SET_ITEM(__pyx_t_2, 2, __pyx_n_s_minz);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_problem_definition_c, __pyx_t_2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
+  PyList_SET_ITEM(__pyx_t_1, 2, __pyx_n_s_minz);
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_mex_mex_c_problem_definition_c, __pyx_t_1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_constrain); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_constrain, __pyx_t_1) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_obj); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_obj, __pyx_t_1) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_minz); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_minz, __pyx_t_1) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_constrain); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
+
+  /* "mex/mex_c/minimizer_class_c.pyx":7
+ * 
+ * 
+ * class Minimizer_c():             # <<<<<<<<<<<<<<
+ *     """
+ *     Minimize the objective function.
+ */
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_Minimizer_c, __pyx_n_s_Minimizer_c, (PyObject *) NULL, __pyx_n_s_mex_mex_c_minimizer_class_c, __pyx_kp_s_Minimize_the_objective_function); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_constrain, __pyx_t_2) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_obj); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_obj, __pyx_t_2) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_minz); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_minz, __pyx_t_2) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "mex/mex_c/minimizer_class_c.pyx":29
+ *     """
+ * 
+ *     def __init__(self, A, b, c):             # <<<<<<<<<<<<<<
+ *         self.A_matrix = A
+ *         self.b_vector = b
+ */
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_1__init__, 0, __pyx_n_s_Minimizer_c___init, NULL, __pyx_n_s_mex_mex_c_minimizer_class_c, __pyx_d, ((PyObject *)__pyx_codeobj__3)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_init, __pyx_t_1) < 0) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "minimizer_class_c.pyx":5
- * from problem_definition_c import constrain, obj, minz
- * 
- * class Minimizer():             # <<<<<<<<<<<<<<
- *     """Minimize the objective function"""
- * 
- */
-  __pyx_t_1 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_Minimizer, __pyx_n_s_Minimizer, (PyObject *) NULL, __pyx_n_s_minimizer_class_c, __pyx_kp_s_Minimize_the_objective_function); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-
-  /* "minimizer_class_c.pyx":8
- *     """Minimize the objective function"""
- * 
- *     def __init__(self, n_variables, n_constraints):             # <<<<<<<<<<<<<<
- *         self.n_variables = n_variables
- *         self.n_constraints = n_constraints
- */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_17minimizer_class_c_9Minimizer_1__init__, 0, __pyx_n_s_Minimizer___init, NULL, __pyx_n_s_minimizer_class_c, __pyx_d, ((PyObject *)__pyx_codeobj__3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 8, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_init, __pyx_t_2) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "minimizer_class_c.pyx":15
+  /* "mex/mex_c/minimizer_class_c.pyx":37
  *         self.coeff = None
  * 
- *     def add_constraint(self, constraint):             # <<<<<<<<<<<<<<
- *         constrain(self.matrix, constraint)
- * 
+ *     def add_constraints(self, lowerbounds, upperbounds):             # <<<<<<<<<<<<<<
+ *         """
+ *         Add constraints to current matrix.
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_17minimizer_class_c_9Minimizer_3add_constraint, 0, __pyx_n_s_Minimizer_add_constraint, NULL, __pyx_n_s_minimizer_class_c, __pyx_d, ((PyObject *)__pyx_codeobj__5)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_add_constraint, __pyx_t_2) < 0) __PYX_ERR(0, 15, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_3add_constraints, 0, __pyx_n_s_Minimizer_c_add_constraints, NULL, __pyx_n_s_mex_mex_c_minimizer_class_c, __pyx_d, ((PyObject *)__pyx_codeobj__5)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_add_constraints, __pyx_t_1) < 0) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "minimizer_class_c.pyx":18
- *         constrain(self.matrix, constraint)
- * 
- *     def add_objective(self, objective):             # <<<<<<<<<<<<<<
- *         obj(self.matrix, objective)
- * 
- */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_17minimizer_class_c_9Minimizer_5add_objective, 0, __pyx_n_s_Minimizer_add_objective, NULL, __pyx_n_s_minimizer_class_c, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 18, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_add_objective, __pyx_t_2) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "minimizer_class_c.pyx":21
- *         obj(self.matrix, objective)
+  /* "mex/mex_c/minimizer_class_c.pyx":49
+ *         self.matrix = generate_tableau(self.A_matrix, self.b_vector, lowerbounds, upperbounds, self.c_vector, compr=False)
  * 
  *     def solve(self):             # <<<<<<<<<<<<<<
- *         solve = minz(self.matrix)
- *         self.min = solve['min']
+ *         """
+ *         Solve the minimization problem.
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_17minimizer_class_c_9Minimizer_7solve, 0, __pyx_n_s_Minimizer_solve, NULL, __pyx_n_s_minimizer_class_c, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_solve, __pyx_t_2) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_5solve, 0, __pyx_n_s_Minimizer_c_solve, NULL, __pyx_n_s_mex_mex_c_minimizer_class_c, __pyx_d, ((PyObject *)__pyx_codeobj__7)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_solve, __pyx_t_1) < 0) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "minimizer_class_c.pyx":26
+  /* "mex/mex_c/minimizer_class_c.pyx":57
  *         self.coeff = np.array(list(solve.values()))[:-1]
  * 
  *     def get_min(self):             # <<<<<<<<<<<<<<
- *         return self.min
- * 
+ *         """
+ *         Obtain the approximated minimum value.
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_17minimizer_class_c_9Minimizer_9get_min, 0, __pyx_n_s_Minimizer_get_min, NULL, __pyx_n_s_minimizer_class_c, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_get_min, __pyx_t_2) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_7get_min, 0, __pyx_n_s_Minimizer_c_get_min, NULL, __pyx_n_s_mex_mex_c_minimizer_class_c, __pyx_d, ((PyObject *)__pyx_codeobj__9)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_get_min, __pyx_t_1) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "minimizer_class_c.pyx":29
+  /* "mex/mex_c/minimizer_class_c.pyx":67
  *         return self.min
  * 
  *     def get_coeff(self):             # <<<<<<<<<<<<<<
- *         return self.coeff
+ *         """
+ *         Obtain the approximated coefficients per variable
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_17minimizer_class_c_9Minimizer_11get_coeff, 0, __pyx_n_s_Minimizer_get_coeff, NULL, __pyx_n_s_minimizer_class_c, __pyx_d, ((PyObject *)__pyx_codeobj__13)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_get_coeff, __pyx_t_2) < 0) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "minimizer_class_c.pyx":5
- * from problem_definition_c import constrain, obj, minz
- * 
- * class Minimizer():             # <<<<<<<<<<<<<<
- *     """Minimize the objective function"""
- * 
- */
-  __pyx_t_2 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_Minimizer, __pyx_empty_tuple, __pyx_t_1, NULL, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Minimizer, __pyx_t_2) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "minimizer_class_c.pyx":1
- * import numpy as np             # <<<<<<<<<<<<<<
- * from simplex_networks_c import create_matrix
- * from problem_definition_c import constrain, obj, minz
- */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_3mex_5mex_c_17minimizer_class_c_11Minimizer_c_9get_coeff, 0, __pyx_n_s_Minimizer_c_get_coeff, NULL, __pyx_n_s_mex_mex_c_minimizer_class_c, __pyx_d, ((PyObject *)__pyx_codeobj__11)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_n_s_get_coeff, __pyx_t_1) < 0) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "mex/mex_c/minimizer_class_c.pyx":7
+ * 
+ * 
+ * class Minimizer_c():             # <<<<<<<<<<<<<<
+ *     """
+ *     Minimize the objective function.
+ */
+  __pyx_t_1 = __Pyx_Py3ClassCreate(((PyObject*)&__Pyx_DefaultClassType), __pyx_n_s_Minimizer_c, __pyx_empty_tuple, __pyx_t_2, NULL, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Minimizer_c, __pyx_t_1) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "mex/mex_c/minimizer_class_c.pyx":1
+ * import numpy as np             # <<<<<<<<<<<<<<
+ * from mex.mex_c.general_c import generates_matrix, generate_tableau
+ * from mex.mex_c.simplex_networks_c import create_matrix
+ */
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /*--- Wrapped vars code ---*/
 
@@ -2841,11 +2785,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_2);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init minimizer_class_c", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init mex.mex_c.minimizer_class_c", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init minimizer_class_c");
+    PyErr_SetString(PyExc_ImportError, "init mex.mex_c.minimizer_class_c");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

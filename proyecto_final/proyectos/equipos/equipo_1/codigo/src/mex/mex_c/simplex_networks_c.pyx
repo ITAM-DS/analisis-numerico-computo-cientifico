@@ -1,7 +1,7 @@
 import numpy as np
-import logging
 
-def create_matrix(unsigned int variables, unsigned int constraints):
+
+def create_matrix(variables, constraints):
     """
     Creates a matrix with enough rows for each constraint plus the objective function
     and enough columns for all the variables.
@@ -62,7 +62,7 @@ def pivots_row(matrix):
     cdef int l
     cdef double m
     
-    l = len(matrix[:, 0])
+    l = matrix.shape[0]
     m = min(matrix[l-1, :-1])
     if m >= 0:
         return False
@@ -86,7 +86,7 @@ def find_negative_col(matrix):
     cdef int l
     cdef double m
     
-    l = len(matrix[0, :])
+    l = matrix.shape[1]
     m = min(matrix[:-1, l-1])
     if m <= 0:
         n = np.where(matrix[:-1, l-1] == m)[0][0]
@@ -112,7 +112,7 @@ def find_negative_row(matrix):
     cdef int l
     cdef double m
     
-    l = len(matrix[:,0])
+    l = matrix.shape[0]
     m = min(matrix[l-1,:-1])
     if m <= 0:
         n = np.where(matrix[l-1, :-1] == m)[0][0]
@@ -146,14 +146,18 @@ def find_pivot_col(matrix):
     m = min(row)
     c = np.where(row == m)[0][0]
     col = matrix[:-1, c]
-    for i,j in zip(col, matrix[:-1,-1]):  #i for col with neg, j for right col
-        if i != 0 and j/i > 0:
-            total.append(j/i)
+    for i, j in zip(col, matrix[:-1, -1]):  # i for col with neg, j for right col
+        if i != 0:
+            tmp = j / i
+            if tmp > 0:
+                total.append(tmp)
+            else:
+                total.append(np.nan)
         else:
-            total.append(10000) #placeholder, might need to update for large scale
-    index = total.index(min(total))
-    
-    return [index,c]
+            total.append(np.nan)  # placeholder, might need to update for large scale
+    index = total.index(min(i for i in total if not np.isnan(i)))
+
+    return [index, c]
 
 
 def find_pivot_row(matrix):
@@ -174,17 +178,21 @@ def find_pivot_row(matrix):
     cdef double i, j
     cdef int index
     
-    if pivots_row(matrix):
-        total = []
-        neg = find_negative_row(matrix)
-        for i, j in zip(matrix[:-1, neg], matrix[:-1, -1]):
-            if i != 0 and j/i > 0:
-                total.append(j/i)
+    total = []
+    neg = find_negative_row(matrix)
+    for i, j in zip(matrix[:-1, neg], matrix[:-1, -1]):
+        if i != 0:
+            tmp = j/i
+            if tmp > 0:
+                total.append(tmp)
             else:
-                total.append(10000) #placeholder, might need to update for large scale
-        index = total.index(min(total))
-        
-        return [index,neg]
+                total.append(np.nan)
+        else:
+            total.append(np.nan) #placeholder, might need to update for large scale
+    index = total.index(min(i for i in total if not np.isnan(i)))
+
+    return [index,neg]
+
 
 
 def pivot(row,col,matrix):
@@ -193,34 +201,34 @@ def pivot(row,col,matrix):
     
     Args:
     
-        matrix (numpy array): matrix to be reviewed.
-        
         row (int): position to pivot.
         
         col (int): position to pivot.
+        
+        matrix (numpy array): matrix to be reviewed.
         
     Returns:
     
         t (numpy array): updated matrix.
     """
+
+    cdef int i
     
-    cdef int i, lr, lc
-    
-    lr = len(matrix[:, 0])
-    lc = len(matrix[0, :])
-    t = np.zeros((lr, lc))
-    pr = matrix[row, :]
-    if matrix[row, col]**2 > 0:
-        e = 1/matrix[row, col]
-        r = pr*e
-        for i in range(len(matrix[:, col])):
-            k = matrix[i, :]
-            c = matrix[i, col]
-            if list(k) == list(pr):
-                continue
-            else:
-                t[i, :] = list(k-r*c)
-        t[row,:] = list(r)
+    t = np.zeros(matrix.shape)
+    pr = matrix[row, :]  
+    n_col = len(matrix[:, col])
+    tmp_matrix = matrix[row, col]
+
+    if tmp_matrix != 0:
+        e = 1 / tmp_matrix
+        r = pr * e
+        for i in range(n_col):
+            if i != row:
+                k = matrix[i, :]
+                c = matrix[i, col]
+                t[i, :] = list(k - r * c)
+
+        t[row, :] = list(r)
         return t
     else:
-        logging.info('Cannot pivot on this element')
+        print('Cannot pivot on this element')
