@@ -13,11 +13,11 @@ Título del proyecto: Algoritmo ACO para resolver problemas TSP
 
 [Liga del Repo](https://github.com/C1587S/ACO-TSP)
 
-Trabajo escrito: [liga](https://hackmd.io/ibLufWb0SRKVZC82lwH4gg?view)
+Trabajo escrito: [liga](https://hackmd.io/ibLufWb0SRKVZC82lwH4gg)
 
-Presentación: [liga](Por definir)
+Presentación: [liga](https://docs.google.com/presentation/d/1n1JsJv8acOTHLIeIJfqexDpiOmrSzNyrgVreJz8_kak/edit?usp=sharing)
 
-Implementación: [liga](Por definir)
+Implementación: [liga](https://github.com/C1587S/analisis-numerico-computo-cientifico/blob/optimizacion-2-2021-1/proyecto_final/proyectos/equipos/equipo_4/notebooks/nb_kale_proyecto_ACOTSP.ipynb)
 
 ### Referencias:
 
