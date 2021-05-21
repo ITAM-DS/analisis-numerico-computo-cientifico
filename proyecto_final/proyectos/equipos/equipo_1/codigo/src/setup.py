@@ -1,11 +1,11 @@
 #see: https://setuptools.readthedocs.io/en/latest/userguide/package_discovery.html
-from setuptools import setup, find_packages
+from setuptools import find_packages
 from distutils.core import setup
 from Cython.Build import cythonize
 from Cython.Distutils import build_ext
 
 setup(name="mex",
-      version="0.2",
+      version="1.0",
       description=u"Paquete que resuelve metodo simplex",
       url="",
       author="cecyar, lecepe00, eduardo-moreno, caroacostatovany",
@@ -17,6 +17,8 @@ setup(name="mex",
                           "pandas",
                           "sphinx",
                           "scipy",
+                          "line_profiler",
+                          "memory_profiler",
                           "guppy3"
                           ],
       cmdclass={'build_ext': build_ext},

@@ -1,5 +1,4 @@
 import numpy as np
-import logging
 
 
 def create_matrix(variables, constraints):
@@ -126,22 +125,25 @@ def find_pivot_col(matrix):
         
         c (int): index smallest value on row.
     """
-    
+
     total = []
     neg = find_negative_col(matrix)
     row = matrix[neg, :-1]
     m = min(row)
     c = np.where(row == m)[0][0]
     col = matrix[:-1, c]
-    for i,j in zip(col, matrix[:-1,-1]):  #i for col with neg, j for right col
-        tmp = j/i
-        if i != 0 and tmp > 0:
-            total.append(tmp)
+    for i, j in zip(col, matrix[:-1, -1]):  # i for col with neg, j for right col
+        if i != 0:
+            tmp = j / i
+            if tmp > 0:
+                total.append(tmp)
+            else:
+                total.append(np.nan)
         else:
-            total.append(10000) #placeholder, might need to update for large scale
-    index = total.index(min(total))
-    
-    return [index,c]
+            total.append(np.nan)  # placeholder, might need to update for large scale
+    index = total.index(min(i for i in total if not np.isnan(i)))
+
+    return [index, c]
 
 
 def find_pivot_row(matrix):
@@ -158,22 +160,24 @@ def find_pivot_row(matrix):
         
         neg (int): index smallest value.
     """
-    
-    #if pivots_row(matrix):
+
     total = []
     neg = find_negative_row(matrix)
     for i, j in zip(matrix[:-1, neg], matrix[:-1, -1]):
-        tmp = j/i
-        if i != 0 and tmp > 0:
-            total.append(tmp)
+        if i != 0:
+            tmp = j/i
+            if tmp > 0:
+                total.append(tmp)
+            else:
+                total.append(np.nan)
         else:
-            total.append(10000) #placeholder, might need to update for large scale
-    index = total.index(min(total))
+            total.append(np.nan) #placeholder, might need to update for large scale
+    index = total.index(min(i for i in total if not np.isnan(i)))
 
     return [index,neg]
 
 
-def pivot(row,col,matrix):
+def pivot(row, col, matrix):
     """
     Pivot about a value to remove negative in final column or row.
     
