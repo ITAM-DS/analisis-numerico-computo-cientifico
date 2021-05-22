@@ -45,7 +45,7 @@ Liga a repo: [OptAvzda-2021-hill-eureka](https://github.com/jlrzarcor/OptAvzda-2
 
 Trabajo escrito: (Overleaf) [hill_cg](https://www.overleaf.com/project/609f37d0e16e23034b3c1654);  [pdf](https://github.com/jlrzarcor/OptAvzda-2021-hill-eureka/tree/main/report)
 
-Presentación (fuera del repo): [liga_presentación](https://github.com/jlrzarcor/OptAvzda-2021-hill-eureka/tree/main/report)
+Presentación (fuera del repo): [liga_presentación](https://github.com/jlrzarcor/OptAvzda-2021-hill-eureka/blob/main/report/beamer.pdf)
 
 Implementación (en el repo): [*Hill Climbing*](https://github.com/optimizacion-2-2021-1-gh-classroom/practica-2-segunda-parte-jlrzarcor/tree/main/src) 
 
