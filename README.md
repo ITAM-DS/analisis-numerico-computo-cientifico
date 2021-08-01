@@ -27,7 +27,7 @@ Este es el repositorio para los cursos de **optimización** (*aka* opt) y **opti
 |Optimización | [palmoreck/jupyterlab_optimizacion:3.1.0](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion)|
 |Optimización avanzada | [palmoreck/jupyterlab_optimizacion_2:3.1.0](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2)
 
-Tales imágenes se descargan con un `docker pull` desde la terminal una vez hayan instalado docker\* en sus computadoras. En cada nota del libro se indica el comando `docker run` para correr los contenedores. O bien de acuerdo a la documentación de la imagen, ver por ejemplo [running optimizacion docker image in a docker container](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/optimizacion/README.md#running-jupyterlab_optimizacion-docker-image-in-a-docker-container), [running optimizacion_2 docker image in a docker container](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/optimizacion_2/README.md#running-jupyterlab_optimizacion_2-docker-image-in-a-docker-container) . 
+Tales imágenes se descargan con un `docker pull` desde la terminal una vez hayan instalado *docker*\* en sus computadoras. En cada nota del libro se indica el comando `docker run` para correr los contenedores. O bien de acuerdo a la documentación de la imagen, ver por ejemplo [running optimizacion docker image in a docker container](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/optimizacion/README.md#running-jupyterlab_optimizacion-docker-image-in-a-docker-container), [running optimizacion_2 docker image in a docker container](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/optimizacion_2/README.md#running-jupyterlab_optimizacion_2-docker-image-in-a-docker-container) . 
 
 \*Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de [docker](https://www.docker.com/).
 
@@ -57,7 +57,7 @@ En el directorio [libro_optimizacion/temas/](libro_optimizacion/temas/) están l
 
 ## Sobre las notas. 
 
-Las notas de cada tema están escritas en [Jupyter](https://jupyter.org/) notebooks. Ver [I python, You R, We Julia](https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6) para algunas características de tales notebooks. Ver [notebook](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html) para funcionalidad de los notebooks. Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [jupyter-kernels](https://jupyter.readthedocs.io/en/latest/install.html?highlight=install%20kernel#jupyter-kernels) disponibles en jupyter (que hacen posible ejecutar instrucciones en el lenguaje R, por ejemplo).
+Las notas de cada tema están escritas en [Jupyter](https://jupyter.org/) *notebooks*. Ver [I python, You R, We Julia](https://blog.jupyter.org/i-python-you-r-we-julia-baf064ca1fb6) para algunas características de tales *notebooks*. Ver [notebook](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html) para funcionalidad de los *notebooks*. Ver [Jupyter kernels](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels) para una tabla de los [jupyter-kernels](https://jupyter.readthedocs.io/en/latest/install.html?highlight=install%20kernel#jupyter-kernels) disponibles en *jupyter* (que hacen posible ejecutar instrucciones en el lenguaje *R*, por ejemplo).
 
 ### Interactividad
 
@@ -67,7 +67,7 @@ Para ejecutar las notas de forma interactiva dar click en el botón de [binder](
 
 y elegir una ejecución interactiva de los notebooks vía *binder*\* o [thebe](https://github.com/executablebooks/thebe). La ejecución con `thebe` se puede hacer directamente en la liga del libro o si se descargan los archivos a su máquina local también es posible la ejecución (pero requieren conexión a internet en cualquier opción).
 
-\*En la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran más información sobre binder.
+\*En la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran más información sobre *binder*.
 
 ### Para convertir notas a pdf
 
