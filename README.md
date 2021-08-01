@@ -20,7 +20,7 @@ Este es el repositorio para los cursos de **optimización** (*aka* opt) y **opti
 
 \***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
 
-### Imágenes de [Docker]((https://www.docker.com/)) creadas
+### Imágenes de *Docker* creadas
 
 |Curso| Imagen|
 |:---:|:---:|
@@ -29,7 +29,7 @@ Este es el repositorio para los cursos de **optimización** (*aka* opt) y **opti
 
 Tales imágenes se descargan con un `docker pull` desde la terminal una vez hayan instalado docker en sus computadoras. En cada nota del libro se indica el comando `docker run` para correr los contenedores. O bien de acuerdo a la documentación de la imagen, ver por ejemplo [running optimizacion docker image in a docker container](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/optimizacion/README.md#running-jupyterlab_optimizacion-docker-image-in-a-docker-container), [running optimizacion_2 docker image in a docker container](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/optimizacion_2/README.md#running-jupyterlab_optimizacion_2-docker-image-in-a-docker-container) . 
 
-\*Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
+\*Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de [docker](https://www.docker.com/).
 
 
 ## Organización de github classroom para el primer semestre del 2021
