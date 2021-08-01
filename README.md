@@ -65,7 +65,7 @@ Para ejecutar las notas de forma interactiva dar click en el botón de [binder](
 
 ![binder_thebe_screenshot_jupyter_book](https://user-images.githubusercontent.com/3290689/89106057-42855b80-d3ec-11ea-8519-97f32b66570d.png)
 
-y elegir una ejecución interactiva de los notebooks vía *binder* o [thebe](https://github.com/executablebooks/thebe). La ejecución con `thebe` se puede hacer directamente en la liga del libro o si se descargan los archivos a su máquina local también es posible la ejecución (pero requieren conexión a internet en cualquier opción).
+y elegir una ejecución interactiva de los notebooks vía *binder*\* o [thebe](https://github.com/executablebooks/thebe). La ejecución con `thebe` se puede hacer directamente en la liga del libro o si se descargan los archivos a su máquina local también es posible la ejecución (pero requieren conexión a internet en cualquier opción).
 
 \*En la liga [jupyterhub/binderhub](https://github.com/jupyterhub/binderhub) encuentran más información sobre binder.
 
