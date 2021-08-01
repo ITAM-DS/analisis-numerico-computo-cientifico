@@ -27,7 +27,7 @@ Este es el repositorio para los cursos de **optimización** (*aka* opt) y **opti
 |Optimización | [palmoreck/jupyterlab_optimizacion:3.1.0](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion)|
 |Optimización avanzada | [palmoreck/jupyterlab_optimizacion_2:3.1.0](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2)
 
-\* Tales imágenes se descargan con un `docker pull` desde la terminal una vez hayan instalado docker en sus computadoras y posteriormente hacer un `docker run` de acuerdo a la documentación de la imagen. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
+Tales imágenes se descargan con un `docker pull` desde la terminal una vez hayan instalado docker en sus computadoras y posteriormente hacer un `docker run` de acuerdo a la documentación de la imagen. Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de docker.
 
 
 ## Organización de github classroom para el primer semestre del 2021
