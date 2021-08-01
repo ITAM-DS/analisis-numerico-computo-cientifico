@@ -20,9 +20,7 @@ Este es el repositorio para los cursos de **optimización** (*aka* opt) y **opti
 
 \***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
 
-### En el curso de optimización avanzada utilizaremos la imagen de [docker](https://www.docker.com/) `palmoreck/jupyterlab_optimizacion_2:3.0.0` cuya documentación la encuentran en [aquí](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2)\*.
-
-### Imágenes de *Docker* creadas
+### Imágenes de [Docker]((https://www.docker.com/)) creadas
 
 |Curso| Imagen|
 |:---:|:---:|
