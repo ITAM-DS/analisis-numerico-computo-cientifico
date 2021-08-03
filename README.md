@@ -2,24 +2,25 @@
 
 Este es el repositorio para los cursos de **optimización** (*aka* opt) y **optimización avanzada** (*aka* opt2) impartida en la maestría de ciencia de datos del ITAM por el **Prof. Erick Palacios Moreno**, github: [palmoreck](https://github.com/palmoreck).
 
-### En [temario-opt](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) encuentran el temario de optimización.
-
-### En [temario-opt-2](https://drive.google.com/file/d/17ydFChBFxxAOzsIPwUu90KR01zRXdCNZ/view?usp=sharing) encuentran el temario de optimización avanzada.
-
 ### Se ha creado el siguiente libro\* con el contenido de los temas en [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) para su consulta. Este libro seguiremos a lo largo de los cursos.
 
 \*El libro fue creado con [jupyter book](https://jupyterbook.org/intro.html).
 
-### En [opt](https://analisis-numerico-computo-cientifico.readthedocs.io/) se obtiene documentación de un paquete de *Python* que sirve de apoyo para los ejemplos de las notas.
+### En [temario-opt](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) encuentran el temario de optimización.
 
 ### En [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) encuentran una presentación de introducción al curso de optimización del segundo semestre del 2020.
 
-### En [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) encuentran una presentación de introducción al curso de optimización avanzada del primer semestre del 2021.
-
-### Dar click en el siguiente botón para unirse\* al chat del curso de optimización avanzada del primer semestre 2021 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2021/community.svg)](https://gitter.im/optimizacion-2021/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
+### Dar click en el siguiente botón para unirse\* al chat del curso de optimización del segundo semestre 2021 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2021/community.svg)](https://gitter.im/optimizacion-2021/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 \***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
+
+## Optimización avanzada
+
+### En [temario-opt-2](https://drive.google.com/file/d/17ydFChBFxxAOzsIPwUu90KR01zRXdCNZ/view?usp=sharing) encuentran el temario de optimización avanzada.
+
+### En [opt](https://analisis-numerico-computo-cientifico.readthedocs.io/) se obtiene documentación de un paquete de *Python* que sirve de apoyo para los ejemplos de las notas.
+
+### En [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) encuentran una presentación de introducción al curso de optimización avanzada del primer semestre del 2021.
 
 ### Imágenes de *Docker* creadas
 
@@ -45,7 +46,7 @@ En este repositorio se han creado diferentes ramas que pueden ser accesadas como
 
 Seleccionar por ejemplo la rama **mno-2019-1** (u otra) para información del curso de MNO de 2019.
 
-**Dar click en [optimizacion-2-2021-1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2-2021-1) para la rama del curso del primer semestre del 2021.**
+**Dar click en [optimizacion-2021](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2021) para la rama del curso del primer semestre del 2021.**
 
 La rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/gh-pages) contiene los `html`s para visualización del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/).
 
