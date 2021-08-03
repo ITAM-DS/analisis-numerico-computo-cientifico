@@ -29,12 +29,6 @@ Total de clases: "". Total de número de horas: "" hrs.
 
 [Lista de proyectos finales](proyecto_final/proyectos)
 
-[Tutorial para activar créditos de Amazon Web Services](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.Activar-creditos-de-AWS)
-
-[Tutorial para activar créditos de Amazon Web Services actualizado desde año 2020](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/0.1Activar-creditos-de-AWS-(update))
-
-
-
 
 ## Clase 1
 
