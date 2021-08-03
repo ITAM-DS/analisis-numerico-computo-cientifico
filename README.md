@@ -50,7 +50,7 @@ En este repositorio se han creado diferentes ramas que pueden ser accesadas como
 
 Seleccionar por ejemplo la rama **mno-2019-1** (u otra) para información del curso de MNO de 2019.
 
-**Dar click en [optimizacion-2021](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2021) para la rama del curso del primer semestre del 2021.**
+**Dar click en [optimizacion-2021](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2021) para la rama del curso del segundo semestre del 2021.**
 
 La rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/gh-pages) contiene los `html`s para visualización del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/).
 
