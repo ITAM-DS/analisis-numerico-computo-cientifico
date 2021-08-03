@@ -1,6 +1,8 @@
 # Optimización
 
-Este es el repositorio para los cursos de **optimización** (*aka* opt) y **optimización avanzada** (*aka* opt2) impartida en la maestría de ciencia de datos del ITAM por el **Prof. Erick Palacios Moreno**, github: [palmoreck](https://github.com/palmoreck).
+Este es el repositorio para los cursos de **optimización**\* (*aka* opt) y **optimización avanzada**\* (*aka* opt2) impartida en la maestría de ciencia de datos del ITAM por el **Prof. Erick Palacios Moreno**, github: [palmoreck](https://github.com/palmoreck). 
+
+\*El curso de optimización se imparte en agosto-diciembre y el de optimización avanzada en enero-mayo.
 
 ### Se ha creado el siguiente libro\* con el contenido de los temas en [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/) para su consulta. Este libro seguiremos a lo largo de los cursos.
 
