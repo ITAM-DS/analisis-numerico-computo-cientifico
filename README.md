@@ -8,9 +8,9 @@ Este es el repositorio para los cursos de **optimización** (*aka* opt) y **opti
 
 ### En [temario-opt](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) encuentran el temario de optimización.
 
-### En [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) encuentran una presentación de introducción al curso de optimización del segundo semestre del 2020.
+### En [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) encuentran una presentación de introducción al curso de optimización 2021.
 
-### Dar click en el siguiente botón para unirse\* al chat del curso de optimización del segundo semestre 2021 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2021/community.svg)](https://gitter.im/optimizacion-2021/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+### Dar click en el siguiente botón para unirse\* al chat del curso de optimización 2021 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2021/community.svg)](https://gitter.im/optimizacion-2021/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 \***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
 
@@ -22,7 +22,7 @@ Este es el repositorio para los cursos de **optimización** (*aka* opt) y **opti
 
 ### En [opt](https://analisis-numerico-computo-cientifico.readthedocs.io/) se obtiene documentación de un paquete de *Python* que sirve de apoyo para los ejemplos de las notas.
 
-### En [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) encuentran una presentación de introducción al curso de optimización avanzada del primer semestre del 2021.
+### En [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) encuentran una presentación de introducción al curso de optimización avanzada 2021.
 
 ---
 
@@ -38,9 +38,9 @@ Tales imágenes se descargan con un `docker pull` desde la terminal una vez haya
 \*Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de [docker](https://www.docker.com/).
 
 
-## Organización de github classroom para el segundo semestre del 2021
+## Organización de github classroom para optimización 2021
 
-La organización [optimizacion-2021-gh-classroom](https://github.com/optimizacion-2021-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas del segundo semestre del 2021. Ver [github education](https://github.com/education) como una referencia.
+La organización [optimizacion-2021-gh-classroom](https://github.com/optimizacion-2021-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas. Ver [github education](https://github.com/education) como una referencia.
 
 ## Ramas del repositorio.
 
@@ -50,7 +50,7 @@ En este repositorio se han creado diferentes ramas que pueden ser accesadas como
 
 Seleccionar por ejemplo la rama **mno-2019-1** (u otra) para información del curso de MNO de 2019.
 
-**Dar click en [optimizacion-2021](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2021) para la rama del curso del segundo semestre del 2021.**
+**Dar click en [optimizacion-2021](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2021) para la rama del curso de optimización 2021.**
 
 La rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/gh-pages) contiene los `html`s para visualización del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/).
 
