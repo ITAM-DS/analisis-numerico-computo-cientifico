@@ -54,7 +54,7 @@ Se realizarán dos prácticas por equipos (quiénes y cuántos integrantes se de
 
 Para las prácticas se utilizarán:
 
-* La organización [optimizacion-<>-gh-classroom]() de *github classroom* y tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, *issues*, *milestones*, *projects*).
+* La organización [optimizacion-2021-gh-classroom](https://github.com/optimizacion-2021-gh-classroom) de *github classroom* y tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, *issues*, *milestones*, *projects*).
 
 * git/github para la organización de proyectos. Ver por ejemplo [video para crear proyectos en github](https://youtu.be/z4Xpif7HI04)
 
