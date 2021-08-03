@@ -92,4 +92,6 @@ La siguiente lista no pretende ser exhaustiva.
 
 * Métodos para resolver ecuaciones no lineales.
 
+* Método símplex para programas lineales.
+
  **Los métodos numéricos deben ser utilizados en problemas de optimización numérica y en aplicaciones de áreas detalladas al inicio.**
