@@ -79,8 +79,6 @@ La siguiente lista no pretende ser exhaustiva.
 
 * Algoritmos basados en árboles o grafos para optimización de redes.
 
-* Método de símplex.
-
 * Método de puntos interiores, barrera logarítmica.
 
 * Métodos Cuasi Newton.
