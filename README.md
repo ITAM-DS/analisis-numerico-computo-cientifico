@@ -14,6 +14,8 @@ Este es el repositorio para los cursos de **optimización** (*aka* opt) y **opti
 
 \***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
 
+---
+
 ## Optimización avanzada
 
 ### En [temario-opt-2](https://drive.google.com/file/d/17ydFChBFxxAOzsIPwUu90KR01zRXdCNZ/view?usp=sharing) encuentran el temario de optimización avanzada.
@@ -21,6 +23,8 @@ Este es el repositorio para los cursos de **optimización** (*aka* opt) y **opti
 ### En [opt](https://analisis-numerico-computo-cientifico.readthedocs.io/) se obtiene documentación de un paquete de *Python* que sirve de apoyo para los ejemplos de las notas.
 
 ### En [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) encuentran una presentación de introducción al curso de optimización avanzada del primer semestre del 2021.
+
+---
 
 ### Imágenes de *Docker* creadas
 
