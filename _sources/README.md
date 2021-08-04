@@ -4,7 +4,7 @@
 
 **Parte 1: temas del cómputo científico y del álgebra lineal numérica.**
     
-**Parte 2: ecuaciones no lineales y optimización.**
+**Parte 2: optimización convexa y ecuaciones no lineales.**
 
 **Parte 3: optimización en redes y programación lineal.**
 
