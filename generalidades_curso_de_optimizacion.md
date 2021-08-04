@@ -32,10 +32,10 @@ El curso se apoya de herramientas de software como:
 
 Se tendrán 2 exámenes de teoría que evaluarán los siguientes temas:
 
-|Tema| Puntos| Tipo|
+|Módulo| Puntos| Tipo|
 |:---:|:---:|:---:|
-|Temas del Cómputo Científico y del Álgebra Lineal Numérica|15|Teórico|
-|Temas de ecuaciones no lineales y Optimización|15|Teórico|
+|Temas del cómputo científico y del álgebra lineal numérica|15|Teórico|
+|Temas de optimización convexa y ecuaciones no lineales|15|Teórico|
 
 
 Los exámenes de teoría se realizan de forma individual y las preguntas de los mismos se basan en las preguntas de comprehensión de los temas indicados. 
@@ -45,10 +45,11 @@ Los exámenes de teoría se realizan de forma individual y las preguntas de los 
 
 Se realizarán dos prácticas por equipos (quiénes y cuántos integrantes se determinará en su momento) que evaluarán los siguientes temas:
 
-|Tema| Puntos|
+|Módulo| Puntos|
 |:---:|:---:|
 |Temas del Cómputo Científico y del Álgebra Lineal Numérica|15|
-|Temas de ecuaciones no lineales y Optimización|15|
+|Temas de optimización convexa y ecuaciones no lineales|15|
+
 
 **La fecha de entrega de las prácticas se determinará conforme avancemos en el curso pero un buen indicador es que vayamos terminando los temas.**
 
