@@ -25,6 +25,19 @@ El curso se apoya de herramientas de software como:
 |:---:|:---:|:---:|
 |20|20|40|
 
+### Entregas extras
+
+Los ejercicios y preguntas de programación que están en las notas ayudan a subir la calificación final. Son entregas que se tomarán como extra.
+
+Para obtener el porcentaje extra deben entregar en un repositorio de github debajo de la organización del curso:
+
+A) los ejercicios y preguntas que requieran programación de tres de los cuatro capítulos del libro.
+
+o bien
+
+B) los ejercicios y preguntas que requieran programación de dos de los cuatro capítulos MÁS una de las tareas extras que les pido entreguen como ensayos. Los temas para los ensayos se detallarán en las publicaciones de los mismos.
+
+Ustedes eligen los capítulos a realizar. Las fechas de entrega para ejercicios y preguntas de los capítulos son una semana después que se finalice en clase el capítulo en cuestión. La fecha de entrega para los ensayos es hasta dos semanas antes de finalizar el semestre.
 
 ### Exámenes
 
