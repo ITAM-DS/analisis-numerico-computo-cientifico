@@ -27,6 +27,20 @@ El curso se apoya de herramientas de software como:
 |:---:|:---:|:---:|
 |15|15|40|
 
+### Entregas extras
+
+Los ejercicios y preguntas de programación que están en las notas ayudan a subir la calificación final. Son entregas que se tomarán como extra.
+
+Para obtener el porcentaje extra deben entregar en un repositorio de github debajo de la organización del curso:
+
+A) los ejercicios y preguntas que requieran programación de tres de los cuatro capítulos del libro.
+
+o bien
+
+B) los ejercicios y preguntas que requieran programación de dos de los cuatro capítulos MÁS una de las tareas extras que les pido entreguen como ensayos.
+
+Ustedes eligen los capítulos a realizar.
+
 
 ### Exámenes
 
