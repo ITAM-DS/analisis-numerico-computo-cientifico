@@ -49,5 +49,9 @@ Total de clases: 17 (1 asueto). Total de número de horas: 51 hrs.
 
 ## Clase 1
 
-"" de ""
+5 de agosto
+
+Revisamos la [presentación](https://hackmd.io/@palmoreck/Hkr5rVQ-v) de introducción al curso. 
+
+Llegamos hasta [SPF de doble precisión](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.2/Sistema_de_punto_flotante.html#spf-de-doble-precision)
 
