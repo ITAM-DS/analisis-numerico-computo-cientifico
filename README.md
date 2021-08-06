@@ -37,7 +37,7 @@ Este es el repositorio para los cursos de **optimización**\* (*aka* opt) y **op
 
 Tales imágenes se descargan con un `docker pull` desde la terminal una vez hayan instalado *docker*\* en sus computadoras. En cada nota del libro se indica el comando `docker run` para correr los contenedores. O bien de acuerdo a la documentación de la imagen, ver por ejemplo [running optimizacion docker image in a docker container](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/optimizacion/README.md#running-jupyterlab_optimizacion-docker-image-in-a-docker-container), [running optimizacion_2 docker image in a docker container](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/optimizacion_2/README.md#running-jupyterlab_optimizacion_2-docker-image-in-a-docker-container) . 
 
-\*Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/master/herramientas/docker) para referencias de [docker](https://www.docker.com/).
+\*Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/main/herramientas/docker) para referencias de [docker](https://www.docker.com/).
 
 
 ## Organización de github classroom para optimización 2021
@@ -57,7 +57,7 @@ Seleccionar por ejemplo la rama **mno-2019-1** (u otra) para información del cu
 La rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/gh-pages) contiene los `html`s para visualización del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/).
 
 
-## Breve explicación del repositorio en la rama master y su *wiki*.
+## Breve explicación del repositorio en la rama *main* y su *wiki*.
 
 En el [Wiki](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki) encuentran información sobre [Amazon Web Services](https://aws.amazon.com/es/).
 
