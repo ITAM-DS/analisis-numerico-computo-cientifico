@@ -10,7 +10,7 @@
 
 ## Organización del curso:
 
-Las clases son los días miércoles.
+Las clases son los días jueves.
 
 | Semana   | Tema                                                              |
 | :--------:|:-----------------------------------------------------------------:|
