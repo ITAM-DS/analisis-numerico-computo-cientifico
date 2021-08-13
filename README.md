@@ -53,5 +53,13 @@ Total de clases: 17 (1 asueto). Total de número de horas: 51 hrs.
 
 Revisamos la [presentación](https://hackmd.io/@palmoreck/Hkr5rVQ-v) de introducción al curso. 
 
-Llegamos hasta [SPF de doble precisión](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.2/Sistema_de_punto_flotante.html#spf-de-doble-precision)
+Llegamos hasta [Sistema_de_punto_flotante.html#spf-de-doble-precision](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.2/Sistema_de_punto_flotante.html#spf-de-doble-precision)
+
+## Clase 2
+
+12 de agosto
+
+Finalizamos [SPF de doble precisión](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.2/Sistema_de_punto_flotante.html#spf-de-doble-precision)
+
+Llegamos hasta [Normas_vectoriales_y_matriciales.html#resultados-computacionales-que-son-posibles-probar](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#resultados-computacionales-que-son-posibles-probar)
 
