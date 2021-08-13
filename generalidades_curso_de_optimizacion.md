@@ -39,7 +39,7 @@ o bien
 
 B) los ejercicios y preguntas que requieran programación de uno de los tres capítulos incluyendo la nota 4.1 sobre programación lineal MÁS dos de las tareas extras que les pido entreguen como ensayos. Los temas para los ensayos se detallarán en las publicaciones de los mismos.
 
-Ustedes eligen los capítulos a realizar. Las fechas de entrega para ejercicios y preguntas de los capítulos son una semana después que se finalice en clase el capítulo en cuestión. La fecha de entrega para los ensayos es hasta dos semanas antes de finalizar el semestre.
+Ustedes eligen los capítulos a realizar y también las tareas extras que les pido entreguen como ensayos. Las fechas de entrega para ejercicios y preguntas de los capítulos son una semana después que se finalice en clase el capítulo en cuestión. La fecha de entrega para los ensayos es hasta dos semanas antes de finalizar el semestre.
 
 ### Exámenes
 
