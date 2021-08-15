@@ -116,6 +116,12 @@ zip -r book.zip _build/html
 
 El zip estará dentro del directorio `analisis-numerico-computo-cientifico/libro_optimizacion/temas/`. Y se puede descargar:
 
+<img width="350" alt="imagen" src="https://user-images.githubusercontent.com/3290689/129487013-f2126e89-17da-4206-a5f3-c17cbf799ebb.png">
+
+
+<img width="350" alt="imagen" src="https://user-images.githubusercontent.com/3290689/129487016-ba428b9c-ae54-45b2-8963-88ae26fa5008.png">
+
+
 
 Una vez descargado abrir el archivo `README.html`.
 
