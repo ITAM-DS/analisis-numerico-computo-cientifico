@@ -79,7 +79,7 @@ y elegir una ejecución interactiva de los notebooks vía *binder*\* o [thebe](h
 
 ### Para convertir notas a pdf
 
-**Lo siguiente construye un pdf con expresiones en matemáticas no correctamente visualizadas, es probable por versiones de las paqueterías. Se sugiere descargar el pdf de la siguiente liga [descargar pdf de libro de optimización]() o bien ir a la sección [Para descargar notas en html dentro de un zip](). La liga para descargar el pdf no contiene los últimos cambios en las notas de este repo pero se tratará de ir actualizando continuamente.**
+**Lo siguiente construye un pdf con expresiones en matemáticas no correctamente visualizadas, es probable por versiones de las paqueterías. Se sugiere descargar el pdf de la siguiente liga [descargar pdf de libro de optimización](https://drive.google.com/file/d/1ksnt-qOSKFniz036U-LiZbr2YWnsB5PE/view?usp=sharing) o bien ir a la sección [Para descargar notas en html dentro de un zip](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico#para-descargar-notas-en-html-dentro-de-un-zip). La liga para descargar el pdf no contiene los últimos cambios en las notas de este repo pero se tratará de ir actualizando continuamente.**
 
 Usar botón de [binder](https://mybinder.org/) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/)
 
@@ -114,7 +114,10 @@ jb build .
 zip -r book.zip _build/html
 ```
 
-El zip estará dentro del directorio `analisis-numerico-computo-cientifico/libro_optimizacion/temas/`. Y se puede descargar.
+El zip estará dentro del directorio `analisis-numerico-computo-cientifico/libro_optimizacion/temas/`. Y se puede descargar:
+
+
+Una vez descargado abrir el archivo `README.html`.
 
 ### Nota: durante el segundo semestre del 2021 se estarán haciendo cambios continuamente por lo que tendrán que actualizar su descarga, clon o *fork*.
 
