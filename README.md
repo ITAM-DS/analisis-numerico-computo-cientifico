@@ -96,12 +96,10 @@ El pdf estará dentro del directorio `analisis-numerico-computo-cientifico/libro
 
 <img width="350" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89846768-c9060f80-db47-11ea-8ab0-131e925732ec.png">
 
-Para facilidad la siguiente liga [descargar pdf de libro de optimización](https://drive.google.com/file/d/1ksnt-qOSKFniz036U-LiZbr2YWnsB5PE/view?usp=sharing) contiene el pdf. Sin embargo no contiene los últimos cambios en las notas de este repo y se tratará de ir actualizando continuamente. Alternativamente ir a la sección [Para descargar notas en html dentro de un zip](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico#para-descargar-notas-en-html-dentro-de-un-zip). 
+Para facilidad la siguiente liga [descargar pdf de libro de optimización](https://drive.google.com/file/d/1ksnt-qOSKFniz036U-LiZbr2YWnsB5PE/view?usp=sharing) contiene el pdf. Sin embargo no contiene los últimos cambios en las notas de este repo, se tratará de ir actualizando continuamente y se sugiere realizar las ejecuciones vía *binder* anteriormente descritas para tener los últimos cambios. Alternativamente ir a la sección [Para descargar notas en html dentro de un zip](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico#para-descargar-notas-en-html-dentro-de-un-zip). 
 
 
 ### Para descargar notas en html dentro de un zip
-
-Esta opción para descargar las notas sí contiene los últimos cambios en las notas de este repo.
 
 Usar botón de [binder](https://mybinder.org/) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/)
 
@@ -120,7 +118,6 @@ El zip estará dentro del directorio `analisis-numerico-computo-cientifico/libro
 
 
 <img width="350" alt="imagen" src="https://user-images.githubusercontent.com/3290689/129487016-ba428b9c-ae54-45b2-8963-88ae26fa5008.png">
-
 
 
 Una vez descargado abrir el archivo `README.html`.
