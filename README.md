@@ -79,8 +79,6 @@ y elegir una ejecución interactiva de los notebooks vía *binder*\* o [thebe](h
 
 ### Para convertir notas a pdf
 
-**Lo siguiente construye un pdf con expresiones en matemáticas no correctamente visualizadas, es probable por versiones de las paqueterías. Se sugiere descargar el pdf de la siguiente liga [descargar pdf de libro de optimización](https://drive.google.com/file/d/1ksnt-qOSKFniz036U-LiZbr2YWnsB5PE/view?usp=sharing) o bien ir a la sección [Para descargar notas en html dentro de un zip](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico#para-descargar-notas-en-html-dentro-de-un-zip). La liga para descargar el pdf no contiene los últimos cambios en las notas de este repo pero se tratará de ir actualizando continuamente.**
-
 Usar botón de [binder](https://mybinder.org/) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion?urlpath=lab/tree/analisis-numerico-computo-cientifico/)
 
 Abrir una nueva terminal y ejecutar lo siguiente:
@@ -97,6 +95,8 @@ El pdf estará dentro del directorio `analisis-numerico-computo-cientifico/libro
 
 
 <img width="350" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89846768-c9060f80-db47-11ea-8ab0-131e925732ec.png">
+
+Para facilidad la siguiente liga [descargar pdf de libro de optimización](https://drive.google.com/file/d/1ksnt-qOSKFniz036U-LiZbr2YWnsB5PE/view?usp=sharing) contiene el pdf. Sin embargo no contiene los últimos cambios en las notas de este repo y se tratará de ir actualizando continuamente. Alternativamente ir a la sección [Para descargar notas en html dentro de un zip](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico#para-descargar-notas-en-html-dentro-de-un-zip). 
 
 
 ### Para descargar notas en html dentro de un zip
