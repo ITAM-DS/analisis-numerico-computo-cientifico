@@ -81,12 +81,18 @@ y elegir una ejecución interactiva de los notebooks vía *binder*\* o [thebe](h
 
 Usar botón de [binder](https://mybinder.org/) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion?urlpath=lab/tree/analisis-numerico-computo-cientifico/)
 
-Abrir una nueva terminal y ejecutar lo siguiente:
+Abrir una nueva terminal y ejecutar lo siguiente si se desean convertir las notas a pdf capítulo por capítulo de su elección.
 
 ```
-bash
-cd analisis-numerico-computo-cientifico/libro_optimizacion/temas/
-jb build . --builder pdfhtml
+#bash build_chapter<aquí colocar cuál capítulo 1, 2, 3, 4, 5>.sh
+#por ejemplo: 
+bash build_chapter3.sh
+```
+
+Alternativamente si se desean todos los capítulos ejecutar lo siguiente.
+
+```
+bash build_all_chapters.sh
 ```
 
 El pdf estará dentro del directorio `analisis-numerico-computo-cientifico/libro_optimizacion/temas/_build/pdf`. Y se puede descargar:
