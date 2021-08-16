@@ -95,7 +95,7 @@ Alternativamente si se desean todos los capítulos ejecutar lo siguiente.
 bash build_all_chapters.sh
 ```
 
-El pdf estará dentro del directorio `analisis-numerico-computo-cientifico/libro_optimizacion/temas/_build/pdf`. Y se puede descargar:
+Los pdf's estarán dentro del directorio `analisis-numerico-computo-cientifico/libro_optimizacion/temas/_build/pdf`. Y se pueden descargar:
 
 <img width="350" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89846762-c60b1f00-db47-11ea-8d2e-1d21b92ae8b5.png">
 
