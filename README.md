@@ -87,6 +87,8 @@ Abrir una nueva terminal y ejecutar lo siguiente si se desean convertir las nota
 #bash build_chapter<aquí colocar cuál capítulo 1, 2, 3, 4, 5>.sh
 #por ejemplo: 
 bash build_chapter3.sh
+#Una vez que finalice el comando anterior se puede ejecutar por ejemplo:
+bash build_chapter1.sh
 ```
 
 Alternativamente si se desean todos los capítulos ejecutar lo siguiente.
