@@ -97,12 +97,10 @@ bash build_all_chapters.sh
 
 Los pdf's estarán dentro del directorio `analisis-numerico-computo-cientifico/libro_optimizacion/temas/_build/pdf`. Y se pueden descargar:
 
-<img width="350" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89846762-c60b1f00-db47-11ea-8d2e-1d21b92ae8b5.png">
+<img width="350" alt="imagen" src="https://user-images.githubusercontent.com/3290689/129596616-3ada0bb2-f460-4311-845a-73fa26ae628e.png">
 
 
-<img width="350" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89846768-c9060f80-db47-11ea-8ab0-131e925732ec.png">
-
-Para facilidad la siguiente liga [descargar pdf de libro de optimización](https://drive.google.com/file/d/1ksnt-qOSKFniz036U-LiZbr2YWnsB5PE/view?usp=sharing) contiene el pdf. Sin embargo no contiene los últimos cambios en las notas de este repo, se tratará de ir actualizando continuamente y se sugiere realizar las ejecuciones vía *binder* anteriormente descritas para tener los últimos cambios. Alternativamente ir a la sección [Para descargar notas en html dentro de un zip](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico#para-descargar-notas-en-html-dentro-de-un-zip). 
+<img width="350" alt="imagen" src="https://user-images.githubusercontent.com/3290689/129596634-f815a949-4092-41b2-a309-93d7f0639242.png">
 
 
 ### Para descargar notas en html dentro de un zip
