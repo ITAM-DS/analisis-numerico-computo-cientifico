@@ -84,11 +84,11 @@ Usar el siguiente botón de [binder](https://mybinder.org/) (no es el mismo bot�
 Abrir una nueva terminal y ejecutar lo siguiente si se desean convertir las notas a pdf capítulo por capítulo de su elección.
 
 ```
-#bash build_chapter<aquí colocar cuál capítulo 1, 2, 3, 4, 5>.sh
+#bash build_chapter.sh <aquí colocar cuál capítulo 1, 2, 3, 4, 5>
 #por ejemplo: 
-bash build_chapter3.sh
+bash build_chapter.sh 3
 #Una vez que finalice el comando anterior se puede ejecutar por ejemplo:
-bash build_chapter1.sh
+bash build_chapter.sh 1
 ```
 
 Alternativamente si se desean todos los capítulos ejecutar lo siguiente.
