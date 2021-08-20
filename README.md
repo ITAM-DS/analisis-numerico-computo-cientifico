@@ -59,7 +59,19 @@ Llegamos hasta [Sistema_de_punto_flotante.html#spf-de-doble-precision](https://i
 
 12 de agosto
 
-Finalizamos [SPF de doble precisión](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.2/Sistema_de_punto_flotante.html#spf-de-doble-precision)
+Finalizamos [1.2 SPF de doble precisión](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.2/Sistema_de_punto_flotante.html#spf-de-doble-precision)
 
-Llegamos hasta [Normas_vectoriales_y_matriciales.html#resultados-computacionales-que-son-posibles-probar](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#resultados-computacionales-que-son-posibles-probar)
+Llegamos hasta [1.3 Normas_vectoriales_y_matriciales: resultados-computacionales-que-son-posibles-probar](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#resultados-computacionales-que-son-posibles-probar)
+
+
+## Clase 3
+
+19 de agosto
+
+Finalizamos:
+
+* [1.3 Normas_vectoriales_y_matriciales](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html)
+
+* [1.4 Condición de un problema y estabilidad de un algoritmo](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html#algunas-propiedades-del-numero-de-condicion-de-una-matriz)
+
 
