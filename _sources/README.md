@@ -12,6 +12,8 @@
 
 **Parte 5: algoritmos de optimización convexa.**
 
+**Parte 6: temas selectos.**
+
 
 Dar click en [temario-opt](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) para el temario de optimización.
 
