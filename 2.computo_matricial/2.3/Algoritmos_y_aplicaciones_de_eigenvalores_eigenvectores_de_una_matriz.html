@@ -1,0 +1,2576 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2.3 Algoritmos y aplicaciones de eigenvalores y eigenvectores de una matriz</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.4 Valores, vectores singulares y algoritmos para calcular la SVD" href="../2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.html" />
+    <link rel="prev" title="2.2 Eigenvalores y eigenvectores" href="../2.2/Eigenvalores_y_eigenvectores.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../README.html">
+   Optimización
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  1. Cómputo científico
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../1.computo_cientifico/1.1/Analisis_numerico_y_computo_cientifico.html">
+   1.1 Análisis numérico y cómputo científico
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../1.computo_cientifico/1.2/Sistema_de_punto_flotante.html">
+   1.2 Sistema de punto flotante
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../1.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html">
+   1.3 Normas vectoriales y matriciales
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../1.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html">
+   1.4 Condición de un problema y estabilidad de un algoritmo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../1.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html">
+   1.5 Definición de función, continuidad y derivada
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../1.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html">
+   1.6 Polinomios de Taylor y diferenciación numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../1.computo_cientifico/1.7/Integracion_numerica.html">
+   1.7 Integración Numérica
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  2. Cómputo matricial
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html">
+   2.1 Operaciones y transformaciones básicas del Álgebra Lineal Numérica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html">
+   2.2 Eigenvalores y eigenvectores
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2.3 Algoritmos y aplicaciones de eigenvalores y eigenvectores de una matriz
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.html">
+   2.4 Valores, vectores singulares y algoritmos para calcular la SVD
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  3. Optimización convexa y ecuaciones no lineales
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html">
+   3.1 Definición de problemas de optimización, conjuntos y funciones convexas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html">
+   3.2 Algoritmos de descenso y búsqueda de línea en
+   <em>
+    Unconstrained Convex Optimization
+   </em>
+   (UCO)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html">
+   3.3 Ejemplos de problemas UCO, introducción a
+   <em>
+    Constrained Inequality and Equality Optimization
+   </em>
+   (CIEO) y puntos interiores
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../3.optimizacion_convexa/3.4/Ecuaciones_no_lineales.html">
+   3.4 Ecuaciones no lineales
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  4. Optimización en redes y programación lineal
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html">
+   4.1 Programación lineal (PL) y método símplex
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../4.optimizacion_en_redes_y_prog_lineal/4.2/Definiciones_generales_de_flujo_en_redes.html">
+   4.2 Definiciones generales de flujo en redes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../4.optimizacion_en_redes_y_prog_lineal/4.3/Ejemplo_metodo_simplex_de_redes.html">
+   4.3 Ejemplo del método símplex de redes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../4.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html">
+   4.4 Dualidad, lema de Farkas y condiciones de Karush-Kuhn-Tucker (KKT) de optimalidad
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../4.optimizacion_en_redes_y_prog_lineal/4.5/Metodo_primal_dual_de_BL.html">
+   4.5 Método primal-dual de barrera logarítmica (BL)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  5. Optimización de código
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../5.optimizacion_de_codigo/5.1/introduccion_optimizacion_de_codigo.html">
+   5.1 Introducción a optimización de código
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../5.optimizacion_de_codigo/5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html">
+   5.2 Herramientas de lenguajes de programación y del sistema operativo para perfilamiento e implementaciones de BLAS
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../5.optimizacion_de_codigo/5.3/Compilacion_a_C.html">
+   5.3 Compilación a C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../5.optimizacion_de_codigo/5.4/Computo_en_paralelo_usando_CPUS_en_SMC.html">
+   5.4 Cómputo en paralelo usando CPUs en un sistema de memoria compartida (SMC)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../5.optimizacion_de_codigo/5.5/Computo_en_paralelo_usando_GPUS_en_SMC.html">
+   5.5 Cómputo en paralelo usando GPUs en un sistema de memoria compartida (SMC)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  6. Algoritmos de optimización convexa
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../6.algoritmos_optimizacion_convexa/6.1/Problemas_UCO.html">
+   6.1 Problemas tipo
+   <em>
+    Unconstrained Convex Optimization
+   </em>
+   (UCO)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../6.algoritmos_optimizacion_convexa/6.2/Problemas_CECO.html">
+   6.2 Problemas tipo
+   <em>
+    Constrained Equality Convex Optimization
+   </em>
+   (CECO)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../6.algoritmos_optimizacion_convexa/6.3/Problemas_CIECO.html">
+   6.3 Problemas tipo
+   <em>
+    Constrained Equality and Inequality Convex Optimization
+   </em>
+   (CIECO)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  7. Temas selectos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../7.temas_selectos/7.1/Optimizacion_estocastica.html">
+   7.1 Optimización estocástica
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../7.temas_selectos/7.2/Metodos_cuasi_Newton.html">
+   7.2 Métodos cuasi Newton
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/2.computo_matricial/2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/2.computo_matricial/2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rotaciones-de-jacobi-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+   Rotaciones de Jacobi para matrices simétricas
+   <span class="math notranslate nohighlight">
+    \(A \in \mathbb{R}^{n \times n}\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algoritmo-metodo-de-rotaciones-de-jacobi-para-matrices-simetricas">
+     Algoritmo: método de rotaciones de Jacobi para matrices simétricas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo">
+     Ejemplo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Ejemplo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algoritmo-qr-o-qr-iteration-version-simple-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+   Algoritmo QR o
+   <em>
+    QR iteration
+   </em>
+   (versión simple) para matrices simétricas
+   <span class="math notranslate nohighlight">
+    \(A \in \mathbb{R}^{n \times n}\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#factorizacion-qr">
+     Factorización QR
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algoritmo-algoritmo-qr-para-matrices-simetricas-version-simple">
+     Algoritmo: algoritmo QR para matrices simétricas (versión simple)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Ejemplo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metodo-de-la-potencia-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+   Método de la potencia para matrices simétricas
+   <span class="math notranslate nohighlight">
+    \(A \in \mathbb{R}^{n \times n}\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Ejemplo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algoritmo-metodo-de-la-potencia-para-matrices-simetricas">
+     Algoritmo: método de la potencia para matrices simétricas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Ejemplo
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iteracion-inversa-o-metodo-de-la-potencia-inversa-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+   Iteración inversa o método de la potencia inversa para matrices simétricas
+   <span class="math notranslate nohighlight">
+    \(A \in \mathbb{R}^{n \times n}\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algoritmo-iteracion-inversa-o-metodo-de-la-potencia-inversa-para-matrices-simetricas">
+     Algoritmo: iteración inversa o método de la potencia inversa para matrices simétricas
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+   Iteración por el cociente de Rayleigh para matrices simétricas
+   <span class="math notranslate nohighlight">
+    \(A \in \mathbb{R}^{n \times n}\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#algoritmo-iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas">
+     Algoritmo: iteración por el cociente de Rayleigh para matrices simétricas
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aplicaciones-y-usos-page-ranking-en-un-buscador-de-paginas-web">
+   Aplicaciones y usos: Page Ranking en un buscador de páginas web
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#descripcion-del-metodo-pagerank">
+     Descripción del método
+     <em>
+      PageRank
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Ejemplo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#el-modelo-random-surfer">
+     El modelo
+     <em>
+      random surfer
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adicion-de-un-factor-para-obtener-matrices-estocasticas-por-columnas">
+     Adición de un factor para obtener matrices estocásticas por columnas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Ejemplo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matriz-irreducible-y-estocastica-por-columnas">
+     Matriz irreducible y estocástica por columnas
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Ejemplo
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comentarios-respecto-a-la-implementacion-del-metodo-de-la-potencia">
+     Comentarios respecto a la implementación del método de la potencia
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comentario-respecto-a-metodos-para-calcular-eigenvalores-eigenvectores-en-el-caso-de-matrices-no-simetricas">
+   Comentario respecto a métodos para calcular eigenvalores-eigenvectores en el caso de matrices no simétricas
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="algoritmos-y-aplicaciones-de-eigenvalores-y-eigenvectores-de-una-matriz">
+<span id="aaevalevec"></span><h1>2.3 Algoritmos y aplicaciones de eigenvalores y eigenvectores de una matriz<a class="headerlink" href="#algoritmos-y-aplicaciones-de-eigenvalores-y-eigenvectores-de-una-matriz" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-notas-para-contenedor-de-docker admonition">
+<p class="admonition-title">Notas para contenedor de docker:</p>
+<p>Comando de docker para ejecución de la nota de forma local:</p>
+<p>nota: cambiar <code class="docutils literal notranslate"><span class="pre">&lt;ruta</span> <span class="pre">a</span> <span class="pre">mi</span> <span class="pre">directorio&gt;</span></code> por la ruta de directorio que se desea mapear a <code class="docutils literal notranslate"><span class="pre">/datos</span></code> dentro del contenedor de docker y <code class="docutils literal notranslate"><span class="pre">&lt;versión</span> <span class="pre">imagen</span> <span class="pre">de</span> <span class="pre">docker&gt;</span></code> por la versión más actualizada que se presenta en la documentación.</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--rm</span> <span class="pre">-v</span> <span class="pre">&lt;ruta</span> <span class="pre">a</span> <span class="pre">mi</span> <span class="pre">directorio&gt;:/datos</span> <span class="pre">--name</span> <span class="pre">jupyterlab_optimizacion</span> <span class="pre">-p</span> <span class="pre">8888:8888</span> <span class="pre">-d</span> <span class="pre">palmoreck/jupyterlab_optimizacion:&lt;versión</span> <span class="pre">imagen</span> <span class="pre">de</span> <span class="pre">docker&gt;</span></code></p>
+<p>password para jupyterlab: <code class="docutils literal notranslate"><span class="pre">qwerty</span></code></p>
+<p>Detener el contenedor de docker:</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">stop</span> <span class="pre">jupyterlab_optimizacion</span></code></p>
+<p>Documentación de la imagen de docker <code class="docutils literal notranslate"><span class="pre">palmoreck/jupyterlab_optimizacion:&lt;versión</span> <span class="pre">imagen</span> <span class="pre">de</span> <span class="pre">docker&gt;</span></code> en <a class="reference external" href="https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion">liga</a>.</p>
+</div>
+<hr class="docutils" />
+<p>Nota generada a partir de <a class="reference external" href="https://www.dropbox.com/s/s4ch0ww1687pl76/3.2.2.Factorizaciones_matriciales_SVD_Cholesky_QR.pdf?dl=0">liga</a>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Al final de esta nota el y la lectora:</p>
+<ul class="simple">
+<li><p>Pondrá en uso los conocimientos revisados en las notas de <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#otbaln"><span class="std std-ref">operaciones y transformaciones básicas del Álgebra Lineal Numérica</span></a> y <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#eigvaleigvec"><span class="std std-ref">eigenvalores y eigenvectores</span></a> para comprender los algoritmos básicos y típicos que se han desarrollado en el análisis numérico para el cálculo de eigenvalores y eigenvectores de una matriz simétrica.</p></li>
+<li><p>Comprenderá la relación entre el método de <em>pagerank</em> para el ordenamiento o <em>ranking</em> de una página web utilizada por <em>Google</em> y el problema del cálculo de eigenvalores y eigenvectores de una matriz.</p></li>
+</ul>
+</div>
+<p>Para los algoritmos revisados en esta nota <strong>asumimos</strong> que la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> es simétrica. Esto tiene como consecuencia que sus eigenvalores son reales y existe una base de eigenvectores ortonormal, ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#descesp"><span class="std std-ref">descomposición espectral de una matriz simétrica</span></a>. Para la sección del método de <em>pagerank</em> se asume una matriz sin una estructura particular.</p>
+<div class="section" id="rotaciones-de-jacobi-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+<span id="rotjacmatsim"></span><h2>Rotaciones de Jacobi para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#rotaciones-de-jacobi-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
+<p>Este método produce una secuencia de transformaciones ortogonales de la forma <span class="math notranslate nohighlight">\(J_k^TAJ_k\)</span> con el objetivo de hacer “más diagonal” a la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>.</p>
+<p>Si la matriz <span class="math notranslate nohighlight">\(A\)</span> es simétrica y <span class="math notranslate nohighlight">\(J_0\)</span> es una transformación de rotación de Jacobi, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>, entonces el esquema iterativo:</p>
+<div class="math notranslate nohighlight">
+\[A_{k+1} = (J_0 J_1 \cdots J_k)^T A(J_0 J_1 \cdots J_k)\]</div>
+<p><strong>converge</strong> a una matriz diagonal en la que se encuentran los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Los pasos de un algoritmo representan una guía para la implementación, no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo algoritmo, entonces pueden seguirse los pasos de una forma distinta.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Los criterios de paro en un método iterativo ayudan a contestar preguntas del tipo ¿hemos resuelto el problema de forma aproximada?</p>
+</div>
+<div class="section" id="algoritmo-metodo-de-rotaciones-de-jacobi-para-matrices-simetricas">
+<h3>Algoritmo: método de rotaciones de Jacobi para matrices simétricas<a class="headerlink" href="#algoritmo-metodo-de-rotaciones-de-jacobi-para-matrices-simetricas" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(A\)</span> simétrica y <span class="math notranslate nohighlight">\(tol &gt;0\)</span> <strong>definir</strong> <span class="math notranslate nohighlight">\(A_0 = A\)</span>, <span class="math notranslate nohighlight">\(Q_0 = I_n\)</span>.</p>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p>Elegir un par de índices <span class="math notranslate nohighlight">\((idx1,idx2)\)</span> con alguna de las metodologías descritas en el bloque siguiente de comentarios.</p></li>
+<li><p>Calcular las entradas <span class="math notranslate nohighlight">\(\cos(\theta),\sin(\theta)\)</span> de la matriz de rotación <span class="math notranslate nohighlight">\(J_k\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{k+1} = J_k^T A_k J_k\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(Q_{k+1} = Q_{k}J_k\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span> y <span class="math notranslate nohighlight">\(maxsweeps\)</span>.</p>
+</div></blockquote>
+<p>La matriz <span class="math notranslate nohighlight">\(J_k\)</span> se utiliza para eliminar un par de entradas (simétricas) en la matriz <span class="math notranslate nohighlight">\(A_k\)</span>, esto  preserva la simetría de la matriz original. En las columnas de la matriz <span class="math notranslate nohighlight">\(Q_{k}\)</span> se encuentran aproximaciones a los eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> y en la diagonal de <span class="math notranslate nohighlight">\(A_{k}\)</span> se tienen aproximaciones a los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<p>En el método se hace mención de <strong>metodologías</strong> que ayudan a elegir los índices del renglón y columna del par de entradas de <span class="math notranslate nohighlight">\(A\)</span> que serán eliminadas (hacer cercanas a cero). Algunas de éstas son:</p>
+<p>1.Elegir <span class="math notranslate nohighlight">\((idx1,idx2)\)</span> tales que <span class="math notranslate nohighlight">\(|a_{idx1,idx2}| = \displaystyle \max_{i \neq j}|a_{ij}|\)</span>.</p>
+<p>2.<strong>Ordenamiento cíclico por renglones:</strong> elegir <span class="math notranslate nohighlight">\((idx1, idx2)\)</span> en el conjunto <span class="math notranslate nohighlight">\((1,2),(1,3),\dots,(1,n),(2,3),(2,4)\dots,(n-1,n)\)</span>.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que <span class="math notranslate nohighlight">\(A_{k+1}\)</span> y <span class="math notranslate nohighlight">\(A_{k}\)</span> son matrices ortogonalmente similares, ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#similitud"><span class="std std-ref">similitud</span></a>.</p>
+</div>
+<p>Para encontrar la forma que debe tener <span class="math notranslate nohighlight">\(J_k\)</span> es suficiente considerar el caso <span class="math notranslate nohighlight">\(2 \times 2\)</span> y se <strong>asume</strong> que <span class="math notranslate nohighlight">\(a_{12} \neq 0\)</span> pues <strong>si <span class="math notranslate nohighlight">\(a_{12} =0\)</span> entonces no hay que realizar rotación</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+J_k^TAJ_k &amp;=&amp;  
+\left [
+\begin{array}{cc}
+c &amp; -s\\
+s &amp; c
+\end{array}
+\right ]
+\left [
+\begin{array}{cc}
+a_{11} &amp; a_{12}\\
+a_{12} &amp; a_{22}
+\end{array}
+\right ]
+\left [
+\begin{array}{cc}
+c &amp; s\\
+-s &amp; c
+\end{array}
+\right ]
+\nonumber \\
+&amp;=&amp;
+\left [
+\begin{array}{cc}
+c^2a_{11} -2 csa_{12} + s^2a_{22} &amp; c^2a_{12} - cs(a_{22}-a_{11})-s^2a_{12}\nonumber \\
+c^2a_{12} - cs(a_{22}-a_{11})-s^2a_{12} &amp; c^2a_{22}+2csa_{12}+s^2a_{11} \nonumber
+\end{array}
+\right ]
+\nonumber 
+\end{eqnarray}
+\end{split}\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(c\)</span> y <span class="math notranslate nohighlight">\(s\)</span> representan a <span class="math notranslate nohighlight">\(\cos(\theta), \sin(\theta)\)</span> respectivamente y <span class="math notranslate nohighlight">\(\theta\)</span> ángulo para rotar.</p>
+<p>Si se desea que la entrada <span class="math notranslate nohighlight">\((1,2)\)</span> (equivalentemente por simetría la <span class="math notranslate nohighlight">\((2,1)\)</span>) sea cero se debe cumplir:</p>
+<div class="math notranslate nohighlight">
+\[c^2a_{12} - cs(a_{22}-a_{11})-s^2a_{12}=0.\]</div>
+<p>Asignando la variable <span class="math notranslate nohighlight">\(t = \frac{s}{c}\)</span> (tangente de <span class="math notranslate nohighlight">\(\theta\)</span>) se obtiene la ecuación cuadrática:</p>
+<div class="math notranslate nohighlight">
+\[1 - t\frac{(a_{22}-a_{11})}{a_{12}} - t^2 = 0.\]</div>
+<p>Equivalentemente:</p>
+<div class="math notranslate nohighlight">
+\[t^2 + t\frac{(a_{22}-a_{11})}{a_{12}} - 1 = t^2 + 2\tau t -1 = 0\]</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Las funciones <span class="math notranslate nohighlight">\(\frac{1}{\tau+\sqrt{\tau^2+1}}\)</span>, <span class="math notranslate nohighlight">\(\frac{1}{\tau-\sqrt{\tau^2+1}}\)</span> son estrictamente decrecientes para <span class="math notranslate nohighlight">\(\tau \geq 0\)</span> y <span class="math notranslate nohighlight">\(\tau &lt; 0\)</span> respectivamente. Un valor de <span class="math notranslate nohighlight">\(\tau\)</span> corresponde a un único ángulo <span class="math notranslate nohighlight">\(\theta \in \left [-\frac{\pi}{4}, \frac{\pi}{4} \right ]\)</span>.</p>
+</div>
+<p>donde: <span class="math notranslate nohighlight">\(\tau = \frac{a_{22}-a_{11}}{2a_{12}}\)</span>. Las raíces de la ecuación anterior están dadas por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+t_1^* &amp;=&amp; -\tau + \sqrt{\tau^2+1}&amp;=&amp;\frac{1}{\tau+\sqrt{\tau^2+1}} \nonumber \\
+t_2^* &amp;=&amp; -\tau - \sqrt{\tau^2+1}&amp;=&amp;\frac{1}{\tau-\sqrt{\tau^2+1}} \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>Se <strong>sugiere</strong> utilizar la raíz de menor magnitud para disminuir errores por redondeo por lo que:</p>
+<div class="math notranslate nohighlight">
+\[t^* = \frac{\text{signo}(\tau)}{|\tau| + \sqrt{1+\tau^2}}\]</div>
+<p>donde:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\text{signo}(x) = \begin{cases}
+1 \text{ si } x&gt;=0\\
+-1 \text{ en otro caso}
+\end{cases}
+\end{split}\]</div>
+<p>Las relaciones entre coseno, seno y tangente permiten obtener sus valores correspondientes:</p>
+<div class="math notranslate nohighlight">
+\[c = \frac{1}{\sqrt{1+t^{*2}}},\]</div>
+<div class="math notranslate nohighlight">
+\[s = ct^*\]</div>
+<p>y así tener completamente definida a la matriz <span class="math notranslate nohighlight">\(J_k\)</span>.</p>
+</div>
+<div class="section" id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
+<p>Considera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = 
+\left [
+\begin{array}{cc}
+1&amp;2\\
+2&amp;1\\
+\end{array}
+\right ].
+\end{split}\]</div>
+<p>Eliminar las entradas <span class="math notranslate nohighlight">\((1,2)\)</span> y <span class="math notranslate nohighlight">\((2,1)\)</span> con una matriz <span class="math notranslate nohighlight">\(J\)</span> de rotación de Jacobi:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper function for computing sign of real number x.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_cos_sin_Jacobi_rotation</span><span class="p">(</span><span class="n">Ak</span><span class="p">,</span> <span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper function for computing entries of Jacobi rotation.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        Ak (numpy ndarray): Matrix of iteration k in Jacobi rotation method.</span>
+<span class="sd">        idx1 (int): index for rows in Jacobi rotation matrix.</span>
+<span class="sd">        idx2 (int): index for columns in Jacobi rotation matrix.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        c (float): value of cos of theta for Jacobi rotation matrix.</span>
+<span class="sd">        s (float): value of sin of theta for Jacobi rotation matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Ak</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span><span class="n">idx2</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">:</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ak</span><span class="p">[</span><span class="n">idx2</span><span class="p">,</span> <span class="n">idx2</span><span class="p">]</span> <span class="o">-</span> <span class="n">Ak</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span> <span class="n">idx1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Ak</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">])</span>
+        <span class="n">t_star</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">t_star</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">t_star</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1">#no rotation is performed</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 2]
+ [2 1]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Estos son los índices que corresponden a la entrada <span class="math notranslate nohighlight">\(a_{12}\)</span> de <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">compute_cos_sin_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>La matriz de rotación de Jacobi es en este caso de tamaño <span class="math notranslate nohighlight">\(2 \times 2\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A@J</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1.  0.]
+ [ 0.  3.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Por construcción <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(J^TAJ\)</span> son similares y por tanto tienen el mismo espectro:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.  3.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A@J</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.  3.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ver <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigvals.html">eigvals</a> y <a class="reference external" href="https://jiffyclub.github.io/numpy/reference/generated/numpy.linalg.eigvalsh.html">eigvalsh</a>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>En matrices mayores a dos dimensiones el método de rotaciones de Jacobi para matrices simétricas requiere <strong>eliminación repetida</strong> (volver a hacer cercanas a cero) del par de entradas de <span class="math notranslate nohighlight">\(A\)</span> seleccionadas de iteraciones previas pues en cada iteración se destruyen (vuelven a ser diferentes de cero) en general.</p></li>
+<li><p>El método de rotaciones de Jacobi para matrices simétricas utiliza como criterios de paro:</p>
+<ul>
+<li><p>La cantidad <span class="math notranslate nohighlight">\(\text{off}(A) = \sqrt{\displaystyle \sum_{i=1}^n \sum_{j=1, j\neq i}^n a_{ij}^2}\)</span> (norma de Frobenius de <span class="math notranslate nohighlight">\(A\)</span> sin la diagonal, ver <a class="reference internal" href="../../1.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nmat"><span class="std std-ref">Normas matriciales</span></a>).</p></li>
+<li><p>Número máximo de <em>sweeps</em>. Un <em>sweep</em> es igual a <span class="math notranslate nohighlight">\(\frac{n(n-1)}{2}\)</span> y corresponde al número máximo de entradas de la matriz que forman la parte triangular superior de <span class="math notranslate nohighlight">\(A\)</span> sin contar a la diagonal que se asumen diferentes de cero. No existe teoría rigurosa para el número de <em>sweeps</em> pero una heurística encontrada por <a class="reference external" href="https://ecommons.cornell.edu/handle/1813/6402">Brent y Luk, p. 13, 1985</a> menciona que el número máximo es proporcional a <span class="math notranslate nohighlight">\(\mathcal{O}(\log(n))\)</span> y en la práctica se utilizan entre <span class="math notranslate nohighlight">\(6\)</span> y <span class="math notranslate nohighlight">\(10\)</span>, ver <a class="reference external" href="https://link.springer.com/article/10.1007/BF02165223">H. Rutishauser, The Jacobi method for real symmetric matrices, 1966</a>.</p></li>
+</ul>
+</li>
+<li><p>El criterio de paro es de la forma:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">off</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="o">||</span><span class="n">A_k</span><span class="o">||</span><span class="n">_F</span> <span class="o">&amp;&amp;</span> <span class="n">sweeps</span> <span class="o">&lt;</span> <span class="n">max_sweeps</span>
+</pre></div>
+</div>
+<p>con <span class="math notranslate nohighlight">\(tol\)</span> una cantidad pequeña y positiva (comúnmente menor o igual a <span class="math notranslate nohighlight">\(10^{-8}\)</span>), <code class="docutils literal notranslate"><span class="pre">||A_k||_F</span></code> norma de Frobenius de <span class="math notranslate nohighlight">\(A_k\)</span> y <code class="docutils literal notranslate"><span class="pre">sweeps</span></code> contador de los <em>sweeps</em>.</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Ejemplo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Considera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = 
+\left [
+\begin{array}{cccc}
+1 &amp; 2 &amp; 3 &amp; 4\\
+2 &amp; -2 &amp; 4 &amp; 5\\
+3 &amp; 4 &amp; 6 &amp; 7\\
+4 &amp; 5 &amp; 7 &amp; -8
+\end{array}
+\right ].
+\end{split}\]</div>
+<p>Utilizando la metodología de ordenamiento cíclico por renglones realizar dos <em>sweeps</em> del método de rotaciones de Jacobi para matrices simétricas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">Ak</span><span class="p">,</span> <span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute Jacobi rotation matrix.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        Ak (numpy ndarray): Matrix of iteration k in Jacobi rotation method.</span>
+<span class="sd">        idx1 (int): index for rows in Jacobi rotation matrix.</span>
+<span class="sd">        idx2 (int): index for columns in Jacobi rotation matrix.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        J (numpy ndarray): Jacobi rotation matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">c</span><span class="p">,</span><span class="n">s</span> <span class="o">=</span> <span class="n">compute_cos_sin_Jacobi_rotation</span><span class="p">(</span><span class="n">Ak</span><span class="p">,</span> <span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">)</span>
+    <span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">Ak</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="n">J</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span> <span class="n">idx1</span><span class="p">]</span> <span class="o">=</span> <span class="n">J</span><span class="p">[</span><span class="n">idx2</span><span class="p">,</span> <span class="n">idx2</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
+    <span class="n">J</span><span class="p">[</span><span class="n">idx1</span><span class="p">,</span> <span class="n">idx2</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
+    <span class="n">J</span><span class="p">[</span><span class="n">idx2</span><span class="p">,</span> <span class="n">idx1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">s</span>
+    <span class="k">return</span> <span class="n">J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span><span class="o">-</span><span class="mf">8.0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.  2.  3.  4.]
+ [ 2. -2.  4.  5.]
+ [ 3.  4.  6.  7.]
+ [ 4.  5.  7. -8.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El <strong>primer <em>sweep</em></strong> considera las entradas: <span class="math notranslate nohighlight">\((1,2), (1,3), (1,4), (2,3), (2,4), (3,4)\)</span>.</p>
+<p>A continuación se toman en el orden <span class="math notranslate nohighlight">\((1,4), (1,3), (1,2), (2,4), (2,3)\)</span> y finalmente <span class="math notranslate nohighlight">\((3,4)\)</span> para mostrar que el orden de selección de las entradas en una forma decreciente no importa.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se sugiere haber revisado los ejemplos de <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>.</p>
+</div>
+<p><strong>Entrada <span class="math notranslate nohighlight">\(a_{41}\)</span> rotación en el plano <span class="math notranslate nohighlight">\((1,4)\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A_k@J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 2.521  3.646  5.292 -0.   ]
+ [ 3.646 -2.     4.     3.963]
+ [ 5.292  4.     6.     5.477]
+ [ 0.     3.963  5.477 -9.521]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Entrada <span class="math notranslate nohighlight">\(a_{31}\)</span> rotación en el plano <span class="math notranslate nohighlight">\((1,3)\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A_k@J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1.31   0.608 -0.    -3.212]
+ [ 0.608 -2.     5.378  3.963]
+ [-0.     5.378  9.831  4.436]
+ [-3.212  3.963  4.436 -9.521]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Entrada <span class="math notranslate nohighlight">\(a_{21}\)</span> rotación en el plano <span class="math notranslate nohighlight">\((1,2)\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A_k@J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.956  0.     2.707 -0.781]
+ [ 0.    -2.354  4.648  5.041]
+ [ 2.707  4.648  9.831  4.436]
+ [-0.781  5.041  4.436 -9.521]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Entrada <span class="math notranslate nohighlight">\(a_{42}\)</span> rotación en el plano <span class="math notranslate nohighlight">\((2,4)\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A_k@J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ -0.956  -0.358   2.707  -0.694]
+ [ -0.358   0.247   6.165   0.   ]
+ [  2.707   6.165   9.831   1.811]
+ [ -0.694   0.      1.811 -12.122]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Entrada <span class="math notranslate nohighlight">\(a_{32}\)</span> rotación en el plano <span class="math notranslate nohighlight">\((2,3)\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A_k@J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ -0.956  -1.511   2.274  -0.694]
+ [ -1.511  -2.769  -0.     -0.796]
+ [  2.274   0.     12.847   1.627]
+ [ -0.694  -0.796   1.627 -12.122]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Entrada <span class="math notranslate nohighlight">\(a_{43}\)</span> rotación en el plano <span class="math notranslate nohighlight">\((3,4)\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A_k@J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ -0.956  -1.511   2.224  -0.84 ]
+ [ -1.511  -2.769  -0.052  -0.794]
+ [  2.224  -0.052  12.952   0.   ]
+ [ -0.84   -0.794   0.    -12.228]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Segundo <em>sweep</em></strong></p>
+<p><strong>Entrada <span class="math notranslate nohighlight">\(a_{41}\)</span> rotación en el plano <span class="math notranslate nohighlight">\((1,4)\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A_k@J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ -0.894  -1.448   2.218  -0.   ]
+ [ -1.448  -2.769  -0.052  -0.904]
+ [  2.218  -0.052  12.952   0.164]
+ [ -0.     -0.904   0.164 -12.29 ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Entrada <span class="math notranslate nohighlight">\(a_{31}\)</span> rotación en el plano <span class="math notranslate nohighlight">\((1,3)\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A_k@J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ -1.24   -1.423   0.     -0.025]
+ [ -1.423  -2.769  -0.275  -0.904]
+ [ -0.     -0.275  13.299   0.162]
+ [ -0.025  -0.904   0.162 -12.29 ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Entrada <span class="math notranslate nohighlight">\(a_{21}\)</span> rotación en el plano <span class="math notranslate nohighlight">\((1,2)\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A_k@J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ -0.389  -0.      0.141   0.442]
+ [  0.     -3.62   -0.236  -0.789]
+ [  0.141  -0.236  13.299   0.162]
+ [  0.442  -0.789   0.162 -12.29 ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Entrada <span class="math notranslate nohighlight">\(a_{42}\)</span> rotación en el plano <span class="math notranslate nohighlight">\((2,4)\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A_k@J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ -0.389  -0.04    0.141   0.44 ]
+ [ -0.04   -3.549  -0.249   0.   ]
+ [  0.141  -0.249  13.299   0.141]
+ [  0.44    0.      0.141 -12.361]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Entrada <span class="math notranslate nohighlight">\(a_{32}\)</span> rotación en el plano <span class="math notranslate nohighlight">\((2,3)\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A_k@J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ -0.389  -0.038   0.141   0.44 ]
+ [ -0.038  -3.552   0.      0.002]
+ [  0.141   0.     13.303   0.141]
+ [  0.44    0.002   0.141 -12.361]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Entrada <span class="math notranslate nohighlight">\(a_{43}\)</span> rotación en el plano <span class="math notranslate nohighlight">\((3,4)\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_1</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">idx_2</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">J</span> <span class="o">=</span> <span class="n">compute_Jacobi_rotation</span><span class="p">(</span><span class="n">A_k</span><span class="p">,</span> <span class="n">idx_1</span><span class="p">,</span> <span class="n">idx_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A_k</span> <span class="o">=</span> <span class="n">J</span><span class="o">.</span><span class="n">T</span><span class="nd">@A_k@J</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Obsérvese que las entradas diferentes en la diagonal son más pequeñas que la matriz original <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.  2.  3.  4.]
+ [ 2. -2.  4.  5.]
+ [ 3.  4.  6.  7.]
+ [ 4.  5.  7. -8.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ -0.389  -0.038   0.144   0.44 ]
+ [ -0.038  -3.552   0.      0.002]
+ [  0.144   0.     13.304   0.   ]
+ [  0.44    0.002   0.    -12.362]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realizar dos <em>sweeps</em> más para la matriz simétrica del ejemplo anterior y sólo dos <em>sweeps</em> para la matriz:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = 
+\left [
+\begin{array}{ccc}
+1 &amp; 0 &amp; 2\\
+0 &amp; 2 &amp; 1\\
+2 &amp; 1 &amp; 1
+\end{array}
+\right ]
+\end{split}\]</div>
+<p>Para ambos ejercicios calcular en cada iteración realizada <span class="math notranslate nohighlight">\(\text{off}(A)\)</span>.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Los algoritmos que pueden ejecutarse en una forma por bloques se les nombra <em>blocking algorithms</em>. Tales algoritmos aprovechan niveles altos de <a class="reference external" href="http://www.netlib.org/blas/">BLAS</a> en su implementación.</p>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<p>Algunas características del método de rotaciones de Jacobi para matrices simétricas:</p>
+<ul class="simple">
+<li><p>Tiene una convergencia cuadrática, esto es, la matriz <span class="math notranslate nohighlight">\(A_k\)</span> al ir aproximándose hacia una diagonal, el número de dígitos de precisión en cada iteración se duplica. Sin embargo el algoritmo QR (versión no simple) es más eficiente en cuanto al número de iteraciones.</p></li>
+<li><p>La precisión que tiene en el cálculo de eigenvalores es alta (error relativo pequeño).</p></li>
+<li><p>Es un algoritmo que puede realizarse con cómputo en paralelo si se utilizan ordenamientos específicos como el cíclico por renglones. También este algoritmo puede realizarse por bloques.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="algoritmo-qr-o-qr-iteration-version-simple-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+<span id="algqr"></span><h2>Algoritmo QR o <em>QR iteration</em> (versión simple) para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#algoritmo-qr-o-qr-iteration-version-simple-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
+<p>Este método produce una secuencia de transformaciones ortogonales de la forma <span class="math notranslate nohighlight">\(Q_k^TAQ_k\)</span> con el objetivo de hacer “más diagonal” a la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>.</p>
+<p>Si la matriz <span class="math notranslate nohighlight">\(A\)</span> es simétrica y <span class="math notranslate nohighlight">\(Q_0\)</span> es una matriz con columnas linealmente independientes entonces el esquema iterativo:</p>
+<div class="math notranslate nohighlight">
+\[T_k = (Q_0 Q_1 \cdots Q_k)^T A(Q_0 Q_1 \cdots Q_k)\]</div>
+<p><strong>casi siempre</strong> converge a una matriz diagonal en la que se encuentran los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span>, ver <a class="reference internal" href="#comentariosalgqr"><span class="std std-ref">comentarios algoritmo QR</span></a> para suposiciones que garantizan la convergencia.</p>
+<div class="section" id="factorizacion-qr">
+<h3>Factorización QR<a class="headerlink" href="#factorizacion-qr" title="Permalink to this headline">¶</a></h3>
+<p><strong>Sólo</strong> en esta subsección <strong>asumimos</strong> <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> con <span class="math notranslate nohighlight">\(m &gt;= n\)</span>.</p>
+<p>Existen <span class="math notranslate nohighlight">\(Q \in \mathbb{R}^{m \times m}\)</span> <strong>ortogonal</strong> y <span class="math notranslate nohighlight">\(R \in \mathbb{R}^{m \times n}\)</span> triangular superior tales que <span class="math notranslate nohighlight">\(A=QR\)</span>:</p>
+<img src="https://dl.dropboxusercontent.com/s/hhd15p8r1wh6ac9/A_QR.png?dl=0" heigth="350" width="350">
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>La factorización <span class="math notranslate nohighlight">\(QR\)</span> puede escribirse en una forma “delgada” obteniéndose la factorización <a class="reference external" href="https://en.wikipedia.org/wiki/QR_decomposition#Rectangular_matrix"><strong><em>thin QR</em> o <em>reduced</em></strong></a> :</p></li>
+</ul>
+<img src="https://dl.dropboxusercontent.com/s/u0u365q5372xihl/A_thin_QR.png?dl=0" heigth="300" width="300">
+<p>En este caso <span class="math notranslate nohighlight">\(Q_1\)</span> no se nombra ortogonal sino con <strong>columnas ortonormales</strong>, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#matortmatcolortono"><span class="std std-ref">matriz ortogonal y matriz con columnas ortonormales</span></a>, <span class="math notranslate nohighlight">\(R_1\)</span> es triangular superior. Si el <em>rank(A)</em> es igual a <span class="math notranslate nohighlight">\(n\)</span> (<span class="math notranslate nohighlight">\(A\)</span> se nombra de <strong>rank completo</strong> o <em>full rank</em>) y <span class="math notranslate nohighlight">\(R_1\)</span> tiene entradas en la diagonal positivas, la factorización <em>thin QR</em> es única.</p>
+<ul class="simple">
+<li><p>La factorización <em>thin</em> o <em>reduced</em> <span class="math notranslate nohighlight">\(QR\)</span> de <span class="math notranslate nohighlight">\(A\)</span> realiza un cambio de bases entre las columnas de <span class="math notranslate nohighlight">\(A\)</span> y las columnas de <span class="math notranslate nohighlight">\(Q_1\)</span> teniendo las entradas de <span class="math notranslate nohighlight">\(R\)</span> las coordenadas del cambio entre bases.</p></li>
+<li><p>La factorización <em>QR</em> puede calcularse con reflexiones de Householder o rotaciones Givens, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#tref"><span class="std std-ref">transformaciones de reflexión</span></a> y <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#trot"><span class="std std-ref">transformaciones de rotación</span></a>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="algoritmo-algoritmo-qr-para-matrices-simetricas-version-simple">
+<h3>Algoritmo: algoritmo QR para matrices simétricas (versión simple)<a class="headerlink" href="#algoritmo-algoritmo-qr-para-matrices-simetricas-version-simple" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> simétrica, <span class="math notranslate nohighlight">\(tol &gt; 0\)</span>, <span class="math notranslate nohighlight">\(Q_0 \in \mathbb{R}^{n \times n}\)</span> ortogonal <strong>definir</strong> <span class="math notranslate nohighlight">\(T_0 = Q_0^TAQ_0\)</span>.</p>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_{k-1} = Q_kR_k\)</span> (factorización <span class="math notranslate nohighlight">\(QR\)</span> de <span class="math notranslate nohighlight">\(T_{k-1}\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_k = R_k Q_k\)</span></p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
+</div></blockquote>
+<div class="tip admonition">
+<p class="admonition-title">Observaciones</p>
+<ul class="simple">
+<li><p>Obsérvese que <span class="math notranslate nohighlight">\(T_k = R_kQ_k = Q_k^T(Q_k R_k)Q_k = Q_k ^TT_{k-1}Q^k\)</span> por lo que <span class="math notranslate nohighlight">\(T_k\)</span> y <span class="math notranslate nohighlight">\(T_{k-1}\)</span> son ortogonalmente similares, ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#similitud"><span class="std std-ref">similitud</span></a>.</p></li>
+<li><p>Es fácil verificar que <span class="math notranslate nohighlight">\(T_k = (Q_0 Q_1 \cdots Q_k)^T A(Q_0 Q_1 \cdots Q_k)\)</span> por lo que <span class="math notranslate nohighlight">\(T_k\)</span> es ortogonalmente similar a <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Ejemplo<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se toma <span class="math notranslate nohighlight">\(T_0\)</span> como <span class="math notranslate nohighlight">\(A\)</span></p>
+<p><strong>Primera iteración</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_k_minus_1</span> <span class="o">=</span> <span class="n">A</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(T_{k-1} = Q_kR_k\)</span>.</p>
+<p>Ver <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.qr.html">numpy.linalg.qr</a> para factorización QR con <em>NumPy</em>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="p">,</span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">T_k_minus_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Matriz <span class="math notranslate nohighlight">\(Q\)</span> ortogonal.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.962 -0.275]
+ [-0.275  0.962]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Matriz <span class="math notranslate nohighlight">\(R\)</span> triangular superior.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-7.28  -3.022]
+ [ 0.     3.297]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(T_k = R_k Q_k\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_k</span> <span class="o">=</span> <span class="n">r</span><span class="nd">@q</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">T_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 7.83  -0.906]
+ [-0.906  3.17 ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Segunda iteración</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_k_minus_1</span> <span class="o">=</span> <span class="n">T_k</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="p">,</span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">T_k_minus_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.993  0.115]
+ [ 0.115  0.993]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-7.882  1.264]
+ [ 0.     3.045]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_k</span> <span class="o">=</span> <span class="n">r</span><span class="nd">@q</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">T_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[7.975 0.35 ]
+ [0.35  3.025]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Tercera iteración</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_k_minus_1</span> <span class="o">=</span> <span class="n">T_k</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="p">,</span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">T_k_minus_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.999 -0.044]
+ [-0.044  0.999]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-7.983 -0.482]
+ [ 0.     3.006]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_k</span> <span class="o">=</span> <span class="n">r</span><span class="nd">@q</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Obsérvese que las entradas diferentes en la diagonal son más pequeñas que la matriz original <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[7 2]
+ [2 4]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">T_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 7.997 -0.132]
+ [-0.132  3.003]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[8. 3.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentarios admonition" id="comentariosalgqr">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(A = Q\Lambda Q^T\)</span>, ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#descesp"><span class="std std-ref">descomposición espectral de una matriz simétrica</span></a>, el método anterior converge a una matriz diagonal <span class="math notranslate nohighlight">\(\Lambda\)</span> en la que se encuentran los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span> si se satisfacen las siguientes condiciones:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> es simétrica.</p></li>
+<li><p><span class="math notranslate nohighlight">\(|\lambda_1| &gt; |\lambda_2| &gt; \cdots &gt; |\lambda_n|.\)</span></p></li>
+<li><p>El coseno del ángulo entre las columnas de <span class="math notranslate nohighlight">\(Q_0\)</span> y las columnas de <span class="math notranslate nohighlight">\(Q\)</span> que contienen los eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> es diferente de cero (no ortogonales), ver <a class="reference internal" href="../../1.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nvm"><span class="std std-ref">normas vectoriales y matriciales</span></a>.</p></li>
+</ul>
+</li>
+<li><p>El criterio de paro es de la forma:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">off</span><span class="p">(</span><span class="n">T_k</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="o">||</span><span class="n">T_k</span><span class="o">||</span><span class="n">_F</span> <span class="o">&amp;&amp;</span> <span class="n">iterations</span> <span class="o">&lt;</span> <span class="n">max_iters</span>
+</pre></div>
+</div>
+<p>con <code class="docutils literal notranslate"><span class="pre">tol</span></code> una cantidad pequeña y positiva (comúnmente menor o igual a <span class="math notranslate nohighlight">\(10^{-8}\)</span>), <code class="docutils literal notranslate"><span class="pre">||T_k||_F</span></code> norma de Frobenius de <span class="math notranslate nohighlight">\(T_k\)</span>, <code class="docutils literal notranslate"><span class="pre">iterations</span></code> un contador de las iteraciones y <span class="math notranslate nohighlight">\(\text{off}(T) = \sqrt{\displaystyle \sum_{i=1}^n \sum_{j=1, j\neq i}^n t_{ij}^2}\)</span> (norma de Frobenius de <span class="math notranslate nohighlight">\(T\)</span> sin la diagonal, ver <a class="reference internal" href="../../1.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nmat"><span class="std std-ref">Normas matriciales</span></a>).</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realiza tres iteraciones del algoritmo QR para aproximar los eigenvalores de la matriz:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = 
+\left [
+\begin{array}{cccc}
+8 &amp; 4 &amp; 2 &amp; 1 \\
+4 &amp; 8 &amp; 2 &amp; 1 \\
+2 &amp; 2 &amp; 8 &amp; 1 \\
+1 &amp; 1 &amp; 1 &amp; 8
+\end{array}
+\right ]
+\end{split}\]</div>
+</div>
+</div>
+</div>
+<div class="section" id="metodo-de-la-potencia-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+<span id="mpotmatsim"></span><h2>Método de la potencia para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#metodo-de-la-potencia-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
+<p>Si la matriz <span class="math notranslate nohighlight">\(A\)</span> tiene un <strong>único</strong> eigenvalor <span class="math notranslate nohighlight">\(\lambda_1\)</span> que tiene máximo módulo y <span class="math notranslate nohighlight">\(z^{(0)}\)</span> es un vector distinto de cero entonces el esquema iterativo:</p>
+<div class="math notranslate nohighlight">
+\[z^{(k)} = A z^{(k-1)}\]</div>
+<p><strong>casi siempre</strong> converge a un múltiplo del eigenvector de <span class="math notranslate nohighlight">\(A\)</span> asociado a <span class="math notranslate nohighlight">\(\lambda_1\)</span>, ver <a class="reference internal" href="#comentariosmetpotencia"><span class="std std-ref">comentarios del método de la potencia</span></a> para suposiciones que garantizan la convergencia.</p>
+<div class="section" id="id3">
+<h3>Ejemplo<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Primera iteración</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_k_minus_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(z^{(k)} = Az^{(k-1)}\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_k</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@z_k_minus_1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">z_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.5 1.5]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Segunda iteración</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_k_minus_1</span> <span class="o">=</span> <span class="n">z_k</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(z^{(k)} = Az^{(k-1)}\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_k</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@z_k_minus_1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">z_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.5 2.5]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Tercera iteración</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_k_minus_1</span> <span class="o">=</span> <span class="n">z_k</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_k</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@z_k_minus_1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">z_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3.5 4.5]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>…</strong></p>
+<p><strong>Novena iteración</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">127.5</span><span class="p">,</span> <span class="mf">128.5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">z_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[127.5 128.5]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y es más cercano al eigenvector <span class="math notranslate nohighlight">\(\left [\begin{array}{c} 1\\ 1 \end{array} \right ]\)</span> (escalado por un factor).</p>
+<p>Lo anterior funciona pues si <span class="math notranslate nohighlight">\(q_1, \dots, q_n\)</span> son eigenvectores de <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(z^{(0)} = \displaystyle \sum_{i=1}^n \alpha_i q_i\)</span> (combinación lineal) entonces:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+z^{(k)} &amp;=&amp; A z^{(k-1)} = A^2 z^{(k-2)} = \cdots = A^k z^{(0)} \nonumber \\
+&amp;=&amp; A^k \displaystyle \sum_{i=1}^n \alpha_i q_i = \displaystyle \sum_{i=1}^n \alpha_i A^k q_i = \displaystyle \sum_{i=1}^n \alpha_i \lambda_i ^k q_i \nonumber \\
+&amp;=&amp; \lambda_1^k \left (\alpha_1 q_1 + \displaystyle \sum_{i=2}^n \left ( \frac{\lambda_i}{\lambda_1} \right ) ^k \alpha_i q_i \right ) \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>Y como <span class="math notranslate nohighlight">\(\left | \frac{\lambda_i}{\lambda_1} \right | &lt; 1\)</span> para <span class="math notranslate nohighlight">\(i &gt; 1\)</span> entonces al ir avanzando en las iteraciones lo anterior converge a un múltiplo de <span class="math notranslate nohighlight">\(q_1\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Se añade normalización del eigenvector en cada iteración para evitar problemas de redondeo como <em>overflow</em> y <em>underflow</em>.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Este mismo algoritmo puede utilizarse para matrices no simétricas. La normalización puede ser con la norma <span class="math notranslate nohighlight">\(2\)</span> o norma infinito (incluso funciona la componente que tiene máxima magnitud tomando todo y su signo).</p>
+</div>
+</div>
+<div class="section" id="algoritmo-metodo-de-la-potencia-para-matrices-simetricas">
+<h3>Algoritmo: método de la potencia para matrices simétricas<a class="headerlink" href="#algoritmo-metodo-de-la-potencia-para-matrices-simetricas" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> simétrica, <span class="math notranslate nohighlight">\(q^{(0)} \in \mathbb{R}^n\)</span> de norma Euclidiana unitaria y <span class="math notranslate nohighlight">\(tol &gt; 0\)</span>.</p>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(z^{(k)} = Aq^{(k-1)}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(q^{(k)} = \frac{z^{(k)}}{||z^{(k)}||_2}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda ^{(k)} = q^{(k)T} Aq^{(k)}\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
+</div></blockquote>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>En el caso no simétrico se requiere que la matriz sea diagonalizable para la convergencia del método, ver <a class="reference internal" href="../2.2/Eigenvalores_y_eigenvectores.html#diagonalizable"><span class="std std-ref">matriz diagonalizable</span></a>.</p>
+</div>
+<div class="admonition-comentarios admonition" id="comentariosmetpotencia">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>El método anterior converge de forma lineal al eigenvalor de máximo módulo <span class="math notranslate nohighlight">\(\lambda_1\)</span> y a un eigenvector asociado a tal eigenvalor, <span class="math notranslate nohighlight">\(q_1\)</span>, si se satisfacen las siguientes condiciones:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> es simétrica.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda_1\)</span> cumple: <span class="math notranslate nohighlight">\(|\lambda_1| &gt; |\lambda_2| \geq \cdots \geq |\lambda_n|\)</span> esto es, <span class="math notranslate nohighlight">\(\lambda_1\)</span> es el único eigenvalor de máximo módulo.</p></li>
+<li><p>El coseno del ángulo entre <span class="math notranslate nohighlight">\(q^{(0)}\)</span> y <span class="math notranslate nohighlight">\(q_1\)</span> es diferente de cero (no ortogonales), ver <a class="reference internal" href="../../1.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html#nvm"><span class="std std-ref">normas vectoriales y matriciales</span></a>. Esto no es un requerimiento fuerte pues al usar un sistema de punto flotante y tener errores por redondeo garantiza que en la mayoría de los casos <strong>prácticos</strong> tal coseno es diferente de cero.</p></li>
+</ul>
+</li>
+<li><p>El criterio de paro es de la forma:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="o">||</span><span class="n">Aq_k</span> <span class="o">-</span> <span class="n">lambda_kq_k</span><span class="o">||</span><span class="n">_2</span> <span class="o">&gt;</span> <span class="n">tol</span> <span class="o">&amp;&amp;</span> <span class="n">iterations</span> <span class="o">&lt;</span> <span class="n">max_iters</span>
+</pre></div>
+</div>
+<p>con <code class="docutils literal notranslate"><span class="pre">tol</span></code> una cantidad pequeña y positiva (comúnmente menor o igual a <span class="math notranslate nohighlight">\(10^{-8}\)</span>), <code class="docutils literal notranslate"><span class="pre">iterations</span></code> un contador de iteraciones.</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Ejemplo<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">q_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">q_k_iter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">max_iter</span><span class="p">))</span>
+<span class="n">lambda_k_iter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">max_iter</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+    <span class="n">z_k</span> <span class="o">=</span> <span class="n">A</span><span class="nd">@q_k</span>
+    <span class="n">q_k</span> <span class="o">=</span> <span class="n">z_k</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">z_k</span><span class="p">)</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;$q^{(</span><span class="si">%s</span><span class="s2">)}$&quot;</span><span class="o">%</span><span class="k">k</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">string</span><span class="p">,(</span><span class="n">q_k</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">q_k</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">q_k_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">row_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">q_k</span><span class="p">))</span>
+    <span class="n">q_k_iter</span><span class="p">[:,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">q_k</span>
+    <span class="n">lambda_k</span> <span class="o">=</span> <span class="n">q_k</span><span class="o">.</span><span class="n">T</span><span class="nd">@A@q_k</span>
+    <span class="n">lambda_k_iter</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">lambda_k</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q_k_plot</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">q_k_plot</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Método de la potencia normalizando: cada vector aproximación tiene norma Euclidiana 1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz_189_0.png" src="../../_images/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz_189_0.png" />
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Compárese con:</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eigval</span><span class="p">,</span> <span class="n">eigvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;eigenvalor:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eigval</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;eigenvectores:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eigvec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigenvalor:
+[2. 1.]
+eigenvectores:
+[[ 0.707 -0.707]
+ [ 0.707  0.707]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">q_k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.702 0.713]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lambda_k_iter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.8   1.941 1.985 1.996 1.999 2.    2.   ]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>El método de la potencia aproxima al eigenvector asociado al eigenvalor con módulo máximo. Esto en contraste con el algoritmo QR y el método de rotaciones de Jacobi que aproximan todos los eigenvalores y eigenvectores. En la práctica es posible que sólo se requieran unos cuantos eigenvalores-eigenvectores.</p></li>
+<li><p>Típicamente funciona el método de la potencia pero puede fallar por razones como:</p>
+<ul>
+<li><p>No hay convergencia a un eigenvalor-eigenvector con entradas en <span class="math notranslate nohighlight">\(\mathbb{C}\)</span> a partir de una matriz con entradas en <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> (pero si se utiliza una matriz <span class="math notranslate nohighlight">\(A\)</span> y vectores con entradas en <span class="math notranslate nohighlight">\(\mathbb{C}\)</span> se recupera la convergencia).</p></li>
+<li><p>Puede haber más de un eigenvalor que tenga el mismo módulo y la convergencia podría darse para una combinación lineal de los eigenvectores asociados a tales eigenvalores.</p></li>
+</ul>
+</li>
+<li><p>La ventaja que tiene el método de la potencia es que sólo requiere una operación del tipo matriz-vector lo cual para matrices grandes y ralas (también nombradas <em>sparse</em>: que tienen muchas entradas iguales a cero) es ventajoso.</p></li>
+<li><p>Sólo obtiene al eigenvalor con máximo módulo <span class="math notranslate nohighlight">\(\lambda_1\)</span> y un eigenvector asociado, por lo que si se desean otras parejas de eigenvalores-eigenvectores se debe recurrir a métodos adicionales por ejemplo <em>deflation</em>.</p></li>
+<li><p>La convergencia de este método depende mucho de la cercanía entre <span class="math notranslate nohighlight">\(|\lambda_1|\)</span> y <span class="math notranslate nohighlight">\(|\lambda_2|\)</span>: si son muy cercanos la convergencia es lenta. Esto es posible mejorar al utilizar <em>shifts</em>.</p></li>
+</ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realiza tres iteraciones del método de la potencia para calcular <span class="math notranslate nohighlight">\(\lambda_{\text{max}}(A)\)</span> de la matriz:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left [
+\begin{array}{ccc}
+4 &amp; -1 &amp; 1 \\
+-1 &amp; 3 &amp; -2 \\
+1 &amp; -2 &amp; 3
+\end{array}
+\right ]
+\end{split}\]</div>
+<p>con vector inicial</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} q^{(0)}= \left [
+\begin{array}{c}
+1 \\
+0 \\
+0
+\end{array}
+\right ]
+\end{split}\]</div>
+</div>
+</div>
+</div>
+<div class="section" id="iteracion-inversa-o-metodo-de-la-potencia-inversa-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+<h2>Iteración inversa o método de la potencia inversa para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#iteracion-inversa-o-metodo-de-la-potencia-inversa-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
+<p>Este método originalmente obtiene al eigenvalor con módulo mínimo con su eigenvector asociado, sin embargo en una forma más general si se utiliza en el método de la potencia la matriz <span class="math notranslate nohighlight">\((A-\mu I)^{-1}\)</span> en lugar de la matriz <span class="math notranslate nohighlight">\(A\)</span>, con <span class="math notranslate nohighlight">\(\mu \in \mathbb{R}\)</span> aproximación a un eigenvalor <span class="math notranslate nohighlight">\(\lambda\)</span> de <span class="math notranslate nohighlight">\(A\)</span>, entonces se obtiene el método de la iteración inversa o de la potencia inversa:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Al igual que para el método de la potencia, este método funciona para matrices simétricas si la matriz <span class="math notranslate nohighlight">\(A\)</span> es diagonalizable.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>La factorización <span class="math notranslate nohighlight">\(LU\)</span> de <span class="math notranslate nohighlight">\(A\)</span> puede calcularse con <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu.html">scipy.linalg.lu</a>. Tal factorización utiliza <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#tgauss"><span class="std std-ref">transformaciones de Gauss</span></a>.</p>
+</div>
+<div class="section" id="algoritmo-iteracion-inversa-o-metodo-de-la-potencia-inversa-para-matrices-simetricas">
+<h3>Algoritmo: iteración inversa o método de la potencia inversa para matrices simétricas<a class="headerlink" href="#algoritmo-iteracion-inversa-o-metodo-de-la-potencia-inversa-para-matrices-simetricas" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> simétrica, <span class="math notranslate nohighlight">\(q^{(0)} \in \mathbb{R}^n\)</span> de norma Euclidiana unitaria, <span class="math notranslate nohighlight">\(\mu \in \mathbb{R}\)</span> aproximación a un eigenvalor <span class="math notranslate nohighlight">\(\lambda\)</span> de <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(tol &gt; 0\)</span>.</p>
+<ol class="simple">
+<li><p>Calcular la factorización <span class="math notranslate nohighlight">\(LU\)</span> de <span class="math notranslate nohighlight">\(A-\mu I\)</span>.</p></li>
+</ol>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p>Resolver el sistema de ecuaciones lineales <span class="math notranslate nohighlight">\((A-\mu I)z^{(k)} = q^{(k-1)}\)</span> para <span class="math notranslate nohighlight">\(z^{(k)}\)</span> utilizando los factores <span class="math notranslate nohighlight">\(LU\)</span> del paso 1.</p></li>
+<li><p><span class="math notranslate nohighlight">\(q^{(k)} = \frac{z^{(k)}}{||z^{(k)}||_2}\)</span>.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
+</div></blockquote>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Una vez que se conoce una aproximación a un eigenvalor, este método es muy útil para calcular su eigenvector asociado.</p></li>
+<li><p>La convergencia del método anterior está asegurada si tal eigenvalor está bien separado de los demás.</p></li>
+<li><p>Al igual que en el método de la potencia si se desea aproximar un eigenvalor de <span class="math notranslate nohighlight">\(A\)</span> cercano a otro entonces la convergencia puede ser lenta.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas-a-in-mathbb-r-n-times-n">
+<span id="itercraymatsim"></span><h2>Iteración por el cociente de Rayleigh para matrices simétricas <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span><a class="headerlink" href="#iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas-a-in-mathbb-r-n-times-n" title="Permalink to this headline">¶</a></h2>
+<p>El cociente de Rayleigh de <span class="math notranslate nohighlight">\(x\)</span> se define como:</p>
+<div class="math notranslate nohighlight">
+\[
+r(x) = \frac{x^TAx}{x^Tx}
+\]</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Verificar que el cociente de Rayleigh de <span class="math notranslate nohighlight">\(x\)</span> minimiza <span class="math notranslate nohighlight">\(f(\lambda) = ||(A - \lambda I)x||_2\)</span>.</p>
+</div>
+<p>Este cociente se utiliza para acelerar la convergencia en el método de la potencia o el de iteración inversa. En el caso de la iteración inversa se tiene el siguiente algoritmo.</p>
+<div class="section" id="algoritmo-iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas">
+<h3>Algoritmo: iteración por el cociente de Rayleigh para matrices simétricas<a class="headerlink" href="#algoritmo-iteracion-por-el-cociente-de-rayleigh-para-matrices-simetricas" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> simétrica, <span class="math notranslate nohighlight">\(x^{(0)} \in \mathbb{R}^n - \{0\}\)</span> y <span class="math notranslate nohighlight">\(tol &gt; 0\)</span>.</p>
+<p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2,\dots\)</span></p>
+<blockquote>
+<div><ol class="simple">
+<li><p>Calcular <span class="math notranslate nohighlight">\(\mu^{(k)} = r(x^{(k)})\)</span>.</p></li>
+<li><p>Resolver el sistema de ecuaciones lineales <span class="math notranslate nohighlight">\((A-\mu_kI)z^{(k+1)} = x^{(k)}\)</span> para <span class="math notranslate nohighlight">\(z^{(k+1)}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x^{(k+1)} = \frac{z^{(k+1)}}{||z^{(k+1)}||_2}\)</span></p></li>
+</ol>
+</div></blockquote>
+<p><strong>hasta</strong> convergencia: satisfacer criterio de paro en el que se utiliza <span class="math notranslate nohighlight">\(tol\)</span>.</p>
+</div></blockquote>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Si <span class="math notranslate nohighlight">\(x\)</span> es un vector que aproxima bien a un eigenvector de <span class="math notranslate nohighlight">\(A\)</span> el cociente <span class="math notranslate nohighlight">\(r(x)\)</span> es buena aproximación al eigenvalor asociado.</p></li>
+<li><p>El algoritmo anterior tiene una tasa de convergencia cúbica si <span class="math notranslate nohighlight">\(x^{(0)}\)</span> aproxima a un eigenvector de <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="aplicaciones-y-usos-page-ranking-en-un-buscador-de-paginas-web">
+<h2>Aplicaciones y usos: Page Ranking en un buscador de páginas web<a class="headerlink" href="#aplicaciones-y-usos-page-ranking-en-un-buscador-de-paginas-web" title="Permalink to this headline">¶</a></h2>
+<p>En esta sección <strong>no</strong> se asume una estructura particular de la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span>.</p>
+<div class="sidebar">
+<p class="sidebar-title">Un poco de historia…</p>
+<p>En <span class="math notranslate nohighlight">\(1998\)</span> S. Brin, L. Page, R. Motwani y T. Winograd publicaron el algoritmo Page Rank en el artículo <a class="reference external" href="http://ilpubs.stanford.edu:8090/422/">The Page Rank Citation Ranking: Bringing Order to the Web</a>. Tales autores crearon <em>Google, a web search engine</em>, que asigna a cada página una medida de importancia, <em>quality measure</em>, y a partir de ésta las <strong>ordena</strong>.</p>
+<p>El <span class="math notranslate nohighlight">\(29\)</span> de septiembre  de <span class="math notranslate nohighlight">\(2005\)</span> una búsqueda en <em>Google</em> con la palabra <em>university</em> resultó en más de <span class="math notranslate nohighlight">\(2 \times 10^9\)</span> de resultados.</p>
+</div>
+<p>En los inicios del internet muchos buscadores de páginas web eran deficientes para responder con resultados que fueran de interés a partir de una consulta que devolvía miles o millones de resultados. Hoy en día tenemos el buscador de páginas web <em>Google</em> que de forma exitosa filtra los resultados ordenando a las páginas web de acuerdo a una medida de importancia relativa <em>overall</em> para los millones de resultados que devuelve la consulta.</p>
+<p>Google utiliza el método de nombre <a class="reference external" href="https://en.wikipedia.org/wiki/PageRank"><em>PageRank</em></a> para <em>rankear</em> cada página basándose en el <a class="reference external" href="https://en.wikipedia.org/wiki/Webgraph">grafo de la web</a>. Tal <em>ranking</em> provee una <em>quality measure</em> que le nombra <em>pagerank</em>. A grandes rasgos, el método asigna a una página web un alto <em>rank</em> si es referenciada o tiene ligas que apuntan a ella, <em>inlinks</em>, por páginas que tienen un alto <em>rank</em>. La formulación matemática de lo anterior conduce a un problema de cálculo del eigenvalor con módulo máximo y su eigenvector asociado como se describe a continuación.</p>
+<div class="section" id="descripcion-del-metodo-pagerank">
+<h3>Descripción del método <em>PageRank</em><a class="headerlink" href="#descripcion-del-metodo-pagerank" title="Permalink to this headline">¶</a></h3>
+<p>El método resulta de la información del número de <em>links</em> que van hacia y desde una página Web. Para esto, se definen <span class="math notranslate nohighlight">\(O_i\)</span> como el conjunto de <em>outlinks</em> o las páginas que son referenciadas por <span class="math notranslate nohighlight">\(i\)</span> y el conjunto <span class="math notranslate nohighlight">\(I_i\)</span> como el conjunto de <em>inlinks</em> o las páginas que hacen referencia a la página <span class="math notranslate nohighlight">\(i\)</span>. Esto se puede representar como:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>En este grafo se tiene <span class="math notranslate nohighlight">\(|O_i| = 3\)</span>.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Para generar este grafo utilicé <a class="reference external" href="https://networkx.github.io/">networkx</a>.</p>
+</div>
+<img src="https://dl.dropboxusercontent.com/s/sezz4empv27dtd4/inlinks_outlinks_pagerank.png?dl=0" heigth="400" width="400">
+<p>El <em>pagerank</em> de una página <span class="math notranslate nohighlight">\(i\)</span> es una suma ponderada de aquellas páginas que hacen referencia a <span class="math notranslate nohighlight">\(i\)</span>. La ponderación se realiza por el número de <em>outlinks</em> que tienen tales páginas, esto es:</p>
+<div class="math notranslate nohighlight">
+\[r_i = \displaystyle \sum_{j \in I_i} \frac{r_j}{N_j}\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(r_i\)</span> es el <em>pagerank</em> de la página <span class="math notranslate nohighlight">\(i\)</span> y <span class="math notranslate nohighlight">\(N_i = |O_i|\)</span> es el el número de <em>outlinks</em> de la página <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>La forma que se utiliza aquí para calcular el <em>pagerank</em> de una página es una versión simplificada. Además de la suma ponderada se considera un parámetro para ajustar los <em>pageranks</em> nombrado <a class="reference external" href="https://en.wikipedia.org/wiki/PageRank#Damping_factor"><em>damping factor</em></a> y representa la distribución de las páginas a las que se pueden llegar desde una página (<em>outlinks</em>).</p></li>
+<li><p>La ponderación anterior se realiza para hacer más “difícil” elevar el <em>pagerank</em> de una página <span class="math notranslate nohighlight">\(i\)</span> pues podrían crearse muchas páginas “artificiales” que apunten a <span class="math notranslate nohighlight">\(i\)</span> de forma sencilla. Además, la suma se realiza considerando los <em>pageranks</em> de las páginas <span class="math notranslate nohighlight">\(j\)</span> por lo que páginas con <em>pagerank</em> bajo no tendrán una contribución alta en la suma.</p></li>
+</ul>
+</div>
+<p>Para comprender cómo la definición anterior del <em>pagerank</em> de <span class="math notranslate nohighlight">\(i\)</span> se relaciona con el problema de cálculo de eigenvalores y eigenvectores de una matriz, se define la matriz <span class="math notranslate nohighlight">\(Q\)</span> de tamaño <span class="math notranslate nohighlight">\(n\)</span> con entradas dadas por:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Q_{ij} = \begin{cases}
+\frac{1}{N_j} &amp; \text{ si existe un link de } j \text{ a } i \\
+0 &amp; \text{ en otro caso}
+\end{cases}
+\end{split}\]</div>
+</div>
+<div class="section" id="id5">
+<h3>Ejemplo<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Considérese el siguiente grafo de un conjunto de páginas <span class="math notranslate nohighlight">\(\{1, 2, 3, 4, 5, 6\}\)</span>:</p>
+<img src="https://dl.dropboxusercontent.com/s/850i1rw3optocbt/graph_example_1_pagerank.png?dl=0" heigth="400" width="400">
+<p>Entonces la matriz asociada a este grafo es:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Q = \left [\begin{array}{cccccc}
+0 &amp; \frac{1}{3} &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+\frac{1}{3} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; \frac{1}{3} &amp; 0 &amp; 0 &amp; \frac{1}{3} &amp; \frac{1}{2} \\
+\frac{1}{3} &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{3} &amp; 0 \\
+\frac{1}{3} &amp; \frac{1}{3} &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{2} \\
+0 &amp; 0 &amp; 1&amp; 0 &amp; \frac{1}{3} &amp; 0
+\end{array}
+\right ]
+\end{split}\]</div>
+<p>La matriz anterior podemos leerla como sigue:</p>
+<ul class="simple">
+<li><p>(perspectiva de los renglones) La página <span class="math notranslate nohighlight">\(3\)</span> es referenciada o tiene <em>inlinks</em> de las páginas <span class="math notranslate nohighlight">\(\{2,5,6\}\)</span>.</p></li>
+<li><p>(perspectiva de las columnas) La página <span class="math notranslate nohighlight">\(3\)</span> hace referencia o tiene <em>outlink</em> hacia la página <span class="math notranslate nohighlight">\(\{6\}\)</span>.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que la suma por columna es igual a <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</div>
+<p>En el <strong>ejemplo</strong> anterior asúmase que <strong>inicialmente</strong> <span class="math notranslate nohighlight">\(r_2 = r_5 = r_6 = \frac{1}{6}\)</span>, entonces el <em>pagerank</em> de la página <span class="math notranslate nohighlight">\(3\)</span> es: <span class="math notranslate nohighlight">\(r_3 = \frac{1}{6}\frac{1}{N_2} + \frac{1}{6}\frac{1}{N_5} + \frac{1}{6}\frac{1}{N_6} = \frac{1}{6}\frac{1}{3} + \frac{1}{6}\frac{1}{3} + \frac{1}{6}\frac{1}{2} = 0.19\bar{4}\)</span></p>
+<p>Continuando con la descripción del problema en el cálculo del <em>pagerank</em>, si se define el vector <span class="math notranslate nohighlight">\(r\)</span> con los <em>pageranks</em> de cada página se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}r = \left [\begin{array}{c}
+r_1 \\
+r_2 \\
+\vdots \\
+r_n
+\end{array}
+\right ]
+= \left [ \begin{array}{c}
+\displaystyle \sum_{j \in I_1} \frac{r_j}{N_j} \\
+\displaystyle \sum_{j \in I_2} \frac{r_j}{N_j} \\
+\vdots \\
+\displaystyle \sum_{j \in I_n} \frac{r_j}{N_j} \\
+\end{array}
+\right ]
+\end{split}\]</div>
+<p>por lo que la suma <span class="math notranslate nohighlight">\(r_i = \displaystyle \sum_{j \in I_i} \frac{r_j}{N_j}\)</span> se puede reescribir en una forma matricial como:</p>
+<div class="math notranslate nohighlight">
+\[\lambda r = Qr, \quad \lambda = 1.\]</div>
+<p>Esto es, <span class="math notranslate nohighlight">\(r\)</span> es un eigenvector de <span class="math notranslate nohighlight">\(Q\)</span> con eigenvalor <span class="math notranslate nohighlight">\(\lambda = 1\)</span>. Para calcular tal eigenvector se utiliza el <a class="reference internal" href="#mpotmatsim"><span class="std std-ref">método de la potencia</span></a>.</p>
+</div>
+<div class="section" id="el-modelo-random-surfer">
+<h3>El modelo <em>random surfer</em><a class="headerlink" href="#el-modelo-random-surfer" title="Permalink to this headline">¶</a></h3>
+<p>En el método de <em>pagerank</em> se <strong>asume</strong> un modelo de <a class="reference external" href="https://en.wikipedia.org/wiki/Random_walk">caminata aleatoria</a> en el grafo de la web, en el que una <em>random surfer</em> da clicks de forma sucesiva y aleatoria con igual probabilidad entre las páginas de los <em>outlinks</em> de cada página. Tal modelo induce una <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain">cadena de Markov</a>. El eigenvector <span class="math notranslate nohighlight">\(r\)</span> corresponde a la distribución de probabilidad estacionaria de la cadena. Los estados de la cadena son las páginas y las transiciones son los <em>links</em> entre las páginas.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Una cadena de Markov es un proceso aleatorio en el que se describen posibles estados (eventos) que ocurren en puntos del tiempo y cada estado se encuentra completamente determinado (depende) del estado presente. A tales cadenas se les asocian matrices de transición cuyas entradas representan probabilidades de pasar de un estado a otro. En el ejemplo <span class="math notranslate nohighlight">\(Q^T\)</span> es matriz de transición.</p>
+</div>
+<p><strong>¿Qué interpretación tiene la posición <span class="math notranslate nohighlight">\(i\)</span> en el vector <span class="math notranslate nohighlight">\(r\)</span>?</strong></p>
+<p>El elemento en la posición <span class="math notranslate nohighlight">\(i\)</span> de <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(r_i\)</span>, es la probabilidad que después de un número grande de clicks a páginas Web de forma aleatoria, la <em>surfer</em> llegue a la página <span class="math notranslate nohighlight">\(i\)</span> en un tiempo determinado. El modelo por tanto <strong>asume</strong> que la <em>surfer</em> da clicks a ligas de forma aleatoria hasta llegar a su sitio destino.</p>
+</div>
+<div class="section" id="adicion-de-un-factor-para-obtener-matrices-estocasticas-por-columnas">
+<h3>Adición de un factor para obtener matrices estocásticas por columnas<a class="headerlink" href="#adicion-de-un-factor-para-obtener-matrices-estocasticas-por-columnas" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Este supuesto es factible pues es poco probable que la <em>surfer</em> no pueda salir de una página por carecer de <em>outlinks</em>.</p>
+</div>
+<p>El cálculo del <em>pagerank</em> de <span class="math notranslate nohighlight">\(i\)</span> se modifica <strong>asumiendo</strong> que siempre existe al menos un <em>outlink</em> de la página <span class="math notranslate nohighlight">\(i\)</span> por un <a class="reference external" href="https://en.wikipedia.org/wiki/PageRank#Damping_factor"><em>damping factor</em></a>. Esto ayuda en la situación en el que una página no apunte a ninguna otra y corrige la no propagación de su <em>pagerank</em>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Esta modificación en la literatura se conoce como <strong>teleportation</strong>.</p>
+</div>
+<p>En el ejemplo anterior este supuesto no se cumple pues la página <span class="math notranslate nohighlight">\(4\)</span> no tiene <em>outlinks</em> (tiene una columna de ceros). Para modificar la situación anterior de forma matemática se realiza:</p>
+<div class="math notranslate nohighlight">
+\[P = Q + \frac{1}{n}ed^T\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(e = (1, \dots, 1)^T\)</span> y <span class="math notranslate nohighlight">\(d\)</span> es un vector con entradas <span class="math notranslate nohighlight">\(d_j = \begin{cases} 1 &amp; \text{ si } N_j = 0 \\ 0 &amp; \text{ en otro caso } \end{cases}\)</span> para <span class="math notranslate nohighlight">\(j=1, \dots, n\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>La <strong>interpretación</strong> que tiene tal adición del término <span class="math notranslate nohighlight">\(\frac{1}{n}ed^T\)</span> por llegar a una página que no tiene <em>outlinks</em> se realiza como sigue: la <em>surfer</em> necesariamente elegirá una página de forma aleatoria de acuerdo a una distribución de probabilidad. Una de las distribuciones que se eligen para modelar tal elección es la <strong>uniforme</strong>, esto es, elige cualquiera de las páginas con la misma probabilidad.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Observa que si <span class="math notranslate nohighlight">\(P\)</span> es una matriz estocástica por columna entonces <span class="math notranslate nohighlight">\(e^TP = e^T\)</span> por lo que tiene eigenvalor <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</div>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>La matriz <span class="math notranslate nohighlight">\(P\)</span> anterior es una matriz estocástica por columna, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_matrix">stochastic matrix</a>: tiene elementos <strong>no negativos</strong> y la suma de cada columna es <span class="math notranslate nohighlight">\(1\)</span>. La <strong>matriz de transición</strong> de la cadena de Markov es <span class="math notranslate nohighlight">\(P^T\)</span>.</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>Ejemplo<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>Para el ejemplo anterior se tiene:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+
+<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.    0.333 0.    0.    0.    0.   ]
+ [0.333 0.    0.    0.    0.    0.   ]
+ [0.    0.333 0.    0.    0.333 0.5  ]
+ [0.333 0.    0.    0.    0.333 0.   ]
+ [0.333 0.333 0.    0.    0.    0.5  ]
+ [0.    0.    1.    0.    0.333 0.   ]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="c1">#definition of d</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Matriz que se le añadirá a <span class="math notranslate nohighlight">\(Q\)</span>, tiene en sus columnas el valor igual a <span class="math notranslate nohighlight">\(\frac{1}{6}\)</span> para el ejemplo dado.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">d</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.   , 0.   , 0.   , 0.167, 0.   , 0.   ],
+       [0.   , 0.   , 0.   , 0.167, 0.   , 0.   ],
+       [0.   , 0.   , 0.   , 0.167, 0.   , 0.   ],
+       [0.   , 0.   , 0.   , 0.167, 0.   , 0.   ],
+       [0.   , 0.   , 0.   , 0.167, 0.   , 0.   ],
+       [0.   , 0.   , 0.   , 0.167, 0.   , 0.   ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Se obtiene <span class="math notranslate nohighlight">\(P\)</span> a partir de <span class="math notranslate nohighlight">\(Q + \frac{1}{n}ed^T\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">d</span><span class="p">)</span> <span class="c1">#definition of P matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.    0.333 0.    0.167 0.    0.   ]
+ [0.333 0.    0.    0.167 0.    0.   ]
+ [0.    0.333 0.    0.167 0.333 0.5  ]
+ [0.333 0.    0.    0.167 0.333 0.   ]
+ [0.333 0.333 0.    0.167 0.    0.5  ]
+ [0.    0.    1.    0.167 0.333 0.   ]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="matriz-irreducible-y-estocastica-por-columnas">
+<h3>Matriz irreducible y estocástica por columnas<a class="headerlink" href="#matriz-irreducible-y-estocastica-por-columnas" title="Permalink to this headline">¶</a></h3>
+<p>Para asegurar que la matriz <span class="math notranslate nohighlight">\(P\)</span> anterior tiene un <strong>único</strong> eigenvalor <span class="math notranslate nohighlight">\(\lambda_1\)</span> igual a <span class="math notranslate nohighlight">\(1\)</span> se utiliza la modificación anterior y además se busca que la matriz sea <strong>irreducible</strong>.</p>
+<div class="admonition-comentario admonition">
+<p class="admonition-title">Comentario</p>
+<p>Nombramos a una matriz irreducible como aquella para la que su grafo asociado siempre existe una ruta dirigida que une dos nodos distintos. Esto se nombra <strong>grafo fuertemente conectado</strong>.</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>En general la modificación es de la forma: <span class="math notranslate nohighlight">\(A = \alpha P + (1-\alpha)ve^T\)</span> con <span class="math notranslate nohighlight">\(v\)</span> vector no negativo y <span class="math notranslate nohighlight">\(||v||_1 = 1\)</span>.</p>
+</div>
+<p>Una posible modificación es:</p>
+<div class="math notranslate nohighlight">
+\[A = \alpha P + (1-\alpha) \frac{1}{n}ee^T\]</div>
+<p>para <span class="math notranslate nohighlight">\(\alpha \in [0,1]\)</span>. Se cumple que <span class="math notranslate nohighlight">\(A\)</span> es estocástica por columnas, es irreducible y tiene entradas no negativas.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<ul class="simple">
+<li><p>Es posible probar que si una matriz <span class="math notranslate nohighlight">\(A\)</span> es estocástica por columnas e irreducible entonces <span class="math notranslate nohighlight">\(\lambda_1 = 1\)</span> y existe un único eigenvector, <span class="math notranslate nohighlight">\(r\)</span> asociado a <span class="math notranslate nohighlight">\(\lambda_1\)</span> que tiene entradas positivas y <span class="math notranslate nohighlight">\(||r||_1 = 1\)</span>. Si además <span class="math notranslate nohighlight">\(A\)</span> tiene entradas no negativas entonces el módulo de sus eigenvalores restantes son menores a <span class="math notranslate nohighlight">\(1\)</span>.</p></li>
+<li><p>La interpretación de la expresión anterior en la caminata aleatoria sobre el grafo de la web, es como sigue: en cada tiempo la <em>surfer</em> al visitar una página, si:</p>
+<ul>
+<li><p>la página no tiene <em>outlinks</em>, elige una página aleatoria entre todas las páginas con probabilidad <span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>.</p></li>
+<li><p>la página tiene <em>outlinks</em>, elige un <em>outlink</em> con probabilidad <span class="math notranslate nohighlight">\(1 - \alpha\)</span> y con probabilidad <span class="math notranslate nohighlight">\(\alpha\)</span> elige <strong>cualquier</strong> página del grafo.</p></li>
+</ul>
+</li>
+<li><p>Típicamente <span class="math notranslate nohighlight">\(\alpha\)</span> es <span class="math notranslate nohighlight">\(0.85\)</span>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>Ejemplo<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>Considérese el grafo</p>
+<img src="https://dl.dropboxusercontent.com/s/u2m8af7hfi83wq9/graph_example_2_pagerank.png?dl=0" heigth="400" width="400"><p>Entonces una <em>surfer</em> que haya entrado a la parte izquierda o derecha del grafo nunca saldrá. La matriz <span class="math notranslate nohighlight">\(P\)</span> asociada al grafo anterior es:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.  0.5 0.5 0.5 0.  0. ]
+ [0.5 0.  0.5 0.  0.  0. ]
+ [0.5 0.5 0.  0.  0.  0. ]
+ [0.  0.  0.  0.  0.  0. ]
+ [0.  0.  0.  0.5 0.  1. ]
+ [0.  0.  0.  0.  1.  0. ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tomando un valor de <span class="math notranslate nohighlight">\(\alpha = 0.85\)</span> se tiene:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(A = \alpha P + (1-\alpha) \frac{1}{n}ee^T\)</span>.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.85</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">P</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.025 0.45  0.45  0.45  0.025 0.025]
+ [0.45  0.025 0.45  0.025 0.025 0.025]
+ [0.45  0.45  0.025 0.025 0.025 0.025]
+ [0.025 0.025 0.025 0.025 0.025 0.025]
+ [0.025 0.025 0.025 0.45  0.025 0.875]
+ [0.025 0.025 0.025 0.025 0.875 0.025]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y sus eigenvalores son:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eigvalue</span><span class="p">,</span> <span class="n">eigvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Compárese con los eigenvalores de <span class="math notranslate nohighlight">\(P\)</span>.</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.5  1.  -0.5  1.  -1.   0. ]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">eigvalue</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 1.     0.85  -0.    -0.85  -0.425 -0.425]
+</pre></div>
+</div>
+</div>
+</div>
+<p>sus eigenvectores son:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Como se describió, el eigenvector asociado a <span class="math notranslate nohighlight">\(\lambda_1\)</span> tiene entradas positivas.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">eigvectors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.447 -0.365 -0.354 -0.     0.816  0.328]
+ [ 0.43  -0.365  0.354  0.    -0.408  0.483]
+ [ 0.43  -0.365  0.354  0.    -0.408 -0.812]
+ [ 0.057  0.    -0.707  0.     0.     0.   ]
+ [ 0.469  0.548  0.     0.707 -0.    -0.   ]
+ [ 0.456  0.548  0.354 -0.707  0.     0.   ]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="comentarios-respecto-a-la-implementacion-del-metodo-de-la-potencia">
+<h3>Comentarios respecto a la implementación del método de la potencia<a class="headerlink" href="#comentarios-respecto-a-la-implementacion-del-metodo-de-la-potencia" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Si un vector satisface <span class="math notranslate nohighlight">\(||z||_1 = e^Tz = 1\)</span>, <span class="math notranslate nohighlight">\(A\)</span> es estocástica por columnas entonces: <span class="math notranslate nohighlight">\(||Az||_1 = 1\)</span>. Esto evita normalizar en el método de la potencia al resultado del producto por la matriz <span class="math notranslate nohighlight">\(A\)</span>. Además se aprovecha lo anterior al utilizar <span class="math notranslate nohighlight">\(|| \cdot||_1\)</span>.</p></li>
+<li><p>Por la definición de <span class="math notranslate nohighlight">\(P\)</span> y de <span class="math notranslate nohighlight">\(A\)</span>, la multiplicación matriz-vector del método de la potencia se realiza sin construir matrices generadas a partir de las expresiones <span class="math notranslate nohighlight">\(ed^T\)</span> o <span class="math notranslate nohighlight">\(ee^T\)</span>. En lugar de esto se calcula:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[Az = \alpha Qz + \beta \frac{1}{n}e\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(\beta = 1 - ||\alpha Qz||_1\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>Obsérvese que no se requiere calcular el vector <span class="math notranslate nohighlight">\(d\)</span>, esto es, no se conoce qué páginas carecen de <em>outlinks</em>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="comentario-respecto-a-metodos-para-calcular-eigenvalores-eigenvectores-en-el-caso-de-matrices-no-simetricas">
+<h2>Comentario respecto a métodos para calcular eigenvalores-eigenvectores en el caso de matrices no simétricas<a class="headerlink" href="#comentario-respecto-a-metodos-para-calcular-eigenvalores-eigenvectores-en-el-caso-de-matrices-no-simetricas" title="Permalink to this headline">¶</a></h2>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Ver <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.schur.html#scipy.linalg.schur">scipy.linalg.schur</a> para calcular con <em>SciPy</em> la descomposición de Schur de una matriz y <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html">comentario sobre Shchur</a>.</p>
+</div>
+<p>El caso general de <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> sin estructura conocida utiliza varios de los algoritmos y métodos revisados en esta nota. Por ejemplo, el algoritmo QR busca la <a class="reference external" href="https://en.wikipedia.org/wiki/Schur_decomposition">descomposición de Schur</a> que nos da una matriz triangular superior (que en el caso simétrico es diagonal); además el algoritmo QR que se revisó en esta nota fue una versión simple, la versión eficiente se apoya de transformaciones de matrices <a class="reference external" href="https://en.wikipedia.org/wiki/Hessenberg_matrix">Hessenberg superiores</a>, transformaciones de Householder y Givens, ver <a class="reference internal" href="../2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#otbaln"><span class="std std-ref">operaciones y transformaciones básicas del álgebra lineal numérica</span></a>. Se sugiere revisar el capítulo 7 de Golub, C. F. Van Loan, Matrix Computations, John Hopkins University Press, 2013 para la descripción de métodos para el caso general y versiones eficientes.</p>
+<p><strong>Preguntas de comprehensión:</strong></p>
+<p>1)¿Por qué en el método de rotaciones de Jacobi y en el algoritmo QR para matrices simétricas se puede asegurar que los eigenvalores de la matriz diagonal a la que converge son los mismos eigenvalores que la de la matriz original?</p>
+<p>2)Describe la factorización <span class="math notranslate nohighlight">\(QR\)</span> delgada de una matriz.</p>
+<p>3)Escribe ventajas y desventajas del método de la potencia.</p>
+<p>4)¿Qué método nos ayudaría a calcular un eigenvalor intermedio, esto es, entre <span class="math notranslate nohighlight">\(\lambda_1\)</span> y <span class="math notranslate nohighlight">\(\lambda_n\)</span>?</p>
+<p>5)Describe el método de <em>pagerank</em>.</p>
+<p>6)¿Qué es una cadena de Markov?</p>
+<p>7)¿Qué es una matriz estocástica por columnas?</p>
+<p>8)En el contexto de grafos ¿qué es una matriz irreducible?</p>
+<p><strong>Referencias:</strong></p>
+<ol class="simple">
+<li><p>M. T. Heath, Scientific Computing. An Introductory Survey, McGraw-Hill, 2002.</p></li>
+<li><p>G. H. Golub, C. F. Van Loan, Matrix Computations, John Hopkins University Press, 2013.</p></li>
+<li><p>L. Trefethen, D. Bau, Numerical linear algebra, SIAM, 1997.</p></li>
+<li><p>C. Meyer, Matrix Analysis and Applied Linear Algebra, SIAM, 2000.</p></li>
+<li><p>L. Eldén, Matrix Methods in Data Mining and Pattern recognition, SIAM, 2007.</p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "palmoreck/dockerfiles-for-binder",
+            ref: "jupyterlab_optimizacion_2",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./2.computo_matricial/2.3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../2.2/Eigenvalores_y_eigenvectores.html" title="previous page">2.2 Eigenvalores y eigenvectores</a>
+    <a class='right-next' id="next-link" href="../2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.html" title="next page">2.4 Valores, vectores singulares y algoritmos para calcular la SVD</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Erick Palacios Moreno<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
