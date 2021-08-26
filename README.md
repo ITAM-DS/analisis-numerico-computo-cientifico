@@ -92,7 +92,7 @@ bash build_chapter.sh 3
 bash build_chapter.sh 1
 ```
 
-Alternativamente si se desean todos los capítulos del 1 al 3 por ejemplo ejecutar lo siguiente.
+Alternativamente si se desean los capítulos del 1 al 3 por ejemplo ejecutar lo siguiente.
 
 ```
 bash build_all_chapters.sh 3
