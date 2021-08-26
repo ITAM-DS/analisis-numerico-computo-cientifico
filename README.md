@@ -46,7 +46,7 @@ La organización [optimizacion-2021-gh-classroom](https://github.com/optimizacio
 
 ## Ramas del repositorio.
 
-En este repositorio se han creado diferentes ramas que pueden ser accesadas como se aprecia en esta imagen:
+Se tienen diferentes ramas que pueden ser accesadas como se aprecia en esta imagen:
 
 <img width="320" alt="imagen" src="https://user-images.githubusercontent.com/3290689/89135347-8a8ea600-d4f2-11ea-9699-0395fd784ebd.png">
 
@@ -79,7 +79,8 @@ y elegir una ejecución interactiva de los notebooks vía *binder*\* o [thebe](h
 
 ### Para convertir notas a pdf
 
-Usar el siguiente botón de [binder](https://mybinder.org/) (no es el mismo botón que para interactividad) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion?urlpath=lab/tree/analisis-numerico-computo-cientifico/)
+Usar el siguiente botón de [binder](https://mybinder.org/) (no es el mismo botón que para interactividad) [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion?urlpath=lab/tree/analisis-numerico-computo-cientifico/)
+
 
 Abrir una nueva terminal y ejecutar lo siguiente si se desean convertir las notas a pdf capítulo por capítulo de su elección.
 
@@ -91,10 +92,12 @@ bash build_chapter.sh 3
 bash build_chapter.sh 1
 ```
 
-Alternativamente si se desean todos los capítulos ejecutar lo siguiente.
+Alternativamente si se desean todos los capítulos del 1 al 3 por ejemplo ejecutar lo siguiente.
 
 ```
-bash build_all_chapters.sh
+bash build_all_chapters.sh 3
+#del capítulo 1 al capítulo 5
+bash build_all_chapters.sh 5
 ```
 
 Los pdf's estarán dentro del directorio `analisis-numerico-computo-cientifico/libro_optimizacion/temas/_build/pdf`. Y se pueden descargar:
