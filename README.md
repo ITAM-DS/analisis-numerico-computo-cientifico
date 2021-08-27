@@ -74,4 +74,16 @@ Finalizamos:
 
 * [1.4 Condición de un problema y estabilidad de un algoritmo](https://itam-ds.github.io/analisis-numerico-computo-cientifico/I.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html#algunas-propiedades-del-numero-de-condicion-de-una-matriz)
 
+## Clase 4
+
+26 de agosto
+
+Finalizamos:
+
+* [1.5 Definicion_de_funcion_continuidad_derivada](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html)
+
+* [1.6 Polinomios_de_Taylor_y_diferenciacion_numerica](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html)
+
+Llegamos hasta [1.7 Integracion_numerica: newton-cotes](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.7/Integracion_numerica.html#newton-cotes)
+
 
