@@ -470,6 +470,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analisis-del-error-por-redondeo-y-truncamiento-en-la-aproximacion-por-la-regla-compuesta-del-rectangulo">
+   Análisis del error por redondeo y truncamiento en la aproximación por la regla compuesta del rectángulo
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#integracion-por-el-metodo-de-monte-carlo">
    Integración por el método de Monte Carlo
   </a>
@@ -1260,6 +1265,38 @@ R_c(f) &amp;=&amp; \displaystyle \sum_{i=1}^{n_\text{sub}}(a_i-a_{i-1})f\left( \
 <div class="math notranslate nohighlight">
 \[\text{Err}Sc(f)=-\frac{b-a}{180}f^{(4)}(\xi_S)\hat{h}^4, \xi_S \in [a,b].\]</div>
 </div>
+<div class="section" id="analisis-del-error-por-redondeo-y-truncamiento-en-la-aproximacion-por-la-regla-compuesta-del-rectangulo">
+<h2>Análisis del error por redondeo y truncamiento en la aproximación por la regla compuesta del rectángulo<a class="headerlink" href="#analisis-del-error-por-redondeo-y-truncamiento-en-la-aproximacion-por-la-regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h2>
+<p>Los resultados numéricos y gráficas muestran que las reglas por Newton Cotes son <strong>estables numéricamente bajo el redondeo</strong>  (ver nota <a class="reference internal" href="../1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html#cpea"><span class="std std-ref">Condición de un problema y estabilidad de un algoritmo</span></a> para definición de estabilidad de un algoritmo) y también se puede corroborar realizando un análisis del error. En esta sección consideramos la aproximación a la integral definida de una función por la regla compuesta del rectángulo <span class="math notranslate nohighlight">\(R_c(f)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{eqnarray}
+R_c(f) &amp;=&amp; \displaystyle \sum_{i=1}^{n_\text{sub}}(a_i-a_{i-1})f\left( \frac{a_i+a_{i-1}}{2}\right) \nonumber\\
+&amp;=&amp; \frac{h}{n_\text{sub}}\sum_{i=1}^{n_\text{sub}}f\left( \frac{a_i+a_{i-1}}{2}\right) \nonumber\\
+&amp;=&amp;\hat{h}\sum_{i=1}^{n_\text{sub}}f\left( x_i\right) \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>con <span class="math notranslate nohighlight">\(h=b-a\)</span>, subintervalos <span class="math notranslate nohighlight">\([a_{i-1},a_i]\)</span> con <span class="math notranslate nohighlight">\(i=1,\dots,n_{\text{sub}}\)</span> para <span class="math notranslate nohighlight">\([a,b]\)</span>, <span class="math notranslate nohighlight">\(n_\text{sub}\)</span> número de subintervalos y <span class="math notranslate nohighlight">\(\hat{h}=\frac{h}{n_\text{sub}}\)</span>.</p>
+<p>Suponemos que <span class="math notranslate nohighlight">\(\hat{f}(x)\)</span> aproxima a <span class="math notranslate nohighlight">\(f(x)\)</span> y por errores de redondeo <span class="math notranslate nohighlight">\(\hat{f}(x) = f(x)(1 + \epsilon_{f(x)})\)</span> con <span class="math notranslate nohighlight">\(|\epsilon_{f(x)}| \leq \epsilon_{maq}\)</span> error de redondeo al evaluar <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x\)</span>. <span class="math notranslate nohighlight">\(\hat{f}(x)\)</span> es la aproximación en un SPFN (ver nota <a class="reference internal" href="../1.2/Sistema_de_punto_flotante.html#spf"><span class="std std-ref">Sistema de punto flotante</span></a>). Además supóngase que <span class="math notranslate nohighlight">\(x_i \in \mathcal{Fl}, \forall i = 1, \dots, n_{\text{sub}}\)</span>.</p>
+<p>Entonces en la aproximación por la regla <span class="math notranslate nohighlight">\(R_c(f)\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(\displaystyle \int_a^b f(x)dx = \hat{h} \sum_{i=1}^{n_\text{sub}}f\left( x_i\right) + \mathcal{O}(\hat{h}^2)\)</span> y calculando el error absoluto:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\text{ErrAbs}\left ( \hat{h}\displaystyle \sum_{i=1}^{n_\text{sub}}\hat{f}(x_i)\right) &amp;=&amp; \left | \displaystyle \int_a^b f(x)dx -  \hat{h} \sum_{i=1}^{n_\text{sub}}\hat{f}(x_i) \right | \nonumber \\
+&amp;=&amp; \left |\hat{h}\sum_{i=1}^{n_\text{sub}}f\left( x_i\right) + \mathcal{O}(\hat{h}^2)- \hat{h} \sum_{i=1}^{n_\text{sub}} f(x_i)(1 + \epsilon_{f(x_i)}) \right | \nonumber \\
+&amp;=&amp; \left | \mathcal{O}(\hat{h}^2) - \hat{h} \sum_{i=1}^{n_\text{sub}}  f(x_i) \epsilon_{f(x_i)} \right | \nonumber \\
+&amp;\leq &amp; \mathcal{O}(\hat{h}^2) + hC \epsilon_{\text{maq}}
+\end{eqnarray}
+\end{split}\]</div>
+<p>suponiendo en el último paso que <span class="math notranslate nohighlight">\(C &gt;0\)</span> es tal que <span class="math notranslate nohighlight">\(| f(x_i)\epsilon_{f(x_i)}| \leq C\epsilon_{\text{maq}}, \forall i=1, \dots , n_{\text{sub}}\)</span></p>
+<p>Obsérvese que <span class="math notranslate nohighlight">\(\hat{h}\displaystyle \sum_{i=1}^{n_\text{sub}}\hat{f}(x_i)\)</span> es la aproximación por la regla del rectángulo compuesta que se obtiene en la computadora por lo que la cantidad <span class="math notranslate nohighlight">\(\left | \displaystyle \int_a^b f(x)dx -  \hat{h} \sum_{i=1}^{n_\text{sub}}\hat{f}(x_i) \right |\)</span> es el error absoluto de tal aproximación.</p>
+<p>El error relativo es:</p>
+<div class="math notranslate nohighlight">
+\[\text{ErrRel}\left ( \hat{h}\displaystyle \sum_{i=1}^{n_\text{sub}}\hat{f}(x_i)\right) = \frac{\text{ErrAbs}\left ( \hat{h}\displaystyle \sum_{i=1}^{n_\text{sub}}\hat{f}(x_i)\right)}{\left |\displaystyle \int_a^b f(x)dx \right |} \leq \frac{\mathcal{O}(\hat{h}^2) + hC \epsilon_{\text{maq}}}{\left |\displaystyle \int_a^b f(x)dx \right |} = K_1 \hat{h}^2 + K_2\]</div>
+<p>con <span class="math notranslate nohighlight">\(K_1, K_2 &gt;0\)</span> constantes.</p>
+<p>Entonces la función <span class="math notranslate nohighlight">\(g(h) = \mathcal{O}(\hat{h}^2) + K_2\)</span> acota al error absoluto y al error relativo y se tiene si <span class="math notranslate nohighlight">\(\hat{h} \rightarrow 0\)</span> por tanto incrementar <span class="math notranslate nohighlight">\(n_{\text{sub}}\)</span> el error por truncamiento tiende a cero y el error por redondeo tiende a una constante.</p>
+<p>Lo anterior prueba que la regla compuesta del rectángulo es estable numéricamente bajo el redondeo.</p>
+</div>
 <div class="section" id="integracion-por-el-metodo-de-monte-carlo">
 <span id="imc"></span><h2>Integración por el método de Monte Carlo<a class="headerlink" href="#integracion-por-el-metodo-de-monte-carlo" title="Permalink to this headline">¶</a></h2>
 <p>Los métodos de integración numérica por Monte Carlo son similares a los métodos por cuadratura en el sentido que se eligen puntos en los que se evaluará el integrando para sumar sus valores. La diferencia esencial con los métodos por cuadratura es que en el método de integración por Monte Carlo los puntos son <strong>seleccionados de una forma <em>aleatoria</em></strong> (de hecho es pseudo-aleatoria pues se generan con un programa de computadora) en lugar de generarse con una fórmula.</p>
@@ -1301,7 +1338,7 @@ R_c(f) &amp;=&amp; \displaystyle \sum_{i=1}^{n_\text{sub}}(a_i-a_{i-1})f\left( \
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Integracion_numerica_143_0.png" src="../../_images/Integracion_numerica_143_0.png" />
+<img alt="../../_images/Integracion_numerica_155_0.png" src="../../_images/Integracion_numerica_155_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1317,7 +1354,7 @@ R_c(f) &amp;=&amp; \displaystyle \sum_{i=1}^{n_\text{sub}}(a_i-a_{i-1})f\left( \
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Integracion_numerica_144_0.png" src="../../_images/Integracion_numerica_144_0.png" />
+<img alt="../../_images/Integracion_numerica_156_0.png" src="../../_images/Integracion_numerica_156_0.png" />
 </div>
 </div>
 <p>Área del círculo es aproximadamente:</p>
@@ -1722,7 +1759,7 @@ R_c(f) &amp;=&amp; \displaystyle \sum_{i=1}^{n_\text{sub}}(a_i-a_{i-1})f\left( \
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Integracion_numerica_194_0.png" src="../../_images/Integracion_numerica_194_0.png" />
+<img alt="../../_images/Integracion_numerica_206_0.png" src="../../_images/Integracion_numerica_206_0.png" />
 </div>
 </div>
 <div class="tip admonition">
