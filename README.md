@@ -26,10 +26,10 @@ Las clases son los días jueves.
 | 10 (4-8 de octubre)|Métodos para aproximación de eigenvalores y eigenvectores.|
 | 11 (11-15 de octubre)|Continuación métodos para aproximación de eigenvalores y eigenvectores.|
 | 12 (18-22 de octubre)|Método de rotaciones de Jacobi para aproximar la descomposición en valores singulares.|
-| 13 (25-29 de octubre)|Métodos para resolver ecuaciones no lineales.|
-| 14 (1-5 de noviembre)|Continuación Métodos para resolver ecuaciones no lineales.|
-| 15 (8-12 de noviembre)|Problemas de optimización. Definiciones de conjuntos y funciones convexas. Ejemplos de problemas de optimización convexa.|
-| 16 (15-19 de noviembre)|Continuación ejemplos de problemas de optimización convexa.|
+| 13 (25-29 de octubre)|Problemas de optimización. Definiciones de conjuntos y funciones convexas. Ejemplos de problemas de optimización convexa.|
+| 14 (1-5 de noviembre)|Continuación ejemplos de problemas de optimización convexa.|
+| 15 (8-12 de noviembre)|Métodos para resolver ecuaciones no lineales.|
+| 16 (15-19 de noviembre)|Continuación Métodos para resolver ecuaciones no lineales.|
 | 17 (22-26 de noviembre)|Métodos para programación lineal: método simplex.|
 | 18 (29 de nov - 1 de dic)|Continuación métodos para programación lineal: método simplex.|
 
