@@ -1,6 +1,6 @@
 # Indicaciones
 
-Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante los "" de los meses de "" y "" en los que se deberá exponer lo que han realizado.
+Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante los "" del mes de noviembre en los que se deberá exponer lo que han realizado.
 
 En el nivel:  
 
