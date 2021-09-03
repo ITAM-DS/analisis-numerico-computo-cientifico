@@ -87,3 +87,13 @@ Finalizamos:
 Llegamos hasta [1.7 Integracion_numerica: newton-cotes](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.7/Integracion_numerica.html#newton-cotes)
 
 
+## Clase 5
+
+2 de septiembre
+
+Finalizamos:
+
+[1.7 Integracion_numerica: newton-cotes](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.7/Integracion_numerica.html)
+
+Llegamos hasta: [Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html: transformaciones-de-gauss](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#transformaciones-de-gauss)
+
