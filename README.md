@@ -97,3 +97,8 @@ Finalizamos:
 
 Llegamos hasta: [Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html: transformaciones-de-gauss](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#transformaciones-de-gauss)
 
+## Clase 6
+
+9 de septiembre
+
+Llegamos hasta: [Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html: ejemplo-aplicando-reflectores-de-householder-a-una-matriz](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#ejemplo-aplicando-reflectores-de-householder-a-una-matriz)
