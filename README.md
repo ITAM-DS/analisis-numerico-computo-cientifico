@@ -102,3 +102,11 @@ Llegamos hasta: [Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numer
 9 de septiembre
 
 Llegamos hasta: [Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html: ejemplo-aplicando-reflectores-de-householder-a-una-matriz](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#ejemplo-aplicando-reflectores-de-householder-a-una-matriz)
+
+## Clase 7
+
+23 de septiembre
+
+Finalizamos: [2.1 Operaciones y transformaciones básicas del Álgebra Lineal Numérica](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#transformaciones-de-reflexion)
+
+Llegamos hasta: [Ejemplo Eigenvalores_y_eigenvectores](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html#id3)
