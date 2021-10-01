@@ -110,3 +110,9 @@ Llegamos hasta: [Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numer
 Finalizamos: [2.1 Operaciones y transformaciones básicas del Álgebra Lineal Numérica](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#transformaciones-de-reflexion)
 
 Llegamos hasta: [Ejemplo Eigenvalores_y_eigenvectores](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html#id3)
+
+## Clase 8
+
+30 de septiembre
+
+Finalizamos:  [Eigenvalores_y_eigenvectores](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html)
