@@ -2,7 +2,7 @@
 
 <img src="https://dl.dropboxusercontent.com/s/0woqoj8foo5eco9/level_set_of_func.png?dl=0" heigth="400" width="400">
 
-**Parte 1: temas del cómputo científico y del álgebra lineal numérica.**
+**Parte 1: temas del cómputo científico, del cálculo y álgebra lineal numérica.**
     
 **Parte 2: optimización convexa y ecuaciones no lineales.**
 
