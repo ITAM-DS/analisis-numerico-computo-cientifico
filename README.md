@@ -26,6 +26,8 @@ En este repositorio encuentran el contenido para los cursos de **optimización**
 
 ### En [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) encuentran una presentación de introducción al curso de optimización avanzada 2021.
 
+Dentro del directorio [deployments/minikube/hostpath_pv/](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/main/deployments/minikube/hostpath_pv) encontrarán archivos de configuración `.yaml` con [minikube](https://minikube.sigs.k8s.io/docs/), [kubeflow](https://github.com/kubeflow/kubeflow) y [kale](https://github.com/kubeflow-kale/kale)
+
 ---
 
 ### Imágenes de *Docker* creadas
