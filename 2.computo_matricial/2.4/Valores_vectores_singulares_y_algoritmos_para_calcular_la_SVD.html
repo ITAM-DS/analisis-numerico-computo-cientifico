@@ -422,6 +422,13 @@
   <a class="reference internal nav-link" href="#algunas-aplicaciones">
    Algunas aplicaciones
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-componentes-principales">
+     Ejemplo: componentes principales
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metodos-numericos-para-calcular-svd">
@@ -442,11 +449,6 @@
      <em>
       one sided
      </em>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ejemplo-componentes-principales">
-     Ejemplo: componentes principales
     </a>
    </li>
   </ul>
@@ -617,6 +619,457 @@ v_{12} &amp; v_{22}\\
 <li><p>Componentes principales.</p></li>
 <li><p>Reconstrucción de imágenes.</p></li>
 </ul>
+<div class="section" id="ejemplo-componentes-principales">
+<h3>Ejemplo: componentes principales<a class="headerlink" href="#ejemplo-componentes-principales" title="Permalink to this headline">¶</a></h3>
+<p>Sea <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{m \times n}\)</span> cuyas columnas tienen una observación de un <strong>vector aleatorio</strong> (tenemos <span class="math notranslate nohighlight">\(n\)</span> vectores aleatorios de mediciones) y <span class="math notranslate nohighlight">\(X = U \Sigma V^T\)</span> la descomposición en valores singulares de <span class="math notranslate nohighlight">\(X\)</span>, entonces los vectores <strong>singulares derechos</strong> <span class="math notranslate nohighlight">\(v_i\)</span> (columnas de la matriz <span class="math notranslate nohighlight">\(V\)</span>) son nombrados <strong>ejes o direcciones principales</strong> de <span class="math notranslate nohighlight">\(X\)</span> y el vector <span class="math notranslate nohighlight">\(z_1 = X v_1 = \sigma u_1\)</span> con <span class="math notranslate nohighlight">\(u_1\)</span> vector <strong>singular izquierdo</strong> (primera columna de la matriz <span class="math notranslate nohighlight">\(U\)</span>) tiene <strong>varianza muestral</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\text{var}(z_1) = \text{var}(X v_1)= \text{var}(\sigma u_1) = \sigma_1^2 \text{var}(u_1) = \sigma_1^2 \left [ \frac{1}{m} \displaystyle \sum_{i=1}^m (u_1(i) - \bar{u}_1)^2 \right ]\]</div>
+<p>donde: <span class="math notranslate nohighlight">\(u_1(i)\)</span> es la <span class="math notranslate nohighlight">\(i\)</span>-ésima componente de <span class="math notranslate nohighlight">\(u_1\)</span> y <span class="math notranslate nohighlight">\(\sigma_1\)</span> es el máximo valor singular de <span class="math notranslate nohighlight">\(X\)</span> también denotado como <span class="math notranslate nohighlight">\(\sigma_{\text{max}}\)</span>.</p>
+<div class="admonition-comentarios admonition">
+<p class="admonition-title">Comentarios</p>
+<p>Si la media de cada columna de <span class="math notranslate nohighlight">\(X\)</span> es cero, <span class="math notranslate nohighlight">\(X\)</span> se nombra <strong>centrada</strong>, entonces:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(z_1\)</span> tiene la <strong>máxima varianza muestral</strong> entre todas las combinaciones lineales de las columnas de <span class="math notranslate nohighlight">\(X\)</span> pues:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{var}(z_1) = \frac{\sigma_1^2}{m} \displaystyle \sum_{i=1}^m u_1(i)^2 = \frac{\sigma_1^2}{m} ||u_1||_2^2 = \frac{\sigma_1^2}{m}.\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(z_1\)</span> es la <strong>primera componente principal</strong> y el vector <span class="math notranslate nohighlight">\(u_1 = \frac{1}{\sigma_1}z_1 = \frac{1}{\sigma_1}Xv_1\)</span> se le nombra <strong>primera componente principal normalizada</strong>. El vector <span class="math notranslate nohighlight">\(v_1\)</span> es la <strong>primera dirección principal</strong> de <span class="math notranslate nohighlight">\(X\)</span> o también nombrada <em><strong>loading</strong></em>.</p></li>
+</ul>
+</div>
+<p>Algunas definiciones utilizadas en Estadística se encuentran las siguientes.</p>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>La <strong>matriz de correlaciones entre cada componente principal normalizada <span class="math notranslate nohighlight">\(u\)</span>’s y cada columna de <span class="math notranslate nohighlight">\(X\)</span></strong> es:</p>
+<div class="math notranslate nohighlight">
+\[ C = \left (\frac{\sigma_1}{\sqrt{m}} v_1 \quad \frac{\sigma_2}{\sqrt{m}} v_2 \cdots \quad \frac{\sigma_n}{\sqrt{m}} v_n \right) \in \mathbb{R}^{n \times n}\]</div>
+<p>pues si <span class="math notranslate nohighlight">\(x_1\)</span> es la primer columna de <span class="math notranslate nohighlight">\(X\)</span> entonces:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\text{cov}(x_1,u_1) = \text{cov} \left ( \displaystyle \sum_{k=1}^n \sigma_k v_k(1) u_k, u_1 \right ) &amp;=&amp; \displaystyle \sum_{k=1}^n \text{cov} ( \sigma_k v_k(1) u_k, u_1 ) \nonumber \\
+&amp;=&amp; \displaystyle \sum_{k=1}^n \sigma_k v_k(1) \text{cov} (u_k, u_1) \nonumber \\
+&amp;=&amp; \sigma_1 v_1(1) \text{var}(u_1) \nonumber \\
+&amp;=&amp; \frac{\sigma_1 v_1(1)}{m} \sum_{i=1}^m u_1(i)^2 \nonumber \\
+&amp;=&amp; \frac{\sigma_1 v_1(1)}{m} \nonumber
+\end{eqnarray}
+\end{split}\]</div>
+<p>Y como <span class="math notranslate nohighlight">\(\text{cor}(x_1,u_1) = \frac{\text{cov}(x_1,u_1)}{\sqrt{\text{var}(x_1)} \sqrt{\text{var}(u_1)}}\)</span> se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\text{cor}(x_1,u_1) = \frac{\frac{\sigma_1 v_1(1)}{m}}{1 \cdot \sqrt{\frac{1}{m}}}  = \frac{\sigma_1 v_1(1)}{\sqrt{m}} \]</div>
+</div>
+<div class="admonition-definicion admonition">
+<p class="admonition-title">Definición</p>
+<p>El cociente de <strong>varianza explicada</strong> para cada componente es el número:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\sigma_i^2}{\displaystyle \sum_{i=1}^p \sigma_i^2}\]</div>
+<p>con <span class="math notranslate nohighlight">\(p = \min(m,n)\)</span>.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Observación</p>
+<p>la matriz <span class="math notranslate nohighlight">\(\frac{1}{m}X^TX\)</span> es la matriz de <strong>varianzas y covarianzas muestral</strong> la cual <strong>siempre</strong> es una matriz simétrica positiva semidefinida (aún si la <span class="math notranslate nohighlight">\(X\)</span> no es centrada). Si <span class="math notranslate nohighlight">\(X\)</span> además de ser centrada cumple que la varianza de cada una de sus columnas es <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(X\)</span> se nombra <strong>estandarizada</strong>. La matriz <span class="math notranslate nohighlight">\(\frac{1}{m}X^TX\)</span> en este caso es la matriz de <strong>correlaciones muestral</strong>.</p>
+</div>
+<div class="admonition-definicion admonition" id="matrizsdpositiva">
+<p class="admonition-title">Definición</p>
+<p>Una matriz <span class="math notranslate nohighlight">\(A\)</span> es semidefinida positiva si <span class="math notranslate nohighlight">\(x^TAx \geq 0\)</span> <span class="math notranslate nohighlight">\(\forall x \in \mathbb{R}^n - \{0\}\)</span>. Si se cumple de forma estricta la desigualdad entonces <span class="math notranslate nohighlight">\(A\)</span> es <strong>definida positiva</strong>. Con los eigenvalores podemos caracterizar a las matrices definidas y semidefinidas positivas: <span class="math notranslate nohighlight">\(A\)</span> es semidefinida positiva si y sólo si los eigenvalores de <span class="math notranslate nohighlight">\(T=\frac{A+A^T}{2}\)</span> son no negativos. Es definida positiva si y sólo si los eigenvalores de <span class="math notranslate nohighlight">\(T\)</span> son positivos. Los conjuntos de matrices que se utilizan para definir a matrices simétricas semidefinidas positivas y simétricas definidas positivas son <span class="math notranslate nohighlight">\(\mathbb{S}_{+}^n\)</span> y <span class="math notranslate nohighlight">\(\mathbb{S}_{++}^n\)</span> respectivamente (<span class="math notranslate nohighlight">\(\mathbb{S}\)</span> es el conjunto de matrices simétricas).</p>
+</div>
+<div class="cell tag_margin docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install --quiet sklearn
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by &#39;NewConnectionError(&#39;&lt;pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f21d7e24100&gt;: Failed to establish a new connection: [Errno -2] Name or service not known&#39;)&#39;: /simple/sklearn/</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2020</span><span class="p">)</span>
+<span class="n">mpoints</span><span class="o">=</span><span class="mi">200</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="nd">@np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,(</span><span class="mi">2</span><span class="p">,</span><span class="n">mpoints</span><span class="p">)))</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD_38_0.png" src="../../_images/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD_38_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+<span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PCA(n_components=2, svd_solver=&#39;full&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Direcciones o ejes principales</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.91945871  0.39318658]
+ [ 0.39318658 -0.91945871]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Varianza explicada por cada componente (primera posición para la primera componente):</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.99029474 0.00970526]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Valores singulares de la matriz <span class="math notranslate nohighlight">\(X\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span><span class="o">.</span><span class="n">singular_values_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([18.68043742,  1.84930434])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Componentes principales con el método <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA.transform">transform</a> de <code class="docutils literal notranslate"><span class="pre">scikit-learn.PCA</span></code>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(200, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Primera componente:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1</span> <span class="o">=</span> <span class="n">z</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.73286192, -0.10931069, -0.5294992 , -1.62049625, -0.55137898,
+        0.42135363,  0.07424362, -0.29822525, -1.73357019, -0.56416428])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Segunda componente:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z2</span> <span class="o">=</span> <span class="n">z</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.14574216,  0.11652276,  0.12040267,  0.08249224, -0.0437718 ,
+        0.03168412, -0.07123458,  0.08183026, -0.02113837, -0.31235302])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usemos el método de <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html#numpy.linalg.svd">SVD</a> del paquete <code class="docutils literal notranslate"><span class="pre">numpy</span></code> para revisar lo que nos devuelve y observar que son iguales sus resultados:</p>
+<p>Primero centramos a la <span class="math notranslate nohighlight">\(X\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_centered</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>No olvidemos que el método de <code class="docutils literal notranslate"><span class="pre">numpy</span></code> nos devuelve <span class="math notranslate nohighlight">\(V^T\)</span> y no <span class="math notranslate nohighlight">\(V\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">X_centered</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Los valores singulares están dados por la diagonal de <span class="math notranslate nohighlight">\(\Sigma\)</span>:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">singular_values_</span><span class="p">,</span><span class="n">s</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ True  True]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Las direcciones principales están dadas por las columnas de <span class="math notranslate nohighlight">\(V\)</span> (salvo signos positivos o negativos):</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]),</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">vt</span><span class="o">.</span><span class="n">T</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ True  True]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]),</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">vt</span><span class="o">.</span><span class="n">T</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ True  True]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Las componentes principales están dadas por la multiplicación matricial <span class="math notranslate nohighlight">\(XV\)</span> (salvo signos positivos o negativos):</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z_manual</span> <span class="o">=</span> <span class="n">X_centered</span><span class="o">@</span><span class="p">(</span><span class="n">vt</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1_manual</span> <span class="o">=</span> <span class="n">z_manual</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">z1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">z1_manual</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z2_manual</span> <span class="o">=</span> <span class="n">z_manual</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">z2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">z2_manual</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>También podemos hacer la multiplicación <span class="math notranslate nohighlight">\(\sigma u\)</span> (salvo signos positivos o negativos):</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1_manual_2</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">z1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">z1_manual_2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z2_manual_2</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">z2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">z2_manual_2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>La varianza explicada está dada por los valores singulares al cuadrado divididos por la suma de éstos al cuadrado:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Ejercicios</p>
+<ul class="simple">
+<li><p>Muestra en la gráfica de la nube de puntos del ejemplo anterior las direcciones principales.</p></li>
+<li><p>Genera otra nube de puntos y realiza los pasos del ejemplo anterior (equivalencia entre métodos en los paquetes de <em>Python</em>) junto con la gráfica de las direcciones principales.</p></li>
+</ul>
+</div>
+</div>
 </div>
 <div class="section" id="metodos-numericos-para-calcular-svd">
 <h2>Métodos numéricos para calcular SVD<a class="headerlink" href="#metodos-numericos-para-calcular-svd" title="Permalink to this headline">¶</a></h2>
@@ -739,80 +1192,6 @@ v_{12} &amp; v_{22}\\
 <p>Hasta convergencia.</p>
 <p>Con el producto <span class="math notranslate nohighlight">\(AJ\)</span> se converge a una matriz <span class="math notranslate nohighlight">\(W\)</span> con la que se obtendrán <span class="math notranslate nohighlight">\(U, \Sigma\)</span> y con el producto <span class="math notranslate nohighlight">\(VJ\)</span> se converge a la matriz <span class="math notranslate nohighlight">\(V\)</span> de la SVD.</p>
 <p>(En la descripción anterior se omite el subíndice <span class="math notranslate nohighlight">\(k\)</span> por facilidad).</p>
-</div>
-</div>
-<div class="section" id="ejemplo-componentes-principales">
-<h3>Ejemplo: componentes principales<a class="headerlink" href="#ejemplo-componentes-principales" title="Permalink to this headline">¶</a></h3>
-<p>Sea <span class="math notranslate nohighlight">\(X \in \mathbb{R}^{m \times n}\)</span> cuyas columnas tienen una observación de un <strong>vector aleatorio</strong> (tenemos <span class="math notranslate nohighlight">\(n\)</span> vectores aleatorios de mediciones) y <span class="math notranslate nohighlight">\(X = U \Sigma V^T\)</span> es la descomposición en valores singulares de <span class="math notranslate nohighlight">\(X\)</span>, entonces los vectores <strong>singulares derechos</strong> <span class="math notranslate nohighlight">\(v_i\)</span> (columnas de la matriz <span class="math notranslate nohighlight">\(V\)</span>) son nombrados <strong>ejes o direcciones principales</strong> de <span class="math notranslate nohighlight">\(X\)</span> y el vector <span class="math notranslate nohighlight">\(z_1 = X v_1 = \sigma u_1\)</span> con <span class="math notranslate nohighlight">\(u_1\)</span> vector <strong>singular izquierdo</strong> (primera columna de la matriz <span class="math notranslate nohighlight">\(U\)</span>) tiene <strong>varianza muestral</strong>:</p>
-<div class="math notranslate nohighlight">
-\[\text{var}(z_1) = \text{var}(X v_1)= \text{var}(\sigma u_1) = \sigma_1^2 \text{var}(u_1) = \sigma_1^2 \left [ \frac{1}{m} \displaystyle \sum_{i=1}^m (u_1(i) - \bar{u}_1)^2 \right ]\]</div>
-<p>donde: <span class="math notranslate nohighlight">\(u_1(i)\)</span> es la <span class="math notranslate nohighlight">\(i\)</span>-ésima componente de <span class="math notranslate nohighlight">\(u_1\)</span> y <span class="math notranslate nohighlight">\(\sigma_1\)</span> es el máximo valor singular de <span class="math notranslate nohighlight">\(X\)</span> también denotado como <span class="math notranslate nohighlight">\(\sigma_{\text{max}}\)</span>.</p>
-<div class="admonition-comentarios admonition">
-<p class="admonition-title">Comentarios</p>
-<p>Si la media de cada columna de <span class="math notranslate nohighlight">\(X\)</span> es cero, <span class="math notranslate nohighlight">\(X\)</span> se nombra <strong>centrada</strong>, entonces:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(z_1\)</span> tiene la <strong>máxima varianza muestral</strong> entre todas las combinaciones lineales de las columnas de <span class="math notranslate nohighlight">\(X\)</span> pues:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\text{var}(z_1) = \frac{\sigma_1^2}{m} \displaystyle \sum_{i=1}^m u_1(i)^2 = \frac{\sigma_1^2}{m} ||u_1||_2^2 = \frac{\sigma_1^2}{m}.\]</div>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(z_1\)</span> es la <strong>primera componente principal</strong> y el vector <span class="math notranslate nohighlight">\(u_1 = \frac{1}{\sigma_1}z_1 = \frac{1}{\sigma_1}Xv_1\)</span> se le nombra <strong>primera componente principal normalizada</strong>. El vector <span class="math notranslate nohighlight">\(v_1\)</span> es la <strong>primera dirección principal</strong> de <span class="math notranslate nohighlight">\(X\)</span> o también nombrada <em><strong>loading</strong></em>.</p></li>
-</ul>
-</div>
-<p>Algunas definiciones utilizadas en Estadística se encuentran las siguientes.</p>
-<div class="admonition-definicion admonition">
-<p class="admonition-title">Definición</p>
-<p>La <strong>matriz de correlaciones entre cada componente principal normalizada <span class="math notranslate nohighlight">\(u\)</span>’s y cada columna de <span class="math notranslate nohighlight">\(X\)</span></strong> es:</p>
-<div class="math notranslate nohighlight">
-\[ C = \left (\frac{\sigma_1}{\sqrt{m}} v_1 \quad \frac{\sigma_2}{\sqrt{m}} v_2 \cdots \quad \frac{\sigma_n}{\sqrt{m}} v_n \right) \in \mathbb{R}^{n \times n}\]</div>
-<p>pues si <span class="math notranslate nohighlight">\(x_1\)</span> es la primer columna de <span class="math notranslate nohighlight">\(X\)</span> entonces:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{eqnarray}
-\text{cov}(x_1,u_1) = \text{cov} \left ( \displaystyle \sum_{k=1}^n \sigma_k v_k(1) u_k, u_1 \right ) &amp;=&amp; \displaystyle \sum_{k=1}^n \text{cov} ( \sigma_k v_k(1) u_k, u_1 ) \nonumber \\
-&amp;=&amp; \displaystyle \sum_{k=1}^n \sigma_k v_k(1) \text{cov} (u_k, u_1) \nonumber \\
-&amp;=&amp; \sigma_1 v_1(1) \text{var}(u_1) \nonumber \\
-&amp;=&amp; \frac{\sigma_1 v_1(1)}{m} \sum_{i=1}^m u_1(i)^2 \nonumber \\
-&amp;=&amp; \frac{\sigma_1 v_1(1)}{m} \nonumber
-\end{eqnarray}
-\end{split}\]</div>
-<p>Y como <span class="math notranslate nohighlight">\(\text{cor}(x_1,u_1) = \frac{\text{cov}(x_1,u_1)}{\sqrt{\text{var}(x_1)} \sqrt{\text{var}(u_1)}}\)</span> se tiene:</p>
-<div class="math notranslate nohighlight">
-\[\text{cor}(x_1,u_1) = \frac{\frac{\sigma_1 v_1(1)}{m}}{1 \cdot \sqrt{\frac{1}{m}}}  = \frac{\sigma_1 v_1(1)}{\sqrt{m}} \]</div>
-</div>
-<div class="admonition-definicion admonition">
-<p class="admonition-title">Definición</p>
-<p>El cociente de <strong>varianza explicada</strong> para cada componente es el número:</p>
-<div class="math notranslate nohighlight">
-\[\frac{\sigma_i^2}{\displaystyle \sum_{i=1}^p \sigma_i^2}\]</div>
-<p>con <span class="math notranslate nohighlight">\(p = \min(m,n)\)</span>.</p>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Observación</p>
-<p>la matriz <span class="math notranslate nohighlight">\(\frac{1}{m}X^TX\)</span> es la matriz de <strong>varianzas y covarianzas muestral</strong> la cual <strong>siempre</strong> es una matriz simétrica positiva semidefinida (aún si la <span class="math notranslate nohighlight">\(X\)</span> no es centrada). Si <span class="math notranslate nohighlight">\(X\)</span> además de ser centrada cumple que la varianza de cada una de sus columnas es <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(X\)</span> se nombra <strong>estandarizada</strong>. La matriz <span class="math notranslate nohighlight">\(\frac{1}{m}X^TX\)</span> en este caso es la matriz de <strong>correlaciones muestral</strong>.</p>
-</div>
-<div class="admonition-definicion admonition" id="matrizsdpositiva">
-<p class="admonition-title">Definición</p>
-<p>Una matriz <span class="math notranslate nohighlight">\(A\)</span> es semidefinida positiva si <span class="math notranslate nohighlight">\(x^TAx \geq 0\)</span> <span class="math notranslate nohighlight">\(\forall x \in \mathbb{R}^n - \{0\}\)</span>. Si se cumple de forma estricta la desigualdad entonces <span class="math notranslate nohighlight">\(A\)</span> es **definida positiva **. Con los eigenvalores podemos caracterizar a las matrices definidas y semidefinidas positivas: <span class="math notranslate nohighlight">\(A\)</span> es semidefinida positiva si y sólo si los eigenvalores de <span class="math notranslate nohighlight">\(T=\frac{A+A^T}{2}\)</span> son no negativos. Es definida positiva si y sólo si los eigenvalores de <span class="math notranslate nohighlight">\(T\)</span> son positivos. Los conjuntos de matrices que se utilizan para definir a matrices simétricas semidefinidas positivas y simétricas definidas positivas son <span class="math notranslate nohighlight">\(\mathbb{S}_{+}^n\)</span> y <span class="math notranslate nohighlight">\(\mathbb{S}_{++}^n\)</span> respectivamente (<span class="math notranslate nohighlight">\(\mathbb{S}\)</span> es el conjunto de matrices simétricas).</p>
-</div>
-<div class="cell tag_margin docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install --quiet sklearn
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Yellow">WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by &#39;NewConnectionError(&#39;&lt;pip._vendor.urllib3.connection.HTTPSConnection object at 0x7f21d7e24100&gt;: Failed to establish a new connection: [Errno -2] Name or service not known&#39;)&#39;: /simple/sklearn/</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
-</pre></div>
-</div>
-</div>
 </div>
 <p><strong>Preguntas de comprehensión</strong></p>
 <p>1)¿Cómo se podría calcular el rank de una matriz si se han calculado previamente sus valores singulares?</p>
