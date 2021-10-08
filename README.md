@@ -116,3 +116,9 @@ Llegamos hasta: [Ejemplo Eigenvalores_y_eigenvectores](https://itam-ds.github.io
 30 de septiembre
 
 Finalizamos:  [Eigenvalores_y_eigenvectores](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html)
+
+## Clase 9
+
+7 de octubre
+
+Llegamos hasta [ejemplo](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html#id11) de Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz
