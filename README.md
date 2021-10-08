@@ -22,11 +22,11 @@ Las clases son los días jueves.
 | 6 (6-10 de septiembre)|Revisión de creación de cuentas en AWS, dudas generales y discusión de videos para configuraciones básicas.|
 | 7 (13-17 de septiembre)|Asueto|
 | 8 (20-24 de septiembre)|Transformaciones en el Álgebra lineal numérica y factorización QR.|
-| 9 (27 de sept - 1 oct)|Continuación transformaciones en el Álgebra lineal numérica y factorización QR.|
-| 10 (4-8 de octubre)|Métodos para aproximación de eigenvalores y eigenvectores.|
-| 11 (11-15 de octubre)|Continuación métodos para aproximación de eigenvalores y eigenvectores.|
-| 12 (18-22 de octubre)|Método de rotaciones de Jacobi para aproximar la descomposición en valores singulares.|
-| 13 (25-29 de octubre)|Problemas de optimización. Definiciones de conjuntos y funciones convexas. Ejemplos de problemas de optimización convexa.|
+| 9 (27 de sept - 1 oct)|Continuación transformaciones en el Álgebra lineal numérica y factorización QR. Eigenvalores y eigenvectores.|
+| 10 (4-8 de octubre)|Continuación Eigenvalores y eigenvectores. Métodos para aproximación de eigenvalores y eigenvectores.|
+| 11 (11-15 de octubre)|Continuación métodos para aproximación de eigenvalores y eigenvectores. Método de rotaciones de Jacobi para aproximar la descomposición en valores singulares. Problemas de optimización. Definiciones de conjuntos y funciones convexas. |
+| 12 (18-22 de octubre)|Continuación problemas de optimización. Definiciones de conjuntos y funciones convexas.|
+| 13 (25-29 de octubre)|Ejemplos de problemas de optimización convexa.|
 | 14 (1-5 de noviembre)|Continuación ejemplos de problemas de optimización convexa.|
 | 15 (8-12 de noviembre)|Métodos para resolver ecuaciones no lineales.|
 | 16 (15-19 de noviembre)|Continuación Métodos para resolver ecuaciones no lineales.|
