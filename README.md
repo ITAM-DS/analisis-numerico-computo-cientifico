@@ -122,3 +122,11 @@ Finalizamos:  [Eigenvalores_y_eigenvectores](https://itam-ds.github.io/analisis-
 7 de octubre
 
 Llegamos hasta [ejemplo](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.3/Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz.html#id11) de Algoritmos_y_aplicaciones_de_eigenvalores_eigenvectores_de_una_matriz
+
+## Clase 10
+
+14 de octubre
+
+Finalizamos capítulo II.
+
+Llegamos hasta [del-small-scale-al-large-scale-machine-learning](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#del-small-scale-al-large-scale-machine-learning) de Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas
