@@ -130,3 +130,13 @@ Llegamos hasta [ejemplo](https://itam-ds.github.io/analisis-numerico-computo-cie
 Finalizamos capítulo II.
 
 Llegamos hasta [del-small-scale-al-large-scale-machine-learning](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#del-small-scale-al-large-scale-machine-learning) de Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas
+
+## Clase 11
+
+21 de octubre
+
+Finalizamos: [3.1 Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html)
+
+Llegamos hasta [3.2 Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#metodos-de-descenso-para-funciones-convexas](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#metodos-de-descenso-para-funciones-convexas)
+
+Ejemplos con kale y kubeflow.
