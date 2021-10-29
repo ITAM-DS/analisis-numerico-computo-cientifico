@@ -140,3 +140,9 @@ Finalizamos: [3.1 Definicion_de_problema_optimizacion_conjuntos_y_funciones_conv
 Llegamos hasta [3.2 Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#metodos-de-descenso-para-funciones-convexas](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#metodos-de-descenso-para-funciones-convexas)
 
 Ejemplos con kale y kubeflow.
+
+## Clase 12
+
+28 de octubre
+
+Faltó poco para terminar [Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#metodo-de-busqueda-de-linea-por-backtracking](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#metodo-de-busqueda-de-linea-por-backtracking)
