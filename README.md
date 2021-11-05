@@ -146,3 +146,11 @@ Ejemplos con kale y kubeflow.
 28 de octubre
 
 Faltó poco para terminar [Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#metodo-de-busqueda-de-linea-por-backtracking](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#metodo-de-busqueda-de-linea-por-backtracking)
+
+## Clase 13
+
+4 de noviembre
+
+Finalizamos [Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html)
+
+Llegamos hasta [Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#vectores-de-soporte](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#vectores-de-soporte)
