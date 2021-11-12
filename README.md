@@ -154,3 +154,13 @@ Faltó poco para terminar [Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.htm
 Finalizamos [Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html)
 
 Llegamos hasta [Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#vectores-de-soporte](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#vectores-de-soporte)
+
+## Clase 14
+
+11 de noviembre
+
+Finalizamos 
+
+[Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html)
+
+Llegamos hasta [Sistema de ecuaciones no lineales](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.4/Ecuaciones_no_lineales.html#sistema-de-ecuaciones-no-lineales)
