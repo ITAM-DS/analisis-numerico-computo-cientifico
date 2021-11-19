@@ -159,8 +159,12 @@ Llegamos hasta [Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#vectores-de-soport
 
 11 de noviembre
 
-Finalizamos 
+Finalizamos [Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html)
 
-[Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html)
+Llegamos hasta [Ecuaciones_no_lineales.html#Sistema de ecuaciones no lineales](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.4/Ecuaciones_no_lineales.html#sistema-de-ecuaciones-no-lineales)
 
-Llegamos hasta [Sistema de ecuaciones no lineales](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.4/Ecuaciones_no_lineales.html#sistema-de-ecuaciones-no-lineales)
+## Clase 15
+
+18 de noviembre
+
+Llegamos hasta [Programacion_lineal_y_metodo_simplex.html#prueba-de-optimalidad](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html#prueba-de-optimalidad)
