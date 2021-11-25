@@ -1406,8 +1406,10 @@ A solution x is
 <div class="section" id="ejemplo-pl-s-sin-solucion">
 <h3>Ejemplo: PL’s sin solución<a class="headerlink" href="#ejemplo-pl-s-sin-solucion" title="Permalink to this headline">¶</a></h3>
 <p>Es posible que el PL no tenga soluciones óptimas lo cual ocurre sólo si:</p>
-<p><a class="reference external" href="http://1.No">1.No</a> tiene soluciones factibles y se le nombra PL <strong>no factible</strong>.</p>
-<p>2.Las restricciones no impiden que el valor de la función objetivo mejore indefinidamente en la dirección favorable. En este caso se tiene un PL con función objetivo no acotada y se le nombra PL <strong>no acotado</strong>.</p>
+<ol class="simple">
+<li><p>No tiene soluciones factibles y se le nombra PL <strong>no factible</strong>.</p></li>
+<li><p>Las restricciones no impiden que el valor de la función objetivo mejore indefinidamente en la dirección favorable. En este caso se tiene un PL con función objetivo no acotada y se le nombra PL <strong>no acotado</strong>.</p></li>
+</ol>
 <p>Un ejemplo de un PL no factible pues su región factible es vacía se obtiene al añadir la restricción <span class="math notranslate nohighlight">\(3x_1+ 5x_2 \geq 50\)</span> a las restricciones anteriores:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -2146,6 +2148,9 @@ A =
 <p>Por tanto:</p>
 <div class="math notranslate nohighlight">
 \[Ax = Bx_B + N x_N = B x_B = b\]</div>
+<p>y se tiene:</p>
+<div class="math notranslate nohighlight">
+\[x_B = B^{-1}b.\]</div>
 <p>En este paso inicial <strong>para el ejemplo prototipo</strong> <span class="math notranslate nohighlight">\(x_B = b\)</span> pues <span class="math notranslate nohighlight">\(B\)</span> es la identidad:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\therefore x_B = \left [ \begin{array}{c} x_3 \\ x_4 \\ x_5\end{array}\right ] = B^{-1}b = \left [ \begin{array}{ccc} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{array} \right ]^{-1} \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array}\right ]=\left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array}\right ]\end{split}\]</div>
@@ -2234,12 +2239,12 @@ f_o(x) &amp;=&amp; f_o(x) -  (x_1 + x_3 - 4) - (2x_2 + x_4 - 12) - (3x_1 + 2x_2 
 <div class="math notranslate nohighlight">
 \[\lambda_{N_j} =  -c_{N_j} + \nu^Ta_j \quad j \in \mathcal{N}\]</div>
 <p>con <span class="math notranslate nohighlight">\(a_j\)</span> <span class="math notranslate nohighlight">\(j\)</span>-ésima columna de <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{3 \times 5}\)</span> y <span class="math notranslate nohighlight">\(\nu \in \mathbb{R}^{3}\)</span>.</p>
-<p>En el método símplex se mantiene en cada iteración <span class="math notranslate nohighlight">\(\lambda_{B_j} = 0 \forall j \in \mathcal{B}\)</span> y se <strong>busca</strong> que <span class="math notranslate nohighlight">\(\lambda_{N_j} \forall j \in \mathcal{N}\)</span> sea no negativo para problemas de minimización o no positivo para problemas de maximización. Por lo anterior el vector <span class="math notranslate nohighlight">\(\nu\)</span> se obtiene resolviendo la ecuación: <span class="math notranslate nohighlight">\(\nu ^T B = c_B^T\)</span> y por tanto <span class="math notranslate nohighlight">\(\nu = B^{-T} c_B \)</span>.</p>
+<p>En el método símplex se mantiene en cada iteración <span class="math notranslate nohighlight">\(\lambda_{B_j} = 0 \forall j \in \mathcal{B}\)</span> y se <strong>busca</strong> que <span class="math notranslate nohighlight">\(\lambda_{N_j} \forall j \in \mathcal{N}\)</span> sea no negativo para problemas de minimización o no positivo para problemas de maximización. Si la búsqueda anterior no se logra, se <strong>continúa iterando</strong> hasta llegar a una solución o mostrar un mensaje si no fue posible encontrar una solución. Por lo anterior el vector <span class="math notranslate nohighlight">\(\nu\)</span> se obtiene resolviendo la ecuación: <span class="math notranslate nohighlight">\(\nu ^T B = c_B^T\)</span> y por tanto <span class="math notranslate nohighlight">\(\nu = B^{-T} c_B \)</span>.</p>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
 <li><p>La justificación del por qué <span class="math notranslate nohighlight">\(\lambda = -c  + A^T \nu\)</span> se realizará más adelante, por lo pronto considérese que esto se obtiene de las <a class="reference internal" href="../../3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#primeraformulacioncondkkt"><span class="std std-ref">condiciones KKT de optimalidad</span></a>.</p></li>
-<li><p>Por la definición de <span class="math notranslate nohighlight">\(\nu\)</span> se cumple: <span class="math notranslate nohighlight">\(f_o(x) = (-c)^Tx = -c_B^Tx_B - c_N^T x_N = -c_B^T B^{-1}b = b^T(-\nu)\)</span>.</p></li>
+<li><p>Por la definición de <span class="math notranslate nohighlight">\(\nu\)</span> se cumple: <span class="math notranslate nohighlight">\(f_o(x) = (-c)^Tx = -c_B^Tx_B - c_N^T x_N = -c_B^T B^{-1}b = - \nu^Tb = b^T(-\nu)\)</span>.</p></li>
 <li><p>No se recomienda aprenderse fórmulas o expresiones pues este problema se planteó como maximizar <span class="math notranslate nohighlight">\((-c)^Tx\)</span>, si se hubiera elegido maximizar <span class="math notranslate nohighlight">\(c^Tx\)</span> (sin signo negativo) se modificarían un poco las expresiones anteriores para <span class="math notranslate nohighlight">\(\lambda, \nu, f_o(x)\)</span>.</p></li>
 </ul>
 </div>
@@ -2536,7 +2541,7 @@ B =
 <p>La actualización de las variables básicas después del paso inicial se realiza con la expresión computacional:</p>
 <div class="math notranslate nohighlight">
 \[x_B = x_B - dx_{nb}^{+}\]</div>
-<p>donde: <span class="math notranslate nohighlight">\(x_{nb}\)</span> es la variable no básica que se volverá básica en la iteración actual. Después de actualizar <span class="math notranslate nohighlight">\(x_{nb}\)</span> la variable básica <span class="math notranslate nohighlight">\(x_{ba}\)</span> pasa a estar en <span class="math notranslate nohighlight">\(x_N\)</span> con valor de <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>donde: <span class="math notranslate nohighlight">\(x^+_{nb}\)</span> es la variable no básica que se volverá básica en la iteración actual. Después de actualizar <span class="math notranslate nohighlight">\(x_{nb}\)</span> la variable básica <span class="math notranslate nohighlight">\(x_{ba}\)</span> pasa a estar en <span class="math notranslate nohighlight">\(x_N\)</span> con valor de <span class="math notranslate nohighlight">\(0\)</span>.</p>
 <p>Posterior a la actualización de <span class="math notranslate nohighlight">\(x_B\)</span> se intercambian las columnas de <span class="math notranslate nohighlight">\(B\)</span> correspondientes a las variables <span class="math notranslate nohighlight">\(x_{nb}\)</span> y <span class="math notranslate nohighlight">\(x_{ba}\)</span>.</p>
 <p><strong>La justificación de la expresión anterior es la siguiente:</strong></p>
 <p>Como <span class="math notranslate nohighlight">\(Ax = b\)</span> y <span class="math notranslate nohighlight">\(Bx_B + Nx_N = b\)</span> pero será incrementada la variable <span class="math notranslate nohighlight">\(x_{nb}\)</span> y disminuida <span class="math notranslate nohighlight">\(x_{ba}\)</span> a cero entonces si <span class="math notranslate nohighlight">\(x^+\)</span> denota el nuevo valor de <span class="math notranslate nohighlight">\(x\)</span> se tiene:</p>
