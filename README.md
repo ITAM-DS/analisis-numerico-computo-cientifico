@@ -29,11 +29,10 @@ Las clases son los días jueves.
 | 13 (25-29 de octubre)|Ejemplos de problemas de optimización convexa.|
 | 14 (1-5 de noviembre)|Continuación ejemplos de problemas de optimización convexa.|
 | 15 (8-12 de noviembre)|Métodos para resolver ecuaciones no lineales.|
-| 16 (15-19 de noviembre)|Continuación Métodos para resolver ecuaciones no lineales.|
-| 17 (22-26 de noviembre)|Métodos para programación lineal: método simplex.|
-| 18 (29 de nov - 1 de dic)|Continuación métodos para programación lineal: método simplex.|
+| 16 (15-19 de noviembre)|Continuación Métodos para resolver ecuaciones no lineales. Inicio métodos para programación lineal: método simplex.|
+| 17 (22-26 de noviembre)|Continuación métodos para programación lineal: método simplex.|
 
-Total de clases: 17 (1 asueto). Total de número de horas: 51 hrs.
+Total de clases: 16 (1 asueto). Total de número de horas: 48 hrs.
 
 
 [Equipos de optimización]()
@@ -115,7 +114,7 @@ Llegamos hasta: [Ejemplo Eigenvalores_y_eigenvectores](https://itam-ds.github.io
 
 30 de septiembre
 
-Finalizamos:  [Eigenvalores_y_eigenvectores](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html)
+Finalizamos: [Eigenvalores_y_eigenvectores](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html)
 
 ## Clase 9
 
@@ -145,6 +144,8 @@ Ejemplos con kale y kubeflow.
 
 28 de octubre
 
+Examen 1.
+
 Faltó poco para terminar [Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#metodo-de-busqueda-de-linea-por-backtracking](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#metodo-de-busqueda-de-linea-por-backtracking)
 
 ## Clase 13
@@ -167,4 +168,14 @@ Llegamos hasta [Ecuaciones_no_lineales.html#Sistema de ecuaciones no lineales](h
 
 18 de noviembre
 
+Finalizamos [Ecuaciones_no_lineales.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.4/Ecuaciones_no_lineales.html)
+
 Llegamos hasta [Programacion_lineal_y_metodo_simplex.html#prueba-de-optimalidad](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html#prueba-de-optimalidad)
+
+## Clase 16
+
+25 de noviembre
+
+Examen 2.
+
+Finalizamos: [Programacion_lineal_y_metodo_simplex.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html)
