@@ -57,6 +57,8 @@ Organicé el *sprint planning* y llevé algunos temas de propuesta. Una vez que 
 
 Fernando:
 
+Durante el *sprint planning* propuse el tema de los índices del mercado financiero e investigué algunas referencias sobre como podríamos atacar el problema. En particular, encontré en un artículo de Victoria, Buenos Aires que habla de un índice multidimensional que puede ser de gran utilidad para poder desarrollar nuestro modelo y cerré el issue [Identificar el métodos de optimización que mejor se ajusta al problema financiero](https://github.com/kennyldc/proyecto_final_opt21_eq8/issues/4) con los links de las referencias. Luego revisé los criterios de paro del método deflation dado que es una aproximación útil a nuestro problema. Con esto emepecé a trabajar en las funciones que usaremos para el proyecto.
+
 Juan: 
 
 Encontré los índices con los que estaremos trabajando, realicé la descarga de la información histórica de los últimos 4 años y la limpieza de los datos siendo el valor al cierre del día la variable de interés en cada índice. Acomodé todos los índices en un Data Frame para su fácil manejo.
