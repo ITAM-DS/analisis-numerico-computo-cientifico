@@ -38,4 +38,4 @@ La presentación de avances ser realiza por Zoom.
 |30 de nov|equipo 5|18:00 a 18:40|
 |30 de nov|equipo 8|18:40 a 19:20|
 
-### El proyecto final se presenta en la segunda semana de finales.
+### El proyecto final se presenta en la primera semana de finales y es agendado por control escolar.
