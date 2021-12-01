@@ -59,6 +59,9 @@ Fernando:
 
 Juan: 
 
+Encontré los índices con los que estaremos trabajando, realicé la descarga de la información histórica de los últimos 4 años y la limpieza de los datos siendo el valor al cierre del día la variable de interés en cada índice. Acomodé todos los índices en un Data Frame para su fácil manejo.
+
+
 ---
 
 ## Tarea (*milestone*) que continúa
