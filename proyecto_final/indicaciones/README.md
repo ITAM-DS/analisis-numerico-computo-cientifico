@@ -1,6 +1,6 @@
 # Indicaciones
 
-Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante los "" del mes de noviembre en los que se deberá exponer lo que han realizado.
+Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante el mes de noviembre en los que se deberá exponer lo que han realizado.
 
 En el nivel:  
 
@@ -24,32 +24,18 @@ es un archivo de control para la lista de proyectos y **únicamente lo actualiza
 
  ## Fechas del mes de noviembre en los que los equipos tendrán que presentar avances del proyecto:
 
-* "" de "".
-
-* "" de "".
-
-* "" de "". 
-
-
-El proyecto final se presenta en la segunda semana de finales.
-
-
-### Asignación de fechas para presentar avances:
-
 La presentación de avances ser realiza por Zoom. 
 
 ||||
 |:---:|:---:|:---:|
 |Fechas|Equipos|Horario|
-|"" de ""|""|"" a "" am|
-|"" de ""|""|"" a "" am|
-|"" de ""|""|"" a "" am|
-|"" de ""|""|"" a "" am|
+|17 de nov|equipo 6|19 a 19:40|
+|18 de nov|equipo 3|18 a 18:40|
+|23 de nov|equipo 7|18 a 18:40|
+|23 de nov|equipo 2|18:40 a 19:20|
+|26 de nov|equipo 1|18:00 a 18:40|
+|26 de nov|equipo 4|18:40 a 19:20|
+|30 de nov|equipo 5|18:00 a 18:40|
+|30 de nov|equipo 8|18:40 a 19:20|
 
-
-
-
-
-
-
-
+### El proyecto final se presenta en la segunda semana de finales.
