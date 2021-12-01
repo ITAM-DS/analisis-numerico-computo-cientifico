@@ -53,7 +53,7 @@ Por último, hicimos una cita con el profesor (@palmoreck) desde [nuestro grupo 
 
 Carlos:
 
-Organicé el *sprint planning* y llevé algunos temas de propuesta. Una vez que elegimos el tema financiero hice una pequeña investigación del tema. Leí todas las indicaciones del proyecto bajo el repositorio del curso para poder cumplir con los requisitos del profesor. Creé el repositorio del proyecto final y ajusté los *projects*, *milestones* e *issues* para cumplir nuestros objetivos. Hice un fork del repositorio del curso para dejar la estructura con los avances en el directorio del curso. Volví a checar algunas referencias sobre el *framework scrum*, documenté el *sprint planning* y el seguimiento de cada uno de los miembros del equipo y elaboré todo el README del avance para hacer el pull request del avance.
+Organicé el *sprint planning* y llevé algunos temas de propuesta. Una vez que elegimos el tema financiero hice una pequeña investigación del tema. Leí todas las indicaciones del proyecto bajo el repositorio del curso para poder cumplir con los requisitos del profesor. Creé el repositorio del proyecto final y ajusté los *projects*, *milestones* e *issues* para cumplir nuestros objetivos. Hice un fork del repositorio del curso para dejar la estructura con los avances en el directorio del curso. Volví a checar algunas referencias sobre el *framework scrum*, documenté el *sprint planning* y el seguimiento de cada uno de los miembros del equipo y elaboré todo el README del avance para hacer el pull request en el directorio.
 
 Fernando:
 
