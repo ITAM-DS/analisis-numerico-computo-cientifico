@@ -20,6 +20,8 @@ En nuestro trabajo final nos concentraremos en crear un índice financiero utili
 ## Avances y actualizaciones
 
 En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en nuestro proyecto. 
+En la carpeta [avance2](avance 2) se encuentra el reporte del segundo avance en nuestro proyecto. 
+
 
 *Conforme el proyecto avance y se agregue nuevo material este texto se actualizará.*
 
