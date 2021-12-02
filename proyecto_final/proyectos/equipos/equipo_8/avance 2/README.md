@@ -14,8 +14,6 @@
 
 ### Resúmen
 
-En este segundo avance 
-
 Nuestro avance 2 está ligado al segundo milestone de nuestro proyecto: [Avance 2 - Programación de las funciones para solucionar el problema y motivación en el trabajo escrito](https://github.com/kennyldc/proyecto_final_opt21_eq8/milestone/2). Durante esta etapa se asignaron tareas específicas a cada uno de los miembros para continuar que se describe a continuación.
 
 
