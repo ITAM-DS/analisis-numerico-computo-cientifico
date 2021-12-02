@@ -42,7 +42,12 @@ Carlos:
 
 
 Fernando:
-
+Creé un archivo que tiene incluido las funciones que usaremos para desarrollar el proyecto, entre las funciones se encuentran:
+- Método de la potencia
+- Método de Deflation
+- Lectura de datos
+- Normalización de base de datos
+- Gráficas para bases de datos normalizadas y sin normalizar
 
 Juan: 
 
