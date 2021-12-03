@@ -2,9 +2,12 @@
 
 Integrantes:
 
--Rodrigo Ivan Juárez Jaramillo
--Miguel Ángel Reyes Retana
--Joel Jaramillo Pacheco
+-Rodrigo Iván Juárez Jaramillo  
+
+-Miguel Ángel Reyes Retana  
+
+-Joel Jaramillo Pacheco  
+
 -Mónica Altagracia García López
 
 **Título del proyecto**: El problema de Santa viajero
