@@ -40,6 +40,7 @@ Cada una de esta tareas se trasladaron a los siguientes issues dentro del [repos
 
 Carlos:
 
+Puse el esqueleto del reporte escrito del proyecto y continué con la lectura e investigación sobre cómo funcionan los mercados financieros y sus índices. Revisé las referencias que subió Fernando en el avance 1 para sintentizarlos en el escrito. Abrí nuevos issues relacionados al milestone 2 para darle seguimiento en Github.
 
 Fernando:
 Creé un archivo que tiene incluido las funciones que usaremos para desarrollar el proyecto, entre las funciones se encuentran:
