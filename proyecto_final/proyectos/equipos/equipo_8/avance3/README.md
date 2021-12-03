@@ -14,13 +14,13 @@
 
 ### Resúmen
 
-Nuestro avance 3 está ligado al segundo milestone de nuestro proyecto: [Avance 3 - Solución al problema de optimización y elaboración del reporte final](https://github.com/kennyldc/proyecto_final_opt21_eq8/milestone/3)
+Nuestro avance 3 está ligado al tercer milestone de nuestro proyecto: [Avance 3 - Solución al problema de optimización y elaboración del reporte final](https://github.com/kennyldc/proyecto_final_opt21_eq8/milestone/3)
 
 User de Github | Tareas a realizar | Rol |
 |:---:|:---:|:---:|
 |@Fminaurol| Implementar y describir funciones desarrolladas para la solución| Desarrollo |
 |@Juanes8| Agregar teoría de los métodos implementados y resultados| Desarrollo |
-|@kennyldc| Incluir motivación y metodologías al reporte | Project Manager |
+|@kennyldc| Incluir motivación del trabajo con información de los índices financieros y metodologías al reporte | Project Manager |
 
 Cada una de esta tareas se trasladaron a los siguientes issues dentro del [repositorio](https://github.com/kennyldc/proyecto_final_opt21_eq8):
 
@@ -39,7 +39,7 @@ Cada una de esta tareas se trasladaron a los siguientes issues dentro del [repos
 
 ### Individual
 
-Carlos:
+Carlos: Incluí la sección de "Motivación del Trabajo" con la subsecciones "Una introducción a los índices del mercado de valores" e "Índices bursátiles utilizados para el proyecto" donde redacté la información con respecto a qué son los índices bursátiles (stock price index) y por qué son relevante para su estudio. También redacté la sección "Motivación del Método" donde incluyo la información de las referencias en cuanto a la utilidad del PCA en el mercado financiero. Seguí con el mantenimiento y la asignación de los issues dentro del repo.
 
 
 Fernando:
@@ -53,8 +53,7 @@ Realicé la integración de la solución al reporte final, la descripción de lo
 
 ## Tarea (*milestone*) que continúa
 
-Después de la aprobación del proyecto por parte profesor nos juntamos de nuevo como equipo y definimos el siguiente milestone en el repositorio: [Avance 2 - Programación de las funciones para solucionar el problema y motivación dentro del trabajo](https://github.com/kennyldc/proyecto_final_opt21_eq8/milestone/2). Para esta nueva tarea proponemos: 1) Limpiar los datos de los indicadores financieros y hacer visualizaciones preliminares; 2) Programar las funciones útiles para el método de la potencia y deflation y 3) Pasar los avances a nuestro trabajo escrito.
-
+Nuestra siguiente tarea ya está dentro del repositorio bajo el milestone [Avance 4 - Preparar la presentación final del proyecto](https://github.com/kennyldc/proyecto_final_opt21_eq8/milestone/4).
 
 
 
