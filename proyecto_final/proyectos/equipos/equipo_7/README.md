@@ -20,7 +20,7 @@ Objetivo del proyecto: Haciendo uso de rotaciones de Jacobi, obtener las PCA par
 
 - El [**repositorio**](https://github.com/LuzVerde23/proyecto-final-equipo-7) 
 
-- El [**notebook**](https://github.com/LuzVerde23/proyecto-final-equipo-7/blob/main/reporte_equipo_7_proyecto_final.ipynb) en el que se basa este proyecto y en formato pdf en la carpeta [**Reporte**](https://github.com/LuzVerde23/proyecto-final-equipo-7/blob/main/Reporte/reporte_PCA.pdf)
+- El [**notebook**](https://github.com/LuzVerde23/proyecto-final-equipo-7/blob/main/reporte_equipo_7_proyecto_final.ipynb) en el que se basa este proyecto y en formato pdf en la carpeta [**Reporte**](https://drive.google.com/file/d/12QZQ-52iBzyIMDC6d0nnlm4hgB1xEaOT/view?usp=sharing)
 
 - Las funciones para calcular los eigenvalores y egenvectores se encuetran en la carpeta [**codigo**](https://github.com/LuzVerde23/proyecto-final-equipo-7/tree/main/codigo)
 
