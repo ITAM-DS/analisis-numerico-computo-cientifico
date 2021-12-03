@@ -12,6 +12,7 @@ Integrantes:
 
 [Liga al repositorio](https://github.com/kennyldc/proyecto_final_opt21_eq8)
 
+[Liga al trabajo escrito](https://github.com/kennyldc/proyecto_final_opt21_eq8/blob/main/trabajo_final_equipo_8.ipynb)
 
 ### Objetivo del Trabajo 
 
