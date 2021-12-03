@@ -1,4 +1,4 @@
-## Equipo numéro 8
+## Equipo número 8
 
 Integrantes:
 
