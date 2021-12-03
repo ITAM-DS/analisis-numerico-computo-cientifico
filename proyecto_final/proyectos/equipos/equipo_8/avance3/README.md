@@ -43,7 +43,7 @@ Carlos:
 
 
 Fernando:
-
+Realicé la solución general del proyecto en el archivo de "solución.ipynb" y realicé muchas modificaciones a las funciones originalmente planteadas conforme se avanzaba en el archivo de solución. Añadí en el reporte una descripción general de lo que se hizo en cada una de las funciones.
 
 Juan: 
 
