@@ -23,7 +23,7 @@ En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en nu
 
 En la carpeta [avance2](https://github.com/kennyldc/analisis-numerico-computo-cientifico/tree/optimizacion-2021/proyecto_final/proyectos/equipos/equipo_8/avance%202) se encuentra el reporte del segundo avance en nuestro proyecto. 
 
-En la carpeta [avance3](avance3) se encuentra el reporte del primer avance en nuestro proyecto. 
+En la carpeta [avance3](avance3) se encuentra el reporte del tercer avance en nuestro proyecto. 
 
 *Conforme el proyecto avance y se agregue nuevo material este texto se actualizará.*
 
