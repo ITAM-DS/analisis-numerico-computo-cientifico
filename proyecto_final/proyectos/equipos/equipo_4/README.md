@@ -22,7 +22,9 @@ Implementación del algoritmo BFGS para poder hacer estimación numérica de los
 
 [Liga a repo](https://github.com/Monfiz/Proyecto_final_opt_eq_4)
 
-Trabajo escrito (fuera de la repo): [Drive con el Reporte](https://drive.google.com/file/d/1wvY6tFInC9fjQV58VhQMGc5Jp3mMrtmj/view?usp=sharing)
+Trabajo escrito (fuera de la repo): [Drive con el Reporte](https://drive.google.com/file/d/16Wtwd2kilk4LA6NT-3Fyd7DuFLHrivoj/view)
+
+Presentación (fuera de la repo): [Drive con la Presentación](https://drive.google.com/file/d/1cCK-d9wEWkSzn3xvBUmX_qFt8jrvxgBZ/view?usp=sharing)
 
 En la carpeta [AWS](https://github.com/Monfiz/Proyecto_final_opt_eq_4/tree/main/AWS) hay screenshots de evidencia de que utilizamos AWS. 
 
@@ -57,3 +59,4 @@ En la carpeta [Reporte](https://github.com/Monfiz/Proyecto_final_opt_eq_4/tree/m
 * [Line search in gradient and Newton directions](https://people.duke.edu/~ccc14/sta-663-2018/notebooks/S09E_Optimization_Line_Search.html)
 * [Wolfe conditions](https://en.wikipedia.org/wiki/Wolfe_conditions)
 * [Unconstrained Convex Optimization](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html?highlight=line%20search)
+
