@@ -25,7 +25,7 @@
 
 ## 🌐 [Trabajo escrito](https://github.com/fuentesortiz/Optimizacion_2021_Proyecto_Final_Equipo_1/blob/main/Trabajo_Escrito%20Equipo_1.pdf)
 
-## 🌐 [Presentación]()
+## 🌐 [Presentación](https://github.com/fuentesortiz/Optimizacion_2021_Proyecto_Final_Equipo_1/blob/main/presentacion_equipo1.pdf)
 
 ## 🌐 [Implementación]() 
 
