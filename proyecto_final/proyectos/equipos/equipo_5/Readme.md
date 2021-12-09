@@ -17,9 +17,9 @@
 
 [Liga del repositorio del equipo](https://github.com/vserranoc/proyecto-final-equipo-5).
 
-### Trabajo escrito (fuera del repo) : [liga_trabajo_escrito](https://drive.google.com/drive/folders/1cFHfsLq9Msm1STx1G6jjXMfiQ7P0GnbY?usp=sharing)
+### Trabajo escrito (fuera del repo) : [liga_trabajo_escrito](https://drive.google.com/file/d/1oWaUKUx015C2x07xE1gaLOrvlZgqVC-J/view?usp=sharing)
 
-### Presentación (fuera del repo): [liga_presentación]()
+### Presentación (fuera del repo): [liga_presentación](https://docs.google.com/presentation/d/1WZjx67mwVRQmP4mEUpDlCICaUox0lcwc/edit?usp=sharing&ouid=112951052758018742810&rtpof=true&sd=true)
 
 ### Implementación (en el repo): [codigo](https://github.com/vserranoc/proyecto-final-equipo-5/tree/main/codigo) 
 
@@ -38,6 +38,7 @@ La carpeta notebooks contiene:
 |eigenvalues_and_eigenvectors.ipynb|Implementación del algoritmo QR|
 |lda_implementation.ipynb|Implementación LDA|
 |Borrador_reporte.ipynb|Breve introducción y documentación de algoritmo QR y LDA|
+|reporte_final.ipynb|Reporte final|
 
 
 ### Referencias del proyecto:
