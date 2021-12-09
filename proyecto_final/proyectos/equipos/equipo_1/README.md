@@ -30,9 +30,9 @@
 ## 🌐 [Implementación]() 
 
 
-- En la carpeta [avance1]() se encuentra el reporte del primer avance en nuestro proyecto.
+- En la carpeta [avance1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/optimizacion-2021/proyecto_final/proyectos/equipos/equipo_1/avance1/avance1.md) se encuentra el reporte del primer avance en nuestro proyecto.
  
-- En la carpeta [avance2]() se encuentra el reporte del segundo avance en nuestro proyecto.
+- En la carpeta [avance2](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/optimizacion-2021/proyecto_final/proyectos/equipos/equipo_1/Avance2/avance2.md) se encuentra el reporte del segundo avance en nuestro proyecto.
     
 - En la carpeta [avance3]() se encuentra el reporte del tercer avance en nuestro proyecto.
 
