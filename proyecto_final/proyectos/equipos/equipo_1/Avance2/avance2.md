@@ -40,10 +40,15 @@
 
 ## Referencias del proyecto 💡
 
-[**1**] Problema de Flujo en Redes de la [sección 4.1 del Libro de Optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html).
+[**1**] Palacios Moreno, E. (2021). Problema de Flujo en Redes de la sección 4.1 del libro de Optimización. Instituto Tecnológico Autónomo de México. <https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html>.
 
-[**2**] E. F. Robertson J. J. O’Connor. George Dantzig. <http://www-history.mcs.standrews.ac.uk/Biographies/Dantzig George.html, University of St. Andrews, 2003>.
+[**2**] Catherine Lewis,  Linear Programming: Theory and Applications, 2008, <https://www.whitman.edu/Documents/Academics/Mathematics/lewis.pdf>.
 
-[**3**] [*SciPy documentation*](https://scipy.org/)
+[**3**] [*SciPy documentation*](https://scipy.org/).
 
-[**4**] [*CVXPY documentation*](https://www.cvxpy.org/) 
+[**4**] Tenelema Yañez, E. (2019). Simulación de flujos de potencia en sistemas eléctricos de potencia usando métodos completos, desacoplados y linealizados. Universidad Politécnica Salesiana Sede Quito. <https://dspace.ups.edu.ec/bitstream/123456789/17625/1/UPS%20-%20ST004217.pdf>.
+
+[**5**] [*CVXPY documentation*](https://www.cvxpy.org/).
+  
+[**6**] E. F. Robertson J. J. O’Connor. George Dantzig. <http://www-history.mcs.standrews.ac.uk/Biographies/Dantzig George.html, University of St. Andrews, 2003>.
+ 
