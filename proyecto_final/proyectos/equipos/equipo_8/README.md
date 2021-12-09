@@ -14,6 +14,12 @@ Integrantes:
 
 [Liga al trabajo escrito](https://github.com/kennyldc/proyecto_final_opt21_eq8/blob/main/trabajo_final_equipo_8.ipynb)
 
+[Liga a la presentación](https://www.canva.com/design/DAEx0fqEHV0/egtxzVliwaTJxt4jd5pw6g/view?utm_content=DAEx0fqEHV0&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent)
+
+La implementación se encuentra en la carpeta [codigo](codigo) con las funciones para solucionar nuestro problema. 
+
+Tenemos una carpeta adicional nombrada [notebooks](notebooks) con un par de archivos que usamos de apoyo para ir probando las funciones en nuestros datos y realizar algunas visualizaciones que terminaron en nuestro trabajo escrito final.
+
 ### Objetivo del Trabajo 
 
 En nuestro trabajo final nos concentraremos en crear un índice financiero utilizando como insumo diversos indicadores financieros mundiales. Para conseguir este objetivo, en el proyecto planteamos un Análisis de Componentes Principales (PCA) usando el método de la potencia y deflation.
@@ -22,13 +28,13 @@ En nuestro trabajo final nos concentraremos en crear un índice financiero utili
 
 En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en nuestro proyecto. 
 
-En la carpeta [avance2](https://github.com/kennyldc/analisis-numerico-computo-cientifico/tree/optimizacion-2021/proyecto_final/proyectos/equipos/equipo_8/avance%202) se encuentra el reporte del segundo avance en nuestro proyecto. 
+En la carpeta [avance2](avance2) se encuentra el reporte del segundo avance en nuestro proyecto. 
 
 En la carpeta [avance3](avance3) se encuentra el reporte del tercer avance en nuestro proyecto. 
 
-*Conforme el proyecto avance y se agregue nuevo material este texto se actualizará.*
+En la carpeta [avance4](avance4) se encuentra el reporte del cuarto y último avance en nuestro proyecto.
 
-Referencias del proyecto:
+## Referencias del proyecto:
 
 * [Investing (2021) . Series con índices bursátiles](https://www.investing.com)
 
