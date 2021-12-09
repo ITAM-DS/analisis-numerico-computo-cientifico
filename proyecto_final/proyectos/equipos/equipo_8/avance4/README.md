@@ -31,7 +31,7 @@ Cada una de esta tareas se trasladaron a los siguientes dos issues dentro del [r
 
 ### Individual
 
-Carlos: Corregí los typos de redacción el trabajo escrito. Diseñé la presentación en la aplicación Canva y actualicé el directorio de con los avances finales de nuestro proyecto.
+Carlos: Corregí los typos de redacción el trabajo escrito. Diseñé la presentación en la aplicación Canva y actualicé el directorio con los avances finales de nuestro proyecto.
 
 
 Fernando: Investigué sobre la interpretación de los componentes principales para incluirlos en la versión final del trabajo escrito. Incluí el print con los componentes y agregué un párrafo donde se explica esa sección.
