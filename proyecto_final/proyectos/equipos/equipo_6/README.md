@@ -14,7 +14,7 @@ Objetivo del proyecto: **Crear una medición que permita cuantificar y monitorea
 
 [Repo en el que se trabaja](https://github.com/mhnk77/Optim_proyecto_final)
 
-Trabajo escrito (fuera del repo): [Link al trabajo escrito](https://github.com/mhnk77/Optim_proyecto_final/blob/main/reporte/MNO_Reporte%20Final.pdf)
+Trabajo escrito (fuera del repo): [Link al trabajo escrito](https://github.com/mhnk77/Optim_proyecto_final/blob/main/reporte/MNO_Reporte%20Final_v2.pdf)
 
 
 En la carpeta [avance1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2021/proyecto_final/proyectos/equipos/equipo_6/avance_1) se encuentra el reporte del primer avance en nuestro proyecto. 
