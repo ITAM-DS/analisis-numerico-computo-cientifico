@@ -27,7 +27,7 @@
 
 ## 🌐 [Presentación](https://github.com/fuentesortiz/Optimizacion_2021_Proyecto_Final_Equipo_1/blob/main/presentacion_equipo1.pdf)
 
-## 🌐 [Implementación]() 
+## 🌐 [Implementación](https://github.com/fuentesortiz/Optimizacion_2021_Proyecto_Final_Equipo_1/tree/main/notebooks) 
 
 
 - En la carpeta [avance1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/optimizacion-2021/proyecto_final/proyectos/equipos/equipo_1/avance1/avance1.md) se encuentra el reporte del primer avance en nuestro proyecto.
