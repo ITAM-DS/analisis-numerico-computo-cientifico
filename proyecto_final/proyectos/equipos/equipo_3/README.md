@@ -2,13 +2,12 @@
 
 Integrantes:
 
--Rodrigo Iván Juárez Jaramillo  
-
--Miguel Ángel Reyes Retana  
-
--Joel Jaramillo Pacheco  
-
--Mónica Altagracia García López
+|             NOMBRE             | USUARIO GITHUB |
+|:------------------------------:|:--------------:|
+|     Joel Jaramillo Pacheco     |  joelitam2021  |
+|    Miguel Ángel Reyes Retana   |  rrmiguel-2401 |
+| Mónica Altagracia García López |   mogarcia62   |
+|  Rodrigo Ivan Juárez Jaramillo |     ro-juja    |
 
 **Título del proyecto**: El problema de Santa viajero
 
@@ -18,9 +17,9 @@ Integrantes:
 
 **Trabajo escrito**: [liga](https://github.com/mogarcia62/Proyecto-final-equipo3-meo-2021/blob/main/Proyecto_final.pdf)
 
-**Presentación**: [liga](https://github.com/mogarcia62/Proyecto-final-equipo3-meo-2021).
+**Presentación**: [liga](https://github.com/mogarcia62/Proyecto-final-equipo3-meo-2021/blob/main/Presentaci%C3%B3n/Presentacio%CC%81n_proyecto_final_equipo3.pdf).
 
-**Implementación**: [liga](https://github.com/mogarcia62/Proyecto-final-equipo3-meo-2021/blob/main/MNO_proyecto_final__equipo3.ipynb)
+**Implementación**: [liga](https://github.com/mogarcia62/Proyecto-final-equipo3-meo-2021/blob/main/Entrega_final.ipynb)
 
 En la carpeta avances se encuentran los reportes de los avances en nuestro proyecto.
 
@@ -29,3 +28,7 @@ En la carpeta avances se encuentran los reportes de los avances en nuestro proye
 1) [Traveling Santa Problem](https://www.kaggle.com/c/traveling-santa-problem/data?select=santa_cities.csv)
 
 2) [Multiple Traveling Salesman Problem](https://colab.research.google.com/github/cvxpy/cvxpy/blob/master/examples/notebooks/WWW/mTSP_en.ipynb)
+
+3) [Hayes, G. (2019). mlrose: Machine Learning, Randomized Optimization and SEarch package for Python.Accessed: 01-12-2021](https://github.com/gkhayes/mlrose)
+
+4) [El problema del agente viajero: un recorrido sobre su historia, sus aplicaciones y problema relacionados. Un encuentro discreto, Edgar Possani](https://www.itam.mx/sites/default/files/u444/platica_possani.pdf)
