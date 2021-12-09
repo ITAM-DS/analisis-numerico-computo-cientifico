@@ -1,0 +1,63 @@
+---
+title: "Implementación de LIBMF en R"
+author: "Aide Jazmín González Cruz, Yusuri Arciga Reyes, Karina Lizette Gamboa Puente, Oscar Arturo Bringas López"
+output: html_notebook
+---
+
+El presente Notebook, muestra como correr LIBMF en R. Para ello lo primero que se tiene que haceres instalar la librería *recosystem* usando la instrucción ***install.package('recosystem')***
+
+Se llama a la librería:
+
+```{r}
+library(recosystem)
+```
+
+Para cargar los archivos de entrenamiento y test es necesario colocarlos en la carpeta *dat* del directorio donde se encuentra el paquete *recosystem*, si no se sabe donde esta este paquete se puede encontrar con la siguiente instrucción:
+
+```{r}
+system.file(package = "recosystem")
+```
+Ahora se prueba con un ejemplo de entretamiento para calcular la matriz $P$ y $Q$. Nota: Los datasets *train.txt* y *test.txt* se generaron en python, cuando se trabajo la implementación es este paquete.
+
+
+```{r}
+train_set = system.file("dat","train.txt", package = "recosystem")
+train_file = data_file(system.file("dat", "train.txt", package = "recosystem"))
+test_file = data_file(system.file("dat", "test.txt", package = "recosystem"))
+
+
+
+# Creamos un objeto recosystem 
+r = Reco()
+
+
+set.seed(123) # This is a randomized algorithm
+opts = r$tune(train_set, opts = list(dim = c(10), loss = "l1", nthread = 1))
+
+opts_tune = r$tune(train_file)$min
+r$train(train_file, out_model = NULL, opts = opts_tune)
+
+## Write predicted values into file
+out_pred = out_file(tempfile())
+r$predict(test_file, out_pred)
+
+## Return predicted values in memory
+pred = r$predict(test_file, out_memory())
+
+## If testing data are stored in memory
+test_df = read.table(test_file@source,sep = " ", header = FALSE)
+test_data = data_memory(test_df[, 1], test_df[, 2])
+pred2 = r$predict(test_data, out_memory())
+
+## Compare results
+print(scan(out_pred@dest, n = 10))
+head(pred, 10)
+head(pred2, 10)
+
+```
+
+
+**Referencias:**
+
+- Recommender System using Matrix Factorization. Package 'recosystem'. September 19, 2021. https://cran.r-project.org/web/packages/recosystem/recosystem.pdf
+
