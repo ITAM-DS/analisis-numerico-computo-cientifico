@@ -20,20 +20,21 @@ Objetivo del proyecto: Haciendo uso de rotaciones de Jacobi, obtener las PCA par
 
 - El [**repositorio**](https://github.com/LuzVerde23/proyecto-final-equipo-7) 
 
-- El [**notebook**](https://github.com/LuzVerde23/proyecto-final-equipo-7/blob/main/reporte_equipo_7_proyecto_final.ipynb) en el que se basa este proyecto y en formato pdf en la carpeta [**Reporte**](https://drive.google.com/file/d/12QZQ-52iBzyIMDC6d0nnlm4hgB1xEaOT/view?usp=sharing)
+- El [**notebook**](https://github.com/LuzVerde23/proyecto-final-equipo-7/blob/main/notebooks/reporte_PCA.ipynb) en el que se basa este proyecto y en formato pdf en la carpeta [**Reporte**](https://drive.google.com/file/d/16dd2palOQib0kyMAVB-qk3qNl1eWPSqR/view?usp=sharing)
+
+- Para consultar la [**Presentación**](https://slides.com/luzhernandez-3/deck) 
 
 - Las funciones para calcular los eigenvalores y egenvectores se encuetran en la carpeta [**codigo**](https://github.com/LuzVerde23/proyecto-final-equipo-7/tree/main/codigo)
 
 - En la carpeta [**avances**](https://github.com/LuzVerde23/proyecto-final-equipo-7/tree/main/Avances) se encuentran las carpetas con resúmenes de los respectivos avances que hemos tenido.
 
-### Plan de trabajo
+### Referencias del proyecto
 
-|Fecha | Actividad|Descripción|
-|:---:|:---:|:---:|
-|23 Nov 2021| Reunión inicial|Reunión para decidir el proyecto|
-|25 Nov 2021| Inicio de actividades|Asignación de tareas y alcances del proyecto|
-|28 Nov 2021| Revisión de primer avance| Primera revisión global al proyecto mínimo al 50%|
-|30 Nov 2021| Atención de feedbacks|Se atenderán todos los feedbacks del primer avance|
-|2 Dic 2021| Revisión del segundo avance| Segunda revisión global al proyecto mínimo al 95%|
-|4 Dic 2021| Atención de feedbacks|Se atenderán todos los feedbacks del segundo avance|
-|7 Dic 2021| Revisión de tercer avance| Última revisión global al proyecto|
+* [1] [How to Calculate Principal Component Analysis (PCA) from Scratch in Python](https://machinelearningmastery.com/calculate-principal-component-analysis-scratch-python/)
+* [2] [numpy.column_stack](https://numpy.org/doc/stable/reference/generated/numpy.column_stack.html#numpy.column_stack)
+* [3] [numpy.triu_indices](https://numpy.org/doc/stable/reference/generated/numpy.triu_indices.html)
+* [4] [Dimensionality reduction of color image using PCA](https://towardsdatascience.com/dimensionality-reduction-of-a-color-photo-splitting-into-rgb-channels-using-pca-algorithm-in-python-ba01580a1118)
+* [5] [How to reverse PCA and reconstruct original variables from several principal components?](https://stats.stackexchange.com/questions/229092/how-to-reverse-pca-and-reconstruct-original-variables-from-several-principal-com)
+* [5] [On the Applications of Robust PCA in Image and Video Processing](https://ieeexplore.ieee.org/document/8425659)
+* [6] [Application of Principal Component Analysis to Image Compression](https://www.intechopen.com/chapters/59936)
+* [7] [Principal Component Analysis in Image Processing](https://www2.humusoft.cz/www/papers/tcp05/mudrova.pdf)

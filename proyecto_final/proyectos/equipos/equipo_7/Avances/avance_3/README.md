@@ -1,4 +1,4 @@
-# Avance 2:  Compresión de Imágenes - PCA
+# Avance 3:  Compresión de Imágenes - PCA
 
 
 **Lenguaje principal:**  Python
@@ -21,7 +21,7 @@ el desempeño de nuestras funciones.
 ## Avances individuales:
 
 **Carlos:**
-
+Realizó el cálculo y el análisis de la varianza explicada, con las gráficas explicativas.
 
 **Edgar:**
 * Se realizó actualización a la función jacobi_iteration para que regresara tanto los eValues como 
@@ -43,7 +43,7 @@ el desempeño de nuestras funciones.
 
 
 **Luz:**
-
+* Escribió la primera versión completa del reporte escrito.
 
 **Ita:** 
 * Se trabajó en unificar el reporte con la parte de covarianza y la inversa transpuesta, así como profundizar en 
@@ -54,7 +54,7 @@ el desempeño de nuestras funciones.
 ## Tareas próximas:
 
 **Carlos:**
-
+* Revisión, complementación y profundizar en los argumentos de métodos numéricos y algoritmos que vamos a usar.
 
 **Ita:**
 * Revisión, complementación y profundizar en los argumentos de métodos numéricos y algoritmos que vamos a usar.
@@ -65,16 +65,13 @@ el desempeño de nuestras funciones.
   adicional actualizar las funciones de los scripts.
 
 **Luz:**
-
+* Coordinar las actividades de todos, llevar el control del reporte escrito y la presentación.
 
 
 ## Siguientes reuniones y resultados esperados:
 
 | # | Avance                                            | Fecha            | Entregable                                   |
 |---|-------------------------------------------------------------|------------------|----------------------------------------------|
-| 2 | Avance 2: Datos a analizar y propuesta de código            | Dom 28/Nov    | Notebook de implementación                   |
-| 3 | Avance 2bis: Resolución de feedbacks de la reunión anterior     | Mar 30/Nov    | Notebook de implementación     |
-| 4 | Avance 3: Revisión del proyecto completo    | Jue 2/Dic    | Notebooks reporte final e implementación                |
 | 5 | Avance 3bis: Resolución de feedbacks de la reunión anterior     | Sáb 4/Dic    | Notebooks reporte final     |
 | 6 | Avance 4: Revisión del tercer avance     | Mar 7/Dic   | Notebook final en PDF y mockup de presentación del proyecto|
 | 7 | Examen final:  Presentación del proyecto                    | Jue 09/Dic | PDF Reporte final y presentación del proyecto|
