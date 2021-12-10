@@ -35,7 +35,7 @@ Explotar los conocimientos adquiridos en la materia de Métodos Numéricos I (Op
 
 Trabajo escrito [liga_trabajo_escrito](https://drive.google.com/file/d/18BbDeOR05CJearVb1k0JN5lOGdvswdQm/view?usp=sharing)
 
-Presentación [liga_presentación](https://docs.google.com/presentation/d/19ktgKm-Y7yiB1-d_LxG4JBRG6ZZ0iNlh00RU5qPILpw/edit#slide=id.p1)
+Presentación [liga_presentación](https://drive.google.com/file/d/1xgNFPjlFZQxFK8uyAmHIPD-9ULKmkZ_K/view?usp=sharing)
 
 Acceso a carpeta de seguimiento del proyecto [Drive](https://drive.google.com/drive/u/2/folders/1615XRAEYcm5-ao3OmS8FfB10SQJom5Ki)
 
