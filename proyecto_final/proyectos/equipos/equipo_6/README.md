@@ -14,7 +14,7 @@ Objetivo del proyecto: **Crear una medición que permita cuantificar y monitorea
 
 [Repo en el que se trabaja](https://github.com/mhnk77/Optim_proyecto_final)
 
-Trabajo escrito (fuera del repo): [Link al trabajo escrito](https://github.com/mhnk77/Optim_proyecto_final/blob/main/reporte/MNO_Reporte%20Final_v2.pdf)
+Trabajo escrito (fuera del repo): [Link al trabajo escrito](https://github.com/mhnk77/Optim_proyecto_final/blob/main/reporte/MNO_Reporte_Final_vfinal.pdf)
 
 
 En el [notebook](https://github.com/mhnk77/Optim_proyecto_final/blob/main/notebooks/calculo_indice_PCA.ipynb) se encuentra código utilizado para la primer implementación del PCA utilizando funciones de Numpy
