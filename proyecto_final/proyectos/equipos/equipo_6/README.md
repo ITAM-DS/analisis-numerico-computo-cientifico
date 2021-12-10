@@ -17,10 +17,20 @@ Objetivo del proyecto: **Crear una medición que permita cuantificar y monitorea
 Trabajo escrito (fuera del repo): [Link al trabajo escrito](https://github.com/mhnk77/Optim_proyecto_final/blob/main/reporte/MNO_Reporte%20Final_v2.pdf)
 
 
+En el [notebook](https://github.com/mhnk77/Optim_proyecto_final/blob/main/notebooks/calculo_indice_PCA.ipynb) se encuentra código utilizado para la primer implementación del PCA utilizando funciones de Numpy
+
+Aquí está la [presentación](https://datastudio.google.com/reporting/e4ffda99-e143-4e69-9454-391ea1796dc6)
+
+
+
+
+### Avances
+
 En la carpeta [avance1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2021/proyecto_final/proyectos/equipos/equipo_6/avance_1) se encuentra el reporte del primer avance en nuestro proyecto. 
 
+Carpeta de [avance2](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2021/proyecto_final/proyectos/equipos/equipo_6/avance_2)
 
-En el [notebook](https://github.com/mhnk77/Optim_proyecto_final/blob/main/PCA_con_Numpy.ipynb) se encuentra código utilizado para la primer implementación del PCA utilizando funciones de Numpy
+Y [avance3 y ultimo](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2021/proyecto_final/proyectos/equipos/equipo_6/avance_3)
 
 Referencias del proyecto:
 
