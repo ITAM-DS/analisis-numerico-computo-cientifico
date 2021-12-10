@@ -20,7 +20,7 @@ from sklearn.decomposition import PCA
 np.set_printoptions(formatter={'float_kind':'{:f}'.format})
 
 # In[2]:  Carga de los datos
-df = pd.read_csv('../data/data_clean.csv')
+df = pd.read_csv('data/data_clean.csv')
 
 # In[3]: # La comparación se realiza tomando como año base 2015.
 
@@ -104,7 +104,7 @@ z_qr = D_qr*U_qr
 # # Cálculo de índice para todos los años
 # In[20]: Con QR
 
-ind = pd.DataFrame(index = df[df.fecha==2015]['estado'])
+ind_qr = pd.DataFrame(index = df[df.fecha==2015]['estado'])
 for i in df.fecha.unique():
     print('Seleccionamos año: '+str(i))
     mat = df[df.fecha==i].drop(columns=['fecha','estado'])
@@ -119,7 +119,7 @@ for i in df.fecha.unique():
     Z = D*U
     print("Seleccionamos la primera columna de Z como índice")
     print('Almacenamos')
-    ind[i] = -Z.iloc[:,0].values #ajuste de signos primer componente
+    ind_qr[i] = -Z.iloc[:,0].values #ajuste de signos primer componente
     print('***')
 
 # In[21]: Con  Numpy
@@ -144,7 +144,7 @@ for i in df.fecha.unique():
 # Las cifras de los índices de todos los años coinciden entre los dos métodos.
 
 # In[22]: #QR
-ind
+ind_qr
 
 # In[38]: #Numpy
 ind_np
