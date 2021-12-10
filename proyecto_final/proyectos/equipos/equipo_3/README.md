@@ -17,7 +17,7 @@ Integrantes:
 
 **Trabajo escrito**: [liga](https://github.com/mogarcia62/Proyecto-final-equipo3-meo-2021/blob/main/Proyecto_final.pdf)
 
-**Presentación**: [liga](https://github.com/mogarcia62/Proyecto-final-equipo3-meo-2021/blob/main/Presentaci%C3%B3n/Presentacio%CC%81n_proyecto_final_equipo3.pdf).
+**Presentación**: [liga](https://github.com/mogarcia62/Proyecto-final-equipo3-meo-2021/blob/main/Presentaci%C3%B3n/Presentacio%CC%81n_proyecto_final_equipo_3.pdf).
 
 **Implementación**: [liga](https://github.com/mogarcia62/Proyecto-final-equipo3-meo-2021/blob/main/Entrega_final.ipynb)
 
