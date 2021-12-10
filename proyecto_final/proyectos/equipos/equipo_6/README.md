@@ -19,7 +19,9 @@ Trabajo escrito (fuera del repo): [Link al trabajo escrito](https://github.com/m
 
 En el [notebook](https://github.com/mhnk77/Optim_proyecto_final/blob/main/notebooks/calculo_indice_PCA.ipynb) se encuentra código utilizado para la primer implementación del PCA utilizando funciones de Numpy
 
-Aquí está la [presentación](https://datastudio.google.com/reporting/e4ffda99-e143-4e69-9454-391ea1796dc6)
+Aquí entonctramos la [presentación](https://github.com/mhnk77/Optim_proyecto_final/blob/main/resultados/presentacion.pdf)
+
+Aquí está el [visualizador](https://datastudio.google.com/reporting/e4ffda99-e143-4e69-9454-391ea1796dc6)
 
 
 
