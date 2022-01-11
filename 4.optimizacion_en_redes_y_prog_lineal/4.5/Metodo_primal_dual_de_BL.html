@@ -1172,7 +1172,7 @@ Ax = b
 </div>
 </div>
 </div>
-<p>Se utiliza el paquete de <em>Python</em> <a class="reference external" href="https://analisis-numerico-computo-cientifico.readthedocs.io/">opt</a> en los siguientes <code class="docutils literal notranslate"><span class="pre">import</span></code>’s.</p>
+<p>Se utiliza el paquete de <em>Python</em> <a class="reference external" href="https://analisis-numerico-computo-cientifico.readthedocs.io/">opt</a> con los siguientes <code class="docutils literal notranslate"><span class="pre">import</span></code>’s.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">opt.utils_logarithmic_barrier</span> <span class="kn">import</span> <span class="n">log_barrier_aux_eval_constraints</span><span class="p">,</span> \
@@ -1182,7 +1182,7 @@ Ax = b
 </div>
 </div>
 </div>
-<p>Problema de optimización:</p>
+<p>El problema de optimización para mostrar el uso del método primal dual de BL será el del ejemplo prototipo el cual sólo involucra restricciones de desigualdad.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \displaystyle \max_{x \in \mathbb{R}^2} 3x_1 + 5x_2\\
@@ -1193,7 +1193,12 @@ x_1 \leq 4 \nonumber    \\
 x_1 \geq 0              \\
 x_2 \geq 0              \\
 \end{split}\]</div>
-<p>Definimos la función <span class="math notranslate nohighlight">\(\phi: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> como <span class="math notranslate nohighlight">\(\phi(x) = - \displaystyle \sum_{i=1}^m \log(-(a_i ^Tx-b_i)) - \sum_{i=1}^n \log(-{e}_i ^T(-x))\)</span> con <span class="math notranslate nohighlight">\(a_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A = \left [ \begin{array}{cc} 1 &amp; 0 \\0 &amp; 2 \\ 3 &amp; 2 \end{array} \right ]\)</span>, <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima entrada del vector <span class="math notranslate nohighlight">\(b = \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array} \right ]\)</span> y <span class="math notranslate nohighlight">\(e_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo vector canónico.</p>
+<p>Reescribimos el problema anterior sin las restricciones <span class="math notranslate nohighlight">\(A x \leq b\)</span> y <span class="math notranslate nohighlight">\(x \geq 0\)</span> definiendo la función <span class="math notranslate nohighlight">\(\phi: \mathbb{R}^n \rightarrow \mathbb{R}\)</span> como <span class="math notranslate nohighlight">\(\phi(x) = - \displaystyle \sum_{i=1}^m \log(-(a_i ^Tx-b_i)) - \sum_{i=1}^n \log(-{e}_i ^T(-x))\)</span> con <span class="math notranslate nohighlight">\(a_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo renglón de <span class="math notranslate nohighlight">\(A = \left [ \begin{array}{cc} 1 &amp; 0 \\0 &amp; 2 \\ 3 &amp; 2 \end{array} \right ]\)</span>, <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima entrada del vector <span class="math notranslate nohighlight">\(b = \left [ \begin{array}{c} 4 \\ 12 \\ 18 \end{array} \right ]\)</span> y <span class="math notranslate nohighlight">\(e_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo vector canónico.</p>
+<p>Por tanto, el PBL tomando como función objetivo <span class="math notranslate nohighlight">\(t_Bf_o(x) + \phi(x)\)</span> queda como sigue:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\displaystyle \min_{x \in \mathbb{R}^2} t_B(-3x_1 -5x_2) - [\log(4-x_1) + \log(12 - 2x_2) + \log(18 - (3 x_1 + 2 x_2)) + \log(x_1) + \log(x_2) ]\\
+\end{split}\]</div>
 <p>Para este problema las curvas de nivel de la función <span class="math notranslate nohighlight">\(\phi\)</span> se ven como sigue:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1254,13 +1259,9 @@ x_2 \geq 0              \\
 /usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:24: RuntimeWarning: invalid value encountered in log
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_126_1.png" src="../../_images/Metodo_primal_dual_de_BL_126_1.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_127_1.png" src="../../_images/Metodo_primal_dual_de_BL_127_1.png" />
 </div>
 </div>
-<p>Reescribimos el problema anterior sin las restricciones <span class="math notranslate nohighlight">\(A x \leq b\)</span> y <span class="math notranslate nohighlight">\(x \geq 0\)</span> como:</p>
-<p><span class="math notranslate nohighlight">\(
-\displaystyle \min_{x \in \mathbb{R}^2} t_B(-3x_1 -5x_2) - [\log(4-x_1) + \log(12 - 2x_2) + \log(18 - (3 x_1 + 2 x_2)) + \log(x_1) + \log(x_2) ]\\
-\)</span></p>
 <p>Realizamos la actualización:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left [ \begin{array}{c}x_1 \\ x_2 \end{array} \right ] = \left [ \begin{array}{c}x_1 \\ x_2 \end{array} \right ] + t \left [ \begin{array}{c}\Delta x_1 \\ \Delta x_2 \end{array} \right ]\end{split}\]</div>
@@ -2019,16 +2020,16 @@ f_B(x|t_B) &amp;=&amp; f_o(x) + \frac{1}{t_B} \phi(x) \nonumber \\
 <li><p>Asumiendo que existe un punto óptimo <span class="math notranslate nohighlight">\(x^*\)</span> y el valor óptimo se denota por <span class="math notranslate nohighlight">\(p^* = f_o(x^*)\)</span> el decremento de Newton tiene propiedades como son:</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(\frac{1}{2} \lambda ^2 (x)\)</span> estima <span class="math notranslate nohighlight">\(f_o(x)-p^*\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(|| \nabla^2 f_o(x)^{-1} \nabla f_o(x)||_{\nabla ^2f_o(x)} = \left ( \nabla f_o(x)^T \nabla^2 f_o(x)^{-1} \nabla ^2 f(x) \nabla ^2 f_o(x)^{-1} \nabla f_o(x) \right )^{1/2} = \lambda(x) \)</span> que indica que <span class="math notranslate nohighlight">\(\lambda(x)\)</span> es la norma del paso de Newton en la norma cuadrática definida por la Hessiana.</p></li>
-<li><p>En el método de búsqueda de línea por <em>backtracking</em> <span class="math notranslate nohighlight">\(-\lambda (x) ^2\)</span> es la derivada direccional de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x\)</span> en la dirección de <span class="math notranslate nohighlight">\(\Delta x_{\text{nt}}\)</span>:</p></li>
+<li><p><span class="math notranslate nohighlight">\(|| \nabla^2 f_o(x)^{-1} \nabla f_o(x)||_{\nabla ^2f_o(x)} = \left ( \nabla f_o(x)^T \nabla^2 f_o(x)^{-1} \nabla ^2 f(x) \nabla ^2 f_o(x)^{-1} \nabla f_o(x) \right )^{1/2} = \lambda(x) \)</span> que indica que <span class="math notranslate nohighlight">\(\lambda(x)\)</span> es la norma del paso de Newton bajo la norma cuadrática definida por la Hessiana de <span class="math notranslate nohighlight">\(f_o\)</span>.</p></li>
+<li><p>En el método de búsqueda de línea por <em>backtracking</em>, se utiliza <span class="math notranslate nohighlight">\(-\lambda (x) ^2\)</span> para calcular la derivada direccional de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x\)</span> en la dirección de <span class="math notranslate nohighlight">\(\Delta x_{\text{nt}}\)</span>, lo cual se verifica en la siguiente línea:</p></li>
 </ul>
 </li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\frac{df(x+t \Delta x_{\text{nt}})}{dt} \Bigr|_{t=0} = \nabla f_o(x)^T \Delta x_{\text{nt}} = \nabla f_o(x)^T (-\nabla^2 f_o(x)^{-1} \nabla f_o(x)) = -\lambda(x)^2\]</div>
-<p>donde: <span class="math notranslate nohighlight">\(t\)</span> es el parámetro de búsqueda de línea por <em>backtracking</em>, <span class="math notranslate nohighlight">\(\Delta x_{\text{nt}} = -\nabla ^2 f_o(x)^{-1} \nabla f_o(x)\)</span> para <span class="math notranslate nohighlight">\(x \in \text{dom}f_o\)</span> es la dirección de Newton para <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>donde: <span class="math notranslate nohighlight">\(t\)</span> es el parámetro de búsqueda de línea por <em>backtracking</em> y <span class="math notranslate nohighlight">\(\Delta x_{\text{nt}} = -\nabla ^2 f_o(x)^{-1} \nabla f_o(x)\)</span> para <span class="math notranslate nohighlight">\(x \in \text{dom}f_o\)</span> es la dirección de Newton para <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x\)</span>, ver <a class="reference internal" href="../../3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.html#mbuslinback"><span class="std std-ref">Método de búsqueda de línea por backtracking</span></a>.</p>
 <ul class="simple">
-<li><p>En el método primal-dual para resolver un PBL el decremento de Newton se utiliza en las <em>inner iterations</em>.</p></li>
+<li><p>En el método primal-dual para resolver un PBL, el decremento de Newton se utiliza en las <em>inner iterations</em>.</p></li>
 </ul>
 </div>
 </div>
@@ -2602,8 +2603,8 @@ Mu value: 1.00e+01
 Approximate solution: [1.989 5.967]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_223_19.png" src="../../_images/Metodo_primal_dual_de_BL_223_19.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_223_20.png" src="../../_images/Metodo_primal_dual_de_BL_223_20.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_222_19.png" src="../../_images/Metodo_primal_dual_de_BL_222_19.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_222_20.png" src="../../_images/Metodo_primal_dual_de_BL_222_20.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
 [1.989 5.967]
 -----------------------------------------------------------------
@@ -2942,8 +2943,8 @@ Mu value: 1.00e+01
 Approximate solution: [1.999 5.997]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_223_34.png" src="../../_images/Metodo_primal_dual_de_BL_223_34.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_223_35.png" src="../../_images/Metodo_primal_dual_de_BL_223_35.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_222_34.png" src="../../_images/Metodo_primal_dual_de_BL_222_34.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_222_35.png" src="../../_images/Metodo_primal_dual_de_BL_222_35.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
 [1.999 5.997]
 -----------------------------------------------------------------
@@ -3282,8 +3283,8 @@ Mu value: 1.00e+01
 Approximate solution: [2. 6.]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_223_49.png" src="../../_images/Metodo_primal_dual_de_BL_223_49.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_223_50.png" src="../../_images/Metodo_primal_dual_de_BL_223_50.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_222_49.png" src="../../_images/Metodo_primal_dual_de_BL_222_49.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_222_50.png" src="../../_images/Metodo_primal_dual_de_BL_222_50.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
 [2. 6.]
 -----------------------------------------------------------------
@@ -3368,7 +3369,7 @@ Mu value: 1.00e+01
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Metodo_primal_dual_de_BL_226_0.png" src="../../_images/Metodo_primal_dual_de_BL_226_0.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_225_0.png" src="../../_images/Metodo_primal_dual_de_BL_225_0.png" />
 </div>
 </div>
 <div class="admonition-comentario admonition">
