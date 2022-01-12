@@ -399,8 +399,12 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#perspectiva-general-del-metodo-de-descenso-mas-pronunciado">
-   Perspectiva general del método de descenso más pronunciado
+  <a class="reference internal nav-link" href="#perspectiva-general-del-metodo-de-steepest-descent-descenso-mas-pronunciado">
+   Perspectiva general del método de
+   <em>
+    steepest descent
+   </em>
+   , descenso más pronunciado
   </a>
  </li>
 </ul>
@@ -433,8 +437,8 @@
 <li></li>
 </ul>
 </div>
-<div class="section" id="perspectiva-general-del-metodo-de-descenso-mas-pronunciado">
-<h2>Perspectiva general del método de descenso más pronunciado<a class="headerlink" href="#perspectiva-general-del-metodo-de-descenso-mas-pronunciado" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="perspectiva-general-del-metodo-de-steepest-descent-descenso-mas-pronunciado">
+<h2>Perspectiva general del método de <em>steepest descent</em>, descenso más pronunciado<a class="headerlink" href="#perspectiva-general-del-metodo-de-steepest-descent-descenso-mas-pronunciado" title="Permalink to this headline">¶</a></h2>
 <p>Calcular una dirección <span class="math notranslate nohighlight">\(\Delta x_{\text{nsd}}\)</span> que satisfaga:</p>
 <div class="math notranslate nohighlight">
 \[\Delta x_{\text{nsd}} = \text{argmin} \{ \nabla f_o(x)^Tv : ||v|| \leq 1, \nabla f_o(x)^Tv &lt; 0 \}\]</div>
@@ -461,12 +465,20 @@
 </ul>
 <div class="math notranslate nohighlight">
 \[\Delta x_{\text{sd}} = - \nabla f_o(x).\]</div>
-<p>Con esto se prueba que el método de <em>steepest descent</em> generaliza al método de descenso en gradiente.</p>
-<ul class="simple">
-<li><p>Si <span class="math notranslate nohighlight">\(||\cdot||\)</span> es una norma cuadrática con matriz <span class="math notranslate nohighlight">\(P\)</span>: <span class="math notranslate nohighlight">\(\Delta x_{\text{nsd}} = \text{argmin} \{ \nabla f_o(x)^Tv : ||v||_P \leq 1, \nabla f_o(x)^Tv &lt; 0 \} \)</span> entonces <span class="math notranslate nohighlight">\(\Delta x_{\text{sd}} = - P^{-1} \nabla f_o(x)\)</span>.</p></li>
-<li><p>Si <span class="math notranslate nohighlight">\(||\cdot||\)</span> es la norma <span class="math notranslate nohighlight">\(1\)</span>: <span class="math notranslate nohighlight">\(\Delta x_{\text{nsd}} = \text{argmin} \{ \nabla f_o(x)^Tv : ||v||_1 \leq 1, \nabla f_o(x)^Tv &lt; 0 \} \)</span> entonces <span class="math notranslate nohighlight">\(\Delta x_{\text{sd}} = - \frac{\partial f(x)}{\partial x_i} e_i\)</span> con <span class="math notranslate nohighlight">\(e_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo vector canónico y el índice <span class="math notranslate nohighlight">\(i\)</span> es la entrada del vector <span class="math notranslate nohighlight">\(\nabla f_o(x)\)</span> de máxima magnitud: <span class="math notranslate nohighlight">\(i\)</span> tal que <span class="math notranslate nohighlight">\(\left |(\nabla f_o(x))_i \right | = ||\nabla f_o(x)||_\infty\)</span>. En este caso el método se nombra <strong>descenso por coordenadas</strong> o <em><strong>coordinate descent</strong></em>. En cada iteración <strong>una única</strong> componente de <span class="math notranslate nohighlight">\(x\)</span> es actualizada.</p></li>
-</ul>
 </li>
+</ul>
+<p>Lo cual prueba que el método de descenso más pronunciado generaliza al método de descenso en gradiente.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* Si $||\cdot||$ es una norma cuadrática con matriz $P$: $\Delta x_{\text{nsd}} = \text{argmin} \{ \nabla f_o(x)^Tv : ||v||_P \leq 1, \nabla f_o(x)^Tv &lt; 0 \} $ entonces 
+
+$$\Delta x_{\text{sd}} = - P^{-1} \nabla f_o(x).$$
+
+* Si $||\cdot||$ es la norma $1$: $\Delta x_{\text{nsd}} = \text{argmin} \{ \nabla f_o(x)^Tv : ||v||_1 \leq 1, \nabla f_o(x)^Tv &lt; 0 \} $ entonces 
+
+$$\Delta x_{\text{sd}} = - \frac{\partial f(x)}{\partial x_i} e_i$$
+</pre></div>
+</div>
+<p>con <span class="math notranslate nohighlight">\(e_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésimo vector canónico y el índice <span class="math notranslate nohighlight">\(i\)</span> es la entrada del vector <span class="math notranslate nohighlight">\(\nabla f_o(x)\)</span> de máxima magnitud: <span class="math notranslate nohighlight">\(i\)</span> tal que <span class="math notranslate nohighlight">\(\left |(\nabla f_o(x))_i \right | = ||\nabla f_o(x)||_\infty\)</span>. En este caso el método se nombra <em><strong>coordinate descent</strong></em>, <strong>descenso por coordenadas</strong>. En cada iteración <strong>una única</strong> componente de <span class="math notranslate nohighlight">\(x\)</span> es actualizada.</p>
+<ul class="simple">
 <li><p><strong>Interpretación:</strong> <span class="math notranslate nohighlight">\(\Delta x_{\text{nsd}}\)</span> es un paso tal que <span class="math notranslate nohighlight">\(||\Delta x_{\text{nsd}}|| = 1\)</span> y da el <strong>mayor decrecimiento en la aproximación lineal* de <span class="math notranslate nohighlight">\(f\)</span></strong>. Geométricamente es la dirección en la bola unitaria (generada por <span class="math notranslate nohighlight">\(||\cdot||\)</span>) que se <strong>extiende lo más lejos posible en la dirección <span class="math notranslate nohighlight">\(-\nabla f(x)\)</span></strong>.</p></li>
 </ul>
 <p>*Recuérdese que la aproximación lineal a una función <span class="math notranslate nohighlight">\(f\)</span> está dada por Taylor a primer orden: <span class="math notranslate nohighlight">\(f(x+v)=\hat{f}(x+v) = f(x) + \nabla f(x)^Tv\)</span>.</p>
