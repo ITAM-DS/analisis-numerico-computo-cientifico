@@ -3,6 +3,14 @@
 *********
 Functions
 *********
+
+Compute step size module
+========================
+
+.. autosummary::
+   :toctree: _autosummary
+   
+   compute_step_size.line_search_for_log_barrier_by_backtracking
       
 Utils module
 ============
@@ -24,6 +32,5 @@ Utils logarithmic barrier module
    utils_logarithmic_barrier.constraint_inequalities_funcs_eval
    utils_logarithmic_barrier.phi
    utils_logarithmic_barrier.logarithmic_barrier
-   utils_logarithmic_barrier.line_search_for_log_barrier_by_backtracking
    utils_logarithmic_barrier.plot_inner_iterations
    utils_logarithmic_barrier.plot_central_path
