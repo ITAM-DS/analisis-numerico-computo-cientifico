@@ -2,8 +2,8 @@ import numpy as np
 from opt.utils_logarithmic_barrier import logarithmic_barrier, \
                                            constraint_inequalities_funcs_eval, \
                                            plot_inner_iterations, \
-                                           plot_central_path, \
-                                           line_search_for_log_barrier_by_backtracking
+                                           plot_central_path
+from opt.compute_step_size import line_search_for_log_barrier_by_backtracking
 from opt.utils import compute_error, print_iterations
 
 def primal_dual_method(f, constraints_ineq,
@@ -70,7 +70,7 @@ def primal_dual_method(f, constraints_ineq,
         total_iter (int): number of iterations regarding outer and
             inner iterations.
 
-        t (float): updated barrier parameter.
+        t_B (float): updated barrier parameter.
 
         x_plot_total_iter (numpy ndarray): numpy array that containts
             in columns vector of approximations of all inner iterations.
