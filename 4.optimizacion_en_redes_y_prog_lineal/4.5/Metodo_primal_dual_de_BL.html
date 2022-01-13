@@ -1169,9 +1169,10 @@ Ax = b
 <p>Se utiliza el paquete de <em>Python</em> <a class="reference external" href="https://analisis-numerico-computo-cientifico.readthedocs.io/">opt</a> con los siguientes <code class="docutils literal notranslate"><span class="pre">import</span></code>’s.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">opt.utils_logarithmic_barrier</span> <span class="kn">import</span> <span class="n">log_barrier_aux_eval_constraints</span><span class="p">,</span> \
-<span class="n">constraint_inequalities_funcs_generator</span><span class="p">,</span> <span class="n">constraint_inequalities_funcs_eval</span><span class="p">,</span> \
-<span class="n">phi</span><span class="p">,</span> <span class="n">logarithmic_barrier</span><span class="p">,</span> <span class="n">line_search_for_log_barrier_by_backtracking</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">opt.utils_logarithmic_barrier</span> <span class="kn">import</span> <span class="n">constraint_inequalities_funcs_generator</span><span class="p">,</span> \
+<span class="n">constraint_inequalities_funcs_eval</span><span class="p">,</span> \
+<span class="n">logarithmic_barrier</span>
+<span class="kn">from</span> <span class="nn">opt.compute_step_size</span> <span class="kn">import</span> <span class="n">line_search_for_log_barrier_by_backtracking</span>
 </pre></div>
 </div>
 </div>
@@ -1249,9 +1250,9 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_274/3436643609.py:24: RuntimeWarning: divide by zero encountered in log
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_421/3436643609.py:24: RuntimeWarning: divide by zero encountered in log
   log_barrier_const_eval = np.log(const_ineq_funcs_eval)
-/tmp/ipykernel_274/3436643609.py:24: RuntimeWarning: invalid value encountered in log
+/tmp/ipykernel_421/3436643609.py:24: RuntimeWarning: invalid value encountered in log
   log_barrier_const_eval = np.log(const_ineq_funcs_eval)
 </pre></div>
 </div>
@@ -2118,18 +2119,18 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">total_iter</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x_plot</span><span class="p">]</span> <span class="o">=</span> <span class="n">primal_dual_method</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span> <span class="n">constraints_ineq</span><span class="p">,</span>
-                                             <span class="n">x_0</span><span class="p">,</span> <span class="n">tol_inner_iter</span><span class="p">,</span>
-                                             <span class="n">tol_backtracking</span><span class="p">,</span>
-                                             <span class="n">t_B_0</span><span class="p">,</span>
-                                             <span class="n">x_ast</span><span class="o">=</span><span class="n">x_ast</span><span class="p">,</span> 
-                                             <span class="n">p_ast</span><span class="o">=</span><span class="n">p_ast</span><span class="p">,</span> 
-                                             <span class="n">max_inner_iter</span><span class="o">=</span><span class="n">max_inner_iter</span><span class="p">,</span>
-                                             <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> 
-                                             <span class="n">tol_outer_iter</span><span class="o">=</span><span class="n">tol_outer_iter</span><span class="p">,</span>
-                                             <span class="n">gf_B</span><span class="o">=</span><span class="n">gf_B</span><span class="p">,</span>
-                                             <span class="n">Hf_B</span><span class="o">=</span><span class="n">Hf_B</span><span class="p">,</span>
-                                             <span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">total_iter</span><span class="p">,</span><span class="n">t_B</span><span class="p">,</span><span class="n">x_plot</span><span class="p">]</span> <span class="o">=</span> <span class="n">primal_dual_method</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span> <span class="n">constraints_ineq</span><span class="p">,</span>
+                                               <span class="n">x_0</span><span class="p">,</span> <span class="n">tol_inner_iter</span><span class="p">,</span>
+                                               <span class="n">tol_backtracking</span><span class="p">,</span>
+                                               <span class="n">t_B_0</span><span class="p">,</span>
+                                               <span class="n">x_ast</span><span class="o">=</span><span class="n">x_ast</span><span class="p">,</span> 
+                                               <span class="n">p_ast</span><span class="o">=</span><span class="n">p_ast</span><span class="p">,</span> 
+                                               <span class="n">max_inner_iter</span><span class="o">=</span><span class="n">max_inner_iter</span><span class="p">,</span>
+                                               <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> 
+                                               <span class="n">tol_outer_iter</span><span class="o">=</span><span class="n">tol_outer_iter</span><span class="p">,</span>
+                                               <span class="n">gf_B</span><span class="o">=</span><span class="n">gf_B</span><span class="p">,</span>
+                                               <span class="n">Hf_B</span><span class="o">=</span><span class="n">Hf_B</span><span class="p">,</span>
+                                               <span class="p">)</span>
 </pre></div>
 </div>
 </div>
