@@ -22,7 +22,7 @@ def log_barrier_aux_eval_constraints(eval_f_const_inequality):
 def constraint_inequalities_funcs_generator(constraint_inequalities):
     """
     Generator for functional form of inequalities.
-    For every example this function produces different fuctions.
+    For every example this function produces different functions.
     """
     for k, v in constraint_inequalities.items():
         yield v
