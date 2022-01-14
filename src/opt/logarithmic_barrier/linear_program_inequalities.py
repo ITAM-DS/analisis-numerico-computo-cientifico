@@ -8,9 +8,9 @@ from opt.utils import compute_error, print_iterations
 
 def primal_dual_method(f,
                        x_0,
-                       t_B=None,
-                       constraints_ineq=None,
-                       mu=None,
+                       t_B,
+                       constraints_ineq,
+                       mu,
                        tol_inner_iter=1e-8,
                        tol_outer_iter=1e-6,
                        tol_backtracking=1e-12,
