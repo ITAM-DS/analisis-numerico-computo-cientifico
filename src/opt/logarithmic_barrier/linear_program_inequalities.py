@@ -6,17 +6,20 @@ from opt.utils_logarithmic_barrier import logarithmic_barrier, \
 from opt.compute_step_size import line_search_for_log_barrier_by_backtracking
 from opt.utils import compute_error, print_iterations
 
-def primal_dual_method(f, constraints_ineq,
-                       x_0, tol_inner_iter,
-                       tol_backtracking,
-                       t_B,
-                       plot=True,
-                       x_ast=None, p_ast=None,
-                       max_inner_iter=30,
+def primal_dual_method(f,
+                       x_0,
+                       t_B=None,
+                       constraints_ineq=None,
                        mu=None,
+                       tol_inner_iter=1e-8,
+                       tol_outer_iter=1e-6,
+                       tol_backtracking=1e-12,
+                       plot=True,
+                       x_ast=None,
+                       p_ast=None,
                        gf_B=None,
                        Hf_B=None,
-                       tol_outer_iter=1e-6,
+                       max_inner_iter=30,
                        max_total_iterations=30):
     """
     Outer iterations for logarithmic barrier method
