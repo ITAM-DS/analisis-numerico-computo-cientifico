@@ -27,7 +27,7 @@ def primal_dual_method(f,
 
     Args:
 
-        f_B (fun): definition of logarithmic barrier function
+        f (fun): definition of original function
             as lambda expression or function definition.
 
         constraints_ineq: dictionary of inequalities constraints
@@ -55,11 +55,11 @@ def primal_dual_method(f,
 
         mu (float): parameter that will multiply barrier parameter.
 
-        gf_B (fun): definition of gradient of f_B as lambda
-            expression or function definition.
+        gf_B (fun): definition of gradient of f_B (logarithmic barrier)
+            as lambda expression or function definition.
 
-        Hf_B (fun): definition of Hessian of f_B as lambda
-            expression or function definition.
+        Hf_B (fun): definition of Hessian of f_B (logarithmic barrier)
+            as lambda expression or function definition.
 
         tol_outer_iter (float): tolerance that will halt method.
             Controls stopping criteria.
@@ -154,19 +154,19 @@ def primal_dual_method(f,
                     print("-"*65 + "\n" + "-"*65)
     return [x,total_iter,t_B,x_plot_total_iter]
 
-def logarithmic_barrier_newton_method(f_B, constraints_ineq,
+def logarithmic_barrier_newton_method(f, constraints_ineq,
                                       t_B, x_0, tol,
                                       tol_backtracking, x_ast=None,
                                       p_ast=None, maxiter=30,
-                                      gf_B=None,
-                                      Hf_B=None):
+                                      gf=None,
+                                      Hf=None):
     """
     Logarithmic barrier primal-dual method using Newton's method
     to numerically approximate solution of PL with only inequalities.
 
     Args:
 
-        f_B (fun): definition of logarithmic barrier function
+        f (fun): definition of objective function
             as lambda expression or function definition.
 
         constraints_ineq: dictionary of inequalities constraints
@@ -189,10 +189,10 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
 
         maxiter (int): maximum number of iterations.
 
-        gf_B (fun): definition of gradient of f_B as lambda
+        gf (fun): definition of gradient of f as lambda
             expression or function definition.
 
-        Hf_B (fun): definition of Hessian of f_B as lambda
+        Hf (fun): definition of Hessian of f as lambda
             expression or function definition.
     Returns:
 
@@ -215,19 +215,19 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
     n = x.size
 
     #Eval
-    f_B_eval = f_B(x)
-    gf_B_eval = gf_B(x, t_B)
-    Hf_B_eval = Hf_B(x, t_B)
+    f_eval = f(x)
+    gf_eval = gf(x, t_B)
+    Hf_eval = Hf(x, t_B)
 
-    normgf_B = np.linalg.norm(gf_B_eval)
-    condHf_B= np.linalg.cond(Hf_B_eval)
+    normgf = np.linalg.norm(gf_eval)
+    condHf = np.linalg.cond(Hf_eval)
     Err_plot_aux = np.zeros(maxiter)
-    Err_plot_aux[iteration]=compute_error(p_ast,f_B_eval)
+    Err_plot_aux[iteration]=compute_error(p_ast,f_eval)
 
     Err = compute_error(x_ast,x)
 
-    system_matrix = Hf_B_eval
-    rhs = -gf_B_eval
+    system_matrix = Hf_eval
+    rhs = -gf_eval
 
     x_plot = np.zeros((n,maxiter))
     x_plot[:,iteration] = x
@@ -238,8 +238,8 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
     columns = ["Iter", "Normgf_B", "Newtons decrement",
                "Err x ast", "Err p ast",
                "line search", "CondHf_B"]
-    list_values = [iteration, normgf_B, dec_Newton_squared,
-                   Err, Err_plot_aux[iteration], "---", condHf_B]
+    list_values = [iteration, normgf, dec_Newton_squared,
+                   Err, Err_plot_aux[iteration], "---", condHf]
     data = {"row" + str(iteration): list_values}
 
     #print
@@ -251,33 +251,33 @@ def logarithmic_barrier_newton_method(f_B, constraints_ineq,
 
     while(stopping_criteria>tol and iteration < maxiter):
         der_direct = -dec_Newton_squared
-        t = line_search_for_log_barrier_by_backtracking(f_B,dir_Newton,
+        t = line_search_for_log_barrier_by_backtracking(f,dir_Newton,
                                                         x,t_B,
                                                         constraints_ineq,
                                                         der_direct)
         x = x + t*dir_Newton
 
         #Eval
-        f_B_eval = f_B(x)
-        gf_B_eval = gf_B(x, t_B)
-        Hf_B_eval = Hf_B(x, t_B)
+        f_eval  = f(x)
+        gf_eval = gf(x, t_B)
+        Hf_eval = Hf(x, t_B)
 
-        system_matrix = Hf_B_eval
-        rhs = -gf_B_eval
+        system_matrix = Hf_eval
+        rhs = -gf_eval
 
         #Update
         dir_Newton = np.linalg.solve(system_matrix, rhs)
         dec_Newton_squared = rhs.dot(dir_Newton)
-        Err_plot_aux[iteration]=compute_error(p_ast,f_B_eval)
+        Err_plot_aux[iteration]=compute_error(p_ast,f_eval)
         x_plot[:,iteration] = x
         Err = compute_error(x_ast,x)
         stopping_criteria = dec_Newton_squared/2
-        condHf_B= np.linalg.cond(Hf_B_eval)
-        normgf_B = np.linalg.norm(gf_B_eval)
+        condHf = np.linalg.cond(Hf_eval)
+        normgf = np.linalg.norm(gf_eval)
 
         #print
-        list_values = [iteration, normgf_B, dec_Newton_squared,
-                       Err, Err_plot_aux[iteration], t, condHf_B]
+        list_values = [iteration, normgf, dec_Newton_squared,
+                       Err, Err_plot_aux[iteration], t, condHf]
         data = {"row" + str(iteration): list_values}
         print_iterations(data, columns)
 
