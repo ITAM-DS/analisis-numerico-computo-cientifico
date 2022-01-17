@@ -1,8 +1,8 @@
 import numpy as np
 from opt.utils_logarithmic_barrier import logarithmic_barrier, \
-                                           constraint_inequalities_funcs_eval, \
-                                           plot_inner_iterations, \
-                                           plot_central_path
+                                          constraint_inequalities_funcs_eval, \
+                                          plot_inner_iterations, \
+                                          plot_central_path
 from opt.compute_step_size import line_search_for_log_barrier_by_backtracking
 from opt.utils import compute_error, print_iterations
 
