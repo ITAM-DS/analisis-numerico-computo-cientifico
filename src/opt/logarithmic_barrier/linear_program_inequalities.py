@@ -1,6 +1,6 @@
 import numpy as np
 from opt.utils_logarithmic_barrier import logarithmic_barrier, \
-                                          constraint_inequalities_funcs_eval, \
+                                          constraints_inequalities_funcs_eval, \
                                           plot_inner_iterations, \
                                           plot_central_path
 from opt.compute_step_size import line_search_for_log_barrier_by_backtracking
@@ -87,7 +87,7 @@ def primal_dual_method(f,
     stopping_criteria = m/t_B
     outer_iter = 0
     total_iter = 0
-    const_funcs_eval = -constraint_inequalities_funcs_eval(x,constraints_ineq)
+    const_funcs_eval = -constraints_inequalities_funcs_eval(x,constraints_ineq)
 
     if(sum(const_funcs_eval < -np.nextafter(0,1)) >=1):
         print("Some constraint inequalities evaluated in x were nonpositive, change initial point")
@@ -130,8 +130,8 @@ def primal_dual_method(f,
                     plot_central_path(x_plot)
                 print("Inner iterations")
                 print(x)
-                const_ineq_funcs_eval = -constraint_inequalities_funcs_eval(x,
-                                                                            constraints_ineq)
+                const_ineq_funcs_eval = -constraints_inequalities_funcs_eval(x,
+                                                                             constraints_ineq)
                 t_B=mu*t_B
                 log_barrier_eval = logarithmic_barrier(f,x,t_B,
                                                        constraints_ineq)
