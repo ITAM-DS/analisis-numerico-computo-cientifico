@@ -19,35 +19,35 @@ def log_barrier_aux_eval_constraints(eval_f_const_inequality):
     #that have values negative or equal to 0
     eval_f_const_inequality[idx] = -1e10
     return eval_f_const_inequality
-def constraint_inequalities_funcs_generator(constraint_inequalities):
+def constraints_inequalities_funcs_generator(constraints_inequalities):
     """
     Generator for functional form of inequalities.
     For every example this function produces different functions.
     """
-    for k, v in constraint_inequalities.items():
+    for k, v in constraints_inequalities.items():
         yield v
-def constraint_inequalities_funcs_eval(x,
-                                       constraint_inequalities):
+def constraints_inequalities_funcs_eval(x,
+                                        constraints_inequalities):
     """
     Auxiliary function for the evaluation of constraint inequalities
     in logarithmic barrier function
     """
     const_ineq_funcs_eval = np.array([const(x) for const in \
-                                      constraint_inequalities_funcs_generator(constraint_inequalities)])
+                                      constraints_inequalities_funcs_generator(constraints_inequalities)])
     return const_ineq_funcs_eval
-def phi(x, constraint_inequalities):
+def phi(x, constraints_inequalities):
     """
     Implementation of phi function for logarithmic barrier.
     """
-    constraint_ineq_funcs_eval = -constraint_inequalities_funcs_eval(x,constraint_inequalities)
+    constraint_ineq_funcs_eval = -constraints_inequalities_funcs_eval(x,constraints_inequalities)
     log_barrier_const_eval = log_barrier_aux_eval_constraints(constraint_ineq_funcs_eval)
     return -np.sum(log_barrier_const_eval)
 
-def logarithmic_barrier(f,x, t_B, constraint_inequalities):
+def logarithmic_barrier(f,x, t_B, constraints_inequalities):
     """
     Implementation of Logarithmic barrier function.
     """
-    return t_B*f(x)+ phi(x, constraint_inequalities)
+    return t_B*f(x)+ phi(x, constraints_inequalities)
 def plot_inner_iterations(err):
     """
     Auxiliary function for plotting inner iterations error.
