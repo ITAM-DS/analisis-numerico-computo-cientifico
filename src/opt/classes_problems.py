@@ -15,6 +15,8 @@ class ProblemFeasibleInitPoint():
                  mu=None,
                  constraints_eq=None):
         """
+        Constructor for class.
+        
         Args:
             type_problem (str): UCO, CICO, CECO or CIECO.
             f (fun): numpy definition of objective function.
