@@ -78,6 +78,9 @@ class ProblemFeasibleInitPoint():
               max_total_iterations=30,
               method=None):
         """
+        Solve problem using initial feasible point. Problem can be one of:
+        UCO, CICO, CECO or CIECO.
+        
         Args:
             x (numpy ndarray): initial point for logarithmic barrier or descent method.
             
