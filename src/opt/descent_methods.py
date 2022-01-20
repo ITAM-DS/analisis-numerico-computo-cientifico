@@ -5,6 +5,9 @@ from opt.utils import compute_error, print_iterations, plot_inner_iterations
 
 
 def set_values_and_solve_linear_system_for_Newton_method(x, rhs, Hf):
+    """
+    Helper function to evaluate Hessian, compute Newton's direction.
+    """
     Hf.set_x(x)
     Hf_eval = Hf.evaluate()
     condHf = np.linalg.cond(Hf_eval)
