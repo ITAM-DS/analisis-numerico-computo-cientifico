@@ -4,6 +4,15 @@
 Functions
 *********
 
+Descent methods module
+======================
+
+.. autosummary::
+   :toctree: _autosummary
+   
+   descent_methods.set_values_and_solve_linear_system_for_Newton_method
+   descent_methods.feasible_init_point_descent_method
+
 Compute step size module
 ========================
 
@@ -20,6 +29,7 @@ Utils module
 
    utils.compute_error
    utils.print_iterations
+   utils.plot_inner_iterations
 
 Utils logarithmic barrier module
 ================================
