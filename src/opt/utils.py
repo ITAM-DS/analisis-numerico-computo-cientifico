@@ -1,6 +1,7 @@
 import numpy as np
 from IPython.display import display
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def compute_error(x_obj,x_approx):
     """
@@ -20,3 +21,13 @@ def print_iterations(data, columns):
     df = pd.DataFrame.from_dict(data, orient='index',
                                  columns=columns)
     display(df)
+def plot_inner_iterations(err):
+    """
+    Auxiliary function for plotting inner iterations error.
+    """
+    plt.yscale('log') #logarithmic scale for y axis
+    plt.plot(np.arange(err.size),err,'.-')
+    plt.ylabel("Log relative error: $f_o(x^k)$ y $p^*$",size=12)
+    plt.xlabel("Inner iterations",size=12)
+    plt.grid()
+    plt.show()

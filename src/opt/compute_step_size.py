@@ -1,27 +1,19 @@
 from opt.utils_logarithmic_barrier import logarithmic_barrier
 
-def line_search_for_log_barrier_by_backtracking(f,dir_desc,
-                                                x,t_B,
-                                                constraint_inequalities,
-                                                der_direct,
-                                                alpha=.15, beta=.5):
+def line_search_by_backtracking(f,
+                                dir_desc,
+                                der_direct,
+                                alpha=.15, 
+                                beta=.5):
     """
     Line search that sufficiently decreases f restricted to a
     ray in the direction dir_desc.
 
     Args:
     
-        f (lambda expression): definition of function f.
+        f: instance of class for objective function.
         
         dir_desc (array): descent direction.
-        
-        x (array): numpy array that holds values where line search
-            will be performed.
-            
-        t_B (float): barrier parameter.
-        
-        constraint_inequalities (dict): dictionary of inequalities constraints
-            in "<= 0" form.
             
         der_direct (float): directional derivative of f.            
 
@@ -44,10 +36,15 @@ def line_search_for_log_barrier_by_backtracking(f,dir_desc,
         print('beta must be less than 1')
         t = -1
     if t != -1:
-        eval1 = logarithmic_barrier(f, x + t*dir_desc, t_B, constraint_inequalities)
-        eval2 = logarithmic_barrier(f, x, t_B, constraint_inequalities) + alpha*t*der_direct
+        x = f.x
+        f.set_x(x + t*dir_desc)
+        eval1 = f.evaluate()
+        f.set_x(x)
+        eval2 = f.evaluate() + alpha*t*der_direct
         while eval1 > eval2:
             t = beta*t
-            eval1 = logarithmic_barrier(f, x + t*dir_desc, t_B, constraint_inequalities)
-            eval2 = logarithmic_barrier(f, x, t_B, constraint_inequalities) + alpha*t*der_direct
+            f.set_x(x + t*dir_desc)
+            eval1 = f.evaluate()
+            f.set_x(x)
+            eval2 = f.evaluate() + alpha*t*der_direct
     return t

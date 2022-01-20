@@ -42,22 +42,6 @@ def phi(x, constraints_inequalities):
     constraint_ineq_funcs_eval = -constraints_inequalities_funcs_eval(x,constraints_inequalities)
     log_barrier_const_eval = log_barrier_aux_eval_constraints(constraint_ineq_funcs_eval)
     return -np.sum(log_barrier_const_eval)
-
-def logarithmic_barrier(f,x, t_B, constraints_inequalities):
-    """
-    Implementation of Logarithmic barrier function.
-    """
-    return t_B*f(x)+ phi(x, constraints_inequalities)
-def plot_inner_iterations(err):
-    """
-    Auxiliary function for plotting inner iterations error.
-    """
-    plt.yscale('log') #logarithmic scale for y axis
-    plt.plot(np.arange(err.size),err,'.-')
-    plt.ylabel("Log relative error: $f_o(x^k)$ y $p^*$",size=12)
-    plt.xlabel("Inner iterations",size=12)
-    plt.grid()
-    plt.show()
 def plot_central_path(x_iterations):
     """
     Auxiliary function for plotting central points of
