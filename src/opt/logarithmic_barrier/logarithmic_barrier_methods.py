@@ -2,7 +2,7 @@ import numpy as np
 
 from opt.utils_logarithmic_barrier import constraints_inequalities_funcs_eval, \
                                           plot_central_path
-from opt.utils import compute_error, print_iterations, plot_inner_iterations
+from opt.utils import compute_error, print_iterations
 from opt.descent_methods import feasible_init_point_descent_method
 
 def primal_dual_feasible_init_point_method(f_B,

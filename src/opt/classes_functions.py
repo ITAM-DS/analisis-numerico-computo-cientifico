@@ -12,7 +12,7 @@ class ObjectiveFunction():
             return self.f_eval            
         except Exception as e:
             print(e)
-            print("primero define x antes de evaluar, llama a la función set_x")
+            print("first define x before evaluation, call set_x to define it")
 class GradientObjectiveFunction():
     def __init__(self, 
                  gf):
@@ -26,7 +26,7 @@ class GradientObjectiveFunction():
             return self.gf_eval
         except Exception as e:
             print(e)
-            print("primero define x antes de evaluar, llama a la función set_x")
+            print("first define x before evaluation, call set_x to define it")
 class HessianObjectiveFunction():
     def __init__(self, 
                  Hf):
@@ -40,7 +40,7 @@ class HessianObjectiveFunction():
             return self.Hf_eval
         except Exception as e:
             print(e)
-            print("primero define x antes de evaluar, llama a la función set_x")
+            print("first define x before evaluation, call set_x to define it")
 class LogarithmicBarrier():
     def __init__(self, 
                  f,
@@ -61,7 +61,7 @@ class LogarithmicBarrier():
             return self.logarithmic_barrier_eval 
         except Exception as e:
             print(e)
-            print("primero define x y t_B antes de evaluar, llama a las funciones set_x, set_t_B")
+            print("first define x and t_B before evaluation, call set_x, set_t_B to define them")
 class GradientLogarithmicBarrier():
     def __init__(self, 
                  gf,
@@ -81,7 +81,7 @@ class GradientLogarithmicBarrier():
             return self.glogarithimic_barrier_eval
         except Exception as e:
             print(e)
-            print("primero define x y t_B antes de evaluar, llama a las funciones set_x, set_t_B")
+            print("first define x and t_B before evaluation, call set_x, set_t_B to define them")
 class HessianLogarithmicBarrier():
     def __init__(self, 
                  Hf,
@@ -101,4 +101,4 @@ class HessianLogarithmicBarrier():
             return self.Hlogarithimic_barrier_eval
         except Exception as e:
             print(e)
-            print("primero define x y t_B antes de evaluar, llama a las funciones set_x, set_t_B")
+            print("first define x and t_B before evaluation, call set_x, set_t_B to define them")

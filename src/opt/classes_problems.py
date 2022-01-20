@@ -14,14 +14,14 @@ class ProblemFeasibleInitPoint():
         if type_problem == "CICO" or type_problem == "CIECO":
             self.logarithmic_barrier = True
             if not mu:
-                print("falta definir mu")
+                print("parameter mu is missing, must be defined")
             else:
                 self.mu = mu
                 if not constraints_ineq:
-                    print("falta definir restricciones de desigualdad")
+                    print("constraints of inequalities are missing, must be defined")
                 else: #defined constraints_ineq
                     if type_problem == "CIECO" and not constraints_eq:
-                        print("falta definir restricciones de igualdad")
+                        print("constraints of equalities are missing, must be defined")
                     else:
                         self.objective_function = LogarithmicBarrier(f,
                                                                      constraints_ineq)                    
@@ -38,10 +38,10 @@ class ProblemFeasibleInitPoint():
                 self.well_defined_problem = True
             else:
                 if not type_problem == "CECO":
-                    print("tipos de problemas a resolver: UCO, CICO, CECO, CIECO, elegir uno de ellos")
+                    print("problems that will be solved: UCO, CICO, CECO, CIECO, select one of them")
                 else: #CECO
                     if not constraints_eq:
-                        print("falta definir restricciones de igualdad")
+                        print("constraints of equalities are missing, must be defined")
                     else: #CECO and constraints_eq defined
                         self.type_problem = "CECO"
                         self.well_defined_problem = True
