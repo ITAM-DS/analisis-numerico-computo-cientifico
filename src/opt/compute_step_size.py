@@ -1,5 +1,3 @@
-from opt.utils_logarithmic_barrier import logarithmic_barrier
-
 def line_search_by_backtracking(f,
                                 dir_desc,
                                 der_direct,
