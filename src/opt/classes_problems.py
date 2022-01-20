@@ -24,7 +24,6 @@ class ProblemFeasibleInitPoint():
                 selected.
             constraints_eq (dict): TBD.
             
-            
         """
         if type_problem == "CICO" or type_problem == "CIECO":
             self.logarithmic_barrier = True
