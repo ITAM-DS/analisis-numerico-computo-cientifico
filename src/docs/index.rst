@@ -12,7 +12,7 @@ Welcome to "opt"'s documentation!
 
    installation
    functions_autosummary
-   classes_autoummary
+   classes_autosummary
    logarithmic_barrier/modules_autosummary
 
 
