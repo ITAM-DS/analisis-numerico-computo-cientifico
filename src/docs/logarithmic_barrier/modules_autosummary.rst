@@ -10,6 +10,5 @@ Logarithmic barrier functions
 .. autosummary::
    :toctree: ../_autosummary
 
-   linear_program_inequalities.primal_dual_method
-   linear_program_inequalities.logarithmic_barrier_newton_method
+   logarithmic_barrier_methods.primal_dual_feasible_init_point_method
    
