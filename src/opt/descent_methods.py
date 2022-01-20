@@ -32,7 +32,7 @@ def feasible_init_point_descent_method(f,
 
     Args:
 
-        f (fun): instance of class for objective function.
+        f (opt function class): instance of class for objective function.
 
         x (numpy ndarray): initial point for descent method.
 
@@ -49,9 +49,9 @@ def feasible_init_point_descent_method(f,
 
         maxiter (int): maximum number of iterations.
 
-        gf (fun): instance of class for gradient of f.
+        gf (opt function class): instance of class for gradient of f.
 
-        Hf (fun): instance of class for Hessian of f.
+        Hf (opt function class): instance of class for Hessian of f.
         
         method (str): type of method that will be used, gradient, Newton        
         

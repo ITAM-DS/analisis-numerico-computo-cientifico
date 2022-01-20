@@ -25,7 +25,7 @@ def primal_dual_feasible_init_point_method(f_B,
 
     Args:
 
-        f_B (fun): instance of class for f_B (logarithmic barrier).
+        f_B (opt function class): instance of class for f_B (logarithmic barrier).
         
         x (numpy ndarray): initial point for logarithmic barrier method.
         
@@ -38,23 +38,24 @@ def primal_dual_feasible_init_point_method(f_B,
 
         p_ast (float): value of f_B(x_ast).
         
-        gf_B (fun): instance of class for gradient of f_B (logarithmic barrier).
+        gf_B (opt function class): instance of class for gradient of f_B (logarithmic barrier).
 
-        Hf_B (fun): instance of class for Hessian of f_B (logarithmic barrier).
+        Hf_B (opt function class): instance of class for Hessian of f_B (logarithmic barrier).
         
         plot (bool): if true make plots of Err vs iterations and
             plot of central path.        
 
         tol_inner_iter (float): tolerance that will halt method.
-            Controls stopping criteria.
+            Controls stopping criteria for inner iterations (iterations of descent method).
             
         tol_outer_iter (float): tolerance that will halt method.
-            Controls stopping criteria.            
+            Controls stopping criteria for outer iterations.            
 
         tol_backtracking (float): tolerance that will halt method.
             Controls value of line search by backtracking.
 
-        max_inner_iter (int): maximum number of inner iterations.
+        max_inner_iter (int): maximum number of inner iterations
+            (iterations of descent method).
 
         max_total_iter (int): maximum number of total iterations.
 
