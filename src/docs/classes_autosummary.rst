@@ -11,6 +11,7 @@ Problems classes
 .. autosummary::
    :toctree: _autosummary
 
+   classes_problems.ProblemFeasibleInitPoint
    classes_problems.ProblemFeasibleInitPoint.solve
 
 Functions classes
