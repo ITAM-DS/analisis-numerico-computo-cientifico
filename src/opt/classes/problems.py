@@ -29,14 +29,14 @@ class ProblemFeasibleInitPoint():
         """
         if type_problem == "CICO" or type_problem == "CIECO":
             self.logarithmic_barrier = True
-            if not mu:
+            if mu is None:
                 print("parameter mu is missing, must be defined")
             else:
                 self.mu = mu
-                if not constraints_ineq:
+                if constraints_ineq is None:
                     print("constraints of inequalities are missing, must be defined")
                 else: #defined constraints_ineq
-                    if type_problem == "CIECO" and not constraints_eq:
+                    if type_problem == "CIECO" and constraints_eq is None:
                         print("constraints of equalities are missing, must be defined")
                     else:
                         self.objective_function = LogarithmicBarrier(f,
@@ -56,7 +56,7 @@ class ProblemFeasibleInitPoint():
                 if not type_problem == "CECO":
                     print("problems that will be solved: UCO, CICO, CECO, CIECO, select one of them")
                 else: #CECO
-                    if not constraints_eq:
+                    if constraints_eq is None:
                         print("constraints of equalities are missing, must be defined")
                     else: #CECO and constraints_eq defined
                         self.type_problem = "CECO"
@@ -125,15 +125,15 @@ class ProblemFeasibleInitPoint():
             call_method = "primal_dual_feasible_init_point_method"
         else:
             call_method = "feasible_init_point_descent_method"
-            if not method:
+            if method is None:
                 method = "Newton"
                 print("will use %s method, if wants to use another select gradient or ..." % method)
         
-        if isinstance(x_ast, np.ndarray) and p_ast and gf_B and Hf_B:
+        if isinstance(x_ast, np.ndarray) and (p_ast is not None) and gf_B and Hf_B:
             if call_method == "primal_dual_feasible_init_point_method":
                 #gf_B is gradient of logarithmic barrier funct
                 #Hf_B is Hessian of logarithmic barrier funct
-                if not t_B or not isinstance(x, np.ndarray):
+                if (t_B is None) or not isinstance(x, np.ndarray):
                     print("pass initial points x and t_B as arguments when calling solve")
                 else:
                     return primal_dual_feasible_init_point_method(self.objective_function,
