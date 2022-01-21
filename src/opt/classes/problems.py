@@ -151,7 +151,7 @@ class ProblemFeasibleInitPoint():
                                                                   max_inner_iter,
                                                                   max_total_iterations)
             else:
-                if not x:
+                if not isinstance(x_ast, np.ndarray):
                     print("pass x as argument when calling solve")
                 else:
                     return feasible_init_point_descent_method(self.objective_function,
