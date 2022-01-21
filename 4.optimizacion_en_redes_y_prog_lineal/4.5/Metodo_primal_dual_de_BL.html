@@ -1248,9 +1248,9 @@ x_2 \geq 0              \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_250/215958759.py:24: RuntimeWarning: divide by zero encountered in log
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_726/215958759.py:24: RuntimeWarning: divide by zero encountered in log
   log_barrier_const_eval = np.log(const_ineq_funcs_eval)
-/tmp/ipykernel_250/215958759.py:24: RuntimeWarning: invalid value encountered in log
+/tmp/ipykernel_726/215958759.py:24: RuntimeWarning: invalid value encountered in log
   log_barrier_const_eval = np.log(const_ineq_funcs_eval)
 </pre></div>
 </div>
@@ -1318,41 +1318,50 @@ x_2 \geq 0              \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        x (numpy ndarray): 1d array of floats</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;x</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">])</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 <span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 <span class="n">n</span> <span class="o">=</span> <span class="n">x_0</span><span class="o">.</span><span class="n">size</span>
 <span class="c1">#sympy definitions</span>
 <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x1, x2&quot;</span><span class="p">)</span>
+<span class="n">x_sympy</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
 <span class="n">fo_sympy</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x2</span>
 <span class="n">phi_sympy</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
-<span class="n">gf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">Hf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gf_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">gphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">phi_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">Hphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gphi_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">gf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">first_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                                        <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                                                        <span class="p">})</span> <span class="k">for</span> <span class="n">first_partial_derivative</span> <span class="ow">in</span> <span class="n">gf_sympy</span><span class="p">],</span>
+<span class="n">gf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo_sympy</span><span class="p">,</span> <span class="n">x_sympy</span><span class="p">)</span>
+<span class="n">Hf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gf_sympy</span><span class="p">,</span> <span class="n">x_sympy</span><span class="p">)</span>
+<span class="n">gphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">phi_sympy</span><span class="p">,</span> <span class="n">x_sympy</span><span class="p">)</span>
+<span class="n">Hphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gphi_sympy</span><span class="p">,</span><span class="n">x_sympy</span><span class="p">)</span>
+<span class="n">gf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">first_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> \
+                         <span class="k">for</span> <span class="n">first_partial_derivative</span> <span class="ow">in</span> <span class="n">gf_sympy</span><span class="p">],</span>
                          <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
 
-<span class="n">gphi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">first_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                                          <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                                                          <span class="p">})</span> <span class="k">for</span> <span class="n">first_partial_derivative</span> <span class="ow">in</span> <span class="n">gphi_sympy</span><span class="p">],</span>
+<span class="n">gphi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">first_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> \
+                           <span class="k">for</span> <span class="n">first_partial_derivative</span> <span class="ow">in</span> <span class="n">gphi_sympy</span><span class="p">],</span>
                            <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
 
-<span class="n">Hf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
-                                                         <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                                                         <span class="p">})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hf_sympy</span><span class="p">],</span>
+<span class="n">Hf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> \
+                         <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hf_sympy</span><span class="p">],</span>
                                 <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 
-<span class="n">Hphi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
-                                                           <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                                                           <span class="p">})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hphi_sympy</span><span class="p">],</span>
+<span class="n">Hphi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> \
+                           <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hphi_sympy</span><span class="p">],</span>
                                 <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 
-<span class="n">gf_B</span> <span class="o">=</span> <span class="n">GradientLogarithmicBarrier</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span> <span class="n">gphi</span><span class="p">)</span>
-
-<span class="n">Hf_B</span> <span class="o">=</span> <span class="n">HessianLogarithmicBarrier</span><span class="p">(</span><span class="n">Hf</span><span class="p">,</span> <span class="n">Hphi</span><span class="p">)</span>
+<span class="n">gf_class</span> <span class="o">=</span> <span class="n">GradientLogarithmicBarrier</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span> <span class="n">gphi</span><span class="p">)</span>
+<span class="n">Hf_class</span> <span class="o">=</span> <span class="n">HessianLogarithmicBarrier</span><span class="p">(</span><span class="n">Hf</span><span class="p">,</span> <span class="n">Hphi</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1471,14 +1480,14 @@ f_B(x|t_B) &amp;=&amp; t_B(-3x_1 -5x_2) \nonumber \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_B</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span>
-<span class="n">Hf_B</span><span class="o">.</span><span class="n">set_t_B</span><span class="p">(</span><span class="n">t_B_0</span><span class="p">)</span>
-<span class="n">Hf_B_eval</span> <span class="o">=</span> <span class="n">Hf_B</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
-<span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hf_B_eval</span>
-<span class="n">gf_B</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span>
-<span class="n">gf_B</span><span class="o">.</span><span class="n">set_t_B</span><span class="p">(</span><span class="n">t_B_0</span><span class="p">)</span>
-<span class="n">gf_B_eval</span> <span class="o">=</span> <span class="n">gf_B</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
-<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gf_B_eval</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_class</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span>
+<span class="n">Hf_class</span><span class="o">.</span><span class="n">set_t_B</span><span class="p">(</span><span class="n">t_B_0</span><span class="p">)</span>
+<span class="n">Hf_class_eval</span> <span class="o">=</span> <span class="n">Hf_class</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+<span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hf_class_eval</span>
+<span class="n">gf_class</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span>
+<span class="n">gf_class</span><span class="o">.</span><span class="n">set_t_B</span><span class="p">(</span><span class="n">t_B_0</span><span class="p">)</span>
+<span class="n">gf_class_eval</span> <span class="o">=</span> <span class="n">gf_class</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gf_class_eval</span>
 </pre></div>
 </div>
 </div>
@@ -1673,14 +1682,14 @@ f_B(x|t_B) &amp;=&amp; t_B(-3x_1 -5x_2) \nonumber \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_B</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">Hf_B</span><span class="o">.</span><span class="n">set_t_B</span><span class="p">(</span><span class="n">t_B_0</span><span class="p">)</span>
-<span class="n">Hf_B_eval</span> <span class="o">=</span> <span class="n">Hf_B</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
-<span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hf_B_eval</span>
-<span class="n">gf_B</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">gf_B</span><span class="o">.</span><span class="n">set_t_B</span><span class="p">(</span><span class="n">t_B_0</span><span class="p">)</span>
-<span class="n">gf_B_eval</span> <span class="o">=</span> <span class="n">gf_B</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
-<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gf_B_eval</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_class</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">Hf_class</span><span class="o">.</span><span class="n">set_t_B</span><span class="p">(</span><span class="n">t_B_0</span><span class="p">)</span>
+<span class="n">Hf_class_eval</span> <span class="o">=</span> <span class="n">Hf_class</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+<span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hf_class_eval</span>
+<span class="n">gf_class</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">gf_class</span><span class="o">.</span><span class="n">set_t_B</span><span class="p">(</span><span class="n">t_B_0</span><span class="p">)</span>
+<span class="n">gf_class_eval</span> <span class="o">=</span> <span class="n">gf_class</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gf_class_eval</span>
 </pre></div>
 </div>
 </div>
@@ -1861,14 +1870,14 @@ f_B(x|t_B) &amp;=&amp; t_B(-3x_1 -5x_2) \nonumber \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_B</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">Hf_B</span><span class="o">.</span><span class="n">set_t_B</span><span class="p">(</span><span class="n">t_B_0</span><span class="p">)</span>
-<span class="n">Hf_B_eval</span> <span class="o">=</span> <span class="n">Hf_B</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
-<span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hf_B_eval</span>
-<span class="n">gf_B</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">gf_B</span><span class="o">.</span><span class="n">set_t_B</span><span class="p">(</span><span class="n">t_B_0</span><span class="p">)</span>
-<span class="n">gf_B_eval</span> <span class="o">=</span> <span class="n">gf_B</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
-<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gf_B_eval</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_class</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">Hf_class</span><span class="o">.</span><span class="n">set_t_B</span><span class="p">(</span><span class="n">t_B_0</span><span class="p">)</span>
+<span class="n">Hf_class_eval</span> <span class="o">=</span> <span class="n">Hf_class</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+<span class="n">system_matrix</span> <span class="o">=</span> <span class="n">Hf_class_eval</span>
+<span class="n">gf_class</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">gf_class</span><span class="o">.</span><span class="n">set_t_B</span><span class="p">(</span><span class="n">t_B_0</span><span class="p">)</span>
+<span class="n">gf_class_eval</span> <span class="o">=</span> <span class="n">gf_class</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="o">-</span><span class="n">gf_class_eval</span>
 </pre></div>
 </div>
 </div>
@@ -2163,35 +2172,31 @@ x_2 \geq 0              \\
 <span class="n">n</span> <span class="o">=</span> <span class="n">x_0</span><span class="o">.</span><span class="n">size</span>
 <span class="c1">#sympy definitions</span>
 <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x1, x2&quot;</span><span class="p">)</span>
+<span class="n">x_sympy</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
 <span class="n">fo_sympy</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x1</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x2</span>
 <span class="n">phi_sympy</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
-<span class="n">gf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">Hf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gf_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">gphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">phi_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">Hphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gphi_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
-<span class="n">gf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">first_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                                        <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                                                        <span class="p">})</span> <span class="k">for</span> <span class="n">first_partial_derivative</span> <span class="ow">in</span> <span class="n">gf_sympy</span><span class="p">],</span>
+<span class="n">gf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo_sympy</span><span class="p">,</span> <span class="n">x_sympy</span><span class="p">)</span>
+<span class="n">Hf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gf_sympy</span><span class="p">,</span> <span class="n">x_sympy</span><span class="p">)</span>
+<span class="n">gphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">phi_sympy</span><span class="p">,</span> <span class="n">x_sympy</span><span class="p">)</span>
+<span class="n">Hphi_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gphi_sympy</span><span class="p">,</span><span class="n">x_sympy</span><span class="p">)</span>
+<span class="n">gf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">first_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> \
+                         <span class="k">for</span> <span class="n">first_partial_derivative</span> <span class="ow">in</span> <span class="n">gf_sympy</span><span class="p">],</span>
                          <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
 
-<span class="n">gphi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">first_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                                          <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                                                          <span class="p">})</span> <span class="k">for</span> <span class="n">first_partial_derivative</span> <span class="ow">in</span> <span class="n">gphi_sympy</span><span class="p">],</span>
+<span class="n">gphi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">first_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> \
+                           <span class="k">for</span> <span class="n">first_partial_derivative</span> <span class="ow">in</span> <span class="n">gphi_sympy</span><span class="p">],</span>
                            <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
 
-<span class="n">Hf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
-                                                         <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                                                         <span class="p">})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hf_sympy</span><span class="p">],</span>
+<span class="n">Hf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> \
+                         <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hf_sympy</span><span class="p">],</span>
                                 <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 
-<span class="n">Hphi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="s2">&quot;x1&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
-                                                           <span class="s2">&quot;x2&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                                                           <span class="p">})</span> <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hphi_sympy</span><span class="p">],</span>
+<span class="n">Hphi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> \
+                           <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hphi_sympy</span><span class="p">],</span>
                                 <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 
-<span class="n">gf_B</span> <span class="o">=</span> <span class="n">GradientLogarithmicBarrier</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span> <span class="n">gphi</span><span class="p">)</span>
-
-<span class="n">Hf_B</span> <span class="o">=</span> <span class="n">HessianLogarithmicBarrier</span><span class="p">(</span><span class="n">Hf</span><span class="p">,</span> <span class="n">Hphi</span><span class="p">)</span>
+<span class="n">gf_class</span> <span class="o">=</span> <span class="n">GradientLogarithmicBarrier</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span> <span class="n">gphi</span><span class="p">)</span>
+<span class="n">Hf_class</span> <span class="o">=</span> <span class="n">HessianLogarithmicBarrier</span><span class="p">(</span><span class="n">Hf</span><span class="p">,</span> <span class="n">Hphi</span><span class="p">)</span>
 
 <span class="c1">#constraints inequalities definition as &lt; = 0</span>
 
@@ -2249,8 +2254,8 @@ x_2 \geq 0              \\
                                     <span class="n">t_B_0</span><span class="p">,</span>
                                     <span class="n">x_ast</span><span class="o">=</span><span class="n">x_ast</span><span class="p">,</span>
                                     <span class="n">p_ast</span><span class="o">=</span><span class="n">p_ast</span><span class="p">,</span>
-                                    <span class="n">gf_B</span><span class="o">=</span><span class="n">gf_B</span><span class="p">,</span>
-                                    <span class="n">Hf_B</span><span class="o">=</span><span class="n">Hf_B</span>
+                                    <span class="n">gf_B</span><span class="o">=</span><span class="n">gf_class</span><span class="p">,</span>
+                                    <span class="n">Hf_B</span><span class="o">=</span><span class="n">Hf_class</span>
                                    <span class="p">)</span>
 </pre></div>
 </div>
@@ -2722,8 +2727,8 @@ Mu value: 1.00e+01
 Approximate solution: [1.989 5.967]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_228_19.png" src="../../_images/Metodo_primal_dual_de_BL_228_19.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_228_20.png" src="../../_images/Metodo_primal_dual_de_BL_228_20.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_229_19.png" src="../../_images/Metodo_primal_dual_de_BL_229_19.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_229_20.png" src="../../_images/Metodo_primal_dual_de_BL_229_20.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
 [1.989 5.967]
 -----------------------------------------------------------------
@@ -3062,8 +3067,8 @@ Mu value: 1.00e+01
 Approximate solution: [1.999 5.997]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_228_34.png" src="../../_images/Metodo_primal_dual_de_BL_228_34.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_228_35.png" src="../../_images/Metodo_primal_dual_de_BL_228_35.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_229_34.png" src="../../_images/Metodo_primal_dual_de_BL_229_34.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_229_35.png" src="../../_images/Metodo_primal_dual_de_BL_229_35.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
 [1.999 5.997]
 -----------------------------------------------------------------
@@ -3402,8 +3407,8 @@ Mu value: 1.00e+01
 Approximate solution: [2. 6.]
 </pre></div>
 </div>
-<img alt="../../_images/Metodo_primal_dual_de_BL_228_49.png" src="../../_images/Metodo_primal_dual_de_BL_228_49.png" />
-<img alt="../../_images/Metodo_primal_dual_de_BL_228_50.png" src="../../_images/Metodo_primal_dual_de_BL_228_50.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_229_49.png" src="../../_images/Metodo_primal_dual_de_BL_229_49.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_229_50.png" src="../../_images/Metodo_primal_dual_de_BL_229_50.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner iterations
 [2. 6.]
 -----------------------------------------------------------------
@@ -3488,7 +3493,7 @@ Mu value: 1.00e+01
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Metodo_primal_dual_de_BL_231_0.png" src="../../_images/Metodo_primal_dual_de_BL_231_0.png" />
+<img alt="../../_images/Metodo_primal_dual_de_BL_232_0.png" src="../../_images/Metodo_primal_dual_de_BL_232_0.png" />
 </div>
 </div>
 <div class="admonition-comentario admonition">

@@ -602,6 +602,800 @@
 <p class="admonition-title">Definición</p>
 <p>En el algoritmo anterior se utilizó <span class="math notranslate nohighlight">\(\lambda(x)\)</span>, ver <a class="reference internal" href="../../4.optimizacion_en_redes_y_prog_lineal/4.5/Metodo_primal_dual_de_BL.html#decrementonewton"><span class="std std-ref">decremento de Newton</span></a>.</p>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">sympy.tensor.array</span> <span class="kn">import</span> <span class="n">derive_by_array</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">opt.classes.problems</span> <span class="kn">import</span> <span class="n">ProblemFeasibleInitPoint</span>
+<span class="kn">from</span> <span class="nn">opt.classes.functions</span> <span class="kn">import</span> <span class="n">GradientObjectiveFunction</span><span class="p">,</span> <span class="n">HessianObjectiveFunction</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="math notranslate nohighlight">
+\[\min \quad (x_1-2)^2+(2-x_2)^2+x_3^2+x_4^4\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">type_problem</span> <span class="o">=</span> <span class="s2">&quot;UCO&quot;</span>
+<span class="n">fo_numpy</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">ProblemFeasibleInitPoint</span><span class="p">(</span><span class="n">type_problem</span><span class="p">,</span>
+                             <span class="n">fo_numpy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">well_defined_problem</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;problema </span><span class="si">%s</span><span class="s2"> bien definido&quot;</span> <span class="o">%</span> <span class="n">p</span><span class="o">.</span><span class="n">type_problem</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;problema </span><span class="si">%s</span><span class="s2"> no bien definido&quot;</span> <span class="o">%</span> <span class="n">p</span><span class="o">.</span><span class="n">type_problem</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>problema UCO bien definido
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        x (numpy ndarray): 1d array of floats</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;x</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x1, x2, x3, x4&quot;</span><span class="p">)</span>
+<span class="n">x_sympy</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">x4</span><span class="p">)</span>
+<span class="n">fo_sympy</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x3</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x4</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">gf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo_sympy</span><span class="p">,</span> <span class="n">x_sympy</span><span class="p">)</span>
+<span class="n">Hf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gf_sympy</span><span class="p">,</span> <span class="n">x_sympy</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_sympy</span><span class="p">)</span>
+
+<span class="n">gf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">first_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> \
+                         <span class="k">for</span> <span class="n">first_partial_derivative</span> <span class="ow">in</span> <span class="n">gf_sympy</span><span class="p">],</span>
+                         <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+<span class="n">Hf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> \
+                         <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hf_sympy</span><span class="p">],</span>
+                                <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">gf_class</span> <span class="o">=</span> <span class="n">GradientObjectiveFunction</span><span class="p">(</span><span class="n">gf</span><span class="p">)</span>
+<span class="n">Hf_class</span> <span class="o">=</span> <span class="n">HessianObjectiveFunction</span><span class="p">(</span><span class="n">Hf</span><span class="p">)</span>
+<span class="n">x_ast</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">p_ast</span> <span class="o">=</span> <span class="n">fo_numpy</span><span class="p">(</span><span class="n">x_ast</span><span class="p">)</span>
+<span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">iteration</span><span class="p">,</span><span class="n">Err_plot</span><span class="p">,</span><span class="n">x_plot</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span>
+                                        <span class="n">x_ast</span><span class="o">=</span><span class="n">x_ast</span><span class="p">,</span>
+                                        <span class="n">p_ast</span><span class="o">=</span><span class="n">p_ast</span><span class="p">,</span>
+                                        <span class="n">gf_B</span><span class="o">=</span><span class="n">gf_class</span><span class="p">,</span>
+                                        <span class="n">Hf_B</span><span class="o">=</span><span class="n">Hf_class</span>
+                                        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>will use Newton method, if wants to use another select gradient or ...
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>CondHf</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row0</th>
+      <td>0</td>
+      <td>8.72e+00</td>
+      <td>3.80e+01</td>
+      <td>1.54e+00</td>
+      <td>1.90e+01</td>
+      <td>---</td>
+      <td>1.00e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>CondHf</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row1</th>
+      <td>1</td>
+      <td>0.00e+00</td>
+      <td>0.00e+00</td>
+      <td>0.00e+00</td>
+      <td>0.00e+00</td>
+      <td>1</td>
+      <td>1.00e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error of x with respect to x_ast: 0.00e+00
+Approximate solution: [2. 2. 0. 0.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">iteration</span><span class="p">,</span><span class="n">Err_plot</span><span class="p">,</span><span class="n">x_plot</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span>
+                                        <span class="n">x_ast</span><span class="o">=</span><span class="n">x_ast</span><span class="p">,</span>
+                                        <span class="n">p_ast</span><span class="o">=</span><span class="n">p_ast</span><span class="p">,</span>
+                                        <span class="n">gf_B</span><span class="o">=</span><span class="n">gf_class</span><span class="p">,</span>
+                                        <span class="n">Hf_B</span><span class="o">=</span><span class="n">Hf_class</span><span class="p">,</span>
+                                        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;gradient&quot;</span>
+                                        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row0</th>
+      <td>0</td>
+      <td>8.72e+00</td>
+      <td>7.60e+01</td>
+      <td>1.54e+00</td>
+      <td>1.90e+01</td>
+      <td>---</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row1</th>
+      <td>1</td>
+      <td>0.00e+00</td>
+      <td>0.00e+00</td>
+      <td>0.00e+00</td>
+      <td>0.00e+00</td>
+      <td>5.00e-01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error of x with respect to x_ast: 0.00e+00
+Approximate solution: [2. 2. 0. 0.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="math notranslate nohighlight">
+\[\min \quad e^{(x_1+3x_2-0.1)}+e^{x_1-3x_2-0.1}+e^{-x_1-0.1}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">type_problem</span> <span class="o">=</span> <span class="s2">&quot;UCO&quot;</span>
+<span class="n">fo_numpy</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">0.1</span><span class="p">)</span><span class="o">+</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">0.1</span><span class="p">)</span><span class="o">+</span><span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">ProblemFeasibleInitPoint</span><span class="p">(</span><span class="n">type_problem</span><span class="p">,</span>
+                             <span class="n">fo_numpy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">well_defined_problem</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;problema </span><span class="si">%s</span><span class="s2"> bien definido&quot;</span> <span class="o">%</span> <span class="n">p</span><span class="o">.</span><span class="n">type_problem</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;problema </span><span class="si">%s</span><span class="s2"> no bien definido&quot;</span> <span class="o">%</span> <span class="n">p</span><span class="o">.</span><span class="n">type_problem</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>problema UCO bien definido
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x1, x2&quot;</span><span class="p">)</span>
+<span class="n">x_sympy</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+<span class="n">fo_sympy</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x1</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">x2</span><span class="o">-</span><span class="mf">0.1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x1</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">x2</span><span class="o">-</span><span class="mf">0.1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sympy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x1</span><span class="o">-</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">gf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">fo_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+<span class="n">Hf_sympy</span> <span class="o">=</span> <span class="n">derive_by_array</span><span class="p">(</span><span class="n">gf_sympy</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">))</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_sympy</span><span class="p">)</span>
+
+<span class="n">gf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">first_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> \
+                         <span class="k">for</span> <span class="n">first_partial_derivative</span> <span class="ow">in</span> <span class="n">gf_sympy</span><span class="p">],</span>
+                         <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
+
+<span class="n">Hf</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">second_partial_derivative</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">map_sympy_vars_to_array_values</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> \
+                         <span class="k">for</span> <span class="n">second_partial_derivative</span> <span class="ow">in</span> <span class="n">Hf_sympy</span><span class="p">],</span>
+                                <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">gf_class</span> <span class="o">=</span> <span class="n">GradientObjectiveFunction</span><span class="p">(</span><span class="n">gf</span><span class="p">)</span>
+<span class="n">Hf_class</span> <span class="o">=</span> <span class="n">HessianObjectiveFunction</span><span class="p">(</span><span class="n">Hf</span><span class="p">)</span>
+<span class="n">x_ast</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.3465735941251887</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">p_ast</span><span class="o">=</span><span class="n">fo_numpy</span><span class="p">(</span><span class="n">x_ast</span><span class="p">)</span>
+<span class="n">x_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">iteration</span><span class="p">,</span><span class="n">Err_plot</span><span class="p">,</span><span class="n">x_plot</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span>
+                                        <span class="n">x_ast</span><span class="o">=</span><span class="n">x_ast</span><span class="p">,</span>
+                                        <span class="n">p_ast</span><span class="o">=</span><span class="n">p_ast</span><span class="p">,</span>
+                                        <span class="n">gf_B</span><span class="o">=</span><span class="n">gf_class</span><span class="p">,</span>
+                                        <span class="n">Hf_B</span><span class="o">=</span><span class="n">Hf_class</span>
+                                        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>will use Newton method, if wants to use another select gradient or ...
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>CondHf</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row0</th>
+      <td>0</td>
+      <td>9.05e-01</td>
+      <td>3.02e-01</td>
+      <td>1.00e+00</td>
+      <td>6.07e-02</td>
+      <td>---</td>
+      <td>6.00e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>CondHf</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row1</th>
+      <td>1</td>
+      <td>3.39e-02</td>
+      <td>4.49e-04</td>
+      <td>3.82e-02</td>
+      <td>8.77e-05</td>
+      <td>1</td>
+      <td>4.56e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+      <th>CondHf</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row2</th>
+      <td>2</td>
+      <td>1.98e-06</td>
+      <td>1.53e-12</td>
+      <td>2.24e-06</td>
+      <td>2.99e-13</td>
+      <td>1</td>
+      <td>4.50e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error of x with respect to x_ast: 2.24e-06
+Approximate solution: [-0.34657282  0.        ]
+</pre></div>
+</div>
+<img alt="../../_images/Metodo_de_descenso_mas_pronunciado_para_UCO_37_5.png" src="../../_images/Metodo_de_descenso_mas_pronunciado_para_UCO_37_5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">iteration</span><span class="p">,</span><span class="n">Err_plot</span><span class="p">,</span><span class="n">x_plot</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">x_0</span><span class="p">,</span>
+                                        <span class="n">x_ast</span><span class="o">=</span><span class="n">x_ast</span><span class="p">,</span>
+                                        <span class="n">p_ast</span><span class="o">=</span><span class="n">p_ast</span><span class="p">,</span>
+                                        <span class="n">gf_B</span><span class="o">=</span><span class="n">gf_class</span><span class="p">,</span>
+                                        <span class="n">Hf_B</span><span class="o">=</span><span class="n">Hf_class</span><span class="p">,</span>
+                                        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;gradient&quot;</span>
+                                        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row0</th>
+      <td>0</td>
+      <td>9.05e-01</td>
+      <td>8.19e-01</td>
+      <td>1.00e+00</td>
+      <td>6.07e-02</td>
+      <td>---</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row1</th>
+      <td>1</td>
+      <td>2.71e-01</td>
+      <td>7.37e-02</td>
+      <td>3.05e-01</td>
+      <td>5.61e-03</td>
+      <td>5.00e-01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row2</th>
+      <td>2</td>
+      <td>7.64e-02</td>
+      <td>5.84e-03</td>
+      <td>8.61e-02</td>
+      <td>4.46e-04</td>
+      <td>5.00e-01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row3</th>
+      <td>3</td>
+      <td>2.14e-02</td>
+      <td>4.57e-04</td>
+      <td>2.41e-02</td>
+      <td>3.49e-05</td>
+      <td>5.00e-01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row4</th>
+      <td>4</td>
+      <td>5.98e-03</td>
+      <td>3.57e-05</td>
+      <td>6.74e-03</td>
+      <td>2.73e-06</td>
+      <td>5.00e-01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row5</th>
+      <td>5</td>
+      <td>1.67e-03</td>
+      <td>2.79e-06</td>
+      <td>1.88e-03</td>
+      <td>2.13e-07</td>
+      <td>5.00e-01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row6</th>
+      <td>6</td>
+      <td>4.67e-04</td>
+      <td>2.19e-07</td>
+      <td>5.27e-04</td>
+      <td>1.67e-08</td>
+      <td>5.00e-01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Iter</th>
+      <th>Normgf</th>
+      <th>Newtons decrement</th>
+      <th>Err x ast</th>
+      <th>Err p ast</th>
+      <th>line search</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>row7</th>
+      <td>7</td>
+      <td>1.31e-04</td>
+      <td>1.71e-08</td>
+      <td>1.47e-04</td>
+      <td>1.30e-09</td>
+      <td>5.00e-01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error of x with respect to x_ast: 1.47e-04
+Approximate solution: [-0.34662467  0.        ]
+</pre></div>
+</div>
+<img alt="../../_images/Metodo_de_descenso_mas_pronunciado_para_UCO_38_9.png" src="../../_images/Metodo_de_descenso_mas_pronunciado_para_UCO_38_9.png" />
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="ejemplos-del-metodo-de-descenso-por-coordenadas">
