@@ -133,8 +133,8 @@ class ProblemFeasibleInitPoint():
             if call_method == "primal_dual_feasible_init_point_method":
                 #gf_B is gradient of logarithmic barrier funct
                 #Hf_B is Hessian of logarithmic barrier funct
-                if not t_B:
-                    print("pass t_B as argument when calling solve")
+                if not t_B or not not isinstance(x, np.ndarray):
+                    print("pass initial points x and t_B as arguments when calling solve")
                 else:
                     return primal_dual_feasible_init_point_method(self.objective_function,
                                                                   x,
@@ -151,8 +151,8 @@ class ProblemFeasibleInitPoint():
                                                                   max_inner_iter,
                                                                   max_total_iterations)
             else:
-                if not isinstance(x_ast, np.ndarray):
-                    print("pass x as argument when calling solve")
+                if not isinstance(x, np.ndarray):
+                    print("pass initial point x as argument when calling solve")
                 else:
                     return feasible_init_point_descent_method(self.objective_function,
                                                               x,
