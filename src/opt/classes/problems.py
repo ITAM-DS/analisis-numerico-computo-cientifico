@@ -168,12 +168,12 @@ class ProblemFeasibleInitPoint():
                     
         else:
             if call_method == "primal_dual_feasible_init_point_method":
-                print("x_ast as numpy array solution, \n \
+                print("pass next arguments when calling solve: x_ast as numpy array solution, \n \
                        p_ast as function value in x_ast, \n \
                        gf_B function evaluation of gradient of logarithmic barrier, \n \
                        Hf_B function evaluation of Hessian of logarithmic barrier must be defined")
             else:
-                print("x_ast as numpy array solution, \n \
+                print("pass next arguments when calling solve: x_ast as numpy array solution, \n \
                        p_ast as function value in x_ast, \n \
                        gf_B function evaluation of gradient of objective function, \n \
                        Hf_B function evaluation of Hessian of objective function")            
