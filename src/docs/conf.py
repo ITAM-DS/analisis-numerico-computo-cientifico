@@ -22,7 +22,7 @@ author = '"Erick Palacios Moreno"'
 master_doc = 'index'
 add_module_names = False
 # The full version, including alpha/beta/rc tags
-release = '0.1'
+release = '0.2'
 
 
 # -- General configuration ---------------------------------------------------
