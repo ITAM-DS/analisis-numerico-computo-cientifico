@@ -1,6 +1,6 @@
 import numpy as np
 
-from opt.classes_functions import ObjectiveFunction, LogarithmicBarrier
+from opt.classes.functions import ObjectiveFunction, LogarithmicBarrier
 from opt.logarithmic_barrier.logarithmic_barrier_methods import primal_dual_feasible_init_point_method
 from opt.descent_methods import feasible_init_point_descent_method
 
