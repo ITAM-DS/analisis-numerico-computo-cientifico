@@ -191,6 +191,6 @@ def feasible_init_point_descent_method(f,
         if iteration == maxiter:
             print("Reached maximum of iterations, check approximation")
     x_plot = x_plot[:,:iteration]
-    if plot:
+    if plot and Err_plot.size >= 2:
         plot_inner_iterations(Err_plot)
     return [x,iteration,Err_plot,x_plot]
