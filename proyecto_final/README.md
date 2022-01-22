@@ -20,13 +20,15 @@ Para el proyecto final se utilizará:
 
 * docker.
 
-* Python/R o algún otro lenguaje de programación y paquetes para cómputo en paralelo o compilación a C.
+* Python/R o algún otro lenguaje de programación y paquetes para perfilamiento, niveles de BLAS, cómputo en paralelo o compilación a C.
+
+* Minikube, kubeflow y kale.
 
 * Organización del equipo en una forma simplificada del framework [scrum](https://www.youtube.com/watch?v=b02ZkndLk1Y&feature=emb_logo) en tres grupos: grupo de programación, grupo de revisión y una persona *project manager*.
 
 Tiene un porcentaje de 40% y la calificación es por equipo. Se entrega el código de la implementación en una liga a ella, más información sobre esta liga en [indicaciones](indicaciones).
 
-**La implementación consiste en hacer desde cero los programas o bien utilizar herramientas hechas por la comunidad científica haciendo una explicación de la misma.**
+**La implementación consiste en crear un paquete que resuelva problemas de optimización numérica y aplicarlo a un *dataset*.**
 
 ## Trabajo escrito
 
