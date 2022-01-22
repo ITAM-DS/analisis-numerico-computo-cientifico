@@ -1,6 +1,6 @@
 # Indicaciones
 
-Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. La calificación del trabajo por cada integrante será de acuerdo a los *commits* realizados en su proyecto final
+Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. La calificación del trabajo por cada integrante será de acuerdo a los *commits* realizados en su proyecto final.
 
 En el nivel:  
 
@@ -14,7 +14,7 @@ El archivo [README.md](../proyectos) debajo del nivel:
  `analisis-numerico-computo-cientifico/proyecto_final/proyectos/
 ` 
 
-es un archivo de control para la lista de proyectos y **únicamente lo actualiza/modifica el prof.** con comentarios para sus avances, títulos y objetivos de su proyectos y ligas hacia sus avances, trabajo escrito, presentación e implementación de su proyecto.
+es un archivo de control para la lista de proyectos y **únicamente lo actualiza/modifica el prof.** con títulos y objetivos de su proyectos, trabajo escrito, presentación e implementación de su proyecto.
 
 **Las ligas hacia el trabajo escrito y presentación son hacia otro lado (p.ej. una liga de dropbox/gdrive en donde tienen `pdfs` o hacia repos del equipo) y no hacia directorios dentro del repositorio de la materia. Así evitamos tener archivos grandes en este repo :) y la liga hacia la implementación sí es al repo**.
 
