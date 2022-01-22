@@ -19,13 +19,15 @@ El curso se apoya de herramientas de software como:
 * Lenguajes de programación de Python y R. Ver [curso de verano](https://github.com/ITAM-DS/Propedeutico#%C3%ADndice-de-notas) para información sobre estos lenguajes.
 
 
-
-
 ## Calificación
 
 |Exámenes(2)| Prácticas(2)|Proyecto final|
 |:---:|:---:|:---:|
 |15|15|40|
+
+### Exámenes
+
+Se tendrán 2 exámenes de teoría. Se realizan de forma individual y las preguntas se basan en las preguntas de comprehensión de los temas indicados. 
 
 ### Entregas extras
 
