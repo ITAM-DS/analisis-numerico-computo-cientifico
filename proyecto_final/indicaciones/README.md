@@ -24,14 +24,7 @@ es un archivo de control para la lista de proyectos y **únicamente lo actualiza
 
  ## Fechas del mes de "" en los que los equipos tendrán que presentar avances  del proyecto:
 
-* "" de "".
-
-* "" de "".
-
-* "" de "". 
-
-
-El proyecto final se presenta en la segunda semana de finales.
+La presentación de avances ser realiza por Zoom 
 
 ||||
 |:---:|:---:|:---:|
@@ -41,9 +34,7 @@ El proyecto final se presenta en la segunda semana de finales.
 |"" de ""|""|"" a "" am|
 |"" de ""|""|"" a "" am|
 
-La presentación de avances ser realiza por Zoom 
-
-
+### El proyecto final se presenta en la segunda semana de finales y es agendado por control escolar.
 
 
 
