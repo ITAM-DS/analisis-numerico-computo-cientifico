@@ -12,7 +12,7 @@ En este repositorio encuentran el contenido para los cursos de **optimización**
 
 ### En [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) encuentran una presentación de introducción al curso de optimización 2021.
 
-### Dar click en el siguiente botón para unirse\* al chat del curso de optimización 2021 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2021/community.svg)](https://gitter.im/optimizacion-2021/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+### Dar click en el siguiente botón para unirse\* al chat del curso de optimización 2021 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2022/community.svg)](https://gitter.im/optimizacion-2-2022/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 \***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
 
@@ -42,9 +42,9 @@ Una vez hayan instalado *docker*\* en sus computadoras, al inicio de cada nota d
 \*Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/main/herramientas/docker) para referencias de [docker](https://www.docker.com/).
 
 
-## Organización de github classroom para optimización 2021
+## Organización de github classroom para optimización 2 2022
 
-La organización [optimizacion-2021-gh-classroom](https://github.com/optimizacion-2021-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas. Ver [github education](https://github.com/education) como una referencia.
+La organización [optimizacion-2022-gh-classroom](https://github.com/optimizacion-2-2022-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas. Ver [github education](https://github.com/education) como una referencia.
 
 ## Ramas del repositorio.
 
@@ -133,5 +133,5 @@ El zip estará dentro del directorio `analisis-numerico-computo-cientifico/libro
 
 Una vez descargado abrir el archivo `README.html`.
 
-### Nota: durante el segundo semestre del 2021 se estarán haciendo cambios continuamente por lo que tendrán que actualizar su descarga, clon o *fork*.
+### Nota: durante el primer semestre del 2022 se estarán haciendo cambios continuamente por lo que tendrán que actualizar su descarga, clon o *fork*.
 
