@@ -27,24 +27,6 @@ El curso se apoya de herramientas de software como:
 
 ### Exámenes
 
-Se tendrán 2 exámenes de teoría. Se realizan de forma individual y las preguntas se basan en las preguntas de comprehensión de los temas indicados. 
-
-### Entregas extras
-
-Los ejercicios y preguntas de programación que están en las notas ayudan a subir la calificación final. Son entregas que se tomarán como extra.
-
-Para obtener el porcentaje extra deben entregar en un repositorio de github debajo de la organización del curso:
-
-A) los ejercicios y preguntas que requieran programación de dos de los tres capítulos del libro incluyendo la nota sobre programación lineal.
-
-o bien
-
-B) los ejercicios y preguntas que requieran programación de uno de los tres capítulos incluyendo la nota sobre programación lineal MÁS dos de las tareas extras que les pido entreguen como ensayos. Los temas para los ensayos se detallarán en las publicaciones de los mismos.
-
-Ustedes eligen los capítulos a realizar y también las tareas extras que les pido entreguen como ensayos. Las fechas de entrega para ejercicios y preguntas de los capítulos son una semana después que se finalice en clase el capítulo en cuestión. La fecha de entrega para los ensayos es hasta dos semanas antes de finalizar el semestre.
-
-### Exámenes
-
 Se tendrán 2 exámenes de teoría que evaluarán los siguientes temas:
 
 |Módulo| Puntos| Tipo|
@@ -54,7 +36,6 @@ Se tendrán 2 exámenes de teoría que evaluarán los siguientes temas:
 
 
 Los exámenes de teoría se realizan de forma individual y las preguntas de los mismos se basan en las preguntas de comprehensión de los temas indicados. 
-
 
 ### Prácticas
 
@@ -109,6 +90,20 @@ Para el proyecto final se utilizará:
 Más información se encuentra en la carpeta [proyecto_final](proyecto_final).
 
 Todas las personas de un equipo deben participar en la realización del proyecto final pues reciben una calificación individual.
+
+### Entregas extras
+
+Los ejercicios y preguntas de programación que están en las notas ayudan a subir la calificación final. Son entregas que se tomarán como extra.
+
+Para obtener el porcentaje extra deben entregar en un repositorio de github debajo de la organización del curso:
+
+A) los ejercicios y preguntas que requieran programación de dos de los tres capítulos del libro incluyendo la nota sobre programación lineal.
+
+o bien
+
+B) los ejercicios y preguntas que requieran programación de uno de los tres capítulos incluyendo la nota sobre programación lineal MÁS dos de las tareas extras que les pido entreguen como ensayos. Los temas para los ensayos se detallarán en las publicaciones de los mismos.
+
+Ustedes eligen los capítulos a realizar y también las tareas extras que les pido entreguen como ensayos. Las fechas de entrega para ejercicios y preguntas de los capítulos son una semana después que se finalice en clase el capítulo en cuestión. La fecha de entrega para los ensayos es hasta dos semanas antes de finalizar el semestre.
 
 # Sobre lo que nunca deben realizar
 
