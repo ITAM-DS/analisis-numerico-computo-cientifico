@@ -33,11 +33,6 @@ es un archivo de control para la lista de proyectos y **únicamente lo actualiza
 
 El proyecto final se presenta en la segunda semana de finales.
 
-
-### Asignación de fechas para presentar avances:
-
-La presentación de avances ser realiza por Zoom 
-
 ||||
 |:---:|:---:|:---:|
 |Fechas|Equipos|Horario|
@@ -45,6 +40,8 @@ La presentación de avances ser realiza por Zoom
 |"" de ""|""|"" a "" am|
 |"" de ""|""|"" a "" am|
 |"" de ""|""|"" a "" am|
+
+La presentación de avances ser realiza por Zoom 
 
 
 
