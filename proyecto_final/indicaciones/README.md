@@ -20,36 +20,5 @@ es un archivo de control para la lista de proyectos y **únicamente lo actualiza
 
 * **Ojo:** deben entregarse los 4 rubros: implementación, trabajo escrito, presentación y avances para que se considere válido el proyecto final. Si alguno de estos rubros no es entregado en tiempo y forma se tendrá 0 en el proyecto final.
 
-* **Ojo:** Si un equipo no presenta avance alguno en las fechas de los "" de "" y "" que se les pide asistan, tendrán 0 en el rubro de avances y por tanto 0 en el proyecto final. 
-
- ## Fechas de los "" de "" y "" en los que los equipos tendrán que presentar avances  del proyecto:
-
-* "" de "".
-
-* "" de "".
-
-* "" de "". 
-
-
 El proyecto final se presenta en la segunda semana de finales.
-
-
-### Asignación de fechas para presentar avances:
-
-La presentación ser realiza por Teams 
-
-||||
-|:---:|:---:|:---:|
-|Fechas|Equipos|Horario|
-|"" de ""|""|"" a "" am|
-|"" de ""|""|"" a "" am|
-|"" de ""|""|"" a "" am|
-|"" de ""|""|"" a "" am|
-
-
-
-
-
-
-
 
