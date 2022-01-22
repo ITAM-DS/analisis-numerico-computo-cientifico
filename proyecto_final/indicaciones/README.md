@@ -1,6 +1,6 @@
 # Indicaciones
 
-Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante los "" de los meses de "" y "" en los que se deberá exponer lo que han realizado.
+Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. La calificación del trabajo por cada integrante será de acuerdo a los *commits* realizados en su proyecto final. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante los "" de los meses de "" y "" en los que se deberá exponer lo que han realizado.
 
 En el nivel:  
 
