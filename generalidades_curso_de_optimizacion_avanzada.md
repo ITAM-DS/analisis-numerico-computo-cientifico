@@ -25,6 +25,10 @@ El curso se apoya de herramientas de software como:
 |:---:|:---:|:---:|
 |20|20|40|
 
+### Exámenes
+
+Se tendrá únicamente 1 examen de teoría. Se realiza de forma individual y las preguntas del mismo se basa en las preguntas de comprehensión de los temas indicados. 
+
 ### Entregas extras
 
 Los ejercicios y preguntas de programación que están en las notas ayudan a subir la calificación final. Son entregas que se tomarán como extra.
