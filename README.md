@@ -4,7 +4,7 @@
 
 ### El curso, calificación y entregas, correo al cual escribir en el documento [generalidades_curso_de_optimizacion_avanzada.md](generalidades_curso_de_optimizacion_avanzada.md)
 
-### Dar click en el siguiente botón para unirse\* al chat del semestre "" en [gitter](https://gitter.im/): "" 
+### Dar click en el siguiente botón para unirse\* al chat del semestre enero mayo en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2022/community.svg)](https://gitter.im/optimizacion-2-2022/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 \*Se puede hacer el registro con su cuenta de [github](https://github.com/).
 
