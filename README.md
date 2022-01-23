@@ -22,7 +22,7 @@ En este repositorio encuentran el contenido para los cursos de **optimización**
 
 ### En [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) encuentran una presentación de introducción al curso de optimización avanzada 2021.
 
-### Dar click en el siguiente botón para unirse\* al chat del curso de optimización 2 2022 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2022/community.svg)](https://gitter.im/optimizacion-2-2022/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+### Dar click en el siguiente botón para unirse\* al chat del curso de optimización avanzada 2022 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2022/community.svg)](https://gitter.im/optimizacion-2-2022/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 \***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
 
@@ -42,7 +42,7 @@ Una vez hayan instalado *docker*\* en sus computadoras, al inicio de cada nota d
 \*Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/main/herramientas/docker) para referencias de [docker](https://www.docker.com/).
 
 
-## Organización de github classroom para optimización 2 2022
+## Organización de github classroom para optimización avanzada 2022
 
 La organización [optimizacion-2-2022-gh-classroom](https://github.com/optimizacion-2-2022-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas. Ver [github education](https://github.com/education) como una referencia.
 
@@ -54,7 +54,7 @@ Se tienen diferentes ramas que pueden ser accesadas como se aprecia en esta imag
 
 Seleccionar por ejemplo la rama **optimizacion-2021** (u otra) para información del curso de Optimización de 2021.
 
-**Dar click en [optimizacion-2-2022](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2-2022) para la rama del curso de optimización 2 2022.**
+**Dar click en [optimizacion-2-2022](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2-2022) para la rama del curso de optimización avanzada 2022.**
 
 La rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/gh-pages) contiene los `html`s para visualización del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/).
 
