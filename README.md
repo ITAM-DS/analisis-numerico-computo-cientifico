@@ -34,8 +34,8 @@ Dentro del directorio [deployments/minikube/hostpath_pv/](https://github.com/ITA
 
 |Curso| Imagen|
 |:---:|:---:|
-|Optimización | [palmoreck/jupyterlab_optimizacion:3.1.0](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion)|
-|Optimización avanzada | [palmoreck/jupyterlab_optimizacion_2:3.1.0](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2)
+|Optimización | [palmoreck/jupyterlab_optimizacion:3.2.8](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion)|
+|Optimización avanzada | [palmoreck/jupyterlab_optimizacion_2:3.2.8](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2)
 
 Una vez hayan instalado *docker*\* en sus computadoras, al inicio de cada nota del libro se indica el comando `docker run` para correr los contenedores. O bien pueden correrlos de acuerdo a la documentación de la imagen, ver por ejemplo [running optimizacion docker image in a docker container](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/optimizacion/README.md#running-jupyterlab_optimizacion-docker-image-in-a-docker-container), [running optimizacion_2 docker image in a docker container](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/optimizacion_2/README.md#running-jupyterlab_optimizacion_2-docker-image-in-a-docker-container) . 
 
