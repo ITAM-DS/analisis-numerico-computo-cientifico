@@ -12,14 +12,6 @@
 
 Las clases son los días jueves. 
 
-
-Métodos para resolver problemas sin restricciones: métodos de descenso por gradiente, Newton, por coordenadas, descenso más pronunciado.
-
-Método de Newton para resolver problemas con restricciones de igualdad.
-
-Continuación método de Newton para resolver problemas con restricciones de igualdad.
-
-
 | Semanas   | Tema                                                              |
 | :--------:|:-----------------------------------------------------------------:|
 | Semana 1 (24 - 28 de enero) | Introducción al curso. Repaso: programación lineal y método símplex.|
@@ -37,9 +29,8 @@ Continuación método de Newton para resolver problemas con restricciones de igu
 | Semana 13 (18 - 22 de abril) | Compilación a C.|
 | Semana 14 (25 - 29 de abril) | Cómputo en paralelo en la CPU.|
 | Semana 15 (2 - 6 de mayo) | Cómputo en paralelo en la GPU.|
-| Semana 16 (9 - 13 de mayo) | |
-| Semana 17 (16 - 19 de mayo) | |
-
+| Semana 16 (9 - 13 de mayo) | Problemas de optimización convexos sin restricciones: método de descenso más pronunciado.|
+| Semana 17 (16 - 19 de mayo) | Problemas de optimización convexos con restricciones de igualdad y desigualdad: método de Newton y primal dual de barrera logarítmica.|
 
 
 Total de clases: 16 (1 asueto). Total de número de horas: 48 hrs.
