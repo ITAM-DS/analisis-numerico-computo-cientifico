@@ -49,5 +49,9 @@ Total de clases: 16 (1 asueto). Total de número de horas: 48 hrs.
 
 ## Clase 1
 
-"" de ""
+27 de enero
+
+Introducción al curso.
+
+Llegamos hasta [4.1/Programacion_lineal_y_metodo_simplex.html#forma-aumentada-de-un-pl](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html#forma-aumentada-de-un-pl)
 
