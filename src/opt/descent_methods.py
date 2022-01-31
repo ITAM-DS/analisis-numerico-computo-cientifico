@@ -27,8 +27,10 @@ def feasible_init_point_descent_method(f,
                                        plot=True,
                                        method="Newton"):
     """
-    Logarithmic barrier primal-dual method using Newton's method
-    to numerically approximate solution of PL with only inequalities.
+    Descent method to approximate minimum of function f: Rn -> R.
+    Gradient or Newton's method (default) can be used. Gradient and
+    Hessian of function must be provided as instances of classes,
+    see classes.functions of opt pkg for more info.
 
     Args:
 
