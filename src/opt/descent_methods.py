@@ -75,7 +75,6 @@ def feasible_init_point_descent_method(f,
     """
     iteration = 0
     f.set_x(x)    
-    x = f.x
     n = x.size
     f.evaluate()
     f_eval = f.f_eval #or f_eval = f.evaluate() ?

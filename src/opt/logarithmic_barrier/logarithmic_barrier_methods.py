@@ -75,7 +75,6 @@ def primal_dual_feasible_init_point_method(f_B,
     """
     f_B.set_x(x)
     f_B.set_t_B(t_B)
-    x   = f_B.x
     t_B = f_B.t_B
     n   = x.size
     constraints_ineq = f_B.constraints_inequalities
