@@ -21,13 +21,25 @@ def print_iterations(data, columns):
     df = pd.DataFrame.from_dict(data, orient='index',
                                  columns=columns)
     display(df)
-def plot_inner_iterations(err):
+def plot_error_of_optimum_value(err):
     """
     Auxiliary function for plotting inner iterations error.
     """
     plt.yscale('log') #logarithmic scale for y axis
     plt.plot(np.arange(err.size),err,'.-')
-    plt.ylabel("Log relative error: $f_o(x^k)$ y $p^*$",size=12)
+    plt.title("Error of optimum value between $f_o(x^{(k)})$ and $p^*$")
+    plt.ylabel("log error",size=12)
     plt.xlabel("Inner iterations",size=12)
+    plt.grid()
+    plt.show()
+def plot_sequence_of_approximations(x_plot):
+    """
+    Auxiliar function for plotting sequence of approximations.
+    """
+    plt.plot(x_plot[0,:],x_plot[1,:],"-*")
+    plt.ylabel("$x_2$")
+    plt.xlabel("$x_1$")
+    plt.annotate("$x^{(0)}$",(x_plot[0,0],x_plot[1,0]),fontsize=12)
+    plt.title("Descent method sequence of approximations")
     plt.grid()
     plt.show()
