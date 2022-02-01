@@ -127,7 +127,7 @@ class ProblemFeasibleInitPoint():
             call_method = "feasible_init_point_descent_method"
             if method is None:
                 method = "Newton"
-                print("will use %s method, if wants to use another select gradient or ..." % method)
+                print("will use Newton's method, if wants to use another select gradient or coordinate descent")
         
         if isinstance(x_ast, np.ndarray) and (p_ast is not None) and gf_B and Hf_B:
             if call_method == "primal_dual_feasible_init_point_method":
