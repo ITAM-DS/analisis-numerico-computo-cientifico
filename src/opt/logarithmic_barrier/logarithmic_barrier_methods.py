@@ -1,8 +1,8 @@
 import numpy as np
 
-from opt.utils_logarithmic_barrier import constraints_inequalities_funcs_eval, \
-                                          plot_central_path
-from opt.utils import compute_error, print_iterations
+from opt.utils_logarithmic_barrier import constraints_inequalities_funcs_eval
+from opt.utils import compute_error, print_iterations, plot_error_of_optimum_value, \
+plot_sequence_of_approximations
 from opt.descent_methods import feasible_init_point_descent_method
 
 def primal_dual_feasible_init_point_method(f_B,
@@ -120,7 +120,7 @@ def primal_dual_feasible_init_point_method(f_B,
                                                           max_inner_iter,
                                                           gf_B,
                                                           Hf_B,
-                                                          plot,
+                                                          plot=False,
                                                           method="logarithmic_barrier"
                                                           )
             if(outer_iter == 0):
@@ -130,8 +130,11 @@ def primal_dual_feasible_init_point_method(f_B,
                                                      x_plot))
             error_between_iterations = compute_error(x, x_aux)
             if(error_between_iterations > tol_outer_iter):
-                if plot:
-                    plot_central_path(x_plot)
+                if plot and Err_plot.size >= 2:
+                    plot_error_of_optimum_value(Err_plot)
+                if plot and x_plot.size >= 2:
+                    plot_sequence_of_approximations(x_plot,
+                                                    title="Primal-dual BL method sequence of approximations")
                 print("Inner iterations")
                 print(x)
                 const_ineq_funcs_eval = -constraints_inequalities_funcs_eval(x,
