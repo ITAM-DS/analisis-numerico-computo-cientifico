@@ -42,18 +42,3 @@ def phi(x, constraints_inequalities):
     constraint_ineq_funcs_eval = -constraints_inequalities_funcs_eval(x,constraints_inequalities)
     log_barrier_const_eval = log_barrier_aux_eval_constraints(constraint_ineq_funcs_eval)
     return -np.sum(log_barrier_const_eval)
-def plot_central_path(x_iterations):
-    """
-    Auxiliary function for plotting central points of
-    central path.
-    """
-    plt.plot(x_iterations[0,:],
-             x_iterations[1, :], "-*")
-    plt.ylabel("$x_2$")
-    plt.xlabel("$x_1$")
-    plt.annotate("$x^{(0)}$",(x_iterations[0,0],
-                              x_iterations[1,0]),fontsize=12)
-    plt.title("Primal-dual BL method sequence of approximations")
-    plt.grid()
-    plt.legend(["Central path"], bbox_to_anchor=(1,1))
-    plt.show()
