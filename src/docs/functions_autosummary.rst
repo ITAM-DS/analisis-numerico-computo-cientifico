@@ -42,4 +42,3 @@ Utils logarithmic barrier module
    utils_logarithmic_barrier.constraints_inequalities_funcs_generator
    utils_logarithmic_barrier.constraints_inequalities_funcs_eval
    utils_logarithmic_barrier.phi
-   utils_logarithmic_barrier.plot_central_path
