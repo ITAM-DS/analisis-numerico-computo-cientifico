@@ -32,14 +32,19 @@ def plot_error_of_optimum_value(err):
     plt.xlabel("Inner iterations",size=12)
     plt.grid()
     plt.show()
-def plot_sequence_of_approximations(x_plot):
+def plot_sequence_of_approximations(x_iterations,
+                                   title="Descent method sequence of approximations"):
     """
     Auxiliar function for plotting sequence of approximations.
     """
-    plt.plot(x_plot[0,:],x_plot[1,:],"-*")
+    plt.plot(x_iterations[0,:],
+             x_iterations[1,:],"-*")
     plt.ylabel("$x_2$")
     plt.xlabel("$x_1$")
-    plt.annotate("$x^{(0)}$",(x_plot[0,0],x_plot[1,0]),fontsize=12)
-    plt.title("Descent method sequence of approximations")
+    plt.annotate("$x^{(0)}$",(x_iterations[0,0],
+                              x_iterations[1,0]),fontsize=12)
+    plt.title(title)
+    if title == "Primal-dual BL method sequence of approximations":
+        plt.legend(["Central path"], bbox_to_anchor=(1,1))
     plt.grid()
     plt.show()
