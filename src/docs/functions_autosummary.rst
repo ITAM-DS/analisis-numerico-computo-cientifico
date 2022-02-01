@@ -29,7 +29,8 @@ Utils module
 
    utils.compute_error
    utils.print_iterations
-   utils.plot_inner_iterations
+   utils.plot_error_of_optimum_value
+   utils.plot_sequence_of_approximations
 
 Utils logarithmic barrier module
 ================================
