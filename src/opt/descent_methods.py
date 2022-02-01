@@ -1,7 +1,8 @@
 import numpy as np
 
 from opt.compute_step_size import line_search_by_backtracking
-from opt.utils import compute_error, print_iterations, plot_inner_iterations
+from opt.utils import compute_error, print_iterations, plot_error_of_optimum_value, \
+plot_sequence_of_approximations
 
 
 def set_values_and_solve_linear_system_for_Newton_method(x, rhs, Hf):
@@ -28,8 +29,8 @@ def feasible_init_point_descent_method(f,
                                        method="Newton"):
     """
     Descent method to approximate minimum of function f: Rn -> R.
-    Gradient or Newton's method (default) can be used. Gradient and
-    Hessian of function must be provided as instances of classes,
+    Gradient, coordinate descent or Newton's method (default) can be used.
+    Gradient and Hessian of function must be provided as instances of classes,
     see classes.functions of opt pkg for more info.
 
     Args:
@@ -93,6 +94,11 @@ def feasible_init_point_descent_method(f,
     else:
         if method == "gradient":            
             descent_dir = rhs
+        else:
+            if method == "coordinate descent":
+                idx_max_absolute_value = np.argmax(np.abs(rhs))
+                descent_dir = np.zeros(n)
+                descent_dir[idx_max_absolute_value] = rhs[idx_max_absolute_value]
 
     dec_Newton_squared = rhs.dot(descent_dir)
     
@@ -113,7 +119,7 @@ def feasible_init_point_descent_method(f,
                        "Err x ast", "Err p ast",
                        "line search", "CondHf_B"]
         else:
-            if method == "gradient":
+            if method == "gradient" or method == "coordinate descent":
                 columns = ["Iter", "Normgf", "Newtons decrement",
                            "Err x ast", "Err p ast",
                            "line search"]            
@@ -158,6 +164,11 @@ def feasible_init_point_descent_method(f,
         else:
             if method == "gradient":            
                 descent_dir = rhs
+            else:
+                if method == "coordinate descent":
+                    idx_max_absolute_value = np.argmax(np.abs(rhs))
+                    descent_dir = np.zeros(n)
+                    descent_dir[idx_max_absolute_value] = rhs[idx_max_absolute_value]
 
         dec_Newton_squared = rhs.dot(descent_dir)
         
@@ -194,5 +205,7 @@ def feasible_init_point_descent_method(f,
             print("Reached maximum of iterations, check approximation")
     x_plot = x_plot[:,:iteration]
     if plot and Err_plot.size >= 2:
-        plot_inner_iterations(Err_plot)
+        plot_error_of_optimum_value(Err_plot)
+    if plot and x_plot.size >= 2:
+        plot_sequence_of_approximations(x_plot)
     return [x,iteration,Err_plot,x_plot]
