@@ -53,7 +53,7 @@ def plot_central_path(x_iterations):
     plt.xlabel("$x_1$")
     plt.annotate("$x^{(0)}$",(x_iterations[0,0],
                               x_iterations[1,0]),fontsize=12)
-    plt.title("Primal-dual BL method iterations")
+    plt.title("Primal-dual BL method sequence of approximations")
     plt.grid()
-    plt.legend(["Trayectoria central"], bbox_to_anchor=(1,1))
+    plt.legend(["Central path"], bbox_to_anchor=(1,1))
     plt.show()
