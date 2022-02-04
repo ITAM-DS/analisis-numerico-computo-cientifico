@@ -55,3 +55,11 @@ Introducción al curso.
 
 Llegamos hasta [4.1/Programacion_lineal_y_metodo_simplex.html#forma-aumentada-de-un-pl](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html#forma-aumentada-de-un-pl)
 
+
+## Clase 2
+
+3 de febrero
+
+Finalizamos [Programacion_lineal_y_metodo_simplex.html#consideraciones-sobre-el-metodo-simplex)](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html#consideraciones-sobre-el-metodo-simplex)
+
+Discutimos sobre [example-docker-image-build-and-push](https://github.com/palmoreck/example-docker-image-build-and-push)
