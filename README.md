@@ -63,3 +63,11 @@ Llegamos hasta [4.1/Programacion_lineal_y_metodo_simplex.html#forma-aumentada-de
 Finalizamos [Programacion_lineal_y_metodo_simplex.html#consideraciones-sobre-el-metodo-simplex)](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html#consideraciones-sobre-el-metodo-simplex)
 
 Discutimos sobre [example-docker-image-build-and-push](https://github.com/palmoreck/example-docker-image-build-and-push)
+
+## Clase 3
+
+11 de febrero
+
+Finalizamos [4.2/Definiciones_generales_de_flujo_en_redes.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.2/Definiciones_generales_de_flujo_en_redes.html)
+
+Llegamos hasta antes de [4.3/Ejemplo_metodo_simplex_de_redes.html#tecnica-de-la-cota-superior](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.3/Ejemplo_metodo_simplex_de_redes.html#tecnica-de-la-cota-superior)
