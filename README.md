@@ -71,3 +71,10 @@ Discutimos sobre [example-docker-image-build-and-push](https://github.com/palmor
 Finalizamos [4.2/Definiciones_generales_de_flujo_en_redes.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.2/Definiciones_generales_de_flujo_en_redes.html)
 
 Llegamos hasta antes de [4.3/Ejemplo_metodo_simplex_de_redes.html#tecnica-de-la-cota-superior](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.3/Ejemplo_metodo_simplex_de_redes.html#tecnica-de-la-cota-superior)
+
+## Clase 4
+
+17 de febrero
+
+Finalizamos [4.3/Ejemplo_metodo_simplex_de_redes.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.3/Ejemplo_metodo_simplex_de_redes.html)
+
