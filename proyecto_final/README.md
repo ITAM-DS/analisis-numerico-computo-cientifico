@@ -81,6 +81,8 @@ La siguiente lista no pretende ser exhaustiva.
 
 * Algoritmos basados en árboles o grafos para optimización de redes.
 
+* Método símplex en redes.
+
 * Método de puntos interiores, barrera logarítmica.
 
 * Métodos Cuasi Newton.
@@ -92,6 +94,8 @@ La siguiente lista no pretende ser exhaustiva.
 * Método de Gauss-Newton.
 
 * Método de Levenberg–Marquardt.
+
+* Métodos en optimización combinatoria.
 
 * Métodos que resuelvan problemas planteados en aprendizaje de máquina.
 
