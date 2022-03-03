@@ -62,7 +62,7 @@ Llegamos hasta [4.1/Programacion_lineal_y_metodo_simplex.html#forma-aumentada-de
 
 Finalizamos [Programacion_lineal_y_metodo_simplex.html#consideraciones-sobre-el-metodo-simplex)](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html#consideraciones-sobre-el-metodo-simplex)
 
-Discutimos sobre [example-docker-image-build-and-push](https://github.com/palmoreck/example-docker-image-build-and-push)
+Discutimos sobre [palmoreck/example-docker-image-build-and-push](https://github.com/palmoreck/example-docker-image-build-and-push)
 
 ## Clase 3
 
@@ -78,3 +78,10 @@ Llegamos hasta antes de [4.3/Ejemplo_metodo_simplex_de_redes.html#tecnica-de-la-
 
 Finalizamos [4.3/Ejemplo_metodo_simplex_de_redes.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.3/Ejemplo_metodo_simplex_de_redes.html)
 
+## Clase 5
+
+24 de febrero
+
+Llegamos hasta [Forma aumentada del problema dual](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html#forma-aumentada-del-problema-dual)
+
+Discutimos sobre [palmoreck/example-python-package-and-sphinx-doc](https://github.com/palmoreck/example-python-package-and-sphinx-doc)
