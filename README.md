@@ -60,7 +60,7 @@ Llegamos hasta [4.1/Programacion_lineal_y_metodo_simplex.html#forma-aumentada-de
 
 3 de febrero
 
-Finalizamos [Programacion_lineal_y_metodo_simplex.html#consideraciones-sobre-el-metodo-simplex)](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html#consideraciones-sobre-el-metodo-simplex)
+Finalizamos [4.1/Programacion_lineal_y_metodo_simplex.html#consideraciones-sobre-el-metodo-simplex)](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html#consideraciones-sobre-el-metodo-simplex)
 
 Discutimos sobre [palmoreck/example-docker-image-build-and-push](https://github.com/palmoreck/example-docker-image-build-and-push)
 
@@ -82,7 +82,7 @@ Finalizamos [4.3/Ejemplo_metodo_simplex_de_redes.html](https://itam-ds.github.io
 
 24 de febrero
 
-Llegamos hasta [forma-aumentada-del-problema-dual](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html#forma-aumentada-del-problema-dual)
+Llegamos hasta [4.4/forma-aumentada-del-problema-dual](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html#forma-aumentada-del-problema-dual)
 
 Discutimos sobre [palmoreck/example-python-package-and-sphinx-doc](https://github.com/palmoreck/example-python-package-and-sphinx-doc)
 
@@ -90,4 +90,12 @@ Discutimos sobre [palmoreck/example-python-package-and-sphinx-doc](https://githu
 
 3 de marzo
 
-Llegamos hasta [las-condiciones-kkt-para-un-pl-en-su-forma-estandar](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html#las-condiciones-kkt-para-un-pl-en-su-forma-estandar)
+Llegamos hasta [4.4/las-condiciones-kkt-para-un-pl-en-su-forma-estandar](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html#las-condiciones-kkt-para-un-pl-en-su-forma-estandar)
+
+## Clase 7
+
+10 de marzo
+
+Finalizamos [4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html)
+
+Llegamos hasta [4.5/Metodo_primal_dual_de_BL](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.5/Metodo_primal_dual_de_BL.html#id1)
