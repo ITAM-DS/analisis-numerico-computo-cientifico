@@ -98,4 +98,10 @@ Llegamos hasta [4.4/las-condiciones-kkt-para-un-pl-en-su-forma-estandar](https:/
 
 Finalizamos [4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.html)
 
-Llegamos hasta [4.5/Metodo_primal_dual_de_BL](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.5/Metodo_primal_dual_de_BL.html#id1)
+Llegamos hasta [4.5/segunda-idea-cortar-el-paso](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.5/Metodo_primal_dual_de_BL.html#segunda-idea-cortar-el-paso)
+
+## Clase 8
+
+17 de marzo
+
+Finalizamos [4.5/Metodo_primal_dual_de_BL](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.5/Metodo_primal_dual_de_BL.html)
