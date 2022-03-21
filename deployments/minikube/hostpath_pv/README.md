@@ -1,5 +1,7 @@
 # For Kubeflow namespace next will deploy services:
 
+Use `r5.large` in AWS Academy and `cloud9ubuntu-*`
+
 Set:
 
 ```
