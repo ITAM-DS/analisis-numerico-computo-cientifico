@@ -29,8 +29,8 @@ def constraints_inequalities_funcs_generator(constraints_inequalities):
 def constraints_inequalities_funcs_eval(x,
                                         constraints_inequalities):
     """
-    Auxiliary function for the evaluation of constraint inequalities
-    in logarithmic barrier function
+    Auxiliary function that build a numpy array with constraints evaluated.
+    Useful when calling log_barrier_aux_eval_constraints func. 
     """
     const_ineq_funcs_eval = np.array([const(x) for const in \
                                       constraints_inequalities_funcs_generator(constraints_inequalities)])

@@ -77,7 +77,8 @@ def feasible_init_point_descent_method(f,
     f.set_x(x)    
     n = x.size
     f.evaluate()
-    f_eval = f.f_eval #or f_eval = f.evaluate() ?
+    f_eval = f.f_eval #f_eval in case of logarithmic barrier is evaluation of objective function of original optimization problem
+                      #for this case f.evaluate() is evaluation of logarithmic barrier function
     gf.set_x(x)
     gf_eval = gf.evaluate()
     normgf = np.linalg.norm(gf_eval)
@@ -147,7 +148,8 @@ def feasible_init_point_descent_method(f,
         x = x + t*descent_dir
         f.set_x(x)
         f.evaluate()
-        f_eval  = f.f_eval #or f_eval = f.evaluate() ?
+        f_eval  = f.f_eval #f_eval in case of logarithmic barrier is evaluation of objective function of original optimization problem
+                           #for this case f.evaluate() is evaluation of logarithmic barrier function
         gf.set_x(x)
         gf_eval = gf.evaluate()
         rhs = -gf_eval
