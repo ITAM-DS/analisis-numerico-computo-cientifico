@@ -105,3 +105,11 @@ Llegamos hasta [4.5/segunda-idea-cortar-el-paso](https://itam-ds.github.io/anali
 17 de marzo
 
 Finalizamos [4.5/Metodo_primal_dual_de_BL](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.5/Metodo_primal_dual_de_BL.html)
+
+## Clase 9
+
+24 de marzo
+
+Llegamos hasta [5.1/introduccion_optimizacion_de_codigo.html#interconexion-bus-o-capas-de-comunicacion-y-transferencia-de-datos](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.1/introduccion_optimizacion_de_codigo.html#interconexion-bus-o-capas-de-comunicacion-y-transferencia-de-datos)
+
+Revisamos [6.Minikube-y-AWS](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/6.Minikube-y-AWS)
