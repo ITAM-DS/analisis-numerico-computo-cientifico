@@ -23,8 +23,8 @@ Las clases son los días jueves.
 | Semana 7 (7 - 11 de marzo)| Continuación dualidad y condiciones de Karush-Kuhn-Tucker. Método primal dual de barrera logarítmica para programas lineales.|
 | Semana 8 (14 - 18 de marzo) | Continuación método primal dual de barrera logarítmica para programas lineales.|
 | Semana 9 (21 - 25 de marzo)  |Introducción a optimización de código.Discusión configuración [minikube, kale y kubeflow](https://www.youtube.com/watch?v=xL91E3FBgAg). **Entrega parte 2 práctica 1.** |
-| Semana 10 (28 de marzo - 1 de abril)|  Herramientas de lenguajes de programación y del sistema operativo para perfilamiento e implementaciones de BLAS. **Examen**|
-| Semana 11 (4 - 8 de abril) | Continuación herramientas de lenguajes de programación y del sistema operativo para perfilamiento e implementaciones de BLAS.|
+| Semana 10 (28 de marzo - 1 de abril)|  Herramientas de lenguajes de programación y del sistema operativo para perfilamiento e implementaciones de BLAS.|
+| Semana 11 (4 - 8 de abril) | Continuación herramientas de lenguajes de programación y del sistema operativo para perfilamiento e implementaciones de BLAS. **Examen**|
 | Semana 12 (11 - 15 de abril) | Semana santa. |
 | Semana 13 (18 - 22 de abril) | Compilación a C. **Entrega parte 1 práctica 2.**|
 | Semana 14 (25 - 29 de abril) | Cómputo en paralelo en la CPU.|
