@@ -113,3 +113,9 @@ Finalizamos [4.5/Metodo_primal_dual_de_BL](https://itam-ds.github.io/analisis-nu
 Llegamos hasta [5.1/introduccion_optimizacion_de_codigo.html#interconexion-bus-o-capas-de-comunicacion-y-transferencia-de-datos](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.1/introduccion_optimizacion_de_codigo.html#interconexion-bus-o-capas-de-comunicacion-y-transferencia-de-datos)
 
 Revisamos [6.Minikube-y-AWS](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/wiki/6.Minikube-y-AWS)
+
+## Clase 10
+
+31 de marzo
+
+Llegamos hasta [5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html#cprofile](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html#cprofile)
