@@ -118,6 +118,8 @@ Revisamos [6.Minikube-y-AWS](https://github.com/ITAM-DS/analisis-numerico-comput
 
 31 de marzo
 
+Finalizamos [5.1/introduccion_optimizacion_de_codigo.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.1/introduccion_optimizacion_de_codigo.html)
+
 Llegamos hasta [5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html#cprofile](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html#cprofile)
 
 
