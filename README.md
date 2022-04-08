@@ -119,3 +119,12 @@ Revisamos [6.Minikube-y-AWS](https://github.com/ITAM-DS/analisis-numerico-comput
 31 de marzo
 
 Llegamos hasta [5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html#cprofile](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html#cprofile)
+
+
+## Clase 11
+
+7 de abril
+
+Llegamos hasta [5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html#basic-linear-algebra-subprograms-blas](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html#basic-linear-algebra-subprograms-blas)
+
+Hicimos examen
