@@ -887,29 +887,7 @@
 <li><p>Aprenderá lo que es una compilación <em>ahead of time</em> (AOT) y <em>just in time</em> (JIT). Se mostrarán ejemplos de lenguajes y paquetes que realizan ambos tipos de compilaciones.</p></li>
 </ul>
 </div>
-<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se utilizó la AMI:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">opt2</span><span class="o">-</span><span class="n">aws</span><span class="o">-</span><span class="n">educate</span><span class="o">-</span><span class="n">openblas</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">2021</span>
-</pre></div>
-</div>
-<p>de la región <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code> (Virginia) para reproducibilidad de resultados. Tal AMI se construyó a partir de una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> con el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a></p>
-<div class="admonition-comentario admonition">
-<p class="admonition-title">Comentario</p>
-<p>Si se utiliza la <em>AMI</em> <code class="docutils literal notranslate"><span class="pre">opt2-aws-educate-openblas-04-04-2021</span></code> colocar en <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el siguiente <em>script</em>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1">##variables:</span>
-<span class="nv">region</span><span class="o">=</span>us-east-1 <span class="c1">#make sure instance is in Virginia</span>
-<span class="nv">name_instance</span><span class="o">=</span>OpenBLAS
-<span class="nv">USER</span><span class="o">=</span>ubuntu
-<span class="c1">##System update</span>
-apt-get update -yq
-<span class="c1">##Tag instance</span>
-<span class="nv">INSTANCE_ID</span><span class="o">=</span><span class="k">$(</span>curl -s http://instance-data/latest/meta-data/instance-id<span class="k">)</span>
-<span class="nv">PUBLIC_IP</span><span class="o">=</span><span class="k">$(</span>curl -s http://instance-data/latest/meta-data/public-ipv4<span class="k">)</span>
-sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;/home/</span><span class="nv">$USER</span><span class="s2">/.local/bin/aws ec2 create-tags --resources </span><span class="nv">$INSTANCE_ID</span><span class="s2"> --tag Key=Name,Value=</span><span class="nv">$name_instance</span><span class="s2">-</span><span class="nv">$PUBLIC_IP</span><span class="s2"> --region=</span><span class="nv">$region</span><span class="s2">&quot;</span>
-sudo -H -u <span class="nv">$USER</span> bash -c <span class="s2">&quot;cd / &amp;&amp; /home/</span><span class="nv">$USER</span><span class="s2">/.local/bin/jupyter lab --ip=0.0.0.0 --no-browser --config=/home/</span><span class="nv">$USER</span><span class="s2">/.jupyter/jupyter_notebook_config.py &amp;&quot;</span>
-</pre></div>
-</div>
-</div>
+<p>Se presentan códigos y sus ejecuciones en una máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> con una AMI <code class="docutils literal notranslate"><span class="pre">ubuntu</span> <span class="pre">20.04</span> <span class="pre">-</span> <span class="pre">ami-042e8287309f5df03</span></code> de la nube de <a class="reference external" href="https://aws.amazon.com/">AWS</a>. Se utilizó en la sección de <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">data</span></code> el <a class="reference external" href="https://github.com/palmoreck/scripts_for_useful_tools_installations/blob/main/AWS/ubuntu_20.04/optimizacion_2/script_profiling_and_BLAS.sh">script_profiling_and_BLAS.sh</a></p>
 <p>La máquina <code class="docutils literal notranslate"><span class="pre">m4.16xlarge</span></code> tiene las siguientes características:</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
@@ -934,10 +912,10 @@ CPU family:                      6
 Model:                           79
 Model name:                      Intel(R) Xeon(R) CPU E5-2686 v4 @ 2.30GHz
 Stepping:                        1
-CPU MHz:                         2290.913
+CPU MHz:                         3000.000
 CPU max MHz:                     3000.0000
 CPU min MHz:                     1200.0000
-BogoMIPS:                        4600.03
+BogoMIPS:                        4600.00
 Hypervisor vendor:               Xen
 Virtualization type:             full
 L1d cache:                       1 MiB
@@ -946,7 +924,7 @@ L2 cache:                        8 MiB
 L3 cache:                        90 MiB
 NUMA node0 CPU(s):               0-15,32-47
 NUMA node1 CPU(s):               16-31,48-63
-Vulnerability Itlb multihit:     KVM: Vulnerable
+Vulnerability Itlb multihit:     KVM: Mitigation: VMX unsupported
 Vulnerability L1tf:              Mitigation; PTE Inversion
 Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
 Vulnerability Meltdown:          Mitigation; PTI
@@ -955,7 +933,7 @@ Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user
 Vulnerability Spectre v2:        Mitigation; Full generic retpoline, STIBP disabled, RSB filling
 Vulnerability Srbds:             Not affected
 Vulnerability Tsx async abort:   Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
-Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq monitor est ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm cpuid_fault invpcid_single pti fsgsbase bmi1 hle avx2 smep bmi2 erms invpcid rtm xsaveopt ida
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq monitor est ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm cpuid_fault invpcid_single pti fsgsbase bmi1 hle avx2 smep bmi2 erms invpcid rtm xsaveopt ida
 </pre></div>
 </div>
 </div>
@@ -1090,7 +1068,7 @@ uname -ar #r for kernel, a for all
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linux ip-10-0-0-140 5.4.0-1038-aws #40-Ubuntu SMP Fri Feb 5 23:50:40 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linux ip-10-0-2-123 5.11.0-1022-aws #23~20.04.1-Ubuntu SMP Mon Nov 15 14:03:19 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
 </pre></div>
 </div>
 </div>
@@ -1200,7 +1178,7 @@ python3 Rcf_python.py
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 3.477599620819092 segundos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf tomó 3.4967801570892334 segundos
 </pre></div>
 </div>
 </div>
@@ -1265,7 +1243,7 @@ Rscript Rcf_R.R
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   user  system elapsed 
-  5.607   0.063   5.671 
+  5.607   0.018   5.626 
 </pre></div>
 </div>
 </div>
@@ -1291,7 +1269,7 @@ Rscript Rcf_R.R
 <span class="n">function</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
     <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
     <span class="n">sum_res</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="mf">0.0</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span>
         <span class="n">sum_res</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">end</span>    
@@ -1302,8 +1280,9 @@ Rscript Rcf_R.R
     <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">n</span> <span class="o">=</span><span class="mi">10</span><span class="o">^</span><span class="mi">7</span>
     <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
-    <span class="nd">@time</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    <span class="nd">@time</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">res</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="nd">@time</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">res</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">res</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
 <span class="n">end</span>
 
 <span class="n">main</span><span class="p">()</span>
@@ -1319,13 +1298,15 @@ Rscript Rcf_R.R
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-/usr/local/julia-1.6.0/bin/julia Rcf_julia.jl
+/usr/local/julia-1.7.1/bin/julia Rcf_julia.jl
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.231283 seconds
-  0.231448 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.239888 seconds (2.63 k allocations: 142.609 KiB, 41.51% compilation time)
+0.7468241328123898
+  0.140050 seconds (2 allocations: 32 bytes)
+0.7468241328123898
 </pre></div>
 </div>
 </div>
@@ -1359,8 +1340,9 @@ Rscript Rcf_R.R
     <span class="n">b</span> <span class="o">=</span> <span class="mf">1.0</span>
     <span class="n">n</span> <span class="o">=</span><span class="mi">10</span><span class="o">^</span><span class="mi">7</span>
     <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
-    <span class="nd">@time</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    <span class="nd">@time</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>    
+    <span class="n">res</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="nd">@time</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">res</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">res</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
 <span class="n">end</span>
 
 <span class="n">main</span><span class="p">()</span>
@@ -1376,13 +1358,75 @@ Rscript Rcf_R.R
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-/usr/local/julia-1.6.0/bin/julia Rcf_julia_typed_values.jl
+/usr/local/julia-1.7.1/bin/julia Rcf_julia_typed_values.jl
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.124739 seconds
-  0.124905 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.143176 seconds (503 allocations: 26.594 KiB, 11.97% compilation time)
+0.7468241328123898
+  0.125599 seconds (4 allocations: 64 bytes)
+0.7468241328123898
+</pre></div>
+</div>
+</div>
+</div>
+<p id="rcfjulianaive"><code class="docutils literal notranslate"><span class="pre">Rcf_julia_naive.jl</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf_julia_naive.jl
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Compute numerical approximation using rectangle or mid-point</span>
+<span class="sd">method in an interval.</span>
+
+<span class="sd"># Arguments</span>
+
+<span class="sd">- `f::Float`: function expression of integrand.</span>
+<span class="sd">- `a::Float`: left point of interval.</span>
+<span class="sd">- `b::Float`: right point of interval.</span>
+<span class="sd">- `n::Integer`: number of subintervals.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">function</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">sum_res</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span>
+        <span class="n">sum_res</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">end</span>    
+    <span class="k">return</span> <span class="n">h_hat</span><span class="o">*</span><span class="n">sum_res</span>
+<span class="n">end</span>
+<span class="n">function</span> <span class="n">main</span><span class="p">()</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">n</span> <span class="o">=</span><span class="mi">10</span><span class="o">^</span><span class="mi">7</span>
+    <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">res</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="nd">@time</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">res</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">res</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="n">end</span>
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing Rcf_julia_naive.jl
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+/usr/local/julia-1.7.1/bin/julia Rcf_julia_naive.jl
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0.113146 seconds (588 allocations: 31.391 KiB, 17.07% compilation time)
+0.7468241328123898
+  0.094084 seconds (2 allocations: 32 bytes)
+0.7468241328123898
 </pre></div>
 </div>
 </div>
@@ -6879,22 +6923,25 @@ DIR: /tmp/RtmpTz18Yr/sourceCpp-x86_64-pc-linux-gnu-1.0.6/sourcecpp_3684ee9b3bc
 <tr class="row-odd"><td class="text-align:center"><p><em>Python</em></p></td>
 <td class="text-align:center"><p><a class="reference internal" href="#rcf5cythonopenmp"><span class="std std-ref">Rcf_5_cython_openmp</span></a></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><em>R</em></p></td>
+<tr class="row-even"><td class="text-align:center"><p><em>Julia</em></p></td>
+<td class="text-align:center"><p><a class="reference internal" href="#rcfjulianaive"><span class="std std-ref">Rcf_julia_naive</span></a></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p><em>R</em></p></td>
 <td class="text-align:center"><p><a class="reference internal" href="#rcfrcpp"><span class="std std-ref">Rcf_Rcpp</span></a></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><em>Python</em></p></td>
+<tr class="row-even"><td class="text-align:center"><p><em>Python</em></p></td>
 <td class="text-align:center"><p><a class="reference internal" href="#rcf5cython"><span class="std std-ref">Rcf_5_cython.pyx</span></a></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><em>Julia</em></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><em>Julia</em></p></td>
 <td class="text-align:center"><p><a class="reference internal" href="#rcfjuliatypedvalues"><span class="std std-ref">Rcf_julia_typed_values.jl</span></a></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><em>Python</em></p></td>
+<tr class="row-even"><td class="text-align:center"><p><em>Python</em></p></td>
 <td class="text-align:center"><p><a class="reference internal" href="#rcfnumba"><span class="std std-ref">Rcf_numba</span></a></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:center"><p><em>Python</em></p></td>
+<tr class="row-odd"><td class="text-align:center"><p><em>Python</em></p></td>
 <td class="text-align:center"><p><a class="reference internal" href="#rcfnumpy"><span class="std std-ref">Rcf_numpy</span></a></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:center"><p><em>C</em></p></td>
+<tr class="row-even"><td class="text-align:center"><p><em>C</em></p></td>
 <td class="text-align:center"><p><a class="reference internal" href="#rcfc"><span class="std std-ref">Rcf_c.c</span></a></p></td>
 </tr>
 </tbody>
