@@ -1852,23 +1852,25 @@ Tiempo de ejecución con 64 threads: 26 miliseconds
     <span class="n">long</span> <span class="n">long</span> <span class="n">mili</span><span class="p">;</span>
     <span class="n">long</span> <span class="n">n_threads</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">res_rcf</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">obj</span> <span class="o">=</span> <span class="mf">0.7468241328124271</span><span class="p">;</span>
     
     <span class="n">n_threads</span> <span class="o">=</span> <span class="n">strtol</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">NULL</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>   
     <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
     <span class="n">res_rcf</span> <span class="o">=</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">n_threads</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">n</span><span class="p">,</span> <span class="n">sum_res</span><span class="p">);</span>
     <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
     <span class="n">seconds</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_sec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_sec</span><span class="p">);</span>
-    <span class="n">mili</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_usec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_usec</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">;</span>    
+    <span class="n">mili</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">end</span><span class="o">.</span><span class="n">tv_usec</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">tv_usec</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Integral de </span><span class="si">%f</span><span class="s2"> a </span><span class="si">%f</span><span class="s2"> = </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">res_rcf</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Error relativo de la solución: </span><span class="si">%1.15e</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fabs</span><span class="p">(</span><span class="n">res_rcf</span><span class="o">-</span><span class="n">obj</span><span class="p">)</span><span class="o">/</span><span class="n">fabs</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
     <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Tiempo de ejecución: %lld milisegundos&quot;</span><span class="p">,</span> <span class="n">mili</span><span class="p">);</span>
-    
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="n">double</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">long</span> <span class="n">n_th</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">b</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="nb">sum</span><span class="p">){</span>
+<span class="n">double</span> <span class="n">Rcf</span><span class="p">(</span><span class="n">long</span> <span class="n">n_th</span><span class="p">,</span> <span class="n">double</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span> <span class="n">b</span><span class="p">,</span> <span class="nb">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">double</span> <span class="n">sum_res</span><span class="p">){</span>
     <span class="n">double</span> <span class="n">h_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
     <span class="n">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
     <span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="n">sum_res</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
-    <span class="c1"># pragma omp parallel for num_threads(n_th) reduction(+: sum)</span>
+    <span class="c1"># pragma omp parallel for num_threads(n_th) reduction(+: sum_res)</span>
         <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
             <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span><span class="o">*</span><span class="n">h_hat</span><span class="p">;</span>
             <span class="n">sum_res</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
@@ -1896,11 +1898,78 @@ gcc -Wall -fopenmp Rcf_parallel_for.c -o Rcf_parallel_for.out -lm
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+./Rcf_parallel_for.out 1
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rcf_parallel_for.c: In function ‘main’:
-Rcf_parallel_for.c:20:12: warning: variable ‘res_rcf’ set but not used [-Wunused-but-set-variable]
-   20 |     double res_rcf;
-      |            ^~~~~~~
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468241328123898e-01
+Error relativo de la solución: 4.994950214975770e-14
+Tiempo de ejecución: 489 milisegundos
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+./Rcf_parallel_for.out 2
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468209392885364e-01
+Error relativo de la solución: 4.276139120784953e-06
+Tiempo de ejecución: 268 milisegundos
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+./Rcf_parallel_for.out 4
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468245048387456e-01
+Error relativo de la solución: 4.981444789795125e-07
+Tiempo de ejecución: 196 milisegundos
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+./Rcf_parallel_for.out 8
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468233188076527e-01
+Error relativo de la solución: 1.089955102679663e-06
+Tiempo de ejecución: 172 milisegundos
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+./Rcf_parallel_for.out 16
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468247754499342e-01
+Error relativo de la solución: 8.604937613327165e-07
+Tiempo de ejecución: 190 milisegundos
 </pre></div>
 </div>
 </div>
@@ -1913,7 +1982,9 @@ Rcf_parallel_for.c:20:12: warning: variable ‘res_rcf’ set but not used [-Wun
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de ejecución: 167 milisegundos
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integral de 0.000000 a 1.000000 = 7.468178324971565e-01
+Error relativo de la solución: 8.436143120972810e-06
+Tiempo de ejecución: 427 milisegundos
 </pre></div>
 </div>
 </div>
@@ -2492,7 +2563,7 @@ mundo
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_157_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_157_0.png" />
+<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_162_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_162_0.png" />
 </div>
 </div>
 <p>Las cajas representan datos, los círculos representan funciones que se ejecutan sobre tales datos y las flechas especifican cuáles funciones producen/consumen qué datos.</p>
@@ -2754,7 +2825,7 @@ mundo
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_186_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_186_0.png" />
+<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_191_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_191_0.png" />
 </div>
 </div>
 <p>Ver la API de <em>dask array</em> en <a class="reference external" href="https://docs.dask.org/en/latest/array-api.html">array api</a> para más funcionalidad.</p>
@@ -3636,7 +3707,7 @@ Wall time: 630 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_281_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_281_0.png" />
+<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_286_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_286_0.png" />
 </div>
 </div>
 <div class="tip admonition">
@@ -5193,7 +5264,7 @@ Unit: seconds
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_369_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_369_0.png" />
+<img alt="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_374_0.png" src="../../_images/Computo_en_paralelo_usando_CPUS_en_SMC_374_0.png" />
 </div>
 </div>
 <div class="tip admonition">
