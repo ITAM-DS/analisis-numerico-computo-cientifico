@@ -130,3 +130,12 @@ Llegamos hasta [5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_impl
 Llegamos hasta [5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html#basic-linear-algebra-subprograms-blas](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html#basic-linear-algebra-subprograms-blas)
 
 Hicimos examen
+
+
+## Clase 12
+
+21 de abril
+
+Terminamos [5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html)
+
+Iniciamos [5.3/Compilacion_a_C](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.3/Compilacion_a_C.html)
