@@ -139,3 +139,24 @@ Hicimos examen
 Terminamos [5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.2/Herramientas_de_lenguajes_y_del_SO_para_perfilamiento_e_implementaciones_de_BLAS.html)
 
 Iniciamos [5.3/Compilacion_a_C](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.3/Compilacion_a_C.html)
+
+## Clase 13
+
+28 de abril
+
+Continuación [5.3/Compilacion_a_C](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.3/Compilacion_a_C.html)
+
+## Clase 14
+
+5 de mayo
+
+Terminamos [5.3/Compilacion_a_C](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.3/Compilacion_a_C.html)
+
+Iniciamos [5.4/Computo_en_paralelo_usando_CPUS_en_SMC](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.4/Computo_en_paralelo_usando_CPUS_en_SMC.html)
+
+## Clase 15
+
+12 de mayo
+
+Ejercicio programación regla compuesta de Simpson en paralelo [5.4/Computo_en_paralelo_usando_CPUS_en_SMC](https://itam-ds.github.io/analisis-numerico-computo-cientifico/5.optimizacion_de_codigo/5.4/Computo_en_paralelo_usando_CPUS_en_SMC.html)
+
