@@ -15,7 +15,7 @@ Liga a repo de user admin en el que se trabaja: [Opt_avanzada_proy_final](https:
 
 Trabajo escrito (fuera del repo): [Trabajo escrito final - Equipo 1](https://docs.google.com/document/d/1opfXYOtYeJna6cKLmkjdhPulqXCVLCwB1ScKlEkqVE8/edit?usp=sharing)
 
-Presentación (fuera del repo): [Presentación Optimización](https://docs.google.com/presentation/d/1pqDwtGSe-qUxyTbwXrsHTN4fUu4qeJwc/edit?usp=sharing&ouid=113173553693470424622&rtpof=true&sd=true)
+Presentación (fuera del repo): [Presentación Optimización](https://docs.google.com/presentation/d/1p_HIC4y8xd8QvjbhOvVHNSQxAAz60aKUh017F28nwTA/edit?usp=sharing)
 
 Implementación (en el repo): [codigo](codigo) 
 
