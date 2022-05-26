@@ -11,7 +11,7 @@ Título del proyecto: **Arbitrage Identification Cycle in Crypto Trading**
 
 Objetivo del proyecto: Resolver el tema de “Ciclo de identificación de arbitraje en el comercio de criptomonedas”, a través de encontrar  el camino más corto en un grafo dirigido ponderado, usando el método de Bellman Ford.
 
-[Opt_avanzada_proy_final](https://github.com/joelitam2021/Opt_avanzada_proy_final)
+Liga a repo de user admin en el que se trabaja: [Opt_avanzada_proy_final](https://github.com/joelitam2021/Opt_avanzada_proy_final)
 
 Trabajo escrito (fuera del repo): [Trabajo escrito final - Equipo 1](https://docs.google.com/document/d/1opfXYOtYeJna6cKLmkjdhPulqXCVLCwB1ScKlEkqVE8/edit?usp=sharing)
 
