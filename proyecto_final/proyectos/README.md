@@ -3,6 +3,7 @@
 ## [Equipo 1](equipos/equipo_1)
 
 **Título del proyecto**
+
 Arbitrage Identification Cycle in Crypto Trading
 
 **Objetivo del proyecto**
