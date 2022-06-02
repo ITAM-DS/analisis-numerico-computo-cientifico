@@ -20,13 +20,17 @@ Objetivo del proyecto: Haciendo uso del método de búsqueda de anchura, optimiz
 
 - El [**repositorio**](https://github.com/sancas96/Final_opt2) 
 
-- El [**notebook**](https://github.com/sancas96/Final_opt2/tree/main/notebooks/reporte_MaxFlowAeiu.ipynb) en el que se basa este proyecto y en formato pdf en la carpeta [**Reporte**](https://github.com/sancas96/Final_opt2/tree/main/notebooks/reporte_MaxFlowAeiu.pdf)
+- El [**notebook**](https://github.com/sancas96/Final_opt2/blob/main/notebooks/reporte_equipo_2_proyecto_final.ipynb) en el que se basa este proyecto y en formato pdf en la carpeta [**Reporte**](https://github.com/sancas96/Final_opt2/blob/main/notebooks/Ford-Fulkerson%20MaxFlowAeiu.pdf)
 
 - Las funciones auxiliares [**código**](https://github.com/sancas96/Final_opt2/tree/main/src)
 
 - En la carpeta [**avances**](https://github.com/sancas96/Final_opt2/tree/main/Avances) se encuentran las carpetas con resúmenes de los respectivos avances que hemos tenido.
 
 - En la carpeta [**aws**](https://github.com/sancas96/Final_opt2/tree/main/images) se encuentran las imágenes del uso de aws.
+
+- En la siguiente liga en [**drive**](https://docs.google.com/presentation/d/19PnfL7ZOWmx0ne1jtrGY1M-PxDk5qNjbqlouNkFvcb4/edit?usp=sharing) se puede consultar la presentación referente a este proyecto.
+
+- Aquí se puede consultar la [**documentación**](https://sancas96.github.io/Final_opt2/index.html) referente a la paquetería desarrollada en este repositorio.
 
 ### Plan de trabajo
 
@@ -39,20 +43,4 @@ Objetivo del proyecto: Haciendo uso del método de búsqueda de anchura, optimiz
 |26 May 2022| Revisión del segundo avance| Segunda revisión global al proyecto mínimo al 95%|
 |28 May 2022| Atención de feedbacks|Se atenderán todos los feedbacks del segundo avance|
 |31 May 2022| Revisión de tercer avance| Última revisión global al proyecto|
-
-
-## Referencias
-* [1] [Palacios E. (2022) Libro de Optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.2/Definiciones_generales_de_flujo_en_redes.html)
-* [2] [Dumora c. el all. Data Oriented Algorithm for Real Time Estimation of Flow Rates and Flow Directions in Water Distribution Network](https://arxiv.org/pdf/1807.10147.pdf)
-* [3] [Max Flow Problem Introduction](https://www.geeksforgeeks.org/max-flow-problem-introduction/)
-* [4] [Ford-Fulkerson Algorithm](https://www.programiz.com/dsa/ford-fulkerson-algorithm)
-* [5] [Algoritmo de Ford-Fulkerson - Ford–Fulkerson algorithm](https://upwikies.top/wiki/Ford%e2%80%93Fulkerson_algorithm)
-* [6] [Oviedo J. (2008) Algoritmo de Ford-Fulkerson Mejorado](http://www.ptolomeo.unam.mx:8080/jspui/bitstream/132.248.52.100/2387/1/gonzalezoviedo.pdf)
-* [7] [Building a Smarter (and Cheaper) School Bus System: How a Boston-MIT Partnership Led to New Routes That Are 20% More Efficient and Saved the District $5 Million](https://www.the74million.org/article/building-a-smarter-and-cheaper-school-bus-system-how-a-boston-mit-partnership-led-to-new-routes-that-are-20-more-efficient-use-400-fewer-buses-save-5-million/)
-* [8] [Optimazation examples](https://vitalflux.com/convex-optimization-explained-concepts-examples/)
-* [9] [Breadth First Search or BFS for a Graph](https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/)
-* [10] [PyPi.org](https://pypi.org)
-* [11] [Wendy Navarrete. (2022) Create your own Python package and publish it into PyPI](https://towardsdatascience.com/create-your-own-python-package-and-publish-it-into-pypi-9306a29bc116)
-* [12] [Arin Khare. (2022) How to Deploy a Cython Package to PyPI]((https://levelup.gitconnected.com/how-to-deploy-a-cython-package-to-pypi-8217a6581f09))
-* [13] [Cython’s Documentation](http://docs.cython.org/en/latest/index.html)
-* [14] [Jupyter et al., "Binder 2.0 - Reproducible, Interactive, Sharable Environments for Science at Scale." Proceedings of the 17th Python in Science Conference. 2018. doi://10.25080/Majora-4af1f417-011](https://conference.scipy.org/proceedings/scipy2018/project_jupyter.html)
+|02 Jun 2022| Fin de proyecto| Presentación final|
