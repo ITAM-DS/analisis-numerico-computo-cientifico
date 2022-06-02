@@ -13,9 +13,9 @@ Objetivo del proyecto: Resolver el tema de “Ciclo de identificación de arbitr
 
 Liga a repo de user admin en el que se trabaja: [Opt_avanzada_proy_final](https://github.com/joelitam2021/Opt_avanzada_proy_final)
 
-Trabajo escrito (fuera del repo): [Trabajo escrito final - Equipo 1](https://docs.google.com/document/d/1opfXYOtYeJna6cKLmkjdhPulqXCVLCwB1ScKlEkqVE8/edit?usp=sharing)
+Trabajo escrito (fuera del repo): [Trabajo escrito final - Equipo 1](https://github.com/joelitam2021/Opt_avanzada_proy_final/blob/main/docs/Trabajo%20escrito%20final%20-%20Equipo%201.pdf)
 
-Presentación (fuera del repo): [Presentación Optimización](https://docs.google.com/presentation/d/1p_HIC4y8xd8QvjbhOvVHNSQxAAz60aKUh017F28nwTA/edit?usp=sharing)
+Presentación (fuera del repo): [Presentación Optimización](https://github.com/joelitam2021/Opt_avanzada_proy_final/blob/main/docs/Presentacio%CC%81n%20Optimizacio%CC%81n.pdf)
 
 Implementación (en el repo): [codigo](codigo) 
 
