@@ -28,7 +28,7 @@ Cálculo del flujo máximo usando Ford-Fulkerson.
 
 Haciendo uso del método de búsqueda de anchura, optimizamos el algoritmo de Ford Fulkerson para encontrar el flujo máximo en un grafo dirigido.
 
-Corregir liga trabajo escrito en README de [Equipo 2](equipos/equipo_2)
+[Trabajo escrito](https://github.com/sancas96/Final_opt2/blob/main/notebooks/Ford-Fulkerson%20MaxFlowAeiu.pdf)
 
 Colocar liga Presentación en README de [Equipo 2](equipos/equipo_2) 
 
