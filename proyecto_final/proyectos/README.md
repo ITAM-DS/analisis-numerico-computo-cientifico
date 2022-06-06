@@ -12,9 +12,9 @@ Resolver el tema de “Ciclo de identificación de arbitraje en el comercio de c
 
 [Trabajo escrito](https://docs.google.com/document/d/1opfXYOtYeJna6cKLmkjdhPulqXCVLCwB1ScKlEkqVE8/edit?usp=sharing)
 
-[Presentacion](https://docs.google.com/presentation/d/1p_HIC4y8xd8QvjbhOvVHNSQxAAz60aKUh017F28nwTA/edit?usp=sharing)
+[Presentación](https://docs.google.com/presentation/d/1p_HIC4y8xd8QvjbhOvVHNSQxAAz60aKUh017F28nwTA/edit?usp=sharing)
 
-[Implementacion](equipos/equipo_1/codigo/)
+[Implementación](equipos/equipo_1/codigo/)
 
 
 
@@ -30,7 +30,7 @@ Haciendo uso del método de búsqueda de anchura, optimizamos el algoritmo de Fo
 
 [Trabajo escrito](https://github.com/sancas96/Final_opt2/blob/main/notebooks/Ford-Fulkerson%20MaxFlowAeiu.pdf)
 
-Colocar liga Presentación en README de [Equipo 2](equipos/equipo_2) 
+[Presentación](https://docs.google.com/presentation/d/19PnfL7ZOWmx0ne1jtrGY1M-PxDk5qNjbqlouNkFvcb4/edit?usp=sharing)
 
 [Implementacion](equipos/equipo_2/Codigo/)
 
