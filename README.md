@@ -18,19 +18,20 @@ Las clases son los días jueves.
 | 2 (9-13 de agosto)|Continuación de sistema de punto flotante. Normas vectoriales y matriciales.|
 | 3 (16-20 de agosto)|Condición de un problema y estabilidad de un algoritmo.|
 | 4 (23-27 de agosto)|Continuación condición de un problema y estabilidad de un algoritmo.|
-| 5 (30 de ago - 3 de sep)|Definiciones de funciones, derivadas. Métodos de diferenciación numérica. Métodos de integración numérica.|
-| 6 (6-10 de septiembre)|Revisión de creación de cuentas en AWS, dudas generales y discusión de videos para configuraciones básicas.|
+| 5 (30 de ago - 3 de sep)|Definiciones de funciones, derivadas. Métodos de diferenciación numérica. Métodos de integración numérica. **Primera parte práctica 1**|
+| 6 (6-10 de septiembre)|Revisión de creación de cuentas en AWS, dudas generales y discusión de videos para configuraciones básicas. **Entrega primera parte práctica 1**|
 | 7 (13-17 de septiembre)|Asueto|
 | 8 (20-24 de septiembre)|Transformaciones en el Álgebra lineal numérica y factorización QR.|
 | 9 (27 de sept - 1 oct)|Continuación transformaciones en el Álgebra lineal numérica y factorización QR. Eigenvalores y eigenvectores.|
 | 10 (4-8 de octubre)|Continuación Eigenvalores y eigenvectores. Métodos para aproximación de eigenvalores y eigenvectores.|
-| 11 (11-15 de octubre)|Continuación métodos para aproximación de eigenvalores y eigenvectores. Método de rotaciones de Jacobi para aproximar la descomposición en valores singulares. Problemas de optimización. Definiciones de conjuntos y funciones convexas. |
+| 11 (11-15 de octubre)|Continuación métodos para aproximación de eigenvalores y eigenvectores. Método de rotaciones de Jacobi para aproximar la descomposición en valores singulares. Problemas de optimización. Definiciones de conjuntos y funciones convexas. **Segunda parte práctica 1** |
 | 12 (18-22 de octubre)|Continuación problemas de optimización. Definiciones de conjuntos y funciones convexas.|
-| 13 (25-29 de octubre)|Ejemplos de problemas de optimización convexa.|
-| 14 (1-5 de noviembre)|Continuación ejemplos de problemas de optimización convexa.|
-| 15 (8-12 de noviembre)|Métodos para resolver ecuaciones no lineales.|
+| 13 (25-29 de octubre)|Ejemplos de problemas de optimización convexa. **Primer examen capítulos 1 y 2**|
+| 14 (1-5 de noviembre)|Continuación ejemplos de problemas de optimización convexa. **Entrega segunda parte práctica 1**|
+| 15 (8-12 de noviembre)|Métodos para resolver ecuaciones no lineales. **Práctica 2**|
 | 16 (15-19 de noviembre)|Continuación Métodos para resolver ecuaciones no lineales. Inicio métodos para programación lineal: método simplex.|
-| 17 (22-26 de noviembre)|Continuación métodos para programación lineal: método simplex.|
+| 17 (22-26 de noviembre)|Continuación métodos para programación lineal: método simplex. **Segundo examen capítulo 3 y nota 4.1**|
+|18  (29 nov - 3 dic) | **Entrega práctica 2**|
 
 Total de clases: 16 (1 asueto). Total de número de horas: 48 hrs.
 
