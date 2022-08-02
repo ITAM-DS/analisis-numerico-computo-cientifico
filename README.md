@@ -35,10 +35,6 @@ Las clases son los días jueves.
 Total de clases: 16 (1 asueto). Total de número de horas: 48 hrs.
 
 
-[Equipos de optimización]()
-
-### [Lista de estudiantes con calificaciones]()
-
 [Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
 
 [Indicaciones para proyecto final](proyecto_final/indicaciones)
