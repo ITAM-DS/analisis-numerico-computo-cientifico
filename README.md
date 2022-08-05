@@ -14,7 +14,7 @@ Las clases son los días miércoles.
 
 | Semanas   | Tema                                                              |
 | :--------:|:-----------------------------------------------------------------:|
-| Semana 1 ( x - y de m) |""| 
+| Semana 1 ( 8 - 12 de agosto) | Presentación <br/> Aritmética de punto flotante | 
 
 Total de clases: "". Total de número de horas: "" hrs.
 
