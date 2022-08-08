@@ -55,7 +55,7 @@ Se tienen diferentes ramas que pueden ser accesadas como se aprecia en esta imag
 
 Seleccionar por ejemplo la rama **optimizacion-2021** (u otra) para información del curso de Optimización de 2021.
 
-**Dar click en [optimizacion-2022](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2022) para la rama del curso de optimización avanzada 2022.**
+**Dar click en [optimizacion-2022](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2022) para la rama del curso de optimización 2022.**
 
 La rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/gh-pages) contiene los `html`s para visualización del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/).
 
@@ -134,5 +134,5 @@ El zip estará dentro del directorio `analisis-numerico-computo-cientifico/libro
 
 Una vez descargado abrir el archivo `README.html`.
 
-### Nota: durante el primer semestre del 2022 se estarán haciendo cambios continuamente por lo que tendrán que actualizar su descarga, clon o *fork*.
+### Nota: durante el segundo semestre del 2022 se estarán haciendo cambios continuamente por lo que tendrán que actualizar su descarga, clon o *fork*.
 
