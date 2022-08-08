@@ -10,9 +10,9 @@ En este repositorio encuentran el contenido para los cursos de **optimización**
 
 ### En [temario-opt](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) encuentran el temario de optimización.
 
-### En [pres-opt](https://hackmd.io/@palmoreck/opt-2022) encuentran una presentación de introducción al curso de optimización 2021.
+### En [pres-opt](https://hackmd.io/@palmoreck/opt-2022) encuentran una presentación de introducción al curso de optimización 2022.
 
-### Dar click en el siguiente botón para unirse\* al chat del curso de optimización avanzada 2022 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2022/community.svg)](https://gitter.im/optimizacion-2022/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+### Dar click en el siguiente botón para unirse\* al chat del curso de optimización 2022 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2022/community.svg)](https://gitter.im/optimizacion-2022/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ---
 
