@@ -10,7 +10,9 @@ En este repositorio encuentran el contenido para los cursos de **optimización**
 
 ### En [temario-opt](https://drive.google.com/file/d/1dj7bU5uN_ngEhUxhKL9YzCfPGLVc8Z0j/view?usp=sharing) encuentran el temario de optimización.
 
-### En [pres-opt](https://hackmd.io/@palmoreck/Hkr5rVQ-v) encuentran una presentación de introducción al curso de optimización 2021.
+### En [pres-opt](https://hackmd.io/@palmoreck/opt-2022) encuentran una presentación de introducción al curso de optimización 2021.
+
+### Dar click en el siguiente botón para unirse\* al chat del curso de optimización avanzada 2022 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2022/community.svg)](https://gitter.im/optimizacion-2022/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ---
 
@@ -22,7 +24,6 @@ En este repositorio encuentran el contenido para los cursos de **optimización**
 
 ### En [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) encuentran una presentación de introducción al curso de optimización avanzada 2021.
 
-### Dar click en el siguiente botón para unirse\* al chat del curso de optimización avanzada 2022 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2022/community.svg)](https://gitter.im/optimizacion-2-2022/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 \***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
 
@@ -34,17 +35,17 @@ Dentro del directorio [deployments/minikube/hostpath_pv/](https://github.com/ITA
 
 |Curso| Imagen|
 |:---:|:---:|
-|Optimización | [palmoreck/jupyterlab_optimizacion:3.2.8](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion)|
-|Optimización avanzada | [palmoreck/jupyterlab_optimizacion_2:3.2.8](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2)
+|Optimización | [palmoreck/jupyterlab_optimizacion:3.4.4](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion)|
+|Optimización avanzada | [palmoreck/jupyterlab_optimizacion_2:3.4.4](https://github.com/palmoreck/dockerfiles/tree/master/jupyterlab/optimizacion_2)
 
 Una vez hayan instalado *docker*\* en sus computadoras, al inicio de cada nota del libro se indica el comando `docker run` para correr los contenedores. O bien pueden correrlos de acuerdo a la documentación de la imagen, ver por ejemplo [running optimizacion docker image in a docker container](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/optimizacion/README.md#running-jupyterlab_optimizacion-docker-image-in-a-docker-container), [running optimizacion_2 docker image in a docker container](https://github.com/palmoreck/dockerfiles/blob/master/jupyterlab/optimizacion_2/README.md#running-jupyterlab_optimizacion_2-docker-image-in-a-docker-container) . 
 
 \*Ver [herramientas/docker/](https://github.com/ITAM-DS/Propedeutico/tree/main/herramientas/docker) para referencias de [docker](https://www.docker.com/).
 
 
-## Organización de github classroom para optimización avanzada 2022
+## Organización de github classroom para optimización 2022
 
-La organización [optimizacion-2-2022-gh-classroom](https://github.com/optimizacion-2-2022-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas. Ver [github education](https://github.com/education) como una referencia.
+La organización [optimizacion-2022-gh-classroom](https://github.com/optimizacion-2022-gh-classroom) fue creada para alojar sus repositorios de [github classroom](https://classroom.github.com/) en los que entregarán sus prácticas. Ver [github education](https://github.com/education) como una referencia.
 
 ## Ramas del repositorio.
 
@@ -54,7 +55,7 @@ Se tienen diferentes ramas que pueden ser accesadas como se aprecia en esta imag
 
 Seleccionar por ejemplo la rama **optimizacion-2021** (u otra) para información del curso de Optimización de 2021.
 
-**Dar click en [optimizacion-2-2022](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2-2022) para la rama del curso de optimización avanzada 2022.**
+**Dar click en [optimizacion-2022](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2022) para la rama del curso de optimización avanzada 2022.**
 
 La rama [gh-pages](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/gh-pages) contiene los `html`s para visualización del [libro de optimización](https://itam-ds.github.io/analisis-numerico-computo-cientifico/).
 
