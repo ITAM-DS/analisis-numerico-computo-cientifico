@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>5.4 Cómputo en paralelo usando CPUs en un sistema de memoria compartida (SMC)</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,39 +20,38 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="5.5 Cómputo en paralelo usando GPUs en un sistema de memoria compartida (SMC)" href="../5.5/Computo_en_paralelo_usando_GPUS_en_SMC.html" />
@@ -62,7 +63,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +86,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -89,14 +105,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../README.html">
-   Optimización
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Optimización
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Cómputo científico
  </span>
@@ -317,94 +334,182 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/5.optimizacion_de_codigo/5.4/Computo_en_paralelo_usando_CPUS_en_SMC.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/5.optimizacion_de_codigo/5.4/Computo_en_paralelo_usando_CPUS_en_SMC.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/5.optimizacion_de_codigo/5.4/Computo_en_paralelo_usando_CPUS_en_SMC.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/5.optimizacion_de_codigo/5.4/Computo_en_paralelo_usando_CPUS_en_SMC.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#sistemas-de-memoria-compartida-smc">
    Sistemas de memoria compartida (SMC)
@@ -725,12 +830,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>5.4 Cómputo en paralelo usando CPUs en un sistema de memoria compartida (SMC)</h1>
@@ -1067,11 +1171,12 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="computo-en-paralelo-usando-cpus-en-un-sistema-de-memoria-compartida-smc">
-<span id="compparalelocpussmc"></span><h1>5.4 Cómputo en paralelo usando CPUs en un sistema de memoria compartida (SMC)<a class="headerlink" href="#computo-en-paralelo-usando-cpus-en-un-sistema-de-memoria-compartida-smc" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="computo-en-paralelo-usando-cpus-en-un-sistema-de-memoria-compartida-smc">
+<span id="compparalelocpussmc"></span><h1>5.4 Cómputo en paralelo usando CPUs en un sistema de memoria compartida (SMC)<a class="headerlink" href="#computo-en-paralelo-usando-cpus-en-un-sistema-de-memoria-compartida-smc" title="Permalink to this headline">#</a></h1>
 <div class="admonition-notas-para-contenedor-de-docker admonition">
 <p class="admonition-title">Notas para contenedor de docker:</p>
 <p>Comando de docker para ejecución de la nota de forma local:</p>
@@ -1281,8 +1386,8 @@ uname -ar #r for kernel, a for all
 <p class="admonition-title">Observación</p>
 <p>En la celda anterior se utilizó el comando de <em>magic</em> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>. Algunos comandos de <em>magic</em> los podemos utilizar también con <code class="docutils literal notranslate"><span class="pre">import</span></code>. Ver <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">ipython-magics</a></p>
 </div>
-<div class="section" id="sistemas-de-memoria-compartida-smc">
-<h2>Sistemas de memoria compartida (SMC)<a class="headerlink" href="#sistemas-de-memoria-compartida-smc" title="Permalink to this headline">¶</a></h2>
+<section id="sistemas-de-memoria-compartida-smc">
+<h2>Sistemas de memoria compartida (SMC)<a class="headerlink" href="#sistemas-de-memoria-compartida-smc" title="Permalink to this headline">#</a></h2>
 <p>Un SMC en general se ve como el siguiente dibujo:</p>
 <img src="https://dl.dropboxusercontent.com/s/ao3if8tzwsvzfi7/shared_memory_sistems.png?dl=0" heigth="500" width="500"><p>El dibujo anterior es un SMC con acceso uniforme a la memoria (<a class="reference external" href="https://en.wikipedia.org/wiki/Uniform_memory_access">UMA</a>), esto es, cada proceso o <em>thread</em> creado en el procesador o <em>core</em> accede con las mismas velocidades a la memoria.</p>
 <p>La <strong>comunicación</strong> en este tipo de sistemas depende si se utilizan procesos o <em>threads</em> ya que aunque los procesos generados por un proceso principal tienen acceso a la memoria, los cambios/actualizaciones que haga uno de ellos a una variable no lo llegan a ver los otros procesos. Esto es distinto con los <em>threads</em> dado que un cambio que realice un <em>thread</em> en una variable sí lo pueden ver los otros <em>threads</em>. Lo anterior se debe a las distintas direcciones de memoria que utilizan los procesos vs la misma dirección de memoria que utilizan los <em>threads</em>.</p>
@@ -1317,9 +1422,9 @@ uname -ar #r for kernel, a for all
 <img src="https://dl.dropboxusercontent.com/s/iky7af1m3dcj3e0/distributed_memory_systems.png?dl=0" heigth="600" width="600">
 <p>La memoria en un SMD asociada al <em>core</em> sólo puede ser accesada por éste y es inaccesible a los demás <em>cores</em>, esto es, se tiene una memoria “privada”. Lo anterior contrasta con los SMC en los que todos los <em>cores</em> accesan a una memoria compartida. En un SMD el cómputo distribuido crea múltiples procesos a partir de un proceso principal. En un SMC el cómputo paralelo crea múltiples procesos o <em>threads</em>. Un ejemplo de un SMD es un clúster de máquinas. Cada máquina en el clúster puede ser un SMC y por tanto los procesos en cada máquina tienen la capacidad de crear procesos o <em>threads</em>. En este caso se tiene un sistema híbrido SMD y SMC. Un programa diseñado para ejecutarse en un SMD puede ejecutarse en un SMC pues se divide su memoria de forma lógica en espacios de memoria privados para los <em>threads</em>.</p>
 </div>
-</div>
-<div class="section" id="openmp">
-<h2><a class="reference external" href="http://www.openmp.org/">OpenMP</a><a class="headerlink" href="#openmp" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="openmp">
+<h2><a class="reference external" href="http://www.openmp.org/">OpenMP</a><a class="headerlink" href="#openmp" title="Permalink to this headline">#</a></h2>
 <p>Es una extensión al lenguaje <em>C</em> y es una API para cómputo en paralelo en un SMC, <em>aka, shared memory parallel programming</em> con CPUs. Lo anterior <em>OpenMP</em> lo posibilita con el <em>threading</em>.</p>
 <ul class="simple">
 <li><p>Las siglas <em>MP</em> se refieren a <em>multiprocessing</em>, un sinónimo de <em>shared memory parallel computing</em>. <em>OpenMP</em> se utiliza en un SMC por lo que cada <em>thread</em> tiene acceso a la memoria.</p></li>
@@ -1330,10 +1435,10 @@ uname -ar #r for kernel, a for all
 </ul>
 </li>
 </ul>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Las directivas son instrucciones que indican al <a class="reference external" href="https://en.wikipedia.org/wiki/Preprocessor">preprocesador</a> (vía la compilación) que ejecutaremos una instrucción que no se encuentra en la especificación básica del lenguaje C. Ver <a class="reference external" href="https://en.wikipedia.org/wiki/C_preprocessor">C preprocessor</a>.</p>
-</div>
+</aside>
 <ul class="simple">
 <li><p>Provee <strong>directivas</strong> vía <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span></code> para el cómputo en paralelo en un SMC.</p></li>
 </ul>
@@ -1342,11 +1447,11 @@ uname -ar #r for kernel, a for all
 <p>Los <code class="docutils literal notranslate"><span class="pre">pragma</span></code> se utilizan para extender la funcionalidad de <em>C</em> pues no son parte de su especificación básica. Las versiones más recientes del compilador <code class="docutils literal notranslate"><span class="pre">gcc</span></code> soportan a los <code class="docutils literal notranslate"><span class="pre">pragma</span></code> y todas las <em>preprocessor directives</em> son por <em>default</em> de longitud una línea.</p>
 <p>Ver <a class="reference external" href="https://gcc.gnu.org/onlinedocs/cpp/Pragmas.html">pragmas</a>.</p>
 </div>
-<div class="section" id="directiva-parallel">
-<h3>Directiva parallel<a class="headerlink" href="#directiva-parallel" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="ejemplo">
-<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
+<section id="directiva-parallel">
+<h3>Directiva parallel<a class="headerlink" href="#directiva-parallel" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">hello_world_omp.c</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1490,12 +1595,12 @@ Hola del thread: 56 de 64
 </div>
 </div>
 <p>A continuación de la directiva <code class="docutils literal notranslate"><span class="pre">parallel</span></code> podemos usar diferentes tipos de <em>clauses</em>. Una <em>clause</em> en <em>OpenMP</em> es un texto que modifica una directiva. Por ejemplo, podemos usar la <em>clause</em> <code class="docutils literal notranslate"><span class="pre">num_threads</span></code> para especificar el número de threads que ejecutarán el <em>structured block</em>.</p>
-</div>
-<div class="section" id="num-threads-clause">
-<h3><code class="docutils literal notranslate"><span class="pre">num_threads</span></code> <em>clause</em><a class="headerlink" href="#num-threads-clause" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id1">
-<h3>Ejemplo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="num-threads-clause">
+<h3><code class="docutils literal notranslate"><span class="pre">num_threads</span></code> <em>clause</em><a class="headerlink" href="#num-threads-clause" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="id1">
+<h3>Ejemplo<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">hello_world_omp_num_threads.c</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1552,9 +1657,9 @@ Hola del thread: 2 de 5
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="reduction-clause">
-<h3><em>Reduction clause</em><a class="headerlink" href="#reduction-clause" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="reduction-clause">
+<h3><em>Reduction clause</em><a class="headerlink" href="#reduction-clause" title="Permalink to this headline">#</a></h3>
 <p><em>OpenMP</em> provee la <em>reduction clause</em> para aplicar la operación de suma (operador binario) a cada resultado calculado de un <em>thread</em> de forma repetida y almacenar en una variable la respuesta.</p>
 <p>Nombramos <em>reduction variable</em> a la variable que almacenará los resultados intermedios calculados por cada <em>thread</em> y <em>reduction operator</em> a la operación binaria (por ejemplo una suma o multiplicación) que se aplica repetidamente a una secuencia de operandos para obtener un resultado, en un proceso que se le nombra <em>reduction</em>.</p>
 <p>Por ejemplo, si <code class="docutils literal notranslate"><span class="pre">A</span></code> es un arreglo de <code class="docutils literal notranslate"><span class="pre">n</span></code> enteros, el cálculo:</p>
@@ -1577,9 +1682,9 @@ Hola del thread: 2 de 5
 </div>
 <p>El <em>reduction operator</em> puede ser cualquiera de los operadores: <code class="docutils literal notranslate"><span class="pre">+,*,-,&amp;,|,^,&amp;&amp;,||</span></code>. Cabe señalar que el proceso de <em>reduction</em> asume que los operadores utilizados cumplen con la propiedad asociativa (por ejemplo, el operador de resta no cumple con esto).</p>
 <p>La variable que está en la <em>reduction clause</em> es compartida. Sin embargo una variable privada es creada por cada <em>thread</em> en el <em>team</em> (<strong>con el mismo nombre</strong> que aparece en la <em>reduction clause</em>) y si un <em>thread</em> ejecuta un statement en el <em>parallel block</em> que involucra a la variable, entonces se utiliza la variable privada. Al finalizar el <em>parallel block</em>, los valores calculados en las variables privadas son combinados en la variable compartida.</p>
-</div>
-<div class="section" id="id2">
-<h3>Ejemplo<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id2">
+<h3>Ejemplo<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>En el siguiente código se muestra el uso de nombres de variables al definir variables privadas y compartidas en una <em>reduction clause</em>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">private_shared_variable_reduction_clause_example.c</span></code></p>
 <div class="cell docutils container">
@@ -1665,9 +1770,9 @@ sum_shared al final de la directive parallel 40
 <p class="admonition-title">Comentario</p>
 <p>La variable <code class="docutils literal notranslate"><span class="pre">sum_shared</span></code> se inicializa en 0. En general, las variables privadas creadas para una <em>reduction clause</em> son inicializadas al <em>identity value</em> para el <em>operator</em>. Por ejemplo, si el <em>operator</em> es la multiplicación, entonces las variables privadas son inicializadas en 1.</p>
 </div>
-</div>
-<div class="section" id="ejemplo-regla-compuesta-del-rectangulo">
-<h3>Ejemplo regla compuesta del rectángulo<a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ejemplo-regla-compuesta-del-rectangulo">
+<h3>Ejemplo regla compuesta del rectángulo<a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo" title="Permalink to this headline">#</a></h3>
 <p>1.<em>Partitioning</em>: la tarea a realizar es el cálculo de un área de un rectángulo para un subintervalo.</p>
 <img src="https://dl.dropboxusercontent.com/s/5nqciu6ca5xzdh9/parallel_processing_Rcf_1.png?dl=0" heigth="300" width="400"><p>2.<em>Communication</em> y <em>mapping</em>: los subintervalos deben repartirse entre los <em>cores</em> y se debe comunicar esta repartición por algún medio (por ejemplo con variables en memoria).</p>
 <p>3.<em>Aggregation</em>: un <em>core</em> puede calcular más de un área de un rectángulo si recibe más de un subintervalo.</p>
@@ -1815,9 +1920,9 @@ Tiempo de ejecución con 64 threads: 26 miliseconds
 <li><p>Las variables que son privadas se definen en la función <code class="docutils literal notranslate"><span class="pre">Rcf</span></code>.</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="directiva-parallel-for">
-<h3>Directiva <em>parallel for</em><a class="headerlink" href="#directiva-parallel-for" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="directiva-parallel-for">
+<h3>Directiva <em>parallel for</em><a class="headerlink" href="#directiva-parallel-for" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Esta directiva ayuda a paralelizar ciclos <em>for</em> que tienen una forma canónica como sigue:</p></li>
 </ul>
@@ -1826,9 +1931,9 @@ Tiempo de ejecución con 64 threads: 26 miliseconds
 <li><p>Con esta directiva se dividen las iteraciones del <em>loop</em> entre los <em>threads</em>.</p></li>
 <li><p>Por <em>default</em> todas las variables definidas antes de la directiva <em>parallel</em> son compartidas pero en la directiva <em>parallel for</em>, el índice del ciclo <em>for</em> es privada, cada <em>thread</em> tiene su propia copia de tal índice.</p></li>
 </ul>
-</div>
-<div class="section" id="ejemplo-regla-compuesta-del-rectangulo-con-directiva-parallel-for">
-<h3>Ejemplo regla compuesta del rectángulo con directiva <em>parallel for</em><a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo-con-directiva-parallel-for" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ejemplo-regla-compuesta-del-rectangulo-con-directiva-parallel-for">
+<h3>Ejemplo regla compuesta del rectángulo con directiva <em>parallel for</em><a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo-con-directiva-parallel-for" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf_parallel_for.c
@@ -1993,10 +2098,10 @@ Tiempo de ejecución: 427 milisegundos
 <p class="admonition-title">Ejercicio</p>
 <p>Implementar la regla de Simpson compuesta con <em>OpenMP</em> utilizando una <em>reduction clause</em> y la directiva <em>parallel for</em> en una máquina de AWS con las mismas características que la que se presenta en esta nota y medir tiempo de ejecución.</p>
 </div>
-</div>
-</div>
-<div class="section" id="multiprocessing">
-<h2><a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html">Multiprocessing</a><a class="headerlink" href="#multiprocessing" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="multiprocessing">
+<h2><a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html">Multiprocessing</a><a class="headerlink" href="#multiprocessing" title="Permalink to this headline">#</a></h2>
 <p>El módulo <em>Multiprocessing</em> permite realizar procesamientos basados en procesos o <em>threads</em> para compartir trabajo, datos y lidiar con que la implementación estándar de <em>Python</em>, <a class="reference external" href="https://github.com/python/cpython">CPython</a> no utiliza múltiples <em>cores</em> por <em>default</em> para procesamiento.</p>
 <ul class="simple">
 <li><p>En el apartado de <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">Cpython-Design</a> se menciona el por qué CPython no soporta ejecución <em>multithreaded</em> o <em>multiprocesses</em> y a continuación se colocan unos párrafos de tal discusión.</p></li>
@@ -2011,17 +2116,17 @@ Tiempo de ejecución: 427 milisegundos
 <p class="admonition-title">Comentario</p>
 <p>Otro módulo en <em>Python</em> para procesamiento en un SMC con CPUs es <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a> que provee el comportamiento principal de <em>Multiprocessing</em>. Ver <a class="reference external" href="https://stackoverflow.com/questions/38311431/concurrent-futures-processpoolexecutor-vs-multiprocessing-pool-pool?noredirect=1&amp;lq=1">concurrent-futures-processpoolexecutor-vs-multiprocessing-pool-pool</a> y <a class="reference external" href="https://stackoverflow.com/questions/20776189/concurrent-futures-vs-multiprocessing-in-python-3">concurrent-futures-vs-multiprocessing-in-python-3</a> para más sobre <em>concurrent.futures</em> y <em>concurrent.futures</em> vs <em>multiprocessing</em>.</p>
 </div>
-<div class="section" id="nota-sobre-el-gil-y-multiprocessing">
-<h3>Nota sobre el GIL y <em>multiprocessing</em><a class="headerlink" href="#nota-sobre-el-gil-y-multiprocessing" title="Permalink to this headline">¶</a></h3>
+<section id="nota-sobre-el-gil-y-multiprocessing">
+<h3>Nota sobre el GIL y <em>multiprocessing</em><a class="headerlink" href="#nota-sobre-el-gil-y-multiprocessing" title="Permalink to this headline">#</a></h3>
 <p>Aunque en <em>Python</em> los <em>threads</em> son nativos del sistema operativo (esto es, no se simulan, son realmente <em>threads</em> del sistema operativo creados en el hardware), están limitados por el <em>global interpreter lock</em> (GIL), de modo que un sólo <em>thread</em> interactúe con un objeto <em>Python</em> en un único tiempo. Esto degrada el <em>performance</em> de los programas pues si un <em>thread</em> con etiqueta 1 tiene el GIL entonces otro <em>thread</em> con etiqueta 2 esperará hasta que el <em>thread</em> 1 lo suelte. Ver <a class="reference external" href="http://www.dabeaz.com/GIL/">Understanding the Python GIL</a>.</p>
 <p>Al usar el módulo <em>Multiprocessing</em> ejecutamos en paralelo un número de intérpretes <em>Python</em> (CPython), cada uno con su propio espacio de memoria privada y su propio GIL.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>En <em>multiprocessing</em> se utilizan subprocesos en lugar de <em>threads</em> y en lugar de <em>fork</em> se realiza <em>spawn</em>.</p>
 </div>
-</div>
-<div class="section" id="id3">
-<h3>Ejemplo<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id3">
+<h3>Ejemplo<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p>En <em>Multiprocessing</em> los procesos son generados al utilizar la clase <code class="docutils literal notranslate"><span class="pre">Process</span></code> para crear objetos y llamar al método <code class="docutils literal notranslate"><span class="pre">start</span></code>. Ver <a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html#multiprocessing.Process">Process</a> para documentación de ésta clase.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2125,9 +2230,9 @@ mundo
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="pool-of-workers">
-<h3><em>Pool of workers</em><a class="headerlink" href="#pool-of-workers" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="pool-of-workers">
+<h3><em>Pool of workers</em><a class="headerlink" href="#pool-of-workers" title="Permalink to this headline">#</a></h3>
 <p>Ver <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#using-a-pool-of-workers">Using a pool of workers</a>.</p>
 <p>La clase <code class="docutils literal notranslate"><span class="pre">Pool</span></code> crea un conjunto (<em>pool</em>) de procesos tipo <em>worker</em> que procesarán las tareas a realizar vía funciones tipo <code class="docutils literal notranslate"><span class="pre">map</span></code> o <code class="docutils literal notranslate"><span class="pre">apply</span></code>. Se hace <code class="docutils literal notranslate"><span class="pre">map</span></code> del <em>input</em> hacia los procesadores y se colecta el <em>output</em> de éstos. Mientras el <code class="docutils literal notranslate"><span class="pre">map</span></code> se realiza, el proceso que lanzó el <code class="docutils literal notranslate"><span class="pre">map</span></code> se bloquea hasta que finalicen las tareas (aunque hay <a class="reference external" href="https://docs.python.org/3.1/library/multiprocessing.html#multiprocessing.pool.multiprocessing.Pool.map_async">map_async</a>). El <em>output</em> es una lista.</p>
 <div class="tip admonition">
@@ -2138,9 +2243,9 @@ mundo
 <p class="admonition-title">Comentario</p>
 <p>Para un gran número de tareas a realizar, utilizar <code class="docutils literal notranslate"><span class="pre">Pool</span></code>. Para pocas tareas (menos de <span class="math notranslate nohighlight">\(10\)</span>) a realizar, utilizar <code class="docutils literal notranslate"><span class="pre">Process</span></code>.</p>
 </div>
-</div>
-<div class="section" id="id4">
-<h3>Ejemplo<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id4">
+<h3>Ejemplo<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
@@ -2187,9 +2292,9 @@ mundo
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ejemplo-utilizando-apply">
-<h3>Ejemplo utilizando <code class="docutils literal notranslate"><span class="pre">apply</span></code><a class="headerlink" href="#ejemplo-utilizando-apply" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ejemplo-utilizando-apply">
+<h3>Ejemplo utilizando <code class="docutils literal notranslate"><span class="pre">apply</span></code><a class="headerlink" href="#ejemplo-utilizando-apply" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
@@ -2210,9 +2315,9 @@ mundo
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ejemplo-con-context-manager">
-<h3>Ejemplo con <a class="reference external" href="https://book.pythontips.com/en/latest/context_managers.html#context-managers">context manager</a><a class="headerlink" href="#ejemplo-con-context-manager" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ejemplo-con-context-manager">
+<h3>Ejemplo con <a class="reference external" href="https://book.pythontips.com/en/latest/context_managers.html#context-managers">context manager</a><a class="headerlink" href="#ejemplo-con-context-manager" title="Permalink to this headline">#</a></h3>
 <p>Nos ayuda a no escribir <em>statements</em>: <code class="docutils literal notranslate"><span class="pre">pool.close</span></code>, <code class="docutils literal notranslate"><span class="pre">pool.join</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2232,13 +2337,13 @@ mundo
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ejemplo-para-pasar-multiples-argumentos-via-starmap">
-<h3>Ejemplo para pasar múltiples argumentos vía <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.Pool.starmap">starmap</a><a class="headerlink" href="#ejemplo-para-pasar-multiples-argumentos-via-starmap" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
+</section>
+<section id="ejemplo-para-pasar-multiples-argumentos-via-starmap">
+<h3>Ejemplo para pasar múltiples argumentos vía <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.Pool.starmap">starmap</a><a class="headerlink" href="#ejemplo-para-pasar-multiples-argumentos-via-starmap" title="Permalink to this headline">#</a></h3>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Ver <a class="reference external" href="https://docs.python.org/3.9/library/multiprocessing.html#programming-guidelines">Programming guidelines</a>: <em>Explicitly pass resources to child processes … On Unix a child process can make use of a shared resource created in a parent process using a global resource. However, it is better to pass the object as an argument to the constructor for the child process…</em></p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
@@ -2258,9 +2363,9 @@ mundo
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id5">
-<h3>Ejemplo regla compuesta del rectángulo<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id5">
+<h3>Ejemplo regla compuesta del rectángulo<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -2428,10 +2533,10 @@ mundo
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="dask">
-<h2><a class="reference external" href="https://github.com/dask/dask/">Dask</a><a class="headerlink" href="#dask" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="dask">
+<h2><a class="reference external" href="https://github.com/dask/dask/">Dask</a><a class="headerlink" href="#dask" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Permite procesamiento en SMC o SMD.</p></li>
 <li><p>Extiende interfaces de <em>arrays, dataframes</em> y listas usadas en <em>NumPy</em>, <em>Pandas</em> e <em>iterators</em> para su procesamiento. En el contexto de <em>Dask</em> a los tipos de valores anteriores les denomina <em>big data collections</em>.</p></li>
@@ -2460,8 +2565,8 @@ mundo
 </ul>
 </li>
 </ul>
-<div class="section" id="como-se-implementan-una-task-y-una-task-dask-graph-en-dask">
-<h3>¿Cómo se implementan una <em>task</em> y una <em>task/dask graph</em> en <em>Dask</em>?<a class="headerlink" href="#como-se-implementan-una-task-y-una-task-dask-graph-en-dask" title="Permalink to this headline">¶</a></h3>
+<section id="como-se-implementan-una-task-y-una-task-dask-graph-en-dask">
+<h3>¿Cómo se implementan una <em>task</em> y una <em>task/dask graph</em> en <em>Dask</em>?<a class="headerlink" href="#como-se-implementan-una-task-y-una-task-dask-graph-en-dask" title="Permalink to this headline">#</a></h3>
 <p>Cada <em>task</em> se implementa como una tupla de <em>Python</em> que contiene funciones y argumentos de las mismas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2495,9 +2600,9 @@ mundo
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="como-ejecutamos-la-task-dask-graph">
-<h3>¿Cómo ejecutamos la <em>task/dask graph</em>?<a class="headerlink" href="#como-ejecutamos-la-task-dask-graph" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="como-ejecutamos-la-task-dask-graph">
+<h3>¿Cómo ejecutamos la <em>task/dask graph</em>?<a class="headerlink" href="#como-ejecutamos-la-task-dask-graph" title="Permalink to this headline">#</a></h3>
 <p>Con los <em>schedulers</em> definidos en <em>Dask</em>. Ver <a class="reference external" href="https://docs.dask.org/en/latest/scheduling.html">Scheduling</a> y <a class="reference external" href="https://docs.dask.org/en/latest/scheduler-overview.html">Scheduler Overview</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2552,9 +2657,9 @@ mundo
 <li><p>En la documentación de <em>Dask</em> se recomienda utilizar al <em>scheduler distributed</em> en lugar de usar <code class="docutils literal notranslate"><span class="pre">dask.multiprocesing.get</span></code>. La documentación se encuentra en <a class="reference external" href="https://distributed.dask.org/en/latest/">Dask.distributed</a>. Para una pequeña explicación ver <a class="reference external" href="https://docs.dask.org/en/latest/scheduling.html#dask-distributed-local">Dask Distributed local</a>.</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="como-visualizamos-la-task-dask-graph">
-<h3>¿Cómo visualizamos la <em>task/dask graph</em>?<a class="headerlink" href="#como-visualizamos-la-task-dask-graph" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="como-visualizamos-la-task-dask-graph">
+<h3>¿Cómo visualizamos la <em>task/dask graph</em>?<a class="headerlink" href="#como-visualizamos-la-task-dask-graph" title="Permalink to this headline">#</a></h3>
 <p>Usamos <code class="docutils literal notranslate"><span class="pre">visualize</span></code>. Ver <a class="reference external" href="https://docs.dask.org/en/latest/graphviz.html">visualize task graphs</a> y <a class="reference external" href="https://docs.dask.org/en/latest/api.html#dask.visualize">dask.visualize</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2567,9 +2672,9 @@ mundo
 </div>
 </div>
 <p>Las cajas representan datos, los círculos representan funciones que se ejecutan sobre tales datos y las flechas especifican cuáles funciones producen/consumen qué datos.</p>
-</div>
-<div class="section" id="flujo-de-trabajo-con-dask-collections">
-<h3>Flujo de trabajo con <em>Dask collections</em><a class="headerlink" href="#flujo-de-trabajo-con-dask-collections" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="flujo-de-trabajo-con-dask-collections">
+<h3>Flujo de trabajo con <em>Dask collections</em><a class="headerlink" href="#flujo-de-trabajo-con-dask-collections" title="Permalink to this headline">#</a></h3>
 <p>En resumen en <em>Dask</em> seguimos un flujo como el siguiente dibujo.</p>
 <img src="https://docs.dask.org/en/latest/_images/dask-overview.svg" heigth="400" width="400"><div class="tip admonition">
 <p class="admonition-title">Observación</p>
@@ -2579,9 +2684,9 @@ mundo
 <p class="admonition-title">Comentario</p>
 <p>Si trabajamos con las <em>collections</em> será extraño que trabajemos a nivel de funciones <code class="docutils literal notranslate"><span class="pre">get</span></code>. Cada <em>collection</em> tiene un default scheduler y una función <a class="reference external" href="https://docs.dask.org/en/latest/scheduler-overview.html#using-compute-methods">compute</a> que calcula el <em>output</em> de la <em>collection</em>.</p>
 </div>
-</div>
-<div class="section" id="id6">
-<h3>Ejemplo<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id6">
+<h3>Ejemplo<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://docs.dask.org/en/latest/array.html">dask arrays</a> y <a class="reference external" href="https://docs.dask.org/en/latest/dataframe.html">dask dataframes</a> utilizan al <em>threaded scheduler</em> por <em>default</em> pero con <code class="docutils literal notranslate"><span class="pre">compute</span></code> puede cambiarse de <em>scheduler</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2666,10 +2771,10 @@ mundo
 </div>
 </div>
 <p>Llamamos a la función <a class="reference external" href="https://docs.dask.org/en/latest/api.html#dask.compute">dask.compute</a>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Por <em>default</em> el <em>dask array</em> utiliza el <em>threaded scheduler</em> para la ejecución de la <em>dask graph</em> asociada.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">())</span>
@@ -2904,9 +3009,9 @@ mundo
 </div>
 </div>
 <p>Ver <a class="reference external" href="https://docs.dask.org/en/latest/scheduling.html#configuration">configuration</a> para otras formas de especificar al <em>scheduler</em>. Ver también <a class="reference external" href="https://docs.dask.org/en/latest/delayed.html">Delayed</a> y <a class="reference external" href="https://examples.dask.org/delayed.html">Custom Workloads with Dask Delayed</a> para otra opción diferente a los <em>dask array</em>’s, <em>dask dataframe</em>’s y <em>dask bag</em>’s para cómputo <em>lazy</em>.</p>
-</div>
-<div class="section" id="ejemplo-regla-compuesta-del-rectangulo-con-dask-array">
-<h3>Ejemplo regla compuesta del rectángulo con <code class="docutils literal notranslate"><span class="pre">dask.array</span></code><a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo-con-dask-array" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ejemplo-regla-compuesta-del-rectangulo-con-dask-array">
+<h3>Ejemplo regla compuesta del rectángulo con <code class="docutils literal notranslate"><span class="pre">dask.array</span></code><a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo-con-dask-array" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -3006,9 +3111,9 @@ mundo
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="dask-distributed">
-<h3><a class="reference external" href="https://github.com/dask/distributed">Dask distributed</a><a class="headerlink" href="#dask-distributed" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="dask-distributed">
+<h3><a class="reference external" href="https://github.com/dask/distributed">Dask distributed</a><a class="headerlink" href="#dask-distributed" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Es un paquete que extiende a <a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a> (<code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> es similar a <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code>) y a <em>Dask</em> para clústers de tamaño mediano (alrededor de cientos de máquinas).</p></li>
 <li><p>Aunque el nombre <em>distributed</em> puede tomarse como que la ejecución sólo puede llevarse a cabo en clústers de máquinas, también puede utilizarse en nuestra máquina local.</p></li>
@@ -3023,17 +3128,17 @@ mundo
 <li><p><em>Familiar APIs: Compatible with the <a class="reference external" href="https://www.python.org/dev/peps/pep-3148/">concurrent.futures</a> API in the Python standard library. Compatible with dask API for parallel algorithms.</em></p></li>
 </ul>
 <p>Para ver más sobre el <em>distributed scheduler</em> ver <a class="reference external" href="https://distributed.dask.org/en/latest/#architecture">dask-architecture</a>.</p>
-</div>
-<div class="section" id="concurrent-futures">
-<h3>¿<a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a>?<a class="headerlink" href="#concurrent-futures" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="concurrent-futures">
+<h3>¿<a class="reference external" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures</a>?<a class="headerlink" href="#concurrent-futures" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Es un paquete para ejecución de <em>tasks</em> en paralelo.</p></li>
 <li><p>En <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> se trabaja con objetos de tipo valor <code class="docutils literal notranslate"><span class="pre">future</span></code> los cuales son resultados de cálculos que estarán disponibles en un futuro, de aquí el nombre de <em>future</em> y su cómputo <strong>no</strong> es <em>lazy</em> sino inmediato.</p></li>
 <li><p>La obtención del <em>future</em> es asíncrona por lo que permite cómputo concurrente.</p></li>
 </ul>
-</div>
-<div class="section" id="id7">
-<h3>Ejemplo<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id7">
+<h3>Ejemplo<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
@@ -3225,9 +3330,9 @@ Wall time: 1.01 s
 <li><p>Para una vista rápida a <code class="docutils literal notranslate"><span class="pre">concurrent.futures</span></code> ver: <a class="reference external" href="http://masnun.com/2016/03/29/python-a-quick-introduction-to-the-concurrent-futures-module.html">Python: A quick introduction to the concurrent.futures module</a>.</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="client-de-dask-distributed">
-<h3><em>Client</em> de <code class="docutils literal notranslate"><span class="pre">dask.distributed</span></code><a class="headerlink" href="#client-de-dask-distributed" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="client-de-dask-distributed">
+<h3><em>Client</em> de <code class="docutils literal notranslate"><span class="pre">dask.distributed</span></code><a class="headerlink" href="#client-de-dask-distributed" title="Permalink to this headline">#</a></h3>
 <p>El <a class="reference external" href="https://distributed.dask.org/en/latest/client.html">Client</a> es el <em>entry point</em> para users de <code class="docutils literal notranslate"><span class="pre">dask.distributed</span></code>. Creamos un <em>distributed scheduler</em> al importar <code class="docutils literal notranslate"><span class="pre">Client</span></code>. Esta acción <em>override</em> cualquier configuración que se haya hecho del <em>scheduler</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3304,9 +3409,9 @@ Wall time: 1.01 s
 </ul>
 <p>Ver <a class="reference external" href="https://docs.dask.org/en/latest/setup/single-distributed.html#distributed.deploy.local.LocalCluster">LocalCluster</a> para opciones a usar en <code class="docutils literal notranslate"><span class="pre">Client</span></code> y <a class="reference external" href="https://distributed.dask.org/en/latest/api.html">API</a> para la API con <code class="docutils literal notranslate"><span class="pre">Client</span></code>.</p>
 </div>
-</div>
-<div class="section" id="ejemplo-regla-compuesta-del-rectangulo-con-map-y-gather">
-<h3>Ejemplo regla compuesta del rectángulo con <code class="docutils literal notranslate"><span class="pre">map</span></code> y <code class="docutils literal notranslate"><span class="pre">gather</span></code><a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo-con-map-y-gather" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ejemplo-regla-compuesta-del-rectangulo-con-map-y-gather">
+<h3>Ejemplo regla compuesta del rectángulo con <code class="docutils literal notranslate"><span class="pre">map</span></code> y <code class="docutils literal notranslate"><span class="pre">gather</span></code><a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo-con-map-y-gather" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_nodes_in_subintervals</span><span class="p">(</span><span class="n">my_id</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">h_hat</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">n_s_sub</span><span class="p">):</span>
@@ -3388,9 +3493,9 @@ Wall time: 1 s
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ejemplo-regla-compuesta-del-rectangulo-con-map-y-result">
-<h3>Ejemplo regla compuesta del rectángulo con <code class="docutils literal notranslate"><span class="pre">map</span></code> y <code class="docutils literal notranslate"><span class="pre">result</span></code><a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo-con-map-y-result" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ejemplo-regla-compuesta-del-rectangulo-con-map-y-result">
+<h3>Ejemplo regla compuesta del rectángulo con <code class="docutils literal notranslate"><span class="pre">map</span></code> y <code class="docutils literal notranslate"><span class="pre">result</span></code><a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo-con-map-y-result" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">n_workers</span><span class="o">=</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">(),</span>
@@ -3465,9 +3570,9 @@ Wall time: 630 ms
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="grafica-de-tiempo-de-ejecucion-vs-numero-de-procesos">
-<h3>Gráfica de tiempo de ejecución vs número de procesos<a class="headerlink" href="#grafica-de-tiempo-de-ejecucion-vs-numero-de-procesos" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="grafica-de-tiempo-de-ejecucion-vs-numero-de-procesos">
+<h3>Gráfica de tiempo de ejecución vs número de procesos<a class="headerlink" href="#grafica-de-tiempo-de-ejecucion-vs-numero-de-procesos" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">err_np</span> <span class="o">=</span> <span class="p">[]</span>
@@ -3517,10 +3622,10 @@ Wall time: 630 ms
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Ejecutamos <code class="docutils literal notranslate"><span class="pre">close</span></code> para las creaciones de clientes anteriores.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -3714,10 +3819,10 @@ Wall time: 630 ms
 <p class="admonition-title">Ejercicio</p>
 <p>Implementar la regla de Simpson compuesta con <em>Multiprocessing</em> y <em>Dask</em> en una máquina de AWS con las mismas características que la que se presenta en esta nota, medir tiempo de ejecución y realizar gráfica de tiempo vs num cpus.</p>
 </div>
-</div>
-</div>
-<div class="section" id="parallel">
-<h2><a class="reference external" href="https://www.rdocumentation.org/packages/parallel/versions/3.6.2">Parallel</a><a class="headerlink" href="#parallel" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="parallel">
+<h2><a class="reference external" href="https://www.rdocumentation.org/packages/parallel/versions/3.6.2">Parallel</a><a class="headerlink" href="#parallel" title="Permalink to this headline">#</a></h2>
 <p>Entre las herramientas más populares en <em>R</em> para cómputo en paralelo se encuentran:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.rdocumentation.org/packages/snow/versions/0.4-3">Simple Network Of Workstations: snow</a>. Ya es una herramienta incluida en el paquete <em>Parallel</em>). Ver <a class="reference external" href="http://homepage.divms.uiowa.edu/~luke/R/cluster/cluster.html">liga</a> para más información.</p></li>
@@ -3738,8 +3843,8 @@ Wall time: 630 ms
 </li>
 </ul>
 </div>
-<div class="section" id="id8">
-<h3>Ejemplo<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<section id="id8">
+<h3>Ejemplo<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">parallel</span><span class="p">)</span>
@@ -3802,8 +3907,8 @@ Wall time: 630 ms
 </div>
 </div>
 </div>
-<div class="section" id="clusterapply">
-<h4>clusterApply<a class="headerlink" href="#clusterapply" title="Permalink to this headline">¶</a></h4>
+<section id="clusterapply">
+<h4>clusterApply<a class="headerlink" href="#clusterapply" title="Permalink to this headline">#</a></h4>
 <p>En <em>Parallel</em> se tiene la función <a class="reference external" href="https://www.rdocumentation.org/packages/parallel/versions/3.6.2/topics/clusterApply">clusterApply</a> para ejecución en paralelo de una función aplicada a cada elemento de una lista: <em>manager</em> envía <code class="docutils literal notranslate"><span class="pre">lista[1]</span></code> a <code class="docutils literal notranslate"><span class="pre">cl[1]</span></code>, <code class="docutils literal notranslate"><span class="pre">lista[2]</span></code> a <code class="docutils literal notranslate"><span class="pre">cl[2]</span></code>,…,<code class="docutils literal notranslate"><span class="pre">lista[p]</span></code> a <code class="docutils literal notranslate"><span class="pre">cl[p]</span></code>.</p>
 <p>Además, si el número de elementos de la lista es mayor que el número de <em>workers</em> entonces <code class="docutils literal notranslate"><span class="pre">clusterApply</span></code> realiza una asignación tipo <em>round robin</em>: por ejemplo, si la lista tiene <span class="math notranslate nohighlight">\(4\)</span> elementos y se tienen <span class="math notranslate nohighlight">\(2\)</span> <em>workers</em> entonces <code class="docutils literal notranslate"><span class="pre">clusterApply</span></code> le envía a <em>worker1</em> el elemento de la primera posición de la lista, a <em>worker2</em> el segundo elemento. Después que <em>worker1</em> finaliza el procesamiento, <code class="docutils literal notranslate"><span class="pre">clusterApply</span></code> le envía la tercera posición y al terminar <em>worker2</em> del procesamiento, <code class="docutils literal notranslate"><span class="pre">clusterApply</span></code> le envía la cuarta posición (<code class="docutils literal notranslate"><span class="pre">clusterApply</span></code> aprovecha la característica que tiene <em>R</em> de reciclar operaciones).</p>
 <div class="cell tag_output_scroll docutils container">
@@ -4037,10 +4142,10 @@ Wall time: 630 ms
 <p class="admonition-title">Observación</p>
 <p>Obsérvese que el resultado de <code class="docutils literal notranslate"><span class="pre">clusterApply</span></code> es una lista.</p>
 </div>
-</div>
-</div>
-<div class="section" id="ejemplo-de-pasar-argumentos-via-clusterexport">
-<h3>Ejemplo de pasar argumentos vía <code class="docutils literal notranslate"><span class="pre">clusterExport</span></code><a class="headerlink" href="#ejemplo-de-pasar-argumentos-via-clusterexport" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="ejemplo-de-pasar-argumentos-via-clusterexport">
+<h3>Ejemplo de pasar argumentos vía <code class="docutils literal notranslate"><span class="pre">clusterExport</span></code><a class="headerlink" href="#ejemplo-de-pasar-argumentos-via-clusterexport" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">clusterExport</span></code> nos permite enviar valores de variables definidas en el <em>workspace global</em> de <em>manager</em> hacia los <em>workspaces</em> de cada <em>worker</em> bajo los mismos nombres de variables:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4757,9 +4862,9 @@ Traceback:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ejemplo-regla-compuesta-del-rectangulo-con-clusterapply">
-<h3>Ejemplo regla compuesta del rectángulo con <code class="docutils literal notranslate"><span class="pre">clusterApply</span></code><a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo-con-clusterapply" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ejemplo-regla-compuesta-del-rectangulo-con-clusterapply">
+<h3>Ejemplo regla compuesta del rectángulo con <code class="docutils literal notranslate"><span class="pre">clusterApply</span></code><a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo-con-clusterapply" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">microbenchmark</span><span class="p">)</span>
@@ -4914,9 +5019,9 @@ Traceback:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="ejemplo-regla-compuesta-del-rectangulo-con-clustersplit">
-<h3>Ejemplo regla compuesta del rectángulo con <code class="docutils literal notranslate"><span class="pre">clusterSplit</span></code><a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo-con-clustersplit" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ejemplo-regla-compuesta-del-rectangulo-con-clustersplit">
+<h3>Ejemplo regla compuesta del rectángulo con <code class="docutils literal notranslate"><span class="pre">clusterSplit</span></code><a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo-con-clustersplit" title="Permalink to this headline">#</a></h3>
 <p>La función <code class="docutils literal notranslate"><span class="pre">clusterSplit</span></code> divide una secuencia en <em>chunks</em> de subsecuencias consecutivas. El número de <em>chunks</em> que regresa es igual al número de <em>workers</em>. <code class="docutils literal notranslate"><span class="pre">clusterSplit</span></code> intenta que los <em>chunks</em> sean similares en longitud y la división se realiza en <em>manager</em>.</p>
 <p>En la siguiente implementación se recibe un <code class="docutils literal notranslate"><span class="pre">chunk</span></code> de nodos.</p>
 <div class="cell docutils container">
@@ -5064,9 +5169,9 @@ Traceback:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id9">
-<h3>Gráfica de tiempo de ejecución vs número de procesos<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id9">
+<h3>Gráfica de tiempo de ejecución vs número de procesos<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
@@ -5271,10 +5376,10 @@ Unit: seconds
 <p class="admonition-title">Ejercicio</p>
 <p>Implementar la regla de Simpson compuesta con <em>Parallel</em> en una máquina de AWS con las mismas características que la que se presenta en esta nota, medir tiempo de ejecución y realizar gráfica de tiempo vs num cpus.</p>
 </div>
-</div>
-</div>
-<div class="section" id="referencias-de-interes">
-<h2>Referencias de interés<a class="headerlink" href="#referencias-de-interes" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="referencias-de-interes">
+<h2>Referencias de interés<a class="headerlink" href="#referencias-de-interes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://stories.dask.org/en/latest/">Use cases with dask</a></p></li>
 <li><p><a class="reference external" href="https://github.com/dask/dask-tutorial">dask-tutorial</a></p></li>
@@ -5302,8 +5407,8 @@ Unit: seconds
 <li><p>B. W. Kernighan, D. M. Ritchie, The C Programming Language, Prentice Hall Software Series, 1988</p></li>
 <li><p><a class="reference external" href="https://github.com/palmoreck/programming-languages/tree/master/C/extensiones_a_C/openMP">C/extensiones_a_C/openMP</a></p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -5327,9 +5432,11 @@ Unit: seconds
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../5.3/Compilacion_a_C.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -5345,24 +5452,28 @@ Unit: seconds
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Erick Palacios Moreno<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Erick Palacios Moreno<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

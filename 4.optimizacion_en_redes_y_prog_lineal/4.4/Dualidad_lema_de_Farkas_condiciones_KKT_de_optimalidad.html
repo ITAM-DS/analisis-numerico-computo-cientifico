@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>4.4 Dualidad, lema de Farkas y condiciones de Karush-Kuhn-Tucker (KKT) de optimalidad</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,39 +20,38 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="4.5 Método primal-dual de barrera logarítmica (BL)" href="../4.5/Metodo_primal_dual_de_BL.html" />
@@ -62,7 +63,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +86,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -89,14 +105,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../README.html">
-   Optimización
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Optimización
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Cómputo científico
  </span>
@@ -317,94 +334,182 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/4.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/4.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/4.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/4.optimizacion_en_redes_y_prog_lineal/4.4/Dualidad_lema_de_Farkas_condiciones_KKT_de_optimalidad.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ejemplo-prototipo">
    Ejemplo prototipo
@@ -545,12 +650,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>4.4 Dualidad, lema de Farkas y condiciones de Karush-Kuhn-Tucker (KKT) de optimalidad</h1>
@@ -707,11 +811,12 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="dualidad-lema-de-farkas-y-condiciones-de-karush-kuhn-tucker-kkt-de-optimalidad">
-<span id="dualidadlemafarkascondkkt"></span><h1>4.4 Dualidad, lema de Farkas y condiciones de Karush-Kuhn-Tucker (KKT) de optimalidad<a class="headerlink" href="#dualidad-lema-de-farkas-y-condiciones-de-karush-kuhn-tucker-kkt-de-optimalidad" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="dualidad-lema-de-farkas-y-condiciones-de-karush-kuhn-tucker-kkt-de-optimalidad">
+<span id="dualidadlemafarkascondkkt"></span><h1>4.4 Dualidad, lema de Farkas y condiciones de Karush-Kuhn-Tucker (KKT) de optimalidad<a class="headerlink" href="#dualidad-lema-de-farkas-y-condiciones-de-karush-kuhn-tucker-kkt-de-optimalidad" title="Permalink to this headline">#</a></h1>
 <div class="admonition-notas-para-contenedor-de-docker admonition">
 <p class="admonition-title">Notas para contenedor de docker:</p>
 <p>Comando de docker para ejecución de la nota de forma local:</p>
@@ -734,8 +839,8 @@
 <li><p>Utilizará la función Lagrangiana y las condiciones de Karush-Kuhn-Tucker de optimalidad para dar una justificación de los pasos que sigue el método símplex para encontrar óptimos de programas lineales.</p></li>
 </ul>
 </div>
-<div class="section" id="ejemplo-prototipo">
-<h2>Ejemplo prototipo<a class="headerlink" href="#ejemplo-prototipo" title="Permalink to this headline">¶</a></h2>
+<section id="ejemplo-prototipo">
+<h2>Ejemplo prototipo<a class="headerlink" href="#ejemplo-prototipo" title="Permalink to this headline">#</a></h2>
 <p>Considérese el problema planteado en <a class="reference internal" href="../4.1/Programacion_lineal_y_metodo_simplex.html#ejprototipo"><span class="std std-ref">ejemplo prototipo</span></a> con sus suposiciones. El objetivo es elegir los valores de <span class="math notranslate nohighlight">\(x_1, x_2\)</span> que maximicen <span class="math notranslate nohighlight">\(f_o\)</span>, la ganancia total, sujeta a las restricciones impuestas sobre sus valores en las tres plantas. Esto es, resolver el PL siguiente:</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \max_{x \in \mathbb{R}^2} 3x_1 + 5x_2\]</div>
@@ -838,9 +943,9 @@
 <p class="admonition-title">Observación</p>
 <p>Realmente no importa a cuál de los problemas se le dé el nombre primal y a cuál el de dual. La convención es que el modelo que se formula para representar el problema real recibe el nombre de problema primal no importando la forma que tiene (estándar u otra).</p>
 </div>
-</div>
-<div class="section" id="problema-primal-del-ejemplo-prototipo">
-<h2>Problema primal del ejemplo prototipo<a class="headerlink" href="#problema-primal-del-ejemplo-prototipo" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="problema-primal-del-ejemplo-prototipo">
+<h2>Problema primal del ejemplo prototipo<a class="headerlink" href="#problema-primal-del-ejemplo-prototipo" title="Permalink to this headline">#</a></h2>
 <p>El problema <strong>primal</strong> anterior escrito en notación vectorial y matricial es:</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \max_{x \in \mathbb{R}^2} (-c)^Tx\]</div>
@@ -873,7 +978,7 @@ x_2 \\
 \end{array}
 \right ]\)</span> y
 <span class="math notranslate nohighlight">\(c = \left [ \begin{array}{c} -3 \\ -5 \end{array}\right]\)</span> representa al vector de costos unitarios o equivalentemente <span class="math notranslate nohighlight">\(-c\)</span> el vector de ganancias unitarias. La última desigualdad se refiere a que todas las componentes del vector <span class="math notranslate nohighlight">\(x\)</span> son mayores o iguales a cero (son mayores o iguales a cero de una forma <em>pointwise</em>). El PL busca maximizar <span class="math notranslate nohighlight">\(f_o(x) = (-c)^Tx\)</span>, la ganancia total.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -885,7 +990,7 @@ x_1 \leq 4 \nonumber    \\
 x_1 \geq 0              \\
 x_2 \geq 0              \\
 \end{split}\]</div>
-</div>
+</aside>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>En el contexto del PL ejemplo se tiene:</p>
@@ -895,14 +1000,14 @@ x_2 \geq 0              \\
 <p><span class="math notranslate nohighlight">\(b_i\)</span>: cantidad disponible del recurso <span class="math notranslate nohighlight">\(i\)</span> para asignarse a las actividades con <span class="math notranslate nohighlight">\(i=1, 2, \dots, m\)</span>. En el ejemplo <span class="math notranslate nohighlight">\(m=3\)</span>. <span class="math notranslate nohighlight">\(b_1=4\)</span> representa el número de horas de producción disponibles por semana en la planta <span class="math notranslate nohighlight">\(1\)</span> para fabricar los lotes de los productos <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(2\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(a_{ij}\)</span>: cantidad del recurso <span class="math notranslate nohighlight">\(i\)</span> consumido por cada unidad de la actividad <span class="math notranslate nohighlight">\(j\)</span> con <span class="math notranslate nohighlight">\(i=1, 2, \dots n\)</span>, <span class="math notranslate nohighlight">\(j=1, 2, \dots m\)</span>. En el ejemplo se consumen <span class="math notranslate nohighlight">\(3\)</span> horas para producir el producto <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(2\)</span> horas para el <span class="math notranslate nohighlight">\(2\)</span> de las <span class="math notranslate nohighlight">\(18\)</span> horas disponibles en la planta <span class="math notranslate nohighlight">\(3\)</span>.</p>
 </div>
-</div>
-<div class="section" id="problema-dual-del-ejemplo-prototipo">
-<span id="probdualejprototipo"></span><h2>Problema dual del ejemplo prototipo<a class="headerlink" href="#problema-dual-del-ejemplo-prototipo" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="problema-dual-del-ejemplo-prototipo">
+<span id="probdualejprototipo"></span><h2>Problema dual del ejemplo prototipo<a class="headerlink" href="#problema-dual-del-ejemplo-prototipo" title="Permalink to this headline">#</a></h2>
 <p>El problema <strong>dual</strong> asociado al problema anterior es:</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Por ahora tómese como válida la expresión del problema dual, en esta primera parte se busca señalar las relaciones existentes con el problema primal y no la forma matemática de obtenerlo.</p>
-</div>
+</aside>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{-\lambda \in \mathbb{R}^3} b^T(-\lambda)\]</div>
 <div class="math notranslate nohighlight">
@@ -930,7 +1035,7 @@ x_2 \geq 0              \\
 <p class="admonition-title">Observación</p>
 <p>Se utiliza como variable de optimización dual <span class="math notranslate nohighlight">\(-\lambda\)</span> pues la función objetivo primal es <span class="math notranslate nohighlight">\((-c)^Tx\)</span>. Las expresiones cambian un poco si se utiliza una función objetivo primal igual a <span class="math notranslate nohighlight">\(c^Tx\)</span>.</p>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -941,8 +1046,8 @@ x_1 \leq 4 \nonumber    \\
 x_1 \geq 0              \\
 x_2 \geq 0              \\
 \end{split}\]</div>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -954,7 +1059,7 @@ x_2 \geq 0              \\
 -\lambda_2 \geq 0 \\
 -\lambda_3 \geq 0
 \end{split}\]</div>
-</div>
+</aside>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
@@ -967,9 +1072,9 @@ x_2 \geq 0              \\
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="interpretacion-del-problema-dual">
-<h2>Interpretación del problema dual<a class="headerlink" href="#interpretacion-del-problema-dual" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="interpretacion-del-problema-dual">
+<h2>Interpretación del problema dual<a class="headerlink" href="#interpretacion-del-problema-dual" title="Permalink to this headline">#</a></h2>
 <p>Considérese las siguientes formas de los modelos de optimización primal-dual para el problema del inicio:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -983,7 +1088,7 @@ x_1 \leq 4 \nonumber    &amp;&amp; &amp;&amp;  -\lambda_1 -3 \lambda_3 \geq 3\\
 x_1 \geq 0              &amp;&amp; &amp;&amp; -\lambda_2 \geq 0 \\
 x_2 \geq 0              &amp;&amp; &amp;&amp; -\lambda_3 \geq 0
 \end{align*}\end{split}\]</div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La forma aumentada del problema primal del ejemplo prototipo recuérdese es:</p>
 <div class="math notranslate nohighlight">
@@ -994,7 +1099,7 @@ x_1 + x_3 = 4 \\
 3x_1 + 2x_2 + x_5 = 18 \\
 x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, x_4 \geq 0, x_5 \geq 0
 \end{split}\]</div>
-</div>
+</aside>
 <p>Recordemos algunos enunciados y resultados que obtuvimos en el <a class="reference internal" href="../4.1/Programacion_lineal_y_metodo_simplex.html#ejmetgraficopl"><span class="std std-ref">ejemplo del método gráfico</span></a> y en el <a class="reference internal" href="../4.1/Programacion_lineal_y_metodo_simplex.html#ejmetsimplexaplicadoejprototipo"><span class="std std-ref">ejemplo del método símplex</span></a> para el problema primal en su forma <strong>aumentada</strong>, ver <a class="reference internal" href="../4.1/Programacion_lineal_y_metodo_simplex.html#formaaumentadapl"><span class="std std-ref">forma aumentada de un PL</span></a>:</p>
 <ul class="simple">
 <li><p>La solución óptima (no aumentada) es <span class="math notranslate nohighlight">\(x^* = \left [ \begin{array}{c} 2 \\ 6\end{array} \right ]\)</span> con valor de la función objetivo <span class="math notranslate nohighlight">\(f_o(x^*) = (-c)^Tx^* = 36\)</span>.</p></li>
@@ -1002,10 +1107,10 @@ x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, x_4 \geq 0, x_5 \geq 0
 <ul class="simple">
 <li><p>La relación entre <span class="math notranslate nohighlight">\(f_o(x)\)</span> y el vector <span class="math notranslate nohighlight">\(\nu\)</span> en el método símplex es: <span class="math notranslate nohighlight">\(f_o(x) = b^T(-\nu)\)</span>. <strong>Sin embargo</strong> recuérdese que el vector <span class="math notranslate nohighlight">\(\nu\)</span> surgió por el uso de la función Lagraniana para restricciones de igualdad en la forma aumentada.</p></li>
 </ul>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Recuérdese que los multiplicadores de Lagrange <span class="math notranslate nohighlight">\(\nu, \lambda\)</span> se asocian a igualdades y desigualdades respectivamente, ver <a class="reference internal" href="../../3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#funlagrangiana"><span class="std std-ref">la función Lagrangiana</span></a>.</p>
-</div>
+</aside>
 <ul class="simple">
 <li><p>En esta sección consideramos una forma del PL <strong>no aumentada, pues sólo tiene desigualdades</strong>. Por tanto sólo tenemos al multiplicador <span class="math notranslate nohighlight">\(\lambda\)</span>. Entonces se cumple que <strong>no</strong> tenemos vector <span class="math notranslate nohighlight">\(\nu\)</span> y más bien <span class="math notranslate nohighlight">\(\lambda\)</span> es el <strong>único</strong> vector multiplicador de Lagrange que tenemos y: <span class="math notranslate nohighlight">\(f_o(x) = b^T(- \lambda)\)</span>.</p></li>
 </ul>
@@ -1016,13 +1121,13 @@ x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, x_4 \geq 0, x_5 \geq 0
 <li><p>El valor óptimo de la función objetivo entonces se puede calcular a partir de <span class="math notranslate nohighlight">\(\lambda^*\)</span>: <span class="math notranslate nohighlight">\(f_o(x) = b^T(-\lambda^*) = -[4 \quad 12 \quad 18] \left [ \begin{array}{c} 0 \\ -1.5 \\ -1 \end{array} \right ] = - (-36) = 36\)</span>.</p></li>
 </ul>
 <p>La interpretación del problema dual primero podemos realizarla a partir de las relaciones con la función objetivo de éste: <span class="math notranslate nohighlight">\(b^T(-\lambda)\)</span> y su variable de optimización: <span class="math notranslate nohighlight">\(-\lambda\)</span>.</p>
-<div class="section" id="funcion-objetivo-y-variable-de-optimizacion-del-problema-dual">
-<h3>Función objetivo y variable de optimización del problema dual<a class="headerlink" href="#funcion-objetivo-y-variable-de-optimizacion-del-problema-dual" title="Permalink to this headline">¶</a></h3>
+<section id="funcion-objetivo-y-variable-de-optimizacion-del-problema-dual">
+<h3>Función objetivo y variable de optimización del problema dual<a class="headerlink" href="#funcion-objetivo-y-variable-de-optimizacion-del-problema-dual" title="Permalink to this headline">#</a></h3>
 <p>La función objetivo dual es:</p>
 <div class="math notranslate nohighlight">
 \[b^T(-\lambda) = b_1(-\lambda_1) + b_2(-\lambda_2) + \dots + b_m(-\lambda_m)\]</div>
 <p>con <span class="math notranslate nohighlight">\(b_i\)</span> <span class="math notranslate nohighlight">\(i\)</span>-ésima componente del vector <span class="math notranslate nohighlight">\(b\)</span> que representa al recurso <span class="math notranslate nohighlight">\(i=1, 2, \dots, m\)</span>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1034,18 +1139,18 @@ x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, x_4 \geq 0, x_5 \geq 0
 -\lambda_2 \geq 0 \\
 -\lambda_3 \geq 0
 \end{split}\]</div>
-</div>
+</aside>
 <p>Como se mostró antes, en el método símplex los valores de las funciones objetivo de cada problema tienen un valor numérico igual en las soluciones óptimas: <span class="math notranslate nohighlight">\(f_o(x^*) = (-c)^Tx^* = b^T(-\lambda^*) = 36\)</span>. Por ello, cada término <span class="math notranslate nohighlight">\(b_i (-\lambda_i)\)</span> puede interpretarse como la contribución a la ganancia por consumir <span class="math notranslate nohighlight">\(b_i\)</span> unidades del recurso <span class="math notranslate nohighlight">\(i\)</span> en el problema primal.</p>
 <p>Así, la variable de optimización dual <span class="math notranslate nohighlight">\(-\lambda_i\)</span> se interpreta como la contribución a la ganancia por unidad del recurso <span class="math notranslate nohighlight">\(i\)</span> y minimizar <span class="math notranslate nohighlight">\(b^T(-\lambda)\)</span> es minimizar el valor total de los recursos consumidos por las actividades. En el ejemplo recuérdese que los recursos son el número de horas de producción disponibles por semana en las plantas para producir los productos <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(2\)</span>.</p>
-<div class="sidebar">
+<aside class="sidebar">
 <p class="sidebar-title">Un poco de historia …</p>
 <p>Ver <a class="reference external" href="https://www.nobelprize.org/prizes/economic-sciences/1975/kantorovich/lecture/">nobel prize: Leonid Vitaliyevich Kantorovich prize lecture</a></p>
-</div>
+</aside>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>En Economía se nombra al vector <span class="math notranslate nohighlight">\(-\lambda^* \in \mathbb{R}^m\)</span> <a class="reference external" href="https://en.wikipedia.org/wiki/Shadow_price">shadow prices</a>. Sus componentes indican que un incremento individual de una unidad en cualquier <span class="math notranslate nohighlight">\(b_i\)</span> aumentará en <span class="math notranslate nohighlight">\(-\lambda_i^*\)</span> el valor óptimo de la función objetivo, la ganancia total semanal en miles de pesos. Es una interpretación en términos marginales para cada recurso <span class="math notranslate nohighlight">\(i\)</span>.</p>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1056,8 +1161,8 @@ x_1 \leq 4 \nonumber    \\
 x_1 \geq 0              \\
 x_2 \geq 0              \\
 \end{split}\]</div>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1069,13 +1174,13 @@ x_2 \geq 0              \\
 -\lambda_2 \geq 0 \\
 -\lambda_3 \geq 0
 \end{split}\]</div>
-</div>
-</div>
-<div class="section" id="lados-izquierdos-de-las-restricciones-funcionales">
-<h3>Lados izquierdos de las restricciones funcionales<a class="headerlink" href="#lados-izquierdos-de-las-restricciones-funcionales" title="Permalink to this headline">¶</a></h3>
+</aside>
+</section>
+<section id="lados-izquierdos-de-las-restricciones-funcionales">
+<h3>Lados izquierdos de las restricciones funcionales<a class="headerlink" href="#lados-izquierdos-de-las-restricciones-funcionales" title="Permalink to this headline">#</a></h3>
 <p>En el problema primal la cantidad de recurso <span class="math notranslate nohighlight">\(i\)</span> consumido por cada unidad de la actividad <span class="math notranslate nohighlight">\(j\)</span> está dado por <span class="math notranslate nohighlight">\(a_{ij}\)</span>. Se vio que la variable dual <span class="math notranslate nohighlight">\(-\lambda_i\)</span> es la contribución a la ganancia por unidad consumida del recurso <span class="math notranslate nohighlight">\(i\)</span>. Por esto, la suma <span class="math notranslate nohighlight">\(\displaystyle \sum_{i=1}^m a_{ij} (-\lambda_i)\)</span> se interpreta como la contribución a la ganancia de la <strong>mezcla de recursos</strong> <span class="math notranslate nohighlight">\(\displaystyle \sum_{i=1}^m a_{ij} (-\lambda_i)\)</span> que se consumiría si se usara una unidad de la actividad <span class="math notranslate nohighlight">\(j\)</span> con <span class="math notranslate nohighlight">\(i=1, 2, \dots, m\)</span>, <span class="math notranslate nohighlight">\(j=1, 2, \dots, n\)</span>.</p>
 <p>En el ejemplo, una unidad de la actividad <span class="math notranslate nohighlight">\(j\)</span> corresponde a producir <span class="math notranslate nohighlight">\(1\)</span> lote del producto <span class="math notranslate nohighlight">\(j\)</span> por semana, <span class="math notranslate nohighlight">\(j=1, 2\)</span>. La mezcla de recursos consumida al producir <span class="math notranslate nohighlight">\(1\)</span> lote del producto <span class="math notranslate nohighlight">\(1\)</span> es <span class="math notranslate nohighlight">\(1\)</span> hora de producción de la planta <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(3\)</span> horas de la planta <span class="math notranslate nohighlight">\(3\)</span>: <span class="math notranslate nohighlight">\(1(-\lambda_1) + 3(-\lambda_3) \geq 3\)</span> que es el lado izquierdo de la primera restricción funcional del problema dual. La mezcla correspondiente por lote del producto <span class="math notranslate nohighlight">\(2\)</span> es <span class="math notranslate nohighlight">\(2\)</span> horas de cada una de las plantas <span class="math notranslate nohighlight">\(2\)</span> y <span class="math notranslate nohighlight">\(3\)</span>: <span class="math notranslate nohighlight">\(2(-\lambda_2) + 2(-\lambda_3) \geq 5\)</span>. Los lados izquierdos de las restricciones funcionales en el problema dual son las contribuciones a la ganancia en miles de pesos de estas mezclas de recursos por lote producido por semana de los productos respectivos.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1086,8 +1191,8 @@ x_1 \leq 4 \nonumber    \\
 x_1 \geq 0              \\
 x_2 \geq 0              \\
 \end{split}\]</div>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1099,17 +1204,17 @@ x_2 \geq 0              \\
 -\lambda_2 \geq 0 \\
 -\lambda_3 \geq 0
 \end{split}\]</div>
-</div>
-</div>
-<div class="section" id="restricciones-funcionales-y-de-no-negatividad">
-<h3>Restricciones funcionales y de no negatividad<a class="headerlink" href="#restricciones-funcionales-y-de-no-negatividad" title="Permalink to this headline">¶</a></h3>
+</aside>
+</section>
+<section id="restricciones-funcionales-y-de-no-negatividad">
+<h3>Restricciones funcionales y de no negatividad<a class="headerlink" href="#restricciones-funcionales-y-de-no-negatividad" title="Permalink to this headline">#</a></h3>
 <p>El valor <span class="math notranslate nohighlight">\(-c_j\)</span> es la ganancia unitaria que se obtiene por la actividad <span class="math notranslate nohighlight">\(j\)</span> por lo que <span class="math notranslate nohighlight">\(\displaystyle \sum_{i=1}^m a_{ij}(-\lambda_i) \geq -c_j\)</span> indica que la contribución a la ganancia de la mezcla de recursos debe ser, por lo menos, tan grande como si <span class="math notranslate nohighlight">\(1\)</span> unidad de la actividad <span class="math notranslate nohighlight">\(j\)</span> la utilizara para <span class="math notranslate nohighlight">\(j=1, 2, \dots, n\)</span>.</p>
 <p>En el ejemplo, las ganancias unitarias (en miles de pesos por semana) son <span class="math notranslate nohighlight">\(-c_1 = 3\)</span> y <span class="math notranslate nohighlight">\(-c_2 = 5\)</span> por la producción del producto <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(2\)</span> respectivamente. La restricción funcional <span class="math notranslate nohighlight">\(-\lambda_1 -3\lambda_3 \geq 3\)</span> entonces indica que la producción del producto <span class="math notranslate nohighlight">\(1\)</span> en la planta <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(3\)</span> debe ser al menos tan redituable que la ganancia que se obtiene por producir una unidad del producto <span class="math notranslate nohighlight">\(1\)</span>: <span class="math notranslate nohighlight">\(3\)</span> mil pesos.</p>
 <p>La restricción <span class="math notranslate nohighlight">\(-\lambda_i\)</span> indica que la contribución a la ganancia por el recurso <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(i=1,2, \dots, m\)</span> debe ser no negativa. De lo contrario sería mejor no utilizar este recurso.</p>
-</div>
-</div>
-<div class="section" id="forma-aumentada-del-problema-dual">
-<h2>Forma aumentada del problema dual<a class="headerlink" href="#forma-aumentada-del-problema-dual" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="forma-aumentada-del-problema-dual">
+<h2>Forma aumentada del problema dual<a class="headerlink" href="#forma-aumentada-del-problema-dual" title="Permalink to this headline">#</a></h2>
 <p>El problema dual es un problema PL por lo que también tiene soluciones en un vértice que pueden ser factibles (FEV) o no factibles (NFEV), ver <a class="reference internal" href="../4.1/Programacion_lineal_y_metodo_simplex.html#solfevnfev"><span class="std std-ref">soluciones FEV y NFEV</span></a>. También tiene una forma aumentada y por tanto tiene soluciones básicas factibles (BF) o no factibles (NBF). Para el ejemplo prototipo la forma aumentada es:</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{-\lambda \in \mathbb{R}^5} -4\lambda_1 -12 \lambda_2 -18 \lambda_3\]</div>
@@ -1122,11 +1227,11 @@ x_2 \geq 0              \\
 <div class="math notranslate nohighlight">
 \[-\lambda_1 \geq 0, -\lambda_2 \geq 0, -\lambda_3 \geq 0, -\lambda_4 \geq 0, -\lambda_5 \geq 0\]</div>
 <p>De aquí en adelante <strong>consideraremos la forma aumentada</strong> del problema dual por lo que <span class="math notranslate nohighlight">\(-\lambda \in \mathbb{R}^5\)</span>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>En el <a class="reference internal" href="../4.1/Programacion_lineal_y_metodo_simplex.html#ejmetsimplexaplicadoejprototipo"><span class="std std-ref">ejemplo del método símplex</span></a> se tenía la relación <span class="math notranslate nohighlight">\(\lambda_{B_j} =  -c_{B_j} + \nu^Ta_j \quad j \in \mathcal{B}\)</span>, <span class="math notranslate nohighlight">\(\lambda_{N_j} =  -c_{N_j} + \nu^Ta_j \quad j \in \mathcal{N}\)</span> pero no estamos trabajando directamente con la forma aumentada del problema primal por lo que sólo tenemos vector <span class="math notranslate nohighlight">\(\lambda\)</span> y no vector <span class="math notranslate nohighlight">\(\nu\)</span>.</p>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La matriz <span class="math notranslate nohighlight">\(A\)</span> resulta de las ecuaciones de restricción de:</p>
 <div class="math notranslate nohighlight">
@@ -1137,7 +1242,7 @@ x_1 + x_3 = 4 \\
 3x_1 + 2x_2 + x_5 = 18 \\
 x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, x_4 \geq 0, x_5 \geq 0
 \end{split}\]</div>
-</div>
+</aside>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
@@ -1163,9 +1268,9 @@ x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, x_4 \geq 0, x_5 \geq 0
 <li><p>El método símplex aplicado a un problema de optimización con variable <span class="math notranslate nohighlight">\(\lambda\)</span> mantiene en cada iteración <span class="math notranslate nohighlight">\(\lambda_{B_j} = 0 \forall j \in \mathcal{B}\)</span> y se <strong>busca</strong> satisfacer la <strong>condición de optimalidad</strong>: <span class="math notranslate nohighlight">\(\lambda_{N_j} \forall j \in \mathcal{N}\)</span> <strong>sea no negativo para problemas de minimización o no positivo para problemas de maximización</strong>. En el ejemplo prototipo al tener la variable de optimización <span class="math notranslate nohighlight">\(-\lambda\)</span> se busca sea no negativo <span class="math notranslate nohighlight">\(-\lambda_{N_j} \forall j \in \mathcal{N}\)</span> (o <span class="math notranslate nohighlight">\(\lambda\)</span> no positivo).</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="variables-basicas-y-no-basicas-del-problema-dual">
-<h2>Variables básicas y no básicas del problema dual<a class="headerlink" href="#variables-basicas-y-no-basicas-del-problema-dual" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="variables-basicas-y-no-basicas-del-problema-dual">
+<h2>Variables básicas y no básicas del problema dual<a class="headerlink" href="#variables-basicas-y-no-basicas-del-problema-dual" title="Permalink to this headline">#</a></h2>
 <p>Con la forma aumentada del problema dual podemos aplicar el método símplex al problema dual con lo que se tendrán variables básicas y no básicas. La misma <a class="reference internal" href="../4.1/Programacion_lineal_y_metodo_simplex.html#varbasicasnobasicas"><span class="std std-ref">definición</span></a> para tales variables se tiene en este problema dual. En cada iteración el método símplex designa <span class="math notranslate nohighlight">\(n\)</span> variables básicas y <span class="math notranslate nohighlight">\(m\)</span> variables no básicas. Las no básicas les asigna el valor de cero.</p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
@@ -1175,11 +1280,11 @@ x_1 \geq 0, x_2 \geq 0, x_3 \geq 0, x_4 \geq 0, x_5 \geq 0
 <p class="admonition-title">Definición</p>
 <p>Las variables básicas o no básicas del problema primal se les nombra variables básicas o no básicas primales. Análogamente, las variables básicas o no básicas del problema dual se les nombra variables básicas o no básicas duales.</p>
 </div>
-</div>
-<div class="section" id="relaciones-entre-el-problema-primal-y-el-problema-dual-con-referencia-al-metodo-simplex">
-<h2>Relaciones entre el problema primal y el problema dual con referencia al método símplex<a class="headerlink" href="#relaciones-entre-el-problema-primal-y-el-problema-dual-con-referencia-al-metodo-simplex" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="relaciones-entre-el-problema-primal-y-el-problema-dual-con-referencia-al-metodo-simplex">
+<h2>Relaciones entre el problema primal y el problema dual con referencia al método símplex<a class="headerlink" href="#relaciones-entre-el-problema-primal-y-el-problema-dual-con-referencia-al-metodo-simplex" title="Permalink to this headline">#</a></h2>
 <p>Podemos encontrar las variables básicas y no básicas duales del ejemplo prototipo a partir de una <strong>relación que se cumple entre el problema primal y el dual</strong>. Para esto, a continuación se muestra una tabla en la que cada renglón representa una solución básica del problema primal del ejemplo prototipo. En el margen se presenta la gráfica de los puntos FEV y NFEV que nos ayuda a ubicar cada solución básica (BF o NBF) del problema primal con las primeras dos coordenadas con los puntos en la gráfica. En la última columna se presenta el valor de la función objetivo del problema primal:</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1190,7 +1295,7 @@ x_1 \leq 4 \nonumber    \\
 x_1 \geq 0              \\
 x_2 \geq 0              \\
 \end{split}\]</div>
-</div>
+</aside>
 <div class="cell tag_hide-input tag_margin docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -1295,7 +1400,7 @@ x_2 \geq 0              \\
 </tbody>
 </table>
 <p>Por ejemplo para el renglón <span class="math notranslate nohighlight">\(7\)</span> el valor de <span class="math notranslate nohighlight">\(f_o\)</span> es: <span class="math notranslate nohighlight">\((-c)^Tx = -[-3 \quad -5 \quad 0 \quad 0 \quad 0] \left [\begin{array}{c}4 \\ 6 \\ 0 \\ 0 \\ -6\end{array}\right ] = 42\)</span>. El número de variables no básicas primales es igual a <span class="math notranslate nohighlight">\(2\)</span> y el número de variables básicas primales es igual a <span class="math notranslate nohighlight">\(3\)</span> en todos los renglones.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Las ecuaciones de restricción son:</p>
 <p><span class="math notranslate nohighlight">\(\begin{eqnarray}
@@ -1304,7 +1409,7 @@ x_1 + x_3 &amp;=&amp; 4 \nonumber \\
 3x_1 + 2x_2 + x_5 &amp;=&amp; 18 \nonumber \\
 \end{eqnarray}
 \)</span></p>
-</div>
+</aside>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>La tabla anterior puede obtenerse resolviendo el sistema de ecuaciones lineales que se obtiene a partir de las ecuaciones de restricción del problema primal. Se designan <span class="math notranslate nohighlight">\(2\)</span> variables no básicas primales que se igualan a cero y se resuelve el sistema de <span class="math notranslate nohighlight">\(3 \times 3\)</span> resultante.</p>
@@ -1313,21 +1418,21 @@ x_1 + x_3 &amp;=&amp; 4 \nonumber \\
 <p class="admonition-title">Definición</p>
 <p>Se nombran soluciones primales a las soluciones del problema primal. Análogamente, soluciones duales son las soluciones del problema dual.</p>
 </div>
-<div class="section" id="relacion-1">
-<h3>Relación 1<a class="headerlink" href="#relacion-1" title="Permalink to this headline">¶</a></h3>
+<section id="relacion-1">
+<h3>Relación 1<a class="headerlink" href="#relacion-1" title="Permalink to this headline">#</a></h3>
 <p>Las soluciones básicas primales corresponden con soluciones básicas duales.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>En el <a class="reference internal" href="../4.1/Programacion_lineal_y_metodo_simplex.html#ejmetsimplexaplicadoejprototipo"><span class="std std-ref">ejemplo del método símplex</span></a> se tenía la relación <span class="math notranslate nohighlight">\(\nu = B^{-T} c_B\)</span> pero como estamos trabajando directamente con la forma aumentada del problema dual sólo tenemos vector <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Recuérdese que <span class="math notranslate nohighlight">\(\lambda[1:3]\)</span> es el vector de la posición <span class="math notranslate nohighlight">\(1\)</span> a <span class="math notranslate nohighlight">\(3\)</span> de <span class="math notranslate nohighlight">\(\lambda\)</span> que contiene a las variables <span class="math notranslate nohighlight">\(\lambda_1, \lambda_2, \lambda_3\)</span></p>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>En el método símplex podemos tener variables básicas (primales o duales) con valor igual a cero.</p>
-</div>
+</aside>
 <p>Las soluciones básicas duales las podemos obtener a partir de la tabla anterior y algunas relaciones. Por ejemplo podemos usar las ecuaciones establecidas en el <a class="reference internal" href="../4.1/Programacion_lineal_y_metodo_simplex.html#ejmetsimplexaplicadoejprototipo"><span class="std std-ref">ejemplo del método símplex</span></a> al aplicar el método al problema primal en su forma aumentada: <span class="math notranslate nohighlight">\(\lambda[1:3] = B^{-T} c_B\)</span> y <span class="math notranslate nohighlight">\(\lambda_{N_j} = -c_{N_j} + \lambda[1:3]^Ta_j\)</span>, <span class="math notranslate nohighlight">\(j \in \mathcal{N}\)</span> y <span class="math notranslate nohighlight">\(a_j\)</span> <span class="math notranslate nohighlight">\(j\)</span>-ésima columna de <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{3 \times 5}\)</span> (<span class="math notranslate nohighlight">\(A\)</span> del problema primal en forma aumentada). Además <strong>para este ejemplo</strong>, las variables básicas primales siempre son diferentes de cero por lo que podemos realizar lo siguiente.</p>
 <p>Obtendremos las soluciones básicas duales por renglones a partir de las soluciones básicas primales.</p>
 <p>Para el primer renglón se utilizan a las variables <span class="math notranslate nohighlight">\(x_3, x_4, x_5\)</span> como básicas primales y <span class="math notranslate nohighlight">\(x_1, x_2\)</span> como no básicas primales (son iguales a cero). También  <span class="math notranslate nohighlight">\(B\)</span> es la matriz identidad y el vector de costos es <span class="math notranslate nohighlight">\(c_B = \left [ \begin{array}{c} 0 \\ 0 \\ 0 \end{array} \right ]\)</span> entonces</p>
@@ -1335,7 +1440,7 @@ x_1 + x_3 &amp;=&amp; 4 \nonumber \\
 \[\lambda[1:3] = B^{-T}c_B = 0\]</div>
 <p>esto es, <span class="math notranslate nohighlight">\(\lambda_1 = \lambda_2 = \lambda_3 = 0\)</span>.</p>
 <p>Para <span class="math notranslate nohighlight">\(\lambda_4\)</span> y <span class="math notranslate nohighlight">\(\lambda_5\)</span> tenemos dos opciones. La primera es resolver el sistema de ecuaciones lineales del problema dual en su forma aumentada con los valores ya calculados:</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La forma aumentada del problema dual del ejemplo prototipo recuérdese es:</p>
 <div class="math notranslate nohighlight">
@@ -1346,7 +1451,7 @@ x_1 + x_3 &amp;=&amp; 4 \nonumber \\
 -2 \lambda_2 - 2 \lambda_3 + \lambda_5 = 5 \\
 -\lambda_1 \geq 0, -\lambda_2 \geq 0, -\lambda_3 \geq 0, -\lambda_4 \geq 0, -\lambda_5 \geq 0 \\
 \end{split}\]</div>
-</div>
+</aside>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
@@ -1369,10 +1474,10 @@ x_1 + x_3 &amp;=&amp; 4 \nonumber \\
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Definimos con <code class="docutils literal notranslate"><span class="pre">SymPy</span></code> la ecuación <span class="math notranslate nohighlight">\(-\lambda_1 -3 \lambda_3 + \lambda_4 - 3 = 0\)</span></p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq1</span> <span class="o">=</span> <span class="o">-</span><span class="n">lambda_1</span> <span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">lambda_3</span> <span class="o">+</span> <span class="n">lambda_4</span> <span class="o">-</span> <span class="mi">3</span>
@@ -1380,10 +1485,10 @@ x_1 + x_3 &amp;=&amp; 4 \nonumber \\
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Definimos con <code class="docutils literal notranslate"><span class="pre">SymPy</span></code> la ecuación <span class="math notranslate nohighlight">\(-2 \lambda_2 - 2 \lambda_3 + \lambda_5 -5 = 0\)</span></p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">lambda_2</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">lambda_3</span> <span class="o">+</span><span class="n">lambda_5</span> <span class="o">-</span> <span class="mi">5</span>
@@ -1391,10 +1496,10 @@ x_1 + x_3 &amp;=&amp; 4 \nonumber \\
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Sustituimos los valores calculados del vector <span class="math notranslate nohighlight">\(\lambda[1:3]\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">eq1</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">lambda_1</span><span class="p">:</span> <span class="n">lambda_B</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -1411,10 +1516,10 @@ x_1 + x_3 &amp;=&amp; 4 \nonumber \\
 </div>
 </div>
 <p>Por tanto <span class="math notranslate nohighlight">\(\lambda_4 = 3\)</span>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Sustituimos los valores calculados del vector <span class="math notranslate nohighlight">\(\lambda[1:3]\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">eq2</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">lambda_1</span><span class="p">:</span> <span class="n">lambda_B</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -1433,7 +1538,7 @@ x_1 + x_3 &amp;=&amp; 4 \nonumber \\
 <p>Por tanto <span class="math notranslate nohighlight">\(\lambda_5 = 5\)</span> y <span class="math notranslate nohighlight">\(\lambda = \left [ \begin{array}{c} 0 \\ 0 \\ 0 \\ 3 \\ 5 \end{array} \right ]\)</span>. La otra opción para calcular <span class="math notranslate nohighlight">\(\lambda_4, \lambda_5\)</span> es con la relación:</p>
 <div class="math notranslate nohighlight">
 \[\lambda_{N_j} = -c_{N_j} + \lambda[1:3]^Ta_j, \quad j \in \mathcal{N}\]</div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><span class="math notranslate nohighlight">\(A = 
 \left [
@@ -1444,7 +1549,7 @@ x_1 + x_3 &amp;=&amp; 4 \nonumber \\
 \end{array}
 \right]
 \)</span></p>
-</div>
+</aside>
 <p>donde: <span class="math notranslate nohighlight">\(\mathcal{N}\)</span> es el conjunto de índices no básicos primales <strong>inicial</strong> y <span class="math notranslate nohighlight">\(a_j\)</span> es la <span class="math notranslate nohighlight">\(j\)</span>-ésima columna de <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1484,10 +1589,10 @@ x_1 + x_3 &amp;=&amp; 4 \nonumber \\
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>En el método símplex podemos tener variables básicas (primales o duales) con valor igual a cero.</p>
-</div>
+</aside>
 <p>Los siguientes renglones lo podemos obtener observando respecto al primer renglón qué variables básicas o no básicas primales pasan a ser no básicas o básicas primales respectivamente. Para identificar lo anterior, recordemos que los valores iguales a cero en cada renglón corresponden a variables no básicas primales (pues es un ejemplo en el que no tenemos variables básicas primales iguales a cero). Así, podemos ir intercambiando las columnas de la matriz <span class="math notranslate nohighlight">\(B\)</span> inicial (identidad) con columnas de la matriz <span class="math notranslate nohighlight">\(A\)</span> del sistema de ecuaciones lineales del problema primal de la forma aumentada. También tal intercambio lo realizamos entre los vectores <span class="math notranslate nohighlight">\(c_B\)</span> y <span class="math notranslate nohighlight">\(c_N\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1502,7 +1607,7 @@ A =
 \left [
 \begin{array}{ccc}1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{array} \right ], c_B=\left [ \begin{array}{c}c_{B_3} \\ c_{B_4} \\ c_{B_5}\end{array}\right ]=\left [ \begin{array}{c}0 \\ 0 \\ 0\end{array}\right ], c_N = \left [ \begin{array}{c} c_{N_1} \\ c_{N_2} \\ \end{array} \right ] = \left [ \begin{array}{c} -3 \\ -5 \\ \end{array} \right ]
 \end{split}\]</div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <table class="colwidths-auto table">
 <thead>
@@ -1537,7 +1642,7 @@ A =
 </tr>
 </tbody>
 </table>
-</div>
+</aside>
 <p>Por ejemplo para el renglón número <span class="math notranslate nohighlight">\(2\)</span> de la tabla anterior (que se muestra en el margen) corresponde a un intercambio entre la primera columna de <span class="math notranslate nohighlight">\(B\)</span> con la primer columna de <span class="math notranslate nohighlight">\(A\)</span>. Viendo el primer renglón, se observa que la variable <span class="math notranslate nohighlight">\(x_1\)</span> que es no básica primal pasa a ser básica primal en el segundo renglón y la variable <span class="math notranslate nohighlight">\(x_3\)</span> pasa de ser básica primal en el primero a ser no básica primal en el segundo renglón. Realizando este mismo intercambio entre <span class="math notranslate nohighlight">\(c_B\)</span> y <span class="math notranslate nohighlight">\(c_N\)</span> se tiene:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1581,10 +1686,10 @@ B = \left [
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Utilizamos la relación <span class="math notranslate nohighlight">\(\lambda[1:3] = B^{-T}c_B\)</span></p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lambda_B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">B</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">c_B</span><span class="p">)</span>
@@ -1604,7 +1709,7 @@ B = \left [
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La forma aumentada del problema dual del ejemplo prototipo recuérdese es:</p>
 <div class="math notranslate nohighlight">
@@ -1615,7 +1720,7 @@ B = \left [
 -2 \lambda_2 - 2 \lambda_3 + \lambda_5 = 5 \\
 -\lambda_1 \geq 0, -\lambda_2 \geq 0, -\lambda_3 \geq 0, -\lambda_4 \geq 0, -\lambda_5 \geq 0 \\
 \end{split}\]</div>
-</div>
+</aside>
 <p>Los otros dos valores del vector <span class="math notranslate nohighlight">\(\lambda\)</span> los podemos calcular sustituyendo en el sistema de ecuaciones lineales del problema dual en su forma estándar los valores <span class="math notranslate nohighlight">\(\lambda_1, \lambda_2, \lambda_3\)</span> anteriores:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1649,10 +1754,10 @@ B = \left [
 </div>
 </div>
 <p>Por tanto <span class="math notranslate nohighlight">\(\lambda_5 = 5\)</span>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Otra forma de calcular <span class="math notranslate nohighlight">\(\lambda_4, \lambda_5\)</span> es con la relación <span class="math notranslate nohighlight">\(\lambda_{N_j} = -c_{N_j} + \lambda[1:3]^Ta_j, \quad j \in \mathcal{N}\)</span>.</p>
-</div>
+</aside>
 <p>Entonces: <span class="math notranslate nohighlight">\(\lambda = \left [ \begin{array}{c} -3 \\ 0 \\ 0 \\ 0 \\ 5 \end{array} \right ]\)</span>. O bien con la relación que se muestra en el margen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1740,10 +1845,10 @@ B = \left [
 </tr>
 </tbody>
 </table>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>En el método símplex podemos tener variables básicas (primales o duales) con valor igual a cero.</p>
-</div>
+</aside>
 <p>En <strong>este ejemplo</strong> no se tienen variables básicas duales iguales a cero en ninguna solución básica dual. Por ello, las variables no básicas duales son aquellas que tienen valor igual a cero en cada solución básica dual de la tabla anterior. Asimismo, las variables básicas duales son aquellas que tienen valor diferente de cero en cada solución básica dual. Obsérvese que el número de variables no básicas duales es igual a <span class="math notranslate nohighlight">\(3\)</span> y el número de variables básicas duales es igual a <span class="math notranslate nohighlight">\(2\)</span> en todos los casos.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
@@ -1754,9 +1859,9 @@ B = \left [
 <p>Obtener las soluciones básicas duales de la tabla anterior a partir de las soluciones básicas primales.</p>
 </div>
 <p>En el renglón <span class="math notranslate nohighlight">\(7\)</span> el valor de <span class="math notranslate nohighlight">\(f_o\)</span> es: <span class="math notranslate nohighlight">\(b^T(-\lambda) = [4 \quad 12 \quad 18 \quad 0 \quad 0](-1) \left [\begin{array}{c}-3 \\ -2.5 \\ 0 \\ 0 \\ 0\end{array}\right ] = 42\)</span>. Entonces tenemos la siguiente relación.</p>
-</div>
-<div class="section" id="relacion-2">
-<h3>Relación 2<a class="headerlink" href="#relacion-2" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="relacion-2">
+<h3>Relación 2<a class="headerlink" href="#relacion-2" title="Permalink to this headline">#</a></h3>
 <p>Las soluciones básicas primales y duales tienen el mismo valor numérico de la función objetivo de sus problemas respectivos.</p>
 <p>Por esta relación podemos juntar ambas tablas en una sola:</p>
 <table class="colwidths-auto table">
@@ -1835,13 +1940,13 @@ B = \left [
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="relaciones-que-encontramos-independientes-del-uso-del-metodo-simplex">
-<h2>Relaciones que encontramos independientes del uso del método símplex<a class="headerlink" href="#relaciones-que-encontramos-independientes-del-uso-del-metodo-simplex" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="relacion-3-holgura-complementaria">
-<h3>Relación 3: holgura complementaria<a class="headerlink" href="#relacion-3-holgura-complementaria" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
+</section>
+</section>
+<section id="relaciones-que-encontramos-independientes-del-uso-del-metodo-simplex">
+<h2>Relaciones que encontramos independientes del uso del método símplex<a class="headerlink" href="#relaciones-que-encontramos-independientes-del-uso-del-metodo-simplex" title="Permalink to this headline">#</a></h2>
+<section id="relacion-3-holgura-complementaria">
+<h3>Relación 3: holgura complementaria<a class="headerlink" href="#relacion-3-holgura-complementaria" title="Permalink to this headline">#</a></h3>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <table class="colwidths-auto table">
 <thead>
@@ -1885,7 +1990,7 @@ B = \left [
 </tr>
 </tbody>
 </table>
-</div>
+</aside>
 <p>Las soluciones básicas primales y duales satisfacen la condición de complementariedad u holgura complementaria. Si <span class="math notranslate nohighlight">\(x,  -\lambda\)</span> son soluciones básicas primales, duales respectivamente entonces:</p>
 <div class="math notranslate nohighlight">
 \[x_i (-\lambda_i) = 0, \forall i=1, \dots, n\]</div>
@@ -1910,7 +2015,7 @@ B = \left [
 </ul>
 <p>en este caso es equivalente escribir la holgura complementaria como <span class="math notranslate nohighlight">\(x_i (-\lambda_i) = 0, \forall i=1, \dots, n\)</span> o bien <span class="math notranslate nohighlight">\(x^T(-\lambda)=0\)</span>.</p>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <table class="colwidths-auto table">
 <thead>
@@ -1954,14 +2059,14 @@ B = \left [
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="relacion-4">
-<h3>Relación 4<a class="headerlink" href="#relacion-4" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
+</aside>
+</section>
+<section id="relacion-4">
+<h3>Relación 4<a class="headerlink" href="#relacion-4" title="Permalink to this headline">#</a></h3>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Recuérdese que el método símplex busca <span class="math notranslate nohighlight">\(\lambda_{N_j} \forall j \in \mathcal{N}\)</span> <strong>sea no negativo para problemas de minimización o no positivo para problemas de maximización</strong>.</p>
-</div>
+</aside>
 <p>Las únicas soluciones factibles duales son aquellas que satisfacen la condición de optimalidad del problema primal.</p>
 <p>Por ejemplo, los tres últimos renglones de la tabla que se muestra en el margen cumplen con ser soluciones básicas factibles duales. Son factibles pues el método símplex aplicado al problema primal buscará se satisfaga que el multiplicador de Lagrange asociado, <span class="math notranslate nohighlight">\(\lambda\)</span>, sea no positivo pues se tiene un problema de maximización (para un problema de maximización el método busca que <span class="math notranslate nohighlight">\(\lambda\)</span> sea no positivo). Desde la perspectiva del problema primal se satisface la <strong>condición de optimalidad</strong> para estos tres últimos renglones y el método símplex busca esto <strong>además de satisfacer la factibilidad</strong>. Obsérvese que de los últimos tres renglones sólo el renglón <span class="math notranslate nohighlight">\(6\)</span> satisface <strong>factibilidad primal</strong>.</p>
 <div class="admonition-definicion admonition">
@@ -1969,7 +2074,7 @@ B = \left [
 <p>Se nombra primal factible al vector que satisface todas las restricciones del problema primal y factibilidad primal a la propiedad que un vector debe satisfacer para tales restricciones.</p>
 </div>
 <p>Entonces el método símplex aplicado al problema primal parte de soluciones BF primales, soluciones básicas duales no factibles y busca un óptimo primal o factibilidad dual.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <table class="colwidths-auto table">
 <thead>
@@ -2013,14 +2118,14 @@ B = \left [
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="relacion-5">
-<h3>Relación 5<a class="headerlink" href="#relacion-5" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
+</aside>
+</section>
+<section id="relacion-5">
+<h3>Relación 5<a class="headerlink" href="#relacion-5" title="Permalink to this headline">#</a></h3>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Recuérdese que el método símplex busca <span class="math notranslate nohighlight">\(\lambda_{N_j} \forall j \in \mathcal{N}\)</span> <strong>sea no negativo para problemas de minimización o no positivo para problemas de maximización</strong>. Para la relación 5 sólo hay que reescribir lo anterior en términos de <span class="math notranslate nohighlight">\(x\)</span>.</p>
-</div>
+</aside>
 <p>En el caso de <strong>cualquier</strong> problema primal y su problema dual, las relaciones entre ellos deben ser <strong>simétricas</strong> debido a que el dual del problema dual es el problema primal.</p>
 <p>Esto lo podemos establecer en la relación anterior: las únicas soluciones factibles primales son aquellas que satisfacen la condición de optimalidad del problema dual.</p>
 <p>Considérese aplicar el método símplex para el problema dual (que es de minimización). Entonces el método símplex buscará se satisfaga que el multiplicador de Lagrange asociado, <span class="math notranslate nohighlight">\(x\)</span>, sea no negativo pues se tiene un problema de minimización (para un problema de minimización el método busca que <span class="math notranslate nohighlight">\(x\)</span> sea no negativo). Tal situación la observamos en la tabla para los renglones <span class="math notranslate nohighlight">\(1, 2, 4, 5, 6\)</span> en los que las soluciones básicas son factibles primales pues se pide que se satisfaga la restricción de no negatividad: <span class="math notranslate nohighlight">\(x \geq 0\)</span>. Desde la perspectiva del problema dual se satisface la <strong>condición de optimalidad</strong> para estos  renglones y el método símplex busca esto <strong>además de satisfacer la factibilidad</strong>. Obsérvese que de los renglones mencionados sólo el renglón <span class="math notranslate nohighlight">\(6\)</span> satisface <strong>factibilidad dual</strong>.</p>
@@ -2029,9 +2134,9 @@ B = \left [
 <p>Se nombra dual factible al vector que satisface todas las restricciones del problema dual y factibilidad dual a la propiedad que un vector debe satisfacer para tales restricciones.</p>
 </div>
 <p>Entonces el método símplex aplicado al problema dual parte de soluciones BF duales, soluciones básicas primales no factibles y busca un óptimo dual o factibilidad primal.</p>
-</div>
-<div class="section" id="relacion-6-dualidad-debil">
-<h3>Relación 6: dualidad débil<a class="headerlink" href="#relacion-6-dualidad-debil" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="relacion-6-dualidad-debil">
+<h3>Relación 6: dualidad débil<a class="headerlink" href="#relacion-6-dualidad-debil" title="Permalink to this headline">#</a></h3>
 <p>Considerando las siguientes formas de los problemas primal-dual:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -2042,7 +2147,7 @@ B = \left [
 Ax \leq b \nonumber         &amp;&amp; &amp;&amp;  A^T(-\lambda) \geq -c\\
 x \geq 0               &amp;&amp; &amp;&amp;  -\lambda \geq 0 \\
 \end{align*}\end{split}\]</div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2053,8 +2158,8 @@ x_1 \leq 4 \nonumber    \\
 x_1 \geq 0              \\
 x_2 \geq 0              \\
 \end{split}\]</div>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2066,7 +2171,7 @@ x_2 \geq 0              \\
 -\lambda_2 \geq 0 \\
 -\lambda_3 \geq 0
 \end{split}\]</div>
-</div>
+</aside>
 <p>Si <span class="math notranslate nohighlight">\(x\)</span> es una solución primal factible, <span class="math notranslate nohighlight">\(\lambda\)</span> es una solución dual factible entonces:</p>
 <div class="math notranslate nohighlight">
 \[(-c)^Tx \leq b^T(-\lambda)\]</div>
@@ -2080,9 +2185,9 @@ x_2 \geq 0              \\
 <p>La dualidad débil se cumple para PL’s en cualquier forma (estándar o no).</p>
 </div>
 <p>Para <strong>cualquier</strong> par de soluciones factibles esta desigualdad debe cumplirse pues el valor óptimo primal es <strong>igual</strong> al valor óptimo dual. Ésta es la siguiente relación.</p>
-</div>
-<div class="section" id="relacion-7-dualidad-fuerte">
-<h3>Relación 7: dualidad fuerte<a class="headerlink" href="#relacion-7-dualidad-fuerte" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="relacion-7-dualidad-fuerte">
+<h3>Relación 7: dualidad fuerte<a class="headerlink" href="#relacion-7-dualidad-fuerte" title="Permalink to this headline">#</a></h3>
 <p>Considerando las siguientes formas de los problemas primal-dual:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -2093,7 +2198,7 @@ x_2 \geq 0              \\
 Ax \leq b \nonumber         &amp;&amp; &amp;&amp;  A^T(-\lambda) \geq -c\\
 x \geq 0               &amp;&amp; &amp;&amp;  -\lambda \geq 0 \\
 \end{align*}\end{split}\]</div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <table class="colwidths-auto table">
 <thead>
@@ -2146,7 +2251,7 @@ x \geq 0               &amp;&amp; &amp;&amp;  -\lambda \geq 0 \\
 </tr>
 </tbody>
 </table>
-</div>
+</aside>
 <p>Si <span class="math notranslate nohighlight">\(x^*\)</span> es una solución óptima primal y <span class="math notranslate nohighlight">\(-\lambda^*\)</span> es una solución óptima dual entonces el valor óptimo primal es igual al valor óptimo dual al evaluar las funciones objetivo de cada problema respectivas en <span class="math notranslate nohighlight">\(x^*\)</span> y <span class="math notranslate nohighlight">\(-\lambda^*\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[(-c)^Tx^* = b^T(-\lambda^*)\]</div>
@@ -2165,19 +2270,19 @@ x \geq 0               &amp;&amp; &amp;&amp;  -\lambda \geq 0 \\
 <p class="admonition-title">Ejercicio</p>
 <p>Establecer las relaciones anteriores para el ejemplo prototipo modificando los siguientes valores: <span class="math notranslate nohighlight">\(c_1 = -4, a_{31} = 2, b_2 = 24\)</span> donde: <span class="math notranslate nohighlight">\(c_1\)</span> es la primera entrada del vector <span class="math notranslate nohighlight">\(c\)</span>, <span class="math notranslate nohighlight">\(a_{31}\)</span> es la entrada <span class="math notranslate nohighlight">\((3, 1)\)</span> de la matriz <span class="math notranslate nohighlight">\(A\)</span> y <span class="math notranslate nohighlight">\(b_2\)</span> es la segunda entrada del vector <span class="math notranslate nohighlight">\(b\)</span>. Realizar tablas de apoyo que contenga información sobre soluciones básicas primales-duales, valores objetivo primales-duales, factibilidad primal-dual.</p>
 </div>
-</div>
-<div class="section" id="resultados-de-la-dualidad-debil-y-dualidad-fuerte">
-<h3>Resultados de la dualidad débil y dualidad fuerte<a class="headerlink" href="#resultados-de-la-dualidad-debil-y-dualidad-fuerte" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="resultados-de-la-dualidad-debil-y-dualidad-fuerte">
+<h3>Resultados de la dualidad débil y dualidad fuerte<a class="headerlink" href="#resultados-de-la-dualidad-debil-y-dualidad-fuerte" title="Permalink to this headline">#</a></h3>
 <p>A partir de las relaciones de dualidad débil y fuerte se verifica lo siguiente para problemas PL primal dual:</p>
 <ul class="simple">
 <li><p>Si un problema tiene soluciones factibles y una función objetivo acotada (y, por ende, una solución óptima), entonces el otro problema también tiene soluciones factibles y una función objetivo acotada.</p></li>
 <li><p>Si uno de los problemas tiene soluciones factibles y una función objetivo no acotada (esto es, no tiene solución óptima), entonces el otro problema no tiene soluciones factibles.</p></li>
 <li><p>Si un problema no tiene soluciones factibles, entonces el otro problema no tiene soluciones factibles o bien la función objetivo es no acotada.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="lema-de-farkas">
-<h2>Lema de Farkas<a class="headerlink" href="#lema-de-farkas" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="lema-de-farkas">
+<h2>Lema de Farkas<a class="headerlink" href="#lema-de-farkas" title="Permalink to this headline">#</a></h2>
 <p>Uno y sólo uno de los siguientes sistemas tiene una solución:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
@@ -2186,8 +2291,8 @@ x \geq 0               &amp;&amp; &amp;&amp;  -\lambda \geq 0 \\
 2) A^T \lambda = c\\
 Ax \leq 0         &amp;&amp; &amp;&amp;  \lambda \geq 0\\
 \end{align*}\end{split}\]</div>
-<div class="section" id="interpretacion-geometrica">
-<h3>Interpretación geométrica<a class="headerlink" href="#interpretacion-geometrica" title="Permalink to this headline">¶</a></h3>
+<section id="interpretacion-geometrica">
+<h3>Interpretación geométrica<a class="headerlink" href="#interpretacion-geometrica" title="Permalink to this headline">#</a></h3>
 <p>Considérense los renglones de la matriz <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span> como <span class="math notranslate nohighlight">\(a_1, a_2, \dots, a_m\)</span>.</p>
 <p>Para visualizar el lema anterior iniciemos con el sistema <span class="math notranslate nohighlight">\(1\)</span>.</p>
 <p>El conjunto <span class="math notranslate nohighlight">\(\{x : c^Tx &gt;0\}\)</span> es el semiespacio abierto siguiente:</p>
@@ -2201,31 +2306,31 @@ Ax \leq 0         &amp;&amp; &amp;&amp;  \lambda \geq 0\\
 <p class="admonition-title">Observación</p>
 <p>La región anterior surge por la intersección de todos los semiespacios cerrados que se forman al considerar los vectores <span class="math notranslate nohighlight">\(x\)</span> que forman un ángulo mayor a <span class="math notranslate nohighlight">\(90^o\)</span> con los renglones de <span class="math notranslate nohighlight">\(A\)</span>. Las flechitas indican la zona donde se encuentran los semiespacios cerrados en los que se tienen vectores que forman un ángulo menor a <span class="math notranslate nohighlight">\(90^o\)</span>.</p>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Sistema 1:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}c^Tx &gt; 0 \\
 Ax \leq 0
 \end{split}\]</div>
-</div>
+</aside>
 <p>La solución del sistema <span class="math notranslate nohighlight">\(1\)</span> requiere la intersección entre ambos conjuntos:</p>
 <img src="https://dl.dropboxusercontent.com/s/ad6r6xvpgwj3t2w/intersection_semispace_cone_Farkas_lemma.png?dl=0" heigth="250" width="250">
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Sistema 2:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}A^T\lambda = c \\
 \lambda \geq 0
 \end{split}\]</div>
-</div>
+</aside>
 <p>La solución del sistema <span class="math notranslate nohighlight">\(2\)</span> requiere que el vector <span class="math notranslate nohighlight">\(c\)</span> se encuentre en el cono generado por los renglones de <span class="math notranslate nohighlight">\(A\)</span>:</p>
 <img src="https://dl.dropboxusercontent.com/s/g9u1il5ts3wd5mh/gradient_in_span_of_rows_Farkas_lemma.png?dl=0" heigth="200" width="200">
 <p>Entonces no puede existir una solución de ambos sistemas pues se tienen regiones ajenas.</p>
-</div>
-</div>
-<div class="section" id="condiciones-kkt-de-optimalidad-para-pl-s">
-<h2>Condiciones KKT de optimalidad para PL’s<a class="headerlink" href="#condiciones-kkt-de-optimalidad-para-pl-s" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="condiciones-kkt-de-optimalidad-para-pl-s">
+<h2>Condiciones KKT de optimalidad para PL’s<a class="headerlink" href="#condiciones-kkt-de-optimalidad-para-pl-s" title="Permalink to this headline">#</a></h2>
 <p>Considérese el siguiente PL como problema primal:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2236,10 +2341,10 @@ x \geq 0
 \end{split}\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m\)</span> y las desigualdades se interpretan de una forma <em>pointwise</em>.</p>
 <p>Las condiciones de Karush-Kuhn-Tucker, KKT, de optimalidad para PL’s nos indican que <span class="math notranslate nohighlight">\(x^*\)</span> es <strong>mínimo si y sólo si</strong> existen variables duales <span class="math notranslate nohighlight">\(\lambda_1^*, \lambda_2^*\)</span> que satisfacen:</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Compárense estas condiciones con las señaladas en el <a class="reference internal" href="../../3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#primeraformulacioncondkkt"><span class="std std-ref">comentario</span></a> sobre las condiciones KKT en el contexto de problemas de optimización convexa.</p>
-</div>
+</aside>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{eqnarray}
@@ -2255,7 +2360,7 @@ Ax^* &amp;\leq&amp; b \nonumber \\
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x, \lambda_1, \lambda_2) = c^Tx + \lambda_1 ^T(Ax -b) + \lambda_2^T(-x)\]</div>
 <p>es la función Lagrangiana, ver <a class="reference internal" href="../../3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#funlagrangiana"><span class="std std-ref">la función Lagrangiana</span></a>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>El problema primal que se está trabajando en esta sección recuérdese es:</p>
 <div class="math notranslate nohighlight">
@@ -2264,7 +2369,7 @@ Ax^* &amp;\leq&amp; b \nonumber \\
 Ax \leq b \\
 x \geq 0
 \end{split}\]</div>
-</div>
+</aside>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
@@ -2300,9 +2405,9 @@ c + A^T \lambda_1 - \lambda_2 = 0 \\
 <li><p>En PL’s las condiciones KKT de optimalidad son necesarias y suficientes.</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="relacion-entre-el-lema-de-farkas-y-las-condiciones-de-kkt-de-optimalidad">
-<h2>Relación entre el lema de Farkas y las condiciones de KKT de optimalidad<a class="headerlink" href="#relacion-entre-el-lema-de-farkas-y-las-condiciones-de-kkt-de-optimalidad" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="relacion-entre-el-lema-de-farkas-y-las-condiciones-de-kkt-de-optimalidad">
+<h2>Relación entre el lema de Farkas y las condiciones de KKT de optimalidad<a class="headerlink" href="#relacion-entre-el-lema-de-farkas-y-las-condiciones-de-kkt-de-optimalidad" title="Permalink to this headline">#</a></h2>
 <p>Para entender la relación entre el lema de Farkas y las condiciones KKT de optimalidad considérese el siguiente ejemplo:</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{x \in \mathbb{R}^2} -x_1 -3x_2\]</div>
@@ -2316,7 +2421,7 @@ c + A^T \lambda_1 - \lambda_2 = 0 \\
 \[x_1 \geq 0, x_2 \geq 0\]</div>
 <p>Se puede visualizar tanto la región factible como las curvas de nivel y el gradiente de <span class="math notranslate nohighlight">\(f_o\)</span> como:</p>
 <img src="https://dl.dropboxusercontent.com/s/1vcrropkwd41xxj/example_for_KKT_and_Farkas_lemma_1.png?dl=0" heigth="500" width="500"><p>El punto <span class="math notranslate nohighlight">\((6, 0)\)</span> no es el óptimo del problema (verifíquese con el método gráfico por ejemplo) por lo que <span class="math notranslate nohighlight">\(\nabla f_o(x) = c\)</span> no se puede expresar como combinación cónica de los gradientes de las ecuaciones de frontera <span class="math notranslate nohighlight">\(x_1 + x_2 = 6\)</span>, <span class="math notranslate nohighlight">\(x_2 =0\)</span>:</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>El problema primal recuérdese es:</p>
 <div class="math notranslate nohighlight">
@@ -2327,16 +2432,16 @@ x_1 + x_2 \leq 6 \\
 -x_1 + 2x_2 \leq 8 \\
 x_1 \geq 0, x_2 \geq 0
 \end{split}\]</div>
-</div>
+</aside>
 <p>Las restricciones activas son: <span class="math notranslate nohighlight">\(g_1(x) = x_1 + x_2 - 6\)</span>, <span class="math notranslate nohighlight">\(g_4(x) = x_2\)</span> por lo que:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\nabla g_1(x) = \left [ \begin{array}{c} 1 \\ 1 \end{array} \right ] = a_1, \nabla g_4(x) = \left [ \begin{array}{c} 0 \\ 1 \end{array} \right ]\end{split}\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(a_1\)</span> es el primer renglón de <span class="math notranslate nohighlight">\(A = \left [ \begin{array}{cc} 1 &amp; 1 \\ -1 &amp; 2 \end{array} \right ]\)</span> y <span class="math notranslate nohighlight">\(A\)</span> de las restricciones del problema como <span class="math notranslate nohighlight">\(Ax \leq b\)</span>.</p>
 <p>Entonces se debe revisar si se cumple:</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>En este dibujo se está verificando si: <span class="math notranslate nohighlight">\(\nabla f_o(x^*) = c = \displaystyle \sum_{i=1}^m \lambda^*_1(i)(-a_i) + \sum_{i=1}^n \lambda^*_2(i) e_i,\)</span></p>
-</div>
+</aside>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \left [
@@ -2364,7 +2469,7 @@ x_1 \geq 0, x_2 \geq 0
 <p class="admonition-title">Observación</p>
 <p>La solución al sistema de ecuaciones lineales anterior tiene solución: <span class="math notranslate nohighlight">\(\lambda_1(1) = 1, \lambda_2(1) = -2\)</span> sin embargo las condiciones de KKT indican que <span class="math notranslate nohighlight">\(\lambda_1, \lambda_2 \geq 0\)</span>, esto es, que sea una combinación cónica de los gradientes de las restricciones.</p>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Sistema 1:</p>
 <div class="math notranslate nohighlight">
@@ -2376,13 +2481,13 @@ Ax \leq 0
 \[\begin{split}A^T\lambda = c \\
 \lambda \geq 0
 \end{split}\]</div>
-</div>
+</aside>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>El enunciado “<span class="math notranslate nohighlight">\(\nabla f_o(x)\)</span> no es una combinación cónica de <span class="math notranslate nohighlight">\(-a_1, e_2\)</span>” (no tiene solución el sistema 2 del lema de Farkas) es equivalente a indicar que existe una dirección de descenso, esto es, existe <span class="math notranslate nohighlight">\(\Delta x\)</span> tal que <span class="math notranslate nohighlight">\(c^T\Delta x &gt; 0\)</span> y mantenga factibilidad: <span class="math notranslate nohighlight">\(A \Delta x \leq 0\)</span> (sistema 1 lema de Farkas tiene solución).</p>
 </div>
 <p>El punto <span class="math notranslate nohighlight">\((\frac{4}{3}, \frac{14}{3})\)</span> sí es el óptimo del problema (verifíquese con el método gráfico por ejemplo) por lo que <span class="math notranslate nohighlight">\(\nabla f_o(x) = c\)</span> sí se puede expresar como combinación cónica de los gradientes de las ecuaciones de frontera <span class="math notranslate nohighlight">\(x_1 + x_2 = 6\)</span>, <span class="math notranslate nohighlight">\(-x_1+2x_2 = 8\)</span> para escalares no negativos <span class="math notranslate nohighlight">\(\lambda_1(1), \lambda_2(1)\)</span>:</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>El problema primal recuérdese es:</p>
 <div class="math notranslate nohighlight">
@@ -2393,20 +2498,20 @@ x_1 + x_2 \leq 6 \\
 -x_1 + 2x_2 \leq 8 \\
 x_1 \geq 0, x_2 \geq 0
 \end{split}\]</div>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><span class="math notranslate nohighlight">\(A = \left [ \begin{array}{cc} 1 &amp; 1 \\ -1 &amp; 2 \end{array} \right ]\)</span> matriz de <span class="math notranslate nohighlight">\(Ax \leq b\)</span>.</p>
-</div>
+</aside>
 <p>Las restricciones activas son: <span class="math notranslate nohighlight">\(g_1(x) = x_1 + x_2 - 6\)</span>, <span class="math notranslate nohighlight">\(g_2(x) = -x_1 + 2x_2 - 8\)</span> por lo que:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\nabla g_1(x) = \left [ \begin{array}{c} 1 \\ 1 \end{array} \right ] = a_1, \nabla g_2(x) = \left [ \begin{array}{c} -1 \\ 2 \end{array} \right ]= a_2\end{split}\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(a_1\)</span>, <span class="math notranslate nohighlight">\(a_2\)</span> son el primer y segundo renglón de <span class="math notranslate nohighlight">\(A\)</span> respectivamente.</p>
 <p>Entonces se debe revisar si se cumple:</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>En este dibujo se está verificando si: <span class="math notranslate nohighlight">\(\nabla f_o(x^*) = c = \displaystyle \sum_{i=1}^m \lambda^*_1(i)(-a_i) + \sum_{i=1}^n \lambda^*_2(i) e_i,\)</span></p>
-</div>
+</aside>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \left [
@@ -2430,7 +2535,7 @@ x_1 \geq 0, x_2 \geq 0
 \right ]
 \end{split}\]</div>
 <img src="https://dl.dropboxusercontent.com/s/uwqv7zklmbtun5t/example_for_KKT_and_Farkas_lemma_3.png?dl=0" heigth="300" width="300"><p>Se cumple: <span class="math notranslate nohighlight">\(\lambda_1(1) = \frac{5}{3}, \lambda_2(1) = \frac{2}{3}\)</span>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Sistema 1:</p>
 <div class="math notranslate nohighlight">
@@ -2442,7 +2547,7 @@ Ax \leq 0
 \[\begin{split}A^T\lambda = c \\
 \lambda \geq 0
 \end{split}\]</div>
-</div>
+</aside>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>El enunciado “<span class="math notranslate nohighlight">\(\nabla f_o(x)\)</span> sí es una combinación cónica de <span class="math notranslate nohighlight">\(-a_1, -a_2\)</span>” es equivalente a indicar que <span class="math notranslate nohighlight">\(A^T \lambda = c\)</span> y <span class="math notranslate nohighlight">\(\lambda \geq 0\)</span> tiene solución (sistema 2 lema de Farkas tiene solución).</p>
@@ -2452,9 +2557,9 @@ Ax \leq 0
 <p class="admonition-title">Ejercicio</p>
 <p>Realizar el análisis de las condiciones de KKT en cada solución FEV del ejemplo prototipo.</p>
 </div>
-</div>
-<div class="section" id="las-condiciones-kkt-para-un-pl-en-su-forma-estandar">
-<span id="condkktplestandar"></span><h2>Las condiciones KKT para un PL en su forma estándar<a class="headerlink" href="#las-condiciones-kkt-para-un-pl-en-su-forma-estandar" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="las-condiciones-kkt-para-un-pl-en-su-forma-estandar">
+<span id="condkktplestandar"></span><h2>Las condiciones KKT para un PL en su forma estándar<a class="headerlink" href="#las-condiciones-kkt-para-un-pl-en-su-forma-estandar" title="Permalink to this headline">#</a></h2>
 <p>Considérese la forma estándar de un PL como problema primal:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2467,14 +2572,14 @@ x \geq 0
 <p>La función Lagrangiana del problema anterior es:</p>
 <div class="math notranslate nohighlight">
 \[\mathcal{L}(x, \lambda, \nu) = f_o(x) + \displaystyle \sum_{i=1}^n \lambda_i f_i(x) + \sum_{i=1}^m \nu_i h_i(x) = c^Tx + \lambda^T(-x)  + \nu^T(b-Ax)\]</div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Compárense estas condiciones con las señaladas en el <a class="reference internal" href="../../3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html#primeraformulacioncondkkt"><span class="std std-ref">comentario</span></a> sobre las condiciones KKT en el contexto de problemas de optimización convexa.</p>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Recuérdese que la condición de holgura complementaria para vectores <span class="math notranslate nohighlight">\(x\)</span> primal factible, <span class="math notranslate nohighlight">\(\lambda\)</span> dual factible: <span class="math notranslate nohighlight">\(\lambda^T(-x)=0\)</span> es equivalente a <span class="math notranslate nohighlight">\(\lambda_i x_i = 0\)</span>, <span class="math notranslate nohighlight">\(i=1, \cdots, n\)</span>.</p>
-</div>
+</aside>
 <p>Las condiciones KKT son:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2486,7 +2591,7 @@ Ax &amp;=&amp; b \nonumber \\
 \lambda^T(-x) &amp;=&amp; 0 \nonumber \\
 \end{eqnarray}
 \end{split}\]</div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>El problema primal en esta sección es:</p>
 <div class="math notranslate nohighlight">
@@ -2495,7 +2600,7 @@ Ax &amp;=&amp; b \nonumber \\
 Ax = b \\
 x \geq 0
 \end{split}\]</div>
-</div>
+</aside>
 <p>El problema dual asociado es:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\displaystyle \max_{\nu \in \mathbb{R}^m, \lambda \in \mathbb{R}^n} b^T \nu \\
@@ -2522,17 +2627,17 @@ c - A^T \nu - \lambda = 0 \\
 <p class="admonition-title">Definición</p>
 <p>La cantidad <span class="math notranslate nohighlight">\(c^Tx - b^T \nu\)</span> se le nombra <strong>brecha dual</strong>, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Duality_gap">duality gap</a>, para vectores <span class="math notranslate nohighlight">\((x, \nu)\)</span> primal-dual factibles.</p>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Recuérdese que <span class="math notranslate nohighlight">\(\lambda^Tx=0\)</span> es equivalente a <span class="math notranslate nohighlight">\(\lambda_i \geq 0, x_i \geq 0\)</span> para <span class="math notranslate nohighlight">\(x\)</span> primal factible y <span class="math notranslate nohighlight">\(\lambda\)</span> dual factible.</p>
-</div>
+</aside>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>Si <span class="math notranslate nohighlight">\((x, \lambda, \nu)\)</span> son vectores primal-dual factibles y <span class="math notranslate nohighlight">\(x^*\)</span> es un punto óptimo del problema primal entonces:</p>
 <p><span class="math notranslate nohighlight">\(c^Tx = (\lambda + A^T \nu)^Tx = \lambda^Tx + \nu^TAx = \lambda^Tx + b^T\nu \geq b^T \nu^* = c^Tx^*\)</span></p>
 <p>pues <span class="math notranslate nohighlight">\(\lambda \geq 0, x \geq 0\)</span>. Aún más, si <span class="math notranslate nohighlight">\(\lambda^T x = 0\)</span> (brecha dual igual a cero) entonces <span class="math notranslate nohighlight">\((x, \lambda, \nu)\)</span> son óptimos de sus problemas respectivos.</p>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Recuérdese que las condiciones de KKT para un PL estándar son:</p>
 <div class="math notranslate nohighlight">
@@ -2545,8 +2650,8 @@ Ax &amp;=&amp; b \nonumber \\
 \lambda^T(-x) &amp;=&amp; 0 \nonumber \\
 \end{eqnarray}
 \end{split}\]</div>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Problema primal forma estándar:</p>
 <div class="math notranslate nohighlight">
@@ -2562,10 +2667,10 @@ x \geq 0
 c - A^T \nu - \lambda = 0 \\
 \lambda \geq 0
 \end{split}\]</div>
-</div>
-</div>
-<div class="section" id="el-metodo-simplex-y-las-condiciones-kkt">
-<h2>El método símplex y las condiciones KKT<a class="headerlink" href="#el-metodo-simplex-y-las-condiciones-kkt" title="Permalink to this headline">¶</a></h2>
+</aside>
+</section>
+<section id="el-metodo-simplex-y-las-condiciones-kkt">
+<h2>El método símplex y las condiciones KKT<a class="headerlink" href="#el-metodo-simplex-y-las-condiciones-kkt" title="Permalink to this headline">#</a></h2>
 <p>Supóngase que se aplica el método símplex a un <strong>PL estándar</strong>. Entonces:</p>
 <p><span class="math notranslate nohighlight">\(A = [ B \quad N ]\)</span>, <span class="math notranslate nohighlight">\(x=\left [ \begin{array}{c} x_B \\ x_N\end{array} \right ] \in \mathbb{R}^n\)</span> y <span class="math notranslate nohighlight">\(Ax = b\)</span> por lo que: <span class="math notranslate nohighlight">\(Ax = B x_B + N x_N = b\)</span>, <span class="math notranslate nohighlight">\(c = \left [ \begin{array}{c} c_B\\ c_N \end{array} \right ]\)</span> con <span class="math notranslate nohighlight">\(x_B\)</span> variables básicas, <span class="math notranslate nohighlight">\(x_N\)</span> variables no básicas y <span class="math notranslate nohighlight">\(c_B\)</span>, <span class="math notranslate nohighlight">\(c_N\)</span> costos asociados a variables básicas y no básicas respectivamente.</p>
 <p>El método símplex aplicado al problema primal busca satisfacer las condiciones de KKT de optimalidad y recuérdese que en un problema de minimización la condición de optimalidad en el método símplex es que los multiplicadores asociados a las desigualdades del problema primal, <span class="math notranslate nohighlight">\(\lambda\)</span>, sean no negativos.</p>
@@ -2576,9 +2681,9 @@ c - A^T \nu - \lambda = 0 \\
 <li><p>La designación <span class="math notranslate nohighlight">\(\lambda_B = 0\)</span> cumple con la condición de complementariedad u holgura complementaria y factibilidad dual.</p></li>
 <li><p>Se busca satisfacer factibilidad dual: <span class="math notranslate nohighlight">\(\lambda_N \geq 0\)</span> vía la relación: <span class="math notranslate nohighlight">\(\lambda_N = c_N - N^T\nu\)</span> en cada iteración.</p></li>
 </ul>
-</div>
-<div class="section" id="el-metodo-simplex-y-las-condiciones-kkt-en-el-ejemplo-prototipo">
-<h2>El método símplex y las condiciones KKT en el ejemplo prototipo<a class="headerlink" href="#el-metodo-simplex-y-las-condiciones-kkt-en-el-ejemplo-prototipo" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="el-metodo-simplex-y-las-condiciones-kkt-en-el-ejemplo-prototipo">
+<h2>El método símplex y las condiciones KKT en el ejemplo prototipo<a class="headerlink" href="#el-metodo-simplex-y-las-condiciones-kkt-en-el-ejemplo-prototipo" title="Permalink to this headline">#</a></h2>
 <p>Para obtener la forma del <a class="reference internal" href="#probdualejprototipo"><span class="std std-ref">problema dual</span></a> del <a class="reference internal" href="../4.1/Programacion_lineal_y_metodo_simplex.html#ejprototipo"><span class="std std-ref">ejemplo prototipo</span></a>:</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \max_{x \in \mathbb{R}^2} 3x_1 + 5x_2\]</div>
@@ -2651,8 +2756,8 @@ x \geq 0
 <li><p>F. Hillier, G. Lieberman, Introduction to Operations Research, Mc Graw Hill, 2014.</p></li>
 <li><p>M. S. Bazaraa, J. J. Jarvis, H. D. Sherali, Linear Programming and Network Flows, Wiley, 2010.</p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2676,9 +2781,11 @@ x \geq 0
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../4.3/Ejemplo_metodo_simplex_de_redes.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -2694,24 +2801,28 @@ x \geq 0
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Erick Palacios Moreno<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Erick Palacios Moreno<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

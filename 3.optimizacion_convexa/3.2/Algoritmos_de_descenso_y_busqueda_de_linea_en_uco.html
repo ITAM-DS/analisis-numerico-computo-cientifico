@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>3.2 Algoritmos de descenso y búsqueda de línea en Unconstrained Convex Optimization (UCO)</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,39 +20,38 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="3.3 Ejemplos de problemas UCO, introducción a Constrained Inequality and Equality Optimization (CIEO) y puntos interiores" href="../3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html" />
@@ -62,7 +63,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +86,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -89,14 +105,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../README.html">
-   Optimización
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Optimización
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Cómputo científico
  </span>
@@ -317,94 +334,182 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/3.optimizacion_convexa/3.2/Algoritmos_de_descenso_y_busqueda_de_linea_en_uco.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ejemplos-de-problemas-de-optimizacion-small-scale">
    Ejemplos de problemas de optimización
@@ -524,12 +629,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>3.2 Algoritmos de descenso y búsqueda de línea en Unconstrained Convex Optimization (UCO)</h1>
@@ -665,11 +769,12 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="algoritmos-de-descenso-y-busqueda-de-linea-en-unconstrained-convex-optimization-uco">
-<span id="adbluco"></span><h1>3.2 Algoritmos de descenso y búsqueda de línea en <em>Unconstrained Convex Optimization</em> (UCO)<a class="headerlink" href="#algoritmos-de-descenso-y-busqueda-de-linea-en-unconstrained-convex-optimization-uco" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="algoritmos-de-descenso-y-busqueda-de-linea-en-unconstrained-convex-optimization-uco">
+<span id="adbluco"></span><h1>3.2 Algoritmos de descenso y búsqueda de línea en <em>Unconstrained Convex Optimization</em> (UCO)<a class="headerlink" href="#algoritmos-de-descenso-y-busqueda-de-linea-en-unconstrained-convex-optimization-uco" title="Permalink to this headline">#</a></h1>
 <div class="admonition-notas-para-contenedor-de-docker admonition">
 <p class="admonition-title">Notas para contenedor de docker:</p>
 <p>Comando de docker para ejecución de la nota de forma local:</p>
@@ -698,11 +803,11 @@
 <p class="admonition-title">Comentario</p>
 <p>Si la función objetivo es convexa se le nombra problema de optimización convexa sin restricciones,<em>Unconstrained Convex Optimization</em> (UCO).</p>
 </div>
-<div class="section" id="ejemplos-de-problemas-de-optimizacion-small-scale">
-<h2>Ejemplos de problemas de optimización <em>small scale</em><a class="headerlink" href="#ejemplos-de-problemas-de-optimizacion-small-scale" title="Permalink to this headline">¶</a></h2>
+<section id="ejemplos-de-problemas-de-optimizacion-small-scale">
+<h2>Ejemplos de problemas de optimización <em>small scale</em><a class="headerlink" href="#ejemplos-de-problemas-de-optimizacion-small-scale" title="Permalink to this headline">#</a></h2>
 <p>En optimización la búsqueda del (o los) <strong>óptimo(s)</strong> involucran el cálculo de información de primer o segundo orden, ver <a class="reference internal" href="../../1.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#fcd"><span class="std std-ref">Definición de función, continuidad y derivada</span></a>, de la función <span class="math notranslate nohighlight">\(f_o\)</span> de acuerdo a lo revisado en los <a class="reference internal" href="../3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html#resut"><span class="std std-ref">resultados útiles</span></a>. Tal información para problemas <em>small scale</em> es calculada utilizando todos los datos en un enfoque por <em>batch</em> o lote.</p>
-<div class="section" id="ejemplo">
-<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
+<section id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">#</a></h3>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{x \in \mathbb{R}^2} x_1^4+2x_1^2x_2+x_2^2\]</div>
 <div class="cell docutils container">
@@ -879,10 +984,10 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Elegimos diferentes puntos iniciales.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root1</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">eqn</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
@@ -913,10 +1018,10 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Obsérvese que los puntos <code class="docutils literal notranslate"><span class="pre">root1</span></code>, <code class="docutils literal notranslate"><span class="pre">root2</span></code>, <code class="docutils literal notranslate"><span class="pre">root3</span></code> satisfacen la relación <span class="math notranslate nohighlight">\(x_2 = -x_1^2\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dic_roots</span><span class="p">))</span>
@@ -950,10 +1055,10 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Los puntos <code class="docutils literal notranslate"><span class="pre">root1</span></code>, <code class="docutils literal notranslate"><span class="pre">root2</span></code> y <code class="docutils literal notranslate"><span class="pre">root3</span></code> resuelven la ecuación no lineal <span class="math notranslate nohighlight">\(\nabla f(x) = 0\)</span> .</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
@@ -1010,10 +1115,10 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La Hessiana en <code class="docutils literal notranslate"><span class="pre">root1</span></code> es semidefinida positiva por lo que no podemos concluir que sea mínimo local de <span class="math notranslate nohighlight">\(f_o\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Hf_root1</span><span class="p">))</span>
@@ -1026,10 +1131,10 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La Hessiana en <code class="docutils literal notranslate"><span class="pre">root2</span></code> es semidefinida positiva por lo que no podemos concluir que sea mínimo local de <span class="math notranslate nohighlight">\(f_o\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Hf_root2</span><span class="p">))</span>
@@ -1042,10 +1147,10 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La Hessiana en <code class="docutils literal notranslate"><span class="pre">root3</span></code> es semidefinida positiva por lo que no podemos concluir que sea mínimo local de <span class="math notranslate nohighlight">\(f_o\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Hf_root3</span><span class="p">))</span>
@@ -1090,18 +1195,18 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Los tres puntos <code class="docutils literal notranslate"><span class="pre">root1</span></code>, <code class="docutils literal notranslate"><span class="pre">root2</span></code> y <code class="docutils literal notranslate"><span class="pre">root3</span></code> satisfacen <span class="math notranslate nohighlight">\(x_2 = -x_1^2\)</span>.</p>
-</div>
+</aside>
 <p>El cual se anula justo en los puntos que cumplen: <span class="math notranslate nohighlight">\(x_2 = -x_1^2\)</span></p>
 <p><span class="math notranslate nohighlight">\(8x_1^2 + 8x_2 = 8 x_1^2 + 8(-x_1^2) = 0\)</span></p>
 <p>por lo que no podemos concluir…</p>
 <p>Usemos una función de <em>SciPy</em> <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin.html">scipy.optimize.fmin</a></p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Elegimos un punto inicial.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_fmin</span> <span class="o">=</span> <span class="n">fmin</span><span class="p">(</span><span class="n">fo_numpy</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
@@ -1117,10 +1222,10 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>El punto <code class="docutils literal notranslate"><span class="pre">res_fmin</span></code> satisface <span class="math notranslate nohighlight">\(\nabla f_o(x) = 0\)</span> y la relación <span class="math notranslate nohighlight">\(x_2 = -x_1^2\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">res_fmin</span><span class="p">)</span>
@@ -1152,10 +1257,10 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La Hessiana en <code class="docutils literal notranslate"><span class="pre">res_fmin</span></code> es semidefinida positiva por lo que no podemos concluir que sea mínimo local de <span class="math notranslate nohighlight">\(f_o\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">Hf_fmin</span><span class="p">))</span>
@@ -1263,9 +1368,9 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 <p><strong>El mínimo valor de <span class="math notranslate nohighlight">\(f_o\)</span> es <span class="math notranslate nohighlight">\(0\)</span> por lo que tenemos un conjunto de mínimos dados por la curva <span class="math notranslate nohighlight">\(x_2=-x_1^2\)</span>.</strong></p>
-</div>
-<div class="section" id="por-que-fue-un-poco-complicado-determinar-el-conjunto-de-minimos-de-f-o">
-<h3>¿Por qué fue un poco complicado determinar el conjunto de mínimos de <span class="math notranslate nohighlight">\(f_o\)</span>?<a class="headerlink" href="#por-que-fue-un-poco-complicado-determinar-el-conjunto-de-minimos-de-f-o" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="por-que-fue-un-poco-complicado-determinar-el-conjunto-de-minimos-de-f-o">
+<h3>¿Por qué fue un poco complicado determinar el conjunto de mínimos de <span class="math notranslate nohighlight">\(f_o\)</span>?<a class="headerlink" href="#por-que-fue-un-poco-complicado-determinar-el-conjunto-de-minimos-de-f-o" title="Permalink to this headline">#</a></h3>
 <p><strong><span class="math notranslate nohighlight">\(f_o(x)=x_1^4+2x_1^2x_2+x_2^2\)</span> no es una función convexa en su <span class="math notranslate nohighlight">\(\text{dom}f_o\)</span></strong>, <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span>, esto es, no satisface la desigualdad:</p>
 <div class="math notranslate nohighlight">
 \[f_o(\theta x + (1-\theta) y) \leq \theta f_o(x) + (1-\theta)f_o(y)\]</div>
@@ -1298,10 +1403,10 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Se tiene <span class="math notranslate nohighlight">\(f(\theta x + (1-\theta)y) &gt; \theta f(x) + (1-\theta)f(y)\)</span> con la elección <span class="math notranslate nohighlight">\(\theta=0.5\)</span>, <span class="math notranslate nohighlight">\(x=[-0.5, -1.5]^T\)</span>, <span class="math notranslate nohighlight">\(y=[0.5, -1.5]^T\)</span> lo que indica que <span class="math notranslate nohighlight">\(f\)</span> no es convexa sino cóncava para esta elección de puntos <span class="math notranslate nohighlight">\(x,y\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">theta</span><span class="o">*</span><span class="n">fo_numpy</span><span class="p">(</span><span class="n">pointx</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">fo_numpy</span><span class="p">(</span><span class="n">pointy</span><span class="p">))</span>
@@ -1322,9 +1427,9 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 <p class="admonition-title">Ejercicio</p>
 <p>Realizar un análisis similar al anterior para la función <span class="math notranslate nohighlight">\(f_o(x) = x_2^4+2x_2^2x_1^2+x_1^2\)</span>.</p>
 </div>
-</div>
-<div class="section" id="ejemplo-importante">
-<h3>Ejemplo importante<a class="headerlink" href="#ejemplo-importante" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ejemplo-importante">
+<h3>Ejemplo importante<a class="headerlink" href="#ejemplo-importante" title="Permalink to this headline">#</a></h3>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{x \in \mathbb{R}^2} \frac{1}{2}x^TPx+q^Tx+r\]</div>
 <p>donde: <span class="math notranslate nohighlight">\(P=\left [\begin{array}{cc} 5 &amp; 4\\ 4 &amp; 5 \end{array} \right ]\)</span>, <span class="math notranslate nohighlight">\(q=\left [\begin{array}{c} -1\\ 1 \end{array} \right]\)</span>, <span class="math notranslate nohighlight">\(r=3\)</span>.</p>
@@ -1382,10 +1487,10 @@ x₁  + 2⋅x₁ ⋅x₂ + x₂
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{x \in \mathbb{R}^2} \frac{5}{2}x_1^2 + \frac{5}{2}x_2^2+4x_1x_2 -x_1 + x_2+3\]</div>
 <p>La función objetivo es una <strong>función estrictamente convexa</strong> en <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> (de hecho <strong>fuertemente convexa</strong>) pues:</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Los eigenvalores de <span class="math notranslate nohighlight">\(P\)</span> son <span class="math notranslate nohighlight">\(1\)</span> y <span class="math notranslate nohighlight">\(9\)</span> de multiplicidad simple cada uno.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">eigenvals</span><span class="p">())</span>
@@ -1473,10 +1578,10 @@ x_2
 </div>
 </div>
 <p>El problema anterior también lo podemos resolver con <a class="reference external" href="https://github.com/cvxgrp/cvxpy">cvxpy</a> pues es un <strong>problema convexo</strong>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Definición de variables y función objetivo: <span class="math notranslate nohighlight">\(\frac{1}{2}x^TPx+q^Tx+r\)</span></p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#number of variables</span>
@@ -1559,10 +1664,10 @@ optimal var [ 1. -1.]
 \[\min_{x \in \mathbb{R}^2} ||Ax-b||_2^2\]</div>
 <p>con <span class="math notranslate nohighlight">\(A=\left [ \begin{array}{ccc} 1 &amp; 6 &amp; 2.5\\ 1 &amp; 2 &amp; 8 \\ 1 &amp; 10 &amp; -1\\ 1 &amp; -9 &amp; 3\\ 1 &amp; -1 &amp; 2 \end{array} \right ]\)</span>, <span class="math notranslate nohighlight">\(b=\left [ \begin{array}{c} -1 \\ 0 \\ 2 \\ 3.5 \\ -1.7 \end{array} \right ]\)</span>.</p>
 </div>
-</div>
-</div>
-<div class="section" id="metodos-de-descenso">
-<h2>Métodos de descenso<a class="headerlink" href="#metodos-de-descenso" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="metodos-de-descenso">
+<h2>Métodos de descenso<a class="headerlink" href="#metodos-de-descenso" title="Permalink to this headline">#</a></h2>
 <p>Los ejemplos anteriores mostraron la importancia de la información de primer y segundo orden de la función objetivo <span class="math notranslate nohighlight">\(f_o\)</span> y las ecuaciones no lineales para resolver el problema de optimización. El primer ejemplo utilizó las funciones <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html#scipy.optimize.fsolve">scipy.optimize.fsolve</a> y <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin.html">scipy.optimize.fmin</a> para este propósito. Tales funciones utilizan métodos iterativos para resolver ecuaciones no lineales y aproximar un mínimo local respectivamente en un esquema que para el caso de minimización satisface:</p>
 <div class="math notranslate nohighlight">
 \[f_o(x^{(0)}) &gt; f_o(x^{(1)}) &gt; f_o(x^{(2)}) &gt; \cdots &gt; f_o(x^{(k)}) &gt; \cdots\]</div>
@@ -1583,10 +1688,10 @@ optimal var [ 1. -1.]
 <li><p>En la práctica la secuencia de minimización involucra calcular un tamaño o longitud de paso que ayuda a la convergencia del método. Se tienen diferentes metodologías para su cálculo y más adelante se describe una de ellas.</p></li>
 </ul>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Recuérdese que si <span class="math notranslate nohighlight">\(f_o\)</span> es fuertemente convexa en el conjunto <span class="math notranslate nohighlight">\(\mathcal{S}\)</span> entonces <span class="math notranslate nohighlight">\(\nabla^2 f_o (x) \in \mathbb{S}^n_{++}\)</span> y <span class="math notranslate nohighlight">\(\text{cond}(\nabla ^2 f_o(x))\)</span> está acotado por arriba por una constante para <span class="math notranslate nohighlight">\(x \in \mathcal{S}\)</span>.</p>
-</div>
+</aside>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>Asumiendo que la función <span class="math notranslate nohighlight">\(f_o\)</span> es convexa, típicamente se asume lo siguiente para tener métodos iterativos confiables y exactos:</p>
@@ -1597,8 +1702,8 @@ optimal var [ 1. -1.]
 </ul>
 </div>
 <p>En lo siguiente se asume que <span class="math notranslate nohighlight">\(f_o\)</span> cumple <span class="math notranslate nohighlight">\(f_o \in \mathcal{C}^2(\text{dom}f_o)\)</span> y es convexa en un conjunto convexo y cerrado que contiene a <span class="math notranslate nohighlight">\(x^*\)</span>. Ver <a class="reference internal" href="../../1.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#cacci"><span class="std std-ref">conjunto abierto, cerrado, cerradura e interior</span></a> para definición de conjunto cerrado.</p>
-<div class="section" id="ejemplo-de-funcion-objetivo-convexa">
-<h3>Ejemplo de función objetivo convexa<a class="headerlink" href="#ejemplo-de-funcion-objetivo-convexa" title="Permalink to this headline">¶</a></h3>
+<section id="ejemplo-de-funcion-objetivo-convexa">
+<h3>Ejemplo de función objetivo convexa<a class="headerlink" href="#ejemplo-de-funcion-objetivo-convexa" title="Permalink to this headline">#</a></h3>
 <p>Encontrar el mínimo del siguiente problema con un <strong>método iterativo</strong>.</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{x \in \mathbb{R}^4} (x_1-2)^2+(2-x_2)^2+x_3^2+x_4^4\]</div>
@@ -1686,15 +1791,15 @@ optimal var [ 1. -1.]
 \right]
 \end{split}\]</div>
 <p><strong>¿Cómo encontramos numéricamente el óptimo con un método iterativo?</strong></p>
-</div>
-<div class="section" id="condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso">
-<h3>Condición para que un paso o dirección de búsqueda sea de descenso<a class="headerlink" href="#condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso">
+<h3>Condición para que un paso o dirección de búsqueda sea de descenso<a class="headerlink" href="#condicion-para-que-un-paso-o-direccion-de-busqueda-sea-de-descenso" title="Permalink to this headline">#</a></h3>
 <p>La idea de los métodos de optimización es calcular direcciones <span class="math notranslate nohighlight">\(\Delta x\)</span> de búsqueda que sean de descenso, esto es, que al movernos de un punto a otro en tal dirección, el valor de <span class="math notranslate nohighlight">\(f_o\)</span> decrece. Existen muchas direcciones de descenso (de hecho infinitas) una que se muestra en el dibujo siguiente es la dirección de descenso de Newton <span class="math notranslate nohighlight">\(\Delta x_{nt}\)</span>:</p>
 <img src="https://dl.dropboxusercontent.com/s/25bmebx645howjw/direccion_de_descenso_de_Newton_1d.png?dl=0" heigth="600" width="600"><p>En el dibujo <span class="math notranslate nohighlight">\(f = f_o\)</span> y <span class="math notranslate nohighlight">\(\hat{f}\)</span> es un <strong>modelo cuadrático</strong>. Del punto <span class="math notranslate nohighlight">\((x,f(x))\)</span> nos debemos mover al punto <span class="math notranslate nohighlight">\((x+\Delta x_{nt}, f(x + \Delta x_{nt}))\)</span> para llegar al óptimo. En tal dirección <span class="math notranslate nohighlight">\(f\)</span> decrece: <span class="math notranslate nohighlight">\(f(x+\Delta x_{nt}) &lt; f(x)\)</span> y obsérvese que <span class="math notranslate nohighlight">\(\Delta x_{nt}\)</span> es mínimo de <span class="math notranslate nohighlight">\(\hat{f}\)</span>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Ver <a class="reference internal" href="../../1.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html#teotaylornvariables"><span class="std std-ref">teorema de Taylor para una función de varias variables</span></a></p>
-</div>
+</aside>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>El modelo cuadrático del dibujo anterior está dado por la aproximación de segundo orden a la función <span class="math notranslate nohighlight">\(f_o\)</span> por el teorema de Taylor con centro en <span class="math notranslate nohighlight">\(x\)</span>:</p>
@@ -1716,10 +1821,10 @@ optimal var [ 1. -1.]
 <p class="admonition-title">Definición</p>
 <p>Si el paso o dirección de búsqueda satisface: <span class="math notranslate nohighlight">\(\nabla f_o(x)^T\Delta x &lt; 0\)</span> se le nombra <strong>dirección de descenso</strong>.</p>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Recuérdese que el teorema de Taylor nos ayuda a aproximar a una función de forma <strong>local</strong>.</p>
-</div>
+</aside>
 <div class="admonition-comentarios admonition">
 <p class="admonition-title">Comentarios</p>
 <ul class="simple">
@@ -1734,10 +1839,10 @@ optimal var [ 1. -1.]
 <p class="admonition-title">Observación</p>
 <p>Obsérvese que si <span class="math notranslate nohighlight">\(x^*\)</span> es mínimo local entonces <span class="math notranslate nohighlight">\(\nabla f_o(x^*) = 0\)</span> (condición necesaria de primer orden) por lo que no existen direcciones de descenso.</p>
 </div>
-</div>
-<div class="section" id="ejemplos-de-direcciones-de-descenso">
-<h3>Ejemplos de direcciones de descenso<a class="headerlink" href="#ejemplos-de-direcciones-de-descenso" title="Permalink to this headline">¶</a></h3>
-<div class="sidebar">
+</section>
+<section id="ejemplos-de-direcciones-de-descenso">
+<h3>Ejemplos de direcciones de descenso<a class="headerlink" href="#ejemplos-de-direcciones-de-descenso" title="Permalink to this headline">#</a></h3>
+<aside class="sidebar">
 <p class="sidebar-title">La dirección del gradiente…</p>
 <p>Una forma de obtener la dirección de Newton es encontrando el mínimo del modelo cuadrático referido anteriormente asumiendo <span class="math notranslate nohighlight">\(\nabla ^2 f_o(x) \in \mathbb{S}^n_{++}\)</span>. La dirección del gradiente se obtiene al resolver el problema de optimización con restricciones siguiente:</p>
 <div class="math notranslate nohighlight">
@@ -1745,7 +1850,7 @@ optimal var [ 1. -1.]
 <div class="math notranslate nohighlight">
 \[\text{sujeto a:} ||v|| = 1\]</div>
 <p>para la norma <span class="math notranslate nohighlight">\(2\)</span>. Se utiliza una restricción del tipo normalización pues la función objetivo involucra un producto punto (derivada direccional) que es dependiente o proporcional a la longitud de <span class="math notranslate nohighlight">\(v\)</span>.</p>
-</div>
+</aside>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla f_o \left (x^{(k)} \right )\)</span> que da lugar al <strong>método de descenso en gradiente</strong> para <span class="math notranslate nohighlight">\(x^{(k)}\)</span> no óptimo.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Delta x = - \nabla^2 f_o \left (x^{(k)} \right )^{-1} \nabla f_o\left(x^{(k)} \right)\)</span> que da lugar al <strong>método de descenso por Newton</strong> con <span class="math notranslate nohighlight">\(\nabla^2 f_o \left (x^{(k)} \right ) \in \mathbb{S}^n_{++}\)</span> y <span class="math notranslate nohighlight">\(x^{(k)}\)</span> no óptimo.</p></li>
@@ -1759,9 +1864,9 @@ optimal var [ 1. -1.]
 <li><p>Comúnmente los métodos que utilizan aproximaciones a la Hessiana se conocen con el nombre de <strong>métodos Cuasi-Newton</strong>, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Quasi-Newton_method">Quasi-Newton_method</a>.</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="continuando-con-el-ejemplo-anterior">
-<h3>Continuando con el ejemplo anterior<a class="headerlink" href="#continuando-con-el-ejemplo-anterior" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="continuando-con-el-ejemplo-anterior">
+<h3>Continuando con el ejemplo anterior<a class="headerlink" href="#continuando-con-el-ejemplo-anterior" title="Permalink to this headline">#</a></h3>
 <p>Encontrar el mínimo del siguiente problema con un <strong>método iterativo</strong>.</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{x \in \mathbb{R}^4} (x_1-2)^2+(2-x_2)^2+x_3^2+x_4^4\]</div>
@@ -1776,10 +1881,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Definición de <span class="math notranslate nohighlight">\(f_o\)</span></p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_o_np</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
@@ -1787,10 +1892,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(0)}\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
@@ -1814,10 +1919,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando el gradiente en <span class="math notranslate nohighlight">\(x^{(0)}\)</span>: <span class="math notranslate nohighlight">\(\nabla f_o(x^{(0)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
@@ -1830,10 +1935,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Verificando que es dirección de descenso: <span class="math notranslate nohighlight">\(\nabla f_o \left (x^{(0)} \right )^T \Delta x &lt; 0\)</span> con <span class="math notranslate nohighlight">\(\Delta x = -\nabla f_o \left (x^{(0)} \right )\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)))</span>
@@ -1847,10 +1952,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <p><strong>Primera iteración</strong></p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_1 = x_0 + \Delta x = x_0 - \nabla f_o(x^{(0)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">-</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span>
@@ -1870,10 +1975,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(1)}\)</span> se observa que <span class="math notranslate nohighlight">\(f_o\)</span> decreció muy poco, de hecho <span class="math notranslate nohighlight">\(f_o(x^{(0)}) \approx f_o(x^{(1)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell tag_margin docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
@@ -1912,10 +2017,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <p><strong>Segunda iteración</strong></p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando el gradiente en <span class="math notranslate nohighlight">\(x^{(1)}\)</span>: <span class="math notranslate nohighlight">\(\nabla f_o(x^{(1)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">))</span>
@@ -1928,10 +2033,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Verificando que es dirección de descenso: <span class="math notranslate nohighlight">\(\nabla f_o \left (x^{(1)} \right )^T \Delta x &lt; 0\)</span> con <span class="math notranslate nohighlight">\(\Delta x = -\nabla f_o \left (x^{(1)} \right )\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">)))</span>
@@ -1944,10 +2049,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_2 = x_1 + \Delta x = x_1 - \nabla f_o(x^{(1)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_2</span> <span class="o">=</span> <span class="n">x_1</span> <span class="o">-</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span>
@@ -1967,10 +2072,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(1)}\)</span> se observa que <span class="math notranslate nohighlight">\(f_o\)</span> decreció muy poco, de hecho <span class="math notranslate nohighlight">\(f_o(x^{(2)}) \approx f_o(x^{(1)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell tag_margin docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_1</span><span class="p">))</span>
@@ -2009,10 +2114,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <p><strong>Tercera iteración</strong></p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_3 = x_2 + \Delta x = x_2 - \nabla f_o(x^{(2)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_3</span> <span class="o">=</span> <span class="n">x_2</span> <span class="o">-</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_2</span><span class="p">)</span>
@@ -2020,10 +2125,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Obsérvese que <span class="math notranslate nohighlight">\(x_3 \approx x_1\)</span>.</p>
-</div>
+</aside>
 <div class="cell tag_margin docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span>
@@ -2049,10 +2154,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <p><strong>Cuarta iteración</strong></p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_4 = x_3 + \Delta x = x_3 - \nabla f_o(x^{(3)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_4</span> <span class="o">=</span> <span class="n">x_3</span> <span class="o">-</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_3</span><span class="p">)</span>
@@ -2060,10 +2165,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Obsérvese que <span class="math notranslate nohighlight">\(x_4 \approx x_2\)</span>.</p>
-</div>
+</aside>
 <div class="cell tag_margin docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_2</span><span class="p">)</span>
@@ -2132,10 +2237,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando la Hessiana en <span class="math notranslate nohighlight">\(x^{(0)}\)</span>: <span class="math notranslate nohighlight">\(\nabla^2f_o(x^{(0)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
@@ -2155,10 +2260,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando el gradiente en <span class="math notranslate nohighlight">\(x^{(0)}\)</span>: <span class="math notranslate nohighlight">\(\nabla f_o(x^{(0)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gf_sympy_eval</span> <span class="o">=</span> <span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">)</span>
@@ -2194,10 +2299,10 @@ optimal var [ 1. -1.]
 \right ]
 \end{split}\]</div>
 <p>Resolviendo con <em>NumPy</em> el sistema de ecuaciones lineales:</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Aquí convertimos de un objeto de <em>SymPy</em> a un <em>array</em> de <em>NumPy</em> pues si bien podríamos resolver el sistema con <em>SymPy</em> es menos costoso utilizar <em>arrays</em> de <em>NumPy</em>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_np_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -2212,10 +2317,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Aquí convertimos de un objeto de <em>SymPy</em> a un <em>array</em> de <em>NumPy</em> pues si bien podríamos resolver el sistema con <em>SymPy</em> es menos costoso utilizar <em>arrays</em> de <em>NumPy</em>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gf_np_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gf_sympy_eval</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">float</span><span class="p">)</span>
@@ -2235,10 +2340,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Resolvemos <span class="math notranslate nohighlight">\(\nabla ^2 f_o \left ( x^{(0)} \right ) \Delta x = - \nabla f_o \left(x^{(0)}\right )\)</span> para obtener <span class="math notranslate nohighlight">\(\Delta x\)</span> dirección de Newton.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dir_Newton</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">,</span> <span class="o">-</span><span class="n">gf_np_eval</span><span class="p">)</span>
@@ -2258,10 +2363,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Verificando que es dirección de descenso: <span class="math notranslate nohighlight">\(\nabla f_o \left (x^{(0)} \right )^T \Delta x &lt; 0\)</span> con <span class="math notranslate nohighlight">\(\Delta x = -\nabla ^2f_o(x^{(0)})^{-1} \nabla f_o(x^{(0)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gf_np_eval</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">))</span>
@@ -2275,10 +2380,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <p><strong>Primera iteración</strong></p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_1 = x_0 + \Delta x = x_0 - \nabla ^2f_o(x^{(0)})^{-1} \nabla f_o(x^{(0)})\)</span></p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">+</span> <span class="n">dir_Newton</span>
@@ -2311,10 +2416,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(1)}\)</span> se observa que <span class="math notranslate nohighlight">\(f_o\)</span> sí decrece <span class="math notranslate nohighlight">\(f_o(x^{(1)}) &lt; f_o(x^{(0)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell tag_margin docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
@@ -2353,14 +2458,14 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <p><strong>Segunda iteración</strong></p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando la Hessiana en <span class="math notranslate nohighlight">\(x^{(1)}\)</span>: <span class="math notranslate nohighlight">\(\nabla^2f_o(x^{(1)})\)</span>, evaluando el gradiente en <span class="math notranslate nohighlight">\(x^{(1)}\)</span>: <span class="math notranslate nohighlight">\(\nabla f_o(x^{(1)})\)</span> y resolviendo el sistema de ecuaciones <span class="math notranslate nohighlight">\(\nabla ^2 f_o \left ( x^{(1)} \right ) \Delta x = - \nabla f_o \left(x^{(1)}\right )\)</span>.</p>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_2 =  x_1 + \Delta x = x_1 - \nabla ^2f_o(x^{(1)})^{-1} \nabla f_o(x^{(1)})\)</span></p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_1</span><span class="p">))</span>
@@ -2385,10 +2490,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Verificando que es dirección de descenso: <span class="math notranslate nohighlight">\(\nabla f_o \left (x^{(1)} \right )^T \Delta x &lt; 0\)</span> con <span class="math notranslate nohighlight">\(\Delta x = -\nabla ^2f_o(x^{(1)})^{-1} \nabla f_o(x^{(1)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gf_np_eval</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">))</span>
@@ -2401,10 +2506,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(2)}\)</span> se observa que <span class="math notranslate nohighlight">\(f_o\)</span> sí decrece <span class="math notranslate nohighlight">\(f_o(x^{(2)}) &lt; f_o(x^{(1)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell tag_margin docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_1</span><span class="p">))</span>
@@ -2442,10 +2547,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Número de condición de la Hessiana de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(1)}\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">))</span>
@@ -2459,14 +2564,14 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <p><strong>Tercera iteración</strong></p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando la Hessiana en <span class="math notranslate nohighlight">\(x^{(2)}\)</span>: <span class="math notranslate nohighlight">\(\nabla^2f_o(x^{(2)})\)</span>, evaluando el gradiente en <span class="math notranslate nohighlight">\(x^{(2)}\)</span>: <span class="math notranslate nohighlight">\(\nabla f_o(x^{(2)})\)</span>  y resolviendo el sistema de ecuaciones <span class="math notranslate nohighlight">\(\nabla ^2 f_o \left ( x^{(2)} \right ) \Delta x = - \nabla f_o \left(x^{(2)}\right )\)</span>.</p>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_3 = x_2 + \Delta x = x_2 - \nabla ^2f_o(x^{(2)})^{-1} \nabla f_o(x^{(2)})\)</span></p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_2</span><span class="p">))</span>
@@ -2491,10 +2596,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Verificando que es dirección de descenso: <span class="math notranslate nohighlight">\(\nabla f_o \left (x^{(2)} \right )^T \Delta x &lt; 0\)</span> con <span class="math notranslate nohighlight">\(\Delta x = -\nabla ^2f_o(x^{(2)})^{-1} \nabla f_o(x^{(2)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gf_np_eval</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">))</span>
@@ -2507,10 +2612,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(3)}\)</span> se observa que <span class="math notranslate nohighlight">\(f_o\)</span> sí decrece <span class="math notranslate nohighlight">\(f_o(x^{(3)}) &lt; f_o(x^{(2)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell tag_margin docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_2</span><span class="p">))</span>
@@ -2548,10 +2653,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Número de condición de la Hessiana de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(2)}\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">))</span>
@@ -2565,14 +2670,14 @@ optimal var [ 1. -1.]
 </div>
 </div>
 <p><strong>Cuarta iteración</strong></p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando la Hessiana en <span class="math notranslate nohighlight">\(x^{(3)}\)</span>: <span class="math notranslate nohighlight">\(\nabla^2f_o(x^{(3)})\)</span>, evaluando el gradiente en <span class="math notranslate nohighlight">\(x^{(3)}\)</span>: <span class="math notranslate nohighlight">\(\nabla f_o(x^{(3)})\)</span>  y resolviendo el sistema de ecuaciones <span class="math notranslate nohighlight">\(\nabla ^2 f_o \left ( x^{(3)} \right ) \Delta x = - \nabla f_o \left(x^{(3)}\right )\)</span>.</p>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_4 = x_3 + \Delta x = x_3 - \nabla ^2f_o(x^{(3)})^{-1} \nabla f_o(x^{(3)})\)</span></p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_3</span><span class="p">))</span>
@@ -2597,14 +2702,14 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Verificando que es dirección de descenso: <span class="math notranslate nohighlight">\(\nabla f_o \left (x^{(3)} \right )^T \Delta x &lt; 0\)</span> con <span class="math notranslate nohighlight">\(\Delta x = -\nabla ^2f_o(x^{(3)})^{-1} \nabla f_o(x^{(3)})\)</span>.</p>
-</div>
-<div class="margin sidebar">
+</aside>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Obsérvese que el gradiente y la dirección de Newton son cercanos a ser ortogonales.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gf_np_eval</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dir_Newton</span><span class="p">))</span>
@@ -2617,10 +2722,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(4)}\)</span> se observa que <span class="math notranslate nohighlight">\(f_o\)</span> sí decrece <span class="math notranslate nohighlight">\(f_o(x^{(4)}) &lt; f_o(x^{(3)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell tag_margin docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f_o_np</span><span class="p">(</span><span class="n">x_3</span><span class="p">))</span>
@@ -2658,10 +2763,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Obsérvese cómo va aumentando el número de condición de la Hessiana conforme nos aproximamos a la solución, en este paso se ha calculado la Hessiana de <span class="math notranslate nohighlight">\(f_o\)</span> en <span class="math notranslate nohighlight">\(x^{(3)}\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">Hf_np_eval</span><span class="p">))</span>
@@ -2698,10 +2803,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando la Hessiana en <span class="math notranslate nohighlight">\(x^{(0)}\)</span>: <span class="math notranslate nohighlight">\(\nabla^2f_o(x^{(0)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Hf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">Hf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
@@ -2721,10 +2826,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Evaluando el gradiente en <span class="math notranslate nohighlight">\(x^{(0)}\)</span>: <span class="math notranslate nohighlight">\(\nabla f_o(x^{(0)})\)</span>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gf_sympy_eval</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">gf_eval</span><span class="p">(</span><span class="n">x_0</span><span class="p">))</span>
@@ -2791,10 +2896,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><em>SymPy</em> nos permite obtener soluciones a sistemas de ecuaciones lineales que tienen un renglón y columna de ceros.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">gf_sympy_eval</span><span class="p">),</span> <span class="n">x</span><span class="p">))</span>
@@ -2807,10 +2912,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Esquema iterativo: <span class="math notranslate nohighlight">\(x_1 = x_0 + \Delta x = x_0 - \nabla ^2f_o(x^{(0)})^{-1} \nabla f_o(x^{(0)})\)</span></p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_1</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
@@ -2818,10 +2923,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><span class="math notranslate nohighlight">\(x_1\)</span> es el óptimo del problema.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x_1</span><span class="p">)</span>
@@ -2834,10 +2939,10 @@ optimal var [ 1. -1.]
 </div>
 </div>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>El número de condición es <span class="math notranslate nohighlight">\(\infty\)</span>, con el <code class="docutils literal notranslate"><span class="pre">print</span></code> de <em>SymPy</em> se ve así.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">Hf_sympy_eval</span><span class="o">.</span><span class="n">condition_number</span><span class="p">())</span>
@@ -2871,9 +2976,9 @@ optimal var [ 1. -1.]
 <li><p>Una de las ventajas que tiene utilizar la dirección del gradiente vs la dirección de Newton es que el gradiente involucra menos almacenamiento en memoria que el almacenamiento de la Hessiana: <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> vs <span class="math notranslate nohighlight">\(\mathcal{O}(n^2)\)</span>.</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="resolviendo-el-problema-con-cvxpy">
-<h3>Resolviendo el problema con <a class="reference external" href="https://github.com/cvxgrp/cvxpy"><em>CVXPY</em></a><a class="headerlink" href="#resolviendo-el-problema-con-cvxpy" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="resolviendo-el-problema-con-cvxpy">
+<h3>Resolviendo el problema con <a class="reference external" href="https://github.com/cvxgrp/cvxpy"><em>CVXPY</em></a><a class="headerlink" href="#resolviendo-el-problema-con-cvxpy" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">()</span>
@@ -2923,10 +3028,10 @@ optimal var 2.0 2.0 0.0 0.0
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="tamano-o-longitud-de-paso">
-<h2>Tamaño o longitud de paso<a class="headerlink" href="#tamano-o-longitud-de-paso" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="tamano-o-longitud-de-paso">
+<h2>Tamaño o longitud de paso<a class="headerlink" href="#tamano-o-longitud-de-paso" title="Permalink to this headline">#</a></h2>
 <p>En el ejemplo anterior en el que se aproximó al mínimo del siguiente problema con el método de Newton</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle \min_{x \in \mathbb{R}^4} (x_1-2)^2+(2-x_2)^2+x_3^2+x_4^4\]</div>
@@ -2942,8 +3047,8 @@ optimal var 2.0 2.0 0.0 0.0
 <li><p>la función objetivo sea dos veces diferenciable y su Hessiana sea definida positiva en un conjunto abierto que contenga a <span class="math notranslate nohighlight">\(x^*\)</span> y sea <em>Lipschitz</em> continua en tal conjunto, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Lipschitz_continuity">Lipschitz_continuity </a>, que ayuda a acotar la diferencia entre <span class="math notranslate nohighlight">\(f_o\)</span> y el modelo cuadrático <span class="math notranslate nohighlight">\(m\)</span>.</p></li>
 </ul>
 </div>
-<div class="section" id="id1">
-<h3>Continuando con el ejemplo anterior<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<section id="id1">
+<h3>Continuando con el ejemplo anterior<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Usando el método de descenso en gradiente de <span class="math notranslate nohighlight">\(f_o\)</span> y el esquema iterativo:</p>
 <div class="math notranslate nohighlight">
 \[x^{(k+1)} = x^{(k)} - t^{(k)} \nabla f_o(x^{(k)})\]</div>
@@ -3003,9 +3108,9 @@ optimal var 2.0 2.0 0.0 0.0
 <p>Al escalar <span class="math notranslate nohighlight">\(t^{(k)}\)</span> se le nombra <strong>tamaño o longitud de paso</strong> y siempre es positivo salvo en el caso en que <span class="math notranslate nohighlight">\(x^{(k)}\)</span> sea óptimo.</p>
 </div>
 <p>El valor <span class="math notranslate nohighlight">\(t^{(k)}\)</span> se calcula con metodologías como búsqueda de línea o regiones de confianza, ver <a class="reference external" href="https://en.wikipedia.org/wiki/Line_search">line search</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Trust_region">trust region</a> y en esta nota se revisa la búsqueda de línea con <em>backtracking</em>.</p>
-</div>
-<div class="section" id="por-que-funciona-lo-anterior">
-<h3>¿Por qué funciona lo anterior?<a class="headerlink" href="#por-que-funciona-lo-anterior" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="por-que-funciona-lo-anterior">
+<h3>¿Por qué funciona lo anterior?<a class="headerlink" href="#por-que-funciona-lo-anterior" title="Permalink to this headline">#</a></h3>
 <p>La condición para que una dirección produzca descenso en <span class="math notranslate nohighlight">\(f_o\)</span>, <span class="math notranslate nohighlight">\(f_o(x^{(k+1)}) &lt; f_o(x^{(k)})\)</span>, no es la única para que la secuencia de minimización converja a un mínimo de <span class="math notranslate nohighlight">\(f_o\)</span>. El siguiente ejemplo muestra el comportamiento del ejemplo trabajado antes en el plano.</p>
 <p>Considérese <span class="math notranslate nohighlight">\(f_o(x) = x^2\)</span>, <span class="math notranslate nohighlight">\(x^{(0)} = 2\)</span> y los pasos dados por la secuencia: <span class="math notranslate nohighlight">\((-1)^k(1+2^{-k})\)</span>. Entonces:</p>
 <div class="cell docutils container">
@@ -3054,34 +3159,34 @@ optimal var 2.0 2.0 0.0 0.0
 <p class="admonition-title">Comentario</p>
 <p>Otra dificultad relacionada con la reducción de <span class="math notranslate nohighlight">\(f_o\)</span> y la longitud de los pasos es la situación en la que los pasos sean muy pequeños relativos a la reducción de <span class="math notranslate nohighlight">\(f_o\)</span>. En la implementación por <em>backtracking</em> que se revisa a continuación sólo se soluciona la reducción suficiente de <span class="math notranslate nohighlight">\(f_o\)</span>.</p>
 </div>
-</div>
-</div>
-<div class="section" id="metodo-de-busqueda-de-linea-por-backtracking">
-<span id="mbuslinback"></span><h2>Método de búsqueda de línea por <em>backtracking</em><a class="headerlink" href="#metodo-de-busqueda-de-linea-por-backtracking" title="Permalink to this headline">¶</a></h2>
-<div class="margin sidebar">
+</section>
+</section>
+<section id="metodo-de-busqueda-de-linea-por-backtracking">
+<span id="mbuslinback"></span><h2>Método de búsqueda de línea por <em>backtracking</em><a class="headerlink" href="#metodo-de-busqueda-de-linea-por-backtracking" title="Permalink to this headline">#</a></h2>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Ver <a class="reference external" href="https://en.wikipedia.org/wiki/Backtracking_line_search">Backtracking_line_search</a>.</p>
-</div>
+</aside>
 <p>En esta sección consideramos <span class="math notranslate nohighlight">\(f = f_o\)</span>.</p>
 <p>La idea del método de búsqueda de línea por <em>backtracking</em> es moverse de un punto a otro siguiendo una dirección de descenso con un tamaño de paso completo y si tal tamaño no satisface un criterio entonces realizar un <em>backtrack</em> de forma sistemática a lo largo de tal dirección hasta satisfacer el criterio resultando en el tamaño de paso correspondiente.</p>
-<div class="section" id="descenso-suficiente">
-<h3>Descenso suficiente<a class="headerlink" href="#descenso-suficiente" title="Permalink to this headline">¶</a></h3>
+<section id="descenso-suficiente">
+<h3>Descenso suficiente<a class="headerlink" href="#descenso-suficiente" title="Permalink to this headline">#</a></h3>
 <p>Para entender el método de búsqueda de línea por <em>backtracking</em> supóngase que <span class="math notranslate nohighlight">\(f\)</span> tiene una forma siguiente:</p>
 <img src="https://dl.dropboxusercontent.com/s/0woqoj8foo5eco9/level_set_of_func.png?dl=0" heigth="300" width="300">
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Un rayo es el conjunto definido por <span class="math notranslate nohighlight">\(\{x + \theta v : \theta \geq 0 , v \neq 0, v \in \mathbb{R}^n\}\)</span> para <span class="math notranslate nohighlight">\(x \in \mathbb{R}^n\)</span>.</p>
 <img src="https://dl.dropboxusercontent.com/s/l3z9j49ldzknmif/ej_rayo.png?dl=0" heigth="200" width="200">
-</div>
+</aside>
 <p>Y considérese una función <span class="math notranslate nohighlight">\(g: \mathbb{R} \rightarrow \mathbb{R}\)</span> igual a <span class="math notranslate nohighlight">\(f\)</span> pero restringida al <strong>rayo</strong> <span class="math notranslate nohighlight">\(x + t\Delta x\)</span>, esto es: <span class="math notranslate nohighlight">\(g(t) = f(x+t \Delta x)\)</span> con <span class="math notranslate nohighlight">\(t&gt;0\)</span>, <span class="math notranslate nohighlight">\(\Delta x\)</span> dirección de descenso. Lo anterior se visualiza como sigue:</p>
 <img src="https://dl.dropboxusercontent.com/s/18udjmzmmd7drrz/line_search_backtracking_1.png?dl=0" heigth="300" width="300"><div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Obsérvese en el dibujo que <span class="math notranslate nohighlight">\(\nabla f(x) \neq 0\)</span>.</p>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Ver <a class="reference internal" href="../../1.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#ejrestriccionalinea"><span class="std std-ref">ejemplo</span></a> de la nota <a class="reference internal" href="../../1.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html#fcd"><span class="std std-ref">Definición de función, continuidad y derivada</span></a> para expresión de la derivada <span class="math notranslate nohighlight">\(g'(t)\)</span>.</p>
-</div>
+</aside>
 <p>Y como <span class="math notranslate nohighlight">\(f\)</span> es continua y diferenciable, <span class="math notranslate nohighlight">\(g\)</span> también lo es y <span class="math notranslate nohighlight">\(g(0)=f(x)\)</span>, <span class="math notranslate nohighlight">\(g'(t) = \nabla f(x+t\Delta x)^T \Delta x\)</span>. Si graficamos <span class="math notranslate nohighlight">\(g\)</span> se tendría:</p>
 <img src="https://dl.dropboxusercontent.com/s/sgj7eqr2qysi8hs/line_search_backtracking_2.png?dl=0" heigth="300" width="300">
 <p>En la búsqueda de línea se construyen dos rectas. Una recta es <span class="math notranslate nohighlight">\(g(0) + \alpha g'(0)(t-0)\)</span> con <span class="math notranslate nohighlight">\(\alpha \in (0,\frac{1}{2})\)</span>. La otra recta es <span class="math notranslate nohighlight">\(g(0)+g'(0)(t-0)\)</span>. Ambas rectas tienen pendiente negativa. Esto se visualiza como sigue:</p>
@@ -3094,9 +3199,9 @@ optimal var 2.0 2.0 0.0 0.0
 <p>Obsérvese en el dibujo anterior que la región en la que se elegirá <span class="math notranslate nohighlight">\(t^{(k)}\)</span> está a la izquierda de la línea punteada vertical de color verde.</p>
 <p>Y visualmente en <span class="math notranslate nohighlight">\(R^3\)</span> se tiene:</p>
 <img src="https://dl.dropboxusercontent.com/s/t3yn7kkpd4il8hx/line_search_backtracking_5.png?dl=0" heigth="300" width="300">
-</div>
-<div class="section" id="algoritmo-busqueda-de-linea-por-backtracking">
-<h3>Algoritmo: búsqueda de línea por <em>backtracking</em><a class="headerlink" href="#algoritmo-busqueda-de-linea-por-backtracking" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="algoritmo-busqueda-de-linea-por-backtracking">
+<h3>Algoritmo: búsqueda de línea por <em>backtracking</em><a class="headerlink" href="#algoritmo-busqueda-de-linea-por-backtracking" title="Permalink to this headline">#</a></h3>
 <p>El método depende de dos constantes <span class="math notranslate nohighlight">\(\alpha\)</span> y <span class="math notranslate nohighlight">\(\beta\)</span> con <span class="math notranslate nohighlight">\(\alpha \in (0,\frac{1}{2})\)</span> y <span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span>.</p>
 <blockquote>
 <div><p><strong>Dados</strong> <span class="math notranslate nohighlight">\(\Delta x\)</span> dirección de descenso para <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x \in \text{dom}f\)</span>, <span class="math notranslate nohighlight">\(\alpha \in (0,\frac{1}{2})\)</span>, <span class="math notranslate nohighlight">\(\beta \in (0,1)\)</span>.</p>
@@ -3117,10 +3222,10 @@ optimal var 2.0 2.0 0.0 0.0
 <li><p>Aunque la condición de descenso suficiente por sí sola no garantiza que un algoritmo que la utilice realice progreso razonable (pues también hay que añadir una segunda condición para no tomar valores de <span class="math notranslate nohighlight">\(t\)</span> muy pequeños) en la implementación del <em>backtracking</em> puede incluirse que se revise que <span class="math notranslate nohighlight">\(t\)</span> no sea muy pequeño (por ejemplo menor a <span class="math notranslate nohighlight">\(10^{-6}\)</span>) relativo a <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(\Delta x\)</span> y <span class="math notranslate nohighlight">\(\nabla f(x)\)</span>.</p></li>
 </ul>
 </div>
-</div>
-</div>
-<div class="section" id="funcion-en-python-para-el-metodo-de-backtracking">
-<h2>Función en Python para el método de <em>backtracking</em><a class="headerlink" href="#funcion-en-python-para-el-metodo-de-backtracking" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="funcion-en-python-para-el-metodo-de-backtracking">
+<h2>Función en Python para el método de <em>backtracking</em><a class="headerlink" href="#funcion-en-python-para-el-metodo-de-backtracking" title="Permalink to this headline">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">line_search_by_backtracking</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">dir_desc</span><span class="p">,</span><span class="n">x</span><span class="p">,</span>
                                 <span class="n">der_direct</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.15</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">.5</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -3156,13 +3261,13 @@ optimal var 2.0 2.0 0.0 0.0
 <p class="admonition-title">Ejercicio</p>
 <p>Realizar <span class="math notranslate nohighlight">\(5\)</span> iteraciones para minimizar la función <span class="math notranslate nohighlight">\(log(e^{x_1^2} + e^{x_2^2})\)</span> del método de descenso en gradiente utilizando búsqueda de línea tomando como punto inicial <span class="math notranslate nohighlight">\((10,1)\)</span> y calcular el error relativo de cada iteración. Para calcular <span class="math notranslate nohighlight">\(x^*\)</span> utilizar <a class="reference external" href="https://github.com/cvxgrp/cvxpy">cvxpy</a>.</p>
 </div>
-</div>
-<div class="section" id="algoritmo-metodo-general-de-descenso-para-problemas-uco">
-<span id="metgendescparauco"></span><h2>Algoritmo: método general de descenso para problemas UCO<a class="headerlink" href="#algoritmo-metodo-general-de-descenso-para-problemas-uco" title="Permalink to this headline">¶</a></h2>
-<div class="margin sidebar">
+</section>
+<section id="algoritmo-metodo-general-de-descenso-para-problemas-uco">
+<span id="metgendescparauco"></span><h2>Algoritmo: método general de descenso para problemas UCO<a class="headerlink" href="#algoritmo-metodo-general-de-descenso-para-problemas-uco" title="Permalink to this headline">#</a></h2>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Los pasos de un algoritmo representan una guía para la implementación, no implica que se tengan que implementar uno a continuación del otro como se describe. Si una implementación respeta la lógica y al mismo algoritmo, entonces pueden seguirse los pasos de una forma distinta.</p>
-</div>
+</aside>
 <blockquote>
 <div><p><strong>Dado</strong> un <strong>punto inicial</strong> <span class="math notranslate nohighlight">\(x\)</span> en <span class="math notranslate nohighlight">\(\text{dom}f_o\)</span></p>
 <p><strong>Repetir</strong> el siguiente bloque para <span class="math notranslate nohighlight">\(k=0,1,2, \dots\)</span></p>
@@ -3196,8 +3301,8 @@ optimal var 2.0 2.0 0.0 0.0
 <li><p>S. P. Boyd, L. Vandenberghe, Convex Optimization, Cambridge University Press, 2009.</p></li>
 <li><p>J. Dennis, R. B. Schnabel, Numerical Methods for Unconstrained Optimization and Nonlinear Equations, SIAM, 1996.</p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -3221,9 +3326,11 @@ optimal var 2.0 2.0 0.0 0.0
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -3239,24 +3346,28 @@ optimal var 2.0 2.0 0.0 0.0
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Erick Palacios Moreno<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Erick Palacios Moreno<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

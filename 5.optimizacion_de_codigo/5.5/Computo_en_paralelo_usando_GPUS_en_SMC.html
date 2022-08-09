@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>5.5 Cómputo en paralelo usando GPUs en un sistema de memoria compartida (SMC)</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,39 +20,38 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="6.1 Método de descenso más pronunciado para Unconstrained Convex Optimization (UCO)" href="../../6.algoritmos_optimizacion_convexa/6.1/Metodo_de_descenso_mas_pronunciado_para_UCO.html" />
@@ -62,7 +63,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +86,10 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -89,14 +105,15 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../README.html">
-   Optimización
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Optimización
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   1. Cómputo científico
  </span>
@@ -317,94 +334,182 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/5.optimizacion_de_codigo/5.5/Computo_en_paralelo_usando_GPUS_en_SMC.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/5.optimizacion_de_codigo/5.5/Computo_en_paralelo_usando_GPUS_en_SMC.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/palmoreck/dockerfiles-for-binder/jupyterlab_optimizacion_2?urlpath=lab/tree/analisis-numerico-computo-cientifico/libro_optimizacion/temas/5.optimizacion_de_codigo/5.5/Computo_en_paralelo_usando_GPUS_en_SMC.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/5.optimizacion_de_codigo/5.5/Computo_en_paralelo_usando_GPUS_en_SMC.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#compute-unified-device-architecture-cuda">
    <em>
@@ -711,12 +816,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>5.5 Cómputo en paralelo usando GPUs en un sistema de memoria compartida (SMC)</h1>
@@ -1039,11 +1143,12 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="computo-en-paralelo-usando-gpus-en-un-sistema-de-memoria-compartida-smc">
-<span id="compparalelogpussmc"></span><h1>5.5 Cómputo en paralelo usando GPUs en un sistema de memoria compartida (SMC)<a class="headerlink" href="#computo-en-paralelo-usando-gpus-en-un-sistema-de-memoria-compartida-smc" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="computo-en-paralelo-usando-gpus-en-un-sistema-de-memoria-compartida-smc">
+<span id="compparalelogpussmc"></span><h1>5.5 Cómputo en paralelo usando GPUs en un sistema de memoria compartida (SMC)<a class="headerlink" href="#computo-en-paralelo-usando-gpus-en-un-sistema-de-memoria-compartida-smc" title="Permalink to this headline">#</a></h1>
 <div class="admonition-notas-para-contenedor-de-docker admonition">
 <p class="admonition-title">Notas para contenedor de docker:</p>
 <p>Comando de docker para ejecución de la nota de forma local:</p>
@@ -1216,84 +1321,84 @@ uname -ar #r for kernel, a for all
 <p class="admonition-title">Observación</p>
 <p>En la celda anterior se utilizó el comando de <em>magic</em> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code>. Algunos comandos de <em>magic</em> los podemos utilizar también con <code class="docutils literal notranslate"><span class="pre">import</span></code>. Ver <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">ipython-magics</a></p>
 </div>
-<div class="section" id="compute-unified-device-architecture-cuda">
-<h2><em>Compute Unified Device Architecture</em> (CUDA)<a class="headerlink" href="#compute-unified-device-architecture-cuda" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="un-poco-de-historia">
-<h3>Un poco de historia…<a class="headerlink" href="#un-poco-de-historia" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
+<section id="compute-unified-device-architecture-cuda">
+<h2><em>Compute Unified Device Architecture</em> (CUDA)<a class="headerlink" href="#compute-unified-device-architecture-cuda" title="Permalink to this headline">#</a></h2>
+<section id="un-poco-de-historia">
+<h3>Un poco de historia…<a class="headerlink" href="#un-poco-de-historia" title="Permalink to this headline">#</a></h3>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>GPGPU es un término que se utilizó para referirse a la programación en unidades de procesamiento gráfico de forma general. Hoy en día se conoce simplemente como <em>GPU programming</em>. Ver <a class="reference external" href="https://en.wikipedia.org/wiki/General-purpose_computing_on_graphics_processing_units">General-purpose computing on graphics processing units</a>.</p>
-</div>
+</aside>
 <p>La industria de videojuegos impulsó el desarrollo de las tarjetas gráficas a una velocidad sin precedente a partir del año 1999 para incrementar el nivel de detalle visual en los juegos de video. Alrededor del 2003 se planteó la posibilidad de utilizar las unidades de procesamiento gráfico para procesamiento en paralelo relacionado con aplicaciones distintas al ambiente de gráficas. A partir del 2006 la empresa <a class="reference external" href="https://www.nvidia.com/en-us/about-nvidia/">NVIDIA</a> introdujo CUDA, una plataforma GPGPU y un modelo de programación que facilita el procesamiento en paralelo en las GPU’s.</p>
 <p>Desde el 2006, las tarjetas gráficas muestran una brecha significativa con las unidades de procesamiento CPU’s. Ver por ejemplo las gráficas que <em>NVIDIA</em> publica año tras año y que están relacionadas con el número de operaciones en punto flotante por segundo (FLOPS) y la transferencia de datos en la memoria RAM de la GPU: <a class="reference external" href="https://www.google.com/search?q=plot+gflops+gpu+cpu+nvidia&amp;tbm=isch&amp;ved=2ahUKEwjKk7Le_bzwAhUUaKwKHX9-AP8Q2-cCegQIABAA&amp;oq=plot+gflops+gpu+cpu+nvidia&amp;gs_lcp=CgNpbWcQA1C_W1i_W2DhXGgAcAB4AIABX4gBX5IBATGYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&amp;sclient=img&amp;ei=xAiYYMqhL5TQsQX__IH4Dw">gráficas cpu vs gpu en imágenes de google</a>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>La GPU y la CPU están conectadas por una interconexión de nombre <a class="reference external" href="https://en.wikipedia.org/wiki/Conventional_PCI">PCI</a>.</p>
-</div>
+</aside>
 <p>Hoy en día se continúa el desarrollo de GPU’s con mayor RAM, con mayor capacidad de cómputo y mejor conectividad con la CPU. Estos avances han permitido resolver problemas con mayor exactitud que los resueltos con las CPU’s, por ejemplo en el terreno de <em>deep learning</em> en reconocimiento de imágenes. Ver <a class="reference external" href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">ImageNet Classification with Deep Convolutional Neural Networks</a>, <a class="reference external" href="https://medium.com/limitlessai/2012-a-breakthrough-year-for-deep-learning-2a31a6796e73">2012: A Breakthrough Year for Deep Learning</a>.</p>
 <div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Para más avances ver <a class="reference external" href="https://devblogs.nvidia.com/nvidia-turing-architecture-in-depth/">NVIDIA Turing Architecture In-Depth</a>, <a class="reference external" href="https://wccftech.com/samsung-amd-rdna-gpu-2021/">samsung-amd-rdna-gpu-2021</a>, <a class="reference external" href="https://www.theguardian.com/games/2020/mar/19/playstation-5-specifications-revealed-but-design-is-still-a-mystery">playstation-5-specifications-revealed-but-design-is-still-a-mystery</a>, <a class="reference external" href="https://news.xbox.com/en-us/2020/03/16/xbox-series-x-tech/">xbox-series-x-tech</a> y recientemente <a class="reference external" href="https://www.ibm.com/blogs/nordic-msp/ibm-supercomputer-summit-attacks-coronavirus/">IBM Supercomputer Summit Attacks Coronavirus…</a>.</p>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Recuérdese la <a class="reference external" href="https://en.wikipedia.org/wiki/Flynn%27s_taxonomy">taxonomía de Flynn</a>.</p>
-</div>
+</aside>
 <p>La arquitectura en la que podemos ubicar a las GPU’s es en la de un sistema MIMD y SIMD. De hecho es <a class="reference external" href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_threads">SIMT: Simple Instruction Multiple Thread</a> en un modelo de sistema de memoria compartida pues “los <em>threads</em> en un <em>warp</em> leen la misma instrucción para ser ejecutada”.</p>
 <div class="admonition-definicion admonition">
 <p class="admonition-title">Definición</p>
 <p>Un <em>warp</em> en el contexto de GPU <em>programming</em> es un conjunto de <em>threads</em>. Equivale a <span class="math notranslate nohighlight">\(32\)</span> <em>threads</em>.</p>
 </div>
-</div>
-<div class="section" id="diferencia-con-la-cpu-multicore">
-<h3>¿Diferencia con la CPU multicore?<a class="headerlink" href="#diferencia-con-la-cpu-multicore" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="diferencia-con-la-cpu-multicore">
+<h3>¿Diferencia con la CPU multicore?<a class="headerlink" href="#diferencia-con-la-cpu-multicore" title="Permalink to this headline">#</a></h3>
 <img src="https://dl.dropboxusercontent.com/s/k11qub01w4nvksi/CPU_multicore.png?dl=0" heigth="500" width="500">
 <p><strong>GPU</strong></p>
 <img src="https://dl.dropboxusercontent.com/s/lw9kia12qhwp95r/GPU.png?dl=0" heigth="500" width="500"><div class="tip admonition">
 <p class="admonition-title">Observación</p>
 <p>Obsérvese en el dibujo anterior la diferencia en tamaño del caché en la CPU y GPU. También la unidad de control es más pequeña en la GPU.</p>
 </div>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Una máquina <em>quad core</em> soporta cuatro threads en cada <em>core</em>.</p>
-</div>
+</aside>
 <p>A diferencia de una máquina <em>multicore</em> o multi CPU’s con la habilidad de lanzar en un instante de tiempo unos cuantos <em>threads</em>, la GPU puede lanzar cientos o miles de threads en un instante siendo cada core <em>heavily multithreaded</em>. Sí hay restricciones en el número de threads que se pueden lanzar en un instante pues las tarjetas gráficas tienen diferentes características (modelo) y arquitecturas, pero la diferencia con la CPU es grande. Por ejemplo, la serie <strong>GT 200</strong> (2009) en un instante puede lanzar 30,720 threads con sus 240 <em>cores</em>. Ver <a class="reference external" href="https://en.wikipedia.org/wiki/GeForce_200_series">GeForce_200_series</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_Nvidia_graphics_processing_units">List of NVIDIA GPU’s</a>.</p>
 <p>Ver <a class="reference external" href="https://computer.howstuffworks.com/graphics-card1.htm">How Graphics Cards Work</a> y <a class="reference external" href="https://computer.howstuffworks.com/microprocessor.htm">How Microprocessors Work</a> para más información.</p>
-</div>
-<div class="section" id="otras-companias-producen-tarjetas-graficas">
-<h3>¿Otras compañías producen tarjetas gráficas?<a class="headerlink" href="#otras-companias-producen-tarjetas-graficas" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="otras-companias-producen-tarjetas-graficas">
+<h3>¿Otras compañías producen tarjetas gráficas?<a class="headerlink" href="#otras-companias-producen-tarjetas-graficas" title="Permalink to this headline">#</a></h3>
 <p>Sí, ver por ejemplo la lista de GPU’s de <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_AMD_graphics_processing_units">Advanced Micro Devices</a>.</p>
-</div>
-<div class="section" id="si-tengo-una-tarjeta-grafica-de-amd-puedo-correr-un-programa-de-cuda">
-<h3>¿Si tengo una tarjeta gráfica de AMD puedo correr un programa de CUDA?<a class="headerlink" href="#si-tengo-una-tarjeta-grafica-de-amd-puedo-correr-un-programa-de-cuda" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="si-tengo-una-tarjeta-grafica-de-amd-puedo-correr-un-programa-de-cuda">
+<h3>¿Si tengo una tarjeta gráfica de AMD puedo correr un programa de CUDA?<a class="headerlink" href="#si-tengo-una-tarjeta-grafica-de-amd-puedo-correr-un-programa-de-cuda" title="Permalink to this headline">#</a></h3>
 <p>No es posible pero algunas alternativas son:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.khronos.org/opencl/">OpenCl</a></p></li>
 <li><p><a class="reference external" href="https://www.openacc.org/about">OpenACC</a></p></li>
 </ul>
-</div>
-<div class="section" id="si-tengo-una-tarjeta-grafica-de-nvidia-un-poco-antigua-puedo-correr-un-programa-de-cuda">
-<h3>¿Si tengo una tarjeta gráfica de NVIDIA un poco antigua puedo correr un programa de CUDA?<a class="headerlink" href="#si-tengo-una-tarjeta-grafica-de-nvidia-un-poco-antigua-puedo-correr-un-programa-de-cuda" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="si-tengo-una-tarjeta-grafica-de-nvidia-un-poco-antigua-puedo-correr-un-programa-de-cuda">
+<h3>¿Si tengo una tarjeta gráfica de NVIDIA un poco antigua puedo correr un programa de CUDA?<a class="headerlink" href="#si-tengo-una-tarjeta-grafica-de-nvidia-un-poco-antigua-puedo-correr-un-programa-de-cuda" title="Permalink to this headline">#</a></h3>
 <p>Las GPU’s producidas por NVIDIA desde 2006 son capaces de correr programas basados en <em><strong>CUDA C</strong></em>. La cuestión sería revisar qué <em>compute capability</em> tiene tu tarjeta. Ver <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capabilities">Compute Capabilities</a> para las características que tienen las tarjetas más actuales.</p>
-</div>
-<div class="section" id="que-es-cuda-c">
-<h3>¿Qué es <em>CUDA C</em>?<a class="headerlink" href="#que-es-cuda-c" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="que-es-cuda-c">
+<h3>¿Qué es <em>CUDA C</em>?<a class="headerlink" href="#que-es-cuda-c" title="Permalink to this headline">#</a></h3>
 <p>Es una extensión al lenguaje <em>C</em> de programación en el que se utiliza una nueva sintaxis para procesamiento en la GPU. Contiene también una librería <em>runtime</em> que define funciones que se ejecutan desde el <em><strong>host</strong></em> por ejemplo para alojar y desalojar memoria en el <em><strong>device</strong></em>, transferir datos entre la memoria <em>host</em> y la memoria <em>device</em> o manejar múltiples <em>devices</em>. La librería <em>runtime</em> está hecha encima de una API de <em>C</em> de bajo nivel llamada <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-driver-api/index.html">NVIDIA CUDA Driver API</a> la cual es accesible desde el código. Para información de la API de la librería runtime ver <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/index.html">NVIDIA CUDA Runtime API</a>.</p>
 <div class="admonition-comentario admonition">
 <p class="admonition-title">Comentario</p>
 <p>La transferencia de datos entre la memoria del <em>host</em> a <em>device</em> o viceversa constituye un <em>bottleneck</em> fuerte.</p>
 </div>
-</div>
-<div class="section" id="a-que-se-refiere-la-terminologia-de-host-y-device">
-<h3>¿A qué se refiere la terminología de <em>host</em> y <em>device</em>?<a class="headerlink" href="#a-que-se-refiere-la-terminologia-de-host-y-device" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="a-que-se-refiere-la-terminologia-de-host-y-device">
+<h3>¿A qué se refiere la terminología de <em>host</em> y <em>device</em>?<a class="headerlink" href="#a-que-se-refiere-la-terminologia-de-host-y-device" title="Permalink to this headline">#</a></h3>
 <p><em>Host</em> es la máquina <em>multicore</em> CPU y <em>device</em> es la GPU. Una máquina puede tener múltiples GPU’s por lo que tendrá múltiples <em>devices</em>.</p>
-</div>
-<div class="section" id="tengo-una-tarjeta-nvidia-cuda-capable-que-debo-realizar-primero">
-<h3>Tengo una tarjeta NVIDIA CUDA <em>capable</em> ¿qué debo realizar primero?<a class="headerlink" href="#tengo-una-tarjeta-nvidia-cuda-capable-que-debo-realizar-primero" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="tengo-una-tarjeta-nvidia-cuda-capable-que-debo-realizar-primero">
+<h3>Tengo una tarjeta NVIDIA CUDA <em>capable</em> ¿qué debo realizar primero?<a class="headerlink" href="#tengo-una-tarjeta-nvidia-cuda-capable-que-debo-realizar-primero" title="Permalink to this headline">#</a></h3>
 <p>Realizar instalaciones dependiendo de tu sistema operativo. Ver <a class="reference external" href="https://github.com/palmoreck/programming-languages/tree/master/C/extensiones_a_C/CUDA/instalacion">instalación</a> donde además se encontrará información para instalación de <a class="reference external" href="https://github.com/NVIDIA/nvidia-docker">nvidia-docker</a>.</p>
-</div>
-<div class="section" id="instale-lo-necesario-y-al-ejecutar-en-la-terminal-nvcc-v-obtengo-la-version-como-puedo-probar-mi-instalacion">
-<h3>Instalé lo necesario y al ejecutar en la terminal <code class="docutils literal notranslate"><span class="pre">nvcc</span> <span class="pre">-V</span></code> obtengo la versión… ¿cómo puedo probar mi instalación?<a class="headerlink" href="#instale-lo-necesario-y-al-ejecutar-en-la-terminal-nvcc-v-obtengo-la-version-como-puedo-probar-mi-instalacion" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="instale-lo-necesario-y-al-ejecutar-en-la-terminal-nvcc-v-obtengo-la-version-como-puedo-probar-mi-instalacion">
+<h3>Instalé lo necesario y al ejecutar en la terminal <code class="docutils literal notranslate"><span class="pre">nvcc</span> <span class="pre">-V</span></code> obtengo la versión… ¿cómo puedo probar mi instalación?<a class="headerlink" href="#instale-lo-necesario-y-al-ejecutar-en-la-terminal-nvcc-v-obtengo-la-version-como-puedo-probar-mi-instalacion" title="Permalink to this headline">#</a></h3>
 <p>1)Obteniendo información del <em>NVIDIA driver</em> ejecutando en la terminal el comando <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1666,16 +1771,16 @@ Result = PASS
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="por-que-usar-cuda-y-cuda-c-o-mas-general-computo-en-la-gpu">
-<h3>¿Por qué usar CUDA y <em>CUDA-C</em> o más general cómputo en la GPU?<a class="headerlink" href="#por-que-usar-cuda-y-cuda-c-o-mas-general-computo-en-la-gpu" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="por-que-usar-cuda-y-cuda-c-o-mas-general-computo-en-la-gpu">
+<h3>¿Por qué usar CUDA y <em>CUDA-C</em> o más general cómputo en la GPU?<a class="headerlink" href="#por-que-usar-cuda-y-cuda-c-o-mas-general-computo-en-la-gpu" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>NVIDIA como se mencionó al inicio de la nota fue de las primeras compañías en utilizar la GPU para tareas no relacionadas con el área de gráficos, ha colaborado en el avance del conocimiento de las GPU’s y desarrollo de algoritmos y tarjetas gráficas. Otra compañía es <a class="reference external" href="https://en.wikipedia.org/wiki/Khronos_Group">Khronos_Group</a> por ejemplo, quien actualmente desarrolla <a class="reference external" href="https://www.khronos.org/opencl/">OpenCl</a>.</p></li>
 </ul>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><em>Deep learning</em> se ha utilizado para resolver problemas en <em>machine learning</em> típicos. Ejemplos de esto son la clasificación de imágenes, de sonidos o análisis de textos. Ver por ejemplo <a class="reference external" href="https://medium.com/&#64;michael.fire/practical-text-analysis-using-deep-learning-5fb0744efdf9">Practical text analysis using deep learning</a>.</p>
-</div>
+</aside>
 <ul class="simple">
 <li><p>El cómputo en la GPU constituye hoy en día una alternativa fuerte a la implementación de modelos de <em>machine learning</em> ampliamente utilizada por la comunidad científica, también para cómputo matricial y <em>deep learning</em>.</p></li>
 <li><p>Sí hay publicaciones científicas para la implementación de <em>deep learning</em> en las CPU’s, ver por ejemplo el <em>paper</em> reciente de <a class="reference external" href="https://www.cs.rice.edu/~as143/Papers/SLIDE_MLSys.pdf">SLIDE</a> cuyo repo de <em>github</em> es <a class="reference external" href="https://github.com/keroro824/HashingDeepLearning">HashingDeepLearning</a>. Tal <em>paper</em> plantea una discusión a realizar con la frase:</p></li>
@@ -1692,13 +1797,13 @@ Result = PASS
 <p class="admonition-title">Comentario</p>
 <p>Revisar también las entradas <a class="reference external" href="https://www.engadget.com/2020/03/03/rice-university-slide-cpu-gpu-machine-learning/">An algorithm could make CPUs a cheap way to train AI</a> y <a class="reference external" href="https://www.sciencedaily.com/releases/2020/03/200305135041.htm">Deep learning rethink overcomes major obstacle in AI industry</a>.</p>
 </div>
-</div>
-</div>
-<div class="section" id="cuda-c">
-<h2><a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/">CUDA-C</a><a class="headerlink" href="#cuda-c" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="cuda-c">
+<h2><a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/">CUDA-C</a><a class="headerlink" href="#cuda-c" title="Permalink to this headline">#</a></h2>
 <p>Consiste en extensiones al lenguaje C y en una <em>runtime library</em>.</p>
-<div class="section" id="kernel">
-<h3><em>Kernel</em><a class="headerlink" href="#kernel" title="Permalink to this headline">¶</a></h3>
+<section id="kernel">
+<h3><em>Kernel</em><a class="headerlink" href="#kernel" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>En <em>CUDA C</em> se define una función que se ejecuta en el <em><strong>device</strong></em> y que se le nombra <em><strong>kernel</strong></em>. El <em>kernel</em> inicia con la sintaxis:</p></li>
 </ul>
@@ -1721,9 +1826,9 @@ Result = PASS
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="ejemplo">
-<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> hello_world_simple.cu
@@ -1785,17 +1890,17 @@ nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall hello_world_si
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="bloques-de-threads">
-<h3>¿Bloques de threads?<a class="headerlink" href="#bloques-de-threads" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="bloques-de-threads">
+<h3>¿Bloques de threads?<a class="headerlink" href="#bloques-de-threads" title="Permalink to this headline">#</a></h3>
 <p>Los <em>CUDA threads</em> son divididos en <em>CUDA blocks</em> y éstos se encuentran en un <em>grid</em>. En el lanzamiento del <em>kernel</em> se debe especificar al hardware cuántos <em>CUDA blocks</em> tendrá nuestro <em>grid</em> y cuántos <em>CUDA threads</em> estarán en cada bloque.</p>
-</div>
-<div class="section" id="id1">
-<h3>Ejemplo<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
+</section>
+<section id="id1">
+<h3>Ejemplo<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><code class="docutils literal notranslate"><span class="pre">func&lt;&lt;&lt;2,3&gt;&gt;&gt;();</span></code> representa 2 bloques de 3 <em>threads</em> cada uno.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> hello_world_2.cu
@@ -1860,18 +1965,18 @@ Hello world! del bloque 1 del thread 2
 <li><p>Todos los <em>threads</em> de un bloque  ejecutan el <em>kernel</em> por lo que se tienen tantas copias del kernel como número de bloques sean lanzados. Esto es una muestra la GPU sigue el modelo  <em>Single Instruction Multiple Threads <a class="reference external" href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_threads">(SIMT)</a></em>.</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="grid-s-y-bloques-3-dimensionales">
-<h3>¿Grid’s y bloques 3-dimensionales?<a class="headerlink" href="#grid-s-y-bloques-3-dimensionales" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="grid-s-y-bloques-3-dimensionales">
+<h3>¿Grid’s y bloques 3-dimensionales?<a class="headerlink" href="#grid-s-y-bloques-3-dimensionales" title="Permalink to this headline">#</a></h3>
 <p>En el <em>device</em> podemos definir el <em>grid</em> de bloques y el bloque de <em>threads</em> utilizando el tipo de dato <code class="docutils literal notranslate"><span class="pre">dim3</span></code> el cual también es parte de <em>CUDA C</em>.</p>
-</div>
-<div class="section" id="id2">
-<h3>Ejemplo<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
+</section>
+<section id="id2">
+<h3>Ejemplo<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(1,2,1);</span></code> representa 2 bloques en el <em>grid</em>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(1,1,3);</span></code> representa 3 <em>threads</em> por bloque.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> hello_world_3.cu
@@ -1929,14 +2034,14 @@ Hello world! del cpu thread
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id3">
-<h3>Ejemplo<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
+</section>
+<section id="id3">
+<h3>Ejemplo<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(1,1,1);</span></code> representa 1 bloque en el <em>grid</em>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(1,3,1);</span></code> representa 3 <em>threads</em> por bloque.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> thread_idxs.cu
@@ -2001,14 +2106,14 @@ thread idx.z:0
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id4">
-<h3>Ejemplo<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
+</section>
+<section id="id4">
+<h3>Ejemplo<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(1,2,2);</span></code> representa 4 bloques en el <em>grid</em>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(1,1,1);</span></code> representa 1 <em>thread</em> por bloque.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> block_idxs.cu
@@ -2073,15 +2178,15 @@ blockIdx.z:1
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id5">
-<h3>Ejemplo<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id5">
+<h3>Ejemplo<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
 <p>Podemos usar la variable <code class="docutils literal notranslate"><span class="pre">blockDim</span></code> para cada coordenada <code class="docutils literal notranslate"><span class="pre">x,</span> <span class="pre">y</span></code> o <code class="docutils literal notranslate"><span class="pre">z</span></code> y obtener la dimensión de los bloques.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(2,2,2);</span></code> representa 8 bloques en el <em>grid</em>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(3,1,2);</span></code> representa 6 <em>threads</em> por bloque.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> block_dims.cu
@@ -2148,21 +2253,21 @@ blockDim.z:2
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="alojamiento-de-memoria-en-el-device">
-<h3>Alojamiento de memoria en el <em>device</em><a class="headerlink" href="#alojamiento-de-memoria-en-el-device" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="alojamiento-de-memoria-en-el-device">
+<h3>Alojamiento de memoria en el <em>device</em><a class="headerlink" href="#alojamiento-de-memoria-en-el-device" title="Permalink to this headline">#</a></h3>
 <p>Para alojar memoria en el <em>device</em> se utiliza el llamado a <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1g37d37965bfb4803b6d4e59ff26856356">cudaMalloc</a> y para transferir datos del <em>host</em> al <em>device</em> o viceversa se llama a la función <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1gc263dbe6574220cc776b45438fc351e8">cudaMemcpy</a> con respectivos parámetros como <code class="docutils literal notranslate"><span class="pre">cudaMemcpyHostToDevice</span></code> o <code class="docutils literal notranslate"><span class="pre">cudaMemcpyDeviceToHost</span></code>.</p>
 <p>Para desalojar memoria del <em>device</em> se utiliza el llamado a <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__MEMORY.html#group__CUDART__MEMORY_1ga042655cbbf3408f01061652a075e094">cudaFree</a>.</p>
-</div>
-<div class="section" id="id6">
-<h3>Ejemplo<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id6">
+<h3>Ejemplo<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
 <p><strong>N bloques de 1 thread</strong></p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(N,1,1);</span></code> representa N bloques en el <em>grid</em>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(1,1,1);</span></code> representa 1 <em>thread</em> por bloque.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;dimGrid,dimBlock&gt;&gt;&gt;</span></code> N bloques de 1 <em>thread</em>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> vector_sum.cu
@@ -2262,9 +2367,9 @@ nvcc -gencode arch=compute_37,code=sm_37 --compiler-options -Wall vector_sum.cu 
 <li><p>En el programa anterior se coloca en comentario que se asume que <span class="math notranslate nohighlight">\(N\)</span> el número de datos en el arreglo es menor al número de bloques que es posible lanzar. Esto como veremos más adelante es importante considerar pues aunque en un <em>device</em> se pueden lanzar muchos bloques y muchos <em>threads</em>, se tienen límites en el número de éstos que es posible lanzar.</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="perfilamiento-en-cuda">
-<h3>¿Perfilamiento en CUDA?<a class="headerlink" href="#perfilamiento-en-cuda" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="perfilamiento-en-cuda">
+<h3>¿Perfilamiento en CUDA?<a class="headerlink" href="#perfilamiento-en-cuda" title="Permalink to this headline">#</a></h3>
 <p>Al instalar el <em>CUDA toolkit</em> en sus máquinas se instala la línea de comando <a class="reference external" href="https://docs.nvidia.com/cuda/profiler-users-guide/index.html">nvprof</a> para perfilamiento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2320,12 +2425,12 @@ nvprof --normalized-time-unit s ./vector_sum.out
 </ul>
 </div>
 <p>En el ejemplo anterior se lanzaron <span class="math notranslate nohighlight">\(N\)</span> bloques con <span class="math notranslate nohighlight">\(1\)</span> <em>thread</em> cada uno y a continuación se lanza <span class="math notranslate nohighlight">\(1\)</span> bloque con <span class="math notranslate nohighlight">\(N\)</span> <em>threads</em>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimGrid(1,1,1);</span></code> representa 1 bloque en el <em>grid</em>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">dim3</span> <span class="pre">dimBlock(N,1,1);</span></code> representa N <em>threads</em> por bloque.</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;dimGrid,dimBlock&gt;&gt;&gt;</span></code> 1 bloque con N <em>threads</em>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> vector_sum_2.cu
@@ -2439,9 +2544,9 @@ Total CPU Page faults: 2
 <li><p>Al igual que antes, en el programa anterior se asume que <span class="math notranslate nohighlight">\(N\)</span> el número de datos en el arreglo es menor al número de <em>threads</em> que es posible lanzar. Esto como veremos más adelante es importante considerar pues aunque en el <em>device</em> se pueden lanzar muchos bloques y muchos <em>threads</em>, se tienen límites en el número de éstos que es posible lanzar.</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="tenemos-que-inicializar-los-datos-en-la-cpu-y-copiarlos-hacia-la-gpu">
-<h3>¿Tenemos que inicializar los datos en la CPU y copiarlos hacia la GPU?<a class="headerlink" href="#tenemos-que-inicializar-los-datos-en-la-cpu-y-copiarlos-hacia-la-gpu" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="tenemos-que-inicializar-los-datos-en-la-cpu-y-copiarlos-hacia-la-gpu">
+<h3>¿Tenemos que inicializar los datos en la CPU y copiarlos hacia la GPU?<a class="headerlink" href="#tenemos-que-inicializar-los-datos-en-la-cpu-y-copiarlos-hacia-la-gpu" title="Permalink to this headline">#</a></h3>
 <p>En realidad no tenemos que realizarlo para el ejemplo de <code class="docutils literal notranslate"><span class="pre">vector_sum_3.cu</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2553,10 +2658,10 @@ Total CPU Page faults: 1
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="arquitectura-de-una-gpu-y-limites-en-numero-de-threads-y-bloques-que-podemos-lanzar-en-el-kernel">
-<h2>Arquitectura de una GPU y límites en número de <em>threads</em> y bloques que podemos lanzar en el <em>kernel</em><a class="headerlink" href="#arquitectura-de-una-gpu-y-limites-en-numero-de-threads-y-bloques-que-podemos-lanzar-en-el-kernel" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="arquitectura-de-una-gpu-y-limites-en-numero-de-threads-y-bloques-que-podemos-lanzar-en-el-kernel">
+<h2>Arquitectura de una GPU y límites en número de <em>threads</em> y bloques que podemos lanzar en el <em>kernel</em><a class="headerlink" href="#arquitectura-de-una-gpu-y-limites-en-numero-de-threads-y-bloques-que-podemos-lanzar-en-el-kernel" title="Permalink to this headline">#</a></h2>
 <p>Un <em>device</em> está compuesto por arreglos de <strong>streaming multiprocessors SM’s</strong> (también denotados como MP’s) y en cada <em>SM</em> encontramos un número (determinado por la arquitectura del device) de <strong>streaming processors SP’s</strong> que comparten el caché y unidades de control (que están dentro de cada SM):</p>
 <img src="https://dl.dropboxusercontent.com/s/oxx55upoayfmliw/SMS_CUDA.png?dl=0" heigth="700" width="700">
 <p>Ver <a class="reference external" href="https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model">Hardware model: streamingmultiprocessor</a>.</p>
@@ -2572,8 +2677,8 @@ Total CPU Page faults: 1
 <li><p>Los bloques asignados a una SM comparten recursos (por ejemplo memoria) y su ejecución es independiente entre ellos, no es posible sincronizar al bloque 1 con el bloque 0. También no es posible sincronizar a los <em>threads</em> de diferentes SM’s pero sí es posible sincronizar a los <em>threads</em> dentro de un mismo bloque.</p></li>
 </ul>
 </div>
-<div class="section" id="que-otros-limites-puedo-encontrar-en-mi-s-device-s-de-mi-sistema">
-<h3>¿Qué otros límites puedo encontrar en mi(s) device(s) de mi sistema?<a class="headerlink" href="#que-otros-limites-puedo-encontrar-en-mi-s-device-s-de-mi-sistema" title="Permalink to this headline">¶</a></h3>
+<section id="que-otros-limites-puedo-encontrar-en-mi-s-device-s-de-mi-sistema">
+<h3>¿Qué otros límites puedo encontrar en mi(s) device(s) de mi sistema?<a class="headerlink" href="#que-otros-limites-puedo-encontrar-en-mi-s-device-s-de-mi-sistema" title="Permalink to this headline">#</a></h3>
 <p>Para responder lo anterior se puede utilizar el siguiente programa que está basado en <a class="reference external" href="https://devblogs.nvidia.com/how-query-device-properties-and-handle-errors-cuda-cc/">how-query-device-properties-and-handle-errors-cuda-cc</a> y <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-runtime-api/structcudaDeviceProp.html">cudaDeviceProp Struct Reference</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2676,9 +2781,9 @@ Max grid dimensions: (2147483647, 65535, 65535)
 </ul>
 <img src="https://dl.dropboxusercontent.com/s/yngq4r66i2nk5mg/warp_division.png?dl=0" heigth="600" width="600">
 </div>
-</div>
-<div class="section" id="grid-configuration-choices">
-<h3><em>Grid Configuration Choices</em>?<a class="headerlink" href="#grid-configuration-choices" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="grid-configuration-choices">
+<h3><em>Grid Configuration Choices</em>?<a class="headerlink" href="#grid-configuration-choices" title="Permalink to this headline">#</a></h3>
 <p>Los programas de <em>CUDA C</em> tienen la opción de elegir el número de <em>threads</em> y de <em>bloques</em> a ser lanzados. En la referencia <em>Parallel Computing for Data Science. With Examples in R, C++ and CUDA</em> de N. Matloff se enlistan algunas consideraciones para elegir tales parámetros:</p>
 <ul class="simple">
 <li><p><em>Given that scheduling is done on a warp basis, block size should be a multiple of the warp size (32).</em></p></li>
@@ -2688,9 +2793,9 @@ Max grid dimensions: (2147483647, 65535, 65535)
 <li><p><em>Two threads doing unrelated work, or the same work but with many if/elses, would cause a lot of thread divergence if they were in the same block. In some cases, it may be known in advance which threads will do the “ifs” and which will do the “elses”, in which case they should be placed in different blocks if possible.</em></p></li>
 <li><p><em>A commonly-cited rule of thumb is to have between <span class="math notranslate nohighlight">\(128\)</span> and <span class="math notranslate nohighlight">\(256\)</span> <em>threads</em> per block.</em></p></li>
 </ul>
-</div>
-<div class="section" id="ejemplo-regla-compuesta-del-rectangulo">
-<h3>Ejemplo regla compuesta del rectángulo<a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="ejemplo-regla-compuesta-del-rectangulo">
+<h3>Ejemplo regla compuesta del rectángulo<a class="headerlink" href="#ejemplo-regla-compuesta-del-rectangulo" title="Permalink to this headline">#</a></h3>
 <p>En el uso de CUDA se recomienda que:</p>
 <ul class="simple">
 <li><p><em>Users</em> escriban código de <em>CUDA C</em> simple.</p></li>
@@ -3164,10 +3269,10 @@ Tiempo de cálculo en la gpu 0.00024
 </div>
 </div>
 <p><strong>Y podemos no utilizar el ciclo <em>for</em></strong>.</p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Para una visualización sobre la construcción del índice en el kernel utilizando <code class="docutils literal notranslate"><span class="pre">blockDim.x*blockIdx.x</span> <span class="pre">+</span> <span class="pre">threadIdx.x</span></code> ver <a class="reference external" href="https://devblogs.nvidia.com/even-easier-introduction-cuda/">An Even Easier Introduction to CUDA</a>.</p>
-</div>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> Rcf5.cu
@@ -3870,18 +3975,18 @@ Error: an illegal memory access was encountered
 <p class="admonition-title">Ejercicio</p>
 <p>Implementar la regla de Simpson compuesta con <em>CUDA-C</em> en una máquina de AWS con las mismas características que la que se presenta en esta nota y medir tiempo de ejecución.</p>
 </div>
-</div>
-</div>
-<div class="section" id="cupy">
-<h2><a class="reference external" href="https://github.com/cupy/cupy">CuPy</a><a class="headerlink" href="#cupy" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="cupy">
+<h2><a class="reference external" href="https://github.com/cupy/cupy">CuPy</a><a class="headerlink" href="#cupy" title="Permalink to this headline">#</a></h2>
 <p><em>NumPy-like API accelerated with CUDA. CuPy is an implementation of NumPy-compatible multi-dimensional array on CUDA. CuPy consists of the core multi-dimensional array class, cupy.ndarray, and many functions on it. It supports a subset of numpy.ndarray interface.</em></p>
-<div class="margin sidebar">
+<aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Ver <a class="reference external" href="https://docs-cupy.chainer.org/en/stable/tutorial/basic.html">Basics of CuPy</a>.</p>
-</div>
+</aside>
 <p>Un subconjunto de funciones del paquete <em>NumPy</em> de <em>Python</em> están implementadas en <em>CuPy</em> vía la clase <a class="reference external" href="https://docs-cupy.chainer.org/en/stable/reference/generated/cupy.ndarray.html#cupy.ndarray">cupy.ndarray</a> la cual es compatible en la GPU con la clase <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">numpy.ndarray</a> que utiliza la CPU.</p>
-<div class="section" id="arrays">
-<h3><em>Arrays</em><a class="headerlink" href="#arrays" title="Permalink to this headline">¶</a></h3>
+<section id="arrays">
+<h3><em>Arrays</em><a class="headerlink" href="#arrays" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
@@ -4105,12 +4210,12 @@ segundo renglón: [4 5 6]
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="operaciones-en-el-algebra-lineal-con-cupy">
-<h3>Operaciones en el álgebra lineal con CuPy<a class="headerlink" href="#operaciones-en-el-algebra-lineal-con-cupy" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="producto-escalar-vector-suma-y-punto-entre-vectores">
-<h3>Producto escalar-vector, suma y punto entre vectores<a class="headerlink" href="#producto-escalar-vector-suma-y-punto-entre-vectores" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="operaciones-en-el-algebra-lineal-con-cupy">
+<h3>Operaciones en el álgebra lineal con CuPy<a class="headerlink" href="#operaciones-en-el-algebra-lineal-con-cupy" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="producto-escalar-vector-suma-y-punto-entre-vectores">
+<h3>Producto escalar-vector, suma y punto entre vectores<a class="headerlink" href="#producto-escalar-vector-suma-y-punto-entre-vectores" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v1</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
@@ -4156,9 +4261,9 @@ segundo renglón: [4 5 6]
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="producto-matriz-vector-point-wise">
-<h3>Producto matriz vector <em>point-wise</em><a class="headerlink" href="#producto-matriz-vector-point-wise" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="producto-matriz-vector-point-wise">
+<h3>Producto matriz vector <em>point-wise</em><a class="headerlink" href="#producto-matriz-vector-point-wise" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
@@ -4203,9 +4308,9 @@ segundo renglón: [4 5 6]
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="producto-matriz-vector">
-<h3>Producto matriz-vector<a class="headerlink" href="#producto-matriz-vector" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="producto-matriz-vector">
+<h3>Producto matriz-vector<a class="headerlink" href="#producto-matriz-vector" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
@@ -4318,9 +4423,9 @@ segundo renglón: [4 5 6]
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="suma-y-producto-matriz-matriz-pointwise">
-<h3>Suma y producto matriz-matriz pointwise<a class="headerlink" href="#suma-y-producto-matriz-matriz-pointwise" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="suma-y-producto-matriz-matriz-pointwise">
+<h3>Suma y producto matriz-matriz pointwise<a class="headerlink" href="#suma-y-producto-matriz-matriz-pointwise" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
@@ -4383,9 +4488,9 @@ segundo renglón: [4 5 6]
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="producto-matriz-matriz">
-<h3>Producto matriz-matriz<a class="headerlink" href="#producto-matriz-matriz" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="producto-matriz-matriz">
+<h3>Producto matriz-matriz<a class="headerlink" href="#producto-matriz-matriz" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
@@ -4432,12 +4537,12 @@ segundo renglón: [4 5 6]
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="algunas-operaciones-basicas-del-algebra-lineal">
-<h3>Algunas operaciones básicas del álgebra lineal<a class="headerlink" href="#algunas-operaciones-basicas-del-algebra-lineal" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="norma-de-vectores">
-<h3>Norma de vectores<a class="headerlink" href="#norma-de-vectores" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="algunas-operaciones-basicas-del-algebra-lineal">
+<h3>Algunas operaciones básicas del álgebra lineal<a class="headerlink" href="#algunas-operaciones-basicas-del-algebra-lineal" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="norma-de-vectores">
+<h3>Norma de vectores<a class="headerlink" href="#norma-de-vectores" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
@@ -4463,9 +4568,9 @@ segundo renglón: [4 5 6]
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="norma-de-matrices">
-<h3>Norma de matrices<a class="headerlink" href="#norma-de-matrices" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="norma-de-matrices">
+<h3>Norma de matrices<a class="headerlink" href="#norma-de-matrices" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
@@ -4493,9 +4598,9 @@ segundo renglón: [4 5 6]
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="resolver-sistema-de-ecuaciones-lineales">
-<h3>Resolver sistema de ecuaciones lineales<a class="headerlink" href="#resolver-sistema-de-ecuaciones-lineales" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="resolver-sistema-de-ecuaciones-lineales">
+<h3>Resolver sistema de ecuaciones lineales<a class="headerlink" href="#resolver-sistema-de-ecuaciones-lineales" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
@@ -4559,9 +4664,9 @@ Ax:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="transferencia-de-datos-del-host-al-device-o-viceversa">
-<h3>Transferencia de datos del <em>host</em> al <em>device</em> o viceversa<a class="headerlink" href="#transferencia-de-datos-del-host-al-device-o-viceversa" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="transferencia-de-datos-del-host-al-device-o-viceversa">
+<h3>Transferencia de datos del <em>host</em> al <em>device</em> o viceversa<a class="headerlink" href="#transferencia-de-datos-del-host-al-device-o-viceversa" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -4659,9 +4764,9 @@ Ax:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="funcion-ejecutada-dependiendo-de-que-sean-array-s-de-numpy-o-cupy">
-<h3>Función ejecutada dependiendo de que sean <em>array</em>’s de <em>NumPy</em> o <em>CuPy</em><a class="headerlink" href="#funcion-ejecutada-dependiendo-de-que-sean-array-s-de-numpy-o-cupy" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="funcion-ejecutada-dependiendo-de-que-sean-array-s-de-numpy-o-cupy">
+<h3>Función ejecutada dependiendo de que sean <em>array</em>’s de <em>NumPy</em> o <em>CuPy</em><a class="headerlink" href="#funcion-ejecutada-dependiendo-de-que-sean-array-s-de-numpy-o-cupy" title="Permalink to this headline">#</a></h3>
 <p>Es posible ejecutar una función dependiendo de sus argumentos con el módulo <a class="reference external" href="https://docs-cupy.chainer.org/en/stable/reference/generated/cupy.get_array_module.html#cupy.get_array_module">get_array_module</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4696,9 +4801,9 @@ Ax:
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id7">
-<h3>Ejemplo regla compuesta del rectángulo<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id7">
+<h3>Ejemplo regla compuesta del rectángulo<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_cp</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">cp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
@@ -4975,10 +5080,10 @@ Ax:
 <p class="admonition-title">Ejercicio</p>
 <p>Implementar la regla de Simpson compuesta con <em>CuPy</em> en una máquina de AWS con las mismas características que la que se presenta en esta nota y medir tiempo de ejecución.</p>
 </div>
-</div>
-</div>
-<div class="section" id="referencias-de-interes">
-<h2>Referencias de interés<a class="headerlink" href="#referencias-de-interes" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="referencias-de-interes">
+<h2>Referencias de interés<a class="headerlink" href="#referencias-de-interes" title="Permalink to this headline">#</a></h2>
 <p>Para más sobre <em>Unified Memory</em> revisar:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://devblogs.nvidia.com/even-easier-introduction-cuda/">Even easier introduction to cuda</a></p></li>
@@ -5046,8 +5151,8 @@ Ax:
 <li><p>B. W. Kernighan, D. M. Ritchie, The C Programming Language, Prentice Hall Software Series, 1988</p></li>
 <li><p><a class="reference external" href="https://github.com/palmoreck/programming-languages/tree/master/C/extensiones_a_C/CUDA">C/extensiones_a_C/CUDA/</a></p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -5071,9 +5176,11 @@ Ax:
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="../5.4/Computo_en_paralelo_usando_CPUS_en_SMC.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -5089,24 +5196,28 @@ Ax:
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Erick Palacios Moreno<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Erick Palacios Moreno<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
