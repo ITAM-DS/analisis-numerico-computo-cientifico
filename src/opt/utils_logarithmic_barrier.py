@@ -6,7 +6,7 @@ def log_barrier_aux_eval_constraints(eval_f_const_inequality):
     Auxiliary function for evaluation of constraint inequalities
     in logarithmic barrier
     """
-    #get values that are nonnegative through indexes
+    #get values that are nonpositive through indexes
     idx_zeros = np.logical_and(eval_f_const_inequality < np.nextafter(0,1),
                                eval_f_const_inequality > -np.nextafter(0,1))
     idx_negative = eval_f_const_inequality < 0
