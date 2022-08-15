@@ -14,6 +14,8 @@ En este repositorio encuentran el contenido para los cursos de **optimización**
 
 ### Dar click en el siguiente botón para unirse\* al chat del curso de optimización 2022 en [gitter](https://gitter.im/): [![Gitter](https://badges.gitter.im/optimizacion-2-2022/community.svg)](https://gitter.im/optimizacion-2022/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+\***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
+
 ---
 
 ## Optimización avanzada
@@ -23,9 +25,6 @@ En este repositorio encuentran el contenido para los cursos de **optimización**
 ### En [opt](https://analisis-numerico-computo-cientifico.readthedocs.io/) se obtiene documentación de un paquete de *Python* que sirve de apoyo para los ejemplos de las notas.
 
 ### En [pres-opt-2](https://hackmd.io/@palmoreck/SklS4hhAD#/) encuentran una presentación de introducción al curso de optimización avanzada 2021.
-
-
-\***Se puede hacer el registro con su cuenta de [github](https://github.com/)**.
 
 Dentro del directorio [deployments/minikube/hostpath_pv/](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/main/deployments/minikube/hostpath_pv) encontrarán archivos de configuración `.yaml` para despliegue de servicios y pipelines usando [minikube](https://minikube.sigs.k8s.io/docs/), [kubeflow](https://github.com/kubeflow/kubeflow) y [kale](https://github.com/kubeflow-kale/kale).
 
