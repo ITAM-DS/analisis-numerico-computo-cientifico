@@ -14,10 +14,11 @@ Las clases son los días miércoles.
 
 | Semanas   | Tema                                                              |
 | :--------:|:-----------------------------------------------------------------:|
-| Semana 1 ( 8 - 12 de agosto) | Presentación <br/> Aritmética de punto flotante | 
+| Semana 1 ( 8 - 12 de agosto) | Presentación <br/> Aritmética de punto flotante |
+| Semana 2 ( 15 - 19 de agosto) | Normas vectoriales <br/> Normas matriciales |
+| Semana 3 ( 22 - 26 de agosto) | Condición de un problema <br/> Estabilidad de un algoritmo |
 
 Total de clases: "". Total de número de horas: "" hrs.
-
 
 
 [Objetivo, descripción, lista de ejemplos para proyecto final](proyecto_final)
