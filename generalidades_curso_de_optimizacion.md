@@ -49,7 +49,7 @@ Se realizarán dos prácticas por equipos (quiénes y cuántos integrantes se de
 
 Para las prácticas se utilizarán:
 
-* La organización [optimizacion-<>-gh-classroom]() de *github classroom* y tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, *issues*, *milestones*, *projects*).
+* La organización [optimizacion-2022-gh-classroom](https://github.com/optimizacion-2022-gh-classroom) de *github classroom* y tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, *issues*, *milestones*, *projects*).
 
 * git/github para la organización de proyectos. Ver por ejemplo [video para crear proyectos en github](https://youtu.be/z4Xpif7HI04)
 
@@ -112,3 +112,4 @@ Ustedes eligen los capítulos a realizar y también las tareas extras que les pi
 
 **Documentar sus referencias, fuentes, colaboraciones y material que utilizan para resolver sus exámenes, prácticas o proyectos.**
 
+**Solicitar en dirección escolar que envién un correo al prof. para justificantes médicos y que se dé extensión de fechas a entregas de prácticas o trabajos**.
