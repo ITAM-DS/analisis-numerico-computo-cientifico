@@ -95,7 +95,7 @@ Todas las personas de un equipo deben participar en la realización del proyecto
 
 Los ejercicios y preguntas de programación que están en las notas ayudan a subir la calificación final. Son entregas que se tomarán como extra.
 
-Para obtener el porcentaje extra deben entregar en un repositorio de github debajo de la organización del curso:
+Para obtener el porcentaje extra deben **realizar participación regular** y entregar en un repositorio de github debajo de la organización del curso alguna de las dos opciones siguientes:
 
 A) los ejercicios y preguntas que requieran programación de dos de los tres capítulos del libro 1, 2 y 3 incluyendo la nota sobre programación lineal 4.1.
 
@@ -112,4 +112,6 @@ Ustedes eligen los capítulos a realizar y también las tareas extras que les pi
 # Sobre lo que siempre deben realizar
 
 **Documentar sus referencias, fuentes, colaboraciones y material que utilizan para resolver sus exámenes, prácticas o proyectos.**
+
+**Para entregas extemporáneas: solicitar en dirección escolar que envién un correo al prof. para justificantes médicos y que se dé extensión de fechas a entregas de prácticas o trabajos**.
 
