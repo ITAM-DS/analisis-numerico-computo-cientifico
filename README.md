@@ -37,3 +37,13 @@ Total de clases: "". Total de número de horas: "" hrs.
 10 de agosto
 
 Revisamos ejemplos de [1.computo_cientifico/1.2/Sistema_de_punto_flotante](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.2/Sistema_de_punto_flotante.html) y en clase se hizo el ejercicio de aritmética al final de la nota. También se habló sobre los diferentes recursos utilizados: organización de Github para entrega de prácticas, AWS Academy, gitter, imágenes de docker. 
+
+## Clase 3
+
+"" de ""
+
+## Clase 4
+
+17 de agosto
+
+Finalizamos ejemplo de aritmética en punto flotante de [1.computo_cientifico/1.2/Sistema_de_punto_flotante](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.2/Sistema_de_punto_flotante.html). Realizamos *troubleshooting* de AWS Academy.
