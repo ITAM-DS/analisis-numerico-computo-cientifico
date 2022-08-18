@@ -87,7 +87,7 @@ Todas las personas de un equipo deben participar en la realización del proyecto
 
 Los ejercicios y preguntas de programación que están en las notas ayudan a subir la calificación final. Son entregas que se tomarán como extra.
 
-Para obtener el porcentaje extra deben entregar en un repositorio de github debajo de la organización del curso:
+Para obtener el porcentaje extra deben **realizar participación regular** y entregar en un repositorio de github debajo de la organización del curso alguna de las dos opciones siguientes:
 
 A) los ejercicios y preguntas que requieran programación de dos de los tres capítulos del libro 4, 5 y 6.
 
@@ -97,7 +97,6 @@ B) los ejercicios y preguntas que requieran programación de uno de los tres del
 
 Ustedes eligen los capítulos a realizar. Las fechas de entrega para ejercicios y preguntas de los capítulos son una semana después que se finalice en clase el capítulo en cuestión. La fecha de entrega para los ensayos es hasta dos semanas antes de finalizar el semestre.
 
-
 # Sobre lo que nunca deben realizar
 
 **Copiar en un examen/tarea/trabajo/entrega pues se pondrá cero en el mismo. Si vuelve a repetirse la situación se le notificará a dirección escolar para realizar la anotación correspondiente en su expediente.**
@@ -106,3 +105,4 @@ Ustedes eligen los capítulos a realizar. Las fechas de entrega para ejercicios 
 
 **Documentar sus referencias, fuentes, colaboraciones y material que utilizan para resolver sus exámenes, prácticas o proyectos.**
 
+**Para entregas extemporáneas: solicitar en dirección escolar que envién un correo al prof. para justificantes médicos y que se dé extensión de fechas a entregas de prácticas o trabajos**.
