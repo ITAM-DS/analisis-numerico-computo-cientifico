@@ -46,7 +46,7 @@ Para las prácticas se utilizarán:
 
 * git/github para la organización de proyectos. Ver por ejemplo [video para crear proyectos en github](https://youtu.be/z4Xpif7HI04)
 
-* AWS.
+* AWS, únicamente será obligatorio el uso del servicio EC2.
 
 * docker.
 
@@ -69,7 +69,7 @@ Para el proyecto final se utilizará:
 
 * git/github para la organización de proyectos. Ver por ejemplo [video para crear proyectos en github](https://youtu.be/z4Xpif7HI04)
 
-* AWS.
+* AWS, únicamente será obligatorio el uso del servicio EC2.
 
 * docker.
 
