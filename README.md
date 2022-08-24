@@ -47,3 +47,14 @@ Revisamos ejemplos de [1.computo_cientifico/1.2/Sistema_de_punto_flotante](https
 17 de agosto
 
 Finalizamos ejemplo de aritmética en punto flotante de [1.computo_cientifico/1.2/Sistema_de_punto_flotante](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.2/Sistema_de_punto_flotante.html). Realizamos *troubleshooting* de AWS Academy.
+
+
+## Clase 5
+
+"" de ""
+
+## Clase 6
+
+24 de agosto
+
+Finalizamos ejercicios de [1.computo_cientifico/1.3/Normas_vectoriales_y_matriciales](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html)
