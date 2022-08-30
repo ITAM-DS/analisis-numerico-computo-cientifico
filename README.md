@@ -33,7 +33,7 @@ Total de clases: "". Total de número de horas: "" hrs.
 
 08 de agosto
 
-Revisamos los conceptos fundamentales del sistema de punto flotante
+Hicimos la presentación del curso. Revisamos los conceptos fundamentales del sistema de punto flotante [1.computo_cientifico/1.2/Sistema_de_punto_flotante.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.2/Sistema_de_punto_flotante.html)
 
 ## Clase 2
 
@@ -43,7 +43,9 @@ Revisamos ejemplos de [1.computo_cientifico/1.2/Sistema_de_punto_flotante](https
 
 ## Clase 3
 
-"" de ""
+15 de agosto
+
+Discutimos el concepto de norma en un espacio vectorial, construimos las distintas normas vecoriales y discutimos las normas matriciales inducidas [1.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html)
 
 ## Clase 4
 
