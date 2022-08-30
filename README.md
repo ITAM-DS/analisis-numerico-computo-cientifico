@@ -17,6 +17,7 @@ Las clases son los días miércoles.
 | Semana 1 ( 8 - 12 de agosto) | Presentación <br/> Aritmética de punto flotante |
 | Semana 2 ( 15 - 19 de agosto) | Normas vectoriales <br/> Normas matriciales |
 | Semana 3 ( 22 - 26 de agosto) | Condición de un problema <br/> Estabilidad de un algoritmo |
+| Semana 3 ( 29 de ago - 2 de sep) | Funciones, continuidad y derivadas |
 
 Total de clases: "". Total de número de horas: "" hrs.
 
@@ -30,7 +31,9 @@ Total de clases: "". Total de número de horas: "" hrs.
 
 ## Clase 1
 
-"" de ""
+08 de agosto
+
+Revisamos los conceptos fundamentales del sistema de punto flotante
 
 ## Clase 2
 
@@ -51,10 +54,19 @@ Finalizamos ejemplo de aritmética en punto flotante de [1.computo_cientifico/1.
 
 ## Clase 5
 
-"" de ""
+22 de agosto
+
+Discutimos los conceptos: condición de un problema y de estabilidad de un algoritmo. [1.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html)
 
 ## Clase 6
 
 24 de agosto
 
 Finalizamos ejercicios de [1.computo_cientifico/1.3/Normas_vectoriales_y_matriciales](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.3/Normas_vectoriales_y_matriciales.html)
+
+## Clase 7
+
+29 de agosto
+
+Discutimos las definiciones de conjuntos abiertos y cerradura. Además, las nociones de funciones continuas y las construcciones de las derivadas y su significado geométrico. Revisamos la regla de la cadena e hicimos algunos ejemplos. Seguimos las notas [1.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html)
+
