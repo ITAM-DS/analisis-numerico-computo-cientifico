@@ -72,3 +72,8 @@ Finalizamos ejercicios de [1.computo_cientifico/1.3/Normas_vectoriales_y_matrici
 
 Discutimos las definiciones de conjuntos abiertos y cerradura. Además, las nociones de funciones continuas y las construcciones de las derivadas y su significado geométrico. Revisamos la regla de la cadena e hicimos algunos ejemplos. Seguimos las notas [1.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.5/Definicion_de_funcion_continuidad_derivada.html)
 
+## Clase 8
+
+31 de agosto
+
+Revisamos ejemplo de polinomio de Wilkinson en el contexto de la nota de [1.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html)
