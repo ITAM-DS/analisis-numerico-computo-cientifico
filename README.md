@@ -17,7 +17,8 @@ Las clases son los días miércoles.
 | Semana 1 ( 8 - 12 de agosto) | Presentación <br/> Aritmética de punto flotante |
 | Semana 2 ( 15 - 19 de agosto) | Normas vectoriales <br/> Normas matriciales |
 | Semana 3 ( 22 - 26 de agosto) | Condición de un problema <br/> Estabilidad de un algoritmo |
-| Semana 3 ( 29 de ago - 2 de sep) | Funciones, continuidad y derivadas |
+| Semana 4 ( 29 de ago - 2 de sep) | Funciones, continuidad y derivadas |
+| Semana 5 ( 5 - 9 de sep) | Polinomios de Taylor<br/> y diferenciación numérica |
 
 Total de clases: "". Total de número de horas: "" hrs.
 
@@ -77,3 +78,9 @@ Discutimos las definiciones de conjuntos abiertos y cerradura. Además, las noci
 31 de agosto
 
 Revisamos ejemplo de polinomio de Wilkinson en el contexto de la nota de [1.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.4/Condicion_de_un_problema_y_estabilidad_de_un_algoritmo.html)
+
+## Clase 9
+
+5 de septiembre
+
+Discutimos el Teorema de Taylor y su aplicación en aproximación de funciones y diferenciación numérica. Deducimos las fórmulas de diferencias finitas para la aproximación de la primera y segunda derivadas, [1.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html#analisis-del-error-por-redondeo-y-truncamiento-en-la-aproximacion-por-diferencias-finitas-hacia-delante](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html#analisis-del-error-por-redondeo-y-truncamiento-en-la-aproximacion-por-diferencias-finitas-hacia-delante)
