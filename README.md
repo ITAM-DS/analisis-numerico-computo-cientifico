@@ -84,3 +84,9 @@ Revisamos ejemplo de polinomio de Wilkinson en el contexto de la nota de [1.comp
 5 de septiembre
 
 Discutimos el Teorema de Taylor y su aplicación en aproximación de funciones y diferenciación numérica. Deducimos las fórmulas de diferencias finitas para la aproximación de la primera y segunda derivadas, [1.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html)
+
+## Clase 10
+
+7 de septiembre
+
+Revisión de ejemplos numéricos en [1.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html) y uso de sympy para verificar expresiones simbólicas de derivadas.
