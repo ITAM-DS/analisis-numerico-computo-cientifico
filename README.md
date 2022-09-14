@@ -19,6 +19,8 @@ Las clases son los días miércoles.
 | Semana 3 ( 22 - 26 de agosto) | Condición de un problema <br/> Estabilidad de un algoritmo |
 | Semana 4 ( 29 de ago - 2 de sep) | Funciones, continuidad y derivadas |
 | Semana 5 ( 5 - 9 de sep) | Polinomios de Taylor<br/> y diferenciación numérica |
+| Semana 6 ( 12 - 16 de sep) | Integración numérica |
+
 
 Total de clases: "". Total de número de horas: "" hrs.
 
@@ -90,3 +92,11 @@ Discutimos el Teorema de Taylor y su aplicación en aproximación de funciones y
 7 de septiembre
 
 Revisión de ejemplos numéricos en [1.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.6/Polinomios_de_Taylor_y_diferenciacion_numerica.html) y uso de sympy para verificar expresiones simbólicas de derivadas.
+
+## Clase 11
+
+12 de septiembre
+
+Revisamos brevemente el concepto de la integral definida y las distintas estrategias de integración numérica: regla del paralelogramo, regla del trapecio, regla de Simpson. Además discutimos brevemente la integración por el método de Monte Carlo [1.computo_cientifico/1.7/Integracion_numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.7/Integracion_numerica.html)
+
+
