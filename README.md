@@ -99,4 +99,9 @@ Revisión de ejemplos numéricos en [1.computo_cientifico/1.6/Polinomios_de_Tayl
 
 Revisamos brevemente el concepto de la integral definida y las distintas estrategias de integración numérica: regla del paralelogramo, regla del trapecio, regla de Simpson. Además discutimos brevemente la integración por el método de Monte Carlo [1.computo_cientifico/1.7/Integracion_numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.7/Integracion_numerica.html)
 
+## Clase 12
 
+14 de septiembre
+
+Revisión de programas en Python para aproximación de integrales definidas en [1.computo_cientifico/1.7/Integracion_numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.7/Integracion_numerica.html) por Newton Cotes y Monte Carlo.
+Revisión de Github Actions en [example-github-actions](https://github.com/palmoreck/example-github-actions)
