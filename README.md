@@ -105,3 +105,16 @@ Revisamos brevemente el concepto de la integral definida y las distintas estrate
 
 Revisión de programas en Python para aproximación de integrales definidas en [1.computo_cientifico/1.7/Integracion_numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.7/Integracion_numerica.html) por Newton Cotes y Monte Carlo.
 Revisión de Github Actions en [example-github-actions](https://github.com/palmoreck/example-github-actions)
+
+## Clase 13
+
+19 de septiembre
+
+## Clase 14
+
+21 de septiembre
+
+Finalizamos [1.computo_cientifico/1.7/Integracion_numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.7/Integracion_numerica.html)
+
+Iniciamos con transformaciones de Gauss en [2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html)
+
