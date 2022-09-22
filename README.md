@@ -20,8 +20,8 @@ Las clases son los días miércoles.
 | Semana 4 ( 29 de ago - 2 de sep) | Funciones, continuidad y derivadas |
 | Semana 5 ( 5 - 9 de sep) | Polinomios de Taylor<br/> y diferenciación numérica |
 | Semana 6 ( 12 - 16 de sep) | Integración numérica |
-| Semana 7 ( 19 - 23 de sep) | Álgebra Lineal numérica <br/> transformaciones de Gauss |
-| Semana 7 ( 19 - 23 de sep) | Álgebra Lineal numérica <br/>  |
+| Semana 7 ( 19 - 23 de sep) | Álgebra Lineal numérica: <br/> transformaciones de Gauss |
+| Semana 8 ( 26 - 30 de sep) | Álgebra Lineal numérica: <br/>  |
 
 
 Total de clases: "". Total de número de horas: "" hrs.
