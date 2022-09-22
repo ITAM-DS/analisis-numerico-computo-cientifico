@@ -20,9 +20,9 @@ El curso se apoya de herramientas de software como:
 
 ## Calificación
 
-|Exámenes(2)| Prácticas(2)|Proyecto final|
+|Exámenes(3)| Prácticas(2)|Proyecto final|
 |:---:|:---:|:---:|
-|15|15|40|
+|10|15|40|
 
 ### Exámenes
 
@@ -30,8 +30,9 @@ Se tendrán 2 exámenes de teoría que evaluarán los siguientes temas:
 
 |Módulo| Puntos| Tipo|
 |:---:|:---:|:---:|
-|Temas del cómputo científico y del álgebra lineal numérica|15|Teórico|
-|Temas de optimización convexa y ecuaciones no lineales|15|Teórico|
+|Temas del cómputo científico|10|Teórico|
+|Temas de álgebra lineal numérica|10|Teórico|
+|Temas de optimización convexa y ecuaciones no lineales|10|Teórico|
 
 
 Los exámenes de teoría se realizan de forma individual y las preguntas de los mismos se basan en las preguntas de comprehensión de los temas indicados. 
