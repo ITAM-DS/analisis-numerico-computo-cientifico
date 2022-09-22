@@ -20,6 +20,8 @@ Las clases son los días miércoles.
 | Semana 4 ( 29 de ago - 2 de sep) | Funciones, continuidad y derivadas |
 | Semana 5 ( 5 - 9 de sep) | Polinomios de Taylor<br/> y diferenciación numérica |
 | Semana 6 ( 12 - 16 de sep) | Integración numérica |
+| Semana 7 ( 19 - 23 de sep) | Álgebra Lineal numérica <br/> transformaciones de Gauss |
+| Semana 7 ( 19 - 23 de sep) | Álgebra Lineal numérica <br/>  |
 
 
 Total de clases: "". Total de número de horas: "" hrs.
@@ -109,6 +111,8 @@ Revisión de Github Actions en [example-github-actions](https://github.com/palmo
 ## Clase 13
 
 19 de septiembre
+
+Revisamos los conceptos básicos del álgebra lineal numérica. Discutimos aplicaciones de matrices en distintos contextos. Revisamos las transformaciones de Gauss, pivoteo y descomposición LU. Primera parte de [2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html)
 
 ## Clase 14
 
