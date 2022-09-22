@@ -22,11 +22,11 @@ El curso se apoya de herramientas de software como:
 
 |Exámenes(3)| Prácticas(2)|Proyecto final|
 |:---:|:---:|:---:|
-|3*10=30|2*15=30|40|
+|30|30|40|
 
 ### Exámenes
 
-Se tendrán 2 exámenes de teoría que evaluarán los siguientes temas:
+Se tendrán 3 exámenes de teoría que evaluarán los siguientes temas:
 
 |Módulo| Puntos| Tipo| Fecha |
 |:---:|:---:|:---:|:---:|
