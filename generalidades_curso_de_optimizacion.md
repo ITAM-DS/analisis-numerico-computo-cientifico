@@ -22,7 +22,7 @@ El curso se apoya de herramientas de software como:
 
 |Exámenes(3)| Prácticas(2)|Proyecto final|
 |:---:|:---:|:---:|
-|10|15|40|
+|3*10=30|2*15=30|40|
 
 ### Exámenes
 
