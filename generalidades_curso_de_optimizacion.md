@@ -28,12 +28,13 @@ El curso se apoya de herramientas de software como:
 
 Se tendrán 2 exámenes de teoría que evaluarán los siguientes temas:
 
-|Módulo| Puntos| Tipo|
-|:---:|:---:|:---:|
-|Temas del cómputo científico|10|Teórico|
-|Temas de álgebra lineal numérica|10|Teórico|
-|Temas de optimización convexa y ecuaciones no lineales|10|Teórico|
+|Módulo| Puntos| Tipo| Fecha |
+|:---:|:---:|:---:|:---:|
+|Temas del cómputo científico|10|Teórico| 03 de octubre|
+|Temas de álgebra lineal numérica|10|Teórico| 31 de octubre* |
+|Temas de optimización convexa y ecuaciones no lineales|10|Teórico| 28 de noviembre* |
 
+* Fechas por confirmar.
 
 Los exámenes de teoría se realizan de forma individual y las preguntas de los mismos se basan en las preguntas de comprehensión de los temas indicados. 
 
