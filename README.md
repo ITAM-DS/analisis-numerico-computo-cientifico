@@ -21,7 +21,7 @@ Las clases son los días miércoles.
 | Semana 5 ( 5 - 9 de sep) | Polinomios de Taylor<br/> y diferenciación numérica |
 | Semana 6 ( 12 - 16 de sep) | Integración numérica |
 | Semana 7 ( 19 - 23 de sep) | Álgebra Lineal numérica: <br/> transformaciones de Gauss |
-| Semana 8 ( 26 - 30 de sep) | Álgebra Lineal numérica: <br/>  |
+| Semana 8 ( 26 - 30 de sep) | Álgebra Lineal numérica: <br/> descomposición QR |
 
 
 Total de clases: "". Total de número de horas: "" hrs.
@@ -121,4 +121,10 @@ Revisamos los conceptos básicos del álgebra lineal numérica. Discutimos aplic
 Finalizamos [1.computo_cientifico/1.7/Integracion_numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/1.computo_cientifico/1.7/Integracion_numerica.html)
 
 Iniciamos con transformaciones de Gauss en [2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html)
+
+## Clase 15
+
+26 de septiembre
+
+Definimos la operación de proyección, bases ortonormales y matrices ortogonales. Discutimos la descomposición QR de una matriz a partir del proceso de Gram-Schmidt. También mostramos cómo se construye un reflector de Householder y cómo se aplica por bloques para obtener la descomposición QR. Mostramos cómo construir una rotación de Givens. Notas: [2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html)
 
