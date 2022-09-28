@@ -128,3 +128,8 @@ Iniciamos con transformaciones de Gauss en [2.1/Operaciones_y_transformaciones_b
 
 Definimos la operación de proyección, bases ortonormales y matrices ortogonales. Discutimos la descomposición QR de una matriz a partir del proceso de Gram-Schmidt. También mostramos cómo se construye un reflector de Householder y cómo se aplica por bloques para obtener la descomposición QR. Mostramos cómo construir una rotación de Givens. Notas: [2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html)
 
+## Clase 16
+
+28 de septiembre
+
+Revisión detallada de aplicación de transformaciones de Gauss siguiendo ejemplos en [2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html)
