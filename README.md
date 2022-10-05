@@ -141,7 +141,11 @@ Revisión detallada de aplicación de transformaciones de Gauss siguiendo ejempl
 
 Examen sobre el Capítulo 1
 
+## Clase 18
 
+05 de octubre
+
+Finalizamos reflexiones de Householder siguiendo ejemplos en [2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html)
 
 
 
