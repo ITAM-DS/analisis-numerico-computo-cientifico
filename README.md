@@ -139,7 +139,7 @@ Revisión detallada de aplicación de transformaciones de Gauss siguiendo ejempl
 
 03 de octubre
 
-Examen de teoría
+Examen sobre el Capítulo 1
 
 
 
