@@ -22,6 +22,7 @@ Las clases son los días miércoles.
 | Semana 6 ( 12 - 16 de sep) | Integración numérica |
 | Semana 7 ( 19 - 23 de sep) | Álgebra Lineal numérica: <br/> transformaciones de Gauss |
 | Semana 8 ( 26 - 30 de sep) | Álgebra Lineal numérica: <br/> descomposición QR |
+| Semana 9 ( 03 - 07 de oct) | Examen de teoría <br/> Álgebra Lineal numérica |
 
 
 Total de clases: "". Total de número de horas: "" hrs.
@@ -133,3 +134,14 @@ Definimos la operación de proyección, bases ortonormales y matrices ortogonale
 28 de septiembre
 
 Revisión detallada de aplicación de transformaciones de Gauss siguiendo ejemplos en [2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html)
+
+## Clase 17
+
+03 de octubre
+
+Examen de teoría
+
+
+
+
+
