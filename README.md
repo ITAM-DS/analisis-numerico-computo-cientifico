@@ -23,6 +23,7 @@ Las clases son los días miércoles.
 | Semana 7 ( 19 - 23 de sep) | Álgebra Lineal numérica: <br/> transformaciones de Gauss |
 | Semana 8 ( 26 - 30 de sep) | Álgebra Lineal numérica: <br/> descomposición QR |
 | Semana 9 ( 03 - 07 de oct) | Examen de teoría <br/> Álgebra Lineal numérica |
+| Semana 10 (10 - 14 de oct) | Solución de examen <br/> Álgebra Lineal numérica |
 
 
 Total de clases: "". Total de número de horas: "" hrs.
@@ -147,5 +148,13 @@ Examen sobre el Capítulo 1
 
 Finalizamos reflexiones de Householder siguiendo ejemplos en [2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html)
 
+## Clase 19
+
+07 de octubre
 
 
+## Clase 20
+
+10 de octubre
+
+Discutimos la solución del examen y comentamos de forma general los resultados y los aprendizajes. Discutimos brevemente el Análisis de Componentes Principales (PCA) como motivación para el cálculo de eigenvalores de una matriz. [2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html)
