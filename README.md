@@ -150,11 +150,14 @@ Finalizamos reflexiones de Householder siguiendo ejemplos en [2.1/Operaciones_y_
 
 ## Clase 19
 
-07 de octubre
-
-
-## Clase 20
-
 10 de octubre
 
 Discutimos la solución del examen y comentamos de forma general los resultados y los aprendizajes. Discutimos brevemente el Análisis de Componentes Principales (PCA) como motivación para el cálculo de eigenvalores de una matriz. [2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html)
+
+## Clase 20
+
+12 de octubre
+
+Finalizamos rotaciones Givens [2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html)
+
+Revisamos primeros ejemplos de eigenvalores, eigenvectores y de matriz diagonalizable en [2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html)
