@@ -173,3 +173,4 @@ Eigenvalores y eigenvectores de una matriz. [2.computo_matricial/2.2/Eigenvalore
 
 19 de octubre
 
+Finalizamos revisión de ejemplos y definiciones de [2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html)
