@@ -1,13 +1,29 @@
 # Indicaciones
 
-Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. La calificación del trabajo por cada integrante será de acuerdo a los *commits* realizados en su proyecto final. Se tomará la calificación final de la parte 2 de la práctica 2 para el rubro de avances del proyecto final (25%).
+## Sobre el repositorio de *Github* para el desarrollo de su proyecto final
+
+Cada equipo crea un repositorio de *Github* en alguna cuenta individual de algún integrante. En tal repositorio se desarrolla su proyecto final.
+
+La liga de tal repositorio se incluye en los *pull requests* que incorporan en el `README.md` del directorio de su equipo. Más información encuentran abajo.
+
+## Sobre el *fork* del repositorio del curso [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico)
+
+Algún integrante del equipo debe hacer un *fork* del repositorio del curso [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico) para subir los *pull requests* en los que se incorporan: ligas al repositorio en el que se desarrolla el proyecto, trabajo escrito, presentación y descripción de los avances. Más información abajo.
+
+## Calificación rubro de avances y entregas vía *pull requests*
+
+Se tomará la calificación final de la parte 2 de la práctica 2 para el rubro de avances del proyecto final (25%) en conjunto con el correcto envío de los *pull requests*. Los *pull requests* se hacen a la rama **main** del repositorio [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico) utilizando el *fork* que se mencionó arriba y siguiendo las instrucciones que se detallan a continuación.
 
 En el nivel:  
 
 `analisis-numerico-computo-cientifico/proyecto_final/proyectos/equipos`
 
-se tendrán directorios para que cada equipo coloque los avances que ha realizado [(ver ejemplo)](../proyectos/equipos/equipo_ejemplo).
+se tendrán directorios para que cada equipo coloque ligas y avances que ha realizado. Ver [equipo_ejemplo](../proyectos/equipos/equipo_ejemplo). 
 
+
+Se pide a todos los equipos que mantengan la estructura del [equipo_ejemplo](../proyectos/equipos/equipo_ejemplo) y que se detalle el trabajo individual en una forma similar al [avance1](../proyectos/equipos/equipo_ejemplo/avance1).
+
+Cada equipo determina el número de avances y por cada avance deben hacer un *pull request*. Al menos se pide que cada equipo hagan dos *pull requests*: uno al inicio para creación de directorios, README, ... y otro al final para corroborar que todo ha sido entregado en tiempo y forma.
 
 El archivo [README.md](../proyectos) debajo del nivel:
 
@@ -16,9 +32,13 @@ El archivo [README.md](../proyectos) debajo del nivel:
 
 es un archivo de control para la lista de proyectos y **únicamente lo actualiza/modifica el prof.** con títulos y objetivos de su proyectos, trabajo escrito, presentación e implementación de su proyecto.
 
-**Las ligas hacia el trabajo escrito y presentación son hacia otro lado (p.ej. una liga de dropbox/gdrive en donde tienen `pdfs` o hacia repos del equipo) y no hacia directorios dentro del repositorio de la materia. Así evitamos tener archivos grandes en este repo :) y la liga hacia la implementación sí es al repo**.
+En los *pull requests* no deben incorporar *ipynb, pdf, pptx, html* de sus trabajos escritos o presentaciones sólo incorporan ligas. Se les pide que incluyan notebooks que apoyen la descripción de su código y estos sí se incorporan en sus *pull requests*. Ver [equipo_ejemplo](../proyectos/equipos/equipo_ejemplo). 
+
+**Las ligas hacia el trabajo escrito y presentación son hacia otro lado (p.ej. una liga de dropbox/gdrive en donde tienen `pdfs` o hacia el repo donde se desarrolla el proyecto) y no hacia directorios dentro del repositorio de la materia. Así evitamos tener archivos grandes en este repo :).** 
+
+El código sí se incorpora en los *pull requests*. Ver [equipo_ejemplo](../proyectos/equipos/equipo_ejemplo).  
 
 * **Ojo:** deben entregarse los 4 rubros: implementación, trabajo escrito, presentación y avances para que se considere válido el proyecto final. Si alguno de estos rubros no es entregado en tiempo y forma se tendrá 0 en el proyecto final.
 
-El proyecto final se presenta en la segunda semana de finales.
+* **Ojo:** Si un equipo no tiene completos (de acuerdo a las instrucciones anteriores) los dos avances como mínimo que se les pide en los *pull requests* tendrán 0 en el rubro de avances y por tanto 0 en el proyecto final.
 
