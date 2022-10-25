@@ -6,7 +6,7 @@ Que el alumnado refuerce la teoría vista en el curso con la investigación e im
 
 ## Generalidades
 
-Cada equipo realiza una investigación de los métodos numéricos elegidos para su estudio, reporte en un trabajo escrito, presentación e implementación para resolver el problema definido por el equipo en el marco del objetivo anterior. La definición del problema se discute entre quienes integran al equipo y con profesores. En conjunto determinan el tiempo que requieren para la entrega del proyecto, por ello el equipo debe establecer las fechas que realizarán trabajo, siendo parte fundamental para el éxito del mismo. Más respecto a esto último se encuentran en [indicaciones](indicaciones).
+Cada equipo realiza una investigación de los métodos numéricos elegidos para su estudio, reporte en un trabajo escrito, presentación e implementación para resolver el problema definido por el equipo en el marco del objetivo anterior. La definición del problema se discute entre quienes integran al equipo y con sus profs. En conjunto determinan el tiempo que requieren para la entrega del proyecto, por ello el equipo debe establecer las fechas que realizarán trabajo, siendo parte fundamental para el éxito del mismo. Más respecto a esto último se encuentran en [indicaciones](indicaciones).
 
 ## Investigación e implementación
 
@@ -54,6 +54,8 @@ Una propuesta para organización de la presentación (en un equipo de 6 personas
 La presentación puede ser en formato de un notebook, pdf, [reveal.js](https://github.com/hakimel/reveal.js/) o algún otro formato.
 
 **El proyecto final se presenta en la "" semana de finales y es agendado por control escolar.**
+
+**Al finalizar la presentación se realizarán preguntas por integrantes de otros equipos y por sus profs las cuales ayudarán a la calificación del tercer examen. Tal calificación evalúa la calidad de las preguntas así como las respuestas dadas. Por tanto, es obligatorio que integrantes de otros equipos realicen preguntas.**
 
 ## Avances
 
