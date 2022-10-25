@@ -10,7 +10,7 @@ Título del proyecto: **Ejemplo**
 
 Objetivo del proyecto: **objetivo**
 
-[Liga a repo de user admin en el que se trabaja]()
+[Liga a repo de integrante del equipo en el que se trabaja]()
 
 Trabajo escrito (fuera del repo): [liga_trabajo_escrito]()
 
