@@ -53,6 +53,7 @@ Una propuesta para organización de la presentación (en un equipo de 6 personas
 
 La presentación puede ser en formato de un notebook, pdf, [reveal.js](https://github.com/hakimel/reveal.js/) o algún otro formato.
 
+**El proyecto final se presenta en la "" semana de finales y es agendado por control escolar.**
 
 ## Avances
 
