@@ -1,6 +1,7 @@
 # Optimización
 
-## Prof. Erick Palacios Moreno / J. Ezequiel Soto S.
+## Profs. Erick Palacios Moreno / J. Ezequiel Soto S.
+
 correo: erick89.itam@gmail.com, erick.palacios@itam.mx / ezequiel.soto@itam.mx
 
 ## Material
