@@ -16,7 +16,7 @@ Trabajo escrito (fuera del repo): [liga_trabajo_escrito]()
 
 Presentación (fuera del repo): [liga_presentación]()
 
-Implementación (en el repo): [codigo](codigo) 
+Implementación (en el repo): [codigo](src) 
 
 
 En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en nuestro proyecto. 
