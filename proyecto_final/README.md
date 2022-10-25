@@ -30,7 +30,7 @@ Tiene un porcentaje de 40% y la calificación es por equipo. Se entrega el códi
 
 ## Trabajo escrito
 
-El trabajo escrito consiste en el reporte de la investigación realizada y los resultados obtenidos. Se dan referencias utilizadas. No se sube al repo del curso, pero se proporciona una liga al mismo, más información sobre esta liga en [indicaciones](indicaciones).
+El trabajo escrito consiste en el reporte de la investigación realizada y los resultados obtenidos. Se dan referencias utilizadas. **No se sube al repo del curso, se proporciona una liga al mismo**. Más información sobre esta liga en [indicaciones](indicaciones).
 
 Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega **una semana antes** de la fecha del examen final **en un 90%-95% completo**.
 
@@ -39,7 +39,7 @@ Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega **una se
 
 ## Presentación
 
-Se realiza una presentación por cada equipo para reporte sobre el trabajo realizado y resultados. En esta presentación no se entra en detalles sobre los métodos, sólo cuestiones generales. No se sube al repo del curso, pero se proporciona una liga al mismo, más información sobre esta liga en [indicaciones](indicaciones).
+Se realiza una presentación por cada equipo para reporte sobre el trabajo realizado y resultados. En esta presentación no se entra en detalles sobre los métodos, sólo cuestiones generales. **No se sube al repo del curso, se proporciona una liga al mismo**. Más información sobre esta liga en [indicaciones](indicaciones).
 
 
 Tiene una calificación de 15% para el equipo. Se realiza en la fecha del examen final determinada por control escolar. 
