@@ -10,13 +10,13 @@ Título del proyecto: **Ejemplo**
 
 Objetivo del proyecto: **objetivo**
 
-[Liga a repo de user admin en el que se trabaja]()
+[Liga a repo de integrante del equipo en el que se desarrolla el proyecto]()
 
 Trabajo escrito (fuera del repo): [liga_trabajo_escrito]()
 
 Presentación (fuera del repo): [liga_presentación]()
 
-Implementación (en el repo): [codigo](codigo) 
+Implementación (en el repo): [codigo](src) 
 
 
 En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en nuestro proyecto. 
