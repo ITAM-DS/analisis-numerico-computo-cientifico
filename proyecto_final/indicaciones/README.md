@@ -43,9 +43,3 @@ El código sí se incorpora en los *pull requests*. Ver [equipo_ejemplo](../proy
 
 * **Ojo:** Si un equipo no tiene completos (de acuerdo a las instrucciones anteriores) los dos avances como mínimo que se les pide en los *pull requests* tendrán 0 en el rubro de avances y por tanto 0 en el proyecto final.
 
-
-
-
-
-
-
