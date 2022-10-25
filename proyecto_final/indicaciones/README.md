@@ -1,6 +1,10 @@
 # Indicaciones
 
-Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. La calificación del trabajo por cada integrante será de acuerdo a los *commits* realizados en su proyecto final. Para la revisión del trabajo por cada integrante, se seleccionarán y agendarán equipos durante los "" de los meses de "" y "" en los que se deberá exponer lo que han realizado.
+## Entregas de avances, trabajo escrito y presentación
+
+Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. La calificación del trabajo por cada integrante será de acuerdo a los *commits* realizados en su proyecto final.
+
+Para calificar el rubro de avances deben de hacer *pull requests* a la rama **main** del repositorio [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico) que sigan las instrucciones que se detallan a continuación.
 
 En el nivel:  
 
@@ -20,21 +24,10 @@ es un archivo de control para la lista de proyectos y **únicamente lo actualiza
 
 * **Ojo:** deben entregarse los 4 rubros: implementación, trabajo escrito, presentación y avances para que se considere válido el proyecto final. Si alguno de estos rubros no es entregado en tiempo y forma se tendrá 0 en el proyecto final.
 
-* **Ojo:** Si un equipo no presenta avance alguno en las fechas que se les pide asistan, tendrán 0 en el rubro de avances y por tanto 0 en el proyecto final. 
+* **Ojo:** Si un equipo no presenta avance alguno en las fechas que se les pide asistan, tendrán 0 en el rubro de avances y por tanto 0 en el proyecto final.
 
- ## Fechas del mes de "" en los que los equipos tendrán que presentar avances  del proyecto:
 
-La presentación de avances ser realiza por Zoom 
-
-||||
-|:---:|:---:|:---:|
-|Fechas|Equipos|Horario|
-|"" de ""|""|"" a "" am|
-|"" de ""|""|"" a "" am|
-|"" de ""|""|"" a "" am|
-|"" de ""|""|"" a "" am|
-
-### El proyecto final se presenta en la segunda semana de finales y es agendado por control escolar.
+### El proyecto final se presenta en la "" semana de finales y es agendado por control escolar.
 
 
 
