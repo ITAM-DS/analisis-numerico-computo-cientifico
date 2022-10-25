@@ -1,8 +1,8 @@
 # Optimización
 
-## Prof. Erick Palacios Moreno
+## Profs. Erick Palacios Moreno / J. Ezequiel Soto S.
 
-correo: erick89.itam@gmail.com, erick.palacios@itam.mx
+correo: erick89.itam@gmail.com, erick.palacios@itam.mx / ezequiel.soto@itam.mx
 
 ## Material
 
@@ -21,19 +21,21 @@ El curso se apoya de herramientas de software como:
 
 ## Calificación
 
-|Exámenes(2)| Prácticas(2)|Proyecto final|
+|Exámenes(3)| Prácticas(2)|Proyecto final|
 |:---:|:---:|:---:|
-|15|15|40|
+|30|30|40|
 
 ### Exámenes
 
-Se tendrán 2 exámenes de teoría que evaluarán los siguientes temas:
+Se tendrán 3 exámenes de teoría que evaluarán los siguientes temas:
 
-|Módulo| Puntos| Tipo|
-|:---:|:---:|:---:|
-|Temas del cómputo científico y del álgebra lineal numérica|15|Teórico|
-|Temas de optimización convexa y ecuaciones no lineales|15|Teórico|
+|Módulo| Puntos| Tipo| Fecha |
+|:---:|:---:|:---:|:---:|
+|Temas del cómputo científico|10|Teórico| 03 de octubre|
+|Temas de álgebra lineal numérica|10|Teórico| 07 de noviembre |
+|Temas de optimización convexa y ecuaciones no lineales|10|Teórico| * |
 
+(*) Examen oral al finalizar la presentación del [proyecto final](proyecto_final). Ver más en el apartado **Presentación** en [proyecto_final/README.md](proyecto_final/README.md)
 
 Los exámenes de teoría se realizan de forma individual y las preguntas de los mismos se basan en las preguntas de comprehensión de los temas indicados. 
 
@@ -50,7 +52,7 @@ Se realizarán dos prácticas por equipos (quiénes y cuántos integrantes se de
 
 Para las prácticas se utilizarán:
 
-* La organización [optimizacion-<>-gh-classroom]() de *github classroom* y tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, *issues*, *milestones*, *projects*).
+* La organización [optimizacion-2022-gh-classroom](https://github.com/optimizacion-2022-gh-classroom) de *github classroom* y tod@s l@s integrantes de un equipo deben usar git y github para que sea válida la entrega (no es válido que sólo una persona haga *commits*, *pulls*, *pushes*, *issues*, *milestones*, *projects*).
 
 * git/github para la organización de proyectos. Ver por ejemplo [video para crear proyectos en github](https://youtu.be/z4Xpif7HI04)
 
@@ -114,4 +116,3 @@ Ustedes eligen los capítulos a realizar y también las tareas extras que les pi
 **Documentar sus referencias, fuentes, colaboraciones y material que utilizan para resolver sus exámenes, prácticas o proyectos.**
 
 **Para entregas extemporáneas: solicitar en dirección escolar que envién un correo al prof. para justificantes médicos y que se dé extensión de fechas a entregas de prácticas o trabajos**.
-
