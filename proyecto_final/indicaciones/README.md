@@ -31,7 +31,7 @@ El archivo [README.md](../proyectos) debajo del nivel:
  `analisis-numerico-computo-cientifico/proyecto_final/proyectos/
 ` 
 
-es un archivo de control para la lista de proyectos y **únicamente lo actualiza/modifica el prof.** con títulos y objetivos de su proyectos, trabajo escrito, presentación e implementación de su proyecto.
+es un archivo de control para la lista de proyectos y **únicamente lo actualiza/modifica los profs.** con títulos y objetivos de su proyectos, trabajo escrito, presentación e implementación de su proyecto.
 
 En los *pull requests* no deben incorporar *ipynb, pdf, pptx, html* de sus trabajos escritos o presentaciones sólo incorporan ligas. Se les pide que incluyan notebooks que apoyen la descripción de su código y estos sí se incorporan en sus *pull requests*. Ver [equipo_ejemplo](../proyectos/equipos/equipo_ejemplo). 
 
