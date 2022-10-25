@@ -1,6 +1,6 @@
 # Objetivo
 
-Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de métodos numéricos para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas. La aplicación se muestra con el uso de un paquete hecho por el equipo en un ***dataset***.
+Que el alumnado refuerce la teoría vista en el curso con la investigación e implementación de métodos numéricos para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas. La aplicación se muestra con el uso de un paquete hecho por el equipo en un ***dataset***.
 
 # Descripción
 
@@ -36,7 +36,7 @@ El trabajo escrito consiste en el reporte de la investigación realizada y los r
 
 Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega **una semana antes** de la fecha del examen final en un 95% completo.
 
-**Es indispensable que se describan y planteen el/los problemas de optimización a resolver en el trabajo escrito**.
+**Debe de describirse y plantear el/los problemas de optimización a resolver en el trabajo escrito**.
 
 ## Presentación
 
@@ -54,6 +54,7 @@ Una propuesta para organización de la presentación (en un equipo de 6 personas
 
 La presentación puede ser en formato de un notebook, pdf, [reveal.js](https://github.com/hakimel/reveal.js/) o algún otro formato.
 
+**Al finalizar la presentación se realizarán preguntas por integrantes de otros equipos y por su prof las cuales ayudarán a la calificación individual. Tal calificación evalúa la calidad de las preguntas así como las respuestas dadas. Por tanto, es obligatorio que integrantes de otros equipos realicen preguntas.**
 
 ## Avances
 
