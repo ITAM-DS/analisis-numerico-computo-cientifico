@@ -22,7 +22,7 @@ En el nivel:
 
 se tendrán directorios para que cada equipo coloque ligas y avances que ha realizado. Ver [equipo_ejemplo](../proyectos/equipos/equipo_ejemplo). 
 
-Se pide a todos los equipos que mantengan la estructura del [equipo_ejemplo](../proyectos/equipos/equipo_ejemplo) y que se detalle el trabajo individual en una forma similar al [avance1](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2022/proyecto_final/proyectos/equipos/equipo_ejemplo/avance1).
+Se pide a todos los equipos que mantengan la estructura del [equipo_ejemplo](../proyectos/equipos/equipo_ejemplo) y que se detalle el trabajo individual en una forma similar al [avance1](../proyectos/equipos/equipo_ejemplo/avance1).
 
 Cada equipo determina el número de avances y por cada avance deben hacer un *pull request*. Al menos se pide que cada equipo hagan dos *pull requests*: uno al inicio para creación de directorios, README, ... y otro al final para corroborar que todo ha sido entregado en tiempo y forma.
 
