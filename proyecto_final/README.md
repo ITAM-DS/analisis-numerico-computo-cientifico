@@ -53,8 +53,6 @@ Una propuesta para organización de la presentación (en un equipo de 6 personas
 
 La presentación puede ser en formato de un notebook, pdf, [reveal.js](https://github.com/hakimel/reveal.js/) o algún otro formato.
 
-**El proyecto final se presenta en la "" semana de finales y es agendado por control escolar.**
-
 **Al finalizar la presentación se realizarán preguntas por integrantes de otros equipos y por sus profs las cuales ayudarán a la calificación del tercer examen. Tal calificación evalúa la calidad de las preguntas así como las respuestas dadas. Por tanto, es obligatorio que integrantes de otros equipos realicen preguntas.**
 
 ## Avances
