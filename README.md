@@ -25,7 +25,7 @@ Las clases son los días miércoles.
 | Semana 9 ( 03 - 07 de oct) | Examen de teoría <br/> Álgebra Lineal numérica |
 | Semana 10 (10 - 14 de oct) | Solución de examen <br/> Álgebra Lineal numérica |
 | Semana 11 (17 - 21 de oct) | Álgebra Lineal numérica <br/> Eigenvalores y eigenvectores |
-
+| Semana 12 (24 - 28 de oct) | Álgebra Lineal numérica <br/> Descomposición en valores singulares |
 
 Total de clases: "". Total de número de horas: "" hrs.
 
@@ -174,3 +174,12 @@ Eigenvalores y eigenvectores de una matriz. [2.computo_matricial/2.2/Eigenvalore
 19 de octubre
 
 Finalizamos revisión de ejemplos y definiciones de [2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.2/Eigenvalores_y_eigenvectores.html)
+
+## Clase 23
+
+24 de octubre
+
+Descomposición en valores singulares (SVD): definición, características e interpretación geométrica [2.computo_matricial/2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.html)
+
+
+
