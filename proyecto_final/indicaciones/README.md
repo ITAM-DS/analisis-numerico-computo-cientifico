@@ -4,7 +4,7 @@
 
 Cada integrante tendrá una calificación (un número: de 0 a 10) dependiendo de su trabajo. La calificación del trabajo por cada integrante será de acuerdo a los *commits* realizados en su proyecto final.
 
-Para calificar el rubro de avances deben de hacer *pull requests* a la rama **main** del repositorio [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico) que sigan las instrucciones que se detallan a continuación.
+Para calificar el rubro de avances deben hacer *pull requests* a la rama **main** del repositorio [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico) siguiendo las instrucciones que se detallan a continuación.
 
 En el nivel:  
 
