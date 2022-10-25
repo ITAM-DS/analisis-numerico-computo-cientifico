@@ -34,7 +34,7 @@ Se tendrán 3 exámenes de teoría que evaluarán los siguientes temas:
 |Temas de álgebra lineal numérica|10|Teórico| 07 de noviembre |
 |Temas de optimización convexa y ecuaciones no lineales|10|Teórico| * |
 
-(*) Examen oral durante presentación del [proyecto final](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2022/proyecto_final/indicaciones).
+(*) Examen oral durante la presentación del [proyecto final](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2022/proyecto_final/indicaciones).
 
 Los exámenes de teoría se realizan de forma individual y las preguntas de los mismos se basan en las preguntas de comprehensión de los temas indicados. 
 
