@@ -27,7 +27,7 @@ Implementé la siguiente [funcion_imprime_hello_world_cuda.cu](src/funcion_impri
 
 Erica:
 
-Implementé el *testing* para este primer avance en [test_funcion_imprime_hello_world_cuda.cu](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/blob/optimizacion-2022/proyecto_final/proyectos/equipos/equipo_ejemplo/avance1/src/testing/test_funcion_imprime_hello_world_cuda.cu)
+Implementé el *testing* para este primer avance en [test_funcion_imprime_hello_world_cuda.cu](src/testing/test_funcion_imprime_hello_world_cuda.cu)
 
 ### Project manager
 
