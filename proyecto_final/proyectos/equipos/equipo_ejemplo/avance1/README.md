@@ -27,7 +27,7 @@ Implementé la siguiente [funcion_imprime_hello_world_cuda.cu](src/funcion_impri
 
 Erica:
 
-Implementé el *testing* para este primer avance en [test_funcion_imprime_hello_world_cuda.cu](src/testing/test_funcion_imprime_hello_world_cuda.cu)
+Implementé el *testing* para este primer avance en [test_funcion_imprime_hello_world_cuda.cu](src/test/test_funcion_imprime_hello_world_cuda.cu)
 
 ### Project manager
 
@@ -47,8 +47,4 @@ Revisamos (...) con diferentes parámetros y generamos el reporte (...)
 ## Tarea (o *milestone* o trabajo) que continúa
 
 Determinamos que nos tomará dos días revisar los índices de las referencias que mencionó Erick y revisaremos la implementación de Erica para que la [funcion_imprime_hello_world_cuda.cu](src/funcion_imprime_hello_world_cuda.cu) imprima un `hello_world` por cada bloque de threads.
-
-
-
-
 
