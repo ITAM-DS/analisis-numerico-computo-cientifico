@@ -8,7 +8,7 @@ La liga de tal repositorio se incluye en los *pull requests* que incorporan en e
 
 ## Sobre el *fork* del repositorio del curso [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico)
 
-Algún integrante del equipo debe hacer un *fork* del repositorio del curso [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico) para subir los *pull requests* en los que se incluyen ligas al repositorio en el que se desarrolla el proyecto, trabajo escrito, presentación y descripción de los avances. Más información abajo.
+Algún integrante del equipo debe hacer un *fork* del repositorio del curso [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico) para subir los *pull requests* en los que se incorporan: ligas al repositorio en el que se desarrolla el proyecto, trabajo escrito, presentación y descripción de los avances. Más información abajo.
 
 ## Calificación rubro de avances y entregas vía *pull requests*
 
