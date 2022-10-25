@@ -1,12 +1,12 @@
 # Objetivo
 
-Que l@s estudiantes refuercen la teoría vista en el curso con la investigación e implementación de métodos numéricos para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
+Que el alumnado refuerce la teoría vista en el curso con la investigación e implementación de métodos numéricos para resolver un problema  relacionado con la **optimización numérica** y en aplicaciones de áreas como Análisis Numérico y Cómputo Científico, Aprendizaje de Máquina, Inteligencia Artificial, Estadística, Bioestadística, Física, Economía, Actuaría, Ingeniería, Finanzas.
 
 # Descripción
 
 ## Generalidades
 
-Cada equipo realiza una investigación de los métodos numéricos elegidos para su estudio, reporte en un trabajo escrito, presentación e implementación para resolver el problema definido por el equipo en el marco del objetivo anterior. La definición del problema se discute entre los integrantes del equipo y con el profesor. Juntos determinan el tiempo que requieren para la entrega del proyecto, para ello, el equipo debe establecer las fechas que realizarán trabajo, siendo parte fundamental para el éxito del mismo. Más indicaciones respecto a esto último se encuentran en [indicaciones](indicaciones).
+Cada equipo realiza una investigación de los métodos numéricos elegidos para su estudio, reporte en un trabajo escrito, presentación e implementación para resolver el problema definido por el equipo en el marco del objetivo anterior. La definición del problema se discute entre quienes integran al equipo y con profesores. En conjunto determinan el tiempo que requieren para la entrega del proyecto, por ello el equipo debe establecer las fechas que realizarán trabajo, siendo parte fundamental para el éxito del mismo. Más respecto a esto último se encuentran en [indicaciones](indicaciones).
 
 ## Investigación e implementación
 
@@ -32,9 +32,9 @@ Tiene un porcentaje de 40% y la calificación es por equipo. Se entrega el códi
 
 El trabajo escrito consiste en el reporte de la investigación realizada y los resultados obtenidos. Se dan referencias utilizadas. No se sube al repo del curso, pero se proporciona una liga al mismo, más información sobre esta liga en [indicaciones](indicaciones).
 
-Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega **una semana antes** de la fecha del examen final en un 95% completo.
+Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega **una semana antes** de la fecha del examen final **en un 90%-95% completo**.
 
-**Es indispensable que se describan y planteen el/los problemas de optimización a resolver en el trabajo escrito**.
+**Debe de describirse y plantear el/los problemas de optimización a resolver en el trabajo escrito**.
 
 
 ## Presentación
@@ -42,7 +42,7 @@ Tiene un porcentaje de 20% y la calificación es por equipo. Se entrega **una se
 Se realiza una presentación por cada equipo para reporte sobre el trabajo realizado y resultados. En esta presentación no se entra en detalles sobre los métodos, sólo cuestiones generales. No se sube al repo del curso, pero se proporciona una liga al mismo, más información sobre esta liga en [indicaciones](indicaciones).
 
 
-Tiene dos calificaciones 10% de forma individual y 5% para el equipo. Se realiza en la fecha del examen final determinada por control escolar. 
+Tiene una calificación de 15% para el equipo. Se realiza en la fecha del examen final determinada por control escolar. 
 
 
 Una propuesta para organización de la presentación (en un equipo de 6 personas) es:
@@ -66,7 +66,7 @@ La calificación se conforma de los porcentajes anteriores:
 
 * Trabajo escrito por equipo (20%).
 
-* Presentación individual (10%) y por equipo (5%).
+* Presentación por equipo (15%).
 
 * Investigación e implementación del (los) método(s) numérico(s) por equipo (40%).
 
