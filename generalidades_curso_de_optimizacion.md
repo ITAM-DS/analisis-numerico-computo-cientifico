@@ -35,7 +35,7 @@ Se tendrán 3 exámenes de teoría que evaluarán los siguientes temas:
 |Temas de álgebra lineal numérica|10|Teórico| 07 de noviembre |
 |Temas de optimización convexa y ecuaciones no lineales|10|Teórico| * |
 
-(*) Examen oral al finalizar la presentación del [proyecto final](proyecto_final). Ver más en [Presentación](proyecto_final/README.md#presentaci%C3%B3n)
+(*) Examen oral al finalizar la presentación del [proyecto final](proyecto_final). Ver más en el apartado **Presentación** en [proyecto_final/README.md](proyecto_final/README.md)
 
 Los exámenes de teoría se realizan de forma individual y las preguntas de los mismos se basan en las preguntas de comprehensión de los temas indicados. 
 
