@@ -46,11 +46,11 @@ Se realiza una presentación por cada equipo para reporte sobre el trabajo reali
 Tiene dos calificaciones 10% de forma individual y 5% para el equipo. Se realiza en la fecha del examen final determinada por control escolar. 
 
 
-Una propuesta para organización de la presentación (en un equipo de 6 personas) es:
+Una propuesta para organización de la presentación en un equipo de 4 personas p.ej. es:
 
 * 2 personas presentan el trabajo realizado.
-* 2 personas responden las dudas que existan de la presentación realizada (distintas a las que presentaron).
-* 2 personas preguntan a otro equipo dudas que tengan (distintas a las que presentaron y a las que respondieron).
+* 1 personas responden las dudas que existan de la presentación realizada (distintas a las que presentaron).
+* 1 personas preguntan a otro equipo dudas que tengan (distintas a las que presentaron y a las que respondieron).
 
 La presentación puede ser en formato de un notebook, pdf, [reveal.js](https://github.com/hakimel/reveal.js/) o algún otro formato.
 
