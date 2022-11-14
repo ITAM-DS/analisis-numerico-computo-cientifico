@@ -212,4 +212,12 @@ Finalizamos aplicaciones:
 
 * componentes principales en [2.computo_matricial/2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.4/Valores_vectores_singulares_y_algoritmos_para_calcular_la_SVD.html#ejemplo-componentes-principales)
 
+## Clase 30
 
+14 de noviembre
+
+Iniciamos con temas:
+
+* [4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html) sólo método gráfico y explicación de programa lineal.
+
+* Mínimos cuadrados lineales en [3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html)
