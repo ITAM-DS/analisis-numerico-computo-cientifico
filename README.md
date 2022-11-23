@@ -26,6 +26,10 @@ Las clases son los días miércoles.
 | Semana 10 (10 - 14 de oct) | Solución de examen <br/> Álgebra Lineal numérica |
 | Semana 11 (17 - 21 de oct) | Álgebra Lineal numérica <br/> Eigenvalores y eigenvectores |
 | Semana 12 (24 - 28 de oct) | Álgebra Lineal numérica <br/> Descomposición en valores singulares |
+| Semana 13 (31 oct - 4 de nov) | Repaso para Examen Parcial 2 <br/> Asueto |
+| Semana 14 (7 - 11 de nov) | Examen parcial 2 <br/> Método simplex |
+| Semana 15 (14 - 18 de nov) | Optimización <br/> Funciones y conjuntos convexos |
+| Semana 16 (21 - 25 de nov) | Asueto <br/> Optimización |
 
 Total de clases: "". Total de número de horas: "" hrs.
 
