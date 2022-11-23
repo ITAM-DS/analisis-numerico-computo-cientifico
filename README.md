@@ -192,7 +192,7 @@ Finalizamos ejemplos y descripción de algoritmos en [2.computo_matricial/2.3/Al
 
 31 de octubre
 
-Repaso y resolución de dudas para elk Examen poarcial 2: [2. Cómputo Matricial](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#).
+Repaso y resolución de dudas para el Examen parcial 2: [2. Cómputo Matricial](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#).
 
 ## Clase 27
 
