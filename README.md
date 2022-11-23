@@ -192,6 +192,8 @@ Finalizamos ejemplos y descripción de algoritmos en [2.computo_matricial/2.3/Al
 
 31 de octubre
 
+Repaso y resolución de dudas para elk Examen poarcial 2: [2. Cómputo Matricial](https://itam-ds.github.io/analisis-numerico-computo-cientifico/2.computo_matricial/2.1/Operaciones_y_transformaciones_basicas_del_Algebra_Lineal_Numerica.html#).
+
 ## Clase 27
 
 2 de noviembre
@@ -201,6 +203,8 @@ Asueto
 ## Clase 28
 
 7 de noviembre
+
+Aplicación de Examen parcial 2.
 
 ## Clase 29
 
@@ -221,3 +225,10 @@ Iniciamos con temas:
 * [4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/4.optimizacion_en_redes_y_prog_lineal/4.1/Programacion_lineal_y_metodo_simplex.html) sólo método gráfico y explicación de programa lineal.
 
 * Mínimos cuadrados lineales en [3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html)
+
+## Clase 30
+
+16 de noviembre
+
+Revisamos los conceptos de convexidad en conjunto y en funciones. Además, formulamos el problema de optimización y definimos los conceptos de mínimo local y global. [3.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html)
+
