@@ -236,3 +236,8 @@ Iniciamos con temas:
 
 Revisamos los conceptos de convexidad en conjunto y en funciones. Además, formulamos el problema de optimización y definimos los conceptos de mínimo local y global. [3.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.1/Definicion_de_problema_optimizacion_conjuntos_y_funciones_convexas.html)
 
+## Clase 31
+
+23 de noviembre
+
+Finalizamos ejemplos de mínimos cuadrados lineales, regresión logística y máquina de soporte vectorial en [3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html](https://itam-ds.github.io/analisis-numerico-computo-cientifico/3.optimizacion_convexa/3.3/Ejemplos_problemas_UCO_e_intro_CIEO_y_PI.html)
