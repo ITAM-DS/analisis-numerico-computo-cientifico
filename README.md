@@ -30,7 +30,7 @@ Las clases son los días miércoles.
 | Semana 14 (7 - 11 de nov) | Examen parcial 2 <br/> Aplicaciones cómputo matricial |
 | Semana 15 (14 - 18 de nov) | Optimización <br/> Funciones y conjuntos convexos |
 | Semana 16 (21 - 25 de nov) | Asueto <br/> Optimización. **Práctica 2**|
-| Semana 17 (28 de nov - 2 de dic) | Asueto <br/> Optimización.|
+| Semana 17 (28 de nov - 2 de dic) | <br/> Optimización.|
 | 4 de dic | **Entrega práctica 2**|
 
 Total de clases: "". Total de número de horas: "" hrs.
