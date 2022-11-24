@@ -19,17 +19,19 @@ Las clases son los días miércoles.
 | Semana 3 ( 22 - 26 de agosto) | Condición de un problema <br/> Estabilidad de un algoritmo |
 | Semana 4 ( 29 de ago - 2 de sep) | Funciones, continuidad y derivadas |
 | Semana 5 ( 5 - 9 de sep) | Polinomios de Taylor<br/> y diferenciación numérica |
-| Semana 6 ( 12 - 16 de sep) | Integración numérica |
+| Semana 6 ( 12 - 16 de sep) | Integración numérica. **Primera parte práctica 1**|
 | Semana 7 ( 19 - 23 de sep) | Álgebra Lineal numérica: <br/> transformaciones de Gauss |
-| Semana 8 ( 26 - 30 de sep) | Álgebra Lineal numérica: <br/> descomposición QR |
+| Semana 8 ( 26 - 30 de sep) | Álgebra Lineal numérica: <br/> descomposición QR. **Entrega primera parte práctica 1** |
 | Semana 9 ( 03 - 07 de oct) | Examen de teoría <br/> Álgebra Lineal numérica |
 | Semana 10 (10 - 14 de oct) | Solución de examen <br/> Álgebra Lineal numérica |
-| Semana 11 (17 - 21 de oct) | Álgebra Lineal numérica <br/> Eigenvalores y eigenvectores |
+| Semana 11 (17 - 21 de oct) | Álgebra Lineal numérica <br/> Eigenvalores y eigenvectores. **Segunda parte práctica 1**|
 | Semana 12 (24 - 28 de oct) | Álgebra Lineal numérica <br/> Descomposición en valores singulares |
-| Semana 13 (31 oct - 4 de nov) | Repaso para Examen Parcial 2 <br/> Asueto |
+| Semana 13 (31 oct - 4 de nov) | Repaso para Examen Parcial 2 <br/> Asueto. **Entrega segunda parte práctica 1** |
 | Semana 14 (7 - 11 de nov) | Examen parcial 2 <br/> Aplicaciones cómputo matricial |
 | Semana 15 (14 - 18 de nov) | Optimización <br/> Funciones y conjuntos convexos |
-| Semana 16 (21 - 25 de nov) | Asueto <br/> Optimización |
+| Semana 16 (21 - 25 de nov) | Asueto <br/> Optimización. **Práctica 2**|
+| Semana 17 (28 de nov - 2 de dic) | Asueto <br/> Optimización.|
+| 4 de dic | **Entrega práctica 2**|
 
 Total de clases: "". Total de número de horas: "" hrs.
 
