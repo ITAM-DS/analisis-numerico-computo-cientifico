@@ -22,7 +22,7 @@
 
 **Implementación:**[Liga](https://github.com/jgarciad/proyecto_final_equipo_3)
 
-En la carpeta [avance1](https://github.com/jgarciad/analisis-numerico-computo-cientifico/tree/optimizacion-2022/proyecto_final/proyectos/equipos/equipo_3/avance1) se encuentra el primer avance de nuestro proyecto. Finalmente en la carpeta [notebook](https://github.com/jgarciad/analisis-numerico-computo-cientifico/tree/optimizacion-2022/proyecto_final/proyectos/equipos/equipo_3/notebooks) se agrega un file que ayudará a entender mejor el código.
+En la carpeta [avance1](https://github.com/jgarciad/analisis-numerico-computo-cientifico/tree/optimizacion-2022/proyecto_final/proyectos/equipos/equipo_3/avance1) se encuentra el primer avance de nuestro proyecto. Finalmente en la carpeta [notebooks](https://github.com/jgarciad/analisis-numerico-computo-cientifico/tree/optimizacion-2022/proyecto_final/proyectos/equipos/equipo_3/notebooks) se agrega un file que ayudará a entender mejor el código.
 
 **Referencias:** 
 
