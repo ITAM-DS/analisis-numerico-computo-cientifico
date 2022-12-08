@@ -12,7 +12,7 @@ Sin embargo, aún estamos considerando si dejar el punto tres o no ya que los re
 
 ### Individual
 
-Para lograr lo que se menciona en el resumen, el equipo estuvo trabajando en distintas tareas que de manera individual se mencionan a continuación:
+Para lograr lo que se menciona en el resumen, el equipo estuvo trabajando en distintas tareas que de manera individual se pueden ver a continuación:
 
 - **Aline:** Trabajo en completar la parte de los datos. Genero el análisis exploratorio de la parte de afluencias así como la matriz de adyacencias en este caso cumpliendo con parte de los issues asignados. Aline también apoyo en parte de la implementación del código debido a la carga de trabajo dentro del equipo. 
 - **Jorge:** Por cargas de trabajo distintas del equipo, Jorge apoyo en la implementación del código para encontrar la ruta más corta. El equipo de programación se ha encargado de dar formato y completar lo restante. Jorge también trabajó en una parte importante del reporte final, como lo es la definición del problema, la explicación del algoritmo, la explicación de la implementación y parte de las conclusiones. 
