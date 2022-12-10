@@ -14,13 +14,13 @@ Objetivo del proyecto: ** Resolver el problema del agente viajero usdando simmul
 
 [Liga a repo de trabajo](https://github.com/Navarreteed/Optimizacion_Simmulated_Annealing)
 
-Trabajo escrito (fuera del repo): [liga_trabajo_escrito]()
+Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://github.com/Navarreteed/Optimizacion_Simmulated_Annealing/blob/main/Reporte/reporte_equipo_2_proyecto_final.ipynb)
 
 Presentación (fuera del repo): [liga_presentación]()
 
-Implementación (en el repo): [codigo](src) 
+Implementación (en el repo): [codigo](https://github.com/Navarreteed/Optimizacion_Simmulated_Annealing/blob/main/Simulated_annealing_desarrollo.ipynb) 
 
-En la carpeta [avance1](avance1) se encuentra el reporte del primer avance en nuestro proyecto. 
+En la carpeta [avance1](avance2) se encuentra el reporte del segundo avance en nuestro proyecto. 
 
 Determinamos reducir la cantidad de trabajo que queríamos hacer en el proyecto original por tiempos de entrega. En la carpeta [avance2](avance2) mostramos los avances para este propósito.
 
