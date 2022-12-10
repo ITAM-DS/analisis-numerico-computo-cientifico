@@ -20,9 +20,9 @@ Presentación (fuera del repo): [liga_presentación]()
 
 Implementación (en el repo): [codigo](https://github.com/Navarreteed/Optimizacion_Simmulated_Annealing/blob/main/Simulated_annealing_desarrollo.ipynb) 
 
-En la carpeta [avance1](avance2) se encuentra el reporte del segundo avance en nuestro proyecto. 
+En la carpeta [avance1](avance1) se encuentra la definición del objetivo y el planteamiento del problema. 
 
-Determinamos reducir la cantidad de trabajo que queríamos hacer en el proyecto original por tiempos de entrega. En la carpeta [avance2](avance2) mostramos los avances para este propósito.
+En la carpeta [avance2](avance2) se encuentra el reporte del segundo avance en nuestro proyecto. 
 
 En la carpeta [notebooks](notebooks) se encuentra material para comprensión del código realizado. No es un reporte final son de apoyo para ejecutar el código y/o entenderlo.
 
