@@ -12,11 +12,11 @@
 
 Entender el funcionamiento y poder replicar el metodo de *simulated annealing (SA)* para encontrar minimos globales en funciones con diversos minimos locales como: Ackley.
 
-Adicionalmente, creemos que es relevante, entender las aplicaciones de este algoritmo, por lo que en conjunto con el profesor Erick y Ezequiel decidimos aplicar el algoritmo para solucionar el problema del agente viajero. RRRR
+Adicionalmente, creemos que es relevante, entender las aplicaciones de este algoritmo, por lo que en conjunto con los profesores Erick y Ezequiel decidimos aplicar el algoritmo para solucionar el problema del agente viajero.
 
 ### Resúmen
 
-En conjunto, los integrantes del equipo se dieron a la tarea de investigar diversos metodos de optimización consultando diversas referencias.RRRR. El equipo decidió trabajar con el metodo SA, ya que este método involucra la optimización global a traves de movimientos aleatorios en la función objetivo. 
+En conjunto, los integrantes del equipo nos dimos a la tarea de investigar diferentes metodos de optimización consultando diversas referencias. El equipo decidió trabajar con el metodo SA, ya que este método involucra la optimización global a traves de movimientos aleatorios en la función objetivo. 
 
 Como primer avance los desarrolladores lograron crear la función de SA e implementarla para encontrar minimos globales en diversas funciones
 
