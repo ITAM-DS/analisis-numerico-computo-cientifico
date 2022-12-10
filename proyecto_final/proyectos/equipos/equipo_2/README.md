@@ -12,7 +12,7 @@ Título del proyecto: ** Simmulated Annealing **
 
 Objetivo del proyecto: ** Resolver el problema del agente viajero usdando simmulated annealing**
 
-[Liga a repo de integrante del equipo en el que se desarrolla el proyecto]()
+[Liga a repo de trabajo](https://github.com/Navarreteed/Optimizacion_Simmulated_Annealing)
 
 Trabajo escrito (fuera del repo): [liga_trabajo_escrito]()
 
