@@ -29,6 +29,7 @@ Al buscar referencias adecuadas para el proyecto, encontré la siguiente bibliog
 Una vez que decidimos trabajar con SA mis compañeros desarrolladores comenzaron a implementar funciones que replicaban el funcionamiento de SA, con sus resultados preliminares, comencé a escribir el reporte final a la par de que me aseguraba de que los objetivos fueran claros para todos y la cooperación y apoyo se mantuviera constante a lo largo de las diferentes tareas.
 
 Miguel Angel:
+
 Al haber defindo el enfoque del proyecto, encontré la siguiente [liga](https://www.sfu.ca/~ssurjano/ackley.html) como referencia de la función Ackley.
 
 Para el primer avance, tomé las funciones que implementó mi compañero **Brandon** del método `SA`, y las expandí para conseguir hacer una representación visual de las mismas, en las que además se mapeara la trayectoria que siguen las iteraciones del método.
