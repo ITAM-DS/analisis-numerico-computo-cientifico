@@ -24,7 +24,7 @@ Como primer avance los desarrolladores lograron crear la función de SA e implem
 
 José Eduardo: 
 
-Al buscar referencias adecuadas para el proyecto, encontré la siguiente bibliografía RRRRR. En este libro me llamó la atención el algoritmo SA e inmediatamente lo discutí con mis compaleros de equipo.
+Al buscar referencias adecuadas para el proyecto, encontré la siguiente [bibliografía](https://algorithmsbook.com/optimization/files/optimization.pdf). En este libro me llamó la atención el algoritmo SA e inmediatamente lo discutí con mis compaleros de equipo.
 
 Una vez que decidimos trabajar con SA mis compañeros desarrolladores comenzaron a implementar funciones que replicaban el funcionamiento de SA, con sus resultados preliminares, comencé a escribir el reporte final a la par de que me aseguraba de que los objetivos fueran claros para todos y la cooperación y apoyo se mantuviera constante a lo largo de las diferentes tareas.
 
@@ -36,6 +36,9 @@ Para el primer avance, tomé las funciones que implementó mi compañero **Brand
 
 Brandon:
 
+Después de analizar la referencia proporcionada por mi compañero **Eduardo**, acordé con mi compañero **Miguel** que yo estaría a cargo de la traducción a código del pseudo-algoritmo disponible en la referencia. Así mismo, el algoritmo no especifica ciertas restricciones o consideraciones técnicas, por lo que tuve que investigar posibles alternativas y recomendaciones, por ejemplo la forma de escoger un punto vecino por medio de un tipo de distribución de probabilidad. 
+
+También me di a la tarea de definir funciones sencillas con mínimos globales para que el algoritmo pudiera ser puesto a prueba. 
 
 
 ### Project manager
