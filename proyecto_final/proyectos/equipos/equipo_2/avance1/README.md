@@ -1,0 +1,55 @@
+# avance 1
+
+## Integrantes:
+
+* Brandon Francisco Hernandez Troncoso, Desarrollador.
+
+* Miguel Angel Castañeda Martínez, Desarrollador.
+
+* José Eduardo Gutiérrez Navarrete, Project manager.
+
+## Problema:
+
+Entender el funcionamiento y poder replicar el metodo de *simulated annealing (SA)* para encontrar minimos globales en funciones con diversos minimos locales como: Ackley. RRRR
+
+Adicionalmente, creemos que es relevante, entender las aplicaciones de este algoritmo, por lo que en conjunto con el profesor Erick y Ezequiel decidimos aplicar el algoritmo para solucionar el problema del agente viajero. RRRR
+
+### Resúmen
+
+En conjunto, los integrantes del equipo se dieron a la tarea de investigar diversos metodos de optimización consultando diversas referencias.RRRR. El equipo decidió trabajar con el metodo SA, ya que este método involucra la optimización global a traves de movimientos aleatorios en la función objetivo. 
+
+Como primer avance los desarrolladores lograron crear la función de SA e implementarla para encontrar minimos globales en diversas funciones
+
+### Individual
+
+José Eduardo: 
+
+Al buscar referencias adecuadas para el proyecto, encontré la siguiente bibliografía RRRRR. En este libro me llamó la atención el algoritmo SA e inmediatamente lo discutí con mis compaleros de equipo.
+
+Una vez que decidimos trabajar con SA mis compañeros desarrolladores comenzaron a implementar funciones que replicaban el funcionamiento de SA, con sus resultados preliminares, comencé a escribir el reporte final a la par de que me aseguraba de que los objetivos fueran claros para todos y la cooperación y apoyo se mantuviera constante a lo largo de las diferentes tareas.
+
+Miguel Angel:
+
+Brandon:
+
+
+
+### Project manager
+
+Resolvimos el *milestone* (...) relacionado con los *issues* (...) para la tarea (...)
+
+### Grupo de programación
+
+Programamos (...) que puede consultarse (...).
+
+### Grupo de revisión
+
+Revisamos (...) con diferentes parámetros y generamos el reporte (...)
+
+
+---
+
+## Tarea (o *milestone* o trabajo) que continúa
+
+Determinamos que nos tomará dos días revisar los índices de las referencias que mencionó Erick y revisaremos la implementación de Erica para que la [funcion_imprime_hello_world_cuda.cu](src/funcion_imprime_hello_world_cuda.cu) imprima un `hello_world` por cada bloque de threads.
+
