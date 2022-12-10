@@ -8,9 +8,9 @@ Integrantes:
 
 * José Eduardo Gutiérrez Navarrete
 
-Título del proyecto: **Ejemplo**
+Título del proyecto: ** Simmulated Annealing **
 
-Objetivo del proyecto: **objetivo**
+Objetivo del proyecto: ** Resolver el problema del agente viajero usdando simmulated annealing**
 
 [Liga a repo de integrante del equipo en el que se desarrolla el proyecto]()
 
