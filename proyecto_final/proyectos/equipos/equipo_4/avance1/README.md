@@ -9,6 +9,11 @@
 | RGGA90       |Ricardo Guillermo Granillo Alatorre |  2   | Revisión |
 | esesancr     |Sergio Sánchez Reyes       |  3   | Project Manager |
 
+## Problema de Optimización:
+
+Método *sequential least squares* 
+
+
 ## Trabajo: 
 
 ### Resúmen
@@ -20,15 +25,24 @@ Revisamos (...) con diferentes parámetros y generamos el reporte (...)
 
 ### Individual
 
-Erick: 
+León: 
 
-Leí la siguiente [referencia](http://docs.nvidia.com/cuda/cuda-c-programming-guide/#axzz4cvQxAHMZ) para revisar implementaciones de la multiplicación de matrices en una GPU. Debo revisar las asignaciones de los índices que se están realizando pues no queda claro el uso de las variables `blockDim` y `blockIdx`, para ello estoy leyendo la sección 3.3 del [libro](http://www.hds.bme.hu/~fhegedus/C++/programming_massively_parallel_processors.pdf).
+Inicie mi aproximación al problema revisando la teoría de portafolios y sus elecciones de un *paper* desarrollado por Harry Markowitz [referencia](https://www.math.hkust.edu.hk/~maykwok/courses/ma362/07F/markowitz_JF.pdf) para revisar la forma en que aplicaría para nuestro trabajo. De forma adicional consulte el libro sobre aplicaciones de finanzas y calculo numérico [libro](Springer Series in Operations Research and Financial Engineering). Con esto escribí la aproximación a nuestro problema de interés y la metodología necesaria.
 
-Implementé la siguiente [funcion_imprime_hello_world_cuda.cu](src/funcion_imprime_hello_world_cuda.cu) en CUDA-C para realizar un hello world.
+Alberto:
 
-Erica:
+Con la metodología y el problema aplicado a nuestro caso realicé la programación necesaria para el problema. En este primer avance tuve como referencia principal [referencia](https://plotly.com/python/v3/ipython-notebooks/markowitz-portfolio-optimization/) y como secundaria [referencia](https://www.youtube.com/watch?v=p5pL8ZSeoN4). El trabajo quedó guardado en [function.py](equipo_4/notebooks/function.py)
 
-Implementé el *testing* para este primer avance en [test_funcion_imprime_hello_world_cuda.cu](src/test/test_funcion_imprime_hello_world_cuda.cu)
+
+Ricardo:
+
+Mi parte se enfocó en estar en comunicación con León y Alberto en sus respectivas tareas para revisar y discutir sus avances. A partir del planteamiento y metodología que entrego León verifique con otras fuentes, la mas relevante es de Paul Wilmott [libro][Paul Wilmott[On Quantitative Finance]. Con Alberto platicamos el código y como para su solución utilizamos una librería de python para los mínimos cuadrados secuenciales no fue necesario hacer un test, simplemente discutir los resultados y su importancia en el proyecto y las conclusiones relacionadas al problema de portafolios. También participe de forma activa como apoyo para Sergio en diferentes aspectos del repositorio y algunas discusiones del reporte.
+
+
+Sergio:
+En mi caso lo primero que debía realizar era todo lo relacionado con la estructura general del repositorio, la asignación de tareas y el pull request para su revisión. Para el reporte verificaba con Ricardo lo realizado por Alberto y León para su estructura y revisión.
+
+
 
 ### Project manager
 
