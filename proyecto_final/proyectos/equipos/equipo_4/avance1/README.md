@@ -18,9 +18,28 @@ Método *sequential least squares*
 
 ### Resúmen
 
-Resolvimos el *milestone* (...) relacionado con los *issues* (...) para la tarea (...)
+Resolvimos los siguientes *milestones* asociados con los siguientes *issues* englobando las siguientes tareas:
 
-Revisamos (...) con diferentes parámetros y generamos el reporte (...)
+1. Planteamiento y metodología asociada al problema de Optimización de Portafolio.
+    - Planteamiento y metodología asociada al problema de Optimización de Portafolio.
+        - Determinación del problema de optimización
+        - Planteamiento de la solución al problema de optimización
+    
+2. Programación del modelo que resuelve el problema de Optimización de Portafolio
+    - Implementación del modelo que resuelve el problema de optimización 
+        - Adquisición y limpieza de los datos
+        - Creación de la función que ayuda a obtener los pesos óptimos a invertir
+        - Simulación de portafolios
+        - Generación de la frontera óptima de rendimiento vs riesgo
+
+3. Proceso de Revisión General 
+    - Proceso de Revisión General
+        - Revisión de la teoría y metodología problema de optimización
+        - Revisión del código asociada al problema de Optimización de Portafolio
+    
+4. Coordinación del reporte final que del problema de Optimización de Portafolio.
+    - Coordinación del reporte final que aborde el problema de optimización no convexo en un Jupyter Notebook
+        - Coordinación del reporte final en un Jupyter Notebook en el que se aborde el problema de optimización no convexo y se muestren los resultados y referencias utilizada.
 
 
 ### Individual
@@ -61,4 +80,12 @@ Revisamos (...) con diferentes parámetros y generamos el reporte (...)
 
 ## Tarea (o *milestone* o trabajo) que continúa
 
-Determinamos que nos tomará dos días revisar los índices de las referencias que mencionó Erick y revisaremos la implementación de Erica para que la [funcion_imprime_hello_world_cuda.cu](src/funcion_imprime_hello_world_cuda.cu) imprima un `hello_world` por cada bloque de threads.
+Determinamos que nos tomará un par de días revisar las observaciones que nos haga Erick acerca del proyecto final, las cuales impactarán en los siguientes milestones.
+
+1. Coordinación del reporte final que del problema de Optimización de Portafolio.
+    - Coordinación del reporte final que aborde el problema de optimización no convexo en un Jupyter Notebook
+        - Coordinación del reporte final en un Jupyter Notebook en el que se aborde el problema de optimización no convexo y se muestren los resultados y referencias utilizada.
+        
+1. Generación del Presentación Final
+    - Generación de la Presentación Final
+        - Generación de la Presentación Final del problema de Optimización de Portafolio posterior al feedback de la revisión 1.
