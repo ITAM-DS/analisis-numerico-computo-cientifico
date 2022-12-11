@@ -46,7 +46,7 @@ Resolvimos los siguientes *milestones* asociados con los siguientes *issues* eng
 
 León: 
 
-Inicie mi aproximación al problema revisando la teoría de portafolios y sus elecciones de un *paper* desarrollado por Harry Markowitz [referencia](https://www.math.hkust.edu.hk/~maykwok/courses/ma362/07F/markowitz_JF.pdf) para revisar la forma en que aplicaría para nuestro trabajo. De forma adicional consulte el libro sobre aplicaciones de finanzas y calculo numérico [libro](Springer Series in Operations Research and Financial Engineering). Con esto escribí la aproximación a nuestro problema de interés y la metodología necesaria. **Issue 1**
+Inicie mi aproximación al problema revisando la teoría de portafolios y sus elecciones de un *paper* desarrollado por [Harry Markowitz](https://www.math.hkust.edu.hk/~maykwok/courses/ma362/07F/markowitz_JF.pdf) para revisar la forma en que aplicaría para nuestro trabajo. De forma adicional consulte el libro sobre aplicaciones de finanzas y calculo numérico [libro](Springer Series in Operations Research and Financial Engineering). Con esto escribí la aproximación a nuestro problema de interés y la metodología necesaria. **Issue 1**
 
 Alberto:
 
@@ -60,10 +60,11 @@ Mi parte se enfocó en estar en comunicación con León y Alberto en sus respect
 
 Sergio:
 
-En mi caso lo primero que debía realizar era todo lo relacionado con la estructura general del repositorio, la asignación de tareas y el pull request para su revisión. Para el reporte verificaba con Ricardo lo realizado por Alberto y León para su estructura y revisión. **Issue 4**
+En mi caso lo primero que debía realizar era todo lo relacionado con la estructura general del repositorio, la asignación de tareas y el pull request para su revisión. Para el reporte verifiqué con Ricardo lo realizado por Alberto y León para su estructura y revisión. **Issue 4**
 
+**Nota:** Es importante mencionar que el repositorio en el que se aloja el proyecto final no cuenta con *commits* dado que es de creación reciente debido a un error de logística en nuestra parte. Todo esto deriva en un retraso de la entrega final donde lamentamos los inconvenientes que esto cause y asumimos la responsabilidad y penalizaciones que esto implique.
 
-
+Quedamos atentos a sus comentarios, muchas gracias.
 
 ---
 
