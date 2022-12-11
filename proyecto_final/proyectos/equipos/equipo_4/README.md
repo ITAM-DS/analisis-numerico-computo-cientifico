@@ -1,0 +1,36 @@
+# Equipo 4
+
+## Distribución de roles por usuario
+
+| github user  | Integrante                |Tarea | Rol             |
+|--------------|---------------------------|------|-----------------|
+| leonfgz48    |Leon Felipe Gomez Zarza    |  1   | Programación    |
+| afuentesc    |Alberto Fuentes Chavarria  |  1   | Programación    |
+| RGGA90       |Ricardo Guillermo Granillo Alatorre |  2   | Revisión        |
+| esesancr     |Sergio Sánchez Reyes       |  3   | Project Manager |
+
+## Título del proyecto
+**Optimización de Portafolio**
+
+## Objetivo del proyecto 
+Existen muchas formas de crecer el patromonio de un inversionista. Una de las formas más comunes que existen es el de invertir en el mercado financiero en acciones que cotizen dentro de las Bolsas de valores. La pregunta natural que nace apartir de lo anterior es ¿Qué empresas deberá seleccionar el inversionista para que su dinero este relamente bien invertido?. En este punto deberemos saber que existe una compensación entre el riesgo y el rendimiento, es decir, para aumentar el rendimiento esperado de la inversión, entonces el inversor debe estar dispuesto a tolerar mayores riesgos, por lo que en este proyecto buscaremos  maximizar la ganancia asociada a ciertos niveles de riesgo. 
+
+## Problema de optimización 
+Método *sequential least squares*
+
+## Ligas de interés
+- [Liga a repo de trabajo](https://github.com/esesancr/proyecto_final_equipo_4)
+
+- Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://github.com/esesancr/proyecto_final_equipo_4/blob/main/Euipo4_Final_Opti%202022.ipynb)
+
+En la carpeta [avance1](avance1) se encuentra la definición del objetivo y el planteamiento del problema. 
+
+En la carpeta [avance2](avance2) se encuentra el reporte del segundo avance en nuestro proyecto. 
+
+## Referencias del proyecto:
+
+- Paul Wilmott On Quantitative Finance
+- Springer Series in Operations Research and Financial Engineering
+- H.M.MARKOWITZ,Portfolioselection,JournalofFinance
+- https://plotly.com/python/v3/ipython-notebooks/markowitz-portfolio-optimization/
+- https://www.youtube.com/watch?v=p5pL8ZSeoN4
