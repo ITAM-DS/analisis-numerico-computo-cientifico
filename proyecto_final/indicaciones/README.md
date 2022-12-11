@@ -14,7 +14,7 @@ Algún integrante del equipo debe hacer un *fork* del repositorio del curso [ana
 
 Cada integrante tendrá una calificación para el rubro de avances dependiendo de su trabajo. Su calificación será de acuerdo a los *commits* y contribución al repositorio de *Github* para el desarrollo de su proyecto final.
 
-Para calificar el rubro de avances deben hacer *pull requests* a la rama **main** del repositorio [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico) utilizando el *fork* que se mencionó arriba y siguiendo las instrucciones que se detallan a continuación.
+Para calificar el rubro de avances deben hacer *pull requests* a la rama **del curso** (que inicia con el nombre `optimizacion-`) del repositorio [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico) utilizando el *fork* que se mencionó arriba y siguiendo las instrucciones que se detallan a continuación.
 
 En el nivel:  
 
