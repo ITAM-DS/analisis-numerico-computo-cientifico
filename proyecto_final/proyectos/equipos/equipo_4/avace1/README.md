@@ -1,0 +1,50 @@
+# avance 1
+
+## Integrantes:
+
+| github user  | Integrante                |Tarea | Rol             |
+|--------------|---------------------------|------|-----------------|
+| leonfgz48    |Leon Felipe Gomez Zarza    |  1   | Programación    |
+| afuentesc    |Alberto Fuentes Chavarria  |  1   | Programación    |
+| RGGA90       |Ricardo Guillermo Granillo Alatorre |  2   | Revisión |
+| esesancr     |Sergio Sánchez Reyes       |  3   | Project Manager |
+
+## Trabajo: 
+
+### Resúmen
+
+Resolvimos el *milestone* (...) relacionado con los *issues* (...) para la tarea (...)
+
+Revisamos (...) con diferentes parámetros y generamos el reporte (...)
+
+
+### Individual
+
+Erick: 
+
+Leí la siguiente [referencia](http://docs.nvidia.com/cuda/cuda-c-programming-guide/#axzz4cvQxAHMZ) para revisar implementaciones de la multiplicación de matrices en una GPU. Debo revisar las asignaciones de los índices que se están realizando pues no queda claro el uso de las variables `blockDim` y `blockIdx`, para ello estoy leyendo la sección 3.3 del [libro](http://www.hds.bme.hu/~fhegedus/C++/programming_massively_parallel_processors.pdf).
+
+Implementé la siguiente [funcion_imprime_hello_world_cuda.cu](src/funcion_imprime_hello_world_cuda.cu) en CUDA-C para realizar un hello world.
+
+Erica:
+
+Implementé el *testing* para este primer avance en [test_funcion_imprime_hello_world_cuda.cu](src/test/test_funcion_imprime_hello_world_cuda.cu)
+
+### Project manager
+
+Resolvimos el *milestone* (...) relacionado con los *issues* (...) para la tarea (...)
+
+### Grupo de programación
+
+Programamos (...) que puede consultarse (...).
+
+### Grupo de revisión
+
+Revisamos (...) con diferentes parámetros y generamos el reporte (...)
+
+
+---
+
+## Tarea (o *milestone* o trabajo) que continúa
+
+Determinamos que nos tomará dos días revisar los índices de las referencias que mencionó Erick y revisaremos la implementación de Erica para que la [funcion_imprime_hello_world_cuda.cu](src/funcion_imprime_hello_world_cuda.cu) imprima un `hello_world` por cada bloque de threads.
