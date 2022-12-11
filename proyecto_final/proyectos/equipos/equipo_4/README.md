@@ -13,6 +13,7 @@
 
 Título del proyecto: Optimización de Portafolio.
 
-[Liga a repo de trabajo](https://github.com/esesancr/proyecto_final_equipo_4)
-Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://github.com/esesancr/proyecto_final_equipo_4/blob/main/Euipo4_Final_Opti%202022.ipynb)
+- [Liga a repo de trabajo](https://github.com/esesancr/proyecto_final_equipo_4)
+
+- Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://github.com/esesancr/proyecto_final_equipo_4/blob/main/Euipo4_Final_Opti%202022.ipynb)
 
