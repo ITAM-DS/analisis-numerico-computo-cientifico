@@ -12,7 +12,7 @@ Algún integrante del equipo debe hacer un *fork* del repositorio del curso [ana
 
 ## Calificación rubro de avances y entregas vía *pull requests*
 
-Se tomará la calificación final de la parte 2 de la práctica 2 para el rubro de avances del proyecto final (25%) en conjunto con el correcto envío de los *pull requests*. Los *pull requests* se hacen a la rama **main** del repositorio [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico) utilizando el *fork* que se mencionó arriba y siguiendo las instrucciones que se detallan a continuación.
+Se tomará la calificación final de la parte 2 de la práctica 2 para el rubro de avances del proyecto final (25%) en conjunto con el correcto envío de los *pull requests*. Los *pull requests* se hacen a la rama **del curso** (que inicia con el nombre `optimizacion-`) del repositorio [analisis-numerico-computo-cientifico](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico) utilizando el *fork* que se mencionó arriba y siguiendo las instrucciones que se detallan a continuación.
 
 En el nivel:  
 
