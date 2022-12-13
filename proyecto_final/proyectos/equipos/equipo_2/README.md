@@ -10,7 +10,7 @@ Integrantes:
 
 Título del proyecto: __*Simmulated Annealing* para minimización de funciones__
 
-Objetivo del proyecto: __Implementar el método numérico para minimizar funciones con múltiples mínimos locales. Casos prácticos: funciones definidas y *problema del agente viajero*__
+Objetivo del proyecto: __Implementar el método numérico para minimizar funciones con múltiples mínimos locales. Casos prácticos: funciones definidas y *problema del agente viajero*.__
 
 [Liga a repo de trabajo](https://github.com/Navarreteed/Optimizacion_Simmulated_Annealing)
 
