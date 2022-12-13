@@ -1,4 +1,4 @@
-# avance 1
+# avance 2
 
 ## Integrantes:
 
@@ -10,7 +10,7 @@
 
 ## Problema:
 
-En este avance el objetivo era resolver el problema del agente viajero usando SA
+En este avance el objetivo era resolver el problema del agente viajero usando SA.
 
 ### Resúmen
 
