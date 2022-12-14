@@ -16,17 +16,19 @@
 Existen muchas formas de crecer el patromonio de un inversionista. Una de las formas más comunes que existen es el de invertir en el mercado financiero en acciones que cotizen dentro de las Bolsas de valores. La pregunta natural que nace apartir de lo anterior es ¿Qué empresas deberá seleccionar el inversionista para que su dinero este relamente bien invertido?. En este punto deberemos saber que existe una compensación entre el riesgo y el rendimiento, es decir, para aumentar el rendimiento esperado de la inversión, entonces el inversor debe estar dispuesto a tolerar mayores riesgos, por lo que en este proyecto buscaremos  maximizar la ganancia asociada a ciertos niveles de riesgo. 
 
 ## Problema de optimización 
-Método: Sequential least squares
-EL método sequential least squares es un método iterativo para problemas no lineares de optimización restringidas. 
-El problema parte de que la función puede ser aproximada como: $ f(x)\approx f(x)+\nabla f(x^k)(x-x^k)+\frac{1}{2} (x-x^k)Hf(x^k)(x-x^k)$.
+Método: Sequential least squares.
 
-Sujeto a las funciones g y h por sus aproximaciones afines locales 
-g(x)\approx g(x^k)+\nabla g(x^k)(x-x^k)
-h(x)\approx h(x^k)+\nabla h(x^k)(x-x^k)
+EL método sequential least squares es un método iterativo para problemas no lineares de optimización restringidas. 
+El problema parte de que la función puede ser aproximada como: $f(x)\approx f(x)+\nabla f(x^k)(x-x^k)+\frac{1}{2} (x-x^k)Hf(x^k)(x-x^k)$, con H como la Hessiana.
+
+Sujeto a las funciones g y h por sus aproximaciones afines locales: 
+
+$g(x)\approx g(x^k)+\nabla g(x^k)(x-x^k)$
+
+$h(x)\approx h(x^k)+\nabla h(x^k)(x-x^k)$
 
 Si el problema solo tiene restricciones de igualdad, entonces el método es equivalente a aplicar el método de Newton a las condiciones de optimalidad de primer orden, o condiciones de Karush-Kuhn-Tucker, del problema.
 
-https://en.wikipedia.org/wiki/Sequential_quadratic_programming
 
 ## Ligas de interés
 - [Liga a repo de trabajo](https://github.com/esesancr/proyecto_final_equipo_4)
@@ -44,3 +46,4 @@ En la carpeta [avance2](avance2) se encuentra el reporte del segundo avance en n
 - H.M.MARKOWITZ,Portfolioselection,JournalofFinance
 - https://plotly.com/python/v3/ipython-notebooks/markowitz-portfolio-optimization/
 - https://www.youtube.com/watch?v=p5pL8ZSeoN4
+- -https://en.wikipedia.org/wiki/Sequential_quadratic_programming
