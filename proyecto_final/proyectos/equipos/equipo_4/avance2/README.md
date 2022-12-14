@@ -66,4 +66,4 @@ Se dio seguimiento a todas las tareas pendientes, se siguió trabajando con la e
 
 ### Todos
 
-Se revisó y editó la presentación final creada por Ricardo.
+Se revisó y editó la presentación final creada por Ricardo. (Archivo Final)
