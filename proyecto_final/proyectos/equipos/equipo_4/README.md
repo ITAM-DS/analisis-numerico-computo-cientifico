@@ -33,11 +33,26 @@ Si el problema solo tiene restricciones de igualdad, entonces el método es equi
 ## Ligas de interés
 - [Liga a repo de trabajo](https://github.com/esesancr/proyecto_final_equipo_4)
 
-- Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://github.com/esesancr/proyecto_final_equipo_4/blob/main/Euipo4_Final_Opti%202022.ipynb)
+- [Liga a trabajo escrito](https://github.com/esesancr/proyecto_final_equipo_4/blob/main/Euipo4_Final_Opti%202022.ipynb)
+
+- [Liga a presentación final](https://github.com/esesancr/proyecto_final_equipo_4/blob/main/Optimizaci%C3%B3n%20de%20Portafolio.pdf) 
 
 En la carpeta [avance1](avance1) se encuentra la definición del objetivo y el planteamiento del problema. 
 
 En la carpeta [avance2](avance2) se encuentra el reporte del segundo avance en nuestro proyecto. 
+
+
+## Evidencia de uso de AWS
+
+### Adquisición de los Rendimientos con granularidad diaria.
+![Adquisicion_Rendimientos](imgs/Adquisicion_Rendimientos.jpeg)
+
+### Simulación de Portafolios.
+![Simulacion_Portafolios](imgs/Simulacion_Portafolios.jpeg)
+
+### Optimización de Portafolio.
+![Rendimientos_Optimos](imgs/Rendimientos_Optimos.jpeg)
+
 
 ## Referencias del proyecto:
 
@@ -46,4 +61,4 @@ En la carpeta [avance2](avance2) se encuentra el reporte del segundo avance en n
 - H.M.MARKOWITZ,Portfolioselection,JournalofFinance
 - https://plotly.com/python/v3/ipython-notebooks/markowitz-portfolio-optimization/
 - https://www.youtube.com/watch?v=p5pL8ZSeoN4
-- -https://en.wikipedia.org/wiki/Sequential_quadratic_programming
+- https://en.wikipedia.org/wiki/Sequential_quadratic_programming
