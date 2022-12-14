@@ -57,7 +57,7 @@ Se realizó la documentación de las funciones desarrolladas en el proyecto. **I
 
 Ricardo:
 
-Se corrigieron typos en el trabajo escrito y se generó la presentación final. Del mismo modo nuevamente se revisó lo realizado por Alberto y León. **Issue 3** e **Issue 5*
+Se corrigieron typos en el trabajo escrito y se generó la presentación final. Del mismo modo nuevamente se revisó lo realizado por Alberto y León. **Issue 3** e **Issue 5**
 
 
 Sergio:
