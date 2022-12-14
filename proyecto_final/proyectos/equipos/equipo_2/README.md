@@ -16,9 +16,9 @@ Objetivo del proyecto: __Implementar el método numérico para minimizar funcion
 
 Trabajo escrito (fuera del repo): [liga_trabajo_escrito](https://github.com/Navarreteed/Optimizacion_Simmulated_Annealing/blob/main/Reporte/reporte_equipo_2_proyecto_final.ipynb)
 
-Presentación (fuera del repo): [liga_presentación]()
+Presentación (fuera del repo): [liga_presentación](https://docs.google.com/presentation/d/1s0oRh5UU-nk_aiQLFlc9DlVL3R0OErgxXivX-ZjOmSE/edit?usp=sharing)
 
-Implementación (en el repo): [codigo](https://github.com/Navarreteed/Optimizacion_Simmulated_Annealing/blob/main/Simulated_annealing_desarrollo.ipynb) 
+Implementación (en el repo): [codigo](https://github.com/Navarreteed/analisis-numerico-computo-cientifico/tree/optimizacion-2022/proyecto_final/proyectos/equipos/equipo_2/src) 
 
 En la carpeta [avance1](avance1) se encuentra la definición del objetivo y el planteamiento del problema, así como el establecimiento de roles, división de tareas y una breve descripción del primer código desarrollado.
 
