@@ -18,7 +18,7 @@ Existen muchas formas de crecer el patromonio de un inversionista. Una de las fo
 ## Problema de optimización 
 Método: Sequential least squares.
 
-EL método sequential least squares es un método iterativo para problemas no lineares de optimización restringidas. 
+EL método sequential least squares es un método iterativo para problemas no lineales de optimización restringidas. 
 El problema parte de que la función puede ser aproximada como: $f(x)\approx f(x)+\nabla f(x^k)(x-x^k)+\frac{1}{2} (x-x^k)Hf(x^k)(x-x^k)$, con H como la Hessiana.
 
 Sujeto a las funciones g y h por sus aproximaciones afines locales: 
