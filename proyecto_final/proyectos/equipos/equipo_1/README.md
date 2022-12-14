@@ -35,19 +35,24 @@ Para resolver la ecuación diferencial inducida de manera más general (no solo 
 
 ## 🌐 [Trabajo escrito](https://drive.google.com/drive/u/1/folders/1xI_h8CFtNFiVacF_iKLZ7yscHh8LnNec)
 
-## 🌐 [Presentación](https://github.com/David-Damian/Optimization-Delaunay-surfaces/blob/main/notebooks/Propuesta_trabajoFinal.ipynb)
+## 🌐 [Presentación](https://drive.google.com/drive/u/1/folders/1PFiHOE2EAaN4GCr1xib3-4OOl3eIG-nY)
 
-## 🌐 Implementación
+## [🌐 Implementación](https://github.com/David-Damian/Optimization-Delaunay-surfaces/tree/main/src)
 
 
-- En la carpeta [avance1](https://github.com/David-Damian/Optimization-Delaunay-surfaces/tree/main/avance1) se encuentra el reporte del primer avance en nuestro proyecto.
+> En la carpeta [avance1](https://github.com/David-Damian/Optimization-Delaunay-surfaces/tree/main/avance1) se encuentra el reporte del primer avance en nuestro proyecto.
  
-- En la carpeta [avance2](https://github.com/David-Damian/Optimization-Delaunay-surfaces/tree/main/avance2) se encuentra el reporte del segundo avance en nuestro proyecto.
+> En la carpeta [avance2](https://github.com/David-Damian/Optimization-Delaunay-surfaces/tree/main/avance2) se encuentra el reporte del segundo avance en nuestro proyecto.
 
 ## Referencias del proyecto :books: 
-* [Inspiración del formarto del README](https://github.com/David-Damian/analisis-numerico-computo-cientifico/blob/optimizacion-2021/proyecto_final/proyectos/equipos/equipo_1/README.md)
-* [Sólidos de revolución con Python](https://stackoverflow.com/questions/59402531/how-to-produce-a-revolution-of-a-2d-plot-with-matplotlib-in-python)
-* [Parametrización de sólidos de revolución](https://sistemas.fciencias.unam.mx/~erhc/calculo4_20172/superficies_parametricas_2017_a.pdf)
-* [Cálculo de integrales sin conocer expresiíon analítica del integrando usando `Python`](https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.integrate.cumtrapz.html)
 * Troutman, J. L. (2022). Variational Calculus and Optimal Control: Optimization with Elementary Convexity (Undergraduate Texts in Mathematics) by John L. Troutman (1995-12-01). Springer.
 * Burden, R. L. & Faires, J. D. (2010). Numerical Analysis. Cengage Learning.
+* [Inspiración del formarto del README](https://github.com/David-Damian/analisis-numerico-computo-cientifico/blob/optimizacion-2021/proyecto_final/proyectos/equipos/equipo_1/README.md)
+* [Generar una *malla* en \mathbb{R}^2](https://numpy.org/doc/stable/reference/generated/numpy.meshgrid.html)
+* [Sólidos de revolución con Python](https://stackoverflow.com/questions/59402531/how-to-produce-a-revolution-of-a-2d-plot-with-matplotlib-in-python)
+* [Parametrización de sólidos de revolución](https://sistemas.fciencias.unam.mx/~erhc/calculo4_20172/superficies_parametricas_2017_a.pdf)
+* [Cálculo de integrales sin conocer expresión analítica del integrando usando `Python`](https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.integrate.cumtrapz.html)
+* [Plantilla de LaTeX para el reporte](https://www.latextemplates.com/template/legrand-orange-book)
+* [Plantilla de LaTeX para presentación](https://www.overleaf.com/latex/templates/jmu-prasentations-vorlage/cjgfjrsxwhfv)
+* [Problema de la braquistócrona en `Python`](https://scipython.com/blog/the-brachistochrone-problem/)
+* [Documentación de la librería para probar la integración](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html)

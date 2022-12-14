@@ -12,6 +12,7 @@ import math
 warnings.filterwarnings("ignore")
 #funcion auxiliar para calcular errores relativos
 def compute_error(obj,approx):
+    
     '''
     Relative or absolute error between obj and approx.
     '''
