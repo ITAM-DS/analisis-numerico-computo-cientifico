@@ -12,21 +12,45 @@ for t in portafolio:
 rendimientos =(data.pct_change())
 
 def portafolio_stats(pesos, rendimientos):
+    '''
+    portafolio_stats: Funcion que regresa los rendimientos, volatilidad y ratio sharpe de un conjunto de portafolios.
+    :param pesos: Vector con el peso (%) asignado a cada acción del portafolio.
+    :param rendimientos: Vector/Matriz con los rendimientos esperados anualizados para las acciones de un portafolio.
+    '''
     port_rendimientos=np.sum(pesos*rendimientos.mean())*252
     port_riesgos=np.sqrt(np.dot(pesos.T,np.dot(rendimientos.cov()*252,pesos)))
     sharpe = port_rendimientos/port_riesgos
     return {'Rendimiento':port_rendimientos, 'Volatilidad':port_riesgos, 'Sharpe':sharpe}
 
 def sum_pesos(pesos):
+    '''
+    sum_pesos: Función que restringe la suma de los pesos de todos los activos de cada portafolio sea igual a 1 .
+    :param pesos: Vector con el peso (%) asignado a cada acción del portafolio.
+    '''
     return pesos.sum()-1
 
 def rend_esperado(pesos,E):
+    '''
+    rend_esperado Funcion para calcular el rendimiento esperado de un portafolio menos una tasa rf.
+    :param pesos: Vector con el peso (%) asignado a cada acción del portafolio.
+    :param rendimientos: Vector/Matriz con los rendimientos esperados anualizados para las acciones de un portafolio. 
+    '''
     return portafolio_stats(pesos,rendimientos)['Rendimiento']-E
 
 def minimiza_sharpe(pesos, rendimientos):
+    '''
+    minimiza_sharpe: Funcion auxiliar para poder maximizar el ratio Sharpe. Regresa el ratio sharpe de los portafolios*-1
+    :param pesos: Vector con el peso (%) asignado a cada acción del portafolio..
+    :param rendimientos: Vector/Matriz con los rendimientos esperados anualizados para las acciones de un portafolio.
+    '''
     return -portafolio_stats(pesos, rendimientos)['Sharpe']
 
 def minimiza_riesgo(pesos):
+    '''
+    minimiza_riesgo: Funcion auxiliar para minimizar el riesgo. Regresa la volatilidad de un portafolio.
+    :param pesos: Vector con el peso (%) asignado a cada acción del portafolio.
+    :param rendimientos: Vector/Matriz con los rendimientos esperados anualizados para las acciones de un portafolio.
+    '''
     return(portafolio_stats(pesos,rendimientos)['Volatilidad'])
   
 port_rendimientos=[]
