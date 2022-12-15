@@ -18,9 +18,9 @@ Para resolver la ecuación diferencial inducida de manera más general (no solo 
 
 [Trabajo escrito](https://drive.google.com/drive/u/1/folders/1xI_h8CFtNFiVacF_iKLZ7yscHh8LnNec)
 
-[Presentacion](liga hacia presentacion)
+[Presentacion](https://drive.google.com/drive/u/1/folders/1PFiHOE2EAaN4GCr1xib3-4OOl3eIG-nY)
 
-[Implementacion](liga hacia implementacion)
+[Implementacion](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2022/proyecto_final/proyectos/equipos/equipo_1/src)
 
 
 ---
@@ -37,9 +37,9 @@ Resolver el problema del agente viajero usdando simmulated annealing
 
 [Trabajo escrito](https://github.com/Navarreteed/Optimizacion_Simmulated_Annealing/blob/main/Reporte/reporte_equipo_2_proyecto_final.ipynb)
 
-[Presentacion](liga hacia presentacion)
+[Presentacion](https://docs.google.com/presentation/d/1s0oRh5UU-nk_aiQLFlc9DlVL3R0OErgxXivX-ZjOmSE/edit?usp=sharing)
 
-[Implementacion](liga hacia implementacion)
+[Implementacion](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2022/proyecto_final/proyectos/equipos/equipo_2/src)
 
 ---
 
@@ -55,10 +55,27 @@ Hacer una recomendación sobre la ruta más corta cuando se quiere viajar de una
 
 [Trabajo escrito](https://drive.google.com/drive/folders/1zmotK-vA8HaqII4gksfqiYmQzhU7A8eW)
 
-[Presentacion](liga hacia presentacion)
+[Presentacion](https://drive.google.com/drive/folders/1zmotK-vA8HaqII4gksfqiYmQzhU7A8eW)
 
-[Implementacion](liga hacia implementacion)
+[Implementacion](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2022/proyecto_final/proyectos/equipos/equipo_3/avance3/codigo)
 
+---
+
+## [Equipo 4](equipos/equipo_4)
+
+**Título del proyecto** 
+
+Optimización de Portafolio
+
+**Objetivo del proyecto**
+
+Existen muchas formas de crecer el patromonio de un inversionista. Una de las formas más comunes que existen es el de invertir en el mercado financiero en acciones que cotizen dentro de las Bolsas de valores. La pregunta natural que nace apartir de lo anterior es ¿Qué empresas deberá seleccionar el inversionista para que su dinero este relamente bien invertido?. En este punto deberemos saber que existe una compensación entre el riesgo y el rendimiento, es decir, para aumentar el rendimiento esperado de la inversión, entonces el inversor debe estar dispuesto a tolerar mayores riesgos, por lo que en este proyecto buscaremos maximizar la ganancia asociada a ciertos niveles de riesgo.
+
+[Trabajo escrito](https://github.com/esesancr/proyecto_final_equipo_4/blob/main/Euipo4_Final_Opti%202022.ipynb)
+
+[Presentacion](https://github.com/esesancr/proyecto_final_equipo_4/blob/main/Optimizaci%C3%B3n%20de%20Portafolio.pdf)
+
+[Implementacion](https://github.com/ITAM-DS/analisis-numerico-computo-cientifico/tree/optimizacion-2022/proyecto_final/proyectos/equipos/equipo_4/notebooks)
 
 
 ---
